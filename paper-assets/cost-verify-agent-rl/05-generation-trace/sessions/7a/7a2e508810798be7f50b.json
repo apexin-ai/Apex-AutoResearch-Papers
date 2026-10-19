@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a2e508810798be7f50b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code 8b v9d ood eval config",
+  "task_key": "worker_code_8b_v9d_ood_eval_config_20260520T092801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8b_v9d_ood_eval_config_20260520T092801_result.json",
+    "occurrence": 1,
+    "bytes": 991,
+    "sha256": "731674636a36f9d238e9a3f5c2bb22778e342b66d5129d126f7e6807a59732a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "配置文件创建完成，YAML 验证通过。\n\n---\n\n**配置文件**: `westd-47453:/root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml`\n\n**Eval 命令**:\n```bash\ncd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_8b_v9d_ood_eval\n```\n\n**Checkpoint 状态**:\n- `global_step_15` — 尚未生成（`resume_from_path` 指向此处，训练到 step 15 后可用）\n- `global_step_10` — 已存在，但 huggingface 目录仅有 tokenizer，无权重文件。如需用 step 10，改 `resume_from_path` 为 `.../global_step_10`\n\n**关键配置差异 vs 训练**:\n- `val_only: True`，`resume_mode: resume_path`\n- 134 OOD tasks (`AlfworldSG_OOD`)，T=0.4 do_sample\n- `gpu_memory_utilization: 0.45`（eval-only 可给更多显存给 vLLM）\n- `use_ref: False`, `use_kl_loss: False`（eval 不需要）\n- **保留 4 GPU**：checkpoint 以 `world_size_4` 保存，2 GPU 加载可能需要 resharding，4 GPU 更稳妥"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-8b-v9d-ood-eval-config.md"
+}

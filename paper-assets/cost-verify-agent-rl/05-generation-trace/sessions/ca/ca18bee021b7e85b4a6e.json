@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca18bee021b7e85b4a6e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "urgent cell b seed2 checkpoint",
+  "task_key": "worker_urgent_cell_b_seed2_checkpoint_20260524T234705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_cell_b_seed2_checkpoint_20260524T234705_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "2fbb6a0244d40053212bc0578f4308ef9e33311dadd9699088b286cf1524d930"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Cell B seed2 step5 checkpoint: **不存在**\n\n搜索了 `/root/autodl-tmp/checkpoints` 下所有包含 \"h2\"、\"episodeadv\"、\"cell_b\"、\"factorial\" 的路径，均无结果。\n\n最接近的是 `hsweep-h10-seed2/global_step_5`（h=**10**, seed2），不是 Cell B（h=2）。\n\n### 2. ScienceWorld SFT 训练进度\n\n- **当前**: step **135/450** (30%)\n- **速度**: ~18-19s/step\n- **预计剩余**: ~1h38m（约北京时间 09:26 完成）\n- 最新 checkpoint: `checkpoint-112`（07:41 保存）\n\n### 3. GPU 显存与 eval 共存判断\n\n```\nGPU 0: RTX PRO 6000 (97887 MiB total)\n  已用: 49541 MiB (51%)\n  空闲: ~48 GB\n  利用率: 100%\n```\n\n服务器当前只有 **1 张 GPU 可见**（nvidia-smi 仅显示 GPU 0）。\n\n**判断**: 显存有 ~48GB 空余，eval (batch=1, ~20GB) 显存上可以共存。但 GPU compute 利用率 100%，eval 会与 SFT 争抢算力，双方都会变慢。建议等 SFT 完成（~1.5h 后）再跑 eval，或确认第二张卡是否可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-cell-b-seed2-checkpoint.md"
+}

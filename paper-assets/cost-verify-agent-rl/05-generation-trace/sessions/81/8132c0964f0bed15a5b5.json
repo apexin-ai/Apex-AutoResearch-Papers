@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8132c0964f0bed15a5b5",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "research recipe gap analysis",
+  "task_key": "worker_research_recipe_gap_analysis_20260515T201631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_recipe_gap_analysis_20260515T201631.log",
+    "occurrence": 1,
+    "bytes": 615137,
+    "sha256": "f550a8a9782a3f934b6721b79e1fdfe50df5cb36b55f1fa40115891abbec70bc"
+  },
+  "statistics": {
+    "messages": 152,
+    "user_turns": 0,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 59,
+      "tool_result": 59,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 152,
+      "chunks": [
+        {
+          "path": "8132c0964f0bed15a5b5-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "8132c0964f0bed15a5b5-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-recipe-gap-analysis.md"
+}

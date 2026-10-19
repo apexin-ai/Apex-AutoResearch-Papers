@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44a9588b6226c8bdcd0b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment scienceworld cellc debug retry",
+  "task_key": "worker_experiment_scienceworld-cellc-debug-retry_20260520T153530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_scienceworld-cellc-debug-retry_20260520T153530_result.json",
+    "occurrence": 1,
+    "bytes": 1277,
+    "sha256": "b12b73859d2cc8da68b88c8c3eda9f16d7805dff7f96316f0bda917ebbca636f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正在初始化中。\n\n---\n\n**产出总结**：\n\n### 1. 崩溃 Root Cause\n- **py4j JVM 死亡**：ScienceWorld 通过 py4j 桥接 Python↔Java（Scala）。Cell C step 1 完成后，step 2 rollout 运行约 2 小时后 JVM 进程死亡（推测原因：默认 JVM 堆不足 + 128 episodes 反复 `load()`/`reset()` 累积 GC 压力），导致 `Py4JNetworkError: Exception while sending command`\n- **无重连机制**：原 wrapper 的 `_get_cached_env()` 按 thread ID 缓存 JVM 实例，JVM 死后返回 stale 连接，py4j 重试一次也失败，训练直接崩溃\n- 不是系统 OOM（1TB RAM，仅用 52GB），无 JVM crash dump（`hs_err_pid*`），无 OOM killer 记录\n\n### 2. 加固措施（`env.py` 重写）\n- **JVM 堆增大**：`JAVA_TOOL_OPTIONS=-Xmx4g`（原来无显式设置，默认 ~256MB）\n- **`reset()` 自动重建 JVM**：捕获 `Py4JNetworkError`/`ConnectionError`/`OSError`，shutdown 旧 gateway，创建新 JVM 实例，最多重试 3 次\n- **`step()` 优雅降级**：JVM 死亡时标记 `_env_dead=True`，返回 `done=True, reward=0`，不影响后续 episode\n\n### 3. 重试提交\n- **exp_id**: `scienceworld_grpo_cell_c_v2`\n- **server**: westd-47453, GPU cuda:2,3\n- **PID**: 920065\n- **timeout**: 12h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-scienceworld-cellc-debug-retry.md"
+}

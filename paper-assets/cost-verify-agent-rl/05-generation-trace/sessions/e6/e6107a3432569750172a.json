@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6107a3432569750172a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp009 preflight",
+  "task_key": "worker_ops_exp009_preflight_20260514T033649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp009_preflight_20260514T033649_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "de5eacbeef08ef73474a90625a0ed50d7ebaafc1379c6930d305aad2e90eba79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp009 启动前检查报告\n\n| 检查项 | 结果 | 状态 |\n|--------|------|------|\n| **1. 清理 checkpoint-150** | 已删除，剩余: checkpoint-75, checkpoint-225, final | ✅ |\n| **2. SFT checkpoint 精度** | 全部 `torch.bfloat16` | ✅ |\n| **3a. save_freq** | `save_freq: 5` | ✅ |\n| **3b. model_path** | `model_path: /root/autodl-tmp/checkpoints/exp008_sft/final` | ✅ |\n| **3c. RAY_TMPDIR** | `export RAY_TMPDIR=/root/autodl-tmp/ray_tmp` (在 .bashrc 中) | ✅ |\n| **4. eval 进程** | **PID 193931 仍在运行** (`eval_sft_model.py`，占用 cuda:1, 33065MiB) | ❌ |\n| **5. GPU 状态** | cuda:0 空闲 (0MiB, 0%) / cuda:1 被占用 (33065MiB, 56%) | ❌ |\n| **6. 磁盘** | 30G 总量, 7.6G 已用, 23G 可用 (26%) | ✅ |\n\n### 结论：**不能安全启动 exp009**\n\ncuda:1 上 `eval_sft_model.py` (PID 193931) 仍在运行。需要先 kill 该进程释放 GPU 才能启动 GRPO。\n\n是否 kill PID 193931？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp009-preflight.md"
+}

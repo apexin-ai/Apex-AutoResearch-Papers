@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d4b314c9c81f31dd4da6",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code exp 001",
+  "task_key": "worker_code_exp_001_20260513T182718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_001_20260513T182718.log",
+    "occurrence": 1,
+    "bytes": 804023,
+    "sha256": "b76ea44c5a7a8c37963616904d94ae8afa6602d085b5ad22c081d5581c50134f"
+  },
+  "statistics": {
+    "messages": 254,
+    "user_turns": 0,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 87,
+      "tool_result": 87,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 254,
+      "chunks": [
+        {
+          "path": "d4b314c9c81f31dd4da6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d4b314c9c81f31dd4da6-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-001.md"
+}

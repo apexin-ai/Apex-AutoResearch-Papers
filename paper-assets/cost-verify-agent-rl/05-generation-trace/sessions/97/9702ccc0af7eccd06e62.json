@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9702ccc0af7eccd06e62",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "data scienceworld sft datagen v2",
+  "task_key": "worker_data_scienceworld_sft_datagen_v2_20260524T082502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_scienceworld_sft_datagen_v2_20260524T082502_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "9bb16f0f1aee07b8340cf9e310b67406bd4112678d098d95016a13b2f1175b85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据生成运行正常：\n\n- **已生成**: 13 条 train 数据（约 62 秒处理 10 个 variations）\n- **全部 score=100**，gold path 质量好\n- **无 timeout/error**\n- tmux session `sw_datagen` 稳定运行中\n\n按当前速度（~6s/variation），ScienceWorld 约有 ~900 个 variations（30 tasks × ~30 vars），预计总耗时约 **90 分钟**。var 152 将被自动跳过，超时 variation 会在 300s 后跳过并重建 env。\n\n数据持续 append 写入 `/root/cost-verify-agent-rl/data/scienceworld_sft_train.jsonl`，中途中断不会丢失已生成数据。1h 后如未全部完成，>500 条即可直接用于 SFT。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-scienceworld-sft-datagen-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9ea44a580b0534bf027",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check seed100 westd status",
+  "task_key": "worker_check_seed100_westd_status_20260522T181843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_seed100_westd_status_20260522T181843_result.json",
+    "occurrence": 1,
+    "bytes": 1268,
+    "sha256": "7703767e7f8cf67c0a55784ce84c262f87e59c1dad6d32e2dde145a0fd8245d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### seed100 (PID 72007) — 存活，初始化中\n\n- 进程运行 ~26 分钟，状态正常\n- GPU 0,1 已分配显存 ~44.5 GB/卡，但 **计算利用率 0%** — 仍在初始化阶段\n- 日志最后输出：TaskRunner 正在初始化 AlfredTWEnv（3553 train / 140 eval games），尚未开始训练 step\n- **无 checkpoint**：`/root/autodl-tmp/checkpoints/exp029-seed100/` 不存在（符合预期，还没跑到保存点）\n\n### seed200 (PID 999987) — 主进程已死，Ray worker 残留\n\n- PID 999987 **不存在**\n- 但其 Ray raylet (PID 64789) 和 GPU workers (PIDs 66567/66568) **仍在运行**，占用 GPU 2,3，利用率 100%，各 ~45 GB 显存\n- 这是**孤儿进程**，需要手动清理（`ray stop` 或 kill 对应进程树）\n\n### GPU 总览\n\n| GPU | 利用率 | 显存占用 | 归属 |\n|-----|--------|---------|------|\n| 0 | 0% | 44.5/97.9 GB | seed100 (初始化中) |\n| 1 | 0% | 44.5/97.9 GB | seed100 (初始化中) |\n| 2 | 100% | 45.0/97.9 GB | seed200 孤儿 worker |\n| 3 | 100% | 45.0/97.9 GB | seed200 孤儿 worker |\n\n**建议**：清理 seed200 残留的 Ray 进程（PPID 64789 的整棵进程树），释放 GPU 2,3。seed100 本身正常，等它完成初始化即可开始训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-seed100-westd-status.md"
+}

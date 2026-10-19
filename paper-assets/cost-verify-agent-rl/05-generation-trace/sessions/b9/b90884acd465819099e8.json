@@ -1,0 +1,1279 @@
+{
+  "schema_version": "1.0",
+  "id": "b90884acd465819099e8",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "monitor bjb1 eval v2 status",
+  "task_key": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_bjb1_eval_v2_status_20260520T000328.log",
+    "occurrence": 1,
+    "bytes": 78388,
+    "sha256": "b556a32021d8b13efc8d212a3cd131ceb0d875cf12231a24b28ea688fd52cdb5"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+                "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "f642187f-f2fc-487b-9c1c-f4dbeb071bb9",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779249600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "1ea644e4-04ef-4445-887c-62f788f793e9",
+                "session_id": "46382577-a773-489f-981d-1e34af5d4130"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to check the status of a ScienceWorld eval_v2 run on server bjb1-17606. Let me execute the necessary commands via SSH.",
+              "signature": "EsQCClkIDRgCKkB+j8svf6QhOaqFAYM8LRSHpswIXofyp3RAqBMPjsp6ByrXiNutJtiJ2IL6miesdoHQ1BzjtNzxIKf6o1KPEhQXMg9jbGF1ZGUtb3B1cy00LTY4ABIMxYgdsMR8cwavyATrGgyoXslYNrTuxnMo0kMiMGcmeuYDN4SqldjieJSl806yXvh28l+w319GGtO420LL/AGKIS3bKYNbjP1/UkSkQyqYAZlDDSCnWZekOfFx4pPEBHPrMdVVn9jOu6RymsMqOuAdatgq/HqKrJ0LY/RmJvxGgb7FbS8/8ekD9uqIAn799SPmElRg8WKl53goqo4kCIxRI7fnvtQ4/vFvHMhiBWv7n8d3XoreGpidNP+YH9tOT3KPOwW5lrJO8aTegxW5kzEWDqQrswEPZc82KW5lXGUdTbz8e7YVptLiGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "183a90d8-bd96-4e49-90ae-35ad15e377e4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YPe1ZETBaxQWeLgWRDK54P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12480,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12480
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015A6fLm9pA98PcV19N8brtx",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "86da25f6-3e32-47be-b6f2-ae97752c5c3e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YPe1ZETBaxQWeLgWRDK54P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12480,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12480
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T00:03:41.158Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015A6fLm9pA98PcV19N8brtx",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "dc05b5ac-f48e-4af2-a9e4-b32ab1964e37",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01776VN22At73v8KrpTki8sA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "nvidia-smi",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "dfb9e7f7-1487-4286-9fd3-9936d7405413",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NEgSWFQafRFRfiVSDPJQMn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 479,
+                "cache_read_input_tokens": 24321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 479
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jt4v86LGtmYGkyC5xuXR5D",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "ps aux --sort=-start_time",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "dbd18b29-3408-4c93-b8b7-ebf60c7322d8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NEgSWFQafRFRfiVSDPJQMn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 479,
+                "cache_read_input_tokens": 24321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 479
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T00:03:44.821Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01776VN22At73v8KrpTki8sA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Wed May 20 08:03:44 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 590.44.01              Driver Version: 590.44.01      CUDA Version: 13.1     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\\\n| N/A   41C    P0            145W /  600W |   84161MiB /  97887MiB |     41%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |                  Off |\\\\n| N/A   41C    P0            176W /  600W |   84161MiB /  97887MiB |     95%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          196384      C   VLLM::Worker_TP0                      84152MiB |\\\\n|    1   N/A  N/A          196385      C   VLLM::Worker_TP1                      84152MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "41363904-6e2f-40d8-a5bb-e89444e23079",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Wed May 20 08:03:44 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 590.44.01              Driver Version: 590.44.01      CUDA Version: 13.1     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\\\n| N/A   41C    P0            145W /  600W |   84161MiB /  97887MiB |     41%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |                  Off |\\\\n| N/A   41C    P0            176W /  600W |   84161MiB /  97887MiB |     95%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          196384      C   VLLM::Worker_TP0                      84152MiB |\\\\n|    1   N/A  N/A          196385      C   VLLM::Worker_TP1                      84152MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Wed May 20 08:03:44 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 590.44.01              Driver Version: 590.44.01      CUDA Version: 13.1     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\n| N/A   41C    P0            145W /  600W |   84161MiB /  97887MiB |     41%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |                  Off |\\n| N/A   41C    P0            176W /  600W |   84161MiB /  97887MiB |     95%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          196384      C   VLLM::Worker_TP0                      84152MiB |\\n|    1   N/A  N/A          196385      C   VLLM::Worker_TP1                      84152MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T00:03:45.255Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jt4v86LGtmYGkyC5xuXR5D",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot     197388  0.0  0.0   7064  1564 ?        Rs   08:03   0:00 ps aux --sort=-start_time\\\\nroot     197374  4.0  0.0  16692 11048 ?        Ss   08:03   0:00 sshd: root@notty\\\\nroot     197358  0.1  0.0  16692 10612 ?        Ss   08:03   0:00 sshd: root@notty\\\\nroot     197337  0.0  0.0  16692 10848 ?        Ss   08:03   0:00 sshd: root@notty\\\\nroot     197295  0.0  0.0  16692 10748 ?        Ss   08:02   0:00 sshd: root@notty\\\\nroot     197201  0.0  0.0  16692 10712 ?        Ss   08:01   0:00 sshd: root@notty\\\\nroot     197101  0.0  0.0   2792   992 ?        S    07:58   0:00 sleep 1800\\\\nroot     197077  0.0  0.0  16692 10896 ?        Ss   07:58   0:00 sshd: root@notty\\\\nroot     196535  7.6  0.1 38046708 1761952 ?    Sl   07:43   1:33 java -classpath /root/miniconda3/share/py4j/py4j0.10.9.9.jar:/root/miniconda3/lib/python3.12/site-packages/scienceworld/scienceworld.jar py4j.GatewayServer --die-on-broken-pipe 0\\\\nroot     196384  109  0.2 514162820 2841900 ?   Rl   07:43  22:32 VLLM::Worker_TP0\\\\nroot     196385 88.3  0.2 514015452 2838276 ?   Rl   07:43  18:09 VLLM::Worker_TP1\\\\nroot     196120  0.0  0.0  15620 12496 ?        S    07:43   0:00 /root/miniconda3/bin/python -c from multiprocessing.resource_tracker import main;main(36)\\\\nroot     196121 47.0  0.1 31108216 1147044 ?    Rl   07:43   9:42 VLLM::EngineCore\\\\nroot     195853 54.2  0.1 33473464 1258840 ?    Sl   07:42  11:16 python eval_scienceworld.py --checkpoint /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/ --temperature 0.4 --eval_split dev --tensor_parallel_size 2 --gpu_memory_utilization 0.85 --max_model_len 32768 --output /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json --resume --episode_timeout 300\\\\nroot     195848  0.0  0.0   4364  2060 ?        S    07:42   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && nohup bash -c \\\\\\\"CUDA_VISIBLE_DEVICES=0,1 python eval_scienceworld.py --checkpoint /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/ --temperature 0.4 --eval_split dev --tensor_parallel_size 2 --gpu_memory_utilization 0.85 --max_model_len 32768 --output /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json --resume --episode_timeout 300\\\\\\\" > /tmp/eval_scienceworld_v2_resumed.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot     181673  0.0  0.0  16692 10808 ?        Ss   01:39   0:02 sshd: root@notty\\\\nroot     181641  0.0  0.0  16692 10812 ?        Ss   01:38   0:02 sshd: root@notty\\\\nroot      96086  0.0  0.0  25564 19420 ?        S    May19   0:07 python -m http.server 18923\\\\nroot      96081  0.0  0.0   4364  2188 ?        S    May19   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/expert_sft && nohup python -m http.server 18923 > /dev/null 2>&1 & echo \\\\\\\"HTTP_PID: $!\\\\\\\"\\\\nroot     183184  0.0  0.0   4364  3072 ?        S    May14   0:00 /bin/bash /root/autodl-tmp/disk_monitor.sh\\\\nroot        997  0.0  0.0 28341192 7164 ?       Sl   May13   9:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_42t4m6mv/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_42t4m6mv/startup_error\\\\nroot        909  0.0  0.0  15444  9356 ?        S    May13   0:16 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        910  0.2  0.0 3609324 21352 ?       Sl   May13  20:28 proxy -c /init/proxy/proxy.ini\\\\nroot        911  0.0  0.0 3328348 67064 ?       Sl   May13   4:45 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        912  0.2  0.0 6970104 104684 ?      Sl   May13  23:52 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        914  0.0  0.0 191548 97816 ?        S    May13   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        915  0.0  0.0 3386656 18664 ?       Sl   May13   2:22 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        891  2.2  0.0 722848 21232 ?        Sl   May13 222:47 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot          1  0.0  0.0   4476  3136 ?        Ss   May13   0:01 bash /init/boot/boot.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "aea75167-74f1-4344-a5db-1818729554ad",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot     197388  0.0  0.0   7064  1564 ?        Rs   08:03   0:00 ps aux --sort=-start_time\\\\nroot     197374  4.0  0.0  16692 11048 ?        Ss   08:03   0:00 sshd: root@notty\\\\nroot     197358  0.1  0.0  16692 10612 ?        Ss   08:03   0:00 sshd: root@notty\\\\nroot     197337  0.0  0.0  16692 10848 ?        Ss   08:03   0:00 sshd: root@notty\\\\nroot     197295  0.0  0.0  16692 10748 ?        Ss   08:02   0:00 sshd: root@notty\\\\nroot     197201  0.0  0.0  16692 10712 ?        Ss   08:01   0:00 sshd: root@notty\\\\nroot     197101  0.0  0.0   2792   992 ?        S    07:58   0:00 sleep 1800\\\\nroot     197077  0.0  0.0  16692 10896 ?        Ss   07:58   0:00 sshd: root@notty\\\\nroot     196535  7.6  0.1 38046708 1761952 ?    Sl   07:43   1:33 java -classpath /root/miniconda3/share/py4j/py4j0.10.9.9.jar:/root/miniconda3/lib/python3.12/site-packages/scienceworld/scienceworld.jar py4j.GatewayServer --die-on-broken-pipe 0\\\\nroot     196384  109  0.2 514162820 2841900 ?   Rl   07:43  22:32 VLLM::Worker_TP0\\\\nroot     196385 88.3  0.2 514015452 2838276 ?   Rl   07:43  18:09 VLLM::Worker_TP1\\\\nroot     196120  0.0  0.0  15620 12496 ?        S    07:43   0:00 /root/miniconda3/bin/python -c from multiprocessing.resource_tracker import main;main(36)\\\\nroot     196121 47.0  0.1 31108216 1147044 ?    Rl   07:43   9:42 VLLM::EngineCore\\\\nroot     195853 54.2  0.1 33473464 1258840 ?    Sl   07:42  11:16 python eval_scienceworld.py --checkpoint /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/ --temperature 0.4 --eval_split dev --tensor_parallel_size 2 --gpu_memory_utilization 0.85 --max_model_len 32768 --output /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json --resume --episode_timeout 300\\\\nroot     195848  0.0  0.0   4364  2060 ?        S    07:42   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && nohup bash -c \\\\\\\"CUDA_VISIBLE_DEVICES=0,1 python eval_scienceworld.py --checkpoint /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/ --temperature 0.4 --eval_split dev --tensor_parallel_size 2 --gpu_memory_utilization 0.85 --max_model_len 32768 --output /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json --resume --episode_timeout 300\\\\\\\" > /tmp/eval_scienceworld_v2_resumed.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot     181673  0.0  0.0  16692 10808 ?        Ss   01:39   0:02 sshd: root@notty\\\\nroot     181641  0.0  0.0  16692 10812 ?        Ss   01:38   0:02 sshd: root@notty\\\\nroot      96086  0.0  0.0  25564 19420 ?        S    May19   0:07 python -m http.server 18923\\\\nroot      96081  0.0  0.0   4364  2188 ?        S    May19   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/expert_sft && nohup python -m http.server 18923 > /dev/null 2>&1 & echo \\\\\\\"HTTP_PID: $!\\\\\\\"\\\\nroot     183184  0.0  0.0   4364  3072 ?        S    May14   0:00 /bin/bash /root/autodl-tmp/disk_monitor.sh\\\\nroot        997  0.0  0.0 28341192 7164 ?       Sl   May13   9:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_42t4m6mv/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_42t4m6mv/startup_error\\\\nroot        909  0.0  0.0  15444  9356 ?        S    May13   0:16 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        910  0.2  0.0 3609324 21352 ?       Sl   May13  20:28 proxy -c /init/proxy/proxy.ini\\\\nroot        911  0.0  0.0 3328348 67064 ?       Sl   May13   4:45 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        912  0.2  0.0 6970104 104684 ?      Sl   May13  23:52 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        914  0.0  0.0 191548 97816 ?        S    May13   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        915  0.0  0.0 3386656 18664 ?       Sl   May13   2:22 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        891  2.2  0.0 722848 21232 ?        Sl   May13 222:47 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot          1  0.0  0.0   4476  3136 ?        Ss   May13   0:01 bash /init/boot/boot.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot     197388  0.0  0.0   7064  1564 ?        Rs   08:03   0:00 ps aux --sort=-start_time\\nroot     197374  4.0  0.0  16692 11048 ?        Ss   08:03   0:00 sshd: root@notty\\nroot     197358  0.1  0.0  16692 10612 ?        Ss   08:03   0:00 sshd: root@notty\\nroot     197337  0.0  0.0  16692 10848 ?        Ss   08:03   0:00 sshd: root@notty\\nroot     197295  0.0  0.0  16692 10748 ?        Ss   08:02   0:00 sshd: root@notty\\nroot     197201  0.0  0.0  16692 10712 ?        Ss   08:01   0:00 sshd: root@notty\\nroot     197101  0.0  0.0   2792   992 ?        S    07:58   0:00 sleep 1800\\nroot     197077  0.0  0.0  16692 10896 ?        Ss   07:58   0:00 sshd: root@notty\\nroot     196535  7.6  0.1 38046708 1761952 ?    Sl   07:43   1:33 java -classpath /root/miniconda3/share/py4j/py4j0.10.9.9.jar:/root/miniconda3/lib/python3.12/site-packages/scienceworld/scienceworld.jar py4j.GatewayServer --die-on-broken-pipe 0\\nroot     196384  109  0.2 514162820 2841900 ?   Rl   07:43  22:32 VLLM::Worker_TP0\\nroot     196385 88.3  0.2 514015452 2838276 ?   Rl   07:43  18:09 VLLM::Worker_TP1\\nroot     196120  0.0  0.0  15620 12496 ?        S    07:43   0:00 /root/miniconda3/bin/python -c from multiprocessing.resource_tracker import main;main(36)\\nroot     196121 47.0  0.1 31108216 1147044 ?    Rl   07:43   9:42 VLLM::EngineCore\\nroot     195853 54.2  0.1 33473464 1258840 ?    Sl   07:42  11:16 python eval_scienceworld.py --checkpoint /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/ --temperature 0.4 --eval_split dev --tensor_parallel_size 2 --gpu_memory_utilization 0.85 --max_model_len 32768 --output /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json --resume --episode_timeout 300\\nroot     195848  0.0  0.0   4364  2060 ?        S    07:42   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && nohup bash -c \\\"CUDA_VISIBLE_DEVICES=0,1 python eval_scienceworld.py --checkpoint /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/ --temperature 0.4 --eval_split dev --tensor_parallel_size 2 --gpu_memory_utilization 0.85 --max_model_len 32768 --output /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json --resume --episode_timeout 300\\\" > /tmp/eval_scienceworld_v2_resumed.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     181673  0.0  0.0  16692 10808 ?        Ss   01:39   0:02 sshd: root@notty\\nroot     181641  0.0  0.0  16692 10812 ?        Ss   01:38   0:02 sshd: root@notty\\nroot      96086  0.0  0.0  25564 19420 ?        S    May19   0:07 python -m http.server 18923\\nroot      96081  0.0  0.0   4364  2188 ?        S    May19   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/expert_sft && nohup python -m http.server 18923 > /dev/null 2>&1 & echo \\\"HTTP_PID: $!\\\"\\nroot     183184  0.0  0.0   4364  3072 ?        S    May14   0:00 /bin/bash /root/autodl-tmp/disk_monitor.sh\\nroot        997  0.0  0.0 28341192 7164 ?       Sl   May13   9:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_42t4m6mv/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_42t4m6mv/startup_error\\nroot        909  0.0  0.0  15444  9356 ?        S    May13   0:16 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        910  0.2  0.0 3609324 21352 ?       Sl   May13  20:28 proxy -c /init/proxy/proxy.ini\\nroot        911  0.0  0.0 3328348 67064 ?       Sl   May13   4:45 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        912  0.2  0.0 6970104 104684 ?      Sl   May13  23:52 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        914  0.0  0.0 191548 97816 ?        S    May13   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        915  0.0  0.0 3386656 18664 ?       Sl   May13   2:22 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        891  2.2  0.0 722848 21232 ?        Sl   May13 222:47 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot          1  0.0  0.0   4476  3136 ?        Ss   May13   0:01 bash /init/boot/boot.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. I can see:\n\n1. GPU status: Both GPUs are active with vLLM workers\n   - GPU 0: 41°C, 145W, 84161MiB/97887MiB, 41% util\n   - GPU 1: 41°C, 176W, 84161MiB/97887MiB, 95% util\n\n2. Process status: PID 195848 is the bash wrapper, PID 195853 is the actual python process running eval_scienceworld.py with --resume and --episode_timeout 300. Started at 07:42 today.\n   \nThere's a discrepancy though—the user mentioned PID 195848 had been running for 18 hours, but the process list shows both PIDs started at 07:42 this morning, which is only about 21 minutes ago. This looks like either a restart of the original process or the user was looking at different timing information.\n\nNow let me examine the output files and logs to see what's actually happening.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "dd86d20b-a5bf-42ee-b9ff-3d48c1977f77",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EPVykxdWeiunQs9Nwk6X4E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2855,
+                "cache_read_input_tokens": 24800,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2855
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程在运行，刚启动约21分钟（07:42 today，非之前说的18h）。继续查输出文件和日志。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "d0510eae-9d36-4657-8fcd-bd65b30b165d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EPVykxdWeiunQs9Nwk6X4E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2855,
+                "cache_read_input_tokens": 24800,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2855
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WjbjaFUr4wDdKYCpu6tqgJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "find /root/autodl-tmp/checkpoints/scienceworld_sft/ -name \"eval_results*\" -ls",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "3a30ddcc-b67d-473e-96cd-d98f93ec3ed7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EPVykxdWeiunQs9Nwk6X4E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2855,
+                "cache_read_input_tokens": 24800,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2855
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T00:03:59.092Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WjbjaFUr4wDdKYCpu6tqgJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33298071101     68 -rw-r--r--   1 root     root        69304 May 20 08:03 /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "6fd04c81-34aa-4add-9d85-117b085d1a8d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33298071101     68 -rw-r--r--   1 root     root        69304 May 20 08:03 /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"33298071101     68 -rw-r--r--   1 root     root        69304 May 20 08:03 /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015BvFrjSPZJcgYPz5M6puNR",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "tail -80 /tmp/eval_scienceworld_v2_resumed.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "94be3dcd-3dab-4fcb-b4b0-49ccd7fa62f3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EPVykxdWeiunQs9Nwk6X4E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2855,
+                "cache_read_input_tokens": 24800,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2855
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T00:04:00.092Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015BvFrjSPZJcgYPz5M6puNR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model from /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/...\\\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\\\nINFO 05-20 07:43:04 [utils.py:233] non-default args: {'max_model_len': 32768, 'tensor_parallel_size': 2, 'gpu_memory_utilization': 0.85, 'disable_log_stats': True, 'enforce_eager': True, 'enable_chunked_prefill': True, 'model': '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'}\\\\nINFO 05-20 07:43:04 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-20 07:43:04 [model.py:1582] Using max model len 32768\\\\nINFO 05-20 07:43:05 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=16384.\\\\nINFO 05-20 07:43:05 [vllm.py:775] Asynchronous scheduling is enabled.\\\\nWARNING 05-20 07:43:05 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\nWARNING 05-20 07:43:05 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\\\nINFO 05-20 07:43:05 [vllm.py:985] Cudagraph is disabled under eager mode\\\\nINFO 05-20 07:43:05 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant\\\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\\\n(EngineCore pid=196121) INFO 05-20 07:43:12 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/', speculative_config=None, tokenizer='/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=32768, download_dir=None, load_format=auto, tensor_parallel_size=2, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [16384], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_l\\\\n\\\\n... [截断: 输出过长，省略 4133 字符] ...\\\\n\\\\n] GPU KV cache size: 1,439,136 tokens\\\\n(EngineCore pid=196121) INFO 05-20 07:43:25 [kv_cache_utils.py:1321] Maximum concurrency for 32,768 tokens per request: 43.92x\\\\n(EngineCore pid=196121) INFO 05-20 07:43:25 [core.py:281] init engine (profile, create kv cache, warmup model) took 2.07 seconds\\\\n(EngineCore pid=196121) The tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\\\n(EngineCore pid=196121) INFO 05-20 07:43:26 [vllm.py:775] Asynchronous scheduling is enabled.\\\\n(EngineCore pid=196121) WARNING 05-20 07:43:26 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\n(EngineCore pid=196121) WARNING 05-20 07:43:26 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\\\n(EngineCore pid=196121) INFO 05-20 07:43:26 [vllm.py:985] Cudagraph is disabled under eager mode\\\\n(EngineCore pid=196121) INFO 05-20 07:43:26 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant\\\\nINFO 05-20 07:43:26 [llm.py:391] Supported tasks: ['generate']\\\\nInitializing ScienceWorld...\\\\nEval plan: 1796 episodes across 30 task types (split=dev, T=0.4)\\\\nResuming: 439 episodes already completed, skipping to episode 440\\\\n[440/1796] OK inclined-plane-determine-angle v109 (19 steps, valid=74%, fmt=100%, 7.4s)\\\\n[441/1796] FAIL(0) inclined-plane-determine-angle v110 (100 steps, valid=1%, fmt=1%, 52.2s)\\\\n[442/1796] FAIL(-100) inclined-plane-determine-angle v111 (7 steps, valid=86%, fmt=100%, 2.5s)\\\\n[443/1796] FAIL(0) inclined-plane-determine-angle v112 (100 steps, valid=0%, fmt=1%, 56.2s)\\\\n[444/1796] FAIL(10) inclined-plane-determine-angle v113 (100 steps, valid=13%, fmt=18%, 56.6s)\\\\n[445/1796] FAIL(5) inclined-plane-determine-angle v114 (100 steps, valid=1%, fmt=2%, 67.6s)\\\\n[446/1796] FAIL(-100) inclined-plane-determine-angle v115 (52 steps, valid=48%, fmt=90%, 17.4s)\\\\n[447/1796] OK inclined-plane-determine-angle v116 (22 steps, valid=73%, fmt=100%, 7.7s)\\\\n[448/1796] FAIL(10) inclined-plane-determine-angle v117 (100 steps, valid=28%, fmt=49%, 94.6s)\\\\n[449/1796] FAIL(10) inclined-plane-determine-angle v118 (100 steps, valid=10%, fmt=11%, 88.8s)\\\\n[450/1796] FAIL(10) inclined-plane-determine-angle v119 (100 steps, valid=2%, fmt=2%, 93.9s)\\\\n[451/1796] FAIL(-100) inclined-plane-determine-angle v120 (43 steps, valid=65%, fmt=91%, 13.7s)\\\\n[452/1796] FAIL(10) inclined-plane-determine-angle v121 (100 steps, valid=14%, fmt=17%, 59.7s)\\\\n[453/1796] FAIL(10) inclined-plane-determine-angle v122 (100 steps, valid=28%, fmt=55%, 86.8s)\\\\n[454/1796] FAIL(5) inclined-plane-determine-angle v123 (100 steps, valid=12%, fmt=64%, 59.1s)\\\\n[455/1796] FAIL(10) inclined-plane-determine-angle v124 (100 steps, valid=7%, fmt=9%, 68.2s)\\\\n[456/1796] FAIL(10) inclined-plane-determine-angle v125 (100 steps, valid=22%, fmt=26%, 65.7s)\\\\n[457/1796] FAIL(10) inclined-plane-friction-named-surfaces v692 (100 steps, valid=7%, fmt=9%, 92.7s)\\\\n[458/1796] FAIL(0) inclined-plane-friction-named-surfaces v693 (100 steps, valid=0%, fmt=1%, 42.0s)\\\\n[459/1796] FAIL(-100) inclined-plane-friction-named-surfaces v694 (21 steps, valid=76%, fmt=100%, 7.0s)\\\\n[460/1796] FAIL(10) inclined-plane-friction-named-surfaces v695 (100 steps, valid=7%, fmt=8%, 101.6s)\\\\n[461/1796] OK inclined-plane-friction-named-surfaces v696 (21 steps, valid=62%, fmt=95%, 7.9s)\\\\n[462/1796] FAIL(-100) inclined-plane-friction-named-surfaces v697 (8 steps, valid=88%, fmt=100%, 2.9s)\\\\n[463/1796] FAIL(0) inclined-plane-friction-named-surfaces v698 (100 steps, valid=1%, fmt=1%, 51.0s)\\\\n[464/1796] OK inclined-plane-friction-named-surfaces v699 (18 steps, valid=83%, fmt=100%, 6.3s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "3d62699e-355b-4865-885b-13a016ea6a8d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model from /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/...\\\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\\\nINFO 05-20 07:43:04 [utils.py:233] non-default args: {'max_model_len': 32768, 'tensor_parallel_size': 2, 'gpu_memory_utilization': 0.85, 'disable_log_stats': True, 'enforce_eager': True, 'enable_chunked_prefill': True, 'model': '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'}\\\\nINFO 05-20 07:43:04 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-20 07:43:04 [model.py:1582] Using max model len 32768\\\\nINFO 05-20 07:43:05 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=16384.\\\\nINFO 05-20 07:43:05 [vllm.py:775] Asynchronous scheduling is enabled.\\\\nWARNING 05-20 07:43:05 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\nWARNING 05-20 07:43:05 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\\\nINFO 05-20 07:43:05 [vllm.py:985] Cudagraph is disabled under eager mode\\\\nINFO 05-20 07:43:05 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant\\\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\\\n(EngineCore pid=196121) INFO 05-20 07:43:12 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/', speculative_config=None, tokenizer='/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=32768, download_dir=None, load_format=auto, tensor_parallel_size=2, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [16384], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_l\\\\n\\\\n... [截断: 输出过长，省略 4133 字符] ...\\\\n\\\\n] GPU KV cache size: 1,439,136 tokens\\\\n(EngineCore pid=196121) INFO 05-20 07:43:25 [kv_cache_utils.py:1321] Maximum concurrency for 32,768 tokens per request: 43.92x\\\\n(EngineCore pid=196121) INFO 05-20 07:43:25 [core.py:281] init engine (profile, create kv cache, warmup model) took 2.07 seconds\\\\n(EngineCore pid=196121) The tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\\\n(EngineCore pid=196121) INFO 05-20 07:43:26 [vllm.py:775] Asynchronous scheduling is enabled.\\\\n(EngineCore pid=196121) WARNING 05-20 07:43:26 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\n(EngineCore pid=196121) WARNING 05-20 07:43:26 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\\\n(EngineCore pid=196121) INFO 05-20 07:43:26 [vllm.py:985] Cudagraph is disabled under eager mode\\\\n(EngineCore pid=196121) INFO 05-20 07:43:26 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant\\\\nINFO 05-20 07:43:26 [llm.py:391] Supported tasks: ['generate']\\\\nInitializing ScienceWorld...\\\\nEval plan: 1796 episodes across 30 task types (split=dev, T=0.4)\\\\nResuming: 439 episodes already completed, skipping to episode 440\\\\n[440/1796] OK inclined-plane-determine-angle v109 (19 steps, valid=74%, fmt=100%, 7.4s)\\\\n[441/1796] FAIL(0) inclined-plane-determine-angle v110 (100 steps, valid=1%, fmt=1%, 52.2s)\\\\n[442/1796] FAIL(-100) inclined-plane-determine-angle v111 (7 steps, valid=86%, fmt=100%, 2.5s)\\\\n[443/1796] FAIL(0) inclined-plane-determine-angle v112 (100 steps, valid=0%, fmt=1%, 56.2s)\\\\n[444/1796] FAIL(10) inclined-plane-determine-angle v113 (100 steps, valid=13%, fmt=18%, 56.6s)\\\\n[445/1796] FAIL(5) inclined-plane-determine-angle v114 (100 steps, valid=1%, fmt=2%, 67.6s)\\\\n[446/1796] FAIL(-100) inclined-plane-determine-angle v115 (52 steps, valid=48%, fmt=90%, 17.4s)\\\\n[447/1796] OK inclined-plane-determine-angle v116 (22 steps, valid=73%, fmt=100%, 7.7s)\\\\n[448/1796] FAIL(10) inclined-plane-determine-angle v117 (100 steps, valid=28%, fmt=49%, 94.6s)\\\\n[449/1796] FAIL(10) inclined-plane-determine-angle v118 (100 steps, valid=10%, fmt=11%, 88.8s)\\\\n[450/1796] FAIL(10) inclined-plane-determine-angle v119 (100 steps, valid=2%, fmt=2%, 93.9s)\\\\n[451/1796] FAIL(-100) inclined-plane-determine-angle v120 (43 steps, valid=65%, fmt=91%, 13.7s)\\\\n[452/1796] FAIL(10) inclined-plane-determine-angle v121 (100 steps, valid=14%, fmt=17%, 59.7s)\\\\n[453/1796] FAIL(10) inclined-plane-determine-angle v122 (100 steps, valid=28%, fmt=55%, 86.8s)\\\\n[454/1796] FAIL(5) inclined-plane-determine-angle v123 (100 steps, valid=12%, fmt=64%, 59.1s)\\\\n[455/1796] FAIL(10) inclined-plane-determine-angle v124 (100 steps, valid=7%, fmt=9%, 68.2s)\\\\n[456/1796] FAIL(10) inclined-plane-determine-angle v125 (100 steps, valid=22%, fmt=26%, 65.7s)\\\\n[457/1796] FAIL(10) inclined-plane-friction-named-surfaces v692 (100 steps, valid=7%, fmt=9%, 92.7s)\\\\n[458/1796] FAIL(0) inclined-plane-friction-named-surfaces v693 (100 steps, valid=0%, fmt=1%, 42.0s)\\\\n[459/1796] FAIL(-100) inclined-plane-friction-named-surfaces v694 (21 steps, valid=76%, fmt=100%, 7.0s)\\\\n[460/1796] FAIL(10) inclined-plane-friction-named-surfaces v695 (100 steps, valid=7%, fmt=8%, 101.6s)\\\\n[461/1796] OK inclined-plane-friction-named-surfaces v696 (21 steps, valid=62%, fmt=95%, 7.9s)\\\\n[462/1796] FAIL(-100) inclined-plane-friction-named-surfaces v697 (8 steps, valid=88%, fmt=100%, 2.9s)\\\\n[463/1796] FAIL(0) inclined-plane-friction-named-surfaces v698 (100 steps, valid=1%, fmt=1%, 51.0s)\\\\n[464/1796] OK inclined-plane-friction-named-surfaces v699 (18 steps, valid=83%, fmt=100%, 6.3s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading model from /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/...\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\nINFO 05-20 07:43:04 [utils.py:233] non-default args: {'max_model_len': 32768, 'tensor_parallel_size': 2, 'gpu_memory_utilization': 0.85, 'disable_log_stats': True, 'enforce_eager': True, 'enable_chunked_prefill': True, 'model': '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'}\\nINFO 05-20 07:43:04 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-20 07:43:04 [model.py:1582] Using max model len 32768\\nINFO 05-20 07:43:05 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=16384.\\nINFO 05-20 07:43:05 [vllm.py:775] Asynchronous scheduling is enabled.\\nWARNING 05-20 07:43:05 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\nWARNING 05-20 07:43:05 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\nINFO 05-20 07:43:05 [vllm.py:985] Cudagraph is disabled under eager mode\\nINFO 05-20 07:43:05 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\n(EngineCore pid=196121) INFO 05-20 07:43:12 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/', speculative_config=None, tokenizer='/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=32768, download_dir=None, load_format=auto, tensor_parallel_size=2, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [16384], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_l\\n\\n... [截断: 输出过长，省略 4133 字符] ...\\n\\n] GPU KV cache size: 1,439,136 tokens\\n(EngineCore pid=196121) INFO 05-20 07:43:25 [kv_cache_utils.py:1321] Maximum concurrency for 32,768 tokens per request: 43.92x\\n(EngineCore pid=196121) INFO 05-20 07:43:25 [core.py:281] init engine (profile, create kv cache, warmup model) took 2.07 seconds\\n(EngineCore pid=196121) The tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\n(EngineCore pid=196121) INFO 05-20 07:43:26 [vllm.py:775] Asynchronous scheduling is enabled.\\n(EngineCore pid=196121) WARNING 05-20 07:43:26 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\n(EngineCore pid=196121) WARNING 05-20 07:43:26 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\n(EngineCore pid=196121) INFO 05-20 07:43:26 [vllm.py:985] Cudagraph is disabled under eager mode\\n(EngineCore pid=196121) INFO 05-20 07:43:26 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant\\nINFO 05-20 07:43:26 [llm.py:391] Supported tasks: ['generate']\\nInitializing ScienceWorld...\\nEval plan: 1796 episodes across 30 task types (split=dev, T=0.4)\\nResuming: 439 episodes already completed, skipping to episode 440\\n[440/1796] OK inclined-plane-determine-angle v109 (19 steps, valid=74%, fmt=100%, 7.4s)\\n[441/1796] FAIL(0) inclined-plane-determine-angle v110 (100 steps, valid=1%, fmt=1%, 52.2s)\\n[442/1796] FAIL(-100) inclined-plane-determine-angle v111 (7 steps, valid=86%, fmt=100%, 2.5s)\\n[443/1796] FAIL(0) inclined-plane-determine-angle v112 (100 steps, valid=0%, fmt=1%, 56.2s)\\n[444/1796] FAIL(10) inclined-plane-determine-angle v113 (100 steps, valid=13%, fmt=18%, 56.6s)\\n[445/1796] FAIL(5) inclined-plane-determine-angle v114 (100 steps, valid=1%, fmt=2%, 67.6s)\\n[446/1796] FAIL(-100) inclined-plane-determine-angle v115 (52 steps, valid=48%, fmt=90%, 17.4s)\\n[447/1796] OK inclined-plane-determine-angle v116 (22 steps, valid=73%, fmt=100%, 7.7s)\\n[448/1796] FAIL(10) inclined-plane-determine-angle v117 (100 steps, valid=28%, fmt=49%, 94.6s)\\n[449/1796] FAIL(10) inclined-plane-determine-angle v118 (100 steps, valid=10%, fmt=11%, 88.8s)\\n[450/1796] FAIL(10) inclined-plane-determine-angle v119 (100 steps, valid=2%, fmt=2%, 93.9s)\\n[451/1796] FAIL(-100) inclined-plane-determine-angle v120 (43 steps, valid=65%, fmt=91%, 13.7s)\\n[452/1796] FAIL(10) inclined-plane-determine-angle v121 (100 steps, valid=14%, fmt=17%, 59.7s)\\n[453/1796] FAIL(10) inclined-plane-determine-angle v122 (100 steps, valid=28%, fmt=55%, 86.8s)\\n[454/1796] FAIL(5) inclined-plane-determine-angle v123 (100 steps, valid=12%, fmt=64%, 59.1s)\\n[455/1796] FAIL(10) inclined-plane-determine-angle v124 (100 steps, valid=7%, fmt=9%, 68.2s)\\n[456/1796] FAIL(10) inclined-plane-determine-angle v125 (100 steps, valid=22%, fmt=26%, 65.7s)\\n[457/1796] FAIL(10) inclined-plane-friction-named-surfaces v692 (100 steps, valid=7%, fmt=9%, 92.7s)\\n[458/1796] FAIL(0) inclined-plane-friction-named-surfaces v693 (100 steps, valid=0%, fmt=1%, 42.0s)\\n[459/1796] FAIL(-100) inclined-plane-friction-named-surfaces v694 (21 steps, valid=76%, fmt=100%, 7.0s)\\n[460/1796] FAIL(10) inclined-plane-friction-named-surfaces v695 (100 steps, valid=7%, fmt=8%, 101.6s)\\n[461/1796] OK inclined-plane-friction-named-surfaces v696 (21 steps, valid=62%, fmt=95%, 7.9s)\\n[462/1796] FAIL(-100) inclined-plane-friction-named-surfaces v697 (8 steps, valid=88%, fmt=100%, 2.9s)\\n[463/1796] FAIL(0) inclined-plane-friction-named-surfaces v698 (100 steps, valid=1%, fmt=1%, 51.0s)\\n[464/1796] OK inclined-plane-friction-named-surfaces v699 (18 steps, valid=83%, fmt=100%, 6.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BS4LWwvAJwLEux9RUtP3Bu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "find /root/cost-verify-agent-rl/ -name \"*.jsonl\" -newer /root/cost-verify-agent-rl/eval_scienceworld.py -ls",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "3ca2158f-c07f-4cc1-aeae-dacbbdc8d0d8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EPVykxdWeiunQs9Nwk6X4E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2855,
+                "cache_read_input_tokens": 24800,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2855
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T00:04:01.208Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BS4LWwvAJwLEux9RUtP3Bu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "834a2247-32e0-452a-8d46-bd0a7d6288f3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me check the jsonl output file and get more details.",
+              "signature": "EvcBClkIDRgCKkDV/SHVPJ0DAZW9Gr3jEfB8yl8Zofxrvlb5G+MJeWYLllhohXiwLIr3wkb66NtK+JK4Q8NImSNT9gbndG04ZspbMg9jbGF1ZGUtb3B1cy00LTY4ABIMIYYTlZ1FoUyl5j+8Ggxf1x79TZzxS2hnkTUiMPaq3nzZ0UF8Rlg0fktzvOBQNvdA1sHSvZNYKsx1B0ryxZV//9fmpotgJ7fhRDgaHSpMzPpYY3276TEyevnZAgejENUf1l8irgNw/MejoReg2GodmZTUlo7iXk73qvHe9EF7D/7nnFp5D10xIiHo6z/1mBh1HsCgahKxXi57zxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "0e480d47-06a4-431b-ae75-36c45ba4dafe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FobVc5pSyoZXYchmn9ERiW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4268,
+                "cache_read_input_tokens": 27655,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4268
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018Co9eHxh39gzDNk9yDXHg7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "wc -l /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "0d3989de-9ae3-49b7-97ea-c6d3a8876feb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FobVc5pSyoZXYchmn9ERiW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4268,
+                "cache_read_input_tokens": 27655,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4268
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T00:04:06.713Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018Co9eHxh39gzDNk9yDXHg7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"464 /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "f49e7633-1025-4005-9191-9fabeea73ff6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"464 /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"464 /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EoGZNJ8bCVjkAqEXNv6J9p",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "tail -3 /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "e8593e4c-950b-4a82-915c-2821378b6b5e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FobVc5pSyoZXYchmn9ERiW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4268,
+                "cache_read_input_tokens": 27655,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4268
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T00:04:07.663Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EoGZNJ8bCVjkAqEXNv6J9p",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"task\\\\\\\": \\\\\\\"inclined-plane-friction-named-surfaces\\\\\\\", \\\\\\\"variation\\\\\\\": 697, \\\\\\\"success\\\\\\\": false, \\\\\\\"final_score\\\\\\\": -100, \\\\\\\"num_steps\\\\\\\": 8, \\\\\\\"valid_action_rate\\\\\\\": 0.875, \\\\\\\"format_rate\\\\\\\": 1.0}\\\\n{\\\\\\\"task\\\\\\\": \\\\\\\"inclined-plane-friction-named-surfaces\\\\\\\", \\\\\\\"variation\\\\\\\": 698, \\\\\\\"success\\\\\\\": false, \\\\\\\"final_score\\\\\\\": 0, \\\\\\\"num_steps\\\\\\\": 100, \\\\\\\"valid_action_rate\\\\\\\": 0.01, \\\\\\\"format_rate\\\\\\\": 0.01}\\\\n{\\\\\\\"task\\\\\\\": \\\\\\\"inclined-plane-friction-named-surfaces\\\\\\\", \\\\\\\"variation\\\\\\\": 699, \\\\\\\"success\\\\\\\": true, \\\\\\\"final_score\\\\\\\": 100, \\\\\\\"num_steps\\\\\\\": 18, \\\\\\\"valid_action_rate\\\\\\\": 0.8333333333333334, \\\\\\\"format_rate\\\\\\\": 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "b791a145-21b4-4fcc-94a1-6cfe9bb7a994",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"task\\\\\\\": \\\\\\\"inclined-plane-friction-named-surfaces\\\\\\\", \\\\\\\"variation\\\\\\\": 697, \\\\\\\"success\\\\\\\": false, \\\\\\\"final_score\\\\\\\": -100, \\\\\\\"num_steps\\\\\\\": 8, \\\\\\\"valid_action_rate\\\\\\\": 0.875, \\\\\\\"format_rate\\\\\\\": 1.0}\\\\n{\\\\\\\"task\\\\\\\": \\\\\\\"inclined-plane-friction-named-surfaces\\\\\\\", \\\\\\\"variation\\\\\\\": 698, \\\\\\\"success\\\\\\\": false, \\\\\\\"final_score\\\\\\\": 0, \\\\\\\"num_steps\\\\\\\": 100, \\\\\\\"valid_action_rate\\\\\\\": 0.01, \\\\\\\"format_rate\\\\\\\": 0.01}\\\\n{\\\\\\\"task\\\\\\\": \\\\\\\"inclined-plane-friction-named-surfaces\\\\\\\", \\\\\\\"variation\\\\\\\": 699, \\\\\\\"success\\\\\\\": true, \\\\\\\"final_score\\\\\\\": 100, \\\\\\\"num_steps\\\\\\\": 18, \\\\\\\"valid_action_rate\\\\\\\": 0.8333333333333334, \\\\\\\"format_rate\\\\\\\": 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"task\\\": \\\"inclined-plane-friction-named-surfaces\\\", \\\"variation\\\": 697, \\\"success\\\": false, \\\"final_score\\\": -100, \\\"num_steps\\\": 8, \\\"valid_action_rate\\\": 0.875, \\\"format_rate\\\": 1.0}\\n{\\\"task\\\": \\\"inclined-plane-friction-named-surfaces\\\", \\\"variation\\\": 698, \\\"success\\\": false, \\\"final_score\\\": 0, \\\"num_steps\\\": 100, \\\"valid_action_rate\\\": 0.01, \\\"format_rate\\\": 0.01}\\n{\\\"task\\\": \\\"inclined-plane-friction-named-surfaces\\\", \\\"variation\\\": 699, \\\"success\\\": true, \\\"final_score\\\": 100, \\\"num_steps\\\": 18, \\\"valid_action_rate\\\": 0.8333333333333334, \\\"format_rate\\\": 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YSx56raDz9GGaQnCSLu8aA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "head -1 /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "388775e8-c29f-422c-8dd9-971bd2fc96aa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FobVc5pSyoZXYchmn9ERiW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4268,
+                "cache_read_input_tokens": 27655,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4268
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T00:04:08.302Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YSx56raDz9GGaQnCSLu8aA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"task\\\\\\\": \\\\\\\"boil\\\\\\\", \\\\\\\"variation\\\\\\\": 14, \\\\\\\"success\\\\\\\": false, \\\\\\\"final_score\\\\\\\": -100, \\\\\\\"num_steps\\\\\\\": 16, \\\\\\\"valid_action_rate\\\\\\\": 0.81, \\\\\\\"format_rate\\\\\\\": 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "6e5cd7ba-df0a-4783-97bd-5e65dd85f8de",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"task\\\\\\\": \\\\\\\"boil\\\\\\\", \\\\\\\"variation\\\\\\\": 14, \\\\\\\"success\\\\\\\": false, \\\\\\\"final_score\\\\\\\": -100, \\\\\\\"num_steps\\\\\\\": 16, \\\\\\\"valid_action_rate\\\\\\\": 0.81, \\\\\\\"format_rate\\\\\\\": 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"task\\\": \\\"boil\\\", \\\"variation\\\": 14, \\\"success\\\": false, \\\"final_score\\\": -100, \\\"num_steps\\\": 16, \\\"valid_action_rate\\\": 0.81, \\\"format_rate\\\": 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me calculate the speed and estimated remaining time.\n\nCurrent progress: 464/1796 episodes completed\n- The resume started from episode 440, so 25 new episodes completed since restart at 07:42\n- Current time is ~08:03, so 21 minutes elapsed\n- Rate: 25 episodes / 21 min ≈ 1.19 episodes/min\n- Remaining: 1796 - 464 = 1332 episodes\n- ETA: 1332 / 1.19 ≈ 1119 min ≈ 18.7 hours\n\n\n- Now I'm checking the success rate from the jsonl file to see how many episodes actually completed successfully versus failed.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "82e16630-7c74-4490-b93a-5864eec083fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UAr1DA65gvKg5M1sLAN4ZC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1229,
+                "cache_read_input_tokens": 31923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1229
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DDqwHw44VZDZ91o2kkEgWs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "grep -c '\"success\": true' /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "b96d6565-5ae0-4d2f-9912-5087f06d853a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UAr1DA65gvKg5M1sLAN4ZC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1229,
+                "cache_read_input_tokens": 31923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1229
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T00:04:15.663Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DDqwHw44VZDZ91o2kkEgWs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"167\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "fad4ed8c-6d6a-46eb-a7d6-1c37bdd0b365",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"167\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"167\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval v2 状态汇总\n\n**进程**: PID 195853 运行中，启动于 07:42（约21分钟前），**不是**之前报告的18h——这是一次全新重启。\n\n**GPU 状态**:\n| GPU | 显存 | 利用率 | 温度 | 功耗 |\n|-----|------|--------|------|------|\n| cuda:0 | 84,161 / 97,887 MiB (86%) | 41% | 41°C | 145W |\n| cuda:1 | 84,161 / 97,887 MiB (86%) | 95% | 41°C | 176W |\n\n**进度**:\n- 已完成: **464 / 1796** episodes (25.8%)\n- 成功: **167 / 464** (36.0% success rate)\n- Resume 后新增: 25 episodes (从 440 → 464)\n\n**速度与 ETA**:\n- 当前速度: ~1.2 episodes/min (平均 ~50s/episode)\n- 剩余: 1332 episodes\n- 预计剩余: **~18.5 小时** (约明天凌晨 02:30 完成)\n\n**输出文件**: `/root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl` (68KB, 464行)\n\n**日志文件**: `/tmp/eval_scienceworld_v2_resumed.log`\n\n**注意**: 当前在跑 `inclined-plane-friction-named-surfaces` 系列，很多 episode 跑满100步超时 (FAIL)，拉低速度。后续 task 类型可能更快或更慢。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "uuid": "555fd725-5d9d-4e9c-9a1b-1cf46c07d987",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012BnbrEPtAXwHZdXRF6ajwu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 386,
+                "cache_read_input_tokens": 33152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 386
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval v2 状态汇总\n\n**进程**: PID 195853 运行中，启动于 07:42（约21分钟前），**不是**之前报告的18h——这是一次全新重启。\n\n**GPU 状态**:\n| GPU | 显存 | 利用率 | 温度 | 功耗 |\n|-----|------|--------|------|------|\n| cuda:0 | 84,161 / 97,887 MiB (86%) | 41% | 41°C | 145W |\n| cuda:1 | 84,161 / 97,887 MiB (86%) | 95% | 41°C | 176W |\n\n**进度**:\n- 已完成: **464 / 1796** episodes (25.8%)\n- 成功: **167 / 464** (36.0% success rate)\n- Resume 后新增: 25 episodes (从 440 → 464)\n\n**速度与 ETA**:\n- 当前速度: ~1.2 episodes/min (平均 ~50s/episode)\n- 剩余: 1332 episodes\n- 预计剩余: **~18.5 小时** (约明天凌晨 02:30 完成)\n\n**输出文件**: `/root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl` (68KB, 464行)\n\n**日志文件**: `/tmp/eval_scienceworld_v2_resumed.log`\n\n**注意**: 当前在跑 `inclined-plane-friction-named-surfaces` 系列，很多 episode 跑满100步超时 (FAIL)，拉低速度。后续 task 类型可能更快或更慢。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 52691,
+            "duration_api_ms": 52507,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "46382577-a773-489f-981d-1e34af5d4130",
+            "total_cost_usd": 0.27141225,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 21697,
+              "cache_read_input_tokens": 153692,
+              "output_tokens": 2278,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21697,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 474,
+                  "cache_read_input_tokens": 33152,
+                  "cache_creation_input_tokens": 386,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 386
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1860,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00196,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 2278,
+                "cacheReadInputTokens": 153692,
+                "cacheCreationInputTokens": 21697,
+                "webSearchRequests": 0,
+                "costUSD": 0.26945225,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e123f452-88ef-4339-8c0e-ac60834607c0"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/worker-executions/monitor-bjb1-eval-v2-status.md"
+}

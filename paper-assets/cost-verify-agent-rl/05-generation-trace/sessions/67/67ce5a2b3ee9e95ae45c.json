@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67ce5a2b3ee9e95ae45c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "pipeline seed5 fsdp hf and ood eval",
+  "task_key": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048_result.json",
+    "occurrence": 1,
+    "bytes": 770,
+    "sha256": "743cb5b5876b1411b96be37d6ebc43dd4ce7b525c57641f8e5aa1909f1ef56e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 3 已加载 8.8GB，模型正在加载中（vLLM 还会继续分配）。\n\n### 产出汇总\n\n| 项目 | 结果 |\n|------|------|\n| FSDP→HF 转换 | 成功，311 params, 2.03B, bf16, `/root/autodl-tmp/checkpoints/exp029-seed5/global_step_10_hf/` |\n| 符号链接 | `qwen_exp029_seed5_step10_hf` → `global_step_10_hf` |\n| Eval 配置 | `_alfworld_exp029_seed5_ood_eval.yaml`，YAML 验证通过 |\n| Eval PID | 375913（子进程 TaskRunner=382535, WorkerDict=383150） |\n| GPU 使用 | 0,1: Seed 7 训练 (97GB) / 2: Seed 6 eval 已完成或空闲 / 3: Seed 5 eval 加载中 (8.8GB↑) |\n| 日志 | `/tmp/exp029_seed5_ood_eval.log` |\n\nGPU 2 (Seed 6 eval) 显示 0 MiB——可能已经跑完了，建议确认一下 PID 342378 状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pipeline-seed5-fsdp-hf-and-ood-eval.md"
+}

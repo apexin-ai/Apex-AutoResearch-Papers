@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd66e0c232a9547f2c5a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp029 seed2 restart corrected",
+  "task_key": "worker_ops_exp029-seed2-restart-corrected_20260518T102812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp029-seed2-restart-corrected_20260518T102812_result.json",
+    "occurrence": 1,
+    "bytes": 388,
+    "sha256": "9a5fc5a17372ac1825c05d32122a5112e9a26ef123e44b5d1506683d9559d25b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练状态正常，vLLM 引擎已启动，显存已上升。\n\n**最终确认：**\n- GPU 0: **36683MiB / 97887MiB** (37.5%)\n- GPU 1: **36679MiB / 97887MiB** (37.5%)\n- 显存充裕，距 OOM 还有约 61GB 余量，内存优化参数生效\n- val_before_train 数据集准备完毕（494/494），即将开始初始 validation rollout\n- 训练运行稳定，无报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp029-seed2-restart-corrected.md"
+}

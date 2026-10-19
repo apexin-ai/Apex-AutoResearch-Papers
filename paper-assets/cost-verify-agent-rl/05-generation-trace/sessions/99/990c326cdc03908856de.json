@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "990c326cdc03908856de",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd status check and next",
+  "task_key": "worker_ops_westd_status_check_and_next_20260522T115818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_status_check_and_next_20260522T115818_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "243d860eeec330e38d716da7cb0c5f9cfa93da50b37de668fcacf8910be61644"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个新 eval 都已启动成功（Ray instance 已初始化，GPU 0/1 开始占用）。另外注意到 ragen_eval_gpu2 session 还残留（之前 high_kl_step7 的，已完成）。\n\n---\n\n## 汇总\n\n### 已完成 Eval 结果（134 episodes OOD）\n\n| Eval | pass@1 | action_is_valid | response_length |\n|------|--------|-----------------|-----------------|\n| **intervention_c_step7** (GPU 0) | **16.4%** | 66.3% | 6460 |\n| **high_kl_step5** (GPU 1) | **8.2%** | 68.1% | 6665 |\n| **high_kl_step7** (GPU 2) | **12.7%** | 67.2% | 7224 |\n| **SFT baseline v3** (GPU 3) | **6.7%** | 68.4% | 7851 |\n\n### 新启动任务\n\n| GPU | 任务 | Config | Log |\n|-----|------|--------|-----|\n| 0 | seed5 v2 re-eval | `_alfworld_exp029_seed5_ood_eval_v2` | `ragen_seed5_ood_eval_v2.log` |\n| 1 | c_prime_step5 eval | `_alfworld_c_prime_step5_ood_eval` | `ragen_c_prime_step5_ood_eval.log` |\n| 2-3 | 空闲 | — | — |\n\n### GPU 状态\n\n- GPU 0/1：正在启动 eval（model loading 中）\n- GPU 2/3：空闲（可接更多任务）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-status-check-and-next.md"
+}

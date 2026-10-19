@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e59d1714097dc14f65fe",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops cleanup tmp restart factorial seed2",
+  "task_key": "worker_ops_cleanup-tmp-restart-factorial-seed2_20260518T104720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-tmp-restart-factorial-seed2_20260518T104720_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "9cf7d4efc0a1c5488669864528978a439a40724a34d63cab8eb49351d4ba6e30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| 项目 | 状态 |\n|------|------|\n| /tmp 清理 | 清理前 80% (24G/30G)，清理后 80% (24G/30G)。/tmp 下文件本身仅约 80MB，不是主要瓶颈——根分区被 miniconda(12G)、.cache(3.6G) 等占满 |\n| TMPDIR | 已设置为 `/root/autodl-tmp/tmp`（120G autodl-tmp 盘），fast_downward 将写入此目录 |\n| PID | **539852**（train.py factorial_seed2） |\n| GPU 0 | 4731MiB / 97887MiB（ray::WorkerDict pid=546976） |\n| GPU 1 | 4731MiB / 97887MiB（ray::WorkerDict pid=546977） |\n| GPU 2,3 | 被 gamma_sweep 任务使用中（29413MiB each） |\n| W&B run | **`6rqnrlr7`** — `factorial-h2-episodeadv-seed2` |\n| 错误 | 无，进度条已启动（341/341 数据加载完成），正在训练 |\n\n注意：GPU 0,1 当前仅 4.7GB 显存，说明模型刚加载到 worker，还未进入 rollout/更新阶段，后续显存会上升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-tmp-restart-factorial-seed2.md"
+}

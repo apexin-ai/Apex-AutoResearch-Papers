@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8dbba256141684f10c1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code prep factorial seed2 config",
+  "task_key": "worker_code_prep-factorial-seed2-config_20260518T044838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-factorial-seed2-config_20260518T044838_result.json",
+    "occurrence": 1,
+    "bytes": 1045,
+    "sha256": "55fd09f7c5fa3b7801115ebca3d6c7f0578332f84569fdc9f3ce9c961cfc3bf2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇报：\n\n| 项目 | 值 |\n|------|-----|\n| **配置文件** | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_episode_adv_seed2.yaml` |\n| **seed.train** | `43`（seed 1 = `10000`，注意：非 42，base.yaml 默认值） |\n| **seed.val** | `123`（与 seed 1 一致） |\n| **experiment_name** | `factorial-h2-episodeadv-seed2` |\n| **起始 checkpoint** | `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4/` ✅ 已确认存在 |\n| **checkpoint 输出** | `/root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/` ✅ 独立目录，已创建 |\n| **磁盘空间** | `/root/autodl-tmp/` 250G 总容量，129G 可用（49% 使用） |\n| **dry-run** | ✅ 通过，YAML 解析正确 |\n\n**需确认**：seed 1 配置中没有显式 seed 字段，继承 base.yaml 默认值 `seed.train: 10000`。如果希望 seed 对比有意义（如 42 vs 43），需要回头给 seed 1 也显式设 seed。当前 seed 2 = 43 与 seed 1 = 10000 的差异已经满足\"不同 seed\"的要求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-factorial-seed2-config.md"
+}

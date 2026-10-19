@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dae74d05547595ad5039",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp029 seed2 step30 val",
+  "task_key": "worker_monitor_exp029-seed2-step30-val_20260519T004612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp029-seed2-step30-val_20260519T004612_result.json",
+    "occurrence": 1,
+    "bytes": 1695,
+    "sha256": "b6bc18ee7fb2091961f193114533047cf670d3be6adcae3fb9bdb3c8394a8b28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Step 30 + val eval 数据已获取。\n\n---\n\n## Step 30 监控报告\n\n### Val 指标（step 30，16 episodes）\n\n| 指标 | Step 15 (baseline) | Step 25 | **Step 30** | 趋势 |\n|------|:---:|:---:|:---:|:---:|\n| **val success** | 25.0% | 15.6% | **31.25%** | ↑ 恢复 |\n| **val manager_invalid** | 0.8% | 51.0% | **46.7%** | ↓ 微降 |\n| val action_is_valid | 67.8% | 41.0% | 47.7% | ↑ |\n| val action_is_effective | 99.2% | 49.0% | 53.3% | ↑ |\n| val pass@1 | 25.0% | 15.6% | 31.25% | ↑ |\n\n### Train 指标趋势（step 28→29→30）\n\n| 指标 | Step 28 | Step 29 | Step 30 |\n|------|:---:|:---:|:---:|\n| train success | 89.1% | 32.8% | 50.0% |\n| train manager_invalid | 6.5% | 45.3% | 34.8% |\n| KL (ppo_kl) | 0.016 | 0.060 | 0.016 |\n| grad_norm | 3.08 | 9.98 | **13.73** |\n| kl_loss | 0.065 | 0.101 | **0.162** |\n\n### 判断：**部分恢复，但不稳定**\n\n- **Val success 恢复到 31.25%**，超过 baseline (25%)，从 step 25 的 15.6% 大幅回升\n- **manager_invalid_action 仍高企于 46.7%**（baseline 0.8%），说明模型学会了在高 invalid action rate 下\"绕着走\"来成功，但并没有真正修复 invalid action 问题\n- **Train 极度不稳定**：step 28→29 success 从 89%→33% 的暴跌，说明训练方差极大\n- **grad_norm 持续攀升**（3.08→9.98→13.73），kl_loss 也在涨（0.065→0.101→0.162），提示训练可能正在发散\n- Step 29 的 KL spike (0.060) 回落到 step 30 的 0.016，但 grad_norm 没有回落\n\n**风险**：grad_norm 和 kl_loss 的上升趋势 + train 方差极大，后续 step 有继续恶化的可能。建议关注 step 31-35 的趋势是否稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp029-seed2-step30-val.md"
+}

@@ -1,0 +1,35 @@
+{
+  "exp_id": "datagen_classify_v2",
+  "project": "error_diag_dpo_recovery",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T15:35:39.699Z",
+    "updated_at": "2026-05-12T21:54:56.516Z",
+    "spec": {
+      "hypothesis": "修复 format_trajectory ICL 前缀 bug 后重新分类错误，预期 error type 分布更均衡",
+      "model_name": "Qwen3-14B-AWQ",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/error_diag_dpo_recovery/data/trajectories/",
+      "data_count": 0,
+      "seed": 0
+    },
+    "notes": "全部代码变更完成（D022/D023/Reviewer warnings），等 v5 完成后全量执行。\n\n代码就绪清单：\n- post_process_trajectories.py: CSF 检测 + 三类重分类\n- classify_errors.py (650→728行): CSF 预过滤 + PCB→verification 子类型 + llm_original_type 字段 + 三版 KW 分析(with_override/without_override/pcb_excluded)\n- collect_trajectories_icl.py: ICL 同源泄漏修复(exclude_game_file)\n- analyze: run_dual_analysis 内嵌，P1 pass 需 with_override 显著 且 (without_override 或 pcb_excluded 显著)\n\nDry-run P1 FAIL: action 组 N=0（v5 数据特征，非代码问题）。LLM 全量分类可能给出 action~5，仍可能不足 → v6 ICL 配置已就绪。",
+    "metrics": {
+      "total_classified": 251,
+      "action": 2,
+      "verification": 82,
+      "planning": 167,
+      "action_pct": 0.8,
+      "verification_pct": 32.7,
+      "planning_pct": 66.5,
+      "correction_span_action_mean": 7.5,
+      "correction_span_verification_mean": 10.4,
+      "correction_span_planning_mean": 11.3
+    }
+  },
+  "timestamp": "2026-05-12T21:54:56.595764+00:00",
+  "trigger": "update_registry"
+}

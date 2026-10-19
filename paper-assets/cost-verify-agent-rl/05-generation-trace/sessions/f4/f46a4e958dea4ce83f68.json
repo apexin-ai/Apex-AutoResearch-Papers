@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f46a4e958dea4ce83f68",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops cellc kill restart v3",
+  "task_key": "worker_ops_cellc-kill-restart-v3_20260520T182202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cellc-kill-restart-v3_20260520T182202_result.json",
+    "occurrence": 1,
+    "bytes": 582,
+    "sha256": "912f12a539dc983dd6d9a480dee50ada5f080b248b28081e11dabbc2aba86631"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 步骤 | 结果 |\n|------|------|\n| Kill Cell C v2 | tmux session + 全部子进程已清除 |\n| Ray 缓存清理 | 15 个旧 session 删除，497M → 42M |\n| GPU 状态 | cuda:0,1 Seed 3 正常（44GB），cuda:2,3 空闲 |\n| Cell C v3 提交 | PID 88226，tmux session `scienceworld_grpo_cell_c_v3`，cuda:2,3 |\n| v2 registry | DONE/failed，metrics 已注明 stall 原因 |\n| v3 registry | PREPARING，parent=v2 |\n\ncuda:2,3 目前仅 3MiB 占用——v3 刚启动，模型加载需要 1-2 分钟后 GPU 显存才会上升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cellc-kill-restart-v3.md"
+}

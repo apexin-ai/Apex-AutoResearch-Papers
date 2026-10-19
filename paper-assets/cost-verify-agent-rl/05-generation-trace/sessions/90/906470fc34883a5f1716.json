@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "906470fc34883a5f1716",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 verify launch",
+  "task_key": "worker_ops_exp026_verify_launch_20260515T102849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_verify_launch_20260515T102849_result.json",
+    "occurrence": 1,
+    "bytes": 1267,
+    "sha256": "72414a8540893d92134b4ee1f4ce2ec55b8f7dfadae9c3a146fe7705706a0fb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp026 启动验证结果：有问题**\n\n```\ntmux session: 无法验证（tmux 被 read_only 拦截），ps 中未见 tmux 进程\nlog status: 文件存在但 0 bytes（空），创建于 18:28\nGPU 0: utilization 100%, memory 3/97887 MiB ⚠️\nGPU 1: utilization 0%, memory 3/97887 MiB\npids.current: 773 / 20480\npython processes: 1 (但是 dryrun)\n```\n\n**关键问题：**\n\n1. **运行的不是正式训练，而是 dryrun 脚本** — PID 769499 执行的是 `run_exp026_dryrun.sh`，参数 `total_training_steps=2`，`experiment_name=exp026-dryrun`，输出到 `/root/autodl-tmp/checkpoints/exp026_dryrun/`\n\n2. **dryrun 疑似卡死** — 17:56 启动，仅 2 步训练，已运行 33+ 分钟。GPU 0 显示 100% 利用率但只占用 3 MiB 显存，存在多个 zombie 进程（gcs_server、python×2、raylet 全部 defunct）\n\n3. **exp026 正式日志为空** — `exp026_step_independent_grpo.log` 于 18:28 创建但 0 bytes，没有任何输出写入\n\n4. **无 tmux session** — ps 中没有 tmux 进程，正式训练未通过 tmux 启动\n\n**结论：exp026 正式训练未启动。** 当前只有一个可能已经卡死的 dryrun 在跑。需要先清理 zombie 进程和可能 hung 的 GPU，再启动正式训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-verify-launch.md"
+}

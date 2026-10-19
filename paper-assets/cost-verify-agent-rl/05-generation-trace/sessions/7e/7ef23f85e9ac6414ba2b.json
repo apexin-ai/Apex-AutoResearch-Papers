@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ef23f85e9ac6414ba2b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops 7b sft eval diagnose",
+  "task_key": "worker_ops_7b-sft-eval-diagnose_20260519T074256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_7b-sft-eval-diagnose_20260519T074256_result.json",
+    "occurrence": 1,
+    "bytes": 866,
+    "sha256": "9ba472d30ca3eecb92f5c97d5870f2d2447c67cf4af43908a62abaae274ede50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**进程退出原因**：Eval 正常完成后退出。W&B teardown 时发生 `BrokenPipeError`（asyncio stream close），导致 W&B 数据未上传，但不影响 eval 结果。\n\n**Eval 结果（Qwen3-8B SFT on ALFWorld OOD 134 tasks）**：\n\n| 指标 | 值 |\n|---|---|\n| **success rate** | **80.6%** |\n| pass@1 | 80.6% |\n| num_actions | 20.18 |\n| action_is_valid | 96.3% |\n| action_is_effective | 100% |\n| reward mean@134 | 8.06 |\n| best@2 mean | 9.53 |\n| best@8 mean | 10.0 |\n\n对比 1.7B SFT baseline (~6.25%)，8B SFT 在 OOD 上达到 80.6%，model scale 优势显著。\n\n**GPU cuda:2,3**：已释放，0MiB 占用，空闲可用。四张卡全部空闲。\n\n**磁盘**：/root/autodl-tmp 165G/250G (66%)，剩余 86G。\n\n**已完成操作**：registry 更新为 DONE/success + metrics，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-7b-sft-eval-diagnose.md"
+}

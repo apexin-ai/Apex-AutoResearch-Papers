@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e8ac7de5a40102ea10d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 monitoring v2",
+  "task_key": "worker_ops_exp026_monitoring_v2_20260515T105132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_monitoring_v2_20260515T105132_result.json",
+    "occurrence": 1,
+    "bytes": 44,
+    "sha256": "83b06a4a809b88490ed2c2b4d73a329443eae73cbd7661e40b1b7aeb5d4aa7b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 分钟后继续轮询 #2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-monitoring-v2.md"
+}

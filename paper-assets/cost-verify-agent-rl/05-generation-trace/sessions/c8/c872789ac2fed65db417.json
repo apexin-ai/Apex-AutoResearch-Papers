@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c872789ac2fed65db417",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp029 episode level",
+  "task_key": "worker_diagnose_exp029_episode_level_20260516T192139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp029_episode_level_20260516T192139_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "2226dc91ec603632556ee7354b7b5ab2fc2734d7a5736ca9d121c69537b23321"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论: CUDA OOM** — `loss.backward()` 在 Step 2 崩溃。\n\n- GPU 0 上训练进程占 55.4 GiB + Ray worker (ref model) 占 35.7 GiB = 91 GiB / 95 GiB，backward 需额外 9.3 GiB 无法分配\n- Step 1 完成 (30min, success 18%, pass@8 56%)，Step 2 update_actor 阶段 OOM\n- **无 checkpoint 可恢复**，必须从头重训\n- 服务器有残留 Ray 进程 (PID 899940, 899941) 需清理\n\n**修复方案**: `ray stop --force` 清理残留 → 启用 `optimizer_offload: True` + 设置 `PYTORCH_ALLOC_CONF=expandable_segments:True`，可释放 ~6-10 GiB 显存覆盖峰值需求。\n\n报告已写入 `artifacts/exp029_episode_level/diagnose_attempt4.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp029-episode-level.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "651ea3a4f2e4d95cd231",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops cleanup exp015 ray",
+  "task_key": "worker_ops_cleanup-exp015-ray_20260514T135040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-exp015-ray_20260514T135040_result.json",
+    "occurrence": 1,
+    "bytes": 251,
+    "sha256": "1c96bcb8bcd6e34f00ce0931f6dc696214ea8dadaccb450f55884c89d0531e8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成：\n\n- **GPU 0**: 0 MiB / 97887 MiB（已释放）\n- **GPU 1**: 0 MiB / 97887 MiB（已释放）\n- **残留 ray/train 进程**: 0\n- **expert trajectory 收集**（PID 340587）: 正常运行中\n\nexp016 可以启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-exp015-ray.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c01d21d122815f820321",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "analysis game file format check",
+  "task_key": "worker_analysis_game-file-format-check_20260512T162902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_game-file-format-check_20260512T162902_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "8c5e571f7eaabd9007ae058aa690203b4f677becbf62a2600fd8076ca1161a3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：格式兼容，无需修改\n\n**三方格式对比：**\n\n| 来源 | game_file 示例 |\n|------|---------------|\n| Expert (alfworld_sft.json) | `data/json_2.1.1/train/pick_and_place_simple-ToiletPaper-.../trial_T20190908_122807_136741` |\n| 收集脚本 v4 输出 | `/root/autodl-tmp/alfworld_data/json_2.1.1/train/pick_clean_then_place_in_recep-.../trial_T20190909_102050_895053/game.tw-pddl` |\n\n**`normalize_game_file()` 归一化逻辑（measure_correction_span.py:30-39）：**\n\n1. 如果以 `/game.tw-pddl` 结尾 → 去掉后缀\n2. 按 `/` 分割，取最后两级：`<task_dir>/<trial_dir>`\n\n归一化后两边都变成同一格式，例如：\n- Expert → `pick_and_place_simple-ToiletPaper-.../trial_T20190908_122807_136741`\n- Collected → `pick_clean_then_place_in_recep-.../trial_T20190909_102050_895053`\n\n**匹配机制正确**，和你之前验证的 82/88 路径归一化匹配一致。\n\n**收集进度：** 1/250 条，刚启动（00:28:49 第一条完成），可以放心让它继续跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-game-file-format-check.md"
+}

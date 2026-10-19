@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56f761b277d6cbd6a8a2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor urgent 3exp status check",
+  "task_key": "worker_monitor_urgent-3exp-status-check_20260518T052222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_urgent-3exp-status-check_20260518T052222_result.json",
+    "occurrence": 1,
+    "bytes": 1841,
+    "sha256": "3a983f0cfe0797590862d8f3395762b21edd00ca88429bf5fcbc47f97f15bea6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已齐。汇报如下：\n\n---\n\n## factorial_h2_episodeadv_seed1\n\n**当前 step: 9/15**（progress bar 显示 60%，step 8-9 metrics 尚未 flush 到日志）\n\n**Step 10 val: 未到**（当前正在执行 step 10，预计 ~1-2 小时后出 val）\n\n**Val results:**\n| step | val success (AlfworldOOD) | action_is_valid |\n|------|--------------------------|-----------------|\n| 0 (initial) | 2.24% | 0.378 |\n| 5 | 5.97% | 0.576 |\n\n**Train metrics (per step):**\n| step | success | pass@8 | action_is_valid | kl_loss | entropy |\n|------|---------|--------|-----------------|---------|---------|\n| 1 | 20.3% | 68.8% | 0.856 | 0.238 | 0.359 |\n| 2 | 6.25% | 31.3% | 0.840 | 0.208 | 0.569 |\n| 3 | 5.47% | 31.3% | 0.795 | — | 0.617* |\n| 4 | 3.13% | 18.8% | 0.837 | 0.638 | 0.617 |\n| 5 | 15.6% | 62.5% | 0.799 | 0.735 | 0.699 |\n| 6 | **25.8%** | **81.3%** | 0.815 | 0.789 | 0.719 |\n| 7 | 17.2% | 43.8% | 0.772 | **1.774** | 0.621 |\n| 8-9 | *not logged yet* | | | | |\n\n**注意**: KL loss 从 step 6→7 暴涨（0.789→1.774），action_is_valid 在下降。Train success 波动大（step 6 峰值 25.8%，step 7 回落到 17.2%）。\n\n---\n\n## exp029_episode_level_seed2\n\n**进程状态: ALIVE** (PID 509, elapsed 12:06)\n\n**当前 step: 0/15**（刚完成 initial validation，训练尚未开始第一步）\n\n**Initial val (val_before_train):**\n- success: 12.5%\n- action_is_valid: 0.783\n- pass@1: 12.5%\n\n---\n\n## gsweep_g080_h5_seed1\n\n**当前 step: 3/15**（progress bar 显示 20%，但 step 2-3 metrics 尚未 flush）\n\n**已知 metrics:**\n- Step 1: success = **0.0%**, pass@8 = 0.0%, action_is_valid = 0.803, kl_loss = 0.044\n\n**警告**: step 1 success = 0%，pass@8 也是 0%，与其他实验形成鲜明对比。gamma=0.80 + h5 配置在初始阶段完全无正样本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-urgent-3exp-status-check.md"
+}

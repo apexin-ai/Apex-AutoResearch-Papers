@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "585e86d3242c4ddd6659",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "validate expert sft data quality",
+  "task_key": "worker_validate_expert-sft-data-quality_20260514T153606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_validate_expert-sft-data-quality_20260514T153606_result.json",
+    "occurrence": 1,
+    "bytes": 1673,
+    "sha256": "655926df611d39d04ab9d3a877b871e8f828f7949ef994020022a17c2b6579d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已验证完毕。\n\n## 数据质量验证\n\n- **总条数**: 2800（收集中）\n- **收集进度**: 2800/~3553, PID 340587 存活\n\n### move vs put\n- move actions: 3752, put actions: 0 (100% move)\n- 含 move 动作的轨迹: 2451/2800 (87.5%)\n\n### 关键结论：**数据有效，move 不是假阳性**\n\n原因（来自 `collect_expert_trajectories.py` 源码）：\n\n1. **`move` 是 ALFWorld 内置 expert agent (`HandCodedTWAgent`) 的标准动作**，环境正确响应 \"You move the X to the Y\"\n2. **成功判定基于 `state.won` 游戏引擎标志**（第~140行），而非文本匹配。只有 `won=True` 的轨迹才被保存\n3. 收集脚本 `infer_assessment` 函数明确将 `\"you move\"` 视为 positive（与 `\"you put\"` 等价处理）\n\n### 抽样 20 条检查\n- 真阳性: 20/20 — 所有轨迹都经过 `state.won` 验证\n- 假阳性: 0\n- 末尾 env response 看起来像\"未完成\"是因为数据格式：最后一条 message 是 assistant action，对应的 env response 未录入（轨迹在 `done=True` 后终止）\n\n### 全量最后 env response 分布\n| 模式 | 数量 | 比例 |\n|------|------|------|\n| You arrive... | 2068 | 73.9% |\n| open/close | 565 | 20.2% |\n| You pick up... | 87 | 3.1% |\n| Nothing happens | 77 | 2.8% |\n\n这些是**倒数第二个** action 的 response，不是最终结果。\n\n### 任务类型\n- put 类任务: 2504 (89.2%)\n- look/examine 类: 302 (10.8%)\n\n## 建议\n**数据可用，无需过滤或重新收集。** `move` 是 ALFWorld expert 的原生动作，game engine 已通过 `won` flag 确认每条轨迹任务完成。Reviewer 的担忧不成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/validate-expert-sft-data-quality.md"
+}

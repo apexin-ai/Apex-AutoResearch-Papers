@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ff63041fbaf59b7ebe4",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose 8b sft clean eval v2 exit",
+  "task_key": "worker_diagnose_8b_sft_clean_eval_v2_exit_20260519T112254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_8b_sft_clean_eval_v2_exit_20260519T112254_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "48416e16f05d176488f9bb20c394548015ee60d9109154af4d296d28dbc9b2cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**8b_sft_clean_eval_v2 结果：成功（EXIT_CODE=0，32 episodes）**\n\n| Metric | Value |\n|---|---|\n| **success_rate** | **71.875%** |\n| pass@1 | 71.875% |\n| num_actions | 23.44 |\n| action_is_valid | 95.95% |\n| action_is_effective | 100% |\n| response_length | 1731 |\n| reward_mean@32 | 7.1875 |\n| reward_std@32 | 4.496 |\n\nRegistry 已更新为 DONE/success，cron 已删除。\n\n对比参考：之前 OOD 134 tasks 的 80.6% vs 现在 in-dist 32 tasks full-context 的 71.875%，in-dist 反而低约 9pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-8b-sft-clean-eval-v2-exit.md"
+}

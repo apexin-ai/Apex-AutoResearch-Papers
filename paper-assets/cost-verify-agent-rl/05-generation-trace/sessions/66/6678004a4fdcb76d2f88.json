@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6678004a4fdcb76d2f88",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 now",
+  "task_key": "worker_check_exp029_now_20260516T132732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_now_20260516T132732_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "b1efb85ab34d65f6de9390cb08675a11de98fc311711a556c01aaa4311494d07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp029 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 861524 存活，运行 1h02m44s，状态 Ss+ |\n| **GPU** | GPU0: 0% util, 45.5/97.9 GB; GPU1: 0% util, 45.5/97.9 GB |\n| **训练进度** | **1/100 steps (1%)**, step 1 耗时 31min, ETA ~51h |\n| **错误** | 无 OOM/Traceback/FAILED |\n| **W&B** | run `x4bbiddh`, state=running, runtime=3178s |\n\n### Step 0 初始验证指标 (140 episodes)\n\n| 指标 | 值 |\n|------|-----|\n| val success (pass@1) | **10.7%** (15/140) |\n| action_is_valid | 65.4% |\n| action_is_effective | 100% |\n| avg num_actions | 45.3 |\n| best@128 reward | 10 (满分) |\n| mean reward @140 | 1.07 |\n\n### 状态判断\n\n训练正常运行中。GPU 利用率为 0% 是因为当前处于环境 rollout 阶段（agent 与 AlfWorld 交互，非 GPU 密集）。Step 1 的 PPO 更新刚完成（日志中有 `compute_policy_loss` 调用），正在进入 step 2 的 rollout。\n\n每 step ~31 分钟，100 步预计总耗时 ~51 小时。W&B 尚未记录 step 1 的 train metrics（仅有 step 0 的初始 val）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-now.md"
+}

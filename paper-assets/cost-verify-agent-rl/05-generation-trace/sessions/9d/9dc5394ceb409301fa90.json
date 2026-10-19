@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dc5394ceb409301fa90",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval deterministic information loss",
+  "task_key": "worker_eval_deterministic-information-loss_20260519T114752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_deterministic-information-loss_20260519T114752_result.json",
+    "occurrence": 1,
+    "bytes": 308,
+    "sha256": "09c5ad4ed117b10546c55ba12abacc5fff26344dea16399cff8026f8397a6f33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果写入 `artifacts/det_eval_information_loss.md`。\n\n**最终结论：h=2 windowing 在 deterministic eval (T=0) 下造成 37.50pp 的 information loss（68.75% → 31.25%），相对下降 54.5%。** 这是零 sampling variance 的精确测量，可直接用于论文。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-deterministic-information-loss.md"
+}

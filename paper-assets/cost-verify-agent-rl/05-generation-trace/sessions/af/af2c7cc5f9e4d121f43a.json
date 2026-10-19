@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af2c7cc5f9e4d121f43a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd disk cleanup urgent",
+  "task_key": "worker_ops_westd_disk_cleanup_urgent_20260520T050441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_disk_cleanup_urgent_20260520T050441_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "2f7825f7703d5cdabcbe0c94c54cf50c9501ee9c1cab4e3a986ab7769879104c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "释放了 30GB（22→52GB），**未达到目标的 ≥50GB 释放量**。\n\n最大的可清理目标：\n| 目录 | 大小 | 状态 |\n|------|------|------|\n| `checkpoints/8b-cell-c-v9/` | 92GB | **禁删** (v9d 训练中) |\n| `checkpoints/scienceworld_sft/` | 27GB | 可清理候选 |\n| `cost-verify-agent-rl/` | 21GB | 项目代码 |\n| `models/` | 20GB | 基础模型 |\n\n`scienceworld_sft` (27GB) 是唯一能安全释放大量空间的目标。删掉后总释放 57GB，磁盘可用 79GB。确认可以删吗？\n\n**不删的风险**：当前 52GB 可用，写 step 10 checkpoint (37GB) 时临时降至 15GB，如果框架是先写后删旧 checkpoint，15GB 缓冲偏紧。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-disk-cleanup-urgent.md"
+}

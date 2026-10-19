@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2674f52736e8f151e34",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd check round2 and seed investigation",
+  "task_key": "worker_ops_westd_check_round2_and_seed_investigation_20260522T100715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_check_round2_and_seed_investigation_20260522T100715_result.json",
+    "occurrence": 1,
+    "bytes": 1696,
+    "sha256": "2c42d5c5faf8d4fa87b178208374c6d087d0f5ef8cec4be4b894209475906106"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v3 config 已就绪。汇总：\n\n---\n\n### 1. Round 2 eval 状态\n\n| GPU | 任务 | 状态 | 显存 |\n|-----|------|------|------|\n| 0 | intervention_c_step7 | ✅ 运行中（vLLM 已加载，开始 rollout） | 90 GB |\n| 1 | high_kl_step5 | ✅ 运行中（wandb 连接，model loading） | 8 GB |\n| 2 | high_kl_step7 | ✅ 运行中（wandb 连接，model loading） | 8 GB |\n\n3 个 Round 2 eval 全部正常启动，wandb runs 已创建。\n\n### 2. intervention_c_step5 Round 1 (GPU 3)\n\n**已完成**，GPU 已释放（0 MiB）。结果：\n- **success = 19.4%**（pass@1 = 19.4%，134 tasks）\n\n### 3. seed.val 一致性汇总\n\n| Config | seed.val | 状态 |\n|--------|----------|------|\n| **seed5** | **789** | ❌ 不一致，需要重跑 |\n| seed6 | 321 | ✅ |\n| seed4 | 321 | ✅ |\n| intervention_c (step10) | 321 | ✅ |\n| intervention_c_step5 | 321 | ✅ |\n| intervention_c_step7 | 321 | ✅ |\n| high_kl_step5 | 321 | ✅ |\n| high_kl_step7 | 321 | ✅ |\n| c_prime_step5 | 321 | ✅ |\n| seed2048_step5 | 321 | ✅ |\n| **SFT baseline v1** | **123** | ❌ |\n| **SFT baseline v2** | **123** | ❌ |\n\n**问题**：seed5 用了 seed.val=789，SFT baseline 用了 seed.val=123。两者都与标准 321 不一致。seed5 需要重跑 eval。\n\n### 4. SFT baseline v3 config\n\n`_alfworld_sft_baseline_ood_eval_v3.yaml` 已创建：\n- seed.val: 123 → **321** ✅\n- enable_response_mask: (默认 True) → **False** ✅\n- experiment_name / log dirs 已更新为 v3\n- **未启动**，等 Round 2 完成后再跑\n\n### 待处理\n- seed5 需要用 seed.val=321 重跑 eval（需创建 v2 config）\n- SFT baseline v3 等 GPU 空闲后启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-check-round2-and-seed-investigation.md"
+}

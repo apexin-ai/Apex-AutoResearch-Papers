@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63cab823f3edc21d99ec",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code scienceworld eval prep",
+  "task_key": "worker_code_scienceworld-eval-prep_20260519T151636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scienceworld-eval-prep_20260519T151636_result.json",
+    "occurrence": 1,
+    "bytes": 1148,
+    "sha256": "66fb4774023cc4dc2fdc5264960976bccaffd3cffc42516a5e3b53634d7ed1b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本验证通过。总结：\n\n**已完成：**\n1. **依赖安装** — bjb1 上安装了 `scienceworld==1.2.3`、`py4j`、`openjdk-11`\n2. **创建 `eval_scienceworld.py`** — 位于 `/root/cost-verify-agent-rl/eval_scienceworld.py`\n3. **Dry-run 通过** — base model 跑 1 个 boil episode（10 步，0% success 符合预期）\n\n**脚本功能：**\n- 基于 vLLM 推理，user turn 格式完全匹配 SFT 训练数据\n- 30 个 task type 的 per-task-type breakdown\n- 支持 `--temperature`（0.0/0.4）、`--eval_split`（dev/test）、`--task_names`（指定 task）\n- 输出 JSON 含 success_rate、avg_score、valid_action_rate、format_rate\n\n**用法示例（SFT 训练完成后）：**\n```bash\n# 先把 westd checkpoint 传到 bjb1，然后：\nCUDA_VISIBLE_DEVICES=0,1 python3 eval_scienceworld.py \\\n  --checkpoint /path/to/scienceworld_sft_hf \\\n  --temperature 0.0 \\\n  --eval_split dev \\\n  --output /tmp/sw_sft_eval_t0.json\n```\n\n**待确认：** westd SFT 训练完成后，checkpoint 在 `/root/autodl-tmp/checkpoints/scienceworld_sft` 下（包含 `hf_model` 子目录），需 scp 到 bjb1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scienceworld-eval-prep.md"
+}

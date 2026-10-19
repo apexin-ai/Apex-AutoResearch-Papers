@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a09812c682644b566d02",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix and resume exp011",
+  "task_key": "worker_fix-and-resume_exp011_20260514T051004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix-and-resume_exp011_20260514T051004_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "a5ab2291a8e917e0e9962b1af94caefbfc3d08c741ec29da0cd1b3588a592263"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp011 已注册为 RUNNING。\n\n**总结：**\n\n1. **环境修复完成**：\n   - `/tmp` 残留已清理\n   - `TMPDIR=/root/autodl-tmp/tmp` 和 `RAY_TMPDIR=/root/autodl-tmp/ray_tmp` 已写入 `.bashrc` 并在训练命令中显式 export\n   - 磁盘空间充足（根分区 23G，数据盘 159G）\n\n2. **Checkpoint 恢复确认**：\n   - verl 支持 `resume_mode=resume_path` + `resume_from_path`\n   - global_step_10 checkpoint 完整（FSDP model + optimizer + rng + lr_scheduler 已加载到 2 个 rank）\n   - 训练从 step 11 开始，跑到 step 30（剩余 20 步）\n\n3. **exp011 已启动**：\n   - tmux session: `exp011`\n   - PID: 208791\n   - GPU 0/1 各占用 ~11GB\n   - 日志: `/root/autodl-tmp/exp011_grpo.log`\n   - val_before_train 正在执行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-and-resume-exp011.md"
+}

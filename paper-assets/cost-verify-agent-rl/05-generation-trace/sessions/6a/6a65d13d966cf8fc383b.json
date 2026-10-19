@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a65d13d966cf8fc383b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag eval variance collect",
+  "task_key": "worker_diag_eval_variance_collect_20260523T222329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval_variance_collect_20260523T222329_result.json",
+    "occurrence": 1,
+    "bytes": 1951,
+    "sha256": "fc83155a06d35bde331d107471f4379106c2951bc734d9f0994ed7eb45e32b0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have all the data. Here's the complete report:\n\n## Eval Variance P1 Results\n\n**Experiment**: 3 checkpoints × 3 eval seeds, 134 OOD tasks, τ=0.4\n**Duration**: 2026-05-24 02:40–06:19 CST (~3h40m)\n**Server**: bjb1-17606, 1× RTX PRO 6000 Blackwell (CUDA 13.1)\n\n| checkpoint | run | success_rate | n_tasks | wandb_run_id | status |\n|------------|-----|-------------|---------|--------------|--------|\n| seed300 | s0 | 0.0% (0/134) | 134 | 917iymuy | done (invalid: enable_think=False) |\n| seed300 | s1 | 0.0% (0/134) | 134 | xkd98fme | done (invalid: enable_think=False) |\n| seed300 | s2 | 0.0% (0/134) | 134 | fztzhfcc | done (invalid: enable_think=False) |\n| seed7hk | s0 | — | — | zcqqnd4c | **CRASHED** |\n| seed7hk | s1 | — | — | pl1gnbps | **CRASHED** |\n| seed7hk | s2 | — | — | 27nyg5ej | **CRASHED** |\n| seed200 | s0 | 11.19% (15/134) | 134 | w6llb7y4 | done |\n| seed200 | s1 | 11.19% (15/134) | 134 | 6c1cxb7m | done |\n| seed200 | s2 | 13.43% (18/134) | 134 | 9h7yctzz | done |\n\n### seed7hk crash root cause\nAll 3 runs hit `ValueError: Unsupported model: /root/autodl-tmp/checkpoints/exp029_seed7_high_kl_step5_hf` in `ctx_manager.py:35 get_special_tokens()`. The tokenizer's `name_or_path` is a local path that doesn't match any recognized model name. The crash occurs during `formulate_rollouts()` — env interactions ran for ~25 minutes but results were lost when post-processing failed.\n\n### seed200 variance summary\n- Rates: 11.19%, 11.19%, 13.43%\n- Mean: 11.94%\n- Std: 1.29 pp (sample std)\n- Raw counts: 15, 15, 18 out of 134\n\n### Key observations\n1. **seed300**: 0% across all seeds confirms this checkpoint is non-functional (enable_think=False as expected)\n2. **seed7hk**: needs code fix in `get_special_tokens()` to handle local checkpoint paths, then re-run\n3. **seed200**: moderate variance (~1.3 pp), with 2/3 runs identical and 1 outlier — 3 more tasks solved in s2"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-variance-collect.md"
+}

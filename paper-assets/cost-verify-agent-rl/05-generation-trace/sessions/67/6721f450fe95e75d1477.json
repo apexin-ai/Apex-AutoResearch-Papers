@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6721f450fe95e75d1477",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260517T081214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260517T081214_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "ca1632213ba65ef4eb7531dac37c224a660f5908ffe39c23e754c038d1088cd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work section written to `docs/paper/related_work.tex`. \n\nSummary:\n- 4 paragraphs (~900 words with markup, ~740 prose words), 27 citation keys across all clusters\n- No em-dashes, no -ing phrase endings, no paper stacking\n- Each cluster ends with clear positioning of our work relative to that literature\n- Citation keys match the `literature_map.yaml` IDs and the keys already used in `introduction.tex`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work-copy-2.md"
+}

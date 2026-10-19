@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdb40358ae13378c3da5",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_19_1779396446.md",
+  "task_key": "loop_19_1779396446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1779396446.md",
+    "occurrence": 1,
+    "bytes": 3939,
+    "sha256": "0f9f2e9cdc86236183d25ae257a31007174405e2225e1f66bf18440506e774ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-21T15:51:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 [cuda:0, cuda:1]，westd-47453 [cuda:0, cuda:1, cuda:2, cuda:3]。严禁用任何白名单外的 GPU\n- westd 上同时跑两个实验时必须 `RAY_ADDRESS=local` 隔离 Ray，否则 Ray cluster 互相干扰导致 OOM（Seed 5 死于此）\n- FSDP2 checkpoint 不是 HF 格式——eval 前必须先跑 `convert_fsdp_to_hf.py`\n- save_contents 必须放在 `actor_rollout_ref.actor.checkpoint` 路径下，否则保存 92GB optimizer state 撑爆磁盘\n- 训练命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（两台服务器都是 conda，不是 venv）\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-17606**: 工作目录 `/root/cost-verify-agent-rl/RAGEN`，Python `/root/miniconda3/bin/python`，conda base\n- **westd-47453**: 工作目录 `/root/autodl-tmp/cost-verify-agent-rl/RAGEN`，Python `/root/miniconda3/bin/python`，conda base\n- 模型：`qwen3_exp021_ragen_sft_v4`（两台都有本地副本）\n- W&B project：`cost-verify-agent-rl`\n- FSDP→HF 转换脚本：`convert_fsdp_to_hf.py`（已就绪）\n- 活跃进程：\n  - exp029_seed4_v2: PID 302056, bjb1 cuda:0,1, cron 监控中\n  - exp029_seed7: PID 226699, westd cuda:0,1, cron 监控中\n- westd cuda:2,3: **空闲**（seed6_v3 已完成）\n\n### 3. 📊 当前状态\n**刚完成**：seed6_v3 训练完毕 + OOD eval (29.1%)，seed5 OOD eval (29.1%, partial step 10)，SFT baseline OOD (5.97%)\n\n**RUNNING**：\n- exp029_seed4_v2 (bjb1 cuda:0,1) — seed=123，retry with disk cleaned\n- exp029_seed7 (westd cuda:0,1) — seed=999，替代 seed5 v2\n\n**等待**：\n- exp029_seed8 (PREPARING，等待审批) — westd cuda:2,3 空着等它\n- exp029_seed6_v2, exp029_seed3_ood_final, exp029_seed2_ood_step15 均 PREPARING\n\n**已有 OOD 数据点**（用于 Table 1 5-seed mean±std）：\n| Seed | OOD success | Steps | 备注 |\n|------|-------------|-------|------|\n| 1 | 23.88% | 15/15 | ✅ |\n| 3 | 10.45% | 15/15 | ✅ |\n| 5 | 29.1% | 10/15 | partial (OOM step 12) |\n| 6 | 29.1% | 15/15 | ✅ |\n| 4 | — | RUNNING | |\n| 7 | — | RUNNING | |\n\nSFT baseline OOD: 5.97%\n\n### 4. 📋 待办（条件触发式）\n- exp029_seed4_v2 cron 回调（完成）→ FSDP→HF 转换 → 134-task OOD eval → 更新 Table 1\n- exp029_seed7 cron 回调（完成）→ 同上流程\n- 两个 seed 都完成后 → 计算 5-seed (或 6-seed) mean±std → 更新论文 Table 1 → 向 Director 汇报最终数据\n- exp029_seed8 审批通过 → submit_on_allocated 到 westd cuda:2,3（RAY_ADDRESS=local）\n- 任何 seed OOD < 5% → 标记 negative，向 Director 汇报证伪粒度\n- 磁盘告警：westd 113GB / bjb1 75GB 可用——每个 checkpoint ~3.3GB (actor only)，训练 15 步 save_freq=5 产生 3 个 checkpoint ≈ 10GB，空间充足无需清理\n\n### 5. 🎯 战略上下文\n- **核心论文 claim**：Step-level credit assignment 在 agent RL 中系统性失败（信息丢失 M1 + 符号错误归因 M2），episode-level GRPO 修复之\n- **数据支撑**：1.7B 多 seed + 8B 单 seed (90.3%) + ScienceWorld 崩溃验证\n- **当前瓶颈**：等 seed4/seed7 训练完 → OOD eval → 5-seed 统计量。论文 v16 已编译完毕，只差 Table 1 最终数据\n- **D112 决策**：跨 seed 方差大（10.45% ~ 29.1%）是已知风险但不改方向，论文用 mean±std 如实报告\n- **易踩坑**：\n  - Seed 5 是 partial (10步)，不能和 15 步的 seed 直接对比，论文中需标注\n  - 不要把 seed5 的 OOD 29.1% 当作\"高分\"——它只训了 10 步，可能 step 15 会回落（参考 seed 1 val 曲线先升后降）\n  - FSDP2 checkpoint 转换可能需要 2 GPU 加载（内存），在有实验跑的 GPU 上操作需小心\n  - exp029_seed4_v2 registry 里有 failure_reason 字段（之前 retry 过），但 cron 确认 PID 302056 仍在跑，状态正常\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1779396446.md"
+}

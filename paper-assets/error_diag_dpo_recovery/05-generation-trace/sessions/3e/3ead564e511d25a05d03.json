@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ead564e511d25a05d03",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "analysis expert data distribution",
+  "task_key": "worker_analysis_expert-data-distribution_20260512T162224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_expert-data-distribution_20260512T162224_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "2f889ad9acc467a91aa40f75864246a8f52eab6df49a9e1f6e6905f10249606c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，报告已注册为 artifact `art_20260512_f992a4`。\n\n**核心结论**：\n\n- **3119 条 expert 数据**，6 种 task type 全覆盖，945 种 unique goals，108 个 scenes\n- **分布不均**：pick 最多（759, 24.3%），examine 最少（279, 8.9%）\n- **步数**：mean 9.8，74.3% 在 10 步内完成；puttwo 最长（mean 14.2），pick 最短（mean 7.3）\n- **旧失败轨迹不可用**：仅 88 条，game_file 与 expert 零 overlap，且受 boundary 污染\n- **DPO 建议**：重新收集失败轨迹时优先覆盖 puttwo（步数长、失败率高、DPO 收益最大）和 examine（expert 样本最少需确保覆盖），按同 game_file 配对为主"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-expert-data-distribution.md"
+}

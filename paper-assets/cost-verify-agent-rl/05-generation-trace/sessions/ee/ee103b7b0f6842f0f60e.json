@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee103b7b0f6842f0f60e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval bjb1 cuda1 seed5 mask check",
+  "task_key": "worker_eval_bjb1_cuda1_seed5_mask_check_20260522T190128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bjb1_cuda1_seed5_mask_check_20260522T190128_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "aac0dc00fa0d882fc5ca35f2d1ebfb0b982784608a303058dd960f50875a0964"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 正常运行中，正在处理数据（进度条显示 14%）。\n\n**汇报：**\n\n| 项目 | 详情 |\n|------|------|\n| **实验** | seed7-step5-response-mask-check（替代 seed5，因 seed5 checkpoint 仅在 westd、无法 SCP） |\n| **Checkpoint** | `qwen_exp029_seed7_high_kl_step5_hf`（seed7 step5 pre-collapse） |\n| **关键参数** | `enable_response_mask=true`, 134 OOD tasks, temp=0.4, val_only=True |\n| **GPU** | cuda:1（8605 MiB），cuda:0 空闲未干扰 |\n| **PID** | 446280（shell）→ 447671（TaskRunner） |\n| **日志** | `/root/autodl-tmp/logs/seed7_response_mask_check.log` |\n| **W&B** | `seed7-step5-response-mask-check` |\n\n**额外发现：seed300 step5 OOD eval（v2）已完成，结果 0% success rate**（134 tasks 全部失败）。该 eval 的 config 显示 `enable_response_mask: True`。与 baseline 25.37%（mask=false）形成鲜明对比——response mask 可能导致严重性能下降，seed7 结果值得关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bjb1-cuda1-seed5-mask-check.md"
+}

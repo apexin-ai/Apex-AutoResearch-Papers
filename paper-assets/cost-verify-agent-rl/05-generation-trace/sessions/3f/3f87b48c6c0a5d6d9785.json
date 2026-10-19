@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f87b48c6c0a5d6d9785",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops verified clean eval submit",
+  "task_key": "worker_ops_verified-clean-eval-submit_20260519T111455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verified-clean-eval-submit_20260519T111455_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "efcfcf541a33989db6bd51972233f6ebb9018a6a73f751b0f26b9d08619a3928"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动验证通过。任务正在正常运行：\n\n- **tmux session**: `8b_sft_clean_eval`（提交时已确认）\n- **进程状态**: 日志显示 TaskRunner 正在加载 tokenizer（进度 ~38%），WorkerDict FSDP 初始化中\n- **日志**: 有 FutureWarning（FSDP state_dict、cuda allocator，均为非致命警告），tokenizer regex 警告可忽略（Qwen3 不受影响）\n- **磁盘**: 72G 可用，充足\n\n**总结**：\n- Checkpoint rsync 18/18 文件全部验证通过\n- Pre-flight 发现原始命令路径错误（`/root/autodl-tmp/RAGEN` → `/root/cost-verify-agent-rl/RAGEN`），已修正\n- 8b_sft_clean_eval 已成功提交并正在初始化，eval 使用 32 episodes（满足 C003）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verified-clean-eval-submit.md"
+}

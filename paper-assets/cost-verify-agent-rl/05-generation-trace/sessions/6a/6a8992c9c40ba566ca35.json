@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a8992c9c40ba566ca35",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops urgent gpu status check",
+  "task_key": "worker_ops_urgent-gpu-status-check_20260520T180127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-gpu-status-check_20260520T180127_result.json",
+    "occurrence": 1,
+    "bytes": 2398,
+    "sha256": "faa9e107df3609a64e663a9fad1548608f173211b655474e71935897ed55eb36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n---\n\n### westd-47453 (4× RTX PRO 6000 96GB)\n\n| GPU | PID | 进程 | VRAM | Util | 实验 |\n|-----|-----|------|------|------|------|\n| cuda:0 | 998725 | actor_rollout_generate_sequences | 44.6G/96G | **100%** | Seed 3 v2 |\n| cuda:1 | 998726 | actor_rollout_generate_sequences | 44.9G/96G | **100%** | Seed 3 v2 |\n| cuda:2 | 926943 | ray::WorkerDict | 48.0G/96G | **0%** | Cell C v2 |\n| cuda:3 | 926944 | ray::WorkerDict | 48.0G/96G | **0%** | Cell C v2 |\n\n**Seed 3 v2 (Alfworld GRPO)**\n- 进度：**2/15 steps (13%)**，~22 min/step\n- Step 1: success=13.3%, pass@8=56.25%\n- Step 2: success=10.9%, pass@8=50%\n- 预计剩余 ~4h47m\n\n**Cell C v2 (ScienceWorld GRPO)**\n- 进度：**1/15 steps (7%)**，W&B 日志停在 step 1（00:17 完成）\n- Step 1: success=0%, pass@8=0%，39 min/step\n- GPU util 0% — **疑似卡住**，step 2 早该完成但无日志更新\n- 有 CollapseDetector 错误：`Prompt mismatch within group_id 4`\n\n**⚠️ 磁盘告警：99% 满（246G/250G，仅剩 4.25GB）**\n两个 ray session 的 raylet 持续报错 \"over 95% full, Object creation will fail if spilling is required\"。Cell C v2 卡住很可能与此有关。\n\n---\n\n### bjb1-17606 (2× RTX PRO 6000 96GB)\n\n| GPU | PID | 进程 | VRAM | Util | 实验 |\n|-----|-----|------|------|------|------|\n| cuda:0 | 229693 | VLLM::Worker_TP0 | 84.1G/96G | **0%** | SW Info Loss Eval |\n| cuda:1 | 229694 | VLLM::Worker_TP1 | 84.1G/96G | **0%** | SW Info Loss Eval |\n\n**SW Info Loss Eval**\n- 进度：**73/89 episodes (82%)**，日志仍在写入（02:03 最后更新）\n- 模型：scienceworld_sft checkpoint (Qwen3)，T=0.0，dev split\n- 部分 episode 超时（100 steps），导致单集 ~2 分钟\n- 无 cuda:2,3（此服务器仅 2 张 GPU）\n\n**前一轮 eval 已完成**：eval_scienceworld_v2_resumed，1796 episodes，**30.1% 准确率**，结果已保存。\n\n---\n\n### 需要关注\n\n1. **westd 磁盘 99% 满** — Seed 3 v2 目前还在跑（100% GPU util），但 Cell C v2 疑似因磁盘问题卡死。需要清理磁盘空间（旧 ray session、outputs 目录、checkpoint 等）。\n2. **Cell C v2 可能需要重启** — step 1 完成后 GPU util 归零、无后续日志，持续近 2 小时。\n3. **bjb1 SW Info Loss Eval 正在收尾** — 还剩 16 个 episodes，预计很快完成。完成后 cuda:0,1 可释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-gpu-status-check.md"
+}

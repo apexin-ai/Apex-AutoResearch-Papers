@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76a794ab27f578ad2a18",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research wandb collapsed vs healthy curves",
+  "task_key": "worker_research_wandb_collapsed_vs_healthy_curves_20260522T220334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_wandb_collapsed_vs_healthy_curves_20260522T220334_result.json",
+    "occurrence": 1,
+    "bytes": 1651,
+    "sha256": "0021c5640883f807bddcd64fbf455567d4840e26c605e6cd968c5222fef3f752"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已提取并保存至 `artifacts/exp029/data/learning_curve_data.json`。\n\n## 汇总\n\n### W&B Run ID 映射\n\n| Seed | Run ID | Run Name | 训练步数 | 类别 |\n|------|--------|----------|---------|------|\n| seed2048 | `5j94efd5` | exp029-new-seed-2048 | 4 | Collapsed |\n| seed42 | `kvdbh1sz` | exp029-seed42-episode-level | 4 | Collapsed |\n| seed8 | `c0l6e7vd` | exp029-seed8-episode-level | 9 | Collapsed |\n| seed4 | `fb1o765g` | exp029-seed4-episode-level | 14 | Healthy |\n| seed5 | `yyoghk1f` | exp029-seed5-episode-level | 10 | Healthy |\n| seed6 | `2bbyvsdr` | exp029-seed6-episode-level | 14 | Healthy |\n| seed100 | `55kt9yf9` | exp029-seed100-episode-level | 4 | Healthy |\n\n### 关键模式\n\n**Collapsed seeds 特征**:\n- **seed8** 最典型：step 1-4 success 在 0.31-0.44，step 5 开始骤降至 0.06-0.11，response_length 从 ~9000 暴涨到 ~15000\n- **seed2048** 始终低位（0.01-0.10），response_length 始终 ~15000\n- **seed42** 仅 4 步，step 3 到 0.25 后 step 4 回落到 0.09\n\n**Healthy seeds 特征**:\n- **seed6** 最成功：从 0.07 稳步上升到 0.89，response_length 从 14910 降至 3329\n- **seed5** 前期强（peak 0.73），后期有回退（step 10 降至 0.23）\n- **seed4** 在 0.12-0.38 之间振荡，未达高位但也未崩溃\n- **seed100** 仅 4 步数据，趋势不明\n\n### 注意事项\n- `train/AlfworldSG/response_length` 字段在 W&B 中为 null，替代使用 `response_length/mean`\n- W&B `fetch_wandb_run_history` 工具有 bug（key-filtered scan_history 只返回所有指定 key 均非 null 的行），改用 SSH 直接调 W&B API 提取"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-wandb-collapsed-vs-healthy-curves.md"
+}

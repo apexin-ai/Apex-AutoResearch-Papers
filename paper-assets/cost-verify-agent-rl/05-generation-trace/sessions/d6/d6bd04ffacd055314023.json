@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "d6bd04ffacd055314023",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose 8b cell c episode v9",
+  "task_key": "worker_diagnose_8b_cell_c_episode_v9_20260519T181748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_8b_cell_c_episode_v9_20260519T181748_result.json",
+    "occurrence": 1,
+    "bytes": 3226,
+    "sha256": "5d9cb76548b4c29244a1e878868442af0acebede16f6443918176e2c24565846"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n```json\n{\n  \"root_cause\": \"train.py:241 的 strategy 判断只匹配 'fsdp'，v9 config 设置了 actor.strategy='fsdp2'，命中 else 分支触发 line 245 的 raise NotImplementedError\",\n  \"error_type\": \"infrastructure\",\n  \"config_diff\": \"v9 新增: actor.strategy=fsdp2, actor.fsdp_config.strategy=fsdp2, actor.fsdp_config.offload_policy=True, actor.fsdp_config.param_offload=False, model.enable_activation_offload=true, ppo_mini_batch_size 2→4, rollout.gpu_memory_utilization 0.22→0.25; 缺失: critic.strategy 未设为 fsdp2（默认 fsdp）\",\n  \"fix_steps\": [\n    \"1. train.py:241 — 将 `== 'fsdp'` 改为 `in ('fsdp', 'fsdp2')`，与 verl 上游 main_ppo_split.py:130 的模式一致\",\n    \"2. train.py:242 — 将 `assert config.actor_rollout_ref.actor.strategy == config.critic.strategy` 改为 `assert config.critic.strategy in ('fsdp', 'fsdp2')`，允许 actor/critic 使用不同 FSDP 版本\",\n    \"3. _alfworld_8b_cell_c_v9.yaml — 添加 `critic: strategy: fsdp2`，否则 critic 默认 fsdp 与 actor 的 fsdp2 不匹配（assertion 会失败）\"\n  ],\n  \"can_auto_fix\": true,\n  \"fix_complexity\": \"简单配置修改+train.py 两行代码改动\"\n}\n```\n\n**详细分析**：\n\n- `train.py:241` 的分支逻辑：\n  ```python\n  if config.actor_rollout_ref.actor.strategy == 'fsdp':    # 只匹配 'fsdp'\n      ...\n  else:\n      raise NotImplementedError                             # 'fsdp2' 落到这里\n  ```\n\n- RAGEN 的 worker 层已经支持 fsdp2：\n  - `ragen/workers/fsdp_workers.py:338` — CriticWorker 有 `elif config.strategy == \"fsdp2\":` 分支\n  - `ragen/workers/fsdp_workers.py:43-44` — 已导入 `apply_fsdp2`, `fsdp2_load_full_state_dict`\n  - `verl/workers/fsdp_workers.py:509-535` — ActorRolloutRefWorker 完整支持 fsdp2 + CPUOffloadPolicy\n\n- 问题仅在 **入口调度层**（train.py），底层实现已就绪，只是入口的 if 条件没有跟上 verl 上游的 `in {'fsdp', 'fsdp2'}` 写法。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "train.py:241 的 strategy 判断只匹配 'fsdp'，v9 config 设置了 actor.strategy='fsdp2'，命中 else 分支触发 line 245 的 raise NotImplementedError",
+              "error_type": "infrastructure",
+              "config_diff": "v9 新增: actor.strategy=fsdp2, actor.fsdp_config.strategy=fsdp2, actor.fsdp_config.offload_policy=True, actor.fsdp_config.param_offload=False, model.enable_activation_offload=true, ppo_mini_batch_size 2→4, rollout.gpu_memory_utilization 0.22→0.25; 缺失: critic.strategy 未设为 fsdp2（默认 fsdp）",
+              "fix_steps": [
+                "1. train.py:241 — 将 `== 'fsdp'` 改为 `in ('fsdp', 'fsdp2')`，与 verl 上游 main_ppo_split.py:130 的模式一致",
+                "2. train.py:242 — 将 `assert config.actor_rollout_ref.actor.strategy == config.critic.strategy` 改为 `assert config.critic.strategy in ('fsdp', 'fsdp2')`，允许 actor/critic 使用不同 FSDP 版本",
+                "3. _alfworld_8b_cell_c_v9.yaml — 添加 `critic: strategy: fsdp2`，否则 critic 默认 fsdp 与 actor 的 fsdp2 不匹配（assertion 会失败）"
+              ],
+              "can_auto_fix": true,
+              "fix_complexity": "简单配置修改+train.py 两行代码改动"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-8b-cell-c-episode-v9.md"
+}

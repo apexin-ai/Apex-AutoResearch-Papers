@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f6f4d2745113ab0441a0",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "research cpu offload d096",
+  "task_key": "worker_research_cpu-offload-d096_20260519T143608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cpu-offload-d096_20260519T143608.log",
+    "occurrence": 1,
+    "bytes": 716261,
+    "sha256": "c308d9ca376f6e0ea0ac27cae408332d90375563537c186ecdb9c6be9b90da52"
+  },
+  "statistics": {
+    "messages": 189,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "f6f4d2745113ab0441a0-part-0001.json",
+          "message_count": 159
+        },
+        {
+          "path": "f6f4d2745113ab0441a0-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-cpu-offload-d096.md"
+}

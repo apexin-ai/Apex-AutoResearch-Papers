@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a60f0fa25695369d0984",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code prep grpo from exp021",
+  "task_key": "worker_code_prep_grpo_from_exp021_20260515T030050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_grpo_from_exp021_20260515T030050_result.json",
+    "occurrence": 1,
+    "bytes": 2157,
+    "sha256": "2a7c39449cde60ea627fba269c5a95f037880ae702fd7151f8a32ebe8a6950b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n---\n\n### 1. Checkpoint 状态\n- **路径**: `/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/`\n- **完整**: config.json, model.safetensors (3.4GB), tokenizer 文件齐全\n- **模型**: Qwen2.5 系列, 1720.6M 参数, vocab_size=151643\n- 另有 checkpoint-160 和 checkpoint-320 两个中间 checkpoint\n\n### 2. Symlink\n```\n/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4 → .../exp021_ragen_sft_v4/final\n```\n已创建，路径含 \"qwen\"，可通过 train.py:137 的断言检查。\n\n### 3. GRPO 配置文件\n已写入: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp022_grpo_from_sft_v4.yaml`\n\n启动命令：\n```bash\ncd /root/cost-verify-agent-rl/RAGEN && \\\nCUDA_VISIBLE_DEVICES=0,1 python train.py \\\n  --config-name _alfworld_exp022_grpo_from_sft_v4\n```\n\n或用 override 方式（基于 exp020b 的模式）：\n```bash\ncd /root/cost-verify-agent-rl/RAGEN && \\\nCUDA_VISIBLE_DEVICES=0,1 python train.py \\\n  --config-name _alfworld_exp022_grpo_from_sft_v4 \\\n  model_path=/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4 \\\n  trainer.experiment_name=exp022-alfworld-grpo-from-sft-v4 \\\n  trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp022/ \\\n  trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp022/ \\\n  es_manager.val.env_groups=4 \\\n  es_manager.val.env_configs.n_groups=[4]\n```\n\n关键参数：LR=5e-7, kl_loss_coef=0.1, grad_clip=1.0, format_penalty=0 (sparse), 30 steps, 双卡。\n\n### 4. Dry-run 结果\n模型加载成功，tokenizer 和权重均正常。stderr 有两个无害 warning（Mistral regex 误报、torch_dtype 弃用提示），不影响训练。\n\n### 5. 注意事项\n- **磁盘**: /root/autodl-tmp 已用 192G/250G (77%)，剩 59G。exp022 checkpoint 每个约 3.4GB，30 steps save_freq=5 会存 6 个 checkpoint + final = ~24GB，空间足够但偏紧。训练结束后可清理旧实验。\n- **val 组数**: 配置用 4 组 val（与 exp020b 一致），而非 exp018 的 16 组，加快 val 速度。\n- **前置条件**: 启动前需确认 exp021 eval 结果（RAGEN val success >= 10%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-grpo-from-exp021.md"
+}

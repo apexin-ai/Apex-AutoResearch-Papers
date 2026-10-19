@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "c1e4299235b5c5c3b353",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code reward fix exp012",
+  "task_key": "worker_code_reward-fix-exp012_20260514T060151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_reward-fix-exp012_20260514T060151.log",
+    "occurrence": 1,
+    "bytes": 1394700,
+    "sha256": "8766d13080e7f8b79438b26eb9a1595a5a4e67542372a9d25ed67dd7b985274e"
+  },
+  "statistics": {
+    "messages": 613,
+    "user_turns": 1,
+    "tool_calls": 223,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 159,
+      "tool_call": 223,
+      "tool_result": 223,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 515,
+      "chunks": [
+        {
+          "path": "c1e4299235b5c5c3b353-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "c1e4299235b5c5c3b353-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c1e4299235b5c5c3b353-part-0003.json",
+          "message_count": 161
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 98,
+      "chunks": [
+        {
+          "path": "c1e4299235b5c5c3b353-part-0003.json",
+          "message_count": 19
+        },
+        {
+          "path": "c1e4299235b5c5c3b353-part-0004.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-reward-fix-exp012.md"
+}

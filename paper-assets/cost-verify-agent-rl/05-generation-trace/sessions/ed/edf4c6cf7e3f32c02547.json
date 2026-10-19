@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edf4c6cf7e3f32c02547",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check val before train baseline",
+  "task_key": "worker_check_val_before_train_baseline_20260517T075909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_val_before_train_baseline_20260517T075909_result.json",
+    "occurrence": 1,
+    "bytes": 1762,
+    "sha256": "be6060cac9b07a2c68a6fcc498eacb72c0b8762a901849b219f29378b6380498"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整了。以下是三个实验的 val_before_train (step 0) success rate：\n\n---\n\n### exp029 (episode-level GRPO)\n\n| 指标 | 值 |\n|------|-----|\n| **success rate** | **12.5%** (4/32) |\n| val set 大小 | 32 episodes (`env_groups: 32, group_size: 1`) |\n| 来源 | `/root/runs/cost-verify-agent-rl/exp029_episode_level.log` **line 14230** |\n| 原始值 | `val-env/AlfworldSG/success:np.float64(0.125)` |\n\n### exp028c (selfguide recipe)\n\n| 指标 | 值 |\n|------|-----|\n| **success rate** | **6.25%** (1/16) |\n| val set 大小 | 16 episodes (`env_groups: 16, group_size: 1`) |\n| 来源 | `/root/runs/cost-verify-agent-rl/exp028c_selfguide_recipe.log` **line 14327** |\n| 原始值 | `val-env/AlfworldSG/success:np.float64(0.0625)` |\n\n### exp026 (step-independent GRPO)\n\n| 指标 | 值 |\n|------|-----|\n| **success rate** | **6.25%** (1/16) |\n| val set 大小 | 16 episodes (`env_groups: 16, group_size: 1`) |\n| 来源 | `/root/runs/cost-verify-agent-rl/exp026_step_independent_grpo.log` **line 5056** |\n| 原始值 | `val-env/AlfworldSG/success:np.float64(0.0625)` |\n\n---\n\n### Baseline 不一致的原因\n\n12.5% vs 6.25% 来自 **val set 大小不同**：\n- exp029 用了 **32 episodes**，exp028c/exp026 用了 **16 episodes**\n- 三个实验共用同一个 base model（训练前），但 val set 的 task 采样不同（32 vs 16 个 game_files），随机种子选到的任务不同\n- 同一模型在 32 episode 上碰巧解出 4 个（12.5%），在 16 episode 上各碰巧解出 1 个（6.25%）\n\n注意：当前 YAML 配置文件 `_alfworld_exp028c_selfguide_recipe.yaml` 已被改为 `env_groups: 140`，但实际运行时日志中记录的是 16。配置文件在实验运行后被修改过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-val-before-train-baseline.md"
+}

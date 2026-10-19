@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79c5f751755bbf76fdfe",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose seed300 eval v2",
+  "task_key": "worker_diagnose_seed300_eval_v2_20260522T190401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_seed300_eval_v2_20260522T190401_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "95db4c78840b2e2acb8776bd678faba823b0f4de8b9c5a2b2e25e4b9b4529574"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：SUCCESS**\n\neval v2 已完成，134 episodes 全部跑完。\n\n**OOD pass@1 = 0.0%**\n\n关键指标：\n| 指标 | 值 |\n|------|-----|\n| `val-env/AlfworldSG_OOD/pass@1` | 0.0 |\n| `val-env/AlfworldSG_OOD/success` | 0.0 |\n| `val-core/unknown/reward/mean@134` | 0.0 |\n| `val-core/unknown/reward/best@134/mean` | 0.0 |\n| `val-env/AlfworldSG_OOD/action_is_valid` | 0.918 |\n| `val-env/response_length` | 4150.7 |\n| episodes | 134 |\n\n日志 8625 行，BrokenPipeError 出现在第 8577 行（Ray TaskRunner 子进程 pipe 断开），非致命——之后正常输出了完整的 134-episode 汇总结果。\n\nseed300 step5 checkpoint 在 OOD 上完全失败，134 个 episode 无一成功。模型在生成有效动作（action_is_valid=91.8%）但没有解决任何任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-seed300-eval-v2.md"
+}

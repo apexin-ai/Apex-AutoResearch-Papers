@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8973baceb9347fa980ea",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code fix eval v2 deadlock",
+  "task_key": "worker_code_fix_eval_v2_deadlock_20260519T233720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_eval_v2_deadlock_20260519T233720_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "a2276143671c5691a8073dde9eb0e44a904f396eee3058bf7f7de32ab4f5be85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**1. 旧进程** — 已 kill（PID 187801 主进程 + 188069/188343/188344 vLLM workers + Java gateway）\n\n**2. eval 脚本修改** — `eval_scienceworld.py` 新增：\n- `--resume` 标志：从 JSONL 文件加载已完成结果并跳过\n- `--episode_timeout 300`：每个 episode 5 分钟超时（signal.alarm），超时后 kill Java gateway 并重建 env\n- 每完成一个 episode 立即追加写入 JSONL（增量保存）\n- 异常/超时计数器在最终报告中展示\n\n**3. 已提取结果** — 439 episodes 提取到 `eval_results_dev_v2.jsonl`，其中 163 OK（37.1% 成功率）\n\n**4. 新进程** — PID 195848\n\n**5. 验证** — 从 episode 440 正常继续，`[440/1796] OK inclined-plane-determine-angle v109`，GPU 已加载模型"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-eval-v2-deadlock.md"
+}

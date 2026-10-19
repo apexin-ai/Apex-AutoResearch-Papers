@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cf1ed6fa59d79bb3986",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research alfworld expert trajectories",
+  "task_key": "worker_research_alfworld-expert-trajectories_20260514T125649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_alfworld-expert-trajectories_20260514T125649_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "15b30f5562f7c10f6464f7c1e78453b46fe6027cb808bd9f4e4cdac9747895fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研报告已更新到 `artifacts/expert_trajectory_plan.md`。核心发现：\n\n**现有数据**:\n- 1200 条模板合成轨迹，6 类各 200 条，缺 `pick_and_place_with_movable_recep`\n- exp008_sft 证明：教了格式(valid 90%)但没教策略(success 0%)\n\n**Expert 机制**:\n- `HandCodedTWAgent` 是规则化子目标分解 agent，基于 PDDL facts 决策\n- 通过 `AlfredExpert` wrapper 自动提供 `extra.expert_plan`\n- 成功率 ~80-90%，非最优但远优于模板合成\n- `pick_and_place_with_movable_recep` 无对应策略类（365 games 需跳过）\n\n**推荐方案**: 用 `HandCodedTWAgent` 在 3553 个 train games 上批量 rollout，预估可收集 ~1759 条成功轨迹。纯 CPU 任务，1-2 小时完成。\n\n**报告包含完整可运行的 `collect_expert_trajectories.py` 脚本**，支持断点续传、自动格式转换为 RAGEN SFT 格式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-alfworld-expert-trajectories.md"
+}

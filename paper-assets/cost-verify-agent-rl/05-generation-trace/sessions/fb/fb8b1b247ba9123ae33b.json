@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb8b1b247ba9123ae33b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 c prime result and ood eval",
+  "task_key": "worker_ops_bjb1_c_prime_result_and_ood_eval_20260522T031819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_c_prime_result_and_ood_eval_20260522T031819_result.json",
+    "occurrence": 1,
+    "bytes": 1682,
+    "sha256": "fbde5b89e51b97042b80af2c7f8b236041727cfa3f293ce12eda930d39e2ac1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both evals are running. Both vLLM engines initialized successfully, models loaded on GPU 0 (~39.6GB) and GPU 1 (~39.6GB).\n\n---\n\n## 报告\n\n### Part 1: exp029_c_prime_resume_mt50_v2 结果\n\n训练已完成 (EXIT_CODE=0)，checkpoint 已保存。\n\n| Metric | Step 5 (val) | Step 6 (train) | Step 7 (train) | Step 7 (val) |\n|--------|-------------|----------------|----------------|-------------|\n| **success** | 21.875% | 31.25% | 16.41% | **18.75%** |\n| **pass@N** | pass@1: 21.875% | pass@8: 68.75% | pass@8: 62.5% | pass@1: 18.75% |\n| **response_length** | val: 6892 | train: 4686 | train: 5391 | val: 7020 |\n| **response_length (rollout)** | — | 11440 | 13304 | — |\n| **val reward mean@32** | 2.1875 | — | — | 1.875 |\n| **action_is_valid** | 0.630 | 0.712 | 0.704 | 0.705 |\n\n- Step 6→7：train success 从 31.25% 下降到 16.41%，val 从 21.875%（step 5）下降到 18.75%（step 7）\n- Checkpoint 保存在 `global_step_7`（save_freq=5 只在 step 5 触发，但训练结束时也保存了 step 7）\n- 训练正常结束，无 crash（wandb teardown 有 BrokenPipeError 但无影响）\n\n### Part 2: OOD Eval 已启动\n\n- **Seed5** (GPU 0, PID 382718): `qwen_seed5_step10_hf` → `ood_eval_seed5.log`\n- **Seed6** (GPU 1, PID 383485): `qwen_seed6_step15_hf` → `ood_eval_seed6.log`\n- 两个 eval 并行运行，各 134 OOD tasks，max_turn=50, temperature=0.4\n- 输出 JSON: `/root/autodl-tmp/tmp/seed5_step10_ood_eval.json` / `seed6_step15_ood_eval.json`\n\n### Part 3: GPU 使用\n\n| GPU | Memory | Utilization |\n|-----|--------|-------------|\n| cuda:0 | 39605 / 97887 MiB | 31% |\n| cuda:1 | 39605 / 97887 MiB | 53% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-c-prime-result-and-ood-eval.md"
+}

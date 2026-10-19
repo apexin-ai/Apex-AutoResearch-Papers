@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7576bce0894087fb262d",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code prompt truncation",
+  "task_key": "worker_code_prompt_truncation_20260513T210315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prompt_truncation_20260513T210315.log",
+    "occurrence": 1,
+    "bytes": 612484,
+    "sha256": "aeb6cbdfcb432c9cd1c9e2556bc61cc29f69f21a294eefd3c03f18b78f8e8da4"
+  },
+  "statistics": {
+    "messages": 216,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 216,
+      "chunks": [
+        {
+          "path": "7576bce0894087fb262d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7576bce0894087fb262d-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-prompt-truncation.md"
+}

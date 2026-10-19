@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2f98faa55da95b544ca",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "paper round3 references",
+  "task_key": "worker_paper_round3_references_20260523T170531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round3_references_20260523T170531_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "f2a33821cde240dfe40a67570924d971b09d58cceb6a6a6128acb533a27680d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n### 1. 现有引用核实\n\n| 引用 | 问题 | 修复 |\n|------|------|------|\n| **Turn-PPO** (`2512.17008`) | 标题缺 \"in Agentic LLMs\"；年份误标 2026（实际 Dec 2025） | 标题补全，年份改 2025，key 改 `turnppo2025` |\n| **MC-GRPO** (`2601.22582`) | 年份误标 2025（实际 Jan 2026） | 年份改 2026，key 改 `mcgrpo2026` |\n| **IRC** (`2604.02869`) | 标题、作者、arXiv ID、年份均正确 | 无需修改 |\n\n### 2. 新增引用（已添加到 `references.bib`）\n\n- `harutyunyan2019hindsight` — Harutyunyan et al., \"Hindsight Credit Assignment\", NeurIPS 2019\n- `arjona2019rudder` — Arjona-Medina et al., \"RUDDER: Return Decomposition for Delayed Rewards\", NeurIPS 2019\n- `kaelbling1998planning` — Kaelbling, Littman & Cassandra, \"Planning and Acting in Partially Observable Stochastic Domains\", Artificial Intelligence 1998\n\n### 3. 正文引用\n\n- `related_work.tex` L8：credit assignment 段落添加了 Harutyunyan + RUDDER 引用\n- `method.tex` L7：POMDP 处添加了 Kaelbling 引用\n- `introduction.tex` + `related_work.tex`：旧 cite key (`turnppo2026` → `turnppo2025`, `mcgrpo2025` → `mcgrpo2026`) 已全部同步更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round3-references.md"
+}

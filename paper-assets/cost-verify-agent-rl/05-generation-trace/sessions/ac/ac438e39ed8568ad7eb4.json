@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac438e39ed8568ad7eb4",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp007 progress and pid",
+  "task_key": "worker_monitor_exp007_progress_and_pid_20260514T005836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp007_progress_and_pid_20260514T005836_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "48f12c0aa25a83e4451444b153c40a4397c1e1005f329cf55ca1fd110ecc8f65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp007 训练状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **tmux session** | `exp007` |\n| **train.py PID** | `178842` |\n| **当前步数** | **0/30** — 仍在第一个 step 的 rollout 阶段（生成序列） |\n| **action_is_valid** | 尚无数据（step 0 未完成） |\n| **启动时间** | 2026-05-14 08:50 UTC（约 9 分钟前） |\n| **模型** | Qwen3-1.7B，2× GPU（FSDP），CUDA_VISIBLE_DEVICES=0,1 |\n| **checkpoint 目录** | `/root/autodl-tmp/checkpoints/exp_007/` — 空，尚无 checkpoint |\n| **磁盘** | 根分区 30G，已用 9.8G (33%)，剩余 21G — 健康 |\n\n**关键进程树**：\n- tmux session `exp007` → bash (178832) → timeout (178836) → train.py (178842) → Ray workers (TaskRunner 182091, WorkerDict 182293/182294)\n\n**预计到达 step 10**：第一个 step 包含环境初始化 + vLLM 引擎加载，通常最慢。后续 step 应快得多。无法精确预估，建议 30-60 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp007-progress-and-pid.md"
+}

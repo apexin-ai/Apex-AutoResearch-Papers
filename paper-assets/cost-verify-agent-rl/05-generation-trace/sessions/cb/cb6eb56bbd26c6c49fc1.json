@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "cb6eb56bbd26c6c49fc1",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "diagnose eval vs ragen diff 20260514T222025 retry1",
+  "task_key": "worker_diagnose_eval-vs-ragen-diff_20260514T222025_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval-vs-ragen-diff_20260514T222025_retry1.log",
+    "occurrence": 1,
+    "bytes": 705970,
+    "sha256": "b2e535ff0584798b9717fc075fd1a730581b692fcf4f97b70c539572d0638602"
+  },
+  "statistics": {
+    "messages": 153,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 65,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 153,
+      "chunks": [
+        {
+          "path": "cb6eb56bbd26c6c49fc1-part-0001.json",
+          "message_count": 133
+        },
+        {
+          "path": "cb6eb56bbd26c6c49fc1-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-eval-vs-ragen-diff-20260514t222025-retry1.md"
+}

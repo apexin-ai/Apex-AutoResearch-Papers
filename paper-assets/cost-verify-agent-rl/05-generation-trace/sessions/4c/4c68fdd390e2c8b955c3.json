@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "4c68fdd390e2c8b955c3",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "research wandb collapsed vs healthy curves",
+  "task_key": "worker_research_wandb_collapsed_vs_healthy_curves_20260522T220334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_wandb_collapsed_vs_healthy_curves_20260522T220334.log",
+    "occurrence": 1,
+    "bytes": 1211857,
+    "sha256": "a1141083d11a034d04aefecaaa64150502e71c2e4483c1f93dac4a8c39511b03"
+  },
+  "statistics": {
+    "messages": 275,
+    "user_turns": 2,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 66,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 88,
+      "tool_result": 88,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "4c68fdd390e2c8b955c3-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 85,
+      "chunks": [
+        {
+          "path": "4c68fdd390e2c8b955c3-part-0001.json",
+          "message_count": 85
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 172,
+      "chunks": [
+        {
+          "path": "4c68fdd390e2c8b955c3-part-0001.json",
+          "message_count": 24
+        },
+        {
+          "path": "4c68fdd390e2c8b955c3-part-0002.json",
+          "message_count": 141
+        },
+        {
+          "path": "4c68fdd390e2c8b955c3-part-0003.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-wandb-collapsed-vs-healthy-curves.md"
+}

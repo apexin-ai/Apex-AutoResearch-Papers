@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f10d864f77fdfcb62112",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix exp029 config and dryrun",
+  "task_key": "worker_fix_exp029_config_and_dryrun_20260516T085157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp029_config_and_dryrun_20260516T085157_result.json",
+    "occurrence": 1,
+    "bytes": 772,
+    "sha256": "9527075ecd966c2db8cad094639cd18de2f0c6d93d5df3c468890d3d168f2687"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**Dry-run 结果总结：**\n\n| 检查项 | 状态 |\n|--------|------|\n| gpu_memory_utilization 0.92→0.5 | ��� 已修复 |\n| max_model_len 16384→20480 | ✅ 已修复（解决首次 crash） |\n| format chain 三方一致性 | ✅ 已验证，无冲突（alfworld_memory.py 不存在，实际格式链已一致） |\n| val_before_train 完成 | ✅ 1275s，140 episodes |\n| action_is_valid > 0 | ✅ 0.6635 (66.35%) |\n| OOM | ✅ 无（峰值 52.7GB/97.9GB = 54%） |\n| 训练步启动 | ✅ GPU cycling 0%/100%，rollout 生成中 |\n\nTraining step 0/1 仍在执行训练 rollout（elapsed 29 min），但所有关键检查已通过。\n\n报告已写入：`artifacts/exp029_episode_level/intermediate/dryrun_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp029-config-and-dryrun.md"
+}

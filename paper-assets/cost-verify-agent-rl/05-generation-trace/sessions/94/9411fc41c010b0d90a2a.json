@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9411fc41c010b0d90a2a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research selfguide setup audit",
+  "task_key": "worker_research_selfguide_setup_audit_20260516T031219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_selfguide_setup_audit_20260516T031219_result.json",
+    "occurrence": 1,
+    "bytes": 1186,
+    "sha256": "c33db0938eb5a31ad51cf206293ec3e678f7a72af657fc99d8933c2f2c0375e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/exp028c_selfguide_recipe/report/selfguide_setup_audit.md`。\n\n核心发现：\n\n**5 个根本差异**（任何一个都可能独立导致 val 不动）：\n\n1. **Step-independent 训练模式** — 最大嫌疑。RAGEN 把 50 步 episode 切成 history_length=2 的独立样本，完全破坏长程信用分配。verl-agent 是 episode-level 训练。gamma=0.95^49 = 7.7%，第 1 步几乎无梯度。\n\n2. **Prompt 格式矛盾** — AlfworldSG 的 system prompt 示例用 `<think>...</think>go to desk 1`（bare action），但 RAGEN 每个 turn 注入 `Always output: <think>...</think><answer>...</answer>`。两个指令互相矛盾。\n\n3. **Self-guidance reward 完全缺失** — 论文的核心贡献是 ±0.1 step-level reward 带来 8% 提升，我们要求模型输出 assessment 但没有解析/使用它作为 reward。当前是纯 sparse reward。\n\n4. **Val 仅 16 episodes** — 分辨率 6.25%，无法检测小幅改进。Self-Guide 评 ~140 个。\n\n5. **模型规模** — 论文主结果 Qwen3-4B，我们用 1.7B。\n\n超参数层面（LR/KL/clip/temp 等）完全对齐，问题出在框架和方法论层面。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-selfguide-setup-audit.md"
+}

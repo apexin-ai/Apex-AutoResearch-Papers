@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37425d7c673dd286fc97",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research failure taxonomy",
+  "task_key": "worker_research_failure_taxonomy_20260515T160527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_failure_taxonomy_20260515T160527_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "d2bc28e79db7305f761fb8121f48f01b41986a84ecec016a5472f0e8a9cfde73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**总量**: 51 个实验，46 个已有结论（3 成功、5 负向、38 失败/终止）。\n\n**4 个失败类别**:\n1. **工程类** (24 个, 63%) — 磁盘满、AutoDL 容器限制、错误入口点、版本不兼容、cron 误判\n2. **GRPO 训练不稳定** (9 个, 24%) — 零梯度死锁、死亡螺旋、RAGEN full-history entropy collapse\n3. **SFT 格式/数据** (4 个, 11%) — 训练数据与推理框架格式不匹配\n4. **奖励设计** (3 个, 8%) — format penalty 梯度劫持、dense reward gaming\n\n**最重要的 3 个 pattern**:\n1. **RAGEN full-history 是 GRPO 退化的结构性根因** — 3/3 RAGEN GRPO 一致退化，切换 step-independent 后 2 步即突破 (exp026 train 32.81%)\n2. **Sparse reward + GRPO 无安全 LR 区间** — 三个量级均失败 (1e-6/5e-7/1e-7)，根因是 base success 太低\n3. **AutoDL 容器硬限制不可绕过** — pids.max=20480 直接杀死 verl-agent 方案，6 次尝试 10+ GPU-h 空转\n\n文档已写入 `artifacts/analysis/failure_taxonomy.md` 并注册 (art_20260515_5d3d32)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-failure-taxonomy.md"
+}

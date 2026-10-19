@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4222c7bd2d0602e6d459",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose factorial seed2 exit",
+  "task_key": "worker_diagnose_factorial-seed2-exit_20260518T111245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_factorial-seed2-exit_20260518T111245_result.json",
+    "occurrence": 1,
+    "bytes": 1813,
+    "sha256": "81c1eb12a6a2f3c4c88851287a4072c35b5864ef6c3324fe38ffc79dcfef8213"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。诊断结果如下：\n\n---\n\n## 诊断结果：factorial_h2_episodeadv_seed2\n\n**退出原因：** Worker 进程被信号杀死（疑似 OOM killer 或 SIGSEGV）\n\n**时间线：**\n- 18:48:11 — Ray session 启动 (PID 539852)\n- 18:48:21 — TaskRunner worker (PID 546362) 启动\n- 18:49:10 — W&B run 6rqnrlr7 就绪\n- ~18:49 — 开始 val_before_train：134 个 ALFWorld OOD eval 环境并行初始化\n- **19:00:42 — Worker 546362 崩溃 (SYSTEM_ERROR)**，导致 GPU workers 546976/546977 被 force-kill\n- 19:00:43 — Driver 539852 有序关闭\n\n**GCS server 报告的死因：**\n> Worker unexpectedly exits with a connection error code 2. End of file. Common causes: (1) OOM killer, (2) ray stop --force, (3) SIGSEGV or other unexpected error.\n\n**最终训练步数：** 0/15（卡在 val_before_train 阶段，从未开始训练）\n\n**关键 metrics：** 无（W&B 无 metrics 数据，output.log 仅 8 行初始化信息）\n\n**Checkpoint：** 无（空目录 `/root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/`）\n\n**Log 路径：**\n- TaskRunner output: `/root/autodl-tmp/tmp/ray/session_2026-05-18_18-48-11_555496_539852/logs/worker-...-546362.out`\n- W&B: `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/wandb/run-20260518_184910-6rqnrlr7/`\n- Hydra: `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/outputs/2026-05-18/18-48-11/`\n\n**磁盘状态：** /tmp 80% (6.2G free)，TMPDIR 54% (118G free) — 非磁盘原因\n\n**Conclusion：** **FAILED** — 这是第 2 次失败（第 1 次被误杀，本次被信号杀死）。最可能原因是 134 个 eval 环境 + 模型 + Ray 150+ worker 进程导致系统 RAM OOM。无 Python traceback 是 SIGKILL 的特征。重启时建议减少 val eval 并行度或跳过 val_before_train。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-factorial-seed2-exit-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dcbf0ca3ee2a43dad59",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 cleanup and submit scienceworld",
+  "task_key": "worker_ops_bjb1_cleanup_and_submit_scienceworld_20260522T040444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_cleanup_and_submit_scienceworld_20260522T040444_result.json",
+    "occurrence": 1,
+    "bytes": 618,
+    "sha256": "91bc9b0ec3c16c2f78ddfa39a8588fafae5858a7b8ad37bcb321b58d7be0624d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n| 项目 | 结果 |\n|------|------|\n| **磁盘清理** | 2 个 symlink + 2 个 SCP 副本目录已删除，当前 /root/autodl-tmp 可用 49GB |\n| **GPU** | cuda:0, cuda:1 均空闲（0 MiB 占用） |\n| **Config** | v4 参数确认正确：15 steps, save_freq=5, group_size=16, env_groups=8, 2 GPU, val_before_train=True, JVM 修复就位 |\n| **Dry-run** | ScienceWorld 初始化 OK（30 tasks），Hydra config 解析 OK |\n| **训练提交** | PID=385902, tmux session=`scienceworld_grpo_cell_c_v4`, log=`~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v4.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-cleanup-and-submit-scienceworld.md"
+}

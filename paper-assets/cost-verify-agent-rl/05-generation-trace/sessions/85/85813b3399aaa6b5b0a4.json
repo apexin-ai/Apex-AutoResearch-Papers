@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85813b3399aaa6b5b0a4",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix exp029 kill all cleanup restart",
+  "task_key": "worker_fix_exp029_kill_all_cleanup_restart_20260516T181757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp029_kill_all_cleanup_restart_20260516T181757_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "714b25cf203029f5be4b4fa2d43502cc0f75348377150d1d64d3562591043361"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "紧急修复完成。汇总：\n\n| 项目 | 状态 |\n|------|------|\n| cleanup 进程 878019 | ✓ KILLED |\n| cleanup 进程 885880 | ✓ KILLED |\n| 系统 cleanup 残留 | ✓ 无任何残留 |\n| /tmp 重建 | ✓ `drwxrwxrwt`，17G 可用 |\n| exp029 新训练 PID | **886626** |\n| GPU 0 | 4715 MiB 已占用（模型加载中） |\n| GPU 1 | 4715 MiB 已占用（模型加载中） |\n| TMPDIR | 设为 `/root/autodl-tmp/tmp`（绕过 /tmp） |\n\n日志确认 Qwen3 模型 safetensors 已成功加载（1/1 shards），Worker 进程正常启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp029-kill-all-cleanup-restart.md"
+}

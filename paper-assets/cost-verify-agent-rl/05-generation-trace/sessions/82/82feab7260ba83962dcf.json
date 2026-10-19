@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82feab7260ba83962dcf",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops kill g080 start g095",
+  "task_key": "worker_ops_kill-g080-start-g095_20260518T091359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-g080-start-g095_20260518T091359_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "f4f8cbd68d6e6d6d7ad9af75e2dfd3ad2ddf10239d1b0b3273d10ede28b8729d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n| 项目 | 结果 |\n|------|------|\n| **g080 kill** | PID 955007 已终止，GPU 2,3 已释放 |\n| **g095 启动方式** | 通过 `launch_gsweep.sh` 在 `gsweep_watchdog` tmux session (pts/2) 中运行 |\n| **g095 PID** | 416289 |\n| **GPU 2 显存** | 36,945 MiB / 97,887 MiB |\n| **GPU 3 显存** | 36,905 MiB / 97,887 MiB |\n| **W&B run ID** | `jv3aa2cj` — [查看](https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/jv3aa2cj) |\n| **实验名** | gsweep-g095-h5-seed1 |\n| **异常** | 无。有 FSDP deprecation FutureWarning（不影响训练） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-g080-start-g095.md"
+}

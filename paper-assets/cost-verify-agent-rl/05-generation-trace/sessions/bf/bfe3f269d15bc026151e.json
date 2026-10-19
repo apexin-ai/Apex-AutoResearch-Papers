@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfe3f269d15bc026151e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix hsweep configs correct",
+  "task_key": "worker_fix_hsweep_configs_correct_20260517T010857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_hsweep_configs_correct_20260517T010857_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "83d544094529b82c2896a27f8f33d3c44529b717cb479d480c3f9d517714269f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果汇总\n\n**源码确认的参数名：**\n- `agent_proxy.context_window_mode` — 支持值：`\"full\"`, `\"step_independent\"`, `\"single_turn\"`, `\"limited_multi_turn\"`\n- `agent_proxy.step_independent_history_length` — 整数，默认 5\n\n**YAML 验证：** 5/5 OK\n\n**关键参数对比表：**\n\n| 文件 | context_window_mode | step_independent_history_length | total_training_steps | experiment_name |\n|------|--------------------|----|----|----|\n| `_alfworld_hsweep_h2.yaml` | step_independent | 2 | 15 | hsweep-h2 |\n| `_alfworld_hsweep_h5.yaml` | step_independent | 5 | 15 | hsweep-h5 |\n| `_alfworld_hsweep_h10.yaml` | step_independent | 10 | 15 | hsweep-h10 |\n| `_alfworld_hsweep_h20.yaml` | step_independent | 20 | 15 | hsweep-h20 |\n| `_alfworld_hsweep_full.yaml` | full | 2 | 15 | hsweep-full |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-hsweep-configs-correct.md"
+}

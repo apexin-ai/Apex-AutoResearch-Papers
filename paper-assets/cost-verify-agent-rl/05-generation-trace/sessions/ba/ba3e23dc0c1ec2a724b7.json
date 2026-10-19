@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba3e23dc0c1ec2a724b7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp026 analysis script",
+  "task_key": "worker_code_exp026_analysis_script_20260515T120823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp026_analysis_script_20260515T120823_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "9d00415ec52a01439753cc5a5ab0ba67b3ac18a7ab2b1d5b937fed946fd34517"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪，通过合成日志验证通过。\n\n使用方式：\n```bash\npython artifacts/analyze_exp026.py --log /path/to/exp026.log --output artifacts/\n```\n\n输出：\n- `artifacts/exp026_summary.json` — 关键统计（best success、convergence step、collapse/KL/pg_loss 检测）\n- `artifacts/exp026_training_curves.png` — 6 子图（success_rate、pg_loss、entropy、KL、reward_mean、action_is_valid）\n\n服务器上需要 matplotlib，本地一般已有。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp026-analysis-script.md"
+}

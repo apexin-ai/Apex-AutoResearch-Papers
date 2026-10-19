@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86e1f671e5ff039d8c1c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp029 crash5",
+  "task_key": "worker_diagnose_exp029_crash5_20260516T160430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp029_crash5_20260516T160430_result.json",
+    "occurrence": 1,
+    "bytes": 1548,
+    "sha256": "55693b88ff888f45eb89d2640b66366aafbbfe6d1224d0461354004b92a14a22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 崩溃分析结果\n\n### 崩溃原因\n**wandb 写 `/tmp` 临时文件失败**，不是 OOM，不是磁盘满。\n\n完整调用链：\n```\nagent_trainer.py:1696 fit() → logger.log(metrics, step=0)\n  → wandb _log_table_artifact() → artifact.add() → new_file()\n    → tempfile.TemporaryDirectory() → mkdtemp() → os.mkdir()\n    → FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpzicbifxf'\n```\n\nwandb SDK 在序列化 table artifact 时调用 `tempfile.mkdtemp()`，`os.mkdir('/tmp/tmpzicbifxf')` 失败。说明当时 `/tmp` 目录本身可能被清理或短暂不可用（overlay fs 瞬态问题）。\n\n### 退出前最后完成的阶段\n**Step 0 validation 完成，在 wandb 记录 metrics 时崩溃**。最后 metrics（32 episodes）：\n\n| 指标 | 值 |\n|------|-----|\n| val success rate | **12.5%** (4/32) |\n| pass@1 | 12.5% |\n| avg num_actions | 44.6 |\n| action_is_valid | 78.3% |\n| action_is_effective | 100% |\n| response_length | 7088 |\n| reward mean@32 | 1.25 |\n| reward best@32 mean | 9.84 |\n\n### Checkpoint\n**无**。目录下只有 `train_restart.log`，没有保存任何 checkpoint（step 0 还没到保存点就崩了）。\n\n### /tmp 当前状态\n```\noverlay  30G  14G  17G  46% /\n```\n空间充足。`/tmp` 当前几乎是空的（只有 `ray/` 和 `tmux-0/`），无 `cleanup_loop.log`。\n\n### 修复建议\n重启即可。如要防止复发，可在启动脚本中设 `TMPDIR=/root/autodl-tmp/tmp`（数据盘），避免依赖 overlay 的 `/tmp`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp029-crash5.md"
+}

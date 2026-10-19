@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ed33ca7fa794d93e797",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval seed300 id diag bjb1",
+  "task_key": "worker_eval_seed300_id_diag_bjb1_20260522T190836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed300_id_diag_bjb1_20260522T190836_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "15f9b797d6bd67bcd7cdd305933d2f0a896f23655e5c7e98a2fef028253f9e74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，模型正在加载到 cuda:0（当前 559 MiB）。\n\n---\n\n## 汇报\n\n### Part A: Checkpoint / Config 检查\n\n| 检查项 | 结果 |\n|--------|------|\n| Checkpoint symlink | `qwen_exp029_seed300_step5_hf -> exp029_seed300_step5_hf`，正确 |\n| 模型文件完整性 | 1 个 safetensors (4GB) + tokenizer 全套，完整 |\n| **enable_response_mask** | **false** — OOD config 设置正确，排除此原因 |\n| enable_think | False，与其他 eval 一致 |\n| temperature | rollout 1.0, val_kwargs 0.4，正常 |\n| val 任务数 | 134 AlfworldSG_OOD tasks，满足 C003（≥16） |\n\n**结论：OOD eval config 没有明显配置错误。0.0% pass@1 更可能是真实的 OOD 泛化失败，而非配置问题。** ID eval 结果将确认 checkpoint 本身是否正常工作。\n\n### Part B: ID Eval 已启动\n\n- **PID**: 448290\n- **Config**: `_alfworld_seed300_step5_id_eval_diag.yaml`\n- **GPU**: cuda:0，模型加载中\n- **Val tasks**: 32 AlfworldSG（in-distribution），group_size=1\n- **Log**: `/root/autodl-tmp/logs/seed300_step5_id_eval_diag.log`\n- **W&B experiment**: `seed300-step5-id-eval-diag`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed300-id-diag-bjb1.md"
+}

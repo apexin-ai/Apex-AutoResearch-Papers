@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c4cf367625cf9d5e82e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh kill westd gpu23 orphans",
+  "task_key": "worker_ssh_kill_westd_gpu23_orphans_20260522T200005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_westd_gpu23_orphans_20260522T200005_result.json",
+    "occurrence": 1,
+    "bytes": 877,
+    "sha256": "9cf0f28b26057982062d258c5a898bcc256d8eab6ba6cb89233b3c75655c6e2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理完成\n\n**Kill 前：**\n| GPU | 显存占用 | GPU-Util | 进程 |\n|-----|----------|----------|------|\n| 0 | 0 MiB | 0% | 无 |\n| 1 | 0 MiB | 0% | 无 |\n| 2 | 45,099 MiB | 0% | PID 132938 `ray::WorkerDict` |\n| 3 | 45,801 MiB | 0% | PID 132939 `ray::WorkerDict` |\n\n**Kill 后：**\n| GPU | 显存占用 | GPU-Util | 进程 |\n|-----|----------|----------|------|\n| 0 | 0 MiB | 0% | 无 |\n| 1 | 0 MiB | 0% | 无 |\n| 2 | **0 MiB** | 100%* | **无** |\n| 3 | **0 MiB** | 100%* | **无** |\n\nGPU 2,3 显存完全释放，无任何进程。同时清理了崩溃的 train.py 主进程（PID 129828）和对应 tmux session。GPU 0,1 未受影响。\n\n*GPU-Util 100% 是 kill -9 CUDA 进程后的驱动级计数器残留（已知行为），无实际负载。下次有 CUDA 进程使用这两张卡时会自动重置。不影响 GPU 可用性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-westd-gpu23-orphans.md"
+}

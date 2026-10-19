@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0abd6dd6a8e03822ea5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd cleanup and cellc check",
+  "task_key": "worker_ops_westd-cleanup-and-cellc-check_20260520T152944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-cleanup-and-cellc-check_20260520T152944_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "e691b57ed54d97581f7b25dca8327848cc4faab9eb207750e3a3975e78bd4f9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 任务 1：清理 westd 僵尸 vLLM 进程 — 完成\n\n- PID 876718/876719 已确认存在（VLLM::Worker_TP0/TP1，各占 ~2.7GB RSS）\n- `kill -9` 执行成功\n- nvidia-smi 确认 4 张卡全部 0MiB，无残留进程\n\n### 任务 2：Cell C 训练进度 — 已崩溃\n\n- **PID 766820 已不存在**，进程已死\n- 对应 wandb run `sx7h864t`，日志位于 `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/outputs/2026-05-20/20-44-18/`\n- **完成 1/15 步**（7%），每步耗时 ~33 分钟\n- 最后一条日志 `2026-05-20 23:29:46`，报错：`ERROR: Exception while sending command.`（疑似 ScienceWorld 环境通信异常）\n- Step 1 指标：\n  - `success: 0.0`，`pass@8: 0.0`（无成功 episode）\n  - `score: 2.74`，`final_score: 5.44`\n  - `action_is_valid: 44%`，`action_is_effective: 89.7%`\n  - `actor/kl_loss: 0.363`，`response_length/mean: 2952`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-cleanup-and-cellc-check.md"
+}

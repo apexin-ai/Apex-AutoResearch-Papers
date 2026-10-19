@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e40a7c773ec66ec55fed",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check seed5 ood eval and seed4 disk",
+  "task_key": "worker_check_seed5_ood_eval_and_seed4_disk_20260521T144232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_seed5_ood_eval_and_seed4_disk_20260521T144232_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "94035e1de07f0f0659843c781009ff28f616fbf0b41fe7873579d92646c5a0a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Seed 5 OOD Eval (westd-47453): **已完成**\n\nPID 375913/383150 已退出，GPU 3 内存已释放（0 MiB）。\n\n**关键指标**（134 OOD episodes）：\n\n| 指标 | 值 |\n|------|-----|\n| success_rate | **29.10%** |\n| pass@1 | **29.10%** |\n| num_actions | 38.54 |\n| action_is_effective | 99.99% |\n| action_is_valid | 72.66% |\n| response_length | 6632.0 |\n| tasks_evaluated | 134 |\n| eval 耗时 | 1218s (~20.3 min) |\n\nwestd GPU 状态：GPU 0/1 各占 ~45GB（Seed 3/5 训练），GPU 2/3 已空闲。\n\n---\n\n### bjb1 磁盘 + Seed 4 训练\n\n**磁盘**：\n- 根分区：30G 总量，8.4G 已用，**22G 可用**（28%）\n- 数据盘 `/root/autodl-tmp/`：170G（其中 checkpoints 126G）\n- Checkpoint 存储在数据盘，不占根分区 → **安全**\n\n**Seed 4 训练进度**：\n- 最新完成 step 的 ID eval：**success=40.63%, pass@1=40.63%**（32 episodes）\n- 训练累计 ~16457s，每 step ~2010s（~33.5 min）→ 约完成 **9 个训练 step**\n- 当前正在进行 step 10 的 eval（日志 22:41 仍在输出 AlfworldSG warnings）\n- 预计还需 ~5 steps × 33.5 min ≈ **~2.8 小时**完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-seed5-ood-eval-and-seed4-disk.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "4494dc950ba9b2ae42ec",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "monitor exp017 completion check",
+  "task_key": "worker_monitor_exp017-completion-check_20260514T160710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_monitor_exp017-completion-check_20260514T160710.jsonl",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "fbaa48a2a6dd07812235a13a7138531f6df9f5b8ad4c41732c072c1fcee43770"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T16:07:21.078573+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_exp017-completion-check_20260514T160710"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/monitor-exp017-completion-check.md"
+}

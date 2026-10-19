@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "514f9b2a22568d2c1d4f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "audit paper data verification",
+  "task_key": "worker_audit_paper_data_verification_20260524T042818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper_data_verification_20260524T042818_result.json",
+    "occurrence": 1,
+    "bytes": 7436,
+    "sha256": "46f67034d74d9a9a3f0a6ef6126675844c2c4e563631b9764d688f5cebbc59fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here is the comprehensive report.\n\n---\n\n## 论文全文数据自查报告\n\n### 一、Abstract\n\n| 数字 | 来源 | 一致性 |\n|------|------|--------|\n| 17.2% mean OOD | Table 1 Cell D: 17.16% → 1dp 四舍五入 | ✅ |\n| 6.7% SFT baseline | Table 1: 6.72% → 1dp 四舍五入 | ✅ |\n| 73% seeds stabilize | 8/11=72.7% → 73% | ✅ |\n| 36% OOD transfer | 4/11=36.4% → 36% | ✅ |\n| 8B, ScienceWorld | 与 §5.5 一致 | ✅ |\n| Word count: 193 | 限制 200 | ✅ |\n\n---\n\n### 二、Introduction\n\n| 数字 | 交叉验证 | 一致性 |\n|------|----------|--------|\n| 0% collapse | Table 1 Cell A | ✅ |\n| 73% avoid collapse | 与 abstract/Table 2 一致 | ✅ |\n| 36% OOD improvement | 与 abstract/Table 2 一致 | ✅ |\n\n---\n\n### 三、Theoretical Analysis (§3)\n\n| 数字 | 独立计算 | 一致性 |\n|------|----------|--------|\n| 19.1% upper bound (p=12.5%, K=8) | 0.125/0.6564 = 19.04% → paper says 19.1% | ✅ (rounding 0.06pp) |\n| (1-p)^K ≈ 34.4% | 0.875^8 = 0.3436 = 34.4% | ✅ |\n| p^K < 10^{-7} | 0.125^8 = 5.96e-8 < 1e-7 | ✅ |\n| p=50%: ≤50.2% | 0.5/(1-0.5^8) = 50.2% | ✅ |\n| p=5%: ≤14.9% | 0.05/(1-0.95^8) = 14.9% | ✅ |\n| 0.66 × 0.19 ≈ 12.5% | 0.656 × 0.190 = 12.5% | ✅ |\n| Ratio 1.32 (Eq.6) | Registry artifact 确认 | ✅ |\n| 87.5% wrong direction (large-K) | 1-p = 1-0.125 = 87.5% | ✅ |\n| 52.1% credit agreement (penalty) | Registry `hsweep_h2_seed2`: sign_outcome_agreement=0.5207 | ✅ |\n\n---\n\n### 四、Experiments — Table 1 (Main Results)\n\n| Cell | Metric | Paper | Registry | 一致性 |\n|------|--------|-------|----------|--------|\n| SFT | ID | 12.50% | val_before_train=12.5% (32 tasks) | ✅ |\n| SFT | OOD | 6.72% | ood_eval_sft_baseline_v3: 9/134=6.72% | ✅ |\n| A (h=2,step) | ID | 0% | seed1 val_final=0, seed2 val_step5=0 | ✅ |\n| A (h=2,step) | OOD | 0% | seed1 无 OOD eval；seed2 step5=0% | ✅ (step 5) |\n| B (h=2,episode) | OOD | 5.97% | factorial_h2_episodeadv_seed1: 0.0597 | ✅ |\n| B (h=2,episode) | ID | 18.75% | **Registry 无记录** | ⚠️ 不可验证 |\n| D (full,episode) | ID | 34.38% | mean(28.125,40.625)=34.375% | ✅ |\n| D (full,episode) | OOD | 17.16% | mean(23.88,10.45)=17.165% | ✅ |\n| D | ID range | 28.1–40.6 | 28.125–40.625 | ✅ |\n| D | OOD range | 10.4–23.9 | 10.45–23.88 | ✅ |\n\n---\n\n### 五、Experiments — Sign Verification (§5.4)\n\n| 数字 | Registry/Artifact | 一致性 |\n|------|-------------------|--------|\n| 99.6% (270/271) sign-episode | artifact binary_reward_final_analysis.md 确认 | ✅ |\n| 52.07% credit agreement (n=3000) | hsweep_h2_seed2: 0.5207 | ✅ |\n| p=0.025 binomial test | z=2.264, p=0.0247→0.025 | ✅ |\n| Cohen's h=0.041 | 独立计算=0.0414 | ✅ |\n| 28% binary credit (n=271) | artifact: 76/271=28.0% | ✅ |\n\n---\n\n### 六、Experiments — Table 2 (Seed Variability)\n\n| Seed | Paper OOD | Registry | CI (computed vs paper) | 一致性 |\n|------|-----------|----------|------------------------|--------|\n| seed2048 | 8.21% | **无专属 OOD eval** | [4.6,14.1] vs [4.6,14.2] | ⚠️ OOD 来源不可验证 |\n| seed42 | 12.69% | **无专属 OOD eval** | [8.1,19.4] vs [8.0,19.4] | ⚠️ OOD 来源不可验证 |\n| seed8 | 11.94% | exp029_seed8_ood_precollapse: 0.1194 | [7.5,18.5] | ✅ |\n| seed200 | 10.45% | exp029_seed200_step5_ood_eval: 14/134 | [6.3,16.8] | ✅ |\n| seed300 | 10.45% | exp029_seed300_step5_ood_eval_v4: 14/134 | [6.3,16.8] | ✅ |\n| seed100 s5 | 11.19% | exp029_seed100_step5_ood_eval: 15/134 | [6.9,17.6] | ✅ |\n| seed100 s10 | 12.69% | exp029_seed100_step10_ood_eval: 17/134 | [8.1,19.4] vs [8.0,19.4] | ✅ (CI 0.1pp) |\n| seed2 | 15.67% | **所有 eval 失败/取消** | [10.5,22.8] | ⚠️ OOD 来源不可验证 |\n| seed1 | 23.88% | exp029_episode_level: 0.2388 | [17.5,31.8] vs [17.4,31.8] | ✅ (CI lower 0.1pp off) |\n| seed5 | 29.10% | exp029_seed5_ood_eval: 0.291 | [22.1,37.3] | ✅ |\n| seed6 | 29.10% | exp029_seed6_ood_eval_v2: 0.291 | [22.1,37.3] vs **[22.2,37.1]** | ❌ CI 错误 |\n| seed4 | 30.60% | exp029_seed4_ood_eval_v2: 0.306 | [23.4,38.8] vs [23.5,38.7] | ⚠️ CI 0.1pp off |\n\n**seed5 与 seed6 同为 39/134，Wilson CI 应完全相同 [22.1, 37.3]，但 seed6 写成 [22.2, 37.1]。** ❌\n\n---\n\n### 七、8B 和 ScienceWorld\n\n| 数字 | Registry | 一致性 |\n|------|----------|--------|\n| 8B SFT ID 68.75% | 8b_det_eval_full: 0.6875 | ✅ |\n| 8B SFT OOD 80.60% | 7b_sft_eval_ood: 0.806 | ✅ |\n| 8B SFT h=2 31.25% | 8b_det_eval_h2: 0.3125 | ✅ |\n| 8B Cell D ID 96.88% | val_before_train_step10: 0.96875 | ✅ |\n| 8B Cell D OOD 90.30% | pass_at_1: 90.3 | ✅ |\n| 8B Cell A 28.1→1.5% | 28.1% ✅; 1/64=1.5625% paper 写 1.5% | ❌ 应为 1.6% |\n| 8B M1 gap 37.5pp | 68.75-31.25=37.5 | ✅ |\n| SW Cell A 0% | scienceworld_grpo_cell_a: 0 | ✅ |\n| SW M1 gap 30.3pp | sw_info_loss_bjb1: delta=30.3 | ✅ |\n\n---\n\n### 八、Appendix\n\n| 数字 | 独立计算/Registry | 一致性 |\n|------|-------------------|--------|\n| K=16: 14.2% | 0.125/(1-0.875^16)=14.2% | ✅ |\n| γ^24=0.29 | 0.95^24=0.292 | ✅ |\n| Eval variance std=1.29pp | sample std(11.19,11.19,13.43)=1.29pp | ✅ |\n| Eval variance mean=11.94% | (11.19+11.19+13.43)/3=11.94% | ✅ |\n| seed6 step5 ID=21.88% | 7/32=21.875% | ✅ |\n| Dense reward 60%→97.5% | 与 fig caption 一致 | ✅ |\n| \"ranging from 0% to 30.6%\" | Table 2 最小值为 8.21%，无 0% | ❌ |\n| 分类阈值 p<0.05 → p<0.01 | Table 2 用 p<0.01；appendix 描述矛盾 | ❌ |\n\n---\n\n## 汇总：发现 5 处问题\n\n### ❌ 确认错误（需修复）\n\n1. **seed6 Wilson CI 错误** (`experiments.tex` Table 2, L102)\n   - 写了 `[22.2, 37.1]`，应为 `[22.1, 37.3]`（与 seed5 相同，同为 39/134）\n\n2. **8B Cell A 1.5% 截断误差** (`appendix.tex` Table 8b_results, L116)\n   - 1/64 = 1.5625%，四舍五入应为 1.6%，paper 写 1.5%\n\n3. **Appendix eval variance \"0%–30.6%\" 范围错误** (`appendix.tex`, L232)\n   - Table 2 中无 seed 为 0% OOD（最小 8.21%），应为 \"8.2%–30.6%\"\n\n4. **Appendix 分类阈值描述矛盾** (`appendix.tex`, L234)\n   - 写 \"based on Fisher's exact test at p < 0.05; shifting to p < 0.01 would... changing from 36% to 27%\"\n   - 但 Table 2 实际用 p<0.01（seed2 at p=0.03 classified as S），且 36%=4/11 在 p<0.01 下成立\n   - 逻辑自相矛盾：若 threshold=p<0.05，seed2 应为 G，rate=5/11=45%，不是 36%\n   - 应改为：threshold is p<0.01; shifting to p<0.05 would reclassify seed2 as Generalized, changing rate from 36% to 45%\n\n### ⚠️ 来源不可验证（Registry 无记录）\n\n5. **seed2048, seed42, seed2 的 OOD 数字无 registry backing**\n   - 论文已用 ‡ 标注这些来自 RAGEN built-in eval\n   - seed2048 的 8.21% 与 seed7 high-KL step5 eval 数值重合，存在潜在 misattribution 风险\n   - seed2 所有 OOD eval 均失败/取消，checkpoint 已丢失\n   - 数字算术上自洽（CI、p-value 可由 k/134 推导），但源数据不可追溯\n\n### ✅ 无问题\n\n- Cell B ID=18.75% registry 无记录但可从 W&B 验证（6/32）\n- 所有理论计算正确\n- Abstract/正文/Table/Appendix 中 SFT baseline、Cell D、sign 数字交叉一致\n- 99.6% (270/271) 全文两处出现，一致\n- 52.07%/52.1% 精度差异为合理四舍五入\n- 36%, 73% 等比例全文一致\n- Abstract 193 words < 200 限制"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-data-verification.md"
+}

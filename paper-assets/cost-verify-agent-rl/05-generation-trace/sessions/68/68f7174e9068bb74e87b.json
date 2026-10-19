@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68f7174e9068bb74e87b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp013c memory fix",
+  "task_key": "worker_code_exp013c-memory-fix_20260514T083238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp013c-memory-fix_20260514T083238_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "107f434dec9886dbbb0b83a8ebe397cbecc86a6128b8dd954aa5812b10a8a3dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成。\n\n## 产出\n\n### 1. env_groups 修改前后\n\n| 参数 | 修改前 | 修改后 |\n|------|--------|--------|\n| train.env_groups | 8 | **4** |\n| train.group_size | 16 | 16（不变） |\n| train.n_groups | [8] | **[4]** |\n| val.env_groups | 16 | 16（不变） |\n| val.group_size | 1 | 1（不变） |\n\n### 2. 内存估算\n- 修改后并发：4 × 16 = **64 个 ALFWorld 游戏**\n- 每游戏估算 ~2GB 内存 → 峰值 ~128GB\n- Ray object store 将限制为 30GB（启动时设 `RAY_object_store_memory=30000000000`）\n- 总计 ~158GB，在 220GB cgroup 限制内安全\n\n### 3. GPU 和进程清理\n- 4 个残留 `ray::WorkerDict` 进程已 kill（PID: 267666, 271458, 267667, 271459）\n- `/tmp/ray*` 已清除\n- GPU 0: 3 MiB / 97887 MiB ✓\n- GPU 1: 3 MiB / 97887 MiB ✓\n\n启动时记得加 `export RAY_object_store_memory=30000000000`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp013c-memory-fix.md"
+}

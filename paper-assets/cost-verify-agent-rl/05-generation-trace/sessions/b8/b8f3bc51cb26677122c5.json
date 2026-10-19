@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8f3bc51cb26677122c5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp025c script and submit",
+  "task_key": "worker_ops_exp025c_script_and_submit_20260515T080949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp025c_script_and_submit_20260515T080949_result.json",
+    "occurrence": 1,
+    "bytes": 1154,
+    "sha256": "efa9f9d12d920c92ba4161e9a927ffc169e901da7d46fd6e348e7a8372fd9d0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`run_alfworld_exp025c.sh` 已创建，验证通过。\n\n**与 dry run 的对比（dry run 成功完成了 1 epoch）：**\n\n| 参数 | dry run | exp025c | 说明 |\n|------|---------|---------|------|\n| `total_epochs` | 1 | **150** | 正式训练 |\n| `test_freq` | 1 | **5** | 每 5 epoch 验证 |\n| `enforce_eager` | False | **True** | 跳过 CUDA graph 捕获，更稳定 |\n| `gpu_memory_utilization` | 0.6 | **0.4** | 更保守，留余量 |\n| `logger` | console | **console+wandb** | 记录到 W&B |\n| `experiment_name` | exp025_degraded_dryrun | **exp025c_grpo_qwen3_1.7b** | |\n| 线程限制 env vars | 无 | **已加** | 防 cgroup pids.max 撞限 |\n\n**不变项（与 dry run 一致）：**\n- `CUDA_VISIBLE_DEVICES=0`, `n_gpus_per_node=1`, `TP=1`\n- `env.rollout.n=2`, `data.val_batch_size=16` (满足 C003 ≥16)\n- `VLLM_ATTENTION_BACKEND=FLASH_ATTN`\n- `save_freq=25`, `val_before_train=True`\n- 所有 model/actor/ref 参数完全一致\n\n**未加 `ray_init.num_cpus=8`**——dry run 没用这个参数也成功了，verl 配置系统中不确定此参数名是否有效。\n\n脚本就绪，可以提交训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp025c-script-and-submit.md"
+}

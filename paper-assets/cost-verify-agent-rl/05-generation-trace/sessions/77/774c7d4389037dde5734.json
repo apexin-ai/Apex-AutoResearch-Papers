@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "774c7d4389037dde5734",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "exp exp007 dryrun",
+  "task_key": "worker_exp_exp007_dryrun_20260514T001832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp007_dryrun_20260514T001832_result.json",
+    "occurrence": 1,
+    "bytes": 2173,
+    "sha256": "d94aae1508a38ed913956c5d2190fb588348bd3a3a423862cc2b4ceb5ea68434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp007 Dryrun 结果报告\n\n### 状态：训练步完成，checkpoint 保存失败\n\n训练 step 1 的 rollout + policy update 正常完成，但保存 optimizer checkpoint 时 rank 1 写入失败（根分区 30GB 已用 27GB = 90%）。\n\n---\n\n### 三个关键指标\n\n| 指标 | 数值 | 判定 |\n|------|------|------|\n| **invalid_action rate (manager)** | **6.5%** | 远优于预期（<20% 理想目标），解析器 fallback 有效 |\n| **pg_loss** | **未捕获** — `compute_policy_loss` 已执行，但 console logger 未输出数值（crash 在 checkpoint save 阶段打断了 step summary 打印） |\n| **步耗时** | **~12 min**（rollout + policy update，不含 validation） | 远优于 exp003 的 95 min/step |\n\n### Initial Validation 详细指标（step 0, 训练前基线）\n\n- `action_is_valid` = **5.4%** — 仅 5.4% 的 action 命中了 admissible actions list（语义层面）\n- `manager_invalid_action` = **6.5%** — 解析器格式失败率（仅 6.5% 无法解析）\n- `action_is_effective` = **93.5%** — action 对环境有效果\n- `success` = **0.0**, `pass@1` = **0.0** — 无任务完成\n- `num_actions` = **28.06** — 平均每 episode 28 步\n- `response_length` = **2099.9** tokens — 模型输出较长\n- Validation 用时: 335.9s (initial), 278.9s (post-step)\n\n### 时间线\n\n- 08:19 — 启动，Ray/vLLM 初始化\n- ~08:25 — 初始 validation 完成（335.9s）\n- ~08:25–08:37 — Step 1 rollout + policy update（~12 min）\n- 08:37–08:42 — Post-step validation（278.9s）\n- 08:42:25 — Model checkpoint 保存成功\n- 08:42:43 — Optimizer checkpoint rank 0 成功，rank 1 失败（磁盘 I/O error）\n\n### 问题\n\n1. **根分区磁盘不足（90%）**：checkpoint 保存到了 `/root/cost-verify-agent-rl/RAGEN/checkpoints/` 即根分区，不是数据盘。正式训练需要把 checkpoint 路径改到 `/root/autodl-tmp/`。\n2. **action_is_valid 极低（5.4%）**：解析器修复解决了格式问题（manager_invalid 仅 6.5%），但模型生成的 action 几乎都不在 admissible actions list 中。这是模型能力问题，不是解析器问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp007-dryrun.md"
+}

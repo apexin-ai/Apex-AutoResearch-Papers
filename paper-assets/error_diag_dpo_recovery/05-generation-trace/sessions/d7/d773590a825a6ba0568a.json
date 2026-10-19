@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d773590a825a6ba0568a",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "ssh diagnose v8 zero sr",
+  "task_key": "worker_ssh_diagnose-v8-zero-sr_20260513T072151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose-v8-zero-sr_20260513T072151_result.json",
+    "occurrence": 1,
+    "bytes": 1756,
+    "sha256": "5f63e2d9f6ac27088d5e26ca30a76be883e791e70bbfc3235308786a2bfdfc3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 根因确认\n\n**TextWorld 1.7.0 将 `put X in/on Y` 语法改为 `move X to Y`。**\n\n验证结果：\n- `put spoon 1 in/on diningtable 1` → \"Nothing happens\"（不在 admissible_commands 中）\n- `move spoon 1 to diningtable 1` → 成功，**Reward=1, Done=True**\n\n所有 ALFWorld 任务最终都需要放置物品，`put` 全部失败导致 0% 成功率。与 ICL、temperature、模型行为完全无关。\n\n### 详细发现\n\n| 检查项 | 结果 |\n|--------|------|\n| temperature 实际值 | 0.5 ✅ 命令行和 argparse 均正确 |\n| ICL 数据加载 | ✅ 正确加载，`from`/`value` → `role`/`content` 转换正常 |\n| enable_thinking=False | ✅ 生效，无 think token 泄漏 |\n| 模型行为 | ✅ 生成正确的 Thought/Action 格式，action 无隐藏字符 |\n| **`put` 动作** | **❌ TextWorld 1.7.0 不再接受 `put X in/on Y`，改用 `move X to Y`** |\n| 其他动作 | `take`/`go to`/`open`/`clean`/`heat` 均正常 |\n| ALFWorld 版本 | 0.4.2 + TextWorld 1.7.0（不兼容） |\n\n### 修复方案\n\n**方案 A（最快）**：在 `env.step` 前加 action 翻译，将 `put X in/on Y` 转为 `move X to Y`：\n\n```python\ndef translate_action(action: str) -> str:\n    m = re.match(r\"put (.+) in/on (.+)\", action)\n    if m:\n        return f\"move {m.group(1)} to {m.group(2)}\"\n    return action\n```\n\n同时更新 prompt 中的可用动作列表（将 `3. put {obj} in/on {recep}` 改为 `3. move {obj} to {recep}`）。\n\n**方案 B（最稳）**：降级 TextWorld 到兼容版本：\n```bash\npip install textworld==1.6.1\n```\n\n### 建议\n\n1. 先 kill 当前 v8 进程（PID 763657, 764025），不要浪费 GPU 时间\n2. 选择修复方案后重跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-v8-zero-sr.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7d6ba4af5f10ea20940",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor all experiments status",
+  "task_key": "worker_monitor_all-experiments-status_20260517T235839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_all-experiments-status_20260517T235839_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "30dc47e73d05e63b28e40db059e008389cd8e1d1874e5403ff7dfbaa2fd85629"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 实验 | Step | train_success | val_success | action_valid | 状态 |\n|------|------|--------------|-------------|--------------|------|\n| **factorial_h2_episodeadv_seed1** (westd) | 4/15 | 20.3%→6.25% (step1→2) | 2.2% (OOD, step0) | 84-86% | **HEALTHY** |\n| **hsweep_h2_seed2** (bjb1) | 11/15 | 0.8%→12.5%→3.9% (峰值step5) | 0% (step5,10) | 97% | **VAL失败** (train仍活但val=0) |\n| **gsweep_g050_h5_seed1** (westd) | 10/15 | 0%→2.3%→0%→0%→0% (step4起全零) | 0% | 1.7% (step9) | **COLLAPSED** (entropy=0.03, invalid=98%) |\n\n关键发现：\n- **factorial** 表现最好，step1 达到 20.3% train success / pass@8=68.75%，是目前唯一健康的实验\n- **hsweep_h2_seed2** 训练 action_valid 维持 97% 但 val 始终为 0，说明训练信号没有迁移到 val 分布\n- **gsweep_g050_h5_seed1** 从 step 4 起完全崩溃，entropy 降至 0.03，已无恢复可能\n\nbjb1 的 GPU 仍被 hsweep_h2_seed2 占用（11/15 还在跑）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-all-experiments-status.md"
+}

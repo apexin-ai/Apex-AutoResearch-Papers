@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "459b63151a88c173da0f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor factorial progress check",
+  "task_key": "worker_monitor_factorial-progress-check_20260518T034634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_factorial-progress-check_20260518T034634_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "5dcca734c4d05c0a39f347dbc94278b18dbab3d384f8883d5614ece63da8a741"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## factorial_h2_episodeadv_seed1 状态报告\n\n**进度**: Step 8/15 (53%) | 已运行 ~7h | 预计剩余 ~6h23m (完成 ~17:10 UTC)\n\n### Train Metrics (Step 7,最新)\n\n| 指标 | 值 | 趋势 |\n|------|-----|------|\n| Success | 17.2% | Step 1: 20.3% → 无上行 |\n| Action Valid | 77.2% | 85.6% → 下降 |\n| Action Effective | 87.8% | 97.0% → 下降 |\n| Pass@8 | 43.8% | 68.8% → 下降 |\n| Entropy | 0.621 | 0.359 → 上升 |\n| KL Loss | 1.774 | 0.238 → 持续上升 |\n\n### Val Metrics (Step 5, AlfworldOOD)\n- **Success**: 5.97% (pass@1)\n- **Action Valid**: 57.6%\n- **Manager Invalid Action**: 33.4%\n- 下一次 val 在 step 10\n\n### GPU 健康\n4 张 GPU 均已分配 ~45GB 显存，GPU 2 满载 (100%)，GPU 3 38%，GPU 0/1 瞬时 0%（FSDP 计算间隙，正常）。\n\n### 关注点\n1. **KL loss 快速膨胀** (0.24→1.77)，policy 大幅偏离 reference\n2. **Train success 无上行趋势**，action validity 持续退化\n3. **Train-val gap 大**: train 15.6% vs val 5.97%\n4. **Step 时间变长**: 42min → 56min (response length 增长所致)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-factorial-progress-check.md"
+}

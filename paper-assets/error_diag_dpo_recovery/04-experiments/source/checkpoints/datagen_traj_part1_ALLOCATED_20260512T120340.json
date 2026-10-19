@@ -1,0 +1,14 @@
+{
+  "exp_id": "datagen_traj_part1",
+  "project": "error_diag_dpo_recovery",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T12:03:35.749Z",
+    "updated_at": "2026-05-12T12:03:40.734Z"
+  },
+  "timestamp": "2026-05-12T12:03:40.740493+00:00",
+  "trigger": "update_registry"
+}

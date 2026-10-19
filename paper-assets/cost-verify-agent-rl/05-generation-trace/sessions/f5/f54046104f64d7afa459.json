@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f54046104f64d7afa459",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp019b augment status",
+  "task_key": "worker_monitor_exp019b-augment-status_20260514T172403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp019b-augment-status_20260514T172403_result.json",
+    "occurrence": 1,
+    "bytes": 614,
+    "sha256": "00813a5836ddbb30eacbd9b60ef2c6fb165ca81a82522224e3a9be1dbd37a508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据格式正确，每步都包含 admissible actions。\n\n**状态总结：**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | 运行中（PID 368237+） |\n| 进度 | **900/2900**（31%） |\n| 成功率 | 892/900 = 99.1%（8 个 not_won） |\n| 输出文件 | `/root/autodl-tmp/expert_sft_v3/expert_sft_all.jsonl`（911 行, 7.4MB） |\n| 已运行 | ~20 分钟（01:05 → 01:25） |\n| 预估剩余 | ~44 分钟（~46 games/min，剩 2000 games） |\n| 预计完成 | 约 02:10（北京时间） |\n| 数据质量 | 格式正确，包含 admissible actions，含 `<think>` self-guidance |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp019b-augment-status.md"
+}

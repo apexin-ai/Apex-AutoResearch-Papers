@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da7f194c0faf59a67ce3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp003 continuous",
+  "task_key": "worker_monitor_exp003_continuous_20260513T232354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp003_continuous_20260513T232354_result.json",
+    "occurrence": 1,
+    "bytes": 53,
+    "sha256": "db92b6a257e03cc7ac79735156010972b9488b8a55ab7dabff28366596a1b7bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "~3.5 分钟后自动检查下一轮。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp003-continuous.md"
+}

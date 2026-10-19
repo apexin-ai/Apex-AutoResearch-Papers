@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbae90d03baba6f8e77b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research model config audit",
+  "task_key": "worker_research_model-config-audit_20260515T035916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_model-config-audit_20260515T035916_result.json",
+    "occurrence": 1,
+    "bytes": 2079,
+    "sha256": "37c4702e78ce2c394aaa8f32798cd3af02ab48fdb0794c47bec181e1732a60ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 1. 模型变体\n- **原始模型名**: `Qwen/Qwen3-1.7B`（下载路径 `/root/autodl-tmp/models/Qwen/Qwen3-1___7B/`）\n- **Base / Instruct**: **Instruct**\n- 证据:\n  - 无 `-Base` 后缀。Qwen3 命名约定：默认名即 instruct 版，base 版需显式加 `-Base` 后缀\n  - tokenizer 有完整 `chat_template`，包含 `<think>` reasoning 标签、tool_call 支持 — 这是 instruct 模型特征\n  - `<|im_start|>` / `<|im_end|>` special tokens 存在\n- exp022 实际加载: `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4`（exp021 SFT checkpoint，基于 Qwen3-1.7B instruct 做的 SFT）\n\n## 2. Qwen3-1.7B-Instruct 是否存在\n- **不存在**（作为独立模型 ID）\n- Qwen3 系列命名与 Qwen2.5 不同：\n  - `Qwen3-1.7B` = instruct/chat 模型（就是我们用的）\n  - `Qwen3-1.7B-Base` = 预训练 base 模型（如果存在）\n  - **没有** `Qwen3-1.7B-Instruct` 这个独立模型\n- HuggingFace 查询因服务器网络超时未返回，但基于 Qwen3 官方发布信息确认\n\n## 3. Val Temperature\n| 配置 | train temperature | val temperature |\n|------|------------------|-----------------|\n| **exp022** | **1.0** (L52) | **0.4** (L57) |\n| exp018 | 1.0 | 0.4 |\n| base.yaml 默认 | 1.0 | 0.5 |\n\n- 当前 val temperature = **0.4**，与 Self-Guide 论文 val 0.4 **一致**\n\n## 4. Reward Scale\n- `AlfredEnvConfig.score` 默认 = **10.0**（`config.py` L18）\n- exp022 yaml **无 score 覆盖** → 使用默认值 10.0\n- 代码逻辑 (`env.py` L207): `reward = self.config.score * float(won)` → **成功=10.0, 失败=0.0**\n- `valid_action_bonus = 0.0`（默认，exp022 无覆盖）\n- `format_penalty = 0`（exp022 L79）\n- **差异分析**: 实际传给 GRPO 的 reward 是 **0/10 scale**，不是论文标准的 **0/1 binary**。如果 GRPO 的 advantage normalization (`norm_adv_by_std_in_grpo: True`) 开启，10x 缩放理论上会被 std normalization 吸收，但对 KL penalty 项（`kl_loss_coef: 0.5`）的相对权重有影响 — reward scale 越大，KL 惩罚相对越弱。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-model-config-audit.md"
+}

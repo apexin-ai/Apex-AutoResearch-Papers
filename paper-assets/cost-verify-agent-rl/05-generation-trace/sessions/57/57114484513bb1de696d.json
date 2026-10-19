@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57114484513bb1de696d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research related work survey",
+  "task_key": "worker_research_related_work_survey_20260515T120839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_survey_20260515T120839_result.json",
+    "occurrence": 1,
+    "bytes": 1276,
+    "sha256": "9af607212f5067c207bb4519d59a3f8aa73cc298cfdea6f114c0a77ff0da06c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献调研完成，写入 `docs/related_work_survey.md` 并已注册。\n\n覆盖 25+ 篇论文，4 个方向的核心发现：\n\n**方向 1 (Self-Verification)**: 纯 intrinsic self-correction 不可靠（Huang et al. survey），>90% self-verification 是冗余确认（Self-Verification Dilemma, 2026）。支持 B-IAVR 的 selective verification 设计。\n\n**方向 2 (Agent RL)**: GiGPO (NeurIPS 2025)、SPEAR (ICLR 2026)、WebAgent-R1 (EMNLP 2025) 是主要 agent RL 训练方法。Self-Guide (2604.03098) 是 B-IAVR 的直接前驱。所有方法只优化任务成功率，不考虑 verification cost。\n\n**方向 3 (Selective Verification)**: 最近的竞争者是 Derailer-Rerailer (ACL 2025, 但限于 reasoning chains)、ARES (2026, SFT-trained effort router)、Sherlock (Microsoft, workflow-level offline analysis)。没有工作在 interactive agent 设定下用 RL 训练 verification trigger。\n\n**方向 4 (ALFWorld)**: 当前 SOTA 是 ReflAct 93.3% (prompting) 和 ReAct-Finetune 96% (finetuned)。ALFWorld 成功率接近饱和，B-IAVR 的价值在 cost-efficiency 而非 peak accuracy。\n\n**Novelty claim 成立**：selective verification + RL-trained trigger + interactive agent + action-change signal 的交叉点是全新的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-survey.md"
+}

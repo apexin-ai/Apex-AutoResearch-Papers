@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fc0e400429857d8c5d98",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "research selfguide setup audit",
+  "task_key": "worker_research_selfguide_setup_audit_20260516T031219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_selfguide_setup_audit_20260516T031219.log",
+    "occurrence": 1,
+    "bytes": 765630,
+    "sha256": "c2150b9560e2f5b590219bf7954ea7fb88b0974ef0a98ed7d2c083e6b32ab1f4"
+  },
+  "statistics": {
+    "messages": 150,
+    "user_turns": 0,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 59,
+      "tool_result": 59,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 150,
+      "chunks": [
+        {
+          "path": "fc0e400429857d8c5d98-part-0001.json",
+          "message_count": 126
+        },
+        {
+          "path": "fc0e400429857d8c5d98-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-selfguide-setup-audit.md"
+}

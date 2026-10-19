@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0ec1357dd8cc455c66b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code plan003 multiseed configs",
+  "task_key": "worker_code_plan003_multiseed_configs_20260517T031806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan003_multiseed_configs_20260517T031806_result.json",
+    "occurrence": 1,
+    "bytes": 1336,
+    "sha256": "17eee8c71b59658d9bc9d86489ec00e1d4a526933cfa9d0af65089e007b0e204"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本语法验证通过。总结：\n\n## 完成情况\n\n**脚本已创建**: `/root/cost-verify-agent-rl/scripts/launch_multiseed.sh`\n\n**关键发现**:\n\n| 项目 | 结果 |\n|------|------|\n| exp029 原始 seed | `seed.train=10000`, `seed.val=123`（继承自 base.yaml，未覆盖） |\n| seed 设置方式 | Hydra CLI override: `seed.train=X seed.val=X` |\n| 配置路径 | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml` |\n| Trajectory tracker | `VERL_ENABLE_TRACKER=1` + `VERL_TRACKER_HDFS_DIR=<path>` 可启用，但这是 tensor-level HDFS dump，不是 per-step 文本 trajectory 记录 |\n\n**脚本用法**:\n```bash\nbash /root/cost-verify-agent-rl/scripts/launch_multiseed.sh <seed> [gpu_ids]\n# 例: bash launch_multiseed.sh 2 \"0,1\"\n```\n\n**plan_003 需要跑的 4 个 seed**:\n- `bash launch_multiseed.sh 2 \"0,1\"`\n- `bash launch_multiseed.sh 3 \"0,1\"`\n- `bash launch_multiseed.sh 4 \"0,1\"`\n- `bash launch_multiseed.sh 5 \"0,1\"`\n\n原始 exp029 的 seed=10000（将作为第 5 个数据点），multi-seed 实验用 seed 2-5，W&B run name 为 `exp029_multiseed_s{2,3,4,5}`，checkpoint 存入 `/root/autodl-tmp/checkpoints/exp029_multiseed/seed{N}/`。\n\n由于只有 2 张 GPU 且 exp029 正在运行，这 4 个 seed 需等 exp029 结束后串行跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan003-multiseed-configs.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94d5b0b49da7e91d0e6a",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_8_1778848172.md",
+  "task_key": "loop_8_1778848172",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778848172.md",
+    "occurrence": 1,
+    "bytes": 4751,
+    "sha256": "96ec8c75572b34e7ed8d38fa18b2836358230e4554f2e587d23883679f7de1cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T11:01:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 bjb1-17606 的 cuda:0, cuda:1**（2× RTX PRO 6000 Blackwell 98GB）。Director 指定白名单外的 GPU 必须 push back\n- conda base 环境（**不是 venv**）：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- verl-agent 专用 conda env 在 `/root/autodl-tmp/conda-envs/verl-agent`，与 base 不兼容（vLLM 版本冲突），但 D028 已放弃 verl-agent 直接运行路线\n- Checkpoint symlink 必须含 \"qwen\" 字符串（train.py:137 断言），所有非标准路径 checkpoint 需创建 symlink\n- SFT 数据**必须**用 RAGEN 精确格式（v4+），否则 val 0%（exp019b→exp021 的核心教训）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-17606，2× RTX PRO 6000 Blackwell 98GB\n- **工作目录**：`/root/cost-verify-agent-rl`（RAGEN 代码库，含 cherry-pick 修改）\n- **Python**：`/root/miniconda3/bin/python`（conda base）\n- **SFT checkpoint**：`/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/`（symlink: `qwen3_exp021_ragen_sft_v4`）\n- **数据**：`/root/autodl-tmp/alfworld/`，SFT v4 数据 2546 train + 133 val\n- **HF cache**：应在 `/root/autodl-tmp/.hf_cache`\n- **W&B**：未配置（cron 直接检查进程 + 日志）\n- **活跃进程**：exp026 PID=778562（**但 cron 报 process gone，miss 3/5，极可能已崩溃**）\n- **Cron**：exp026_step_independent_grpo 仍在监控中，刚 reconcile 报 \"Process gone, no sentinel, no W&B — escalating to agent\"\n\n### 3. 📊 当前状态\n**⚠️ 关键告警：exp026 进程疑似崩溃。** reconcile_crons 报告 \"Process gone, no sentinel, no W&B — escalating to agent (miss 3/5)\"。这是本 session 最高优先级事项——需要立即 SSH 查日志确认是否真的崩溃，以及崩溃原因。\n\nexp026_step_independent_grpo 是 cherry-pick Phase 1 核心实验：step-independent rollout + step-level discounted returns GRPO，整合到 RAGEN 框架，不依赖 Ray。配置：KL=0.01, LR=1e-6, 150 steps, cuda:0+cuda:1。Dry run step 0 验证通过（step-level advantage max=11.93/min=-0.47）。正式训练启动后 PID=778562，但现在进程疑似消失。\n\n**Registry 概览**：50 个实验，1 RUNNING（exp026，疑似崩溃），1 PENDING（exp025c，已 failed 无意义），~18 PREPARING（历史遗留死实验），其余 DONE。成功 3 / 负向 3 / 失败 17。\n\n**等待中**：无 Worker 回调待处理，无 Director 决策待处理。\n\n### 4. 📋 待办（条件触发式）\n- **exp026 进程确认崩溃** → spawn Worker SSH 读 `/root/runs/cost-verify-agent-rl/exp026_step_independent_grpo.log` 尾部 + `ps -p 778562` → 分析崩溃原因 → 修复 → 重新提交（注意 dry run 时 step 1 曾异常退出无 traceback，这次可能是同一问题）\n- **exp026 仍在运行**（cron 误报） → 确认后继续等待，监控前 5 step 稳定性（pg_loss/entropy/success 趋势）\n- **exp026 完成 success ≥ 20%** → complete_mvp()，汇报 Director，推进 GiGPO Phase 2\n- **exp026 完成 success < 20% 或退化** → 按 on-experiment-done 流程：negative → Framing 调整提案 → 评估 GiGPO Phase 2（step-level advantage grouping）\n- **exp026 反复崩溃无法修复** → 向 Director 汇报，评估是否需要回退到其他方案\n\n### 5. 🎯 战略上下文\n**项目核心**：B-IAVR（基于行为改变信号的选择性自我验证），基于 Self-Guide 框架，Qwen3-1.7B + ALFWorld + GRPO。MVP 目标：ALFWorld success ≥ 20%。\n\n**决策链关键节点**：\n- D025/D026：RAGEN 原版 GRPO 确认失败（3/3 全退化），根因是 full-history context 爆炸（50 步 → 25K+ tokens）\n- D028：verl-agent 在 AutoDL 容器因 cgroup pids.max=20480 无法运行（6 次失败），转向 Track B: cherry-pick 核心创新到 RAGEN\n- exp026 是 cherry-pick Phase 1 的关键验证：step-independent rollout（O(1) context）+ step-level discounted returns\n\n**易判断错的事**：\n1. **不要重试 verl-agent 原版运行**（exp025 系列）——cgroup 限制是硬约束，6 次全失败\n2. **不要重试 RAGEN 原版 GRPO**（exp020b/022/023c）——full-history context 爆炸是结构性问题\n3. SFT baseline 有两个数字：eval_sft_fast 20%（exp019b）vs RAGEN val 6.25%（exp021，C003 16-episode）。**以 RAGEN val 为准**，eval_sft_fast 格式不匹配导致虚高\n4. exp026 dry run 中 step 1 曾异常退出无 traceback——如果正式训练也在 step 1 崩溃，需要重点排查这个已知风险点\n5. GiGPO cherry-pick plan 在 `artifacts/verl_agent_analysis/gigpo_cherry_pick_plan.md`，Phase 2 实现约 480 行新增 + 200 行修改\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778848172.md"
+}

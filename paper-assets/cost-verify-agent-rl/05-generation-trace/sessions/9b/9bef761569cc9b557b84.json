@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bef761569cc9b557b84",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix westd disk ghost space",
+  "task_key": "worker_fix_westd_disk_ghost_space_20260521T105807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd_disk_ghost_space_20260521T105807_result.json",
+    "occurrence": 1,
+    "bytes": 1362,
+    "sha256": "2cffba6f788e3ebf66d2a47846d109ed5b9044436d0fad97231df7090f63afe2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。关键发现：\n\n**verl checkpoint 清理逻辑**（`fsdp_checkpoint_manager.py:206-214`）：\n- 清理在新 checkpoint 写入**之前**执行（好消息）\n- 但 `max_ckpt_to_keep` 来自启动时加载的内存 config（`self.config.trainer.get(\"max_actor_ckpt_to_keep\", None)`）\n- **YAML 修改对运行中的进程无效**——内存中仍是 10\n\n**空间预估（max_ckpt_to_keep=10，不会触发清理）：**\n- 现在：2 ckpt (step_5 × 2 seeds) = 42GB，可用 74GB\n- step_10 后：+42GB → 剩 32GB\n- step_15 后：+42GB → **溢出 -10GB**\n\n需要现在释放至少 10GB（安全起见建议 30GB+）。可清理候选项：\n\n| 目录 | 大小 | 风险 |\n|------|------|------|\n| backups/exp029-seed2-bjb1 | 21G | 旧 seed2 备份，bjb1 上应有原始数据 |\n| checkpoints/scienceworld_sft | 7.6G | 非当前实验 |\n| checkpoints/qwen3_scienceworld_sft | 7.6G | 非当前实验 |\n| checkpoints/qwen3_exp021_ragen_sft_v4 | 3.3G | 旧实验 |\n| .ms_cache | 6.7G | ModelScope 下载缓存 |\n\n**需要你确认哪些可以删除。** 删除 backups + 两个 scienceworld ckpt 就能释放 ~36GB，足以撑到 step_15。\n\n另外建议部署一个轻量 watchdog 脚本，在每次 checkpoint 写入后自动删除旧的（因为进程内的 keep=10 不会触发清理）。是否需要？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd-disk-ghost-space.md"
+}

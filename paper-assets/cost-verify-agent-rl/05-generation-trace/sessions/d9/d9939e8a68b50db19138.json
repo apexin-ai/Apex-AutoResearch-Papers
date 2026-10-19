@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9939e8a68b50db19138",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "director / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_9.md",
+    "occurrence": 1,
+    "bytes": 3856,
+    "sha256": "5f530cdce83d7b3231b1f2855566400126a3a32803dd993e2fe30d7a5457bc36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_messages\nupdated: '2026-05-15T20:17:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 bjb1-17606 的 cuda:0 + cuda:1（2× RTX PRO 6000 Blackwell 98GB），不得使用其他设备\n- exp027 正在训练中（PID 789790），任何操作不得中断该进程\n- exp027 早停条件（D041）：step 10 train success ≤ 12% → 终止\n- MVP 判定以 val success 为准（不是 train success），阈值 20%（D037）\n- paper_framing.md claim 强度标注为 \"target: X\"（当前零证据，不得标为已建立）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，工作目录 `/root/runs/cost-verify-agent-rl/`\n- 代码仓库：`/root/autodl-tmp/verl-agent/`（RAGEN 框架）\n- Python：conda base `/root/miniconda3/bin/python`\n- 模型：Qwen3-1.7B（路径在 exp027 config 中）\n- W&B：run y7jiibqk（metrics 有延迟但最终到达，非丢失）\n- exp027 活跃进程：PID 789790，tmux session `exp027_stable_grpo`，双卡满载\n- Ray worker stdout（唯一实时指标源）：`/root/autodl-tmp/tmp/ray/session_2026-05-15_22-33-13_032304_789790/logs/worker-...-793046.out`\n- 主日志 `/root/runs/cost-verify-agent-rl/exp027_stable_grpo.log` 在计算密集期停更，不可靠\n- eval_checkpoint.py 已修复格式对齐（Reviewer PASS），可用于 step 5 checkpoint 评估\n\n### 3. 📊 当前状态\n**刚完成**：D041（Plan D 升级）、D042/D043（recipe gap 诊断优先级最高）、experiment_plan.yaml（21 个实验，标准路径）、paper_framing.md（3 claims, cost-efficiency story）、method_draft.md 骨架、ARES 调研、GiGPO 可行性评估、literature_map 引用修正\n\n**RUNNING**：exp027_stable_grpo — step 3 完成（绿区：success=10.16%, KL=0.248），step 4 预计 ~04:15 UTC，step 5 val 预计 ~05:30 UTC，step 10 val 预计 ~16:00 UTC 05/16\n\n**活跃 Worker**：\n- GiGPO 代码集成 Worker（SSH，从 verl-agent 移植 4 函数到 RAGEN）\n- Recipe Gap 诊断 Worker（SSH+Web，6 维度对比 exp027 vs GiGPO/Self-Guide 论文）\n\n**等待中**：两个 Worker 回调 + exp027 step 4/5 cron 回调\n\n### 4. 📋 待办\n- Recipe Gap Worker 回调 → 分析根因（SFT 起点？训练迭代数定义？环境配置？），决定是修 recipe 还是换算法\n- GiGPO Worker 回调 → Reviewer 审查集成代码质量，准备 exp028 config\n- exp027 step 5 val 出结果 → 如 val ≥ 20% → complete_mvp()；如 10-20% → 继续到 step 10；如 < 10% → 评估是否提前终止\n- exp027 step 10 train ≤ 12% → 终止 exp027，启动 exp028（GiGPO 或 recipe-fixed GRPO）\n- step 5 val 后 → 评估 GPU 扩容需求（最小论文 534 GPU-h，当前 2 卡需 114 天），向 Manager 申请\n- Method draft 低优先级修正：confirmatory → \"prior work suggests...\"，Self-Guide 节标 \"proposed extension\"\n\n### 5. 🎯 战略上下文\n**决策链**：D037（MVP 阈值 20%）→ D039（cost-efficiency framing）→ D040（三层 KL 判定框架）→ D041（sparse reward 是瓶颈，Plan D GiGPO 升级）→ D042/D043（recipe gap 62pp 才是根本问题）\n\n**核心发现**：参考论文 GRPO baseline 72-73%，我们 10%。差距在 recipe 不在算法。GiGPO 有增量价值但不解决根因。Recipe gap 诊断结果将决定下一步是调 recipe（可能最简单）还是换算法（可能不够）。\n\n**最容易判断错的事**：\n- 不要因为 GiGPO \"+13pp\" 就期望从 10% 跳到 23%——那个 +13pp 是 72.8% 基础上的，不能外推\n- exp027 train success 35.94%@step1 是 exploration spike 不是学习成果，真实水平在 ~10%\n- cost-efficiency story 前提是 baseline ≥ 50%，即使 MVP 20% pass 也距论文门槛很远\n- pass@16 从 100%→62.5%→50% 持续下滑，如跌破 50% 进黄区\n- ARES 对比必须用 SFT+GRPO 全流程（不是 SFT-only），否则审稿人攻击公平性\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9.md"
+}

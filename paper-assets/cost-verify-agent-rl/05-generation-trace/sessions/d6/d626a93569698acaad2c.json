@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d626a93569698acaad2c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research literature scan credit assignment",
+  "task_key": "worker_research_literature-scan-credit-assignment_20260517T114427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan-credit-assignment_20260517T114427_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "ee00baa049ff844025060eb28062943422db3d47b2f6bc4e9589b2493e550cf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已保存至 `artifacts/literature_scan_credit_assignment_20260517.md`。\n\n---\n\n## 核心发现\n\n**发现 6 篇高威胁直接竞争者**，领域极度活跃。\n\n### 高威胁竞争者\n\n| 论文 | 日期 | 核心 |\n|------|------|------|\n| **MT-GRPO** (2505.11821) | 2025-05 | GRPO + turn-level reward/advantage，ICML/NeurIPS 2025 |\n| **GiGPO** (2505.10978) | 2025-05 | 两级 grouping: episode-macro + step-micro，NeurIPS 2025 |\n| **Turn-PPO** (2512.17008) | 2025-12 | 分析 GRPO multi-turn instability，turn-level PPO critic |\n| **HiPER** (2602.16165) | 2026-02 | Hierarchical plan-execute + hierarchical advantage |\n| **HCAPO** (2603.08754) | 2026-03 | LLM hindsight critic，诊断 GRPO step-level Q-value 不准 |\n| **GAGPO** (2605.13217) | 2026-05 | Critic-free step-level TD/GAE via rollout grouping |\n\n### 差异化空间\n\n主流方向是 **\"episode-level 太粗，需要更细的 step/turn-level credit assignment\"**。几乎所有竞争者都在改进 step-level。\n\n**本项目的 contrarian position**（step-level 在特定条件下反而有害，episode-level 可以更好）与主流相反，仍有独特贡献空间。arXiv 2604.02869 的发现（naive dense per-turn rewards 降低 14pp 性能）可作为支撑。\n\n关键是需要清晰 positioning：我们不是提出又一个 step-level 改进方案，而是论证何时 step-level 引入的 noise 大于 signal。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan-credit-assignment.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78cf7aa8a604214493f6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp026 status check",
+  "task_key": "worker_diagnose_exp026_status_check_20260515T103447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp026_status_check_20260515T103447_result.json",
+    "occurrence": 1,
+    "bytes": 1155,
+    "sha256": "b790d7dc801c6f81be9bc2aebda98b842f898412b63824f13dd3ae30675d1bcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 状态：训练已成功启动并运行中\n\n| 项目 | 值 |\n|------|-----|\n| tmux session | `exp026` |\n| 主进程 PID | 781795 (train.py) |\n| GPU 0 | 53% util, 41297 MiB / 97887 MiB |\n| GPU 1 | 53% util, 41297 MiB / 97887 MiB |\n| 磁盘 | /root/autodl-tmp 130G/250G (52%) |\n| 数据 | train: 8810 items, val: 494 items |\n| 配置 | 150 steps, test_freq=5, save_freq=25 |\n\n### 过程\n1. **首次提交失败**：训练因 `wandb.errors.UsageError: No API key configured` 崩溃——服务器上未配置 wandb API key\n2. **修复**：添加 `WANDB_MODE=disabled` 环境变量后重新提交\n3. **当前状态**：已通过 pre-flight、数据预处理、模型加载（41 GB/GPU），进入 rollout 计算阶段\n4. 日志输出有延迟（Ray buffered output），但 GPU 活动确认训练正在运行\n\n### 注意\n- 训练无 wandb 日志记录（disabled）。如需恢复，需在服务器上配置 `WANDB_API_KEY`\n- GPU 0 之前有 phantom 100% util 状态，新 CUDA 进程启动后自动消失\n- 预计 ~21 min/step（基于 dry run），首个 step 指标应在 ~20 分钟后出现在日志中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp026-status-check.md"
+}

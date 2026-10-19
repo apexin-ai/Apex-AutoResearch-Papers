@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "68f9b21ec243d9e283ee",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "diagnose scienceworld grpo cell c v4",
+  "task_key": "worker_diagnose_scienceworld_grpo_cell_c_v4_20260522T040906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scienceworld_grpo_cell_c_v4_20260522T040906.log",
+    "occurrence": 1,
+    "bytes": 830766,
+    "sha256": "9e7884efde0c3be4be606bff7515070c9bc93eb330e54eddfed992ff383ecffc"
+  },
+  "statistics": {
+    "messages": 285,
+    "user_turns": 0,
+    "tool_calls": 106,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 69,
+      "tool_call": 106,
+      "tool_result": 106,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 285,
+      "chunks": [
+        {
+          "path": "68f9b21ec243d9e283ee-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "68f9b21ec243d9e283ee-part-0002.json",
+          "message_count": 105
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-scienceworld-grpo-cell-c-v4.md"
+}

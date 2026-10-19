@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3a2a04401c586287a94",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "train exp029 seed200 episode",
+  "task_key": "worker_train_exp029_seed200_episode_20260522T144851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp029_seed200_episode_20260522T144851_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "a62402df9ae1e1c5c49c41ae795b88eae6f09a456cf6776e31864873afbda17b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练启动成功，已进入运行状态。\n\n**汇总：**\n\n| 项目 | 值 |\n|---|---|\n| PID | 882942 |\n| GPU | 2,3（各 4731 MiB） |\n| Config | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed200_episode.yaml` |\n| Log | `/root/autodl-tmp/logs/seed200_episode_grpo.log` |\n| W&B run ID | `oj1djbgw` |\n| W&B run name | `exp029-seed200-episode-level` |\n| W&B URL | `https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/oj1djbgw` |\n\n注意：GPU 0,1 也有显存占用（8G/10G），应该是其他 seed 的训练进程，非本次启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-exp029-seed200-episode.md"
+}

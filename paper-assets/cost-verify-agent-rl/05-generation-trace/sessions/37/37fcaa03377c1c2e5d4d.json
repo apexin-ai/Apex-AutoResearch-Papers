@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37fcaa03377c1c2e5d4d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research scienceworld sft data check",
+  "task_key": "worker_research_scienceworld-sft-data-check_20260519T114835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_scienceworld-sft-data-check_20260519T114835_result.json",
+    "occurrence": 1,
+    "bytes": 2659,
+    "sha256": "5b2080508d660133c79cd9376cea46de715100e30baac18c996927a1a5edf9c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据充分了。汇报结果：\n\n## ScienceWorld SFT 数据生成状态\n\n### 1. 进程状态\n**仍在运行** (PID 755747)，当前处理第 25/30 个任务 `mendelian-genetics-unknown-plant`（dev var 314）。\n\n### 2. 任务完成度\n25/30 task types 已启动，剩余 5 个未开始：\n- `power-component`\n- `power-component-renewable-vs-nonrenewable-energy`\n- `test-conductivity`\n- `test-conductivity-of-unknown-substances`\n- `use-thermometer`\n\n### 3. 总体统计\n- 总 trajectories: **3783**（还在增长）\n- score=100: **2989** (79.0%)\n- **已超过 500 条 SFT 阈值**\n\n### 4. 各 task type 的 score=100 分布\n\n| Task | score=100 / total | Rate |\n|---|---|---|\n| find-animal | 225/225 | 100% |\n| find-living-thing | 225/225 | 100% |\n| find-non-living-thing | 225/225 | 100% |\n| find-plant | 225/225 | 100% |\n| chemistry-mix | 24/24 | 100% |\n| chemistry-mix-paint-secondary-color | 27/27 | 100% |\n| chemistry-mix-paint-tertiary-color | 27/27 | 100% |\n| grow-plant | 93/93 | 100% |\n| identify-life-stages-1 | 9/9 | 100% |\n| identify-life-stages-2 | 6/6 | 100% |\n| lifespan-longest-lived | 93/93 | 100% |\n| lifespan-longest-lived-then-shortest-lived | 93/93 | 100% |\n| lifespan-shortest-lived | 93/93 | 100% |\n| measure-melting-point-known-substance | 325/327 | 99.4% |\n| measure-melting-point-unknown-substance | 223/225 | 99.1% |\n| change-the-state-of-matter-of | 20/21 | 95.2% |\n| melt | 20/21 | 95.2% |\n| boil | 19/21 | 90.5% |\n| grow-fruit | 77/93 | 82.8% |\n| inclined-plane-friction-named-surfaces | 799/1038 | 77.0% |\n| freeze | 16/21 | 76.2% |\n| inclined-plane-determine-angle | 83/126 | 65.9% |\n| inclined-plane-friction-unnamed-surfaces | 42/120 | 35.0% |\n| **mendelian-genetics-known-plant** | **0/90** | **0%** |\n| **mendelian-genetics-unknown-plant** | **0/315** | **0%** |\n\n### 5. 数据路径和格式\n- 输出路径：`/root/autodl-tmp/expert_sft/scienceworld_sft_train.jsonl` + `scienceworld_sft_val.jsonl`\n- **文件尚未写入**——脚本在所有 30 个任务完成后才一次性写出\n- 格式：每行一个 JSON，包含 `messages`（multi-turn conversation）和 `metadata`（task, variation, final_score, num_steps, success）\n\n### 6. 关键发现\n- **mendelian-genetics 两类任务 gold path 全部失败**（0% score=100），315+90=405 条 trajectory 全为无效数据。这些似乎是 ScienceWorld 环境本身的 gold path 质量问题，不是脚本 bug。\n- `inclined-plane-friction-unnamed-surfaces` 成功率也偏低（35%）。\n- 剩余 5 个任务预计还需数小时。最终 score=100 数量预计 3000+，充足启动 SFT。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-scienceworld-sft-data-check.md"
+}

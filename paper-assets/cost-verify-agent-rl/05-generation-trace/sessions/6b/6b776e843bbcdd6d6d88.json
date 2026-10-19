@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6b776e843bbcdd6d6d88",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ssh urgent audit enable think westd",
+  "task_key": "worker_ssh_urgent_audit_enable_think_westd_20260522T195845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_audit_enable_think_westd_20260522T195845.log",
+    "occurrence": 1,
+    "bytes": 760432,
+    "sha256": "b8297af11306bce0d4138d900fc0d004504a22a1b175b60226550a25864fe5ca"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 223,
+      "chunks": [
+        {
+          "path": "6b776e843bbcdd6d6d88-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6b776e843bbcdd6d6d88-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-urgent-audit-enable-think-westd.md"
+}

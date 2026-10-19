@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a823bc19c1d63ed60be",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix hsweep val size and h10 config",
+  "task_key": "worker_fix_hsweep-val-size-and-h10-config_20260517T164925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_hsweep-val-size-and-h10-config_20260517T164925_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "93911d17ffec7fbea4841881baa944242059c1ef285d2d7510fa96de2f63ea8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n### P0: seed2 val set 大小\n- **config 已正确**：`val: env_groups: 32, group_size: 1` = 32 val tasks，与 seed1/论文一致\n- **无需修改**\n\n### P1: h=10 config + auto_next 链\n\n**h=10 config**: 已存在 `_alfworld_hsweep_h10.yaml`，参数正确：\n- `step_independent_history_length: 10`\n- γ=0.95, 15 steps, GRPO step_independent\n- val: 32 tasks (env_groups: 32, group_size: 1)\n\n**auto_next 链已修改**：\n- 旧序列：`2:2 → 5:1 → 10:1 → ...`\n- 新序列：`2:2 → 10:1 → 5:1 → 20:1 → full:1 → 2:3 → ...`\n- 机制：`launch_hsweep.sh` 训练结束后自动调用 `auto_next_hsweep.sh 2 2`，脚本查序列取下一个 entry `10:1`\n\n### Seed2 当前进度\n- **Step 1/15 完成**，正在跑 step 2 的 rollout\n- 每 step 约 53 分钟\n- 启动时间：2026-05-17 22:29\n- 预计剩余：~12 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-hsweep-val-size-and-h10-config.md"
+}

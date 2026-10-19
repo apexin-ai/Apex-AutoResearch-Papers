@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf57a4efdc2a6489d3af",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp025c dual gpu dryrun",
+  "task_key": "worker_ops_exp025c_dual_gpu_dryrun_20260515T081352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp025c_dual_gpu_dryrun_20260515T081352_result.json",
+    "occurrence": 1,
+    "bytes": 1547,
+    "sha256": "f02b297aae851e23e595344dda3149ef3534fa73130e690c3b9aca021bbe77cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Ray 已停止（74/75 进程）。现在汇报结果。\n\n---\n\n## 结果报告\n\n```\nPID peak: 5505 / 20480 (27%)\nPID baseline: 711\nPID samples (内置监控, 每10秒):\n  t=0s:    714\n  t=10s:   5504  (Ray workers 启动后)\n  t=20s~8min: 5504 ±1 (完全稳定，无波动)\n\nStatus: Ray 资源调度卡死（非 PID 崩溃，非 EAGAIN）\n```\n\n### 关键发现\n\n**PID 完全安全** — 峰值仅 5505/20480 (27%)，从未接近上限。线程压缩 env vars 有效。\n\n**但进程卡死在 Ray 调度**，从未推进到模型加载/训练阶段：\n```\nWarning: resource request cannot be scheduled: {'CPU': 2.0, 'GPU': 2.0}\nWarning: resource request cannot be scheduled: {'CPU': 0.1}\nAll cluster resources being claimed by actors.\n```\n\n**原因**：`ray_init.num_cpus=8` 太少。Ray 启动了 112 个 Python worker 进程（预启动 + TaskRunner），占满了 8 个 CPU slot，导致 colocated worker（需要 2 CPU + 2 GPU）和 env worker（需要 0.1 CPU）无法被调度。\n\n### ⚠️ 重要 caveat\n\n本次 dry run **未能到达模型加载和 vLLM 推理阶段**，所以 5505 只是 Ray 初始化的 PID 数量。实际训练时 vLLM + FSDP 会增加更多线程，但基于 exp025c（单 GPU）成功经验 + 本次 27% 的基线，预计双 GPU 总 PID 仍有很大余量。\n\n### 下一步建议\n\n增大 `ray_init.num_cpus`（比如 16 或更高），或确认服务器实际 CPU 核数后设为匹配值，解决 Ray 调度问题后才能看到完整训练阶段的 PID 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp025c-dual-gpu-dryrun.md"
+}

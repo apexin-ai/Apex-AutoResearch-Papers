@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "896ea928cb7836bdd0f5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research plan019 eval 134 tasks",
+  "task_key": "worker_research_plan019-eval-134-tasks_20260517T175406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan019-eval-134-tasks_20260517T175406_result.json",
+    "occurrence": 1,
+    "bytes": 2205,
+    "sha256": "9025f4012d6e23ba674b3514c3217f514987fa31ad5252890cfa50eaee02f60f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息齐了。以下是结论：\n\n---\n\n## 调查结果\n\n### 1. 当前 val task 加载机制\n\n- `AlfworldSG` 的 `eval_dataset: \"eval_in_distribution\"` → AlfWorld 的 `valid_seen` split\n- task 选择逻辑：`game_idx = seed % len(game_files)`\n- es_manager 为 val 生成 seeds `[base_seed, base_seed+1, ..., base_seed + env_groups-1]`\n- 当前 exp029 配置：`env_groups=32, group_size=1` → 只评估 32 个 tasks（从 140 个 valid_seen tasks 中取连续 32 个）\n\n### 2. 数据 split 实际 task 数\n\n| Split | 目录 | game files 数 |\n|-------|------|--------------|\n| valid_seen (eval_in_distribution) | `json_2.1.1/valid_seen` | **140** |\n| valid_unseen (eval_out_of_distribution) | `json_2.1.1/valid_unseen` | **134** |\n\n标准 ALFWorld 134-task eval 对应的是 **valid_unseen**（OOD split）。\n\n### 3. 扩展所需改动\n\n**纯 config 改动，不需要修改代码。** exp028c 已有先例（val env_groups=140）。\n\n对于 134 tasks（valid_unseen）：\n```yaml\n# 方式 A: 改 envs.yaml 中 AlfworldSG 的 eval_dataset\nenv_config:\n  eval_dataset: \"eval_out_of_distribution\"\n\n# 方式 B: 或新建一个 tag（如 AlfworldSG_OOD）\n\n# 然后在实验 config 中:\nval:\n  env_groups: 134\n  group_size: 1\n  env_configs:\n    tags: [\"AlfworldSG\"]  # 或 AlfworldSG_OOD\n    n_groups: [134]\n```\n\n对于 140 tasks（valid_seen，当前 split）：直接改 `env_groups: 140, n_groups: [140]`（同 exp028c）。\n\n### 4. 风险评估\n\n- **OOM 风险：低。** AlfWorld 是纯文本环境，134 个 env 实例内存开销极小。瓶颈在 vLLM 推理，与 env 数量无关（rollout 是串行/分批的）。\n- **耗时影响：线性增长。** 32 → 134 tasks 约 4.2x 时间，32 → 140 约 4.4x。如果当前 32-task eval 耗时 T，full eval 约 4T~4.5T。\n- **已验证可行：** exp028c 已配置 `env_groups: 140`，说明框架支持这个规模。\n- **注意：** 如果要用标准 134-task（valid_unseen），需要改 `eval_dataset` 从 `\"eval_in_distribution\"` → `\"eval_out_of_distribution\"`，这改变了评估语义（从 seen 变 unseen），要确认这是否符合实验意图。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan019-eval-134-tasks.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e3d56fc934c17604ff9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code plan 003b gae config",
+  "task_key": "worker_code_plan_003b_gae_config_20260517T073519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_003b_gae_config_20260517T073519_result.json",
+    "occurrence": 1,
+    "bytes": 2288,
+    "sha256": "53297bbd34420c53be203232d0760a4a6dfbac3bd6261b1ac57959e58780b283"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出报告\n\n### 1. exp029 base config\n\n路径：`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml`\n\n关键参数：\n- `adv_estimator: grpo`，`gamma: 0.95`，full context window mode\n- `model_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4`\n- 2 GPU，`gpu_memory_utilization: 0.35`，`max_model_len: 20480`\n- `total_training_steps: 100`，`ppo_mini_batch_size: 16`\n\n### 2. GAE baseline config\n\n路径：`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_gae_baseline.yaml`\n\n关键 diff vs exp029：\n| 参数 | exp029 | GAE baseline |\n|------|--------|--------------|\n| `algorithm.adv_estimator` | grpo | **gae** |\n| `algorithm.gamma` | 0.95 | **1.0** |\n| `algorithm.lam` | (无) | **0.95** |\n| `critic` | 无 | **enabled (auto), model=SFT ckpt, lr=1e-5** |\n| `rollout.gpu_memory_utilization` | 0.35 | **0.30** (为 critic 留显存) |\n| `trainer.total_training_steps` | 100 | **15** |\n\n### 3. REINFORCE++ baseline config\n\n路径：`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_reinforce_pp_baseline.yaml`\n\n关键 diff vs exp029：\n| 参数 | exp029 | REINFORCE++ |\n|------|--------|-------------|\n| `algorithm.adv_estimator` | grpo | **reinforce_plus_plus_baseline** |\n| `algorithm.gamma` | 0.95 | **1.0** |\n| `algorithm.lam` | (无) | **1.0** |\n| `trainer.total_training_steps` | 100 | **15** |\n\n无 critic，其余与 exp029 一致。\n\n### 4. 验证结果\n\n- YAML 语法：两个文件均通过 `yaml.safe_load` 验证\n- Hydra 解析：两个文件均通过 `hydra.compose` 验证，关键字段值正确\n- Checkpoint 路径：`/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4` 存在\n\n### 5. 注意事项\n\n- **GAE 显存压力**：critic 与 actor 共用 2×GPU，已将 rollout `gpu_memory_utilization` 降至 0.30。如果 OOM，可进一步降低或开启 `critic.model.enable_gradient_checkpointing: True`（dp_critic.yaml 默认已开启）。\n- **`need_critic` 自动判定**：verl 中 `adv_estimator=gae` 会自动启用 critic（无需显式设 `critic.enable: True`）。\n- **REINFORCE++ 枚举值**：使用 `reinforce_plus_plus_baseline`（带 running mean baseline），而非 `reinforce_plus_plus`（后者是无 baseline 的原始版本）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-003b-gae-config.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f88a15b02ed19cea37b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp016 status check",
+  "task_key": "worker_monitor_exp016-status-check_20260514T145204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp016-status-check_20260514T145204_result.json",
+    "occurrence": 1,
+    "bytes": 1856,
+    "sha256": "c72afb5e3d93102d6f721b9ca265716d0e125f42997eab07f128ea1d5a828d96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp016 状态\n- **进程**: alive — 当前 step 12/30 (40%), 已运行 50m41s, 预计剩余 ~2h07m\n- **从 exp015 checkpoint step 5 恢复**, 实际新训练 steps: 6-12\n\n### 关键指标 (step 6 → 10 趋势)\n\n| 指标 | Step 6 | Step 7 | Step 10 |\n|------|--------|--------|---------|\n| success | 0% | **4.7%** | 0% |\n| pass@16 | 0 | **0.5** | 0 |\n| action_is_valid | 52.1% | 65.5% | 66.4% |\n| action_is_effective | 86.5% | 88.8% | 90.4% |\n| pg_loss | 0.0 | — | 0.0 |\n| grad_norm | 0.841 | — | 0.856 |\n| entropy | 0.0976 | — | 0.1046 |\n| ppo_kl | 1.7e-4 | — | -9.1e-5 |\n| raw_reward | 0.0 | 0.0 | 0.0 |\n| manager_invalid_action | 13.5% | 11.2% | 9.6% |\n\n### 严重问题\n\n**pg_loss 恒为 0.0** — 所有 step 的 rewards/advantages/returns 全部为 0。即使 step 7 有 4.7% success 和 pass@16=0.5，raw_reward 仍为 0。reward 信号完全缺失，PPO 无法学习。grad_norm ~0.85 仅来自 entropy loss。\n\n这不是 collapse（grad_norm 没有趋近 0），而是 **reward function 没有为成功 episode 赋值**。模型在空转。\n\n### Kill/Go 评估\n**建议 Kill**。跑完 30 步也不会有任何策略提升，因为没有 reward 信号驱动梯度更新。需要先修复 reward function 让 success=True 的 episode 拿到非零 reward。\n\n---\n\n## Expert Trajectory 收集\n- **进度**: 2165 条 (jsonl), 文件 11.5MB\n- **目标**: ~3553 → 完成约 **60.9%**\n- **最后写入**: 22:52 (expert_trajectories.jsonl), 22:46 (progress.json) — 可能仍在运行\n- **PID 状态**: 无法确认（pipe 命令被 ssh_read_only 拦截）\n\n---\n\n## GPU\n- GPU 0: 48309 MiB / 97887 MiB (49.4%), util 0%\n- GPU 1: 48835 MiB / 97887 MiB (49.9%), util 0%\n\nGPU utilization 0% 说明当前处于 rollout generation 阶段（vLLM inference），不在 actor update 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp016-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75ba84f4c0f5af2274d1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "train exp029 seed300 bjb1",
+  "task_key": "worker_train_exp029_seed300_bjb1_20260522T151637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp029_seed300_bjb1_20260522T151637_result.json",
+    "occurrence": 1,
+    "bytes": 1631,
+    "sha256": "2679090f26b9011655d28552f8fd9804c175820139932c9dfb28710d27153b4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## 状态报告\n\n### Pre-flight checklist (C002) ✅\n| 项目 | 状态 |\n|------|------|\n| 入口点 | `python train.py --config-name` — 与 seed42 一致 |\n| 磁盘 | `/root/autodl-tmp` 57GB 可用 (78%) |\n| Config | `_alfworld_exp029_seed300_episode.yaml` 已创建并验证 |\n| SFT checkpoint | `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4` → `exp021_ragen_sft_v4/final` 存在 |\n| 输出目录 | `/root/autodl-tmp/checkpoints/exp029-seed300/` 已创建 |\n\n### Config 变更（相对 seed42）\n- `seed.train`: 42 → **300**\n- `experiment_name`: `exp029-seed300-episode-level`\n- `local_log_dir` / `default_local_dir`: `exp029-seed300/`\n- 其余参数完全一致\n\n### ⚠️ 冲突：GPU 0 被 seed4 OOD eval 占用\n- **进程**: PID 427167, `_alfworld_exp029_seed4_ood_step15`\n- **GPU 占用**: 8124 MiB on cuda:0\n- **启动时间**: ~5 分钟前，模型刚初始化完毕，实际 episode rollout 尚未开始\n- **预估耗时**: 30-60+ 分钟（341 OOD environments, single GPU）\n- **按指令不 kill**，等 eval 完成后即可启动\n\n### 待执行的启动命令（GPU 释放后直接运行）\n```bash\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 RAY_ADDRESS=\"\" RAY_TMPDIR=/tmp/ray_seed300 VLLM_WORKER_MULTIPROC_METHOD=spawn python train.py --config-name _alfworld_exp029_seed300_episode' > /root/autodl-tmp/logs/seed300_episode_grpo.log 2>&1 &\n```\n\n需要我轮询等待 eval 完成后自动启动，还是你另行安排？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-exp029-seed300-bjb1.md"
+}

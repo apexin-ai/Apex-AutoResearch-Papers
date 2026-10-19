@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf17a6ccc4fea1e0c0a5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis c prime step5 ood bjb1",
+  "task_key": "worker_analysis_c_prime_step5_ood_bjb1_20260522T010546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c_prime_step5_ood_bjb1_20260522T010546_result.json",
+    "occurrence": 1,
+    "bytes": 1339,
+    "sha256": "57168b2c6b2f993bdd4ab9ece35932a42c7f18365117504f4379a39badcb944d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE. Here's the summary for Director:\n\n---\n\n## c_prime_step5_ood_bjb1 结果摘要\n\n**OOD 成功率: 0.0% (0/134)** — 所有 134 个 valid_unseen 任务全部失败。\n\n| 指标 | 值 |\n|------|-----|\n| success_rate | **0.00%** |\n| pass@1 | 0.00% |\n| action_is_valid | 97.57% |\n| action_is_effective | 100% |\n| num_actions | 50 (每集都撞上限) |\n| response_length | 4250 |\n| avg_reward | 0.0 |\n\n**对比其他 OOD 结果:**\n\n| Checkpoint | OOD Success |\n|------------|-------------|\n| SFT baseline | 5.97% |\n| Intervention C step5 | 10.45% |\n| Seed 7 high-KL step5 | 9.70% |\n| Intervention C step7 | 14.93% |\n| Seed 1 | 23.88% |\n| Seed 4 (collapsed) | 30.60% |\n| **C' step5** | **0.00%** |\n\n**关键发现:** C' step5 是所有 checkpoint 中 OOD 最差的，甚至低于 SFT baseline (5.97%)。模型生成的 action 语法合法 (valid 97.6%)，但在 OOD 场景下完全无法完成任务——每集都耗尽 50 步上限。val 21.875% 的成绩完全没有泛化到 OOD。response_length 从 val 的 8327 骤降至 4250，说明模型在 OOD 环境中生成了更短但无效的推理。\n\n**结论:** trajectory cap 12000 虽然在训练中未实际触发（aborted_ratio=0），但 C' 训练出的策略严重过拟合训练分布，OOD 泛化能力为零。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c-prime-step5-ood-bjb1.md"
+}

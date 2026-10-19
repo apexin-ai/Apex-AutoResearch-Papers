@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "75201e8ceda866984556",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose gsweep g080 h5 seed1",
+  "task_key": "worker_diagnose_gsweep_g080_h5_seed1_20260518T092349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gsweep_g080_h5_seed1_20260518T092349_result.json",
+    "occurrence": 1,
+    "bytes": 1765,
+    "sha256": "94c0729d95df4627fbc781b5f50b53ed9b8c220783ad20de5cefca1836c6b23d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n```json\n{\"root_cause\":\"SIGTERM killed at step 8 — γ=0.80 reward collapse: success=0.0, pass@8=0.0, entropy=0.168, advantages_min=-11.97. Watchdog detected collapse and killed the process, replaced with g095 experiment.\",\"error_type\":\"hyperparameter\",\"fix_steps\":[\"No fix needed — γ=0.80 confirmed collapsed as D072 predicted\",\"Watchdog already auto-rotated to gsweep-g095-h5-seed1 on cuda:2,3\",\"Checkpoint exists at global_step_5 if post-mortem analysis needed\"],\"can_auto_fix\":false,\"gpu_2_3_free\":false}\n```\n\n详细情况：\n- **日志路径**：`/root/runs/cost-verify-agent-rl/gsweep-g080-h5-seed1.log`（文件名用连字符非下划线，cron 找错了路径）\n- **死因**：watchdog 发送 SIGTERM（17:14:14），进程在 step 8 时 success=0.0 完全坍缩\n- **关键指标**：entropy 0.168（极低，策略退化）、advantages_min -11.97（极端负值）、pass@8=0.0\n- **checkpoint**：`/root/autodl-tmp/checkpoints/gsweep-g080-h5/global_step_5` 存在\n- **GPU 2,3 当前状态**：被 g095 实验占用（~4.7GB/卡，刚启动 step 0），不空闲\n- **磁盘**：30G 用了 24G（80%），偏紧但未满"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "SIGTERM killed at step 8 — γ=0.80 reward collapse: success=0.0, pass@8=0.0, entropy=0.168, advantages_min=-11.97. Watchdog detected collapse and killed the process, replaced with g095 experiment.",
+              "error_type": "hyperparameter",
+              "fix_steps": [
+                "No fix needed — γ=0.80 confirmed collapsed as D072 predicted",
+                "Watchdog already auto-rotated to gsweep-g095-h5-seed1 on cuda:2,3",
+                "Checkpoint exists at global_step_5 if post-mortem analysis needed"
+              ],
+              "can_auto_fix": false,
+              "gpu_2_3_free": false
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gsweep-g080-h5-seed1.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5ac791c277070d033236",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "diagnose sft baseline ood eval v2",
+  "task_key": "worker_diagnose_sft_baseline_ood_eval_v2_20260521T134646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_sft_baseline_ood_eval_v2_20260521T134646.log",
+    "occurrence": 1,
+    "bytes": 616268,
+    "sha256": "a6ded453f312695a69c7eda814c8737c3a5c7e579d656d4d26fae0c185e4be32"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 0,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 34,
+      "tool_call": 68,
+      "tool_result": 68,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "5ac791c277070d033236-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "5ac791c277070d033236-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-sft-baseline-ood-eval-v2.md"
+}

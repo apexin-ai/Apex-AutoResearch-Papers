@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1d94a4f5df1463578c6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 init",
+  "task_key": "worker_check_exp029_init_20260516T122623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_init_20260516T122623_result.json",
+    "occurrence": 1,
+    "bytes": 77,
+    "sha256": "b0ebecd49ce57bc3ecf858c309920f450fb8a8ea212dc19d0ff7184736677d0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设定 3 分钟后自动检查 exp029 状态。等待中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-init.md"
+}

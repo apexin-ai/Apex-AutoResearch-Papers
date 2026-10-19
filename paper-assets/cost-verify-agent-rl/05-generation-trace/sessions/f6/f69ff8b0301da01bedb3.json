@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f69ff8b0301da01bedb3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp029 seed300 step5 ood eval",
+  "task_key": "worker_diagnose_exp029_seed300_step5_ood_eval_20260522T183123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp029_seed300_step5_ood_eval_20260522T183123_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "0334450ce0b4865896c05c78f1e979a8afb0772a1b54e450fab354e34746d78e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，已写入 `artifacts/diag_exp029_seed300_step5_ood_eval.md`。\n\n**根因**：不是 OOM/checkpoint/代码 bug。OOD eval 的 134 个任务实际已跑完，但在 `_validate()` 返回结果前，`wandb.log()` 尝试将 `wandb.Table` 序列化到 `/tmp/tmpjqaf9lrywandb-media/` 时失败——该目录已被清理（`wandb-core` 进程已变僵尸）。异常未捕获，导致整个 `_validate()` 崩溃，指标未返回、未上报 W&B。\n\n**残留进程**：`ray::TaskRunner`（PID 433097, 60% CPU）和 `wandb-core`（PID 433602, zombie）仍在服务器上。\n\n**修复**：(1) kill 残留进程 (2) 在 `ragen/utils.py:log_generations_to_wandb` 加 try-except 防止 wandb 日志失败拖垮 eval (3) 可选设 `WANDB_DATA_DIR` 到数据盘避免 /tmp 清理问题 (4) 重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp029-seed300-step5-ood-eval.md"
+}

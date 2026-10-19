@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41c30dee0e2e576fe352",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix exp029 tmp restart",
+  "task_key": "worker_fix_exp029_tmp_restart_20260516T150153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp029_tmp_restart_20260516T150153_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "2a85b171b05d7a2907ba4845fecd19e8ebb003a935aebf2ea68e5d78d3718537"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n| 项目 | 结果 |\n|------|------|\n| /tmp 清理 | 从 16G used (51%) → 14G used (46%)，释放约 2GB |\n| exp029 checkpoint | **无** — `/root/autodl-tmp/checkpoints/exp029/` 不存在 |\n| resume 配置 | 第 41 行 `resume_mode: \"disable\"`，保持不变（无 checkpoint 可恢复） |\n| tmux session | 无活跃 session |\n\n结论：无 checkpoint 可恢复，将从头训练。配置无需修改。清理完毕，可由主系统 submit_training_job 启动 exp029。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp029-tmp-restart.md"
+}

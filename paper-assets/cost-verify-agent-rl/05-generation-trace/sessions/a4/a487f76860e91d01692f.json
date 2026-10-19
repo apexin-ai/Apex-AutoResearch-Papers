@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a487f76860e91d01692f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp012 reward fix",
+  "task_key": "worker_code_exp012-reward-fix_20260514T055810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp012-reward-fix_20260514T055810_result.json",
+    "occurrence": 1,
+    "bytes": 1445,
+    "sha256": "cf21ecd0280c6ebdd5f6e6e9fb93f0e7a5f8e4449c9a06ea58b30a0208161acd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过，所有关键字段正确。\n\n### 产出汇总\n\n| 项目 | 结果 |\n|------|------|\n| **Config 文件** | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp012_reward_fix.yaml` |\n| **format_penalty** | `0`（原 `-0.1`），定义在 `es_manager.py:236`，从 config 读取 |\n| **group_size** | `16`（原 `8`） |\n| **Step 5 checkpoint** | 存在：`/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/`（FSDP 2-rank） |\n| **Resume 机制** | `resume_mode: \"resume_path\"` + `resume_from_path` |\n| **Dry-run** | 通过 |\n\n### exp012 启动命令\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR && \\\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld && \\\ncd /root/cost-verify-agent-rl/RAGEN && \\\nnohup python -m ragen.llm_agent.agent_proxy --config-name _alfworld_exp012_reward_fix \\\n  > /root/autodl-tmp/exp012_grpo.log 2>&1 &\n```\n\n### exp008 → exp012 diff\n\n- `format_penalty`: `-0.1` → `0`\n- `es_manager.train.group_size`: `8` → `16`\n- `trainer.resume_mode`: (unset/disable) → `\"resume_path\"`\n- `trainer.resume_from_path`: (unset) → `\"/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5\"`\n- `trainer.default_local_dir` / `local_log_dir`: `exp008_grpo/` → `exp012_grpo/`\n- `trainer.experiment_name`: `exp008-alfworld-sft-grpo` → `exp012-alfworld-reward-fix`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp012-reward-fix.md"
+}

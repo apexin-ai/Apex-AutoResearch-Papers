@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5a3be383371c2001ef0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp028c step10 val",
+  "task_key": "worker_check_exp028c_step10_val_20260516T074949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp028c_step10_val_20260516T074949_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "771081b42d27aafaa6be37749ba5f634d7f361494cd7d370f25415ce1c5e09ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**Step 10 val success = 0%（0/16），从 step 5 的 6.25% 跌至零。**\n\n关键数据：\n\n| | Step 0 | Step 5 | Step 10 |\n|---|---|---|---|\n| **Val success** | 6.25% | 6.25% | **0%** |\n| Val action_is_valid | 0.745 | 0.965 | 0.936 |\n| Train success | — | 9.4% | 18.75% |\n| Train pass@8 | — | 37.5% | 50% |\n\nTrain-val 严重分歧：训练集 success 翻倍增长至 18.75%，但 val 完全归零。entropy 持续下降 (0.236→0.215)，策略在收窄。val action_is_valid 仍高 (0.936) 说明动作格式没问题，但策略本身无法泛化。\n\n训练仍在继续，预计 step 15 val 约 18:30 出。\n\n报告已写入 `artifacts/exp028c_selfguide_recipe/intermediate/step10_val_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp028c-step10-val.md"
+}

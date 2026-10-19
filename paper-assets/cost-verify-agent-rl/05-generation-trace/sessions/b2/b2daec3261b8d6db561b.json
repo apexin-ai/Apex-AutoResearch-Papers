@@ -1,0 +1,816 @@
+{
+  "schema_version": "1.0",
+  "id": "b2daec3261b8d6db561b",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "eval per task t04",
+  "task_key": "worker_eval_per_task_t04_20260519T141622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_per_task_t04_20260519T141622.jsonl",
+    "occurrence": 1,
+    "bytes": 21476,
+    "sha256": "399715710306c804930d5160d31694800e0f4fad19a60d2ba146aa0589921eb1"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 19,
+    "roles": {
+      "tool_call": 19,
+      "tool_result": 19,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T14:18:04.151051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T14:18:04.151410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T14:18:04.151650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "cat /root/cost-verify-agent-rl/eval_per_task_type.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T14:18:04.152019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nStandalone eval: exp029 seed1 checkpoint on 134 OOD tasks\\\\nPer-task-type breakdown for paper analysis\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nimport json\\\\nimport re\\\\nimport time\\\\nfrom collections import defaultdict\\\\n\\\\nos.environ[\\\\\\\"ALFWORLD_DATA\\\\\\\"] = \\\\\\\"/root/autodl-tmp/alfworld\\\\\\\"\\\\nos.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = \\\\\\\"0,1\\\\\\\"\\\\nos.environ[\\\\\\\"VLLM_WORKER_MULTIPROC_METHOD\\\\\\\"] = \\\\\\\"spawn\\\\\\\"\\\\nos.environ[\\\\\\\"TMPDIR\\\\\\\"] = \\\\\\\"/root/autodl-tmp/tmp\\\\\\\"\\\\n\\\\nfrom vllm import LLM, SamplingParams\\\\nfrom transformers import AutoTokenizer\\\\n\\\\nCHECKPOINT = \\\\\\\"/root/autodl-tmp/checkpoints/exp029_hf\\\\\\\"\\\\nMAX_TURNS = 50\\\\nTEMPERATURE = 0.0\\\\n\\\\nSYSTEM_PROMPT = \\\\\\\"\\\\\\\"\\\\\\\"You're a helpful assistant. You are an expert agent in the ALFRED Embodied Environment.\\\\nComplete household tasks by navigating and interacting with objects.\\\\n\\\\nBefore each action, you MUST first produce a self-guidance assessment in your reasoning:\\\\n[Assessment: positive/neutral/negative] - evaluate your current progress toward the task goal.\\\\n[Reasoning: one sentence analyzing what has been accomplished and what remains.]\\\\n[Suggestion: the best next action from admissible actions.]\\\\n\\\\nYour reasoning MUST be enclosed within <think> </think> tags.\\\\nAfter the closing </think> tag, wrap your chosen action in <answer> </answer> tags.\\\\nThe action must be a precise ALFWorld command from the admissible actions list (e.g. go to desk 1, pick up pen 2, open drawer 1).\\\\nDo NOT output natural language descriptions or anything after the </answer> tag.\\\\n\\\\nExample: <think>[Assessment: neutral] I need to find a pen. The desk is a likely location. [Suggestion: go to desk 1]</think><answer>go to desk 1</answer>\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nTASK_TYPES = [\\\\n    \\\\\\\"pick_and_place_simple\\\\\\\",\\\\n    \\\\\\\"pick_clean_then_place_in_recep\\\\\\\",\\\\n    \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n    \\\\\\\"pick_cool_then_place_in_recep\\\\\\\",\\\\n    \\\\\\\"look_a\n…[truncated 7395 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T14:18:04.152241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "cd /root/cost-verify-agent-rl && sed -i 's/^TEMPERATURE = 0.0$/TEMPERATURE = 0.4/' eval_per_task_type.py && sed -i 's/exp029_per_task_type_breakdown\\.json/exp029_per_task_type_breakdown_t04.json/' eval_per_task_type.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T14:18:04.152387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T14:18:04.152539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "grep -n \"TEMPERATURE\\|breakdown\\|do_sample\" /root/cost-verify-agent-rl/eval_per_task_type.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T14:18:04.152721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T14:18:04.152851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "grep -n -E \"TEMPERATURE|breakdown|do_sample\" /root/cost-verify-agent-rl/eval_per_task_type.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T14:18:04.152972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T14:18:04.153090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "grep -n \"TEMPERATURE\" /root/cost-verify-agent-rl/eval_per_task_type.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T14:18:04.153210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"21:TEMPERATURE = 0.4\\\\n162:        temperature=TEMPERATURE,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T14:18:04.153329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "grep -n \"breakdown\" /root/cost-verify-agent-rl/eval_per_task_type.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T14:18:04.153448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3:Per-task-type breakdown for paper analysis\\\\n231:    save_path = \\\\\\\"/root/autodl-tmp/tmp/exp029_per_task_type_breakdown_t04.json\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T14:18:04.153614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__kill_job",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T14:18:04.153754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T14:18:04.153878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit training job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T14:18:04.153993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T14:18:04.154187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "tmux new-session -d -s exp029_per_task_t04 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && CUDA_VISIBLE_DEVICES=0,1 python eval_per_task_type.py 2>&1 | tee /root/autodl-tmp/tmp/exp029_per_task_t04.log'",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T14:18:04.154330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T14:18:04.154462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "tail -20 /root/autodl-tmp/tmp/exp029_per_task_t04.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T14:18:04.154632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T14:18:04.154784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "tmux list-sessions",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T14:18:04.154908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T14:18:04.155023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "tmux list-sessions && sleep 5 && tail -20 /root/autodl-tmp/tmp/exp029_per_task_t04.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T14:18:04.155192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp029_per_task_t04: 1 windows (created Tue May 19 22:17:15 2026)\\\\nInitializing AlfredTWEnv...\\\\n\\\\r  0%|          | 0/341 [00:00<?, ?it/s]\\\\r 93%|█████████▎| 317/341 [00:00<00:00, 3168.58it/s]\\\\r100%|██████████| 341/341 [00:00<00:00, 3158.14it/s]\\\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/exp029_hf' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\\\nOverall we have 134 games in split=eval_out_of_distribution\\\\nEvaluating with 134 games\\\\nFound 134 OOD game files\\\\nLoading model from /root/autodl-tmp/checkpoints/exp029_hf...\\\\nINFO 05-19 22:17:22 [utils.py:233] non-default args: {'max_model_len': 20480, 'gpu_memory_utilization': 0.4, 'disable_log_stats': True, 'enforce_eager': True, 'enable_chunked_prefill': True, 'model': '/root/autodl-tmp/checkpoints/exp029_hf'}\\\\nINFO 05-19 22:17:22 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-19 22:17:22 [model.py:1582] Using max model len 20480\\\\nINFO 05-19 22:17:22 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=16384.\\\\nINFO 05-19 22:17:22 [vllm.py:775] Asynchronous scheduling is enabled.\\\\nWARNING 05-19 22:17:22 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\nWARNING 05-19 22:17:22 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\\\nINFO 05-19 22:17:23 [vllm.py:985] Cudagraph is disabled under eager mode\\\\nINFO 05-19 22:17:23 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant\\\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/exp029_hf' with an \n…[truncated 3197 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T14:18:04.155365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called CronCreate"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "CronCreate",
+            "tool_args": {
+              "cron": "*/8 * * * *",
+              "prompt": "Check exp029_per_task_t04 eval status on bjb1-17606: tail the log at /root/autodl-tmp/tmp/exp029_per_task_t04.log to see progress (how many of 134 episodes done), check if tmux session exp029_per_task_t04 is still alive. If finished, report results and delete this cron job."
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T14:18:04.155489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Scheduled recurring job fcdcec4b (Every 8 minutes). Session-only (not written to disk, dies when Claude exits). Auto-expires after 7 days. Use CronDelete to cancel sooner."
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "CronCreate",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T14:18:04.155627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp029_per_task_t04",
+              "field": "hypothesis",
+              "value": "Per-task-type OOD eval with T=0.4 (paper protocol D092) will show similar task-type ranking pattern as T=0.0 but with higher overall success rate (~23.88% vs 16.4%). Multi-step tasks (heat/cool/two_obj) expected to remain worst.",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T14:18:04.155761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp029_per_task_t04\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:17:41.710Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:17:41.710Z\\\", \\\"hypothesis\\\": \\\"Per-task-type OOD eval with T=0.4 (paper protocol D092) will show similar task-type ranking pattern as T=0.0 but with higher overall success rate (~23.88% vs 16.4%). Multi-step tasks (heat/cool/two_obj) expected to remain worst.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9478}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T14:18:04.155882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp029_per_task_t04",
+              "field": "parent",
+              "value": "exp029_per_task_breakdown",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T14:18:04.156006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp029_per_task_t04\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:17:41.710Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:17:45.883Z\\\", \\\"hypothesis\\\": \\\"Per-task-type OOD eval with T=0.4 (paper protocol D092) will show similar task-type ranking pattern as T=0.0 but with higher overall success rate (~23.88% vs 16.4%). Multi-step tasks (heat/cool/two_obj) expected to remain worst.\\\", \\\"parent\\\": \\\"exp029_per_task_breakdown\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5346}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T14:18:04.156134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp029_per_task_t04",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "cost-verify-agent-rl",
+              "spec": "{'command': 'python eval_per_task_type.py', 'server': 'bjb1-17606', 'model_name': 'exp029_hf (Qwen3-based)', 'seed': 1, 'checkpoint_source': '/root/autodl-tmp/checkpoints/exp029_hf', 'eval_data': 'alfworld eval_out_of_distribution (134 tasks)', 'data_count': 134, 'data_path': '/root/autodl-tmp/alfworld'}"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T14:18:04.156270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2802}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T14:18:04.156391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp029_per_task_t04",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T14:18:04.156516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp029_per_task_t04\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:17:41.710Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:17:52.144Z\\\", \\\"hypothesis\\\": \\\"Per-task-type OOD eval with T=0.4 (paper protocol D092) will show similar task-type ranking pattern as T=0.0 but with higher overall success rate (~23.88% vs 16.4%). Multi-step tasks (heat/cool/two_obj) expected to remain worst.\\\", \\\"parent\\\": \\\"exp029_per_task_breakdown\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9604}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T14:18:04.156661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp029_per_task_t04",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "cost-verify-agent-rl",
+              "spec": "{'command': 'python eval_per_task_type.py', 'server': 'bjb1-17606', 'model_name': 'exp029_hf (Qwen3-based)', 'seed': 1, 'checkpoint_source': '/root/autodl-tmp/checkpoints/exp029_hf', 'eval_data': 'alfworld eval_out_of_distribution (134 tasks)', 'data_count': 134, 'data_path': '/root/autodl-tmp/alfworld'}"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T14:18:04.156804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp029_per_task_t04\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:17:41.710Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:17:57.119Z\\\", \\\"hypothesis\\\": \\\"Per-task-type OOD eval with T=0.4 (paper protocol D092) will show similar task-type ranking pattern as T=0.0 but with higher overall success rate (~23.88% vs 16.4%). Multi-step tasks (heat/cool/two_obj) expected to remain worst.\\\", \\\"parent\\\": \\\"exp029_per_task_breakdown\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_per_task_type.py\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"model_name\\\": \\\"exp029_hf (Qwen3-based)\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/exp029_hf\\\", \\\"eval_data\\\": \\\"alfworld eval_out_of_distribution (134 tasks)\\\", \\\"data_count\\\": 134, \\\"data_path\\\": \\\"/root/autodl-tmp/alfworld\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9626}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T14:18:04.156967+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **脚本修改**: `TEMPERATURE = 0.4`，输出路径 `exp029_per_task_type_breakdown_t04.json`\n- **任务已提交**: tmux session `exp029_per_task_t04` 在 bjb1-17606 上运行，vLLM 引擎已初始化完毕，GPU cuda:0,1\n- **监控**: cron 每 8 分钟轮询日志（job `fcdcec4b`）\n- **Registry**: `exp029_per_task_t04` 状态 RUNNING，parent `exp029_per_task_breakdown`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_per_task_t04_20260519T141622"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/eval-per-task-t04.md"
+}

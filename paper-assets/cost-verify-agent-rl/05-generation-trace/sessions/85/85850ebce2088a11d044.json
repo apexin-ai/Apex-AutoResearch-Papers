@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85850ebce2088a11d044",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 monitoring",
+  "task_key": "worker_ops_exp026_monitoring_20260515T104832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_monitoring_20260515T104832_result.json",
+    "occurrence": 1,
+    "bytes": 41,
+    "sha256": "0f116f827ed35f5f3ce1e34d6ef9e92fe794c1eebdb084a86c483f2b08531731"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 分钟后继续检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-monitoring.md"
+}

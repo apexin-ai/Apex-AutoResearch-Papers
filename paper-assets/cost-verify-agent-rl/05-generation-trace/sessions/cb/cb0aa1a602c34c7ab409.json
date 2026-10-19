@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb0aa1a602c34c7ab409",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix credit assignment chart v2",
+  "task_key": "worker_fix_credit_assignment_chart_v2_20260517T011244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_credit_assignment_chart_v2_20260517T011244_result.json",
+    "occurrence": 1,
+    "bytes": 1860,
+    "sha256": "f422be14d9fb891f11985fd64f52e0fa13b4443491dddce155c55466a8ac970c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 产出\n\n**图表已修正并重新生成**:\n- `/root/cost-verify-agent-rl/analysis/figures/credit_assignment.pdf` (53KB)\n- `/root/cost-verify-agent-rl/analysis/figures/credit_assignment.png` (187KB)\n\n修改内容:\n1. **图 1 (左)**: 标题改为 \"Analogy: Reward Visibility under Discounted MDP\"，添加脚注说明 GRPO 不使用 γ discount\n2. **图 2 (右)**: 替换为 Causal Dilution 组合模型 — P(window contains ≥1 critical point) = 1 - C(T-K,h)/C(T,h)，T=35, K=4\n   - exp028c (h=2): P=0.22 — 只有 22% 的窗口包含关键决策点\n   - exp029 (h=T): P=1.00 — 全窗口必然覆盖\n   - Causal dilution ratio: 4.58x\n3. **整体标题**: \"Credit Assignment: Why Context Window Size Matters for Episode-Level RL\"\n\n---\n\n## 方案 1 数据可行性报告\n\n**Per-step rollout 数据现状**:\n\n| 数据源 | 路径 | 格式 | 内容 |\n|--------|------|------|------|\n| wandb tables | `/root/autodl-tmp/wandb/wandb/run-20260517_041330-7a59sudo/files/media/table/rollout/` | `.table.json` | 每 step 的 per-group reward matrix (16 groups × 8 rows)，只有最终 reward (0/10)，无 per-step action 数据 |\n| tmp rollout dirs | `/root/autodl-tmp/tmp/tmp*/rollout/` | `.table.json` | 同上格式 |\n| trajectory_tracker | verl 内置 | `.pth` (HDFS) | 需设 `VERL_ENABLE_TRACKER=1`，当前未启用 |\n| exp029 checkpoints | `/root/autodl-tmp/checkpoints/exp029/global_step_{5,10}/` | model weights only | 无 rollout 日志 |\n\n**结论**: 当前**无可用的 per-step trajectory 数据**。wandb 表只记录了 episode-level reward (0 or 10)，没有保存中间 step 的 action/observation。要实现方案 1（真实 per-step credit assignment 分析），需要下次训练时启用 `VERL_ENABLE_TRACKER=1` 或在 RAGEN 的 rollout loop 中添加 trajectory dump 逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-credit-assignment-chart-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff7c3923498e32d56fef",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "paper figure fig6 regenerate real data",
+  "task_key": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig6-regenerate-real-data_20260518T210803_result.json",
+    "occurrence": 1,
+    "bytes": 852,
+    "sha256": "f3030d823b0f4416dcdfc82da6d93d479679cb6d01c7bd366b8f6f2549088bb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，输出到 `figures/paper/fig6_training_curves.pdf` 和 `.png`。\n\n**数据来源与字段：**\n- **Cell A** (run 7o9bjszm, hsweep-h2-seed1): `train/AlfworldSG/success` + `train/AlfworldSG/action_is_effective`, 14 步 (steps 1-14)\n- **Cell B** (run 6liw7fm1, factorial-h2-episode-adv): 同上字段, 14 步 (steps 1-14)\n- **Cell C** (run 7a59sudo, exp029 episode-level): 同上字段, 15 步 (steps 1-15)；val 用 `val-env/AlfworldSG/success`, 4 个点 (steps 0, 5, 10, 15)\n\n**故事线清晰可见：**\n- Cell A (橙红): train success 从 ~19% 迅速 collapse 到 0%，action validity 同步崩溃\n- Cell B (黄色): train success 在 0-20% 间震荡，action validity 维持 ~80-98%\n- Cell C (蓝色): train success 持续上升至 ~44%，action validity 稳定在 93-99%，val 从 12.5% 稳步上升到 28.1%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig6-regenerate-real-data.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b013ad2d4386c08a9293",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "research dmpo pipeline design v2",
+  "task_key": "worker_research_dmpo-pipeline-design-v2_20260512T104112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_dmpo-pipeline-design-v2_20260512T104112_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "3a9c973d98914215b3848ac5fb15944b6378655452cb54d34100ef33144c30f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "设计文档已完成并注册（`art_20260512_c89733`）。\n\n核心设计要点：\n\n1. **DMPO Loss**：在 trl v1.4.0 的 `_compute_loss` 中，将 `per_token_logps.sum(dim=1)` 替换为 φ-weighted 聚合。φ(t,T,γ) = γ^t·(1-γ^(T-t))/(1-γ^T) 通过 `turn_ids` 张量映射到每个 token。\n\n2. **ETADN γ_e 注入**：DataCollator 从样本 `error_type` 查表得 γ_e（action=0.85, verify=0.92, plan=0.97），构建 per-sample gamma 向量传入 loss 计算。\n\n3. **三模式 ablation**：`mode` flag 切换 dpo（无加权）/ dmpo（全局 γ）/ etadn（per-sample γ_e），同一代码框架覆盖全部实验。\n\n4. **QLoRA ref model**：`precompute_ref_log_probs=True`，训练前缓存 ref logps，训练时不加载 ref model，省 VRAM。\n\n5. **VRAM**：单卡 ~15-17 GB，24 GB 4090D 可运行。两卡各跑独立 run，6 个实验分 3 轮完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-dmpo-pipeline-design-v2.md"
+}

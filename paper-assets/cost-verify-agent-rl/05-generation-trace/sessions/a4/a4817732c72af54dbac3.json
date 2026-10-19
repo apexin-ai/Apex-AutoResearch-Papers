@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4817732c72af54dbac3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "verify phase b readiness",
+  "task_key": "worker_verify_phase_b_readiness_20260513T235057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_phase_b_readiness_20260513T235057_result.json",
+    "occurrence": 1,
+    "bytes": 2569,
+    "sha256": "e07176e143b70032f8cc45c999342c2564e0e69b46a3c779050852004f44ef73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是状态报告。\n\n---\n\n## Phase B (B-IAVR) 集成就绪状态报告\n\n### 1. Phase B 代码文件 — ✅ 已在服务器上\n\n| 文件 | 内容 | 状态 |\n|------|------|------|\n| `ragen/biavr/__init__.py` | 模块入口，导出 BIAVRTracker | ✅ |\n| `ragen/biavr/reward.py` | B-IAVR reward + lagrangian 乘子 | ✅ |\n| `ragen/biavr/verify_mechanism.py` | VERIFY_TOKEN 机制 | ✅ |\n| `ragen/biavr/action_canonicalize.py` | action 标准化 | ✅ |\n| `ragen/biavr/pre_action.py` | pre-guidance action 计算 | ✅ |\n| `ragen/biavr/tests/test_biavr.py` | 单元测试 | ✅ |\n| `ragen/llm_agent/agent_proxy.py` | 集成点：BIAVRTracker | ✅ |\n| `ragen/llm_agent/ctx_manager.py` | 集成点：verify_token | ✅ |\n| `ragen/trainer/agent_trainer.py` | 集成点：biavr 训练 | ✅ |\n\n### 2. exp003 当前状态\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **Step 1/100** (1%) |\n| 每步耗时 | ~5743s (~1h36m) |\n| ETA 完成 | ~158h (~6.6 天) |\n| 启动时间 | 2026-05-14 05:39 (北京时间) |\n| 日志最后写入 | 07:28 |\n| GPU 进程 | 2× ray::WorkerDict, 各 ~48GB |\n| GPU 利用率 | 检查时 0%（可能在 rollout CPU 阶段） |\n| Train success | 0.78% |\n| Val success | 0% (初始) |\n| Logger | console only, **无 wandb** |\n\n### 3. Phase B 配置 — ⚠️ 部分就绪\n\n`config/_alfworld_phase_b.yaml` 已存在，关键配置：\n- `experiment_name`: exp003-alfworld-biavr-selective-verify\n- `model_path`: **`TO_BE_SET`** ← 需要填入 Phase A checkpoint 路径\n- `biavr`: beta=0.3, alpha=1.0, lambda_init=0.0, eta=0.01, enable_a_pre=true\n- env tag: `AlfworldBIAVR`\n- `max_model_len`: 32768（exp003 是 8192）\n\n### 4. Checkpoint 路径\n\n- exp003 配置 `save_freq: 20`，输出到 `/root/autodl-tmp/checkpoints/exp_003/`\n- **两个 checkpoint 目录均不存在**（`/root/autodl-tmp/checkpoints/exp_003/` 和 `/root/cost-verify-agent-rl/RAGEN/checkpoints/...`）\n- 首个 checkpoint 将在 step 20 产生，预计 ~30 小时后\n\n### 5. 阻塞项\n\n| # | 问题 | 严重性 | 说明 |\n|---|------|--------|------|\n| 1 | Phase B `model_path: TO_BE_SET` | 中 | 需等 exp003 产出 checkpoint 后填入 |\n| 2 | checkpoint 目录不存在 | **高** | `/root/autodl-tmp/checkpoints/exp_003/` 不存在，step 20 时可能写入失败。建议提前 `mkdir -p` |\n| 3 | exp003 无 wandb | 低 | 只能通过 log 文件监控，不影响训练 |\n| 4 | 训练极慢 | 信息 | 100 steps 约 6.6 天，首个可用 checkpoint (step 20) 约 30h 后 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-phase-b-readiness.md"
+}

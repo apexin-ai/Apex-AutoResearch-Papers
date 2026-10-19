@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca06efe7bd9228691113",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix registry model name batch",
+  "task_key": "worker_fix_registry_model_name_batch_20260521T160121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_registry_model_name_batch_20260521T160121_result.json",
+    "occurrence": 1,
+    "bytes": 1377,
+    "sha256": "4562404c61cf83ee8a0e003284e1084ac4b9e120439038633e4cb389df226d01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 9 个实验更新成功。汇总如下：\n\n| 实验 ID | 更新前 model_name | 更新后 model_name |\n|---------|------------------|------------------|\n| `exp029_seed4_v2` | Qwen2.5-1.5B-Instruct | Qwen3-1.5B (qwen3_exp021_ragen_sft_v4) |\n| `exp029_seed5_v2` | Qwen2.5-1.5B-Instruct | Qwen3-1.5B (qwen3_exp021_ragen_sft_v4) |\n| `exp029_seed6_v3` | Qwen2.5-1.5B-Instruct | Qwen3-1.5B (qwen3_exp021_ragen_sft_v4) |\n| `exp029_seed7` | Qwen2.5-1.5B-Instruct (qwen3_exp021_ragen_sft_v4) | Qwen3-1.5B (qwen3_exp021_ragen_sft_v4) |\n| `exp029_seed8` | Qwen2.5-1.5B-Instruct (qwen3_exp021_ragen_sft_v4) | Qwen3-1.5B (qwen3_exp021_ragen_sft_v4) |\n| `exp029_seed6_ood_eval_v2` | Qwen2.5-1.5B-Instruct (episode GRPO seed=789, step 15) | Qwen3-1.5B (episode GRPO seed=789, step 15) |\n| `exp029_seed5_ood_eval` | Qwen2.5-1.5B-Instruct (episode GRPO seed=456, step 10, partial training) | Qwen3-1.5B (episode GRPO seed=456, step 10, partial training) |\n| `sft_baseline_ood_eval_v2` | *(空)* | Qwen3-1.5B SFT (qwen3_exp021_ragen_sft_v4) |\n| **`exp029_seed6_ood_eval`** *(额外发现)* | Qwen2.5-1.5B-Instruct (episode GRPO seed=789, step 15) | Qwen3-1.5B (episode GRPO seed=789, step 15) |\n\n额外检查：`exp029_seed6_ood_eval`（v2 的前身，已 failed）也标了 Qwen2.5，已一并修正。除此之外没有其他遗漏的 exp029 相关实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-registry-model-name-batch.md"
+}

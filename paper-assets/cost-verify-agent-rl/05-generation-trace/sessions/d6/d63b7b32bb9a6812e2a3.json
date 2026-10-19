@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d63b7b32bb9a6812e2a3",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops westd seed7 kl step5 restart and c prime ood",
+  "task_key": "worker_ops_westd_seed7_kl_step5_restart_and_c_prime_ood_20260521T234445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_seed7_kl_step5_restart_and_c_prime_ood_20260521T234445.log",
+    "occurrence": 1,
+    "bytes": 873170,
+    "sha256": "7d9d91670886f849425d7d42e096e25f5fdc319e8dced580a4819cd4855474f3"
+  },
+  "statistics": {
+    "messages": 437,
+    "user_turns": 0,
+    "tool_calls": 159,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 112,
+      "tool_call": 159,
+      "tool_result": 159,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 437,
+      "chunks": [
+        {
+          "path": "d63b7b32bb9a6812e2a3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d63b7b32bb9a6812e2a3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d63b7b32bb9a6812e2a3-part-0003.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-westd-seed7-kl-step5-restart-and-c-prime-ood.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5ea642701b15c7eaf15",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops extract zeroshot metrics",
+  "task_key": "worker_ops_extract-zeroshot-metrics_20260519T061238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extract-zeroshot-metrics_20260519T061238_result.json",
+    "occurrence": 1,
+    "bytes": 1648,
+    "sha256": "9342b0c8f97bcf11bc7d205beaa8ae5521080ea3ae7e77f3a13385841473bac7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W&B run `kbt8a170` 时间 (12:07 开始) 与 zeroshot_eval.log (12:05 创建) 吻合，确认是同一次运行。W&B 有 702KB 的本地 `.wandb` 文件但因 BrokenPipeError 未上传。\n\n---\n\n## Qwen3-8B 零样本 eval 完整结果\n\n**来源**: `/root/autodl-tmp/tmp/zeroshot_eval.log` (westd-47453)  \n**时间**: 2026-05-19 12:05 ~ 12:46  \n**模型**: `/root/autodl-tmp/models/Qwen3-8B`  \n**评估集**: AlfworldSG_OOD, **134 episodes** (满足 C003 ≥16 要求)  \n**W&B run**: `kbt8a170` (本地有数据，未上传)\n\n### 核心 Metrics\n\n| Metric | Value |\n|--------|-------|\n| **val/success** | **0.75%** (1/134) |\n| **val/pass@1** | **0.75%** |\n| **val/action_is_valid** | **4.08%** |\n| val/action_is_effective | 6.10% |\n| val/manager_invalid_action | **93.90%** |\n| val/num_actions (avg) | 2.94 |\n| val/response_length | 8924.07 |\n| val-core/reward/mean@134 | 0.0746 |\n| val-core/reward/best@134/mean | 6.24 |\n\n### 关键发现\n\n- **success rate < 1%** — 134 个 OOD episodes 仅约 1 个成功\n- **93.9% 的 action 无效** — 模型几乎不会生成合法的 ALFWorld 动作\n- 平均只执行 ~3 步就结束（max_actions=50），说明大量 episode 快速失败\n- response_length ~8924 tokens 偏长，模型在生成大量无用文本\n\n**结论**: 7B 零样本完全不可用，SFT 是必要的。直接 RL 从这个 baseline 起步几乎没有可学习信号（reward 接近 0）。\n\n---\n\n**第二个日志** (`7b_zeroshot_eval_v2.log`) 是后续重试，在 val eval 的 `reset()` 阶段因磁盘满 (`OSError: [Errno 28] No space left on device`) 崩溃，未完成 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-extract-zeroshot-metrics.md"
+}

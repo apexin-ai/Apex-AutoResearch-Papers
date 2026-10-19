@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a3fc0bc76038584c76f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag seed7hk collect",
+  "task_key": "worker_diag_seed7hk_collect_20260523T230135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_seed7hk_collect_20260523T230135_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "e3ce6c4cd6368dead49b85ccb4b6d767583409aa6c1b56aaa7a64b2afc3b80b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果报告\n\n**完成状态：Crash（第 1 轮即失败，后续 2 轮未执行）**\n\n日志仅显示一次 `Starting: seed7hk-step5-fix, eval_seed=0`，没有 `ALL_DONE` 标记。\n\n### 错误原因\n\n```\nValueError: Unsupported model: /root/autodl-tmp/checkpoints/exp029_seed7_high_kl_step5_hf\n```\n\n出错位置：`ctx_manager.py:35` 的 `get_special_tokens(tokenizer)` —— 该函数不识别 checkpoint 的 `tokenizer.name_or_path`（值为本地路径而非模型名）。\n\n### 3 轮 success rate\n\n无数据。seed=0 在 validation rollout 阶段 crash，seed=1 和 seed=2 未启动。\n\n### 修复方向\n\n`get_special_tokens()` 通过 `tokenizer.name_or_path` 匹配模型类型，但 HF 格式 checkpoint 的 `name_or_path` 是本地路径而非 `\"Qwen/Qwen2.5-...\"` 之类的标准名称。需要修改该函数，使其支持本地路径的 checkpoint（例如通过 tokenizer config 中的 `model_type` 或 vocab size 来判断模型类型）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-seed7hk-collect.md"
+}

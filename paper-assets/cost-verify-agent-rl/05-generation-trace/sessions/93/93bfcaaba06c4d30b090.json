@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "93bfcaaba06c4d30b090",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops westd eval fix and seed5 investigation",
+  "task_key": "worker_ops_westd_eval_fix_and_seed5_investigation_20260522T083409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_eval_fix_and_seed5_investigation_20260522T083409.log",
+    "occurrence": 1,
+    "bytes": 717548,
+    "sha256": "342f021193d63ee52bb2b689ad2448489e88a767b04cfd277e36dbe0f030c250"
+  },
+  "statistics": {
+    "messages": 241,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 241,
+      "chunks": [
+        {
+          "path": "93bfcaaba06c4d30b090-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "93bfcaaba06c4d30b090-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-westd-eval-fix-and-seed5-investigation.md"
+}

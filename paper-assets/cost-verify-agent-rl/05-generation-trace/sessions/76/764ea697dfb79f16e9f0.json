@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "764ea697dfb79f16e9f0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code expert sft data format",
+  "task_key": "worker_code_expert-sft-data-format_20260514T153707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_expert-sft-data-format_20260514T153707_result.json",
+    "occurrence": 1,
+    "bytes": 1163,
+    "sha256": "355f613a9624340b5eeeaefd4178f45ccdb0888ff045d5a6f3a48b2bbc110ee9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中。\n\n## Expert SFT 数据准备报告\n- 原始数据: 2800 条\n- 过滤后: 2589 条（too_long: 171, invalid_action: 40）\n- Train: 2460 条, Val: 129 条\n- Token 统计: mean=1256, median=1134, max=3299, total=3,090,542\n- p90=2174, p95=2578, p99=2985, >4096: 0\n\n## SFT 配置确认\n- Model: Qwen3-1.7B 原始模型 (`/root/cost-verify-agent-rl/models/Qwen3-1.7B`)\n- LR: 2e-5, Epochs: 3, BS: 4, GA: 4 → effective BS=16\n- max_seq_length: 4096\n- Output: `/root/autodl-tmp/checkpoints/exp017_expert_sft/`\n- Log: `/root/runs/cost-verify-agent-rl/exp017_expert_sft.log`\n\n## 修复项\n- `sft_train.py`: `dtype` 参数名、默认路径改为 exp017\n- `run_expert_sft.sh`: LR 5e-5→2e-5、output dir 修正、max_seq_length 2048→4096、添加日志输出\n\n## Dry-run\n- 1 step 训练: 成功, loss=2.427\n- GPU 使用: 84,477 MiB / 97,887 MiB (GPU 0), GPU 1 空闲\n- 总 steps: 462 (154/epoch × 3), ~3.2s/step\n- 预估训练时间: ~25 min\n\n## 状态\n- PID: 353947, 已在后台运行\n- 当前进度: 8/462 steps\n\n## 启动命令（如需重新启动）\n```bash\nbash scripts/run_expert_sft.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-expert-sft-data-format.md"
+}

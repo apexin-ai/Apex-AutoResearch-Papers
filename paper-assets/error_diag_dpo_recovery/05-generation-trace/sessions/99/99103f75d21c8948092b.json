@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99103f75d21c8948092b",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "ops path rename scan",
+  "task_key": "worker_ops_path-rename-scan_20260513T152827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_path-rename-scan_20260513T152827_result.json",
+    "occurrence": 1,
+    "bytes": 1494,
+    "sha256": "bfa1edffd613c7ca3b6cdbd2869563e24f8c6c5e33a6bd28df17817f1fc1f9a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出汇总\n\n### 1. 目录确认\n- ~~旧目录~~ `/root/autodl-tmp/rl-active-probe-fl` → 已重命名为 `/root/autodl-tmp/error_diag_dpo_recovery`（执行时发现旧目录仍在，已完成重命名）\n\n### 2. 修改文件清单\n\n| 文件 | 行号 | 原文 | 替换后 |\n|------|------|------|--------|\n| `src/test_icl_14b.py` | 34 | `ETO_ROOT = \"/root/autodl-tmp/rl-active-probe-fl/eto_repo\"` | `ETO_ROOT = \"/root/autodl-tmp/error_diag_dpo_recovery/eto_repo\"` |\n| `src/collect_trajectories.py` | 39 | `ETO_ROOT = \"/root/autodl-tmp/rl-active-probe-fl/eto_repo\"` | `ETO_ROOT = \"/root/autodl-tmp/error_diag_dpo_recovery/eto_repo\"` |\n| `scripts/run_v6_pipeline.sh` | 14 | `PROJECT=/root/autodl-tmp/rl-active-probe-fl` | `PROJECT=/root/autodl-tmp/error_diag_dpo_recovery` |\n| `scripts/cap_v9_at_300.sh` | 3-5, 8 | 4 处 `/root/autodl-tmp/rl-active-probe-fl/...` | 全部替换为 `/root/autodl-tmp/error_diag_dpo_recovery/...` |\n\n### 3. 未修改的文件\n- `logs/cap_v9.log` — 历史日志，记录已完成的操作，修改无意义\n- `src/__pycache__/*.pyc` — 编译缓存，已清除整个 `__pycache__` 目录\n\n### 4. 最终验证\n三条 grep 在代码/配置文件中均零匹配，`__pycache__` 已清除。\n\n### 5. 注意事项\n- `rl_active_probe_fl`（下划线形式）在代码中未出现，无需处理\n- wandb 项目名为 `etadn-dpo`，不含旧名\n- 无 `setup.py` / `pyproject.toml` 等包管理文件引用旧名"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-path-rename-scan.md"
+}

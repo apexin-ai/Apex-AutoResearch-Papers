@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f52331d0b5b214e360a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval seed4 ood eval v2",
+  "task_key": "worker_eval_seed4_ood_eval_v2_20260521T210824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed4_ood_eval_v2_20260521T210824_result.json",
+    "occurrence": 1,
+    "bytes": 758,
+    "sha256": "b1a8ed2118f6398baaf5ef75f201084d9ea7fd0bc975fe42833ade379ac7a8b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 项目 | 结果 |\n|------|------|\n| **Checkpoint** | `/root/autodl-tmp/checkpoints/qwen_exp029_seed4_step15_hf/` 验证通过，config.json + model.safetensors (3.8GB) + tokenizer 齐全，路径含 \"qwen\" 可通过 token 检测 |\n| **Config** | 复用已有 `_alfworld_exp029_seed4_ood_eval.yaml`，仅将 CUDA_VISIBLE_DEVICES 从 \"0\" 改为 \"2\"。val_only=True, enable_response_mask=False, OOD 134 tasks |\n| **Dry-run** | Config 加载成功 |\n| **Job 提交** | PID 779407, westd-47453, cuda:2, tmux session `exp029_seed4_ood_eval_v2`, log: `~/runs/cost-verify-agent-rl/exp029_seed4_ood_eval_v2.log` |\n| **Registry** | `exp029_seed4_ood_eval_v2` 已创建，parent=exp029_seed4_v2, status=RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed4-ood-eval-v2.md"
+}

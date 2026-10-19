@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82362a79fa1cff0b8fc2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp027 step5 earlystop",
+  "task_key": "worker_monitor_exp027_step5_earlystop_20260515T202956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp027_step5_earlystop_20260515T202956_result.json",
+    "occurrence": 1,
+    "bytes": 276,
+    "sha256": "4bb224cae78ae7172087acb4fb268e9754450630cfcdb1179ee70d9579ad598a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已设置。当前状态汇总：\n\n- **step:0-3 已完成**，step:4 刚开始运行 ~11 分钟\n- 预计 step:4 完成还需 ~60-85 min，step:5 再需 ~72-98 min\n- 总计约 2-3 小时后可执行早停\n- 每 4.5 分钟自动检查一次日志进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp027-step5-earlystop.md"
+}

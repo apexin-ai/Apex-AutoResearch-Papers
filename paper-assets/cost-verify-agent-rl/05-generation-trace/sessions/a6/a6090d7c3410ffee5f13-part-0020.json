@@ -1,0 +1,3506 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a6090d7c3410ffee5f13",
+  "rounds": [
+    {
+      "number": 318,
+      "messages": [
+        {
+          "source_line": 3421,
+          "timestamp": "2026-05-24T14:13:20.049812+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，0 critical warnings，17 页。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-003421"
+        }
+      ]
+    },
+    {
+      "number": 319,
+      "messages": [
+        {
+          "source_line": 3422,
+          "timestamp": "2026-05-24T14:54:15.388748+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 周俊伟 (ou_3b74f10baa043e6e4d06f1893106a70c)]: 正文里面图表的分布不太均匀，前几页太空了。请重新调整一下图表的位置，让论文的视觉观感可以上升一些。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "feishu:oc_4ebf0fb2d0159caa355a1a855f5ac59f"
+          },
+          "id": "event-003422"
+        },
+        {
+          "source_line": 3423,
+          "timestamp": "2026-05-24T14:54:27.960663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__pdf_to_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-003423"
+        },
+        {
+          "source_line": 3424,
+          "timestamp": "2026-05-24T14:54:28.434159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 473
+          },
+          "id": "event-003424"
+        },
+        {
+          "source_line": 3425,
+          "timestamp": "2026-05-24T14:54:34.700243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.pdf",
+              "project": "cost-verify-agent-rl",
+              "pages": "1-10",
+              "dpi": "150"
+            }
+          },
+          "id": "event-003425"
+        },
+        {
+          "source_line": 3426,
+          "timestamp": "2026-05-24T14:54:36.652709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 467.1}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 526.1}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 512.7}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 893.2}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 496.8}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 520.0}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 375.7}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 467.6}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 514.5}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p10.png\\\", \\\"width\\\": 1241, \\\"\n…[truncated 256 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1952
+          },
+          "id": "event-003426"
+        },
+        {
+          "source_line": 3427,
+          "timestamp": "2026-05-24T14:54:39.732741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p1.png"
+            }
+          },
+          "id": "event-003427"
+        },
+        {
+          "source_line": 3428,
+          "timestamp": "2026-05-24T14:54:40.227233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p2.png"
+            }
+          },
+          "id": "event-003428"
+        },
+        {
+          "source_line": 3429,
+          "timestamp": "2026-05-24T14:54:40.680315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 947
+          },
+          "id": "event-003429"
+        },
+        {
+          "source_line": 3430,
+          "timestamp": "2026-05-24T14:54:40.731016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p3.png"
+            }
+          },
+          "id": "event-003430"
+        },
+        {
+          "source_line": 3431,
+          "timestamp": "2026-05-24T14:54:41.635510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 1408
+          },
+          "id": "event-003431"
+        },
+        {
+          "source_line": 3432,
+          "timestamp": "2026-05-24T14:54:41.636629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 905
+          },
+          "id": "event-003432"
+        },
+        {
+          "source_line": 3433,
+          "timestamp": "2026-05-24T14:54:41.636953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-003433"
+        },
+        {
+          "source_line": 3434,
+          "timestamp": "2026-05-24T14:54:41.938355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-003434"
+        },
+        {
+          "source_line": 3435,
+          "timestamp": "2026-05-24T14:54:42.491557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 854
+          },
+          "id": "event-003435"
+        },
+        {
+          "source_line": 3436,
+          "timestamp": "2026-05-24T14:54:42.743727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 805
+          },
+          "id": "event-003436"
+        },
+        {
+          "source_line": 3437,
+          "timestamp": "2026-05-24T14:56:28.054625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Map all figure locations in tex",
+              "subagent_type": "Explore",
+              "prompt": "In the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/, find ALL \\begin{figure} and \\begin{table} declarations across all .tex files. For each one, report:\n1. Which file it's in\n2. The line number\n3. The placement specifier (e.g., [t], [h], [ht])\n4. The caption or label to identify which figure/table it is\n5. Any \\FloatBarrier usage\n\nSearch breadth: very thorough"
+            }
+          },
+          "id": "event-003437"
+        },
+        {
+          "source_line": 3438,
+          "timestamp": "2026-05-24T14:56:30.428238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/ -type f -name \"*.tex\" | head -20"
+            }
+          },
+          "id": "event-003438"
+        },
+        {
+          "source_line": 3439,
+          "timestamp": "2026-05-24T14:56:31.113008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Bash",
+            "elapsed_ms": 684
+          },
+          "id": "event-003439"
+        },
+        {
+          "source_line": 3440,
+          "timestamp": "2026-05-24T14:56:31.113316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper && python3 -c \"\nfrom subprocess import run\nr = run(['pdflatex', '-interaction=nonstopmode', 'main.tex'], capture_output=True, text=True, timeout=60)\nprint('Exit code:', r.returncode)\n# Count pages\nimport re\npages = re.findall(r'Output written on main.pdf \\((\\d+) page', r.stdout)\nprint('Pages:', pages)\n\"",
+              "description": "Compile paper to get current PDF",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-003440"
+        },
+        {
+          "source_line": 3441,
+          "timestamp": "2026-05-24T14:56:32.869766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\begin\\{(figure|table)\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-003441"
+        },
+        {
+          "source_line": 3442,
+          "timestamp": "2026-05-24T14:56:33.368595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex:24:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex:31:\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex:67:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex:81:\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex:113:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex:72:\\begin{table}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex:105:\\begin{table}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex:133:\\begin{table}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex:170:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex:182:\\begin{table}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex:218:\\begin{table}[h]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Grep",
+            "elapsed_ms": 498
+          },
+          "id": "event-003442"
+        },
+        {
+          "source_line": 3443,
+          "timestamp": "2026-05-24T14:56:34.774092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex"
+            }
+          },
+          "id": "event-003443"
+        },
+        {
+          "source_line": 3444,
+          "timestamp": "2026-05-24T14:56:35.264043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Theoretical Analysis}\n2\t\\label{sec:theory}\n3\t\n4\tSign misattribution is the more fundamental failure mechanism because it causes active divergence, not merely slow convergence. We derive the probability of incorrect gradient direction below; full proofs appear in Appendix~\\ref{app:theory_full}.\n5\t\n6\t\\textbf{Definition 1} (Locally correct action). \\textit{An action $a_t$ is \\textbf{locally correct} if it would receive positive advantage under an oracle that observes the full episode history $h_t$ and has access to the true action-value function. Equivalently,\\footnote{This equivalence is approximate; it holds exactly when all trajectories within an episode are equally likely under the reference policy, and approximately under the mild assumption that policy drift remains small during early training.} window $k$ contains locally correct actions if replacing them (holding all other windows fixed) would decrease the probability of episode success.}\n7\t\n8\t\\textbf{Proposition 1.} \\textit{Under step-independent training with binary episode reward $R_{\\text{episode}} \\in \\{0, r_+\\}$, the probability that window $k$'s advantage $\\hat{A}_k$ has the correct sign (aligned with local action quality) approaches the base success rate $p$ as the number of rollouts $K$ per group increases.}\n9\t\n10\t\\textit{Proof sketch.} In a failed episode ($R_{\\text{episode}} = 0$), all windows receive $R_k = 0$. If any rollout in the group succeeded, $\\mu > 0$, so every window in the failed episode receives $\\hat{A}_k < 0$---including windows with locally correct actions. The probability of receiving the wrong sign in a failed episode is $1 - (1-p)^{K-1}$ (at least one group member succeeded). As $K$ grows, this approaches $1-p$, and the overall probability of correct sign approaches $p$. \\hfill$\\square$\n11\t\n12\tThe key distinction is temporal. Information loss (M1) imposes a constant ceiling determined by $h$; sign misattribution (M2) is cumulative---each wrong-sign gradient step erodes po\n…[truncated 5724 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 489
+          },
+          "id": "event-003444"
+        },
+        {
+          "source_line": 3445,
+          "timestamp": "2026-05-24T14:56:35.264489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-003445"
+        },
+        {
+          "source_line": 3446,
+          "timestamp": "2026-05-24T14:56:35.264893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tStep-independent training collapses while episode-level training succeeds; a partial factorial design separates the two mechanisms; and window size $h$ modulates severity.\n5\t\n6\t\\subsection{Setup}\n7\t\\label{sec:setup}\n8\t\n9\tWe evaluate on ALFWorld~\\cite{shridhar2021alfworld}, a text-based household environment with six task types requiring sequential reasoning over up to 50 steps. The environment provides ternary reward: $R \\in \\{r_-, 0, r_+\\}$, where $r_- = -0.1$ per invalid action, $0$ for valid but unsuccessful actions, and $r_+$ for task success. Our theoretical analysis (Section~\\ref{sec:theory}) assumes the simplified binary case ($R \\in \\{0, r_+\\}$), which yields an upper bound on sign misattribution severity; Section~\\ref{sec:sign_verification} validates this bound under both reward structures. The base policy is Qwen3-1.7B fine-tuned on expert demonstrations (SFT baseline: 12.5\\% in-distribution). At this baseline success rate, Proposition~2 predicts the majority of gradient updates carry incorrect sign. All conditions use RAGEN~\\cite{ragen2025} (v0.1, commit \\texttt{3a6b48b})\\footnote{Our implementation extends RAGEN v0.1 with episode-level training support. Code available upon acceptance.} with GRPO~\\cite{shao2024deepseekmath} ($K{=}8$; full hyperparameters in Appendix~\\ref{app:hyperparameters}). We report success rate on a 134-task OOD set (primary) and 32-task in-distribution set (secondary). Seed counts are noted per condition.\n10\t\n11\t\\subsection{Partial Factorial Mechanism Separation}\n12\t\\label{sec:factorial_experiments}\n13\t\n14\tWe implement the partial factorial design from Section~\\ref{sec:factorial_design} (3 of 4 cells; Cell~C excluded due to NaN instability) with two seeds per condition. Cell~C (full observation, step-level advantage) would isolate M2 without M1, but we encountered persistent training instability in this configuration (Appendix~\\ref{app:cell_c}). Cell~C's NaN divergence, qualitat\n…[truncated 12217 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-003446"
+        },
+        {
+          "source_line": 3447,
+          "timestamp": "2026-05-24T14:56:35.265193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-003447"
+        },
+        {
+          "source_line": 3448,
+          "timestamp": "2026-05-24T14:56:35.416246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\section{Theoretical Analysis: Full Derivations}\n4\t\\label{app:theory_full}\n5\t\n6\t\\subsection{Why Sign Misattribution is the Core Mechanism}\n7\t\\label{app:sign_fundamental}\n8\t\n9\tThe two mechanisms identified in Section~\\ref{sec:dual_mechanism} operate at different layers and produce qualitatively different failures. Policy information loss (Mechanism 1) operates at the inference layer, restricting the observable context and establishing a structural performance ceiling that is constant across training. Sign misattribution (Mechanism 2) operates at the training layer, corrupting gradient directions and progressively degrading performance below this ceiling.\n10\t\n11\t\\textit{Proof of Proposition 1.} Define ``correct sign'' as follows: for a window containing locally beneficial actions, the correct sign of $\\hat{A}_k$ is positive (reinforcement); for a window containing locally detrimental actions, the correct sign is negative (suppression). Under binary reward, the return for window $k$ is $R_k = \\gamma^{(N-k)} \\cdot R_{\\text{episode}}$ (Equation~\\ref{eq:step_return}). In a failed episode ($R_{\\text{episode}} = 0$), all windows receive $R_k = 0$ regardless of their local action quality. If the group contains at least one successful rollout, the group mean $\\mu > 0$, and all windows in the failed episode receive negative advantages after normalization via Equation~\\ref{eq:grpo_advantage}. This includes windows where the agent took locally correct actions. Now consider a window with locally correct actions. In a successful episode (probability $p$), the window receives positive $\\hat{A}_k$, which is the correct sign. In a failed episode (probability $1 - p$), the window receives negative $\\hat{A}_k$ whenever $\\mu > 0$, which is the wrong sign. The probability that $\\mu = 0$ (all $K$ rollouts in the group failed) is $(1-p)^K$, which shrinks exponentially with $K$. As $K$ grows, nearly every failed episode produces a non-zero group mean, and the window receive\n…[truncated 24228 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-003448"
+        },
+        {
+          "source_line": 3449,
+          "timestamp": "2026-05-24T14:56:39.900306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "FloatBarrier",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper",
+              "type": "tex",
+              "output_mode": "content",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-003449"
+        },
+        {
+          "source_line": 3450,
+          "timestamp": "2026-05-24T14:56:40.407459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Grep",
+            "elapsed_ms": 507
+          },
+          "id": "event-003450"
+        },
+        {
+          "source_line": 3451,
+          "timestamp": "2026-05-24T14:56:41.850124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.tex"
+            }
+          },
+          "id": "event-003451"
+        },
+        {
+          "source_line": 3452,
+          "timestamp": "2026-05-24T14:56:42.335274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{amssymb}\n14\t\\usepackage{amsthm}\n15\t\\usepackage{enumitem}\n16\t\n17\t\\setlength{\\textfloatsep}{8pt plus 2pt minus 2pt}\n18\t\\setlength{\\floatsep}{8pt plus 2pt minus 2pt}\n19\t\\setlength{\\intextsep}{6pt plus 2pt minus 2pt}\n20\t\n21\t\\title{Sign Misattribution in Step-Independent Agent RL:\\\\Dual Mechanism Diagnosis and Episode-Level Correction}\n22\t\n23\t\\author{Anonymous}\n24\t\n25\t\\begin{document}\n26\t\\maketitle\n27\t\n28\t\\begin{abstract}\n29\tReinforcement learning for multi-turn LLM agents requires credit assignment across long interaction trajectories. The dominant training paradigm decomposes these trajectories into fixed-size windows optimized independently via Group Relative Policy Optimization (GRPO), yet this ubiquitous design choice has received little scrutiny. We identify a structural credit assignment pathology driven by two distinct mechanisms: \\textit{policy information loss}, which truncates cross-window context and imposes a constant performance ceiling, and \\textit{advantage sign misattribution}, which causes a substantial fraction of gradient updates for locally correct actions to carry incorrect sign. A partial factorial experiment (3 of 4 cells) isolates each mechanism: removing sign misattribution converts catastrophic collapse into bounded learning; removing information loss enables out-of-distribution (OOD) generalization. Direct sign measurement confirms the theoretical prediction, with credit agreement dropping to near-random levels. Episode-level GRPO, which treats the full trajectory as a single optimization sample, addresses both failure modes, yielding 17.2\\% mean OOD success versus 6.7\\% SFT baseline. However, a systematic multi-seed evaluation reveals that avoiding collapse is necess\n…[truncated 1947 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 485
+          },
+          "id": "event-003452"
+        },
+        {
+          "source_line": 3453,
+          "timestamp": "2026-05-24T14:56:43.941476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-003453"
+        },
+        {
+          "source_line": 3454,
+          "timestamp": "2026-05-24T14:56:44.243011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tReinforcement learning from sparse terminal reward has emerged as a promising paradigm for training LLM agents on multi-turn interactive tasks spanning 30--50 interaction steps~\\cite{kim2025reflact,digiRL2024,wang2022scienceworld}. Group Relative Policy Optimization (GRPO)~\\cite{shao2024deepseekmath}, with its critic-free design, has become the algorithm of choice. Yet a gap persists between the promise of RL-driven agent improvement and the reality of training outcomes: recent agent RL systems~\\cite{ragen2025,selfguide2026,spear2025,feng2025gigpo} share a common, unscrutinized implementation pattern (decomposing trajectories into fixed-size windows, each optimized independently) and frequently report training instability without diagnosing its root cause.\n5\t\n6\tWe show this \\textit{step-independent} default introduces a fundamental credit assignment pathology. Step-independent training partitions trajectories into non-overlapping $h$-step windows, each optimized via GRPO. This produces a two-phase collapse: task success drops to 0\\% while action validity initially remains high, then continued training destroys even basic formatting. Standard remedies (dense reward shaping, discount tuning) fail. Concurrent methods that improve per-step credit quality (GiGPO~\\cite{feng2025gigpo}, GAGPO~\\cite{gagpo2026}, Turn-PPO~\\cite{turnppo2025}, HCAPO~\\cite{hcapo2026}) address the credit assignment challenge through improved step-level mechanisms, validating that sign correctness is the critical factor. Our contribution is orthogonal: we formally diagnose \\textit{why} the default windowing fails.\n7\t\n8\tWe trace the collapse to two mechanisms at different layers. \\textit{\\textbf{Policy information loss}} (M1) operates at the inference layer: each window lacks access to earlier observations, imposing a constant performance ceiling. \\textit{\\textbf{Advantage sign misattribution}} (M2) operates at the training layer: under binary\n…[truncated 1880 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-003454"
+        },
+        {
+          "source_line": 3455,
+          "timestamp": "2026-05-24T14:56:44.243552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex"
+            }
+          },
+          "id": "event-003455"
+        },
+        {
+          "source_line": 3456,
+          "timestamp": "2026-05-24T14:56:44.344250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Problem Formulation and GRPO}\n5\t\\label{sec:problem_formulation}\n6\t\n7\tWe model the multi-turn agent as a partially observable Markov decision process (POMDP)~\\cite{kaelbling1998planning} where the policy $\\pi_\\phi(a_t \\mid h_t)$ generates actions conditioned on interaction history $h_t = (o_1, a_1, \\ldots, o_t)$. Episodes of $T$ steps terminate with binary reward $R \\in \\{0, r_+\\}$ (our experiments use a penalty variant with $r_- = -0.1$ per invalid action; Section~\\ref{sec:setup}). GRPO~\\cite{shao2024deepseekmath} samples $K$ rollouts per task and computes group-relative advantages:\n8\t\\begin{align}\n9\t\\hat{A}_k &= \\frac{R_k - \\mu}{\\sigma + \\epsilon}, \\notag \\\\\n10\t\\mu &= \\frac{1}{K}\\sum_{j=1}^K R_j, \\quad \\sigma = \\sqrt{\\frac{1}{K}\\sum_{j=1}^K (R_j - \\mu)^2}\n11\t\\label{eq:grpo_advantage}\n12\t\\end{align}\n13\tGRPO is episode-level by design: each rollout receives one return and one advantage, with no inherent temporal discounting.\n14\t\n15\t\\subsection{Step-Independent Windowing}\n16\t\\label{sec:step_independent}\n17\t\n18\tAgent RL frameworks must reconcile GRPO's episode-level design with the memory constraints of long trajectories. RAGEN~\\cite{ragen2025} introduces \\textbf{step-independent training}: the trajectory is partitioned into non-overlapping $h$-step windows, each receiving a discounted return:\n19\t\\begin{equation}\n20\tR_k = \\gamma^{(N - k)} \\cdot R_{\\text{episode}}\n21\t\\label{eq:step_return}\n22\t\\end{equation}\n23\twhere $N = \\lceil T/h \\rceil$ is the number of windows. Each window is optimized as an independent GRPO sample. This reduces sequence length from $O(T)$ to $O(h)$ and multiplies the effective batch size, but structurally alters credit assignment.\n24\t\n25\t\\begin{figure*}[t]\n26\t\\centering\n27\t\\includegraphics[width=\\textwidth]{fig_overview.pdf}\n28\t\\caption{Step-independent windowing (left) partitions the trajectory into fixed windows, each optimized independently. This introduces two failure mechanisms: M1 (info\n…[truncated 3401 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-003456"
+        },
+        {
+          "source_line": 3457,
+          "timestamp": "2026-05-24T14:56:44.394885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-003457"
+        },
+        {
+          "source_line": 3458,
+          "timestamp": "2026-05-24T14:56:44.395220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{RL for multi-turn LLM agents.}\n5\tGRPO~\\cite{shao2024deepseekmath}, PPO~\\cite{schulman2017ppo}, and RLHF methods~\\cite{ouyang2022instructgpt,rafailov2023dpo} have been extended to multi-turn agents~\\cite{yao2023react,ragen2025} via step-independent windowing. Subsequent work improves algorithms~\\cite{feng2025gigpo,dapo2025}, rewards~\\cite{selfguide2026}, or pipelines~\\cite{spear2025,digiRL2024}, but all assume windowing is benign.\n6\t\n7\t\\paragraph{Credit assignment.}\n8\tClassical methods span bootstrapping~\\cite{sutton1988td} to Monte Carlo~\\cite{williams1992reinforce,schulman2016gae} (Appendix~\\ref{app:classical_connection}). Step-independent GRPO inherits the worst of outcome-vs-process supervision~\\cite{lightman2024lets}: coarse credit without correct direction. ArCHer~\\cite{zhou2024archer}, VinePPO~\\cite{kazemnejad2024vineppo}, PRIME~\\cite{prime2025}, and VAPO~\\cite{vapo2025} improve credit granularity; our analysis explains when such methods are safe (only after M2 is resolved). IRC~\\cite{irc2026}, MC-GRPO~\\cite{mcgrpo2026}, GRPO-$\\lambda$~\\cite{grpolambda2025}, and OAR~\\cite{oar2026} corroborate our sign-level diagnosis. Turn-PPO~\\cite{turnppo2025}, GAGPO~\\cite{gagpo2026}, MT-GRPO~\\cite{mtgrpo2025}, SWEET-RL~\\cite{sweetrl2025}, iStar~\\cite{istar2025}, and HCAPO~\\cite{hcapo2026} propose finer-grained credit that addresses sign correctness.\n9\t\n10\t\\paragraph{GRPO collapse phenomena.}\n11\tRAGEN-2~\\cite{ragen2_2026}, GRPO-Collapse~\\cite{grpocollapse2025}, RC-GRPO~\\cite{rcgrpo2026}, and EDGE-GRPO~\\cite{edgegrpo2025} address variance collapse. Our dual-mechanism diagnosis unifies these: reward variance collapse is a special case of reward saturation (Section~\\ref{sec:theory}), and the death spiral follows from the M1--M2 vicious cycle.\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-003458"
+        },
+        {
+          "source_line": 3459,
+          "timestamp": "2026-05-24T14:56:46.426583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-003459"
+        },
+        {
+          "source_line": 3460,
+          "timestamp": "2026-05-24T14:56:46.627656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Generality.}\n5\tSign misattribution arises whenever three properties co-occur: step-level windowing, sparse binary reward, and group-relative normalization---theoretically sufficient within any group-relative framework (Section~\\ref{sec:theory}), though verified only on GRPO with ALFWorld and ScienceWorld. M1 and M2 interact: M1 lowers $p$, increasing wrong-sign updates under M2, which further degrades $p$ (Appendix~\\ref{app:why_defaults}).\n6\t\n7\t\\paragraph{Mechanism interaction and seed dependence.}\n8\tCell~C (full trajectory + step-level advantage) produces NaN instability rather than gradual collapse, suggesting M1 may unintentionally stabilize training by limiting gradient variance. Multi-seed evaluation reveals bimodal OOD transfer---with training duration unable to explain the gap (seed100: $+$1.5pp step~5$\\to$10), pointing to initialization sensitivity (Appendix~\\ref{app:early_signal}).\n9\t\n10\t\\paragraph{Concurrent methods.}\n11\tHCAPO~\\cite{hcapo2026} and GiGPO~\\cite{feng2025gigpo} succeed with the same $h{=}2$ that causes Cell~A collapse by replacing step-level advantage with finer-grained credit, directly eliminating M2 while preserving M1. Our framework provides a consistent post-hoc explanation: HCAPO's 91.4\\% (7B) and GiGPO's 90.2\\% are consistent with M2 being the primary bottleneck at sufficient scale, where M1's ceiling permits strong performance. We emphasize these are post-hoc consistency analyses based on published results, not predictions; we do not reproduce these methods (see also Limitations).\n12\t\n13\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-003460"
+        },
+        {
+          "source_line": 3461,
+          "timestamp": "2026-05-24T14:56:46.628027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-003461"
+        },
+        {
+          "source_line": 3462,
+          "timestamp": "2026-05-24T14:56:46.879116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tStep-independent training fails through two mechanisms: information loss imposes a constant performance ceiling while sign misattribution causes cumulative degradation. Episode-level GRPO validates the diagnosis by addressing both, though only 36\\% of seeds achieve significant OOD generalization. This finding applies to GRPO-style methods under step-level windowing, sparse reward, and group-relative normalization (Section~\\ref{sec:dual_mechanism}), verified on GRPO in ALFWorld and ScienceWorld.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-003462"
+        },
+        {
+          "source_line": 3463,
+          "timestamp": "2026-05-24T14:57:10.902733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have comprehensive information about all figures and tables. Let me compile the complete report:\n\n## Complete Report: All \\begin{figure} and \\begin{table} Declarations\n\nBased on my thorough search of all .tex files in `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/`, here is the complete inventory:\n\n### FIGURES\n\n**1. File: theoretical_analysis.tex**\n   - **Line:** 24\n   - **Placement specifier:** `[t]`\n   - **Caption/Label:** \"Upper bound on the probability of correct gradient sign as a function of episode success rate $p$ (Proposition~2)... At ALFWorld's baseline ($p{=}12.5\\%$, $K{=}8$), at most 19.1\\% of updates are correct.\"\n   - **Label reference:** `fig:theory_curve`\n   - **FloatBarrier usage:** None detected\n\n**2. File: experiments.tex**\n   - **Line:** 67\n   - **Placement specifier:** `[t]`\n   - **Caption/Label:** \"Sign-episode correlation (binary reward, penalty${=}0$) vs.\\ credit agreement rate (penalty reward). Under binary reward, advantage sign near-perfectly tracks episode outcome (99.6\\%, $270/271$), confirming M2. Under penalty reward, credit agreement with local action quality drops to 52.1\\% ($n{=}3{,}000$), near random chance (dashed line).\"\n   - **Label reference:** `fig:sign_misattribution`\n   - **FloatBarrier usage:** None detected\n\n**3. File: experiments.tex**\n   - **Line:** 24\n   - **Placement specifier:** `[t]` (note: this is a figure* environment with `[t]`)\n   - **Caption/Label:** \"(a)~Training dynamics across factorial conditions (metric type indicated in legend). Cell~A collapses within 5 steps; Cell~B shows bounded learning; Cell~D improves monotonically. (b)~Window size $h$ vs.\\ success rate (single seed)... Hatched bars indicate collapsed conditions.\"\n   - **Label reference:** `fig:hsweep`\n   - **FloatBarrier usage:** None detected\n\n**4. File: appendix.tex**\n   - **Line:** 170\n   - **Placement specifier:** `[h]`\n   - **Caption/Label:** \"Response length over training for 7 seeds u\n…[truncated 5641 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Agent",
+            "elapsed_ms": 42848
+          },
+          "id": "event-003463"
+        },
+        {
+          "source_line": 3464,
+          "timestamp": "2026-05-24T14:57:11.906318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code: 0\nPages: ['17']\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/director_fd480a9c"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Bash",
+            "elapsed_ms": 40792
+          },
+          "id": "event-003464"
+        },
+        {
+          "source_line": 3465,
+          "timestamp": "2026-05-24T14:57:22.217754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__pdf_to_images",
+              "max_results": "1"
+            }
+          },
+          "id": "event-003465"
+        },
+        {
+          "source_line": 3466,
+          "timestamp": "2026-05-24T14:57:22.665174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 447
+          },
+          "id": "event-003466"
+        },
+        {
+          "source_line": 3467,
+          "timestamp": "2026-05-24T14:57:25.176349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.pdf",
+              "project": "cost-verify-agent-rl",
+              "pages": "1-10",
+              "dpi": "150"
+            }
+          },
+          "id": "event-003467"
+        },
+        {
+          "source_line": 3468,
+          "timestamp": "2026-05-24T14:57:26.706411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 467.1}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 526.1}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 512.7}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 893.2}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 496.8}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 520.0}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 375.7}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 467.6}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 514.5}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p10.png\\\", \\\"width\\\": 1241, \\\"\n…[truncated 256 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1530
+          },
+          "id": "event-003468"
+        },
+        {
+          "source_line": 3469,
+          "timestamp": "2026-05-24T14:57:31.477093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p1.png"
+            }
+          },
+          "id": "event-003469"
+        },
+        {
+          "source_line": 3470,
+          "timestamp": "2026-05-24T14:57:32.142266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 665
+          },
+          "id": "event-003470"
+        },
+        {
+          "source_line": 3471,
+          "timestamp": "2026-05-24T14:57:32.193222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p2.png"
+            }
+          },
+          "id": "event-003471"
+        },
+        {
+          "source_line": 3472,
+          "timestamp": "2026-05-24T14:57:32.796605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 603
+          },
+          "id": "event-003472"
+        },
+        {
+          "source_line": 3473,
+          "timestamp": "2026-05-24T14:57:33.098149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p3.png"
+            }
+          },
+          "id": "event-003473"
+        },
+        {
+          "source_line": 3474,
+          "timestamp": "2026-05-24T14:57:33.650763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-003474"
+        },
+        {
+          "source_line": 3475,
+          "timestamp": "2026-05-24T14:57:33.702351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 604
+          },
+          "id": "event-003475"
+        },
+        {
+          "source_line": 3476,
+          "timestamp": "2026-05-24T14:57:34.306081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 655
+          },
+          "id": "event-003476"
+        },
+        {
+          "source_line": 3477,
+          "timestamp": "2026-05-24T14:57:34.608635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-003477"
+        },
+        {
+          "source_line": 3478,
+          "timestamp": "2026-05-24T14:57:35.161873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 553
+          },
+          "id": "event-003478"
+        },
+        {
+          "source_line": 3479,
+          "timestamp": "2026-05-24T14:57:40.181580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-003479"
+        },
+        {
+          "source_line": 3480,
+          "timestamp": "2026-05-24T14:57:40.784743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 603
+          },
+          "id": "event-003480"
+        },
+        {
+          "source_line": 3481,
+          "timestamp": "2026-05-24T14:57:41.036089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-003481"
+        },
+        {
+          "source_line": 3482,
+          "timestamp": "2026-05-24T14:57:41.395944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-003482"
+        },
+        {
+          "source_line": 3483,
+          "timestamp": "2026-05-24T14:57:41.497453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 461
+          },
+          "id": "event-003483"
+        },
+        {
+          "source_line": 3484,
+          "timestamp": "2026-05-24T14:57:42.377986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 982
+          },
+          "id": "event-003484"
+        },
+        {
+          "source_line": 3485,
+          "timestamp": "2026-05-24T14:58:19.750095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-003485"
+        },
+        {
+          "source_line": 3486,
+          "timestamp": "2026-05-24T14:58:20.207777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tReinforcement learning from sparse terminal reward has emerged as a promising paradigm for training LLM agents on multi-turn interactive tasks spanning 30--50 interaction steps~\\cite{kim2025reflact,digiRL2024,wang2022scienceworld}. Group Relative Policy Optimization (GRPO)~\\cite{shao2024deepseekmath}, with its critic-free design, has become the algorithm of choice. Yet a gap persists between the promise of RL-driven agent improvement and the reality of training outcomes: recent agent RL systems~\\cite{ragen2025,selfguide2026,spear2025,feng2025gigpo} share a common, unscrutinized implementation pattern (decomposing trajectories into fixed-size windows, each optimized independently) and frequently report training instability without diagnosing its root cause.\n5\t\n6\tWe show this \\textit{step-independent} default introduces a fundamental credit assignment pathology. Step-independent training partitions trajectories into non-overlapping $h$-step windows, each optimized via GRPO. This produces a two-phase collapse: task success drops to 0\\% while action validity initially remains high, then continued training destroys even basic formatting. Standard remedies (dense reward shaping, discount tuning) fail. Concurrent methods that improve per-step credit quality (GiGPO~\\cite{feng2025gigpo}, GAGPO~\\cite{gagpo2026}, Turn-PPO~\\cite{turnppo2025}, HCAPO~\\cite{hcapo2026}) address the credit assignment challenge through improved step-level mechanisms, validating that sign correctness is the critical factor. Our contribution is orthogonal: we formally diagnose \\textit{why} the default windowing fails.\n7\t\n8\tWe trace the collapse to two mechanisms at different layers. \\textit{\\textbf{Policy information loss}} (M1) operates at the inference layer: each window lacks access to earlier observations, imposing a constant performance ceiling. \\textit{\\textbf{Advantage sign misattribution}} (M2) operates at the training layer: under binary\n…[truncated 1880 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 457
+          },
+          "id": "event-003486"
+        },
+        {
+          "source_line": 3487,
+          "timestamp": "2026-05-24T14:58:20.208117+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex"
+            }
+          },
+          "id": "event-003487"
+        },
+        {
+          "source_line": 3488,
+          "timestamp": "2026-05-24T14:58:20.710189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Problem Formulation and GRPO}\n5\t\\label{sec:problem_formulation}\n6\t\n7\tWe model the multi-turn agent as a partially observable Markov decision process (POMDP)~\\cite{kaelbling1998planning} where the policy $\\pi_\\phi(a_t \\mid h_t)$ generates actions conditioned on interaction history $h_t = (o_1, a_1, \\ldots, o_t)$. Episodes of $T$ steps terminate with binary reward $R \\in \\{0, r_+\\}$ (our experiments use a penalty variant with $r_- = -0.1$ per invalid action; Section~\\ref{sec:setup}). GRPO~\\cite{shao2024deepseekmath} samples $K$ rollouts per task and computes group-relative advantages:\n8\t\\begin{align}\n9\t\\hat{A}_k &= \\frac{R_k - \\mu}{\\sigma + \\epsilon}, \\notag \\\\\n10\t\\mu &= \\frac{1}{K}\\sum_{j=1}^K R_j, \\quad \\sigma = \\sqrt{\\frac{1}{K}\\sum_{j=1}^K (R_j - \\mu)^2}\n11\t\\label{eq:grpo_advantage}\n12\t\\end{align}\n13\tGRPO is episode-level by design: each rollout receives one return and one advantage, with no inherent temporal discounting.\n14\t\n15\t\\subsection{Step-Independent Windowing}\n16\t\\label{sec:step_independent}\n17\t\n18\tAgent RL frameworks must reconcile GRPO's episode-level design with the memory constraints of long trajectories. RAGEN~\\cite{ragen2025} introduces \\textbf{step-independent training}: the trajectory is partitioned into non-overlapping $h$-step windows, each receiving a discounted return:\n19\t\\begin{equation}\n20\tR_k = \\gamma^{(N - k)} \\cdot R_{\\text{episode}}\n21\t\\label{eq:step_return}\n22\t\\end{equation}\n23\twhere $N = \\lceil T/h \\rceil$ is the number of windows. Each window is optimized as an independent GRPO sample. This reduces sequence length from $O(T)$ to $O(h)$ and multiplies the effective batch size, but structurally alters credit assignment.\n24\t\n25\t\\begin{figure*}[t]\n26\t\\centering\n27\t\\includegraphics[width=\\textwidth]{fig_overview.pdf}\n28\t\\caption{Step-independent windowing (left) partitions the trajectory into fixed windows, each optimized independently. This introduces two failure mechanisms: M1 (info\n…[truncated 3401 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-003488"
+        },
+        {
+          "source_line": 3489,
+          "timestamp": "2026-05-24T14:58:20.710606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex"
+            }
+          },
+          "id": "event-003489"
+        },
+        {
+          "source_line": 3490,
+          "timestamp": "2026-05-24T14:58:21.012526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Theoretical Analysis}\n2\t\\label{sec:theory}\n3\t\n4\tSign misattribution is the more fundamental failure mechanism because it causes active divergence, not merely slow convergence. We derive the probability of incorrect gradient direction below; full proofs appear in Appendix~\\ref{app:theory_full}.\n5\t\n6\t\\textbf{Definition 1} (Locally correct action). \\textit{An action $a_t$ is \\textbf{locally correct} if it would receive positive advantage under an oracle that observes the full episode history $h_t$ and has access to the true action-value function. Equivalently,\\footnote{This equivalence is approximate; it holds exactly when all trajectories within an episode are equally likely under the reference policy, and approximately under the mild assumption that policy drift remains small during early training.} window $k$ contains locally correct actions if replacing them (holding all other windows fixed) would decrease the probability of episode success.}\n7\t\n8\t\\textbf{Proposition 1.} \\textit{Under step-independent training with binary episode reward $R_{\\text{episode}} \\in \\{0, r_+\\}$, the probability that window $k$'s advantage $\\hat{A}_k$ has the correct sign (aligned with local action quality) approaches the base success rate $p$ as the number of rollouts $K$ per group increases.}\n9\t\n10\t\\textit{Proof sketch.} In a failed episode ($R_{\\text{episode}} = 0$), all windows receive $R_k = 0$. If any rollout in the group succeeded, $\\mu > 0$, so every window in the failed episode receives $\\hat{A}_k < 0$---including windows with locally correct actions. The probability of receiving the wrong sign in a failed episode is $1 - (1-p)^{K-1}$ (at least one group member succeeded). As $K$ grows, this approaches $1-p$, and the overall probability of correct sign approaches $p$. \\hfill$\\square$\n11\t\n12\tThe key distinction is temporal. Information loss (M1) imposes a constant ceiling determined by $h$; sign misattribution (M2) is cumulative---each wrong-sign gradient step erodes po\n…[truncated 5724 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-003490"
+        },
+        {
+          "source_line": 3491,
+          "timestamp": "2026-05-24T14:58:21.063273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-003491"
+        },
+        {
+          "source_line": 3492,
+          "timestamp": "2026-05-24T14:58:21.114096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tStep-independent training collapses while episode-level training succeeds; a partial factorial design separates the two mechanisms; and window size $h$ modulates severity.\n5\t\n6\t\\subsection{Setup}\n7\t\\label{sec:setup}\n8\t\n9\tWe evaluate on ALFWorld~\\cite{shridhar2021alfworld}, a text-based household environment with six task types requiring sequential reasoning over up to 50 steps. The environment provides ternary reward: $R \\in \\{r_-, 0, r_+\\}$, where $r_- = -0.1$ per invalid action, $0$ for valid but unsuccessful actions, and $r_+$ for task success. Our theoretical analysis (Section~\\ref{sec:theory}) assumes the simplified binary case ($R \\in \\{0, r_+\\}$), which yields an upper bound on sign misattribution severity; Section~\\ref{sec:sign_verification} validates this bound under both reward structures. The base policy is Qwen3-1.7B fine-tuned on expert demonstrations (SFT baseline: 12.5\\% in-distribution). At this baseline success rate, Proposition~2 predicts the majority of gradient updates carry incorrect sign. All conditions use RAGEN~\\cite{ragen2025} (v0.1, commit \\texttt{3a6b48b})\\footnote{Our implementation extends RAGEN v0.1 with episode-level training support. Code available upon acceptance.} with GRPO~\\cite{shao2024deepseekmath} ($K{=}8$; full hyperparameters in Appendix~\\ref{app:hyperparameters}). We report success rate on a 134-task OOD set (primary) and 32-task in-distribution set (secondary). Seed counts are noted per condition.\n10\t\n11\t\\subsection{Partial Factorial Mechanism Separation}\n12\t\\label{sec:factorial_experiments}\n13\t\n14\tWe implement the partial factorial design from Section~\\ref{sec:factorial_design} (3 of 4 cells; Cell~C excluded due to NaN instability) with two seeds per condition. Cell~C (full observation, step-level advantage) would isolate M2 without M1, but we encountered persistent training instability in this configuration (Appendix~\\ref{app:cell_c}). Cell~C's NaN divergence, qualitat\n…[truncated 12217 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-003492"
+        },
+        {
+          "source_line": 3493,
+          "timestamp": "2026-05-24T14:59:08.508503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "fig:overview",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-003493"
+        },
+        {
+          "source_line": 3494,
+          "timestamp": "2026-05-24T14:59:09.006382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex:29:\\label{fig:overview}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.aux:352:\\newlabel{fig:overview}{{1}{4}{Step-independent windowing (left) partitions the trajectory into fixed windows, each optimized independently. This introduces two failure mechanisms: M1 (information loss) truncates context at window boundaries, and M2 (sign misattribution) assigns all windows the same advantage sign based on episode outcome. Episode-level training (right) treats the full trajectory as a single sample, eliminating both mechanisms}{figure.caption.4}{}}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Grep",
+            "elapsed_ms": 497
+          },
+          "id": "event-003494"
+        },
+        {
+          "source_line": 3495,
+          "timestamp": "2026-05-24T14:59:38.164393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-003495"
+        },
+        {
+          "source_line": 3496,
+          "timestamp": "2026-05-24T14:59:38.676448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Generality.}\n5\tSign misattribution arises whenever three properties co-occur: step-level windowing, sparse binary reward, and group-relative normalization---theoretically sufficient within any group-relative framework (Section~\\ref{sec:theory}), though verified only on GRPO with ALFWorld and ScienceWorld. M1 and M2 interact: M1 lowers $p$, increasing wrong-sign updates under M2, which further degrades $p$ (Appendix~\\ref{app:why_defaults}).\n6\t\n7\t\\paragraph{Mechanism interaction and seed dependence.}\n8\tCell~C (full trajectory + step-level advantage) produces NaN instability rather than gradual collapse, suggesting M1 may unintentionally stabilize training by limiting gradient variance. Multi-seed evaluation reveals bimodal OOD transfer---with training duration unable to explain the gap (seed100: $+$1.5pp step~5$\\to$10), pointing to initialization sensitivity (Appendix~\\ref{app:early_signal}).\n9\t\n10\t\\paragraph{Concurrent methods.}\n11\tHCAPO~\\cite{hcapo2026} and GiGPO~\\cite{feng2025gigpo} succeed with the same $h{=}2$ that causes Cell~A collapse by replacing step-level advantage with finer-grained credit, directly eliminating M2 while preserving M1. Our framework provides a consistent post-hoc explanation: HCAPO's 91.4\\% (7B) and GiGPO's 90.2\\% are consistent with M2 being the primary bottleneck at sufficient scale, where M1's ceiling permits strong performance. We emphasize these are post-hoc consistency analyses based on published results, not predictions; we do not reproduce these methods (see also Limitations).\n12\t\n13\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 512
+          },
+          "id": "event-003496"
+        },
+        {
+          "source_line": 3497,
+          "timestamp": "2026-05-24T14:59:40.835470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-003497"
+        },
+        {
+          "source_line": 3498,
+          "timestamp": "2026-05-24T14:59:40.886093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tStep-independent training fails through two mechanisms: information loss imposes a constant performance ceiling while sign misattribution causes cumulative degradation. Episode-level GRPO validates the diagnosis by addressing both, though only 36\\% of seeds achieve significant OOD generalization. This finding applies to GRPO-style methods under step-level windowing, sparse reward, and group-relative normalization (Section~\\ref{sec:dual_mechanism}), verified on GRPO in ALFWorld and ScienceWorld.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-003498"
+        },
+        {
+          "source_line": 3499,
+          "timestamp": "2026-05-24T15:00:00.155527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex",
+              "old_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_overview.pdf}\n\\caption{Step-independent windowing (left) partitions the trajectory into fixed windows, each optimized independently. This introduces two failure mechanisms: M1 (information loss) truncates context at window boundaries, and M2 (sign misattribution) assigns all windows the same advantage sign based on episode outcome. Episode-level training (right) treats the full trajectory as a single sample, eliminating both mechanisms.}\n\\label{fig:overview}\n\\end{figure*}\n\n\\subsection{Dual Mechanism Analysis}",
+              "new_string": "\\subsection{Dual Mechanism Analysis}"
+            }
+          },
+          "id": "event-003499"
+        },
+        {
+          "source_line": 3500,
+          "timestamp": "2026-05-24T15:00:00.670530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "elapsed_ms": 515
+          },
+          "id": "event-003500"
+        },
+        {
+          "source_line": 3501,
+          "timestamp": "2026-05-24T15:00:03.051513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/introduction.tex",
+              "old_string": "\\item \\textbf{Empirical validation.} We validate this diagnosis through a partial factorial experiment that isolates each mechanism, direct sign measurement confirms the theoretical prediction at near-random levels, and preliminary cross-scale (8B) and cross-environment (ScienceWorld) evidence supports generality. Episode-level training (reverting to GRPO's original design) addresses both mechanisms, but a systematic 11-seed evaluation reveals seed-dependent generalization: 73\\% of seeds avoid collapse while only 36\\% achieve statistically significant OOD improvement.\n\\end{enumerate}",
+              "new_string": "\\item \\textbf{Empirical validation.} We validate this diagnosis through a partial factorial experiment that isolates each mechanism, direct sign measurement confirms the theoretical prediction at near-random levels, and preliminary cross-scale (8B) and cross-environment (ScienceWorld) evidence supports generality. Episode-level training (reverting to GRPO's original design) addresses both mechanisms, but a systematic 11-seed evaluation reveals seed-dependent generalization: 73\\% of seeds avoid collapse while only 36\\% achieve statistically significant OOD improvement.\n\\end{enumerate}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_overview.pdf}\n\\caption{Step-independent windowing (left) partitions the trajectory into fixed windows, each optimized independently. This introduces two failure mechanisms: M1 (information loss) truncates context at window boundaries, and M2 (sign misattribution) assigns all windows the same advantage sign based on episode outcome. Episode-level training (right) treats the full trajectory as a single sample, eliminating both mechanisms.}\n\\label{fig:overview}\n\\end{figure*}"
+            }
+          },
+          "id": "event-003501"
+        },
+        {
+          "source_line": 3502,
+          "timestamp": "2026-05-24T15:00:03.102292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-003502"
+        },
+        {
+          "source_line": 3503,
+          "timestamp": "2026-05-24T15:00:07.878194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && echo \"OK\"",
+              "description": "Compile paper twice for float placement",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-003503"
+        },
+        {
+          "source_line": 3504,
+          "timestamp": "2026-05-24T15:00:09.901644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OK\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/director_fd480a9c"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Bash",
+            "elapsed_ms": 2023
+          },
+          "id": "event-003504"
+        },
+        {
+          "source_line": 3505,
+          "timestamp": "2026-05-24T15:00:18.917319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.pdf",
+              "project": "cost-verify-agent-rl",
+              "pages": "1-8",
+              "dpi": "150"
+            }
+          },
+          "id": "event-003505"
+        },
+        {
+          "source_line": 3506,
+          "timestamp": "2026-05-24T15:00:20.300827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 467.1}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 526.1}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 866.6}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 540.9}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 497.3}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 528.8}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 375.7}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 467.6}], \\\"total_pages\\\": 17, \\\"rendered_pages\\\": 8, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1383
+          },
+          "id": "event-003506"
+        },
+        {
+          "source_line": 3507,
+          "timestamp": "2026-05-24T15:00:24.032627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p1.png"
+            }
+          },
+          "id": "event-003507"
+        },
+        {
+          "source_line": 3508,
+          "timestamp": "2026-05-24T15:00:24.538700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p2.png"
+            }
+          },
+          "id": "event-003508"
+        },
+        {
+          "source_line": 3509,
+          "timestamp": "2026-05-24T15:00:25.091734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 1059
+          },
+          "id": "event-003509"
+        },
+        {
+          "source_line": 3510,
+          "timestamp": "2026-05-24T15:00:25.092883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 554
+          },
+          "id": "event-003510"
+        },
+        {
+          "source_line": 3511,
+          "timestamp": "2026-05-24T15:00:25.143451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p3.png"
+            }
+          },
+          "id": "event-003511"
+        },
+        {
+          "source_line": 3512,
+          "timestamp": "2026-05-24T15:00:25.695892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-003512"
+        },
+        {
+          "source_line": 3513,
+          "timestamp": "2026-05-24T15:00:25.748329+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 604
+          },
+          "id": "event-003513"
+        },
+        {
+          "source_line": 3514,
+          "timestamp": "2026-05-24T15:00:26.002945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-003514"
+        },
+        {
+          "source_line": 3515,
+          "timestamp": "2026-05-24T15:00:26.756949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 1061
+          },
+          "id": "event-003515"
+        },
+        {
+          "source_line": 3516,
+          "timestamp": "2026-05-24T15:00:26.908680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 905
+          },
+          "id": "event-003516"
+        },
+        {
+          "source_line": 3517,
+          "timestamp": "2026-05-24T15:00:58.063388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-003517"
+        },
+        {
+          "source_line": 3518,
+          "timestamp": "2026-05-24T15:00:58.570736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-003518"
+        },
+        {
+          "source_line": 3519,
+          "timestamp": "2026-05-24T15:00:58.721604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-003519"
+        },
+        {
+          "source_line": 3520,
+          "timestamp": "2026-05-24T15:00:59.377745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 1314
+          },
+          "id": "event-003520"
+        },
+        {
+          "source_line": 3521,
+          "timestamp": "2026-05-24T15:00:59.833506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 1262
+          },
+          "id": "event-003521"
+        },
+        {
+          "source_line": 3522,
+          "timestamp": "2026-05-24T15:01:00.237041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 1515
+          },
+          "id": "event-003522"
+        },
+        {
+          "source_line": 3523,
+          "timestamp": "2026-05-24T15:01:35.130702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/introduction.tex",
+              "old_string": "\\item \\textbf{Empirical validation.} We validate this diagnosis through a partial factorial experiment that isolates each mechanism, direct sign measurement confirms the theoretical prediction at near-random levels, and preliminary cross-scale (8B) and cross-environment (ScienceWorld) evidence supports generality. Episode-level training (reverting to GRPO's original design) addresses both mechanisms, but a systematic 11-seed evaluation reveals seed-dependent generalization: 73\\% of seeds avoid collapse while only 36\\% achieve statistically significant OOD improvement.\n\\end{enumerate}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_overview.pdf}\n\\caption{Step-independent windowing (left) partitions the trajectory into fixed windows, each optimized independently. This introduces two failure mechanisms: M1 (information loss) truncates context at window boundaries, and M2 (sign misattribution) assigns all windows the same advantage sign based on episode outcome. Episode-level training (right) treats the full trajectory as a single sample, eliminating both mechanisms.}\n\\label{fig:overview}\n\\end{figure*}",
+              "new_string": "\\item \\textbf{Empirical validation.} We validate this diagnosis through a partial factorial experiment that isolates each mechanism, direct sign measurement confirms the theoretical prediction at near-random levels, and preliminary cross-scale (8B) and cross-environment (ScienceWorld) evidence supports generality. Episode-level training (reverting to GRPO's original design) addresses both mechanisms, but a systematic 11-seed evaluation reveals seed-dependent generalization: 73\\% of seeds avoid collapse while only 36\\% achieve statistically significant OOD improvement.\n\\end{enumerate}"
+            }
+          },
+          "id": "event-003523"
+        },
+        {
+          "source_line": 3524,
+          "timestamp": "2026-05-24T15:01:35.635735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "elapsed_ms": 505
+          },
+          "id": "event-003524"
+        },
+        {
+          "source_line": 3525,
+          "timestamp": "2026-05-24T15:01:36.690922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/introduction.tex",
+              "old_string": "\\section{Introduction}\n\\label{sec:introduction}",
+              "new_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_overview.pdf}\n\\caption{Step-independent windowing (left) partitions the trajectory into fixed windows, each optimized independently. This introduces two failure mechanisms: M1 (information loss) truncates context at window boundaries, and M2 (sign misattribution) assigns all windows the same advantage sign based on episode outcome. Episode-level training (right) treats the full trajectory as a single sample, eliminating both mechanisms.}\n\\label{fig:overview}\n\\end{figure*}\n\n\\section{Introduction}\n\\label{sec:introduction}"
+            }
+          },
+          "id": "event-003525"
+        },
+        {
+          "source_line": 3526,
+          "timestamp": "2026-05-24T15:01:36.741538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-003526"
+        },
+        {
+          "source_line": 3527,
+          "timestamp": "2026-05-24T15:01:49.024026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && echo \"OK\"",
+              "description": "Compile paper twice",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-003527"
+        },
+        {
+          "source_line": 3528,
+          "timestamp": "2026-05-24T15:01:50.990257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OK\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/director_fd480a9c"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Bash",
+            "elapsed_ms": 1966
+          },
+          "id": "event-003528"
+        },
+        {
+          "source_line": 3529,
+          "timestamp": "2026-05-24T15:01:56.812728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.pdf",
+              "project": "cost-verify-agent-rl",
+              "pages": "1-4",
+              "dpi": "150"
+            }
+          },
+          "id": "event-003529"
+        },
+        {
+          "source_line": 3530,
+          "timestamp": "2026-05-24T15:01:57.609816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 462.6}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 899.1}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 486.7}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 540.9}], \\\"total_pages\\\": 17, \\\"rendered_pages\\\": 4, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 797
+          },
+          "id": "event-003530"
+        },
+        {
+          "source_line": 3531,
+          "timestamp": "2026-05-24T15:02:00.722029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p2.png"
+            }
+          },
+          "id": "event-003531"
+        },
+        {
+          "source_line": 3532,
+          "timestamp": "2026-05-24T15:02:01.328195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 606
+          },
+          "id": "event-003532"
+        },
+        {
+          "source_line": 3533,
+          "timestamp": "2026-05-24T15:02:10.226730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p3.png"
+            }
+          },
+          "id": "event-003533"
+        },
+        {
+          "source_line": 3534,
+          "timestamp": "2026-05-24T15:02:10.227924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-003534"
+        },
+        {
+          "source_line": 3535,
+          "timestamp": "2026-05-24T15:02:11.284232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 1057
+          },
+          "id": "event-003535"
+        },
+        {
+          "source_line": 3536,
+          "timestamp": "2026-05-24T15:02:11.335373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 1107
+          },
+          "id": "event-003536"
+        },
+        {
+          "source_line": 3537,
+          "timestamp": "2026-05-24T15:02:26.548747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.pdf",
+              "project": "cost-verify-agent-rl",
+              "pages": "5-8",
+              "dpi": "150"
+            }
+          },
+          "id": "event-003537"
+        },
+        {
+          "source_line": 3538,
+          "timestamp": "2026-05-24T15:02:27.054519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 497.3}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 528.8}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 375.7}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 467.6}], \\\"total_pages\\\": 17, \\\"rendered_pages\\\": 4, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 505
+          },
+          "id": "event-003538"
+        },
+        {
+          "source_line": 3539,
+          "timestamp": "2026-05-24T15:02:34.691246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-003539"
+        },
+        {
+          "source_line": 3540,
+          "timestamp": "2026-05-24T15:02:35.163976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-003540"
+        },
+        {
+          "source_line": 3541,
+          "timestamp": "2026-05-24T15:02:36.120556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 1429
+          },
+          "id": "event-003541"
+        },
+        {
+          "source_line": 3542,
+          "timestamp": "2026-05-24T15:02:36.123203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 959
+          },
+          "id": "event-003542"
+        },
+        {
+          "source_line": 3543,
+          "timestamp": "2026-05-24T15:02:36.123644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-003543"
+        },
+        {
+          "source_line": 3544,
+          "timestamp": "2026-05-24T15:02:36.376767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-003544"
+        },
+        {
+          "source_line": 3545,
+          "timestamp": "2026-05-24T15:02:36.479912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 356
+          },
+          "id": "event-003545"
+        },
+        {
+          "source_line": 3546,
+          "timestamp": "2026-05-24T15:02:37.033236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 656
+          },
+          "id": "event-003546"
+        },
+        {
+          "source_line": 3547,
+          "timestamp": "2026-05-24T15:03:20.614139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex",
+              "old_string": "\\section{Theoretical Analysis}\n\\label{sec:theory}\n\nSign misattribution is the more fundamental failure mechanism because it causes active divergence, not merely slow convergence. We derive the probability of incorrect gradient direction below; full proofs appear in Appendix~\\ref{app:theory_full}.",
+              "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_theory_curve.pdf}\n\\caption{Upper bound on the probability of correct gradient sign as a function of episode success rate $p$ (Proposition~2). At typical agent task success rates ($p < 0.2$, shaded), the majority of gradient updates carry incorrect sign regardless of group size $K$. At ALFWorld's baseline ($p{=}12.5\\%$, $K{=}8$), at most 19.1\\% of updates are correct. The dashed diagonal shows the large-$K$ limit $P_{\\text{correct}} \\to p$.}\n\\label{fig:theory_curve}\n\\end{figure}\n\n\\section{Theoretical Analysis}\n\\label{sec:theory}\n\nSign misattribution is the more fundamental failure mechanism because it causes active divergence, not merely slow convergence. We derive the probability of incorrect gradient direction below; full proofs appear in Appendix~\\ref{app:theory_full}."
+            }
+          },
+          "id": "event-003547"
+        },
+        {
+          "source_line": 3548,
+          "timestamp": "2026-05-24T15:03:21.111407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "elapsed_ms": 497
+          },
+          "id": "event-003548"
+        },
+        {
+          "source_line": 3549,
+          "timestamp": "2026-05-24T15:03:28.138667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex",
+              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_theory_curve.pdf}\n\\caption{Upper bound on the probability of correct gradient sign as a function of episode success rate $p$ (Proposition~2). At typical agent task success rates ($p < 0.2$, shaded), the majority of gradient updates carry incorrect sign regardless of group size $K$. At ALFWorld's baseline ($p{=}12.5\\%$, $K{=}8$), at most 19.1\\% of updates are correct. The dashed diagonal shows the large-$K$ limit $P_{\\text{correct}} \\to p$.}\n\\label{fig:theory_curve}\n\\end{figure}\n\n\\paragraph{Severity scales with task difficulty.}",
+              "new_string": "\\paragraph{Severity scales with task difficulty.}"
+            }
+          },
+          "id": "event-003549"
+        },
+        {
+          "source_line": 3550,
+          "timestamp": "2026-05-24T15:03:28.139287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-003550"
+        },
+        {
+          "source_line": 3551,
+          "timestamp": "2026-05-24T15:03:32.964164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && echo \"OK\"",
+              "description": "Compile paper twice",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-003551"
+        },
+        {
+          "source_line": 3552,
+          "timestamp": "2026-05-24T15:03:35.048224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OK\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/director_fd480a9c"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Bash",
+            "elapsed_ms": 2084
+          },
+          "id": "event-003552"
+        },
+        {
+          "source_line": 3553,
+          "timestamp": "2026-05-24T15:03:40.317748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.pdf",
+              "project": "cost-verify-agent-rl",
+              "pages": "3-8",
+              "dpi": "150"
+            }
+          },
+          "id": "event-003553"
+        },
+        {
+          "source_line": 3554,
+          "timestamp": "2026-05-24T15:03:41.041522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 486.7}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 517.0}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 522.3}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 528.8}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 375.7}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 467.6}], \\\"total_pages\\\": 17, \\\"rendered_pages\\\": 6, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 723
+          },
+          "id": "event-003554"
+        },
+        {
+          "source_line": 3555,
+          "timestamp": "2026-05-24T15:03:44.203671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p3.png"
+            }
+          },
+          "id": "event-003555"
+        },
+        {
+          "source_line": 3556,
+          "timestamp": "2026-05-24T15:03:44.776949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 573
+          },
+          "id": "event-003556"
+        },
+        {
+          "source_line": 3557,
+          "timestamp": "2026-05-24T15:03:45.680663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-003557"
+        },
+        {
+          "source_line": 3558,
+          "timestamp": "2026-05-24T15:03:46.577747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-003558"
+        },
+        {
+          "source_line": 3559,
+          "timestamp": "2026-05-24T15:03:46.578940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 898
+          },
+          "id": "event-003559"
+        },
+        {
+          "source_line": 3560,
+          "timestamp": "2026-05-24T15:03:46.579251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-003560"
+        },
+        {
+          "source_line": 3561,
+          "timestamp": "2026-05-24T15:03:47.133085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 555
+          },
+          "id": "event-003561"
+        },
+        {
+          "source_line": 3562,
+          "timestamp": "2026-05-24T15:03:47.236077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 656
+          },
+          "id": "event-003562"
+        },
+        {
+          "source_line": 3563,
+          "timestamp": "2026-05-24T15:04:29.246559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex",
+              "old_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_training_dynamics.pdf}\n\\caption{(a)~Training dynamics across factorial conditions (metric type indicated in legend). Cell~A collapses within 5 steps; Cell~B shows bounded learning; Cell~D improves monotonically. (b)~Window size $h$ vs.\\ success rate (single seed). $h{\\leq}20$ bars use a 32-task in-distribution eval set; the episode-level bar uses a 134-task OOD set (dotted separator); magnitudes are not directly comparable across eval sets. A single-seed observation suggests a credit assignment threshold between $h{=}10$ and $h{=}20$. Hatched bars indicate collapsed conditions.}\n\\label{fig:hsweep}\n\\end{figure*}\n\n\\begin{table}[t]",
+              "new_string": "\\begin{table}[t]"
+            }
+          },
+          "id": "event-003563"
+        },
+        {
+          "source_line": 3564,
+          "timestamp": "2026-05-24T15:04:29.725801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "elapsed_ms": 479
+          },
+          "id": "event-003564"
+        },
+        {
+          "source_line": 3565,
+          "timestamp": "2026-05-24T15:04:35.848389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex",
+              "old_string": "\\section{Experiments}\n\\label{sec:experiments}",
+              "new_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig_training_dynamics.pdf}\n\\caption{(a)~Training dynamics across factorial conditions (metric type indicated in legend). Cell~A collapses within 5 steps; Cell~B shows bounded learning; Cell~D improves monotonically. (b)~Window size $h$ vs.\\ success rate (single seed). $h{\\leq}20$ bars use a 32-task in-distribution eval set; the episode-level bar uses a 134-task OOD set (dotted separator); magnitudes are not directly comparable across eval sets. A single-seed observation suggests a credit assignment threshold between $h{=}10$ and $h{=}20$. Hatched bars indicate collapsed conditions.}\n\\label{fig:hsweep}\n\\end{figure*}\n\n\\section{Experiments}\n\\label{sec:experiments}"
+            }
+          },
+          "id": "event-003565"
+        },
+        {
+          "source_line": 3566,
+          "timestamp": "2026-05-24T15:04:35.849026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-003566"
+        },
+        {
+          "source_line": 3567,
+          "timestamp": "2026-05-24T15:04:40.615620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && echo \"OK\"",
+              "description": "Compile paper twice",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-003567"
+        },
+        {
+          "source_line": 3568,
+          "timestamp": "2026-05-24T15:04:42.562748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OK\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/director_fd480a9c"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Bash",
+            "elapsed_ms": 1947
+          },
+          "id": "event-003568"
+        },
+        {
+          "source_line": 3569,
+          "timestamp": "2026-05-24T15:04:47.856248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.pdf",
+              "project": "cost-verify-agent-rl",
+              "pages": "5-8",
+              "dpi": "150"
+            }
+          },
+          "id": "event-003569"
+        },
+        {
+          "source_line": 3570,
+          "timestamp": "2026-05-24T15:04:48.363846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 522.3}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 354.7}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 516.0}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 461.5}], \\\"total_pages\\\": 17, \\\"rendered_pages\\\": 4, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 507
+          },
+          "id": "event-003570"
+        },
+        {
+          "source_line": 3571,
+          "timestamp": "2026-05-24T15:04:51.777791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-003571"
+        },
+        {
+          "source_line": 3572,
+          "timestamp": "2026-05-24T15:04:52.274812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-003572"
+        },
+        {
+          "source_line": 3573,
+          "timestamp": "2026-05-24T15:04:52.980873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 1203
+          },
+          "id": "event-003573"
+        },
+        {
+          "source_line": 3574,
+          "timestamp": "2026-05-24T15:04:52.983699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 708
+          },
+          "id": "event-003574"
+        },
+        {
+          "source_line": 3575,
+          "timestamp": "2026-05-24T15:04:53.211188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-003575"
+        },
+        {
+          "source_line": 3576,
+          "timestamp": "2026-05-24T15:04:53.211668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-003576"
+        },
+        {
+          "source_line": 3577,
+          "timestamp": "2026-05-24T15:04:54.918198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 1707
+          },
+          "id": "event-003577"
+        },
+        {
+          "source_line": 3578,
+          "timestamp": "2026-05-24T15:04:55.020010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 1808
+          },
+          "id": "event-003578"
+        },
+        {
+          "source_line": 3579,
+          "timestamp": "2026-05-24T15:05:17.500628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.pdf",
+              "project": "cost-verify-agent-rl",
+              "pages": "8-9",
+              "dpi": "150"
+            }
+          },
+          "id": "event-003579"
+        },
+        {
+          "source_line": 3580,
+          "timestamp": "2026-05-24T15:05:17.989903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 461.5}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 541.4}], \\\"total_pages\\\": 17, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 489
+          },
+          "id": "event-003580"
+        },
+        {
+          "source_line": 3581,
+          "timestamp": "2026-05-24T15:05:33.558687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-003581"
+        },
+        {
+          "source_line": 3582,
+          "timestamp": "2026-05-24T15:05:34.186927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 628
+          },
+          "id": "event-003582"
+        },
+        {
+          "source_line": 3583,
+          "timestamp": "2026-05-24T15:06:00.780791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-003583"
+        },
+        {
+          "source_line": 3584,
+          "timestamp": "2026-05-24T15:06:01.307819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 527
+          },
+          "id": "event-003584"
+        },
+        {
+          "source_line": 3585,
+          "timestamp": "2026-05-24T15:06:07.222708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_reply_to_user",
+              "max_results": "1"
+            }
+          },
+          "id": "event-003585"
+        },
+        {
+          "source_line": 3586,
+          "timestamp": "2026-05-24T15:06:07.673594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 450
+          },
+          "id": "event-003586"
+        },
+        {
+          "source_line": 3587,
+          "timestamp": "2026-05-24T15:06:20.651581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "图表分布已调整完成。通过移动 figure 定义在 .tex 源码中的位置，让 LaTeX 将浮动体分配到更早的页面：\n\n**调整前** → 调整后：\n- Page 1: 纯文本 → 纯文本（标题+摘要，正常）\n- Page 2: 纯文本 → **Figure 1**（全宽概览图）\n- Page 3: 纯文本 → 纯文本（Related Work + Method）\n- Page 4: Figure 1 → **Figure 2**（理论曲线）\n- Page 5: Figure 2 → 纯文本（理论分析 + 实验开始）\n- Page 6: Table 1 → **Figure 3** + **Table 1**\n- Page 7: Figure 3 + Figure 5 → **Figure 4**\n- Page 8: Figure 4 + Table 2 → **Table 2** + **Figure 5** + Discussion + Conclusion\n\n核心改进：原来前 3 页全是文字、第一张图在第 4 页；现在第 2 页就出现 Figure 1，之后每隔一页左右就有图表，视觉节奏均匀。主文 8 页限制不受影响。"
+            }
+          },
+          "id": "event-003587"
+        },
+        {
+          "source_line": 3588,
+          "timestamp": "2026-05-24T15:06:23.892929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3241
+          },
+          "id": "event-003588"
+        },
+        {
+          "source_line": 3589,
+          "timestamp": "2026-05-24T15:06:32.275877+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表分布调整完成。Figure 1 从第 4 页提前到第 2 页，Figure 2 从第 5 页提前到第 4 页，Figure 3 从第 7 页提前到第 6 页，整体分布从\"前 3 页空白 + 后半段密集\"变为每隔一页交替出现图表的均匀节奏。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-003589"
+        }
+      ]
+    },
+    {
+      "number": 320,
+      "messages": [
+        {
+          "source_line": 3590,
+          "timestamp": "2026-05-24T16:09:26.326905+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 周俊伟 (ou_3b74f10baa043e6e4d06f1893106a70c)]: contribution 只有两点有点少，看能不能在已有的基础上拆成 3 点。\n\n另外，Related Work 太短了，你参考一下你蒸馏出来的论文写作 skills，看里面有没有提到 Related Work 怎么写的，重点优化一下这个部分。另外，论文超过 8 页了，limitation section 写得太长了，只需要列两三个小点就可以了。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "feishu:oc_4ebf0fb2d0159caa355a1a855f5ac59f"
+          },
+          "id": "event-003590"
+        },
+        {
+          "source_line": 3591,
+          "timestamp": "2026-05-24T16:09:39.455917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/skills/projects/cost-verify-agent-rl/distilled-writing.skill.md"
+            }
+          },
+          "id": "event-003591"
+        },
+        {
+          "source_line": 3592,
+          "timestamp": "2026-05-24T16:09:40.383282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: distilled-writing\n3\tdescription: \"Agentic RL paper writing patterns: intro structure, narrative techniques, figure/table design consensus from 8 deep-read top-venue papers (2024-2026)\"\n4\tscope: project\n5\tversion: 1\n6\ttags: [distilled, auto-generated]\n7\tdistilled_from:\n8\t  paper_count: 25\n9\t  paper_keys: [tie2025correctbench, verifiagent2025, feng2025gigpo, spear2025, wei2025webagent-r1, digiRL2024, t2po2026, gvpo2026, agent-omit2026, du2025thinkless, kim2025reflact, selfbudgeter2026, tu2025autothink, wan2025derailer-rerailer, xiang2024retrospex, cfgm2025, istar2025, archer2024, agentic-rl-survey-2025, ava2026, xi2025agentprm, kamoi2024self-correction-survey, self-verification-dilemma-2026, zhang2025incentivize-self-verify, mar2025]\n10\t  last_distilled: \"2026-05-23T00:00:00Z\"\n11\t---\n12\t\n13\t## Story Type & Intro\n14\t\n15\t7/8 use **突破局限型**. Default for this field. (高)\n16\t\n17\t**Intro 4-5 paragraphs**: P1 context+promise → P2 problem → P3 existing fixes fail → P4 our solution (explicit research question per GiGPO, or labeled \"OUR KEY INSIGHT\" per T2PO) → P5 contributions (3-5 bullets). (高, 8/8)\n18\t\n19\t**Intro comparison table**: 3/8 (VerifiAgent, GVPO, WebAgent-R1) embed checkmark-grid Table 1 in intro: \"we're the only method with all properties.\" Highly effective. (高)\n20\t\n21\t## Hook & Argumentation\n22\t\n23\t- **Promise-vs-reality gap** (4/8): \"VLMs promise but fail at 8%\" (DigiRL). Most common hook. (高)\n24\t- **Name the failure mode** (2/8): \"hesitation\" (T2PO), \"entropy collapse\" (SPEAR). (中)\n25\t- **Show-failure-then-fix** (3/8): SPEAR embeds entropy collapse figures IN method section before presenting fix. DigiRL decomposes failure modes to explain WHY RL helps. (高)\n26\t- **Near-zero cost preemption**: GiGPO: \"<0.002% overhead\" preempts \"must be expensive\" objection. (中)\n27\t- **Negative result as validation**: WebAgent-R1 R1-Zero ablation (5.7%) validates SFT→RL pipeline. (中)\n28\t\n29\t## Figure Consensus\n30\t\n31\t**Fig 1**: method_overview 5/8, teaser_result 2/8, \n…[truncated 1130 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 927
+          },
+          "id": "event-003592"
+        },
+        {
+          "source_line": 3593,
+          "timestamp": "2026-05-24T16:09:40.383793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-003593"
+        },
+        {
+          "source_line": 3594,
+          "timestamp": "2026-05-24T16:09:40.484426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{RL for multi-turn LLM agents.}\n5\tGRPO~\\cite{shao2024deepseekmath}, PPO~\\cite{schulman2017ppo}, and RLHF methods~\\cite{ouyang2022instructgpt,rafailov2023dpo} have been extended to multi-turn agents~\\cite{yao2023react,ragen2025} via step-independent windowing. Subsequent work improves algorithms~\\cite{feng2025gigpo,dapo2025}, rewards~\\cite{selfguide2026}, or pipelines~\\cite{spear2025,digiRL2024}, but all assume windowing is benign.\n6\t\n7\t\\paragraph{Credit assignment.}\n8\tClassical methods span bootstrapping~\\cite{sutton1988td} to Monte Carlo~\\cite{williams1992reinforce,schulman2016gae} (Appendix~\\ref{app:classical_connection}). Step-independent GRPO inherits the worst of outcome-vs-process supervision~\\cite{lightman2024lets}: coarse credit without correct direction. ArCHer~\\cite{zhou2024archer}, VinePPO~\\cite{kazemnejad2024vineppo}, PRIME~\\cite{prime2025}, and VAPO~\\cite{vapo2025} improve credit granularity; our analysis explains when such methods are safe (only after M2 is resolved). IRC~\\cite{irc2026}, MC-GRPO~\\cite{mcgrpo2026}, GRPO-$\\lambda$~\\cite{grpolambda2025}, and OAR~\\cite{oar2026} corroborate our sign-level diagnosis. Turn-PPO~\\cite{turnppo2025}, GAGPO~\\cite{gagpo2026}, MT-GRPO~\\cite{mtgrpo2025}, SWEET-RL~\\cite{sweetrl2025}, iStar~\\cite{istar2025}, and HCAPO~\\cite{hcapo2026} propose finer-grained credit that addresses sign correctness.\n9\t\n10\t\\paragraph{GRPO collapse phenomena.}\n11\tRAGEN-2~\\cite{ragen2_2026}, GRPO-Collapse~\\cite{grpocollapse2025}, RC-GRPO~\\cite{rcgrpo2026}, and EDGE-GRPO~\\cite{edgegrpo2025} address variance collapse. Our dual-mechanism diagnosis unifies these: reward variance collapse is a special case of reward saturation (Section~\\ref{sec:theory}), and the death spiral follows from the M1--M2 vicious cycle.\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-003594"
+        },
+        {
+          "source_line": 3595,
+          "timestamp": "2026-05-24T16:09:40.535111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-003595"
+        },
+        {
+          "source_line": 3596,
+          "timestamp": "2026-05-24T16:09:40.636031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{figure*}[t]\n2\t\\centering\n3\t\\includegraphics[width=\\textwidth]{fig_overview.pdf}\n4\t\\caption{Step-independent windowing (left) partitions the trajectory into fixed windows, each optimized independently. This introduces two failure mechanisms: M1 (information loss) truncates context at window boundaries, and M2 (sign misattribution) assigns all windows the same advantage sign based on episode outcome. Episode-level training (right) treats the full trajectory as a single sample, eliminating both mechanisms.}\n5\t\\label{fig:overview}\n6\t\\end{figure*}\n7\t\n8\t\\section{Introduction}\n9\t\\label{sec:introduction}\n10\t\n11\tReinforcement learning from sparse terminal reward has emerged as a promising paradigm for training LLM agents on multi-turn interactive tasks spanning 30--50 interaction steps~\\cite{kim2025reflact,digiRL2024,wang2022scienceworld}. Group Relative Policy Optimization (GRPO)~\\cite{shao2024deepseekmath}, with its critic-free design, has become the algorithm of choice. Yet a gap persists between the promise of RL-driven agent improvement and the reality of training outcomes: recent agent RL systems~\\cite{ragen2025,selfguide2026,spear2025,feng2025gigpo} share a common, unscrutinized implementation pattern (decomposing trajectories into fixed-size windows, each optimized independently) and frequently report training instability without diagnosing its root cause.\n12\t\n13\tWe show this \\textit{step-independent} default introduces a fundamental credit assignment pathology. Step-independent training partitions trajectories into non-overlapping $h$-step windows, each optimized via GRPO. This produces a two-phase collapse: task success drops to 0\\% while action validity initially remains high, then continued training destroys even basic formatting. Standard remedies (dense reward shaping, discount tuning) fail. Concurrent methods that improve per-step credit quality (GiGPO~\\cite{feng2025gigpo}, GAGPO~\\cite{gagpo2026}, Turn-PPO~\\cite{turnppo2025}, HCAPO~\\cite{hcapo2026}) a\n…[truncated 2448 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-003596"
+        },
+        {
+          "source_line": 3597,
+          "timestamp": "2026-05-24T16:11:26.228268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.tex",
+              "offset": "39",
+              "limit": "10"
+            }
+          },
+          "id": "event-003597"
+        },
+        {
+          "source_line": 3598,
+          "timestamp": "2026-05-24T16:11:27.107381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "39\t\n40\t\\section*{Limitations}\n41\t\n42\tOur experiments span two environments (ALFWorld, ScienceWorld) and two scales (1.7B, 8B); additional environments and scales would strengthen generality. The 8B and ScienceWorld results report single-seed runs due to computational constraints. Among 11 seeds at 1.7B, only 36\\% achieve statistically significant OOD generalization; we cannot rule out that stagnant seeds would eventually generalize with substantially more training steps, though seed100's minimal improvement from step~5 to step~10 suggests the bottleneck is not simply training duration. The mechanism driving seed-dependent transfer remains an open question. We do not empirically reproduce concurrent methods (HCAPO, Turn-PPO, GiGPO); our comparisons are based on published results and post-hoc consistency analysis. All OOD evaluations use temperature $\\tau{=}0.4$ with a single run per checkpoint. Controlled evaluation of the same checkpoint (3 independent runs at $\\tau{=}0.4$ on 134 OOD tasks) yields a standard deviation of 1.29 percentage points, confirming that inter-seed differences in Table~\\ref{tab:seed_variability} reflect genuine training dynamics rather than evaluation noise. For very long episodes ($T > 100$) or tasks with many independent sub-goals, uniform episode-level advantage may limit efficiency even though it preserves direction correctness.\n43\t\n44\t\\bibliography{references}\n45\t\n46\t\\clearpage\n47\t\\input{appendix}\n48\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 879
+          },
+          "id": "event-003598"
+        },
+        {
+          "source_line": 3599,
+          "timestamp": "2026-05-24T16:11:27.107815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-003599"
+        },
+        {
+          "source_line": 3600,
+          "timestamp": "2026-05-24T16:11:27.108021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Generality.}\n5\tSign misattribution arises whenever three properties co-occur: step-level windowing, sparse binary reward, and group-relative normalization---theoretically sufficient within any group-relative framework (Section~\\ref{sec:theory}), though verified only on GRPO with ALFWorld and ScienceWorld. M1 and M2 interact: M1 lowers $p$, increasing wrong-sign updates under M2, which further degrades $p$ (Appendix~\\ref{app:why_defaults}).\n6\t\n7\t\\paragraph{Mechanism interaction and seed dependence.}\n8\tCell~C (full trajectory + step-level advantage) produces NaN instability rather than gradual collapse, suggesting M1 may unintentionally stabilize training by limiting gradient variance. Multi-seed evaluation reveals bimodal OOD transfer---with training duration unable to explain the gap (seed100: $+$1.5pp step~5$\\to$10), pointing to initialization sensitivity (Appendix~\\ref{app:early_signal}).\n9\t\n10\t\\paragraph{Concurrent methods.}\n11\tHCAPO~\\cite{hcapo2026} and GiGPO~\\cite{feng2025gigpo} succeed with the same $h{=}2$ that causes Cell~A collapse by replacing step-level advantage with finer-grained credit, directly eliminating M2 while preserving M1. Our framework provides a consistent post-hoc explanation: HCAPO's 91.4\\% (7B) and GiGPO's 90.2\\% are consistent with M2 being the primary bottleneck at sufficient scale, where M1's ceiling permits strong performance. We emphasize these are post-hoc consistency analyses based on published results, not predictions; we do not reproduce these methods (see also Limitations).\n12\t\n13\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-003600"
+        }
+      ]
+    }
+  ]
+}

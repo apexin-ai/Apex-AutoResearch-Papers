@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bfbed1d9f5535e9c60a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp019b launch now",
+  "task_key": "worker_ops_exp019b-launch-now_20260514T191145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp019b-launch-now_20260514T191145_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "3d391bc0c4a296cd0657df433ab74d8989697dff693add1f40306b8d924859fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**数据收集状态：进行中**\n\n- **进程** PID 368343 运行中，已 2h06m\n- **进度**：2800 / 3553（78.8%），剩余 ~753 条\n- **预估剩余**：按当前速率（~100条/7min），约 **50-55 分钟**完成\n- **有效 SFT 样本**：2578 条（ok=2762, too_long=163, not_won=38, invalid_action=21）\n- **输出目录**为空——数据文件尚未写入（预计进程结束时写出）\n\n**注意**：`put_actions=0`, `admissible_put=0`——整个数据集没有 put 类动作，全部是 move 类。如果 exp019b 需要 put 动作覆盖，这可能是个问题。\n\n**GPU 状态**暂未查（数据未就绪，训练还不能启动）。\n\n**结论**：数据未就绪，预计约 1 小时后完成。建议届时再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp019b-launch-now.md"
+}

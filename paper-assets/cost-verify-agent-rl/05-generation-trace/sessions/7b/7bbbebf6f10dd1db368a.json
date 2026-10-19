@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bbbebf6f10dd1db368a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra disk cleanup trajectory check",
+  "task_key": "worker_infra_disk-cleanup-trajectory-check_20260514T145454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_disk-cleanup-trajectory-check_20260514T145454_result.json",
+    "occurrence": 1,
+    "bytes": 1687,
+    "sha256": "caa236bf62a7cdda14cfc341db9becb665ef66ef6ed3f9cbdb3b1695023d42a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都已完成检查。\n\n---\n\n## 任务 1: Expert Trajectory 收集进度\n\n**状态**: 进行中（PID 340587, 100% CPU）\n\n| 指标 | 值 |\n|---|---|\n| 当前进度 | **2234 / 3553** (62.9%) |\n| 目标 | max-games=3553（比之前的 1759 翻倍） |\n| 数据大小 | 16MB |\n| 平均 messages/trajectory | 30.2 (min=7, max=201) |\n| test 子目录 | 5 条 |\n\n**数据格式**: 正确的 messages JSONL，包含 system prompt（带 self-guidance 要求）+ user/assistant 多轮对话。Assistant 回复使用 `<think>...</think><answer>...</answer>` 格式。\n\n**任务类型覆盖**:\n- pick_and_place: 788 (35.3%)\n- pick_clean_then_place: 645 (28.9%)\n- pick_cool_then_place: 499 (22.3%)\n- look_at_obj_in_light: 153 (6.8%)\n- other: 149 (6.7%)\n- pick_heat_then_place: **0** — 尚未收集到（可能在后续 batch 中）\n\n---\n\n## 任务 2: 磁盘清理\n\n**不需要清理。** 磁盘状况已大幅改善：\n\n| 指标 | 值 |\n|---|---|\n| 总容量 | 250G |\n| 已用 | 92G (37%) |\n| 可用 | **159G** |\n\nCheckpoint 目录只剩 3 个：\n- `exp008_sft/` — 3.3G (保留，SFT 基础)\n- `exp015/` — 21G (保留，exp016 恢复点)\n- `exp016/` — 21G (保留，当前活跃实验)\n\n**exp013b/c/d/e 的 checkpoint 不存在**——已被之前清理过，或从未写入此路径。\n\n---\n\n## 异常发现\n\n1. 磁盘从 \"95% 满\" 变为 37%，可能之前已有人做过大规模清理\n2. Expert trajectory 收集的 max-games 从 1759 增加到 3553，是一次新的收集任务\n3. `pick_heat_then_place` 类型目前 0 条收集，需关注后续是否覆盖\n4. exp016 训练正在 tmux session 中运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-cleanup-trajectory-check.md"
+}

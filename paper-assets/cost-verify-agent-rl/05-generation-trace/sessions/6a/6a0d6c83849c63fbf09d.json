@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a0d6c83849c63fbf09d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops 7b sft eval ood",
+  "task_key": "worker_ops_7b-sft-eval-ood_20260519T071452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_7b-sft-eval-ood_20260519T071452_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "5e940de2b57a045f07351bc5b66de750fe1c415c2d08c1b276ae49cd7bd7c697"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动验证完成：\n\n| 项目 | 值 |\n|---|---|\n| tmux session | `sft_eval_ood` |\n| PID | 807986 (主进程) |\n| GPU | 2 (16.9GB), 3 (17.4GB) |\n| W&B run | `8v6iysv3` |\n| W&B URL | wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/8v6iysv3 |\n| 日志 | `/root/autodl-tmp/logs/7b_sft_eval_ood.log` |\n\n附加操作：SFT checkpoint 清理了 86GB 训练状态文件（optimizer.bin + pytorch_model_fsdp.bin），磁盘从 100% 降到 66%。`/final` 目录未生成（磁盘满时 save 失败），但 `checkpoint-231/` 中的 safetensors 模型完整可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-7b-sft-eval-ood.md"
+}

@@ -1,0 +1,524 @@
+{
+  "schema_version": "1.0",
+  "session_id": "877bc8467660666216ed",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RdtTKtxBGXcBsWeteMv4Dn",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "cost-verify-agent-rl",
+                "limit": 5,
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d42385f3-f108-4cf2-883e-b13df24eddbe",
+            "uuid": "d498bc35-aeea-4f9d-b5ad-5aac494e35df",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HAYMeiysTTa5fGkdyRNPSG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1065,
+                "cache_read_input_tokens": 104432,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1065
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-18T11:18:05.233Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RdtTKtxBGXcBsWeteMv4Dn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"factorial_h2_episodeadv_seed2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T04:48:02.228Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:15:44.753Z\\\", \\\"hypothesis\\\": \\\"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\\\", \\\"parent\\\": \\\"factorial_h2_episodeadv_seed1\\\", \\\"failure_reason\\\": \\\"进程被前一个 diagnose worker 误杀 (kill -USR1, M009 违规)。训练未开始，还在 val_before_train 阶段。需要重启。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:52:18.239Z\\\"}, \\\"completed_at\\\": \\\"2026-05-18T10:52:19.155Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:52:21.813105+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"0,1\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/cost-verify-agent-rl/data/alfworld\\\", \\\"data_count\\\": 3553, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 43, \\\"pid\\\": 539852, \\\"wandb_run_id\\\": \\\"6rqnrlr7\\\", \\\"checkpoint_source\\\": \\\"exp008_sft\\\", \\\"eval_data\\\": \\\"alfworld_valid_unseen_134\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp029_episode_level_seed2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 3, \\\"created_at\\\": \\\"2026-05-18T04:48:01.826Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:34:45.819Z\\\", \\\"hypothesis\\\": \\\"Replicate exp029 episode-level result (23.88% OOD) with different seed to confirm statistical robustness. P0 priority: core positive claim built on single seed is desk-reject risk. Same SFT checkpoint, same config, seed=43, 15 steps, AlfworldSG_OOD 134 tasks eval.\\\", \\\"parent\\\": \\\"exp029_episode_level\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:29:23.413Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"completed_at\\\": \\\"2026-05-18T05:41:19.165Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T05:41:22.770723+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T06:18:18.594301+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T07:41:53.887922+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T09:53:02.637445+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:29:27.034216+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_exp029_episode_level_seed2\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu\\\": \\\"cuda:0,1\\\", \\\"pid\\\": 30131, \\\"data_path\\\": \\\"ALFWorld\\\", \\\"data_count\\\": 134, \\\"model_name\\\": \\\"Qwen3-1.7B (SFT v4 checkpoint)\\\", \\\"seed\\\": 43, \\\"wandb_run_id\\\": \\\"efab7i1h\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed2/\\\", \\\"checkpoint_source\\\": \\\"exp021_ragen_sft_v4\\\", \\\"eval_data\\\": \\\"AlfworldSG_OOD 134 tasks\\\", \\\"hyperparams\\\": {\\\"total_training_steps\\\": 100, \\\"enable_gradient_checkpointing\\\": true, \\\"ppo_mini_batch_size\\\": 8, \\\"ppo_max_token_len_per_gpu\\\": 16384, \\\"env_groups\\\": 8, \\\"group_size\\\": 8}, \\\"notes\\\": \\\"Final config: total_steps=100 (matching seed1 LR schedule) + memory-optimized params (env_groups=8, mini_batch=8, token_len=16384). Will kill at step 20. GPU 37GB/98GB with 61GB headroom.\\\"}}, \\\"factorial_h2_episodeadv_seed1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-17T18:17:23.327Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:22:36.071Z\\\", \\\"hypothesis\\\": \\\"Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export TORCH_COMPILE_DISABLE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-18T10:16:37.005Z\\\"}, \\\"failure_reason\\\": \\\"False positive: W&B atexit BrokenPipeError during cleanup. Training completed all 15/15 steps normally.\\\", \\\"completed_at\\\": \\\"2026-05-17T19:23:42.236Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T19:23:44.970401+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T20:06:00.076942+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:16:44.344646+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR && export TORCH_COMPILE_DISABLE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": 475745, \\\"wandb_run_id\\\": \\\"jsrvwcfd\\\", \\\"model_name\\\": \\\"Qwen3-1.7B-SFT (exp021)\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"ALFWorld valid_unseen\\\", \\\"data_count\\\": \\\"3553 train + 134 OOD eval\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log\\\", \\\"env\\\": \\\"TMPDIR=/root/autodl-tmp/tmp TORCH_COMPILE_DISABLE=1\\\", \\\"checkpoint_source\\\": \\\"Qwen3-1.7B-SFT exp021\\\", \\\"eval_data\\\": \\\"ALFWorld valid_unseen 134 tasks (OOD)\\\"}, \\\"metrics\\\": {\\\"completed_steps\\\": \\\"15/15\\\", \\\"wandb_run_id\\\": \\\"6liw7fm1\\\", \\\"val_step5\\\": {\\\"success\\\": 0.0597, \\\"dataset\\\": \\\"AlfworldOOD_134tasks\\\"}, \\\"val_step15\\\": {\\\"success\\\": 0.0075}, \\\"kl_loss_trajectory\\\": {\\\"step1\\\": 0.238, \\\"step5\\\": 0.735, \\\"step10\\\": 1.029, \\\"step15\\\": 2.845}, \\\"ppo_kl_range\\\": \\\"0.025-0.096\\\", \\\"best_checkpoint\\\": \\\"global_step_5\\\", \\\"best_val_success\\\": 0.0597, \\\"train_step1\\\": {\\\"success\\\": 0.203, \\\"pass_at_8\\\": 0.688}, \\\"train_step6\\\": {\\\"success\\\": 0.258, \\\"pass_at_8\\\": 0.813}, \\\"checkpoint_paths\\\": {\\\"step5\\\": \\\"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_5/\\\", \\\"step10\\\": \\\"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_10/\\\", \\\"step15\\\": \\\"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/\\\"}, \\\"exit_cause\\\": \\\"W&B atexit BrokenPipeError (false positive)\\\", \\\"kl_issue\\\": \\\"kl_loss_coef=0.01 too low, policy drifted after step 5\\\", \\\"status_note\\\": \\\"COMPLETED. Best val OOD 5.97% at step 5. Degraded to 0.75% by step 15 due to KL drift. Sign misattribution elimination confirmed: 5.97% vs 0% (step-level h=2).\\\"}, \\\"notes\\\": \\\"W&B 深度分析确认：sign misattribution 是 collapse 的 primary driver。关键证据：step 3→4 hsweep action_valid 91.3%→43.1% (catastrophic collapse) vs factorial 保�� 79-85% (无崩溃)。V-shaped recovery (20.3%→3.1%→15.63%) 是探索期波动非不可逆退化。3-cell 贡献：sign misattribution ~6pp (0%→5.97% val), information loss ~22pp (5.97%→28.1% val)。Sign misattribution pp 贡献较小但是 catastrophic collapse 的质变 trigger。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"gsweep_g095_h5_seed1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:56:55.994Z\\\", \\\"updated_at\\\": \\\"2026-05-18T09:36:26.788Z\\\", \\\"hypothesis\\\": \\\"γ=0.95 with h=5 is the control condition matching hsweep_h5. Early windows retain γ^9 ≈ 0.95^9 ≈ 63% of terminal return. Expected to reproduce h5 behavior from h-sweep.\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash launch_gsweep.sh g095 \\\\\\\"2,3\\\\\\\" → python train.py --config-name _alfworld_gamma_sweep_g095_h5 seed.train=10000 trainer.experiment_name=gsweep-g095-h5-seed1\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": 416289, \\\"data_path\\\": \\\"ALFWorld\\\", \\\"data_count\\\": \\\"134 train tasks\\\", \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 10000, \\\"wandb_run_id\\\": \\\"jv3aa2cj\\\", \\\"checkpoint_source\\\": \\\"Qwen3-1.7B base\\\", \\\"eval_data\\\": \\\"ALFWorld val 32 tasks\\\"}}, \\\"gsweep_g080_h5_seed1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:56:53.634Z\\\", \\\"updated_at\\\": \\\"2026-05-18T09:35:23.404Z\\\", \\\"hypothesis\\\": \\\"γ=0.8 with h=5 represents an intermediate decay rate where early windows retain γ^9 ≈ 0.8^9 ≈ 13% of terminal return, potentially showing delayed but still present collapse compared to γ=0.95 (39%).\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train.py --config-name _alfworld_gamma_sweep_g080_h5 seed.train=10000 trainer.experiment_name=gsweep-g080-h5-seed1\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": 955007, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 10000, \\\"data_path\\\": \\\"ALFWorld\\\", \\\"data_count\\\": \\\"134 train tasks\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/gsweep_g080_h5_seed1.log\\\", \\\"env\\\": \\\"TORCH_COMPILE_DISABLE=1\\\", \\\"checkpoint_source\\\": \\\"Qwen3-1.7B base\\\", \\\"eval_data\\\": \\\"ALFWorld val 32 tasks\\\"}, \\\"metrics\\\": {\\\"step5_val_success\\\": \\\"3.125%\\\", \\\"step5_entropy\\\": 0.185, \\\"subsequent_steps\\\": \\\"all 0%\\\", \\\"conclusion_note\\\": \\\"Complete collapse confirmed. γ=0.80 with h=5 shows catastrophic failure — killed early by Director as no new information expected. Supports hypothesis that lower gamma accelerates collapse.\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T09:21:28.503Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-18T09:21:28.848Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T09:21:35.022554+00:00\\\"}]}}}, \\\"count\\\": 5, \\\"total\\\": 68, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.208}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d42385f3-f108-4cf2-883e-b13df24eddbe",
+            "uuid": "4d4d3c3d-f8b0-4506-8935-fbbd7f4a0a39",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"factorial_h2_episodeadv_seed2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T04:48:02.228Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:15:44.753Z\\\", \\\"hypothesis\\\": \\\"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\\\", \\\"parent\\\": \\\"factorial_h2_episodeadv_seed1\\\", \\\"failure_reason\\\": \\\"进程被前一个 diagnose worker 误杀 (kill -USR1, M009 违规)。训练未开始，还在 val_before_train 阶段。需要重启。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:52:18.239Z\\\"}, \\\"completed_at\\\": \\\"2026-05-18T10:52:19.155Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:52:21.813105+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"0,1\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/cost-verify-agent-rl/data/alfworld\\\", \\\"data_count\\\": 3553, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 43, \\\"pid\\\": 539852, \\\"wandb_run_id\\\": \\\"6rqnrlr7\\\", \\\"checkpoint_source\\\": \\\"exp008_sft\\\", \\\"eval_data\\\": \\\"alfworld_valid_unseen_134\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp029_episode_level_seed2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 3, \\\"created_at\\\": \\\"2026-05-18T04:48:01.826Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:34:45.819Z\\\", \\\"hypothesis\\\": \\\"Replicate exp029 episode-level result (23.88% OOD) with different seed to confirm statistical robustness. P0 priority: core positive claim built on single seed is desk-reject risk. Same SFT checkpoint, same config, seed=43, 15 steps, AlfworldSG_OOD 134 tasks eval.\\\", \\\"parent\\\": \\\"exp029_episode_level\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:29:23.413Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"completed_at\\\": \\\"2026-05-18T05:41:19.165Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T05:41:22.770723+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T06:18:18.594301+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T07:41:53.887922+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T09:53:02.637445+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:29:27.034216+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_exp029_episode_level_seed2\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu\\\": \\\"cuda:0,1\\\", \\\"pid\\\": 30131, \\\"data_path\\\": \\\"ALFWorld\\\", \\\"data_count\\\": 134, \\\"model_name\\\": \\\"Qwen3-1.7B (SFT v4 checkpoint)\\\", \\\"seed\\\": 43, \\\"wandb_run_id\\\": \\\"efab7i1h\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed2/\\\", \\\"checkpoint_source\\\": \\\"exp021_ragen_sft_v4\\\", \\\"eval_data\\\": \\\"AlfworldSG_OOD 134 tasks\\\", \\\"hyperparams\\\": {\\\"total_training_steps\\\": 100, \\\"enable_gradient_checkpointing\\\": true, \\\"ppo_mini_batch_size\\\": 8, \\\"ppo_max_token_len_per_gpu\\\": 16384, \\\"env_groups\\\": 8, \\\"group_size\\\": 8}, \\\"notes\\\": \\\"Final config: total_steps=100 (matching seed1 LR schedule) + memory-optimized params (env_groups=8, mini_batch=8, token_len=16384). Will kill at step 20. GPU 37GB/98GB with 61GB headroom.\\\"}}, \\\"factorial_h2_episodeadv_seed1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-17T18:17:23.327Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:22:36.071Z\\\", \\\"hypothesis\\\": \\\"Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export TORCH_COMPILE_DISABLE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-18T10:16:37.005Z\\\"}, \\\"failure_reason\\\": \\\"False positive: W&B atexit BrokenPipeError during cleanup. Training completed all 15/15 steps normally.\\\", \\\"completed_at\\\": \\\"2026-05-17T19:23:42.236Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T19:23:44.970401+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T20:06:00.076942+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:16:44.344646+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR && export TORCH_COMPILE_DISABLE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": 475745, \\\"wandb_run_id\\\": \\\"jsrvwcfd\\\", \\\"model_name\\\": \\\"Qwen3-1.7B-SFT (exp021)\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"ALFWorld valid_unseen\\\", \\\"data_count\\\": \\\"3553 train + 134 OOD eval\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log\\\", \\\"env\\\": \\\"TMPDIR=/root/autodl-tmp/tmp TORCH_COMPILE_DISABLE=1\\\", \\\"checkpoint_source\\\": \\\"Qwen3-1.7B-SFT exp021\\\", \\\"eval_data\\\": \\\"ALFWorld valid_unseen 134 tasks (OOD)\\\"}, \\\"metrics\\\": {\\\"completed_steps\\\": \\\"15/15\\\", \\\"wandb_run_id\\\": \\\"6liw7fm1\\\", \\\"val_step5\\\": {\\\"success\\\": 0.0597, \\\"dataset\\\": \\\"AlfworldOOD_134tasks\\\"}, \\\"val_step15\\\": {\\\"success\\\": 0.0075}, \\\"kl_loss_trajectory\\\": {\\\"step1\\\": 0.238, \\\"step5\\\": 0.735, \\\"step10\\\": 1.029, \\\"step15\\\": 2.845}, \\\"ppo_kl_range\\\": \\\"0.025-0.096\\\", \\\"best_checkpoint\\\": \\\"global_step_5\\\", \\\"best_val_success\\\": 0.0597, \\\"train_step1\\\": {\\\"success\\\": 0.203, \\\"pass_at_8\\\": 0.688}, \\\"train_step6\\\": {\\\"success\\\": 0.258, \\\"pass_at_8\\\": 0.813}, \\\"checkpoint_paths\\\": {\\\"step5\\\": \\\"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_5/\\\", \\\"step10\\\": \\\"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_10/\\\", \\\"step15\\\": \\\"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/\\\"}, \\\"exit_cause\\\": \\\"W&B atexit BrokenPipeError (false positive)\\\", \\\"kl_issue\\\": \\\"kl_loss_coef=0.01 too low, policy drifted after step 5\\\", \\\"status_note\\\": \\\"COMPLETED. Best val OOD 5.97% at step 5. Degraded to 0.75% by step 15 due to KL drift. Sign misattribution elimination confirmed: 5.97% vs 0% (step-level h=2).\\\"}, \\\"notes\\\": \\\"W&B 深度分析确认：sign misattribution 是 collapse 的 primary driver。关键证据：step 3→4 hsweep action_valid 91.3%→43.1% (catastrophic collapse) vs factorial 保�� 79-85% (无崩溃)。V-shaped recovery (20.3%→3.1%→15.63%) 是探索期波动非不可逆退化。3-cell 贡献：sign misattribution ~6pp (0%→5.97% val), information loss ~22pp (5.97%→28.1% val)。Sign misattribution pp 贡献较小但是 catastrophic collapse 的质变 trigger。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"gsweep_g095_h5_seed1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:56:55.994Z\\\", \\\"updated_at\\\": \\\"2026-05-18T09:36:26.788Z\\\", \\\"hypothesis\\\": \\\"γ=0.95 with h=5 is the control condition matching hsweep_h5. Early windows retain γ^9 ≈ 0.95^9 ≈ 63% of terminal return. Expected to reproduce h5 behavior from h-sweep.\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash launch_gsweep.sh g095 \\\\\\\"2,3\\\\\\\" → python train.py --config-name _alfworld_gamma_sweep_g095_h5 seed.train=10000 trainer.experiment_name=gsweep-g095-h5-seed1\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": 416289, \\\"data_path\\\": \\\"ALFWorld\\\", \\\"data_count\\\": \\\"134 train tasks\\\", \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 10000, \\\"wandb_run_id\\\": \\\"jv3aa2cj\\\", \\\"checkpoint_source\\\": \\\"Qwen3-1.7B base\\\", \\\"eval_data\\\": \\\"ALFWorld val 32 tasks\\\"}}, \\\"gsweep_g080_h5_seed1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:56:53.634Z\\\", \\\"updated_at\\\": \\\"2026-05-18T09:35:23.404Z\\\", \\\"hypothesis\\\": \\\"γ=0.8 with h=5 represents an intermediate decay rate where early windows retain γ^9 ≈ 0.8^9 ≈ 13% of terminal return, potentially showing delayed but still present collapse compared to γ=0.95 (39%).\\\", \\\"parent\\\": \\\"hsweep_h2_seed1\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train.py --config-name _alfworld_gamma_sweep_g080_h5 seed.train=10000 trainer.experiment_name=gsweep-g080-h5-seed1\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": 955007, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 10000, \\\"data_path\\\": \\\"ALFWorld\\\", \\\"data_count\\\": \\\"134 train tasks\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/gsweep_g080_h5_seed1.log\\\", \\\"env\\\": \\\"TORCH_COMPILE_DISABLE=1\\\", \\\"checkpoint_source\\\": \\\"Qwen3-1.7B base\\\", \\\"eval_data\\\": \\\"ALFWorld val 32 tasks\\\"}, \\\"metrics\\\": {\\\"step5_val_success\\\": \\\"3.125%\\\", \\\"step5_entropy\\\": 0.185, \\\"subsequent_steps\\\": \\\"all 0%\\\", \\\"conclusion_note\\\": \\\"Complete collapse confirmed. γ=0.80 with h=5 shows catastrophic failure — killed early by Director as no new information expected. Supports hypothesis that lower gamma accelerates collapse.\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T09:21:28.503Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-18T09:21:28.848Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T09:21:35.022554+00:00\\\"}]}}}, \\\"count\\\": 5, \\\"total\\\": 68, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.208}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"factorial_h2_episodeadv_seed2\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T04:48:02.228Z\", \"updated_at\": \"2026-05-18T11:15:44.753Z\", \"hypothesis\": \"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\", \"parent\": \"factorial_h2_episodeadv_seed1\", \"failure_reason\": \"进程被前一个 diagnose worker 误杀 (kill -USR1, M009 违规)。训练未开始，还在 val_before_train 阶段。需要重启。\", \"reproduce\": {\"finished_at\": \"2026-05-18T10:52:18.239Z\"}, \"completed_at\": \"2026-05-18T10:52:19.155Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:52:21.813105+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml\", \"server\": \"westd-47453\", \"gpu\": \"0,1\", \"data_path\": \"/root/autodl-tmp/cost-verify-agent-rl/data/alfworld\", \"data_count\": 3553, \"model_name\": \"Qwen/Qwen2.5-3B\", \"seed\": 43, \"pid\": 539852, \"wandb_run_id\": \"6rqnrlr7\", \"checkpoint_source\": \"exp008_sft\", \"eval_data\": \"alfworld_valid_unseen_134\"}, \"conclusion\": \"failed\"}, \"exp029_episode_level_seed2\": {\"status\": \"RUNNING\", \"retry_count\": 3, \"created_at\": \"2026-05-18T04:48:01.826Z\", \"updated_at\": \"2026-05-18T10:34:45.819Z\", \"hypothesis\": \"Replicate exp029 episode-level result (23.88% OOD) with different seed to confirm statistical robustness. P0 priority: core positive claim built on single seed is desk-reject risk. Same SFT checkpoint, same config, seed=43, 15 steps, AlfworldSG_OOD 134 tasks eval.\", \"parent\": \"exp029_episode_level\", \"reproduce\": {\"finished_at\": \"2026-05-18T10:29:23.413Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-18T05:41:19.165Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T05:41:22.770723+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T06:18:18.594301+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T07:41:53.887922+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T09:53:02.637445+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:29:27.034216+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_exp029_episode_level_seed2\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,1\", \"pid\": 30131, \"data_path\": \"ALFWorld\", \"data_count\": 134, \"model_name\": \"Qwen3-1.7B (SFT v4 checkpoint)\", \"seed\": 43, \"wandb_run_id\": \"efab7i1h\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029-seed2/\", \"checkpoint_source\": \"exp021_ragen_sft_v4\", \"eval_data\": \"AlfworldSG_OOD 134 tasks\", \"hyperparams\": {\"total_training_steps\": 100, \"enable_gradient_checkpointing\": true, \"ppo_mini_batch_size\": 8, \"ppo_max_token_len_per_gpu\": 16384, \"env_groups\": 8, \"group_size\": 8}, \"notes\": \"Final config: total_steps=100 (matching seed1 LR schedule) + memory-optimized params (env_groups=8, mini_batch=8, token_len=16384). Will kill at step 20. GPU 37GB/98GB with 61GB headroom.\"}}, \"factorial_h2_episodeadv_seed1\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-17T18:17:23.327Z\", \"updated_at\": \"2026-05-18T10:22:36.071Z\", \"hypothesis\": \"Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.\", \"parent\": \"hsweep_h2_seed1\", \"server\": \"westd-47453\", \"gpu\": \"cuda:0,cuda:1\", \"reproduce\": {\"command\": \"bash -c \\\"export TORCH_COMPILE_DISABLE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv\\\"\", \"finished_at\": \"2026-05-18T10:16:37.005Z\"}, \"failure_reason\": \"False positive: W&B atexit BrokenPipeError during cleanup. Training completed all 15/15 steps normally.\", \"completed_at\": \"2026-05-17T19:23:42.236Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T19:23:44.970401+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T20:06:00.076942+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:16:44.344646+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR && export TORCH_COMPILE_DISABLE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": 475745, \"wandb_run_id\": \"jsrvwcfd\", \"model_name\": \"Qwen3-1.7B-SFT (exp021)\", \"seed\": 42, \"data_path\": \"ALFWorld valid_unseen\", \"data_count\": \"3553 train + 134 OOD eval\", \"log_path\": \"~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log\", \"env\": \"TMPDIR=/root/autodl-tmp/tmp TORCH_COMPILE_DISABLE=1\", \"checkpoint_source\": \"Qwen3-1.7B-SFT exp021\", \"eval_data\": \"ALFWorld valid_unseen 134 tasks (OOD)\"}, \"metrics\": {\"completed_steps\": \"15/15\", \"wandb_run_id\": \"6liw7fm1\", \"val_step5\": {\"success\": 0.0597, \"dataset\": \"AlfworldOOD_134tasks\"}, \"val_step15\": {\"success\": 0.0075}, \"kl_loss_trajectory\": {\"step1\": 0.238, \"step5\": 0.735, \"step10\": 1.029, \"step15\": 2.845}, \"ppo_kl_range\": \"0.025-0.096\", \"best_checkpoint\": \"global_step_5\", \"best_val_success\": 0.0597, \"train_step1\": {\"success\": 0.203, \"pass_at_8\": 0.688}, \"train_step6\": {\"success\": 0.258, \"pass_at_8\": 0.813}, \"checkpoint_paths\": {\"step5\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_5/\", \"step10\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_10/\", \"step15\": \"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/\"}, \"exit_cause\": \"W&B atexit BrokenPipeError (false positive)\", \"kl_issue\": \"kl_loss_coef=0.01 too low, policy drifted after step 5\", \"status_note\": \"COMPLETED. Best val OOD 5.97% at step 5. Degraded to 0.75% by step 15 due to KL drift. Sign misattribution elimination confirmed: 5.97% vs 0% (step-level h=2).\"}, \"notes\": \"W&B 深度分析确认：sign misattribution 是 collapse 的 primary driver。关键证据：step 3→4 hsweep action_valid 91.3%→43.1% (catastrophic collapse) vs factorial 保�� 79-85% (无崩溃)。V-shaped recovery (20.3%→3.1%→15.63%) 是探索期波动非不可逆退化。3-cell 贡献：sign misattribution ~6pp (0%→5.97% val), information loss ~22pp (5.97%→28.1% val)。Sign misattribution pp 贡献较小但是 catastrophic collapse 的质变 trigger。\", \"conclusion\": \"success\"}, \"gsweep_g095_h5_seed1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:56:55.994Z\", \"updated_at\": \"2026-05-18T09:36:26.788Z\", \"hypothesis\": \"γ=0.95 with h=5 is the control condition matching hsweep_h5. Early windows retain γ^9 ≈ 0.95^9 ≈ 63% of terminal return. Expected to reproduce h5 behavior from h-sweep.\", \"parent\": \"hsweep_h2_seed1\", \"spec\": {\"command\": \"bash launch_gsweep.sh g095 \\\"2,3\\\" → python train.py --config-name _alfworld_gamma_sweep_g095_h5 seed.train=10000 trainer.experiment_name=gsweep-g095-h5-seed1\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\", \"cuda:3\"], \"pid\": 416289, \"data_path\": \"ALFWorld\", \"data_count\": \"134 train tasks\", \"model_name\": \"Qwen3-1.7B\", \"seed\": 10000, \"wandb_run_id\": \"jv3aa2cj\", \"checkpoint_source\": \"Qwen3-1.7B base\", \"eval_data\": \"ALFWorld val 32 tasks\"}}, \"gsweep_g080_h5_seed1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:56:53.634Z\", \"updated_at\": \"2026-05-18T09:35:23.404Z\", \"hypothesis\": \"γ=0.8 with h=5 represents an intermediate decay rate where early windows retain γ^9 ≈ 0.8^9 ≈ 13% of terminal return, potentially showing delayed but still present collapse compared to γ=0.95 (39%).\", \"parent\": \"hsweep_h2_seed1\", \"spec\": {\"command\": \"python train.py --config-name _alfworld_gamma_sweep_g080_h5 seed.train=10000 trainer.experiment_name=gsweep-g080-h5-seed1\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\", \"cuda:3\"], \"pid\": 955007, \"model_name\": \"Qwen3-1.7B\", \"seed\": 10000, \"data_path\": \"ALFWorld\", \"data_count\": \"134 train tasks\", \"log_path\": \"~/runs/cost-verify-agent-rl/gsweep_g080_h5_seed1.log\", \"env\": \"TORCH_COMPILE_DISABLE=1\", \"checkpoint_source\": \"Qwen3-1.7B base\", \"eval_data\": \"ALFWorld val 32 tasks\"}, \"metrics\": {\"step5_val_success\": \"3.125%\", \"step5_entropy\": 0.185, \"subsequent_steps\": \"all 0%\", \"conclusion_note\": \"Complete collapse confirmed. γ=0.80 with h=5 shows catastrophic failure — killed early by Director as no new information expected. Supports hypothesis that lower gamma accelerates collapse.\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T09:21:28.503Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T09:21:28.848Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T09:21:35.022554+00:00\"}]}}}, \"count\": 5, \"total\": 68, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.208}}"
+              }
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The registry already has `factorial_h2_episodeadv_seed2` with status=DONE, conclusion=failed, retry_count=1. The previous failure was \"进程被前一个 diagnose worker 误杀 (kill -USR1, M009 违规)。训练未开始，还在 val_before_train 阶段。需要重启。\"\n\nSo this is the SECOND failure (retry_count=1, now it's been restarted). The current status is already DONE with conclusion=failed, but the failure reason is from the previous failure. I need to update the failure_reason, log_path, and checkpoint_path for this new failure.\n\n\nThe experiment was restarted with PID 539852 and wandb_run_id 6rqnrlr7, but the failure_reason still reflects the previous crash. I need to update the registry with the new failure information—the failure_reason, log_path, and checkpoint_path for this current run.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d42385f3-f108-4cf2-883e-b13df24eddbe",
+            "uuid": "0fe92f86-486e-4c08-8ea0-8057a90a9a5c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Am9a3z9jmCPh3kWEDJJgvn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5351,
+                "cache_read_input_tokens": 105497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5351
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已存在此实验（status=DONE, conclusion=failed），但 failure_reason 是前次的误杀记录。更新为本次崩溃原因。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d42385f3-f108-4cf2-883e-b13df24eddbe",
+            "uuid": "983e2446-c6c6-46bd-9c69-b3855a708ca1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Am9a3z9jmCPh3kWEDJJgvn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5351,
+                "cache_read_input_tokens": 105497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5351
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FaHpUDZBsVRdgfw41frpFS",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "factorial_h2_episodeadv_seed2",
+                "field": "failure_reason",
+                "value": "Worker 546362 (TaskRunner) 在 val_before_train 初始评估阶段被信号杀死 (SYSTEM_ERROR, connection error code 2 / EOF)。GCS 报告可能原因: OOM killer / SIGSEGV。134 个 ALFWorld eval 环境并行启动约 12 分钟后进程崩溃，无 Python traceback。0/15 训练步完成，无 checkpoint。",
+                "project": "cost-verify-agent-rl"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d42385f3-f108-4cf2-883e-b13df24eddbe",
+            "uuid": "27324dab-5754-48c0-8e12-dd78d0ea13cd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Am9a3z9jmCPh3kWEDJJgvn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5351,
+                "cache_read_input_tokens": 105497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5351
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-18T11:18:26.719Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FaHpUDZBsVRdgfw41frpFS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"factorial_h2_episodeadv_seed2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T04:48:02.228Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:18:26.563Z\\\", \\\"hypothesis\\\": \\\"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\\\", \\\"parent\\\": \\\"factorial_h2_episodeadv_seed1\\\", \\\"failure_reason\\\": \\\"Worker 546362 (TaskRunner) 在 val_before_train 初始评估阶段被信号杀死 (SYSTEM_ERROR, connection error code 2 / EOF)。GCS 报告可能原因: OOM killer / SIGSEGV。134 个 ALFWorld eval 环境并行启动约 12 分钟后进程崩溃，无 Python traceback。0/15 训练步完成，无 checkpoint。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:52:18.239Z\\\"}, \\\"completed_at\\\": \\\"2026-05-18T10:52:19.155Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:52:21.813105+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"0,1\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/cost-verify-agent-rl/data/alfworld\\\", \\\"data_count\\\": 3553, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 43, \\\"pid\\\": 539852, \\\"wandb_run_id\\\": \\\"6rqnrlr7\\\", \\\"checkpoint_source\\\": \\\"exp008_sft\\\", \\\"eval_data\\\": \\\"alfworld_valid_unseen_134\\\"}, \\\"conclusion\\\": \\\"failed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3632}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d42385f3-f108-4cf2-883e-b13df24eddbe",
+            "uuid": "ee0935cf-a7aa-4727-94fc-789e72c94be4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"factorial_h2_episodeadv_seed2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T04:48:02.228Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:18:26.563Z\\\", \\\"hypothesis\\\": \\\"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\\\", \\\"parent\\\": \\\"factorial_h2_episodeadv_seed1\\\", \\\"failure_reason\\\": \\\"Worker 546362 (TaskRunner) 在 val_before_train 初始评估阶段被信号杀死 (SYSTEM_ERROR, connection error code 2 / EOF)。GCS 报告可能原因: OOM killer / SIGSEGV。134 个 ALFWorld eval 环境并行启动约 12 分钟后进程崩溃，无 Python traceback。0/15 训练步完成，无 checkpoint。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:52:18.239Z\\\"}, \\\"completed_at\\\": \\\"2026-05-18T10:52:19.155Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:52:21.813105+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"0,1\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/cost-verify-agent-rl/data/alfworld\\\", \\\"data_count\\\": 3553, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 43, \\\"pid\\\": 539852, \\\"wandb_run_id\\\": \\\"6rqnrlr7\\\", \\\"checkpoint_source\\\": \\\"exp008_sft\\\", \\\"eval_data\\\": \\\"alfworld_valid_unseen_134\\\"}, \\\"conclusion\\\": \\\"failed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3632}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"factorial_h2_episodeadv_seed2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T04:48:02.228Z\", \"updated_at\": \"2026-05-18T11:18:26.563Z\", \"hypothesis\": \"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\", \"parent\": \"factorial_h2_episodeadv_seed1\", \"failure_reason\": \"Worker 546362 (TaskRunner) 在 val_before_train 初始评估阶段被信号杀死 (SYSTEM_ERROR, connection error code 2 / EOF)。GCS 报告可能原因: OOM killer / SIGSEGV。134 个 ALFWorld eval 环境并行启动约 12 分钟后进程崩溃，无 Python traceback。0/15 训练步完成，无 checkpoint。\", \"reproduce\": {\"finished_at\": \"2026-05-18T10:52:18.239Z\"}, \"completed_at\": \"2026-05-18T10:52:19.155Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:52:21.813105+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml\", \"server\": \"westd-47453\", \"gpu\": \"0,1\", \"data_path\": \"/root/autodl-tmp/cost-verify-agent-rl/data/alfworld\", \"data_count\": 3553, \"model_name\": \"Qwen/Qwen2.5-3B\", \"seed\": 43, \"pid\": 539852, \"wandb_run_id\": \"6rqnrlr7\", \"checkpoint_source\": \"exp008_sft\", \"eval_data\": \"alfworld_valid_unseen_134\"}, \"conclusion\": \"failed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3632}}"
+              }
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R5Cr5y8pWJaXeyNDU9fmTT",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "factorial_h2_episodeadv_seed2",
+                "field": "log_path",
+                "value": "/root/autodl-tmp/tmp/ray/session_2026-05-18_18-48-11_555496_539852/logs/worker-453d70a4ab69c86e07732c0df32fd02b3c49a9483133e51b45d16f87-01000000-546362.out",
+                "project": "cost-verify-agent-rl"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d42385f3-f108-4cf2-883e-b13df24eddbe",
+            "uuid": "9f69d39d-eede-42f2-9a16-27770bbaa651",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Am9a3z9jmCPh3kWEDJJgvn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5351,
+                "cache_read_input_tokens": 105497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5351
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-18T11:18:30.756Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R5Cr5y8pWJaXeyNDU9fmTT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"factorial_h2_episodeadv_seed2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T04:48:02.228Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:18:30.497Z\\\", \\\"hypothesis\\\": \\\"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\\\", \\\"parent\\\": \\\"factorial_h2_episodeadv_seed1\\\", \\\"failure_reason\\\": \\\"Worker 546362 (TaskRunner) 在 val_before_train 初始评估阶段被信号杀死 (SYSTEM_ERROR, connection error code 2 / EOF)。GCS 报告可能原因: OOM killer / SIGSEGV。134 个 ALFWorld eval 环境并行启动约 12 分钟后进程崩溃，无 Python traceback。0/15 训练步完成，无 checkpoint。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:52:18.239Z\\\"}, \\\"completed_at\\\": \\\"2026-05-18T10:52:19.155Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:52:21.813105+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"0,1\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/cost-verify-agent-rl/data/alfworld\\\", \\\"data_count\\\": 3553, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 43, \\\"pid\\\": 539852, \\\"wandb_run_id\\\": \\\"6rqnrlr7\\\", \\\"checkpoint_source\\\": \\\"exp008_sft\\\", \\\"eval_data\\\": \\\"alfworld_valid_unseen_134\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/tmp/ray/session_2026-05-18_18-48-11_555496_539852/logs/worker-453d70a4ab69c86e07732c0df32fd02b3c49a9483133e51b45d16f87-01000000-546362.out\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5233}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d42385f3-f108-4cf2-883e-b13df24eddbe",
+            "uuid": "2d37ef87-0448-46dd-8107-748bbee32c9c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"factorial_h2_episodeadv_seed2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T04:48:02.228Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:18:30.497Z\\\", \\\"hypothesis\\\": \\\"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\\\", \\\"parent\\\": \\\"factorial_h2_episodeadv_seed1\\\", \\\"failure_reason\\\": \\\"Worker 546362 (TaskRunner) 在 val_before_train 初始评估阶段被信号杀死 (SYSTEM_ERROR, connection error code 2 / EOF)。GCS 报告可能原因: OOM killer / SIGSEGV。134 个 ALFWorld eval 环境并行启动约 12 分钟后进程崩溃，无 Python traceback。0/15 训练步完成，无 checkpoint。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:52:18.239Z\\\"}, \\\"completed_at\\\": \\\"2026-05-18T10:52:19.155Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:52:21.813105+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"0,1\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/cost-verify-agent-rl/data/alfworld\\\", \\\"data_count\\\": 3553, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 43, \\\"pid\\\": 539852, \\\"wandb_run_id\\\": \\\"6rqnrlr7\\\", \\\"checkpoint_source\\\": \\\"exp008_sft\\\", \\\"eval_data\\\": \\\"alfworld_valid_unseen_134\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/tmp/ray/session_2026-05-18_18-48-11_555496_539852/logs/worker-453d70a4ab69c86e07732c0df32fd02b3c49a9483133e51b45d16f87-01000000-546362.out\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5233}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"factorial_h2_episodeadv_seed2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T04:48:02.228Z\", \"updated_at\": \"2026-05-18T11:18:30.497Z\", \"hypothesis\": \"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\", \"parent\": \"factorial_h2_episodeadv_seed1\", \"failure_reason\": \"Worker 546362 (TaskRunner) 在 val_before_train 初始评估阶段被信号杀死 (SYSTEM_ERROR, connection error code 2 / EOF)。GCS 报告可能原因: OOM killer / SIGSEGV。134 个 ALFWorld eval 环境并行启动约 12 分钟后进程崩溃，无 Python traceback。0/15 训练步完成，无 checkpoint。\", \"reproduce\": {\"finished_at\": \"2026-05-18T10:52:18.239Z\"}, \"completed_at\": \"2026-05-18T10:52:19.155Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:52:21.813105+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml\", \"server\": \"westd-47453\", \"gpu\": \"0,1\", \"data_path\": \"/root/autodl-tmp/cost-verify-agent-rl/data/alfworld\", \"data_count\": 3553, \"model_name\": \"Qwen/Qwen2.5-3B\", \"seed\": 43, \"pid\": 539852, \"wandb_run_id\": \"6rqnrlr7\", \"checkpoint_source\": \"exp008_sft\", \"eval_data\": \"alfworld_valid_unseen_134\"}, \"conclusion\": \"failed\", \"log_path\": \"/root/autodl-tmp/tmp/ray/session_2026-05-18_18-48-11_555496_539852/logs/worker-453d70a4ab69c86e07732c0df32fd02b3c49a9483133e51b45d16f87-01000000-546362.out\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5233}}"
+              }
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HYpog4VBvS9pqbJWA18G9g",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "factorial_h2_episodeadv_seed2",
+                "field": "checkpoint_path",
+                "value": "NONE (empty dir at /root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/)",
+                "project": "cost-verify-agent-rl"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d42385f3-f108-4cf2-883e-b13df24eddbe",
+            "uuid": "c3519ad5-530f-4b2b-9764-739e879960f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Am9a3z9jmCPh3kWEDJJgvn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5351,
+                "cache_read_input_tokens": 105497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5351
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-18T11:18:31.795Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HYpog4VBvS9pqbJWA18G9g",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"factorial_h2_episodeadv_seed2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T04:48:02.228Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:18:31.659Z\\\", \\\"hypothesis\\\": \\\"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\\\", \\\"parent\\\": \\\"factorial_h2_episodeadv_seed1\\\", \\\"failure_reason\\\": \\\"Worker 546362 (TaskRunner) 在 val_before_train 初始评估阶段被信号杀死 (SYSTEM_ERROR, connection error code 2 / EOF)。GCS 报告可能原因: OOM killer / SIGSEGV。134 个 ALFWorld eval 环境并行启动约 12 分钟后进程崩溃，无 Python traceback。0/15 训练步完成，无 checkpoint。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:52:18.239Z\\\"}, \\\"completed_at\\\": \\\"2026-05-18T10:52:19.155Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:52:21.813105+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"0,1\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/cost-verify-agent-rl/data/alfworld\\\", \\\"data_count\\\": 3553, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 43, \\\"pid\\\": 539852, \\\"wandb_run_id\\\": \\\"6rqnrlr7\\\", \\\"checkpoint_source\\\": \\\"exp008_sft\\\", \\\"eval_data\\\": \\\"alfworld_valid_unseen_134\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/tmp/ray/session_2026-05-18_18-48-11_555496_539852/logs/worker-453d70a4ab69c86e07732c0df32fd02b3c49a9483133e51b45d16f87-01000000-546362.out\\\", \\\"checkpoint_path\\\": \\\"NONE (empty dir at /root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3205}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d42385f3-f108-4cf2-883e-b13df24eddbe",
+            "uuid": "0ba4d038-f497-4595-a03e-a2dcd940e547",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"factorial_h2_episodeadv_seed2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T04:48:02.228Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:18:31.659Z\\\", \\\"hypothesis\\\": \\\"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\\\", \\\"parent\\\": \\\"factorial_h2_episodeadv_seed1\\\", \\\"failure_reason\\\": \\\"Worker 546362 (TaskRunner) 在 val_before_train 初始评估阶段被信号杀死 (SYSTEM_ERROR, connection error code 2 / EOF)。GCS 报告可能原因: OOM killer / SIGSEGV。134 个 ALFWorld eval 环境并行启动约 12 分钟后进程崩溃，无 Python traceback。0/15 训练步完成，无 checkpoint。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:52:18.239Z\\\"}, \\\"completed_at\\\": \\\"2026-05-18T10:52:19.155Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:52:21.813105+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"0,1\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/cost-verify-agent-rl/data/alfworld\\\", \\\"data_count\\\": 3553, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 43, \\\"pid\\\": 539852, \\\"wandb_run_id\\\": \\\"6rqnrlr7\\\", \\\"checkpoint_source\\\": \\\"exp008_sft\\\", \\\"eval_data\\\": \\\"alfworld_valid_unseen_134\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/tmp/ray/session_2026-05-18_18-48-11_555496_539852/logs/worker-453d70a4ab69c86e07732c0df32fd02b3c49a9483133e51b45d16f87-01000000-546362.out\\\", \\\"checkpoint_path\\\": \\\"NONE (empty dir at /root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3205}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"factorial_h2_episodeadv_seed2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T04:48:02.228Z\", \"updated_at\": \"2026-05-18T11:18:31.659Z\", \"hypothesis\": \"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\", \"parent\": \"factorial_h2_episodeadv_seed1\", \"failure_reason\": \"Worker 546362 (TaskRunner) 在 val_before_train 初始评估阶段被信号杀死 (SYSTEM_ERROR, connection error code 2 / EOF)。GCS 报告可能原因: OOM killer / SIGSEGV。134 个 ALFWorld eval 环境并行启动约 12 分钟后进程崩溃，无 Python traceback。0/15 训练步完成，无 checkpoint。\", \"reproduce\": {\"finished_at\": \"2026-05-18T10:52:18.239Z\"}, \"completed_at\": \"2026-05-18T10:52:19.155Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:52:21.813105+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml\", \"server\": \"westd-47453\", \"gpu\": \"0,1\", \"data_path\": \"/root/autodl-tmp/cost-verify-agent-rl/data/alfworld\", \"data_count\": 3553, \"model_name\": \"Qwen/Qwen2.5-3B\", \"seed\": 43, \"pid\": 539852, \"wandb_run_id\": \"6rqnrlr7\", \"checkpoint_source\": \"exp008_sft\", \"eval_data\": \"alfworld_valid_unseen_134\"}, \"conclusion\": \"failed\", \"log_path\": \"/root/autodl-tmp/tmp/ray/session_2026-05-18_18-48-11_555496_539852/logs/worker-453d70a4ab69c86e07732c0df32fd02b3c49a9483133e51b45d16f87-01000000-546362.out\", \"checkpoint_path\": \"NONE (empty dir at /root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3205}}"
+              }
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。诊断结果如下：\n\n---\n\n## 诊断结果：factorial_h2_episodeadv_seed2\n\n**退出原因：** Worker 进程被信号杀死（疑似 OOM killer 或 SIGSEGV）\n\n**时间线：**\n- 18:48:11 — Ray session 启动 (PID 539852)\n- 18:48:21 — TaskRunner worker (PID 546362) 启动\n- 18:49:10 — W&B run 6rqnrlr7 就绪\n- ~18:49 — 开始 val_before_train：134 个 ALFWorld OOD eval 环境并行初始化\n- **19:00:42 — Worker 546362 崩溃 (SYSTEM_ERROR)**，导致 GPU workers 546976/546977 被 force-kill\n- 19:00:43 — Driver 539852 有序关闭\n\n**GCS server 报告的死因：**\n> Worker unexpectedly exits with a connection error code 2. End of file. Common causes: (1) OOM killer, (2) ray stop --force, (3) SIGSEGV or other unexpected error.\n\n**最终训练步数：** 0/15（卡在 val_before_train 阶段，从未开始训练）\n\n**关键 metrics：** 无（W&B 无 metrics 数据，output.log 仅 8 行初始化信息）\n\n**Checkpoint：** 无（空目录 `/root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/`）\n\n**Log 路径：**\n- TaskRunner output: `/root/autodl-tmp/tmp/ray/session_2026-05-18_18-48-11_555496_539852/logs/worker-...-546362.out`\n- W&B: `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/wandb/run-20260518_184910-6rqnrlr7/`\n- Hydra: `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/outputs/2026-05-18/18-48-11/`\n\n**磁盘状态：** /tmp 80% (6.2G free)，TMPDIR 54% (118G free) — 非磁盘原因\n\n**Conclusion：** **FAILED** — 这是第 2 次失败（第 1 次被误杀，本次被信号杀死）。最可能原因是 134 个 eval 环境 + 模型 + Ray 150+ worker 进程导致系统 RAM OOM。无 Python traceback 是 SIGKILL 的特征。重启时建议减少 val eval 并行度或跳过 val_before_train。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d42385f3-f108-4cf2-883e-b13df24eddbe",
+            "uuid": "4ec3392c-2c62-4f3c-a1ce-f11415c9af59",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016uNBJMiwZNBjntSkHhW4Yy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3528,
+                "cache_read_input_tokens": 110848,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3528
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。诊断结果如下：\n\n---\n\n## 诊断结果：factorial_h2_episodeadv_seed2\n\n**退出原因：** Worker 进程被信号杀死（疑似 OOM killer 或 SIGSEGV）\n\n**时间线：**\n- 18:48:11 — Ray session 启动 (PID 539852)\n- 18:48:21 — TaskRunner worker (PID 546362) 启动\n- 18:49:10 — W&B run 6rqnrlr7 就绪\n- ~18:49 — 开始 val_before_train：134 个 ALFWorld OOD eval 环境并行初始化\n- **19:00:42 — Worker 546362 崩溃 (SYSTEM_ERROR)**，导致 GPU workers 546976/546977 被 force-kill\n- 19:00:43 — Driver 539852 有序关闭\n\n**GCS server 报告的死因：**\n> Worker unexpectedly exits with a connection error code 2. End of file. Common causes: (1) OOM killer, (2) ray stop --force, (3) SIGSEGV or other unexpected error.\n\n**最终训练步数：** 0/15（卡在 val_before_train 阶段，从未开始训练）\n\n**关键 metrics：** 无（W&B 无 metrics 数据，output.log 仅 8 行初始化信息）\n\n**Checkpoint：** 无（空目录 `/root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/`）\n\n**Log 路径：**\n- TaskRunner output: `/root/autodl-tmp/tmp/ray/session_2026-05-18_18-48-11_555496_539852/logs/worker-...-546362.out`\n- W&B: `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/wandb/run-20260518_184910-6rqnrlr7/`\n- Hydra: `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/outputs/2026-05-18/18-48-11/`\n\n**磁盘状态：** /tmp 80% (6.2G free)，TMPDIR 54% (118G free) — 非磁盘原因\n\n**Conclusion：** **FAILED** — 这是第 2 次失败（第 1 次被误杀，本次被信号杀死）。最可能原因是 134 个 eval 环境 + 模型 + Ray 150+ worker 进程导致系统 RAM OOM。无 Python traceback 是 SIGKILL 的特征。重启时建议减少 val eval 并行度或跳过 val_before_train。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 353982,
+            "duration_api_ms": 349800,
+            "num_turns": 77,
+            "stop_reason": "end_turn",
+            "session_id": "d42385f3-f108-4cf2-883e-b13df24eddbe",
+            "total_cost_usd": 1.70164325,
+            "usage": {
+              "input_tokens": 22,
+              "cache_creation_input_tokens": 102535,
+              "cache_read_input_tokens": 1135001,
+              "output_tokens": 19635,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 102535,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 746,
+                  "cache_read_input_tokens": 110848,
+                  "cache_creation_input_tokens": 3528,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3528
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2184,
+                "outputTokens": 26,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002314,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 22,
+                "outputTokens": 19635,
+                "cacheReadInputTokens": 1135001,
+                "cacheCreationInputTokens": 102535,
+                "webSearchRequests": 0,
+                "costUSD": 1.69932925,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "bbe21932-8ffb-4a02-8f38-2f024e733d86"
+          },
+          "id": "event-000191"
+        }
+      ]
+    }
+  ]
+}

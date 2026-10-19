@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b01990dd1fe523659756",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "paper writing discussion limitations",
+  "task_key": "worker_paper_writing_discussion_limitations_20260517T100639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_discussion_limitations_20260517T100639_result.json",
+    "occurrence": 1,
+    "bytes": 836,
+    "sha256": "060f956306b1ba1e64ed94109615895b54aab4da3ad6ce5f94ecbad34a92cf96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`discussion.tex` 已写入。包含 Discussion（4 个小节，约 1000 words）和 Limitations（5 段，约 400 words）。结构：\n\n1. **Generality of Sign Misattribution** - 论证该问题适用于所有满足 windowing + sparse reward + group normalization 的多轮 agent RL\n2. **Direction Correctness vs Credit Granularity** - 分析 episode-level 的 trade-off，讨论何时细粒度 credit 变得重要\n3. **Relationship to Classical Credit Assignment** - 定位 step-independent windowing 在 TD(0)-to-MC 谱系中的位置（低于谱系底端）\n4. **Dual Mechanism Interaction** - M1 和 M2 通过 success rate $p$ 形成反馈回路加速崩溃\n5. **Limitations** - 5 个具体限制：单环境、单模型规模、粗粒度 credit、selective verification 未实现、gradient 分析仅覆盖 h=2"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-discussion-limitations.md"
+}

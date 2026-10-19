@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "93c6859e91292fafbd9d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "figure cross scale v2",
+  "task_key": "worker_figure_cross_scale_v2_20260523T130325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_cross_scale_v2_20260523T130325_result.json",
+    "occurrence": 1,
+    "bytes": 2105074,
+    "sha256": "c35ff98cae0442dd5f646a677f31dba10a00b0dbfe472ebb3869eb2c872652e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "93c6859e91292fafbd9d-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/figure-cross-scale-v2.md"
+}

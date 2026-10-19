@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80fe5f2c27e7d4dcb0a1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose westd pid check",
+  "task_key": "worker_diagnose_westd-pid-check_20260519T145341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-pid-check_20260519T145341_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "b05b7bd4fd7909db9019a868b69260016138e3c5496d78b3017c865de53054d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 命令被 read_only 白名单拦截，但其余信息已获取。\n\n**SFT 训练进程：**\n\n| 角色 | PID | GPU 显存 |\n|------|-----|---------|\n| torchrun 主进程 | **120827** | — |\n| Worker rank 0 | **120904** | 47004 MiB |\n| Worker rank 1 | **120905** | 47232 MiB |\n| Worker rank 2 | **120906** | 47232 MiB |\n| Worker rank 3 | **120907** | 47040 MiB |\n\n启动脚本：PID **120829**（`bash /root/cost-verify-agent-rl/RAGEN/scripts/run_scienceworld_sft.sh`）\n\n实验：`scienceworld-sft-qwen3-1.7b`，4 GPU FSDP2，Qwen3-1.7B，wandb 已连接（wandb-core PID 123220）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-pid-check.md"
+}

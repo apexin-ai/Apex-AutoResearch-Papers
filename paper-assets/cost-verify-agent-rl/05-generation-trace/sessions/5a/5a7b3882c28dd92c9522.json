@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5a7b3882c28dd92c9522",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "research episode level training",
+  "task_key": "worker_research_episode_level_training_20260516T032352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_episode_level_training_20260516T032352.log",
+    "occurrence": 1,
+    "bytes": 646695,
+    "sha256": "81be4a1b420397286c964523410fc4a2d9d653ae5d825a8b6b78703e1482d992"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 0,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 89,
+      "tool_result": 89,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 219,
+      "chunks": [
+        {
+          "path": "5a7b3882c28dd92c9522-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5a7b3882c28dd92c9522-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-episode-level-training.md"
+}

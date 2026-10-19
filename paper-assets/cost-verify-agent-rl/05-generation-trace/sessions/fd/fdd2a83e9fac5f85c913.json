@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdd2a83e9fac5f85c913",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh seed300 ood eval v4 bjb1",
+  "task_key": "worker_ssh_seed300_ood_eval_v4_bjb1_20260522T203948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed300_ood_eval_v4_bjb1_20260522T203948_result.json",
+    "occurrence": 1,
+    "bytes": 1136,
+    "sha256": "dbdd188420744435d67f9cbe674b65947fb5024c8972b4b724014af95ee8a3e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**v4 eval 已在运行中**，无需重新启动。\n\n### Runtime Config 验证（从 log config dump 确认）\n| 参数 | 实际值 | 要求 | 状态 |\n|------|--------|------|------|\n| `enable_think` | `True` | `True` | ✓ |\n| `enable_response_mask` (顶层) | `False` | `False` | ✓ |\n| `enable_response_mask` (嵌套) | `False` | `False` | ✓ |\n| `context_window_mode` | `full` | `full` | ✓ |\n| `seed.val` | `321` | `321` | ✓ |\n| `val_only` | `True` | `True` | ✓ |\n| OOD tasks | `AlfworldSG_OOD` × 134 | 134 | ✓ |\n| `val_kwargs.temperature` | `0.4` | `0.4` | ✓ |\n\n### 运行状态\n- **PID**: 456544（主进程），459788（TaskRunner）\n- **启动时间**: 04:37 UTC (May 23)\n- **Log**: `/root/autodl-tmp/logs/ood_eval_v4_seed300.log`（1732 行）\n- **W&B run**: `wf27jcg8`（seed300-step5-ood-eval）\n- **GPU 0**: 已分配（8133 MiB used），utilization 0%（刚完成模型加载/数据集加载阶段，尚未开始 rollout）\n- **磁盘**: `/root/autodl-tmp` 119GB free（充足）\n\n模型加载和 W&B 初始化已完成，正在进入 eval rollout 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed300-ood-eval-v4-bjb1.md"
+}

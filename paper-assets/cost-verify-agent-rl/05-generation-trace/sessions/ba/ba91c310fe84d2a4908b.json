@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba91c310fe84d2a4908b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research cell b config",
+  "task_key": "worker_research_cell_b_config_20260524T232713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cell_b_config_20260524T232713_result.json",
+    "occurrence": 1,
+    "bytes": 3922,
+    "sha256": "8201b882120ad3adb834e0fc2c4205771b510f49af903419cebfc3e7c9dac14b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息充分了。汇总 Cell B 配置。\n\n---\n\n## Cell B (h=2, episode-level advantage) 调研结果\n\n### 1. 已有配置文件\n\n`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_episode_adv.yaml` — 已存在，关键参数：\n\n| 参数 | 值 |\n|------|-----|\n| `context_window_mode` | `step_independent` |\n| `step_independent_history_length` | 2 |\n| `advantage_mode` | `episode_level` |\n| `total_training_steps` | 15 |\n| `save_freq` / `test_freq` | 5 |\n| `val_before_train` | True |\n| Train | 16 groups × 8 = 128 episodes (AlfworldSG) |\n| Val | 134 episodes (AlfworldOOD) |\n| Base model | `qwen3_exp021_ragen_sft_v4` |\n| GPUs | 2 (cuda:0,1) |\n| LR | 1e-6, KL coef 0.01, clip 0.2/0.28 |\n\n与 hsweep-h2 的唯一区别：增加了 `advantage_mode: \"episode_level\"` + val 用 134 OOD episodes。\n\n### 2. Registry 状态\n\n无已有 Cell B 实验注册。无 checkpoint 存在。\n\n### 3. 训练时长估算\n\n从 `hsweep-h2-seed1.log` 实测时间戳（同样 h=2, 15 steps, 2 GPUs）：\n\n| 阶段 | 时间点 | 累计 |\n|------|--------|------|\n| 开始 | 05-17 12:18 | 0h |\n| Step 5 ckpt | 05-17 16:28 | 4h 10min |\n| Step 10 ckpt | 05-17 19:42 | 7h 24min |\n| Step 15 ckpt | 05-17 22:29 | 10h 11min |\n\nhsweep-h2 用 32-ep SG val，factorial 用 134-ep OOD val（~4.2x 更重）。估算：\n- **纯训练步（无 val）**：~28 min/step → 15 steps ≈ **7 小时**\n- **含 134-ep OOD val**：val 每次 ~3-3.5h，共 4 次 val（step 0/5/10/15）→ 总计 **~19-21 小时/seed**\n\n**建议**：多种子跑时可关闭 `val_before_train` 并降 `test_freq`，训练后统一做 post-hoc OOD eval，可省约一半时间。\n\n### 4. 训练命令模板\n\n```bash\n#!/bin/bash\nset -euo pipefail\n\nSEED=${1:?Usage: $0 <seed> [gpu_ids]}\nGPU_IDS=${2:-\"0,1\"}\nCKPT_DIR=\"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/seed${SEED}/\"\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport RAY_memory_monitor_refresh_ms=0\nexport RAY_SYSTEM_MEMORY=210000000000\nexport HYDRA_FULL_ERROR=1\nexport CUDA_VISIBLE_DEVICES=${GPU_IDS}\nexport WANDB_PROJECT=cost-verify-agent-rl\nexport WANDB_NAME=\"factorial_h2_episodeadv_s${SEED}\"\nexport WANDB_MODE=online\nexport WANDB_DIR=/root/autodl-tmp/wandb && mkdir -p $WANDB_DIR\n\nmkdir -p \"$CKPT_DIR\"\nrm -rf /tmp/fast_downward_* /tmp/ray/* /tmp/tmp* 2>/dev/null || true\n\ncd /root/cost-verify-agent-rl/RAGEN\npython train.py --config-name _alfworld_factorial_h2_episode_adv \\\n    seed.train=${SEED} \\\n    seed.val=${SEED} \\\n    system.CUDA_VISIBLE_DEVICES=\"\\\"${GPU_IDS}\\\"\" \\\n    trainer.experiment_name=\"factorial-h2-episode-adv-s${SEED}\" \\\n    trainer.local_log_dir=\"\\\"${CKPT_DIR}\\\"\" \\\n    trainer.default_local_dir=\"\\\"${CKPT_DIR}\\\"\" \\\n    2>&1 | tee ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_s${SEED}.log\n```\n\nSeed 策略参照 launch_hsweep.sh: `SEED * 10000`（seed1→10000, seed2→20000, seed3→30000）。\n\n### 5. OOD Eval 命令模板\n\n已有脚本 `eval_ood_seed5.py`（修改 CHECKPOINT 路径即可复用），或用通用脚本：\n\n```bash\ncd /root/cost-verify-agent-rl\nCUDA_VISIBLE_DEVICES=0 python scripts/eval_checkpoint.py \\\n    --checkpoint_path /root/autodl-tmp/checkpoints/factorial-h2-episode-adv/seed${SEED}/global_step_${STEP}/actor/huggingface \\\n    --num_episodes 134 \\\n    --temperature 0.4 \\\n    --max_steps 50 \\\n    --gpu 0 \\\n    --gpu_memory_utilization 0.35 \\\n    --output_dir /root/autodl-tmp/eval_results/\n```\n\n也可用 `eval_checkpoint_full_context.py`（评估时用 full context 而非 h=2 窗口）来做公平的 inference-time 对比。\n\n预计单次 134-ep eval 耗时：**~2.5-3.5 小时**（单 GPU）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-cell-b-config.md"
+}

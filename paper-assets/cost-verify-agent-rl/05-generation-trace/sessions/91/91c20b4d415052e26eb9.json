@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91c20b4d415052e26eb9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "verify seed6 v3 gpu isolation",
+  "task_key": "worker_verify_seed6_v3_gpu_isolation_20260521T081226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_seed6_v3_gpu_isolation_20260521T081226_result.json",
+    "occurrence": 1,
+    "bytes": 1436,
+    "sha256": "e46d8a6544e973bbb14d11a31fc0b3326b3b5dd094c311031fdad8eb5dc19d78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 隔离验证结果：有严重问题。**\n\n### 关键发现：CUDA_VISIBLE_DEVICES 配置错误\n\nSeed 6 v3 的配置中 `CUDA_VISIBLE_DEVICES` 设为 **`0,1`** 而非预期的 **`2,3`**：\n\n```\n'system': {'CUDA_VISIBLE_DEVICES': '0,1'}\n```\n\n日志也确认输出：`CUDA_VISIBLE_DEVICES: 0,1`\n\n### 当前 GPU 状态\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| 0 | 37,655 MiB / 97,887 MiB | 100% | Seed 5 (PID 886568) |\n| 1 | 38,211 MiB / 97,887 MiB | 100% | Seed 5 (PID 886569) |\n| 2 | 3 MiB / 97,887 MiB | 0% | 无 |\n| 3 | 3 MiB / 97,887 MiB | 0% | 无 |\n\n### 详细判定\n\n- **GPU 2,3 未被 Seed 6 占用** — 空闲状态，因为 Seed 6 还在 Ray 初始化阶段（TaskRunner pid=895770 刚输出 config dump）\n- **GPU 0,1 上 Seed 5 目前正常** — 但 Seed 6 一旦开始加载模型，将尝试占用 GPU 0,1，与 Seed 5 **直接冲突**\n- **save_freq=5** — 确认正确\n- **CUDA_VISIBLE_DEVICES=0,1** — **错误**，应为 `2,3`\n- **无 runtime error** — 目前只有初始化阶段的 warnings（tokenizer regex、Ray docker CPU、hydra defaults_list），均为非关键\n\n### 结论\n\n**Seed 6 v3 必须立即停止。** 配置文件中 `CUDA_VISIBLE_DEVICES` 写错了 `0,1`，如果继续运行，模型加载后将挤占 Seed 5 的 GPU 0,1，导致两个实验同时崩溃。需要修正配置为 `2,3` 后重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-seed6-v3-gpu-isolation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dff3c0ae5dc4b0b37900",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp029 seed7 len penalty",
+  "task_key": "worker_code_exp029_seed7_len_penalty_20260521T161605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp029_seed7_len_penalty_20260521T161605_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "5ac951dcf7a910f35b7c199836936c490eafd92393807dd82f3df973d19cc04b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交。汇报：\n\n```\n代码修改:\n  文件: /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py\n  git diff: length penalty 逻辑插入 line 1543 之后（token_level_rewards 赋值之后、compute_advantage 之前）\n    - getattr(self.config, \"response_length_penalty_coef\", 0.0) 读取顶层配置\n    - getattr(self.config, \"response_length_penalty_threshold\", 4096) 读取阈值\n    - penalty = -coef * max(0, resp_len - threshold) / threshold，加到最后一个有效 token\n  语法检查: SYNTAX OK\n\n配置:\n  文件: /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed7_len_penalty.yaml\n  关键参数: seed=999, threshold=1000, coef=0.5, total_steps=7, save_freq=5, CUDA=0,1\n\n提交:\n  PID: 495138\n  tmux session: exp029_seed7_len_penalty\n  log: ~/runs/cost-verify-agent-rl/exp029_seed7_len_penalty.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp029-seed7-len-penalty.md"
+}

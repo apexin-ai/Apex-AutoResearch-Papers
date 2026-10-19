@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cdaf046763678d08be5",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "check corr 8b progress",
+  "task_key": "worker_check_corr-8b-progress_20260512T135254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_corr-8b-progress_20260512T135254_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "cd7bd9a58bc24a12b5cf0401fe42922d6212fe8442ebbda3dc14f1e9706b2df8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`screen -ls` 被 read-only 白名单拦截，但 GPU 状态已足够判断。\n\n**corr_8b (correction feasibility test on cuda:1):**\n- cuda:1 有两个进程在跑（PID 116110, 116400），各占 7754 MiB — 模型已加载，正在运行\n- 刚启动不久：完成 **1/100 episodes**（~21:53 完成第一个）\n- 第一个 episode: task=25, look_at_obj, reward=False, 40 steps, 耗时 88.5s\n- 日志仅 22 行，处于极早期阶段\n- 按 ~90s/episode 估算，100 episodes 约需 **2.5 小时**\n\n**轨迹收集 (cuda:0):**\n- `train_part0.jsonl`: **52 条**轨迹已收集"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-corr-8b-progress.md"
+}

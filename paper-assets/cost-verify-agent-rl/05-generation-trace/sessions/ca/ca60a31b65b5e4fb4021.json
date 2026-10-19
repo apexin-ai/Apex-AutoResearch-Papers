@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca60a31b65b5e4fb4021",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis exp029 seed100 resume step10",
+  "task_key": "worker_analysis_exp029_seed100_resume_step10_20260523T001411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp029_seed100_resume_step10_20260523T001411_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "32c78aaa34e49f4a15d880d6064e1a30c480ae78de023ce114b03e67c72991ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## exp029_seed100_resume_step10 结果总结\n\n**训练状态**: ✅ 成功完成 (EXIT_CODE=0, 2.12h)\n\n### 关键指标\n\n| 指标 | Step 5 (resume) | Step 10 (final) |\n|------|----------------|-----------------|\n| ID eval success (32-ep) | 31.25% | **37.5%** (+6.25pp) |\n| reward mean@32 | 3.125 | **3.75** |\n| response length | 3502 | **2717** (更高效) |\n\n### 训练健康度: HEALTHY\n- **Reward**: 波动上升 (3.91 → 4.77 → 2.81 → 4.53)，step9 有单步回落但 step10 立即恢复\n- **KL**: 极低 (0.002-0.007)，未偏离 reference\n- **Entropy**: 0.121 → 0.081，策略稳步收敛无 collapse\n- **Collapse 检测**: first_turn_valid_rate = 98.4%，MI 健康\n\n### Checkpoint\n`/root/autodl-tmp/checkpoints/exp029-seed100/global_step_10/actor/` — FSDP shards 完整 (~20GB)\n\n### 下一步\n需要用此 checkpoint 跑 **OOD eval** (AlfworldSG_OOD) 验证 hypothesis：seed100 step10 OOD 是否从 step5 的 11.2% 提升到 20-25%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp029-seed100-resume-step10.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b2e1ba8d378a73c81fc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops urgent westd full status",
+  "task_key": "worker_ops_urgent-westd-full-status_20260521T003404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-westd-full-status_20260521T003404_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "56a94e2ec7cf3b7bbdc6b431f767a4c626b366e69be42e8ef78e24936818f27b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-47453 状态汇总\n\n### 实验状态\n\n| 实验 | PID | 状态 | 进度 | 关键指标 |\n|------|-----|------|------|----------|\n| seed3 OOD (exp029) | 417862 | **CRASHED** | — | `RuntimeError: tensors on cuda:0 and cpu` |\n| Cell C v3 | 88226 | **RUNNING** (6h11m) | 2/15 steps (13%) | step0 val: success=0.0, pass@1=0.0, reward=0.5 |\n\n### GPU 占用\n\n| GPU | 利用率 | VRAM | 占用进程 |\n|-----|--------|------|----------|\n| 0 | 0% | 0 / 98 GB | idle |\n| 1 | 0% | 0 / 98 GB | idle |\n| 2 | 0% | 45 / 98 GB | PID 95408 (Cell C v3) |\n| 3 | 0% | 45 / 98 GB | PID 95409 (Cell C v3) |\n\n### 详情\n\n**seed3 OOD** — 已崩溃，EXIT_CODE=1。根因：`optimizer_offload=True` 导致 Adam optimizer states 在 CPU 上，但 FSDP `_optimizer_step()` 期望所有 tensor 在同一设备。崩溃点：`dp_actor.py:180 self.actor_optimizer.step()`。GPU 0,1 已释放。\n\n**Cell C v3** — 正常运行中，step 2 rollout 阶段（最后日志 06:35，环境交互中所以 GPU util=0%）。step 0 baseline val 全零（符合预期，未训练）。按当前速度 ETA ~32h。无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-westd-full-status.md"
+}

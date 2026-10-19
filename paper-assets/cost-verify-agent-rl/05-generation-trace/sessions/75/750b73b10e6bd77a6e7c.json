@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "750b73b10e6bd77a6e7c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code scienceworld grpo config",
+  "task_key": "worker_code_scienceworld_grpo_config_20260519T201551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scienceworld_grpo_config_20260519T201551_result.json",
+    "occurrence": 1,
+    "bytes": 2600,
+    "sha256": "c4f247e8c04417cbee85e5069bd2fb055ea34edeea5fc4ea296d3dbc9ac707df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 config 均通过 Hydra 解析验证（`_self_` 警告是已有 ALFWorld configs 同样存在的 Hydra 1.x 兼容性提示，不影响运行）。\n\n---\n\n## 产出报告\n\n### 1. 文件路径\n- Cell A: `/root/cost-verify-agent-rl/RAGEN/config/_scienceworld_cell_a.yaml`\n- Cell C: `/root/cost-verify-agent-rl/RAGEN/config/_scienceworld_cell_c.yaml`\n\n### 2. 与 ALFWorld 模板的 diff 摘要\n\n基于 1.7B ALFWorld 模板（exp026 = Cell A, exp029 = Cell C），改动：\n\n| 参数 | ALFWorld 1.7B | ScienceWorld |\n|------|-------------|--------------|\n| model_path | `qwen3_exp021_ragen_sft_v4` | `scienceworld_sft/global_step_448/huggingface` |\n| CUDA_VISIBLE_DEVICES | `\"0,1\"` (2 GPU) | `\"0,1,2,3\"` (4 GPU) |\n| n_gpus_per_node | 2 | 4 |\n| env tags | `[\"AlfworldSG\"]` | `[\"ScienceWorldBoil\"]` |\n| step_independent_history_length (Cell A) | 5 → **2** | 2（对齐 8B canonical Cell A 定义） |\n| loss_agg_mode (Cell A) | `seq-mean-token-mean` → **`token-mean`** | token-mean（对齐 8B canonical） |\n| ppo_mini_batch_size (Cell A) | 32 → **16** | 16（4 GPU 下更合理） |\n| checkpoint 路径 | `exp026/` / `exp029/` | `scienceworld-cell-a/` / `scienceworld-cell-c/` |\n\n其余超参（lr=1e-6, gamma=0.95, KL coef=0.01, clip ratio, entropy_coeff 等）保持一致。\n\n### 3. Dry-run 结果\n- Cell A: **通过** — model_path、env_tags、context_window_mode 全部正确解析\n- Cell C: **通过** — ppo_max_token_len_per_gpu=65536 正确加载\n\n### 4. ScienceWorld reward 机制\n- **Continuous reward**，非 binary。公式：`reward = (episode_score / 100) * 10.0`，范围 0.0~10.0\n- **Sparse**：仅在 episode 结束时发放（`done=True`），中间步骤 reward=0\n- 对 Cell A（step-level advantage）：所有中间步 reward=0，只有最后一步有非零 reward。step-level credit assignment 几乎无法工作——这正是实验预期的失败模式\n- 对 Cell C（episode-level advantage）：整个 episode 的 reward 作为一个 scalar 参与 GRPO 优势估计，与 continuous reward 兼容\n- GRPO 的 `norm_adv_by_std_in_grpo: True` 会对 advantage 做 group 内标准化，continuous reward 的方差信号比 binary 更丰富\n\n### 5. max_turn = 50 的理由\n- envs.yaml 中 `ScienceWorldBoil` 设置 `max_actions_per_traj: 50`，与 ALFWorld 一致\n- 环境内部 `max_steps: 100`，但 agent 每 turn 执行 1 action（`max_actions_per_turn: 1`），50 turns = 50 env steps\n- Boil 任务典型长度 20~40 步，50 turns 留有余量\n- 如后续发现截断率过高，可提升至 70~80"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scienceworld-grpo-config.md"
+}

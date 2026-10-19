@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c341d576a72eb0cc6f55",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops launch 7b cell a",
+  "task_key": "worker_ops_launch-7b-cell-a_20260519T074924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch-7b-cell-a_20260519T074924_result.json",
+    "occurrence": 1,
+    "bytes": 1100,
+    "sha256": "3c6528b5c51ba6be178a43bdff7f3028a034ee4c0affa38dba4552c72ba0123a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功启动！\n\n**汇报：**\n\n| 项 | 状态 |\n|---|---|\n| GPU 占用 | 0: 42.9G, 1: 47.8G, 2: 47.8G, 3: 47.8G ✅ 全部 4 GPU 在用 |\n| PID 828607 (OOD eval) | 已不存在 |\n| lr 修改 | 1e-6 → 5e-7 ✅ |\n| model_path | 去除尾部 `/` ✅ |\n| 入口点修复 | `verl.trainer.main_ppo` → `train.py`（RAGEN 自动设置 `data.train_batch_size`）|\n| 训练 PID | 849089（TaskRunner PID 855415） |\n| tmux session | `7b_cell_a_h2` |\n| W&B run | `irxgmlm2`（8b-cell-a-step-independent-h2） |\n| W&B URL | `wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/irxgmlm2` |\n| 磁盘 | 86G 可用 (66%) |\n| 当前进度 | val_before_train 阶段，正在初始化 AlfredTWEnv（140 games eval_in_distribution） |\n\n启动过程中修了 3 个问题：\n1. Hydra config path：`--config-path config` 相对于 `main_ppo.py` 模块路径解析，需用绝对路径或改用 `train.py`\n2. 入口点：`train.py` 而非 `verl.trainer.main_ppo`（前者自动设 `data.train_batch_size = env_groups * group_size`）\n3. `model_path` 尾部 `/` 触发 assertion"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-7b-cell-a.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9bba39795342b9e1fa6e",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops fix eval history length and verify",
+  "task_key": "worker_ops_fix_eval_history_length_and_verify_20260522T084642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_eval_history_length_and_verify_20260522T084642.log",
+    "occurrence": 1,
+    "bytes": 690162,
+    "sha256": "b55fa9e3daa740a1f91903328d30e6fec9ce429ed0cae0e6b3363765d16da842"
+  },
+  "statistics": {
+    "messages": 344,
+    "user_turns": 0,
+    "tool_calls": 136,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 136,
+      "tool_result": 136,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 344,
+      "chunks": [
+        {
+          "path": "9bba39795342b9e1fa6e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9bba39795342b9e1fa6e-part-0002.json",
+          "message_count": 164
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-fix-eval-history-length-and-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a456eecd0379cb411bb5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "figure training dynamics v2",
+  "task_key": "worker_figure_training_dynamics_v2_20260523T124132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_training_dynamics_v2_20260523T124132_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "62777e8d3e807a1a5e80a32d622100310c50b4b94fb4f087da65a80bd13a06a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成。PDF 和 PNG 都在 `docs/paper/` 下，31KB / 159KB。\n\n布局：7×2.8 inch 双栏，(a) 三条训练曲线 + SFT baseline，(b) window size bar chart，collapsed 条件有斜线 hatching，\"credit assignment threshold\" 箭头标注在 h=10 和 h=20 之间。配色统一（红/橙/蓝/灰），marker 区分，顶部/右侧 spine 已去除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-training-dynamics-v2.md"
+}

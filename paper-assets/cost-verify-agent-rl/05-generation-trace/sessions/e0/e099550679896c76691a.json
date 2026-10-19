@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e099550679896c76691a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "investigate val metric granularity",
+  "task_key": "worker_investigate_val_metric_granularity_20260517T053227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_val_metric_granularity_20260517T053227_result.json",
+    "occurrence": 1,
+    "bytes": 3126,
+    "sha256": "060eb712be6054a85e8000b8a8fe78171004eea24548d2bd9a4d6292ccbd7aa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。结论如下：\n\n## 调查结论\n\n### 问题确认\n\n- **`val-env/AlfworldSG/success`（主 metric）: per-episode，两种模式相同，可比。**\n  \n  关键代码路径：\n  - `es_manager.get_rollout_states()` (es_manager.py:300): `success = float(status.terminated and not status.truncated)` — 每个 env 实例一个值\n  - `ctx_manager._compute_metrics(env_outputs)` (ctx_manager.py:444): `np.sum(value) / self.env_nums[tag]` — 除以总 episode 数 (32)\n  - 与 `context_window_mode` 无关，因为 `env_outputs` 始终是 per-episode 粒度\n\n- **`val-core/unknown/reward/mean@N`: 不可比！**\n  - step_independent: N=1600 (32 eps × ~50 windows)\n  - full: N=32 (32 episodes)\n  - 且存在长度偏差：失败 episode 跑满 50 步 → 产生更多 windows → 在 mean 中权重更大\n\n### 根本原因\n\n`_build_step_independent_samples` 把每个 episode 展开为多个 windows 用于训练 batch（ctx_manager.py:1040-1130），但 `_compute_metrics`（ctx_manager.py:430-480）始终基于原始 `env_outputs`（per-episode）计算。两条路径是分离的：\n\n```python\n# ctx_manager.py:1247 - step_independent 模式结尾\nllm_inputs.meta_info = {\"metrics\": self._compute_metrics(env_outputs, response_length)}\n#                                                       ↑ 这是 per-episode 的原始 list\n```\n\n而 `val-core` 的问题出在 `_validate()` (agent_trainer.py:655):\n```python\nresult = self.val_reward_fn(test_batch, return_dict=True)  # test_batch.batch_size = 1600 windows\nscores = reward_tensor.sum(-1).cpu().tolist()  # 1600 个 per-window scores\nsample_scores.extend(scores)  # 喂给 process_validation_metrics\n```\n\nNaiveRewardManager (naive.py:50) 发现 `rm_scores` 存在就直接返回，而 `rm_scores` 在 step_independent 下是 per-window 的 normalized episode reward。\n\n### Episode-level Success 提取方案\n\n**不需要任何修复。** `val-env/AlfworldSG/success` 已经是 episode-level 的，可以直接用于 h-sweep 对比。\n\n在 W&B 中，所有实验都有 `val-env/AlfworldSG/success` 指标，它在所有 context_window_mode 下语义一致 = `成功 episode 数 / 32`。\n\n### val-core 偏差量化\n\n假设 success rate = 15% (5/32)，典型场景：\n- 5 成功 eps × ~12 windows = 60 windows, score=10\n- 27 失败 eps × 50 windows = 1350 windows, score=0\n- `val-core/reward/mean@1410` ≈ 0.43\n- 对比 full 模式 `val-core/reward/mean@32` = 1.56\n\n差 ~3.6x，纯粹因为 episode 长度加权。\n\n### 建议方案\n\n**方案 A（推荐）：无需代码改动，直接用 `val-env/AlfworldSG/success` 做 h-sweep 对比。**\n\n理由：\n1. 这个 metric 已经是 episode-level，两种模式语义一致\n2. 早停逻辑也用的这个 metric（agent_trainer.py:1641）\n3. 无需修改正在跑的 h=2 seed 1\n\n**方案 B（可选优化）：** 给 `val-core` 加 episode-level 聚合选项。修改 `_validate()` 中 step_independent 分支，按 `episode_ids` group 后取 max score per episode 再算 mean。改动量约 15 行。但当前实验不需要。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-val-metric-granularity.md"
+}

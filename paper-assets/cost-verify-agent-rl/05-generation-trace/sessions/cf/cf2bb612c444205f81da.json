@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf2bb612c444205f81da",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp029 seed2 submit",
+  "task_key": "worker_code_exp029_seed2_submit_20260518T051247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp029_seed2_submit_20260518T051247_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "aa86f3bf55414216efaa49c6a165132c2c983770efd911e5326b5ddcb179c22f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp029_episode_level_seed2 已经在 bjb1-17606 上启动并正常运行。** 无需再做验证或提交。\n\n## 当前状态汇总\n\n| 项目 | 状态 |\n|---|---|\n| **训练进程** | 已在运行（PID 509, tmux session `exp029_episode_level_seed2`, 启动于 13:10） |\n| **wandb** | 已连接，run ID `vugdm2sw`，[查看链接](https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/vugdm2sw) |\n| **GPU** | cuda:0,1 被训练进程占用（各 ~36GB），正常 |\n| **磁盘** | /root/autodl-tmp 122GB 可用，充足 |\n| **SFT checkpoint** | `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4` 存在 |\n| **配置** | seed.train=43, experiment_name=exp029-episode-level-seed2 |\n| **输出目录** | `/root/autodl-tmp/checkpoints/exp029-seed2/` |\n\n### 需要注意\n\n**`total_training_steps: 15`**（seed2 配置）vs 原始 exp029 的 `100`。如果目标是完整复现，训练完成后可能需要增加 steps 重跑或 resume。请确认 15 steps 是否为预期设置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp029-seed2-submit.md"
+}

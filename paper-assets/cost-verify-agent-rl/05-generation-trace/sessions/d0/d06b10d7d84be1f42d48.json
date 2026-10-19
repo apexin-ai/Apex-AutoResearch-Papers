@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d06b10d7d84be1f42d48",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 v6 gpu idle",
+  "task_key": "worker_check_exp029_v6_gpu_idle_20260516T190054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_v6_gpu_idle_20260516T190054_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "96cfac6220c76a8ba8bf5526070b09d451a0a5884124df7dd1da9b5031716711"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n| 项目 | 状态 |\n|------|------|\n| **进程 886626** | ALIVE，运行 42 分 16 秒 |\n| **GPU 利用率** | cuda:0 = 0%, cuda:1 = 0% |\n| **GPU 显存** | cuda:0 = 45009 MiB, cuda:1 = 45861 MiB（已占用但空转） |\n| **/tmp** | 正常（仅 tmux-0），磁盘 14G/30G used |\n| **cleanup 残留** | 无 |\n\n## 死因\n\n进程还活着但已经 **crash 后挂起**。实际训练失败：\n\n```\nFileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpzicbifxf'\n```\n\n**根因**：wandb 在 `_log_table_artifact` 中调用 `tempfile.mkdtemp()` 创建临时目录后，该目录在使用前被删除（可能被系统 tmpfiles 清理或竞争条件）。Ray TaskRunner 捕获到这个异常后任务失败，但主进程（886626）仍存活未退出，GPU 显存被占用但不做任何计算。\n\n**结论**：exp029 attempt 6 已实质性失败，进程是僵尸状态。需要：\n1. kill 886626 释放 GPU 显存\n2. 重启前设置 `TMPDIR=/root/autodl-tmp/tmp`（避免 /tmp 竞争问题），或禁用 wandb table artifact logging\n\n是否需要我 kill 进程并准备 attempt 7？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-v6-gpu-idle.md"
+}

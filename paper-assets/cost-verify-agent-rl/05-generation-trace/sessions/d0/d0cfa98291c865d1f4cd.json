@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0cfa98291c865d1f4cd",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh diff and rsync hf checkpoints",
+  "task_key": "worker_ssh_diff_and_rsync_hf_checkpoints_20260523T043918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diff_and_rsync_hf_checkpoints_20260523T043918_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "85f7d414ca2babee640c61771ee94a644cca1613201c9af3ea88fd2076f80ff1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**bjb1 已有全部 westd HF checkpoint，无需传输。**\n\n对比结果：\n\n| 位置 | checkpoint 数量 |\n|------|----------------|\n| bjb1 `/checkpoints/` (本地) | 6 个 |\n| bjb1 `/westd_backup/checkpoints/` | 10 个 — westd 全部 10 个已同步 |\n| westd `/checkpoints/` | 10 个 |\n\nwestd 的 10 个 HF checkpoint 在 bjb1 的 `westd_backup/checkpoints/` 中全部存在：\n- exp029_seed100_step5_hf\n- exp029_seed2_step15_hf\n- exp029_seed42_step5_hf\n- exp029_seed7_high_kl_step5_hf\n- exp029_seed7_high_kl_step7_hf\n- intervention_c_hard_cap_step5_hf\n- intervention_c_hard_cap_step7_hf\n- qwen_c_prime_step5_hf\n- qwen_exp029_seed100_step10_hf\n- qwen_exp029_seed8_step5_hf\n\n不需要启动 rsync。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diff-and-rsync-hf-checkpoints.md"
+}

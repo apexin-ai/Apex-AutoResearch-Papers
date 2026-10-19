@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f3e2642c9ea6bf4cdb4",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code fix training symmetry",
+  "task_key": "worker_code_fix-training-symmetry_20260513T090700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-training-symmetry_20260513T090700_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "30ac35cce799e102296e69d32220d40e30946c4e7690eaeb17b5e2ff88a8c74f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法通过。修改完成，变更摘要：\n\n**Phase 1** — 不变（ETADN s42 + γ sweep）\n\n**Phase 2 改为两轮**：\n- **Round A**（3 GPU 并行）：ETADN s123 / best-γ s42 / best-γ s123\n- **Round B**（2 GPU 并行，Round A 完成后）：ETADN s456 / best-γ s456\n\n**最终对称**：\n- ETADN 3 seeds = {s42(Phase1复用), s123, s456}\n- best-γ 3 seeds = {s42, s123, s456}\n\n日志命名：`etadn_s42.log`, `etadn_s123.log`, `etadn_s456.log`, `bestg_s42.log`, `bestg_s123.log`, `bestg_s456.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-training-symmetry.md"
+}

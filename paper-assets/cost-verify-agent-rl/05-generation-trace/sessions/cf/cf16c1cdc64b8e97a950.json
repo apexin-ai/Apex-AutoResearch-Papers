@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf16c1cdc64b8e97a950",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "director / loop_17.md",
+  "task_key": "loop_17",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_17.md",
+    "occurrence": 1,
+    "bytes": 5054,
+    "sha256": "54f6b31d9bff15961627a569845ce893a1a459b692298e7b434c4b203bf9a135"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: max_messages\nupdated: '2026-05-22T18:22:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：westd cuda:0,1,2,3 + bjb1 cuda:0,1。home-1x5090 不在白名单，用户明确说\"不要用\"\n- **bjb1 磁盘极脆弱**：250GB 数据盘反复 100% 满。任何磁盘清理必须附\"保护清单\"（M053 教训），禁止删 SFT checkpoint 和 HF eval checkpoint\n- **禁止 `ray stop --force`**：M055 误杀了 seed200，累计浪费 ~3h GPU 时间。只能 kill 特定 PID\n- **ScienceWorld 实验线已终止 (D131)**：不要重训 SFT、不要再尝试任何 ScienceWorld Cell C 实验\n- **FSDP 训练必须 2 GPU**：M055 中 Worker 误用 1 GPU 跑 FSDP，配置不等价\n- **Checkpoint 目录必须含 \"qwen\" 前缀**：RAGEN ctx_manager.py:35 model detection bug，eval 前必须创建 `qwen_` symlink\n- **Manager（曹晓玉）关注 westd GPU util**：曾威胁收回 westd。FSDP rollout 阶段 util=0% 是正常的（CPU-bound 环境交互），但要能快速证明进程存活\n\n### 2. 🖥️ 基础设施快照\n- **westd-47453**：4×RTX PRO 6000 (96GB each)，`/root/cost-verify-agent-rl/RAGEN/`，conda base (`/root/miniconda3`)\n  - 磁盘：`/root/autodl-tmp` 42% (146GB free)，清理后状态良好\n  - 活跃：seed100 v2 (PID ~72007, cuda:0,1, W&B `zsrodv2f`) + seed200 (PID 63676/66207, cuda:2,3, W&B `z7e85fie`)，均在 step 1 训练中\n- **bjb1-17606**：2×RTX PRO 6000 (96GB each)，同路径，conda base\n  - 磁盘：`/root/autodl-tmp` 89% (29GB free)，仍需警惕\n  - 活跃：seed300 OOD eval (PID 441087, cuda:0, W&B `z1qs706b`)，预计 2-3h 完成\n  - 重复 checkpoint：`exp029_seed300_step5_hf` 和 `qwen_exp029_seed300_step5_hf` 同时存在，可删前者释放 3.8GB\n- **ALFWorld SFT checkpoint**：两台服务器均为 `qwen3_exp021_ragen_sft_v4`\n- **W&B project**：cost-verify-agent-rl\n\n### 3. 📊 当前状态\n**刚做完**：终止 ScienceWorld 线 (D131) + 启动 seed100/200/300 三个 episode-level GRPO 训练 + seed300 训练已完成 (val 25%, healthy) 并启动 OOD eval + 完成 Table 1 全部 13 个统一 pipeline 数据点的统计分析 (Wilson CI + Fisher exact)\n\n**RUNNING**：\n- `exp029_seed100_episode` — westd cuda:0,1，5-step episode-level GRPO，step 1 训练中。**注意**：这是 v2（原 v1 在 step 4/5 因磁盘满 crash，原始 step 4 metrics 显示早期崩溃信号：resp_len +94%, entropy -37%）\n- `exp029_seed200_episode` — westd cuda:2,3，5-step，step 1 训练中。**注意**：这是第三次从头跑（前两次分别因磁盘满和 ray stop --force 丢失）\n- `exp029_seed300_step5_ood_eval` — bjb1 cuda:0，统一 pipeline OOD eval，~2h 剩余\n\n**等待中**：\n- seed300 OOD eval 结果 → 更新 Table 1\n- seed100/200 训练完成 (~2h each) → 各自 OOD eval → 更新 Table 1\n- Reviewer RESET 中，即将重启\n\n### 4. 📋 待办（条件触发式）\n- **seed300 OOD eval 完成** → 收集结果，更新 Table 1。如 OOD > 20% → healthy (N=5 healthy)；15-20% → delayed；< 15% → degraded\n- **seed100 训练完成** → 立即 HF 转换 + qwen_ symlink + 统一 pipeline OOD eval (westd cuda:0)。**特别关注**：v1 有崩溃信号，v2 结果可能不同（全新 run）\n- **seed200 训练完成** → 同上 OOD eval (westd cuda:2)\n- **全部 3 个新 seed OOD eval 完成** → 更新 Table 1 + collapse rate 统计 + 派 Paper Agent patch 论文（含完整 Table 1 + Limitations 段落）\n- **bjb1 磁盘降到 < 10GB** → 紧急清理 `exp029_seed300_step5_hf`（非 qwen_ 前缀的重复 checkpoint）\n\n### 5. 🎯 战略上下文\n- **论文核心**：step-independent agent RL 的双机制失效诊断（M1 信息丢失 + M2 符号错误归因）+ episode-level 修复。Diagnostic paper，不是 performance paper\n- **证据链已 VERY STRONG**：factorial 2×2 ✅ + h-sweep cliff ✅ + γ-sweep 全 collapse ✅ + 8B scale (90.3% OOD) ✅ + sign accuracy 52%≈random ✅ + 干预实验 (D128 supplementary) ✅\n- **Table 1 统计分析已完成**：healthy seeds 28.36% ± 2.20% (seed4/5/6), all p<0.001 vs SFT 6.72%。seed100/200/300 是增量补充\n- **关键决策链**：D122 (补 seed) → D128 (干预降级为 supplementary) → D129 (ScienceWorld v5 collapse) → D130 (seed2=delayed learner) → D131 (ScienceWorld 终止)\n- **最大弱点**：Concern #5 单环境——ScienceWorld Cell C 终止后只能写 Limitations。Cell A 跨环境 collapse 确认 + 8B dual verification 部分缓解\n- **易错点**：\n  - seed100 v1 原始 metrics 已丢失，只在 W&B run `zsrodv2f` 和 Reviewer 报告中有记录。v2 是全新 run，不要混淆\n  - seed2 (15.67%) 分类为 \"delayed learner\" (D130)，不归入 healthy 也不归入 collapsed\n  - seed1 checkpoint 已丢失，23.88% 来自非统一 pipeline，Table 1 带 † 注脚\n  - 即使 3 个新 seed 全 collapse，论文 claim 不受影响——更高 collapse rate 反而加强 \"unreliable\" 论证\n  - 审稿阶段已启动（Group C review_chat_id: oc_648eaf83d2b24d445764257cf6a55525），论文在独立审稿中\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17.md"
+}

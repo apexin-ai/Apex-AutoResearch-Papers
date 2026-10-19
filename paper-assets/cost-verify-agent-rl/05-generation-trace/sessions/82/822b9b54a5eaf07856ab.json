@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "822b9b54a5eaf07856ab",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp020 grpo from sft",
+  "task_key": "worker_diagnose_exp020_grpo_from_sft_20260514T221125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp020_grpo_from_sft_20260514T221125_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "02a1b3c4ba03b8bf6f051f183cc712d5f6041bd220c42c81d81d4dd3aac74d17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp020b 已经在运行中，无需重新提交。\n\n**状态**：断言问题已在之前的提交中通过 symlink `qwen3_exp019b_sft` 修复。当前进程 PID 385977，Ray workers 活跃，初始验证已完成，训练已开始（0/30 steps）。\n\n**初始验证指标**：\n- success: 0.0（训练前预期）\n- action_is_effective: 0.575\n- action_is_valid: 0.167\n- num_actions: 17.25\n\n实验名改为 `exp020b-alfworld-sft-grpo`，checkpoint 输出到 `/root/autodl-tmp/checkpoints/exp020b/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp020-grpo-from-sft.md"
+}

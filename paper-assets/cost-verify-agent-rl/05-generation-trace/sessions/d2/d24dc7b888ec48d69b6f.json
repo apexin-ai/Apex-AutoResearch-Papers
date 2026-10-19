@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d24dc7b888ec48d69b6f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp027 status verify",
+  "task_key": "worker_ops_exp027_status_verify_20260515T143428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp027_status_verify_20260515T143428_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "6bbdfefd98119f328379a7834bb44dc80085072cfe8c1e07b6f774163c4c3497"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**1. PID 存活：** `PID_ALIVE` — PID 789764 运行中，已运行 1 小时 43 分钟。\n\n**2. GPU 状态：**\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 51% | 41297 / 97887 MiB |\n| 1 | 52% | 41297 / 97887 MiB |\n\n**3. tmux session：** `exp027_stable_grpo: 1 windows (created Fri May 15 22:33:03 2026)` — 存在且活跃。\n\n**4. 日志尾部：** 训练已正常启动。数据加载完成（8810/8810, 494/494），FSDP worker 已初始化，wandb run `y7jiibqk` 已创建（`exp027-alfworld-stable-grpo`），当前处于训练循环早期阶段。wandb 链接：`https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/y7jiibqk`\n\nexp027 正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp027-status-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f588cb0e9b668ac1b406",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp028c full status",
+  "task_key": "worker_check_exp028c_full_status_20260516T025012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp028c_full_status_20260516T025012_result.json",
+    "occurrence": 1,
+    "bytes": 2548,
+    "sha256": "535744ab4cd71659d24de44d3df1eaf1a4af62b0fdead42441fb61d53bd49790"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp028c 训练状态报告\n\n### 进程状态\n**存活** — PID 824675，运行 5h13m，入口 `python train.py --config-name _alfworld_exp028c_selfguide_recipe`\n\n### W&B 信息\n- **entity**: `xiaoyucorynne-`\n- **project**: `cost-verify-agent-rl`\n- **run_id**: `4yu6qz1m`\n- **run name**: `exp028c-alfworld-selfguide-recipe`\n- **state**: running\n\n### 当前进度\n- W&B 已记录到 **step 4**（summary step=4, runtime=15967s ≈ 4.4h）\n- Checkpoint 已保存到 **step 5**（10:04 UTC）\n- 日志显示 `compute_policy_loss` 正在执行 → 当前在 step 5+ 训练中\n- 总目标：100 steps\n\n### 每 step 关键 metrics\n\n| Step | Phase | success | pass@8/1 | action_is_valid | entropy | kl_loss | ppo_kl | grad_norm | score/mean |\n|------|-------|---------|----------|-----------------|---------|---------|--------|-----------|------------|\n| 0 | **val** | **6.25%** | p@1=6.25% | 74.5% | — | — | — | — | — |\n| 1 | train | 13.28% | p@8=37.5% | 76.4% | 0.263 | 0.013 | 0.019 | 16.9 | 0.843 |\n| 2 | train | 6.25% | p@8=25.0% | 83.2% | 0.247 | 0.171 | 0.017 | 17.3 | 0.274 |\n| 3 | train | 15.62% | p@8=68.75% | 86.0% | 0.249 | 0.112 | 0.019 | 12.6 | 0.661 |\n| 4 | train | 18.75% | p@8=62.5% | 87.9% | 0.234 | 0.031 | 0.015 | 14.5 | 1.146 |\n\n### GPU 利用率\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell | **91%** | 33.2 / 97.9 GB |\n| 1 | RTX PRO 6000 Blackwell | **95%** | 33.2 / 97.9 GB |\n\n### 趋势分析\n- **action_is_valid 持续上升**：74.5% → 87.9%（+13.4pp over 4 steps）— 正面信号\n- **train success 震荡上升**：6.25% → 18.75%，但 step 2 回落到 6.25%\n- **pass@8 波动大**：25%-68.75%，step 3 是峰值\n- **kl_loss 有一次 spike**：step 2 突然跳到 0.171（正常 ~0.01-0.03），step 3-4 回落 — 暂时异常，已自行恢复\n- **entropy 缓慢下降**：0.263 → 0.234，策略在收敛但还没 collapse\n\n### 异常\n- **速度偏慢**：4 train steps 耗 ~4.4h（~66min/step），比预期 50min/step 慢约 30%。env_groups=16 × group_size=8 = 128 rollouts/step 可能是主因\n- **kl_loss step 2 spike 到 0.171**：比其他步高 5-13 倍，但已恢复，不需干预\n- **无 step 5 val 数据**：checkpoint 已保存但 W&B 尚未收到 step 5 metrics，可能 val 正在运行或刚完成\n\n### 预计完成时间\n按 ~66min/step、100 steps 计算：约 **110 小时 ≈ 4.6 天**。已过 ~5h 完成 ~5 steps，预计剩余 ~4.3 天（~5月20日完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp028c-full-status.md"
+}

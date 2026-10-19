@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c69d296fe19c7e29d0a0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops cleanup symlink and registry",
+  "task_key": "worker_ops_cleanup_symlink_and_registry_20260515T211041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_symlink_and_registry_20260515T211041_result.json",
+    "occurrence": 1,
+    "bytes": 306,
+    "sha256": "e9d7f62d010dec5604a328f5f1b210cc4450a7113d605b19b193c848195d4e3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项清理完成：\n\n1. **Symlink 已删除** — `/root/cost-verify-agent-rl/models/Qwen3-1.7B-Instruct` 已移除，models/ 目录下只剩 `Qwen3-1.7B`。\n2. **Registry 已补录** — `exp028_prereq_zeroshot` 状态 DONE/negative，含 metrics、wandb_run_id、notes 全部字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-symlink-and-registry.md"
+}

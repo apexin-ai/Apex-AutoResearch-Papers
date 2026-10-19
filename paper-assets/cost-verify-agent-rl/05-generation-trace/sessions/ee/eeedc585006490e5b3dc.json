@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eeedc585006490e5b3dc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra westd disk cleanup",
+  "task_key": "worker_infra_westd_disk_cleanup_20260521T211049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd_disk_cleanup_20260521T211049_result.json",
+    "occurrence": 1,
+    "bytes": 1509,
+    "sha256": "3fcde68c69da16d563f961be0d9993fbd1351a603c53a80f408237b20f731d4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n---\n\n## 报告\n\n### 1. 磁盘使用量\n\n| 分区 | 清理前 | 清理后 | 释放 |\n|------|--------|--------|------|\n| Root (/) | 14G/30G (46%) | 14G/30G (46%) | 0 |\n| Data (/root/autodl-tmp) | 142G/250G (57%) | 124G/250G (50%) | **~18GB** |\n\n可用空间：Root 17GB + Data **127GB**，完全足够 Intervention C（5-10GB）和 OOD eval（3-5GB）。\n\n### 2. 清理内容\n\n| 已删除 | 大小 |\n|--------|------|\n| `exp029-seed8/global_step_10/` (FSDP shards) | ~20GB |\n\n### 3. Seeds 4/7/8 Checkpoint 状态\n\n| Seed | 路径 | Step | 格式 | 状态 |\n|------|------|------|------|------|\n| Seed 4 | `exp029-seed4/global_step_15_hf/` | 15 | HF | 3.8GB，完好。symlink `qwen_exp029_seed4_step15_hf` 指向它 |\n| Seed 7 | — | — | — | **不存在**，此服务器无任何 seed7 checkpoint |\n| Seed 8 | `exp029-seed8/global_step_5/` | 5 | FSDP shards (`actor/`) | 21GB，已保留。step 10 已删除 |\n\n注：Seed 8 step 5 是 FSDP shards 格式，若要用于 OOD eval 需先转换为 HF 格式。\n\n### 4. 进程状态\n\n- **活跃任务**：`exp029_seed4_ood_eval_v2`（PID 779412）正在 CUDA:2 上运行，Ray 集群活跃（含 wandb 日志）。未 kill。\n- **系统进程**：jupyter-lab (PID 934)、tensorboard (PID 940) — 正常基础设施，未动。\n- **无僵死进程**。\n\n### 5. 空间充足性\n\n127GB 数据盘可用 + 17GB 根分区可用。Intervention C 和 OOD eval 可同时启动，无空间瓶颈。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-disk-cleanup.md"
+}

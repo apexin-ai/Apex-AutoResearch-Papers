@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "132d428a604deae1510d",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code d023 classify update",
+  "task_key": "worker_code_d023_classify_update_20260512T193101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d023_classify_update_20260512T193101_result.json",
+    "occurrence": 1,
+    "bytes": 965,
+    "sha256": "da40da4247a5e7390efcd3aa6254a727571f67b16d501a130f1e2bdfb62b3320"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n**cuda0**: 1 truncated_success 被过滤，27 premature_completion_belief 保留为 verification\n**cuda1**: 0 truncated_success，33 premature_completion_belief 保留为 verification\n**合计**: 60 CSF 中 1 条 truncated_success 被过滤，59 条 premature_completion_belief 归类为 verification（比预期 58 多 1 条，可能是 cuda1 多跑了几条轨迹）\n\n分类结果统计（以 cuda0 dry-run 为例，86 条 matched）:\n- `verification`: 39 条（其中 25 条 sub_type=premature_completion_belief，14 条 rule-based）\n- `planning`: 47 条\n- `action`: 0 条\n\npremature_completion_belief 在 verification 中占比：25/39 = **64%**（cuda0），是 verification 错误的主要来源。\n\n输出记录结构正确：`error_type=\"verification\"`, `sub_type=\"premature_completion_belief\"`, `csf_details` 完整保留（含 is_csf, is_truncated_success, term_count, task_desc, verification 字段）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d023-classify-update.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e3581ef9d06e324f04ce",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "experiment seed3 ood bjb1",
+  "task_key": "worker_experiment_seed3-ood-bjb1_20260520T192250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_seed3-ood-bjb1_20260520T192250.log",
+    "occurrence": 1,
+    "bytes": 1031789,
+    "sha256": "d1ce0c719ddb6349a40591abcdc57eef02d1dc7c5859b1f2bcc53a7aef734626"
+  },
+  "statistics": {
+    "messages": 806,
+    "user_turns": 0,
+    "tool_calls": 360,
+    "roles": {
+      "log": 1,
+      "system": 2,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 360,
+      "tool_result": 360,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 806,
+      "chunks": [
+        {
+          "path": "e3581ef9d06e324f04ce-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e3581ef9d06e324f04ce-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e3581ef9d06e324f04ce-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e3581ef9d06e324f04ce-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e3581ef9d06e324f04ce-part-0005.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-seed3-ood-bjb1.md"
+}

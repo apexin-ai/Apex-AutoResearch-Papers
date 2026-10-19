@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "913084eea802a914644b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops kill residual 181179",
+  "task_key": "worker_ops_kill_residual_181179_20260525T054112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_residual_181179_20260525T054112_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "de0e045f214eae7f1424f70450f5883fa8a914f8548a981705969728b818a1c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完毕。\n\n**结果：**\n\n1. **PID 181179**：清理前在运行（`python train.py --config-name _alfworld_factorial_h2_episode_adv_1gpu`，已运行 3h41m），现已终止\n2. **PID 181166**：已不存在\n3. **其他残留**：有 ~20 个 ray 子进程 + 1 个 rollout worker（PID 183394，占用 54.8GB 显存），均已清除\n4. **执行了 kill**：是，首次 kill 命令生效但 SSH 返回中断，二次确认时进程已全部消失\n5. **GPU cuda:0 最终状态**：**空闲** — 0MiB 显存占用，0% GPU-Util，34°C，无运行进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-residual-181179.md"
+}

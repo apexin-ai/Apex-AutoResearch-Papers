@@ -1,0 +1,798 @@
+{
+  "schema_version": "1.0",
+  "id": "cfdbd05ad25fcb3b228c",
+  "project": "error_diag_dpo_recovery",
+  "kind": "conversation",
+  "title": "code restore training code",
+  "task_key": "worker_code_restore-training-code_20260513T025806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_restore-training-code_20260513T025806.jsonl",
+    "occurrence": 1,
+    "bytes": 44784,
+    "sha256": "3b02c216362f193817c8a5cd5e16c9b8d54046d14fa10adc5844d14a432760a5"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 19,
+    "roles": {
+      "tool_call": 19,
+      "tool_result": 19,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T03:11:37.354108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/etadn_discount.py"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T03:11:37.354709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"ETADN error-type-aware temporal discount for DMPO.\n3\t\n4\tCore formula:\n5\t    φ(t, T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n6\t\n7\tWhere:\n8\t    t = current timestep (0-indexed)\n9\t    T = total trajectory length\n10\t    γ = gamma_e (error-type-specific discount factor)\n11\t\n12\tγ_e mapping:\n13\t    action errors      → γ_a = 0.85 (short correction span, concentrated credit)\n14\t    verification errors → γ_v = 0.92 (medium span, moderate spread)\n15\t    planning errors     → γ_p = 0.97 (long span, near-uniform credit)\n16\t\n17\tIntegration with DPO/DMPO:\n18\t    Standard DPO loss: L = -log σ(β · (log π(y_w|x) - log π(y_l|x)))\n19\t    DMPO adds per-step weighting: replace uniform sum with φ-weighted sum\n20\t    ETADN: γ in φ varies by error_type of the (chosen, rejected) pair\n21\t\n22\tDependencies: torch only\n23\t\"\"\"\n24\timport torch\n25\timport torch.nn.functional as F\n26\tfrom dataclasses import dataclass\n27\t\n28\t\n29\t@dataclass\n30\tclass ETADNConfig:\n31\t    gamma_action: float = 0.85\n32\t    gamma_verification: float = 0.92\n33\t    gamma_planning: float = 0.97\n34\t    beta: float = 0.1\n35\t    label_smoothing: float = 0.0\n36\t\n37\t\n38\tdef phi(t: int, T: int, gamma: float) -> float:\n39\t    \"\"\"DMPO credit assignment weight for timestep t of T.\n40\t\n41\t    φ(t, T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n42\t\n43\t    Sums to 1 over t ∈ [0, T-1] for any γ ∈ (0, 1).\n44\t    \"\"\"\n45\t    if T <= 0:\n46\t        return 0.0\n47\t    if abs(gamma - 1.0) < 1e-8:\n48\t        return 1.0 / T\n49\t    if abs(gamma) < 1e-12:\n50\t        return 1.0 if t == 0 else 0.0\n51\t    numerator = (gamma ** t) * (1.0 - gamma ** (T - t))\n52\t    denominator = 1.0 - gamma ** T\n53\t    return numerator / denominator\n54\t\n55\t\n56\tdef compute_discount_weights(T: int, gamma: float) -> torch.Tensor:\n57\t    \"\"\"φ weight vector of length T. Returns shape (T,) float32 tensor.\"\"\"\n58\t    if T <= 0:\n59\t        return torch.tensor([], dtype=torch.float32)\n60\t    if abs(gamma - 1.0) < 1e-8:\n61\t        return torch.full((T,), 1.0 / T, dtype\n…[truncated 11188 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T03:11:37.355017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/build_dpo_pairs.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T03:11:37.355422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Build DPO preference pairs from classified failures and expert trajectories.\n2\t\n3\tFix [2026-05-12]: Use true divergence point instead of LLM-reported failure_step.\n4\tOld logic used failure_step as split point, but expert and failure trajectories\n5\tmay already differ before that step → prompt-chosen state inconsistency.\n6\tNew logic compares action sequences step-by-step to find the real divergence.\n7\t\n8\tFor each classified failure:\n9\t  1. Match expert trajectory by game_file\n10\t  2. Compare actions step-by-step to find divergence point\n11\t  3. Shared prefix = prompt, expert continuation = chosen, failure continuation = rejected\n12\t\n13\tInput:\n14\t  - classified_errors.jsonl (error_type, failure_step, conversations)\n15\t  - alfworld_sft.json (expert trajectories)\n16\t  - (optional) trajectory_dir with failure JSONL files\n17\t\n18\tOutput per line:\n19\t  {prompt, chosen, rejected, error_type, gamma_e, correction_span,\n20\t   task_id, task_type, game_file, failure_step, divergence_step, metadata}\n21\t\n22\tUsage:\n23\t  python src/build_dpo_pairs.py \\\n24\t    --classified outputs/classify_compare_with_hint_20.jsonl \\\n25\t    --expert data/alfworld_sft.json \\\n26\t    --output data/dpo_pairs_v2.jsonl \\\n27\t    --gamma action=0.85,verification=0.92,planning=0.97\n28\t\n29\tDependencies: (stdlib only)\n30\t\"\"\"\n31\t\n32\timport argparse\n33\timport json\n34\timport logging\n35\tfrom collections import Counter, defaultdict\n36\tfrom pathlib import Path\n37\t\n38\tlogger = logging.getLogger(\"build_dpo\")\n39\t\n40\tDEFAULT_GAMMA_MAP = {\n41\t    \"action\": 0.85,\n42\t    \"verification\": 0.92,\n43\t    \"planning\": 0.97,\n44\t}\n45\t\n46\t\n47\tdef parse_gamma_arg(s: str) -> dict[str, float]:\n48\t    \"\"\"Parse 'action=0.85,verification=0.92,planning=0.97' → dict.\"\"\"\n49\t    gamma_map = dict(DEFAULT_GAMMA_MAP)\n50\t    for item in s.split(\",\"):\n51\t        k, v = item.strip().split(\"=\")\n52\t        gamma_map[k.strip()] = float(v.strip())\n53\t    return gamma_map\n54\t\n55\t\n56\t# ------------------------------------------------------------------\n…[truncated 14869 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T03:11:37.355697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T03:11:37.355893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "src/test_correction_feasibility.py\nsrc/test_icl_14b.py\nsrc/measure_correction_span.py\nsrc/build_dpo_pairs.py\nsrc/etadn_discount.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T03:11:37.356643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -d /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/scripts /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/configs 2>/dev/null; echo \"---\"; ls /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/",
+              "description": "Check existing directory structure"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T03:11:37.356883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nbuild_dpo_pairs.py\netadn_discount.py\nmeasure_correction_span.py\ntest_correction_feasibility.py\ntest_icl_14b.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T03:11:37.357039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/scripts /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/configs",
+              "description": "Create scripts and configs directories"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T03:11:37.357167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T03:11:37.357309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/dmpo_loss.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"DMPO loss module -- bridge between etadn_discount.py and train_dpo.py.\n\nProvides phi-weighted DPO loss using discount weights from etadn_discount.\nphi weights from compute_discount_weights are already normalized (sum=1).\n\nInput: per-token log probabilities from policy and reference models\nOutput: scalar DPO loss with temporal discount weighting\n\nDependencies: etadn_discount (sibling module), torch\n\"\"\"\nimport sys\nfrom pathlib import Path\n\nimport torch\nimport torch.nn.functional as F\n\nsys.path.insert(0, str(Path(__file__).resolve().parent))\nfrom etadn_discount import compute_discount_weights\n\n\ndef compute_phi_weights(T: int, gamma: float) -> torch.Tensor:\n    \"\"\"phi weight vector of length T, normalized so sum=1.\n\n    Wraps etadn_discount.compute_discount_weights.\n    \"\"\"\n    return compute_discount_weights(T, gamma)\n\n\ndef phi_weighted_logps(logps: torch.Tensor, weights: torch.Tensor) -> torch.Tensor:\n    \"\"\"Phi-weighted sum of per-token log probabilities.\n\n    Args:\n        logps: (T,) per-token log probs\n        weights: (T,) phi weights (sum=1)\n    Returns:\n        scalar weighted sum\n    \"\"\"\n    return (logps * weights).sum()\n\n\ndef dmpo_loss(\n    policy_chosen_logps: torch.Tensor,\n    policy_rejected_logps: torch.Tensor,\n    ref_chosen_logps: torch.Tensor,\n    ref_rejected_logps: torch.Tensor,\n    weights_chosen: torch.Tensor,\n    weights_rejected: torch.Tensor,\n    beta: float = 0.1,\n) -> torch.Tensor:\n    \"\"\"Phi-weighted DPO loss for a single sample.\n\n    L = -log sigma(beta * (sum phi_c * logr_chosen - sum phi_r * logr_rejected))\n    where logr = log pi_policy - log pi_ref\n    \"\"\"\n    chosen_logratio = (\n        phi_weighted_logps(policy_chosen_logps, weights_chosen)\n        - phi_weighted_logps(ref_chosen_logps, weights_chosen)\n    )\n    rejected_logratio = (\n        phi_weighted_logps(policy_rejected_logps, weights_rejected)\n        - phi_weighted_logps(ref_rejected_logps, weights_rejected)\n    )\n    logits = beta * (chosen_logratio - rejected_logratio)\n    return -F.logsigmoid(logits)\n\n\ndef dmpo_loss_batch(\n    policy_chosen_logps: torch.Tensor,\n    policy_rejected_logps: torch.Tensor,\n    ref_chosen_logps: torch.Tensor,\n    ref_rejected_logps: torch.Tensor,\n    chosen_resp_lens: list[int],\n    rejected_resp_lens: list[int],\n    prompt_lens: list[int],\n    gammas: list[float],\n    beta: float = 0.1,\n) -> tuple[torch.Tensor, dict]:\n    \"\"\"Batched phi-weighted DPO loss.\n\n    Per-token logps are padded tensors of shape (B, max_len). Response tokens\n    for sample i span [prompt_lens[i], prompt_lens[i] + resp_len).\n\n    Returns (mean_loss, metrics_dict).\n    \"\"\"\n    B = policy_chosen_logps.shape[0]\n    device = policy_chosen_logps.device\n    losses = []\n    chosen_rewards = []\n    rejected_rewards = []\n\n    for i in range(B):\n        pl = prompt_lens[i]\n        c_rl = chosen_resp_lens[i]\n        r_rl = rejected_resp_lens[i]\n\n        if c_rl <= 0 or r_rl <= 0:\n            continue\n\n        gamma = gammas[i]\n        w_c = compute_phi_weights(c_rl, gamma).to(device)\n        w_r = compute_phi_weights(r_rl, gamma).to(device)\n\n        loss_i = dmpo_loss(\n            policy_chosen_logps[i, pl : pl + c_rl],\n            policy_rejected_logps[i, pl : pl + r_rl],\n            ref_chosen_logps[i, pl : pl + c_rl],\n            ref_rejected_logps[i, pl : pl + r_rl],\n            w_c,\n            w_r,\n            beta,\n        )\n        losses.append(loss_i)\n\n        with torch.no_grad():\n            cr = phi_weighted_logps(\n                policy_chosen_logps[i, pl : pl + c_rl], w_c\n            ) - phi_weighted_logps(ref_chosen_logps[i, pl : pl + c_rl], w_c)\n            rr = phi_weighted_logps(\n                policy_rejected_logps[i, pl : pl + r_rl], w_r\n            ) - phi_weighted_logps(ref_rejected_logps[i, pl : pl + r_rl], w_r)\n            chosen_rewards.append(cr)\n            rejected_rewards.append(rr)\n\n    if not losses:\n        return torch.tensor(0.0, device=device, requires_grad=True), {}\n\n    loss = torch.stack(losses).mean()\n    cr_t = torch.stack(chosen_rewards)\n    rr_t = torch.stack(rejected_rewards)\n    metrics = {\n        \"chosen_reward\": cr_t.mean().item(),\n        \"rejected_reward\": rr_t.mean().item(),\n        \"reward_margin\": (cr_t - rr_t).mean().item(),\n        \"reward_accuracy\": (cr_t > rr_t).float().mean().item(),\n    }\n    return loss, metrics\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T03:11:37.357489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/dmpo_loss.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T03:11:37.357700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/train_dpo.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"DPO training with ETADN temporal discount weighting.\n\nTwo modes:\n  single_gamma: all samples share one gamma (baseline / gamma sweep)\n  etadn: per-sample gamma_e read from JSONL (ETADN method)\n\nKey design: gamma(d) is NOT computed here. In etadn mode it comes directly\nfrom the JSONL gamma_e field produced by build_dpo_pairs.py.\n\nInput: JSONL from build_dpo_pairs.py\n  Each line: {prompt, chosen, rejected, gamma_e, error_type, ...}\n  prompt/chosen/rejected are lists of message dicts [{role, content}, ...]\n\nOutput: model checkpoints in --output_dir\n\nMemory strategy: reference model logps are precomputed once before training,\nso only the policy model stays on GPU during the training loop.\n\nDependencies: torch, transformers, wandb\n\"\"\"\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nfrom functools import partial\nfrom pathlib import Path\n\nimport torch\nimport torch.nn.functional as F\nfrom torch.utils.data import Dataset, DataLoader\nfrom transformers import (\n    AutoModelForCausalLM,\n    AutoTokenizer,\n    get_cosine_schedule_with_warmup,\n)\n\nsys.path.insert(0, str(Path(__file__).resolve().parent))\nfrom dmpo_loss import compute_phi_weights\n\nlogger = logging.getLogger(\"train_dpo\")\n\n\n# ---------------------------------------------------------------------------\n# Dataset\n# ---------------------------------------------------------------------------\n\n\nclass DPODataset(Dataset):\n    \"\"\"DPO dataset from JSONL with prompt/chosen/rejected message lists.\"\"\"\n\n    def __init__(self, data_path: str, tokenizer, max_length: int, mode: str, gamma: float):\n        self.samples = []\n        with open(data_path) as f:\n            for line in f:\n                if line.strip():\n                    self.samples.append(json.loads(line))\n        self.tokenizer = tokenizer\n        self.max_length = max_length\n        self.mode = mode\n        self.gamma = gamma\n        logger.info(\"Loaded %d DPO samples from %s\", len(self.samples), data_path)\n\n    def __len__(self):\n        return len(self.samples)\n\n    def __getitem__(self, idx):\n        sample = self.samples[idx]\n        prompt = sample[\"prompt\"]\n        chosen = sample[\"chosen\"]\n        rejected = sample[\"rejected\"]\n\n        # gamma source: JSONL gamma_e for etadn, CLI --gamma for single_gamma\n        gamma = sample[\"gamma_e\"] if self.mode == \"etadn\" else self.gamma\n\n        # Tokenize prompt to measure prefix length\n        prompt_ids = self.tokenizer.apply_chat_template(\n            prompt, add_generation_prompt=True\n        )\n        # Tokenize full sequences (prompt + response)\n        chosen_ids = self.tokenizer.apply_chat_template(prompt + chosen)\n        rejected_ids = self.tokenizer.apply_chat_template(prompt + rejected)\n\n        prompt_len = min(len(prompt_ids), self.max_length)\n        chosen_ids = chosen_ids[: self.max_length]\n        rejected_ids = rejected_ids[: self.max_length]\n\n        return {\n            \"idx\": idx,\n            \"chosen_ids\": chosen_ids,\n            \"rejected_ids\": rejected_ids,\n            \"prompt_len\": prompt_len,\n            \"gamma\": gamma,\n        }\n\n\n# ---------------------------------------------------------------------------\n# Collation\n# ---------------------------------------------------------------------------\n\n\ndef collate_dpo(batch: list[dict], pad_token_id: int) -> dict:\n    \"\"\"Pad chosen and rejected sequences separately.\"\"\"\n    max_c = max(len(b[\"chosen_ids\"]) for b in batch)\n    max_r = max(len(b[\"rejected_ids\"]) for b in batch)\n\n    indices, gammas, prompt_lens = [], [], []\n    chosen_ids, chosen_mask, chosen_resp_lens = [], [], []\n    rejected_ids, rejected_mask, rejected_resp_lens = [], [], []\n\n    for b in batch:\n        pl = b[\"prompt_len\"]\n        indices.append(b[\"idx\"])\n        prompt_lens.append(pl)\n        gammas.append(b[\"gamma\"])\n\n        c = b[\"chosen_ids\"]\n        c_pad = max_c - len(c)\n        chosen_ids.append(c + [pad_token_id] * c_pad)\n        chosen_mask.append([1] * len(c) + [0] * c_pad)\n        chosen_resp_lens.append(max(len(c) - pl, 0))\n\n        r = b[\"rejected_ids\"]\n        r_pad = max_r - len(r)\n        rejected_ids.append(r + [pad_token_id] * r_pad)\n        rejected_mask.append([1] * len(r) + [0] * r_pad)\n        rejected_resp_lens.append(max(len(r) - pl, 0))\n\n    return {\n        \"indices\": indices,\n        \"chosen_ids\": torch.tensor(chosen_ids, dtype=torch.long),\n        \"chosen_mask\": torch.tensor(chosen_mask, dtype=torch.long),\n        \"rejected_ids\": torch.tensor(rejected_ids, dtype=torch.long),\n        \"rejected_mask\": torch.tensor(rejected_mask, dtype=torch.long),\n        \"prompt_lens\": prompt_lens,\n        \"chosen_resp_lens\": chosen_resp_lens,\n        \"rejected_resp_lens\": rejected_resp_lens,\n        \"gammas\": gammas,\n    }\n\n\n# ---------------------------------------------------------------------------\n# Per-token log probs\n# ---------------------------------------------------------------------------\n\n\ndef get_per_token_logps(\n    model: torch.nn.Module,\n    input_ids: torch.Tensor,\n    attention_mask: torch.Tensor,\n) -> torch.Tensor:\n    \"\"\"Per-token log P(token_t | prefix[:t]).\n\n    Returns (B, L) where position t holds log P(input_ids[t] | input_ids[:t]).\n    Position 0 is always 0 (no conditioning context for the first token).\n    \"\"\"\n    outputs = model(input_ids=input_ids, attention_mask=attention_mask)\n    logits = outputs.logits[:, :-1, :]  # (B, L-1, V)\n    labels = input_ids[:, 1:]  # (B, L-1)\n    log_probs = F.log_softmax(logits, dim=-1)\n    token_logps = torch.gather(log_probs, 2, labels.unsqueeze(-1)).squeeze(-1)\n    # Left-pad one zero so result[t] aligns with input_ids[t]\n    return F.pad(token_logps, (1, 0), value=0.0)\n\n\n# ---------------------------------------------------------------------------\n# Reference logps precomputation\n# ---------------------------------------------------------------------------\n\n\n@torch.no_grad()\ndef precompute_ref_logps(\n    model: torch.nn.Module,\n    dataset: DPODataset,\n    tokenizer,\n    device: torch.device,\n    batch_size: int,\n) -> tuple[dict[int, torch.Tensor], dict[int, torch.Tensor]]:\n    \"\"\"Precompute reference model logps for all samples (response tokens only).\n\n    Returns two dicts mapping sample index -> (resp_len,) CPU tensor.\n    After this call the model can be switched to training mode in-place.\n    \"\"\"\n    model.eval()\n    loader = DataLoader(\n        dataset,\n        batch_size=batch_size,\n        shuffle=False,\n        collate_fn=partial(collate_dpo, pad_token_id=tokenizer.pad_token_id),\n    )\n\n    ref_chosen: dict[int, torch.Tensor] = {}\n    ref_rejected: dict[int, torch.Tensor] = {}\n\n    for batch in loader:\n        c_logps = get_per_token_logps(\n            model, batch[\"chosen_ids\"].to(device), batch[\"chosen_mask\"].to(device)\n        )\n        r_logps = get_per_token_logps(\n            model, batch[\"rejected_ids\"].to(device), batch[\"rejected_mask\"].to(device)\n        )\n\n        B = batch[\"chosen_ids\"].shape[0]\n        for i in range(B):\n            idx = batch[\"indices\"][i]\n            pl = batch[\"prompt_lens\"][i]\n            c_rl = batch[\"chosen_resp_lens\"][i]\n            r_rl = batch[\"rejected_resp_lens\"][i]\n            ref_chosen[idx] = c_logps[i, pl : pl + c_rl].cpu()\n            ref_rejected[idx] = r_logps[i, pl : pl + r_rl].cpu()\n\n    logger.info(\"Precomputed ref logps for %d samples\", len(ref_chosen))\n    return ref_chosen, ref_rejected\n\n\n# ---------------------------------------------------------------------------\n# Batch loss\n# ---------------------------------------------------------------------------\n\n\ndef compute_batch_loss(\n    policy_model: torch.nn.Module,\n    batch: dict,\n    ref_chosen_all: dict[int, torch.Tensor],\n    ref_rejected_all: dict[int, torch.Tensor],\n    beta: float,\n    device: torch.device,\n) -> tuple[torch.Tensor, dict]:\n    \"\"\"Forward policy model and compute phi-weighted DPO loss.\"\"\"\n    # Policy forward\n    pc_logps = get_per_token_logps(\n        policy_model, batch[\"chosen_ids\"].to(device), batch[\"chosen_mask\"].to(device)\n    )\n    pr_logps = get_per_token_logps(\n        policy_model, batch[\"rejected_ids\"].to(device), batch[\"rejected_mask\"].to(device)\n    )\n\n    B = batch[\"chosen_ids\"].shape[0]\n    losses = []\n    chosen_rewards = []\n    rejected_rewards = []\n\n    for i in range(B):\n        idx = batch[\"indices\"][i]\n        pl = batch[\"prompt_lens\"][i]\n        c_rl = batch[\"chosen_resp_lens\"][i]\n        r_rl = batch[\"rejected_resp_lens\"][i]\n        gamma = batch[\"gammas\"][i]\n\n        if c_rl <= 0 or r_rl <= 0:\n            continue\n\n        # phi weights (already normalized, sum=1)\n        w_c = compute_phi_weights(c_rl, gamma).to(device)\n        w_r = compute_phi_weights(r_rl, gamma).to(device)\n\n        # Policy response logps\n        pc = pc_logps[i, pl : pl + c_rl]\n        pr = pr_logps[i, pl : pl + r_rl]\n\n        # Precomputed ref response logps\n        rc = ref_chosen_all[idx].to(device)\n        rr = ref_rejected_all[idx].to(device)\n\n        # Weighted log-ratios\n        chosen_logratio = (pc * w_c).sum() - (rc * w_c).sum()\n        rejected_logratio = (pr * w_r).sum() - (rr * w_r).sum()\n\n        logit = beta * (chosen_logratio - rejected_logratio)\n        losses.append(-F.logsigmoid(logit))\n\n        chosen_rewards.append(chosen_logratio.detach())\n        rejected_rewards.append(rejected_logratio.detach())\n\n    if not losses:\n        return torch.tensor(0.0, device=device, requires_grad=True), {}\n\n    loss = torch.stack(losses).mean()\n    cr = torch.stack(chosen_rewards)\n    rr = torch.stack(rejected_rewards)\n    metrics = {\n        \"loss\": loss.item(),\n        \"chosen_reward\": cr.mean().item(),\n        \"rejected_reward\": rr.mean().item(),\n        \"reward_margin\": (cr - rr).mean().item(),\n        \"reward_accuracy\": (cr > rr).float().mean().item(),\n    }\n    return loss, metrics\n\n\n# ---------------------------------------------------------------------------\n# Training\n# ---------------------------------------------------------------------------\n\n\ndef train(args: argparse.Namespace):\n    import wandb\n\n    torch.manual_seed(args.seed)\n    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n\n    wandb.init(\n        project=args.wandb_project,\n        name=args.wandb_run_name or f\"{args.mode}_s{args.seed}\",\n        config=vars(args),\n    )\n\n    # Tokenizer\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    # Model\n    logger.info(\"Loading model: %s\", args.model_name)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_name,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        device_map={\"\": device},\n    )\n\n    # Dataset\n    dataset = DPODataset(\n        args.data_path, tokenizer, args.max_length, args.mode, args.gamma\n    )\n\n    # Precompute ref logps (model is the ref at initialization)\n    logger.info(\"Precomputing reference logps...\")\n    ref_chosen, ref_rejected = precompute_ref_logps(\n        model, dataset, tokenizer, device, args.batch_size\n    )\n\n    # Switch to training mode\n    model.gradient_checkpointing_enable()\n    model.train()\n\n    loader = DataLoader(\n        dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        collate_fn=partial(collate_dpo, pad_token_id=tokenizer.pad_token_id),\n        drop_last=False,\n    )\n\n    optimizer = torch.optim.AdamW(\n        model.parameters(), lr=args.learning_rate, weight_decay=0.01\n    )\n    total_steps = len(loader) * args.num_epochs\n    warmup_steps = min(total_steps // 10, 100)\n    scheduler = get_cosine_schedule_with_warmup(optimizer, warmup_steps, total_steps)\n\n    # Save training config\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    with open(out_dir / \"training_config.json\", \"w\") as f:\n        json.dump(vars(args), f, indent=2)\n\n    global_step = 0\n    for epoch in range(args.num_epochs):\n        epoch_loss = 0.0\n        epoch_steps = 0\n\n        for batch in loader:\n            loss, metrics = compute_batch_loss(\n                model, batch, ref_chosen, ref_rejected, args.beta, device\n            )\n\n            loss.backward()\n            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\n            optimizer.step()\n            scheduler.step()\n            optimizer.zero_grad()\n\n            global_step += 1\n            epoch_loss += loss.item()\n            epoch_steps += 1\n\n            wandb.log(\n                {\n                    \"train/loss\": loss.item(),\n                    \"train/lr\": scheduler.get_last_lr()[0],\n                    **{f\"train/{k}\": v for k, v in metrics.items() if k != \"loss\"},\n                },\n                step=global_step,\n            )\n\n            if global_step % 10 == 0:\n                logger.info(\n                    \"Step %d | Loss %.4f | Margin %.4f | Acc %.2f\",\n                    global_step,\n                    loss.item(),\n                    metrics.get(\"reward_margin\", 0),\n                    metrics.get(\"reward_accuracy\", 0),\n                )\n\n        avg_loss = epoch_loss / max(epoch_steps, 1)\n        logger.info(\"Epoch %d/%d | Avg Loss %.4f\", epoch + 1, args.num_epochs, avg_loss)\n        wandb.log(\n            {\"train/epoch_loss\": avg_loss, \"train/epoch\": epoch + 1}, step=global_step\n        )\n\n        ckpt_dir = out_dir / f\"checkpoint-epoch{epoch + 1}\"\n        model.save_pretrained(ckpt_dir)\n        tokenizer.save_pretrained(ckpt_dir)\n        logger.info(\"Saved checkpoint: %s\", ckpt_dir)\n\n    final_dir = out_dir / \"final\"\n    model.save_pretrained(final_dir)\n    tokenizer.save_pretrained(final_dir)\n    logger.info(\"Training complete. Final model: %s\", final_dir)\n    wandb.finish()\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"DPO training with ETADN temporal discount\"\n    )\n    parser.add_argument(\"--data_path\", type=str, required=True, help=\"DPO JSONL file\")\n    parser.add_argument(\n        \"--model_name\",\n        type=str,\n        default=\"/root/autodl-tmp/.hf_cache/Qwen3-8B\",\n    )\n    parser.add_argument(\"--output_dir\", type=str, default=\"outputs/dpo\")\n    parser.add_argument(\n        \"--mode\",\n        type=str,\n        choices=[\"single_gamma\", \"etadn\"],\n        required=True,\n    )\n    parser.add_argument(\n        \"--gamma\", type=float, default=0.92, help=\"gamma for single_gamma mode\"\n    )\n    parser.add_argument(\n        \"--gamma_min\", type=float, default=0.85, help=\"gamma_min for etadn (logged only)\"\n    )\n    parser.add_argument(\n        \"--gamma_max\", type=float, default=0.97, help=\"gamma_max for etadn (logged only)\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--num_epochs\", type=int, default=3)\n    parser.add_argument(\"--batch_size\", type=int, default=4)\n    parser.add_argument(\"--learning_rate\", type=float, default=5e-7)\n    parser.add_argument(\"--max_length\", type=int, default=2048)\n    parser.add_argument(\"--wandb_project\", type=str, default=\"etadn-dpo\")\n    parser.add_argument(\"--wandb_run_name\", type=str, default=None)\n    parser.add_argument(\"--beta\", type=float, default=0.1, help=\"DPO temperature\")\n    parser.add_argument(\"--gpu\", type=int, default=0)\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s %(name)s %(levelname)s %(message)s\",\n    )\n\n    train(args)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T03:11:37.358033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/train_dpo.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T03:11:37.358184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/scripts/run_training.sh",
+              "content": "#!/bin/bash\n# Two-phase ETADN DPO training.\n#\n# Phase 1 (parallel, 2 GPUs):\n#   GPU 0: ETADN training (seed 42)\n#   GPU 1: gamma sweep baseline (gamma in {0.85, 0.90, 0.92, 0.95, 0.97, 1.0})\n#\n# Phase 2 (sequential, after Phase 1):\n#   Best gamma from sweep * 3 seeds (42, 123, 456)\n#\n# Usage:\n#   bash scripts/run_training.sh --data_path data/dpo_pairs_v7.jsonl\n#   BEST_GAMMA=0.95 bash scripts/run_training.sh --data_path data/dpo_pairs_v7.jsonl\n\nset -euo pipefail\n\n# Defaults\nDATA_PATH=\"\"\nMODEL_NAME=\"/root/autodl-tmp/.hf_cache/Qwen3-8B\"\nOUTPUT_BASE=\"outputs\"\nWANDB_PROJECT=\"etadn-dpo\"\n\nwhile [[ $# -gt 0 ]]; do\n    case $1 in\n        --data_path) DATA_PATH=\"$2\"; shift 2 ;;\n        --model_name) MODEL_NAME=\"$2\"; shift 2 ;;\n        --output_base) OUTPUT_BASE=\"$2\"; shift 2 ;;\n        --wandb_project) WANDB_PROJECT=\"$2\"; shift 2 ;;\n        *) echo \"Unknown arg: $1\"; exit 1 ;;\n    esac\ndone\n\nif [[ -z \"$DATA_PATH\" ]]; then\n    echo \"Usage: $0 --data_path <path> [--model_name <path>] [--output_base <dir>]\"\n    exit 1\nfi\n\necho \"==========================================\"\necho \"Phase 1: ETADN + gamma sweep (parallel)\"\necho \"  Data: $DATA_PATH\"\necho \"  Model: $MODEL_NAME\"\necho \"==========================================\"\n\n# GPU 0: ETADN seed 1\nCUDA_VISIBLE_DEVICES=0 python src/train_dpo.py \\\n    --data_path \"$DATA_PATH\" \\\n    --model_name \"$MODEL_NAME\" \\\n    --output_dir \"$OUTPUT_BASE/etadn_s1\" \\\n    --mode etadn \\\n    --seed 42 \\\n    --wandb_project \"$WANDB_PROJECT\" \\\n    --wandb_run_name etadn_s1 \\\n    --gpu 0 &\nPID_ETADN=$!\n\n# GPU 1: gamma sweep (sequential runs on same GPU)\n(\n    for GAMMA in 0.85 0.90 0.92 0.95 0.97 1.0; do\n        GAMMA_TAG=$(echo \"$GAMMA\" | tr -d '.')\n        echo \"[sweep] Starting gamma=$GAMMA ...\"\n        CUDA_VISIBLE_DEVICES=1 python src/train_dpo.py \\\n            --data_path \"$DATA_PATH\" \\\n            --model_name \"$MODEL_NAME\" \\\n            --output_dir \"$OUTPUT_BASE/sweep_g${GAMMA_TAG}\" \\\n            --mode single_gamma \\\n            --gamma \"$GAMMA\" \\\n            --seed 42 \\\n            --wandb_project \"$WANDB_PROJECT\" \\\n            --wandb_run_name \"sweep_g${GAMMA_TAG}\" \\\n            --gpu 0\n        echo \"[sweep] Finished gamma=$GAMMA\"\n    done\n) &\nPID_SWEEP=$!\n\necho \"ETADN PID=$PID_ETADN  |  Sweep PID=$PID_SWEEP\"\nwait $PID_ETADN && echo \"ETADN training complete\" || echo \"ETADN training FAILED\"\nwait $PID_SWEEP && echo \"Gamma sweep complete\" || echo \"Gamma sweep FAILED\"\n\necho \"==========================================\"\necho \"Phase 2: Best-gamma x 3 seeds\"\necho \"==========================================\"\n\n# BEST_GAMMA can be set by env var; defaults to 0.92.\n# To auto-select from W&B, set BEST_GAMMA before running or query manually.\nBEST_GAMMA=${BEST_GAMMA:-0.92}\nBEST_TAG=$(echo \"$BEST_GAMMA\" | tr -d '.')\necho \"Using BEST_GAMMA=$BEST_GAMMA (set env BEST_GAMMA to override)\"\n\nfor SEED in 42 123 456; do\n    echo \"[best-gamma] Starting seed=$SEED ...\"\n    CUDA_VISIBLE_DEVICES=0 python src/train_dpo.py \\\n        --data_path \"$DATA_PATH\" \\\n        --model_name \"$MODEL_NAME\" \\\n        --output_dir \"$OUTPUT_BASE/best_g${BEST_TAG}_s${SEED}\" \\\n        --mode single_gamma \\\n        --gamma \"$BEST_GAMMA\" \\\n        --seed \"$SEED\" \\\n        --wandb_project \"$WANDB_PROJECT\" \\\n        --wandb_run_name \"best_g${BEST_TAG}_s${SEED}\" \\\n        --gpu 0\n    echo \"[best-gamma] Finished seed=$SEED\"\ndone\n\necho \"==========================================\"\necho \"All training complete.\"\necho \"==========================================\"\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T03:11:37.358353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/scripts/run_training.sh"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T03:11:37.358476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/configs/dpo_single_gamma.yaml",
+              "content": "# Single-gamma DPO training config (baseline / gamma sweep)\n# All samples share one gamma value -- used for ablation.\n\nmodel_name: /root/autodl-tmp/.hf_cache/Qwen3-8B\nmode: single_gamma\ngamma: 0.92\n\n# DPO\nbeta: 0.1\n\n# Training\nnum_epochs: 3\nbatch_size: 4\nlearning_rate: 5.0e-7\nmax_length: 2048\nseed: 42\n\n# Logging\nwandb_project: etadn-dpo\n"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T03:11:37.358596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/configs/dpo_single_gamma.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T03:11:37.358780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/configs/dpo_etadn.yaml",
+              "content": "# ETADN DPO training config\n# Per-sample gamma_e from JSONL (error-type-aware temporal discount).\n# gamma_e is computed by build_dpo_pairs.py and read directly -- NOT recomputed here.\n\nmodel_name: /root/autodl-tmp/.hf_cache/Qwen3-8B\nmode: etadn\ngamma_min: 0.85\ngamma_max: 0.97\n\n# DPO\nbeta: 0.1\n\n# Training\nnum_epochs: 3\nbatch_size: 4\nlearning_rate: 5.0e-7\nmax_length: 2048\nseed: 42\n\n# Logging\nwandb_project: etadn-dpo\n"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T03:11:37.358911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/configs/dpo_etadn.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T03:11:37.359057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python -m py_compile src/dmpo_loss.py && echo \"dmpo_loss.py: OK\"",
+              "description": "Syntax check dmpo_loss.py"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T03:11:37.359171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 127\n/bin/bash: line 1: python: command not found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T03:11:37.359284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python -m py_compile src/train_dpo.py && echo \"train_dpo.py: OK\"",
+              "description": "Syntax check train_dpo.py"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T03:11:37.359396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(python -m py_compile src/dmpo_loss.py &&…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T03:11:37.359519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "bash -n scripts/run_training.sh && echo \"run_training.sh: OK\"",
+              "description": "Syntax check shell script"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T03:11:37.359649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(python -m py_compile src/dmpo_loss.py &&…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T03:11:37.359780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "which python3 && python3 -m py_compile src/dmpo_loss.py && echo \"dmpo_loss.py: OK\" && python3 -m py_compile src/train_dpo.py && echo \"train_dpo.py: OK\" && bash -n scripts/run_training.sh && echo \"run_training.sh: OK\"",
+              "description": "Syntax check all files"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T03:11:37.359893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/usr/bin/python3\ndmpo_loss.py: OK\ntrain_dpo.py: OK\nrun_training.sh: OK"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T03:11:37.360003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport sys\nsys.path.insert(0, 'src')\nfrom dmpo_loss import compute_phi_weights, phi_weighted_logps, dmpo_loss, dmpo_loss_batch\nprint('dmpo_loss imports: OK')\n\nfrom etadn_discount import compute_discount_weights, ETADNConfig, phi\nprint('etadn_discount imports: OK')\n\nimport torch\n# Verify phi weights are normalized\nw = compute_phi_weights(10, 0.92)\nprint(f'phi weights T=10, gamma=0.92: sum={w.sum().item():.6f}, shape={w.shape}')\n\n# Verify dmpo_loss runs\npc = torch.randn(5)\npr = torch.randn(5)\nrc = torch.randn(5)\nrr = torch.randn(5)\nwc = compute_phi_weights(5, 0.92)\nwr = compute_phi_weights(5, 0.92)\nloss = dmpo_loss(pc, pr, rc, rr, wc, wr, beta=0.1)\nprint(f'dmpo_loss single sample: {loss.item():.4f}')\nprint('All OK')\n\"",
+              "description": "Verify imports and basic functionality"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T03:11:37.360146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dmpo_loss imports: OK\netadn_discount imports: OK\nphi weights T=10, gamma=0.92: sum=4.820022, shape=torch.Size([10])\ndmpo_loss single sample: 0.8755\nAll OK"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T03:11:37.360342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/dmpo_loss.py",
+              "old_string": "def compute_phi_weights(T: int, gamma: float) -> torch.Tensor:\n    \"\"\"phi weight vector of length T, normalized so sum=1.\n\n    Wraps etadn_discount.compute_discount_weights.\n    \"\"\"",
+              "new_string": "def compute_phi_weights(T: int, gamma: float) -> torch.Tensor:\n    \"\"\"phi weight vector of length T. phi(0)=1 for all gamma, decays for t>0.\n\n    Wraps etadn_discount.compute_discount_weights.\n    \"\"\""
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T03:11:37.360494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/dmpo_loss.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T03:11:37.360617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/dmpo_loss.py",
+              "old_string": "    Args:\n        logps: (T,) per-token log probs\n        weights: (T,) phi weights (sum=1)\n    Returns:\n        scalar weighted sum",
+              "new_string": "    Args:\n        logps: (T,) per-token log probs\n        weights: (T,) phi discount weights\n    Returns:\n        scalar weighted sum"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-13T03:11:37.360789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/dmpo_loss.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-13T03:11:37.360907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/train_dpo.py",
+              "old_string": "        # phi weights (already normalized, sum=1)",
+              "new_string": "        # phi discount weights from etadn_discount"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-13T03:11:37.361074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/train_dpo.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-13T03:11:37.361210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport sys\nsys.path.insert(0, 'src')\n\n# 1. Verify imports\nfrom dmpo_loss import compute_phi_weights, phi_weighted_logps, dmpo_loss, dmpo_loss_batch\nfrom etadn_discount import compute_discount_weights, single_gamma_dpo_loss, etadn_dpo_loss\nprint('All imports OK')\n\n# 2. Verify dmpo_loss matches etadn_discount single_gamma_dpo_loss\nimport torch\ntorch.manual_seed(42)\nB, T = 2, 6\nchosen_logps = torch.randn(B, T, requires_grad=True)\nrejected_logps = torch.randn(B, T, requires_grad=True)\nref_chosen = torch.randn(B, T)\nref_rejected = torch.randn(B, T)\nlengths = torch.tensor([6, 6])\ngamma = 0.92\n\n# etadn_discount's version\nloss_ref = single_gamma_dpo_loss(chosen_logps, rejected_logps, ref_chosen, ref_rejected, lengths, gamma=gamma)\nprint(f'etadn single_gamma_dpo_loss: {loss_ref.item():.6f}')\n\n# dmpo_loss_batch version (needs prompt_lens=0 since data is already response-only)\nloss_dmpo, metrics = dmpo_loss_batch(\n    chosen_logps, rejected_logps, ref_chosen, ref_rejected,\n    chosen_resp_lens=[6, 6], rejected_resp_lens=[6, 6],\n    prompt_lens=[0, 0], gammas=[gamma, gamma], beta=0.1,\n)\nprint(f'dmpo_loss_batch:             {loss_dmpo.item():.6f}')\nprint(f'Match: {abs(loss_ref.item() - loss_dmpo.item()) < 1e-5}')\nprint(f'Metrics: {metrics}')\n\n# 3. Verify train_dpo imports\nfrom train_dpo import DPODataset, collate_dpo, get_per_token_logps\nprint('train_dpo imports OK')\n\nprint('\\\\nAll verifications passed.')\n\"",
+              "description": "Verify dmpo_loss matches etadn_discount and train_dpo imports work"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-13T03:11:37.361348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All imports OK\netadn single_gamma_dpo_loss: 0.634883\ndmpo_loss_batch:             0.634883\nMatch: True\nMetrics: {'chosen_reward': 0.7372857332229614, 'rejected_reward': -0.5069250464439392, 'reward_margin': 1.2442107200622559, 'reward_accuracy': 0.5}\ntrain_dpo imports OK\n\nAll verifications passed."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-13T03:11:37.361536+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有文件完成，验证通过。\n\n**完成情况**：\n\n| 文件 | 状态 |\n|------|------|\n| `src/train_dpo.py` | `gamma_e` 从 JSONL 读取（etadn 模式），不自行计算。ref logps 预计算后释放，训练时只有 policy model 在 GPU |\n| `src/dmpo_loss.py` | 桥接模块，`dmpo_loss_batch` 输出与 `etadn_discount.single_gamma_dpo_loss` 数值一致 |\n| `scripts/run_training.sh` | Phase 1: GPU0 ETADN + GPU1 γ sweep 并行；Phase 2: best-γ × 3 seeds |\n| `configs/dpo_single_gamma.yaml` | 默认超参 |\n| `configs/dpo_etadn.yaml` | 默认超参 |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_restore-training-code_20260513T025806"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/code-restore-training-code.md"
+}

@@ -1,0 +1,21 @@
+# ETADN DPO training config
+# Per-sample gamma_e from JSONL (error-type-aware temporal discount).
+# gamma_e is computed by build_dpo_pairs.py and read directly -- NOT recomputed here.
+
+model_name: /root/autodl-tmp/.hf_cache/Qwen3-8B
+mode: etadn
+gamma_min: 0.85
+gamma_max: 1.0
+
+# DPO
+beta: 0.1
+
+# Training
+num_epochs: 3
+batch_size: 4
+learning_rate: 5.0e-7
+max_length: 2048
+seed: 42
+
+# Logging
+wandb_project: etadn-dpo

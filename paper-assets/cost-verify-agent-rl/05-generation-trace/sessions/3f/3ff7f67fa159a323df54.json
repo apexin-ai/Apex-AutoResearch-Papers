@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ff7f67fa159a323df54",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp029 failed",
+  "task_key": "worker_diagnose_exp029_failed_20260516T161158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp029_failed_20260516T161158_result.json",
+    "occurrence": 1,
+    "bytes": 1987,
+    "sha256": "1387306e6cfe5336471df55cc4396e07a840ab140c23d0023c296d0498ca7727"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到根因了。诊断结果如下：\n\n---\n\n## exp029_episode_level 训练失败诊断\n\n### 直接原因\n\n训练在 `trainer.fit()` 的 `logger.log()` 阶段崩溃，错误信息：\n\n```\nFileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpzicbifxf'\n```\n\nwandb 在记录 Table artifact 时调用 `tempfile.mkdtemp()`，因 `/tmp` 目录不存在而失败。\n\n### 根因分析\n\n**`cleanup_loop.sh` 脚本误删了整个 `/tmp` 目录。**\n\n该脚本（PID 878019）内容：\n\n```bash\nwhile true; do\n    find /tmp -maxdepth 1 -name \"tmp*\" -mmin +5 -exec rm -rf {} \\; 2>/dev/null\n    sleep 300\ndone\n```\n\n关键 bug：`find /tmp -maxdepth 1 -name \"tmp*\"` 会匹配 `/tmp` 自身（basename 为 `tmp`，匹配 `tmp*` 模式），且 `/tmp` 修改时间必然超过 5 分钟，因此 `rm -rf /tmp` 被执行，**连带删除了整个 `/tmp` 目录**。\n\n已确认 `ls /tmp` 返回 `No such file or directory`。\n\n### 训练进度\n\n- **0 步完成**：日志显示训练刚进入第一轮 rollout 后的 logging 阶段就崩溃\n- **无 checkpoint**：exp029 目录只有 `train_restart.log`，无 checkpoint 文件\n- **无 wandb 数据**：wandb 本地目录不存在\n\n### 当前服务器状态\n\n- GPU：2× RTX PRO 6000 空闲，0MiB 显存占用\n- 磁盘：`/root/autodl-tmp` 78% 使用（57GB 剩余），非磁盘问题\n- 训练进程全部退出，`cleanup_loop.sh` 仍在运行（但已无害，因 `/tmp` 已不存在）\n\n### 建议下一步\n\n1. **立即修复**：重建 `/tmp` 并杀掉有 bug 的 cleanup 脚本\n   ```bash\n   mkdir -p /tmp && chmod 1777 /tmp\n   kill 878019 878071\n   ```\n\n2. **修复 cleanup_loop.sh**：加 `-mindepth 1` 防止匹配 `/tmp` 自身\n   ```bash\n   find /tmp -maxdepth 1 -mindepth 1 -name \"tmp*\" -mmin +5 -exec rm -rf {} \\;\n   ```\n\n3. **重新启动 exp029**：`/tmp` 恢复后可直接重跑，无需额外修改。训练配置和代码本身没有问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp029-failed.md"
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "d82ec6d6a4796dfab170",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops 7b download baseline eval",
+  "task_key": "worker_ops_7b-download-baseline-eval_20260519T033526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_7b-download-baseline-eval_20260519T033526.log",
+    "occurrence": 1,
+    "bytes": 1493194,
+    "sha256": "a3ab6a26b85046a0c69a475da0245a5396dc754121b4a357f0466ddf92e18c9e"
+  },
+  "statistics": {
+    "messages": 728,
+    "user_turns": 1,
+    "tool_calls": 256,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 207,
+      "tool_call": 256,
+      "tool_result": 256,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 473,
+      "chunks": [
+        {
+          "path": "d82ec6d6a4796dfab170-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d82ec6d6a4796dfab170-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d82ec6d6a4796dfab170-part-0003.json",
+          "message_count": 113
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 255,
+      "chunks": [
+        {
+          "path": "d82ec6d6a4796dfab170-part-0003.json",
+          "message_count": 67
+        },
+        {
+          "path": "d82ec6d6a4796dfab170-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d82ec6d6a4796dfab170-part-0005.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-7b-download-baseline-eval.md"
+}

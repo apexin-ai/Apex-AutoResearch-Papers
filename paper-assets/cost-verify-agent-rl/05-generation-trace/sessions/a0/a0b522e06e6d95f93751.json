@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0b522e06e6d95f93751",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh check all gpu status",
+  "task_key": "worker_ssh_check_all_gpu_status_20260523T031312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_all_gpu_status_20260523T031312_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "50ec57a24a2bebbe428f85b2371ed0099dbc83f5b8fdf479b70c6bbd1caa01c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告\n\n### westd-47453（4× RTX PRO 6000 96GB）\n\n| GPU | 显存使用 | 利用率 |\n|-----|---------|--------|\n| 0 | 0 / 97887 MiB | 0% |\n| 1 | 0 / 97887 MiB | 0% |\n| 2 | 0 / 97887 MiB | 0% |\n| 3 | 0 / 97887 MiB | **100%** |\n\n- **无 GPU 进程**（nvidia-smi 未报告 compute apps）\n- GPU 3 利用率 100% 但显存 0，可能是短暂状态或驱动误报\n- 仅有系统服务进程：jupyter-lab、tensorboard\n- 无 tmux session\n\n### bjb1-17606（2× GPU 96GB）\n\n| GPU | 显存使用 | 利用率 |\n|-----|---------|--------|\n| 0 | 0 / 97887 MiB | 0% |\n| 1 | 0 / 97887 MiB | 0% |\n\n- **无 GPU 进程**\n- **有残留进程**：\n  - 5 个 `ray::TaskRunner` 进程（PID 433097/444677/447671/449672/453685），占用大量 CPU 内存（最大 ~6.4GB），但未占用 GPU 显存\n  - 1 个 `python -m http.server 18923`（expert_sft 相关）\n  - 系统服务：jupyter-lab、tensorboard\n- 无 tmux session\n\n**结论**：两台服务器 GPU 显存均空闲。bjb1-17606 上有 5 个 ray::TaskRunner 残留进程占用 CPU 内存，如不再需要建议清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-all-gpu-status.md"
+}

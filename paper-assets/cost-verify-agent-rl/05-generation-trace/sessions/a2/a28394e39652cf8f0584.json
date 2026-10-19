@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a28394e39652cf8f0584",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis intervention c step7 ood",
+  "task_key": "worker_analysis_intervention_c_step7_ood_20260521T232105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_intervention_c_step7_ood_20260521T232105_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "29f18358a13fc545348a6f1bc695a9b0fa0010eadee79e87c21aea943131fc13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**Intervention C Step 7 OOD 评估结果**\n\n| 指标 | 值 |\n|------|-----|\n| **OOD pass@1** | **14.93%** (20/134) |\n| action_is_valid | 66.30% |\n| num_actions | 43.67 |\n| response_length | 6365.6 |\n| eval_time | 1370s |\n\n**结论**: success — hypothesis confirmed。Hard cap 导致的 collapse checkpoint OOD=14.93%，低于 15% 阈值，与预期一致。这区别于 Seed 4 的异常（collapsed 但 OOD=30.6%），表明 hard cap 引发的 collapse 不仅训练失败，还产生更差的 OOD 泛化。\n\nRegistry 已更新为 DONE(success)，report 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-intervention-c-step7-ood.md"
+}

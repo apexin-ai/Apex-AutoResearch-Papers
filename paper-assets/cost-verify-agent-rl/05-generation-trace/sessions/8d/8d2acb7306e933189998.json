@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "8d2acb7306e933189998",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops exp026 fix and dryrun",
+  "task_key": "worker_ops_exp026_fix_and_dryrun_20260515T093547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_fix_and_dryrun_20260515T093547.log",
+    "occurrence": 1,
+    "bytes": 1583788,
+    "sha256": "22b9519917d4a47287a397a582c00b20d1adff87bf62fce208083db39d91c0d2"
+  },
+  "statistics": {
+    "messages": 1056,
+    "user_turns": 1,
+    "tool_calls": 358,
+    "roles": {
+      "log": 1,
+      "system": 154,
+      "record": 1,
+      "assistant": 177,
+      "tool_call": 358,
+      "tool_result": 358,
+      "result": 6,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 805,
+      "chunks": [
+        {
+          "path": "8d2acb7306e933189998-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8d2acb7306e933189998-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8d2acb7306e933189998-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8d2acb7306e933189998-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "8d2acb7306e933189998-part-0005.json",
+          "message_count": 85
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 251,
+      "chunks": [
+        {
+          "path": "8d2acb7306e933189998-part-0005.json",
+          "message_count": 95
+        },
+        {
+          "path": "8d2acb7306e933189998-part-0006.json",
+          "message_count": 156
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-exp026-fix-and-dryrun.md"
+}

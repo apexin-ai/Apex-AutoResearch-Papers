@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "637643019844574ffd09",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp026 standalone eval",
+  "task_key": "worker_code_exp026_standalone_eval_20260515T133734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp026_standalone_eval_20260515T133734_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "88d63af8dd23cbfddd40e58f8bed0b64b9edcca7a9edbbc16d7ea9b0860befdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本部署完成，dry run 验证通过：\n\n- `--help` 正常输出所有参数\n- C003 守卫生效：`--num_episodes 4` 被拒绝（`ERROR: C003 requires >=16 episodes`）\n\n**脚本功能**：`/root/cost-verify-agent-rl/scripts/eval_checkpoint.py`\n\n| 特性 | 说明 |\n|---|---|\n| **checkpoint 格式** | 自动检测 HF / FSDP，FSDP 自动转换后加载 |\n| **C003** | 强制 `num_episodes >= 16`，否则拒绝运行 |\n| **指标** | success_rate, action_is_valid, action_is_effective, format_ok + per-task-type breakdown |\n| **单卡运行** | `--gpu 0` 或 `--gpu 1`，可与训练并行 |\n| **输出** | JSON 文件含每 episode 详细 step-level 数据 + 汇总 |\n\n**用法示例**（等 exp026 step 25 checkpoint 就绪后）：\n```bash\npython scripts/eval_checkpoint.py \\\n  --checkpoint_path /root/autodl-tmp/checkpoints/exp026/global_step_25 \\\n  --num_episodes 16 \\\n  --gpu 0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp026-standalone-eval.md"
+}

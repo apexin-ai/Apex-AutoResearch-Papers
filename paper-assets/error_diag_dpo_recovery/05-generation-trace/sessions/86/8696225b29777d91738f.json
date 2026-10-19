@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "8696225b29777d91738f",
+  "project": "error_diag_dpo_recovery",
+  "kind": "worker",
+  "title": "analysis v7 success rate diagnosis",
+  "task_key": "worker_analysis_v7-success-rate-diagnosis_20260513T064019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v7-success-rate-diagnosis_20260513T064019.log",
+    "occurrence": 1,
+    "bytes": 653439,
+    "sha256": "f2765775d9e9ff949c5dee1e04891d6524d5a81acc250daabf4baa17192f5eab"
+  },
+  "statistics": {
+    "messages": 221,
+    "user_turns": 1,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 3,
+      "assistant": 35,
+      "tool_call": 78,
+      "tool_result": 78,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 99,
+      "chunks": [
+        {
+          "path": "8696225b29777d91738f-part-0001.json",
+          "message_count": 99
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 122,
+      "chunks": [
+        {
+          "path": "8696225b29777d91738f-part-0001.json",
+          "message_count": 81
+        },
+        {
+          "path": "8696225b29777d91738f-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-v7-success-rate-diagnosis.md"
+}

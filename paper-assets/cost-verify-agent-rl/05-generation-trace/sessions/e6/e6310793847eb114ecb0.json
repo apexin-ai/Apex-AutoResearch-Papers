@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6310793847eb114ecb0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 update v5 config and check seed42",
+  "task_key": "worker_ops_bjb1_update_v5_config_and_check_seed42_20260522T095341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_update_v5_config_and_check_seed42_20260522T095341_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "26a57a0d62e23285678004a002caf8ef5b68e6c3e55ca49e273d4b78c47c6fe3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n### 1. per-turn response length 参数\n\n- **参数名**: `actor_rollout_ref.rollout.response_length`\n- **实现位置**: `agent_proxy.py:74` — 作为 vLLM `SamplingParams(max_tokens=ro_config.response_length)` 传入，控制每个 turn 的最大生成 token 数\n\n### 2. v5 config diff\n\n| 参数 | 修改前 | 修改后 |\n|------|--------|--------|\n| `actor_rollout_ref.rollout.response_length` | 512 | **1024** |\n| `agent_proxy.max_turn` | 20 | **50** |\n| `actor.kl_loss_coef` | 0.05 | 0.05（保持） |\n| `collapse_detection.multi_turn_enabled` | true | true（保持） |\n\n### 3. seed42 训练状态\n\n- **进程**: PID 404350，config `_alfworld_exp029_seed42_episode`（ALfWorld exp029，非 ScienceWorld）\n- **tmux session**: `seed42_episode_grpo`，启动于 17:49:54\n- **GPU**: cuda:0 占 37.5GB，cuda:1 占 38.9GB，利用率 0%（模型已加载，正在初始化 rollout）\n- **W&B**: run `exp029-seed42-episode-level`（ID: kvdbh1sz），已连接\n- **阶段**: 数据加载完成（8810 + 494 items），刚进入首轮 rollout"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-update-v5-config-and-check-seed42.md"
+}

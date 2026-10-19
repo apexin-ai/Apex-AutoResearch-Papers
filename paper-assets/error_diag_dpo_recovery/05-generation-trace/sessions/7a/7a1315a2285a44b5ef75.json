@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a1315a2285a44b5ef75",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "exec icl success rate 14b",
+  "task_key": "worker_exec_icl-success-rate-14b_20260512T162205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_icl-success-rate-14b_20260512T162205_result.json",
+    "occurrence": 1,
+    "bytes": 1495,
+    "sha256": "1f83ab7f82ebd7ec9ba708ad3fb94095480d13340c37e9258a961a7ed3b8fc1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正在运行。模型已加载，第一个 task 完成（pick_and_place, 成功, 13.1s）。\n\n---\n\n**汇报：**\n\n### 脚本内容\n复用了已有的 `src/test_icl_14b.py`（417 行），核心流程：\n1. 从 `alfworld_sft.json` 加载 3 种 task type（pick_and_place, pick_clean_then_place, look_at_obj）的短 expert trajectory 作为 few-shot ICL 示例\n2. 用 `transformers` 加载 Qwen3-14B-AWQ（FP16，单卡）\n3. 构造 instruction + ICL examples + task observation 的 multi-turn prompt\n4. 每个 task 最多 30 步交互，带 action 翻译（模型输出 → ALFWorld 合法动作）\n5. 输出按 task_type 分类的成功率统计\n\n### 启动状态\n- **PID**: 252942\n- **GPU**: cuda:0（CUDA_VISIBLE_DEVICES=0）\n- **模型**: Qwen3-14B-AWQ（非 Qwen2.5-14B-AWQ——服务器上没有 2.5 版本，只有 Qwen3）\n- **参数**: `--split dev --num_tasks 50 --temperature 0`\n- **日志**: `/root/autodl-tmp/error_diag_dpo_recovery/icl_14b_50tasks.log`\n- **结果文件**: `data/icl_test_results/14b_awq_dev_50.json`\n\n### 历史参考（25 task 已有结果）\n总成功率 40%（10/25）：\n| task_type | 成功率 |\n|---|---|\n| pick_and_place | 6/6 = 100% |\n| look_at_obj | 4/5 = 80% |\n| pick_two_obj | 0/5 = 0% |\n| pick_clean_then_place | 0/4 = 0% |\n| pick_heat_then_place | 0/2 = 0% |\n| pick_cool_then_place | 0/3 = 0% |\n\n50 task 的结果预计 25-50 分钟完成，可后续用 `tail` 查看日志或读取最终 JSON。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-icl-success-rate-14b.md"
+}

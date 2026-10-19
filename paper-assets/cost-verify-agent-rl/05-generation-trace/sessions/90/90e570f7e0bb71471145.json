@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90e570f7e0bb71471145",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 val poll and kill v2",
+  "task_key": "worker_ops_exp026_val_poll_and_kill_v2_20260515T142727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_val_poll_and_kill_v2_20260515T142727_result.json",
+    "occurrence": 1,
+    "bytes": 113,
+    "sha256": "7ecb58c2ee29900e4bf678fac09eed0516e2c1781b00e01de043b6c8c5e293b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询中。Step 4 训练已完成，step 5 val 生成刚启动。约 2.5 分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-val-poll-and-kill-v2.md"
+}

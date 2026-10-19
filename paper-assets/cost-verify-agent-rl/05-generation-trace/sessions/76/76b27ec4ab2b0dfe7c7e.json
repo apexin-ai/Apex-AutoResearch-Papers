@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76b27ec4ab2b0dfe7c7e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis track b seed signal",
+  "task_key": "worker_analysis_track-b-seed-signal_20260524T021613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_track-b-seed-signal_20260524T021613_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "f39a1b3d9199d1908dff6e5a801e9d32431242ea4f1f593b894d49fee255eb75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果写入 `artifacts/seed_early_signal_analysis.md`，已注册。\n\n核心发现：\n\n1. **无可靠早期预测指标**：步骤 1–3 所有标准训练指标（reward、KL、entropy、grad norm、response length、train success）在三组间均无显著差异（所有 p > 0.2）。\n\n2. **\"迟发崩溃\"现象**：seed7 和 seed8（Collapsed）在早期反而表现最好——seed7 步骤 3 reward = 4.92（全场最高），seed8 步骤 0 val success = 31.3%（全场最高）。崩溃在步骤 5 之后才出现。\n\n3. **MI 多样性是最强候选**：步骤 1 的 MI estimate 效应量最大（Cohen's d = 1.11），Collapsed 组均值 0.090 vs Generalized 0.165，但 p = 0.23，样本量不足以达显著。\n\n4. **Stagnant 组特征明确**：低 reward（1.37 vs 2.92）、低 grad norm（1.06 vs 1.49）、高 response length，说明环境给出的训练信号不足。\n\n已包含两段论文可用文本（Discussion 段和 Appendix 段）。未修改任何 .tex 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-track-b-seed-signal.md"
+}

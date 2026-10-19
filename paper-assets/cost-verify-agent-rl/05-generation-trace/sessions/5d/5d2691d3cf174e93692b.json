@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d2691d3cf174e93692b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops hsweep h2 seed2 completion",
+  "task_key": "worker_ops_hsweep-h2-seed2-completion_20260518T024948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_hsweep-h2-seed2-completion_20260518T024948_result.json",
+    "occurrence": 1,
+    "bytes": 1489,
+    "sha256": "24c83148af9ee4c65e9f657f54269546a7200a7d84c475dcac24ebe5c7b898f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。Cron 列表已为空，无需删除。\n\n---\n\n## 诊断报告\n\n### 退出原因：正常完成\n- 15/15 步全部完成 + final val + checkpoint 已保存\n- 总耗时 12.14h (43689s)\n- W&B run: `jhwyg4tc`\n\n### Conclusion: **negative** — 未复现 seed1 的 catastrophic collapse\n\nSeed2 与 seed1 行为**质性不同**：\n\n| 指标 | Seed1 (终值) | Seed2 (终值) |\n|------|------------|------------|\n| val success | 0% | **9.375%** |\n| val action_is_valid | 0.06% | **100%** |\n| train success step 15 | 0% | **28.1%** |\n| collapse onset | step 3-4 不可逆 | 无不可逆 collapse |\n\n### Val 轨迹 (seed2)\n- step 0: 0% success, 88.1% valid\n- step 5: 0% success, 97.4% valid\n- step 10: 0% success, 98.7% valid\n- step 15: **9.375% success, 100% valid**, best@64=9.36, best@128=9.97\n\n### 最终 train metrics (step 15)\n- success=28.1%, pass@8=62.5%, action_is_valid=98.8%\n- entropy=0.401, kl_loss=0.472, grad_norm=2.65\n\n### ADV log\n- 3000 行，可用于 sign misattribution 分析\n\n### GPU 状态\n- **bjb1 cuda:0,1 未空闲**。PID 977677/977678 (`actor_rollout_generate_sequences`) 仍占用 ~37.5GB/卡。可能属于另一个实验。\n\n### 对论文的影响\nSeed1 的 catastrophic action_is_valid collapse (→0.06%) 是 seed-dependent 现象，不能作为 h=2 的 robust finding 写入论文。h=2 确实造成严重学习困难（val 0% 持续到 step 10），但 seed2 表明这不是不可逆的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-hsweep-h2-seed2-completion.md"
+}

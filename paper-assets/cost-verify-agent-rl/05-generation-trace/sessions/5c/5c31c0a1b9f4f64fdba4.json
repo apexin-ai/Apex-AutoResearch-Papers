@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c31c0a1b9f4f64fdba4",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops scp exp029 config to westd",
+  "task_key": "worker_ops_scp-exp029-config-to-westd_20260518T212658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-exp029-config-to-westd_20260518T212658_result.json",
+    "occurrence": 1,
+    "bytes": 190,
+    "sha256": "d48eb8359ef052059a42fe7179e083784a19453a77561af2f6e8ef62a273e9a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输成功。\n\n- **文件大小**: 2100 bytes\n- **关键参数确认**:\n  - `seed.train`: 43 ✓\n  - `optimizer_offload`: false ✓\n  - `max_actor_ckpt_to_keep`: 3 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-exp029-config-to-westd.md"
+}

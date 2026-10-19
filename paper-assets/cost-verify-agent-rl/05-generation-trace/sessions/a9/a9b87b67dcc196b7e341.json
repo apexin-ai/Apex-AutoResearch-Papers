@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a9b87b67dcc196b7e341",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp023 grpo parallel",
+  "task_key": "worker_diagnose_exp023_grpo_parallel_20260515T041302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp023_grpo_parallel_20260515T041302_result.json",
+    "occurrence": 1,
+    "bytes": 2499,
+    "sha256": "cbb5603df4f2af9e5655e5e801bf3d0b7b9b16291d16566ab437359825290869"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Diagnosis and fix complete. Here's the summary:\n\n---\n\n**Root cause**: `textworld.envs.pddl.logic._PARSER` is a module-level singleton `PddlLogicParser` (tatsu). Tatsu parsers are stateful — they maintain buffer position, memoization, etc. When `es_manager.reset()` dispatches multiple `_reset_single` calls via `ThreadPoolExecutor(max_workers=4)`, concurrent threads call `_PARSER.parse()` simultaneously, corrupting internal parser state. This caused both exp022 (`FailedExpectingEndOfText`) and exp023 (`FailedToken`) at the same grammar position.\n\n**Fix**: Added `_TW_LOAD_LOCK = threading.Lock()` in `ragen/env/alfworld/env.py`, wrapping `register_game` + `make` + `alfred_env.reset()` (the PDDL-parse path). The lock serializes only the textworld loading phase; game file selection and post-reset processing remain parallel.\n\n**Validation**: 16/16 parallel val env resets passed (max_workers=4, 20.7s).\n\n**Rerun command**:\n```bash\ncd /root/cost-verify-agent-rl/RAGEN && nohup python train.py --config-name _alfworld_exp023_grpo_parallel > ~/runs/cost-verify-agent-rl/exp023_grpo_parallel_v2.log 2>&1 &\n```\n\n```json\n{\"root_cause\":\"textworld.envs.pddl.logic._PARSER is a module-level singleton tatsu parser that is not thread-safe. Concurrent ThreadPoolExecutor workers calling _PARSER.parse() during env.reset() corrupt parser internal state, causing FailedToken/FailedExpectingEndOfText at grammar line 196 (template :: \\\"take {o} from {r}\\\")\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"Added _TW_LOAD_LOCK = threading.Lock() in ragen/env/alfworld/env.py\",\"Wrapped register_game + gym.make + alfred_env.reset() with _TW_LOAD_LOCK to serialize PDDL parsing\",\"Verified: 16/16 parallel val env resets pass with max_workers=4\"],\"can_auto_fix\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "textworld.envs.pddl.logic._PARSER is a module-level singleton tatsu parser that is not thread-safe. Concurrent ThreadPoolExecutor workers calling _PARSER.parse() during env.reset() corrupt parser internal state, causing FailedToken/FailedExpectingEndOfText at grammar line 196 (template :: \"take {o} from {r}\")",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "Added _TW_LOAD_LOCK = threading.Lock() in ragen/env/alfworld/env.py",
+                "Wrapped register_game + gym.make + alfred_env.reset() with _TW_LOAD_LOCK to serialize PDDL parsing",
+                "Verified: 16/16 parallel val env resets pass with max_workers=4"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp023-grpo-parallel.md"
+}

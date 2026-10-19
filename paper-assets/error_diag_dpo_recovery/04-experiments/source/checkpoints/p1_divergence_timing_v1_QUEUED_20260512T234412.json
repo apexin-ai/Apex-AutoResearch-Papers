@@ -1,0 +1,25 @@
+{
+  "exp_id": "p1_divergence_timing_v1",
+  "project": "error_diag_dpo_recovery",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T23:44:12.551Z",
+    "updated_at": "2026-05-12T23:44:12.551Z",
+    "spec": {
+      "hypothesis": "P1 pivot: correction span differs by divergence timing (early/mid/late) instead of error type",
+      "command": "python analyze_p1_divergence_timing.py on v5+v6 partial data",
+      "server": "cqa1-21977",
+      "data_path": "data/classified/ + data/trajectories_v6_icl_*.jsonl",
+      "data_count": 276,
+      "model_name": "N/A (no LLM needed)",
+      "seed": 0,
+      "checkpoint_path": "outputs/p1_divergence_timing.json",
+      "log_path": "outputs/"
+    }
+  },
+  "timestamp": "2026-05-12T23:44:12.599929+00:00",
+  "trigger": "update_registry"
+}

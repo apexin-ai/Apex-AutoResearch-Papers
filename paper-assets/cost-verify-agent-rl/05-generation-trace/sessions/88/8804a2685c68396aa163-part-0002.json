@@ -1,0 +1,1519 @@
+{
+  "schema_version": "1.0",
+  "session_id": "8804a2685c68396aa163",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H6YhDQcNLJNrfgcET4bjmw",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "command": "tmux kill-session -t ragen_eval_gpu1 2>/dev/null; echo \"===\"; ps aux | grep \"train.py\" | grep python | grep -v grep | grep -v tmux | awk '{print $2, $9, $NF}'",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "5d193646-3abb-40be-8a89-c971a7fc539b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QMG584RakK2DPxAEJpxuzZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 617,
+                "cache_read_input_tokens": 93684,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 617
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-22T09:21:27.138Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H6YhDQcNLJNrfgcET4bjmw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"===\\\\n614945 17:10 bash\\\\n614954 17:10 system.CUDA_VISIBLE_DEVICES=0\\\\n639998 17:15 launched\\\\\\\"\\\\n640002 17:15 system.CUDA_VISIBLE_DEVICES=\\\\\\\"1\\\\\\\"\\\\n655619 17:17 $!\\\\\\\"\\\\n655620 17:17 system.CUDA_VISIBLE_DEVICES=\\\\\\\"3\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "3ff0e5e2-fdd9-4ea4-bdd4-aad9e9a72c9e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"===\\\\n614945 17:10 bash\\\\n614954 17:10 system.CUDA_VISIBLE_DEVICES=0\\\\n639998 17:15 launched\\\\\\\"\\\\n640002 17:15 system.CUDA_VISIBLE_DEVICES=\\\\\\\"1\\\\\\\"\\\\n655619 17:17 $!\\\\\\\"\\\\n655620 17:17 system.CUDA_VISIBLE_DEVICES=\\\\\\\"3\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"===\\n614945 17:10 bash\\n614954 17:10 system.CUDA_VISIBLE_DEVICES=0\\n639998 17:15 launched\\\"\\n640002 17:15 system.CUDA_VISIBLE_DEVICES=\\\"1\\\"\\n655619 17:17 $!\\\"\\n655620 17:17 system.CUDA_VISIBLE_DEVICES=\\\"3\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Wait - GPU 2 process (648280/648281) is gone! It seems killing the tmux session killed the GPU 2 process too. Let me check.\n\nActually looking more carefully:\n- 614954: GPU 0 SFT (OK)\n- 640002: GPU 1 seed8 (OK) \n- 655620: GPU 3 intervention_c (OK)\n- GPU 2 processes (648280/648281) are missing!\n\nThe process 648281 (seed2048 on GPU 2) seems to have been killed when I killed 669275 or when I killed the tmux session. \n\nBut wait - those nohup processes shouldn't have been affected by the tmux session kill. Let me check the logs to see what actually happened to them.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "b630b11b-8c74-418d-90dc-655af591c4fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HScz82oDv4SEzCaxeNzmve",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 461,
+                "cache_read_input_tokens": 94301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 461
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 2 进程 (648281) 不见了。检查它的日志看发生了什么，可能需要重启。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "41d68818-98d8-4d0f-9d47-cb9e51e5f455",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HScz82oDv4SEzCaxeNzmve",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 461,
+                "cache_read_input_tokens": 94301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 461
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0172x6x1TBov1jLmLX6JLdhm",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "command": "tail -20 /root/autodl-tmp/ragen_eval_gpu2.log 2>/dev/null; echo \"===\"; nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "4818c17b-4264-4fd1-9596-31c644d8bb61",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HScz82oDv4SEzCaxeNzmve",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 461,
+                "cache_read_input_tokens": 94301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 461
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-22T09:21:38.726Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0172x6x1TBov1jLmLX6JLdhm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    return dispatch_nd_compute_dataproto(dp_rank_mapping, dp_size, worker_group, *args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\\\\\", line 261, in dispatch_nd_compute_dataproto\\\\n    return dispatch_nd_compute(dp_rank_mapping, dp_size, worker_group, *splitted_args, **splitted_kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\\\\\", line 221, in dispatch_nd_compute\\\\n    args = [parallel_put(arg, max_workers=max_workers) for arg in args]\\\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/ray_utils.py\\\\\\\", line 71, in parallel_put\\\\n    data_list_f = [executor.submit(put_data, i, data) for i, data in enumerate(data_list)]\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/concurrent/futures/thread.py\\\\\\\", line 180, in submit\\\\n    self._adjust_thread_count()\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/concurrent/futures/thread.py\\\\\\\", line 203, in _adjust_thread_count\\\\n    t.start()\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/threading.py\\\\\\\", line 994, in start\\\\n    _start_new_thread(self._bootstrap, ())\\\\nRuntimeError: can't start new thread\\\\n\\\\nSet the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\\\\n===\\\\n0, 90467 MiB, 0 %\\\\n1, 90467 MiB, 0 %\\\\n2, 3 MiB, 0 %\\\\n3, 3 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "7157bd34-b48b-4627-854c-346ad1a66f9f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    return dispatch_nd_compute_dataproto(dp_rank_mapping, dp_size, worker_group, *args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\\\\\", line 261, in dispatch_nd_compute_dataproto\\\\n    return dispatch_nd_compute(dp_rank_mapping, dp_size, worker_group, *splitted_args, **splitted_kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\\\\\", line 221, in dispatch_nd_compute\\\\n    args = [parallel_put(arg, max_workers=max_workers) for arg in args]\\\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/ray_utils.py\\\\\\\", line 71, in parallel_put\\\\n    data_list_f = [executor.submit(put_data, i, data) for i, data in enumerate(data_list)]\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/concurrent/futures/thread.py\\\\\\\", line 180, in submit\\\\n    self._adjust_thread_count()\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/concurrent/futures/thread.py\\\\\\\", line 203, in _adjust_thread_count\\\\n    t.start()\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/threading.py\\\\\\\", line 994, in start\\\\n    _start_new_thread(self._bootstrap, ())\\\\nRuntimeError: can't start new thread\\\\n\\\\nSet the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\\\\n===\\\\n0, 90467 MiB, 0 %\\\\n1, 90467 MiB, 0 %\\\\n2, 3 MiB, 0 %\\\\n3, 3 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    return dispatch_nd_compute_dataproto(dp_rank_mapping, dp_size, worker_group, *args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\", line 261, in dispatch_nd_compute_dataproto\\n    return dispatch_nd_compute(dp_rank_mapping, dp_size, worker_group, *splitted_args, **splitted_kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\", line 221, in dispatch_nd_compute\\n    args = [parallel_put(arg, max_workers=max_workers) for arg in args]\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/ray_utils.py\\\", line 71, in parallel_put\\n    data_list_f = [executor.submit(put_data, i, data) for i, data in enumerate(data_list)]\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/concurrent/futures/thread.py\\\", line 180, in submit\\n    self._adjust_thread_count()\\n  File \\\"/root/miniconda3/lib/python3.12/concurrent/futures/thread.py\\\", line 203, in _adjust_thread_count\\n    t.start()\\n  File \\\"/root/miniconda3/lib/python3.12/threading.py\\\", line 994, in start\\n    _start_new_thread(self._bootstrap, ())\\nRuntimeError: can't start new thread\\n\\nSet the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\\n===\\n0, 90467 MiB, 0 %\\n1, 90467 MiB, 0 %\\n2, 3 MiB, 0 %\\n3, 3 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "GPU 2 (seed2048) crashed with `RuntimeError: can't start new thread`. This is likely caused by too many concurrent processes exhausting the system's thread limits.\n\nAlso GPU 3 (intervention_c) is also at 3 MiB, and 655620 is still listed but not using GPU. Let me check if GPU 3 is also dead.\n\nAnd GPU 0 and 1 are at 0% utilization now but 90GB memory - they might be between rollout turns.\n\nThe thread exhaustion issue is likely due to running 4 Ray + vLLM instances simultaneously. \n\nEach instance spawns many threads and workers, so I need to verify GPU 3's status to see if it's also crashed.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "3ebe9176-a8b2-492c-a3f1-a529e014c636",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CmLvDhFv56qzUjeN3ShBJG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1083,
+                "cache_read_input_tokens": 94762,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1083
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 2 因 `RuntimeError: can't start new thread` 崩溃——4 个 Ray+vLLM 并发实例耗尽线程限制。检查 GPU 3 是否也挂了。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "9b79184a-1329-4964-9cc8-03ee9108abba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CmLvDhFv56qzUjeN3ShBJG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1083,
+                "cache_read_input_tokens": 94762,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1083
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TUtSfrqkCp5hUhX6qbbQQ5",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "command": "tail -20 /root/autodl-tmp/ragen_eval_gpu3.log 2>/dev/null; echo \"===\"; ps -p 655620 -o pid,state,etime 2>/dev/null",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "635822d9-7df4-4351-928d-5ead49855c88",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CmLvDhFv56qzUjeN3ShBJG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1083,
+                "cache_read_input_tokens": 94762,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1083
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-22T09:21:49.728Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TUtSfrqkCp5hUhX6qbbQQ5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\\\nUsers of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.\\\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\\\n/root/miniconda3/lib/python3.12/site-packages/gym_sokoban/__init__.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\\\n  import pkg_resources\\\\n/root/miniconda3/lib/python3.12/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In '_alfworld_intervention_c_step5_ood_eval': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information\\\\n  warnings.warn(msg, UserWarning)\\\\n[tatsu_parallel_fix] Patched 4 singleton parsers with thread-local instances\\\\nWARNING: kimina-client is not installed or failed to import. Lean environments will not be loaded.\\\\nconfig: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-07, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 16384, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.0, 'use_kl_loss': False, 'use_torch_compile': False, 'kl_loss_coef': 0.0, 'kl_loss_type': 'kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.pr\\\\n\\\\n... [截断: 输出过长，省略 37054 字符] ...\\\\n\\\\nst be from the admissible actions list.\\\\\\\\nDo NOT output anything after the </answer> tag.\\\\\\\\n\\\\\\\\nExample: <think>I need to find water. The kitchen likely has a sink.</think><answer>open door to kitchen</answer>\\\\\\\\n', 'max_tokens': 512, 'env_config': {'task_names': 'boil,melt,freeze,change-the-state-of-matter-of,use-thermometer,test-conductivity', 'score': 10.0, 'max_steps': 100, 'max_valid_actions': 50}}, 'ScienceWorldSG': {'env_type': 'scienceworld', 'max_actions_per_traj': 100, 'parallel_friendly': False, 'max_workers': 1, 'env_instruction': 'You are a science student performing experiments in a virtual science lab.\\\\\\\\nComplete the given task by navigating rooms and interacting with objects.\\\\\\\\n\\\\\\\\nYour reasoning MUST be enclosed within <think> </think> tags.\\\\\\\\nAfter the closing </think> tag, wrap your chosen action in <answer> </answer> tags.\\\\\\\\nThe action must be from the admissible actions list.\\\\\\\\nDo NOT output anything after the </answer> tag.\\\\\\\\n\\\\\\\\nExample: <think>I need to boil water. I should go to the kitchen first.</think><answer>open door to kitchen</answer>\\\\\\\\n', 'max_tokens': 512, 'env_config': {'task_names': 'boil,melt,freeze,change-the-state-of-matter-of,use-thermometer,measure-melting-point-known-substance,measure-melting-point-unknown-substance,power-component,power-component-renewable-vs-nonrenewable-energy,test-conductivity,test-conductivity-of-unknown-substances,find-living-thing,find-non-living-thing,find-plant,find-animal,grow-plant,grow-fruit,chemistry-mix,chemistry-mix-paint-secondary-color,chemistry-mix-paint-tertiary-color,lifespan-longest-lived,lifespan-shortest-lived,lifespan-longest-lived-then-shortest-lived,identify-life-stages-1,identify-life-stages-2,inclined-plane-determine-angle,inclined-plane-friction-named-surfaces,inclined-plane-friction-unnamed-surfaces,mendelian-genetics-known-plant,mendelian-genetics-unknown-plant', 'score': 10.0, 'max_steps': 100, 'max_valid_actions': 50, 'eval_split': 'dev'}}}, 'system': {'CUDA_VISIBLE_DEVICES': '3'}, 'seed': {'train': 789, 'val': 321}, 'micro_batch_size_per_gpu': 1, 'log_prob_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'ppo_mini_batch_size': 1, 'model_path': '/root/autodl-tmp/checkpoints/qwen_intervention_c_hard_cap_step5_hf', 'enable_response_mask': False, 'grpo_advantage_length_weight': False, 'lora': {'rank': 0, 'alpha': 64, 'target_modules': 'all-linear'}, 'agent_proxy': {'context_window_mode': 'full', 'max_context_window': -1, 'batch_adjust_mode': 'copy', 'max_turn': 50, 'action_sep': '||', 'max_actions_per_turn': 1, 'use_turn_scores': True, 'enable_think': True, 'reward_normalization': {'grouping': 'state', 'method': 'identity'}, 'step_independent_history_length': 2, 'max_prompt_length': 16384}, 'collapse_detection': {'compute_freq': 5, 'micro_batch_size': 128, 'first_turn_enabled': True, 'multi_turn_enabled': False, 'num_samples': 64}, 'es_manager': {'format_penalty': 0, 'train': {'env_groups': 1, 'group_size': 2, 'env_configs': {'tags': ['AlfworldSG_OOD'], 'n_groups': [1]}}, 'val': {'env_groups': 134, 'group_size': 1, 'env_configs': {'tags': ['AlfworldSG_OOD'], 'n_groups': [134]}}}, 'ctx_manager': {'generation': {'gen_config': {'response_length': '${actor_rollout_ref.rollout.response_length}', 'temperature': '${actor_rollout_ref.rollout.temperature}', 'top_p': '${actor_rollout_ref.rollout.top_p}', 'top_k': '${actor_rollout_ref.rollout.top_k}', 'kwargs': None}}}}2026-05-22 17:17:32,049\\\\tWARNING utils.py:461 -- Detecting docker specified CPUs. In previous versions of Ray, CPU detection in containers was incorrect. Please ensure that Ray has enough CPUs allocated. As a temporary workaround to revert to the prior behavior, set `RAY_USE_MULTIPROCESSING_CPU_COUNT=1` as an env var before starting Ray. Set the env var: `RAY_DISABLE_DOCKER_CPU_WARNING=1` to mute this warning.\\\\n2026-05-22 17:17:38,249\\\\tINFO worker.py:2003 -- Started a local Ray instance. View the dashboard at \\\\u001b[1m\\\\u001b[32mhttp://127.0.0.1:8268 \\\\u001b[39m\\\\u001b[22m\\\\n===\\\\n   PID S     ELAPSED\\\\n655620 S       04:34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "3b34b3e9-52a4-44fe-9185-d255b954af5b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\\\nUsers of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.\\\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\\\n/root/miniconda3/lib/python3.12/site-packages/gym_sokoban/__init__.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\\\n  import pkg_resources\\\\n/root/miniconda3/lib/python3.12/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In '_alfworld_intervention_c_step5_ood_eval': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information\\\\n  warnings.warn(msg, UserWarning)\\\\n[tatsu_parallel_fix] Patched 4 singleton parsers with thread-local instances\\\\nWARNING: kimina-client is not installed or failed to import. Lean environments will not be loaded.\\\\nconfig: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-07, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 16384, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.0, 'use_kl_loss': False, 'use_torch_compile': False, 'kl_loss_coef': 0.0, 'kl_loss_type': 'kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.pr\\\\n\\\\n... [截断: 输出过长，省略 37054 字符] ...\\\\n\\\\nst be from the admissible actions list.\\\\\\\\nDo NOT output anything after the </answer> tag.\\\\\\\\n\\\\\\\\nExample: <think>I need to find water. The kitchen likely has a sink.</think><answer>open door to kitchen</answer>\\\\\\\\n', 'max_tokens': 512, 'env_config': {'task_names': 'boil,melt,freeze,change-the-state-of-matter-of,use-thermometer,test-conductivity', 'score': 10.0, 'max_steps': 100, 'max_valid_actions': 50}}, 'ScienceWorldSG': {'env_type': 'scienceworld', 'max_actions_per_traj': 100, 'parallel_friendly': False, 'max_workers': 1, 'env_instruction': 'You are a science student performing experiments in a virtual science lab.\\\\\\\\nComplete the given task by navigating rooms and interacting with objects.\\\\\\\\n\\\\\\\\nYour reasoning MUST be enclosed within <think> </think> tags.\\\\\\\\nAfter the closing </think> tag, wrap your chosen action in <answer> </answer> tags.\\\\\\\\nThe action must be from the admissible actions list.\\\\\\\\nDo NOT output anything after the </answer> tag.\\\\\\\\n\\\\\\\\nExample: <think>I need to boil water. I should go to the kitchen first.</think><answer>open door to kitchen</answer>\\\\\\\\n', 'max_tokens': 512, 'env_config': {'task_names': 'boil,melt,freeze,change-the-state-of-matter-of,use-thermometer,measure-melting-point-known-substance,measure-melting-point-unknown-substance,power-component,power-component-renewable-vs-nonrenewable-energy,test-conductivity,test-conductivity-of-unknown-substances,find-living-thing,find-non-living-thing,find-plant,find-animal,grow-plant,grow-fruit,chemistry-mix,chemistry-mix-paint-secondary-color,chemistry-mix-paint-tertiary-color,lifespan-longest-lived,lifespan-shortest-lived,lifespan-longest-lived-then-shortest-lived,identify-life-stages-1,identify-life-stages-2,inclined-plane-determine-angle,inclined-plane-friction-named-surfaces,inclined-plane-friction-unnamed-surfaces,mendelian-genetics-known-plant,mendelian-genetics-unknown-plant', 'score': 10.0, 'max_steps': 100, 'max_valid_actions': 50, 'eval_split': 'dev'}}}, 'system': {'CUDA_VISIBLE_DEVICES': '3'}, 'seed': {'train': 789, 'val': 321}, 'micro_batch_size_per_gpu': 1, 'log_prob_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'ppo_mini_batch_size': 1, 'model_path': '/root/autodl-tmp/checkpoints/qwen_intervention_c_hard_cap_step5_hf', 'enable_response_mask': False, 'grpo_advantage_length_weight': False, 'lora': {'rank': 0, 'alpha': 64, 'target_modules': 'all-linear'}, 'agent_proxy': {'context_window_mode': 'full', 'max_context_window': -1, 'batch_adjust_mode': 'copy', 'max_turn': 50, 'action_sep': '||', 'max_actions_per_turn': 1, 'use_turn_scores': True, 'enable_think': True, 'reward_normalization': {'grouping': 'state', 'method': 'identity'}, 'step_independent_history_length': 2, 'max_prompt_length': 16384}, 'collapse_detection': {'compute_freq': 5, 'micro_batch_size': 128, 'first_turn_enabled': True, 'multi_turn_enabled': False, 'num_samples': 64}, 'es_manager': {'format_penalty': 0, 'train': {'env_groups': 1, 'group_size': 2, 'env_configs': {'tags': ['AlfworldSG_OOD'], 'n_groups': [1]}}, 'val': {'env_groups': 134, 'group_size': 1, 'env_configs': {'tags': ['AlfworldSG_OOD'], 'n_groups': [134]}}}, 'ctx_manager': {'generation': {'gen_config': {'response_length': '${actor_rollout_ref.rollout.response_length}', 'temperature': '${actor_rollout_ref.rollout.temperature}', 'top_p': '${actor_rollout_ref.rollout.top_p}', 'top_k': '${actor_rollout_ref.rollout.top_k}', 'kwargs': None}}}}2026-05-22 17:17:32,049\\\\tWARNING utils.py:461 -- Detecting docker specified CPUs. In previous versions of Ray, CPU detection in containers was incorrect. Please ensure that Ray has enough CPUs allocated. As a temporary workaround to revert to the prior behavior, set `RAY_USE_MULTIPROCESSING_CPU_COUNT=1` as an env var before starting Ray. Set the env var: `RAY_DISABLE_DOCKER_CPU_WARNING=1` to mute this warning.\\\\n2026-05-22 17:17:38,249\\\\tINFO worker.py:2003 -- Started a local Ray instance. View the dashboard at \\\\u001b[1m\\\\u001b[32mhttp://127.0.0.1:8268 \\\\u001b[39m\\\\u001b[22m\\\\n===\\\\n   PID S     ELAPSED\\\\n655620 S       04:34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nUsers of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym_sokoban/__init__.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\n/root/miniconda3/lib/python3.12/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In '_alfworld_intervention_c_step5_ood_eval': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information\\n  warnings.warn(msg, UserWarning)\\n[tatsu_parallel_fix] Patched 4 singleton parsers with thread-local instances\\nWARNING: kimina-client is not installed or failed to import. Lean environments will not be loaded.\\nconfig: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-07, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 16384, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.0, 'use_kl_loss': False, 'use_torch_compile': False, 'kl_loss_coef': 0.0, 'kl_loss_type': 'kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.pr\\n\\n... [截断: 输出过长，省略 37054 字符] ...\\n\\nst be from the admissible actions list.\\\\nDo NOT output anything after the </answer> tag.\\\\n\\\\nExample: <think>I need to find water. The kitchen likely has a sink.</think><answer>open door to kitchen</answer>\\\\n', 'max_tokens': 512, 'env_config': {'task_names': 'boil,melt,freeze,change-the-state-of-matter-of,use-thermometer,test-conductivity', 'score': 10.0, 'max_steps': 100, 'max_valid_actions': 50}}, 'ScienceWorldSG': {'env_type': 'scienceworld', 'max_actions_per_traj': 100, 'parallel_friendly': False, 'max_workers': 1, 'env_instruction': 'You are a science student performing experiments in a virtual science lab.\\\\nComplete the given task by navigating rooms and interacting with objects.\\\\n\\\\nYour reasoning MUST be enclosed within <think> </think> tags.\\\\nAfter the closing </think> tag, wrap your chosen action in <answer> </answer> tags.\\\\nThe action must be from the admissible actions list.\\\\nDo NOT output anything after the </answer> tag.\\\\n\\\\nExample: <think>I need to boil water. I should go to the kitchen first.</think><answer>open door to kitchen</answer>\\\\n', 'max_tokens': 512, 'env_config': {'task_names': 'boil,melt,freeze,change-the-state-of-matter-of,use-thermometer,measure-melting-point-known-substance,measure-melting-point-unknown-substance,power-component,power-component-renewable-vs-nonrenewable-energy,test-conductivity,test-conductivity-of-unknown-substances,find-living-thing,find-non-living-thing,find-plant,find-animal,grow-plant,grow-fruit,chemistry-mix,chemistry-mix-paint-secondary-color,chemistry-mix-paint-tertiary-color,lifespan-longest-lived,lifespan-shortest-lived,lifespan-longest-lived-then-shortest-lived,identify-life-stages-1,identify-life-stages-2,inclined-plane-determine-angle,inclined-plane-friction-named-surfaces,inclined-plane-friction-unnamed-surfaces,mendelian-genetics-known-plant,mendelian-genetics-unknown-plant', 'score': 10.0, 'max_steps': 100, 'max_valid_actions': 50, 'eval_split': 'dev'}}}, 'system': {'CUDA_VISIBLE_DEVICES': '3'}, 'seed': {'train': 789, 'val': 321}, 'micro_batch_size_per_gpu': 1, 'log_prob_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'ppo_mini_batch_size': 1, 'model_path': '/root/autodl-tmp/checkpoints/qwen_intervention_c_hard_cap_step5_hf', 'enable_response_mask': False, 'grpo_advantage_length_weight': False, 'lora': {'rank': 0, 'alpha': 64, 'target_modules': 'all-linear'}, 'agent_proxy': {'context_window_mode': 'full', 'max_context_window': -1, 'batch_adjust_mode': 'copy', 'max_turn': 50, 'action_sep': '||', 'max_actions_per_turn': 1, 'use_turn_scores': True, 'enable_think': True, 'reward_normalization': {'grouping': 'state', 'method': 'identity'}, 'step_independent_history_length': 2, 'max_prompt_length': 16384}, 'collapse_detection': {'compute_freq': 5, 'micro_batch_size': 128, 'first_turn_enabled': True, 'multi_turn_enabled': False, 'num_samples': 64}, 'es_manager': {'format_penalty': 0, 'train': {'env_groups': 1, 'group_size': 2, 'env_configs': {'tags': ['AlfworldSG_OOD'], 'n_groups': [1]}}, 'val': {'env_groups': 134, 'group_size': 1, 'env_configs': {'tags': ['AlfworldSG_OOD'], 'n_groups': [134]}}}, 'ctx_manager': {'generation': {'gen_config': {'response_length': '${actor_rollout_ref.rollout.response_length}', 'temperature': '${actor_rollout_ref.rollout.temperature}', 'top_p': '${actor_rollout_ref.rollout.top_p}', 'top_k': '${actor_rollout_ref.rollout.top_k}', 'kwargs': None}}}}2026-05-22 17:17:32,049\\tWARNING utils.py:461 -- Detecting docker specified CPUs. In previous versions of Ray, CPU detection in containers was incorrect. Please ensure that Ray has enough CPUs allocated. As a temporary workaround to revert to the prior behavior, set `RAY_USE_MULTIPROCESSING_CPU_COUNT=1` as an env var before starting Ray. Set the env var: `RAY_DISABLE_DOCKER_CPU_WARNING=1` to mute this warning.\\n2026-05-22 17:17:38,249\\tINFO worker.py:2003 -- Started a local Ray instance. View the dashboard at \\u001b[1m\\u001b[32mhttp://127.0.0.1:8268 \\u001b[39m\\u001b[22m\\n===\\n   PID S     ELAPSED\\n655620 S       04:34\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+              }
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "GPU 3 process is still alive (655620, running for 4:34). Its log shows Ray started at 17:17:38, but it hasn't progressed past that (log hasn't been updated with data loading). The Ray started, but the process might be stuck or very slow in initialization due to thread limits.\n\nActually, looking at the log, the last line is just the Ray start message. The process is in state 'S' (sleeping), meaning it's waiting for something. With 4 concurrent Ray instances, there might be resource contention.\n\nThe strategy should be:\n1. Keep GPU 0 (SFT) and GPU 1 (seed8) running since they've already progressed\n\n\n2. Kill GPU 3 (intervention_c) which seems stuck\n3. Wait for GPU 0 or GPU 1 to finish, then launch GPU 2 (seed2048) and GPU 3 (intervention_c) on the freed GPUs\n\nThis 2-GPU-at-a-time approach avoids the thread exhaustion issue. Let me verify if GPU 3 is actually making progress by checking whether its log size has changed.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "7ff50824-fb3c-4f83-bcf3-bce151a2ae5d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ArMBXcj6r7cSKxNYweeiA7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3655,
+                "cache_read_input_tokens": 95845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3655
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 3 进程存活但似乎卡在 Ray 初始化阶段（log 没有更新）。4 个并发 Ray+vLLM 实例导致线程耗尽。\n\n策略调整：先跑 2 个（GPU 0 SFT + GPU 1 seed8），等它们完成后再启动 GPU 2-3 的 eval。先 kill 卡住的 GPU 3 进程，释放系统资源。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "e6e85e3e-c750-42fd-967b-d5c3873bd96a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ArMBXcj6r7cSKxNYweeiA7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3655,
+                "cache_read_input_tokens": 95845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3655
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HUpC9ydcvQ8Za745ZyaLV8",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "command": "kill 655620 655619 2>/dev/null; sleep 2; ps aux | grep -E \"ray|vllm\" | grep -v grep | grep 655 | awk '{print $2}' | xargs kill -9 2>/dev/null; echo \"killed GPU3\"; nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "6a3c069e-e2c5-441b-b9a8-5804ef42868d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ArMBXcj6r7cSKxNYweeiA7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3655,
+                "cache_read_input_tokens": 95845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3655
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-22T09:22:07.354Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HUpC9ydcvQ8Za745ZyaLV8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"killed GPU3\\\\n0, 90467 MiB, 100 %\\\\n1, 90467 MiB, 0 %\\\\n2, 3 MiB, 0 %\\\\n3, 3 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "af009463-8614-44b6-87fb-4def0467669a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"killed GPU3\\\\n0, 90467 MiB, 100 %\\\\n1, 90467 MiB, 0 %\\\\n2, 3 MiB, 0 %\\\\n3, 3 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.59}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"killed GPU3\\n0, 90467 MiB, 100 %\\n1, 90467 MiB, 0 %\\n2, 3 MiB, 0 %\\n3, 3 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.59}}"
+              }
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 3 已清理。现在 GPU 0 (SFT) 和 GPU 1 (seed8) 在跑 eval。GPU 2-3 空闲，等 GPU 0/1 完成后启动 Round 2。\n\n检查 GPU 0 和 GPU 1 的实际 rollout 进度。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "0af03d1c-d9b9-4ea0-88e7-0d90a56e9323",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FMEGQnYRvNYYVRG3aNLm9C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 759,
+                "cache_read_input_tokens": 99500,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 759
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RmqJp7mRfBUVQmS1yQvASz",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "command": "grep -c \"turn\\|Turn\\|val_step\\|reward\\|Reward\\|Episode\\|episode\\|completed\\|rollout\" /root/autodl-tmp/logs/ragen_sft_ood_eval_test2.log 2>/dev/null; echo \"===\"; grep -c \"turn\\|Turn\\|val_step\\|reward\\|Reward\\|Episode\\|episode\\|completed\\|rollout\" /root/autodl-tmp/ragen_eval_gpu1.log 2>/dev/null",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "542e4c5d-ae0a-4d2e-9407-d2dfb96c46d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FMEGQnYRvNYYVRG3aNLm9C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 759,
+                "cache_read_input_tokens": 99500,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 759
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": "2026-05-22T09:22:14.211Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RmqJp7mRfBUVQmS1yQvASz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"49\\\\n===\\\\n49\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "3153b74c-9470-43fa-a8d6-f0d7bf594a73",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"49\\\\n===\\\\n49\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"49\\n===\\n49\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Both logs have 49 matches for rollout-related keywords. Let me check the actual content to see the progress.",
+              "signature": "ErECCmMIDRgCKkBmhFr8suCIXvf2umVObdqhIQMgpOn4kCCxc31Nw8YAiqZnnoshvxYOR1G4MwxA8U/XIkd0OB+HIhqq5G4JXu6MMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDAELDW4MC3kZ9rDkERoMEbC/Mjacv86qbgWfIjCe6yn3ZCk7eYmkJniG6/t3DsHyn4XN++nmtFtQPu5ZsFZBgRBkjgjjd0X3lDCNMpQqfCv7hSXEXkMprJQtOKviGHzpB7+UYCFitXgRhr8YG4UW0hAR/bx+Q+PDwRbUvYrfBy9KFY3sQkuLnCH0KdajqGsQYpRnj7bYxAU5hWVHT1v+jycymNArXR7zATw0iKmRnrdQoOoqkqCb9eAhtQbzMTE5cONTDQJajm2vcXYYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "14921fdb-1858-4461-b295-a2aa162280ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YQbGFBGxqvmtoxWcU6EA7P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 416,
+                "cache_read_input_tokens": 100259,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 416
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018jLBgmBP3YLch4qKJUPfs4",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "command": "grep -i \"val_step\\|val step\\|validation\\|reward.*mean\\|completed\\|Episode.*[0-9]\" /root/autodl-tmp/logs/ragen_sft_ood_eval_test2.log 2>/dev/null | tail -10; echo \"=== GPU1 ===\"; grep -i \"val_step\\|val step\\|validation\\|reward.*mean\\|completed\\|Episode.*[0-9]\" /root/autodl-tmp/ragen_eval_gpu1.log 2>/dev/null | tail -10",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "096f679d-5cc6-4bcc-9a7b-b0de8de14ea3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YQbGFBGxqvmtoxWcU6EA7P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 416,
+                "cache_read_input_tokens": 100259,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 416
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": "2026-05-22T09:22:21.234Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018jLBgmBP3YLch4qKJUPfs4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-07, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 16384, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.0, 'use_kl_loss': False, 'use_torch_compile': False, 'kl_loss_coef': 0.0, 'kl_loss_type': 'kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig', 'trace_alloc_max_entries': '${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}', 'stack_depth': '${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}'}}}, 'grad_clip': 1.0, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'entropy_checkpointing': False, 'use_remove_padding': '${oc.select:actor_rollout_ref.model.use_remove_padding,false}', 'use_ref': False, 'grpo_advantage_length_weight': '${grpo_advantage_length_weight}', 'filter_loss_scaling': 'none'}, 'ref': {'strategy': '${actor_rollout_ref.actor.strategy}', 'use_torch_compile': False, 'log_prob_micro_batch_size': None, 'log_prob_micro_batch_size_per_gpu': '${log_prob_micro_batch_size_per_gpu}', 'log_prob_use_dynamic_bsz': '${oc.select:actor_rollout_ref.actor.use_dynamic_bsz,false}', 'log_prob_max_token_len_per_gpu': '${oc.select:actor_rollout_ref.actor.ppo_max_token_len_per_gpu,16384}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:glob\\\\n\\\\n... [截断: 输出过长，省略 80188 字符] ...\\\\n\\\\n: 100, 'max_valid_actions': 50}}, 'ScienceWorldSG': {'env_type': 'scienceworld', 'max_actions_per_traj': 100, 'parallel_friendly': False, 'max_workers': 1, 'env_instruction': 'You are a science student performing experiments in a virtual science lab.\\\\\\\\nComplete the given task by navigating rooms and interacting with objects.\\\\\\\\n\\\\\\\\nYour reasoning MUST be enclosed within <think> </think> tags.\\\\\\\\nAfter the closing </think> tag, wrap your chosen action in <answer> </answer> tags.\\\\\\\\nThe action must be from the admissible actions list.\\\\\\\\nDo NOT output anything after the </answer> tag.\\\\\\\\n\\\\\\\\nExample: <think>I need to boil water. I should go to the kitchen first.</think><answer>open door to kitchen</answer>\\\\\\\\n', 'max_tokens': 512, 'env_config': {'task_names': 'boil,melt,freeze,change-the-state-of-matter-of,use-thermometer,measure-melting-point-known-substance,measure-melting-point-unknown-substance,power-component,power-component-renewable-vs-nonrenewable-energy,test-conductivity,test-conductivity-of-unknown-substances,find-living-thing,find-non-living-thing,find-plant,find-animal,grow-plant,grow-fruit,chemistry-mix,chemistry-mix-paint-secondary-color,chemistry-mix-paint-tertiary-color,lifespan-longest-lived,lifespan-shortest-lived,lifespan-longest-lived-then-shortest-lived,identify-life-stages-1,identify-life-stages-2,inclined-plane-determine-angle,inclined-plane-friction-named-surfaces,inclined-plane-friction-unnamed-surfaces,mendelian-genetics-known-plant,mendelian-genetics-unknown-plant', 'score': 10.0, 'max_steps': 100, 'max_valid_actions': 50, 'eval_split': 'dev'}}}, 'system': {'CUDA_VISIBLE_DEVICES': '1'}, 'seed': {'train': 789, 'val': 321}, 'micro_batch_size_per_gpu': 1, 'log_prob_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'ppo_mini_batch_size': 1, 'model_path': '/root/autodl-tmp/checkpoints/qwen_exp029_seed8_step5_hf', 'enable_response_mask': False, 'grpo_advantage_length_weight': False, 'lora': {'rank': 0, 'alpha': 64, 'target_modules': 'all-linear'}, 'agent_proxy': {'context_window_mode': 'full', 'max_context_window': -1, 'batch_adjust_mode': 'copy', 'max_turn': 50, 'action_sep': '||', 'max_actions_per_turn': 1, 'use_turn_scores': True, 'enable_think': True, 'reward_normalization': {'grouping': 'state', 'method': 'identity'}, 'step_independent_history_length': 2, 'max_prompt_length': 16384}, 'collapse_detection': {'compute_freq': 5, 'micro_batch_size': 128, 'first_turn_enabled': True, 'multi_turn_enabled': False, 'num_samples': 64}, 'es_manager': {'format_penalty': 0, 'train': {'env_groups': 1, 'group_size': 2, 'env_configs': {'tags': ['AlfworldSG_OOD'], 'n_groups': [1]}}, 'val': {'env_groups': 134, 'group_size': 1, 'env_configs': {'tags': ['AlfworldSG_OOD'], 'n_groups': [134]}}}, 'ctx_manager': {'generation': {'gen_config': {'response_length': '${actor_rollout_ref.rollout.response_length}', 'temperature': '${actor_rollout_ref.rollout.temperature}', 'top_p': '${actor_rollout_ref.rollout.top_p}', 'top_k': '${actor_rollout_ref.rollout.top_k}', 'kwargs': None}}}}2026-05-22 17:15:50,076\\\\tWARNING utils.py:461 -- Detecting docker specified CPUs. In previous versions of Ray, CPU detection in containers was incorrect. Please ensure that Ray has enough CPUs allocated. As a temporary workaround to revert to the prior behavior, set `RAY_USE_MULTIPROCESSING_CPU_COUNT=1` as an env var before starting Ray. Set the env var: `RAY_DISABLE_DOCKER_CPU_WARNING=1` to mute this warning.\\\\n\\\\u001b[36m(TaskRunner pid=646584)\\\\u001b[0m           'validation_shuffle': False,\\\\n\\\\u001b[36m(TaskRunner pid=646584)\\\\u001b[0m              'validation_data_dir': None,\\\\n\\\\u001b[36m(TaskRunner pid=646584)\\\\u001b[0m              'validation_steps': 1},\\\\n\\\\u001b[36m(WorkerDict pid=647219)\\\\u001b[0m \\\\rLoading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]\\\\n\\\\u001b[36m(WorkerDict pid=647219)\\\\u001b[0m \\\\rLoading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.57it/s]\\\\n\\\\u001b[36m(WorkerDict pid=647219)\\\\u001b[0m \\\\rLoading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.57it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "11f269af-9804-4a7f-a356-055a93b7e805",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-07, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 16384, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.0, 'use_kl_loss': False, 'use_torch_compile': False, 'kl_loss_coef': 0.0, 'kl_loss_type': 'kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig', 'trace_alloc_max_entries': '${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}', 'stack_depth': '${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}'}}}, 'grad_clip': 1.0, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'entropy_checkpointing': False, 'use_remove_padding': '${oc.select:actor_rollout_ref.model.use_remove_padding,false}', 'use_ref': False, 'grpo_advantage_length_weight': '${grpo_advantage_length_weight}', 'filter_loss_scaling': 'none'}, 'ref': {'strategy': '${actor_rollout_ref.actor.strategy}', 'use_torch_compile': False, 'log_prob_micro_batch_size': None, 'log_prob_micro_batch_size_per_gpu': '${log_prob_micro_batch_size_per_gpu}', 'log_prob_use_dynamic_bsz': '${oc.select:actor_rollout_ref.actor.use_dynamic_bsz,false}', 'log_prob_max_token_len_per_gpu': '${oc.select:actor_rollout_ref.actor.ppo_max_token_len_per_gpu,16384}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:glob\\\\n\\\\n... [截断: 输出过长，省略 80188 字符] ...\\\\n\\\\n: 100, 'max_valid_actions': 50}}, 'ScienceWorldSG': {'env_type': 'scienceworld', 'max_actions_per_traj': 100, 'parallel_friendly': False, 'max_workers': 1, 'env_instruction': 'You are a science student performing experiments in a virtual science lab.\\\\\\\\nComplete the given task by navigating rooms and interacting with objects.\\\\\\\\n\\\\\\\\nYour reasoning MUST be enclosed within <think> </think> tags.\\\\\\\\nAfter the closing </think> tag, wrap your chosen action in <answer> </answer> tags.\\\\\\\\nThe action must be from the admissible actions list.\\\\\\\\nDo NOT output anything after the </answer> tag.\\\\\\\\n\\\\\\\\nExample: <think>I need to boil water. I should go to the kitchen first.</think><answer>open door to kitchen</answer>\\\\\\\\n', 'max_tokens': 512, 'env_config': {'task_names': 'boil,melt,freeze,change-the-state-of-matter-of,use-thermometer,measure-melting-point-known-substance,measure-melting-point-unknown-substance,power-component,power-component-renewable-vs-nonrenewable-energy,test-conductivity,test-conductivity-of-unknown-substances,find-living-thing,find-non-living-thing,find-plant,find-animal,grow-plant,grow-fruit,chemistry-mix,chemistry-mix-paint-secondary-color,chemistry-mix-paint-tertiary-color,lifespan-longest-lived,lifespan-shortest-lived,lifespan-longest-lived-then-shortest-lived,identify-life-stages-1,identify-life-stages-2,inclined-plane-determine-angle,inclined-plane-friction-named-surfaces,inclined-plane-friction-unnamed-surfaces,mendelian-genetics-known-plant,mendelian-genetics-unknown-plant', 'score': 10.0, 'max_steps': 100, 'max_valid_actions': 50, 'eval_split': 'dev'}}}, 'system': {'CUDA_VISIBLE_DEVICES': '1'}, 'seed': {'train': 789, 'val': 321}, 'micro_batch_size_per_gpu': 1, 'log_prob_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'ppo_mini_batch_size': 1, 'model_path': '/root/autodl-tmp/checkpoints/qwen_exp029_seed8_step5_hf', 'enable_response_mask': False, 'grpo_advantage_length_weight': False, 'lora': {'rank': 0, 'alpha': 64, 'target_modules': 'all-linear'}, 'agent_proxy': {'context_window_mode': 'full', 'max_context_window': -1, 'batch_adjust_mode': 'copy', 'max_turn': 50, 'action_sep': '||', 'max_actions_per_turn': 1, 'use_turn_scores': True, 'enable_think': True, 'reward_normalization': {'grouping': 'state', 'method': 'identity'}, 'step_independent_history_length': 2, 'max_prompt_length': 16384}, 'collapse_detection': {'compute_freq': 5, 'micro_batch_size': 128, 'first_turn_enabled': True, 'multi_turn_enabled': False, 'num_samples': 64}, 'es_manager': {'format_penalty': 0, 'train': {'env_groups': 1, 'group_size': 2, 'env_configs': {'tags': ['AlfworldSG_OOD'], 'n_groups': [1]}}, 'val': {'env_groups': 134, 'group_size': 1, 'env_configs': {'tags': ['AlfworldSG_OOD'], 'n_groups': [134]}}}, 'ctx_manager': {'generation': {'gen_config': {'response_length': '${actor_rollout_ref.rollout.response_length}', 'temperature': '${actor_rollout_ref.rollout.temperature}', 'top_p': '${actor_rollout_ref.rollout.top_p}', 'top_k': '${actor_rollout_ref.rollout.top_k}', 'kwargs': None}}}}2026-05-22 17:15:50,076\\\\tWARNING utils.py:461 -- Detecting docker specified CPUs. In previous versions of Ray, CPU detection in containers was incorrect. Please ensure that Ray has enough CPUs allocated. As a temporary workaround to revert to the prior behavior, set `RAY_USE_MULTIPROCESSING_CPU_COUNT=1` as an env var before starting Ray. Set the env var: `RAY_DISABLE_DOCKER_CPU_WARNING=1` to mute this warning.\\\\n\\\\u001b[36m(TaskRunner pid=646584)\\\\u001b[0m           'validation_shuffle': False,\\\\n\\\\u001b[36m(TaskRunner pid=646584)\\\\u001b[0m              'validation_data_dir': None,\\\\n\\\\u001b[36m(TaskRunner pid=646584)\\\\u001b[0m              'validation_steps': 1},\\\\n\\\\u001b[36m(WorkerDict pid=647219)\\\\u001b[0m \\\\rLoading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]\\\\n\\\\u001b[36m(WorkerDict pid=647219)\\\\u001b[0m \\\\rLoading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.57it/s]\\\\n\\\\u001b[36m(WorkerDict pid=647219)\\\\u001b[0m \\\\rLoading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.57it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-07, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 16384, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.0, 'use_kl_loss': False, 'use_torch_compile': False, 'kl_loss_coef': 0.0, 'kl_loss_type': 'kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig', 'trace_alloc_max_entries': '${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}', 'stack_depth': '${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}'}}}, 'grad_clip': 1.0, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'entropy_checkpointing': False, 'use_remove_padding': '${oc.select:actor_rollout_ref.model.use_remove_padding,false}', 'use_ref': False, 'grpo_advantage_length_weight': '${grpo_advantage_length_weight}', 'filter_loss_scaling': 'none'}, 'ref': {'strategy': '${actor_rollout_ref.actor.strategy}', 'use_torch_compile': False, 'log_prob_micro_batch_size': None, 'log_prob_micro_batch_size_per_gpu': '${log_prob_micro_batch_size_per_gpu}', 'log_prob_use_dynamic_bsz': '${oc.select:actor_rollout_ref.actor.use_dynamic_bsz,false}', 'log_prob_max_token_len_per_gpu': '${oc.select:actor_rollout_ref.actor.ppo_max_token_len_per_gpu,16384}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:glob\\n\\n... [截断: 输出过长，省略 80188 字符] ...\\n\\n: 100, 'max_valid_actions': 50}}, 'ScienceWorldSG': {'env_type': 'scienceworld', 'max_actions_per_traj': 100, 'parallel_friendly': False, 'max_workers': 1, 'env_instruction': 'You are a science student performing experiments in a virtual science lab.\\\\nComplete the given task by navigating rooms and interacting with objects.\\\\n\\\\nYour reasoning MUST be enclosed within <think> </think> tags.\\\\nAfter the closing </think> tag, wrap your chosen action in <answer> </answer> tags.\\\\nThe action must be from the admissible actions list.\\\\nDo NOT output anything after the </answer> tag.\\\\n\\\\nExample: <think>I need to boil water. I should go to the kitchen first.</think><answer>open door to kitchen</answer>\\\\n', 'max_tokens': 512, 'env_config': {'task_names': 'boil,melt,freeze,change-the-state-of-matter-of,use-thermometer,measure-melting-point-known-substance,measure-melting-point-unknown-substance,power-component,power-component-renewable-vs-nonrenewable-energy,test-conductivity,test-conductivity-of-unknown-substances,find-living-thing,find-non-living-thing,find-plant,find-animal,grow-plant,grow-fruit,chemistry-mix,chemistry-mix-paint-secondary-color,chemistry-mix-paint-tertiary-color,lifespan-longest-lived,lifespan-shortest-lived,lifespan-longest-lived-then-shortest-lived,identify-life-stages-1,identify-life-stages-2,inclined-plane-determine-angle,inclined-plane-friction-named-surfaces,inclined-plane-friction-unnamed-surfaces,mendelian-genetics-known-plant,mendelian-genetics-unknown-plant', 'score': 10.0, 'max_steps': 100, 'max_valid_actions': 50, 'eval_split': 'dev'}}}, 'system': {'CUDA_VISIBLE_DEVICES': '1'}, 'seed': {'train': 789, 'val': 321}, 'micro_batch_size_per_gpu': 1, 'log_prob_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'ppo_mini_batch_size': 1, 'model_path': '/root/autodl-tmp/checkpoints/qwen_exp029_seed8_step5_hf', 'enable_response_mask': False, 'grpo_advantage_length_weight': False, 'lora': {'rank': 0, 'alpha': 64, 'target_modules': 'all-linear'}, 'agent_proxy': {'context_window_mode': 'full', 'max_context_window': -1, 'batch_adjust_mode': 'copy', 'max_turn': 50, 'action_sep': '||', 'max_actions_per_turn': 1, 'use_turn_scores': True, 'enable_think': True, 'reward_normalization': {'grouping': 'state', 'method': 'identity'}, 'step_independent_history_length': 2, 'max_prompt_length': 16384}, 'collapse_detection': {'compute_freq': 5, 'micro_batch_size': 128, 'first_turn_enabled': True, 'multi_turn_enabled': False, 'num_samples': 64}, 'es_manager': {'format_penalty': 0, 'train': {'env_groups': 1, 'group_size': 2, 'env_configs': {'tags': ['AlfworldSG_OOD'], 'n_groups': [1]}}, 'val': {'env_groups': 134, 'group_size': 1, 'env_configs': {'tags': ['AlfworldSG_OOD'], 'n_groups': [134]}}}, 'ctx_manager': {'generation': {'gen_config': {'response_length': '${actor_rollout_ref.rollout.response_length}', 'temperature': '${actor_rollout_ref.rollout.temperature}', 'top_p': '${actor_rollout_ref.rollout.top_p}', 'top_k': '${actor_rollout_ref.rollout.top_k}', 'kwargs': None}}}}2026-05-22 17:15:50,076\\tWARNING utils.py:461 -- Detecting docker specified CPUs. In previous versions of Ray, CPU detection in containers was incorrect. Please ensure that Ray has enough CPUs allocated. As a temporary workaround to revert to the prior behavior, set `RAY_USE_MULTIPROCESSING_CPU_COUNT=1` as an env var before starting Ray. Set the env var: `RAY_DISABLE_DOCKER_CPU_WARNING=1` to mute this warning.\\n\\u001b[36m(TaskRunner pid=646584)\\u001b[0m           'validation_shuffle': False,\\n\\u001b[36m(TaskRunner pid=646584)\\u001b[0m              'validation_data_dir': None,\\n\\u001b[36m(TaskRunner pid=646584)\\u001b[0m              'validation_steps': 1},\\n\\u001b[36m(WorkerDict pid=647219)\\u001b[0m \\rLoading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]\\n\\u001b[36m(WorkerDict pid=647219)\\u001b[0m \\rLoading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.57it/s]\\n\\u001b[36m(WorkerDict pid=647219)\\u001b[0m \\rLoading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.57it/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+              }
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The grep output is mostly matching the config dump which contains those keywords. The actual progress is being logged by Ray workers internally and might not be visible through a simple grep.\n\nLet me look for more specific progress indicators. The RAGEN eval logs the actual rollout progress through wandb and through Ray worker output. Let me check the wandb or the tmux output for GPU 0.\n\nAlso, I notice the GPU 1 log still shows \"Loading safetensors checkpoint shards\" and data validation. It seems GPU 1 is still in the initialization phase (loading model). This is odd because GPU 1 was showing 90GB memory earlier.\n\n\nChecking the latest log entries for both GPUs to see where they actually stand.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "68562e16-3b1e-46b4-90b4-00fc8d1cf62f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EPmv8ShherKt4jaAWdrRmE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3622,
+                "cache_read_input_tokens": 100675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3622
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P6GWfD3bru1yafPTkyk9YU",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "command": "wc -l /root/autodl-tmp/logs/ragen_sft_ood_eval_test2.log /root/autodl-tmp/ragen_eval_gpu1.log 2>/dev/null; echo \"===\"; tail -3 /root/autodl-tmp/ragen_eval_gpu1.log 2>/dev/null",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "2857c74f-8cb0-4831-81c5-ad079b08b0b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EPmv8ShherKt4jaAWdrRmE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3622,
+                "cache_read_input_tokens": 100675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3622
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": "2026-05-22T09:22:39.745Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P6GWfD3bru1yafPTkyk9YU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  1857 /root/autodl-tmp/logs/ragen_sft_ood_eval_test2.log\\\\n  1853 /root/autodl-tmp/ragen_eval_gpu1.log\\\\n  3710 total\\\\n===\\\\n\\\\u001b[36m(TaskRunner pid=646584)\\\\u001b[0m \\\\r 96%|█████████▌| 326/341 [00:00<00:00, 3239.67it/s]\\\\r100%|██████████| 341/341 [00:00<00:00, 3177.23it/s]\\\\n\\\\u001b[36m(WorkerDict pid=647219)\\\\u001b[0m /root/miniconda3/lib/python3.12/site-packages/torch/utils/_contextlib.py:124: UserWarning: When using ``NO_SHARD`` for ``ShardingStrategy``, full_state_dict will be returned.\\\\n\\\\u001b[36m(WorkerDict pid=647219)\\\\u001b[0m   return func(*args, **kwargs)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "f80f49ab-bea3-40e3-a3d1-ca1f1271875b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  1857 /root/autodl-tmp/logs/ragen_sft_ood_eval_test2.log\\\\n  1853 /root/autodl-tmp/ragen_eval_gpu1.log\\\\n  3710 total\\\\n===\\\\n\\\\u001b[36m(TaskRunner pid=646584)\\\\u001b[0m \\\\r 96%|█████████▌| 326/341 [00:00<00:00, 3239.67it/s]\\\\r100%|██████████| 341/341 [00:00<00:00, 3177.23it/s]\\\\n\\\\u001b[36m(WorkerDict pid=647219)\\\\u001b[0m /root/miniconda3/lib/python3.12/site-packages/torch/utils/_contextlib.py:124: UserWarning: When using ``NO_SHARD`` for ``ShardingStrategy``, full_state_dict will be returned.\\\\n\\\\u001b[36m(WorkerDict pid=647219)\\\\u001b[0m   return func(*args, **kwargs)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  1857 /root/autodl-tmp/logs/ragen_sft_ood_eval_test2.log\\n  1853 /root/autodl-tmp/ragen_eval_gpu1.log\\n  3710 total\\n===\\n\\u001b[36m(TaskRunner pid=646584)\\u001b[0m \\r 96%|█████████▌| 326/341 [00:00<00:00, 3239.67it/s]\\r100%|██████████| 341/341 [00:00<00:00, 3177.23it/s]\\n\\u001b[36m(WorkerDict pid=647219)\\u001b[0m /root/miniconda3/lib/python3.12/site-packages/torch/utils/_contextlib.py:124: UserWarning: When using ``NO_SHARD`` for ``ShardingStrategy``, full_state_dict will be returned.\\n\\u001b[36m(WorkerDict pid=647219)\\u001b[0m   return func(*args, **kwargs)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The log files aren't being actively updated - they're still at 1857 and 1853 lines. This means the output is being captured by Ray workers internally and not being flushed to stdout. The actual rollout progress is happening but it's not being written to the log file.\n\nThe GPUs show 90GB memory used and 100% utilization (for GPU 0), so the eval is definitely running. The log just isn't being updated because the Ray worker output goes to Ray's internal logs.\n\nLet me check the Ray worker logs or the wandb output for progress.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "feb32164-02db-49ff-92d2-202a33d6de4b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017UrtoXMfM3hB78WYAqhehn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 719,
+                "cache_read_input_tokens": 104297,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 719
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志停止更新是因为 Ray worker 的输出缓冲。实际 rollout 在正常进行（GPU 0 100%, GPU 1 90GB 内存已分配）。检查 Ray worker 内部日志。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "f5066d48-e1f3-405d-b76e-9eed918e93b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017UrtoXMfM3hB78WYAqhehn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 719,
+                "cache_read_input_tokens": 104297,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 719
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AKNdvjxB2z2Gjs6Q2BUDkB",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "command": "ls /root/autodl-tmp/ray_eval2/ray/session_*/logs/*.err 2>/dev/null | tail -3; echo \"===\"; find /root/autodl-tmp/ray_eval2/ray/ -name \"*.log\" -newer /root/autodl-tmp/ragen_eval_gpu1.log 2>/dev/null | head -5",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "1ed326e8-04a8-4adf-9d3e-14e7af2c47e9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017UrtoXMfM3hB78WYAqhehn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 719,
+                "cache_read_input_tokens": 104297,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 719
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": "2026-05-22T09:22:49.580Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AKNdvjxB2z2Gjs6Q2BUDkB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/ray_eval2/ray/session_latest/logs/worker-f8a91084e1ebbdb69d2f951a7fce76c96b55371b3170789b00f8c26e-ffffffff-616364.err\\\\n/root/autodl-tmp/ray_eval2/ray/session_latest/logs/worker-f8c178cc0e4828d67873b0c6c6284cd2249249ab8175874325a35789-ffffffff-616399.err\\\\n/root/autodl-tmp/ray_eval2/ray/session_latest/logs/worker-f9cb7f2a34f27947773dbe8e7be2bb6f72cd113b75f4587b434440b9-ffffffff-616407.err\\\\n===\\\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/monitor.log\\\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/python-core-driver-01000000ffffffffffffffffffffffffffffffffffffffffffffffff_614954.log\\\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/python-core-worker-01b3a14416fa6c8bfaaee9c8a4d791b034327cc668e564b9669ec87b_616361.log\\\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/python-core-worker-2afd01bdd0eefd5ae213600049dd4a90323e1cb500290ad2043d964e_616362.log\\\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/python-core-worker-dbf98c991d312735380305d12341bfab7da606f412f88ca80d751ff3_616363.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "b6874bb7-372d-4270-8f72-993b6c141a40",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/ray_eval2/ray/session_latest/logs/worker-f8a91084e1ebbdb69d2f951a7fce76c96b55371b3170789b00f8c26e-ffffffff-616364.err\\\\n/root/autodl-tmp/ray_eval2/ray/session_latest/logs/worker-f8c178cc0e4828d67873b0c6c6284cd2249249ab8175874325a35789-ffffffff-616399.err\\\\n/root/autodl-tmp/ray_eval2/ray/session_latest/logs/worker-f9cb7f2a34f27947773dbe8e7be2bb6f72cd113b75f4587b434440b9-ffffffff-616407.err\\\\n===\\\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/monitor.log\\\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/python-core-driver-01000000ffffffffffffffffffffffffffffffffffffffffffffffff_614954.log\\\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/python-core-worker-01b3a14416fa6c8bfaaee9c8a4d791b034327cc668e564b9669ec87b_616361.log\\\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/python-core-worker-2afd01bdd0eefd5ae213600049dd4a90323e1cb500290ad2043d964e_616362.log\\\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/python-core-worker-dbf98c991d312735380305d12341bfab7da606f412f88ca80d751ff3_616363.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/ray_eval2/ray/session_latest/logs/worker-f8a91084e1ebbdb69d2f951a7fce76c96b55371b3170789b00f8c26e-ffffffff-616364.err\\n/root/autodl-tmp/ray_eval2/ray/session_latest/logs/worker-f8c178cc0e4828d67873b0c6c6284cd2249249ab8175874325a35789-ffffffff-616399.err\\n/root/autodl-tmp/ray_eval2/ray/session_latest/logs/worker-f9cb7f2a34f27947773dbe8e7be2bb6f72cd113b75f4587b434440b9-ffffffff-616407.err\\n===\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/monitor.log\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/python-core-driver-01000000ffffffffffffffffffffffffffffffffffffffffffffffff_614954.log\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/python-core-worker-01b3a14416fa6c8bfaaee9c8a4d791b034327cc668e564b9669ec87b_616361.log\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/python-core-worker-2afd01bdd0eefd5ae213600049dd4a90323e1cb500290ad2043d964e_616362.log\\n/root/autodl-tmp/ray_eval2/ray/session_2026-05-22_17-10-34_592547_614954/logs/python-core-worker-dbf98c991d312735380305d12341bfab7da606f412f88ca80d751ff3_616363.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DtnsRfqJbWruPqCJKjbZJw",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "command": "tail -10 /root/autodl-tmp/ray_eval2/ray/session_latest/logs/worker-f8a91084e1ebbdb69d2f951a7fce76c96b55371b3170789b00f8c26e-ffffffff-616364.err 2>/dev/null",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "5f88e461-9fe9-4d32-adb2-9aafda90db13",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QEg9379bHZh9H2U8RjcwTz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1042,
+                "cache_read_input_tokens": 105016,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1042
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": "2026-05-22T09:22:53.309Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DtnsRfqJbWruPqCJKjbZJw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "97e751b3-4437-44ca-bd0c-f16b62560144",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JDffpZ6rgdWrAWHg5muNfS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "command": "find /root/autodl-tmp/ray_eval2/ray/session_latest/logs/ -name \"*.out\" -exec tail -5 {} \\; 2>/dev/null | grep -i \"turn\\|episode\\|reward\\|step\\|rollout\\|val\" | tail -20",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "58704d87-3c89-437b-a82c-d660cd573d4a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QVymJTk1nEqrjwmsjKTfPs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 267,
+                "cache_read_input_tokens": 106058,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 267
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": "2026-05-22T09:22:59.792Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JDffpZ6rgdWrAWHg5muNfS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}\\\\nOverall we have 134 games in split=eval_out_of_distribution\\\\nEvaluating with 134 games\\\\nWARNING 05-22 17:11:12 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "2115d071-434c-4b94-b666-38a2e4c71564",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}\\\\nOverall we have 134 games in split=eval_out_of_distribution\\\\nEvaluating with 134 games\\\\nWARNING 05-22 17:11:12 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}\\nOverall we have 134 games in split=eval_out_of_distribution\\nEvaluating with 134 games\\nWARNING 05-22 17:11:12 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            }
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "GPU 0 SFT eval is running with 134 OOD games. The log shows \"Evaluating with 134 games\" which is correct. The vLLM engine started at 17:11:12 and is now running rollouts.\n\nLet me also check GPU 1 (seed8) Ray logs for progress.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "7ae914b2-d1e9-4b00-a938-a724f2b8a17b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TnjWnxuFUtFDfuvakf9APU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 518,
+                "cache_read_input_tokens": 106325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 518
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 正在评估 134 OOD games，确认正确。检查 GPU 1 Ray 日志。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "da7b0572-8c0f-4897-851e-4c575c3383e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TnjWnxuFUtFDfuvakf9APU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 518,
+                "cache_read_input_tokens": 106325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 518
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012FqCeU4NhQgj77ZMcZr8ME",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "command": "find /root/autodl-tmp/ray_gpu1/ray/session_latest/logs/ -name \"*.out\" -exec tail -5 {} \\; 2>/dev/null | grep -i \"turn\\|episode\\|reward\\|step\\|rollout\\|val\\|game\\|eval\" | tail -20",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "57be9bee-f6ab-4f30-a1a6-44bd76551817",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TnjWnxuFUtFDfuvakf9APU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 518,
+                "cache_read_input_tokens": 106325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 518
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000214"
+        },
+        {
+          "source_line": 215,
+          "timestamp": "2026-05-22T09:23:08.807Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012FqCeU4NhQgj77ZMcZr8ME",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Training with 3553 games\\\\ntest_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}\\\\nOverall we have 134 games in split=eval_out_of_distribution\\\\nEvaluating with 134 games\\\\nWARNING 05-22 17:16:25 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "75488cfe-c703-48f0-a4ee-9d50d8926a82",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Training with 3553 games\\\\ntest_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}\\\\nOverall we have 134 games in split=eval_out_of_distribution\\\\nEvaluating with 134 games\\\\nWARNING 05-22 17:16:25 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Training with 3553 games\\ntest_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}\\nOverall we have 134 games in split=eval_out_of_distribution\\nEvaluating with 134 games\\nWARNING 05-22 17:16:25 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000215"
+        },
+        {
+          "source_line": 216,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 也确认在评估 134 OOD games（vLLM 启动时间 17:16:25）。\n\n当前状态总结：\n\n| GPU | Checkpoint | 状态 | 启动时间 |\n|-----|-----------|------|---------|\n| 0 | SFT baseline (`qwen3_exp021_ragen_sft_v4`) | 正在 rollout, 100% 利用率 | 17:10 |\n| 1 | seed8 step5 (`qwen_exp029_seed8_step5_hf`) | 正在 rollout, 90GB 已分配 | 17:15 |\n| 2 | **待启动**: seed2048 step5 | 空闲 | - |\n| 3 | **待启动**: intervention_c step5 | 空闲 | - |\n\n**发现的问题**：4 个 Ray+vLLM 实例同时启动会导致线程耗尽（`can't start new thread`）。当前改为 2 GPU 并行，等 GPU 0/1 完成后再启动 GPU 2/3。\n\n**RAGEN eval 启动命令**（已验证可用）：\n```bash\ncd /root/cost-verify-agent-rl/RAGEN && \\\nVLLM_WORKER_MULTIPROC_METHOD=spawn \\\nALFWORLD_DATA=/root/autodl-tmp/alfworld \\\nTMPDIR=/root/autodl-tmp/tmp \\\nRAY_TMPDIR=/root/autodl-tmp/ray_gpuN \\\nnohup python train.py --config-name <config_name> \\\n  'system.CUDA_VISIBLE_DEVICES=\"N\"' \\\n  > /root/autodl-tmp/ragen_eval_gpuN.log 2>&1 &\n```\n\n**预估完成时间**：seed5/seed6 之前的 OOD eval（134 tasks, max_turn=50）大约需要 1-2 小时。GPU 0 从 17:10 启动，预计 18:30-19:10 完成。GPU 0/1 完成后会立即启动 GPU 2/3（seed2048 + intervention_c）。\n\n**Round 2 启动命令**（待执行，GPU 0/1 完成后）：\n- GPU 2: `_alfworld_seed2048_step5_ood_eval` (config 已创建)\n- GPU 3: `_alfworld_intervention_c_step5_ood_eval` (config 已存在)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "uuid": "c50b1f23-26ca-4257-a0b0-9750cc05de77",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MiA92cujNe3ixuAqxynRs5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 554,
+                "cache_read_input_tokens": 106843,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 554
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000216"
+        },
+        {
+          "source_line": 217,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 也确认在评估 134 OOD games（vLLM 启动时间 17:16:25）。\n\n当前状态总结：\n\n| GPU | Checkpoint | 状态 | 启动时间 |\n|-----|-----------|------|---------|\n| 0 | SFT baseline (`qwen3_exp021_ragen_sft_v4`) | 正在 rollout, 100% 利用率 | 17:10 |\n| 1 | seed8 step5 (`qwen_exp029_seed8_step5_hf`) | 正在 rollout, 90GB 已分配 | 17:15 |\n| 2 | **待启动**: seed2048 step5 | 空闲 | - |\n| 3 | **待启动**: intervention_c step5 | 空闲 | - |\n\n**发现的问题**：4 个 Ray+vLLM 实例同时启动会导致线程耗尽（`can't start new thread`）。当前改为 2 GPU 并行，等 GPU 0/1 完成后再启动 GPU 2/3。\n\n**RAGEN eval 启动命令**（已验证可用）：\n```bash\ncd /root/cost-verify-agent-rl/RAGEN && \\\nVLLM_WORKER_MULTIPROC_METHOD=spawn \\\nALFWORLD_DATA=/root/autodl-tmp/alfworld \\\nTMPDIR=/root/autodl-tmp/tmp \\\nRAY_TMPDIR=/root/autodl-tmp/ray_gpuN \\\nnohup python train.py --config-name <config_name> \\\n  'system.CUDA_VISIBLE_DEVICES=\"N\"' \\\n  > /root/autodl-tmp/ragen_eval_gpuN.log 2>&1 &\n```\n\n**预估完成时间**：seed5/seed6 之前的 OOD eval（134 tasks, max_turn=50）大约需要 1-2 小时。GPU 0 从 17:10 启动，预计 18:30-19:10 完成。GPU 0/1 完成后会立即启动 GPU 2/3（seed2048 + intervention_c）。\n\n**Round 2 启动命令**（待执行，GPU 0/1 完成后）：\n- GPU 2: `_alfworld_seed2048_step5_ood_eval` (config 已创建)\n- GPU 3: `_alfworld_intervention_c_step5_ood_eval` (config 已存在)"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 865612,
+            "duration_api_ms": 647532,
+            "num_turns": 70,
+            "stop_reason": "end_turn",
+            "session_id": "aed2c7c1-3e0e-41a0-abcf-f78d02d13458",
+            "total_cost_usd": 3.2068804999999996,
+            "usage": {
+              "input_tokens": 58,
+              "cache_creation_input_tokens": 95556,
+              "cache_read_input_tokens": 3832655,
+              "output_tokens": 27575,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 95556,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 676,
+                  "cache_read_input_tokens": 106843,
+                  "cache_creation_input_tokens": 554,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 554
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3543,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.003663,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 58,
+                "outputTokens": 27575,
+                "cacheReadInputTokens": 3832655,
+                "cacheCreationInputTokens": 95556,
+                "webSearchRequests": 0,
+                "costUSD": 3.2032174999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e7cd7fdd-a44f-4a78-8fed-88f5385e1ea9"
+          },
+          "id": "event-000217"
+        }
+      ]
+    }
+  ]
+}

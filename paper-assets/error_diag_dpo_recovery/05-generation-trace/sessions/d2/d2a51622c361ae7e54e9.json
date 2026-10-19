@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2a51622c361ae7e54e9",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "exp v6 icl cuda1",
+  "task_key": "worker_exp_v6_icl_cuda1_20260512T215451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_v6_icl_cuda1_20260512T215451_result.json",
+    "occurrence": 1,
+    "bytes": 304,
+    "sha256": "fcdc06799efdf65ad6c6f9cd749f79ded6f50ef3bf6bf1bc8789a5cdf9fe35bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v6 ICL cuda:1 已启动并注册。\n\n- **PID**: 633155\n- **GPU**: cuda:1\n- **输出**: `data/trajectories_v6_icl_cuda1/train_part1.jsonl`（300 tasks, seed=42, part_idx=1）\n- **日志**: `logs/v6_icl_cuda1.log`\n- **Registry**: `datagen_v6_icl_cuda1` → RUNNING\n- 预估 ~6h 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-v6-icl-cuda1.md"
+}

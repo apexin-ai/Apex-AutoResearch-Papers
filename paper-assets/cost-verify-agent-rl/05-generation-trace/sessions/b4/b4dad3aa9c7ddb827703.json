@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4dad3aa9c7ddb827703",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 step15 val",
+  "task_key": "worker_check_exp029_step15_val_20260517T040439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_step15_val_20260517T040439_result.json",
+    "occurrence": 1,
+    "bytes": 1384,
+    "sha256": "84d54bb19cfd09eb56179161dd1b8aba8d2495edf420e7e921de54cd66b577cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正在运行，日志仍在活跃写入（12:06:34 最后修改）。Step 15 val 的 collapse/metrics 计算正在进行中，结果即将输出。\n\n## exp029 状态总结\n\n**当前 step**: 15/100（进度 15%，7h21m 已运行）\n\n**Step 15 val**: 生成已完成（802 秒），metrics 正在计算中（collapse 阶段，~12:04 开始），预计几分钟内输出最终结果。\n\n**已有 val 结果对比（16 episodes）**:\n\n| Metric | Step 0 (init) | Step 5 | Step 10 |\n|--------|:---:|:---:|:---:|\n| **success_rate** | 12.5% | **25%** | **25%** |\n| action_is_valid | 0.783 | 0.704 | 0.602 |\n| action_is_effective | 1.0 | 1.0 | 0.999 |\n| pass@1 | 12.5% | 25% | 25% |\n| best@8 reward mean | 6.44 | 8.97 | 8.85 |\n| best@32 reward mean | 9.84 | 9.99 | 9.99 |\n\n**最新 train metrics (step 14)**:\n- train success: 43.75%, entropy: 0.027, kl_loss: 0.070, ppo_kl: 0.006\n\n**趋势分析**:\n- Val success 从 step 0 (12.5%) 跳到 step 5 (25%)，然后 step 10 持平 (25%)\n- action_is_valid 持续下降：0.783 → 0.704 → 0.602（模型探索更多动作但 valid 率降低）\n- Train success 在 step 14 达到 43.75%，但 val 是否跟进需要等 step 15 结果\n- KL 和 entropy 在合理范围，训练稳定\n\n**ETA**: Step 15 val metrics 应在 ~2-5 分钟内出现在日志中。需要我稍后再查一次最终数值吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-step15-val.md"
+}

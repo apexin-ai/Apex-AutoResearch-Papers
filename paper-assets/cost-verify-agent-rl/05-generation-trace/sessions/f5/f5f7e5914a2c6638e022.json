@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "f5f7e5914a2c6638e022",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "code exp023b tatsu fix v2",
+  "task_key": "worker_code_exp023b-tatsu-fix-v2_20260515T041710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_exp023b-tatsu-fix-v2_20260515T041710.jsonl",
+    "occurrence": 1,
+    "bytes": 173,
+    "sha256": "131eaf092a48b62adadd0a1aca50308227dfb379c9486717e06585044cc7b152"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T04:17:21.443343+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp023b-tatsu-fix-v2_20260515T041710"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-exp023b-tatsu-fix-v2.md"
+}

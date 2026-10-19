@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b2a9437bed214371655",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code d023 llm original type",
+  "task_key": "worker_code_d023_llm_original_type_20260512T193704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d023_llm_original_type_20260512T193704_result.json",
+    "occurrence": 1,
+    "bytes": 1297,
+    "sha256": "5dd408d91c49a72ecf4c90196bf4aeccd354c4980086a61f1cbc8af757b45d48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v5 数据 dry-run 也跑通了。P1 GATE 显示 FAIL 是因为 action 组 N=0（v5 数据没有 correction_span ≤ 3 的轨迹），导致 ordinal 检查返回 None — 这是符合预期的数据特征，不是代码问题。\n\n代码修改完成，总结已做的变更：\n\n**classify_errors.py 修改内容（650 → 728 行）：**\n\n1. **`llm_original_type` 字段**：每条输出记录新增 `llm_original_type` 和 `llm_original_type_source`\n   - Full run: PCB 轨迹保存 LLM 原始分类结果（`source=\"llm\"`），再 override `error_type` 为 verification\n   - Dry-run: PCB 用 rule-based 分类做代理（`source=\"rule-based\"`）\n\n2. **`run_dual_analysis` 重写**：三版 KW + P1 gate 判定\n   - `with_override`: PCB → verification（现有逻辑）\n   - `without_override`: 用 `llm_original_type` 分组\n   - `pcb_excluded`: 排除 PCB 轨迹\n   - 每版都做 Full + Deduplicated 子分析\n   - P1 pass 条件：`with_override` 显著 **且** （`without_override` 或 `pcb_excluded` 显著），三组均需 ordinal = True\n\n3. **保留原有功能**：task-type stratified 分析、dedup 逻辑、JSON 输出格式均兼容\n\n**不需要单独创建 `analyze_correction_span.py`** — 分析逻辑已内嵌在 `run_dual_analysis` 中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d023-llm-original-type.md"
+}

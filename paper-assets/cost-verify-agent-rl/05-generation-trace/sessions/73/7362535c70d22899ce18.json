@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7362535c70d22899ce18",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval seed8 ood precollapse",
+  "task_key": "worker_eval_seed8_ood_precollapse_20260521T211413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed8_ood_precollapse_20260521T211413_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "c1945398890c17db3519f9212083aa76717462f765d25d8883c323cb8e7ea908"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 已正常启动，模型加载成功，wandb 连接就绪，正在处理 validation 数据。\n\n**执行总结：**\n\n| 项目 | 详情 |\n|------|------|\n| exp_id | `exp029_seed8_ood_precollapse` |\n| 服务器 | westd-47453 cuda:3（原计划 bjb1 cuda:1，因跨服务器 SSH 不通，走备选方案） |\n| checkpoint | `/root/autodl-tmp/checkpoints/exp029-seed8/global_step_5/actor/` → FSDP→HF 转换至 `/root/autodl-tmp/checkpoints/qwen_exp029_seed8_step5_hf` (3.8G) |\n| PID | 801623 |\n| wandb run | `bpmk7i8r` |\n| config | `_alfworld_exp029_seed8_ood_precollapse.yaml`（134 OOD tasks, enable_response_mask: False, CUDA_VISIBLE_DEVICES=3） |\n| registry | RUNNING，spec 已写入 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed8-ood-precollapse.md"
+}

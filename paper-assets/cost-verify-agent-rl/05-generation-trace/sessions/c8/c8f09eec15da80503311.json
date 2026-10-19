@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8f09eec15da80503311",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code fix eval checkpoint format",
+  "task_key": "worker_code_fix_eval_checkpoint_format_20260515T185336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_eval_checkpoint_format_20260515T185336_result.json",
+    "occurrence": 1,
+    "bytes": 1667,
+    "sha256": "0226e8684792ed99a344cc757598958f4e17d83d65bdd920fa3d0968ac6c2e11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。总结改了什么：\n\n**修复的三个格式不匹配问题：**\n\n1. **System prompt 前缀** — 添加 `\"You're a helpful assistant. \"` 前缀（`_build_system_content` 格式）。原来直接用 env_instruction 作为 system prompt，现在 `SYSTEM_PROMPT = \"You're a helpful assistant. \" + ENV_INSTRUCTION`。\n\n2. **User message 格式** — 从多轮对话（raw obs 作 user message）改为单轮 step_independent 格式，完全复刻 `AlfWorldMemory.build_user_content()`：\n   - `Your task is to: {task}.`\n   - `Prior to this step, you have already taken N step(s).`\n   - 最近 5 步的紧凑历史 `[Observation N: '...', Action N: '...']`\n   - 当前 observation（清理掉 welcome message、格式指令等 boilerplate）\n   - 当前 admissible actions\n   - 格式指令 + actions_left + length_prompt\n\n3. **Answer 标签对齐** — 用户消息中的格式指令改为 `\"Output your reasoning in <think>...</think> tags, then output exactly one admissible action command directly after </think>. Do not use <answer> tags.\"` —— 与 AlfWorldMemory 一致。`parse_action` 保留对 `<answer>` 和裸文本两种格式的解析（兼容模型可能输出的任一格式）。\n\n**辅助改动：**\n- 新增 `clean_observation`、`extract_task`、`extract_admissible_actions`、`extract_action_from_response`、`build_user_content` 函数（均从 AlfWorldMemory 复刻）\n- `run_episode` 从多轮 messages 追加改为每步重建单轮 `[system, user]` 消息\n- `max_tokens` 从 256 改为 1024（匹配 GRPO config 的 `response_length: 1024`）\n- 备份存在于 `eval_checkpoint.py.bak`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-eval-checkpoint-format.md"
+}

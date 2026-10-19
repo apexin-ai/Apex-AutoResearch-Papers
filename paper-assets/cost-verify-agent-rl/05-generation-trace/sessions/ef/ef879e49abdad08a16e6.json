@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "ef879e49abdad08a16e6",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "experiment binary reward credit agreement",
+  "task_key": "worker_experiment_binary_reward_credit_agreement_20260523T093508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_binary_reward_credit_agreement_20260523T093508.log",
+    "occurrence": 1,
+    "bytes": 1246225,
+    "sha256": "c08f054bfb66c6126525303418eaf56f04e46c3977f92f91b643cc6ad09e4624"
+  },
+  "statistics": {
+    "messages": 705,
+    "user_turns": 1,
+    "tool_calls": 270,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 1,
+      "assistant": 140,
+      "tool_call": 270,
+      "tool_result": 270,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 578,
+      "chunks": [
+        {
+          "path": "ef879e49abdad08a16e6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ef879e49abdad08a16e6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ef879e49abdad08a16e6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ef879e49abdad08a16e6-part-0004.json",
+          "message_count": 38
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 127,
+      "chunks": [
+        {
+          "path": "ef879e49abdad08a16e6-part-0004.json",
+          "message_count": 127
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-binary-reward-credit-agreement.md"
+}

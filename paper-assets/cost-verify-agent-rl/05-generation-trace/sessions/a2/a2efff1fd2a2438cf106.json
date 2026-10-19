@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a2efff1fd2a2438cf106",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "diagnose exp028c crash",
+  "task_key": "worker_diagnose_exp028c_crash_20260516T082005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp028c_crash_20260516T082005.log",
+    "occurrence": 1,
+    "bytes": 756740,
+    "sha256": "aa1a7087b1929014cceccb1d2f92ddbdfbd21e4f7ee687170a8deb0570f63603"
+  },
+  "statistics": {
+    "messages": 156,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 65,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 156,
+      "chunks": [
+        {
+          "path": "a2efff1fd2a2438cf106-part-0001.json",
+          "message_count": 127
+        },
+        {
+          "path": "a2efff1fd2a2438cf106-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-exp028c-crash.md"
+}

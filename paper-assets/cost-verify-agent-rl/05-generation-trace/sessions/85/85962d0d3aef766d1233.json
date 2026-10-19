@@ -1,0 +1,1280 @@
+{
+  "schema_version": "1.0",
+  "id": "85962d0d3aef766d1233",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "fix literature map authors batch2",
+  "task_key": "worker_fix_literature-map-authors-batch2_20260516T001844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_literature-map-authors-batch2_20260516T001844.log",
+    "occurrence": 1,
+    "bytes": 167916,
+    "sha256": "1e47fed4e5404fbfc4363f86562ad3a7dfcd9849d17d262f5c6612d713636493"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+                "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "1c3c95a3-1951-422b-ba43-a50361d35ee0",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778906400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "0d46a5de-b959-46c6-a0b4-eb08708f3c66",
+                "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me first read the file to understand its current state, then search for the author information for each paper.",
+              "signature": "Eq4CClkIDRgCKkAkuAx8DjwIxCE8uu7x0ll7oDhbpFd2MCbeHKXcJeqALU2PZfCdlngkhpBqGctHisQc67Rdlg41faF6ysqCOy9sMg9jbGF1ZGUtb3B1cy00LTY4ABIMOWBmlxMbtsIV3RIPGgyIRgJXtd7YqyZy0XciMD47vbLBDerlu3xIaDUkceHdXHLRliXb8lCVHUz5kDBOgzS+RSgBPjYTH0RkKBWMsSqCATdyYywH7gJbMC5ZuayHzRvq0ka6zMEKnqhc0EZyyL/m94JC4j3zKvdqbfrww1ViQ2d9tVTS8vHFZTxMI58z2Pdscb2DHK/nnmdfa718qm9eoqOtVFk1uzoFlyobi2N+EmuozR7/PJHQSGmswkzuquzt6AEt4PwgK7Uz3fPfnkLgxYAYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "482d08f6-058d-4667-ab25-40fb31f4d974",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dc9wUY8mnPJZjqr7GfVwPF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11534,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11534
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the file and search for the three papers' authors in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "9c3e7d26-354e-4890-9506-ffbd73e8b9cd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dc9wUY8mnPJZjqr7GfVwPF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11534,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11534
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016bW3vhuT4YFqNnhGi8kU23",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "c1d2cb43-7c52-4737-a58c-3312e5679d74",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dc9wUY8mnPJZjqr7GfVwPF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11534,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11534
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HoLBMFz5zX5dw3jxMLRpW4",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "78134472-2917-4d6f-9c33-d903725e7c25",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dc9wUY8mnPJZjqr7GfVwPF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11534,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11534
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T00:18:58.007Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01HoLBMFz5zX5dw3jxMLRpW4",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "1cac2c7c-905d-42c6-8fb8-368c078ba616",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T00:18:58.105Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016bW3vhuT4YFqNnhGi8kU23",
+              "type": "tool_result",
+              "content": "1\t# B-IAVR Literature Map\n2\t# Updated: 2026-05-16\n3\t# Categories: direct-competitor, method-component, background, evaluation\n4\t# Roles: predecessor, competitor, baseline, evaluation, background\n5\t\n6\tpapers:\n7\t\n8\t  # ============================================================\n9\t  # Direction 1: Self-Verification / Self-Correction in LLM Agents\n10\t  # ============================================================\n11\t\n12\t  - id: kamoi2024self-correction-survey\n13\t    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n14\t    authors: \"Kamoi et al.\"\n15\t    venue: \"arXiv\"\n16\t    year: 2024\n17\t    arxiv_id: \"2406.01297\"\n18\t    category: background\n19\t    role: background\n20\t    relevance_note: >\n21\t      Foundational survey establishing that pure intrinsic self-correction is unreliable.\n22\t      Validates B-IAVR's use of grounded verification (environment re-observation) over prompted self-feedback.\n23\t\n24\t  - id: tie2025correctbench\n25\t    title: \"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs\"\n26\t    authors: \"Tie et al.\"\n27\t    venue: \"NeurIPS 2025 Datasets & Benchmarks\"\n28\t    year: 2025\n29\t    arxiv_id: \"2510.16062\"\n30\t    category: background\n31\t    role: background\n32\t    relevance_note: >\n33\t      Benchmark showing self-correction has diminishing returns when applied uniformly.\n34\t      Supports B-IAVR's selective verification design over blanket correction.\n35\t\n36\t  - id: self-verification-dilemma-2026\n37\t    title: \"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning\"\n38\t    authors: \"Long et al.\"\n39\t    venue: \"arXiv\"\n40\t    year: 2026\n41\t    arxiv_id: \"2602.03485\"\n42\t    category: background\n43\t    role: background\n44\t    relevance_note: >\n45\t      Empirically validates that >90% of self-verification is confirmatory, ~2% corrective.\n46\t      Directly supports B-IAVR's core thesis that verification should be selective.\n47\t      Their experience-pool approach is complementary to B-IAVR's action-change signal.\n48\t\n49\t  - id: zhang2025incentivize-self-verify\n50\t    title: \"Incentivizing LLMs to Self-Verify Their Answers\"\n51\t    authors: \"Zhang et al.\"\n52\t    venue: \"arXiv\"\n53\t    year: 2025\n54\t    arxiv_id: \"2506.01369\"\n55\t    category: background\n56\t    role: background\n57\t    relevance_note: >\n58\t      Unifies answer generation and verification via single RL training process.\n59\t      Parallel to B-IAVR: they train verification into generation; B-IAVR trains when to trigger separate verification.\n60\t\n61\t  - id: mar2025\n62\t    title: \"MAR: Multi-Agent Reflexion Improves Reasoning Abilities in LLMs\"\n63\t    authors: \"Ozer et al.\"\n64\t    venue: \"arXiv\"\n65\t    year: 2025\n66\t    arxiv_id: \"2512.20845\"\n67\t    category: background\n68\t    role: background\n69\t    relevance_note: >\n70\t      Multi-agent self-correction with diverse critic personas.\n71\t      Complementary: MAR improves correction quality; B-IAVR decides when to trigger correction.\n72\t\n73\t  - id: ssr2025\n74\t    title: \"SSR: Socratic Self-Refine for Large Language Model Reasoning\"\n75\t    authors: \"Shi et al.\"\n76\t    venue: \"arXiv\"\n77\t    year: 2025\n78\t    arxiv_id: \"2511.10621\"\n79\t    category: background\n80\t    role: background\n81\t    relevance_note: >\n82\t      Structured Socratic questioning for self-refinement.\n83\t      Complementary: improves correction step quality; B-IAVR focuses on when to invoke correction.\n84\t\n85\t  - id: verifiagent2025\n86\t    title: \"VerifiAgent: a Unified Verification Agent in Language Model Reasoning\"\n87\t    authors: \"Han et al.\"\n88\t    venue: \"EMNLP 2025 Findings\"\n89\t    year: 2025\n90\t    arxiv_id: \"2504.00406\"\n91\t    category: background\n92\t    role: background\n93\t    relevance_note: >\n94\t      Unified verification agent with meta-verification + tool-based adaptive verification.\n95\t      Focuses on how to verify (tool selection); B-IAVR focuses on when to verify (policy learning).\n96\t      Complementary: VerifiAgent's verification quality could enhance B-IAVR's verification step.\n97\t\n98\t  # ============================================================\n99\t  # Direction 2: Agent RL Training\n100\t  # ============================================================\n101\t\n102\t  - id: feng2025gigpo\n103\t    title: \"GiGPO: Group-in-Group Policy Optimization for LLM Agent Training\"\n104\t    authors: \"Feng et al.\"\n105\t    venue: \"NeurIPS 2025\"\n106\t    year: 2025\n107\t    arxiv_id: \"2505.10978\"\n108\t    category: method-component\n109\t    role: predecessor\n110\t    relevance_note: >\n111\t      Core training algorithm for B-IAVR. Nested group structure provides step-level credit\n112\t      assignment without learned critic. >12% over GRPO on ALFWorld, >9% on WebShop.\n113\t\n114\t  - id: selfguide2026\n115\t    title: \"Co-Evolution of Policy and Internal Reward for Language Agents (Self-Guide)\"\n116\t    authors: \"Wang et al.\"\n117\t    venue: \"arXiv\"\n118\t    year: 2026\n119\t    arxiv_id: \"2604.03098\"\n120\t    category: method-component\n121\t    role: predecessor\n122\t    relevance_note: >\n123\t      Direct predecessor. B-IAVR extends Self-Guide's co-evolving internal reward.\n124\t      The self-guidance signal is the foundation for action-change detection triggering verification.\n125\t      8% improvement over env-reward-only on ALFWorld with Qwen3-1.7B/4B.\n126\t\n127\t  - id: spear2025\n128\t    title: \"Learn the Ropes, Then Trust the Wins: Self-imitation with Progressive Exploration for Agentic Reinforcement Learning\"\n129\t    authors: \"Qin et al.\"\n130\t    venue: \"ICLR 2026\"\n131\t    year: 2025\n132\t    arxiv_id: \"2509.22601\"\n133\t    category: method-component\n134\t    role: background\n135\t    relevance_note: >\n136\t      Curriculum-based self-imitation for sparse-reward agent tasks.\n137\t      Up to +16.1% on ALFWorld over GRPO. Self-imitation curriculum could augment B-IAVR training.\n138\t\n139\t  - id: wei2025webagent-r1\n140\t    title: \"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn RL\"\n141\t    authors: \"Wei et al.\"\n142\t    venue: \"EMNLP 2025\"\n143\t    year: 2025\n144\t    arxiv_id: \"2505.16421\"\n145\t    category: background\n146\t    role: background\n147\t    relevance_note: >\n148\t      Extends GRPO to multi-turn (M-GRPO) with dynamic context compression.\n149\t      Qwen-2.5-3B: 6.1% to 33.9% on WebArena-Lite. M-GRPO multi-turn extension relevant to B-IAVR.\n150\t\n151\t  - id: dapo2025\n152\t    title: \"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\"\n153\t    authors: \"Yu et al.\"\n154\t    venue: \"arXiv\"\n155\t    year: 2025\n156\t    arxiv_id: \"2503.14476\"\n157\t    category: method-component\n158\t    role: background\n159\t    relevance_note: >\n160\t      RL training stabilization techniques (Clip-Higher, Dynamic Sampling).\n161\t      Applicable to B-IAVR's RL training to prevent entropy collapse.\n162\t\n163\t  - id: digiRL2024\n164\t    title: \"DigiRL: Training In-The-Wild Device-Control Agents with Autonomous RL\"\n165\t    authors: \"Bai et al.\"\n166\t    venue: \"NeurIPS 2024\"\n167\t    year: 2024\n168\t    arxiv_id: \"2406.11896\"\n169\t    category: background\n170\t    role: background\n171\t    relevance_note: >\n172\t      Online RL for device control agents. Demonstrates online RL viability for interactive agents.\n173\t      49.5% absolute improvement over SFT. Parallel approach to B-IAVR in text-based setting.\n174\t\n175\t  - id: li2025sorl\n176\t    title: \"SORL: Stabilizing Off-Policy RL for Long-Horizon Agent Training\"\n177\t    authors: \"Li et al.\"\n178\t    venue: \"arXiv\"\n179\t    year: 2025\n180\t    arxiv_id: \"2511.20718\"\n181\t    category: method-component\n182\t    role: background\n183\t    relevance_note: >\n184\t      Turn-level importance sampling + clipping-triggered normalization for stable multi-turn agent RL.\n185\t      Directly applicable to B-IAVR's multi-turn ALFWorld training stability.\n186\t\n187\t  - id: agentic-rl-survey-2025\n188\t    title: \"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey\"\n189\t    authors: \"Zhang et al.\"\n190\t    venue: \"TMLR 2026\"\n191\t    year: 2025\n192\t    arxiv_id: \"2509.02547\"\n193\t    category: background\n194\t    role: background\n195\t    relevance_note: >\n196\t      Comprehensive survey formalizing agentic RL. Contextualizes B-IAVR as training agents\n197\t      to make meta-decisions (when to verify) via RL within the POMDP framework.\n198\t\n199\t  - id: skillmaster2026\n200\t    title: \"SkillMaster: Toward Autonomous Skill Mastery in LLM Agents\"\n201\t    authors: \"Yang et al.\"\n202\t    venue: \"arXiv\"\n203\t    year: 2026\n204\t    arxiv_id: \"2605.08693\"\n205\t    category: method-component\n206\t    role: background\n207\t    relevance_note: >\n208\t      DualAdv-GRPO: separately estimates advantages for task-solving and skill-editing decisions.\n209\t      +8.8% on ALFWorld, +9.3% on WebShop. DualAdv structure could inform B-IAVR's\n210\t      separation of action and verification advantages.\n211\t\n212\t  - id: t2po2026\n213\t    title: \"T2PO: Uncertainty-Guided Exploration Control for Stable Multi-Turn Agentic RL\"\n214\t    authors: \"Wang et al.\"\n215\t    venue: \"ICML 2026 Spotlight\"\n216\t    year: 2026\n217\t    arxiv_id: \"2605.02178\"\n218\t    category: method-component\n219\t    role: background\n220\t    relevance_note: >\n221\t      Token- and turn-level uncertainty monitoring for stable multi-turn agent RL.\n222\t      Triggers thinking intervention when marginal uncertainty change drops below threshold.\n223\t      Evaluated on ALFWorld and WebShop. Conceptually related: uncertainty-based trigger vs\n224\t      B-IAVR's action-change trigger, but T2PO targets training stability, not deployment verification.\n225\t\n226\t  - id: gvpo2026\n227\t    title: \"GVPO: Group Verification-based Policy Optimization for Interactive Coding Agents\"\n228\t    authors: \"Dai et al.\"\n229\t    venue: \"ICLR 2026\"\n230\t    year: 2026\n231\t    arxiv_id: null  # no arXiv preprint; OpenReview ID: RY47Tq0VsV\n232\t    category: method-component\n233\t    role: background\n234\t    relevance_note: >\n235\t      Advantage shaping with outcome-verifiable + process-verifiable signals.\n236\t      +12.7% over o1 on AppWorld. Integrates intermediate execution feedback as step-level\n237\t      verification signals. Different focus: uses verification for credit assignment during\n238\t      training; B-IAVR learns when to invoke verification at deployment.\n239\t\n240\t  - id: agentv-rl2026\n241\t    title: \"AgentV-RL: Scaling Reward Modeling with Agentic Verifier\"\n242\t    authors: \"Zhang et al.\"\n243\t    venue: \"arXiv\"\n244\t    year: 2026\n245\t    arxiv_id: \"2604.16004\"\n246\t    category: method-component\n247\t    role: background\n248\t    relevance_note: >\n249\t      Bidirectional forward/backward agentic verifier for reward modeling in RL.\n250\t      4B model surpasses SOTA ORMs by 25.2%. Addresses verification quality in reward modeling;\n251\t      B-IAVR addresses verification timing in agent deployment. Complementary.\n252\t\n253\t  - id: pa-moe2026\n254\t    title: \"PA-MoE: Phase-Aware Mixture of Experts for Agentic Reinforcement Learning\"\n255\t    authors: \"Li et al.\"\n256\t    venue: \"arXiv\"\n257\t    year: 2026\n258\t    arxiv_id: \"2602.17038\"\n259\t    category: evaluation\n260\t    role: baseline\n261\t    relevance_note: >\n262\t      [NEW-0516] Lightweight phase router learns latent phase boundaries from RL objective.\n263\t      PA-MoE+GiGPO with Qwen2.5-1.5B achieves 93.8% on ALFWorld (+7.7 over GiGPO 86.1%).\n264\t      1.5B outperforms vanilla 7B GiGPO (90.2%). New small-model SOTA on ALFWorld.\n265\t      Orthogonal architecture innovation; important baseline to cite.\n266\t\n267\t  - id: sdar2026\n268\t    title: \"SDAR: Self-Distilled Agentic Reinforcement Learning\"\n269\t    authors: \"ZJU-REAL\"\n270\t    venue: \"arXiv\"\n271\t    year: 2026\n272\t    arxiv_id: \"2605.15155\"\n273\t    category: method-component\n274\t    role: background\n275\t    relevance_note: >\n276\t      [NEW-0516] On-policy self-distillation as gated auxiliary objective during RL training.\n277\t      Token-level gate decides supervision intensity. +9.4% over GRPO on ALFWorld.\n278\t      Complementary: SDAR improves RL training; B-IAVR learns verification policy.\n279\t\n280\t  - id: hcapo2026\n281\t    title: \"HCAPO: Hindsight Credit Assignment for Long-Horizon LLM Agents\"\n282\t    authors: \"Tan et al.\"\n283\t    venue: \"arXiv\"\n284\t    year: 2026\n285\t    arxiv_id: \"2603.08754\"\n286\t    category: method-component\n287\t    role: background\n288\t    relevance_note: >\n289\t      [NEW-0516] LLM-as-critic refines step-level Q-values via hindsight reasoning +\n290\t      multi-scale advantage for critical decision states.\n291\t      +13.8% on ALFWorld, +7.7% on WebShop over GRPO (Qwen2.5-7B).\n292\t      Could improve B-IAVR's reward signal for verification decision steps.\n293\t\n294\t  - id: act2026\n295\t    title: \"ACT: Agentic Critical Training\"\n296\t    authors: \"Unknown\"\n297\t    venue: \"arXiv\"\n298\t    year: 2026\n299\t    arxiv_id: \"2603.08706\"\n300\t    category: method-component\n301\t    role: background\n302\t    relevance_note: >\n303\t      [NEW-0516] Trains agents to judge action quality via critical comparison reward.\n304\t      +5.07 over IL, +4.62 over RL. Different axis: ACT improves reflection quality;\n305\t      B-IAVR decides when to reflect.\n306\t\n307\t  - id: rwml2026\n308\t    title: \"RWML: Reinforcement World Model Learning for LLM-based Agents\"\n309\t    authors: \"Yu et al.\"\n310\t    venue: \"arXiv\"\n311\t    year: 2026\n312\t    arxiv_id: \"2602.05842\"\n313\t    category: method-component\n314\t    role: background\n315\t    relevance_note: >\n316\t      [NEW-0516] Self-supervised world model via sim-to-real gap rewards in embedding space.\n317\t      +6.9 on ALFWorld over task-success-only RL. Matches expert-data training.\n318\t      Orthogonal: improves internal world model; B-IAVR adds selective verification.\n319\t\n320\t  - id: skill0-2026\n321\t    title: \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\"\n322\t    authors: \"ZJU-REAL\"\n323\t    venue: \"arXiv\"\n324\t    year: 2026\n325\t    arxiv_id: \"2604.02268\"\n326\t    category: method-component\n327\t    role: background\n328\t    relevance_note: >\n329\t      [NEW-0516] Training-time curriculum progressively withdraws skill context until zero-shot.\n330\t      +9.7% on ALFWorld over GRPO, <0.5k tokens per step.\n331\t      Complementary: SKILL0 internalizes skills; B-IAVR adds selective verification.\n332\t\n333\t  - id: fission-grpo2026\n334\t    title: \"Fission-GRPO: Robust Tool Use via Learning to Recover from Execution Errors\"\n335\t    authors: \"Zhang et al.\"\n336\t    venue: \"arXiv\"\n337\t    year: 2026\n338\t    arxiv_id: \"2601.15625\"\n339\t    category: method-component\n340\t    role: background\n341\t    relevance_note: >\n342\t      [NEW-0516] Fissions failed trajectories into recovery training instances.\n343\t      +4% overall accuracy on BFCL v4 Multi-Turn over GRPO.\n344\t      Related: error recovery after failure vs B-IAVR's proactive verification.\n345\t\n346\t  - id: selfbudgeter2026\n347\t    title: \"SelfBudgeter: Adaptive Token Allocation for Efficient LLM Reasoning\"\n348\t    authors: \"Li et al.\"\n349\t    venue: \"ICLR 2026 (under review)\"\n350\t    year: 2025\n351\t    arxiv_id: \"2505.11274\"\n352\t    category: background\n353\t    role: background\n354\t    relevance_note: >\n355\t      [NEW-0516] Self-estimated token budgets + budget-guided GRPO. 61% token reduction.\n356\t      Parallel concept: SelfBudgeter allocates computation budget;\n357\t      B-IAVR makes binary verify/not-verify decision. Both use RL for adaptive compute.\n358\t\n359\t  - id: cove2026\n360\t    title: \"CoVe: Training Interactive Tool-Use Agents via Constraint-Guided Verification\"\n361\t    authors: \"Chen et al.\"\n362\t    venue: \"arXiv\"\n363\t    year: 2026\n364\t    arxiv_id: \"2603.01940\"\n365\t    category: background\n366\t    role: background\n367\t    relevance_note: >\n368\t      [NEW-0516] Task constraints guide trajectory generation and serve as deterministic verifiers.\n369\t      Different: CoVe uses verification for data synthesis; B-IAVR learns when to verify at inference.\n370\t\n371\t  # ============================================================\n372\t  # Direction 3: Selective Verification / Adaptive Computation\n373\t  # ============================================================\n374\t\n375\t  - id: wan2025derailer-rerailer\n376\t    title: \"Derailer-Rerailer: Adaptive Verification for Efficient and Reliable LM Reasoning\"\n377\t    authors: \"Wan et al.\"\n378\t    venue: \"ACL 2025 Findings\"\n379\t    year: 2025\n380\t    arxiv_id: \"2408.13940\"\n381\t    category: direct-competitor\n382\t    role: competitor\n383\t    relevance_note: >\n384\t      Most directly related competitor. Both do selective verification with binary trigger.\n385\t      Key difference: operates on reasoning chains (single-turn); B-IAVR on agent trajectories (multi-turn).\n386\t      Uses heuristic instability signal; B-IAVR uses RL-trained action-change signal.\n387\t      8-11% accuracy gain, 2-3x efficiency over uniform verification.\n388\t\n389\t  - id: sherlock2025\n390\t    title: \"Sherlock: Reliable and Efficient Agentic Workflow Execution\"\n391\t    authors: \"Microsoft\"\n392\t    venue: \"arXiv\"\n393\t    year: 2025\n394\t    arxiv_id: \"2511.00330\"\n395\t    category: direct-competitor\n396\t    role: competitor\n397\t    relevance_note: >\n398\t      Selective verification for agentic workflows via offline counterfactual analysis + speculative execution.\n399\t      Different scope: workflow DAG level (offline); B-IAVR is step-level (online RL).\n400\t      18.3% accuracy gain, 26% cost reduction, 48.7% latency reduction.\n401\t\n402\t  - id: singhi2025when-to-verify\n403\t    title: \"When To Solve, When To Verify: Compute-Optimal Verification for LLM Reasoning\"\n404\t    authors: \"Singhi et al.\"\n405\t    venue: \"arXiv\"\n406\t    year: 2025\n407\t    arxiv_id: \"2504.01005\"\n408\t    category: background\n409\t    role: background\n410\t    relevance_note: >\n411\t      Derives inference scaling laws for solve-vs-verify tradeoff.\n412\t      Finding that over-verification is suboptimal directly supports B-IAVR's selective approach.\n413\t      B-IAVR learns this allocation via RL rather than analytically.\n414\t\n415\t  - id: yang2026ares\n416\t    title: \"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\"\n417\t    authors: \"Yang et al.\"\n418\t    venue: \"arXiv\"\n419\t    year: 2026\n420\t    arxiv_id: \"2603.07915\"\n421\t    category: direct-competitor\n422\t    role: competitor\n423\t    relevance_note: >\n424\t      Closest competitor in agent domain. Both train learned per-step compute allocation.\n425\t      ARES uses SFT-initialized router further refined via GRPO with outcome + token efficiency reward;\n426\t      B-IAVR trains binary verify/not-verify via RL with action-change signal.\n427\t      Key differences: (1) reward signal — ARES optimizes token efficiency, B-IAVR uses action-change\n428\t      as verification trigger; (2) data requirement — ARES needs difficulty-annotated training data\n429\t      to bootstrap the router, B-IAVR learns from environment interaction alone.\n430\t      Reduces reasoning tokens by up to 52.7%.\n431\t\n432\t  - id: tu2025autothink\n433\t    title: \"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\"\n434\t    authors: \"Tu et al.\"\n435\t    venue: \"NeurIPS 2025\"\n436\t    year: 2025\n437\t    arxiv_id: \"2505.10832\"\n438\t    category: direct-competitor\n439\t    role: competitor\n440\t    relevance_note: >\n441\t      Analogous idea in reasoning domain: RL-trained adaptive computation trigger.\n442\t      Operates on single-turn reasoning; B-IAVR on multi-turn agent trajectories.\n443\t      +6.4% accuracy, -52% tokens on DeepSeek-R1-Distill-Qwen-1.5B.\n444\t\n445\t  - id: du2025thinkless\n446\t    title: \"Thinkless: LLM Learns When to Think\"\n447\t    authors: \"Fang et al.\"\n448\t    venue: \"NeurIPS 2025\"\n449\t    year: 2025\n450\t    arxiv_id: \"2505.13379\"\n451\t    category: direct-competitor\n452\t    role: competitor\n453\t    relevance_note: >\n454\t      RL-trained control token to decide when to invoke extended thinking.\n455\t      Methodologically closest to B-IAVR in reasoning domain; B-IAVR applies to interactive agent trajectories.\n456\t\n457\t  - id: wang2025efficient-agents\n458\t    title: \"Efficient Agents: Building Effective Agents While Reducing Cost\"\n459\t    authors: \"Wang et al.\"\n460\t    venue: \"arXiv\"\n461\t    year: 2025\n462\t    arxiv_id: \"2508.02694\"\n463\t    category: background\n464\t    role: background\n465\t    relevance_note: >\n466\t      First systematic study of agent efficiency-effectiveness tradeoff.\n467\t      Framework-level cost reduction; B-IAVR addresses cost at verification-policy level.\n468\t      Retains 96.7% performance with 28.4% cost-of-pass improvement.\n469\t\n470\t  - id: venktesh2025trust-but-verify\n471\t    title: \"Trust but Verify! A Survey on Verification Design for Test-time Scaling\"\n472\t    authors: \"Venktesh et al.\"\n473\t    venue: \"arXiv\"\n474\t    year: 2025\n475\t    arxiv_id: \"2508.16665\"\n476\t    category: background\n477\t    role: background\n478\t    relevance_note: >\n479\t      Survey of verification approaches for test-time compute scaling.\n480\t      Identifies verification timing as key open problem. B-IAVR provides concrete solution for agent setting.\n481\t\n482\t  - id: agent-omit2026\n483\t    title: \"Agent-Omit: Training Efficient LLM Agents for Adaptive Thought and Observation Omission via Agentic RL\"\n484\t    authors: \"Ning et al.\"\n485\t    venue: \"ICML 2026\"\n486\t    year: 2026\n487\t    arxiv_id: \"2602.04284\"\n488\t    category: direct-competitor\n489\t    role: competitor\n490\t    relevance_note: >\n491\t      RL-trained policy for adaptive omission of redundant thoughts and observations.\n492\t      Agent-Omit-8B matches frontier agents with best efficiency tradeoff on 5 benchmarks.\n493\t      Both use RL to learn cost-efficient agent behavior. Key difference: Agent-Omit subtracts\n494\t      (omits unnecessary context); B-IAVR selectively adds (verification steps).\n495\t      Opposite but complementary approaches to cost-efficiency. Potentially combinable.\n496\t\n497\t  - id: ava2026\n498\t    title: \"Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints\"\n499\t    authors: \"Patel\"\n500\t    venue: \"TMLR 2026\"\n501\t    year: 2026\n502\t    arxiv_id: null  # no arXiv preprint; OpenReview ID: JMDCMf7mlF\n503\t    category: direct-competitor\n504\t    role: competitor\n505\t    relevance_note: >\n506\t      Dynamic compute allocation across search, sampling, and verification under budget.\n507\t      Uses calibrated uncertainty + value-of-information for selective verification cascades.\n508\t      Evaluated on GSM8K/MATH/HotpotQA/HumanEval (reasoning), not interactive agents.\n509\t      Key difference: analytical/heuristic allocation vs B-IAVR's RL-learned policy;\n510\t      single-turn reasoning vs multi-turn agent trajectories.\n511\t\n512\t  - id: cast2026\n513\t    title: \"CAST: Case-Based Calibration of Adaptive Reasoning and Execution for LLM Tool Use\"\n514\t    authors: \"Pang et al.\"\n515\t    venue: \"arXiv\"\n516\t    year: 2026\n517\t    arxiv_id: \"2605.15041\"\n518\t    category: background\n519\t    role: background\n520\t    relevance_note: >\n521\t      Historical execution cases calibrate reasoning depth for tool use.\n522\t      Reduces reasoning length 26% with +5.85% accuracy on BFCLv2/ToolBench.\n523\t      Related: adaptive reasoning depth; different: case-based calibration vs RL-learned policy.\n524\t\n525\t  - id: marginal-token-allocators2026\n526\t    title: \"Agentic AI Systems Should Be Designed as Marginal Token Allocators\"\n527\t    authors: \"Zhu\"\n528\t    venue: \"arXiv\"\n529\t    year: 2026\n530\t    arxiv_id: \"2605.01214\"\n531\t    category: background\n532\t    role: background\n533\t    relevance_note: >\n534\t      Position paper framing agent cost-efficiency as marginal token allocation economics.\n535\t      Identifies under-verification as systematic failure mode. Supports B-IAVR's framing\n536\t      that verification decisions should reflect marginal cost-benefit analysis.\n537\t\n538\t  - id: argos2025\n539\t    title: \"Argos: Multimodal RL with Adaptive Verifier for AI Agents\"\n540\t    authors: \"Tan et al.\"\n541\t    venue: \"arXiv (revised April 2026)\"\n542\t    year: 2025\n543\t    arxiv_id: \"2512.03438\"\n544\t    category: background\n545\t    role: background\n546\t    relevance_note: >\n547\t      Agentic verifier that adaptively selects scoring functions for multimodal RL training.\n548\t      Different domain (multimodal/robotics). The adaptive verifier selection concept is\n549\t      complementary: Argos adapts how to verify; B-IAVR adapts when to verify.\n550\t\n551\t  # ============================================================\n552\t  # Direction 4: ALFWorld / Interactive Environment Benchmarks\n553\t  # ============================================================\n554\t\n555\t  - id: kim2025reflact\n556\t    title: \"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection\"\n557\t    authors: \"Kim et al.\"\n558\t    venue: \"EMNLP 2025\"\n559\t    year: 2025\n560\t    arxiv_id: \"2505.15182\"\n561\t    category: evaluation\n562\t    role: baseline\n563\t    relevance_note: >\n564\t      Prompting SOTA on ALFWorld at 93.3%. Replaces ReAct's next-action thinking with state-goal reflection.\n565\t      B-IAVR addresses different axis (cost-efficiency) since ALFWorld accuracy is near saturation.\n566\t\n567\t  - id: choudhury2025agentprm\n568\t    title: \"Process Reward Models for LLM Agents: Practical Framework and Directions\"\n569\t    authors: \"Choudhury\"\n570\t    venue: \"arXiv\"\n571\t    year: 2025\n572\t    arxiv_id: \"2502.10325\"\n573\t    category: evaluation\n574\t    role: baseline\n575\t    relevance_note: >\n576\t      Monte Carlo rollout-based process reward for agent training. 3B models achieve 91% on ALFWorld.\n577\t      Validates RL training approach; AgentPRM could serve as reward model for B-IAVR.\n578\t\n579\t  - id: xi2025agentprm\n580\t    title: \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\"\n581\t    authors: \"Xi et al.\"\n582\t    venue: \"ACM Web Conference 2026\"\n583\t    year: 2025\n584\t    arxiv_id: \"2511.08325\"\n585\t    category: evaluation\n586\t    role: baseline\n587\t    relevance_note: >\n588\t      Independent work from Choudhury et al., using TD-based estimation with GAE for scalable\n589\t      PRM data labeling. 8x more compute-efficient than baselines with robust test-time scaling.\n590\t      Different approach: Choudhury uses MC rollouts; Xi uses TD+GAE for step-wise promise and progress.\n591\t\n592\t  - id: xiang2024retrospex\n593\t    title: \"Retrospex: Language Agent Meets Offline RL Critic\"\n594\t    authors: \"Xiang et al.\"\n595\t    venue: \"EMNLP 2024\"\n596\t    year: 2024\n597\t    arxiv_id: \"2505.11807\"\n598\t    category: background\n599\t    role: background\n600\t    relevance_note: >\n601\t      Offline RL Critic augments LLM agent action selection via dynamic rescoring.\n602\t      Similar architecture could inform B-IAVR's verification value estimation.\n603\t\n604\t  - id: cfgm2025\n605\t    title: \"CFGM: Coarse-to-Fine Grounded Memory for LLM Agent Planning\"\n606\t    authors: \"Yang et al.\"\n607\t    venue: \"EMNLP 2025\"\n608\t    year: 2025\n609\t    arxiv_id: \"2508.15305\"\n610\t    category: background\n611\t    role: background\n612\t    relevance_note: >\n613\t      Memory-augmented agent planning with episodic grounding.\n614\t      ALFWorld +10.40%, WebShop +20%. Complementary to B-IAVR's verification approach.\n615\t\n616\t  - id: respact2024\n617\t    title: \"ReSpAct: Harmonizing Reasoning, Speaking, and Acting\"\n618\t    authors: \"Dongre et al.\"\n619\t    venue: \"arXiv\"\n620\t    year: 2024\n621\t    arxiv_id: \"2411.00927\"\n622\t    category: evaluation\n623\t    role: baseline\n624\t    relevance_note: >\n625\t      Integrates dialogue/reasoning/acting. +6% over ReAct on ALFWorld.\n626\t      Reduces invalid actions from 13% to 3%; B-IAVR's verification achieves error prevention differently.\n627\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "77869eca-f7cc-4015-8520-ff2a432e2b87",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml",
+                "content": "# B-IAVR Literature Map\n# Updated: 2026-05-16\n# Categories: direct-competitor, method-component, background, evaluation\n# Roles: predecessor, competitor, baseline, evaluation, background\n\npapers:\n\n  # ============================================================\n  # Direction 1: Self-Verification / Self-Correction in LLM Agents\n  # ============================================================\n\n  - id: kamoi2024self-correction-survey\n    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n    authors: \"Kamoi et al.\"\n    venue: \"arXiv\"\n    year: 2024\n    arxiv_id: \"2406.01297\"\n    category: background\n    role: background\n    relevance_note: >\n      Foundational survey establishing that pure intrinsic self-correction is unreliable.\n      Validates B-IAVR's use of grounded verification (environment re-observation) over prompted self-feedback.\n\n  - id: tie2025correctbench\n    title: \"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs\"\n    authors: \"Tie et al.\"\n    venue: \"NeurIPS 2025 Datasets & Benchmarks\"\n    year: 2025\n    arxiv_id: \"2510.16062\"\n    category: background\n    role: background\n    relevance_note: >\n      Benchmark showing self-correction has diminishing returns when applied uniformly.\n      Supports B-IAVR's selective verification design over blanket correction.\n\n  - id: self-verification-dilemma-2026\n    title: \"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning\"\n    authors: \"Long et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2602.03485\"\n    category: background\n    role: background\n    relevance_note: >\n      Empirically validates that >90% of self-verification is confirmatory, ~2% corrective.\n      Directly supports B-IAVR's core thesis that verification should be selective.\n      Their experience-pool approach is complementary to B-IAVR's action-change signal.\n\n  - id: zhang2025incentivize-self-verify\n    title: \"Incentivizing LLMs to Self-Verify Their Answers\"\n    authors: \"Zhang et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2506.01369\"\n    category: background\n    role: background\n    relevance_note: >\n      Unifies answer generation and verification via single RL training process.\n      Parallel to B-IAVR: they train verification into generation; B-IAVR trains when to trigger separate verification.\n\n  - id: mar2025\n    title: \"MAR: Multi-Agent Reflexion Improves Reasoning Abilities in LLMs\"\n    authors: \"Ozer et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2512.20845\"\n    category: background\n    role: background\n    relevance_note: >\n      Multi-agent self-correction with diverse critic personas.\n      Complementary: MAR improves correction quality; B-IAVR decides when to trigger correction.\n\n  - id: ssr2025\n    title: \"SSR: Socratic Self-Refine for Large Language Model Reasoning\"\n    authors: \"Shi et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2511.10621\"\n    category: background\n    role: background\n    relevance_note: >\n      Structured Socratic questioning for self-refinement.\n      Complementary: improves correction step quality; B-IAVR focuses on when to invoke correction.\n\n  - id: verifiagent2025\n    title: \"VerifiAgent: a Unified Verification Agent in Language Model Reasoning\"\n    authors: \"Han et al.\"\n    venue: \"EMNLP 2025 Findings\"\n    year: 2025\n    arxiv_id: \"2504.00406\"\n    category: background\n    role: background\n    relevance_note: >\n      Unified verification agent with meta-verification + tool-based adaptive verification.\n      Focuses on how to verify (tool selection); B-IAVR focuses on when to verify (policy learning).\n      Complementary: VerifiAgent's verification quality could enhance B-IAVR's verification step.\n\n  # ============================================================\n  # Direction 2: Agent RL Training\n  # ============================================================\n\n  - id: feng2025gigpo\n    title: \"GiGPO: Group-in-Group Policy Optimization for LLM Agent Training\"\n    authors: \"Feng et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    arxiv_id: \"2505.10978\"\n    category: method-component\n    role: predecessor\n    relevance_note: >\n      Core training algorithm for B-IAVR. Nested group structure provides step-level credit\n      assignment without learned critic. >12% over GRPO on ALFWorld, >9% on WebShop.\n\n  - id: selfguide2026\n    title: \"Co-Evolution of Policy and Internal Reward for Language Agents (Self-Guide)\"\n    authors: \"Wang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2604.03098\"\n    category: method-component\n    role: predecessor\n    relevance_note: >\n      Direct predecessor. B-IAVR extends Self-Guide's co-evolving internal reward.\n      The self-guidance signal is the foundation for action-change detection triggering verification.\n      8% improvement over env-reward-only on ALFWorld with Qwen3-1.7B/4B.\n\n  - id: spear2025\n    title: \"Learn the Ropes, Then Trust the Wins: Self-imitation with Progressive Exploration for Agentic Reinforcement Learning\"\n    authors: \"Qin et al.\"\n    venue: \"ICLR 2026\"\n    year: 2025\n    arxiv_id: \"2509.22601\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Curriculum-based self-imitation for sparse-reward agent tasks.\n      Up to +16.1% on ALFWorld over GRPO. Self-imitation curriculum could augment B-IAVR training.\n\n  - id: wei2025webagent-r1\n    title: \"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn RL\"\n    authors: \"Wei et al.\"\n    venue: \"EMNLP 2025\"\n    year: 2025\n    arxiv_id: \"2505.16421\"\n    category: background\n    role: background\n    relevance_note: >\n      Extends GRPO to multi-turn (M-GRPO) with dynamic context compression.\n      Qwen-2.5-3B: 6.1% to 33.9% on WebArena-Lite. M-GRPO multi-turn extension relevant to B-IAVR.\n\n  - id: dapo2025\n    title: \"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\"\n    authors: \"Yu et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2503.14476\"\n    category: method-component\n    role: background\n    relevance_note: >\n      RL training stabilization techniques (Clip-Higher, Dynamic Sampling).\n      Applicable to B-IAVR's RL training to prevent entropy collapse.\n\n  - id: digiRL2024\n    title: \"DigiRL: Training In-The-Wild Device-Control Agents with Autonomous RL\"\n    authors: \"Bai et al.\"\n    venue: \"NeurIPS 2024\"\n    year: 2024\n    arxiv_id: \"2406.11896\"\n    category: background\n    role: background\n    relevance_note: >\n      Online RL for device control agents. Demonstrates online RL viability for interactive agents.\n      49.5% absolute improvement over SFT. Parallel approach to B-IAVR in text-based setting.\n\n  - id: li2025sorl\n    title: \"SORL: Stabilizing Off-Policy RL for Long-Horizon Agent Training\"\n    authors: \"Li et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2511.20718\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Turn-level importance sampling + clipping-triggered normalization for stable multi-turn agent RL.\n      Directly applicable to B-IAVR's multi-turn ALFWorld training stability.\n\n  - id: agentic-rl-survey-2025\n    title: \"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey\"\n    authors: \"Zhang et al.\"\n    venue: \"TMLR 2026\"\n    year: 2025\n    arxiv_id: \"2509.02547\"\n    category: background\n    role: background\n    relevance_note: >\n      Comprehensive survey formalizing agentic RL. Contextualizes B-IAVR as training agents\n      to make meta-decisions (when to verify) via RL within the POMDP framework.\n\n  - id: skillmaster2026\n    title: \"SkillMaster: Toward Autonomous Skill Mastery in LLM Agents\"\n    authors: \"Yang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.08693\"\n    category: method-component\n    role: background\n    relevance_note: >\n      DualAdv-GRPO: separately estimates advantages for task-solving and skill-editing decisions.\n      +8.8% on ALFWorld, +9.3% on WebShop. DualAdv structure could inform B-IAVR's\n      separation of action and verification advantages.\n\n  - id: t2po2026\n    title: \"T2PO: Uncertainty-Guided Exploration Control for Stable Multi-Turn Agentic RL\"\n    authors: \"Wang et al.\"\n    venue: \"ICML 2026 Spotlight\"\n    year: 2026\n    arxiv_id: \"2605.02178\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Token- and turn-level uncertainty monitoring for stable multi-turn agent RL.\n      Triggers thinking intervention when marginal uncertainty change drops below threshold.\n      Evaluated on ALFWorld and WebShop. Conceptually related: uncertainty-based trigger vs\n      B-IAVR's action-change trigger, but T2PO targets training stability, not deployment verification.\n\n  - id: gvpo2026\n    title: \"GVPO: Group Verification-based Policy Optimization for Interactive Coding Agents\"\n    authors: \"Dai et al.\"\n    venue: \"ICLR 2026\"\n    year: 2026\n    arxiv_id: null  # no arXiv preprint; OpenReview ID: RY47Tq0VsV\n    category: method-component\n    role: background\n    relevance_note: >\n      Advantage shaping with outcome-verifiable + process-verifiable signals.\n      +12.7% over o1 on AppWorld. Integrates intermediate execution feedback as step-level\n      verification signals. Different focus: uses verification for credit assignment during\n      training; B-IAVR learns when to invoke verification at deployment.\n\n  - id: agentv-rl2026\n    title: \"AgentV-RL: Scaling Reward Modeling with Agentic Verifier\"\n    authors: \"Zhang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2604.16004\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Bidirectional forward/backward agentic verifier for reward modeling in RL.\n      4B model surpasses SOTA ORMs by 25.2%. Addresses verification quality in reward modeling;\n      B-IAVR addresses verification timing in agent deployment. Complementary.\n\n  - id: pa-moe2026\n    title: \"PA-MoE: Phase-Aware Mixture of Experts for Agentic Reinforcement Learning\"\n    authors: \"Li et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2602.17038\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      [NEW-0516] Lightweight phase router learns latent phase boundaries from RL objective.\n      PA-MoE+GiGPO with Qwen2.5-1.5B achieves 93.8% on ALFWorld (+7.7 over GiGPO 86.1%).\n      1.5B outperforms vanilla 7B GiGPO (90.2%). New small-model SOTA on ALFWorld.\n      Orthogonal architecture innovation; important baseline to cite.\n\n  - id: sdar2026\n    title: \"SDAR: Self-Distilled Agentic Reinforcement Learning\"\n    authors: \"ZJU-REAL\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.15155\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] On-policy self-distillation as gated auxiliary objective during RL training.\n      Token-level gate decides supervision intensity. +9.4% over GRPO on ALFWorld.\n      Complementary: SDAR improves RL training; B-IAVR learns verification policy.\n\n  - id: hcapo2026\n    title: \"HCAPO: Hindsight Credit Assignment for Long-Horizon LLM Agents\"\n    authors: \"Tan et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.08754\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] LLM-as-critic refines step-level Q-values via hindsight reasoning +\n      multi-scale advantage for critical decision states.\n      +13.8% on ALFWorld, +7.7% on WebShop over GRPO (Qwen2.5-7B).\n      Could improve B-IAVR's reward signal for verification decision steps.\n\n  - id: act2026\n    title: \"ACT: Agentic Critical Training\"\n    authors: \"Unknown\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.08706\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Trains agents to judge action quality via critical comparison reward.\n      +5.07 over IL, +4.62 over RL. Different axis: ACT improves reflection quality;\n      B-IAVR decides when to reflect.\n\n  - id: rwml2026\n    title: \"RWML: Reinforcement World Model Learning for LLM-based Agents\"\n    authors: \"Yu et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2602.05842\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Self-supervised world model via sim-to-real gap rewards in embedding space.\n      +6.9 on ALFWorld over task-success-only RL. Matches expert-data training.\n      Orthogonal: improves internal world model; B-IAVR adds selective verification.\n\n  - id: skill0-2026\n    title: \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\"\n    authors: \"ZJU-REAL\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2604.02268\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Training-time curriculum progressively withdraws skill context until zero-shot.\n      +9.7% on ALFWorld over GRPO, <0.5k tokens per step.\n      Complementary: SKILL0 internalizes skills; B-IAVR adds selective verification.\n\n  - id: fission-grpo2026\n    title: \"Fission-GRPO: Robust Tool Use via Learning to Recover from Execution Errors\"\n    authors: \"Zhang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2601.15625\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Fissions failed trajectories into recovery training instances.\n      +4% overall accuracy on BFCL v4 Multi-Turn over GRPO.\n      Related: error recovery after failure vs B-IAVR's proactive verification.\n\n  - id: selfbudgeter2026\n    title: \"SelfBudgeter: Adaptive Token Allocation for Efficient LLM Reasoning\"\n    authors: \"Li et al.\"\n    venue: \"ICLR 2026 (under review)\"\n    year: 2025\n    arxiv_id: \"2505.11274\"\n    category: background\n    role: background\n    relevance_note: >\n      [NEW-0516] Self-estimated token budgets + budget-guided GRPO. 61% token reduction.\n      Parallel concept: SelfBudgeter allocates computation budget;\n      B-IAVR makes binary verify/not-verify decision. Both use RL for adaptive compute.\n\n  - id: cove2026\n    title: \"CoVe: Training Interactive Tool-Use Agents via Constraint-Guided Verification\"\n    authors: \"Chen et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.01940\"\n    category: background\n    role: background\n    relevance_note: >\n      [NEW-0516] Task constraints guide trajectory generation and serve as deterministic verifiers.\n      Different: CoVe uses verification for data synthesis; B-IAVR learns when to verify at inference.\n\n  # ============================================================\n  # Direction 3: Selective Verification / Adaptive Computation\n  # ============================================================\n\n  - id: wan2025derailer-rerailer\n    title: \"Derailer-Rerailer: Adaptive Verification for Efficient and Reliable LM Reasoning\"\n    authors: \"Wan et al.\"\n    venue: \"ACL 2025 Findings\"\n    year: 2025\n    arxiv_id: \"2408.13940\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Most directly related competitor. Both do selective verification with binary trigger.\n      Key difference: operates on reasoning chains (single-turn); B-IAVR on agent trajectories (multi-turn).\n      Uses heuristic instability signal; B-IAVR uses RL-trained action-change signal.\n      8-11% accuracy gain, 2-3x efficiency over uniform verification.\n\n  - id: sherlock2025\n    title: \"Sherlock: Reliable and Efficient Agentic Workflow Execution\"\n    authors: \"Microsoft\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2511.00330\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Selective verification for agentic workflows via offline counterfactual analysis + speculative execution.\n      Different scope: workflow DAG level (offline); B-IAVR is step-level (online RL).\n      18.3% accuracy gain, 26% cost reduction, 48.7% latency reduction.\n\n  - id: singhi2025when-to-verify\n    title: \"When To Solve, When To Verify: Compute-Optimal Verification for LLM Reasoning\"\n    authors: \"Singhi et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2504.01005\"\n    category: background\n    role: background\n    relevance_note: >\n      Derives inference scaling laws for solve-vs-verify tradeoff.\n      Finding that over-verification is suboptimal directly supports B-IAVR's selective approach.\n      B-IAVR learns this allocation via RL rather than analytically.\n\n  - id: yang2026ares\n    title: \"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\"\n    authors: \"Yang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.07915\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Closest competitor in agent domain. Both train learned per-step compute allocation.\n      ARES uses SFT-initialized router further refined via GRPO with outcome + token efficiency reward;\n      B-IAVR trains binary verify/not-verify via RL with action-change signal.\n      Key differences: (1) reward signal — ARES optimizes token efficiency, B-IAVR uses action-change\n      as verification trigger; (2) data requirement — ARES needs difficulty-annotated training data\n      to bootstrap the router, B-IAVR learns from environment interaction alone.\n      Reduces reasoning tokens by up to 52.7%.\n\n  - id: tu2025autothink\n    title: \"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\"\n    authors: \"Tu et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    arxiv_id: \"2505.10832\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Analogous idea in reasoning domain: RL-trained adaptive computation trigger.\n      Operates on single-turn reasoning; B-IAVR on multi-turn agent trajectories.\n      +6.4% accuracy, -52% tokens on DeepSeek-R1-Distill-Qwen-1.5B.\n\n  - id: du2025thinkless\n    title: \"Thinkless: LLM Learns When to Think\"\n    authors: \"Fang et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    arxiv_id: \"2505.13379\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      RL-trained control token to decide when to invoke extended thinking.\n      Methodologically closest to B-IAVR in reasoning domain; B-IAVR applies to interactive agent trajectories.\n\n  - id: wang2025efficient-agents\n    title: \"Efficient Agents: Building Effective Agents While Reducing Cost\"\n    authors: \"Wang et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2508.02694\"\n    category: background\n    role: background\n    relevance_note: >\n      First systematic study of agent efficiency-effectiveness tradeoff.\n      Framework-level cost reduction; B-IAVR addresses cost at verification-policy level.\n      Retains 96.7% performance with 28.4% cost-of-pass improvement.\n\n  - id: venktesh2025trust-but-verify\n    title: \"Trust but Verify! A Survey on Verification Design for Test-time Scaling\"\n    authors: \"Venktesh et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2508.16665\"\n    category: background\n    role: background\n    relevance_note: >\n      Survey of verification approaches for test-time compute scaling.\n      Identifies verification timing as key open problem. B-IAVR provides concrete solution for agent setting.\n\n  - id: agent-omit2026\n    title: \"Agent-Omit: Training Efficient LLM Agents for Adaptive Thought and Observation Omission via Agentic RL\"\n    authors: \"Ning et al.\"\n    venue: \"ICML 2026\"\n    year: 2026\n    arxiv_id: \"2602.04284\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      RL-trained policy for adaptive omission of redundant thoughts and observations.\n      Agent-Omit-8B matches frontier agents with best efficiency tradeoff on 5 benchmarks.\n      Both use RL to learn cost-efficient agent behavior. Key difference: Agent-Omit subtracts\n      (omits unnecessary context); B-IAVR selectively adds (verification steps).\n      Opposite but complementary approaches to cost-efficiency. Potentially combinable.\n\n  - id: ava2026\n    title: \"Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints\"\n    authors: \"Patel\"\n    venue: \"TMLR 2026\"\n    year: 2026\n    arxiv_id: null  # no arXiv preprint; OpenReview ID: JMDCMf7mlF\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Dynamic compute allocation across search, sampling, and verification under budget.\n      Uses calibrated uncertainty + value-of-information for selective verification cascades.\n      Evaluated on GSM8K/MATH/HotpotQA/HumanEval (reasoning), not interactive agents.\n      Key difference: analytical/heuristic allocation vs B-IAVR's RL-learned policy;\n      single-turn reasoning vs multi-turn agent trajectories.\n\n  - id: cast2026\n    title: \"CAST: Case-Based Calibration of Adaptive Reasoning and Execution for LLM Tool Use\"\n    authors: \"Pang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.15041\"\n    category: background\n    role: background\n    relevance_note: >\n      Historical execution cases calibrate reasoning depth for tool use.\n      Reduces reasoning length 26% with +5.85% accuracy on BFCLv2/ToolBench.\n      Related: adaptive reasoning depth; different: case-based calibration vs RL-learned policy.\n\n  - id: marginal-token-allocators2026\n    title: \"Agentic AI Systems Should Be Designed as Marginal Token Allocators\"\n    authors: \"Zhu\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.01214\"\n    category: background\n    role: background\n    relevance_note: >\n      Position paper framing agent cost-efficiency as marginal token allocation economics.\n      Identifies under-verification as systematic failure mode. Supports B-IAVR's framing\n      that verification decisions should reflect marginal cost-benefit analysis.\n\n  - id: argos2025\n    title: \"Argos: Multimodal RL with Adaptive Verifier for AI Agents\"\n    authors: \"Tan et al.\"\n    venue: \"arXiv (revised April 2026)\"\n    year: 2025\n    arxiv_id: \"2512.03438\"\n    category: background\n    role: background\n    relevance_note: >\n      Agentic verifier that adaptively selects scoring functions for multimodal RL training.\n      Different domain (multimodal/robotics). The adaptive verifier selection concept is\n      complementary: Argos adapts how to verify; B-IAVR adapts when to verify.\n\n  # ============================================================\n  # Direction 4: ALFWorld / Interactive Environment Benchmarks\n  # ============================================================\n\n  - id: kim2025reflact\n    title: \"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection\"\n    authors: \"Kim et al.\"\n    venue: \"EMNLP 2025\"\n    year: 2025\n    arxiv_id: \"2505.15182\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Prompting SOTA on ALFWorld at 93.3%. Replaces ReAct's next-action thinking with state-goal reflection.\n      B-IAVR addresses different axis (cost-efficiency) since ALFWorld accuracy is near saturation.\n\n  - id: choudhury2025agentprm\n    title: \"Process Reward Models for LLM Agents: Practical Framework and Directions\"\n    authors: \"Choudhury\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2502.10325\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Monte Carlo rollout-based process reward for agent training. 3B models achieve 91% on ALFWorld.\n      Validates RL training approach; AgentPRM could serve as reward model for B-IAVR.\n\n  - id: xi2025agentprm\n    title: \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\"\n    authors: \"Xi et al.\"\n    venue: \"ACM Web Conference 2026\"\n    year: 2025\n    arxiv_id: \"2511.08325\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Independent work from Choudhury et al., using TD-based estimation with GAE for scalable\n      PRM data labeling. 8x more compute-efficient than baselines with robust test-time scaling.\n      Different approach: Choudhury uses MC rollouts; Xi uses TD+GAE for step-wise promise and progress.\n\n  - id: xiang2024retrospex\n    title: \"Retrospex: Language Agent Meets Offline RL Critic\"\n    authors: \"Xiang et al.\"\n    venue: \"EMNLP 2024\"\n    year: 2024\n    arxiv_id: \"2505.11807\"\n    category: background\n    role: background\n    relevance_note: >\n      Offline RL Critic augments LLM agent action selection via dynamic rescoring.\n      Similar architecture could inform B-IAVR's verification value estimation.\n\n  - id: cfgm2025\n    title: \"CFGM: Coarse-to-Fine Grounded Memory for LLM Agent Planning\"\n    authors: \"Yang et al.\"\n    venue: \"EMNLP 2025\"\n    year: 2025\n    arxiv_id: \"2508.15305\"\n    category: background\n    role: background\n    relevance_note: >\n      Memory-augmented agent planning with episodic grounding.\n      ALFWorld +10.40%, WebShop +20%. Complementary to B-IAVR's verification approach.\n\n  - id: respact2024\n    title: \"ReSpAct: Harmonizing Reasoning, Speaking, and Acting\"\n    authors: \"Dongre et al.\"\n    venue: \"arXiv\"\n    year: 2024\n    arxiv_id: \"2411.00927\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Integrates dialogue/reasoning/acting. +6% over ReAct on ALFWorld.\n      Reduces invalid actions from 13% to 3%; B-IAVR's verification achieves error prevention differently.\n",
+                "numLines": 627,
+                "startLine": 1,
+                "totalLines": 627
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me search for the authors of all three papers in parallel.",
+              "signature": "Ev0BClkIDRgCKkCn/lMmmqKc/2y5uCjvFZ0pXZd9KxrCi4wBBXE3K5U81ZqOVQrGcsoyYdX2dQNr0ozIf+myQpBWiFaOEShB7iwyMg9jbGF1ZGUtb3B1cy00LTY4ABIM1mj8lGUA78Z4O6dRGgxPHCmWT5WOoY1FGIoiMEhg/tm0ZsG6+Acr1vN9D3tbBQ2ACilz8tIJmuIKbdmqiy5m/zGCXYNIZVP+6rU0fipShR30QxM17+fm1+GPGtF+bf5iglydIL1HspkNtIZaQfE4nsZIhUAW8XT39DtarMhTOkmdKvyKHKqEsXyKBmRezSF5VBhLAMcGKMD4HdROIdgrsxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "582c3ecb-d189-4757-a67d-e4ce7b5ed920",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019jJCZbFwJixyjsU4cHD7iR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9944,
+                "cache_read_input_tokens": 23375,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9944
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U3wrAzMNGR5eqJuXeK4Mhw",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2605.15155 SDAR Self-Distilled Agentic Reinforcement Learning authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "9f478884-5b02-409d-8318-b3a54822afd6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019jJCZbFwJixyjsU4cHD7iR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9944,
+                "cache_read_input_tokens": 23375,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9944
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LkYTNx3qMW9BTdVY7rfbAi",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2604.02268 SKILL0 In-Context Agentic Reinforcement Learning authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "89fa2d09-85db-4736-8e1d-01d5e8668db6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019jJCZbFwJixyjsU4cHD7iR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9944,
+                "cache_read_input_tokens": 23375,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9944
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NuDzjiCbrJw2c72hQsiSv9",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2603.08706 ACT Agentic Critical Training authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "3e5042fe-00dd-490f-b25a-79d49f8971d0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019jJCZbFwJixyjsU4cHD7iR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9944,
+                "cache_read_input_tokens": 23375,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9944
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T00:19:06.438Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U3wrAzMNGR5eqJuXeK4Mhw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2605.15155 SDAR Self-Distilled Agentic Reinforcement Learning authors\"\n\nLinks: [{\"title\":\"[2605.15155] Self-Distilled Agentic Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2605.15155\"},{\"title\":\"Paper page - Self-Distilled Agentic Reinforcement Learning\",\"url\":\"https://huggingface.co/papers/2605.15155\"},{\"title\":\"Self-Distilled Agentic Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2605.15155\"},{\"title\":\"GitHub - ZJU-REAL/SDAR: Official code for \\\"Self-Distilled Agentic Reinforcement Learning\\\" · GitHub\",\"url\":\"https://github.com/ZJU-REAL/SDAR\"},{\"title\":\"Explore | alphaXiv\",\"url\":\"https://www.alphaxiv.org/?categories=%5B%22computer-science%22%5D\"},{\"title\":\"SDPO: Reinforcement Learning via Self-Distillation\",\"url\":\"https://self-distillation.github.io/SDPO\"},{\"title\":\"[2604.10029] Self-Distilled Reinforcement Learning for Co-Evolving Agentic Recommender Systems\",\"url\":\"https://arxiv.org/abs/2604.10029\"},{\"title\":\"Ola Lindeberg's Post\",\"url\":\"https://www.linkedin.com/posts/olalindeberg_amazed-by-how-much-llms-can-benefit-causal-activity-7392092905173303296-tMU3\"},{\"title\":\"Reinforcement Learning via Self-Distillation\",\"url\":\"https://podcasts.apple.com/us/podcast/reinforcement-learning-via-self-distillation/id1835878324?i=1000748567886&l=zh-Hans-CN\"},{\"title\":\"Reinforcement Learning via Self-Distillation\",\"url\":\"https://arxiv.org/html/2601.20802\"}]\n\nBased on the search results, the authors of the arXiv paper 2605.15155 \"Self-Distilled Agentic Reinforcement Learning\" (SDAR) are: Zhengxi Lu, Zhiyuan Yao, Zhuowen Han, Zi-Han Wang, Jinyang Wu, Qi Gu, Xunliang Cai, Weiming Lu, Jun Xiao, Yueting Zhuang, and Yongliang Shen.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "bafea8ff-f568-44c5-8d10-b8f52d1555e9",
+            "tool_use_result": {
+              "query": "arXiv 2605.15155 SDAR Self-Distilled Agentic Reinforcement Learning authors",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01KWMZ8k63ZoKmqUwSDsHo32",
+                  "content": [
+                    {
+                      "title": "[2605.15155] Self-Distilled Agentic Reinforcement Learning",
+                      "url": "https://arxiv.org/abs/2605.15155"
+                    },
+                    {
+                      "title": "Paper page - Self-Distilled Agentic Reinforcement Learning",
+                      "url": "https://huggingface.co/papers/2605.15155"
+                    },
+                    {
+                      "title": "Self-Distilled Agentic Reinforcement Learning",
+                      "url": "https://arxiv.org/html/2605.15155"
+                    },
+                    {
+                      "title": "GitHub - ZJU-REAL/SDAR: Official code for \"Self-Distilled Agentic Reinforcement Learning\" · GitHub",
+                      "url": "https://github.com/ZJU-REAL/SDAR"
+                    },
+                    {
+                      "title": "Explore | alphaXiv",
+                      "url": "https://www.alphaxiv.org/?categories=%5B%22computer-science%22%5D"
+                    },
+                    {
+                      "title": "SDPO: Reinforcement Learning via Self-Distillation",
+                      "url": "https://self-distillation.github.io/SDPO"
+                    },
+                    {
+                      "title": "[2604.10029] Self-Distilled Reinforcement Learning for Co-Evolving Agentic Recommender Systems",
+                      "url": "https://arxiv.org/abs/2604.10029"
+                    },
+                    {
+                      "title": "Ola Lindeberg's Post",
+                      "url": "https://www.linkedin.com/posts/olalindeberg_amazed-by-how-much-llms-can-benefit-causal-activity-7392092905173303296-tMU3"
+                    },
+                    {
+                      "title": "Reinforcement Learning via Self-Distillation",
+                      "url": "https://podcasts.apple.com/us/podcast/reinforcement-learning-via-self-distillation/id1835878324?i=1000748567886&l=zh-Hans-CN"
+                    },
+                    {
+                      "title": "Reinforcement Learning via Self-Distillation",
+                      "url": "https://arxiv.org/html/2601.20802"
+                    }
+                  ]
+                },
+                "Based on the search results, the authors of the arXiv paper 2605.15155 \"Self-Distilled Agentic Reinforcement Learning\" (SDAR) are: Zhengxi Lu, Zhiyuan Yao, Zhuowen Han, Zi-Han Wang, Jinyang Wu, Qi Gu, Xunliang Cai, Weiming Lu, Jun Xiao, Yueting Zhuang, and Yongliang Shen."
+              ],
+              "durationSeconds": 3.9747007389999998
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T00:19:07.147Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NuDzjiCbrJw2c72hQsiSv9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2603.08706 ACT Agentic Critical Training authors\"\n\nLinks: [{\"title\":\"[2603.08706] Agentic Critical Training\",\"url\":\"https://arxiv.org/abs/2603.08706\"},{\"title\":\"Agentic Critical Training\",\"url\":\"https://arxiv.org/pdf/2603.08706\"},{\"title\":\"[2603.08706v1] Agentic Critical Training\",\"url\":\"https://arxiv.org/abs/2603.08706v1\"},{\"title\":\"Agentic Critical Training\",\"url\":\"https://attention-is-all-i-need.github.io/ACT/\"},{\"title\":\"[2603.03205v1] Learning When to Act or Refuse: Guarding Agentic Reasoning Models for Safe Multi-Step Tool Use\",\"url\":\"https://arxiv.org/abs/2603.03205v1\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2603.04746v1\"},{\"title\":\"[2603.03205] Learning When to Act or Refuse: Guarding Agentic Reasoning Models for Safe Multi-Step Tool Use\",\"url\":\"https://arxiv.org/abs/2603.03205\"},{\"title\":\"[2603.18197] Access Controlled Website Interaction for Agentic AI with Delegated Critical Tasks\",\"url\":\"https://arxiv.org/abs/2603.18197\"},{\"title\":\"Responsible Agentic Reasoning and AI Agents: A Critical Survey\",\"url\":\"https://www.techrxiv.org/users/574774/articles/1329333/master/file/data/Responsible_reasoning_survey%20(5)/Responsible_reasoning_survey%20(5).pdf\"},{\"title\":\"[2603.15914] The Agentic Researcher: A Practical Guide to AI-Assisted Research in Mathematics and Machine Learning\",\"url\":\"https://arxiv.org/abs/2603.15914\"}]\n\nBased on the search results, the authors of arXiv paper 2603.08706 \"Agentic Critical Training\" are Weize Liu, Minghui Liu, Sy-Tuyen Ho, Souradip Chakraborty, Xiyao Wang, and Furong Huang.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "b75bb36a-fc1c-4cea-8d7b-c1ea72bdb2a6",
+            "tool_use_result": {
+              "query": "arXiv 2603.08706 ACT Agentic Critical Training authors",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01BEdGqEhaezipwobAK4U2tM",
+                  "content": [
+                    {
+                      "title": "[2603.08706] Agentic Critical Training",
+                      "url": "https://arxiv.org/abs/2603.08706"
+                    },
+                    {
+                      "title": "Agentic Critical Training",
+                      "url": "https://arxiv.org/pdf/2603.08706"
+                    },
+                    {
+                      "title": "[2603.08706v1] Agentic Critical Training",
+                      "url": "https://arxiv.org/abs/2603.08706v1"
+                    },
+                    {
+                      "title": "Agentic Critical Training",
+                      "url": "https://attention-is-all-i-need.github.io/ACT/"
+                    },
+                    {
+                      "title": "[2603.03205v1] Learning When to Act or Refuse: Guarding Agentic Reasoning Models for Safe Multi-Step Tool Use",
+                      "url": "https://arxiv.org/abs/2603.03205v1"
+                    },
+                    {
+                      "title": "1 Introduction",
+                      "url": "https://arxiv.org/html/2603.04746v1"
+                    },
+                    {
+                      "title": "[2603.03205] Learning When to Act or Refuse: Guarding Agentic Reasoning Models for Safe Multi-Step Tool Use",
+                      "url": "https://arxiv.org/abs/2603.03205"
+                    },
+                    {
+                      "title": "[2603.18197] Access Controlled Website Interaction for Agentic AI with Delegated Critical Tasks",
+                      "url": "https://arxiv.org/abs/2603.18197"
+                    },
+                    {
+                      "title": "Responsible Agentic Reasoning and AI Agents: A Critical Survey",
+                      "url": "https://www.techrxiv.org/users/574774/articles/1329333/master/file/data/Responsible_reasoning_survey%20(5)/Responsible_reasoning_survey%20(5).pdf"
+                    },
+                    {
+                      "title": "[2603.15914] The Agentic Researcher: A Practical Guide to AI-Assisted Research in Mathematics and Machine Learning",
+                      "url": "https://arxiv.org/abs/2603.15914"
+                    }
+                  ]
+                },
+                "Based on the search results, the authors of arXiv paper 2603.08706 \"Agentic Critical Training\" are Weize Liu, Minghui Liu, Sy-Tuyen Ho, Souradip Chakraborty, Xiyao Wang, and Furong Huang."
+              ],
+              "durationSeconds": 3.2212884560000004
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T00:19:07.919Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LkYTNx3qMW9BTdVY7rfbAi",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2604.02268 SKILL0 In-Context Agentic Reinforcement Learning authors\"\n\nLinks: [{\"title\":\"[2604.02268] SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\",\"url\":\"https://arxiv.org/abs/2604.02268\"},{\"title\":\"Skill0: In-Context Agentic Reinforcement Learning for Skill Internalization\",\"url\":\"https://arxiv.org/html/2604.02268v1\"},{\"title\":\"(PDF) SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\",\"url\":\"https://www.researchgate.net/publication/403467632_SKILL0_In-Context_Agentic_Reinforcement_Learning_for_Skill_Internalization\"},{\"title\":\"GitHub - ZJU-REAL/SkillZero: Official code for \\\"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\\\" · GitHub\",\"url\":\"https://github.com/ZJU-REAL/SkillZero\"},{\"title\":\"Paper page - SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\",\"url\":\"https://huggingface.co/papers/2604.02268\"},{\"title\":\"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization | alphaXiv\",\"url\":\"https://www.alphaxiv.org/resources/2604.02268\"},{\"title\":\"[Paper Note] SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization, Zhengxi Lu+, arXiv'26, 2026.04 · AkihikoWatanabe/paper_notes@5ea6144\",\"url\":\"https://github.com/AkihikoWatanabe/paper_notes/actions/runs/24027506673\"},{\"title\":\"alphaXiv on X: \\\"“SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization” Most agent systems use skills like cheat sheets. It retrieves them at runtime, pastes them into the prompt, and hopes the model follows them. This paper suggests why not train the model with those https://t.co/aig1e8d3ZJ\\\" / X\",\"url\":\"https://x.com/askalphaxiv/status/2041420021788705207\"},{\"title\":\"Rethinking Agentic Reinforcement Learning In Large Language Models\",\"url\":\"https://arxiv.org/html/2604.27859v1\"},{\"title\":\"A Brief Overview: Agentic Reinforcement Learning In Large Language Models\",\"url\":\"https://arxiv.org/html/2604.27859\"}]\n\nBased on the search results, the authors of arXiv 2604.02268 \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\" are Zhengxi Lu, Zhiyuan Yao, Jinyang Wu, Chengcheng Han, Qi Gu, Xunliang Cai, Weiming Lu, Jun Xiao, Yueting Zhuang, and Yongliang Shen.\n\nThe paper was submitted on April 2, 2026, and the authors are affiliated with Zhejiang University, Meituan, and Tsinghua University.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "ae649215-44b5-4343-9963-45e3a30f4010",
+            "tool_use_result": {
+              "query": "arXiv 2604.02268 SKILL0 In-Context Agentic Reinforcement Learning authors",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01FnyoTn2Y3dnJEyA7rLFiTb",
+                  "content": [
+                    {
+                      "title": "[2604.02268] SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization",
+                      "url": "https://arxiv.org/abs/2604.02268"
+                    },
+                    {
+                      "title": "Skill0: In-Context Agentic Reinforcement Learning for Skill Internalization",
+                      "url": "https://arxiv.org/html/2604.02268v1"
+                    },
+                    {
+                      "title": "(PDF) SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization",
+                      "url": "https://www.researchgate.net/publication/403467632_SKILL0_In-Context_Agentic_Reinforcement_Learning_for_Skill_Internalization"
+                    },
+                    {
+                      "title": "GitHub - ZJU-REAL/SkillZero: Official code for \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\" · GitHub",
+                      "url": "https://github.com/ZJU-REAL/SkillZero"
+                    },
+                    {
+                      "title": "Paper page - SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization",
+                      "url": "https://huggingface.co/papers/2604.02268"
+                    },
+                    {
+                      "title": "SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization | alphaXiv",
+                      "url": "https://www.alphaxiv.org/resources/2604.02268"
+                    },
+                    {
+                      "title": "[Paper Note] SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization, Zhengxi Lu+, arXiv'26, 2026.04 · AkihikoWatanabe/paper_notes@5ea6144",
+                      "url": "https://github.com/AkihikoWatanabe/paper_notes/actions/runs/24027506673"
+                    },
+                    {
+                      "title": "alphaXiv on X: \"“SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization” Most agent systems use skills like cheat sheets. It retrieves them at runtime, pastes them into the prompt, and hopes the model follows them. This paper suggests why not train the model with those https://t.co/aig1e8d3ZJ\" / X",
+                      "url": "https://x.com/askalphaxiv/status/2041420021788705207"
+                    },
+                    {
+                      "title": "Rethinking Agentic Reinforcement Learning In Large Language Models",
+                      "url": "https://arxiv.org/html/2604.27859v1"
+                    },
+                    {
+                      "title": "A Brief Overview: Agentic Reinforcement Learning In Large Language Models",
+                      "url": "https://arxiv.org/html/2604.27859"
+                    }
+                  ]
+                },
+                "Based on the search results, the authors of arXiv 2604.02268 \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\" are Zhengxi Lu, Zhiyuan Yao, Jinyang Wu, Chengcheng Han, Qi Gu, Xunliang Cai, Weiming Lu, Jun Xiao, Yueting Zhuang, and Yongliang Shen.\n\nThe paper was submitted on April 2, 2026, and the authors are affiliated with Zhejiang University, Meituan, and Tsinghua University."
+              ],
+              "durationSeconds": 4.103308103000002
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三篇论文作者已确认，执行修改。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "a66aada1-85ef-4234-afc5-eb7d1330169c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BLm1qhnMn687MECngTBhS6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 594,
+                "cache_creation_input_tokens": 1749,
+                "cache_read_input_tokens": 33319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1749
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XrsJwxsAFRDkYvrbb3e4Fp",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml",
+                "old_string": "  - id: sdar2026\n    title: \"SDAR: Self-Distilled Agentic Reinforcement Learning\"\n    authors: \"ZJU-REAL\"",
+                "new_string": "  - id: sdar2026\n    title: \"SDAR: Self-Distilled Agentic Reinforcement Learning\"\n    authors: \"Lu et al.\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "f82ef6b2-f3b6-4088-9857-a737f5499a6b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BLm1qhnMn687MECngTBhS6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 594,
+                "cache_creation_input_tokens": 1749,
+                "cache_read_input_tokens": 33319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1749
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T00:19:13.403Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XrsJwxsAFRDkYvrbb3e4Fp",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "f3571cda-1578-4a2f-909e-d88505094f61",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml",
+              "oldString": "  - id: sdar2026\n    title: \"SDAR: Self-Distilled Agentic Reinforcement Learning\"\n    authors: \"ZJU-REAL\"",
+              "newString": "  - id: sdar2026\n    title: \"SDAR: Self-Distilled Agentic Reinforcement Learning\"\n    authors: \"Lu et al.\"",
+              "originalFile": "# B-IAVR Literature Map\n# Updated: 2026-05-16\n# Categories: direct-competitor, method-component, background, evaluation\n# Roles: predecessor, competitor, baseline, evaluation, background\n\npapers:\n\n  # ============================================================\n  # Direction 1: Self-Verification / Self-Correction in LLM Agents\n  # ============================================================\n\n  - id: kamoi2024self-correction-survey\n    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n    authors: \"Kamoi et al.\"\n    venue: \"arXiv\"\n    year: 2024\n    arxiv_id: \"2406.01297\"\n    category: background\n    role: background\n    relevance_note: >\n      Foundational survey establishing that pure intrinsic self-correction is unreliable.\n      Validates B-IAVR's use of grounded verification (environment re-observation) over prompted self-feedback.\n\n  - id: tie2025correctbench\n    title: \"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs\"\n    authors: \"Tie et al.\"\n    venue: \"NeurIPS 2025 Datasets & Benchmarks\"\n    year: 2025\n    arxiv_id: \"2510.16062\"\n    category: background\n    role: background\n    relevance_note: >\n      Benchmark showing self-correction has diminishing returns when applied uniformly.\n      Supports B-IAVR's selective verification design over blanket correction.\n\n  - id: self-verification-dilemma-2026\n    title: \"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning\"\n    authors: \"Long et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2602.03485\"\n    category: background\n    role: background\n    relevance_note: >\n      Empirically validates that >90% of self-verification is confirmatory, ~2% corrective.\n      Directly supports B-IAVR's core thesis that verification should be selective.\n      Their experience-pool approach is complementary to B-IAVR's action-change signal.\n\n  - id: zhang2025incentivize-self-verify\n    title: \"Incentivizing LLMs to Self-Verify Their Answers\"\n    authors: \"Zhang et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2506.01369\"\n    category: background\n    role: background\n    relevance_note: >\n      Unifies answer generation and verification via single RL training process.\n      Parallel to B-IAVR: they train verification into generation; B-IAVR trains when to trigger separate verification.\n\n  - id: mar2025\n    title: \"MAR: Multi-Agent Reflexion Improves Reasoning Abilities in LLMs\"\n    authors: \"Ozer et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2512.20845\"\n    category: background\n    role: background\n    relevance_note: >\n      Multi-agent self-correction with diverse critic personas.\n      Complementary: MAR improves correction quality; B-IAVR decides when to trigger correction.\n\n  - id: ssr2025\n    title: \"SSR: Socratic Self-Refine for Large Language Model Reasoning\"\n    authors: \"Shi et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2511.10621\"\n    category: background\n    role: background\n    relevance_note: >\n      Structured Socratic questioning for self-refinement.\n      Complementary: improves correction step quality; B-IAVR focuses on when to invoke correction.\n\n  - id: verifiagent2025\n    title: \"VerifiAgent: a Unified Verification Agent in Language Model Reasoning\"\n    authors: \"Han et al.\"\n    venue: \"EMNLP 2025 Findings\"\n    year: 2025\n    arxiv_id: \"2504.00406\"\n    category: background\n    role: background\n    relevance_note: >\n      Unified verification agent with meta-verification + tool-based adaptive verification.\n      Focuses on how to verify (tool selection); B-IAVR focuses on when to verify (policy learning).\n      Complementary: VerifiAgent's verification quality could enhance B-IAVR's verification step.\n\n  # ============================================================\n  # Direction 2: Agent RL Training\n  # ============================================================\n\n  - id: feng2025gigpo\n    title: \"GiGPO: Group-in-Group Policy Optimization for LLM Agent Training\"\n    authors: \"Feng et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    arxiv_id: \"2505.10978\"\n    category: method-component\n    role: predecessor\n    relevance_note: >\n      Core training algorithm for B-IAVR. Nested group structure provides step-level credit\n      assignment without learned critic. >12% over GRPO on ALFWorld, >9% on WebShop.\n\n  - id: selfguide2026\n    title: \"Co-Evolution of Policy and Internal Reward for Language Agents (Self-Guide)\"\n    authors: \"Wang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2604.03098\"\n    category: method-component\n    role: predecessor\n    relevance_note: >\n      Direct predecessor. B-IAVR extends Self-Guide's co-evolving internal reward.\n      The self-guidance signal is the foundation for action-change detection triggering verification.\n      8% improvement over env-reward-only on ALFWorld with Qwen3-1.7B/4B.\n\n  - id: spear2025\n    title: \"Learn the Ropes, Then Trust the Wins: Self-imitation with Progressive Exploration for Agentic Reinforcement Learning\"\n    authors: \"Qin et al.\"\n    venue: \"ICLR 2026\"\n    year: 2025\n    arxiv_id: \"2509.22601\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Curriculum-based self-imitation for sparse-reward agent tasks.\n      Up to +16.1% on ALFWorld over GRPO. Self-imitation curriculum could augment B-IAVR training.\n\n  - id: wei2025webagent-r1\n    title: \"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn RL\"\n    authors: \"Wei et al.\"\n    venue: \"EMNLP 2025\"\n    year: 2025\n    arxiv_id: \"2505.16421\"\n    category: background\n    role: background\n    relevance_note: >\n      Extends GRPO to multi-turn (M-GRPO) with dynamic context compression.\n      Qwen-2.5-3B: 6.1% to 33.9% on WebArena-Lite. M-GRPO multi-turn extension relevant to B-IAVR.\n\n  - id: dapo2025\n    title: \"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\"\n    authors: \"Yu et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2503.14476\"\n    category: method-component\n    role: background\n    relevance_note: >\n      RL training stabilization techniques (Clip-Higher, Dynamic Sampling).\n      Applicable to B-IAVR's RL training to prevent entropy collapse.\n\n  - id: digiRL2024\n    title: \"DigiRL: Training In-The-Wild Device-Control Agents with Autonomous RL\"\n    authors: \"Bai et al.\"\n    venue: \"NeurIPS 2024\"\n    year: 2024\n    arxiv_id: \"2406.11896\"\n    category: background\n    role: background\n    relevance_note: >\n      Online RL for device control agents. Demonstrates online RL viability for interactive agents.\n      49.5% absolute improvement over SFT. Parallel approach to B-IAVR in text-based setting.\n\n  - id: li2025sorl\n    title: \"SORL: Stabilizing Off-Policy RL for Long-Horizon Agent Training\"\n    authors: \"Li et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2511.20718\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Turn-level importance sampling + clipping-triggered normalization for stable multi-turn agent RL.\n      Directly applicable to B-IAVR's multi-turn ALFWorld training stability.\n\n  - id: agentic-rl-survey-2025\n    title: \"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey\"\n    authors: \"Zhang et al.\"\n    venue: \"TMLR 2026\"\n    year: 2025\n    arxiv_id: \"2509.02547\"\n    category: background\n    role: background\n    relevance_note: >\n      Comprehensive survey formalizing agentic RL. Contextualizes B-IAVR as training agents\n      to make meta-decisions (when to verify) via RL within the POMDP framework.\n\n  - id: skillmaster2026\n    title: \"SkillMaster: Toward Autonomous Skill Mastery in LLM Agents\"\n    authors: \"Yang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.08693\"\n    category: method-component\n    role: background\n    relevance_note: >\n      DualAdv-GRPO: separately estimates advantages for task-solving and skill-editing decisions.\n      +8.8% on ALFWorld, +9.3% on WebShop. DualAdv structure could inform B-IAVR's\n      separation of action and verification advantages.\n\n  - id: t2po2026\n    title: \"T2PO: Uncertainty-Guided Exploration Control for Stable Multi-Turn Agentic RL\"\n    authors: \"Wang et al.\"\n    venue: \"ICML 2026 Spotlight\"\n    year: 2026\n    arxiv_id: \"2605.02178\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Token- and turn-level uncertainty monitoring for stable multi-turn agent RL.\n      Triggers thinking intervention when marginal uncertainty change drops below threshold.\n      Evaluated on ALFWorld and WebShop. Conceptually related: uncertainty-based trigger vs\n      B-IAVR's action-change trigger, but T2PO targets training stability, not deployment verification.\n\n  - id: gvpo2026\n    title: \"GVPO: Group Verification-based Policy Optimization for Interactive Coding Agents\"\n    authors: \"Dai et al.\"\n    venue: \"ICLR 2026\"\n    year: 2026\n    arxiv_id: null  # no arXiv preprint; OpenReview ID: RY47Tq0VsV\n    category: method-component\n    role: background\n    relevance_note: >\n      Advantage shaping with outcome-verifiable + process-verifiable signals.\n      +12.7% over o1 on AppWorld. Integrates intermediate execution feedback as step-level\n      verification signals. Different focus: uses verification for credit assignment during\n      training; B-IAVR learns when to invoke verification at deployment.\n\n  - id: agentv-rl2026\n    title: \"AgentV-RL: Scaling Reward Modeling with Agentic Verifier\"\n    authors: \"Zhang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2604.16004\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Bidirectional forward/backward agentic verifier for reward modeling in RL.\n      4B model surpasses SOTA ORMs by 25.2%. Addresses verification quality in reward modeling;\n      B-IAVR addresses verification timing in agent deployment. Complementary.\n\n  - id: pa-moe2026\n    title: \"PA-MoE: Phase-Aware Mixture of Experts for Agentic Reinforcement Learning\"\n    authors: \"Li et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2602.17038\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      [NEW-0516] Lightweight phase router learns latent phase boundaries from RL objective.\n      PA-MoE+GiGPO with Qwen2.5-1.5B achieves 93.8% on ALFWorld (+7.7 over GiGPO 86.1%).\n      1.5B outperforms vanilla 7B GiGPO (90.2%). New small-model SOTA on ALFWorld.\n      Orthogonal architecture innovation; important baseline to cite.\n\n  - id: sdar2026\n    title: \"SDAR: Self-Distilled Agentic Reinforcement Learning\"\n    authors: \"ZJU-REAL\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.15155\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] On-policy self-distillation as gated auxiliary objective during RL training.\n      Token-level gate decides supervision intensity. +9.4% over GRPO on ALFWorld.\n      Complementary: SDAR improves RL training; B-IAVR learns verification policy.\n\n  - id: hcapo2026\n    title: \"HCAPO: Hindsight Credit Assignment for Long-Horizon LLM Agents\"\n    authors: \"Tan et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.08754\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] LLM-as-critic refines step-level Q-values via hindsight reasoning +\n      multi-scale advantage for critical decision states.\n      +13.8% on ALFWorld, +7.7% on WebShop over GRPO (Qwen2.5-7B).\n      Could improve B-IAVR's reward signal for verification decision steps.\n\n  - id: act2026\n    title: \"ACT: Agentic Critical Training\"\n    authors: \"Unknown\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.08706\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Trains agents to judge action quality via critical comparison reward.\n      +5.07 over IL, +4.62 over RL. Different axis: ACT improves reflection quality;\n      B-IAVR decides when to reflect.\n\n  - id: rwml2026\n    title: \"RWML: Reinforcement World Model Learning for LLM-based Agents\"\n    authors: \"Yu et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2602.05842\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Self-supervised world model via sim-to-real gap rewards in embedding space.\n      +6.9 on ALFWorld over task-success-only RL. Matches expert-data training.\n      Orthogonal: improves internal world model; B-IAVR adds selective verification.\n\n  - id: skill0-2026\n    title: \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\"\n    authors: \"ZJU-REAL\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2604.02268\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Training-time curriculum progressively withdraws skill context until zero-shot.\n      +9.7% on ALFWorld over GRPO, <0.5k tokens per step.\n      Complementary: SKILL0 internalizes skills; B-IAVR adds selective verification.\n\n  - id: fission-grpo2026\n    title: \"Fission-GRPO: Robust Tool Use via Learning to Recover from Execution Errors\"\n    authors: \"Zhang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2601.15625\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Fissions failed trajectories into recovery training instances.\n      +4% overall accuracy on BFCL v4 Multi-Turn over GRPO.\n      Related: error recovery after failure vs B-IAVR's proactive verification.\n\n  - id: selfbudgeter2026\n    title: \"SelfBudgeter: Adaptive Token Allocation for Efficient LLM Reasoning\"\n    authors: \"Li et al.\"\n    venue: \"ICLR 2026 (under review)\"\n    year: 2025\n    arxiv_id: \"2505.11274\"\n    category: background\n    role: background\n    relevance_note: >\n      [NEW-0516] Self-estimated token budgets + budget-guided GRPO. 61% token reduction.\n      Parallel concept: SelfBudgeter allocates computation budget;\n      B-IAVR makes binary verify/not-verify decision. Both use RL for adaptive compute.\n\n  - id: cove2026\n    title: \"CoVe: Training Interactive Tool-Use Agents via Constraint-Guided Verification\"\n    authors: \"Chen et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.01940\"\n    category: background\n    role: background\n    relevance_note: >\n      [NEW-0516] Task constraints guide trajectory generation and serve as deterministic verifiers.\n      Different: CoVe uses verification for data synthesis; B-IAVR learns when to verify at inference.\n\n  # ============================================================\n  # Direction 3: Selective Verification / Adaptive Computation\n  # ============================================================\n\n  - id: wan2025derailer-rerailer\n    title: \"Derailer-Rerailer: Adaptive Verification for Efficient and Reliable LM Reasoning\"\n    authors: \"Wan et al.\"\n    venue: \"ACL 2025 Findings\"\n    year: 2025\n    arxiv_id: \"2408.13940\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Most directly related competitor. Both do selective verification with binary trigger.\n      Key difference: operates on reasoning chains (single-turn); B-IAVR on agent trajectories (multi-turn).\n      Uses heuristic instability signal; B-IAVR uses RL-trained action-change signal.\n      8-11% accuracy gain, 2-3x efficiency over uniform verification.\n\n  - id: sherlock2025\n    title: \"Sherlock: Reliable and Efficient Agentic Workflow Execution\"\n    authors: \"Microsoft\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2511.00330\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Selective verification for agentic workflows via offline counterfactual analysis + speculative execution.\n      Different scope: workflow DAG level (offline); B-IAVR is step-level (online RL).\n      18.3% accuracy gain, 26% cost reduction, 48.7% latency reduction.\n\n  - id: singhi2025when-to-verify\n    title: \"When To Solve, When To Verify: Compute-Optimal Verification for LLM Reasoning\"\n    authors: \"Singhi et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2504.01005\"\n    category: background\n    role: background\n    relevance_note: >\n      Derives inference scaling laws for solve-vs-verify tradeoff.\n      Finding that over-verification is suboptimal directly supports B-IAVR's selective approach.\n      B-IAVR learns this allocation via RL rather than analytically.\n\n  - id: yang2026ares\n    title: \"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\"\n    authors: \"Yang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.07915\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Closest competitor in agent domain. Both train learned per-step compute allocation.\n      ARES uses SFT-initialized router further refined via GRPO with outcome + token efficiency reward;\n      B-IAVR trains binary verify/not-verify via RL with action-change signal.\n      Key differences: (1) reward signal — ARES optimizes token efficiency, B-IAVR uses action-change\n      as verification trigger; (2) data requirement — ARES needs difficulty-annotated training data\n      to bootstrap the router, B-IAVR learns from environment interaction alone.\n      Reduces reasoning tokens by up to 52.7%.\n\n  - id: tu2025autothink\n    title: \"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\"\n    authors: \"Tu et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    arxiv_id: \"2505.10832\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Analogous idea in reasoning domain: RL-trained adaptive computation trigger.\n      Operates on single-turn reasoning; B-IAVR on multi-turn agent trajectories.\n      +6.4% accuracy, -52% tokens on DeepSeek-R1-Distill-Qwen-1.5B.\n\n  - id: du2025thinkless\n    title: \"Thinkless: LLM Learns When to Think\"\n    authors: \"Fang et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    arxiv_id: \"2505.13379\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      RL-trained control token to decide when to invoke extended thinking.\n      Methodologically closest to B-IAVR in reasoning domain; B-IAVR applies to interactive agent trajectories.\n\n  - id: wang2025efficient-agents\n    title: \"Efficient Agents: Building Effective Agents While Reducing Cost\"\n    authors: \"Wang et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2508.02694\"\n    category: background\n    role: background\n    relevance_note: >\n      First systematic study of agent efficiency-effectiveness tradeoff.\n      Framework-level cost reduction; B-IAVR addresses cost at verification-policy level.\n      Retains 96.7% performance with 28.4% cost-of-pass improvement.\n\n  - id: venktesh2025trust-but-verify\n    title: \"Trust but Verify! A Survey on Verification Design for Test-time Scaling\"\n    authors: \"Venktesh et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2508.16665\"\n    category: background\n    role: background\n    relevance_note: >\n      Survey of verification approaches for test-time compute scaling.\n      Identifies verification timing as key open problem. B-IAVR provides concrete solution for agent setting.\n\n  - id: agent-omit2026\n    title: \"Agent-Omit: Training Efficient LLM Agents for Adaptive Thought and Observation Omission via Agentic RL\"\n    authors: \"Ning et al.\"\n    venue: \"ICML 2026\"\n    year: 2026\n    arxiv_id: \"2602.04284\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      RL-trained policy for adaptive omission of redundant thoughts and observations.\n      Agent-Omit-8B matches frontier agents with best efficiency tradeoff on 5 benchmarks.\n      Both use RL to learn cost-efficient agent behavior. Key difference: Agent-Omit subtracts\n      (omits unnecessary context); B-IAVR selectively adds (verification steps).\n      Opposite but complementary approaches to cost-efficiency. Potentially combinable.\n\n  - id: ava2026\n    title: \"Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints\"\n    authors: \"Patel\"\n    venue: \"TMLR 2026\"\n    year: 2026\n    arxiv_id: null  # no arXiv preprint; OpenReview ID: JMDCMf7mlF\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Dynamic compute allocation across search, sampling, and verification under budget.\n      Uses calibrated uncertainty + value-of-information for selective verification cascades.\n      Evaluated on GSM8K/MATH/HotpotQA/HumanEval (reasoning), not interactive agents.\n      Key difference: analytical/heuristic allocation vs B-IAVR's RL-learned policy;\n      single-turn reasoning vs multi-turn agent trajectories.\n\n  - id: cast2026\n    title: \"CAST: Case-Based Calibration of Adaptive Reasoning and Execution for LLM Tool Use\"\n    authors: \"Pang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.15041\"\n    category: background\n    role: background\n    relevance_note: >\n      Historical execution cases calibrate reasoning depth for tool use.\n      Reduces reasoning length 26% with +5.85% accuracy on BFCLv2/ToolBench.\n      Related: adaptive reasoning depth; different: case-based calibration vs RL-learned policy.\n\n  - id: marginal-token-allocators2026\n    title: \"Agentic AI Systems Should Be Designed as Marginal Token Allocators\"\n    authors: \"Zhu\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.01214\"\n    category: background\n    role: background\n    relevance_note: >\n      Position paper framing agent cost-efficiency as marginal token allocation economics.\n      Identifies under-verification as systematic failure mode. Supports B-IAVR's framing\n      that verification decisions should reflect marginal cost-benefit analysis.\n\n  - id: argos2025\n    title: \"Argos: Multimodal RL with Adaptive Verifier for AI Agents\"\n    authors: \"Tan et al.\"\n    venue: \"arXiv (revised April 2026)\"\n    year: 2025\n    arxiv_id: \"2512.03438\"\n    category: background\n    role: background\n    relevance_note: >\n      Agentic verifier that adaptively selects scoring functions for multimodal RL training.\n      Different domain (multimodal/robotics). The adaptive verifier selection concept is\n      complementary: Argos adapts how to verify; B-IAVR adapts when to verify.\n\n  # ============================================================\n  # Direction 4: ALFWorld / Interactive Environment Benchmarks\n  # ============================================================\n\n  - id: kim2025reflact\n    title: \"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection\"\n    authors: \"Kim et al.\"\n    venue: \"EMNLP 2025\"\n    year: 2025\n    arxiv_id: \"2505.15182\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Prompting SOTA on ALFWorld at 93.3%. Replaces ReAct's next-action thinking with state-goal reflection.\n      B-IAVR addresses different axis (cost-efficiency) since ALFWorld accuracy is near saturation.\n\n  - id: choudhury2025agentprm\n    title: \"Process Reward Models for LLM Agents: Practical Framework and Directions\"\n    authors: \"Choudhury\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2502.10325\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Monte Carlo rollout-based process reward for agent training. 3B models achieve 91% on ALFWorld.\n      Validates RL training approach; AgentPRM could serve as reward model for B-IAVR.\n\n  - id: xi2025agentprm\n    title: \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\"\n    authors: \"Xi et al.\"\n    venue: \"ACM Web Conference 2026\"\n    year: 2025\n    arxiv_id: \"2511.08325\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Independent work from Choudhury et al., using TD-based estimation with GAE for scalable\n      PRM data labeling. 8x more compute-efficient than baselines with robust test-time scaling.\n      Different approach: Choudhury uses MC rollouts; Xi uses TD+GAE for step-wise promise and progress.\n\n  - id: xiang2024retrospex\n    title: \"Retrospex: Language Agent Meets Offline RL Critic\"\n    authors: \"Xiang et al.\"\n    venue: \"EMNLP 2024\"\n    year: 2024\n    arxiv_id: \"2505.11807\"\n    category: background\n    role: background\n    relevance_note: >\n      Offline RL Critic augments LLM agent action selection via dynamic rescoring.\n      Similar architecture could inform B-IAVR's verification value estimation.\n\n  - id: cfgm2025\n    title: \"CFGM: Coarse-to-Fine Grounded Memory for LLM Agent Planning\"\n    authors: \"Yang et al.\"\n    venue: \"EMNLP 2025\"\n    year: 2025\n    arxiv_id: \"2508.15305\"\n    category: background\n    role: background\n    relevance_note: >\n      Memory-augmented agent planning with episodic grounding.\n      ALFWorld +10.40%, WebShop +20%. Complementary to B-IAVR's verification approach.\n\n  - id: respact2024\n    title: \"ReSpAct: Harmonizing Reasoning, Speaking, and Acting\"\n    authors: \"Dongre et al.\"\n    venue: \"arXiv\"\n    year: 2024\n    arxiv_id: \"2411.00927\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Integrates dialogue/reasoning/acting. +6% over ReAct on ALFWorld.\n      Reduces invalid actions from 13% to 3%; B-IAVR's verification achieves error prevention differently.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 266,
+                  "oldLines": 7,
+                  "newStart": 266,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    "   - id: sdar2026",
+                    "     title: \"SDAR: Self-Distilled Agentic Reinforcement Learning\"",
+                    "-    authors: \"ZJU-REAL\"",
+                    "+    authors: \"Lu et al.\"",
+                    "     venue: \"arXiv\"",
+                    "     year: 2026",
+                    "     arxiv_id: \"2605.15155\""
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XmRe7u2GQc9whPYhH9tNNW",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml",
+                "old_string": "  - id: skill0-2026\n    title: \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\"\n    authors: \"ZJU-REAL\"",
+                "new_string": "  - id: skill0-2026\n    title: \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\"\n    authors: \"Lu et al.\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "5f0005bf-3d22-456a-b289-9711908f6f62",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BLm1qhnMn687MECngTBhS6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 594,
+                "cache_creation_input_tokens": 1749,
+                "cache_read_input_tokens": 33319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1749
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T00:19:14.787Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XmRe7u2GQc9whPYhH9tNNW",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "7f88108e-dbdb-4f2a-9ee5-2a3293b29830",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml",
+              "oldString": "  - id: skill0-2026\n    title: \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\"\n    authors: \"ZJU-REAL\"",
+              "newString": "  - id: skill0-2026\n    title: \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\"\n    authors: \"Lu et al.\"",
+              "originalFile": "# B-IAVR Literature Map\n# Updated: 2026-05-16\n# Categories: direct-competitor, method-component, background, evaluation\n# Roles: predecessor, competitor, baseline, evaluation, background\n\npapers:\n\n  # ============================================================\n  # Direction 1: Self-Verification / Self-Correction in LLM Agents\n  # ============================================================\n\n  - id: kamoi2024self-correction-survey\n    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n    authors: \"Kamoi et al.\"\n    venue: \"arXiv\"\n    year: 2024\n    arxiv_id: \"2406.01297\"\n    category: background\n    role: background\n    relevance_note: >\n      Foundational survey establishing that pure intrinsic self-correction is unreliable.\n      Validates B-IAVR's use of grounded verification (environment re-observation) over prompted self-feedback.\n\n  - id: tie2025correctbench\n    title: \"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs\"\n    authors: \"Tie et al.\"\n    venue: \"NeurIPS 2025 Datasets & Benchmarks\"\n    year: 2025\n    arxiv_id: \"2510.16062\"\n    category: background\n    role: background\n    relevance_note: >\n      Benchmark showing self-correction has diminishing returns when applied uniformly.\n      Supports B-IAVR's selective verification design over blanket correction.\n\n  - id: self-verification-dilemma-2026\n    title: \"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning\"\n    authors: \"Long et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2602.03485\"\n    category: background\n    role: background\n    relevance_note: >\n      Empirically validates that >90% of self-verification is confirmatory, ~2% corrective.\n      Directly supports B-IAVR's core thesis that verification should be selective.\n      Their experience-pool approach is complementary to B-IAVR's action-change signal.\n\n  - id: zhang2025incentivize-self-verify\n    title: \"Incentivizing LLMs to Self-Verify Their Answers\"\n    authors: \"Zhang et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2506.01369\"\n    category: background\n    role: background\n    relevance_note: >\n      Unifies answer generation and verification via single RL training process.\n      Parallel to B-IAVR: they train verification into generation; B-IAVR trains when to trigger separate verification.\n\n  - id: mar2025\n    title: \"MAR: Multi-Agent Reflexion Improves Reasoning Abilities in LLMs\"\n    authors: \"Ozer et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2512.20845\"\n    category: background\n    role: background\n    relevance_note: >\n      Multi-agent self-correction with diverse critic personas.\n      Complementary: MAR improves correction quality; B-IAVR decides when to trigger correction.\n\n  - id: ssr2025\n    title: \"SSR: Socratic Self-Refine for Large Language Model Reasoning\"\n    authors: \"Shi et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2511.10621\"\n    category: background\n    role: background\n    relevance_note: >\n      Structured Socratic questioning for self-refinement.\n      Complementary: improves correction step quality; B-IAVR focuses on when to invoke correction.\n\n  - id: verifiagent2025\n    title: \"VerifiAgent: a Unified Verification Agent in Language Model Reasoning\"\n    authors: \"Han et al.\"\n    venue: \"EMNLP 2025 Findings\"\n    year: 2025\n    arxiv_id: \"2504.00406\"\n    category: background\n    role: background\n    relevance_note: >\n      Unified verification agent with meta-verification + tool-based adaptive verification.\n      Focuses on how to verify (tool selection); B-IAVR focuses on when to verify (policy learning).\n      Complementary: VerifiAgent's verification quality could enhance B-IAVR's verification step.\n\n  # ============================================================\n  # Direction 2: Agent RL Training\n  # ============================================================\n\n  - id: feng2025gigpo\n    title: \"GiGPO: Group-in-Group Policy Optimization for LLM Agent Training\"\n    authors: \"Feng et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    arxiv_id: \"2505.10978\"\n    category: method-component\n    role: predecessor\n    relevance_note: >\n      Core training algorithm for B-IAVR. Nested group structure provides step-level credit\n      assignment without learned critic. >12% over GRPO on ALFWorld, >9% on WebShop.\n\n  - id: selfguide2026\n    title: \"Co-Evolution of Policy and Internal Reward for Language Agents (Self-Guide)\"\n    authors: \"Wang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2604.03098\"\n    category: method-component\n    role: predecessor\n    relevance_note: >\n      Direct predecessor. B-IAVR extends Self-Guide's co-evolving internal reward.\n      The self-guidance signal is the foundation for action-change detection triggering verification.\n      8% improvement over env-reward-only on ALFWorld with Qwen3-1.7B/4B.\n\n  - id: spear2025\n    title: \"Learn the Ropes, Then Trust the Wins: Self-imitation with Progressive Exploration for Agentic Reinforcement Learning\"\n    authors: \"Qin et al.\"\n    venue: \"ICLR 2026\"\n    year: 2025\n    arxiv_id: \"2509.22601\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Curriculum-based self-imitation for sparse-reward agent tasks.\n      Up to +16.1% on ALFWorld over GRPO. Self-imitation curriculum could augment B-IAVR training.\n\n  - id: wei2025webagent-r1\n    title: \"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn RL\"\n    authors: \"Wei et al.\"\n    venue: \"EMNLP 2025\"\n    year: 2025\n    arxiv_id: \"2505.16421\"\n    category: background\n    role: background\n    relevance_note: >\n      Extends GRPO to multi-turn (M-GRPO) with dynamic context compression.\n      Qwen-2.5-3B: 6.1% to 33.9% on WebArena-Lite. M-GRPO multi-turn extension relevant to B-IAVR.\n\n  - id: dapo2025\n    title: \"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\"\n    authors: \"Yu et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2503.14476\"\n    category: method-component\n    role: background\n    relevance_note: >\n      RL training stabilization techniques (Clip-Higher, Dynamic Sampling).\n      Applicable to B-IAVR's RL training to prevent entropy collapse.\n\n  - id: digiRL2024\n    title: \"DigiRL: Training In-The-Wild Device-Control Agents with Autonomous RL\"\n    authors: \"Bai et al.\"\n    venue: \"NeurIPS 2024\"\n    year: 2024\n    arxiv_id: \"2406.11896\"\n    category: background\n    role: background\n    relevance_note: >\n      Online RL for device control agents. Demonstrates online RL viability for interactive agents.\n      49.5% absolute improvement over SFT. Parallel approach to B-IAVR in text-based setting.\n\n  - id: li2025sorl\n    title: \"SORL: Stabilizing Off-Policy RL for Long-Horizon Agent Training\"\n    authors: \"Li et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2511.20718\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Turn-level importance sampling + clipping-triggered normalization for stable multi-turn agent RL.\n      Directly applicable to B-IAVR's multi-turn ALFWorld training stability.\n\n  - id: agentic-rl-survey-2025\n    title: \"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey\"\n    authors: \"Zhang et al.\"\n    venue: \"TMLR 2026\"\n    year: 2025\n    arxiv_id: \"2509.02547\"\n    category: background\n    role: background\n    relevance_note: >\n      Comprehensive survey formalizing agentic RL. Contextualizes B-IAVR as training agents\n      to make meta-decisions (when to verify) via RL within the POMDP framework.\n\n  - id: skillmaster2026\n    title: \"SkillMaster: Toward Autonomous Skill Mastery in LLM Agents\"\n    authors: \"Yang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.08693\"\n    category: method-component\n    role: background\n    relevance_note: >\n      DualAdv-GRPO: separately estimates advantages for task-solving and skill-editing decisions.\n      +8.8% on ALFWorld, +9.3% on WebShop. DualAdv structure could inform B-IAVR's\n      separation of action and verification advantages.\n\n  - id: t2po2026\n    title: \"T2PO: Uncertainty-Guided Exploration Control for Stable Multi-Turn Agentic RL\"\n    authors: \"Wang et al.\"\n    venue: \"ICML 2026 Spotlight\"\n    year: 2026\n    arxiv_id: \"2605.02178\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Token- and turn-level uncertainty monitoring for stable multi-turn agent RL.\n      Triggers thinking intervention when marginal uncertainty change drops below threshold.\n      Evaluated on ALFWorld and WebShop. Conceptually related: uncertainty-based trigger vs\n      B-IAVR's action-change trigger, but T2PO targets training stability, not deployment verification.\n\n  - id: gvpo2026\n    title: \"GVPO: Group Verification-based Policy Optimization for Interactive Coding Agents\"\n    authors: \"Dai et al.\"\n    venue: \"ICLR 2026\"\n    year: 2026\n    arxiv_id: null  # no arXiv preprint; OpenReview ID: RY47Tq0VsV\n    category: method-component\n    role: background\n    relevance_note: >\n      Advantage shaping with outcome-verifiable + process-verifiable signals.\n      +12.7% over o1 on AppWorld. Integrates intermediate execution feedback as step-level\n      verification signals. Different focus: uses verification for credit assignment during\n      training; B-IAVR learns when to invoke verification at deployment.\n\n  - id: agentv-rl2026\n    title: \"AgentV-RL: Scaling Reward Modeling with Agentic Verifier\"\n    authors: \"Zhang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2604.16004\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Bidirectional forward/backward agentic verifier for reward modeling in RL.\n      4B model surpasses SOTA ORMs by 25.2%. Addresses verification quality in reward modeling;\n      B-IAVR addresses verification timing in agent deployment. Complementary.\n\n  - id: pa-moe2026\n    title: \"PA-MoE: Phase-Aware Mixture of Experts for Agentic Reinforcement Learning\"\n    authors: \"Li et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2602.17038\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      [NEW-0516] Lightweight phase router learns latent phase boundaries from RL objective.\n      PA-MoE+GiGPO with Qwen2.5-1.5B achieves 93.8% on ALFWorld (+7.7 over GiGPO 86.1%).\n      1.5B outperforms vanilla 7B GiGPO (90.2%). New small-model SOTA on ALFWorld.\n      Orthogonal architecture innovation; important baseline to cite.\n\n  - id: sdar2026\n    title: \"SDAR: Self-Distilled Agentic Reinforcement Learning\"\n    authors: \"Lu et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.15155\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] On-policy self-distillation as gated auxiliary objective during RL training.\n      Token-level gate decides supervision intensity. +9.4% over GRPO on ALFWorld.\n      Complementary: SDAR improves RL training; B-IAVR learns verification policy.\n\n  - id: hcapo2026\n    title: \"HCAPO: Hindsight Credit Assignment for Long-Horizon LLM Agents\"\n    authors: \"Tan et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.08754\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] LLM-as-critic refines step-level Q-values via hindsight reasoning +\n      multi-scale advantage for critical decision states.\n      +13.8% on ALFWorld, +7.7% on WebShop over GRPO (Qwen2.5-7B).\n      Could improve B-IAVR's reward signal for verification decision steps.\n\n  - id: act2026\n    title: \"ACT: Agentic Critical Training\"\n    authors: \"Unknown\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.08706\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Trains agents to judge action quality via critical comparison reward.\n      +5.07 over IL, +4.62 over RL. Different axis: ACT improves reflection quality;\n      B-IAVR decides when to reflect.\n\n  - id: rwml2026\n    title: \"RWML: Reinforcement World Model Learning for LLM-based Agents\"\n    authors: \"Yu et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2602.05842\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Self-supervised world model via sim-to-real gap rewards in embedding space.\n      +6.9 on ALFWorld over task-success-only RL. Matches expert-data training.\n      Orthogonal: improves internal world model; B-IAVR adds selective verification.\n\n  - id: skill0-2026\n    title: \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\"\n    authors: \"ZJU-REAL\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2604.02268\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Training-time curriculum progressively withdraws skill context until zero-shot.\n      +9.7% on ALFWorld over GRPO, <0.5k tokens per step.\n      Complementary: SKILL0 internalizes skills; B-IAVR adds selective verification.\n\n  - id: fission-grpo2026\n    title: \"Fission-GRPO: Robust Tool Use via Learning to Recover from Execution Errors\"\n    authors: \"Zhang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2601.15625\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Fissions failed trajectories into recovery training instances.\n      +4% overall accuracy on BFCL v4 Multi-Turn over GRPO.\n      Related: error recovery after failure vs B-IAVR's proactive verification.\n\n  - id: selfbudgeter2026\n    title: \"SelfBudgeter: Adaptive Token Allocation for Efficient LLM Reasoning\"\n    authors: \"Li et al.\"\n    venue: \"ICLR 2026 (under review)\"\n    year: 2025\n    arxiv_id: \"2505.11274\"\n    category: background\n    role: background\n    relevance_note: >\n      [NEW-0516] Self-estimated token budgets + budget-guided GRPO. 61% token reduction.\n      Parallel concept: SelfBudgeter allocates computation budget;\n      B-IAVR makes binary verify/not-verify decision. Both use RL for adaptive compute.\n\n  - id: cove2026\n    title: \"CoVe: Training Interactive Tool-Use Agents via Constraint-Guided Verification\"\n    authors: \"Chen et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.01940\"\n    category: background\n    role: background\n    relevance_note: >\n      [NEW-0516] Task constraints guide trajectory generation and serve as deterministic verifiers.\n      Different: CoVe uses verification for data synthesis; B-IAVR learns when to verify at inference.\n\n  # ============================================================\n  # Direction 3: Selective Verification / Adaptive Computation\n  # ============================================================\n\n  - id: wan2025derailer-rerailer\n    title: \"Derailer-Rerailer: Adaptive Verification for Efficient and Reliable LM Reasoning\"\n    authors: \"Wan et al.\"\n    venue: \"ACL 2025 Findings\"\n    year: 2025\n    arxiv_id: \"2408.13940\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Most directly related competitor. Both do selective verification with binary trigger.\n      Key difference: operates on reasoning chains (single-turn); B-IAVR on agent trajectories (multi-turn).\n      Uses heuristic instability signal; B-IAVR uses RL-trained action-change signal.\n      8-11% accuracy gain, 2-3x efficiency over uniform verification.\n\n  - id: sherlock2025\n    title: \"Sherlock: Reliable and Efficient Agentic Workflow Execution\"\n    authors: \"Microsoft\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2511.00330\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Selective verification for agentic workflows via offline counterfactual analysis + speculative execution.\n      Different scope: workflow DAG level (offline); B-IAVR is step-level (online RL).\n      18.3% accuracy gain, 26% cost reduction, 48.7% latency reduction.\n\n  - id: singhi2025when-to-verify\n    title: \"When To Solve, When To Verify: Compute-Optimal Verification for LLM Reasoning\"\n    authors: \"Singhi et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2504.01005\"\n    category: background\n    role: background\n    relevance_note: >\n      Derives inference scaling laws for solve-vs-verify tradeoff.\n      Finding that over-verification is suboptimal directly supports B-IAVR's selective approach.\n      B-IAVR learns this allocation via RL rather than analytically.\n\n  - id: yang2026ares\n    title: \"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\"\n    authors: \"Yang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.07915\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Closest competitor in agent domain. Both train learned per-step compute allocation.\n      ARES uses SFT-initialized router further refined via GRPO with outcome + token efficiency reward;\n      B-IAVR trains binary verify/not-verify via RL with action-change signal.\n      Key differences: (1) reward signal — ARES optimizes token efficiency, B-IAVR uses action-change\n      as verification trigger; (2) data requirement — ARES needs difficulty-annotated training data\n      to bootstrap the router, B-IAVR learns from environment interaction alone.\n      Reduces reasoning tokens by up to 52.7%.\n\n  - id: tu2025autothink\n    title: \"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\"\n    authors: \"Tu et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    arxiv_id: \"2505.10832\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Analogous idea in reasoning domain: RL-trained adaptive computation trigger.\n      Operates on single-turn reasoning; B-IAVR on multi-turn agent trajectories.\n      +6.4% accuracy, -52% tokens on DeepSeek-R1-Distill-Qwen-1.5B.\n\n  - id: du2025thinkless\n    title: \"Thinkless: LLM Learns When to Think\"\n    authors: \"Fang et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    arxiv_id: \"2505.13379\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      RL-trained control token to decide when to invoke extended thinking.\n      Methodologically closest to B-IAVR in reasoning domain; B-IAVR applies to interactive agent trajectories.\n\n  - id: wang2025efficient-agents\n    title: \"Efficient Agents: Building Effective Agents While Reducing Cost\"\n    authors: \"Wang et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2508.02694\"\n    category: background\n    role: background\n    relevance_note: >\n      First systematic study of agent efficiency-effectiveness tradeoff.\n      Framework-level cost reduction; B-IAVR addresses cost at verification-policy level.\n      Retains 96.7% performance with 28.4% cost-of-pass improvement.\n\n  - id: venktesh2025trust-but-verify\n    title: \"Trust but Verify! A Survey on Verification Design for Test-time Scaling\"\n    authors: \"Venktesh et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2508.16665\"\n    category: background\n    role: background\n    relevance_note: >\n      Survey of verification approaches for test-time compute scaling.\n      Identifies verification timing as key open problem. B-IAVR provides concrete solution for agent setting.\n\n  - id: agent-omit2026\n    title: \"Agent-Omit: Training Efficient LLM Agents for Adaptive Thought and Observation Omission via Agentic RL\"\n    authors: \"Ning et al.\"\n    venue: \"ICML 2026\"\n    year: 2026\n    arxiv_id: \"2602.04284\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      RL-trained policy for adaptive omission of redundant thoughts and observations.\n      Agent-Omit-8B matches frontier agents with best efficiency tradeoff on 5 benchmarks.\n      Both use RL to learn cost-efficient agent behavior. Key difference: Agent-Omit subtracts\n      (omits unnecessary context); B-IAVR selectively adds (verification steps).\n      Opposite but complementary approaches to cost-efficiency. Potentially combinable.\n\n  - id: ava2026\n    title: \"Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints\"\n    authors: \"Patel\"\n    venue: \"TMLR 2026\"\n    year: 2026\n    arxiv_id: null  # no arXiv preprint; OpenReview ID: JMDCMf7mlF\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Dynamic compute allocation across search, sampling, and verification under budget.\n      Uses calibrated uncertainty + value-of-information for selective verification cascades.\n      Evaluated on GSM8K/MATH/HotpotQA/HumanEval (reasoning), not interactive agents.\n      Key difference: analytical/heuristic allocation vs B-IAVR's RL-learned policy;\n      single-turn reasoning vs multi-turn agent trajectories.\n\n  - id: cast2026\n    title: \"CAST: Case-Based Calibration of Adaptive Reasoning and Execution for LLM Tool Use\"\n    authors: \"Pang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.15041\"\n    category: background\n    role: background\n    relevance_note: >\n      Historical execution cases calibrate reasoning depth for tool use.\n      Reduces reasoning length 26% with +5.85% accuracy on BFCLv2/ToolBench.\n      Related: adaptive reasoning depth; different: case-based calibration vs RL-learned policy.\n\n  - id: marginal-token-allocators2026\n    title: \"Agentic AI Systems Should Be Designed as Marginal Token Allocators\"\n    authors: \"Zhu\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.01214\"\n    category: background\n    role: background\n    relevance_note: >\n      Position paper framing agent cost-efficiency as marginal token allocation economics.\n      Identifies under-verification as systematic failure mode. Supports B-IAVR's framing\n      that verification decisions should reflect marginal cost-benefit analysis.\n\n  - id: argos2025\n    title: \"Argos: Multimodal RL with Adaptive Verifier for AI Agents\"\n    authors: \"Tan et al.\"\n    venue: \"arXiv (revised April 2026)\"\n    year: 2025\n    arxiv_id: \"2512.03438\"\n    category: background\n    role: background\n    relevance_note: >\n      Agentic verifier that adaptively selects scoring functions for multimodal RL training.\n      Different domain (multimodal/robotics). The adaptive verifier selection concept is\n      complementary: Argos adapts how to verify; B-IAVR adapts when to verify.\n\n  # ============================================================\n  # Direction 4: ALFWorld / Interactive Environment Benchmarks\n  # ============================================================\n\n  - id: kim2025reflact\n    title: \"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection\"\n    authors: \"Kim et al.\"\n    venue: \"EMNLP 2025\"\n    year: 2025\n    arxiv_id: \"2505.15182\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Prompting SOTA on ALFWorld at 93.3%. Replaces ReAct's next-action thinking with state-goal reflection.\n      B-IAVR addresses different axis (cost-efficiency) since ALFWorld accuracy is near saturation.\n\n  - id: choudhury2025agentprm\n    title: \"Process Reward Models for LLM Agents: Practical Framework and Directions\"\n    authors: \"Choudhury\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2502.10325\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Monte Carlo rollout-based process reward for agent training. 3B models achieve 91% on ALFWorld.\n      Validates RL training approach; AgentPRM could serve as reward model for B-IAVR.\n\n  - id: xi2025agentprm\n    title: \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\"\n    authors: \"Xi et al.\"\n    venue: \"ACM Web Conference 2026\"\n    year: 2025\n    arxiv_id: \"2511.08325\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Independent work from Choudhury et al., using TD-based estimation with GAE for scalable\n      PRM data labeling. 8x more compute-efficient than baselines with robust test-time scaling.\n      Different approach: Choudhury uses MC rollouts; Xi uses TD+GAE for step-wise promise and progress.\n\n  - id: xiang2024retrospex\n    title: \"Retrospex: Language Agent Meets Offline RL Critic\"\n    authors: \"Xiang et al.\"\n    venue: \"EMNLP 2024\"\n    year: 2024\n    arxiv_id: \"2505.11807\"\n    category: background\n    role: background\n    relevance_note: >\n      Offline RL Critic augments LLM agent action selection via dynamic rescoring.\n      Similar architecture could inform B-IAVR's verification value estimation.\n\n  - id: cfgm2025\n    title: \"CFGM: Coarse-to-Fine Grounded Memory for LLM Agent Planning\"\n    authors: \"Yang et al.\"\n    venue: \"EMNLP 2025\"\n    year: 2025\n    arxiv_id: \"2508.15305\"\n    category: background\n    role: background\n    relevance_note: >\n      Memory-augmented agent planning with episodic grounding.\n      ALFWorld +10.40%, WebShop +20%. Complementary to B-IAVR's verification approach.\n\n  - id: respact2024\n    title: \"ReSpAct: Harmonizing Reasoning, Speaking, and Acting\"\n    authors: \"Dongre et al.\"\n    venue: \"arXiv\"\n    year: 2024\n    arxiv_id: \"2411.00927\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Integrates dialogue/reasoning/acting. +6% over ReAct on ALFWorld.\n      Reduces invalid actions from 13% to 3%; B-IAVR's verification achieves error prevention differently.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 319,
+                  "oldLines": 7,
+                  "newStart": 319,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    "   - id: skill0-2026",
+                    "     title: \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\"",
+                    "-    authors: \"ZJU-REAL\"",
+                    "+    authors: \"Lu et al.\"",
+                    "     venue: \"arXiv\"",
+                    "     year: 2026",
+                    "     arxiv_id: \"2604.02268\""
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S8uQexjTa4WzqXMJ9eV98Q",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml",
+                "old_string": "  - id: act2026\n    title: \"ACT: Agentic Critical Training\"\n    authors: \"Unknown\"",
+                "new_string": "  - id: act2026\n    title: \"ACT: Agentic Critical Training\"\n    authors: \"Liu et al.\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "4531c9fe-3db9-4ecb-ad8d-994b7eb7dd9d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BLm1qhnMn687MECngTBhS6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 594,
+                "cache_creation_input_tokens": 1749,
+                "cache_read_input_tokens": 33319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1749
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T00:19:16.006Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S8uQexjTa4WzqXMJ9eV98Q",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "cbe7b787-dcd1-4992-b3cf-aebca08651db",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml",
+              "oldString": "  - id: act2026\n    title: \"ACT: Agentic Critical Training\"\n    authors: \"Unknown\"",
+              "newString": "  - id: act2026\n    title: \"ACT: Agentic Critical Training\"\n    authors: \"Liu et al.\"",
+              "originalFile": "# B-IAVR Literature Map\n# Updated: 2026-05-16\n# Categories: direct-competitor, method-component, background, evaluation\n# Roles: predecessor, competitor, baseline, evaluation, background\n\npapers:\n\n  # ============================================================\n  # Direction 1: Self-Verification / Self-Correction in LLM Agents\n  # ============================================================\n\n  - id: kamoi2024self-correction-survey\n    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n    authors: \"Kamoi et al.\"\n    venue: \"arXiv\"\n    year: 2024\n    arxiv_id: \"2406.01297\"\n    category: background\n    role: background\n    relevance_note: >\n      Foundational survey establishing that pure intrinsic self-correction is unreliable.\n      Validates B-IAVR's use of grounded verification (environment re-observation) over prompted self-feedback.\n\n  - id: tie2025correctbench\n    title: \"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs\"\n    authors: \"Tie et al.\"\n    venue: \"NeurIPS 2025 Datasets & Benchmarks\"\n    year: 2025\n    arxiv_id: \"2510.16062\"\n    category: background\n    role: background\n    relevance_note: >\n      Benchmark showing self-correction has diminishing returns when applied uniformly.\n      Supports B-IAVR's selective verification design over blanket correction.\n\n  - id: self-verification-dilemma-2026\n    title: \"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning\"\n    authors: \"Long et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2602.03485\"\n    category: background\n    role: background\n    relevance_note: >\n      Empirically validates that >90% of self-verification is confirmatory, ~2% corrective.\n      Directly supports B-IAVR's core thesis that verification should be selective.\n      Their experience-pool approach is complementary to B-IAVR's action-change signal.\n\n  - id: zhang2025incentivize-self-verify\n    title: \"Incentivizing LLMs to Self-Verify Their Answers\"\n    authors: \"Zhang et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2506.01369\"\n    category: background\n    role: background\n    relevance_note: >\n      Unifies answer generation and verification via single RL training process.\n      Parallel to B-IAVR: they train verification into generation; B-IAVR trains when to trigger separate verification.\n\n  - id: mar2025\n    title: \"MAR: Multi-Agent Reflexion Improves Reasoning Abilities in LLMs\"\n    authors: \"Ozer et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2512.20845\"\n    category: background\n    role: background\n    relevance_note: >\n      Multi-agent self-correction with diverse critic personas.\n      Complementary: MAR improves correction quality; B-IAVR decides when to trigger correction.\n\n  - id: ssr2025\n    title: \"SSR: Socratic Self-Refine for Large Language Model Reasoning\"\n    authors: \"Shi et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2511.10621\"\n    category: background\n    role: background\n    relevance_note: >\n      Structured Socratic questioning for self-refinement.\n      Complementary: improves correction step quality; B-IAVR focuses on when to invoke correction.\n\n  - id: verifiagent2025\n    title: \"VerifiAgent: a Unified Verification Agent in Language Model Reasoning\"\n    authors: \"Han et al.\"\n    venue: \"EMNLP 2025 Findings\"\n    year: 2025\n    arxiv_id: \"2504.00406\"\n    category: background\n    role: background\n    relevance_note: >\n      Unified verification agent with meta-verification + tool-based adaptive verification.\n      Focuses on how to verify (tool selection); B-IAVR focuses on when to verify (policy learning).\n      Complementary: VerifiAgent's verification quality could enhance B-IAVR's verification step.\n\n  # ============================================================\n  # Direction 2: Agent RL Training\n  # ============================================================\n\n  - id: feng2025gigpo\n    title: \"GiGPO: Group-in-Group Policy Optimization for LLM Agent Training\"\n    authors: \"Feng et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    arxiv_id: \"2505.10978\"\n    category: method-component\n    role: predecessor\n    relevance_note: >\n      Core training algorithm for B-IAVR. Nested group structure provides step-level credit\n      assignment without learned critic. >12% over GRPO on ALFWorld, >9% on WebShop.\n\n  - id: selfguide2026\n    title: \"Co-Evolution of Policy and Internal Reward for Language Agents (Self-Guide)\"\n    authors: \"Wang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2604.03098\"\n    category: method-component\n    role: predecessor\n    relevance_note: >\n      Direct predecessor. B-IAVR extends Self-Guide's co-evolving internal reward.\n      The self-guidance signal is the foundation for action-change detection triggering verification.\n      8% improvement over env-reward-only on ALFWorld with Qwen3-1.7B/4B.\n\n  - id: spear2025\n    title: \"Learn the Ropes, Then Trust the Wins: Self-imitation with Progressive Exploration for Agentic Reinforcement Learning\"\n    authors: \"Qin et al.\"\n    venue: \"ICLR 2026\"\n    year: 2025\n    arxiv_id: \"2509.22601\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Curriculum-based self-imitation for sparse-reward agent tasks.\n      Up to +16.1% on ALFWorld over GRPO. Self-imitation curriculum could augment B-IAVR training.\n\n  - id: wei2025webagent-r1\n    title: \"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn RL\"\n    authors: \"Wei et al.\"\n    venue: \"EMNLP 2025\"\n    year: 2025\n    arxiv_id: \"2505.16421\"\n    category: background\n    role: background\n    relevance_note: >\n      Extends GRPO to multi-turn (M-GRPO) with dynamic context compression.\n      Qwen-2.5-3B: 6.1% to 33.9% on WebArena-Lite. M-GRPO multi-turn extension relevant to B-IAVR.\n\n  - id: dapo2025\n    title: \"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\"\n    authors: \"Yu et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2503.14476\"\n    category: method-component\n    role: background\n    relevance_note: >\n      RL training stabilization techniques (Clip-Higher, Dynamic Sampling).\n      Applicable to B-IAVR's RL training to prevent entropy collapse.\n\n  - id: digiRL2024\n    title: \"DigiRL: Training In-The-Wild Device-Control Agents with Autonomous RL\"\n    authors: \"Bai et al.\"\n    venue: \"NeurIPS 2024\"\n    year: 2024\n    arxiv_id: \"2406.11896\"\n    category: background\n    role: background\n    relevance_note: >\n      Online RL for device control agents. Demonstrates online RL viability for interactive agents.\n      49.5% absolute improvement over SFT. Parallel approach to B-IAVR in text-based setting.\n\n  - id: li2025sorl\n    title: \"SORL: Stabilizing Off-Policy RL for Long-Horizon Agent Training\"\n    authors: \"Li et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2511.20718\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Turn-level importance sampling + clipping-triggered normalization for stable multi-turn agent RL.\n      Directly applicable to B-IAVR's multi-turn ALFWorld training stability.\n\n  - id: agentic-rl-survey-2025\n    title: \"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey\"\n    authors: \"Zhang et al.\"\n    venue: \"TMLR 2026\"\n    year: 2025\n    arxiv_id: \"2509.02547\"\n    category: background\n    role: background\n    relevance_note: >\n      Comprehensive survey formalizing agentic RL. Contextualizes B-IAVR as training agents\n      to make meta-decisions (when to verify) via RL within the POMDP framework.\n\n  - id: skillmaster2026\n    title: \"SkillMaster: Toward Autonomous Skill Mastery in LLM Agents\"\n    authors: \"Yang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.08693\"\n    category: method-component\n    role: background\n    relevance_note: >\n      DualAdv-GRPO: separately estimates advantages for task-solving and skill-editing decisions.\n      +8.8% on ALFWorld, +9.3% on WebShop. DualAdv structure could inform B-IAVR's\n      separation of action and verification advantages.\n\n  - id: t2po2026\n    title: \"T2PO: Uncertainty-Guided Exploration Control for Stable Multi-Turn Agentic RL\"\n    authors: \"Wang et al.\"\n    venue: \"ICML 2026 Spotlight\"\n    year: 2026\n    arxiv_id: \"2605.02178\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Token- and turn-level uncertainty monitoring for stable multi-turn agent RL.\n      Triggers thinking intervention when marginal uncertainty change drops below threshold.\n      Evaluated on ALFWorld and WebShop. Conceptually related: uncertainty-based trigger vs\n      B-IAVR's action-change trigger, but T2PO targets training stability, not deployment verification.\n\n  - id: gvpo2026\n    title: \"GVPO: Group Verification-based Policy Optimization for Interactive Coding Agents\"\n    authors: \"Dai et al.\"\n    venue: \"ICLR 2026\"\n    year: 2026\n    arxiv_id: null  # no arXiv preprint; OpenReview ID: RY47Tq0VsV\n    category: method-component\n    role: background\n    relevance_note: >\n      Advantage shaping with outcome-verifiable + process-verifiable signals.\n      +12.7% over o1 on AppWorld. Integrates intermediate execution feedback as step-level\n      verification signals. Different focus: uses verification for credit assignment during\n      training; B-IAVR learns when to invoke verification at deployment.\n\n  - id: agentv-rl2026\n    title: \"AgentV-RL: Scaling Reward Modeling with Agentic Verifier\"\n    authors: \"Zhang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2604.16004\"\n    category: method-component\n    role: background\n    relevance_note: >\n      Bidirectional forward/backward agentic verifier for reward modeling in RL.\n      4B model surpasses SOTA ORMs by 25.2%. Addresses verification quality in reward modeling;\n      B-IAVR addresses verification timing in agent deployment. Complementary.\n\n  - id: pa-moe2026\n    title: \"PA-MoE: Phase-Aware Mixture of Experts for Agentic Reinforcement Learning\"\n    authors: \"Li et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2602.17038\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      [NEW-0516] Lightweight phase router learns latent phase boundaries from RL objective.\n      PA-MoE+GiGPO with Qwen2.5-1.5B achieves 93.8% on ALFWorld (+7.7 over GiGPO 86.1%).\n      1.5B outperforms vanilla 7B GiGPO (90.2%). New small-model SOTA on ALFWorld.\n      Orthogonal architecture innovation; important baseline to cite.\n\n  - id: sdar2026\n    title: \"SDAR: Self-Distilled Agentic Reinforcement Learning\"\n    authors: \"Lu et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.15155\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] On-policy self-distillation as gated auxiliary objective during RL training.\n      Token-level gate decides supervision intensity. +9.4% over GRPO on ALFWorld.\n      Complementary: SDAR improves RL training; B-IAVR learns verification policy.\n\n  - id: hcapo2026\n    title: \"HCAPO: Hindsight Credit Assignment for Long-Horizon LLM Agents\"\n    authors: \"Tan et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.08754\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] LLM-as-critic refines step-level Q-values via hindsight reasoning +\n      multi-scale advantage for critical decision states.\n      +13.8% on ALFWorld, +7.7% on WebShop over GRPO (Qwen2.5-7B).\n      Could improve B-IAVR's reward signal for verification decision steps.\n\n  - id: act2026\n    title: \"ACT: Agentic Critical Training\"\n    authors: \"Unknown\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.08706\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Trains agents to judge action quality via critical comparison reward.\n      +5.07 over IL, +4.62 over RL. Different axis: ACT improves reflection quality;\n      B-IAVR decides when to reflect.\n\n  - id: rwml2026\n    title: \"RWML: Reinforcement World Model Learning for LLM-based Agents\"\n    authors: \"Yu et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2602.05842\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Self-supervised world model via sim-to-real gap rewards in embedding space.\n      +6.9 on ALFWorld over task-success-only RL. Matches expert-data training.\n      Orthogonal: improves internal world model; B-IAVR adds selective verification.\n\n  - id: skill0-2026\n    title: \"SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization\"\n    authors: \"Lu et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2604.02268\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Training-time curriculum progressively withdraws skill context until zero-shot.\n      +9.7% on ALFWorld over GRPO, <0.5k tokens per step.\n      Complementary: SKILL0 internalizes skills; B-IAVR adds selective verification.\n\n  - id: fission-grpo2026\n    title: \"Fission-GRPO: Robust Tool Use via Learning to Recover from Execution Errors\"\n    authors: \"Zhang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2601.15625\"\n    category: method-component\n    role: background\n    relevance_note: >\n      [NEW-0516] Fissions failed trajectories into recovery training instances.\n      +4% overall accuracy on BFCL v4 Multi-Turn over GRPO.\n      Related: error recovery after failure vs B-IAVR's proactive verification.\n\n  - id: selfbudgeter2026\n    title: \"SelfBudgeter: Adaptive Token Allocation for Efficient LLM Reasoning\"\n    authors: \"Li et al.\"\n    venue: \"ICLR 2026 (under review)\"\n    year: 2025\n    arxiv_id: \"2505.11274\"\n    category: background\n    role: background\n    relevance_note: >\n      [NEW-0516] Self-estimated token budgets + budget-guided GRPO. 61% token reduction.\n      Parallel concept: SelfBudgeter allocates computation budget;\n      B-IAVR makes binary verify/not-verify decision. Both use RL for adaptive compute.\n\n  - id: cove2026\n    title: \"CoVe: Training Interactive Tool-Use Agents via Constraint-Guided Verification\"\n    authors: \"Chen et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.01940\"\n    category: background\n    role: background\n    relevance_note: >\n      [NEW-0516] Task constraints guide trajectory generation and serve as deterministic verifiers.\n      Different: CoVe uses verification for data synthesis; B-IAVR learns when to verify at inference.\n\n  # ============================================================\n  # Direction 3: Selective Verification / Adaptive Computation\n  # ============================================================\n\n  - id: wan2025derailer-rerailer\n    title: \"Derailer-Rerailer: Adaptive Verification for Efficient and Reliable LM Reasoning\"\n    authors: \"Wan et al.\"\n    venue: \"ACL 2025 Findings\"\n    year: 2025\n    arxiv_id: \"2408.13940\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Most directly related competitor. Both do selective verification with binary trigger.\n      Key difference: operates on reasoning chains (single-turn); B-IAVR on agent trajectories (multi-turn).\n      Uses heuristic instability signal; B-IAVR uses RL-trained action-change signal.\n      8-11% accuracy gain, 2-3x efficiency over uniform verification.\n\n  - id: sherlock2025\n    title: \"Sherlock: Reliable and Efficient Agentic Workflow Execution\"\n    authors: \"Microsoft\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2511.00330\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Selective verification for agentic workflows via offline counterfactual analysis + speculative execution.\n      Different scope: workflow DAG level (offline); B-IAVR is step-level (online RL).\n      18.3% accuracy gain, 26% cost reduction, 48.7% latency reduction.\n\n  - id: singhi2025when-to-verify\n    title: \"When To Solve, When To Verify: Compute-Optimal Verification for LLM Reasoning\"\n    authors: \"Singhi et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2504.01005\"\n    category: background\n    role: background\n    relevance_note: >\n      Derives inference scaling laws for solve-vs-verify tradeoff.\n      Finding that over-verification is suboptimal directly supports B-IAVR's selective approach.\n      B-IAVR learns this allocation via RL rather than analytically.\n\n  - id: yang2026ares\n    title: \"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\"\n    authors: \"Yang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2603.07915\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Closest competitor in agent domain. Both train learned per-step compute allocation.\n      ARES uses SFT-initialized router further refined via GRPO with outcome + token efficiency reward;\n      B-IAVR trains binary verify/not-verify via RL with action-change signal.\n      Key differences: (1) reward signal — ARES optimizes token efficiency, B-IAVR uses action-change\n      as verification trigger; (2) data requirement — ARES needs difficulty-annotated training data\n      to bootstrap the router, B-IAVR learns from environment interaction alone.\n      Reduces reasoning tokens by up to 52.7%.\n\n  - id: tu2025autothink\n    title: \"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\"\n    authors: \"Tu et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    arxiv_id: \"2505.10832\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Analogous idea in reasoning domain: RL-trained adaptive computation trigger.\n      Operates on single-turn reasoning; B-IAVR on multi-turn agent trajectories.\n      +6.4% accuracy, -52% tokens on DeepSeek-R1-Distill-Qwen-1.5B.\n\n  - id: du2025thinkless\n    title: \"Thinkless: LLM Learns When to Think\"\n    authors: \"Fang et al.\"\n    venue: \"NeurIPS 2025\"\n    year: 2025\n    arxiv_id: \"2505.13379\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      RL-trained control token to decide when to invoke extended thinking.\n      Methodologically closest to B-IAVR in reasoning domain; B-IAVR applies to interactive agent trajectories.\n\n  - id: wang2025efficient-agents\n    title: \"Efficient Agents: Building Effective Agents While Reducing Cost\"\n    authors: \"Wang et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2508.02694\"\n    category: background\n    role: background\n    relevance_note: >\n      First systematic study of agent efficiency-effectiveness tradeoff.\n      Framework-level cost reduction; B-IAVR addresses cost at verification-policy level.\n      Retains 96.7% performance with 28.4% cost-of-pass improvement.\n\n  - id: venktesh2025trust-but-verify\n    title: \"Trust but Verify! A Survey on Verification Design for Test-time Scaling\"\n    authors: \"Venktesh et al.\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2508.16665\"\n    category: background\n    role: background\n    relevance_note: >\n      Survey of verification approaches for test-time compute scaling.\n      Identifies verification timing as key open problem. B-IAVR provides concrete solution for agent setting.\n\n  - id: agent-omit2026\n    title: \"Agent-Omit: Training Efficient LLM Agents for Adaptive Thought and Observation Omission via Agentic RL\"\n    authors: \"Ning et al.\"\n    venue: \"ICML 2026\"\n    year: 2026\n    arxiv_id: \"2602.04284\"\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      RL-trained policy for adaptive omission of redundant thoughts and observations.\n      Agent-Omit-8B matches frontier agents with best efficiency tradeoff on 5 benchmarks.\n      Both use RL to learn cost-efficient agent behavior. Key difference: Agent-Omit subtracts\n      (omits unnecessary context); B-IAVR selectively adds (verification steps).\n      Opposite but complementary approaches to cost-efficiency. Potentially combinable.\n\n  - id: ava2026\n    title: \"Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints\"\n    authors: \"Patel\"\n    venue: \"TMLR 2026\"\n    year: 2026\n    arxiv_id: null  # no arXiv preprint; OpenReview ID: JMDCMf7mlF\n    category: direct-competitor\n    role: competitor\n    relevance_note: >\n      Dynamic compute allocation across search, sampling, and verification under budget.\n      Uses calibrated uncertainty + value-of-information for selective verification cascades.\n      Evaluated on GSM8K/MATH/HotpotQA/HumanEval (reasoning), not interactive agents.\n      Key difference: analytical/heuristic allocation vs B-IAVR's RL-learned policy;\n      single-turn reasoning vs multi-turn agent trajectories.\n\n  - id: cast2026\n    title: \"CAST: Case-Based Calibration of Adaptive Reasoning and Execution for LLM Tool Use\"\n    authors: \"Pang et al.\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.15041\"\n    category: background\n    role: background\n    relevance_note: >\n      Historical execution cases calibrate reasoning depth for tool use.\n      Reduces reasoning length 26% with +5.85% accuracy on BFCLv2/ToolBench.\n      Related: adaptive reasoning depth; different: case-based calibration vs RL-learned policy.\n\n  - id: marginal-token-allocators2026\n    title: \"Agentic AI Systems Should Be Designed as Marginal Token Allocators\"\n    authors: \"Zhu\"\n    venue: \"arXiv\"\n    year: 2026\n    arxiv_id: \"2605.01214\"\n    category: background\n    role: background\n    relevance_note: >\n      Position paper framing agent cost-efficiency as marginal token allocation economics.\n      Identifies under-verification as systematic failure mode. Supports B-IAVR's framing\n      that verification decisions should reflect marginal cost-benefit analysis.\n\n  - id: argos2025\n    title: \"Argos: Multimodal RL with Adaptive Verifier for AI Agents\"\n    authors: \"Tan et al.\"\n    venue: \"arXiv (revised April 2026)\"\n    year: 2025\n    arxiv_id: \"2512.03438\"\n    category: background\n    role: background\n    relevance_note: >\n      Agentic verifier that adaptively selects scoring functions for multimodal RL training.\n      Different domain (multimodal/robotics). The adaptive verifier selection concept is\n      complementary: Argos adapts how to verify; B-IAVR adapts when to verify.\n\n  # ============================================================\n  # Direction 4: ALFWorld / Interactive Environment Benchmarks\n  # ============================================================\n\n  - id: kim2025reflact\n    title: \"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection\"\n    authors: \"Kim et al.\"\n    venue: \"EMNLP 2025\"\n    year: 2025\n    arxiv_id: \"2505.15182\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Prompting SOTA on ALFWorld at 93.3%. Replaces ReAct's next-action thinking with state-goal reflection.\n      B-IAVR addresses different axis (cost-efficiency) since ALFWorld accuracy is near saturation.\n\n  - id: choudhury2025agentprm\n    title: \"Process Reward Models for LLM Agents: Practical Framework and Directions\"\n    authors: \"Choudhury\"\n    venue: \"arXiv\"\n    year: 2025\n    arxiv_id: \"2502.10325\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Monte Carlo rollout-based process reward for agent training. 3B models achieve 91% on ALFWorld.\n      Validates RL training approach; AgentPRM could serve as reward model for B-IAVR.\n\n  - id: xi2025agentprm\n    title: \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\"\n    authors: \"Xi et al.\"\n    venue: \"ACM Web Conference 2026\"\n    year: 2025\n    arxiv_id: \"2511.08325\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Independent work from Choudhury et al., using TD-based estimation with GAE for scalable\n      PRM data labeling. 8x more compute-efficient than baselines with robust test-time scaling.\n      Different approach: Choudhury uses MC rollouts; Xi uses TD+GAE for step-wise promise and progress.\n\n  - id: xiang2024retrospex\n    title: \"Retrospex: Language Agent Meets Offline RL Critic\"\n    authors: \"Xiang et al.\"\n    venue: \"EMNLP 2024\"\n    year: 2024\n    arxiv_id: \"2505.11807\"\n    category: background\n    role: background\n    relevance_note: >\n      Offline RL Critic augments LLM agent action selection via dynamic rescoring.\n      Similar architecture could inform B-IAVR's verification value estimation.\n\n  - id: cfgm2025\n    title: \"CFGM: Coarse-to-Fine Grounded Memory for LLM Agent Planning\"\n    authors: \"Yang et al.\"\n    venue: \"EMNLP 2025\"\n    year: 2025\n    arxiv_id: \"2508.15305\"\n    category: background\n    role: background\n    relevance_note: >\n      Memory-augmented agent planning with episodic grounding.\n      ALFWorld +10.40%, WebShop +20%. Complementary to B-IAVR's verification approach.\n\n  - id: respact2024\n    title: \"ReSpAct: Harmonizing Reasoning, Speaking, and Acting\"\n    authors: \"Dongre et al.\"\n    venue: \"arXiv\"\n    year: 2024\n    arxiv_id: \"2411.00927\"\n    category: evaluation\n    role: baseline\n    relevance_note: >\n      Integrates dialogue/reasoning/acting. +6% over ReAct on ALFWorld.\n      Reduces invalid actions from 13% to 3%; B-IAVR's verification achieves error prevention differently.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 293,
+                  "oldLines": 7,
+                  "newStart": 293,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    "   - id: act2026",
+                    "     title: \"ACT: Agentic Critical Training\"",
+                    "-    authors: \"Unknown\"",
+                    "+    authors: \"Liu et al.\"",
+                    "     venue: \"arXiv\"",
+                    "     year: 2026",
+                    "     arxiv_id: \"2603.08706\""
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成：\n\n| 条目 | 修正前 | 修正后 | 首作者全名 |\n|------|--------|--------|-----------|\n| `sdar2026` | `\"ZJU-REAL\"` | `\"Lu et al.\"` | Zhengxi Lu |\n| `skill0-2026` | `\"ZJU-REAL\"` | `\"Lu et al.\"` | Zhengxi Lu |\n| `act2026` | `\"Unknown\"` | `\"Liu et al.\"` | Weize Liu |\n\n注：sdar2026 和 skill0-2026 均为 ZJU-REAL 实验室同一第一作者 Zhengxi Lu 的工作。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "uuid": "94450f23-742c-4cee-93c6-f4fe29f8d3da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U4aFRKou4qZP7xxjkAYiFy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1553,
+                "cache_read_input_tokens": 35068,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1553
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成：\n\n| 条目 | 修正前 | 修正后 | 首作者全名 |\n|------|--------|--------|-----------|\n| `sdar2026` | `\"ZJU-REAL\"` | `\"Lu et al.\"` | Zhengxi Lu |\n| `skill0-2026` | `\"ZJU-REAL\"` | `\"Lu et al.\"` | Zhengxi Lu |\n| `act2026` | `\"Unknown\"` | `\"Liu et al.\"` | Weize Liu |\n\n注：sdar2026 和 skill0-2026 均为 ZJU-REAL 实验室同一第一作者 Zhengxi Lu 的工作。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 26367,
+            "duration_api_ms": 34603,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "59100853-7e2d-41ce-bbd6-d96f6d583cfa",
+            "total_cost_usd": 0.32214149999999997,
+            "usage": {
+              "input_tokens": 600,
+              "cache_creation_input_tokens": 24780,
+              "cache_read_input_tokens": 103603,
+              "output_tokens": 1200,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 24780,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 187,
+                  "cache_read_input_tokens": 35068,
+                  "cache_creation_input_tokens": 1553,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1553
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 49480,
+                "outputTokens": 597,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 3,
+                "costUSD": 0.08246500000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 600,
+                "outputTokens": 1200,
+                "cacheReadInputTokens": 103603,
+                "cacheCreationInputTokens": 24780,
+                "webSearchRequests": 0,
+                "costUSD": 0.23967650000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "7618a23e-00a3-43f5-ade5-71e27ef98f1a"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-literature-map-authors-batch2.md"
+}

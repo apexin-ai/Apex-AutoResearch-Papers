@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4777488e6a6167876a6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "pipeline seed6 fsdp hf and dual eval",
+  "task_key": "worker_pipeline_seed6_fsdp_hf_and_dual_eval_20260521T130652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_seed6_fsdp_hf_and_dual_eval_20260521T130652_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "b3cad38542de4b228608c0d9048a585fa6e0cbf77e2fcb33def3af524b683bed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张 GPU 全部在工作。\n\n---\n\n### 汇总\n\n| 项目 | 结果 |\n|------|------|\n| **FSDP→HF 转换** | 成功，3.8G，`/root/autodl-tmp/checkpoints/exp029-seed6/global_step_15_hf/` |\n| **Seed 6 OOD eval** | PID 291159，GPU 2（8.1GB 已加载） |\n| **SFT baseline OOD eval** | PID 282634，GPU 3（8.1GB 已加载） |\n| **Seed 7 训练** | PID 226699，GPU 0,1，未受影响 |\n| **GPU 使用** | 4/4 全部有任务 |\n| **磁盘** | 110G/250G used（44%），剩余 141G |\n\n**修复记录**：首次提交 Seed 6 eval 因 `enable_response_mask` 断言失败（model_path 不含 \"qwen\"），已在 config 中追加 `enable_response_mask: False` 后重新提交成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pipeline-seed6-fsdp-hf-and-dual-eval.md"
+}

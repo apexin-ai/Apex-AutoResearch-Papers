@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dfcb24f6efd7446a99b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260517T083509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_sync_20260517T083509_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "d4f5f41dfa64c442a1f817ee635bbc063c89e493cbeb76fb39fcd1712436b49f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "29/29 citation keys present. File written to `docs/paper/references.bib`.\n\nSummary:\n- 23 entries from `literature_map.yaml` with full author lists retrieved via arXiv searches\n- 6 foundational/extra entries: DeepSeekMath, PPO, GAE, REINFORCE, TD-learning, RAGEN\n- Conference papers use `@inproceedings`, arXiv preprints use `@article`, classic journal papers use `@article` with volume/pages\n- All entries sorted alphabetically by citation key"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-bib-sync.md"
+}

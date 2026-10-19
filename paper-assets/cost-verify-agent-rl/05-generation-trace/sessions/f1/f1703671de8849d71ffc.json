@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1703671de8849d71ffc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag 8b v9d ood eval",
+  "task_key": "worker_diag_8b_v9d_ood_eval_20260520T095705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_8b_v9d_ood_eval_20260520T095705_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "d44b2a355e03baf9fadcbeb8c4143eeacd72998b471c77f1c921fbc1d4e07cdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**: 配置问题，非代码 bug。OOD eval 是 `val_only: True` 模式，但 `train.py:163` 的 config validation 不区分 val-only，仍校验 train batch size 约束：\n\n- `es_manager.train.env_groups(1) × group_size(2) × effective_ratio(1.0) = 2.0`\n- `ppo_mini_batch_size = 4`\n- `2.0 < 4` → assertion 失败\n\n**修复**: 在 `_alfworld_8b_v9d_ood_eval.yaml` 中设 `ppo_mini_batch_size: 2`（val-only 模式下该值无实际影响）。报告已写入 `artifacts/8b_v9d_ood_eval/diag_failure.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-8b-v9d-ood-eval.md"
+}

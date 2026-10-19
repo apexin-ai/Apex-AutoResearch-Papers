@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7e51b80aaec3e8ea72e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops fix 8b checkpoint disk crisis",
+  "task_key": "worker_ops_fix-8b-checkpoint-disk-crisis_20260519T102624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-8b-checkpoint-disk-crisis_20260519T102624_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "142eee3a93d23660edde844fbfc679823fb59dc84c96120a425de2ab1d0cf17e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行。汇报：\n\n### 执行结果\n\n| 项目 | 结果 |\n|---|---|\n| **Cell A 当前 step** | Step 1 完成，step 2 rollout 中（total 15 steps, save_freq=5） |\n| **save_freq 能否热改** | **不能**。`self.config.trainer.save_freq` 是内存中的 OmegaConf 对象，每步通过 `self.global_steps % self.config.trainer.save_freq == 0` 检查（`ray_trainer.py:1248`），无文件重载机制 |\n| **执行方案** | 方案 2：清磁盘 |\n| **磁盘清理前** | 76G 可用 (70%) |\n| **磁盘清理后** | **162G 可用 (36%)** |\n| **清理内容** | `exp029-seed2/` (62G) + `hsweep-h10/` (21G) + `qwen3_exp021_ragen_sft_v4/` (3.3G) + 3个 tar.gz/安装包 (~1.2G) |\n| **Cell C config** | `save_freq` 已改为 999 |\n| **训练状态** | PID 849089 正常运行 (uptime 2h27m) |\n\n162G 可用空间足够应对 step 5 的 ~94GB checkpoint save。`checkpoint-231` 未动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-8b-checkpoint-disk-crisis.md"
+}

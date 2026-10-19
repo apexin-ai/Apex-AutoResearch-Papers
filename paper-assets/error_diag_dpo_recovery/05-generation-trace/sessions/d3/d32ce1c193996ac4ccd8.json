@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d32ce1c193996ac4ccd8",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code dpo pair builder",
+  "task_key": "worker_code_dpo-pair-builder_20260512T231039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dpo-pair-builder_20260512T231039_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "50160faf73083def25d09e0cd8b0b06e08cda6bd128bce4f151e26590e14cdf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部自测通过。验证 `build_dpo_pairs.py --help` 也已通过。\n\n产出总结：\n\n1. **`src/build_dpo_pairs.py`** — 更新：添加了 `--gamma` CLI 参数、输出增加 `gamma_e`/`task_type`/`metadata` 字段、summary 显示 γ_e 列\n2. **`src/etadn_discount.py`** — 新建：`ETADNConfig` dataclass、`phi()`/`compute_discount_weights()`/`get_gamma_for_error_type()`、三种 DPO loss 变体（`uniform_dpo_loss`/`single_gamma_dpo_loss`/`etadn_dpo_loss`）、4 项自测全部通过\n\n注：`dmpo_loss.py` 中已有 turn-level 的 `phi_weighted_logps` 用于 trainer 内部，`etadn_discount.py` 提供的是独立的 token-level DPO loss 接口，两者互补。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dpo-pair-builder.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f95ecb8acd0bd050324a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "urgent bjb1 disk cleanup",
+  "task_key": "worker_urgent_bjb1_disk_cleanup_20260521T163507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_bjb1_disk_cleanup_20260521T163507_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "739bb3ca6dfcfeaee57a883e3f8806699f3b32ddc0ae09b10bf619cb5c9455f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志文件自 00:36:19 后没有任何新输出（文件大小不变）。进程还活着但实验已经卡死——初始化阶段被磁盘满中断后没有自动恢复。需要重新提交。\n\n```\n清理前: 9.6 GB 可用 (97% 占用)\n已删除:\n  - /root/autodl-tmp/checkpoints/exp029-seed3/     21 GB  (seed 3 已完成, 仅中间 step 5)\n  - /root/autodl-tmp/checkpoints/exp029/            21 GB  (seed 1 已完成, OOD eval 已跑)\n  - /root/autodl-tmp/checkpoints/exp029_hf/         3.8 GB (seed 1 HF 格式, 不再需要)\n  - /root/autodl-tmp/checkpoints/qwen3_8b_sft_v1/  31 GB  (旧版 SFT v1, 已被 exp021_ragen_sft_v4 取代)\n清理后: 85 GB 可用 (67% 占用, 释放了 ~75 GB)\n\n保留:\n  - exp021_ragen_sft_v4/   23 GB  (SFT base model)\n  - exp029-seed4/          21 GB  (global_step_15, 需做 OOD eval)\n  - exp029-seed7-high-kl/  0 GB   (空目录)\n  - scienceworld_sft/      7.6 GB\n\nhigh_kl 实验: 进程存活但卡死，日志自 00:36 停止更新，需要 kill 后重新提交。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-bjb1-disk-cleanup.md"
+}

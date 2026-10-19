@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6dd1bdeb1343ca3e6ab6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp029 config",
+  "task_key": "worker_code_exp029_config_20260516T083041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp029_config_20260516T083041_result.json",
+    "occurrence": 1,
+    "bytes": 607,
+    "sha256": "89deb7def13205f006f1552f76d9ef30578ec210cb674f2620a021afd87c89dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出：\n\n- **配置文件**: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml`\n- **启动脚本**: `/root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh`\n- **Diff 报告**: `/root/cost-verify-agent-rl/artifacts/exp029_episode_level/intermediate/config_diff.md`\n\n验证结果: `OK: full 140 32 0.92 16384` — 所有关键参数正确。\n\n注意：配置实际路径在 `RAGEN/config/` 而非任务描述中的 `configs/`，启动脚本入口点已对齐 exp028c（`cd RAGEN && python train.py --config-name ...`）。训练未启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp029-config.md"
+}

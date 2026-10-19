@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74be8118285ab75f769c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp015 sparse grpo config",
+  "task_key": "worker_code_exp015-sparse-grpo-config_20260514T124934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp015-sparse-grpo-config_20260514T124934_result.json",
+    "occurrence": 1,
+    "bytes": 1512,
+    "sha256": "1466678dd4fca5ea1648199f87507efb4852881cb37d43075011edc198ab6c4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n## 产出清单\n\n| # | 项目 | 状态 |\n|---|------|------|\n| 1 | 配置 yaml | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp015_sparse_stable.yaml` |\n| 2 | 启动脚本 | `/root/cost-verify-agent-rl/scripts/run_exp015.sh` (chmod +x) |\n| 3 | dry-run 验证 | Hydra `--cfg job` 解析通过 |\n| 4 | Checkpoint 路径 | **`exp008_grpo/global_step_5` 已被清理**，改为 `resume_mode: \"disable\"` 从 SFT 模型启动 |\n| 5 | Ray 清理 | 完成 |\n| 6 | 磁盘 | `/root/autodl-tmp/` 219GB 可用 |\n\n## 配置汇总（Hydra 解析确认）\n\n| 参数 | exp012b 值 | exp015 值 | 验证 |\n|------|-----------|-----------|------|\n| `actor.optim.lr` | 1e-6 | **1e-7** | `1.0e-07` |\n| `actor.kl_loss_coef` | 0.01 | **0.1** | `0.1` |\n| `actor.grad_clip` | 1.0 (默认) | **1.0** (显式) | `1.0` |\n| `format_penalty` | 0 | 0 | `0` |\n| `valid_action_bonus` | 无 (AlfworldSG) | 无 (AlfworldSG) | 标签确认 `AlfworldSG` |\n| `env_groups` (train) | 8 | **4** | - |\n| `resume_mode` | resume_path | **disable** | `disable` |\n\n## 需注意\n\n**Checkpoint 变更**：exp012b 从 `exp008_grpo/global_step_5`（已有 5 步 GRPO 训练的模型）恢复，但该 checkpoint 已被清理。exp015 改为从 SFT 模型 (`qwen3_sft_final`) 全新开始 GRPO。这意味着 exp015 的起点比 exp012b 更早——模型还没有经过任何 GRPO 训练。如果需要与 exp012b 完全对齐起点，需要先跑 5 步标准 GRPO 生成 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp015-sparse-grpo-config.md"
+}

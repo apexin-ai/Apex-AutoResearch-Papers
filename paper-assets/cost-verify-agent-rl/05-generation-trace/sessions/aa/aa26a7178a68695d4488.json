@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa26a7178a68695d4488",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag v9d sighup fix restart",
+  "task_key": "worker_diag_v9d_sighup_fix_restart_20260520T075700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_v9d_sighup_fix_restart_20260520T075700_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "8b7999a8ad309f695373e3084fca31f0696070d0804c8435cbe1e483b67a025a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。总结：\n\n**SIGHUP 不存在。** 原 failure_reason 记录的 EXIT_CODE=129 与日志不符——所有日志中崩溃均为 EXIT_CODE=1。v9c 的真正根因是 vLLM prompt 长度 16384 = max_model_len，无输出 token 空间。\n\n**当前状态：v9d 已在运行中。**\n- 从 `global_step_10` 恢复（实际到了 step 10，不是之前 metrics 记录的 step 7）\n- tmux session 活跃，4×GPU 加载完毕，wandb 已连接 (aeml21w9)\n- 磁盘 106GB 可用，剩余 20 步 (step 11→30)\n- SFT checkpoint 通过 symlink→Qwen3-8B 修复\n\n**风险：** config 中 `max_prompt_length=15360` / `max_model_len=16384` 未变，v9c 的 prompt 溢出崩溃可能在某个 episode 重现。若再崩，建议将 `max_prompt_length` 降至 14336 或提高 `max_model_len`。\n\n诊断报告已注册为 artifact (`art_20260520_c7e223`)，registry notes 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-v9d-sighup-fix-restart.md"
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "80a1c0886a26ab7e04b8",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code exp019b correct data",
+  "task_key": "worker_code_exp019b-correct-data_20260514T165141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp019b-correct-data_20260514T165141.log",
+    "occurrence": 1,
+    "bytes": 1066623,
+    "sha256": "b9dc7e28d1d28ee478023699687383a010fb389db63c744b7c2d8bd5fa0aaec7"
+  },
+  "statistics": {
+    "messages": 665,
+    "user_turns": 1,
+    "tool_calls": 271,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 113,
+      "tool_call": 271,
+      "tool_result": 271,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 646,
+      "chunks": [
+        {
+          "path": "80a1c0886a26ab7e04b8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "80a1c0886a26ab7e04b8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "80a1c0886a26ab7e04b8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "80a1c0886a26ab7e04b8-part-0004.json",
+          "message_count": 106
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "80a1c0886a26ab7e04b8-part-0004.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp019b-correct-data.md"
+}

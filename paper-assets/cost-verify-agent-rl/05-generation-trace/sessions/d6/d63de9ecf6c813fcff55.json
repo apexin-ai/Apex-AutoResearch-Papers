@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d63de9ecf6c813fcff55",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh check seed7 eval results westd",
+  "task_key": "worker_ssh_check_seed7_eval_results_westd_20260523T000727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_seed7_eval_results_westd_20260523T000727_result.json",
+    "occurrence": 1,
+    "bytes": 1197,
+    "sha256": "651b783f3b244ca808a02ba19bd9958abc639b42dcfcb89a61de57dc6ec6adea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 两个 eval 均 CRASH，无结果产出\n\n| Eval | PID | 状态 | 错误 |\n|------|-----|------|------|\n| **step5** (cuda:2) | 217542 | **已死** | vLLM 初始化 OOM: `Free memory on device cuda:0 (45.1/94.97 GiB)` < 需要 80.73 GiB (gpu_memory_utilization=0.85) |\n| **step7** (cuda:3) | 243894 | **已死** | `torch.AcceleratorError: CUDA error: out of memory` — device_mesh 初始化时 OOM |\n\n两个 eval 都在 **初始化阶段** 就崩溃了，未进入 rollout，**没有产出任何 eval 指标**。\n\n### GPU 当前状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|----------|--------|\n| 0 | 96687/97887 MiB | 100% |\n| 1 | 96687/97887 MiB | 100% |\n| **2** | **0 MiB** | **0%** — 已释放 |\n| **3** | **0 MiB** | 100%（残留值，内存已释放） |\n\n### 根因分析\n\n- **step5**: 启动时 GPU 2 上只有 45.1 GiB 空闲（疑似有其他进程占用了约 50 GiB），vLLM 要求 0.85 × 95 GiB ≈ 80.7 GiB，不够。\n- **step7**: 更底层的 OOM，`init_device_mesh` 阶段 CUDA 就分配失败了。\n\nGPU 0/1 上的训练仍在正常运行。需要在 GPU 2/3 空闲的当前窗口重新提交这两个 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-seed7-eval-results-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6643092a4622ec784216",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code cherry pick training config",
+  "task_key": "worker_code_cherry_pick_training_config_20260515T083553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cherry_pick_training_config_20260515T083553_result.json",
+    "occurrence": 1,
+    "bytes": 1394,
+    "sha256": "65ba657c0874cbf7b3f8b0d81a90e989611398de0d1bfe264f53950ec21be36e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Hydra 配置验证通过，所有关键参数解析正确。\n\n**已创建的文件**：\n\n| 文件 | 路径 |\n|---|---|\n| 配置 YAML | `RAGEN/config/_alfworld_exp026_step_independent_grpo.yaml` |\n| 训练脚本 | `scripts/run_exp026_step_independent_grpo.sh` |\n| Dry-run 脚本 | `scripts/run_exp026_dryrun.sh` |\n\n**相比 exp022-24 的关键变更**：\n\n| 参数 | exp022-24 | exp026 | 来源 |\n|---|---|---|---|\n| `kl_loss_coef` | 0.5 | **0.01** | verl-agent default |\n| `kl_loss_type` | kl | **low_var_kl** | verl default (k3) |\n| `lr` | 5e-7 | **1e-6** | verl-agent default |\n| `context_window_mode` | full | **step_independent** | Worker 1 新增 |\n| `max_context_window` | -1 (全量) | **5** (bounded) | 配合 step-independent |\n| `max_turn` | 30 | **50** | 对齐 verl-agent |\n| `use_turn_scores` | False | **True** | Worker 2 step-level reward |\n| `total_training_steps` | 30 | **150** | 充分训练 |\n| `test_freq` | 20 | **5** | 更频繁验证 |\n| `save_freq` | 5 | **25** | 减少 IO |\n| `logger` | console only | **console+wandb** | 完整监控 |\n\n**依赖 Worker 1/2 的部分**：\n- `context_window_mode: \"step_independent\"` — 需要 Worker 1 在 ctx_manager.py 中实现\n- `use_turn_scores: True` — 需要 Worker 2 的 step-level reward 计算\n- `invalid_action_penalty` — RAGEN 尚未支持，已在 config 中标注 TODO"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cherry-pick-training-config.md"
+}

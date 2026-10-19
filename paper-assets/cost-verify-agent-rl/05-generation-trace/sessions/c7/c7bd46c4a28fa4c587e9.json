@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7bd46c4a28fa4c587e9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp012 d010 verify",
+  "task_key": "worker_code_exp012-d010-verify_20260514T062706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp012-d010-verify_20260514T062706_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "2fc47007047e636ac9cdd474c4a2762f4b50dabe6be52de448d0666472217542"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n## 检查结果\n\n| 项目 | 修复前 | 修复后 |\n|------|--------|--------|\n| env.py reward | D007 valid-action bonus (0.1) | **已恢复** → 二值 `score * won` |\n| format_penalty | `-0.01` | **已修改** → `0` |\n| group_size | 16 | ✓ 无需改 |\n| resume_from_path | exp008 step 5 | ✓ 无需改 |\n| es_manager.py | 从 config 读取 format_penalty | ✓ 无需改 |\n\n**两项修复已完成：**\n1. `env.py` — git checkout 恢复为原始二值 reward（won=10.0, else=0）\n2. config — `format_penalty` 从 `-0.01` 改为 `0`\n\nexp012 配置现在符合 D010 指令（纯 A2：去 format_penalty + 加大 group_size），可以提交启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp012-d010-verify.md"
+}

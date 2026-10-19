@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7e77f121c9b7e7ffd59",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp028 config prep",
+  "task_key": "worker_code_exp028_config_prep_20260515T202818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp028_config_prep_20260515T202818_result.json",
+    "occurrence": 1,
+    "bytes": 1354,
+    "sha256": "5cc407b7e04318cbecd381f4a7b2f64ea2b0c61dedf37a6d2d63d4df1d917f28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "配置解析验证通过。总结：\n\n**已创建 4 个文件：**\n\n| 文件 | 路径 |\n|------|------|\n| exp028a config | `RAGEN/config/_alfworld_exp028a_recipe_fix.yaml` |\n| exp028b config | `RAGEN/config/_alfworld_exp028b_full_recipe.yaml` |\n| exp028a script | `scripts/run_exp028a_recipe_fix.sh` |\n| exp028b script | `scripts/run_exp028b_full_recipe.sh` |\n\n**exp028a（最小变更）vs exp027 差异：**\n- `model_path`: SFT v4 → `Qwen/Qwen2.5-1.5B-Instruct`（Instruct 冷启动）\n- `format_penalty`: 0 → -0.1（解决全零 group 零梯度）\n\n**exp028b（全 recipe 对齐）额外变更：**\n- LR: 5e-7 → 1e-6\n- KL coef: 0.005 → 0.01\n- mini_batch: 32 → 256\n- steps: 50 → 150\n- history_length: 5 → 2\n- prompt_length: 4096 → 2048\n- response_length: 1024 → 512\n- loss_agg_mode: seq-mean-token-mean → token-mean\n- env_groups: 8×16 → 16×8（总 rollout 仍 128）\n\n**注意事项：**\n1. **Qwen2.5-1.5B-Instruct 不在服务器上**，启动前需先下载（建议用 ModelScope 或 `source /etc/network_turbo` 后 HF 下载）\n2. `format_penalty` 在 `ctx_manager.py:291` 中 **GRPO normalization 之前** 加到 `acc_scores`，确认在 GRPO 模式下生效——全失败 group 中有 invalid action 的 episode 会被额外扣 0.1/step，产生非零方差，梯度不再为零"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp028-config-prep.md"
+}

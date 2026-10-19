@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5e4217be6a22d32f203",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp012b fix and submit",
+  "task_key": "worker_code_exp012b-fix-and-submit_20260514T063237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp012b-fix-and-submit_20260514T063237_result.json",
+    "occurrence": 1,
+    "bytes": 1457,
+    "sha256": "d4fd454f6c32d39542d8b54f8a77d761cd6e9a5f115b5b4c4a66628028a996e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "timeout 已经杀干净了，Ray 没有残留进程。\n\n---\n\n## 汇报\n\n### 1. D010 代码修复状态 ✅\n- **env.py**: `reward = self.config.score * float(won)` — 纯二值 reward，正确\n- **config `format_penalty`**: `0` — 正确\n- **config `group_size`**: `16`（train）/ `1`（eval）— 正确\n\n### 2. vLLM `disable_mm_preprocessor_cache` 参数 ✅ 无需修复\n- 仅存在于 `ragen/llm_agent/ap_webshop.py:57`（webshop 专用）\n- `agent_proxy.py` 和 `train.py` 调用链中**不包含此参数**\n- alfworld config 也不涉及 webshop\n- **train.py 入口不会触发此 TypeError**\n\n### 3. Dry-run 结果 ✅ 通过\n- 配置解析成功，total_training_steps=30\n- 训练集 3553 games，验证集 140 games 加载完成\n- 从 `exp008_grpo/global_step_5` resume 成功（model/optimizer/rng/lr_scheduler 双 Rank 均加载）\n- AlfredTWEnv 初始化启动\n- vLLM engine 初始化完成（enforce eager, NCCL 2.27.5）\n- **0 Traceback / TypeError / Error**\n- 进程被 `timeout 120` 正常终止\n\n### 4. 正确启动命令\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR && \\\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld && \\\nexport CUDA_VISIBLE_DEVICES=0,1 && \\\ncd /root/cost-verify-agent-rl/RAGEN && \\\npython train.py --config-name _alfworld_exp012_reward_fix\n```\n\n可以提交 exp012b。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp012b-fix-and-submit.md"
+}

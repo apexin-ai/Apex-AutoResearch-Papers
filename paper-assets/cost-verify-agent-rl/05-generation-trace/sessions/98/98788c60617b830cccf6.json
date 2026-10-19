@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98788c60617b830cccf6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops cellc v3 progress check",
+  "task_key": "worker_ops_cellc-v3-progress-check_20260521T023645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cellc-v3-progress-check_20260521T023645_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "e89f0d5ab036d1ac5610473c46e5a9db30179b37bff79f1d4a9cdf471a740e19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Cell C v3 状态\n\n| 指标 | 值 |\n|------|-----|\n| **进程** | PID 88226，运行中，已运行 8h13m |\n| **当前步数** | **3/15 (20%)** |\n| **每步耗时** | step 1: 39m, step 2: 3h46m, step 3: 2h11m（平均 ~2h20m/step，step 1 是 warmup） |\n| **预估剩余** | ~28h（进度条显示 28:08:26） |\n| **预估完成** | 约 5月22日 下午 |\n\n### Val 结果\n\n仅有 **step 0**（baseline）的 val：\n- success: **0.0**\n- score: **2.71**\n- pass@1: **0.0**\n- reward/mean@32: **0.5**\n- final_score: **5.0**\n\n**Step 5 val 尚未产生**，当前才到 step 3。\n\n### Train 指标（step 3）\n\n- train success: 0.0，train score: 0.96\n- reward mean: 0.153，KL loss: 0.613\n- manager_invalid_action: **67.6%**（大量无效动作）\n- action_is_valid: 9.4%\n- throughput: 90.5 tokens/s\n\n训练信号偏弱（success 仍为 0，reward 低），需关注后续 step 5 val 是否出现改善。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cellc-v3-progress-check.md"
+}

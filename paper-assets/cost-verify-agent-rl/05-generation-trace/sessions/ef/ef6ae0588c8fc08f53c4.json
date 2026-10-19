@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef6ae0588c8fc08f53c4",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "reviewer / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_12.md",
+    "occurrence": 1,
+    "bytes": 4074,
+    "sha256": "627a7c44258d99b9d28a0a2d518b0f1198b067023bd629380904f48c80903048"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: max_wall_time\nupdated: '2026-05-17T07:22:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（bjb1-17606 只分配这两张卡），越界即 critical\n- hsweep-h2-seed1 正在跑，**不能 kill 或干扰其进程**，它是 paper core figure 数据源\n- `agent_trainer.py` 已被 advantage logging patch 修改（line 343-367），h=2 seed 2 会自动启用 `LOG_PER_SAMPLE_ADV=1`，不要删除这段代码\n- method.tex Eq.(3) 刚修正过（γ per-window not per-step），γ=0.95 不是 0.99，exponent=N-k 不是 T-kh，所有权威文件已统一，不要回退\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`bjb1-17606(root)`，代码根目录 `/root/cost-verify-agent-rl`\n- RAGEN 代码：`/root/cost-verify-agent-rl/RAGEN/`\n- W&B logs：`/root/autodl-tmp/wandb/wandb/`\n- hsweep-h2-seed1 W&B run：`run-20260517_121901-7o9bjszm`\n- h-sweep 自动化脚本：`/root/cost-verify-agent-rl/scripts/auto_next_hsweep.sh`（完成后自动 launch 下一个配置）\n- h-sweep 序列：`2:1 2:2 2:3 5:1 5:2 5:3 10:1 10:2 10:3 20:1 20:2 20:3 full:2 full:3`（exp029 = full:1 已完成）\n- hsweep configs：`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_hsweep_h*.yaml`，gamma=0.95\n- 活跃进程：hsweep-h2-seed1（tmux session 名待确认，~52 min/step，双卡 97-100% util）\n\n### 3. 📊 当前状态\n**刚完成**：\n- 审查 method.tex 初稿，发现并报告 Eq.(3) 公式 critical 错误（γ 指数 per-window vs per-step + γ 值），Worker 已修复\n- 验证 D058 theory correction（Sign Misattribution 替代 Flat Advantage），已 post info 确认三维度兼容\n- 验证 advantage logging patch 代码正确性\n\n**实验状态**：\n- hsweep-h2-seed1：step 2 完成，step 3 进行中（预计 ~14:44 UTC 完成）。**明确 collapse 趋势**：train success 18.75%→14.84%，KL 0.059→0.192（3x），grad_norm 12.38\n- exp029：已 KILLED at step 15（val=28.125%，pass@8=92.9%），checkpoint 保留\n\n**等待中**：无 pending worker 或 director 决策\n\n### 4. 📋 待办\n- hsweep-h2-seed1 step 3 完成 → 确认 train success 是否继续下降（预期 <12%）\n- hsweep-h2-seed1 step 5 完成（含 val eval）→ 确认 val success ≈ 0%，正式确认 h=2 collapse\n- h=2 seed 1 全 15 步完成 → auto_next_hsweep.sh 自动 launch h=2 seed 2（含 advantage logging）→ 验证 advantage_log.jsonl 开始产出\n- h=2 seed 2 产出 advantage_log.jsonl → 审查 per-window advantage 数据，验证 sign misattribution claim（成功 episode 所有 window positive，失败 episode 所有 window negative）\n- h=5 开始后 → 对比 h=2 vs h=5 collapse 速度，开始构建 h-value degradation curve\n- paper_framing.md 修正完成后 → 审查 \"γ^24≈29%\" 是否已全局统一（特别注意 dream_reports/ 和旧 artifacts 可能有残留旧值，但这些是历史记录不改）\n\n### 5. 🎯 战略上下文\n**核心决策链**：D054（dual contribution framing）→ D055（Dream Review 修正）→ D057（early-stop exp029 for h-sweep）→ D058（theory correction: flat advantage → sign misattribution）\n\n**论文 story**：step-independent 训练灾难性崩溃（dual mechanism: policy info loss + advantage sign misattribution）→ episode-level 解决 → selective verification（Phase B，未开始）\n\n**最容易判断错的事**：\n1. **γ-discount 层级**：γ 在 RAGEN step_independent 实现层（per-window return），NOT 在 GRPO 算法层。论文绝不能写 \"GRPO uses γ\"，只能写 \"RAGEN's step_independent implementation introduces γ\"\n2. **val 指标可比性**：`val-env/AlfworldSG/success` 跨模式可比（always per-episode），`val-core/unknown/reward/mean@N` 不可比（per-window 粒度不同）\n3. **hsweep collapse 预期**：h=2 预期 collapse 到 0%（已在进行），h=5 预期衰退但不完全 collapse，h=20/full 预期学习。这是 paper core figure 的 cliff pattern\n4. **action_is_effective 是 hardcoded True**（env.py:224），metrics 中的下降来自 manager_invalid_action，不是代码 bug\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-copy-3.md"
+}

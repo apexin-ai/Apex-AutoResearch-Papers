@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acef01f98f5f74b83205",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code scienceworld sft",
+  "task_key": "worker_code_scienceworld_sft_20260519T143540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scienceworld_sft_20260519T143540_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "a471d8504a8c3ca9a2a51007643b40461ca4c4510f6c42490f0f09e9dad465c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ScienceWorld SFT 训练已成功启动。\n\n**总结：**\n- **模型**: Qwen3-1.7B（与 ALFWorld SFT 一致），从 ModelScope 下载到 westd\n- **数据**: JSONL → Parquet 转换，3592 train / 1796 val，添加 `enable_thinking=False` 列\n- **配置**: FSDP2 × 4 GPU, LR=5e-6, 2 epochs, batch=16, max_length=16384 + left truncation\n- **代码修改**: `fsdp_sft_trainer.py` 将硬编码 `flash_attention_2` 改为可配置（默认 `sdpa`），兼容 Blackwell GPU\n- **运行状态**: GPU 100% 利用率, 47GB/96GB 显存, ~19s/step, 初始 loss ~0.6\n- **预计完成**: ~2.4 小时\n- **W&B**: Run `dqoxg94e`, 项目 `cost-verify-agent-rl`\n- **Checkpoint 输出**: `/root/autodl-tmp/checkpoints/scienceworld_sft/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scienceworld-sft.md"
+}

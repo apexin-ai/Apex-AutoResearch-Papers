@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a206308b67a5c77fe6cd",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp010 gpu confirm",
+  "task_key": "worker_monitor_exp010_gpu_confirm_20260514T034615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp010_gpu_confirm_20260514T034615_result.json",
+    "occurrence": 1,
+    "bytes": 984,
+    "sha256": "7219d76f189f19bd1c0d0ecd8e12afbe4e5ae930884617509a6183df4b407598"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp010 状态：正常，初始化阶段**\n\n| 项目 | 结果 |\n|------|------|\n| 进程 PID 199389 | **存活** |\n| GPU 0 | 42,250 MiB 已用, 0% 利用率 |\n| GPU 1 | 42,246 MiB 已用, 0% 利用率 |\n| 错误/Traceback | **无** |\n| 日志行数 | 1,481 行 |\n| `/tmp/ray` | 33M（Ray session 元数据，正常） |\n| `/root/autodl-tmp/ray_tmp` | 1.8M（RAY_TMPDIR 已生效） |\n\n**RAY_TMPDIR**：父进程 environ 中未直接出现，但启动命令内部通过 `export RAY_TMPDIR=/root/autodl-tmp/ray_tmp` 设置，对训练子进程生效。`/root/autodl-tmp/ray_tmp` 目录已创建且有数据写入（1.8M）。`/tmp/ray` 的 33M 是 Ray session 元数据（Ray 始终会在此创建 session 目录，RAY_TMPDIR 控制的是 spill 文件位置），属正常行为。\n\n当前日志显示 Ray WorkerDict 正在打印模型配置，GPU 显存已加载 ~42GB 但利用率 0%——处于模型加载/初始化阶段，尚未开始训练计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp010-gpu-confirm.md"
+}

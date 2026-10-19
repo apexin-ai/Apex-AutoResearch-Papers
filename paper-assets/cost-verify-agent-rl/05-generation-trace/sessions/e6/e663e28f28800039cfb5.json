@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e663e28f28800039cfb5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp029 seed3 episode",
+  "task_key": "worker_diagnose_exp029_seed3_episode_20260520T170945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp029_seed3_episode_20260520T170945_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "a86badeb8ea3df02c5678eff43e3b50bd12c93573c6f36dbbe6f10b4542f8940"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**失败原因**：Hydra override `seed=42` 将 `config.seed` 设为 `int`，但 `es_manager.py:44` 调用 `seed_cfg.get(mode, None)` 期望 dict 类型 → `AttributeError: 'int' object has no attribute 'get'`。启动阶段即 crash，无训练产出。\n\n**已修复**：v2 实验已将 seed 改为 `{train: 42, val: 123}` 并正在运行（W&B run ID: `0t58u17b`，GPU 2,3 正常占用）。\n\n报告已写入 `artifacts/diagnose_exp029_seed3.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp029-seed3-episode.md"
+}

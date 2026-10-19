@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "961951584740c3a6c757",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check seed200 v3 westd status",
+  "task_key": "worker_check_seed200_v3_westd_status_20260522T192647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_seed200_v3_westd_status_20260522T192647_result.json",
+    "occurrence": 1,
+    "bytes": 1326,
+    "sha256": "5f8d92da9acfa9c40b02b76a53e029c81c7233e7f12d4dcf20da0905861fe779"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### seed200 v3 — 正常运行中\n\n| 项目 | 状态 |\n|------|------|\n| 主进程 PID 129823 (bash) | 存活，24 min |\n| Ray session | `session_2026-05-23_03-03-12`，raylet PID 131094 |\n| GPU 2,3 进程 | WorkerDict PID 132938/132939（不是 129823 本身，而是 Ray 子进程） |\n| GPU 2 | 100% util, 97067/97887 MiB |\n| GPU 3 | 100% util, 97067/97887 MiB |\n| wandb run | `sy10o3te` (exp029-seed200-episode-level) |\n| 当前进度 | **Step 0→1 / 5**，正在执行第一个 iteration 的 rollout + policy update |\n| 初始 validation | success = 6.25% (2/32) |\n| 最后日志时间 | 03:21:06 — TaskRunner 在跑 AlfworldSG rollout，WorkerDict 在算 compute_policy_loss |\n\nv3 正常。GPU 上的 PID 不是 129823 而是 Ray 派生的 WorkerDict 子进程（132938/132939），这就是 Director 追踪不到的原因。\n\n### seed200 旧 log（seed200_episode_grpo.log）\n\n这是**之前的失败 run**，不是 v3。崩溃原因：`ActorUnavailableError` — raylet 被意外终止（可能 OOM 或 SIGKILL）。与当前 v3 无关。\n\n### seed100 — 正常\n\n| 项目 | 状态 |\n|------|------|\n| PID 78400 (TaskRunner) | 存活，1h34m |\n| PID 72007 (python main) | 存活，1h35m |\n| GPU 0,1 | 0% util, ~44GB each（vLLM idle，等待下次 rollout） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-seed200-v3-westd-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "495994a5d0c8b7305143",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research scienceworld java diagnosis",
+  "task_key": "worker_research_scienceworld_java_diagnosis_20260522T033541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_scienceworld_java_diagnosis_20260522T033541_result.json",
+    "occurrence": 1,
+    "bytes": 3698,
+    "sha256": "e3bb262e549cf9fd03a816b18a04b44374aee4b4bc7a0d545fac79c5da40b5ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SFT checkpoint 在 bjb1-17606 上还在。诊断完成，以下是完整报告。\n\n---\n\n## ScienceWorld GRPO 诊断报告\n\n### 1. Java 环境状态\n- **两台服务器**：OpenJDK 11.0.30，`/usr/bin/java`\n- `JAVA_HOME` 未设置，但不影响运行（py4j 通过 PATH 找到 Java）\n- **Java 正常可用**\n\n### 2. ScienceWorld 包状态\n- **两台服务器**：scienceworld 1.2.3 + py4j 0.10.9.9\n- JAR 随 pip 包自带\n\n### 3. 初始化测试结果\n- **westd-47453 上 ScienceWorld 初始化成功**：30 个任务可用，正常关闭\n- 仅有 deprecated camelCase API 警告（无害）\n\n### 4. 三次失败的根因分析\n\n| 运行 | 日志文件 | 时间 | 根因 |\n|------|---------|------|------|\n| **Run 1** | `scienceworld_cell_c.log` | 5/20 20:44→23:29 | JVM 内部错误 → `Py4JError` 未被 `_is_jvm_dead()` 捕获 → 整个训练 crash |\n| **Run 2** | `scienceworld_grpo_cell_c_v2.log` | 5/20→5/21 | **磁盘 95% 满**（250GB 仅剩 4.2GB），Ray raylet 无法 spill |\n| **Run 3** | `scienceworld_grpo_cell_c_v3.log` | 5/21 02:25→10:43 | SIGTERM + core dump (exit code 129)，可能 OOM 或手动 kill |\n\n**Run 1 核心问题**：`env.py:6` 的 `_is_jvm_dead()` 只检查 `Py4JNetworkError`，不检查 `Py4JError`。当 JVM 返回错误时，异常绕过 graceful abort 逻辑直接杀死整个训练进程。\n\n### 5. 修复方案\n\n**(a) 代码修复 — `_is_jvm_dead()` 缺陷**\n```python\n# 当前（有 bug）：\ndef _is_jvm_dead(exc):\n    return isinstance(exc, (Py4JNetworkError, ConnectionError, OSError, BrokenPipeError))\n\n# 修复后：\ndef _is_jvm_dead(exc):\n    return isinstance(exc, (Py4JError, Py4JNetworkError, ConnectionError, OSError, BrokenPipeError))\n```\n\n**(b) SFT Checkpoint 传输**\n- **bjb1-17606 上有**：`/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/`（完整模型 + tokenizer）\n- **westd-47453 上丢失**\n- 需从 bjb1 → westd SCP 传输\n\n**(c) Config model_path 不一致**\n- GRPO configs 引用 `qwen3_scienceworld_sft/huggingface`\n- 实际 checkpoint 路径是 `scienceworld_sft/huggingface`\n- 需要：在 westd 上将 SFT checkpoint 放到 `qwen3_scienceworld_sft/huggingface`（或修改 config）\n\n**(d) 磁盘空间**\n- westd-47453 当前 200G/250G used (80%)，有 51GB 空闲，比 Run 2 时好\n- 仍需监控\n\n**(e) JVM 堆内存**\n- 当前 `-Xmx4g`，可考虑增至 `-Xmx8g` 减少 JVM 内部 OOM 导致的 crash\n\n### 6. SFT Checkpoint 位置\n- **bjb1-17606**: `/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/` (2 个 safetensors 分片 + tokenizer 文件)\n- **westd-47453**: 已丢失\n\n### 7. 可用的 ScienceWorld 训练配置\n\n| Config 文件 | Context | GPU | Env Tag | model_path |\n|---|---|---|---|---|\n| `_scienceworld_cell_a.yaml` | step_independent, h=2 | 4 GPU (0,1,2,3) | ScienceWorldBoil | `scienceworld_sft/global_step_448/huggingface` |\n| `_scienceworld_cell_c.yaml` | full | 4 GPU (0,1,2,3) | ScienceWorldBoil | `scienceworld_sft/global_step_448/huggingface` |\n| `_scienceworld_cell_a_grpo.yaml` | step_independent, h=2 | 2 GPU (0,1) | ScienceWorldSG | `qwen3_scienceworld_sft/huggingface` |\n| `_scienceworld_cell_c_grpo.yaml` | full | 2 GPU (2,3) | ScienceWorldSG | `qwen3_scienceworld_sft/huggingface` |\n| `_scienceworld_cell_a_2gpu.yaml` | — | 2 GPU | — | — |\n| `_scienceworld_cell_c_2gpu.yaml` | — | 2 GPU | — | — |\n\n### 准备启动 GRPO 训练前需完成\n1. 将 SFT checkpoint 从 bjb1 传到 westd（或在 bjb1 上跑）\n2. 修复 `_is_jvm_dead()` 加入 `Py4JError`\n3. 确认 config 的 `model_path` 指向正确位置\n4. 确认目标服务器 GPU 可用 + 磁盘充足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-scienceworld-java-diagnosis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cd834b4570576170e59",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 cleanup and backup ood",
+  "task_key": "worker_ops_bjb1_cleanup_and_backup_ood_20260522T003535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_cleanup_and_backup_ood_20260522T003535_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "1125880fd9278e79acb4e5e9c4919b4d56b3b85bdd863c8e4ca547e82223ae0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is in early startup (Ray initializing, model not yet loaded to GPU). This is expected — model loading will allocate VRAM shortly.\n\n## Summary\n\n**Task E — Ray cleanup:**\n- Cleaned all `/tmp/ray/session_*` directories (6 sessions + session_latest)\n- Disk after cleanup:\n  - `/` (root): 22G free (28% used)\n  - `/root/autodl-tmp/`: 33G free (88% used)\n\n**Task B — C' step5 OOD eval submitted:**\n- **Experiment ID:** `c_prime_step5_ood_bjb1`\n- **PID:** 357552\n- **Config:** `_alfworld_c_prime_step5_ood_eval.yaml`\n- **Checkpoint:** `/root/autodl-tmp/checkpoints/qwen_c_prime_step5_hf` (symlink → `c_prime_step5_hf`)\n- **Setup:** val_only mode, 134 OOD episodes (`AlfworldSG_OOD`), cuda:0, single GPU\n- **GPU status:** cuda:0 in use (startup), cuda:1 idle\n- **W&B experiment name:** `c-prime-step5-ood-bjb1`\n- Registered in registry as RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-cleanup-and-backup-ood.md"
+}

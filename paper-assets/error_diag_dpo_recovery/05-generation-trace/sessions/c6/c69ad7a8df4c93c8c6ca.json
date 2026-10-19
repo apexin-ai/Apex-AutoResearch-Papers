@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c69ad7a8df4c93c8c6ca",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code gamma d adaptation",
+  "task_key": "worker_code_gamma-d-adaptation_20260512T234440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gamma-d-adaptation_20260512T234440_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "44587f31057b627b83b82432a498aa66963a5784895f1331fe6623e50f2926ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**etadn_discount.py** — 8 项自测全部 PASS：\n- 原有 4 项（phi weights、shape、gamma lookup、DPO gradients）不变\n- 新增 4 项：divergence groups 边界测试、continuous γ(d) 线性插值测试、divergence DPO loss 梯度测试、monotonicity 约束测试\n\n**build_dpo_pairs.py** — 新增 CLI 参数：\n- `--gamma-mode {error_type, divergence_timing, continuous}` — 默认 `divergence_timing`\n- `--divergence-gamma early=0.97,mid=0.92,late=0.85`\n- `--gamma-min` / `--gamma-max`（continuous 模式用）\n\n输出每条 DPO pair 新增 `d`（相对 divergence 位置）和 `divergence_group`（early/mid/late）字段，`gamma_e` 按所选模式计算。summary 增加了按 divergence group 的统计。原有 error_type 模式完全向后兼容。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gamma-d-adaptation.md"
+}

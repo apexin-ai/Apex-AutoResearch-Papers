@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3dd8798418967e041be",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp 001b urgent",
+  "task_key": "worker_monitor_exp_001b_urgent_20260513T192646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp_001b_urgent_20260513T192646_result.json",
+    "occurrence": 1,
+    "bytes": 1639,
+    "sha256": "85b2af3ff558de5eba515ddbebecd180e5a8fc8ef24846fc0382d72ce37c709f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_001b 状态报告\n\n### 训练状态：**在跑**\n- 进程 PID 93794，启动于 03:15（约 12 分钟前）\n- 当前 step 4/50（8%），每 step 约 120-270 秒\n- GPU 0/1 各占用 ~59GB，利用率瞬时 0%（正在 rollout/collapse 阶段）\n\n### Step 1 关键指标（目前唯一有完整 metrics 的训练 step）\n\n| 指标 | 值 | 判定 |\n|------|-----|------|\n| `critic/advantages/mean` | **0.005** | 技术上非零，但极小 |\n| `critic/advantages/max` | 1.50 | 有差异信号 |\n| `critic/advantages/min` | -0.50 | 有差异信号 |\n| `actor/pg_loss` | **-1.73e-7** | 约等于 0 |\n| `actor/ppo_kl` | **0.0** | 策略无变化 |\n| `actor/pg_clipfrac` | **0.0** | 无 clip |\n| `train/AlfworldSG/success` | **0%** | 全失败 |\n| `manager_invalid_action` | **95.6%** | bootstrap 问题仍在 |\n| `action_is_valid` | **0.6%** | 几乎全部格式错误 |\n| `critic/rewards/mean` | -0.956 | 接近最低 -1.0 |\n\n### 分析\n\nadvantages 均值 0.005（非字面 0），但 **pg_loss ≈ 0、KL = 0、clipfrac = 0** — 策略实际没有任何更新。95.6% invalid action 表明模型仍然无法输出正确格式，bootstrap 问题未解决。max_model_len 修复没有帮助。\n\n### 建议：**Kill**\n\n虽然 advantages 不是严格全零，但训练实质无效：\n- 策略梯度为零，模型不在学习\n- 95.6% invalid action，和 exp_001 同一问题\n- 继续跑 46 步只是浪费 GPU 时间\n\n需要先解决 bootstrap 问题（如 SFT warmstart 或 prompt engineering 让 base model 输出正确格式）再重启训练。\n\n**是否执行 kill？** 请确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp-001b-urgent.md"
+}

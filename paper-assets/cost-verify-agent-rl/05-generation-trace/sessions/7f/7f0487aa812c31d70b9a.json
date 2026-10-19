@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f0487aa812c31d70b9a",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3256,
+    "sha256": "2419d4cf429ae88f0a886d3a20eb8b367f78b0cb049b72360f42a6c165a1dd2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T05:54:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 bjb1-17606:cuda:0 和 cuda:1（2× RTX PRO 6000 Blackwell 94GB）\n- 服务器用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不要创建 .venv\n- submit 命令必须自带环境激活，GPU 编号始终从 0 开始\n- exp007 checkpoint 路径：/root/autodl-tmp/checkpoints/exp_007/，不要覆盖\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，账号 root\n- 工作目录：/root/cost-verify-agent-rl/RAGEN\n- Python：/root/miniconda3/bin/python（conda base）\n- 数据：/root/autodl-tmp/alfworld/（3553 train split）\n- 模型：Qwen3-1.7B（HF 下载，具体路径需 SSH 确认）\n- Checkpoint：/root/autodl-tmp/checkpoints/exp_007/\n- 日志：/root/autodl-tmp/exp007_formal.log\n- 环境变量：ALFWORLD_DATA=/root/autodl-tmp/alfworld\n- W&B：回调说 \"W&B data available\"，run_id 未记录在 registry，Worker 应从日志中提取\n- 活跃进程：无（exp007 已退出）\n- Cron：reconcile 显示 0 个活跃\n\n### 3. 📊 当前状态\n- **刚做完**：收到 exp007 ANALYZING 回调，完成 session 初始化，已 spawn Worker（worker_analysis_exp007_20260514T025245）分析结果\n- **等待中**：Worker 回调——它会 SSH 读日志 + 拉 W&B 指标 + 判断 conclusion + 更新 registry + 写分析报告\n- **Registry**：exp007 = ANALYZING；其余全是 DONE(failed) 或 PREPARING（历史残留 dryrun）\n- **GPU**：2 张分配，0 张在跑（exp007 刚结束）\n\n### 4. 📋 待办（条件触发式）\n- Worker 回调 conclusion=success → 更新 report.md + 向 Director 汇报 + 立即准备 Phase B（B-IAVR selective verification）\n- Worker 回调 conclusion=negative → 产出 Framing 调整提案（red-section）+ 汇报 Director + 评估 SFT warmup 备选方案（artifacts/sft_warmup_plan.md 已就绪）\n- Worker 回调 conclusion=failed → 读 on-experiment-failed skill + 诊断 + 汇报\n- 无论结论如何 → GPU 空闲，需立即规划下一步实验占满 2 张卡\n\n### 5. 🎯 战略上下文\n- **决策链**：D001(ALFWorld+Qwen3-1.7B) → D002(全量微调) → D003(kill exp003 bootstrap失败) → D004(修解析器+prompt增强)\n- **核心假设链**：exp003 证明 Qwen3 不输出 `<answer>` → exp007 用 fallback regex 解决解析 → 但 action_is_valid 仅 5.4%（模型输出可解析但不是有效 ALFWorld 命令）→ 30 步 GRPO 能否从稀疏 reward 学到正确命令是 Phase A 成败关键\n- **Phase A 标准**：success_rate ≥ 76% = PASS；step 10 后 action_is_valid < 10% = FAIL\n- **易错点**：\n  - invalid_action（解析失败）vs action_is_valid（命令有效）是两个不同指标，别混淆\n  - dryrun 时 action_is_valid 仅 5.4%，如果 30 步训练后仍 <10%，按标准应判 negative，不是 failed\n  - Phase B 代码已就绪（61 tests passed），但被 Phase A checkpoint 阻塞\n  - SFT warmup 是备选路线（先用专家数据 SFT 再 GRPO），artifacts/sft_warmup_plan.md 有方案\n- **历史坑**：exp_001/001b/002/003 全部 failed，原因都是 Qwen3 格式不兼容 RAGEN 解析器，exp007 是第一个解决了解析问题的正式训练\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-2.md"
+}

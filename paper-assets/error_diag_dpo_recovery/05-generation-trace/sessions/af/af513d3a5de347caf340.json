@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "af513d3a5de347caf340",
+  "project": "error_diag_dpo_recovery",
+  "kind": "worker",
+  "title": "research dmpo pipeline design v2",
+  "task_key": "worker_research_dmpo-pipeline-design-v2_20260512T104112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_dmpo-pipeline-design-v2_20260512T104112.log",
+    "occurrence": 1,
+    "bytes": 568735,
+    "sha256": "158f37052cb2cad21cddda83aeee30d2cd481474b375ca4b2b9bc3636dd4f9fd"
+  },
+  "statistics": {
+    "messages": 214,
+    "user_turns": 3,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 62,
+      "assistant": 12,
+      "record": 1,
+      "tool_call": 67,
+      "tool_result": 67,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "af513d3a5de347caf340-part-0001.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "af513d3a5de347caf340-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 90,
+      "chunks": [
+        {
+          "path": "af513d3a5de347caf340-part-0001.json",
+          "message_count": 90
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 93,
+      "chunks": [
+        {
+          "path": "af513d3a5de347caf340-part-0001.json",
+          "message_count": 59
+        },
+        {
+          "path": "af513d3a5de347caf340-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-dmpo-pipeline-design-v2.md"
+}

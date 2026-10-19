@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8632404101d7da698d3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research cell b 1gpu config",
+  "task_key": "worker_research_cell_b_1gpu_config_20260524T235538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cell_b_1gpu_config_20260524T235538_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "ac7cdc90636ab95cb315f702578b9868b51a04d47ead9096f4b6c3db3b839c94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/cell_b_1gpu_config_analysis.md`。核心结论：\n\n**只需改 3 个参数**即可 1-GPU 等效训练：\n1. `CUDA_VISIBLE_DEVICES: \"0\"` \n2. `n_gpus_per_node: 1`\n3. `test_freq: 999`（关闭中间 validation）\n\n**不需要调整 `gradient_accumulation` 或 `ppo_mini_batch_size`。** RAGEN 的 batch size 由 `env_groups × group_size = 128` 决定，FSDP 仅分片并行，all-reduce 保证梯度等效。已有先例（`_alfworld_hsweep_h10_1gpu.yaml`）验证了这一点。\n\nGRPO K=8 也不受 GPU 数影响——它在 es_manager 数据生成层面控制。\n\n98GB RTX PRO 6000 跑 Qwen3-4B 内存充裕（~60GB/98GB），预估 1-GPU 训练 15 steps 约 6-7 小时，比 2-GPU 仅慢 10-20%（瓶颈在 vLLM rollout，始终单卡）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-cell-b-1gpu-config.md"
+}

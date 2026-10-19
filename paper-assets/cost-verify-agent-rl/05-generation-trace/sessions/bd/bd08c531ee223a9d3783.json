@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd08c531ee223a9d3783",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops urgent status westd",
+  "task_key": "worker_ops_urgent-status-westd_20260518T024343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-status-westd_20260518T024343_result.json",
+    "occurrence": 1,
+    "bytes": 2125,
+    "sha256": "b40903ef1e2c520689ca76cb12826e1fe682bd6ed85efb73d17ac38879c6e0ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### GPU 状态（并非 0% 利用率）\n\n| GPU | 利用率 | 显存 | 进程 |\n|-----|--------|------|------|\n| 0 | 52% | 45.0/97.9 GB | factorial generate_sequences |\n| 1 | 54% | 45.0/97.9 GB | factorial generate_sequences |\n| 2 | 100% | 24.7/97.9 GB | gsweep compute_log_prob |\n| 3 | 96% | 24.7/97.9 GB | gsweep compute_log_prob |\n\n---\n\n### Factorial (h2_episode_adv) — 运行中\n\n- **进度**: 47% (7/15 steps), 已运行 ~6h, ETA ~7h\n- **Checkpoint**: `global_step_5`\n- **KL**: 稳定 0.024–0.040，无异常\n\n**Train success 趋势**:\n| step | 1 | 2 | 3 | 4 | 5 |\n|------|-------|-------|-------|-------|-------|\n| success | 20.3% | 6.3% | 5.5% | 3.1% | 15.6% |\n\n**Val (step 0, OOD)**: success=2.2%, reward_mean=0.08\n\n**Step 5 val reward 指标** (对比 step 0 明显提升):\n- best@64: 7.89 (was 4.33)\n- best@128: 9.58 (was 6.5)\n- critic/score/mean: 0.768 (was 0.08)\n\n**评估**: 正在学习。Train success 有波动但 step 5 恢复到 15.6%，reward 指标持续上升。需等 step 10 val 确认。\n\n---\n\n### Gsweep g050 (h5) — 运行中但已崩溃\n\n- **进度**: 80% (12/15 steps), 已运行 ~11.5h, ETA ~5h\n- **Checkpoint**: `global_step_10`\n\n**Train success 趋势**:\n| step | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |\n|------|---|---|---|---|---|---|---|---|---|---|\n| success | 0% | 1.6% | 0.8% | 0% | 2.3% | 0% | 0% | 0% | 0% | 0% |\n\n**Val success**: step 0=9.4% → step 5=0% → step 10=0%\n\n**KL 序列**: 0.019, 0.025, 0.018, 0.014, 0.010, 0.009, 0.009, **0.209** (step 8 爆炸), 0.018\n\n**Step 10 val**: 所有 reward 指标 = 0.0, critic/score = 0.0, response_length 从 49 暴涨到 1412\n\n**评估**: **完全崩溃**。从 step 1 起 train success 基本为 0，step 8 KL 爆到 0.209（20 倍正常值）。模型在浪费 GPU 时间。\n\n---\n\n### Watchdog 状态\n- tmux session `gsweep_watchdog` 运行中\n- 尚未启动 g080（等 g050 进程结束）\n\n---\n\n### 建议\ngsweep g050 已完全崩溃，剩余 3 步 (~5h) 纯属浪费 GPU 2,3。是否要 kill 掉 g050 让 watchdog 提前启动 g080？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-status-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3d718c547f73a29570a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 step5 monitor",
+  "task_key": "worker_ops_exp026_step5_monitor_20260515T123320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_step5_monitor_20260515T123320_result.json",
+    "occurrence": 1,
+    "bytes": 1406,
+    "sha256": "a55288a70898ad794b51bcc251da3a32b641e16c2a9ed81baadd153b6090ece3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp026 训练进度报告\n\n### 状态\n- **进程**: PID 778562 存活，运行 1h55m\n- **当前 step**: Step 2 刚完成（日志写入 20:32），Step 3 刚开始\n- **Step 5 val 尚未到达**\n\n### 训练指标趋势（train success）\n\n| Step | Success | Action Valid | Entropy | PG Loss | PPO KL | Grad Norm | Time/Step |\n|------|---------|-------------|---------|---------|--------|-----------|-----------|\n| 0 (val) | 6.25% | 63.1% | — | — | — | — | — |\n| 1 (train) | 21.88% | 68.6% | 0.380 | 0.0098 | 0.0082 | 7.25 | 38.0 min |\n| 2 (train) | **32.81%** | 60.3% | 0.317 | 0.0057 | 0.0267 | 15.6 | 42.7 min |\n\n趋势良好：success 从 6.25% → 21.88% → 32.81%，两步增长 **+26.6pp**。\n\n### 注意信号\n- **action_is_valid 下降**: 68.6% → 60.3%（step 2 降了 8pp），模型可能为了提高 success 牺牲了合规性\n- **entropy 下降**: 0.380 → 0.317，策略正在收敛\n- **PPO KL 上升**: 0.0082 → 0.0267（3.3×），step 2 偏离 ref policy 更多\n- **grad_norm 翻倍**: 7.25 → 15.6，梯度波动增大\n\n### GPU & 磁盘\n- **GPU 0/1**: 100% 利用率，各用 ~49GB / 98GB VRAM\n- **根分区**: 15G/30G（50%）\n- **数据盘**: 137G/250G（55%）\n\n### 时间预估\n- Step 3 完成: ~21:15\n- **Step 5 val 到达**: ~22:40（约 2 小时后）\n- 150 步总训练: ~110 小时（4.6 天），预计 5/20 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-step5-monitor.md"
+}

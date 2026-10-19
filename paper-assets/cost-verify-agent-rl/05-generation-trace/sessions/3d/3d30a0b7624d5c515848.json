@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d30a0b7624d5c515848",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code biavr d031 warnings fix",
+  "task_key": "worker_code_biavr_d031_warnings_fix_20260515T151905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_biavr_d031_warnings_fix_20260515T151905_result.json",
+    "occurrence": 1,
+    "bytes": 1682,
+    "sha256": "f9fbfba71ede30f0a69705ac2dcd75389b76d461ad9f1062e61618eb1e164914"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修复报告\n\n### Warning 1: `<VERIFY>` special token 注册\n\n**问题**：tokenizer 会将 `<VERIFY>` 拆成 ~8 个子 token（如 `<`, `V`, `ER`, `IF`, `Y`, `>`），模型需要学习产生精确的子 token 序列才能触发验证，显著增加学习难度。\n\n**修复**：在 `verify_mechanism.py` 新增两个函数：\n- `register_verify_special_token(tokenizer, model=None)` — Phase B 训练前调用，将 `<VERIFY>` 注册为 special token 并 resize embedding。幂等（已注册则跳过）。\n- `get_verify_token_id(tokenizer)` — 返回 token id，未注册时抛 RuntimeError 提示调用注册函数。\n\n### Warning 2: `a_pre` 推理开销量化\n\n**问题**：每次 verify step 额外一次 greedy decode 生成 `a_pre`，估计增加 15-30% 步耗时，需 dry run 量化。\n\n**修复**：在 `pre_action.py` 新增 `PreActionProfiler` dataclass：\n- `record_pre_action(latency_s)` / `record_main_action(latency_s)` — 记录每次调用耗时\n- `overhead_ratio` — 自动计算 `a_pre` 占主 action 的比例\n- `get_metrics()` — 返回 W&B 可直接 log 的指标 dict\n- `summary()` — 人可读的单行摘要\n\nPhase B 集成时在 rollout loop 中插桩 `time.time()` 调用 profiler，前 N 步即可得到开销数据。\n\n### 修改文件\n| 文件 | 变更 |\n|------|------|\n| `artifacts/biavr/verify_mechanism.py` | +`register_verify_special_token`, +`get_verify_token_id` |\n| `artifacts/biavr/pre_action.py` | +`PreActionProfiler` dataclass |\n| `artifacts/biavr/__init__.py` | 导出新增 API |\n| `artifacts/biavr/tests/test_biavr.py` | +11 个新测试（W1: 5, W2: 6） |\n\n全部测试通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-biavr-d031-warnings-fix.md"
+}

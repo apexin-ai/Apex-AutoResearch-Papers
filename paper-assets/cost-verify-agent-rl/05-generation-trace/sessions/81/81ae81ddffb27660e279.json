@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81ae81ddffb27660e279",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis ood table1 aggregation",
+  "task_key": "worker_analysis_ood_table1_aggregation_20260522T001622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ood_table1_aggregation_20260522T001622_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "04531969215b6c29e369920d9cd4685cbc2cc3840d61d46570f412074a37e507"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Table written and registered (`art_20260522_c7700c`).\n\n**Summary of Table 1:**\n\n- **14 OOD evals** aggregated across 4 categories: natural training (6 seeds), interventions (A/B/C), baselines (SFT, step-indep GRPO), and 8B scale-up.\n- Core finding: **Seed 4 (collapse) = 30.60% OOD** (highest 1.5B), all interventions = 10–15% (worse than natural 23–31%).\n- Two evals still running: Intervention B step 5 and C' step 5 — table has placeholders for these.\n- File: `artifacts/table1_ood_summary.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ood-table1-aggregation.md"
+}

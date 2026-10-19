@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b61943c19ceb04cd64fa",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp008 grpo config",
+  "task_key": "worker_code_exp008_grpo_config_20260514T030338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp008_grpo_config_20260514T030338_result.json",
+    "occurrence": 1,
+    "bytes": 2292,
+    "sha256": "e901d008a8e806c84aba9fa659f7589668f764e8120aa3240b7272adc3a81528"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SFT checkpoint 目录尚不存在（符合预期，SFT 正在进行中）。\n\n---\n\n## 产出报告\n\n### 1. exp007 GRPO 配置\n路径：`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp007_fixed.yaml`\n- 模型：`/root/cost-verify-agent-rl/models/Qwen3-1.7B`\n- GRPO, 30 steps, 2 GPU, 64 traj/step (8 groups × 8), max_turn 30\n- KL loss enabled (coef=0.01), collapse_detection off\n- Checkpoint: `/root/autodl-tmp/checkpoints/exp_007/`\n\n### 2. exp008 GRPO 配置\n路径：**`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp008_sft_grpo.yaml`**\n\n与 exp007 的差异：\n| 字段 | exp007 | exp008 |\n|------|--------|--------|\n| `model_path` | `.../models/Qwen3-1.7B` | `/root/autodl-tmp/checkpoints/exp008_sft/checkpoint-final/` |\n| `experiment_name` | `exp007-alfworld-speed-optimized` | `exp008-alfworld-sft-grpo` |\n| `local_log_dir` / `default_local_dir` | `.../exp_007/` | `/root/autodl-tmp/checkpoints/exp008_grpo/` |\n\n其余参数完全一致（64 traj/step, 30 max_turns, 30 steps, collapse_detection off）。\n\n### 3. Checkpoint 兼容性结论\n**直接兼容，无需转换脚本。** verl/RAGEN 底层通过 `AutoModelForCausalLM.from_pretrained(path)` 和 `AutoConfig.from_pretrained(path)` 加载模型。TRL SFTTrainer 输出的标准 HuggingFace 格式（`config.json` + `model.safetensors` + `tokenizer*`）可直接使用。\n\n⚠️ SFT 完成后需确认实际 checkpoint 子目录名：\n- 若 SFTTrainer 用 `save_strategy=\"steps\"` → 子目录形如 `checkpoint-{step}`\n- 若调用了 `trainer.save_model()` → 直接保存在根目录\n- 确认后更新 `model_path` 中的 `checkpoint-final/` 为实际路径\n\n### 4. 监控指标 Key Name\n\n| 指标 | Key Name | 预警阈值 | 代码位置 |\n|------|----------|----------|----------|\n| KL divergence | **`actor/ppo_kl`** | > 0.1 | `verl/trainer/ppo/core_algos.py:973` |\n| Entropy | **`actor/entropy`** | < 0.01 | `ragen/trainer/agent_trainer.py:1316` |\n\n补充指标（如有需要）：\n- `actor/entropy_loss` — entropy loss 项（`ragen/workers/actor/dp_actor.py:477`）\n- `actor/reward_kl_penalty` — reward 中的 KL penalty（`verl/trainer/ppo/ray_trainer.py:158`）\n\n### 5. 转换脚本\n不需要。TRL SFT 输出与 RAGEN/verl 完全兼容。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp008-grpo-config.md"
+}

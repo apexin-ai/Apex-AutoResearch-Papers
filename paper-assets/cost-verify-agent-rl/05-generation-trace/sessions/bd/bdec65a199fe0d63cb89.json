@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdec65a199fe0d63cb89",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research scienceworld grpo prep",
+  "task_key": "worker_research_scienceworld_grpo_prep_20260520T061757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_scienceworld_grpo_prep_20260520T061757_result.json",
+    "occurrence": 1,
+    "bytes": 1550,
+    "sha256": "ec17155a332cb713fcf0de58b3351cb18cb56062b4acfc35b2cafd9c980e7b07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册。以下是完整的准备总结：\n\n---\n\n## ScienceWorld GRPO Cell A 准备情况\n\n### 已就绪 (无需修改)\n- ScienceWorld env 代码 (`ragen/env/scienceworld/`) — 完整实现 BaseLanguageBasedEnv 接口\n- env 注册在 `__init__.py` — `scienceworld` type 已可用\n- SFT checkpoint — `/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface` (Qwen3-1.7B)\n- Java / scienceworld package — eval_v2 正在用，已验证可用\n- 磁盘 61GB 可用\n\n### 需要创建的 2 个文件\n\n**1. envs.yaml 追加 `ScienceWorldSG` tag** — 包含全部 30 个任务、`<answer>` tag 格式的 env_instruction、score=10.0、max_steps=100\n\n**2. `_scienceworld_cell_a_grpo.yaml`** — 基于 ALFWorld hsweep_h2 的严格控制变量设计：\n- 仅改 model_path、env tag、max_turn (50→100)、response_length (1024→512)\n- 其余算法参数完全一致：step_independent h=2, GRPO γ=0.95, lr=1e-6, kl=0.01\n\n### 具体配置内容和训练命令\n\n详见 `artifacts/scienceworld_grpo_cell_a_prep.md`\n\n### 关键风险\n1. **JVM 开销** — 128 env 实例可能需要大量内存，监控后酌情降低 env_groups\n2. **Prompt format mismatch** — SFT 用 bare-text action，RAGEN 用 `<answer>` tags（有 fallback parser，不影响核心结论）\n3. **连续 reward** — ScienceWorld reward ∈ [-10, +10] vs ALFWorld binary {0, 10}（sign misattribution 机制仍成立）\n\n### 时间线\neval_v2 完成后（~10h），执行 pre-flight checklist (C002)，然后提交训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-scienceworld-grpo-prep.md"
+}

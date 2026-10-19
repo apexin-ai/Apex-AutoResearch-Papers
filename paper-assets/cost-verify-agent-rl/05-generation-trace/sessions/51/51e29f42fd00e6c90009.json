@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51e29f42fd00e6c90009",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research scienceworld feasibility",
+  "task_key": "worker_research_scienceworld-feasibility_20260519T100550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_scienceworld-feasibility_20260519T100550_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "f4ace0e2b7df96f194549019fb593714cb5c88fc6e460d05994c4fd457b57b49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入并注册（`art_20260519_6e4902`）。\n\n**核心结论**：ScienceWorld 可行，且工程量可控（5-6 天）。\n\n关键发现：\n- RAGEN ScienceWorld 适配器**已存在**于 westd 服务器，SFT 数据（3000-4000 条轨迹）也已备好\n- 主要适配工作是奖励二值化（dense 0-100 → binary）和 dry-run 验证\n- 最大风险是 1.7B SFT baseline 可能太弱（需先确认），以及 JVM/py4j 长训练稳定性\n- 对论文价值明确：40 步 episode 比 ALFWorld 的 15 步更长，如果 h=2 仍然坍缩，直接证明 information loss 是 environment-agnostic 的\n- 已有多篇 2026 论文在 ScienceWorld 上做 RL fine-tuning（EMPO², Paying Less Generalization Tax 等），但**无人研究 step-independent credit assignment**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-scienceworld-feasibility-copy-2.md"
+}

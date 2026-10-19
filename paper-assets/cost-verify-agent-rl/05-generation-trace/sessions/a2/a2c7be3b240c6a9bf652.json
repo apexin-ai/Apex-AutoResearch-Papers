@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2c7be3b240c6a9bf652",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp013f setup",
+  "task_key": "worker_code_exp013f-setup_20260514T092427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp013f-setup_20260514T092427_result.json",
+    "occurrence": 1,
+    "bytes": 1635,
+    "sha256": "c1b8223f4a91a52317f9367193e61ca12f57ce87ec586e340039aae27bca63d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部步骤完成。汇报：\n\n---\n\n## exp013f 准备报告\n\n### 1. 环境清理结果\n- Ray sessions 已清除（`/root/autodl-tmp/tmp/ray/session_*` 和 `/tmp/ray/session_*`）\n- 无残留 ray/train 进程\n- GPU：2× RTX PRO 6000 96GB，0MiB 占用，0% 利用率\n- 内存：总 1TB，可用 919GB\n\n### 2. val env_groups 调查结论\n- **当前值**：`es_manager.val.env_groups: 16`，`es_manager.val.env_configs.n_groups: [16]`\n- **可以单独设置**：val 和 train 在 yaml 中是独立字段，Hydra override 可直接覆盖\n- **设置方式**：Hydra override `es_manager.val.env_groups=4 'es_manager.val.env_configs.n_groups=[4]'`\n- **约束**：`es_manager.py:65` 断言 `sum(n_groups) == env_groups`，两者必须一致\n\n### 3. yaml config 未修改\nval env_groups 通过 Hydra override 设置，未改动 `_alfworld_exp013b_dense_reward.yaml`。\n\n### 4. 启动脚本\n`/root/cost-verify-agent-rl/scripts/run_exp013f.sh`，已 chmod +x。关键参数：\n- `RAY_memory_monitor_refresh_ms=0`（禁用 MemoryMonitor）\n- `RAY_SYSTEM_MEMORY=210000000000`（210GB，cgroup 220GB - 10GB 余量）\n- `es_manager.val.env_groups=4`（从 16 降到 4）\n- `es_manager.val.env_configs.n_groups=[4]`（匹配 env_groups）\n\n### 5. dry-run 验证结果\n```\nexperiment_name: exp013f-alfworld-dense-reward\ntrain: env_groups=4, group_size=16, n_groups=[4]\nval:   env_groups=4, group_size=1,  n_groups=[4]\n```\n配置解析通过，无报错。\n\n### 6. object_store_memory 硬编码确认\n`train.py:203`：`ray_init_kwargs[\"object_store_memory\"] = 30 * 1024**3`（30GB 硬编码）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp013f-setup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f834a8a268883ccee7f1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops cleanup duplicate augment",
+  "task_key": "worker_ops_cleanup-duplicate-augment_20260514T172553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-duplicate-augment_20260514T172553_result.json",
+    "occurrence": 1,
+    "bytes": 1590,
+    "sha256": "812abba18f6fe312d3916d2f8ba5bed43a7042a9534ce7d3e6a239b1fd4feb2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无遗留输出文件。结论明确：\n\n## 报告\n\n**保留进程**: PID 368343 (`augment_admissible_v2.py`)  \n**被清理进程**: PID 368243 (`augment_expert_data.py`) — 已自行退出，无需手动 kill\n\n### 为什么 v2 是正确版本\n\n| 特性 | augment_expert_data.py (死) | augment_admissible_v2.py (活) |\n|---|---|---|\n| 数据源 | 2900 games (progress.json 预存) | 3553 games (直接扫 alfworld data) |\n| task type 过滤 | 无 | 有 (排除 movable_recep) |\n| move/put 追踪 | 无 | 有: `move=678, put=0` ✓ |\n| 内置验证 | 无 validate_example | 有 validate_example |\n| train/val split | 有 | 有 |\n| 结束验证 | action verb check | admissible_found + move_preserved check |\n| 格式匹配 RAGEN | 基本匹配 | 明确匹配 (exp019b 专用) |\n\n关键：v2 日志显示 `put_actions=0, move_actions=678`，确认使用原始 expert data 保留 `move X to Y`，未做 put 替换。\n\n### 当前进度\n\n- **1000/3553** games 完成，965 条有效 SFT 数据\n- 成功率: 99.2% (992 ok / 1000), 失败主要是 `validate_too_long` (27) 和 `not_won` (8)\n- 速率: ~45 games/min (22 分钟处理 1000 个)\n- **预估剩余: ~57 分钟**\n\n### 输出路径\n\n- `/root/autodl-tmp/expert_sft_v3/expert_sft_train.jsonl`\n- `/root/autodl-tmp/expert_sft_v3/expert_sft_val.jsonl`\n\n（v2 在内存中收集所有数据，最后一次性写入，当前目录为空是正常的）\n\n### 数据污染\n\n无。死进程没有写入任何 jsonl 文件到输出目录。唯一遗留是 `/tmp/augment_expert.log`（无害）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-duplicate-augment.md"
+}

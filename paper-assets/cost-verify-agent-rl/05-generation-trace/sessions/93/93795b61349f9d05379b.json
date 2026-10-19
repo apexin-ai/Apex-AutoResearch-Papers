@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93795b61349f9d05379b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh draw learning curve figure",
+  "task_key": "worker_ssh_draw_learning_curve_figure_20260523T031512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_draw_learning_curve_figure_20260523T031512_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "af582a09630a62902fa4f97869039b76b53861f458db5176ba0d34b2df1de275"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n**输出文件**：\n- PDF: `artifacts/exp029/figures/learning_curves_d137.pdf` (65 KB)\n- PNG: `artifacts/exp029/figures/learning_curves_d137.png` (563 KB)\n- Artifact ID: `art_20260523_6666f5`\n\n**图表内容**：\n- Panel A: ID Success Rate — seed6 达到 89%（generalized），seed8 在 step 4→5 发生 collapse onset（43.75%→24.22%），seed2048 全程 persistent low（<10%），seed2 延迟至 step 23 后起飞\n- Panel B: Response Length — collapsed seeds 保持 14000-16000 tokens（膨胀），generalized seeds 降至 3000-5000 tokens\n- 四色分类：红 collapsed、橙 stagnant、绿 generalized、蓝虚线 delayed learner\n- SFT baseline (14%) 灰色虚线标注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-draw-learning-curve-figure.md"
+}

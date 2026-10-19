@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cb1fadfa0b2fd788b74",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp007 step10 check",
+  "task_key": "worker_monitor_exp007_step10_check_20260514T005455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp007_step10_check_20260514T005455_result.json",
+    "occurrence": 1,
+    "bytes": 41,
+    "sha256": "9002bdac3f4bf8f7b053b03f86094b58b45a976b0748f8c500b7ed6a7739f58a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后继续轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp007-step10-check.md"
+}

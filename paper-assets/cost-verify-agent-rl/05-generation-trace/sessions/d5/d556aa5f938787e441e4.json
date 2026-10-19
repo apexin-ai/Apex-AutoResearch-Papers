@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d556aa5f938787e441e4",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "collect eval v2 final results",
+  "task_key": "worker_collect_eval-v2-final-results_20260520T141425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_eval-v2-final-results_20260520T141425_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "9a6ef593f3525f1f33acca149c91d8120c40c854aed528f22a94693b7569275e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。汇报：\n\n## scienceworld_sft_eval_v2 最终结果\n\n| 指标 | 值 |\n|------|-----|\n| **总 episodes** | 1796/1796（全部完成） |\n| **Overall success rate** | **30.1%**（540/1796） |\n| **Avg score** | 20.9 |\n| **Timeouts / Errors** | 0 / 0 |\n| **总耗时** | 51462s（~14.3h，28.7s/ep） |\n\n### Per-task breakdown（按成功率排序，Top/Bottom）\n\n**高成功率（>50%）：**\n- lifespan-longest-lived: 90.3%（28/31）\n- lifespan-longest-lived-then-shortest: 90.3%（28/31）\n- find-non-living-thing: 77.3%（58/75）\n- lifespan-shortest-lived: 67.7%（21/31）\n- find-living-thing: 65.3%（49/75）\n- power-component: 60.0%（3/5）\n\n**零成功率（0%）：**\n- boil, chemistry-mix, chemistry-mix-paint-tertiary, freeze, grow-plant, identify-life-stages-1/2, power-component-renewable\n\n### bjb1 GPU 状态\ncuda:0, cuda:1 **完全释放**，无 GPU 进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-eval-v2-final-results.md"
+}

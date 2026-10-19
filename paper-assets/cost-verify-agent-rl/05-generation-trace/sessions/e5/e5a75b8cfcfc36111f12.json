@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5a75b8cfcfc36111f12",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh check westd eval progress",
+  "task_key": "worker_ssh_check_westd_eval_progress_20260523T011126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westd_eval_progress_20260523T011126_result.json",
+    "occurrence": 1,
+    "bytes": 1102,
+    "sha256": "b41860f90fdcf075077d603d517bc588d744dfaf1232297d5d07a53d7f57c151"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | PID | 状态 | 进度/结果 |\n|------|-----|------|-----------|\n| seed100 step10 OOD eval | 320618 | **失败** (EXIT_CODE=1) | vLLM 启动失败：cuda:0 仅 5.26/94.97 GiB 空闲，需要 80.73 GiB |\n| seed7 high_kl step5 eval v3 | 310594 | **完成** (EXIT_CODE=129) | 134 episodes 评估完成，结果见下 |\n| seed7 high_kl step7 eval v3 | 303608 | **失败** (EXIT_CODE=1) | vLLM 启动失败：cuda:0 仅 79.36/94.97 GiB 空闲，需要 80.73 GiB（差 1.37 GiB） |\n\n**step5 OOD 评估结果（seed7 high_kl, 134 episodes）：**\n\n| 指标 | 值 |\n|------|-----|\n| pass@1 / success | **9.70%** |\n| action_is_valid | 65.18% |\n| action_is_effective | 99.99% |\n| num_actions (avg) | 45.92 |\n| best@2 | 1.83 |\n| best@4 | 3.51 |\n| best@8 | 5.80 |\n| best@16 | 8.33 |\n| best@32 | 9.71 |\n| best@64 | 10.0 |\n\n**失败原因分析：** step10 和 step7 都报 `cuda:0` 内存不足——说明它们没有正确绑定到指定 GPU（cuda:0 和 cuda:3），vLLM 默认尝试使用 cuda:0。需要通过 `CUDA_VISIBLE_DEVICES` 确保 GPU 隔离后重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westd-eval-progress.md"
+}

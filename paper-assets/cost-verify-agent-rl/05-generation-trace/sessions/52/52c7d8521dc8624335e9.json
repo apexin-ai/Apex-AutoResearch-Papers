@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52c7d8521dc8624335e9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra diagnose hsweep h2 exit",
+  "task_key": "worker_infra_diagnose-hsweep-h2-exit_20260517T143234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_diagnose-hsweep-h2-exit_20260517T143234_result.json",
+    "occurrence": 1,
+    "bytes": 1022,
+    "sha256": "9c04ec70a968b46b5e73fea9a415a462cf4b0e192407688fb21c7d361955cf23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 诊断结果\n\n**1. 退出原因：正常完成（15/15 steps）**\n- 日志有 \"Final validation metrics\"，无 traceback/error\n- 总训练时间：10.04 小时\n\n**2. 最终 Metrics**\n\n| Step | Success | Invalid Action |\n|------|---------|---------------|\n| 1 | 18.75% | 2.7% |\n| 2 | 14.84% | 2.0% |\n| 3 | 18.75% | 2.8% |\n| 4 | **5.47%** | **26.4%** ← collapse onset |\n| 5 | 1.56% | 36.9% |\n| 6-8 | 1.6-4.7% | 47-54% |\n| 9 | **0%** | 64.1% |\n| 10 | 2.34% | - |\n| 11-15 | **0%** | 97.2% (step 15) |\n\nFinal val: success=0%, invalid_action=99.9%, action_is_valid=0.06%\n\nStep 15 actor metrics: entropy=0.342, kl_loss=0.777, grad_norm=1.611\n\n**3. Checkpoint**\n`/root/autodl-tmp/checkpoints/hsweep-h2/` (global_step_5, 10, 15)\n\n**4. auto_next: seed2 已自动启动**\n- PID 945877, wandb run `jhwyg4tc`\n- 正在 bjb1-17606 cuda:0,1 上运行（各 ~36GB 占用）\n\n**5. 清理完成**\n- Registry: status=DONE, conclusion=success\n- Cron: 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-diagnose-hsweep-h2-exit.md"
+}

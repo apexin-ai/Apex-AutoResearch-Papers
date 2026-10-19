@@ -1,0 +1,1122 @@
+# check traj 50 milestone
+
+**error diag dpo recovery** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/workers/worker_check_traj-50-milestone_20260512T131441.log`
+- **Structured JSON:** [`15568e90598aa94a900c.json`](../../sessions/15/15568e90598aa94a900c.json)
+
+## Before a recorded user message
+
+23 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl",
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "4db5961a-5a19-4ced-8d95-669d25843c61",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-rl-active-probe-fl/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778601600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b2fc079b-2e51-4801-a95f-0d1427808773",
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to SSH to the server and check trajectory collection progress using ssh_read_only. Let me first load the tool schema.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "4b740bf6-9f94-4db1-b465-5bd03f4a7134",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdDqTYM7c2sahWikr39HTd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11001,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11001
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01V3gp2hFk4eLqrZ5gcsbh8G`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "6b4b9798-40fc-45d0-a9a0-93ed342f282f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdDqTYM7c2sahWikr39HTd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11001,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11001
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-12T13:14:54.831Z_
+
+<details><summary>↩ Tool result · `toolu_01V3gp2hFk4eLqrZ5gcsbh8G`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "3894aa03-2a93-445d-be4c-6911f593c7a3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MKapAXYjBiU1JxyxkHVZDs`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "wc -l /root/autodl-tmp/rl-active-probe-fl/data/trajectories/train_part0.jsonl /root/autodl-tmp/rl-active-probe-fl/data/trajectories/train_part1.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "ea18b001-1ee9-4e24-a793-03554d973b2f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rb7yKWMadT58NXve3j4fcJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 22842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 470
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WmxyPvpKCe81NnQMkrNpP3`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "screen -ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "e9f3ca79-4d7d-482e-a17e-d58c1694f364",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rb7yKWMadT58NXve3j4fcJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 22842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 470
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-12T13:14:59.705Z_
+
+<details><summary>↩ Tool result · `toolu_01MKapAXYjBiU1JxyxkHVZDs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    24 /root/autodl-tmp/rl-active-probe-fl/data/trajectories/train_part0.jsonl\\n    24 /root/autodl-tmp/rl-active-probe-fl/data/trajectories/train_part1.jsonl\\n    48 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "d901e5cc-a110-42a1-986b-8f8089cd3c36",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    24 /root/autodl-tmp/rl-active-probe-fl/data/trajectories/train_part0.jsonl\\\\n    24 /root/autodl-tmp/rl-active-probe-fl/data/trajectories/train_part1.jsonl\\\\n    48 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    24 /root/autodl-tmp/rl-active-probe-fl/data/trajectories/train_part0.jsonl\\n    24 /root/autodl-tmp/rl-active-probe-fl/data/trajectories/train_part1.jsonl\\n    48 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-12T13:14:59.723Z_
+
+<details><summary>↩ Tool result · `toolu_01WmxyPvpKCe81NnQMkrNpP3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'screen' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "b979b240-972b-4220-b000-4a038911b742",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'screen' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'screen' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QdLBfYuM1yx4Gems11HW25`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "321137e3-b56e-4cb8-8bdc-0b5fa40a6fea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rb7yKWMadT58NXve3j4fcJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 22842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 470
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-12T13:15:00.310Z_
+
+<details><summary>↩ Tool result · `toolu_01QdLBfYuM1yx4Gems11HW25`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 7763 MiB, 35 %\\n1, 7763 MiB, 41 %\\n2, 22099 MiB, 100 %\\n3, 0 MiB, 0 %\\n4, 8159 MiB, 100 %\\n5, 18736 MiB, 100 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "7e1291e7-0a10-4269-b76d-6c03bbd4cda6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 7763 MiB, 35 %\\\\n1, 7763 MiB, 41 %\\\\n2, 22099 MiB, 100 %\\\\n3, 0 MiB, 0 %\\\\n4, 8159 MiB, 100 %\\\\n5, 18736 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 7763 MiB, 35 %\\n1, 7763 MiB, 41 %\\n2, 22099 MiB, 100 %\\n3, 0 MiB, 0 %\\n4, 8159 MiB, 100 %\\n5, 18736 MiB, 100 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+`screen` 被 read-only 白名单拦截，改用 `ps` 检查进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "9f1b569d-9653-4678-be65-4eaa5cf3fdc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qyd36swvzTPv3z9XB18Gda",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 23312,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 858
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014YMtNnN2aUKjYuKL9KLPST`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps aux",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "3e697946-c7b9-4729-878a-060f2aef3c27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qyd36swvzTPv3z9XB18Gda",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 23312,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 858
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-12T13:15:04.781Z_
+
+<details><summary>↩ Tool result · `toolu_014YMtNnN2aUKjYuKL9KLPST`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3280 ?        Ss   18:09   0:00 bash /init/boot/boot.sh\\nroot        801  2.7  0.0 720288 20012 ?        Sl   18:09   5:11 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        820  0.0  0.0  15444  9128 ?        S    18:09   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        821  0.1  0.0 4147752 78736 ?       Sl   18:09   0:16 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        822  0.0  0.0 191548 105444 ?       S    18:09   0:03 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        823  0.0  0.0 2499824 18492 ?       Sl   18:09   0:02 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        824  0.1  0.0 2426092 20756 ?       Sl   18:09   0:19 proxy -c /init/proxy/proxy.ini\\nroot        826  0.1  0.0 6156972 96752 ?       Sl   18:09   0:20 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        932  0.0  0.0 26177944 11572 ?      Sl   18:09   0:09 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_jfe2b4s0/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_jfe2b4s0/startup_error\\nroot       1525  0.0  0.0  16692 10648 ?        Ss   18:15   0:01 sshd: root@notty\\nroot       1527  0.0  0.0  16692 10588 ?        Ss   18:15   0:01 sshd: root@notty\\nroot       1557  0.0  0.0  16692 10568 ?        Ss   18:15   0:01 sshd: root@notty\\nroot       1563  0.0  0.0  16692 11044 ?        Ss   18:15   0:01 sshd: root@notty\\nroot      78469  100  0.0 2797168 67192 ?       Rsl  19:50  85:04 python3 -c  import yaml, os from alfworld.agents.environment import get_environment  os.environ['ALFWORLD_DATA'] = 'eval_agent/data/alfworld' with open('eval_agent/data/alfworld/base_config.yaml') as f:     config = yaml.safe_load(f)  AlfredTWEnv = get_environment(config['env']['type']) env = AlfredTWEnv(config, train_eval='train') env = env.init_env(batch_size=1) obs, info = env.reset() obs_text = '\\\\n'.join(obs[0].split('\\\\n\\\\n')[1:]) print('Game file:', info['extra.gamefile'][0]) print('Obs:', obs_text[:300]) print('ALFWORLD_OK') \\nroot      78728  100  0.0 2797204 67544 ?       Rl   19:51  83:43 python3 -c  import yaml, os, time from alfworld.agents.environment import get_environment  os.environ['ALFWORLD_DATA'] = 'eval_agent/data/alfworld' with open('eval_agent/data/alfworld/base_config.yaml') as f:     config = yaml.safe_load(f)  t0 = time.time() AlfredTWEnv = get_environment(config['env']['type']) env = AlfredTWEnv(config, train_eval='eval_out_of_distribution') env = env.init_env(batch_size=1) print(f'Env init took {time.time()-t0:.1f}s') obs, info = env.reset() obs_text = '\\\\n'.join(obs[0].split('\\\\n\\\\n')[1:]) print('Game file:', info['extra.gamefile'][0]) print('Obs:', obs_text[:300])  # Step test observation, reward, done, step_info = env.step(['look']) print('Step test:', observation[0][:100]) print('ALFWORLD_OK') \\nroot      95807  0.0  0.0   4172  2548 ?        Ss   20:43   0:00 SCREEN -dmS traj_p0 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/rl-active-probe-fl && CUDA_VISIBLE_DEVICES=0 python src/collect_trajectories.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-8B --output_dir data/trajectories --split train --temperature 0.7 --max_steps 40 --gpu 0 --num_tasks 500 --part_num 2 --part_idx 0 > /tmp/traj_part0.log 2>&1\\nroot      95808  0.0  0.0   4364  3248 pts/0    Ss+  20:43   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/rl-active-probe-fl && CUDA_VISIBLE_DEVICES=0 python src/collect_trajectories.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-8B --output_dir data/trajectories --split\\n\\n... [截断: 输出过长，省略 5292 字符] ...\\n\\n%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/mvp_p2b_contrastive_training.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/structfuse && export CUDA_VISIBLE_DEVICES=4 && timeout 50400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash scripts/run_p2b_all.sh\\\"'; } > ~/runs/faith-evidence-ie/mvp_p2b_contrastive_training.log 2>&1\\nroot      99059  0.0  0.0   2800  1020 pts/2    S    20:58   0:00 timeout 50400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash scripts/run_p2b_all.sh\\\"\\nroot      99060  0.0  0.0   4496  3188 pts/2    S    20:58   0:00 bash scripts/run_p2b_all.sh\\nroot      99069  106  0.2 33660108 2263964 pts/2 Rl  20:58  17:21 python -u training/train.py --model-name /root/structfuse/models/Qwen/Qwen2.5-Coder-3B --train-file /root/structfuse/mvp_data/training_data/train_random.jsonl --val-file /root/structfuse/mvp_data/training_data/val.jsonl --output-dir /root/autodl-tmp/structfuse/checkpoints/p2b_random_s42 --hard-negative-strategy random --num-epochs 3 --batch-size 2 --learning-rate 2e-5 --num-negatives 3 --max-seq-length 512 --use-lora --gradient-checkpointing --eval-steps 50 --save-steps 200 --seed 42 --dataflow-graph-file /root/structfuse/mvp_data/training_data/dataflow_graph.json\\nroot     101836  4.2  0.0 8212888 550236 ?      Sl   21:04   0:26 python -c  from modelscope import snapshot_download snapshot_download('Qwen/Qwen2.5-Coder-3B', local_dir='/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B') print('DOWNLOAD_COMPLETE') \\nroot     102194  0.0  0.0   4364  2204 ?        S    21:05   0:00 bash -c kill 101831 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && nohup huggingface-cli download Qwen/Qwen2.5-Coder-3B --local-dir /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B > /tmp/download_qwen_coder.log 2>&1 & echo $!\\nroot     102199  2.5  0.0 710888 110920 ?       Sl   21:05   0:14 /root/miniconda3/bin/python /root/miniconda3/bin/huggingface-cli download Qwen/Qwen2.5-Coder-3B --local-dir /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\nroot     105046  0.1  0.0  16692 10864 ?        Ss   21:14   0:00 sshd: root@notty\\nroot     105324  1.6  0.0  16692 10892 ?        Ss   21:14   0:00 sshd: root@notty\\nroot     105342  8.5  0.1 33659256 1827988 pts/2 Sl  21:15   0:00 python -u training/train.py --model-name /root/structfuse/models/Qwen/Qwen2.5-Coder-3B --train-file /root/structfuse/mvp_data/training_data/train_random.jsonl --val-file /root/structfuse/mvp_data/training_data/val.jsonl --output-dir /root/autodl-tmp/structfuse/checkpoints/p2b_random_s42 --hard-negative-strategy random --num-epochs 3 --batch-size 2 --learning-rate 2e-5 --num-negatives 3 --max-seq-length 512 --use-lora --gradient-checkpointing --eval-steps 50 --save-steps 200 --seed 42 --dataflow-graph-file /root/structfuse/mvp_data/training_data/dataflow_graph.json\\nroot     105343  7.7  0.1 33659500 1828280 pts/2 Sl  21:15   0:00 python -u training/train.py --model-name /root/structfuse/models/Qwen/Qwen2.5-Coder-3B --train-file /root/structfuse/mvp_data/training_data/train_random.jsonl --val-file /root/structfuse/mvp_data/training_data/val.jsonl --output-dir /root/autodl-tmp/structfuse/checkpoints/p2b_random_s42 --hard-negative-strategy random --num-epochs 3 --batch-size 2 --learning-rate 2e-5 --num-negatives 3 --max-seq-length 512 --use-lora --gradient-checkpointing --eval-steps 50 --save-steps 200 --seed 42 --dataflow-graph-file /root/structfuse/mvp_data/training_data/dataflow_graph.json\\nroot     105544  0.0  0.0   7064  1560 ?        Rs   21:15   0:00 ps aux\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "803d5219-1334-4af2-820c-2d7446c65518",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot          1  0.0  0.0   4476  3280 ?        Ss   18:09   0:00 bash /init/boot/boot.sh\\\\nroot        801  2.7  0.0 720288 20012 ?        Sl   18:09   5:11 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        820  0.0  0.0  15444  9128 ?        S    18:09   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        821  0.1  0.0 4147752 78736 ?       Sl   18:09   0:16 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        822  0.0  0.0 191548 105444 ?       S    18:09   0:03 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        823  0.0  0.0 2499824 18492 ?       Sl   18:09   0:02 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        824  0.1  0.0 2426092 20756 ?       Sl   18:09   0:19 proxy -c /init/proxy/proxy.ini\\\\nroot        826  0.1  0.0 6156972 96752 ?       Sl   18:09   0:20 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        932  0.0  0.0 26177944 11572 ?      Sl   18:09   0:09 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_jfe2b4s0/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_jfe2b4s0/startup_error\\\\nroot       1525  0.0  0.0  16692 10648 ?        Ss   18:15   0:01 sshd: root@notty\\\\nroot       1527  0.0  0.0  16692 10588 ?        Ss   18:15   0:01 sshd: root@notty\\\\nroot       1557  0.0  0.0  16692 10568 ?        Ss   18:15   0:01 sshd: root@notty\\\\nroot       1563  0.0  0.0  16692 11044 ?        Ss   18:15   0:01 sshd: root@notty\\\\nroot      78469  100  0.0 2797168 67192 ?       Rsl  19:50  85:04 python3 -c  import yaml, os from alfworld.agents.environment import get_environment  os.environ['ALFWORLD_DATA'] = 'eval_agent/data/alfworld' with open('eval_agent/data/alfworld/base_config.yaml') as f:     config = yaml.safe_load(f)  AlfredTWEnv = get_environment(config['env']['type']) env = AlfredTWEnv(config, train_eval='train') env = env.init_env(batch_size=1) obs, info = env.reset() obs_text = '\\\\\\\\n'.join(obs[0].split('\\\\\\\\n\\\\\\\\n')[1:]) print('Game file:', info['extra.gamefile'][0]) print('Obs:', obs_text[:300]) print('ALFWORLD_OK') \\\\nroot      78728  100  0.0 2797204 67544 ?       Rl   19:51  83:43 python3 -c  import yaml, os, time from alfworld.agents.environment import get_environment  os.environ['ALFWORLD_DATA'] = 'eval_agent/data/alfworld' with open('eval_agent/data/alfworld/base_config.yaml') as f:     config = yaml.safe_load(f)  t0 = time.time() AlfredTWEnv = get_environment(config['env']['type']) env = AlfredTWEnv(config, train_eval='eval_out_of_distribution') env = env.init_env(batch_size=1) print(f'Env init took {time.time()-t0:.1f}s') obs, info = env.reset() obs_text = '\\\\\\\\n'.join(obs[0].split('\\\\\\\\n\\\\\\\\n')[1:]) print('Game file:', info['extra.gamefile'][0]) print('Obs:', obs_text[:300])  # Step test observation, reward, done, step_info = env.step(['look']) print('Step test:', observation[0][:100]) print('ALFWORLD_OK') \\\\nroot      95807  0.0  0.0   4172  2548 ?        Ss   20:43   0:00 SCREEN -dmS traj_p0 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/rl-active-probe-fl && CUDA_VISIBLE_DEVICES=0 python src/collect_trajectories.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-8B --output_dir data/trajectories --split train --temperature 0.7 --max_steps 40 --gpu 0 --num_tasks 500 --part_num 2 --part_idx 0 > /tmp/traj_part0.log 2>&1\\\\nroot      95808  0.0  0.0   4364  3248 pts/0    Ss+  20:43   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/rl-active-probe-fl && CUDA_VISIBLE_DEVICES=0 python src/collect_trajectories.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-8B --output_dir data/trajectories --split\\\\n\\\\n... [截断: 输出过长，省略 5292 字符] ...\\\\n\\\\n%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/mvp_p2b_contrastive_training.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/structfuse && export CUDA_VISIBLE_DEVICES=4 && timeout 50400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash scripts/run_p2b_all.sh\\\\\\\"'; } > ~/runs/faith-evidence-ie/mvp_p2b_contrastive_training.log 2>&1\\\\nroot      99059  0.0  0.0   2800  1020 pts/2    S    20:58   0:00 timeout 50400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash scripts/run_p2b_all.sh\\\\\\\"\\\\nroot      99060  0.0  0.0   4496  3188 pts/2    S    20:58   0:00 bash scripts/run_p2b_all.sh\\\\nroot      99069  106  0.2 33660108 2263964 pts/2 Rl  20:58  17:21 python -u training/train.py --model-name /root/structfuse/models/Qwen/Qwen2.5-Coder-3B --train-file /root/structfuse/mvp_data/training_data/train_random.jsonl --val-file /root/structfuse/mvp_data/training_data/val.jsonl --output-dir /root/autodl-tmp/structfuse/checkpoints/p2b_random_s42 --hard-negative-strategy random --num-epochs 3 --batch-size 2 --learning-rate 2e-5 --num-negatives 3 --max-seq-length 512 --use-lora --gradient-checkpointing --eval-steps 50 --save-steps 200 --seed 42 --dataflow-graph-file /root/structfuse/mvp_data/training_data/dataflow_graph.json\\\\nroot     101836  4.2  0.0 8212888 550236 ?      Sl   21:04   0:26 python -c  from modelscope import snapshot_download snapshot_download('Qwen/Qwen2.5-Coder-3B', local_dir='/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B') print('DOWNLOAD_COMPLETE') \\\\nroot     102194  0.0  0.0   4364  2204 ?        S    21:05   0:00 bash -c kill 101831 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && nohup huggingface-cli download Qwen/Qwen2.5-Coder-3B --local-dir /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B > /tmp/download_qwen_coder.log 2>&1 & echo $!\\\\nroot     102199  2.5  0.0 710888 110920 ?       Sl   21:05   0:14 /root/miniconda3/bin/python /root/miniconda3/bin/huggingface-cli download Qwen/Qwen2.5-Coder-3B --local-dir /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\\\nroot     105046  0.1  0.0  16692 10864 ?        Ss   21:14   0:00 sshd: root@notty\\\\nroot     105324  1.6  0.0  16692 10892 ?        Ss   21:14   0:00 sshd: root@notty\\\\nroot     105342  8.5  0.1 33659256 1827988 pts/2 Sl  21:15   0:00 python -u training/train.py --model-name /root/structfuse/models/Qwen/Qwen2.5-Coder-3B --train-file /root/structfuse/mvp_data/training_data/train_random.jsonl --val-file /root/structfuse/mvp_data/training_data/val.jsonl --output-dir /root/autodl-tmp/structfuse/checkpoints/p2b_random_s42 --hard-negative-strategy random --num-epochs 3 --batch-size 2 --learning-rate 2e-5 --num-negatives 3 --max-seq-length 512 --use-lora --gradient-checkpointing --eval-steps 50 --save-steps 200 --seed 42 --dataflow-graph-file /root/structfuse/mvp_data/training_data/dataflow_graph.json\\\\nroot     105343  7.7  0.1 33659500 1828280 pts/2 Sl  21:15   0:00 python -u training/train.py --model-name /root/structfuse/models/Qwen/Qwen2.5-Coder-3B --train-file /root/structfuse/mvp_data/training_data/train_random.jsonl --val-file /root/structfuse/mvp_data/training_data/val.jsonl --output-dir /root/autodl-tmp/structfuse/checkpoints/p2b_random_s42 --hard-negative-strategy random --num-epochs 3 --batch-size 2 --learning-rate 2e-5 --num-negatives 3 --max-seq-length 512 --use-lora --gradient-checkpointing --eval-steps 50 --save-steps 200 --seed 42 --dataflow-graph-file /root/structfuse/mvp_data/training_data/dataflow_graph.json\\\\nroot     105544  0.0  0.0   7064  1560 ?        Rs   21:15   0:00 ps aux\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3280 ?        Ss   18:09   0:00 bash /init/boot/boot.sh\\nroot        801  2.7  0.0 720288 20012 ?        Sl   18:09   5:11 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        820  0.0  0.0  15444  9128 ?        S    18:09   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        821  0.1  0.0 4147752 78736 ?       Sl   18:09   0:16 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        822  0.0  0.0 191548 105444 ?       S    18:09   0:03 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        823  0.0  0.0 2499824 18492 ?       Sl   18:09   0:02 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        824  0.1  0.0 2426092 20756 ?       Sl   18:09   0:19 proxy -c /init/proxy/proxy.ini\\nroot        826  0.1  0.0 6156972 96752 ?       Sl   18:09   0:20 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        932  0.0  0.0 26177944 11572 ?      Sl   18:09   0:09 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_jfe2b4s0/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_jfe2b4s0/startup_error\\nroot       1525  0.0  0.0  16692 10648 ?        Ss   18:15   0:01 sshd: root@notty\\nroot       1527  0.0  0.0  16692 10588 ?        Ss   18:15   0:01 sshd: root@notty\\nroot       1557  0.0  0.0  16692 10568 ?        Ss   18:15   0:01 sshd: root@notty\\nroot       1563  0.0  0.0  16692 11044 ?        Ss   18:15   0:01 sshd: root@notty\\nroot      78469  100  0.0 2797168 67192 ?       Rsl  19:50  85:04 python3 -c  import yaml, os from alfworld.agents.environment import get_environment  os.environ['ALFWORLD_DATA'] = 'eval_agent/data/alfworld' with open('eval_agent/data/alfworld/base_config.yaml') as f:     config = yaml.safe_load(f)  AlfredTWEnv = get_environment(config['env']['type']) env = AlfredTWEnv(config, train_eval='train') env = env.init_env(batch_size=1) obs, info = env.reset() obs_text = '\\\\n'.join(obs[0].split('\\\\n\\\\n')[1:]) print('Game file:', info['extra.gamefile'][0]) print('Obs:', obs_text[:300]) print('ALFWORLD_OK') \\nroot      78728  100  0.0 2797204 67544 ?       Rl   19:51  83:43 python3 -c  import yaml, os, time from alfworld.agents.environment import get_environment  os.environ['ALFWORLD_DATA'] = 'eval_agent/data/alfworld' with open('eval_agent/data/alfworld/base_config.yaml') as f:     config = yaml.safe_load(f)  t0 = time.time() AlfredTWEnv = get_environment(config['env']['type']) env = AlfredTWEnv(config, train_eval='eval_out_of_distribution') env = env.init_env(batch_size=1) print(f'Env init took {time.time()-t0:.1f}s') obs, info = env.reset() obs_text = '\\\\n'.join(obs[0].split('\\\\n\\\\n')[1:]) print('Game file:', info['extra.gamefile'][0]) print('Obs:', obs_text[:300])  # Step test observation, reward, done, step_info = env.step(['look']) print('Step test:', observation[0][:100]) print('ALFWORLD_OK') \\nroot      95807  0.0  0.0   4172  2548 ?        Ss   20:43   0:00 SCREEN -dmS traj_p0 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/rl-active-probe-fl && CUDA_VISIBLE_DEVICES=0 python src/collect_trajectories.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-8B --output_dir data/trajectories --split train --temperature 0.7 --max_steps 40 --gpu 0 --num_tasks 500 --part_num 2 --part_idx 0 > /tmp/traj_part0.log 2>&1\\nroot      95808  0.0  0.0   4364  3248 pts/0    Ss+  20:43   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/rl-active-probe-fl && CUDA_VISIBLE_DEVICES=0 python src/collect_trajectories.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-8B --output_dir data/trajectories --split\\n\\n... [截断: 输出过长，省略 5292 字符] ...\\n\\n%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/mvp_p2b_contrastive_training.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/structfuse && export CUDA_VISIBLE_DEVICES=4 && timeout 50400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash scripts/run_p2b_all.sh\\\"'; } > ~/runs/faith-evidence-ie/mvp_p2b_contrastive_training.log 2>&1\\nroot      99059  0.0  0.0   2800  1020 pts/2    S    20:58   0:00 timeout 50400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash scripts/run_p2b_all.sh\\\"\\nroot      99060  0.0  0.0   4496  3188 pts/2    S    20:58   0:00 bash scripts/run_p2b_all.sh\\nroot      99069  106  0.2 33660108 2263964 pts/2 Rl  20:58  17:21 python -u training/train.py --model-name /root/structfuse/models/Qwen/Qwen2.5-Coder-3B --train-file /root/structfuse/mvp_data/training_data/train_random.jsonl --val-file /root/structfuse/mvp_data/training_data/val.jsonl --output-dir /root/autodl-tmp/structfuse/checkpoints/p2b_random_s42 --hard-negative-strategy random --num-epochs 3 --batch-size 2 --learning-rate 2e-5 --num-negatives 3 --max-seq-length 512 --use-lora --gradient-checkpointing --eval-steps 50 --save-steps 200 --seed 42 --dataflow-graph-file /root/structfuse/mvp_data/training_data/dataflow_graph.json\\nroot     101836  4.2  0.0 8212888 550236 ?      Sl   21:04   0:26 python -c  from modelscope import snapshot_download snapshot_download('Qwen/Qwen2.5-Coder-3B', local_dir='/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B') print('DOWNLOAD_COMPLETE') \\nroot     102194  0.0  0.0   4364  2204 ?        S    21:05   0:00 bash -c kill 101831 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && nohup huggingface-cli download Qwen/Qwen2.5-Coder-3B --local-dir /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B > /tmp/download_qwen_coder.log 2>&1 & echo $!\\nroot     102199  2.5  0.0 710888 110920 ?       Sl   21:05   0:14 /root/miniconda3/bin/python /root/miniconda3/bin/huggingface-cli download Qwen/Qwen2.5-Coder-3B --local-dir /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\nroot     105046  0.1  0.0  16692 10864 ?        Ss   21:14   0:00 sshd: root@notty\\nroot     105324  1.6  0.0  16692 10892 ?        Ss   21:14   0:00 sshd: root@notty\\nroot     105342  8.5  0.1 33659256 1827988 pts/2 Sl  21:15   0:00 python -u training/train.py --model-name /root/structfuse/models/Qwen/Qwen2.5-Coder-3B --train-file /root/structfuse/mvp_data/training_data/train_random.jsonl --val-file /root/structfuse/mvp_data/training_data/val.jsonl --output-dir /root/autodl-tmp/structfuse/checkpoints/p2b_random_s42 --hard-negative-strategy random --num-epochs 3 --batch-size 2 --learning-rate 2e-5 --num-negatives 3 --max-seq-length 512 --use-lora --gradient-checkpointing --eval-steps 50 --save-steps 200 --seed 42 --dataflow-graph-file /root/structfuse/mvp_data/training_data/dataflow_graph.json\\nroot     105343  7.7  0.1 33659500 1828280 pts/2 Sl  21:15   0:00 python -u training/train.py --model-name /root/structfuse/models/Qwen/Qwen2.5-Coder-3B --train-file /root/structfuse/mvp_data/training_data/train_random.jsonl --val-file /root/structfuse/mvp_data/training_data/val.jsonl --output-dir /root/autodl-tmp/structfuse/checkpoints/p2b_random_s42 --hard-negative-strategy random --num-epochs 3 --batch-size 2 --learning-rate 2e-5 --num-negatives 3 --max-seq-length 512 --use-lora --gradient-checkpointing --eval-steps 50 --save-steps 200 --seed 42 --dataflow-graph-file /root/structfuse/mvp_data/training_data/dataflow_graph.json\\nroot     105544  0.0  0.0   7064  1560 ?        Rs   21:15   0:00 ps aux\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also check the logs to see if the trajectory collection processes are actually making progress or stuck.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "13f06ac3-6256-47ad-a74a-4ddfdfc0a962",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eomfw42SKuRCYR6yG7NtYe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3625,
+      "cache_read_input_tokens": 24170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3625
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+再查下日志确认收集进度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "5107d02b-d979-44a5-ada3-33ec912488f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eomfw42SKuRCYR6yG7NtYe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3625,
+      "cache_read_input_tokens": 24170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3625
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HffRdf78923JkNx2Ja7cbT`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -5 /tmp/traj_part0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "08c282c4-3ae6-48de-abe5-d4c94680ad3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eomfw42SKuRCYR6yG7NtYe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3625,
+      "cache_read_input_tokens": 24170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3625
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-12T13:15:12.096Z_
+
+<details><summary>↩ Tool result · `toolu_01HffRdf78923JkNx2Ja7cbT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-12 21:09:36,790 INFO [20/500] task=19 type=pick_clean_then_place reward=False steps=40 time=90.9s sr=0/20\\n2026-05-12 21:10:53,788 INFO [21/500] task=20 type=pick_two_obj reward=False steps=40 time=76.2s sr=0/21\\n2026-05-12 21:12:06,696 INFO [22/500] task=21 type=pick_cool_then_place reward=False steps=40 time=70.8s sr=0/22\\n2026-05-12 21:13:24,254 INFO [23/500] task=22 type=pick_and_place reward=False steps=40 time=76.8s sr=0/23\\n2026-05-12 21:14:59,197 INFO [24/500] task=23 type=pick_two_obj reward=False steps=40 time=94.2s sr=0/24\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "b5f44c60-05ff-45a4-8012-3d25bdd1dec3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-12 21:09:36,790 INFO [20/500] task=19 type=pick_clean_then_place reward=False steps=40 time=90.9s sr=0/20\\\\n2026-05-12 21:10:53,788 INFO [21/500] task=20 type=pick_two_obj reward=False steps=40 time=76.2s sr=0/21\\\\n2026-05-12 21:12:06,696 INFO [22/500] task=21 type=pick_cool_then_place reward=False steps=40 time=70.8s sr=0/22\\\\n2026-05-12 21:13:24,254 INFO [23/500] task=22 type=pick_and_place reward=False steps=40 time=76.8s sr=0/23\\\\n2026-05-12 21:14:59,197 INFO [24/500] task=23 type=pick_two_obj reward=False steps=40 time=94.2s sr=0/24\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-12 21:09:36,790 INFO [20/500] task=19 type=pick_clean_then_place reward=False steps=40 time=90.9s sr=0/20\\n2026-05-12 21:10:53,788 INFO [21/500] task=20 type=pick_two_obj reward=False steps=40 time=76.2s sr=0/21\\n2026-05-12 21:12:06,696 INFO [22/500] task=21 type=pick_cool_then_place reward=False steps=40 time=70.8s sr=0/22\\n2026-05-12 21:13:24,254 INFO [23/500] task=22 type=pick_and_place reward=False steps=40 time=76.8s sr=0/23\\n2026-05-12 21:14:59,197 INFO [24/500] task=23 type=pick_two_obj reward=False steps=40 time=94.2s sr=0/24\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EGBUZ9LuxcyZnTMqnVJyin`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -5 /tmp/traj_part1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "a514859f-544e-4e55-8520-98cae40aa870",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eomfw42SKuRCYR6yG7NtYe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3625,
+      "cache_read_input_tokens": 24170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3625
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-12T13:15:12.779Z_
+
+<details><summary>↩ Tool result · `toolu_01EGBUZ9LuxcyZnTMqnVJyin`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-12 21:09:30,670 INFO [20/500] task=19 type=pick_two_obj reward=False steps=40 time=82.1s sr=0/20\\n2026-05-12 21:10:35,049 INFO [21/500] task=20 type=pick_heat_then_place reward=False steps=40 time=61.7s sr=0/21\\n2026-05-12 21:11:40,729 INFO [22/500] task=21 type=pick_cool_then_place reward=False steps=40 time=63.5s sr=0/22\\n2026-05-12 21:13:03,141 INFO [23/500] task=22 type=pick_clean_then_place reward=False steps=40 time=80.9s sr=0/23\\n2026-05-12 21:14:21,963 INFO [24/500] task=23 type=pick_and_place reward=False steps=40 time=78.0s sr=0/24\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "97a10e2a-72be-43f1-a1f4-b8b6542366c2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-12 21:09:30,670 INFO [20/500] task=19 type=pick_two_obj reward=False steps=40 time=82.1s sr=0/20\\\\n2026-05-12 21:10:35,049 INFO [21/500] task=20 type=pick_heat_then_place reward=False steps=40 time=61.7s sr=0/21\\\\n2026-05-12 21:11:40,729 INFO [22/500] task=21 type=pick_cool_then_place reward=False steps=40 time=63.5s sr=0/22\\\\n2026-05-12 21:13:03,141 INFO [23/500] task=22 type=pick_clean_then_place reward=False steps=40 time=80.9s sr=0/23\\\\n2026-05-12 21:14:21,963 INFO [24/500] task=23 type=pick_and_place reward=False steps=40 time=78.0s sr=0/24\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-12 21:09:30,670 INFO [20/500] task=19 type=pick_two_obj reward=False steps=40 time=82.1s sr=0/20\\n2026-05-12 21:10:35,049 INFO [21/500] task=20 type=pick_heat_then_place reward=False steps=40 time=61.7s sr=0/21\\n2026-05-12 21:11:40,729 INFO [22/500] task=21 type=pick_cool_then_place reward=False steps=40 time=63.5s sr=0/22\\n2026-05-12 21:13:03,141 INFO [23/500] task=22 type=pick_clean_then_place reward=False steps=40 time=80.9s sr=0/23\\n2026-05-12 21:14:21,963 INFO [24/500] task=23 type=pick_and_place reward=False steps=40 time=78.0s sr=0/24\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+**轨迹收集进度报告：**
+
+| 项目 | 状态 |
+|------|------|
+| **总轨迹数** | 48 条（part0: 24, part1: 24） |
+| **进度** | 各 24/500，约 4.8% |
+| **traj_p0** | 存活，screen + python 进程均在 |
+| **traj_p1** | 存活，screen + python 进程均在 |
+| **速度** | 每条约 70-95 秒，预计每分片 ~500×80s ≈ 11 小时完成 |
+| **成功率** | 目前 0/24（两个分片均无成功轨迹） |
+
+**GPU 状态：**
+
+| GPU | 显存占用 | 利用率 | 备注 |
+|-----|---------|--------|------|
+| 0 | 7763 MiB | 35% | traj_p0（CUDA_VISIBLE_DEVICES=0） |
+| 1 | 7763 MiB | 41% | traj_p1（CUDA_VISIBLE_DEVICES=1） |
+| 2 | 22099 MiB | 100% | 其他项目（structfuse 训练） |
+| 3 | 0 MiB | 0% | 空闲 |
+| 4 | 8159 MiB | 100% | 其他项目 |
+| 5 | 18736 MiB | 100% | 其他项目 |
+
+**注意**：24 条轨迹成功率 0%，全部 reward=False。可能需要关注模型在 ALFWorld 上的表现是否符合预期——如果 Qwen3-8B zero-shot 本身在这些任务上成功率极低，后续收集到的轨迹可能全是失败轨迹。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "uuid": "1d14aee1-430f-479f-9795-fbdcbb23ffb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WxtFdVYecuovYpkm9YFRPj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1000,
+      "cache_read_input_tokens": 27795,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1000
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 23_
+
+**轨迹收集进度报告：**
+
+| 项目 | 状态 |
+|------|------|
+| **总轨迹数** | 48 条（part0: 24, part1: 24） |
+| **进度** | 各 24/500，约 4.8% |
+| **traj_p0** | 存活，screen + python 进程均在 |
+| **traj_p1** | 存活，screen + python 进程均在 |
+| **速度** | 每条约 70-95 秒，预计每分片 ~500×80s ≈ 11 小时完成 |
+| **成功率** | 目前 0/24（两个分片均无成功轨迹） |
+
+**GPU 状态：**
+
+| GPU | 显存占用 | 利用率 | 备注 |
+|-----|---------|--------|------|
+| 0 | 7763 MiB | 35% | traj_p0（CUDA_VISIBLE_DEVICES=0） |
+| 1 | 7763 MiB | 41% | traj_p1（CUDA_VISIBLE_DEVICES=1） |
+| 2 | 22099 MiB | 100% | 其他项目（structfuse 训练） |
+| 3 | 0 MiB | 0% | 空闲 |
+| 4 | 8159 MiB | 100% | 其他项目 |
+| 5 | 18736 MiB | 100% | 其他项目 |
+
+**注意**：24 条轨迹成功率 0%，全部 reward=False。可能需要关注模型在 ALFWorld 上的表现是否符合预期——如果 Qwen3-8B zero-shot 本身在这些任务上成功率极低，后续收集到的轨迹可能全是失败轨迹。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 34999,
+  "duration_api_ms": 34687,
+  "num_turns": 8,
+  "stop_reason": "end_turn",
+  "session_id": "9fa7ba00-b805-4b11-b6f4-d18c05588e69",
+  "total_cost_usd": 0.1973325,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 16954,
+    "cache_read_input_tokens": 109960,
+    "output_tokens": 1417,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16954,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 523,
+        "cache_read_input_tokens": 27795,
+        "cache_creation_input_tokens": 1000,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1000
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 840,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00092,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 1417,
+      "cacheReadInputTokens": 109960,
+      "cacheCreationInputTokens": 16954,
+      "webSearchRequests": 0,
+      "costUSD": 0.19641250000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "120968fb-fa4b-422c-abb8-516f4814b692"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b83af63c09764e77435d",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_5_1778775687.md",
+  "task_key": "loop_5_1778775687",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778775687.md",
+    "occurrence": 1,
+    "bytes": 4033,
+    "sha256": "06d2e8b8a9df2b7c7df0220f9c1e4478025b1fd1b0a64ff94e487bae6f941279"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T16:04:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**bjb1-17606 cuda:0, cuda:1**，只有这两张卡，不得用其他设备号\n- 磁盘：根分区 30GB，大文件必须放 `/root/autodl-tmp/`。上次 `/root/autodl-tmp` 95% full（4.1GB 剩余），exp013f 结束时已告警，新实验前**必须先查磁盘**\n- `submit_training_job` 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不存在 .venv\n- WandB 中 `raw_reward` 和 `episodic_return` 指标是日志 artifact（恒为 0），看 `critic/score/*` 才是真实 reward\n- exp014a/b/c 已被 Director kill（D013），不要复活\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-17606（AutoDL），工作目录 `/root/cost-verify-agent-rl`，代码在 `RAGEN/` 子目录\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境），**不走 venv**\n- **模型路径**：SFT checkpoint `/root/autodl-tmp/checkpoints/exp008_sft/final`，symlink `/root/autodl-tmp/checkpoints/qwen3_sft_final`；GRPO step 5 checkpoint `/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5`\n- **Expert SFT 数据**：`/root/autodl-tmp/expert_trajectories/sft_data/train.jsonl`（2460 条 PDDL expert trajectories）\n- **ALFWorld 数据**：`/root/autodl-tmp/alfworld/`（3553 train games）\n- **HF cache**：应设 `HF_HOME=/root/autodl-tmp/.hf_cache`\n- **必需环境变量**（写在 memory.md 有完整模板）：`TMPDIR`, `RAY_TMPDIR`, `ALFWORLD_DATA`, `RAY_memory_monitor_refresh_ms=0`, `RAY_SYSTEM_MEMORY=210000000000`, `HYDRA_FULL_ERROR=1`\n- **活跃进程**：exp017_expert_sft（PID 353947，cron 监控中）\n\n### 3. 📊 当前状态\n- **exp017_expert_sft** RUNNING（PID 353947）：用 2460 条 PDDL expert trajectory SFT Qwen3-1.7B，LR=2e-5, 3 epochs。Pass 标准: success ≥ 10%。预计 ~30 min 完成\n- **exp018_sft_grpo** PREPARING：从 exp017 SFT checkpoint 开始纯 sparse GRPO（LR=5e-7, kl=0.1, won=10.0, 30 步）。Pass: success ≥ 20%\n- 所有 Worker 已完成，无 pending Worker 回调\n- **等待**：exp017 cron 回调（完成后需 eval → 决定是否启动 exp018）\n\n### 4. 📋 待办（条件触发式）\n- exp017 cron 回调 DONE → spawn worker 跑 eval（ALFWorld 134 tasks），记录 action_is_valid + success_rate → update_registry\n- exp017 eval success ≥ 10% → 准备 exp018 提交：确认 exp017 checkpoint 路径 → 更新 exp018 config → submit_training_job\n- exp017 eval success < 10% → 向 Director 汇报 negative + 提议增加 expert 数据或切换到 SPEAR/DAPO 方案\n- exp018 跑到 step 6-7 → 重点关注 grad_norm 和 success 趋势（历史上 step 7 反复 collapse）\n- 任何实验提交前 → 先检查 `/root/autodl-tmp` 磁盘用量，<10GB 必须先清理旧 checkpoint\n\n### 5. 🎯 战略上下文\n- **核心论文方向**：B-IAVR（Behavioral Inference for Action-Value of Reflection）——训练 agent 学会\"何时验证\"。Phase B 代码就绪（68 tests pass），被 Phase A 阻塞\n- **Phase A 卡在 sparse reward 冷启动**：base model ALFWorld success ~4.7%（val），大多数 GRPO group 全零 reward → advantage 归零 → 无学习。已试过 LR 1e-7/5e-7/1e-6、dense reward shaping，全部失败或 gaming\n- **当前策略（D016 pivot）**：用 PDDL expert trajectory 做强化 SFT（exp017），把 baseline success 从 ~4% 提到 ≥10%，再接 sparse GRPO（exp018）。这是最后一个\"简单修复\"方案\n- **如果 exp017→exp018 仍失败**：需要 pivot 到 SPEAR（SIL+curriculum，ICLR 2026，ALFWorld 直接验证过）或 DAPO+AR3PO 组合。这个 pivot 决策权在 Director\n- **易错点**：(1) 不要把 exp008_sft（1200 条公开数据）和 exp017（2460 条 expert 数据）混淆，它们 checkpoint 路径不同；(2) exp013f 的 dense reward gaming 教训——任何 shaping reward 不能被独立最大化；(3) step 7 是历史 collapse 高发点，exp018 到 step 6-7 必须密切监控\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778775687.md"
+}

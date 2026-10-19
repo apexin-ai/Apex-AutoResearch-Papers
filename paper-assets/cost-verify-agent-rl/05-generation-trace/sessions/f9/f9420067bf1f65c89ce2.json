@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9420067bf1f65c89ce2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code prep gsweep g095 g100 configs",
+  "task_key": "worker_code_prep-gsweep-g095-g100-configs_20260518T082201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-gsweep-g095-g100-configs_20260518T082201_result.json",
+    "occurrence": 1,
+    "bytes": 1362,
+    "sha256": "0dd141fe184111b9ad7e8afa5f78177eb44551082a211f8bf2ab3204d399c006"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇总：\n\n---\n\n### Config 文件\n| 文件 | 路径 | gamma |\n|------|------|-------|\n| g095 | `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_gamma_sweep_g095_h5.yaml` | 0.95 |\n| g100 | `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_gamma_sweep_g100_h5.yaml` | 1.0 |\n\n### 启动脚本\n`/root/autodl-tmp/cost-verify-agent-rl/RAGEN/launch_gsweep.sh`\n\n### 启动命令\n```bash\n# g095\nbash launch_gsweep.sh g095 \"2,3\"\n# 等价于:\npython train.py --config-name _alfworld_gamma_sweep_g095_h5 seed.train=10000 trainer.experiment_name=gsweep-g095-h5-seed1 system.CUDA_VISIBLE_DEVICES=\"2,3\"\n\n# g100\nbash launch_gsweep.sh g100 \"2,3\"\n# 等价于:\npython train.py --config-name _alfworld_gamma_sweep_g100_h5 seed.train=10000 trainer.experiment_name=gsweep-g100-h5-seed1 system.CUDA_VISIBLE_DEVICES=\"2,3\"\n```\n\n### 验证结果\n| 项目 | 状态 |\n|------|------|\n| YAML 语法 | 通过 |\n| Hydra config 加载 (--cfg job) | g095 通过, g100 通过 |\n| SFT 模型路径 (`qwen3_exp021_ragen_sft_v4`) | 存在 (symlink) |\n| Checkpoint 输出目录 | 已创建: `gsweep-g095-h5/`, `gsweep-g100-h5/` |\n| 磁盘空间 | 45G 可用 (83% used) |\n\n两个 config 除 `algorithm.gamma` 和 checkpoint 路径外与 g080 完全一致，`high_level_gamma` 保持 0.95 不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-gsweep-g095-g100-configs.md"
+}

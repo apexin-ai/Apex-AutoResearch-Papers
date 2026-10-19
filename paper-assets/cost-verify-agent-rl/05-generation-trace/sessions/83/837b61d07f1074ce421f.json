@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "837b61d07f1074ce421f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix exp029 tmpdir restart",
+  "task_key": "worker_fix_exp029_tmpdir_restart_20260516T162459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp029_tmpdir_restart_20260516T162459_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "fe9d3445f0005152c0b762052e8f45436412ded3f1421b23ce164b416010a1e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 还在初始化阶段（559 MiB 说明模型还没加载到 GPU）。等一下再确认 GPU 实际加载情况。\n\n## 汇报\n\n| 项目 | 状态 |\n|------|------|\n| **主进程 PID** | 879991 (Ray TaskRunner: 883223) |\n| **GPU 0** | 559 MiB / 97887 MiB, 0% util（模型加载中） |\n| **GPU 1** | 559 MiB / 97887 MiB, 0% util（模型加载中） |\n| **/tmp** | 17G 可用 (46%) |\n| **/root/autodl-tmp** | 57G 可用 (78%) |\n| **TMPDIR** | `/root/autodl-tmp/tmp` 已设置 |\n| **WANDB_DIR** | `/root/autodl-tmp/wandb` 已设置 |\n| **初始化输出** | 配置加载成功，ref policy 启用，无致命错误 |\n\n训练已启动，初始化中。GPU 显存占用低是因为模型尚在加载阶段，需要几分钟才会开始实际训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp029-tmpdir-restart.md"
+}

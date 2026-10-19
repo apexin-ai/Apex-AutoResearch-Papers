@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "951225637b745555a323",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "ssh check v8 progress",
+  "task_key": "worker_ssh_check-v8-progress_20260513T071932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-v8-progress_20260513T071932_result.json",
+    "occurrence": 1,
+    "bytes": 1029,
+    "sha256": "655d4030f81c055d8e1c21c23f446bb230d7440aeabc6d887b40e62d1b387dc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v8 ICL 数据收集状态报告\n\n**进程状态**：两个进程均存活，但实际运行时间仅 ~24 分钟（非预期的 5h16m，进程可能被重启过）\n- PID 763657 (cuda:0): elapsed 23:48\n- PID 764025 (cuda:1): elapsed 23:46\n\n**收集进度**：\n\n| GPU | 完成数 | 总数 | 进度 |\n|-----|--------|------|------|\n| cuda:0 | 7 | 300 | 2.3% |\n| cuda:1 | 7 | 300 | 2.3% |\n| **合计** | **14** | **600** | **2.3%** |\n\n**成功率**：**0%** — 14条轨迹全部 reward=false，0条成功。\n\n**速度**：每条轨迹约 3 分钟（170-220s），两卡并行。\n\n**ETA 估算**：\n- 每卡剩余 293 条 × ~3 min/条 ≈ 879 min ≈ **14.6 小时**\n- 预计完成时间：约 5月14日 06:00（北京时间）\n\n**严重问题**：成功率为 0%（sr=0/7, sr=0/6），所有任务都达到 40 步上限后失败。如果这个趋势持续，收集到的 300 条数据将全部是失败轨迹，可能没有训练价值。建议检查 ICL prompt 或模型推理是否正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-v8-progress.md"
+}

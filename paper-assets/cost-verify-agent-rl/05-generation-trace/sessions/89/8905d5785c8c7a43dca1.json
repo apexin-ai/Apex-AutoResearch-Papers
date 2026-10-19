@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8905d5785c8c7a43dca1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 status and reeval rescue",
+  "task_key": "worker_ops_bjb1-status-and-reeval-rescue_20260518T040040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1-status-and-reeval-rescue_20260518T040040_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "ef8ffc083beea95155dfa6a0d6c092f0dd36a22a33e5e475763a7d47ef6c9045"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 执行结果\n\n**1. exp029 reeval (OOD 134 tasks) — 已完成**\n| Metric | Value |\n|--------|-------|\n| success / pass@1 | **23.88%** |\n| action_is_valid | 56.83% |\n| action_is_effective | 91.6% |\n| manager_invalid_action | 8.39% |\n| reward/mean@134 | 2.388 |\n| best@8 | 8.88 |\n\n**2. hsweep_h2_seed2 reeval — 已启动**\n- tmux: `reeval_hsweep_h2_seed2`，模型已从 `hsweep-h2/global_step_15` 加载成功\n- 日志: `/root/runs/cost-verify-agent-rl/hsweep-h2-seed2-reeval-ood.log`\n- 预计 ~40-60 min 完成 validation\n\n**3. seed1 checkpoint — 全部丢失**\n- `global_step_5`: 不存在\n- `global_step_10`: 存在但属于 **seed2**（May 18 06:47）\n- `global_step_15`: 存在但属于 **seed2**（May 18 10:47）\n- seed2 写入同一目录覆盖了 seed1，不可恢复\n\n**4. 已执行操作**\n- Kill 了 exp029 reeval 的无用训练步（validation 已完成，`total_training_steps: 1` 的训练步在浪费 GPU）\n- 创建了 `_alfworld_hsweep_h2_seed2_reeval_ood.yaml` 并启动 reeval\n- 状态报告已写入 memory.md"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-status-and-reeval-rescue.md"
+}

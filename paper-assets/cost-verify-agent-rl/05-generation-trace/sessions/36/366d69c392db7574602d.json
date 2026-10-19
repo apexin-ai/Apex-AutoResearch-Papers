@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "366d69c392db7574602d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis intervention c step5 ood",
+  "task_key": "worker_analysis_intervention_c_step5_ood_20260521T232303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_intervention_c_step5_ood_20260521T232303_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "662da2abe384402838e02610d11559f53a0579a7b72708c0fae69567e3ae3d47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)。\n\n**结果摘要**:\n\n| 指标 | 值 |\n|---|---|\n| OOD success rate | 10.45% (14/134) |\n| reward_mean@134 | 1.045 |\n| response_length | 6266 tokens |\n| action_is_valid | 63.7% |\n| action_is_effective | 99.0% |\n| num_actions | 45.0 |\n\n结论：**negative**。Step 5 (pre-collapse) 的 OOD 泛化已经很差（10.45%），response length 6266 已明显膨胀，action_is_valid 仅 63.7% 表明格式退化。这说明 hard cap 在 collapse 之前就已经未能保持 OOD 迁移能力，与 intervention-c-hard-cap 整体 negative 的结论一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-intervention-c-step5-ood.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aacb49ee8b69b177cb95",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 step1 progress",
+  "task_key": "worker_check_exp029_step1_progress_20260516T154415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_step1_progress_20260516T154415_result.json",
+    "occurrence": 1,
+    "bytes": 1302,
+    "sha256": "d89f1a39180635c61665b8c4575c1824af0bc4cab5ad71f9e52999f5832d1721"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp029 状态：已崩溃\n\n**进程**: PID 872859 已死，GPU 0/1 均 0 MiB / 0% 利用率。\n\n**崩溃点**: Step 0 训练完成后，wandb 日志写入时崩溃。\n\n**错误**: `FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpzicbifxf'`\n- 调用链: `wandb_run.log()` → `_log_table_artifact()` → `artifact.new_file()` → `tempfile.mkdtemp()` → `os.mkdir()` 失败\n- `/tmp/` 当前只有 `ray/` 和 `tmux-0/`，wandb 的临时目录被清理或创建竞争失败\n\n**已完成的 val_before_train metrics (step 0, 32 episodes)**:\n\n| Metric | Value |\n|--------|-------|\n| success | **0.125** (12.5%) |\n| pass@1 | 0.125 |\n| action_is_valid | 0.783 |\n| action_is_effective | 1.0 |\n| num_actions | 44.59 |\n| response_length | 7088.03 |\n| reward/mean@32 | 1.25 |\n| non-zero/success | 1.0 |\n\n**未产出任何训练 metrics** — PPO forward pass 开始了（`compute_policy_loss` 被调用），但 step 0 的 metrics 在 wandb log 时崩溃，没有记录到 entropy/kl_loss/grad_norm/pg_loss。\n\n**根因**: wandb 在 `/tmp` 下创建 artifact 临时文件时失败。可能是容器 `/tmp` 清理策略或 tmpfs 空间问题。修复方案：重启前设置 `TMPDIR=/root/autodl-tmp/tmp` 或 `WANDB_DIR=/root/autodl-tmp/wandb` 绕过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-step1-progress.md"
+}

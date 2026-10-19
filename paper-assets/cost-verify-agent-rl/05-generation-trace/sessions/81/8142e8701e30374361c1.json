@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8142e8701e30374361c1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code cherry pick reward advantage",
+  "task_key": "worker_code_cherry_pick_reward_advantage_20260515T083522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cherry_pick_reward_advantage_20260515T083522_result.json",
+    "occurrence": 1,
+    "bytes": 1987,
+    "sha256": "98e01fbb245858f06d193676d3556837aea9a77b45490ee5c9de46002e927955"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's a summary of the changes:\n\n### Modified files\n\n**1. `ragen/env/alfworld/env.py`** (line 227)\n- Added `anchor_obs: observation` to the `step()` info dict — raw observation text before formatting with admissible actions. Used for Phase 2 GiGPO anchor state grouping.\n\n**2. `ragen/trainer/step_rewards.py`** (new, 109 lines)\n- `assign_step_rewards()` — converts episode-level rewards to per-step rewards: -0.1 penalty for invalid actions, episode reward on terminal step\n- `compute_step_discounted_returns()` — backward discounted returns within each episode (R_t = r_t + γR_{t+1})\n- `compute_episode_returns()` — single return per episode (from step 0) for group normalization\n\n**3. `ragen/trainer/core_algos.py`** (appended ~50 lines)\n- `compute_grpo_step_advantage()` — GRPO group normalization for step-level samples. Groups by task uid, normalizes `(return - mean) / (std + ε)`, broadcasts to response tokens.\n\n**4. `ragen/trainer/agent_trainer.py`** (3 changes)\n- Added imports for new functions\n- Added `context_window_mode` and `invalid_action_penalty_coef` parameters to `compute_advantage()`\n- Added `step_independent` overlay: when mode is `step_independent` and estimator is GRPO, replaces the standard token-level advantage with step-level discounted returns + GRPO normalization\n- Both `compute_advantage` call sites (lines ~838 and ~1414) now pass these parameters\n\n**5. `tests/test_step_rewards.py`** (new, 9 tests)\n- Covers: reward assignment (success/fail), discounted returns (single/multi episode), episode returns, GRPO advantage (all-same, varied, single rollout), end-to-end pipeline\n\n### Integration contract with ctx_manager Worker\nThe step_independent branch expects these fields in `non_tensor_batch`:\n- `episode_ids` — episode identifier per sample\n- `is_action_valid` — 1.0/0.0 per sample\n- `is_terminal` — 1.0 for last step of episode\n- `reward` — episode-level reward per sample"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cherry-pick-reward-advantage.md"
+}

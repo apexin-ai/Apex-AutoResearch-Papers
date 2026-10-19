@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88c2d58582b43a7321cc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose seed6 ood eval v2 exit",
+  "task_key": "worker_diagnose_seed6_ood_eval_v2_exit_20260521T142026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_seed6_ood_eval_v2_exit_20260521T142026_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "f72f302833f6df5665d93745a5cf3efc411e99c8673c27126d2395243f1040bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：exp029_seed6_ood_eval_v2 成功完成。**\n\n| 指标 | 值 |\n|------|-----|\n| OOD success_rate | **29.1%** (39/134) |\n| pass@1 | 29.1% |\n| num_actions | 36.6 |\n| action_is_effective | 97.3% |\n| action_is_valid | 63.2% |\n| manager_invalid_action | 2.7% |\n\n进程正常退出，134 个 OOD tasks 全部评估完毕（耗时 ~1171s）。日志末尾的 wandb BrokenPipeError 是无害的 atexit 清理错误。Registry 已更新为 success + metrics，failure_reason 已清除，cron 已无需清理（不存在）。GPU cuda:2 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-seed6-ood-eval-v2-exit.md"
+}

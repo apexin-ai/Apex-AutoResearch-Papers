@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc3e19dfdd31d645302e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "prepare eval configs westd",
+  "task_key": "worker_prepare_eval_configs_westd_20260521T125833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prepare_eval_configs_westd_20260521T125833_result.json",
+    "occurrence": 1,
+    "bytes": 1369,
+    "sha256": "c22de6db6b2e5d9bf285f107ed17863b4385ff145fd24f74a2cce73b7b32658e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个配置文件已创建并验证通过。\n\n### 产出汇总\n\n**配置文件路径：**\n- SFT baseline OOD: `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_sft_baseline_ood_eval_v2.yaml`\n- Seed 6 OOD: `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_ood_eval.yaml`\n\n**与原 SFT OOD eval 模板的差异：**\n- `gpu_memory_utilization`: 0.2 → 0.85（独占卡）\n- SFT v2: `CUDA_VISIBLE_DEVICES: \"3\"`, experiment_name: `sft-baseline-ood-eval-v2`\n- Seed 6: `CUDA_VISIBLE_DEVICES: \"2\"`, experiment_name: `exp029-seed6-ood-eval`, seed 沿用训练配置 (train=789, val=321)\n\n**Seed 6 checkpoint 状态：**\n- FSDP checkpoint 已存在：`/root/autodl-tmp/checkpoints/exp029-seed6/global_step_15/actor/`（world_size=2 的分片权重）\n- **HF 转换尚未完成**——`huggingface/` 子目录只有 tokenizer 文件，无 `*.safetensors`\n- Seed 6 config 的 `model_path` 设为 `/root/autodl-tmp/checkpoints/exp029-seed6/global_step_15_hf`，**运行前需先做 FSDP→HF 转换**\n\n**启动命令模板：**\n```bash\n# SFT baseline OOD eval (cuda:3)\nRAY_ADDRESS=local python3 train.py --config-name _alfworld_sft_baseline_ood_eval_v2\n\n# Seed 6 OOD eval (cuda:2) — 需先完成 FSDP→HF 转换\nRAY_ADDRESS=local python3 train.py --config-name _alfworld_exp029_seed6_ood_eval\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prepare-eval-configs-westd.md"
+}

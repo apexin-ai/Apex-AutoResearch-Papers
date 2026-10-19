@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6650d475aa77763dbb4",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "prep hsweep completion readiness",
+  "task_key": "worker_prep_hsweep_completion_readiness_20260518T020235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_hsweep_completion_readiness_20260518T020235_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "f1c838d1978cbabf067ccfedc5b4e993e3de8ffdd8917b9f8fd1d58bf5f812a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总报告：\n\n## 就绪检查清单\n\n| 项目 | 状态 | 说明 |\n|------|------|------|\n| ADV 分析脚本 | ✅ OK | `/root/cost-verify-agent-rl/scripts/analyze_advantage_log_v2.py`（注意：在 `scripts/` 不是 `RAGEN/`） |\n| ADV log 数据 | ✅ OK | `/root/runs/cost-verify-agent-rl/hsweep_h2_seed2/advantage_log.jsonl`，已有 2800 条记录（step 12/15），脚本默认路径匹配 |\n| exp029 re-eval 脚本 | ✅ OK | `/root/cost-verify-agent-rl/scripts/run_exp029_reeval.sh`（注意：在 `scripts/` 不是 `RAGEN/`） |\n| exp029 checkpoint | ✅ OK | `/root/autodl-tmp/checkpoints/exp029/global_step_15` 存在于 bjb1，无需从 westd 拷贝 |\n| exp029 eval config | ✅ OK | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_reeval_valid_unseen.yaml`，134 tasks OOD，val_before_train=True |\n\n**补充确认：**\n- 分析脚本读取的字段（`episode_id`, `window_position`, `step_return`, `advantage`）与实际 log 格式完全匹配\n- re-eval config 使用 `resume_from_path` 指向正确 checkpoint，`CUDA_VISIBLE_DEVICES=0,1`\n- 训练完成后直接运行 `bash /root/cost-verify-agent-rl/scripts/run_exp029_reeval.sh` 即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-hsweep-completion-readiness.md"
+}

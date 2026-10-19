@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2b13e23799f9d52f734",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code prep exp020 grpo",
+  "task_key": "worker_code_prep-exp020-grpo_20260514T220755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-exp020-grpo_20260514T220755_result.json",
+    "occurrence": 1,
+    "bytes": 1286,
+    "sha256": "834bc20fd9f95669a77f6ce30d249fb8e3cfa9551c02e6b2cfc8bf99a61f6e92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总：\n\n## exp020 准备报告\n\n**配置文件** `_alfworld_exp018_sft_grpo.yaml` 关键参数：\n| 参数 | 值 |\n|------|-----|\n| lr | 5e-7 |\n| kl_loss_coef | 0.1 |\n| kl_loss_type | kl |\n| total_steps | 30 |\n| clip_ratio | 0.2 ~ 0.28 |\n| adv_estimator | grpo |\n| response_length | 1024 |\n| train group_size | 16 |\n| val env_groups | 16→4 (脚本覆盖) |\n| save_freq | 5 |\n| val_before_train | True |\n\n**启动脚本**: `/root/cost-verify-agent-rl/scripts/run_exp020.sh` ✓ 已创建并 chmod +x\n\n**脚本相对原始任务增加了**：磁盘空间检查（<50GB 则中止）和 GPU 状态打印，满足 C002 pre-flight checklist。\n\n**Checkpoint**: `/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final/model.safetensors` — 3.2GB ✓ 存在\n\n**命令行覆盖项**（相对配置文件的变更）：\n- `model_path` → exp019b checkpoint（配置文件默认指向 exp017）\n- `experiment_name` → exp020-alfworld-sft-grpo\n- 输出目录 → `/root/autodl-tmp/checkpoints/exp020/`\n- val env_groups 16→4, n_groups [16]→[4]（减少验证开销）\n\n**注意事项**：配置文件的 `trainer.resume_mode: disable`，不会从已有 checkpoint 恢复训练状态，仅加载模型权重作为初始化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp020-grpo.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7011e788ce34ba79c84",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp029 seed4 v2 exit v2",
+  "task_key": "worker_diagnose_exp029_seed4_v2_exit_v2_20260521T084830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp029_seed4_v2_exit_v2_20260521T084830_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "36946e062e347d85e97a646e9e12cada4f5eb52057b745ff88f5e2aec581d41d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**假警报。** 进程全部存活，训练正在进行。\n\n| 项目 | 状态 |\n|------|------|\n| 主进程 PID 302056 | 存活 |\n| Worker 305501 | 存活，RSS 6.8GB |\n| Worker 305502 | 存活，RSS 6.8GB |\n| tmux session | exp029_seed4_v2 存在 |\n| GPU 0 | 4715/97887 MiB |\n| GPU 1 | 4715/97887 MiB |\n| 日志行数 | 3264 行，无 error/OOM/traceback |\n| 训练进度 | 初始 validation 已完成（success=9.375%），Training Progress: 0/15 steps 刚开始 |\n| Checkpoints | 仅有旧 exp029-seed4 的 global_step_5（v2 尚未产生新 checkpoint） |\n\nGPU 利用率 0% 是因为训练刚从初始 validation 进入第一个 training step，正在准备 batch 数据。不需要任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp029-seed4-v2-exit-v2.md"
+}

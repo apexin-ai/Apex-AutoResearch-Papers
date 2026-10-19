@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1e23fc77706ac098571",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 step5 val check",
+  "task_key": "worker_ops_exp026_step5_val_check_20260515T140425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_step5_val_check_20260515T140425_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "0f64559121b0357a777dcd9927d2476a0253a9e1a74c934fb47fa55356d8c5ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp026 状态报告\n\n**进程**: PID 781795，ALIVE，已运行 3h26m\n\n**已完成的 steps**:\n- step 0: val eval (baseline) — success=6.25%, pass@1=6.25%\n- step 1: train — success=21.875%, pass@16=6.25%\n- step 2: train — success=6.25%, pass@16=0%\n- step 3: train — success=0%, pass@16=0%\n- step 4: train — success=0%, pass@16=0%\n\n**Step 5**: 尚未完成。Step 4 在 total=11189s 时结束，进程已运行 ~12356s，说明 step 5 已运行约 19 分钟。按前几步每步 ~50-55 分钟估算，**step 5 train 预计还需 ~35 分钟完成**（约 22:40 左右），之后会触发 val eval（test_freq=5）。\n\n**趋势问题**: 训练正在 collapse——success 从 step 1 的 21.875% 跌到 step 3-4 的 0%，pass@16 也归零。entropy 从 step 1 降到 0.387，response_length 从 ~60 涨到 ~930。模型看起来在退化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-step5-val-check.md"
+}

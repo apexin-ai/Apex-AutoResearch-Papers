@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94183fd4673a4565a781",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops v9d disk timebomb fix",
+  "task_key": "worker_ops_v9d_disk_timebomb_fix_20260520T023859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v9d_disk_timebomb_fix_20260520T023859_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "f180695ab458cb22bdc4c2935df235f079ff3e51a90377d9c050ae1f142eabaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 项目 | 结果 |\n|------|------|\n| `max_actor_ckpt_to_keep` | **2**（已经是 2，config 正确） |\n| `resume_mode` | `\"auto\"` |\n| 走了哪个分支 | **情况 A**（只需清理旧 checkpoint，不需要重启） |\n| 操作 | 删除了 `global_step_5/`（37GB 损坏 checkpoint） |\n| 磁盘可用 | **135GB**（47% 使用，从 99GB → 135GB） |\n| 训练进程 | PID 380305 正常运行中（已运行 ~12 分钟） |\n| GPU | 4 卡均已分配显存（~27GB/98GB），利用率 0% 是因为采样时刻处于非计算阶段（正常，GRPO 训练在 rollout/update 间会有空闲） |\n\n磁盘定时炸弹已解除。`max_actor_ckpt_to_keep=2` 意味着最多保留 2 个 checkpoint（2×37GB=74GB），加上 base model 和其他数据，135GB 可用空间足够安全完成训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v9d-disk-timebomb-fix.md"
+}

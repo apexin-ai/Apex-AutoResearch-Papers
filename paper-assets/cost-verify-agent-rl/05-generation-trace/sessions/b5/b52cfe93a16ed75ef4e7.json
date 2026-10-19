@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "b52cfe93a16ed75ef4e7",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "experiment eval variance p1",
+  "task_key": "worker_experiment_eval_variance_p1_20260523T183550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_eval_variance_p1_20260523T183550.log",
+    "occurrence": 1,
+    "bytes": 743155,
+    "sha256": "984437b24ba45b5b5a105727d242bb29a426fbc07560cbd1c39eaf4c64c57b9b"
+  },
+  "statistics": {
+    "messages": 480,
+    "user_turns": 0,
+    "tool_calls": 183,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 183,
+      "tool_result": 183,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 480,
+      "chunks": [
+        {
+          "path": "b52cfe93a16ed75ef4e7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b52cfe93a16ed75ef4e7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b52cfe93a16ed75ef4e7-part-0003.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-eval-variance-p1.md"
+}

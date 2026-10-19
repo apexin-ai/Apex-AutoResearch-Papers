@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cc2b6a1a9fdf5597159",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "urgent bjb1 disk cleanup seed300",
+  "task_key": "worker_urgent_bjb1_disk_cleanup_seed300_20260522T181558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_bjb1_disk_cleanup_seed300_20260522T181558_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "192d08814271a8ddeebf4f6e0e230ef21e3714ba9803617399f72cb4ce12a2dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**清理结果：**\n\n| | 清理前 | 清理后 |\n|---|---|---|\n| 已用 | 243G | 222G |\n| 可用 | 7.8G | **29G** |\n| 使用率 | 97% | 89% |\n\n**释放 ~21.2GB**，目标 ≥10GB 达成。\n\n**删除内容：**\n- `/root/autodl-tmp/checkpoints/exp029-seed300/`（21GB FSDP checkpoint）\n- `/root/autodl-tmp/tmp/*`（244MB）\n- `/tmp/ray` 30分钟以上的旧日志\n\n**未删除 / 安全确认：**\n- `qwen_exp029_seed300_step5_hf` → symlink 指向 `exp029_seed300_step5_hf`（独立 HF checkpoint，~4GB），完好 ✓\n- PID 433097（ray::TaskRunner, 6.5GB RSS）存活 ✓ — **未 kill**，因为它就是 eval 进程本身"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-bjb1-disk-cleanup-seed300.md"
+}

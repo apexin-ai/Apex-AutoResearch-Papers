@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "717cee1eb0ed929add46",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_12_1778898703.md",
+  "task_key": "loop_12_1778898703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778898703.md",
+    "occurrence": 1,
+    "bytes": 4318,
+    "sha256": "6feb4c0c4395a5d0f73f3f28618fb3fc36fbaedfb29b1f20feb554029ef7ac82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T00:07:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 bjb1-17606 的 cuda:0 和 cuda:1（config.execution.gpu_ids 白名单）\n- exp028c 是 MVP 生死实验——D037 阈值：<20% fail（评估项目可行性），20-25% weak pass，30%+ strong pass → Phase B\n- exp028c step_2_train metrics（success=6.25%）**未经验证**——registry notes 明确说日志和 W&B 截至 00:04 UTC 只有 step 1 数据，step 2 rollout 还在进行中。下一轮必须先验证 step 2 真实指标再做任何判断\n- registry 中 exp028c 的 server/gpu_ids 顶层字段为空（数据不一致），实际训练在跑（cron 确认 PID 824675 存活）。下一轮如需 update_registry 可顺便补上\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，account=root，工作目录 /root/cost-verify-agent-rl\n- GPU：2× RTX PRO 6000 Blackwell 98GB（cuda:0 + cuda:1）\n- Python/conda：未明确记录，但 CLAUDE.md 指明 aml-train 镜像用 conda（`/root/miniconda3/bin/python`）。exp028c 启动命令为 `bash scripts/run_exp028c_selfguide_recipe.sh`\n- 模型：SFT checkpoint from exp021（qwen3_exp021_ragen_sft_v4），基座 Qwen3-1.7B\n- W&B run：4yu6qz1m（exp028c）\n- 活跃进程：exp028c PID=824675，cron 监控 exp028c_selfguide_recipe 活跃（reconcile 确认 job still running）\n- 1 个 running Worker：worker_research_literature-scan_20260516T000327（CPU 任务，文献扫描）\n\n### 3. 📊 当前状态\nexp028c_selfguide_recipe 是唯一活跃实验（RUNNING），Self-Guide recipe 全面对齐（D050 决策，9 项参数改动 vs exp027）。\n\n**已确认指标**（step 1 三方交叉验证通过）：\n- step_1_train: success=13.3%, pass_at_8=37.5%, action_is_valid=76.4%\n\n**待验证指标**（step 2，日志/W&B 数据滞后）：\n- step_2_train: success=6.25%（如果为真，是严重回退）\n\n前序关键路径：exp027 failed（peak 13.28% at step 4）→ D044 确认三大根因 → D050 全面对齐 recipe → exp028c。\n\n等待中：\n- exp028c cron 回调（训练完成或失败）\n- literature-scan Worker 回调\n- exp025c 等待人工审批（低优先级历史遗留）\n\n### 4. 📋 待办（条件触发式）\n- exp028c cron 回调到达 → spawn Worker 验证最终 metrics（SSH + W&B 交叉验证）→ 按 D037 三层阈值判定 → update_registry → 汇报 Director\n- exp028c ≥30% success → complete_mvp() → 进入 Phase B（B-IAVR selective verification）\n- exp028c 20-25% → weak pass，汇报 Director 需更多证据（multi-seed / 更多 steps）\n- exp028c <20% → MVP fail，产出 Framing 调整提案（red-section 规范），汇报 Director 评估项目可行性\n- literature-scan Worker 回调 → 更新 literature_map.yaml + 竞争格局\n- 如 exp028c 训练时间充裕（总 100 steps）→ 可并行铺 Phase B 前置代码（<VERIFY> token 注册、action-change reward 实现）\n\n### 5. 🎯 战略上下文\n**项目核心**：B-IAVR（Behavior-Informed Adaptive Verification for RL），训练 interactive agent 学会选择性自我验证。论文 framing 是 cost-efficiency story（D039），不是 performance story。\n\n**决策链关键节点**：\n- D039: cost-efficiency framing（ALFWorld SOTA 88-93%，我们 1.7B 模型拼 performance 无意义）\n- D044: Recipe Gap Analysis 确认三大根因（SFT 起点 6.25% 太差 + binary reward 零梯度 ~43% groups + 参数未对齐 Self-Guide）\n- D050: 停止 exp028a（与 exp027 功能等价），全面对齐 Self-Guide recipe → exp028c\n\n**易错点**：\n- step_2 metrics 回退（13.3%→6.25%）可能是假象（数据未验证），也可能是真实 collapse——**必须先验证再判断**，不要基于未验证数据做决策\n- exp028c 总共 100 steps，step 1-2 的 metrics 远不足以判定最终结果（exp027 在 step 4 才 peak 13.28%）。耐心等训练完成\n- 项目历史：成功 3 / 负向 5 / 失败 18 / 共 54 实验。大量早期失败是环境/工程问题，不是方法论问题\n- SFT baseline 只有 6.25%（exp021），cost-efficiency story 的前提是 baseline ≥50%——如果 GRPO 不能大幅提升 success rate，整个 framing 需要重新审视\n- 竞争者 ARES（52.7% token reduction）是最近的对标对象，需实验对比差异化\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778898703.md"
+}

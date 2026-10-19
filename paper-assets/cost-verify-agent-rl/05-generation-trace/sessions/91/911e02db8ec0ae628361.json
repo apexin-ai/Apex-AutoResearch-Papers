@@ -1,0 +1,452 @@
+{
+  "schema_version": "1.0",
+  "id": "911e02db8ec0ae628361",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "monitor bjb1 eval v2 status",
+  "task_key": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_monitor_bjb1_eval_v2_status_20260520T000328.jsonl",
+    "occurrence": 1,
+    "bytes": 15400,
+    "sha256": "db968784cd313122c288c6abc80a5814e85fbd89f5bb26565417ffd501a468a0"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T00:04:29.937791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T00:04:29.938268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T00:04:29.938528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T00:04:29.938780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "ps aux --sort=-start_time",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T00:04:29.939043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Wed May 20 08:03:44 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 590.44.01              Driver Version: 590.44.01      CUDA Version: 13.1     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\\\n| N/A   41C    P0            145W /  600W |   84161MiB /  97887MiB |     41%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |                  Off |\\\\n| N/A   41C    P0            176W /  600W |   84161MiB /  97887MiB |     95%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          \n…[truncated 359 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T00:04:29.939357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot     197388  0.0  0.0   7064  1564 ?        Rs   08:03   0:00 ps aux --sort=-start_time\\\\nroot     197374  4.0  0.0  16692 11048 ?        Ss   08:03   0:00 sshd: root@notty\\\\nroot     197358  0.1  0.0  16692 10612 ?        Ss   08:03   0:00 sshd: root@notty\\\\nroot     197337  0.0  0.0  16692 10848 ?        Ss   08:03   0:00 sshd: root@notty\\\\nroot     197295  0.0  0.0  16692 10748 ?        Ss   08:02   0:00 sshd: root@notty\\\\nroot     197201  0.0  0.0  16692 10712 ?        Ss   08:01   0:00 sshd: root@notty\\\\nroot     197101  0.0  0.0   2792   992 ?        S    07:58   0:00 sleep 1800\\\\nroot     197077  0.0  0.0  16692 10896 ?        Ss   07:58   0:00 sshd: root@notty\\\\nroot     196535  7.6  0.1 38046708 1761952 ?    Sl   07:43   1:33 java -classpath /root/miniconda3/share/py4j/py4j0.10.9.9.jar:/root/miniconda3/lib/python3.12/site-packages/scienceworld/scienceworld.jar py4j.GatewayServer --die-on-broken-pipe 0\\\\nroot     196384  109  0.2 514162820 2841900 ?   Rl   07:43  22:32 VLLM::Worker_TP0\\\\nroot     196385 88.3  0.2 514015452 2838276 ?   Rl   07:43  18:09 VLLM::Worker_TP1\\\\nroot     196120  0.0  0.0  15620 12496 ?        S    07:43   0:00 /root/miniconda3/bin/python -c from multiprocessing.resource_tracker import main;main(36)\\\\nroot     196121 47.0  0.1 31108216 1147044 ?    Rl   07:43   9:42 VLLM::EngineCore\\\\nroot     195853 54.2  0.1 33473464 1258840 ?    Sl   07:42  11:16 python eval_scienceworld.py --checkpoint /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/ --temperature 0.4 --eval_split dev --tensor_parallel_size 2 --gpu_memory_utilization 0.85 --max_model_len 32768 --output /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json --resume --episode_timeout 300\\\\nroot     195848  0.0  0.0   4364  2060 ?        S    07:42   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda acti\n…[truncated 2628 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T00:04:29.939717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "find /root/autodl-tmp/checkpoints/scienceworld_sft/ -name \"eval_results*\" -ls",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T00:04:29.939962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33298071101     68 -rw-r--r--   1 root     root        69304 May 20 08:03 /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T00:04:29.940182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "tail -80 /tmp/eval_scienceworld_v2_resumed.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T00:04:29.940513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model from /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/...\\\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\\\nINFO 05-20 07:43:04 [utils.py:233] non-default args: {'max_model_len': 32768, 'tensor_parallel_size': 2, 'gpu_memory_utilization': 0.85, 'disable_log_stats': True, 'enforce_eager': True, 'enable_chunked_prefill': True, 'model': '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'}\\\\nINFO 05-20 07:43:04 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-20 07:43:04 [model.py:1582] Using max model len 32768\\\\nINFO 05-20 07:43:05 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=16384.\\\\nINFO 05-20 07:43:05 [vllm.py:775] Asynchronous scheduling is enabled.\\\\nWARNING 05-20 07:43:05 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\nWARNING 05-20 07:43:05 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\\\nINFO 05-20 07:43:05 [vllm.py:985] Cudagraph is disabled under eager mode\\\\nINFO 05-20 07:43:05 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant\\\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix\n…[truncated 6300 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T00:04:29.940812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "find /root/cost-verify-agent-rl/ -name \"*.jsonl\" -newer /root/cost-verify-agent-rl/eval_scienceworld.py -ls",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T00:04:29.941046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T00:04:29.941284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "wc -l /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T00:04:29.941501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"464 /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T00:04:29.941726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "tail -3 /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T00:04:29.941966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"task\\\\\\\": \\\\\\\"inclined-plane-friction-named-surfaces\\\\\\\", \\\\\\\"variation\\\\\\\": 697, \\\\\\\"success\\\\\\\": false, \\\\\\\"final_score\\\\\\\": -100, \\\\\\\"num_steps\\\\\\\": 8, \\\\\\\"valid_action_rate\\\\\\\": 0.875, \\\\\\\"format_rate\\\\\\\": 1.0}\\\\n{\\\\\\\"task\\\\\\\": \\\\\\\"inclined-plane-friction-named-surfaces\\\\\\\", \\\\\\\"variation\\\\\\\": 698, \\\\\\\"success\\\\\\\": false, \\\\\\\"final_score\\\\\\\": 0, \\\\\\\"num_steps\\\\\\\": 100, \\\\\\\"valid_action_rate\\\\\\\": 0.01, \\\\\\\"format_rate\\\\\\\": 0.01}\\\\n{\\\\\\\"task\\\\\\\": \\\\\\\"inclined-plane-friction-named-surfaces\\\\\\\", \\\\\\\"variation\\\\\\\": 699, \\\\\\\"success\\\\\\\": true, \\\\\\\"final_score\\\\\\\": 100, \\\\\\\"num_steps\\\\\\\": 18, \\\\\\\"valid_action_rate\\\\\\\": 0.8333333333333334, \\\\\\\"format_rate\\\\\\\": 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T00:04:29.942233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "head -1 /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T00:04:29.942463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"task\\\\\\\": \\\\\\\"boil\\\\\\\", \\\\\\\"variation\\\\\\\": 14, \\\\\\\"success\\\\\\\": false, \\\\\\\"final_score\\\\\\\": -100, \\\\\\\"num_steps\\\\\\\": 16, \\\\\\\"valid_action_rate\\\\\\\": 0.81, \\\\\\\"format_rate\\\\\\\": 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T00:04:29.942750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "command": "grep -c '\"success\": true' /root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T00:04:29.942976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"167\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T00:04:29.943238+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval v2 状态汇总\n\n**进程**: PID 195853 运行中，启动于 07:42（约21分钟前），**不是**之前报告的18h——这是一次全新重启。\n\n**GPU 状态**:\n| GPU | 显存 | 利用率 | 温度 | 功耗 |\n|-----|------|--------|------|------|\n| cuda:0 | 84,161 / 97,887 MiB (86%) | 41% | 41°C | 145W |\n| cuda:1 | 84,161 / 97,887 MiB (86%) | 95% | 41°C | 176W |\n\n**进度**:\n- 已完成: **464 / 1796** episodes (25.8%)\n- 成功: **167 / 464** (36.0% success rate)\n- Resume 后新增: 25 episodes (从 440 → 464)\n\n**速度与 ETA**:\n- 当前速度: ~1.2 episodes/min (平均 ~50s/episode)\n- 剩余: 1332 episodes\n- 预计剩余: **~18.5 小时** (约明天凌晨 02:30 完成)\n\n**输出文件**: `/root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl` (68KB, 464行)\n\n**日志文件**: `/tmp/eval_scienceworld_v2_resumed.log`\n\n**注意**: 当前在跑 `inclined-plane-friction-named-surfaces` 系列，很多 episode 跑满100步超时 (FAIL)，拉低速度。后续 task 类型可能更快或更慢。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_bjb1_eval_v2_status_20260520T000328"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/monitor-bjb1-eval-v2-status.md"
+}

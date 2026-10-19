@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e868397b4cf13168b71",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval exp017 sft alfworld",
+  "task_key": "worker_eval_exp017-sft-alfworld_20260514T162241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp017-sft-alfworld_20260514T162241_result.json",
+    "occurrence": 1,
+    "bytes": 111,
+    "sha256": "57049255ffab37d3f1f5e4266ba65e3633c07b555779ba680de4d090908e8e7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval already in progress: 9/20 episodes done, 3 successes so far (~33%). Waiting for completion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp017-sft-alfworld-copy-2.md"
+}

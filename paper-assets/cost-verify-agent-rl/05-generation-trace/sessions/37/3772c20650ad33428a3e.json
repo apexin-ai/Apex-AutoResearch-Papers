@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3772c20650ad33428a3e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "train hsweep h10 seed2",
+  "task_key": "worker_train_hsweep_h10_seed2_20260524T000628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_hsweep_h10_seed2_20260524T000628_result.json",
+    "occurrence": 1,
+    "bytes": 398,
+    "sha256": "ec60d5ed7bdac406237b1a6238d48f24362e10857b628296cb6aa074043880ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**总结：**\n- **残留进程**: 无（PID 93920/91703 均不存在），GPU 0 空闲\n- **配置**: 创建 `_alfworld_hsweep_h10_1gpu.yaml`（1 GPU, 5 steps, save_freq=5, h=10）\n- **训练已启动**: PID 95503, tmux session `hsweep_h10_seed2`, GPU 0 占用 5483 MiB\n- **Registry**: 已更新为 RUNNING\n- **预估完成时间**: ~8-12h（单 GPU 5 steps）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-hsweep-h10-seed2.md"
+}

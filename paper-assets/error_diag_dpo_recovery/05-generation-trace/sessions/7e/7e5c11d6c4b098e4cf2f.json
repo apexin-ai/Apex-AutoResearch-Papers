@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e5c11d6c4b098e4cf2f",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "infra trl upgrade",
+  "task_key": "worker_infra_trl-upgrade_20260512T110004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_trl-upgrade_20260512T110004_result.json",
+    "occurrence": 1,
+    "bytes": 327,
+    "sha256": "4db31395ea526fea9a970664bb1f55c4dbdb1936e2e1e5bccf838e7bb6253856"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "升级完成。结果汇总：\n\n| 项目 | 结果 |\n|------|------|\n| trl 版本 | 1.1.0 → **1.4.0** ✓ |\n| DPOConfig | OK |\n| DPOTrainer | OK |\n| _compute_loss | OK |\n| selective_log_softmax | OK |\n| 依赖冲突 | 2 个无关项（typer/click 版本、textworld 平台不支持），不影响 trl |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-trl-upgrade.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4125bce1f7da5134bfb2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp012b early health",
+  "task_key": "worker_monitor_exp012b-early-health_20260514T064724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp012b-early-health_20260514T064724_result.json",
+    "occurrence": 1,
+    "bytes": 334,
+    "sha256": "790b792e46ad267d04a29b30d88cc1328d048ce0a1501c8cd26246b65e513dc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp012b 初步状态 (T+2.5min):**\n- 进程存活，初始化完成，正在执行第一个 step\n- 磁盘：root 25%, data 46% — 充裕\n- GPU：2× RTX PRO 6000，各加载 ~48GB — 正常\n- 配置确认：format_penalty=0, group_size=16, 从 step 5 恢复, lr=1e-6\n\n~4.5 分钟后自动回来再查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp012b-early-health.md"
+}

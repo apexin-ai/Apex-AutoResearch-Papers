@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bff05d3cb084eea6a18",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "figure sign misattribution",
+  "task_key": "worker_figure_sign_misattribution_20260523T124108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_sign_misattribution_20260523T124108_result.json",
+    "occurrence": 1,
+    "bytes": 318,
+    "sha256": "b75094ad5a0267a8bdc91d50445bde9cb8f8067e2ac5fdda5edaff12671093fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`fig_sign_misattribution.pdf` (23KB) 和 `.png` 已生成在 `docs/paper/` 目录。\n\n图表展示：Binary Reward 的 sign-episode agreement 为 100%（n=157），Penalty Reward 仅 52.1%（n=3,000，接近随机 50% 参考线），并标注了 Binary 下 60.8% 的 zero-gradient windows 被排除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-sign-misattribution.md"
+}

@@ -1,0 +1,1102 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ca7879d241b84ec4e8e3",
+  "rounds": [
+    {
+      "number": 19,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-12T22:49:09.996809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 31288 May 13 06:42 /root/autodl-tmp/rl-active-probe-fl/src/classify_errors.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 954
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": "2026-05-12T22:49:19.934930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "rl-active-probe-fl",
+              "file": "decisions.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-12T22:49:19.987465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 26\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-12 09:57 UTC\\\\n  summary: 项目启动：KILL_triage idea，需用户确认是否继续\\\\n  rationale: Idea 在自动审稿中被 KILL（19% 接受率），novelty 弱是 3/3 共识。目标 ARR May 25 距今仅 13 天，资源估计需\\\\n    15 天且无基础设施。在投入 GPU 前需用户明确意愿。若继续，MVP 聚焦验证纠正跨度分离假设（P1）和 ETADN 有效性（P2），仅用 ALFWorld\\\\n    单 benchmark，~20-30 H100-hours。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-12 09:59 UTC\\\\n  summary: 采纳 Reviewer 审查意见，修订 MVP 三项：多 seed、surprise check、deadline 明确化\\\\n  rationale: 'Reviewer critical: May 25 物理不可能（MVP + full paper > 21 天）。Warning: P2\\\\n    单 seed 134 episodes 中 3% ≈ 4 episode 差异无统计意义，改为 3 seeds。Warning: MVP 通过不解决 novelty\\\\n    质疑，新增 P3 surprise check——P1+P2 pass 但无反直觉发现时 escalate 而非盲目继续。'\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-12 10:12 UTC\\\\n  summary: 用户确认继续 MVP，启动非 GPU 准备工作，申请 1×4090\\\\n  rationale: 用户选择 A（继续）。May 25 不可行，deadline 策略待确认。GPU 需求：1×RTX 4090 24GB，5-7 天。Agent\\\\n    立即开始本地工作：ETO codebase 调研、错误分类 prompt 设计、ALFWorld 环境理解。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-12 10:16 UTC\\\\n  summary: 加卡冲 May 25 ARR：从 1×4090 改为 4×4090，13 天并行方案\\\\n  rationale: 用户明确要求冲 May 25 而非推迟。4 卡并行可将 15-17 天压缩到 13 天：MVP 用 2 卡 4 天验证，通过后 4 卡全开跑\\\\n    3 benchmarks + baselines + ablations，Day 5 起并行写作。已向 Manager 申请 4×RTX 4090×13 天。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-12 10:18 UTC\\\\n  summary: Planning error 纠正生成：Qwen3-32B 改为 Qwen3-14B 4-bit（4090 VRAM 限制）\\\\n  rationale: Reviewer 指出 Qwen3-32B 即使 4-bit 量化仍需 ~18-20GB + 推理开销，4090 24GB 无法有效运行。Qwen3-14B\\\\n    4-bit 约 10GB，4090 舒适运行。Planning errors 是 ETADN 核心差异化卖点，纠正对质量不能妥协。若 14B 仍不够（成功率\\\\n    <20%），兜底方案为 Qwen3-8B + 20 attempts。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D004\\\\n- id: D006\\\\n  date: 2026-0\n…[truncated 12267 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 52
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-12T22:49:34.494296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "rl-active-probe-fl",
+              "file": "report.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-12T22:49:34.946611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-12\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| datagen_v6_icl_cuda1 | — | — | — | — |\\\\n| datagen_v6_icl_cuda0 | — | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **datagen_classify_v2** (negative): —\\\\n- **datagen_traj_v5_cuda1** (success): —\\\\n- **datagen_traj_v5_cuda0** (success): —\\\\n\\\\n## 趋势\\\\n成功 2 / 负向 1 / 失败 7 / 共 10\\\\nfailure: 157 ↑（近 2 次 success）\\\\nsuccess: 93 ↓（近 2 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\ncqa1-21977: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- datagen_traj_part0: 训练失败 — unknown\\\\n- datagen_traj_part1: 训练失败 — unknown\\\\n- datagen_traj_v2_part0: 训练失败 — unknown\\\\n- datagen_traj_v2_part1: 训练失败 — unknown\\\\n- datagen_traj_v3_collect: 训练失败 — unknown\\\\n- datagen_traj_v4_cuda1: 训练失败 — unknown\\\\n- datagen_traj_v4_cuda0: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 808, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 452
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-12T22:49:35.398683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -lt /root/autodl-tmp/rl-active-probe-fl/src/"
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-12T22:49:35.800433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 292\\\\n-rw-r--r-- 1 root root 31288 May 13 06:42 classify_errors.py\\\\n-rw-r--r-- 1 root root  4030 May 13 05:51 plot_correction_span.py\\\\n-rw-r--r-- 1 root root 20078 May 13 03:54 collect_trajectories_icl.py\\\\n-rw-r--r-- 1 root root 25852 May 13 03:32 classify_errors.py.bak\\\\ndrwxr-xr-x 2 root root  4096 May 13 03:27 __pycache__\\\\n-rw-r--r-- 1 root root 18734 May 13 03:25 post_process_trajectories.py\\\\n-rw-r--r-- 1 root root 14787 May 13 00:42 collect_trajectories.py\\\\n-rw-r--r-- 1 root root 13159 May 13 00:40 build_dpo_pairs.py\\\\n-rw-r--r-- 1 root root  7143 May 13 00:11 measure_correction_span.py\\\\n-rw-r--r-- 1 root root 10269 May 12 23:37 collect_trajectories.py.bak\\\\n-rw-r--r-- 1 root root 13375 May 12 23:17 test_icl_14b.py\\\\n-rw-r--r-- 1 root root  4536 May 12 23:10 debug_icl2.py\\\\n-rw-r--r-- 1 root root  5048 May 12 23:07 debug_icl.py\\\\n-rw-r--r-- 1 root root 10958 May 12 21:42 test_correction_feasibility.py\\\\n-rw-r--r-- 1 root root 14217 May 12 21:24 test_correction_feasibility_replay.py\\\\n-rw-r--r-- 1 root root 12077 May 12 21:13 generate_corrections.py\\\\n-rw-r--r-- 1 root root  9321 May 12 21:11 eval_alfworld.py\\\\n-rw-r--r-- 1 root root  5335 May 12 19:59 train_etadn.py\\\\n-rw-r--r-- 1 root root  8102 May 12 19:57 data_utils.py\\\\n-rw-r--r-- 1 root root  4788 May 12 19:49 construct_preference.py\\\\ndrwxr-xr-x 3 root root    63 May 12 19:31 tests\\\\n-rw-r--r-- 1 root root 16616 May 12 19:30 dmpo_trainer.py\\\\n-rw-r--r-- 1 root root  4085 May 12 19:29 dmpo_loss.py\\\\n-rw-r--r-- 1 root root     0 May 12 19:28 __init__.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-12T22:49:48.251346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "wc -l /root/autodl-tmp/rl-active-probe-fl/data/trajectories_v6_icl_cuda0/train_part0.jsonl /root/autodl-tmp/rl-active-probe-fl/data/trajectories_v6_icl_cuda1/train_part1.jsonl"
+            }
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-12T22:49:48.603082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     39 /root/autodl-tmp/rl-active-probe-fl/data/trajectories_v6_icl_cuda0/train_part0.jsonl\\\\n     45 /root/autodl-tmp/rl-active-probe-fl/data/trajectories_v6_icl_cuda1/train_part1.jsonl\\\\n     84 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-12T22:50:03.362807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_code_classify-prompt-fix-d025 (FAILED)\n\n**结论**: PASS（无影响）\n\n[severity: info] Worker 失败但无代码损坏。D025 路径(2)（分类 prompt 去 span hint）已由 `worker_code_classify_no_span_hint_20260512T223926` 成功实现并通过审查。远程 `classify_errors.py` 完整（31288 bytes, 修改时间 May 13 06:42），`--no_span_hint` flag + `ERROR_TAXONOMY_NO_SPAN` + `CLASSIFICATION_PROMPT_NO_SPAN` 均正常。此 worker 失败是冗余尝试，不需要重试。\n\n### v6 进度快照\n- cuda0: 39/300, cuda1: 45/300 (合计 84/600, ~14%)\n- 两个进程正常运行中（PID 631287 / 633173）",
+              "project": "rl-active-probe-fl"
+            }
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-12T22:50:06.974909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_50152dcb9a8b71f360c31392a892eabb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3612
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-12T22:50:11.032450+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已发送。Worker 失败但无影响——D025 路径(2) 的 no-span-hint 实现已由另一个 worker 成功完成。v6 收集继续推进中（84/600）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer"
+          },
+          "id": "event-000552"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "messages": [
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-12T22:50:11.517456+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_research_alt_correction_metrics_20260512T223951]:\nWorker worker_research_alt_correction_metrics_20260512T223951 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "source": "system"
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": "2026-05-12T22:50:20.096742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "rl-active-probe-fl",
+              "limit": "5",
+              "fields": "['*']",
+              "filters": "{'status': 'DONE'}"
+            }
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": "2026-05-12T22:50:20.147740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"datagen_classify_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T15:35:39.699Z\\\", \\\"updated_at\\\": \\\"2026-05-12T22:50:15.021Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"修复 format_trajectory ICL 前缀 bug 后重新分类错误，预期 error type 分布更均衡\\\", \\\"model_name\\\": \\\"Qwen3-14B-AWQ\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"data/trajectories_v5_combined/train.jsonl\\\", \\\"data_count\\\": 500, \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python src/classify_errors.py --failure_dir data/trajectories_v5_combined/ --expert_file data/alfworld_sft.json --output_file data/classified/v5_full_classified.jsonl --model_name /root/autodl-tmp/.hf_cache/Qwen3-14B-AWQ --gpu 0\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rl-active-probe-fl/data/classified/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/rl-active-probe-fl/logs/\\\"}, \\\"notes\\\": \\\"v5 全量 LLM 分类完成 (Qwen3-14B-AWQ, 251 items, ~20min)。\\\\n\\\\n## Post-process 结果\\\\n500 total → 187 true_success (37.4%), 4 truncated_success (CSF), 309 true_failure\\\\n309 failures 中: 91 PCB pattern, 218 non-CSF; 251/309 matched expert (58 unmatched)\\\\n\\\\n## LLM 分类分布 (llm_original_type)\\\\nplanning=247 (98.4%), action=4 (1.6%), verification=0\\\\n\\\\n## PCB Override 后分布 (error_type)\\\\nplanning=167 (66.5%), verification=82 (32.7%), action=2 (0.8%)\\\\n82 PCB items: 80 planning→verification, 2 action→verification\\\\n\\\\n## 三版 KW 分析\\\\nwith_override (Full N=251): H=2.23, p=0.135, ordinal=✓ (action 7.5 < verif 10.4 < planning 11.3)\\\\nwith_override (Dedup N=144): H=1.33, p=0.249, ordinal=✓\\\\nwithout_override (Full N=251): H=0.15, p=0.698, ordinal=✗\\\\nwithout_override (Dedup N=144): H=0.08, p=0.778, ordinal=✗\\\\npcb_excluded (Full/Dedup): SKIPPED (action N=2, <3)\\\\n\\\\n## Task-type stratified (with_override)\\\\n0/6 significant, 2 insufficient (look_at_obj N=4, pick_and_place N=21)\\\\n\\\\n## P1 GATE: FAIL ✗\\\\nwith_override not significant (p=0.135), 根本原因: action 组 N=2 太小, LLM 几乎全判 planning\\\\n\\\\n## Alt Metrics 分析 (2\n…[truncated 5698 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-12T22:50:38.220676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/rl-active-probe-fl/outputs/classify_compare_*"
+            }
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-12T22:50:39.325097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 5348 May 13 06:49 /root/autodl-tmp/rl-active-probe-fl/outputs/classify_compare_no_hint_20.jsonl\\\\n-rw-r--r-- 1 root root 5249 May 13 06:47 /root/autodl-tmp/rl-active-probe-fl/outputs/classify_compare_with_hint_20.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1104
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": "2026-05-12T22:50:42.288431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "wc -l /root/autodl-tmp/rl-active-probe-fl/outputs/classify_compare_with_hint_20.jsonl /root/autodl-tmp/rl-active-probe-fl/outputs/classify_compare_no_hint_20.jsonl"
+            }
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-12T22:50:42.690451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    8 /root/autodl-tmp/rl-active-probe-fl/outputs/classify_compare_with_hint_20.jsonl\\\\n    8 /root/autodl-tmp/rl-active-probe-fl/outputs/classify_compare_no_hint_20.jsonl\\\\n   16 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": "2026-05-12T22:50:46.354975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/autodl-tmp/rl-active-probe-fl/outputs/classify_compare_with_hint_20.jsonl"
+            }
+          },
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": "2026-05-12T22:50:47.158367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"task_id\\\\\\\": 0, \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_clean_then_place\\\\\\\", \\\\\\\"game_file\\\\\\\": \\\\\\\"/root/autodl-tmp/alfworld_data/json_2.1.1/train/pick_clean_then_place_in_recep-Spoon-None-DiningTable-18/trial_T20190909_102050_895053/game.tw-pddl\\\\\\\", \\\\\\\"error_type\\\\\\\": \\\\\\\"planning\\\\\\\", \\\\\\\"llm_original_type\\\\\\\": \\\\\\\"planning\\\\\\\", \\\\\\\"llm_original_type_source\\\\\\\": \\\\\\\"llm\\\\\\\", \\\\\\\"divergence_step\\\\\\\": 4, \\\\\\\"correction_span\\\\\\\": 19, \\\\\\\"expert_total_steps\\\\\\\": 22, \\\\\\\"model_total_steps\\\\\\\": 40, \\\\\\\"reasoning\\\\\\\": \\\\\\\"The agent's overall plan is fundamentally wrong as it skips the necessary steps to close drawers and directly proceeds to open other drawers without following the correct sequence.\\\\\\\"}\\\\n{\\\\\\\"task_id\\\\\\\": 3, \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place\\\\\\\", \\\\\\\"game_file\\\\\\\": \\\\\\\"/root/autodl-tmp/alfworld_data/json_2.1.1/train/pick_heat_then_place_in_recep-Tomato-None-SideTable-21/trial_T20190909_041918_595548/game.tw-pddl\\\\\\\", \\\\\\\"error_type\\\\\\\": \\\\\\\"verification\\\\\\\", \\\\\\\"llm_original_type\\\\\\\": \\\\\\\"planning\\\\\\\", \\\\\\\"llm_original_type_source\\\\\\\": \\\\\\\"llm\\\\\\\", \\\\\\\"divergence_step\\\\\\\": 1, \\\\\\\"correction_span\\\\\\\": 6, \\\\\\\"expert_total_steps\\\\\\\": 6, \\\\\\\"model_total_steps\\\\\\\": 40, \\\\\\\"reasoning\\\\\\\": \\\\\\\"The agent's overall plan is fundamentally wrong by starting at the fridge instead of the sinkbasin, leading to unnecessary and incorrect actions.\\\\\\\", \\\\\\\"sub_type\\\\\\\": \\\\\\\"premature_completion_belief\\\\\\\", \\\\\\\"csf_details\\\\\\\": {\\\\\\\"is_csf\\\\\\\": true, \\\\\\\"is_truncated_success\\\\\\\": false, \\\\\\\"term_count\\\\\\\": 7, \\\\\\\"task_desc\\\\\\\": \\\\\\\"heat some tomato and put it in sidetable.\\\\\\\", \\\\\\\"verification\\\\\\\": {\\\\\\\"completed\\\\\\\": false, \\\\\\\"reason\\\\\\\": \\\\\\\"no heat action observed; no placement at target receptacle\\\\\\\", \\\\\\\"evidence\\\\\\\": []}}}\\\\n{\\\\\\\"task_id\\\\\\\": 4, \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_and_place\\\\\\\", \\\\\\\"game_file\\\\\\\": \\\\\\\"/root/autodl-tmp/alfworld_data/json_2.1.1/train/pick_and_place_simple-Kettle-None-Cabinet-1\n…[truncated 4396 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 803
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": "2026-05-12T22:50:47.259145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/autodl-tmp/rl-active-probe-fl/outputs/classify_compare_no_hint_20.jsonl"
+            }
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": "2026-05-12T22:50:47.813058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"task_id\\\\\\\": 0, \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_clean_then_place\\\\\\\", \\\\\\\"game_file\\\\\\\": \\\\\\\"/root/autodl-tmp/alfworld_data/json_2.1.1/train/pick_clean_then_place_in_recep-Spoon-None-DiningTable-18/trial_T20190909_102050_895053/game.tw-pddl\\\\\\\", \\\\\\\"error_type\\\\\\\": \\\\\\\"planning\\\\\\\", \\\\\\\"llm_original_type\\\\\\\": \\\\\\\"planning\\\\\\\", \\\\\\\"llm_original_type_source\\\\\\\": \\\\\\\"llm\\\\\\\", \\\\\\\"divergence_step\\\\\\\": 4, \\\\\\\"correction_span\\\\\\\": 19, \\\\\\\"expert_total_steps\\\\\\\": 22, \\\\\\\"model_total_steps\\\\\\\": 40, \\\\\\\"reasoning\\\\\\\": \\\\\\\"The agent's overall plan is fundamentally wrong as it skips required steps like closing drawers and moves to irrelevant locations like cabinet 1 instead of following the correct sequence to obtain and clean a spoon.\\\\\\\"}\\\\n{\\\\\\\"task_id\\\\\\\": 3, \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place\\\\\\\", \\\\\\\"game_file\\\\\\\": \\\\\\\"/root/autodl-tmp/alfworld_data/json_2.1.1/train/pick_heat_then_place_in_recep-Tomato-None-SideTable-21/trial_T20190909_041918_595548/game.tw-pddl\\\\\\\", \\\\\\\"error_type\\\\\\\": \\\\\\\"verification\\\\\\\", \\\\\\\"llm_original_type\\\\\\\": \\\\\\\"planning\\\\\\\", \\\\\\\"llm_original_type_source\\\\\\\": \\\\\\\"llm\\\\\\\", \\\\\\\"divergence_step\\\\\\\": 1, \\\\\\\"correction_span\\\\\\\": 6, \\\\\\\"expert_total_steps\\\\\\\": 6, \\\\\\\"model_total_steps\\\\\\\": 40, \\\\\\\"reasoning\\\\\\\": \\\\\\\"The agent's overall plan is fundamentally wrong by starting at the fridge instead of the sinkbasin, leading to incorrect object selection and unnecessary steps.\\\\\\\", \\\\\\\"sub_type\\\\\\\": \\\\\\\"premature_completion_belief\\\\\\\", \\\\\\\"csf_details\\\\\\\": {\\\\\\\"is_csf\\\\\\\": true, \\\\\\\"is_truncated_success\\\\\\\": false, \\\\\\\"term_count\\\\\\\": 7, \\\\\\\"task_desc\\\\\\\": \\\\\\\"heat some tomato and put it in sidetable.\\\\\\\", \\\\\\\"verification\\\\\\\": {\\\\\\\"completed\\\\\\\": false, \\\\\\\"reason\\\\\\\": \\\\\\\"no heat action observed; no placement at target receptacle\\\\\\\", \\\\\\\"evidence\\\\\\\": []}}}\\\\n{\\\\\\\"task_id\\\\\\\": 4, \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_and_place\\\\\\\", \\\\\\\"game_file\\\\\\\": \\\\\\\"/root/autodl-tmp/alfworld_data/json_2.1.1\n…[truncated 4496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000563"
+        },
+        {
+          "source_line": 564,
+          "timestamp": "2026-05-12T22:51:12.890182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/rl-active-probe-fl/analyze_alt_metrics.py"
+            }
+          },
+          "id": "event-000564"
+        },
+        {
+          "source_line": 565,
+          "timestamp": "2026-05-12T22:51:13.141616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/rl-active-probe-fl/outputs/"
+            }
+          },
+          "id": "event-000565"
+        },
+        {
+          "source_line": 566,
+          "timestamp": "2026-05-12T22:51:13.393085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 14040 May 13 06:42 /root/autodl-tmp/rl-active-probe-fl/analyze_alt_metrics.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000566"
+        },
+        {
+          "source_line": 567,
+          "timestamp": "2026-05-12T22:51:13.895801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\ndrwxr-xr-x  2 root root  130 May 13 06:49 .\\\\ndrwxr-xr-x 11 root root 4096 May 13 06:42 ..\\\\n-rw-r--r--  1 root root 5348 May 13 06:49 classify_compare_no_hint_20.jsonl\\\\n-rw-r--r--  1 root root 5249 May 13 06:47 classify_compare_with_hint_20.jsonl\\\\n-rw-r--r--  1 root root 2598 May 13 06:49 p1_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 754
+          },
+          "id": "event-000567"
+        },
+        {
+          "source_line": 568,
+          "timestamp": "2026-05-12T22:51:17.359200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/autodl-tmp/rl-active-probe-fl/outputs/p1_analysis.json"
+            }
+          },
+          "id": "event-000568"
+        },
+        {
+          "source_line": 569,
+          "timestamp": "2026-05-12T22:51:17.761524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"tautological_warning\\\\\\\": false,\\\\n  \\\\\\\"n_pcb\\\\\\\": 2,\\\\n  \\\\\\\"p1_gate\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": false,\\\\n    \\\\\\\"with_override_significant\\\\\\\": false,\\\\n    \\\\\\\"without_override_significant\\\\\\\": false,\\\\n    \\\\\\\"pcb_excluded_significant\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"with_override_full\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 8,\\\\n    \\\\\\\"kruskal_h\\\\\\\": null,\\\\n    \\\\\\\"kruskal_p\\\\\\\": null,\\\\n    \\\\\\\"ordinal_holds\\\\\\\": null,\\\\n    \\\\\\\"groups\\\\\\\": {\\\\n      \\\\\\\"verification\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 2,\\\\n        \\\\\\\"mean\\\\\\\": 6.5,\\\\n        \\\\\\\"median\\\\\\\": 6.5,\\\\n        \\\\\\\"std\\\\\\\": 0.71\\\\n      },\\\\n      \\\\\\\"planning\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 6,\\\\n        \\\\\\\"mean\\\\\\\": 11.5,\\\\n        \\\\\\\"median\\\\\\\": 9.0,\\\\n        \\\\\\\"std\\\\\\\": 6.06\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"with_override_dedup\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 8,\\\\n    \\\\\\\"kruskal_h\\\\\\\": null,\\\\n    \\\\\\\"kruskal_p\\\\\\\": null,\\\\n    \\\\\\\"ordinal_holds\\\\\\\": null,\\\\n    \\\\\\\"groups\\\\\\\": {\\\\n      \\\\\\\"verification\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 2,\\\\n        \\\\\\\"mean\\\\\\\": 6.5,\\\\n        \\\\\\\"median\\\\\\\": 6.5,\\\\n        \\\\\\\"std\\\\\\\": 0.71\\\\n      },\\\\n      \\\\\\\"planning\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 6,\\\\n        \\\\\\\"mean\\\\\\\": 11.5,\\\\n        \\\\\\\"median\\\\\\\": 9.0,\\\\n        \\\\\\\"std\\\\\\\": 6.06\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"without_override_full\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 8,\\\\n    \\\\\\\"kruskal_h\\\\\\\": null,\\\\n    \\\\\\\"kruskal_p\\\\\\\": null,\\\\n    \\\\\\\"ordinal_holds\\\\\\\": null,\\\\n    \\\\\\\"groups\\\\\\\": {\\\\n      \\\\\\\"planning\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 8,\\\\n        \\\\\\\"mean\\\\\\\": 10.25,\\\\n        \\\\\\\"median\\\\\\\": 7.0,\\\\n        \\\\\\\"std\\\\\\\": 5.63\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"without_override_dedup\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 8,\\\\n    \\\\\\\"kruskal_h\\\\\\\": null,\\\\n    \\\\\\\"kruskal_p\\\\\\\": null,\\\\n    \\\\\\\"ordinal_holds\\\\\\\": null,\\\\n    \\\\\\\"groups\\\\\\\": {\\\\n      \\\\\\\"planning\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 8,\\\\n        \\\\\\\"mean\\\\\\\": 10.25,\\\\n        \\\\\\\"median\\\\\\\": 7.0,\\\\n        \\\\\\\"std\\\\\\\": 5.63\\\\n      }\\\\n    }\\\n…[truncated 1695 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000569"
+        },
+        {
+          "source_line": 570,
+          "timestamp": "2026-05-12T22:52:02.791595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_research_alt_correction_metrics (D025 路径 2+3)\n\n**结论**: WARNING\n\n### 核心发现\n\nWorker 在 8 条 v5 样本上做了 span hint 有/无 A/B 对比，结论是\"span hint 不是 98% planning 的根因\"。我独立验证了两组 JSONL 输出（`classify_compare_with_hint_20.jsonl` vs `classify_compare_no_hint_20.jsonl`），确认：\n- 8/8 条 `llm_original_type` 两版均为 \"planning\"，0 条差异\n- 6/8 条 divergence_step=1（step-1 divergence）\n- 2/8 条被 PCB override 为 verification\n\n### 方法论问题\n\n[severity: warning] **A/B 测试 n=8 过小，结论不够稳健。** 具体问题：\n\n1. **统计效力不足**：8 条样本无法检测 <25% 的分类翻转率。v5 全量 251 条中有 4 条 action error——这些边界案例（LLM 判为 action 而非 planning）恰恰是 span hint 最可能产生影响的样本，但未被纳入这 8 条。\n\n2. **样本偏向 step-1 divergence**：6/8 为 div_step=1，模型第一步就走错位置——这类 case LLM 无论有无 span hint 都会判 planning（语义确实是 planning error）。Span hint 的潜在影响更可能出现在 mid-trajectory divergence（div_step≥3），v5 中约 9% 属此类。\n\n3. **实际含义仍然正确**：即使 span hint 翻转 10% 的分类（约 25 条），v5 的 action 组仍然 n<30，KW 效力依旧不足。**P1 的瓶颈确实在数据生成端（8B 太弱）而非分类 prompt 端。**\n\n### 对 D025 recovery 路径的影响\n\n| 路径 | 状态 | Reviewer 评估 |\n|------|------|--------------|\n| (1) v6 ICL 14B-AWQ | RUNNING (84/600) | **唯一有效路径** — 更强模型+ICL 应减少 step-1 divergence，产生 action/verification 错误 |\n| (2) Span hint 去除 | 代码已就绪，A/B 显示对 v5 无效 | 对 v6 数据仍值得尝试（v6 可能有更多 non-step-1 错误） |\n| (3) Alt metrics | 5 种替代指标均 fail | **路径封死** |\n\n### 建议\n\n[severity: info] v6 收集完成后，分类阶段建议跑两版（`--no_span_hint` 和默认），对比 v6 数据上 span hint 的实际影响。v6 的 non-step-1 divergence 比例可能更高，span hint 效果可能不同。同时关注 v6 的 step-1 divergence rate——如果 ICL 仍然 >80% step-1，P1 gate 大概率再次 fail，需要启动 kill/pivot 决策。",
+              "project": "rl-active-probe-fl"
+            }
+          },
+          "id": "event-000570"
+        },
+        {
+          "source_line": 571,
+          "timestamp": "2026-05-12T22:52:07.416919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_50152dcb9a8b71f360c31392a892eabb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4625
+          },
+          "id": "event-000571"
+        },
+        {
+          "source_line": 572,
+          "timestamp": "2026-05-12T22:52:09.494624+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键新发现：span hint 对比实验。需要独立核实。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer"
+          },
+          "id": "event-000572"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "messages": [
+        {
+          "source_line": 573,
+          "timestamp": "2026-05-12T22:52:10.030517+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_classify-dryrun-compare_20260512T224442]:\nWorker worker_code_classify-dryrun-compare_20260512T224442 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "source": "worker_done:worker_code_classify-dryrun-compare_20260512t224442"
+          },
+          "id": "event-000573"
+        },
+        {
+          "source_line": 574,
+          "timestamp": "2026-05-12T22:52:26.122088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "rl-active-probe-fl",
+              "limit": "3",
+              "fields": "['*']",
+              "filters": "{'status': 'DONE'}"
+            }
+          },
+          "id": "event-000574"
+        },
+        {
+          "source_line": 575,
+          "timestamp": "2026-05-12T22:52:26.173014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"datagen_classify_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T15:35:39.699Z\\\", \\\"updated_at\\\": \\\"2026-05-12T22:50:15.021Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"修复 format_trajectory ICL 前缀 bug 后重新分类错误，预期 error type 分布更均衡\\\", \\\"model_name\\\": \\\"Qwen3-14B-AWQ\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"data/trajectories_v5_combined/train.jsonl\\\", \\\"data_count\\\": 500, \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python src/classify_errors.py --failure_dir data/trajectories_v5_combined/ --expert_file data/alfworld_sft.json --output_file data/classified/v5_full_classified.jsonl --model_name /root/autodl-tmp/.hf_cache/Qwen3-14B-AWQ --gpu 0\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rl-active-probe-fl/data/classified/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/rl-active-probe-fl/logs/\\\"}, \\\"notes\\\": \\\"v5 全量 LLM 分类完成 (Qwen3-14B-AWQ, 251 items, ~20min)。\\\\n\\\\n## Post-process 结果\\\\n500 total → 187 true_success (37.4%), 4 truncated_success (CSF), 309 true_failure\\\\n309 failures 中: 91 PCB pattern, 218 non-CSF; 251/309 matched expert (58 unmatched)\\\\n\\\\n## LLM 分类分布 (llm_original_type)\\\\nplanning=247 (98.4%), action=4 (1.6%), verification=0\\\\n\\\\n## PCB Override 后分布 (error_type)\\\\nplanning=167 (66.5%), verification=82 (32.7%), action=2 (0.8%)\\\\n82 PCB items: 80 planning→verification, 2 action→verification\\\\n\\\\n## 三版 KW 分析\\\\nwith_override (Full N=251): H=2.23, p=0.135, ordinal=✓ (action 7.5 < verif 10.4 < planning 11.3)\\\\nwith_override (Dedup N=144): H=1.33, p=0.249, ordinal=✓\\\\nwithout_override (Full N=251): H=0.15, p=0.698, ordinal=✗\\\\nwithout_override (Dedup N=144): H=0.08, p=0.778, ordinal=✗\\\\npcb_excluded (Full/Dedup): SKIPPED (action N=2, <3)\\\\n\\\\n## Task-type stratified (with_override)\\\\n0/6 significant, 2 insufficient (look_at_obj N=4, pick_and_place N=21)\\\\n\\\\n## P1 GATE: FAIL ✗\\\\nwith_override not significant (p=0.135), 根本原因: action 组 N=2 太小, LLM 几乎全判 planning\\\\n\\\\n## Alt Metrics 分析 (2\n…[truncated 3494 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-000575"
+        },
+        {
+          "source_line": 576,
+          "timestamp": "2026-05-12T22:52:34.804806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/rl-active-probe-fl -name \"*compare*\" -newer /root/autodl-tmp/rl-active-probe-fl/outputs/classify_compare_no_hint_20.jsonl"
+            }
+          },
+          "id": "event-000576"
+        },
+        {
+          "source_line": 577,
+          "timestamp": "2026-05-12T22:52:35.759076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/rl-active-probe-fl -name \"*dryrun*\" -o -name \"*dry_run*\""
+            }
+          },
+          "id": "event-000577"
+        },
+        {
+          "source_line": 578,
+          "timestamp": "2026-05-12T22:52:36.263173+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1458
+          },
+          "id": "event-000578"
+        },
+        {
+          "source_line": 579,
+          "timestamp": "2026-05-12T22:52:36.263589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/rl-active-probe-fl -maxdepth 2 -newer /root/autodl-tmp/rl-active-probe-fl/outputs/classify_compare_no_hint_20.jsonl -type f"
+            }
+          },
+          "id": "event-000579"
+        },
+        {
+          "source_line": 580,
+          "timestamp": "2026-05-12T22:52:36.364290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 605
+          },
+          "id": "event-000580"
+        },
+        {
+          "source_line": 581,
+          "timestamp": "2026-05-12T22:52:36.816593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/rl-active-probe-fl/outputs/p1_analysis.json\\\\n/root/autodl-tmp/rl-active-probe-fl/logs/v6_icl_cuda0.log\\\\n/root/autodl-tmp/rl-active-probe-fl/logs/v6_icl_cuda1.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000581"
+        },
+        {
+          "source_line": 582,
+          "timestamp": "2026-05-12T22:52:43.693428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -lt /root/autodl-tmp/rl-active-probe-fl/src/classify_errors.py"
+            }
+          },
+          "id": "event-000582"
+        },
+        {
+          "source_line": 583,
+          "timestamp": "2026-05-12T22:52:44.598837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 31288 May 13 06:42 /root/autodl-tmp/rl-active-probe-fl/src/classify_errors.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 905
+          },
+          "id": "event-000583"
+        },
+        {
+          "source_line": 584,
+          "timestamp": "2026-05-12T22:52:44.649449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/rl-active-probe-fl/src -name \"*compare*\" -o -name \"*dryrun*\""
+            }
+          },
+          "id": "event-000584"
+        },
+        {
+          "source_line": 585,
+          "timestamp": "2026-05-12T22:52:45.402818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 753
+          },
+          "id": "event-000585"
+        },
+        {
+          "source_line": 586,
+          "timestamp": "2026-05-12T22:52:45.453484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "wc -l /root/autodl-tmp/rl-active-probe-fl/data/trajectories_v6_icl_cuda0/train_part0.jsonl /root/autodl-tmp/rl-active-probe-fl/data/trajectories_v6_icl_cuda1/train_part1.jsonl"
+            }
+          },
+          "id": "event-000586"
+        },
+        {
+          "source_line": 587,
+          "timestamp": "2026-05-12T22:52:45.855382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     41 /root/autodl-tmp/rl-active-probe-fl/data/trajectories_v6_icl_cuda0/train_part0.jsonl\\\\n     47 /root/autodl-tmp/rl-active-probe-fl/data/trajectories_v6_icl_cuda1/train_part1.jsonl\\\\n     88 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000587"
+        },
+        {
+          "source_line": 588,
+          "timestamp": "2026-05-12T22:52:58.004830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/classify*compare*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl"
+            }
+          },
+          "id": "event-000588"
+        },
+        {
+          "source_line": 589,
+          "timestamp": "2026-05-12T22:52:58.105678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000589"
+        },
+        {
+          "source_line": 590,
+          "timestamp": "2026-05-12T22:53:06.092165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "rl-active-probe-fl",
+              "file": "memory.md",
+              "max_chars": "5000"
+            }
+          },
+          "id": "event-000590"
+        },
+        {
+          "source_line": 591,
+          "timestamp": "2026-05-12T22:53:06.193138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/memory.md\\\", \\\"content\\\": \\\"# Memory — rl-active-probe-fl\\\\n\\\\n> 只记录不可从 registry/代码派生的决策原因、约束、经验教训。\\\\n\\\\n## 🔴 P1 GATE FAIL — 分类瓶颈（2026-05-12）\\\\n\\\\nv5 全量分类（14B-AWQ, 251 matched）：LLM 把 98.4% 归为 planning，action 仅 4 条，verification 0 条。PCB override 人为创造了 82 条 verification，但 KW 仍不显著 (p=0.135)。\\\\n\\\\n**根本问题不是样本量，是分类器**。即使 v6 带来更多 diverse 错误，同样的 prompt + 14B-AWQ 可能仍然把一切归为 planning。在 v6 分类前必须先改进 prompt 或分类策略。\\\\n\\\\nOrdinal ordering 本身成立 (action 7.5 < verification 10.4 < planning 11.3)——如果能让分类分布更均衡，P1 有希望。\\\\n\\\\n## 🔴 Span Hint 移除无效（D025, 2026-05-12）\\\\n\\\\n8 条 v5 样本对比：移除 span hint 后分类结果完全一致（0 条变化）。LLM 两版都将全部 8 条归 planning。**Span hint 不是 98% planning 的根因。14B-AWQ 本身就倾向把 ALFWorld 错误归为 planning。**\\\\n\\\\n这意味着简单的 prompt 微调不够，需要更根本的分类策略改变：\\\\n- 更强的分类模型（GPT-4o / Claude）\\\\n- Few-shot examples（展示 action/verification 的典型案例）\\\\n- 分层分类（先排除 planning，再区分 action/verification）\\\\n- 或者完全放弃 LLM 分类，改用 rule-based heuristics\\\\n\\\\n## Alt Metrics 全部失败（2026-05-12）\\\\n\\\\n5 种替代指标无一能建立 ordinal ordering + significance。根因：88% failure 在 step 1 diverge → 归一化指标退化为常数。model_post_div_diversity 是唯一真实信号但方向反序（verif > planning），且仅在 PCB override 条件下有效。\\\\n\\\\n**教训**：step-1 divergence 占比过高使得基于 divergence point 的任何归一化指标都退化。这不是统计方法问题，是数据结构问题——8B 模型太弱导致几乎所有 failure 在第一步就偏离 expert。v6 ICL（14B + few-shot）如果能降低 step-1 diverge 比例，所有指标都会更有意义。\\\\n\\\\n## v6 ICL 配置（D021, 2026-05-12）\\\\n\\\\n- seed=42（v5 用 seed=0），300 tasks/GPU，两卡并行，输出 data/trajectories_v6_icl_cuda0/cuda1\\\\n- collect_trajectories_icl.py 已实现 task-type-aware ICL sampling（同类型优先，不足时用短轨迹补充）\\\\n- ICL pretest (dev, 25 tasks): pick_and_place 100%, look_at_obj 80%, 其余 4 类 0%\\\\n- 预估 ~6h/GPU, 600 tasks → ~360 failures → ~20 action errors\\\\n- ICL 泄漏修复已完成（exclude_game_file）\\\\n\\\\n## CSF / Premature Completion Belief（D022-D023, 2026-05-12）\\\\n\\\\n- CSF 对成功率几乎无影响（500 条中仅 4 条 truncated_success）\\\\n- 91 条 PCB 是 verification error（agent 漏掉 cool/heat/clean 等关键步骤就尝试终止）\\\\n- Rev\n…[truncated 483 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-000591"
+        },
+        {
+          "source_line": 592,
+          "timestamp": "2026-05-12T22:53:20.687895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_code_classify-dryrun-compare\n\n**结论**: PASS（无新产出需审查）\n\n[severity: info] Worker 主要工作是将已有发现整合到 memory.md：span hint A/B 无效、alt metrics 全部失败。远程服务器无新文件（classify_errors.py 未改动，31288 bytes）。这些发现我已在前一轮审查中独立核实。\n\nmemory.md 新增了\"更根本的分类策略改变\"建议（GPT-4o / few-shot / 分层分类 / rule-based），方向合理，但目前 v6 ICL 仍在收集中（88/600），建议等 v6 数据出来后再评估是否需要升级分类策略。\n\nv6 进度: cuda0=41/300, cuda1=47/300。",
+              "project": "rl-active-probe-fl"
+            }
+          },
+          "id": "event-000592"
+        },
+        {
+          "source_line": 593,
+          "timestamp": "2026-05-12T22:53:24.304547+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_50152dcb9a8b71f360c31392a892eabb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3616
+          },
+          "id": "event-000593"
+        },
+        {
+          "source_line": 594,
+          "timestamp": "2026-05-12T22:53:28.799334+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 的输出已经反映在 memory.md 中（新增了\"Span Hint 移除无效\"和\"Alt Metrics 全部失败\"条目）。没有新的远程代码或数据产出。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer"
+          },
+          "id": "event-000594"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "messages": [
+        {
+          "source_line": 595,
+          "timestamp": "2026-05-12T22:53:52.192269+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000595"
+        },
+        {
+          "source_line": 596,
+          "timestamp": "2026-05-12T22:54:48.447797+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 cuda:0 和 cuda:1**。已发生 3 次越界事故（D007/D008/D019），每次都被 CRITICAL。所有 GPU 命令必须以 `CUDA_VISIBLE_DEVICES=0` 或 `CUDA_VISIBLE_DEVICES=1` 开头，禁止 `device_map=\"auto\"`。\n- v6 ICL 两个进程正在跑（PID 631287 cuda:0, PID 633173 cuda:1），**不要 kill 它们**，除非 Director 明确指示。\n- Reviewer 只读：不执行实验、不修改文件，唯一输出渠道是 `reviewer_post_to_director`。\n- 所有输出**必须中文**。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`cqa1-21977`，account=root\n- 工作目录：`/root/autodl-tmp/rl-active-probe-fl`\n- Python：`/root/miniconda3/bin/python3`（conda base 环境，不是 venv）\n- 模型缓存：`/root/autodl-tmp/.hf_cache/Qwen3-14B-AWQ`（分类 + v6 ICL 用）、`/root/autodl-tmp/.hf_cache/Qwen3-8B`（v5 收集用，已完成）\n- Expert 数据：`/root/autodl-tmp/rl-active-probe-fl/data/alfworld_sft.json`（3119 条，6 types 全覆盖）\n- 活跃进程：PID 631287（v6_icl_cuda0, gpu 0）、PID 633173（v6_icl_cuda1, gpu 1），~0.8 task/min/GPU\n- W&B：项目未配置 W&B，不检查\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/`\n\n### 3. 📊 当前状态\n**刚完成**：审查了 3 个 worker：\n1. `classify_no_span_hint` — PASS，`--no_span_hint` flag 正确实现\n2. `research_alt_correction_metrics` — WARNING，span hint A/B 测试 n=8 过小但方向性结论正确（对 v5 无效）\n3. `classify-dryrun-compare` — PASS，无新产出，整合 findings 到 memory.md\n\n**RUNNING 实验**：\n- `datagen_v6_icl_cuda0`：41/300（14B-AWQ + ICL, part_idx=0）\n- `datagen_v6_icl_cuda1`：47/300（14B-AWQ + ICL, part_idx=1）\n- 预计完成：启动后约 6h，约还剩 ~4.5h\n\n**等待中**：无 pending worker 回调。v6 完成后 Agent 应启动 post-process + classify。\n\n### 4. 📋 待办（条件触发式）\n- **v6 收集完成通知到达** → 核实：(1) 两个 JSONL 文件行数 = 300；(2) SR by task type（对比 v5 的 37%）；(3) step-1 divergence rate（关键指标：若 >80% 则 P1 大概率再次 fail）；(4) GPU 合规（PID 仍在 cuda:0/1）\n- **v6 post-process worker 完成** → 核查 CSF 检测、true_failure 数量、PCB 分布\n- **v6 分类 worker 完成** → 核心审查：(1) error type 分布是否比 v5 更均衡（action n≥10？）；(2) KW 三版检验结果；(3) P1 gate pass/fail；(4) 若用了 `--no_span_hint` 则对比两版\n- **v6 P1 仍 FAIL** → 立即 post to Director：启动 D025 kill/pivot 决策（24h 窗口）\n- **Director 转发 Framing 提案** → Read `negative-framing-review.skill.md`，四维度审查\n- **任何实验启动** → 检查 CUDA_VISIBLE_DEVICES 合规\n\n### 5. 🎯 战略上下文\n**项目核心**：验证 ETADN（Error-Type-Adaptive DPO）的两个 MVP gate：\n- **P1**：correction span 按 error type 单调递增（action < verification < planning），KW p<0.05\n- **P2**：ETADN（per-type γ）> single-γ ≥3%（3 seeds）\n- P1 必须先 pass 才有 P2。目前 **P1 FAIL**。\n\n**决策链关键**：D024 确认 v5 P1 FAIL 根因是数据生成端（8B 太弱 → 91% step-1 divergence → 98% planning）。D025 启动三路 recovery：(1) v6 ICL 是唯一有效路径；(2) span hint 去除对 v5 无效（A/B 0/8 差异）；(3) alt metrics 全部失败。**v6 是最后机会，fail 则 kill/pivot**。\n\n**最容易判断错的事**：\n1. **不要因为 v6 SR 高（~74%）就乐观**——SR 高意味着失败样本少，P1 需要足够的 failure 且 error type 分布均衡。关键看 failure 中 step-1 divergence 比例和 LLM 分类多样性。\n2. **不要套人类时间直觉**——\"做不完\"、\"pivot 太频繁\" 不构成 warning。只看 GPU-hours 够不够。\n3. **PCB override 的 verification 组不是真的 LLM 分类**——82 条 verification 全是 rule-based 强制从 planning 翻转的。without_override 版本 verification=0。P1 双版必须都显著。\n4. **span hint removal 代码已就绪但对 v5 无效**——不要假设它对 v6 也无效，v6 可能有更多 non-step-1 divergence 使 hint 效果显现。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_cc737a5dc30fec03b831b2d1e8b603fa:reviewer"
+          },
+          "id": "event-000596"
+        }
+      ]
+    }
+  ]
+}

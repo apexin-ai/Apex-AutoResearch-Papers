@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "479be99c413463b18513",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "train scienceworld v6 bjb1",
+  "task_key": "worker_train_scienceworld_v6_bjb1_20260522T144908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_scienceworld_v6_bjb1_20260522T144908_result.json",
+    "occurrence": 1,
+    "bytes": 1585,
+    "sha256": "19d16279226a9299e4efecafab45e6ffee56d6b9a6569c97c2a65b18cca89f1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Pre-flight failed (C002)** — cannot start v6 training.\n\n## 状态总结\n\n### 磁盘 ✅\n- 清理前: 43GB free → 删除 stella embedding cache (17GB) → **60GB free**\n\n### v6 Config ✅ 已创建\n`/root/cost-verify-agent-rl/RAGEN/config/_scienceworld_cell_c_grpo_v6.yaml`\n\n关键参数 vs v5:\n\n| 参数 | v5 | v6 |\n|------|-----|-----|\n| tasks | ScienceWorldSG_filtered (21 tasks) | **ScienceWorldSG_top5** (5 tasks: find-living-thing, find-non-living-thing, lifespan-longest-lived, lifespan-shortest-lived, lifespan-longest-lived-then-shortest-lived) |\n| group_size | 16 | **4** |\n| max_turn | 50 | **30** |\n| ppo_mini_batch_size | 16 | **4** |\n| lr | 1e-6 | 1e-6 (不变) |\n| kl_loss_coef | 0.05 | 0.05 (不变) |\n| response_length | 512 | 512 (不变) |\n| collapse_detection | multi_turn_enabled: true | 不变 |\n\n新增 env tag `ScienceWorldSG_top5` 已写入 `envs.yaml`。\n\n### Checkpoint ❌ 阻塞\n`/root/autodl-tmp/checkpoints/qwen3_scienceworld_sft/huggingface` 在 bjb1 和 westd 上均不存在，已在之前的磁盘清理中被删除。\n\n**恢复方案**:\n- SFT 训练数据 (`scienceworld_sft_train.parquet`) + 脚本 (`run_scienceworld_sft.sh`) 在 **westd-47453** 上可用\n- 但 westd 4张 GPU 当前全部被占用 (~38GB/GPU)\n- bjb1 GPUs 空闲，但缺少训练数据和 base model\n\n**需要决策**: \n1. 等 westd GPU 空闲后在 westd 重训 SFT (~2.4h), 完成后 scp HF checkpoint 到 bjb1\n2. 将数据 + base model 从 westd 传到 bjb1，在 bjb1 用 2 GPU 重训 SFT（更慢）\n3. 其他方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-scienceworld-v6-bjb1.md"
+}

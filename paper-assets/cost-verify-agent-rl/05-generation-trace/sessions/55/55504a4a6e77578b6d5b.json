@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55504a4a6e77578b6d5b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix literature map citations",
+  "task_key": "worker_fix_literature-map-citations_20260515T235024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_literature-map-citations_20260515T235024_result.json",
+    "occurrence": 1,
+    "bytes": 1348,
+    "sha256": "bc866928e3688052ab5c083a4c5bdbfd54f76928e247f7ddcce2d96e0cce868e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 任务 1：修正 3 处错误\n\n| 条目 | 字段 | 修正前 | 修正后 |\n|------|------|--------|--------|\n| `du2025thinkless` | authors | \"Du et al.\" | \"Fang et al.\" |\n| `choudhury2025agentprm` | authors | \"Choudhury et al.\" | \"Choudhury\" |\n| `choudhury2025agentprm` | title | \"AgentPRM: Process Reward Models for LLM Agents\" | \"Process Reward Models for LLM Agents: Practical Framework and Directions\" |\n| `spear2025` | title | \"SPEAR: Self-Imitation with Progressive Exploration for Agentic RL\" | \"Learn the Ropes, Then Trust the Wins: Self-imitation with Progressive Exploration for Agentic Reinforcement Learning\" |\n\n### 任务 2：GVPO 和 AVA 的 arXiv ID\n\n两篇论文均**无 arXiv 预印本**，仅通过 OpenReview 发表：\n- **GVPO** (ICLR 2026): OpenReview ID `RY47Tq0VsV`\n- **AVA** (TMLR 2026): OpenReview ID `JMDCMf7mlF`\n\n已在 `arxiv_id: null` 后添加注释标注 OpenReview ID。\n\n### 任务 3：Agent-Omit 收录状态\n\n**已收录**，条目 `agent-omit2026`（line 364-378），信息完整：\n- 标题：Agent-Omit: Training Efficient LLM Agents for Adaptive Thought and Observation Omission via Agentic RL\n- 作者：Ning et al.（Yansong Ning, Jun Fang, Naiqiang Tan, Hao Liu）\n- arXiv: 2602.04284 ✓\n- 分类：direct-competitor / competitor ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-literature-map-citations.md"
+}

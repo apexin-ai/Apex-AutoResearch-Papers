@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d72ce41e7c44b9180ff2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd urgent kill orphan ray",
+  "task_key": "worker_ops_westd_urgent_kill_orphan_ray_20260522T005534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_urgent_kill_orphan_ray_20260522T005534_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "41c89ea55448012a6d0517ca3a72126a442e0437971e77caf0ebedc081e2fb21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary:\n\n**Orphan cleanup**: PIDs 64813 and 59055 killed. cuda:0 freed from ~90GB → 0MB.\n\n**c_prime_step5_ood_eval**: Alive and running (PID 57960, uptime 19min). All remaining Ray/wandb processes are its legitimate children (IDLE workers + GCS server). There's one zombie `ray::TaskRunner` (PID 64282) — harmless, no resource usage.\n\n**Full GPU status (westd-47453)**:\n\n| GPU | Memory Used | Memory Total | Utilization |\n|-----|------------|--------------|-------------|\n| 0 | 0 MiB | 97887 MiB | 0% |\n| 1 | 0 MiB | 97887 MiB | 0% |\n| 2 | 0 MiB | 97887 MiB | 0% |\n| 3 | 0 MiB | 97887 MiB | 0% |\n\nAll 4 GPUs completely idle. The eval job has Ray workers spawned but hasn't loaded the model to GPU yet (still in initialization phase, 19min in)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-urgent-kill-orphan-ray.md"
+}

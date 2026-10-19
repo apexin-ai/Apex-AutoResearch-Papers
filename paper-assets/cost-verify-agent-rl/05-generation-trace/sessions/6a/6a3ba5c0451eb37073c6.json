@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a3ba5c0451eb37073c6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "collect scienceworld eval v2 results",
+  "task_key": "worker_collect_scienceworld-eval-v2-results_20260520T134011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_scienceworld-eval-v2-results_20260520T134011_result.json",
+    "occurrence": 1,
+    "bytes": 93,
+    "sha256": "aa565b5ac236153a411a0ccf17d921e71c89cbd9377ffa80c976a9e6caaa0075"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 195853 仍在运行（elapsed 13h57m，状态 Rl）。3 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-scienceworld-eval-v2-results.md"
+}

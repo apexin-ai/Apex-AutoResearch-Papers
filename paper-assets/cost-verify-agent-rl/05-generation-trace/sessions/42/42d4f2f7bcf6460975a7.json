@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42d4f2f7bcf6460975a7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "knowledge v9d success memory",
+  "task_key": "worker_knowledge_v9d_success_memory_20260520T095446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_v9d_success_memory_20260520T095446_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "7c84e4648430e9194f08401be78e915ddaa3447dd6c006eea144fc4992ea4ef4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 4 条新经验：\n\n1. **save_contents yaml 路径** — 必须在 `actor_rollout_ref.actor.checkpoint` 下，错误路径导致 92GB vs 33GB checkpoint\n2. **FSDP2 checkpoint 格式** — rank shards 需 `convert_fsdp_to_hf.py` 合并才能部署\n3. **NCCL deadlock 模式** — 0% GPU util + 高显存占用 = collective 死锁，直接 kill\n4. **8B GRPO 饱和速度** — ≤15 steps 即饱和，需提前规划 OOD eval 和 early stopping"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-v9d-success-memory.md"
+}

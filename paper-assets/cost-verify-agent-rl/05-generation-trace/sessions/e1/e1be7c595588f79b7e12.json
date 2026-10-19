@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1be7c595588f79b7e12",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code cell b 1gpu prep",
+  "task_key": "worker_code_cell_b_1gpu_prep_20260525T000445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cell_b_1gpu_prep_20260525T000445_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "78db8ffaaf13d674d38d77f6520b7c3548bb1595d54e5cf9ea6da29939c4bf38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**已创建两个文件：**\n- Config: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_episode_adv_1gpu.yaml`\n- 脚本: `/root/cost-verify-agent-rl/scripts/run_cell_b_1gpu.sh`\n\n**关键确认：**\n- Model: `qwen3_exp021_ragen_sft_v4`，确认 Qwen3-1.7B\n- Seed 字段: `seed.train`，通过 Hydra CLI override\n- 启动: `bash scripts/run_cell_b_1gpu.sh <seed>`（如 100/200/300）\n- 与原始 Cell B 唯一区别：1 GPU + `n_gpus_per_node=1`\n\n**SFT 状态：** 192/450 steps (43%)，约 1h20m 后完成，之后可立即启动 Cell B。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cell-b-1gpu-prep.md"
+}

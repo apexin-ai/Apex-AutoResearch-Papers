@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e6e33cff1a1f1380f7ff",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "exp exp007 dryrun",
+  "task_key": "worker_exp_exp007_dryrun_20260514T001832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp007_dryrun_20260514T001832.log",
+    "occurrence": 1,
+    "bytes": 549262,
+    "sha256": "653c83d7a8ed46e604636728294a51800adc0fca7e4f4fbcfcc6f40e9a37df1a"
+  },
+  "statistics": {
+    "messages": 214,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 29,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 64,
+      "tool_result": 64,
+      "result": 8
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 214,
+      "chunks": [
+        {
+          "path": "e6e33cff1a1f1380f7ff-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e6e33cff1a1f1380f7ff-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-exp007-dryrun.md"
+}

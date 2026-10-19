@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "id": "f5a48b3ad385bb22f07a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp023c status check",
+  "task_key": "worker_diagnose_exp023c-status-check_20260515T042047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp023c-status-check_20260515T042047_result.json",
+    "occurrence": 1,
+    "bytes": 4716,
+    "sha256": "bcd187f71a4f6ad613505d9f87c15f1ec5dc56b7222d4697057e5feb55df1a88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已收集所有信息。\n\n```json\n{\n  \"status\": \"running\",\n  \"current_step\": 1,\n  \"total_steps\": 30,\n  \"step_time_seconds\": 240.14,\n  \"estimated_remaining\": \"1h56m (ETA ~06:15 UTC / 14:15 local)\",\n  \"initial_validation_metrics\": {\n    \"success_rate\": 0.0625,\n    \"pass@1\": 0.0625,\n    \"action_is_valid\": 0.6875,\n    \"action_is_effective\": 1.0,\n    \"num_actions\": 28.6875,\n    \"response_length\": 2818.25,\n    \"reward_mean@16\": 0.625,\n    \"reward_best@16_mean\": 6.28\n  },\n  \"training_metrics\": \"not yet logged (step 1 just completed, no step-level metrics printed yet)\",\n  \"config\": {\n    \"kl_loss_coef\": 0.5,\n    \"use_kl_loss\": true,\n    \"kl_loss_type\": \"kl\",\n    \"entropy_coeff\": 0.001,\n    \"score (reward on success)\": 10.0,\n    \"parallel_friendly\": false,\n    \"max_workers\": 1,\n    \"val_env_groups\": 16,\n    \"val_n_groups\": [16],\n    \"train_env_groups\": 4,\n    \"train_group_size\": 16,\n    \"lr\": 5e-7,\n    \"clip_ratio\": \"0.2-0.28\",\n    \"ppo_epochs\": 1,\n    \"save_freq\": 5,\n    \"test_freq\": 20\n  },\n  \"command\": \"cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp023_grpo_parallel model_path=/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4 trainer.experiment_name=exp023c-alfworld-grpo-serial trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp023c/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp023c/ es_manager.val.env_groups=16 \\\"es_manager.val.env_configs.n_groups=[16]\\\"\",\n  \"env_vars\": \"TMPDIR=/root/autodl-tmp/tmp/ ALFWORLD_DATA=/root/autodl-tmp/alfworld RAY_memory_monitor_refresh_ms=0 RAY_SYSTEM_MEMORY=210000000000 HYDRA_FULL_ERROR=1\",\n  \"log_path\": \"/root/autodl-tmp/checkpoints/exp023c/train.log\",\n  \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp023c/ (empty, first save at step 5)\",\n  \"gpu_status\": \"GPU 0: 61127/97887 MiB (0% util), GPU 1: 61173/97887 MiB (0% util)\",\n  \"model\": \"qwen3 (num_hidden_layers=28, num_attention_heads=16, num_key_value_heads=8)\",\n  \"base_checkpoint\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\"\n}\n```\n\n**要点**：\n- 训练正常运行，step 1 刚完成（240s/step），正在做 step 2 的 rollout（GPU 0% 利用率 = CPU-bound ALFWorld 环境交互阶段）\n- 初始 validation success rate 6.25%（16 episodes 中 1 个成功）\n- 所有关键配置符合预期：`kl_loss_coef=0.5`, `score=10.0`, `parallel_friendly=false`, `max_workers=1`, `val_env_groups=16`\n- 第一个 checkpoint 将在 step 5 保存，第一次 test eval 在 step 20"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "status": "running",
+              "current_step": 1,
+              "total_steps": 30,
+              "step_time_seconds": 240.14,
+              "estimated_remaining": "1h56m (ETA ~06:15 UTC / 14:15 local)",
+              "initial_validation_metrics": {
+                "success_rate": 0.0625,
+                "pass@1": 0.0625,
+                "action_is_valid": 0.6875,
+                "action_is_effective": 1.0,
+                "num_actions": 28.6875,
+                "response_length": 2818.25,
+                "reward_mean@16": 0.625,
+                "reward_best@16_mean": 6.28
+              },
+              "training_metrics": "not yet logged (step 1 just completed, no step-level metrics printed yet)",
+              "config": {
+                "kl_loss_coef": 0.5,
+                "use_kl_loss": true,
+                "kl_loss_type": "kl",
+                "entropy_coeff": 0.001,
+                "score (reward on success)": 10.0,
+                "parallel_friendly": false,
+                "max_workers": 1,
+                "val_env_groups": 16,
+                "val_n_groups": [
+                  16
+                ],
+                "train_env_groups": 4,
+                "train_group_size": 16,
+                "lr": 5e-07,
+                "clip_ratio": "0.2-0.28",
+                "ppo_epochs": 1,
+                "save_freq": 5,
+                "test_freq": 20
+              },
+              "command": "cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp023_grpo_parallel model_path=/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4 trainer.experiment_name=exp023c-alfworld-grpo-serial trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp023c/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp023c/ es_manager.val.env_groups=16 \"es_manager.val.env_configs.n_groups=[16]\"",
+              "env_vars": "TMPDIR=/root/autodl-tmp/tmp/ ALFWORLD_DATA=/root/autodl-tmp/alfworld RAY_memory_monitor_refresh_ms=0 RAY_SYSTEM_MEMORY=210000000000 HYDRA_FULL_ERROR=1",
+              "log_path": "/root/autodl-tmp/checkpoints/exp023c/train.log",
+              "checkpoint_path": "/root/autodl-tmp/checkpoints/exp023c/ (empty, first save at step 5)",
+              "gpu_status": "GPU 0: 61127/97887 MiB (0% util), GPU 1: 61173/97887 MiB (0% util)",
+              "model": "qwen3 (num_hidden_layers=28, num_attention_heads=16, num_key_value_heads=8)",
+              "base_checkpoint": "/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp023c-status-check.md"
+}

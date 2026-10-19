@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "645d0f6ef8e532c6df13",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis ragen commit hash",
+  "task_key": "worker_analysis_ragen_commit_hash_20260523T130029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ragen_commit_hash_20260523T130029_result.json",
+    "occurrence": 1,
+    "bytes": 332,
+    "sha256": "0f7c5acac81d5c5d96bfb73c2472bf8eea68415f115914a8f37d8c23bd21a0c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 字段 | 值 |\n|------|----|\n| Commit | `3a6b48b` — feat: trajectory-level token cap in rollout loop for Intervention C-prime |\n| Branch | `main` |\n| Remote | `https://github.com/RAGEN-AI/RAGEN.git` |\n| Path | `/root/cost-verify-agent-rl/RAGEN` |\n\n已写入 `artifacts/ragen_commit_info.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ragen-commit-hash.md"
+}

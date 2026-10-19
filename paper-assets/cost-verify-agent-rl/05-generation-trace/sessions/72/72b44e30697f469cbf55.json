@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72b44e30697f469cbf55",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 deep check",
+  "task_key": "worker_ops_exp026_deep_check_20260515T105333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_deep_check_20260515T105333_result.json",
+    "occurrence": 1,
+    "bytes": 1715,
+    "sha256": "28b086dcc21c5749df0530fadf064bf2386ad230d428f7c9a65e5962843a1f3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp026 Deep Check\n\n### Process: ALIVE, uptime=15m33s, GPU mem=[41715/97887 MiB, 41709/97887 MiB] (43%/43%), GPU util=[50%, 100%]\n\n### Progress: step 0/150, estimated hours remaining = N/A (no steps completed yet; val_before_train just finished, first training step starting)\n\n### val_before_train (16 episodes): success=6.25%, action_is_valid=63.1%, action_is_effective=87.9%, pass@1=6.25%\n\n### Truncation: 25 occurrences (all during val_before_train rollouts)\n\n### Metrics (per completed step):\n| Step | pg_loss | KL | entropy | grad_norm | train_success | action_is_valid |\n|------|---------|-----|---------|-----------|---------------|-----------------|\n| (none) | — | — | — | — | — | — |\n\nNo training steps completed yet — the log ends at \"Training Progress: 0%|  0/150\".\n\n### Alerts: none\n- traceback: 0\n- NaN: 0\n- \"error\" matches: 3 (all from config text, not actual errors)\n- Benign warnings: gym deprecation, Ray docker CPU detection, `anchor_obs` non-numeric metric skips\n\n### Step 0→1 transition: not yet reached\nVal_before_train completed at 18:48. Training step 0 rollout is starting now.\n\n### Key config confirmed:\n- Model: `qwen3_exp021_ragen_sft_v4` (SFT v4 checkpoint)\n- Mode: `step_independent`, history_length=5\n- lr=1e-6 (constant), entropy_coeff=0.001, kl_loss_coef=0.01\n- Val: 16 env_groups × 1 group_size = **16 episodes** (C003 compliant)\n- Train: 4 env_groups × 16 group_size = 64 rollouts/step\n\n### Recommendation: **continue** — clean startup, val baseline established (6.25% success is expected pre-training), no errors. Check again after ~30–40 min to see if step 0 completes and first training metrics appear."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-deep-check.md"
+}

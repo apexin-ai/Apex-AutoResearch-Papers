@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "406dcbdce186744e2a79",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops check available checkpoints",
+  "task_key": "worker_ops_check-available-checkpoints_20260514T125635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-available-checkpoints_20260514T125635_result.json",
+    "occurrence": 1,
+    "bytes": 834,
+    "sha256": "db242f2bc7c4d308584ad5d126d9e12d9eb1cf50f329e1ab4e2d7461e408314f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Checkpoint 扫描结果\n\n**所有 GRPO checkpoint 已被清理。** `global_step_*` 目录在整个 `/root/autodl-tmp/` 下均不存在。\n\n### 可用 checkpoint\n\n| 路径 | 类型 | 大小 | 完整性 |\n|------|------|------|--------|\n| `/root/autodl-tmp/checkpoints/exp008_sft/final/` | SFT final | 3.3GB | **完整** — `model.safetensors` (3.2GB) + `config.json` + tokenizer 全套 |\n| `qwen3_sft_final` → 上述路径的 symlink | — | — | — |\n\n### 不可用\n\n| 目标 | 状态 |\n|------|------|\n| exp008_grpo/global_step_5 | **已清理，不存在** |\n| exp013f 任何 checkpoint | **已清理，不存在** |\n\n### 结论\n\nexp015 唯一可用的起点是 **exp008_sft/final**（纯 SFT 模型，优先级 3）。GRPO checkpoint 全部丢失，需从 SFT 重新开始 GRPO 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-available-checkpoints.md"
+}

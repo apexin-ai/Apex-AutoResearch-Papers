@@ -1,0 +1,1101 @@
+{
+  "schema_version": "1.0",
+  "id": "e2355b437fea8bb36c41",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "cron hook exp020 grpo from sft",
+  "task_key": "cron_hook_exp020_grpo_from_sft",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_exp020_grpo_from_sft.jsonl",
+    "occurrence": 1,
+    "bytes": 52629,
+    "sha256": "42893f93c7ed86bab5ba7e759cbe8953a0e1988dab15730ead4001d1a693892c"
+  },
+  "statistics": {
+    "messages": 55,
+    "user_turns": 1,
+    "tool_calls": 27,
+    "roles": {
+      "user": 1,
+      "tool_call": 27,
+      "tool_result": 26,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T04:16:50.451364+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #7。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 cuda:0, cuda:1（仅这两张，framework 自动注入 CUDA_VISIBLE_DEVICES，脚本内 GPU 编号从 0 开始）\n- Checkpoint 路径断言：train.py:137 用字符串匹配 `\"qwen\" in model_path.lower()` 判断是否启用 response_mask。微调 checkpoint 保存在自定义路径不含 \"qwen\" 会断言失败。**必须创建含 \"qwen\" 的 symlink**\n- ALFWorld 动作命名：admissible_commands 包含 `move X to Y`，**不含** `put X in/on Y`。不要把 move 替换为 put（exp019 因此被 kill）\n- 服务器用 conda base（不是 venv）：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，2× RTX PRO 6000 Blackwell 94GB\n- 工作目录：/root/cost-verify-agent-rl/RAGEN/\n- Python：/root/miniconda3/bin/python (3.12)，conda base 环境\n- 模型 checkpoint：/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final/（Qwen3-1.7B 微调）\n- SFT base checkpoint：/root/autodl-tmp/checkpoints/exp017_expert_sft/final/\n- 数据：ALFWORLD_DATA=/root/autodl-tmp/alfworld\n- 日志：/root/runs/cost-verify-agent-rl/\n- Ray 环境变量：RAY_memory_monitor_refresh_ms=0, RAY_SYSTEM_MEMORY=210GB, TMPDIR=/root/autodl-tmp/tmp/, object_store_memory=30GB（via Hydra override）, HYDRA_FULL_ERROR=1\n- W&B：未配置，cron 靠进程存活 + 日志检测\n- 活跃进程：无（两张 GPU 空闲）\n\n### 3. 📊 当前状态\nexp020_grpo_from_sft 启动即失败（model_path 不含 \"qwen\" → response_mask 断言失败）。已派 Worker `worker_diagnose_exp020_grpo_from_sft_20260514T221125` 创建 symlink 修复并重提交。**等此 Worker 回调**。\n\nRegistry 关键状态：\n- exp019b_expert_sft_v3: DONE/success — eval success=20%, format_ok=100%, action_is_valid=85.3%（这是当前最好的 SFT checkpoint，GRPO 的起点）\n- exp020_grpo_from_sft: DONE/failed — 上述断言错误，Worker 正在修复重提交\n- 其余全部 DONE 或废弃的 PREPARING\n\n已汇报 Director（infrastructure 类错误，无需决策）。\n\n### 4. 📋 待办\n- Worker 回调成功（exp020 重提交 RUNNING）→ 确认日志正常启动，注册 cron 监控，更新 registry 状态\n- Worker 回调失败（修复不生效）→ 尝试 `enable_response_mask=false` override 作为 fallback，再失败则报 Director\n- exp020 GRPO 训练完成（预计 ~2.8h）→ 按 on-experiment-done 分叉：success ≥ 20% 则 MVP Phase A 达成，报 Director 进入 Phase B；negative 则产 Framing 提案\n- 两张 GPU 空闲期间应并行铺 CPU 任务（文献调研、下一批实验代码准备）\n\n### 5. 🎯 战略上下文\n- 核心方向：B-IAVR（behavioral self-verification），Qwen3-1.7B + ALFWorld + GRPO\n- MVP 目标：ALFWorld success ≥ 20%（sparse GRPO）\n- 实验演进链：base(0%) → exp008_sft(0% success, 90% valid) → exp017_sft(5% success, 数据格式差) → exp019b_sft_v3(20% success, 最佳 SFT) → exp020_grpo(待跑)\n- GRPO 历史教训：LR=1e-6 collapse, LR=1e-7 零梯度, LR=5e-7 信号不足但不 collapse。Dense reward gaming（exp013f）已验证死路。当前策略是 SFT 提升 baseline 后用 sparse GRPO\n- 易踩坑：(1) 新 checkpoint 路径必须含 \"qwen\" 否则断言失败 (2) Ray env_groups 不能超过 4（内存溢出）(3) object_store_memory 必须用 Hydra override 而非环境变量\n- 决策链关键节点：D016 pivot to SFT warmup → D018 修复数据格式 → D019 move≠put 纠正 → D020 exp019b 通过启动 GRPO\n\n## 项目硬约束 (memory.md 节选)\n\n## [失败模式] TextWorld/tatsu 线程不安全（2026-05-15 exp023）\n- parallel_friendly=true + max_workers=4 时，RAGEN 多线程并行 rollout 崩溃\n- 根因：textworld 整个加载链路（register_game → gym.make → alfred_env.reset → tatsu _PARSER.parse）使用模块级全局对象，非线程安全\n- 仅锁 `_RAW_ENV_CACHE` 不够，需要锁住整个 textworld 加载链\n- **决策：放弃修复，回退 parallel_friendly=false + max_workers=1 串行运行**\n- 串行虽慢（~200-400s/step）但稳定。并行优化留给 verl-agent 迁移后解决\n- 教训：textworld/tatsu 对多线程完全不友好，不要尝试在 RAGEN 框架内修并行\n\n## 服务器信息\n- bjb1-17606: 2× RTX PRO 6000 Blackwell 94GB, conda base 环境\n- GRPO 30 步 ~2.8h（串行）, SFT ~48 min 单卡\n- 用 conda（非 venv）：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n## [失败模式] Checkpoint 路径命名断言（2026-05-14）\n- train.py:137 用字符串匹配 `\"qwen\" in config.model_path.lower()` 判断模型类型，启用 response_mask\n- 微调后的 checkpoint 保存在自定义路径，不含 \"qwen\" → AssertionError\n- 修复方案：创建含 \"qwen\" 的 symlink 指向 checkpoint 目录\n- 后续所有从微调 checkpoint 启动 GRPO 的实验都需注意此问题\n\n## [失败模式] Cron 误报（2026-05-14）\n- submit_training_job 的 cron 监控通过 PID 检测进程存活\n- nohup 启动的进程 PID 与 submit_training_job 记录的 PID 不同 → cron 认为进程已死 → 误报 failed\n- cron 无法区分正常退出（exit 0）和崩溃 → 训练正常完成也会被标记为 failed\n- 教训：**必须用 submit_training_job 提交训练**（不用 nohup），确保 PID 一致；cron 报 failed 时先验证日志再信\n\n## 可查的历史\n前 23 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T04:16:59.795206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T04:16:59.847092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T04:17:03.421317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T04:17:03.923745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T04:17:03.977455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp023_grpo_parallel\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T04:06:02.056Z\\\", \\\"updated_at\\\": \\\"2026-05-15T04:12:41.878Z\\\", \\\"hypothesis\\\": \\\"GRPO from exp021 RAGEN-format SFT checkpoint with 3 key fixes: (1) reward scale 10.0→1.0 (align with Self-Guide paper binary reward), (2) parallel rollout (max_workers=4, thread-safe env), (3) val env_groups=16 for reliable eval. kl_loss_coef=0.5, LR=5e-7, 30 steps. Pass: success ≥ 25% (maintain SFT baseline), step time < 200s (vs exp022 ~208s serial).\\\", \\\"parent\\\": \\\"exp022_grpo_from_sft_v4\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: textworld PDDL parser (tatsu) 在 val env reset 时崩溃 — tatsu.exceptions.FailedToken: expecting 'action', got template :: \\\\\\\"take {o} from {r}\\\\\\\". val env_groups=16 加载了更多 game files，触发了某个 game file 与当前 tatsu 版本不兼容的 PDDL grammar. | 已有成果: 无（val_before_train 阶段即崩溃，未开始训练） | 建议: 诊断具体哪个 game file 有问题，降低 val env_groups 或修复 game file/tatsu 兼容性\\\"}, \\\"exp022_grpo_from_sft_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T03:17:34.035Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:52:55.267Z\\\", \\\"hypothesis\\\": \\\"GRPO from exp021 RAGEN-format SFT checkpoint (25% RAGEN val success baseline). Sparse reward (won=10.0), LR=5e-7, kl_loss_coef=0.5 (5x stronger than exp020b to prevent entropy collapse), max_grad_norm=1.0, 30 steps, val env_groups=8. Pass: success ≥ 25% (maintain SFT baseline).\\\", \\\"parent\\\": \\\"exp021_ragen_sft_v4\\\", \\\"notes\\\": \\\"Step 0 val: success=12.5% (1/8), action_is_valid=48.75%。Step 1 完成后 kill。action_is_valid 远低于 SFT eval 结果（87.5%/68.75%），说明 RAGEN GRPO 框架中模型表现显著退化。kl_loss_coef=0.5, env_groups=8 均已确认生效。训练速度 ~208s/step。Checkpoint: global_step_1 可能已保存。\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"steps_completed\\\": 1, \\\"steps_planned\\\": 30, \\\"val_step0_success\\\": 0.125, \\\"val_step0_action_is_valid\\\": 0.4875, \\\"val_step0_action_is_effective\\\": 1, \\\"val_step0_reward_mean\\\": 1.25, \\\"val_step0_reward_best\\\": 6.61, \\\"val\n…[truncated 25899 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 556
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T04:17:04.379689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 455
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T04:17:04.380131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T04:17:04.380415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T04:17:04.481462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent <answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。（准备中）\\\\n- exp019b_expert_sft_v2（准备中）\\\\n- exp018_sft_grpo: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。（准备中）\\\\n- exp014b: 极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。（准备中）\\\\n- exp0\n…[truncated 2855 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T04:17:04.482361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\\\", \\\"content\\\": \\\"# cost-verify-agent-rl — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 22:13 UTC | 更新原因: exp019b SFT 成功 + exp020b GRPO 已提交\\\\n\\\\n## 核心方向\\\\nB-IAVR: 训练 interactive agent 选择性自我验证，基于行为改变信号（action change）作为 verification informativeness 的 reward。基于 Self-Guide (arXiv 2604.03098) 框架，Qwen3-1.7B + ALFWorld + RAGEN/verl GRPO。\\\\n\\\\n## 当前阶段\\\\n🧪 **MVP 验证 — Phase A: Always-On Self-Guidance baseline**\\\\n目标：ALFWorld success ≥ 20%（sparse GRPO）\\\\n\\\\n### 当前状态：GRPO 训练中（exp020b）\\\\n两阶段 Expert SFT 验证通过（exp019b: success=20%, format_ok=100%, action_is_valid=85.33%），已启动 GRPO 训练。\\\\n\\\\n**exp019b_expert_sft_v3**（SFT ✅）：两阶段 SFT 成功。exp008_sft checkpoint（format 知识）→ v3 expert data（task 知识）微调。LR=5e-6, 2 epochs, 320 steps。Eval 20 episodes: success=20%, format_ok=100%, action_is_valid=85.33%。Checkpoint: `/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final/`\\\\n\\\\n**exp020b_grpo_from_sft**（当前 🏃）：从 exp019b checkpoint 启动 sparse GRPO。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 30 steps。PID 385977, bjb1-17606 cuda:0+1。预计 ~2.5-3h。exp020 因 response_mask 路径断言崩溃，exp020b 通过 symlink 修复。\\\\n\\\\n### 实验历程\\\\n| exp | 方案 | 结果 | 教训 |\\\\n|-----|------|------|------|\\\\n| exp001-003 | 环境搭建 + dry-run | infra 调通 | Ray memory 需硬编码 30GB |\\\\n| exp008_sft | 基础 SFT warmup | 0% success, 100% format, 90% valid | format 学习成功 |\\\\n| exp012b | GRPO LR=1e-6 | step 7 collapse (8.6%→0%) | LR 过高 |\\\\n| exp013f | Dense reward bonus=0.15 | reward gaming (97.5% valid, 0% success) | dense bonus ≤ 30% sparse |\\\\n| exp015 | GRPO LR=1e-7 | 零梯度 step 3+ | LR 过低 |\\\\n| exp016 | GRPO LR=5e-7 | 6/7 步零 success, 1 步 4.7% | base success 太稀疏 |\\\\n| exp017 | Expert SFT (2460 trajectories) | 5% success, 75% format | 数据格式不匹配 |\\\\n| exp019b | 两阶段 SFT (exp008+v3 data) | **20% success, 100% format, 85% valid** | 两阶段保留 format 知识 |\\\\n| exp020b | GRPO from SFT (LR=5e-7, sparse) | 🏃 训练中 | response_mas\n…[truncated 2438 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 101
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T04:17:26.829790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__load_project_config",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T04:17:27.083831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "elapsed_ms": 254
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T04:17:30.027875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "limit": "10"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T04:17:30.531711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_diagnose_exp022-parallelism-bottleneck_20260515T034404\\\", \\\"task_type\\\": \\\"diagnose:exp022-parallelism-bottleneck\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T03:44:04.731190+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T03:48:52.782390+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_code_exp023-parallel-fix_20260515T035034\\\", \\\"task_type\\\": \\\"code:exp023-parallel-fix\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T03:50:34.542327+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T04:00:54.556913+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_infra_kill-exp022_20260515T035043\\\", \\\"task_type\\\": \\\"infra:kill-exp022\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T03:50:44.010276+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T03:52:23.302430+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_research_model-config-audit_20260515T035916\\\", \\\"task_type\\\": \\\"research:model-config-audit\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T03:59:16.653849+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T04:02:54.854901+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_code_exp023-reward-fix-and-submit_20260515T040435\\\", \\\"task_type\\\": \\\"code:exp023-reward-fix-and-submit\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T04:04:36.123789+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T04:07:25.513270+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_diagnose_exp023_grpo_parallel_20260515T041302\\\", \\\"task_type\\\": \\\"diagnose:exp023_grpo_parallel\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-15T04:13:02.795452+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_code_exp023b-tatsu-fix-restart_20260515T041318\\\", \\\"task_type\\\": \\\"code:exp023b-tatsu-fix-restart\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"failed\\\", \\\"started_at\\\": \\\"2026-05-15T04:13:18.523352\n…[truncated 893 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 503
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T04:17:31.087911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T04:17:31.088545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"content\\\": \\\"# Memory — cost-verify-agent-rl\\\\n\\\\n## ALFWorld 动作命名：move vs put（2026-05-14 纠正）\\\\n- **ALFWorld admissible_commands 包含 `move X to Y`，不含 `put X in/on Y`**\\\\n- PDDL planner 生成的 `move` 动作是正确的 admissible action\\\\n- 之前的诊断 worker 误判为\\\\\\\"move 错应改 put\\\\\\\"导致 exp019 数据错误 → D019 kill\\\\n- exp019b 使用原始 expert data（保留 move）+ admissible actions augmentation\\\\n- `augment_admissible_v2.py` 确认：move_actions=678, put_actions=0\\\\n\\\\n## [已解决] SFT 数据必须与 RAGEN 格式精确匹配（2026-05-15 验证）\\\\n**根因**：SFT 训练数据的 observation/action 格式与 RAGEN 运行时格式不一致 → 分布偏移 → val 0% success。\\\\n\\\\n**RAGEN 精确格式**（ctx_manager.py L577/L656/L201）：\\\\n- System: `\\\\\\\"You're a helpful assistant. \\\\\\\"` + AlfworldSG env_instruction\\\\n- User Turn 1: `\\\\\\\\nTurn 1:\\\\\\\\nState:\\\\\\\\n{obs}\\\\\\\\nYou have 50 actions left. Always output: <think>...</think> <answer>...</answer>...`\\\\n- User Turn 2+: `Reward:\\\\\\\\n0.0\\\\\\\\n` + Turn N state\\\\n- Assistant: `<think>[Assessment]...[Suggestion]</think><answer>action</answer>`\\\\n- Action 解析：先匹配 `<answer>` 标签，fallback 匹配 `</think>` 后裸文本\\\\n\\\\n**证据**：\\\\n- exp019b: eval_sft_fast 20% success → RAGEN val 0% success（格式不匹配）\\\\n- exp021: RAGEN 格式 v4 数据 SFT → RAGEN val **25%** success（格式对齐后修复）\\\\n- exp021: eval_sft_fast 0% success（预期，模型已对齐 RAGEN 格式）\\\\n\\\\n**教训**：SFT 数据必须用 `convert_sft_to_ragen_format.py` 转换为 RAGEN 精确格式。后续 SFT 实验全部用 v4+ 数据。\\\\n\\\\n## RAGEN Reward Pipeline 确认正常（非 Bug）\\\\n- raw_reward=0 是日志 artifact（env.py info dict 缺 raw_reward 字段，es_manager 默认 0）\\\\n- 实际 reward 通过 history['reward'] 正确传递：critic/score 正确（step 7 score/mean=0.46875=3/64×10.0）\\\\n- NaiveRewardManager 是 pass-through，不覆盖 env reward\\\\n- DummyRewardManager 同理，rm_scores 直接返回 env reward\\\\n\\\\n## Sparse GRPO 冷启动根因\\\\n- Base model ALFWorld success ~4.7%（仅 val，train temperature=1.0 下接近 0%）\\\\n- 纯 sparse reward（won=10.0）下，几乎所有 GRPO group 全零 reward → advantage=0 → pg_loss=0\\\\n- LR=1e-7 过保守（零梯度），LR\n…[truncated 3485 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T04:17:31.239500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "cost-verify-agent-rl",
+              "section": "execution"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T04:17:31.291453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"project_path\\\": \\\"/root/cost-verify-agent-rl\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-17606\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 51
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T04:18:17.571963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T04:18:18.735818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_ad913010."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "Read",
+            "elapsed_ms": 1163
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T04:18:18.736241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_worker_status",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T04:18:18.887962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "elapsed_ms": 151
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T04:18:22.518921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T04:18:22.823054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "tool_args": {
+              "server": "bjb1-17606"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T04:18:23.126797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_exp023_grpo_parallel_20260515T041302",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T04:18:23.710023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}], \\\"actually_running_gpus\\\": [], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null}, {\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"idle_min\\\": null}], \\\"running_experiments\\\": [], \\\"worker_pool\\\": {\\\"total\\\": 3, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 3, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_code_exp023c-serial-restart_20260515T041425\\\", \\\"task\\\": \\\"code:exp023c-serial-restart\\\"}, {\\\"worker_id\\\": \\\"worker_code_exp023b-tatsu-fix-v2_20260515T041710\\\", \\\"task\\\": \\\"code:exp023b-tatsu-fix-v2\\\"}, {\\\"worker_id\\\": \\\"worker_code_exp023b-tatsu-fix-v3_20260515T041808\\\", \\\"task\\\": \\\"code:exp023b-tatsu-fix-v3\\\"}]}, \\\"summary\\\": \\\"分配 2 张, 实际跑 0 张 ⚠️ | Worker 3 (GPU 0 / CPU 3)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 1191
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T04:18:23.710477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"bjb1-17606\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 887
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T04:18:23.710850+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_exp023_grpo_parallel_20260515T041302\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diagnose:exp023_grpo_parallel\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-15T04:13:02.795452+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T04:17:57.575708+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Diagnosis and fix complete. Here's the summary:\\\\n\\\\n---\\\\n\\\\n**Root cause**: `textworld.envs.pddl.logic._PARSER` is a module-level singleton `PddlLogicParser` (tatsu). Tatsu parsers are stateful — they maintain buffer position, memoization, etc. When `es_manager.reset()` dispatches multiple `_reset_single` calls via `ThreadPoolExecutor(max_workers=4)`, concurrent threads call `_PARSER.parse()` simultaneously, corrupting internal parser state. This caused both exp022 (`FailedExpectingEndOfText`) and exp023 (`FailedToken`) at the same grammar position.\\\\n\\\\n**Fix**: Added `_TW_LOAD_LOCK = threading.Lock()` in `ragen/env/alfworld/env.py`, wrapping `register_game` + `make` + `alfred_env.reset()` (the PDDL-parse path). The lock serializes only the textworld loading phase; game file selection and post-reset processing remain parallel.\\\\n\\\\n**Validation**: 16/16 parallel val env resets passed (max_workers=4, 20.7s).\\\\n\\\\n**Rerun command**:\\\\n```bash\\\\ncd /root/cost-verify-agent-rl/RAGEN && nohup python train.py --config-name _alfworld_exp023_grpo_parallel > ~/runs/cost-verify-agent-rl/exp023_grpo_parallel_v2.log 2>&1 &\\\\n```\\\\n\\\\n```json\\\\n{\\\\\\\"root_cause\\\\\\\":\\\\\\\"textworld.envs.pddl.logic._PARSER is a module-level singleton tatsu parser that is not thread-safe. Concurrent ThreadPoolExecutor workers calling _PARSER.parse() during env.reset() corrupt parser internal state, causing FailedToken/FailedExpectingEndOfText at grammar line 196 (template :: \\\\\\\\\\\\\\\"take {o} from {r}\\\\\\\\\\\\\\\")\\\\\\\",\\\\\\\"error_type\\\\\\\":\\\\\\\"infrastructure\\\\\\\",\\\\\\\"fix_steps\\\\\\\":[\\\\\\\"Added _TW_LOAD_LO\n…[truncated 982 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 584
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T04:18:23.811451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_research_verl-agent-migration_20260515T041332",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T04:18:24.012539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_research_verl-agent-migration_20260515T041332\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"research:verl-agent-migration\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-15T04:13:32.699940+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T04:17:59.122714+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"调研完成，迁移方案已写入 `artifacts/verl_agent_migration_plan.md`。核心发现：\\\\n\\\\n---\\\\n\\\\n**verl-agent** 是独立项目 ([langfengQ/verl-agent](https://github.com/langfengQ/verl-agent))，不是 verl 官方模块。核心卖点：\\\\n\\\\n- **Step-independent multi-turn rollout**：每步独立构建输入，context 长度恒定，ALFWorld 可跑 50 步不爆 token\\\\n- **GiGPO 算法**：两层分组优势估计（episode-level + step-level anchor state grouping），对多步任务的 credit assignment 有理论优势\\\\n- **asyncio 异步 rollout**：环境交互不阻塞 GPU\\\\n\\\\n**当前 RAGEN 的问题**：\\\\n\\\\n- verl 子模块停留在 **0.6.1**（最新 0.7.1）\\\\n- 全历史拼接 rollout，~10 turns 有效，长 horizon 效率差\\\\n- ctx_manager.py 72KB + agent_trainer.py 78KB，高度耦合\\\\n\\\\n**三个迁移方案**：\\\\n\\\\n| 方案 | 工作量 | 风险 | 收益 |\\\\n|------|--------|------|------|\\\\n| A: 全量迁移到 verl-agent | 3-4周 | 高 | 最干净，最新算法 |\\\\n| B: 渐进式（升级verl→改rollout→加GiGPO）| 2-3周分阶段 | 中 | 平衡 |\\\\n| **C: Cherry-pick GiGPO** | **3-5天** | **低** | 最小侵入，验证算法价值 |\\\\n\\\\n**推荐当前选方案 C**：项目在活跃实验阶段（23个实验），框架大改风险太高。先移植 GiGPO 验证效果，后续再决定是否做 rollout 重构。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 201
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T04:18:24.566761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_exp023c-serial-restart_20260515T041425",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T04:18:24.717684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp023c-serial-restart_20260515T041425\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"code:exp023c-serial-restart\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-15T04:14:25.839276+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"Bash\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"exp023c 启动成功，正在进行 val_before_train 阶段。\\\\n\\\\n**汇报：**\\\\n\\\\n1. **envs.yaml** — `AlfworldSG` 已回退：`parallel_friendly: false`, `max_workers: 1` ✓\\\\n2. **config.py** — `score: float = 10.0` ✓（从 1.0 改回）\\\\n3. **env.py** — Import OK，无语法错误 ✓\\\\n4. **exp023c 进程**：\\\\n   - tmux session: `exp023c_grpo_serial`\\\\n   - PIDs: 451198 (GP\\\", \\\"turn_count\\\": 7}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 150
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T04:18:24.769799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_exp023b-tatsu-fix-v2_20260515T041710",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T04:18:24.873028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp023b-tatsu-fix-v2_20260515T041710\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"code:exp023b-tatsu-fix-v2\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-15T04:17:10.706599+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [], \\\"last_text\\\": \\\"You've hit your limit · resets 5am (UTC)\\\", \\\"turn_count\\\": 1}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 103
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T04:19:22.945986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_exp023b-tatsu-fix-v3_20260515T041808",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T04:19:23.046782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp023b-tatsu-fix-v3_20260515T041808\\\", \\\"status\\\": \\\"cancelled\\\", \\\"task_type\\\": \\\"code:exp023b-tatsu-fix-v3\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-15T04:18:08.770583+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T04:18:56.567915+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T04:19:38.789462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cancel_worker,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T04:19:38.890320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T04:19:49.514019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cancel_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "tool_args": {
+              "worker_id": "worker_code_exp023b-tatsu-fix-v2_20260515T041710"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T04:20:05.736702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp023b-tatsu-fix-v2_20260515T041710\\\", \\\"status\\\": \\\"cancelled\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "elapsed_ms": 16222
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T04:20:05.838016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际跑 2（exp023c 串行 GRPO，未入 registry，Worker 监控中） | Worker 池 1 (GPU 0 / CPU 1)\n\n## Session 7 状态同步\n\nHandoff 描述的是 exp020 修复阶段，实际已推进到 exp023c。以下是真实当前状态：\n\n### 实验进展（自 Loop #6 以来）\n1. **exp021_ragen_sft_v4** ✅ RAGEN 格式 SFT 成功，val success=25%, action_is_valid=87.5%\n2. **exp022_grpo_from_sft_v4** ❌ killed — GRPO step 0 val: success=12.5%, **action_is_valid=48.75%**（vs SFT 87.5%，严重退化）。kl_loss_coef=0.5, env_groups=8。仅跑 1 step 后 kill\n3. **exp023_grpo_parallel** ❌ failed — textworld/tatsu 线程不安全崩溃\n4. **exp023c 串行 GRPO** 🏃 已启动，val_before_train 进行中。parallel_friendly=false, max_workers=1, score=10.0\n\n### Worker 关键产出\n- **线程安全修复**（diagnose Worker）：在 env.py 添加 `_TW_LOAD_LOCK` 包裹整个 textworld 加载链，16/16 并行 reset 验证通过。**并行模式可用于后续实验**\n- **verl-agent 迁移调研**：推荐方案 C（cherry-pick GiGPO 算法，3-5 天），避免框架大改风险。完整报告在 artifacts/verl_agent_migration_plan.md\n\n### ⚠️ 核心风险：GRPO 框架引入 action_is_valid 退化\nexp022 step 0（训练前）action_is_valid 从 SFT 的 87.5% 降到 48.75%。可能原因：\n- GRPO 用 temperature=1.0 采样 vs SFT eval 可能用 greedy\n- vLLM 推理 vs HF generate() 行为差异\n- RAGEN 框架 prompt 拼接细节差异\n\nexp023c 的 step 0 val 将再次验证此退化是否稳定复现。如果复现，需要诊断具体原因再决定 GRPO 是否可行。\n\n### 下一步\n1. 等 exp023c Worker 回调 → 注册 registry + cron 监控\n2. step 0 val 结果将确认 GRPO 框架退化是否复现\n3. 如 exp023c 30 步完成且 success ≥ 25%（维持 SFT baseline），MVP Phase A 达成\n4. 如 negative（entropy 坍缩/退化），建议评估 GiGPO 替代方案\n\n请确认是否需要调整策略。",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T04:20:09.906257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4068
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T04:20:22.787521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T04:20:22.938965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "elapsed_ms": 151
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T04:21:45.310015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "memory.md",
+              "content": "# Memory — cost-verify-agent-rl\n\n## ALFWorld 动作命名：move vs put（2026-05-14 纠正）\n- **ALFWorld admissible_commands 包含 `move X to Y`，不含 `put X in/on Y`**\n- PDDL planner 生成的 `move` 动作是正确的 admissible action\n- 之前的诊断 worker 误判为\"move 错应改 put\"导致 exp019 数据错误 → D019 kill\n- exp019b 使用原始 expert data（保留 move）+ admissible actions augmentation\n- `augment_admissible_v2.py` 确认：move_actions=678, put_actions=0\n\n## [已解决] SFT 数据必须与 RAGEN 格式精确匹配（2026-05-15 验证）\n**根因**：SFT 训练数据的 observation/action 格式与 RAGEN 运行时格式不一致 → 分布偏移 → val 0% success。\n\n**RAGEN 精确格式**（ctx_manager.py L577/L656/L201）：\n- System: `\"You're a helpful assistant. \"` + AlfworldSG env_instruction\n- User Turn 1: `\\nTurn 1:\\nState:\\n{obs}\\nYou have 50 actions left. Always output: <think>...</think> <answer>...</answer>...`\n- User Turn 2+: `Reward:\\n0.0\\n` + Turn N state\n- Assistant: `<think>[Assessment]...[Suggestion]</think><answer>action</answer>`\n- Action 解析：先匹配 `<answer>` 标签，fallback 匹配 `</think>` 后裸文本\n\n**证据**：\n- exp019b: eval_sft_fast 20% success → RAGEN val 0% success（格式不匹配）\n- exp021: RAGEN 格式 v4 数据 SFT → RAGEN val **25%** success（格式对齐后修复）\n- exp021: eval_sft_fast 0% success（预期，模型已对齐 RAGEN 格式）\n\n**教训**：SFT 数据必须用 `convert_sft_to_ragen_format.py` 转换为 RAGEN 精确格式。后续 SFT 实验全部用 v4+ 数据。\n\n## RAGEN Reward Pipeline 确认正常（非 Bug）\n- raw_reward=0 是日志 artifact（env.py info dict 缺 raw_reward 字段，es_manager 默认 0）\n- 实际 reward 通过 history['reward'] 正确传递：critic/score 正确（step 7 score/mean=0.46875=3/64×10.0）\n- NaiveRewardManager 是 pass-through，不覆盖 env reward\n- DummyRewardManager 同理，rm_scores 直接返回 env reward\n\n## Sparse GRPO 冷启动根因\n- Base model ALFWorld success ~4.7%（仅 val，train temperature=1.0 下接近 0%）\n- 纯 sparse reward（won=10.0）下，几乎所有 GRPO group 全零 reward → advantage=0 → pg_loss=0\n- LR=1e-7 过保守（零梯度），LR=1e-6 collapse（step 7 grad_norm 1.48→0.09），LR=5e-7 可行但信号不足\n- 解法：Expert SFT 提升 baseline success → GRPO\n\n## GRPO from SFT 的 Entropy 坍缩教训（2026-05-15 exp020b）\n- exp020b: 从 exp019b SFT checkpoint (RAGEN val 0% 但 train 18.75%) 跑 sparse GRPO\n- 结果：train success 18.75%→4.69%，val 始终 0%，entropy 0.107→0.042（坍缩 61%），KL 0→0.0092\n- **kl_loss_coef=0.1 约束过弱**，无法阻止策略偏移\n- D023 调整：kl_loss_coef 提高到 0.5，val env_groups ≥ 8\n\n## Reward Scale 与 GRPO 标准化（2026-05-15 Reviewer 确认）\n- ALFWorld env config.py 默认 `score=10.0`，即 won=10.0 / lost=0.0\n- **`norm_adv_by_std_in_grpo=True` 时，0/10 和 0/1 经标准化后 advantage 完全相同**\n- 因此 reward scale 不影响 GRPO 学习信号，保持 score=10.0 即可\n- 之前 exp023 改为 1.0 是不必要的变量引入，已回退\n\n## [已修复] TextWorld/tatsu 线程安全（2026-05-15）\n- parallel_friendly=true + max_workers=4 时，RAGEN 多线程并行 rollout 崩溃\n- 根因：textworld.envs.pddl.logic._PARSER 是模块级 tatsu 单例，内部有 buffer/memoization 状态，非线程安全\n- **修复方案**：在 ragen/env/alfworld/env.py 添加 `_TW_LOAD_LOCK = threading.Lock()`，包裹 register_game + gym.make + alfred_env.reset() 整个 PDDL 解析链\n- **验证通过**：16/16 并行 val env resets 成功（max_workers=4, 20.7s）\n- 仅锁 `_RAW_ENV_CACHE` 不够（早期尝试失败），必须锁住整个 textworld 加载链\n- **当前策略**：exp023c 先用串行跑（保守验证），后续实验可启用并行（~4x 加速）\n\n## Qwen3 模型命名规范（2026-05-15 确认）\n- **Qwen3-1.7B = Instruct 版本**（无单独的 -Instruct 后缀）\n- Base 版本需要显式 `-Base` 后缀：`Qwen3-1.7B-Base`\n- 本项目使用的 Qwen3-1.7B 是 Instruct 变体，chat_template 含 system/user/assistant 角色标记\n- Temperature 默认值：config YAML 中为 1.0（GRPO 标准，不需要修改）\n\n## Dense Reward Gaming 教训\n- exp013f: unconditional valid_action_bonus=0.15 被独立最大化（action_is_valid 60%→97.5%），success 不变\n- reward 比值 1:67 太弱，cumulative bonus (4.5) 主导学习信号 vs sparse success (10.0)\n- 教训：dense reward 必须 success-gated 或极低比例\n\n## Expert SFT 两阶段路线验证（2026-05-14 → 2026-05-15）\n- **三阶段演进**：exp008_sft（format 知识）→ exp019b（v3 task 知识，eval_sft_fast 格式）→ exp021（v4 RAGEN 格式）\n- v4 数据用 `convert_sft_to_ragen_format.py` 从 v3 转换（2546 train + 133 val）\n- **最佳 RAGEN val 结果**：exp021 success=25%, action_is_valid=87.5%\n- Checkpoint: `/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/`\n- Symlink: `qwen3_exp021_ragen_sft_v4`（通过 train.py:137 \"qwen\" 断言）\n\n## ⚠️ GRPO 框架引入 action_is_valid 退化（2026-05-15 exp022）\n- exp021 SFT eval: action_is_valid=87.5%, success=25%\n- exp022 GRPO step 0 val（训练前）: action_is_valid=48.75%, success=12.5%\n- 退化幅度巨大（87.5% → 48.75%），发生在训练开始前\n- 可能原因：temperature=1.0 采样 vs greedy、vLLM vs HF generate()、框架 prompt 拼接差异\n- exp023c step 0 val 将验证此退化是否稳定复现\n\n## Ray 基础设施修复清单\n- RAY_memory_monitor_refresh_ms=0 禁用 MemoryMonitor（cgroup 阈值冲突）\n- object_store_memory=30GB 通过 Hydra config override（env var 无效）\n- env_groups=4 降低并发（128→64 游戏）\n- TMPDIR=/root/autodl-tmp/tmp/（/tmp 只 30GB）\n- RAY_SYSTEM_MEMORY=210GB\n- HYDRA_FULL_ERROR=1\n\n## GRPO 替代算法调研结论\n- SPEAR（ICLR 2026）：top pick，专门解决 sparse reward + 冷启动\n- GiGPO（verl-agent）：两层分组优势估计，对多步任务 credit assignment 有理论优势\n- verl-agent 迁移推荐方案 C：cherry-pick GiGPO 算法（3-5 天），避免框架大改\n- 详见 artifacts/verl_agent_migration_plan.md 和 artifacts/grpo_alternatives_survey.md\n\n## 服务器信息\n- bjb1-17606: 2× RTX PRO 6000 Blackwell 94GB, conda base 环境\n- GRPO 30 步 ~2.8h（串行）, SFT ~48 min 单卡\n- 用 conda（非 venv）：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n## API Key\n- W&B key 未配置（实验不用 W&B tracking，cron 直接检查进程 + 日志）\n\n## [失败模式] Checkpoint 路径命名断言（2026-05-14）\n- train.py:137 用字符串匹配 `\"qwen\" in config.model_path.lower()` 判断模型类型，启用 response_mask\n- 微调后的 checkpoint 保存在自定义路径，不含 \"qwen\" → AssertionError\n- 修复方案：创建含 \"qwen\" 的 symlink 指向 checkpoint 目录\n- 后续所有从微调 checkpoint 启动 GRPO 的实验都需注意此问题\n\n## [失败模式] Cron 误报（2026-05-14）\n- submit_training_job 的 cron 监控通过 PID 检测进程存活\n- nohup 启动的进程 PID 与 submit_training_job 记录的 PID 不同 → cron 认为进程已死 → 误报 failed\n- cron 无法区分正常退出（exit 0）和崩溃 → 训练正常完成也会被标记为 failed\n- 教训：**必须用 submit_training_job 提交训练**（不用 nohup），确保 PID 一致；cron 报 failed 时先验证日志再信\n"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T04:21:45.360776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T04:22:07.942770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__send_progress",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T04:22:08.043546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T04:22:29.372079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:grpo-val-degradation",
+              "project": "cost-verify-agent-rl",
+              "task_prompt": "## 任务：诊断 GRPO 框架 val 阶段 action_is_valid 严重退化\n\n### 背景\nexp021_ragen_sft_v4 SFT checkpoint 在两种评估方式下表现差异巨大：\n- **SFT eval（analysis Worker, RAGEN val_before_train, ~4 episodes）**: success=25%, action_is_valid=87.5%\n- **GRPO step 0 val（exp022, 训练前, 8 env_groups）**: success=12.5%, action_is_valid=48.75%\n\n同一个 checkpoint，同一种评估任务，action_is_valid 从 87.5% 暴跌到 48.75%。这发生在 GRPO 训练开始之前（step 0 validation），所以不是训练导致的退化。\n\n### 你的任务\nSSH 到 bjb1-17606 调查退化根因。**不要启动训练或占用 GPU**（当前有 exp023c 在跑）。只做只读诊断。\n\n需要对比的维度：\n1. **推理参数**：RAGEN SFT eval 的 temperature/top_p/do_sample vs GRPO val 的 vLLM 推理参数\n2. **Prompt 格式**：SFT eval 构建的 prompt vs GRPO val 构建的 prompt（ctx_manager.py 中的 val_before_train 路径）\n3. **Token 化差异**：两种方式的 tokenizer 配置是否一致（chat_template, padding, truncation）\n4. **vLLM vs HF generate()**：GRPO 用 vLLM，SFT eval 可能用 HF generate()\n\n### 环境\n- 服务器：bjb1-17606\n- 工作目录：/root/cost-verify-agent-rl/RAGEN/\n- Conda：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- SFT checkpoint：/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/\n- **注意：exp023c 正在使用 GPU，禁止启动任何 GPU 进程**\n\n### 需要检查的文件\n- `ragen/env/alfworld/ctx_manager.py` — val_before_train prompt 构建逻辑\n- `ragen/llm/agent_proxy.py` — vLLM 推理参数\n- exp022 的 config yaml: `/root/cost-verify-agent-rl/RAGEN/configs/_alfworld_exp022_grpo_from_sft_v4.yaml`（如果存在）\n- exp021 的 SFT eval 脚本或配置（可能在 artifacts/ 或 scripts/ 目录）\n- exp022 日志：`~/runs/cost-verify-agent-rl/exp022*.log`\n\n### 产出\n写一个简洁的诊断报告，包含：\n1. 两种评估方式在推理参数、prompt 格式上的具体差异\n2. 哪个差异最可能导致 action_is_valid 从 87.5% 降到 48.75%\n3. 建议修复方案（如果可以通过 config 修改解决）\n\n报告写入 `/root/cost-verify-agent-rl/RAGEN/artifacts/grpo_val_degradation_diagnosis.md`（SSH 远程写）。",
+              "tool_groups": "['ssh']",
+              "context": "服务器 bjb1-17606, conda base 环境。exp023c 正在使用 GPU（tmux session: exp023c_grpo_serial），不要干扰。只做只读诊断。"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T04:22:32.339914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_grpo-val-degradation_20260515T042229\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_diagnose_grpo-val-degradation_20260515T042229.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diagnose_grpo-val-degradation_20260515T042229 started. Use get_worker_status('worker_diagnose_grpo-val-degradation_20260515T042229') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2967
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T04:22:42.945424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T04:22:43.147957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "ToolSearch",
+            "elapsed_ms": 202
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T04:22:46.666342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T04:36:50.683574+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 池现在 2（exp023c-serial + grpo-val-degradation 诊断），满足红线要求。更新过时的 ROADMAP。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp020_grpo_from_sft"
+          },
+          "id": "event-000055"
+        }
+      ],
+      "message_count": 55
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp020-grpo-from-sft.md"
+}

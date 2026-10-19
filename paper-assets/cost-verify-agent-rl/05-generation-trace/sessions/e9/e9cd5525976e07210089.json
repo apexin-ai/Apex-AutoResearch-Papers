@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9cd5525976e07210089",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose factorial seed2 exit",
+  "task_key": "worker_diagnose_factorial-seed2-exit_20260518T224538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_factorial-seed2-exit_20260518T224538_result.json",
+    "occurrence": 1,
+    "bytes": 1158,
+    "sha256": "bb233cece2b369dd359daedaaa50c65a6739723336b896e0d2e185622cdc71cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**退出原因：正常完成（success）**\n\n实验跑完了全部 15 steps，进度条显示 `14/15`（0-indexed，即 step 15 已完成）。日志中有完整的 step 15 metrics 输出和 checkpoint 保存记录。尾部的 `BrokenPipeError` 仅是 W&B atexit teardown 的无害异常，不影响训练。\n\n### Step 15 关键 Metrics\n\n| Metric | 值 |\n|---|---|\n| **train success rate** | 55.5% |\n| **train pass@8** | 87.5% |\n| **val OOD success (pass@1)** | 0.75% |\n| **val OOD action_is_valid** | 17.3% |\n| **KL divergence (ppo_kl)** | 0.618 |\n| **KL loss** | 5.905 |\n| **val-core reward mean@6688** | 0.057 |\n\n### Checkpoint 状态\n\n完整保存，3 个 checkpoint（step 5/10/15），step 15 包含完整的 model、optim、extra_state（2-rank FSDP），总大小约 20GB。\n\n### 关键观察\n\n- Train success 55.5% 表明训练分布上有明显学习\n- **Val OOD success 仅 0.75%**，泛化极差，与 train 55.5% 形成巨大 gap\n- Val OOD action_is_valid 仅 17.3%（train 68.7%），说明 OOD 任务上模型生成的动作大部分无效\n- KL = 0.618 处于合理范围，未爆炸"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-factorial-seed2-exit.md"
+}

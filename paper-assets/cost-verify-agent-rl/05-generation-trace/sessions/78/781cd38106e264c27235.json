@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "781cd38106e264c27235",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag 8b cell c episode v2 oom",
+  "task_key": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_8b_cell_c_episode_v2_oom_20260519T121253_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "adacdf3271d40544bc4eda042f93a549d7bc253b9e3f537742c2cd87b212e431"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 `artifacts/diagnose_8b_cell_c_oom.md`。\n\n**核心发现**：\n\n1. **`ppo_max_token_len_per_gpu` 是完全的 no-op** -- `use_dynamic_bsz=False` 时代码根本不读这个参数，micro-batch 按 `ppo_micro_batch_size_per_gpu=1` 固定切分。这就是为什么 v2 改了参数但内存数字完全一样。\n\n2. **OOM 位置**：`dp_actor.py:468 loss.backward()` -- actor update 的 backward pass，4 个 GPU 同时崩。失败的 8.76 GiB 分配是 lm_head 的 fp32 logits 梯度 (1, ~15475, 151936)。\n\n3. **90 GiB 占用成因**：fp32 model params (8.2G) + gradients (8.2G) + logits tensor (4.7G) + checkpoint activations (4.6G) + FSDP buffers + 大量 allocator 碎片 (118G allocated vs 90G active)。\n\n**推荐修复（方案 A）**：\n```yaml\nactor_rollout_ref:\n  actor:\n    use_dynamic_bsz: True\n    ppo_max_token_len_per_gpu: 8192\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n```\n\n`param_offload: True` 释放 ~8 GiB，加上原有 5 GiB 余量 = 13 GiB > 8.76 GiB 需求。代价是训练速度降低 10-20%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-8b-cell-c-episode-v2-oom.md"
+}

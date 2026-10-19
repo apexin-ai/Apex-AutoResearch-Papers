@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84151bb523002757b194",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "edit sign misattribution update",
+  "task_key": "worker_edit_sign_misattribution_update_20260517T062644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_sign_misattribution_update_20260517T062644_result.json",
+    "occurrence": 1,
+    "bytes": 1758,
+    "sha256": "96a7e695d2b333df92c1ea07177178ef308a1e8991b816d7cf67feba4fad5589"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改完成。汇总：\n\n---\n\n### 更改汇总\n\n**文件 1: `failure_unification_table.md`** — 5 处更新：\n\n| 位置 | 原表述 | 新表述 |\n|------|--------|--------|\n| Summary (L5) | \"Credit Assignment Decay: γ-attenuated credit ... undifferentiated failure\" | \"Advantage Sign Misattribution: advantage SIGN determined by episode outcome, not window-local action quality...\" |\n| Summary (L5) | \"structural credit assignment decay (γ^k attenuation + undifferentiated failure signal)\" | \"structural advantage sign misattribution (direction error from episode-level outcome + γ^k magnitude attenuation)\" |\n| exp013f Key Evidence (L11) | \"failed episodes distribute identical negative advantage across all windows\" | \"failed episodes assign incorrect advantage SIGN to all windows (good actions penalized, bad actions reinforced based on episode outcome rather than action quality)\" |\n| exp026 Root Cause (L13) | 旧的 Credit Assignment Decay 描述 | \"Advantage sign misattribution: advantage SIGN determined by episode outcome...\" |\n| Community value (L28) + Scope (L35) | \"Credit Assignment Decay\" | \"Advantage Sign Misattribution\" with sign error explanation |\n\n**文件 2: `credit_assignment_analysis.py`** — 完整重写：\n- Docstring 改为 \"Advantage Sign Misattribution Analysis\"\n- Fig A 注释明确标注 magnitude decay 是次要机制，sign misattribution 才是根本问题\n- 新增 `plot_sign_misattribution()` 占位函数（四象限可视化）\n\n**文件 3: `why_step_independent.md`** — 1 处更新：\n- Section 5 (L95): 在 \"all steps get the same reward\" 后插入 sign misattribution 解释，替代原来的 \"making within-group normalization collapse\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-sign-misattribution-update.md"
+}

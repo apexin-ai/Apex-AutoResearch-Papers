@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4704bd027366df21d473",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra bjb1 exploration",
+  "task_key": "worker_infra_bjb1_exploration_20260521T211104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_bjb1_exploration_20260521T211104_result.json",
+    "occurrence": 1,
+    "bytes": 3665,
+    "sha256": "51e4e597cfbc9352565de895beadb8b1fffc7a958e9ae1858da790847402bcce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "探查完成。汇总如下：\n\n---\n\n## bjb1-17606 资源探查报告\n\n### 1. GPU 状态\n| GPU | 型号 | 显存 | 已用 | 利用率 |\n|-----|------|------|------|--------|\n| cuda:0 | RTX PRO 6000 Blackwell | 96GB | **0 MiB** | **0%** |\n| cuda:1 | RTX PRO 6000 Blackwell | 96GB | **0 MiB** | **0%** |\n\n两块 GPU 完全空闲。\n\n### 2. 磁盘\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 根分区 `/root` | 30GB | 8.4GB | 22GB | 28% |\n| 数据盘 `/root/autodl-tmp` | 250GB | 171GB | 80GB | 69% |\n\n### 3. 异常进程\n- **zombie ray::TaskRunner** (PID 337402): CPU 66.5%，RAM 8.4GB，**无 GPU 占用**。来自 exp029 训练崩溃（CUDA OOM at `loss.backward()`）。\n- **defunct wandb-core** (PID 337879): 僵尸进程。\n- **checkpoint_watchdog.sh**: 仍在运行，监控已结束的 exp029-seed4。\n- 这些都是可清理的孤儿进程。\n\n### 4. 可用 Checkpoint 列表\n\n| Checkpoint | 路径 | 大小 | 格式 | 可直接推理? |\n|---|---|---|---|---|\n| exp021_ragen_sft_v4/final | `.../exp021_ragen_sft_v4/final/` | ~8GB | HF safetensors | **是** |\n| exp021_ragen_sft_v4/checkpoint-160 | `.../exp021_ragen_sft_v4/checkpoint-160/` | ~8GB | HF safetensors | **是** |\n| exp021_ragen_sft_v4/checkpoint-320 | `.../exp021_ragen_sft_v4/checkpoint-320/` | ~8GB | HF safetensors | **是** |\n| **exp029-seed4/global_step_15_hf** | `.../exp029-seed4/global_step_15_hf/` | ~4GB | **HF safetensors** | **是** |\n| exp029-seed4/global_step_15/actor | `.../exp029-seed4/global_step_15/actor/` | ~12GB | FSDP sharded .pt | 否，需转换 |\n| exp029-seed7-high-kl/global_step_5/actor | `.../exp029-seed7-high-kl/global_step_5/actor/` | 21GB | FSDP sharded .pt | **否，需转换** |\n| exp029-seed7-high-kl/global_step_7/actor | `.../exp029-seed7-high-kl/global_step_7/actor/` | 21GB | FSDP sharded .pt | **否，需转换** |\n| scienceworld_sft/huggingface | `.../scienceworld_sft/huggingface/` | 7.6GB | HF safetensors (2-shard) | **是** |\n\n注意：exp029-seed7-high-kl 的 huggingface 子目录只有 tokenizer 文件，**缺少 model weights**，HF 转换未完成。\n\n### 5. 评估脚本和数据\n- **ScienceWorld eval 脚本**: `eval_scienceworld.py`, `eval_scienceworld_info_loss.py`, `eval_per_task_type.py` ✅\n- **通用 checkpoint eval**: `scripts/eval_checkpoint.py`, `scripts/eval_checkpoint_full_context.py` ✅\n- **FSDP→HF 转换工具**: `scripts/convert_fsdp_to_hf.py`（CPU-only，不需 GPU）✅\n- **ALFWorld valid_unseen 数据**: `/root/autodl-tmp/alfworld/json_2.1.1/valid_unseen/` (~2.2GB, 约70+个task) ✅\n- **最近评估结果**: scienceworld_sft 已完成 ScienceWorld dev 评估（full context: 34.83%, h=2: 4.49%）\n\n### 6. 建议：可立即执行的任务\n\n**优先级排序：**\n\n1. **清理孤儿进程** — kill PID 337402 (ray) 和 337879 (wandb)，释放 8.4GB RAM\n2. **转换 exp029-seed7-high-kl 的 FSDP checkpoint 到 HF 格式** — 用 `convert_fsdp_to_hf.py`，CPU-only 无需 GPU，两个 step (5, 7) 都转\n3. **跑 OOD eval** — exp029-seed4/global_step_15_hf 已经是 HF 格式，可立即用于评估。但需确认是用 ALFWorld OOD eval 还是 ScienceWorld eval（当前脚本是 ScienceWorld 的）\n4. **exp029-seed7-high-kl 转换完成后也跑 eval** — 对比不同 seed/KL 设置的效果\n\n**关键疑问（需要你确认）：**\n- 目标 OOD eval 是 ALFWorld 还是 ScienceWorld？当前服务器上只有 ScienceWorld eval 脚本，没看到 ALFWorld 专用 eval 脚本\n- exp029-seed4 step 15 是否已经完成过 eval？如果没有，这是最快能跑起来的任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-bjb1-exploration.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e3ce96f5b8277744f5a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code hsweep launch infra",
+  "task_key": "worker_code_hsweep_launch_infra_20260517T020741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hsweep_launch_infra_20260517T020741_result.json",
+    "occurrence": 1,
+    "bytes": 2021,
+    "sha256": "9bad46ba7f7b34bb6f10847b177f723caabe76d32d01a3cafe3807a627bfb403"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n## 产出汇总\n\n### 1. Seed 机制\n\n| 项目 | 详情 |\n|------|------|\n| Config 字段 | `seed.train` (top-level，base.yaml 默认 10000) |\n| Hydra override | `seed.train=20000` |\n| 机制 | ESManager 用 `base_seed + seed_counter`，counter 每轮 reset +env_groups(16)。不同 base_seed → 不同 game 选择序列 |\n| launch 脚本策略 | seed 1→10000, seed 2→20000, ..., seed 5→50000（间隔 10000，远超 15steps×16groups=240 的窗口） |\n\n### 2. Trajectory Logging\n\n**不内置。** 无 `VERL_ENABLE_TRACKER` 或 trajectory dump flag。\n\n- `BIAVRTracker` 追踪 verify/action 指标但不落盘\n- 添加改动量评估：在 `es_manager.py` 的 rollout loop 中加 ~25 行 JSONL dump（per-step action + obs + reward），非阻塞改动\n- 建议 h-sweep 跑完后按需添加，不阻塞启动\n\n### 3. launch_hsweep.sh\n\n已创建：`/root/cost-verify-agent-rl/scripts/launch_hsweep.sh`\n\n用法：`./launch_hsweep.sh 5 2` → 以 seed.train=20000 启动 h5 实验，wandb experiment 名 `hsweep-h5-seed2`\n\n### 4. Tatsu Patch 部署状态\n\n- `patches/__init__.py` ✓ 已创建\n- `train.py` 第 4 行 `import patches.tatsu_parallel_fix` ✓ 已添加\n- 验证: `[tatsu_parallel_fix] Patched 4 singleton parsers with thread-local instances` ✓\n\n### 5. parallel_friendly 状态\n\n当前 `envs.yaml` 中 `AlfworldSG`: **`parallel_friendly: false, max_workers: 1`**\n\nTatsu patch 已部署，parallel 执行安全。exp029 结束后执行一行即可启用：\n```bash\nsed -i 's/parallel_friendly: false/parallel_friendly: true/; s/max_workers: 1/max_workers: 4/' /root/cost-verify-agent-rl/RAGEN/config/envs.yaml\n```\n\n### Pre-flight (C002) 验证\n\n- ✓ 入口点: `python train.py --config-name` (与 exp029 一致)\n- ✓ 磁盘: 86GB 可用\n- ✓ Model path: `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4/` 存在\n- ✓ 5 个 config 参数一致（h2/h5/h10/h20 用 step_independent，full 用 full mode）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-hsweep-launch-infra.md"
+}

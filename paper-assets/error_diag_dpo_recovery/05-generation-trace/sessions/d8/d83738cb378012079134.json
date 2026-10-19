@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d83738cb378012079134",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code analyze divergence",
+  "task_key": "worker_code_analyze-divergence_20260513T063822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analyze-divergence_20260513T063822_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "ccd69975abf57f3f85bb8b89efcc49b863f424c20f143733b1704091a6ab570a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出：\n\n1. **`scripts/analyze_divergence.py`** — 完整 CLI，支持多目录输入、expert 匹配、divergence 分布分析、early/mid/late 分组、γ(d) 映射。输出 JSON + LaTeX 表格 + stdout summary。\n2. **`tests/mock_divergence_test/`** — mock 数据生成 + 自动验证脚本，20 条 trajectory（7 success, 12 matched failures, 1 unmatched），所有检查通过。\n3. LaTeX 3 张表格格式正确（booktabs），可直接 `\\input` 到论文。\n\nv7 数据到后直接跑：\n```bash\npython3 scripts/analyze_divergence.py \\\n  --trajectory_dirs data/trajectories_v7_icl_cuda0 data/trajectories_v7_icl_cuda1 \\\n  --expert_file data/alfworld_sft.json \\\n  --output_dir outputs/divergence_analysis\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analyze-divergence.md"
+}

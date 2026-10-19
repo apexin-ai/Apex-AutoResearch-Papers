@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "637a9f9475f61406ec5e",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_16_1779069587.md",
+  "task_key": "loop_16_1779069587",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779069587.md",
+    "occurrence": 1,
+    "bytes": 4735,
+    "sha256": "3e6c328b8ba31405156bd159de4308764acbc8e945da1d7b58bb9bf195eada13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_wall_time\nupdated: '2026-05-18T01:35:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-47453 必须 `export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR`（30GB root overlay，Ray/vLLM 会填满 /tmp）\n- westd-47453 必须 `export TORCH_COMPILE_DISABLE=1`（RTX PRO 6000 inductor bug，不加会 crash）\n- bjb1-17606 GPU 白名单: cuda:0,1；westd-47453 GPU 白名单: cuda:0,1,2,3\n- factorial eval 用的是 AlfworldOOD（无 SG prompt），最终需要用 AlfworldSG_OOD re-eval 才能与 exp029 对比\n- exp029/global_step_15 是唯一保留的 exp029 checkpoint（其他已删），禁止删除\n- westd g050 完成后需清理 `/root/miniconda3/lib/python3.12/site-packages/sitecustomize.py`\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-17606**: 工作目录 `/root/cost-verify-agent-rl/RAGEN`，conda base，Python `/root/miniconda3/bin/python`\n  - 磁盘: 73% used, 70GB free（刚清理过）\n  - 活跃: hsweep_h2_seed2 PID 945877 (cuda:0,1, step 11/15, 运行 11h+)\n  - ADV log: `/root/runs/cost-verify-agent-rl/hsweep_h2_seed2/advantage_log.jsonl` (2200+ 行)\n  - Checkpoints: `exp029/global_step_15`, `hsweep-h2/global_step_{10,15}`\n  - 待执行脚本: `/root/cost-verify-agent-rl/scripts/run_exp029_reeval.sh`, `analyze_advantage_log_v2.py`\n  - h10 config ready: `_alfworld_hsweep_h10.yaml`\n\n- **westd-47453**: 工作目录同上，conda base，磁盘 ~40%\n  - 活跃: factorial PID 482241 (cuda:0,1, step 6/15), gsweep_g050 PID 85798 (cuda:2,3, step 10/15)\n  - Watchdog PID 259808 alive — g050→g080→g095→g100 自动链式\n  - g-sweep configs ready: `_alfworld_gamma_sweep_g{080,095,100}_h5.yaml`\n  - factorial re-eval config: `_alfworld_factorial_h2_reeval_sg_ood.yaml` (需填 best step)\n  - W&B: factorial run 6liw7fm1, gsweep_g050 run 未记录\n\n### 3. 📊 当前状态\n刚完成 Director 指令的 P0-1 (SFT confound check) 和 P0-2 (Cell 4 equivalence) Worker 派发，**两个 Worker 尚未返回结果**。\n\n**RUNNING 实验**:\n| exp_id | 服务器/GPU | Step | 状态 | 关键 |\n|--------|-----------|------|------|------|\n| factorial_h2_episodeadv_seed1 | westd cuda:0,1 | 6/15 | **V型恢复** | step 5 反弹 15.63%（场景A确认）, val 5.97% |\n| hsweep_h2_seed2 | bjb1 cuda:0,1 | 11/15 | val collapsed | 运行 11h+，即将完成 |\n| gsweep_g050_h5_seed1 | westd cuda:2,3 | 10/15 | COLLAPSED | entropy=0.03, watchdog alive |\n\n**等待中的回调**:\n- `worker_verify_sft_confound_check_20260518T013431` — 检查 hsweep/factorial 是否共用 SFT checkpoint\n- `worker_verify_cell4_equivalence_20260518T013441` — 确认 full context 下 step-level ≡ episode-level\n- `worker_monitor_hsweep_h2_seed2_completion_20260518T011331` — hsweep 完成检测 + ADV 分析 + exp029 reeval 启动\n- hsweep_h2_seed2 cron 回调（完成时）\n- gsweep_g050 cron 回调（完成时）\n- ScheduleWakeup ~02:05 UTC — factorial 30分钟周期监控\n\n### 4. 📋 待办（条件触发式）\n- SFT confound Worker 返回 → 如果 hsweep 用了 base model 而非 SFT → 立即汇报 Director 需补控制实验，准备 config\n- Cell 4 equivalence Worker 返回 → 汇报 Director full context 下 step-level 是否等价于 episode-level\n- hsweep_h2_seed2 完成 → (a) 读最终 metrics (b) 运行 analyze_advantage_log_v2.py (c) 启动 exp029 reeval on bjb1 cuda:0,1 (d) 启动 hsweep_h10 on bjb1 cuda:0,1（需等 reeval 完成或并行安排）\n- gsweep_g050 完成 → watchdog 自动启动 g080，确认 cron 注册\n- factorial 完成 → (a) 读最终 metrics (b) 用 `_alfworld_factorial_h2_reeval_sg_ood.yaml` re-eval（填入 best step）\n- factorial 30分钟监控 → spawn worker 读 Ray worker log，更新 registry，显著变化汇报 Director\n\n### 5. 🎯 战略上下文\n- **核心发现 (D066)**: factorial step 5 V型反弹（3.13%→15.63%）确认 sign misattribution 是 primary collapse driver。标准 h=2 同期永久 0%。这是论文 Table 2 核心数据。\n- **2×2 矩阵**: Cell 1 (step-ind + step-adv = 0%), Cell 2 (step-ind + episode-adv = 15.63% recovering), Cell 3 (full + episode-adv = 28.1%), Cell 4 待确认是否被 Cell 3 覆盖\n- **SFT confound 是当前最大风险**: 如果 hsweep 用了 base model → 2×2 因果分离不干净，需补实验。Worker 结果尚未回来。\n- **Framing (D062)**: \"mechanistic diagnosis + factorial causal attribution\"，不是 \"contrarian/coarser is better\"\n- **易错点**: (1) factorial val 用 AlfworldOOD 不是 AlfworldSG_OOD，最终对比必须 re-eval (2) westd 提交命令必须带 TMPDIR + TORCH_COMPILE_DISABLE (3) bjb1 磁盘刚清理到 70GB free，checkpoint save 没问题但别忘了 h10 也需要空间 (4) g-sweep watchdog 在跑，不要手动干预 g050→g080 链式\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779069587.md"
+}

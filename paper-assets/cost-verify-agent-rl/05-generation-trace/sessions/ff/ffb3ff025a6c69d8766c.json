@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffb3ff025a6c69d8766c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor hsweep h20 and 7b status",
+  "task_key": "worker_monitor_hsweep_h20_and_7b_status_20260519T100537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_hsweep_h20_and_7b_status_20260519T100537_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "8e4fbd19a58bad36a107adf765965c6deb150f74792fb2bd2e18c41bb708bde3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册 (`art_20260519_cf3da9`)。关键发现：\n\n### hsweep_h20_seed1 (bjb1)\n- Step 4 已完成，**step 5 rollout 进行中**（超 ETA ~20h）\n- Train success: 20.3% → 13.3% → ? → 28.1%\n- **无 val 结果**（eval_total=0.0），step 5 可能触发首次 val\n- **Checkpoint 目录为空** — 无存档点\n- PID 77613 存活\n\n### 7b_cell_a_h2 (westd)\n- Step 1 完成，step 2 rollout 进行中\n- **强 collapse 信号**：val 28.1% → train 12.5%（一步腰斩），KL=1.92（h=20 仅 0.03），entropy=0.115（极低）\n- 与假设一致：h=2 step-independent 在 8B 模型上复现了同样的 information loss + sign misattribution pathology\n\n### 建议\n1. **h=20**: 等 step 5 完成。如果触发 val，记录后 kill；如果无 val，仅凭 train metrics kill。注意无 checkpoint。\n2. **7b_cell_a**: 继续监控，让 step 2 完成确认 collapse 趋势。这对论文是正面结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-hsweep-h20-and-7b-status.md"
+}

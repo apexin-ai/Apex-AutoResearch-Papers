@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88aa891e3817e0100b19",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_20_1779397802.md",
+  "task_key": "loop_20_1779397802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_20_1779397802.md",
+    "occurrence": 1,
+    "bytes": 4612,
+    "sha256": "84bf753cad20fba31bbda35ccfd8c2b9083e800190e762330f105d66c6944562"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-21T21:08:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 只能用 cuda:0,1；westd-47453 只能用 cuda:0,1,2,3。共 6 卡，不可越界\n- westd-47453 磁盘紧张：上一轮 Seed 4 OOD eval 因磁盘满失败，启动任何实验前必须先清理/检查磁盘\n- 8B 模型训练 GPU 占用 ~83/95.6 GB (87%)，不要增加 batch size 或 max_model_len\n- FSDP2 checkpoint 是 per-rank shards，eval 前必须用 `convert_fsdp_to_hf.py` 合并为 HF 格式\n- `save_contents` 必须放 `actor_rollout_ref.actor.checkpoint` 下，放错会保存完整 optimizer state (92GB)\n- `max_prompt_length` 必须严格小于 `max_model_len`，否则 vLLM 崩溃（v9c 教训）\n- 15 个 PREPARING 状态实验是僵尸（已有 conclusion 但 status 未推进到 DONE），不要当成活跃实验处理\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-17606**: root@bjb1-17606, 工作目录 `/root/cost-verify-agent-rl`, 2×GPU (cuda:0,1)\n- **westd-47453**: root@westd-47453, 工作目录 `/root/cost-verify-agent-rl`, 4×GPU (cuda:0,1,2,3)\n- Python 环境：两台服务器均为 aml-train 镜像，用 conda (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)，不要创建 venv\n- W&B: 项目已配置，实验自动上报\n- 模型：Qwen3-1.7B 为主力模型（多 seed 实验），8B 实验用 Qwen3-8B (FSDP2+CPUOffload)\n- 活跃进程：**无**。0 个 RUNNING 实验，0 个活跃 Worker，0 个活跃 Cron。所有 6 卡空闲\n\n### 3. 📊 当前状态\n**刚完成**：两个干预实验确认 negative，全项目暂停状态\n- Intervention A (exp029_seed7_len_penalty): ❌ reward 层面 length penalty 无效，response_length 仍高 (7598-14284)\n- Intervention B (exp029_seed7_high_kl): ❌ KL 正则化无效，actual KL 仅 0.003，inflation 非策略偏移\n- 跨 seed 崩溃率确认 50%: Seeds 4,7,8 collapse (response_length inflation); Seeds 1,3,6 success; Seed 5 外部 OOM 排除\n\n**OOD 数据已收集**（Paper Table 1 用）：\n| Seed | OOD Success | 状态 |\n|------|------------|------|\n| SFT baseline | 5.97% | ✅ |\n| Seed 1 | 23.88% | ✅ |\n| Seed 3 | 10.45% | ✅ |\n| Seed 5 (step10) | 29.10% | ✅ |\n| Seed 6 | 29.10% | ✅ |\n| Seed 4 | ❌ | westd 磁盘满失败，需重做 |\n\n**等待中**：无 Worker/Cron 回调。无 Director 待决策项（D115 已批准 Intervention C 但未执行）\n\n### 4. 📋 待办（条件触发式）\n- 立即 → westd 磁盘清理 + 僵死进程 kill（之前 eval 失败的根因）\n- 磁盘清理完成 → 启动 Intervention C（westd cuda:0,1, seed=999, per-turn 512 + max_turn 20 generation hard cap, 7 步, ~2h）\n- 磁盘清理完成 → 同时启动 Seed 4 OOD eval 重做（westd cuda:2 或 3）\n- Intervention C 成功（step 7 response_length < 2000 且 success > 30%）→ claim \"episode-level + generation constraint enables robust learning\"，用修复方法重跑崩溃 seed\n- Intervention C 失败 → 三种正交干预（reward/regularization/generation）全败 → 与 Director 讨论 framing 调整为 \"characterizes collapse + standard mitigations insufficient\"\n- Seed 4 OOD eval 完成 → 更新 Table 1 为 mean±std（当前 4-seed mean ≈ 23.1%）\n- 崩溃 seed (7/8) 如有 step 5 checkpoint → 跑 OOD eval 补充崩溃 seed 的 partial performance 数据\n- Registry 清理：15 个 PREPARING 僵尸实验需推进到 DONE\n\n### 5. 🎯 战略上下文\n**项目核心**：Step-independent agent RL 的信用分配病理诊断（信息丢失 M1 + 符号错误归因 M2）+ episode-level 修复。论文 v16 已 8 页，EMNLP 2026 投稿目标。\n\n**关键决策链**：\n- D113: 跨 seed 崩溃率 43-50%，论文 claim 从 \"avoids collapse\" 调整为描述双峰分布\n- D114: Intervention A 失败\n- D115: Kill Seed 8 + 启动 Intervention C（generation hard cap 是最后一种干预类型）\n\n**最易判断错的事**：\n- Intervention C 是 **最后机会**。不要把它当成\"又一个实验\"——它的结果直接决定论文是 method paper 还是 analysis paper\n- 崩溃机制是 response length inflation（回复越来越长），**不是** entropy→0 的经典 policy collapse。不要用经典 collapse 的直觉来设计干预\n- OOD 数据中 Seed 3 (10.45%) 显著低于其他 seed (23-29%)，Table 1 用 mean±std 会有较大 std，这是真实的 seed variance 不是 bug\n- 6 卡全空闲是 **失职状态**——接手后第一件事是清磁盘然后把 Intervention C + Seed 4 OOD 同时铺上去\n- bjb1 的 2 卡也空着，可以并行做崩溃 seed OOD eval 或其他不依赖 westd 的任务\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1779397802.md"
+}

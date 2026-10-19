@@ -1,0 +1,692 @@
+{
+  "schema_version": "1.0",
+  "id": "9150a6bb94a6462750e1",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "code scienceworld grpo config",
+  "task_key": "worker_code_scienceworld_grpo_config_20260519T201551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_scienceworld_grpo_config_20260519T201551.jsonl",
+    "occurrence": 1,
+    "bytes": 40069,
+    "sha256": "5decb17d0371a91e55ac3ad98dbe56d02679734f053988caeae468268420ae7a"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T20:20:13.265012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T20:20:13.265461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T20:20:13.265746+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "ls /root/cost-verify-agent-rl/RAGEN/config/ ",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T20:20:13.265953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cat /root/cost-verify-agent-rl/RAGEN/envs.yaml",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T20:20:13.266239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"_10_deepcoder.yaml\\\\n_10_rubikscube.yaml\\\\n_1_bandit.yaml\\\\n_2_sokoban.yaml\\\\n_3_frozen_lake.yaml\\\\n_4_countdown.yaml\\\\n_5_metamathqa.yaml\\\\n_6_webshop.yaml\\\\n_7_lean.yaml\\\\n_8_sudoku.yaml\\\\n_9_2048.yaml\\\\n_9_search.yaml\\\\n_alfworld_7b_sft_eval_ood.yaml\\\\n_alfworld_7b_zeroshot_eval.yaml\\\\n_alfworld_8b_cell_a.yaml\\\\n_alfworld_8b_cell_c.yaml\\\\n_alfworld_8b_cell_c_v9.yaml\\\\n_alfworld_8b_sft_clean_eval.yaml\\\\n_alfworld_dryrun.yaml\\\\n_alfworld_exp001.yaml\\\\n_alfworld_exp001b.yaml\\\\n_alfworld_exp002.yaml\\\\n_alfworld_exp002_dryrun.yaml\\\\n_alfworld_exp003.yaml\\\\n_alfworld_exp003_dryrun.yaml\\\\n_alfworld_exp004_instruct.yaml\\\\n_alfworld_exp005_fast.yaml\\\\n_alfworld_exp006_instruct_fast.yaml\\\\n_alfworld_exp007_dryrun.yaml\\\\n_alfworld_exp007_fixed.yaml\\\\n_alfworld_exp008_sft_grpo.yaml\\\\n_alfworld_exp012_reward_fix.yaml\\\\n_alfworld_exp013_lr_kl_fix.yaml\\\\n_alfworld_exp013b_dense_reward.yaml\\\\n_alfworld_exp014c_success_gated.yaml\\\\n_alfworld_exp015_sparse_stable.yaml\\\\n_alfworld_exp016_lr_compromise.yaml\\\\n_alfworld_exp018_sft_grpo.yaml\\\\n_alfworld_exp022_grpo_from_sft_v4.yaml\\\\n_alfworld_exp023_grpo_parallel.yaml\\\\n_alfworld_exp024_success_gated.yaml\\\\n_alfworld_exp026_step_independent_grpo.yaml\\\\n_alfworld_exp027_stable_grpo.yaml\\\\n_alfworld_exp028_gigpo.yaml.blocked\\\\n_alfworld_exp028_prereq_nothink.yaml\\\\n_alfworld_exp028_prereq_zeroshot.yaml\\\\n_alfworld_exp028a_penalty.yaml\\\\n_alfworld_exp028a_recipe_fix.yaml\\\\n_alfworld_exp028b_full_recipe.yaml\\\\n_alfworld_exp028b_minibatch.yaml\\\\n_alfworld_exp028c_selfguide_recipe.yaml\\\\n_alfworld_exp029_episode_level.yaml\\\\n_alfworld_exp029_episode_level_seed2.yaml\\\\n_alfworld_exp029_seed2_reeval_ood.yaml\\\\n_alfworld_exp029_seed2_reeval_ood_1gpu.yaml\\\\n_alfworld_exp029_seed2_reeval_ood_v4.yaml\\\\n_alfworld_factorial_h2_episode_adv.yaml\\\\n_alfworld_factorial_h2_episode_adv_seed2.yaml\\\\n_alfworld_factorial_h2_reeval_sg_ood.yaml\\\\n_alfworld_gae_baseline.yaml\\\\n_alfworld_gamma_sweep_g050_\n…[truncated 558 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T20:20:13.266454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/cost-verify-agent-rl/RAGEN/envs.yaml: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T20:20:13.266623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "find /root/autodl-tmp/checkpoints/ -path \"*scienceworld*\" -name \"config.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T20:20:13.266785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/checkpoints/scienceworld_sft/global_step_112/huggingface/config.json\\\\n/root/autodl-tmp/checkpoints/scienceworld_sft/global_step_224/huggingface/config.json\\\\n/root/autodl-tmp/checkpoints/scienceworld_sft/global_step_336/huggingface/config.json\\\\n/root/autodl-tmp/checkpoints/scienceworld_sft/global_step_448/huggingface/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T20:20:13.266952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cat /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_cell_a.yaml",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T20:20:13.267127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Cell A: step-independent advantage + h=2 windowing (8B Qwen3)\\\\n# Expected: failure/collapse (confirmed at 1.7B scale)\\\\n# Reference: _alfworld_hsweep_h2.yaml (1.7B)\\\\n\\\\ndefaults:\\\\n  - base\\\\n\\\\nhydra:\\\\n  searchpath:\\\\n    - pkg://verl.trainer.config\\\\n\\\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_8b_sft_v1/checkpoint-231\\\\n\\\\nsystem:\\\\n  CUDA_VISIBLE_DEVICES: \\\\\\\"0,1,2,3\\\\\\\"\\\\n\\\\nmicro_batch_size_per_gpu: 1\\\\nppo_mini_batch_size: 16\\\\n\\\\ntrainer:\\\\n  project_name: cost-verify-agent-rl\\\\n  experiment_name: 8b-cell-a-step-independent-h2\\\\n  total_training_steps: 15\\\\n  n_gpus_per_node: 4\\\\n  val_before_train: True\\\\n  test_freq: 5\\\\n  save_freq: 5\\\\n  local_log_dir: \\\\\\\"/root/autodl-tmp/checkpoints/8b-cell-a/\\\\\\\"\\\\n  default_local_dir: \\\\\\\"/root/autodl-tmp/checkpoints/8b-cell-a/\\\\\\\"\\\\n  logger: ['console', 'wandb']\\\\n  max_actor_ckpt_to_keep: 5\\\\n  resume_mode: \\\\\\\"disable\\\\\\\"\\\\n\\\\nactor_rollout_ref:\\\\n  model:\\\\n    override_config:\\\\n      attn_implementation: sdpa\\\\n    enable_gradient_checkpointing: true\\\\n  actor:\\\\n    fsdp_config:\\\\n      optimizer_offload: True\\\\n    use_ref: True\\\\n    use_torch_compile: False\\\\n    use_kl_loss: True\\\\n    kl_loss_coef: 0.01\\\\n    kl_loss_type: low_var_kl\\\\n    entropy_coeff: 0.001\\\\n    clip_ratio_low: 0.2\\\\n    clip_ratio_high: 0.28\\\\n    loss_agg_mode: \\\\\\\"token-mean\\\\\\\"\\\\n    grad_clip: 1.0\\\\n    ppo_max_token_len_per_gpu: 32768\\\\n    optim:\\\\n      lr: 5e-7\\\\n  ref:\\\\n    use_torch_compile: False\\\\n    log_prob_max_token_len_per_gpu: 32768\\\\n  rollout:\\\\n    response_length: 1024\\\\n    gpu_memory_utilization: 0.35\\\\n    enable_chunked_prefill: true\\\\n    max_model_len: 20480\\\\n    temperature: 1.0\\\\n    max_num_batched_tokens: 20480\\\\n    enforce_eager: True\\\\n    val_kwargs:\\\\n      do_sample: True\\\\n      temperature: 0.4\\\\n\\\\nalgorithm:\\\\n  adv_estimator: grpo\\\\n  gamma: 0.95\\\\n  high_level_gamma: 0.95\\\\n  norm_adv_by_std_in_grpo: True\\\\n\\\\nagent_proxy:\n…[truncated 697 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T20:20:13.267280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cat /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_cell_c.yaml",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T20:20:13.267455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Cell C: episode-level advantage + full context (8B Qwen3)\\\\n# Expected: success (~28-31% OOD confirmed at 1.7B scale)\\\\n# Reference: _alfworld_exp029_episode_level.yaml (1.7B)\\\\n\\\\ndefaults:\\\\n  - base\\\\n\\\\nhydra:\\\\n  searchpath:\\\\n    - pkg://verl.trainer.config\\\\n\\\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_8b_sft_v1/checkpoint-231\\\\n\\\\nsystem:\\\\n  CUDA_VISIBLE_DEVICES: \\\\\\\"0,1,2,3\\\\\\\"\\\\n\\\\nmicro_batch_size_per_gpu: 1\\\\nppo_mini_batch_size: 2\\\\n\\\\ntrainer:\\\\n  project_name: cost-verify-agent-rl\\\\n  experiment_name: 8b-cell-c-episode-level\\\\n  total_training_steps: 30\\\\n  n_gpus_per_node: 4\\\\n  val_before_train: True\\\\n  test_freq: 5\\\\n  save_freq: 999\\\\n  local_log_dir: \\\\\\\"/root/autodl-tmp/checkpoints/8b-cell-c/\\\\\\\"\\\\n  default_local_dir: \\\\\\\"/root/autodl-tmp/checkpoints/8b-cell-c/\\\\\\\"\\\\n  logger: ['console', 'wandb']\\\\n  max_actor_ckpt_to_keep: 5\\\\n  resume_mode: \\\\\\\"disable\\\\\\\"\\\\n\\\\nactor_rollout_ref:\\\\n  model:\\\\n    override_config:\\\\n      attn_implementation: sdpa\\\\n    enable_gradient_checkpointing: true\\\\n  actor:\\\\n    fsdp_config:\\\\n      optimizer_offload: True\\\\n    use_ref: False\\\\n    use_torch_compile: False\\\\n    use_kl_loss: False\\\\n    kl_loss_coef: 0.01\\\\n    kl_loss_type: low_var_kl\\\\n    entropy_coeff: 0.001\\\\n    clip_ratio_low: 0.2\\\\n    clip_ratio_high: 0.28\\\\n    loss_agg_mode: \\\\\\\"token-mean\\\\\\\"\\\\n    grad_clip: 1.0\\\\n    ppo_max_token_len_per_gpu: 16384\\\\n    optim:\\\\n      lr: 5e-7\\\\n  ref:\\\\n    use_torch_compile: False\\\\n    log_prob_max_token_len_per_gpu: 16384\\\\n  rollout:\\\\n    response_length: 1024\\\\n    gpu_memory_utilization: 0.22\\\\n    enable_chunked_prefill: true\\\\n    max_model_len: 16384\\\\n    temperature: 1.0\\\\n    max_num_batched_tokens: 20480\\\\n    enforce_eager: True\\\\n    val_kwargs:\\\\n      do_sample: True\\\\n      temperature: 0.4\\\\n\\\\nalgorithm:\\\\n  adv_estimator: grpo\\\\n  gamma: 0.95\\\\n  high_level_gamma: 0.95\\\\n  norm_adv_by_std_in_grpo: True\\\\n\\\\nagent\n…[truncated 692 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T20:20:13.267640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cat /root/cost-verify-agent-rl/RAGEN/config/envs.yaml",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T20:20:13.267921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"custom_envs:\\\\n  SimpleSokoban:\\\\n    env_type: sokoban\\\\n    max_actions_per_traj: 10 # used in environment state manager to control the actual max actions executed per trajectory\\\\n    env_instruction: |\\\\n      You are solving the Sokoban puzzle. \\\\n      You are the player and you need to push all boxes to targets. \\\\n      When you are right next to a box, you can push it by moving in the same direction. \\\\n      You cannot push a box through a wall, and you cannot pull a box. \\\\n      The answer should be a sequence of actions, like <answer>Right || Right || Up</answer>\\\\n    max_tokens: 100 # used to curate llm prompt \\\\\\\"max words\\\\\\\", not used for rollout\\\\n    parallel_friendly: false\\\\n    max_workers: 32\\\\n    env_config: # keys should be a subset of SokobanConfig\\\\n      dim_x: 6\\\\n      dim_y: 6\\\\n      num_boxes: 1\\\\n      max_steps: 100\\\\n\\\\n  LargerSokoban:\\\\n    env_type: sokoban\\\\n    max_actions_per_traj: 10\\\\n    env_instruction: |\\\\n      You are solving the Sokoban puzzle. \\\\n      You are the player and you need to push all boxes to targets. \\\\n      When you are right next to a box, you can push it by moving in the same direction. \\\\n      You cannot push a box through a wall, and you cannot pull a box. \\\\n      The answer should be a sequence of actions, like <answer>Right || Right || Up</answer>\\\\n    max_tokens: 100\\\\n    parallel_friendly: false\\\\n    max_workers: 32\\\\n    env_config:\\\\n      dim_x: 8\\\\n      dim_y: 8\\\\n      num_boxes: 2\\\\n      max_steps: 100\\\\n      search_depth: 10\\\\n  \\\\n  SokobanDifferentGridVocab:\\\\n    env_type: sokoban\\\\n    max_actions_per_traj: 10\\\\n    env_instruction: |\\\\n      You are solving the Sokoban puzzle. \\\\n      You are the player and you need to push all boxes to targets. \\\\n      When you are right next to a box, you can push it by moving in the same direction. \\\\n      You cannot push a box through a wall, and you cannot pull a box. \\\\n    \n…[truncated 6769 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T20:20:13.268097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cat /root/cost-verify-agent-rl/RAGEN/ragen/env/scienceworld/env.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T20:20:13.268229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cat /root/cost-verify-agent-rl/RAGEN/ragen/env/scienceworld/config.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T20:20:13.268415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# ScienceWorld environment adapter for RAGEN.\\\\n# Wraps scienceworld.ScienceWorldEnv into BaseLanguageBasedEnv interface.\\\\n# Reward: sparse, returned only at episode end = (final_score / 100) * config.score.\\\\n# This ensures episode total return equals the scaled final score, compatible with GRPO.\\\\nimport random\\\\nimport threading\\\\nimport scienceworld\\\\nfrom ragen.env.base import BaseLanguageBasedEnv\\\\nfrom ragen.env.scienceworld.config import ScienceWorldEnvConfig\\\\n\\\\n\\\\n_ENV_CACHE = {}\\\\n_ENV_LOCK = threading.Lock()\\\\n\\\\n\\\\ndef _get_cached_env():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Thread-safe singleton for ScienceWorldEnv (one JVM per process).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    tid = threading.current_thread().ident\\\\n    with _ENV_LOCK:\\\\n        if tid not in _ENV_CACHE:\\\\n            _ENV_CACHE[tid] = scienceworld.ScienceWorldEnv(\\\\\\\"\\\\\\\")\\\\n        return _ENV_CACHE[tid]\\\\n\\\\n\\\\nclass ScienceWorldTXTEnv(BaseLanguageBasedEnv):\\\\n\\\\n    def __init__(self, config: ScienceWorldEnvConfig = ScienceWorldEnvConfig(), mode='train'):\\\\n        super().__init__()\\\\n        self.config = config\\\\n        self.current_mode = mode\\\\n        self.env = _get_cached_env()\\\\n        self.task_name_list = [t.strip() for t in config.task_names.split(\\\\\\\",\\\\\\\")]\\\\n\\\\n        self.render_cache = None\\\\n        self.available_actions = []\\\\n        self.episode_score = 0\\\\n        self.step_count = 0\\\\n        self.current_task = None\\\\n        self.current_variation = None\\\\n\\\\n    def _get_variations(self, task_name, mode):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Return variation indices for the given mode.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        self.env.load(task_name, 0)\\\\n        if mode == 'train':\\\\n            return self.env.get_variations_train()\\\\n        elif mode == 'val':\\\\n            if self.config.eval_split == 'test':\\\\n                return self.env.get_variations_test()\\\\n            return self.env.get_variations_dev()\\\\n        else:\\\\n            return self.env.get_\n…[truncated 2936 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T20:20:13.268603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# ScienceWorld environment configuration for RAGEN.\\\\n# Mirrors AlfredEnvConfig pattern: sparse reward at episode end, mode-based splits.\\\\nfrom ragen.env.base import BaseEnvConfig\\\\nfrom dataclasses import dataclass, field\\\\nfrom typing import List\\\\n\\\\n\\\\n@dataclass\\\\nclass ScienceWorldEnvConfig(BaseEnvConfig):\\\\n    task_names: str = \\\\\\\"boil\\\\\\\"  # comma-separated task names, e.g. \\\\\\\"boil,melt,freeze\\\\\\\"\\\\n    score: float = 10.0  # reward on full completion (100/100 score)\\\\n    max_steps: int = 100\\\\n    simplification_str: str = \\\\\\\"\\\\\\\"  # ScienceWorld simplification flags\\\\n    max_valid_actions: int = 50  # cap on admissible actions shown in observation\\\\n    eval_split: str = \\\\\\\"dev\\\\\\\"  # \\\\\\\"dev\\\\\\\" or \\\\\\\"test\\\\\\\" for val/test mode\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T20:20:13.268785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cat /root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp026_step_independent_grpo.yaml",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T20:20:13.268958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"defaults:\\\\n  - base\\\\n\\\\nhydra:\\\\n  searchpath:\\\\n    - pkg://verl.trainer.config\\\\n\\\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\\\n\\\\nsystem:\\\\n  CUDA_VISIBLE_DEVICES: \\\\\\\"0,1\\\\\\\"\\\\n\\\\nmicro_batch_size_per_gpu: 1\\\\nppo_mini_batch_size: 32\\\\n\\\\ntrainer:\\\\n  project_name: cost-verify-agent-rl\\\\n  experiment_name: exp026-alfworld-step-independent-grpo\\\\n  total_training_steps: 150\\\\n  n_gpus_per_node: 2\\\\n  val_before_train: True\\\\n  test_freq: 5\\\\n  save_freq: 25\\\\n  local_log_dir: \\\\\\\"/root/autodl-tmp/checkpoints/exp026/\\\\\\\"\\\\n  default_local_dir: \\\\\\\"/root/autodl-tmp/checkpoints/exp026/\\\\\\\"\\\\n  logger: ['console', 'wandb']\\\\n  max_actor_ckpt_to_keep: 3\\\\n  resume_mode: \\\\\\\"disable\\\\\\\"\\\\n\\\\nactor_rollout_ref:\\\\n  model:\\\\n    override_config:\\\\n      attn_implementation: sdpa\\\\n  actor:\\\\n    use_ref: True\\\\n    use_torch_compile: False\\\\n    use_kl_loss: True\\\\n    kl_loss_coef: 0.01        # verl-agent uses 0.01; exp022-24 used 0.5 (too conservative)\\\\n    kl_loss_type: low_var_kl   # k3 estimator; exp022-24 used kl (k1)\\\\n    clip_ratio_low: 0.2\\\\n    clip_ratio_high: 0.28\\\\n    loss_agg_mode: \\\\\\\"seq-mean-token-mean\\\\\\\"\\\\n    grad_clip: 1.0\\\\n    optim:\\\\n      lr: 1e-6                # verl-agent uses 1e-6; exp022-24 used 5e-7\\\\n  ref:\\\\n    use_torch_compile: False\\\\n  rollout:\\\\n    response_length: 1024\\\\n    gpu_memory_utilization: 0.4  # conservative for 2-GPU TP\\\\n    max_model_len: 8192\\\\n    temperature: 1.0\\\\n    max_num_batched_tokens: 8192\\\\n    enforce_eager: True\\\\n    val_kwargs:\\\\n      do_sample: True\\\\n      temperature: 0.4\\\\n\\\\nalgorithm:\\\\n  adv_estimator: grpo\\\\n  gamma: 0.95\\\\n  high_level_gamma: 0.95\\\\n  norm_adv_by_std_in_grpo: True\\\\n  # TODO: use_invalid_action_penalty and invalid_action_penalty_coef\\\\n  #   verl-agent supports actor_rollout_ref.actor.use_invalid_action_penalty=True\\\\n  #   and actor_rollout_ref.actor.invalid_action_penalty_coef=0.1\\\\n  # \n…[truncated 1307 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T20:20:13.269111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cat /root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T20:20:13.269294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# exp029: Episode-Level GRPO (full context window)\\\\n# 核心改动 vs exp028c: context_window_mode step_independent → full\\\\n# 其余参数完全一致（控制变量实验）\\\\n#\\\\n# 配套调整（因 full 模式产生更长序列）：\\\\n#   1. context_window_mode: step_independent → full\\\\n#   2. max_prompt_length: 4096 → 16384（容纳 50-turn episode）\\\\n#   3. max_model_len: 8192 → 16384\\\\n#   4. max_num_batched_tokens: 8192 → 16384\\\\n#   5. gpu_memory_utilization: 0.4 → 0.92（长序列需更多显存）\\\\n#   6. ppo_mini_batch_size: 128 → 32（full 模式样本数=episode数=128，mini_batch 不能等于总量）\\\\n#   7. 添加 ppo_max_token_len_per_gpu: 65536（适应长序列）\\\\n\\\\ndefaults:\\\\n  - base\\\\n\\\\nhydra:\\\\n  searchpath:\\\\n    - pkg://verl.trainer.config\\\\n\\\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\\\n\\\\nsystem:\\\\n  CUDA_VISIBLE_DEVICES: \\\\\\\"0,1\\\\\\\"\\\\n\\\\nmicro_batch_size_per_gpu: 1\\\\nppo_mini_batch_size: 16\\\\n\\\\ntrainer:\\\\n  project_name: cost-verify-agent-rl\\\\n  experiment_name: exp029-alfworld-episode-level\\\\n  total_training_steps: 100\\\\n  n_gpus_per_node: 2\\\\n  val_before_train: True\\\\n  test_freq: 5\\\\n  save_freq: 5\\\\n  local_log_dir: \\\\\\\"/root/autodl-tmp/checkpoints/exp029/\\\\\\\"\\\\n  default_local_dir: \\\\\\\"/root/autodl-tmp/checkpoints/exp029/\\\\\\\"\\\\n  logger: ['console', 'wandb']\\\\n  max_actor_ckpt_to_keep: 10\\\\n  resume_mode: \\\\\\\"disable\\\\\\\"\\\\n\\\\nactor_rollout_ref:\\\\n  model:\\\\n    override_config:\\\\n      attn_implementation: sdpa\\\\n  actor:\\\\n    fsdp_config:\\\\n      optimizer_offload: True\\\\n    use_ref: True\\\\n    use_torch_compile: False\\\\n    use_kl_loss: True\\\\n    kl_loss_coef: 0.01\\\\n    kl_loss_type: low_var_kl\\\\n    entropy_coeff: 0.001\\\\n    clip_ratio_low: 0.2\\\\n    clip_ratio_high: 0.28\\\\n    loss_agg_mode: \\\\\\\"token-mean\\\\\\\"\\\\n    grad_clip: 1.0\\\\n    ppo_max_token_len_per_gpu: 65536\\\\n    optim:\\\\n      lr: 1e-6\\\\n  ref:\\\\n    use_torch_compile: False\\\\n    log_prob_max_token_len_per_gpu: 65536\\\\n  rollout:\\\\n    response_length: 1024\\\\n    gpu_memory_utilization: 0.35\\\\n    enable_chun\n…[truncated 992 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T20:20:13.269465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cat /root/cost-verify-agent-rl/RAGEN/config/base.yaml",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T20:20:13.269725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"defaults:\\\\n  - ppo_trainer\\\\n  - envs\\\\n\\\\nsystem:\\\\n  CUDA_VISIBLE_DEVICES: \\\\\\\"0\\\\\\\"\\\\n\\\\nseed:\\\\n  train: 10000\\\\n  val: 123\\\\n\\\\nmicro_batch_size_per_gpu: 1\\\\nlog_prob_micro_batch_size_per_gpu: ${micro_batch_size_per_gpu}\\\\nppo_mini_batch_size: 32\\\\nmodel_path: Qwen/Qwen2.5-3B-Instruct\\\\nenable_response_mask: True # Enabling response mask could improve stability of rollout/old_log_prob, as P(st|history) are no longer calculated in loss here. See https://docs.google.com/document/d/1bg7obeiKTExuHHBl5uOiSpec5uLDZ2Tgvxy6li5pHX4/edit?usp=sharing for more details.\\\\ngrpo_advantage_length_weight: False # if you do not enable this and critic/advantage_estimator is GRPO, and the critic/advantages/mean is too low, then you can try enabling this to encourage reasoning and forbid collapse\\\\n\\\\nlora:\\\\n  rank: 0\\\\n  alpha: 64\\\\n  target_modules: all-linear\\\\n\\\\nactor_rollout_ref:\\\\n  model:\\\\n    path: ${model_path}\\\\n    lora_rank: ${lora.rank}\\\\n    lora_alpha: ${lora.alpha}\\\\n    target_modules: ${lora.target_modules}\\\\n  actor:\\\\n    ppo_mini_batch_size: ${ppo_mini_batch_size}  # by default, ppo_mini_batch_size = train_batch_size / 4\\\\n    ppo_micro_batch_size_per_gpu: ${micro_batch_size_per_gpu}\\\\n    use_ref: True\\\\n    entropy_coeff: 0.001\\\\n    use_kl_loss: False\\\\n    kl_loss_coef: 0.000\\\\n    kl_loss_type: kl\\\\n    clip_ratio_low: 0.2\\\\n    clip_ratio_high: 0.28\\\\n    grpo_advantage_length_weight: ${grpo_advantage_length_weight}\\\\n    filter_loss_scaling: \\\\\\\"none\\\\\\\" # \\\\\\\"none\\\\\\\", \\\\\\\"linear\\\\\\\", \\\\\\\"sqrt\\\\\\\"\\\\n    # Loss aggregation mode: \\\\\\\"token-mean\\\\\\\" (default), \\\\\\\"seq-mean-token-mean\\\\\\\" (GRPO), \\\\\\\"seq-mean-token-sum\\\\\\\" (Dr. GRPO)\\\\n    loss_agg_mode: \\\\\\\"token-mean\\\\\\\"\\\\n    optim:\\\\n      betas: [0.9, 0.999]\\\\n      lr: 1e-6\\\\n  ref:\\\\n    log_prob_micro_batch_size_per_gpu: ${log_prob_micro_batch_size_per_gpu}\\\\n  rollout:\\\\n    name: vllm\\\\n    load_format: auto  # load from huggingface inste\n…[truncated 5708 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T20:20:13.270044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cat > /root/cost-verify-agent-rl/RAGEN/config/_scienceworld_cell_a.yaml << 'YAML'\n# Cell A: step-independent advantage + h=2 windowing (ScienceWorld Boil, 1.7B Qwen3)\n# Expected: failure/collapse (parallel to ALFWorld Cell A finding)\n# Template: _alfworld_exp026_step_independent_grpo.yaml + 8B Cell A h=2\n\ndefaults:\n  - base\n\nhydra:\n  searchpath:\n    - pkg://verl.trainer.config\n\nmodel_path: /root/autodl-tmp/checkpoints/scienceworld_sft/global_step_448/huggingface\n\nsystem:\n  CUDA_VISIBLE_DEVICES: \"0,1,2,3\"\n\nmicro_batch_size_per_gpu: 1\nppo_mini_batch_size: 16\n\ntrainer:\n  project_name: cost-verify-agent-rl\n  experiment_name: scienceworld-cell-a-boil\n  total_training_steps: 150\n  n_gpus_per_node: 4\n  val_before_train: True\n  test_freq: 5\n  save_freq: 25\n  local_log_dir: \"/root/autodl-tmp/checkpoints/scienceworld-cell-a/\"\n  default_local_dir: \"/root/autodl-tmp/checkpoints/scienceworld-cell-a/\"\n  logger: ['console', 'wandb']\n  max_actor_ckpt_to_keep: 3\n  resume_mode: \"disable\"\n\nactor_rollout_ref:\n  model:\n    override_config:\n      attn_implementation: sdpa\n  actor:\n    use_ref: True\n    use_torch_compile: False\n    use_kl_loss: True\n    kl_loss_coef: 0.01\n    kl_loss_type: low_var_kl\n    entropy_coeff: 0.001\n    clip_ratio_low: 0.2\n    clip_ratio_high: 0.28\n    loss_agg_mode: \"token-mean\"\n    grad_clip: 1.0\n    optim:\n      lr: 1e-6\n  ref:\n    use_torch_compile: False\n  rollout:\n    response_length: 1024\n    gpu_memory_utilization: 0.4\n    max_model_len: 8192\n    temperature: 1.0\n    max_num_batched_tokens: 8192\n    enforce_eager: True\n    val_kwargs:\n      do_sample: True\n      temperature: 0.4\n\nalgorithm:\n  adv_estimator: grpo\n  gamma: 0.95\n  high_level_gamma: 0.95\n  norm_adv_by_std_in_grpo: True\n\nagent_proxy:\n  context_window_mode: \"step_independent\"\n  max_context_window: -1\n  step_independent_history_length: 2\n  max_turn: 50\n  max_actions_per_turn: 1\n  max_prompt_length: 4096\n  use_turn_scores: True\n  enable_think: False\n\ncollapse_detection:\n  multi_turn_enabled: false\n\nes_manager:\n  format_penalty: 0\n  train:\n    env_groups: 4\n    group_size: 16\n    env_configs:\n      tags: [\"ScienceWorldBoil\"]\n      n_groups: [4]\n  val:\n    env_groups: 16\n    group_size: 1\n    env_configs:\n      tags: [\"ScienceWorldBoil\"]\n      n_groups: [16]\nYAML",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T20:20:13.270251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T20:20:13.270395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cat > /root/cost-verify-agent-rl/RAGEN/config/_scienceworld_cell_c.yaml << 'YAML'\n# Cell C: episode-level advantage + full context (ScienceWorld Boil, 1.7B Qwen3)\n# Expected: success (parallel to ALFWorld Cell C finding)\n# Template: _alfworld_exp029_episode_level.yaml\n\ndefaults:\n  - base\n\nhydra:\n  searchpath:\n    - pkg://verl.trainer.config\n\nmodel_path: /root/autodl-tmp/checkpoints/scienceworld_sft/global_step_448/huggingface\n\nsystem:\n  CUDA_VISIBLE_DEVICES: \"0,1,2,3\"\n\nmicro_batch_size_per_gpu: 1\nppo_mini_batch_size: 16\n\ntrainer:\n  project_name: cost-verify-agent-rl\n  experiment_name: scienceworld-cell-c-boil\n  total_training_steps: 100\n  n_gpus_per_node: 4\n  val_before_train: True\n  test_freq: 5\n  save_freq: 5\n  local_log_dir: \"/root/autodl-tmp/checkpoints/scienceworld-cell-c/\"\n  default_local_dir: \"/root/autodl-tmp/checkpoints/scienceworld-cell-c/\"\n  logger: ['console', 'wandb']\n  max_actor_ckpt_to_keep: 5\n  resume_mode: \"disable\"\n\nactor_rollout_ref:\n  model:\n    override_config:\n      attn_implementation: sdpa\n  actor:\n    fsdp_config:\n      optimizer_offload: True\n    use_ref: True\n    use_torch_compile: False\n    use_kl_loss: True\n    kl_loss_coef: 0.01\n    kl_loss_type: low_var_kl\n    entropy_coeff: 0.001\n    clip_ratio_low: 0.2\n    clip_ratio_high: 0.28\n    loss_agg_mode: \"token-mean\"\n    grad_clip: 1.0\n    ppo_max_token_len_per_gpu: 65536\n    optim:\n      lr: 1e-6\n  ref:\n    use_torch_compile: False\n    log_prob_max_token_len_per_gpu: 65536\n  rollout:\n    response_length: 1024\n    gpu_memory_utilization: 0.35\n    enable_chunked_prefill: true\n    max_model_len: 20480\n    temperature: 1.0\n    max_num_batched_tokens: 20480\n    enforce_eager: True\n    val_kwargs:\n      do_sample: True\n      temperature: 0.4\n\nalgorithm:\n  adv_estimator: grpo\n  gamma: 0.95\n  high_level_gamma: 0.95\n  norm_adv_by_std_in_grpo: True\n\nagent_proxy:\n  context_window_mode: \"full\"\n  max_context_window: -1\n  step_independent_history_length: 2\n  max_turn: 50\n  max_actions_per_turn: 1\n  max_prompt_length: 16384\n  use_turn_scores: True\n  enable_think: False\n\ncollapse_detection:\n  multi_turn_enabled: false\n\nes_manager:\n  format_penalty: 0\n  train:\n    env_groups: 16\n    group_size: 8\n    env_configs:\n      tags: [\"ScienceWorldBoil\"]\n      n_groups: [16]\n  val:\n    env_groups: 16\n    group_size: 1\n    env_configs:\n      tags: [\"ScienceWorldBoil\"]\n      n_groups: [16]\nYAML",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T20:20:13.270546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T20:20:13.270732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nfrom hydra import compose, initialize_config_dir\nfrom omegaconf import OmegaConf\ninitialize_config_dir(config_dir='/root/cost-verify-agent-rl/RAGEN/config', version_base=None)\ncfg = compose(config_name='_scienceworld_cell_a')\nprint('=== Cell A config loaded OK ===')\nprint('model_path:', cfg.actor_rollout_ref.model.path)\nprint('experiment_name:', cfg.trainer.experiment_name)\nprint('n_gpus:', cfg.trainer.n_gpus_per_node)\nprint('context_window_mode:', cfg.agent_proxy.context_window_mode)\nprint('step_independent_history_length:', cfg.agent_proxy.step_independent_history_length)\nprint('max_turn:', cfg.agent_proxy.max_turn)\nprint('train_env_tags:', OmegaConf.to_container(cfg.es_manager.train.env_configs.tags))\nprint('val_env_groups:', cfg.es_manager.val.env_groups)\n\" 2>&1 | head -30",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T20:20:13.270873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nfrom hydra import compose, initialize_config_dir\nfrom omegaconf import OmegaConf\ninitialize_config_dir(config_dir='/root/cost-verify-agent-rl/RAGEN/config', version_base=None)\ncfg = compose(config_name='_scienceworld_cell_c')\nprint('=== Cell C config loaded OK ===')\nprint('model_path:', cfg.actor_rollout_ref.model.path)\nprint('experiment_name:', cfg.trainer.experiment_name)\nprint('n_gpus:', cfg.trainer.n_gpus_per_node)\nprint('context_window_mode:', cfg.agent_proxy.context_window_mode)\nprint('max_turn:', cfg.agent_proxy.max_turn)\nprint('max_prompt_length:', cfg.agent_proxy.max_prompt_length)\nprint('train_env_tags:', OmegaConf.to_container(cfg.es_manager.train.env_configs.tags))\nprint('val_env_groups:', cfg.es_manager.val.env_groups)\nprint('ppo_max_token_len_per_gpu:', cfg.actor_rollout_ref.actor.ppo_max_token_len_per_gpu)\n\" 2>&1 | head -30",
+              "account": "root"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T20:20:13.271014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In '_scienceworld_cell_a': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information\\\\n  warnings.warn(msg, UserWarning)\\\\n=== Cell A config loaded OK ===\\\\nmodel_path: /root/autodl-tmp/checkpoints/scienceworld_sft/global_step_448/huggingface\\\\nexperiment_name: scienceworld-cell-a-boil\\\\nn_gpus: 4\\\\ncontext_window_mode: step_independent\\\\nstep_independent_history_length: 2\\\\nmax_turn: 50\\\\ntrain_env_tags: ['ScienceWorldBoil']\\\\nval_env_groups: 16\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T20:20:13.271149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In '_scienceworld_cell_c': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information\\\\n  warnings.warn(msg, UserWarning)\\\\n=== Cell C config loaded OK ===\\\\nmodel_path: /root/autodl-tmp/checkpoints/scienceworld_sft/global_step_448/huggingface\\\\nexperiment_name: scienceworld-cell-c-boil\\\\nn_gpus: 4\\\\ncontext_window_mode: full\\\\nmax_turn: 50\\\\nmax_prompt_length: 16384\\\\ntrain_env_tags: ['ScienceWorldBoil']\\\\nval_env_groups: 16\\\\nppo_max_token_len_per_gpu: 65536\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T20:20:13.271336+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 config 均通过 Hydra 解析验证（`_self_` 警告是已有 ALFWorld configs 同样存在的 Hydra 1.x 兼容性提示，不影响运行）。\n\n---\n\n## 产出报告\n\n### 1. 文件路径\n- Cell A: `/root/cost-verify-agent-rl/RAGEN/config/_scienceworld_cell_a.yaml`\n- Cell C: `/root/cost-verify-agent-rl/RAGEN/config/_scienceworld_cell_c.yaml`\n\n### 2. 与 ALFWorld 模板的 diff 摘要\n\n基于 1.7B ALFWorld 模板（exp026 = Cell A, exp029 = Cell C），改动：\n\n| 参数 | ALFWorld 1.7B | ScienceWorld |\n|------|-------------|--------------|\n| model_path | `qwen3_exp021_ragen_sft_v4` | `scienceworld_sft/global_step_448/huggingface` |\n| CUDA_VISIBLE_DEVICES | `\"0,1\"` (2 GPU) | `\"0,1,2,3\"` (4 GPU) |\n| n_gpus_per_node | 2 | 4 |\n| env tags | `[\"AlfworldSG\"]` | `[\"ScienceWorldBoil\"]` |\n| step_independent_history_length (Cell A) | 5 → **2** | 2（对齐 8B canonical Cell A 定义） |\n| loss_agg_mode (Cell A) | `seq-mean-token-mean` → **`token-mean`** | token-mean（对齐 8B canonical） |\n| ppo_mini_batch_size (Cell A) | 32 → **16** | 16（4 GPU 下更合理） |\n| checkpoint 路径 | `exp026/` / `exp029/` | `scienceworld-cell-a/` / `scienceworld-cell-c/` |\n\n其余超参（lr=1e-6, gamma=0.95, KL coef=0.01, clip ratio, entropy_coeff 等）保持一致。\n\n### 3. Dry-run 结果\n- Cell A: **通过** — model_path、env_tags、context_window_mode 全部正确解析\n- Cell C: **通过** — ppo_max_token_len_per_gpu=65536 正确加载\n\n### 4. ScienceWorld reward 机制\n- **Continuous reward**，非 binary。公式：`reward = (episode_score / 100) * 10.0`，范围 0.0~10.0\n- **Sparse**：仅在 episode 结束时发放（`done=True`），中间步骤 reward=0\n- 对 Cell A（step-level advantage）：所有中间步 reward=0，只有最后一步有非零 reward。step-level credit assignment 几乎无法工作——这正是实验预期的失败模式\n- 对 Cell C（episode-level advantage）：整个 episode 的 reward 作为一个 scalar 参与 GRPO 优势估计，与 continuous reward 兼容\n- GRPO 的 `norm_adv_by_std_in_grpo: True` 会对 advantage 做 group 内标准化，continuous reward 的方差信号比 binary 更丰富\n\n### 5. max_turn = 50 的理由\n- envs.yaml 中 `ScienceWorldBoil` 设置 `max_actions_per_traj: 50`，与 ALFWorld 一致\n- 环境内部 `max_steps: 100`，但 agent 每 turn 执行 1 action（`max_actions_per_turn: 1`），50 turns = 50 env steps\n- Boil 任务典型长度 20~40 步，50 turns 留有余量\n- 如后续发现截断率过高，可提升至 70~80"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scienceworld_grpo_config_20260519T201551"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/code-scienceworld-grpo-config.md"
+}

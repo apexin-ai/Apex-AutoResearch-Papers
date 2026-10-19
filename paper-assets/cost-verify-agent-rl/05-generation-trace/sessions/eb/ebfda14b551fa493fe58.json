@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebfda14b551fa493fe58",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check hsweep h10 seed2 progress",
+  "task_key": "worker_check_hsweep_h10_seed2_progress_20260524T031210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_hsweep_h10_seed2_progress_20260524T031210_result.json",
+    "occurrence": 1,
+    "bytes": 1240,
+    "sha256": "3ddcfe5a724d9c743fe65d79ae9a338b801f11653deb0e7905d014fe89150193"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态报告：hsweep_h10_seed2\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 95503 存活，已运行 3h04m |\n| **GPU** | cuda:0 使用率 100%，显存 73GB/98GB |\n| **当前 step** | **仍在 step 1**（尚未完成第一个训练 step） |\n| **W&B metrics** | 0 个数据点（无训练 metrics 上报） |\n| **Checkpoint** | 无（save_freq=5，step 5 才保存） |\n\n### val_before_train 结果（step 0）\n\n| 指标 | 值 |\n|------|------|\n| val success rate | **12.5%**（32 episodes 中 4 个成功） |\n| val pass@1 | 12.5% |\n| val response_length | 78.6 |\n| val num_actions | 44.06 |\n| val action_is_valid | 76.1% |\n| val reward/mean | 0.378 |\n\n### 判断\n\n**正常运行中** — 进程存活、GPU 满载，但进度较慢。val_before_train 花了 ~579 秒，之后进入 step 1 的 training rollout（16 groups × 8 episodes = 128 rollouts，AlfWorld 每 episode 最多 50 actions，h=10），加上 1-GPU，单 step 耗时预计 2-3 小时。\n\n当前已运行 ~3h，正处于 step 1 的 actor update 阶段（tmux 显示 `compute_policy_loss` 调用），说明 step 1 即将完成。\n\n**预计 5 个 step 全部完成：~12-15 小时后**（约明天凌晨）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-hsweep-h10-seed2-progress.md"
+}

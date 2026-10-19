@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "592423a79645386e0904",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis binary reward check",
+  "task_key": "worker_analysis_binary_reward_check_20260523T112108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_binary_reward_check_20260523T112108_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "a61515c39ca74568ec3e3384b7f3e2fe64ed68434861b2679f71a6266470eb52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/binary_reward_experiment_status.md`。\n\n核心发现：\n\n1. **训练进度**: 33% (1/3 iterations)，PID 14928 仍在运行，预计还需约 2 小时\n2. **数据收集**: 400 条 advantage 记录（2 个 iteration 各 200 条，capped）\n3. **Iteration 1**: naive sign agreement = 100%，但这是**平凡的**——因为 γ=0.95 的 gamma-discounting 使得 step_return 已经编码了 window 级别的贡献信息，advantage sign 必然与 step_return sign 一致\n4. **Iteration 2**: 全部 56 个 episode 失败，所有 advantage = 0，无梯度信号\n5. **关键问题**: **当前实验无法验证 Proposition 2 的 19.1% 预测**。Proposition 2 假设 γ=1（所有 window 获得相同的 episode-level advantage），但实现用了 γ=0.95，step_return 本身就提供了隐式的 step-level credit assignment\n\n**如果要正确测试 Proposition 2**，需要设 γ=1.0 消除 gamma-discounting 的隐式 credit assignment，或者换用 action validity 作为 ground truth 指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-binary-reward-check.md"
+}

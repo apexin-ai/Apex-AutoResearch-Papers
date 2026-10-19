@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c44e3740d5779b1d0337",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check scienceworld bjb1 readiness",
+  "task_key": "worker_check_scienceworld_bjb1_readiness_20260524T033129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_scienceworld_bjb1_readiness_20260524T033129_result.json",
+    "occurrence": 1,
+    "bytes": 1111,
+    "sha256": "2f19add6dad55c9b66118ec100c15e9332d6413ca908d64d0be42b434c7766ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb1-17606 ScienceWorld 环境检查报告\n\n| 检查项 | 状态 | 详情 |\n|--------|------|------|\n| ScienceWorld 包 | ✅ 已安装 | `scienceworld 1.2.3` |\n| Java 环境 | ✅ 可用 | OpenJDK 11.0.30, `/usr/bin/java` |\n| ScienceWorld 配置文件 | ✅ 存在 | 6 个配置（Cell A + Cell C v1-v6），但**无 Cell D 配置** |\n| ScienceWorld SFT checkpoint | ❌ 缺失 | `qwen3_scienceworld_sft/huggingface/` 和 `scienceworld_sft/` 均不存在 |\n| RAGEN 代码 | ✅ main 分支 | 最新 commit: `3a6b48b` (trajectory-level token cap) |\n| 磁盘空间 | ✅ 充足 | `/root/autodl-tmp/` 剩余 **101GB**（250GB 用了 150GB） |\n\n### 缺少的组件\n\n1. **ScienceWorld SFT checkpoint** — Cell A 配置引用 `/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface`，Cell C v6 引用 `/root/autodl-tmp/checkpoints/qwen3_scienceworld_sft/huggingface`，两个路径在 bjb1 上都不存在。需要从 westd-47453 拷贝过来或重新训练。\n\n2. **Cell D 配置文件** — 现有配置只有 Cell A 和 Cell C 系列，需要新建 Cell D 的 YAML 配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-scienceworld-bjb1-readiness.md"
+}

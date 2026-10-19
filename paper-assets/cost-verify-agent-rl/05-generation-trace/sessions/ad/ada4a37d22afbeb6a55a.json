@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "ada4a37d22afbeb6a55a",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code exp 002 v2",
+  "task_key": "worker_code_exp_002_v2_20260513T193410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_002_v2_20260513T193410.log",
+    "occurrence": 1,
+    "bytes": 1695356,
+    "sha256": "d72e587108ade552dd70b791611734c41091a26bc540d8bd813de3a37554f522"
+  },
+  "statistics": {
+    "messages": 960,
+    "user_turns": 1,
+    "tool_calls": 353,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 2,
+      "assistant": 205,
+      "tool_call": 353,
+      "tool_result": 353,
+      "user": 1,
+      "result": 9
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 668,
+      "chunks": [
+        {
+          "path": "ada4a37d22afbeb6a55a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ada4a37d22afbeb6a55a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ada4a37d22afbeb6a55a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ada4a37d22afbeb6a55a-part-0004.json",
+          "message_count": 128
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 292,
+      "chunks": [
+        {
+          "path": "ada4a37d22afbeb6a55a-part-0004.json",
+          "message_count": 52
+        },
+        {
+          "path": "ada4a37d22afbeb6a55a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "ada4a37d22afbeb6a55a-part-0006.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-002-v2.md"
+}

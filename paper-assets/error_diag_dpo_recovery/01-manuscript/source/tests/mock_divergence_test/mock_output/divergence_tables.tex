@@ -1,0 +1,56 @@
+% Table 1: Per-task-type success rate
+\begin{table}[t]
+\centering
+\caption{Per-task-type success rate.}
+\label{tab:task_type_sr}
+\begin{tabular}{lrrr}
+\toprule
+Task Type & Total & Success & Rate (\%) \\
+\midrule
+examine & 3 & 0 & 0.0 \\
+put & 4 & 4 & 100.0 \\
+clean & 4 & 0 & 0.0 \\
+cool & 3 & 3 & 100.0 \\
+heat & 3 & 0 & 0.0 \\
+puttwo & 3 & 0 & 0.0 \\
+\midrule
+Overall & 20 & 7 & 35.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table 2: Divergence point distribution
+\begin{table}[t]
+\centering
+\caption{Divergence point distribution by failure stage.}
+\label{tab:divergence_groups}
+\begin{tabular}{lcrrr}
+\toprule
+Stage & $d$ range & Count & Prop. (\%) & Avg.\ $C_{\text{span}}$ \\
+\midrule
+Early & $[0, 0.33)$ & 5 & 41.7 & 5.8 \\
+Mid & $[0.33, 0.67)$ & 6 & 50.0 & 4.3 \\
+Late & $[0.67, 1.0]$ & 1 & 8.3 & 1.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table 3: Gamma distribution statistics
+\begin{table}[t]
+\centering
+\caption{$\gamma(d)$ distribution ($\gamma_{\min}=0.85, \gamma_{\max}=0.97$).}
+\label{tab:gamma_dist}
+\begin{tabular}{lr}
+\toprule
+Statistic & Value \\
+\midrule
+Mean & 0.8999 \\
+Median & 0.8982 \\
+Std & 0.0230 \\
+Min & 0.8700 \\
+Max & 0.9500 \\
+Q25 & 0.8839 \\
+Q75 & 0.9125 \\
+\bottomrule
+\end{tabular}
+\end{table}

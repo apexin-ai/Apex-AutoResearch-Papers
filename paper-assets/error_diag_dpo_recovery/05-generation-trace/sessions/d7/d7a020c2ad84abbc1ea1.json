@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7a020c2ad84abbc1ea1",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "research qwen3 14b check",
+  "task_key": "worker_research_qwen3-14b-check_20260512T103503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_qwen3-14b-check_20260512T103503_result.json",
+    "occurrence": 1,
+    "bytes": 1468,
+    "sha256": "30d7c1762fa99f5236f1959ae035aae90d4504b59f63c9aa049ae3a7855902db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：用 Qwen3-14B-AWQ（4-bit），RTX 4090D 24GB 可运行\n\n**Qwen3-14B 已发布**，HuggingFace 官方仓库 `Qwen/Qwen3-14B` 可用。14.8B 参数，40 层，原生 32K context（YaRN 扩展至 128K）。支持 thinking/non-thinking 双模式切换。\n\n**量化版本齐全**：\n- 官方 AWQ 4-bit：`Qwen/Qwen3-14B-AWQ` ✅\n- 官方 GGUF：`Qwen/Qwen3-14B-GGUF` ✅\n- 官方 FP8：`Qwen/Qwen3-14B-FP8` ✅\n- AWQ 4-bit VRAM 约 **~10GB**，4090D 24GB 完全够用\n\n**14B vs 8B**：Qwen3-8B ≈ Qwen2.5-14B，Qwen3-14B ≈ Qwen2.5-32B。14B 在推理/规划任务上显著强于 8B。4-bit GPTQ 量化仅损失 ~1% MMLU。对 ALFWorld 多步规划任务，14B 值得。\n\n**兼容性**：\n- transformers ≥ 4.52.4\n- vLLM 支持（推荐 ≥ 0.19.0）\n- bitsandbytes 4-bit 支持，但**推荐直接用官方 AWQ 版本**而非动态量化，更稳定\n\n**建议**：直接用 `Qwen/Qwen3-14B-AWQ`，省去动态量化的兼容性风险，VRAM 充裕，推理能力远强于 8B。\n\nSources:\n- [Qwen/Qwen3-14B](https://huggingface.co/Qwen/Qwen3-14B)\n- [Qwen/Qwen3-14B-AWQ](https://huggingface.co/Qwen/Qwen3-14B-AWQ)\n- [Qwen3 Technical Report](https://arxiv.org/html/2505.09388v1)\n- [Qwen3-14B vs Qwen3-8B Comparison](https://www.siliconflow.com/models/compare/qwen3-14b-vs-qwen3-8b)\n- [Qwen3 Quantization Study](https://arxiv.org/html/2505.02214v1)\n- [Qwen3-14B Specifications & VRAM](https://apxml.com/models/qwen3-14b)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-qwen3-14b-check.md"
+}

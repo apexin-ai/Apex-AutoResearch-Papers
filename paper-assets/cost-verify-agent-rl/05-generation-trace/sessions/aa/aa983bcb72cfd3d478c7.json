@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa983bcb72cfd3d478c7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp015 progress",
+  "task_key": "worker_monitor_exp015-progress_20260514T131318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp015-progress_20260514T131318_result.json",
+    "occurrence": 1,
+    "bytes": 1906,
+    "sha256": "e621a47bbe58aa9810c9ea4bc5559cc2e8e48d8430080eaee0f1e46a664c8ecf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp015 训练状态报告\n\n### 进程状态\n- PID 334692 alive，ELAPSED 15:45 min\n- 日志：`/root/runs/cost-verify-agent-rl/exp015.log`，1685 行\n- 日志最后修改时间 21:05:24，当前 21:08:35（约 3 分钟前更新）\n\n### 当前进度：**Step 1/30 完成，Step 2 进行中**\n\n仅检测到 **step 0 (初始验证)** 的指标输出。Step 1 已完成（Training Progress 1/30 [05:37<2:43:06, 337.47s/it]），但 step 1 训练指标尚未打印到日志（test_freq=20 推测训练步指标只在 val/save freq 触发时输出）。\n\n### Step 0 (初始验证) 指标\n```\nStep 0 (val): success=0.0%, action_is_valid=85.83%, pass@1=0.0%, \n              num_actions=30.0, response_length=2797.5,\n              reward/best@4=0.0, reward/worst@4=0.0\n```\n\n### 训练步指标\n**无**。日志中目前不存在 `step:1`、`pg_loss`、`grad_norm`、`reward_mean` 等训练指标的实际数值输出。仅看到 `compute_policy_loss` 函数调用栈。\n\n### exp014c stale Worker 影响排查 ✓ 安全\n\n- `env.py:203` 存在 `success_gated_bonus` 代码，但**整段被 `if self.config.valid_action_bonus > 0`（line 202）包裹**\n- `config.py`: 默认 `valid_action_bonus = 0.0`、`success_gated_bonus = False`\n- exp015 config (`_alfworld_exp015_sparse_stable.yaml`) 未覆盖以上字段\n- exp015 config 使用 `tags: [\"AlfworldSG\"]`（非 AlfworldSG_SuccessGated）\n- **结论**：exp014c 的 success_gated_bonus 代码路径对 exp015 完全无影响（dead code path）\n\n### Kill 判断\n**当前不触发**。Step 6 还需 ≈25 分钟（每步 337s × 5 步）。需稍后再查。\n\n### 建议\n约 25-30 分钟后再次检查日志以获取 step 6 指标。下次检查关键看：\n- step:N 训练指标是否开始打印（若 step 5 仍无输出，需排查日志写入异常）\n- step 6 时 pg_loss=0 且 success=0% → 触发 kill"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp015-progress.md"
+}

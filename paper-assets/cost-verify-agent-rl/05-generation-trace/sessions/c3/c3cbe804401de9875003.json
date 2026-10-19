@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3cbe804401de9875003",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp029 real crash",
+  "task_key": "worker_diagnose_exp029_real_crash_20260516T191610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp029_real_crash_20260516T191610_result.json",
+    "occurrence": 1,
+    "bytes": 1155,
+    "sha256": "a85da27fe118101daa4e2c5b76baa96ea587d3ef654c655893cf5ebd577911e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**崩溃原因**: **CUDA OOM (显存不足)**\n\n`loss.backward()` 阶段尝试分配 9.27 GiB 失败。GPU 0 总共 94.97 GiB，本进程已用 55.41 GiB，另一个进程 (PID 895286/895287) 占用 35.66 GiB，仅剩 3.87 GiB 空闲。\n\n错误发生在 `dp_actor.py:468` → `update_policy` → `loss.backward()`，即 actor 梯度计算阶段。\n\n**最后完成的 step**: **Step 1**（rollout + old_log_prob + ref + advantage 全部完成，update_actor 进行到 backward 时 OOM）\n\n关键指标快照（step 1 训练数据）：\n- train/AlfworldSG/success: 17.97%\n- train/AlfworldSG/pass@8: 56.25%\n- batch_size: 128, num_mini_batches: 4\n- response_length/mean: 12689\n\n**Checkpoint**: 无。`/root/autodl-tmp/checkpoints/exp029` 目录只有 `train_restart.log`，没有模型文件。\n\n**GPU 当前状态**: 两块 GPU 各占用 ~38 GiB（残留显存未释放）。\n\n**根因**: 共享 GPU 上另一进程占 35.66 GiB 导致本项目 backward 时显存不够。或者 batch_size=128 + response_length ~12K tokens + 4 mini-batches 在 backward 阶段的激活梯度超出了单 GPU 剩余容量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp029-real-crash.md"
+}

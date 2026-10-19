@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "aed7eeef5e8cea046f2f",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "infra dry run",
+  "task_key": "worker_infra_dry-run_20260513T174800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_dry-run_20260513T174800.log",
+    "occurrence": 1,
+    "bytes": 1129331,
+    "sha256": "09e2e3dfec4f57c2a9f13063bd26d4637a99ee0b2d9476b8e7b1cadb2084d3f6"
+  },
+  "statistics": {
+    "messages": 378,
+    "user_turns": 0,
+    "tool_calls": 136,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 101,
+      "tool_call": 136,
+      "tool_result": 136,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 378,
+      "chunks": [
+        {
+          "path": "aed7eeef5e8cea046f2f-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "aed7eeef5e8cea046f2f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "aed7eeef5e8cea046f2f-part-0003.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-dry-run.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f97d75ed593ca748f488",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code scienceworld grpo configs",
+  "task_key": "worker_code_scienceworld_grpo_configs_20260520T062943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scienceworld_grpo_configs_20260520T062943_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "2a777d97bc8e2ab8f1631bdcaf8ebcdb96cec8145273602abd97de455dc37860"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**结果：**\n1. **envs.yaml** — 已追加 `ScienceWorldSG` 条目（30 个任务，score=10.0，max_steps=100）\n2. **_scienceworld_cell_a_grpo.yaml** — 已创建，与 ALFWorld Cell A (`_alfworld_hsweep_h2.yaml`) 严格控制变量，仅改 model_path、env tag、max_turn (50→100)、response_length (1024→512)\n\nHydra config 加载成功，参数确认正确。Hydra 的 `_self_` 警告是无害的（ALFWorld configs 也一样）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scienceworld-grpo-configs.md"
+}

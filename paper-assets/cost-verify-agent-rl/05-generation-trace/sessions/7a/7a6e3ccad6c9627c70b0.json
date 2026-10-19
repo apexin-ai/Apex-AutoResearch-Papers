@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a6e3ccad6c9627c70b0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops kill exp029 launch hsweep",
+  "task_key": "worker_ops_kill_exp029_launch_hsweep_20260517T041629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_exp029_launch_hsweep_20260517T041629_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "efc3643642edfdc7034a7389c6cc243bc5add593a9c4907df4d403caba1be2ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n1. **Step 15 checkpoint**: `/root/autodl-tmp/checkpoints/exp029/global_step_15/actor/huggingface` — 已确认存在\n2. **exp029 kill**: 成功，两张 GPU 已释放（0MiB / 0%）\n3. **Tatsu patch**: 已在 `train.py:4` 通过 `import patches.tatsu_parallel_fix` 自动激活，`launch_hsweep.sh` 无需额外配置\n4. **h=2 seed 1 启动**:\n   - PID: `920380`\n   - tmux session: `hsweep_h2_s1`\n   - 命令: `python train.py --config-name _alfworld_hsweep_h2 seed.train=10000 trainer.experiment_name=hsweep-h2-seed1`\n   - Ray 已初始化，环境加载中（alfworld worker 已 spawn）\n   - config 中 `step_independent_history_length: 2`（即 h=2）确认正确\n5. **无异常** — 只有标准的 Gym deprecation warning，不影响运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-exp029-launch-hsweep.md"
+}

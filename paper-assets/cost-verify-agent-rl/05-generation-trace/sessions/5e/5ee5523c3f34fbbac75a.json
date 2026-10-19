@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ee5523c3f34fbbac75a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp029 seed7 high kl",
+  "task_key": "worker_code_exp029_seed7_high_kl_20260521T161623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp029_seed7_high_kl_20260521T161623_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "d4ace04e16278970322447a37977432548e577c841eec91d56b0136dffaa2ed3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 324855 正在运行。\n\n```\nGPU 确认: bjb1 cuda:0,1 已释放 → 已占用\n配置:\n  文件: /root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed7_high_kl.yaml\n  关键修改: kl_loss_coef=0.1 (原 0.01), seed.train=999, seed.val=333, total_steps=7\n  其他参数: train_batch=128 (16×8), optimizer_offload=false, save_freq=5, max_ckpt_keep=2 — 与 seed 系列一致\n提交:\n  PID: 324855\n  tmux session: exp029_seed7_high_kl\n  日志: ~/runs/cost-verify-agent-rl/exp029_seed7_high_kl.log\n  W&B: 启动中，project=cost-verify-agent-rl, run_name=exp029-seed7-high-kl\n```\n\n磁盘注意：数据盘仅剩 15G（95%），7 步 + keep=2 够用但偏紧，训练中建议留意。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp029-seed7-high-kl.md"
+}

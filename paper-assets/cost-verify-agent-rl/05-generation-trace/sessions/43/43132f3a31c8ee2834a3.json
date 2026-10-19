@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43132f3a31c8ee2834a3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops fix exp029 seed2 fsdp offload",
+  "task_key": "worker_ops_fix-exp029-seed2-fsdp-offload_20260518T152321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-exp029-seed2-fsdp-offload_20260518T152321_result.json",
+    "occurrence": 1,
+    "bytes": 1365,
+    "sha256": "2c6516bcfebe693b7e7865dfd5b1d5302c805e4919f10b769a924e67a66b8a36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 显存继续增长（44.4GB 和 44.8GB），说明 vLLM 引擎仍在加载。进程已运行 4 分 21 秒，一切正常。\n\n注意：step 16 的验证需要等 val_before_train 完成后才能观察到（由于 resume 从 step 15 恢复，且 val_before_train=true，会先跑一次 validation）。这个过程可能需要 10+ 分钟。但关键的 **checkpoint resume 阶段已通过**（optimizer state 成功加载到 GPU，无 device mismatch）。\n\n---\n\n## 产出汇总\n\n**Config 修改确认**：\n- `optimizer_offload: true` → `false`（行 36）\n- `resume_mode: auto` 已存在（行 28）\n\n**方案 A 状态：checkpoint resume 成功，训练进行中**\n- Checkpoint 从 `global_step_15` 恢复，model/optimizer/rng/lr_scheduler 全部成功加载\n- **无 device mismatch 错误** — optimizer state 加载到 GPU 无报错\n\n**运行信息**：\n- PID: **48731**\n- W&B run ID: **msklzze2**\n- GPU 显存: ~44.4GB / 44.8GB（每卡 98GB 中，充足）\n- tmux session: `exp029_seed2`\n- 日志: `/root/runs/cost-verify-agent-rl/exp029_seed2_resume_step15_fixA.log`\n- Registry 已更新为 RUNNING\n\n**待验证**：step 16 训练 update 是否完成（需等 val_before_train + 第一个 training step，预计 ~20min）。日志因 Ray+tee buffer 延迟，但 W&B filestream 持续活跃，进程运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-exp029-seed2-fsdp-offload.md"
+}

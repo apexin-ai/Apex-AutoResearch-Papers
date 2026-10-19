@@ -1,0 +1,29 @@
+paper_key: "self-verification-dilemma-2026"
+title: "Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: ["standard LRM reasoning (no suppression)"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "token usage", direction: "lower_better"}
+  datasets:
+    - {name: "multiple benchmarks", size: "N/A"}
+  ablation_dimensions: ["recheck detection", "experience pool retrieval", "suppression signal"]
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Test-time framework: detects recheck activation, consults offline experience pool of past verification outcomes, estimates if recheck is unnecessary via retrieval, and suppresses with redirect signal"
+  method_family: "verification suppression / efficient reasoning"
+
+positioning:
+  core_claim: "Most self-verification steps in LRMs are confirmatory rather than corrective; an experience-driven suppression framework reduces token usage up to 20.3% while maintaining or improving accuracy"
+  key_results: "Up to 20.3% token reduction while maintaining accuracy; some datasets show accuracy improvements from suppression"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

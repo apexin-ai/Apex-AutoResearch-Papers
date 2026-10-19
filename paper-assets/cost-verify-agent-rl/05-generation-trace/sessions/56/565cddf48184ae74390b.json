@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "565cddf48184ae74390b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix exp029 disk cleanup",
+  "task_key": "worker_fix_exp029_disk_cleanup_20260516T230921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp029_disk_cleanup_20260516T230921_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "11381bbae95e999658f7f1b0cbf6cad636e1f89a41a608779ca3974abf6440d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。结果：\n\n**已删除（共 ~130G）：**\n- exp028c: 41G\n- exp019b_expert_sft_v3: 23G\n- exp029_dryrun2: 21G ⚠️（误删，为 dry run，实际 exp029 已保留）\n- exp024: 21G\n- exp023c: 21G\n- exp008_sft: 3.3G\n- exp026, exp026_dryrun, exp027, exp028_prereq, exp028_prereq_nothink, exp028a: 空目录\n\n**保留：**\n- exp021_ragen_sft_v4: 23G\n- exp029: 21G\n\n**磁盘状态：**\n- 清理前：242G/250G (97%), 8.4G 可用\n- 清理后：115G/250G (46%), **136G 可用**\n\n**训练状态：**\n- PID 902342: **ALIVE**，已运行 2h57m\n- 进度：6/100 steps (6%)，`Training Progress: 6%`\n- GPU：2× 21387 MiB 已用，utilization 0%（可能在 step 间等待/数据加载）\n- Ray 之前报的磁盘满警告已不再是问题（现在 136G 可用）\n\n训练进程存活且在推进中，磁盘瓶颈已解除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp029-disk-cleanup.md"
+}

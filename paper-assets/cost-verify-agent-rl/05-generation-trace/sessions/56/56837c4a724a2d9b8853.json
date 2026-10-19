@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56837c4a724a2d9b8853",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis exp029 seed200 episode v4",
+  "task_key": "worker_analysis_exp029_seed200_episode_v4_20260523T010940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp029_seed200_episode_v4_20260523T010940_result.json",
+    "occurrence": 1,
+    "bytes": 2573,
+    "sha256": "3d8247fad89266c39090f2d30e9a0950edd933a1b989b95ae5e7f6757401df61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Got all data. Here's the structured analysis:\n\n---\n\n## exp029_seed200_episode_v4 分析报告\n\n### 1. 训练完成状态\n- **状态**: 正常完成，EXIT_CODE=0\n- **总耗时**: 9016 秒（~2.50 小时）\n- **训练步数**: 5 steps 全部完成（W&B 记录了 4 步 train metrics + 1 次 final eval）\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/exp029-seed200/global_step_5/`（含 model + optim，rank 0 & 1）\n\n### 2. 每步训练指标（来自 W&B）\n\n| Step | critic/score/mean | success | pass@8 | ppo_kl | kl_loss | response_length |\n|------|-------------------|---------|--------|--------|---------|-----------------|\n| 1 | **2.891** | 0.289 | 0.688 | -0.000183 | 0.000132 | 3630 |\n| 2 | **0.156** | 0.016 | 0.063 | 0.000252 | 0.000528 | 8484 |\n| 3 | **0.391** | 0.039 | 0.250 | 0.000198 | 0.002642 | 7340 |\n| 4 | **1.953** | 0.195 | 0.500 | 0.000138 | 0.009868 | 4157 |\n| 5* | **2.031** | ~0.20 | — | — | — | — |\n\n*Step 5 metrics from log (W&B 未完整记录)\n\n### 3. Eval 结果（step 5 后，32 episodes）\n- **val-env/AlfworldSG/pass@1**: 0.125 (12.5%)\n- **val-core/unknown/reward/mean@32**: 1.25\n- **val-core/unknown/reward/best@32/mean**: 9.81\n- **val-env/AlfworldSG/action_is_valid**: 0.643\n\n### 4. KL 趋势\nKL 极小，全程 ppo_kl < 0.001，远低于 50 阈值。KL 不是问题。\n\n### 5. Reward 趋势分析\n```\nStep1: 2.89 ──▼ Step2: 0.16 (暴跌 94%) ──▲ Step3: 0.39 ──▲ Step4: 1.95 ──▲ Step5: 2.03\n```\n- **Step 2 发生严重 collapse**（reward 从 2.89 暴跌到 0.16，success 从 28.9% 降至 1.6%）\n- Step 2 同时 response_length 飙升到 8484（原 3630），模型开始生成冗长无效输出\n- **Step 3-5 逐步恢复**，但 step 5 reward (2.03) 仍低于 step 1 (2.89)\n- 净方向：**下降**（step5 < step1）\n\n### 6. 判断结论\n\n| 项目 | 结果 |\n|------|------|\n| 训练完成 | Yes |\n| Step5 reward > Step1 reward | **No** (2.03 < 2.89) |\n| KL < 50 | Yes |\n| ID reward 持续上升 | **No**（step 2 暴跌后恢复） |\n| 模式 | **delayed**（中段 collapse + 部分恢复，趋势向上但未恢复到 baseline） |\n| **推荐 conclusion** | **negative** |\n\n**理由**: Step 2 发生严重 collapse，虽然后续恢复趋势良好（step 2→5 持续上升），但最终 reward 仍未超过初始值。与 healthy seeds（seed4/5/6 step5 > step1）不符。Eval pass@1 仅 12.5%，表现较弱。如果延长训练步数，恢复趋势可能使其达到 healthy 水平，但当前 5 步结果为 negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp029-seed200-episode-v4.md"
+}

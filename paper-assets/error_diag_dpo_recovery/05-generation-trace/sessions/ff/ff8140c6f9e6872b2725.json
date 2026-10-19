@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "ff8140c6f9e6872b2725",
+  "project": "error_diag_dpo_recovery",
+  "kind": "worker",
+  "title": "exec collect v4 cuda0 nohup",
+  "task_key": "worker_exec_collect-v4-cuda0-nohup_20260512T163918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_collect-v4-cuda0-nohup_20260512T163918.log",
+    "occurrence": 1,
+    "bytes": 855933,
+    "sha256": "78f411507fe72ef7eaa9e6d6a30de606bbeef7d7100d451917030e46e5394d21"
+  },
+  "statistics": {
+    "messages": 550,
+    "user_turns": 0,
+    "tool_calls": 197,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 141,
+      "tool_call": 197,
+      "tool_result": 197,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 550,
+      "chunks": [
+        {
+          "path": "ff8140c6f9e6872b2725-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ff8140c6f9e6872b2725-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ff8140c6f9e6872b2725-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ff8140c6f9e6872b2725-part-0004.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exec-collect-v4-cuda0-nohup.md"
+}

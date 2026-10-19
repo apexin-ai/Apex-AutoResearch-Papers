@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "908621cb2addec70cafa",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp008 sft pipeline",
+  "task_key": "worker_code_exp008_sft_pipeline_20260514T030317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp008_sft_pipeline_20260514T030317_result.json",
+    "occurrence": 1,
+    "bytes": 2156,
+    "sha256": "af7687c6c9037029659cb362caff0cd9b44157560bda48d2c9345f78a673632a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出报告：exp008 SFT Warmup\n\n### 1. 数据集统计\n\n| 指标 | 值 |\n|------|-----|\n| 原始数据 | 1200 条（u-10bei/sft_alfworld_trajectory_dataset）|\n| 转换成功 | **1200 条（0 过滤）** |\n| 任务类型 | pick_and_place / clean_and_place / heat_and_place / cool_and_place / examine / pick_two（各 200） |\n| 平均轮数 | 9.6 turns |\n| 最大轮数 | 24 turns（< 30 上限） |\n| Action 分布 | go: 6696, take: 1400, open: 1388, put: 1200, clean/heat/cool/use: 各 200 |\n\n**格式样例**：\n```\n[system]: RAGEN system prompt (self-guidance assessment格式)\n[user]: You are in the middle of a room...\n[assistant]: <think>[Assessment: neutral] [Reasoning: I should look for apple...] [Suggestion: go to microwave 1]</think><answer>go to microwave 1</answer>\n[user]: The microwave 1 is open. In it, you see a mug 1.\n[assistant]: <think>[Assessment: negative] [Reasoning: apple is not here...] [Suggestion: go to cabinet 1]</think><answer>go to cabinet 1</answer>\n```\n\n### 2. 脚本路径\n- 转换脚本：`/root/cost-verify-agent-rl/scripts/convert_sft_data.py`\n- 训练脚本：`/root/cost-verify-agent-rl/scripts/sft_train.py`\n- 转换数据：`/root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl`\n\n### 3. Dry-run 结果\n- **loss**: 3.025（step 1: 3.011, step 2: 3.040）\n- **token accuracy**: 68.6%\n- **grad_norm**: ~134\n- **速度**: 2.06 s/step, 7.8 samples/s\n- **状态**: 成功 ✓\n\n### 4. 关键设计决策\n- **自定义 ChatML 模板**：Qwen3 默认 template 会在中间轮次剥离 `<think>` 内容，改用简化模板保留所有 `<think>` 标签\n- **Action 反推**：从 tool response 用 regex 反推 ALFWorld action（\"You pick up X from Y\" → \"take X from Y\" 等），100% 提取成功\n- **SDPA attention**：服务器无 flash_attn，使用 SDPA 替代\n\n### 5. 正式训练预估\n- 225 steps × 2s/step ≈ **~8 分钟**\n- Checkpoint 输出：`/root/autodl-tmp/checkpoints/exp008_sft/`\n\n### 6. 后续需要 Main Agent 做\n提交正式训练：\n```bash\nCUDA_VISIBLE_DEVICES=0 python /root/cost-verify-agent-rl/scripts/sft_train.py\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp008-sft-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8e1e9dadc918bc215d3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnosis exp003 invalid action",
+  "task_key": "worker_diagnosis_exp003_invalid_action_20260513T235331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp003_invalid_action_20260513T235331_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "c2f9784463e5489733f9e1f7ae9ceab5f79ecf5aa9743d773046b0af29df766f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因：Qwen3-1.7B base 模型不生成 `<answer>` 标签。**\n\n因果链：\n1. Qwen3 的原生 thinking 格式是 `<think>reasoning</think> + 直接文本`，没有 `<answer>` 标签\n2. 模型输出 `</think>` 后继续生成自然语言（重复格式指令或自由文本），不产生 `<answer>`\n3. RAGEN 的正则 `<think>(.*?)</think>\\s*<answer>(.*?)</answer>` 匹配失败 → `actions=[]`\n4. `manager_invalid_action=95.3%`，`pg_loss≈0`\n\n实验验证：32/32 样本全部确认此模式。Tokenizer 和 `skip_special_tokens` 不是问题。\n\n修复建议优先级：SFT warmup > 修改解析器适配 Qwen3 格式 > 用 Instruct 模型（exp004 已在测试）。\n\n报告已注册：`artifacts/exp003/report/exp003_invalid_action_diagnosis.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp003-invalid-action.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50c9ec380c021c3c4eb6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix registry spec commands",
+  "task_key": "worker_fix_registry-spec-commands_20260517T150518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_registry-spec-commands_20260517T150518_result.json",
+    "occurrence": 1,
+    "bytes": 833,
+    "sha256": "cc7656bfb31b3ed0c38c7a128fac6cb5f0debbda24b66e5934abdea6f2e0a926"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n### 1. hsweep_h2_seed2 (bjb1-17606, PID 945877)\n```\npython train.py --config-name _alfworld_hsweep_h2 seed.train=20000 trainer.experiment_name=hsweep-h2-seed2\n```\n\n### 2. gae_baseline_seed1 (westd-47453, PID 40267)\n```\npython train.py --config-name _alfworld_reinforce_pp_baseline\n```\n\n### 3. gsweep_g050_h5_seed1 (westd-47453, PID 85798)\n核心命令（从 watchdog wrapper 中提取）：\n```\npython train.py --config-name _alfworld_gamma_sweep_g050_h5 trainer.experiment_name=gsweep-g050-h5-seed1\n```\n环境变量：`CUDA_VISIBLE_DEVICES=2,3`, `TORCH_COMPILE_DISABLE=1`, 工作目录 `/root/cost-verify-agent-rl/RAGEN`\n\n### gae_baseline_seed1 的 val episodes 数量\n配置文件中 `val.env_groups: 32`, `val.group_size: 1`，即 **32 episodes**，满足 C003 (≥16) 要求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-registry-spec-commands.md"
+}

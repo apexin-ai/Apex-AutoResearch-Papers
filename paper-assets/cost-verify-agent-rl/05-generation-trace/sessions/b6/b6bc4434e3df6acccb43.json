@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b6bc4434e3df6acccb43",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "analysis track b seed signal",
+  "task_key": "worker_analysis_track-b-seed-signal_20260524T021613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_track-b-seed-signal_20260524T021613.log",
+    "occurrence": 1,
+    "bytes": 749295,
+    "sha256": "ce09e2a7f4bb5e7c3de80c3a33943658dda290a81562668edcf9cac98b9d52e9"
+  },
+  "statistics": {
+    "messages": 112,
+    "user_turns": 0,
+    "tool_calls": 32,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 2,
+      "assistant": 35,
+      "tool_call": 32,
+      "tool_result": 32,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 112,
+      "chunks": [
+        {
+          "path": "b6bc4434e3df6acccb43-part-0001.json",
+          "message_count": 90
+        },
+        {
+          "path": "b6bc4434e3df6acccb43-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-track-b-seed-signal.md"
+}

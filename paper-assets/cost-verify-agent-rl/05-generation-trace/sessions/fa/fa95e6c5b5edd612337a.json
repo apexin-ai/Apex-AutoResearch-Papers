@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa95e6c5b5edd612337a",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_3_1778762554.md",
+  "task_key": "loop_3_1778762554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778762554.md",
+    "occurrence": 1,
+    "bytes": 3885,
+    "sha256": "a3a7262fa52ecfb1e3f838ac700e365819fa16fa5d6c0519022d29c20ef6fcb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-14T12:42:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 bjb1-17606 的 cuda:0, cuda:1（gpu_ids 白名单）\n- 服务器用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），**没有 .venv**\n- submit 命令必须自带 `export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR`（/tmp 根分区只 30GB，fast_downward 会写满）\n- submit 命令必须自带 `export ALFWORLD_DATA=/root/autodl-tmp/alfworld`\n- checkpoint 和大文件全放 `/root/autodl-tmp/`，禁止写根分区\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，账号 root\n- 工作目录：`/root/cost-verify-agent-rl/RAGEN/`（训练入口 `python train.py --config-name ...`）\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- GPU：2× RTX PRO 6000 Blackwell 94GB\n- 模型 checkpoint：`/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/`（SFT warmup → GRPO step 5，当前所有 exp013x 的恢复起点）\n- SFT checkpoint：`/root/autodl-tmp/checkpoints/exp008_sft/final`（symlink `qwen3_sft_final`）\n- 数据：`/root/autodl-tmp/alfworld/`（3553 train games）\n- SFT 数据：`/root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl`（1200 条）\n- exp013b config：`_alfworld_exp013b_dense_reward.yaml`\n- 活跃进程：无（exp013d 已退出，两张 GPU 空闲）\n- Worker 池：3 个 CPU Worker 在跑（diagnose:exp013d + ops:exp013b-crash-diagnosis + monitor:exp013d-early-steps），均为诊断/监控任务\n\n### 3. 📊 当前状态\nexp013d 刚失败（EXIT_CODE=1），这是 dense reward shaping 的第三次基础设施重试。我已派 Worker `worker_diagnose_exp013d_20260514T083812` SSH 查日志诊断根因，**尚未回调**。\n\nRegistry 关键状态：\n- **DONE/failed**: exp013d（内存修复重试仍崩）、exp013b（OOM/Ray 崩溃）\n- **DONE/killed**: exp013c（预防性 kill）、exp013（Director 要求改 bonus 比值）\n- **DONE/success**: exp008_sft（SFT warmup，action_is_valid 90%）\n- **PREPARING**: exp008, exp007_dryrun, exp005, exp_003 等（历史残留，不活跃）\n- **RUNNING**: 无\n\n等待中：\n- Worker `worker_diagnose_exp013d_20260514T083812` 回调 → 拿到根因后决定修复方案\n- 两张 GPU 空闲，等诊断完成后立即重试\n\n### 4. 📋 待办\n- diagnose Worker 回调 → 读根因，update_registry 写 failure_reason，决定修复方案\n  - 若 OOM → 进一步降 env_groups（4→2）或降 group_size（16→8），改 config 后提交 exp013e\n  - 若 code bug → 派 Worker 修代码，修完提交 exp013e\n  - 若 Ray 配置问题 → 调整 Ray 参数重试\n- exp013e 提交后 → 向 Director 汇报（带 [资源] 行）\n- 若 exp013 系列连续 3 次基础设施失败 → 考虑向 Director 提议换策略（如降 group_size 到 8 减少并发）\n\n### 5. 🎯 战略上下文\n- **核心问题链**：sparse binary reward → GRPO 冷启动死锁（exp010/012b 验证）→ D010/D011 决定引入 dense reward shaping（valid_action_bonus per step）\n- **exp013b 已验证算法有效**：reward_mean=2.953, reward_std=1.608 > 0（有梯度信号），但 step 6 OOM 崩溃，从未完成完整训练\n- **Phase A 判定标准**（D010 修订）：ALFWorld success ≥ 20% = PASS\n- **exp013 系列全是基础设施问题**：exp013b OOM, exp013c 预防 kill, exp013d 修复后仍崩。算法方向未被证伪，只是 Ray + ALFWorld 内存管理反复出问题\n- **易错点**：不要因为连续失败就质疑 dense reward shaping 方向——exp013b 的 metrics 已经证明梯度信号存在，问题纯粹是内存/基础设施\n- **Phase B (B-IAVR) 被 Phase A 阻塞**：代码就绪（68 tests passed），等 Phase A 产出可用 checkpoint\n- valid_action_bonus 从 0.5（exp013 原设计）降到了 0.15（exp013b 实际值，D011 批准），比值约 1:67\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778762554.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67a5c9a4f25bdc872f17",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9.md",
+    "occurrence": 1,
+    "bytes": 4890,
+    "sha256": "1cde697fecdd87bb234e928754ffb2417c8d35cb01e9eaaad0445c0d55c40b39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T13:55:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**bjb1-17606 cuda:0, cuda:1** 仅此两张，其他 GPU 编号绝对不碰\n- **禁止 WANDB_MODE=disabled + cron 监控同时使用**（D029 事故：cron 5 次检测不到 W&B sentinel 后 auto-resolve 为 failed，实际进程还在跑）\n- Cron 监控 PID 必须是 **Ray TaskRunner PID**（781795），不是 bash wrapper PID（778562）\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- exp026 训练 ~40min/step × 150 步 ≈ 100h，**不要因为看起来慢就 kill 它**——这是正常速度\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-17606，账号 root\n- **工作目录**：/root/cost-verify-agent-rl\n- **Python**：/root/miniconda3/bin/python（conda base 环境，非 venv）\n- **模型**：Qwen3-1.7B，SFT checkpoint `/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/`\n- **框架**：RAGEN + cherry-picked step-independent rollout（从 verl-agent 移植）\n- **活跃进程**：exp026 PID=781795（Ray TaskRunner），tmux 管理，cuda:0+cuda:1\n- **Cron**：exp026_step_independent_grpo 活跃（reconcile 确认 pid=781795 still running）\n- **Log 路径**：`/root/autodl-tmp/tmp/ray/session_2026-05-15_18-38-45_487055_778562/logs/worker-f5a9c771de63c207b8db019edc7dedd89a425c2fe97314a2669cdd43-01000000-781795.out`\n- **W&B**：WANDB_MODE=disabled（指标只能从 Ray worker stdout 解析）\n- **Worker 池**：0（所有 Worker 已完成）\n\n### 3. 📊 当前状态\n**exp026_step_independent_grpo 是唯一 RUNNING 实验**，也是 MVP 的关键赌注。\n\n前 3 步训练指标（从 Ray logs 解析）：\n| Step | Success | Entropy | KL | Grad Norm | Reward Mean |\n|------|---------|---------|-----|-----------|-------------|\n| val_before | 6.25% | — | — | — | — |\n| 1 | 21.88% | 0.267 | 0.180 | 14.43 | 1.218 |\n| 2 | **32.81%** | 0.317 | 0.097 | 15.62 | 1.620 |\n| 3 | **17.19%** | 0.387 | 0.262 | 15.65 | 1.079 |\n\nStep 2 已超 MVP 20% 阈值，但 step 3 回落到 17.19%——可能是噪声（pass_at_16 从 1.0 降到 0.75，action_is_valid 仍~64%）。**Step 5 是首次正式 val eval，是判定 MVP 成败的关键点。**\n\n已并行完成的 CPU 任务（不需要重做）：\n- B-IAVR 核心机制代码已写好（action-change gating），Reviewer 审查通过（D031），Phase B 前需解决 2 个 warnings\n- Related work survey 完成\n- Literature map 更新完成\n- exp026 standalone eval 脚本已写好\n\n等待中：\n- exp026 cron 回调（训练完成或失败时自动触发）\n- 无等待中的 Worker 回调\n- 无等待 Director 决策的事项\n\n### 4. 📋 待办（条件触发式）\n- **exp026 cron 回调到达（训练完成）** → spawn Worker 跑 standalone eval（脚本已就绪）→ 按 on-experiment-done skill 分叉处理\n- **Step 5 val success ≥ 20%** → 确认 MVP Phase A 达标，汇报 Director，准备 Phase B（B-IAVR action-change gating，代码已就绪）\n- **Step 5 val success < 20% 但训练未 collapse**（entropy 稳定） → 继续跑到 step 10-15 再判\n- **训练 collapse**（entropy → 0 或 success → 0） → 早停，评估 GiGPO Phase 2（step-level advantage grouping）\n- **exp026 最终 negative（150 步后 val < 20%）** → 按 red-section 产出 Framing 调整提案，禁止默默跑下一个实验\n- **GPU 空闲（exp026 结束后）** → 立即铺下一个实验，不留 GPU 空窗\n\n### 5. 🎯 战略上下文\n**核心叙事**：B-IAVR（Behavior-Informed Agent Verification via RL）——训练 agent 基于 action change 信号选择性自我验证。基于 Self-Guide (arXiv 2604.03098) 框架。\n\n**决策链精华**：\n- D025/D026: RAGEN 原版 GRPO 3/3 失败，根因是 full-history context 爆炸 → pivot 到 step-independent rollout\n- D028: verl-agent 因 AutoDL cgroup pids.max 限制无法运行 → cherry-pick 核心算法到 RAGEN\n- D032: exp026 前 2 步 success 6.25%→32.81%，验证 step-independent + discounted returns 的方向正确\n- D034: 两级阈值——MVP=20% val（训练可行性），论文 baseline 另算\n\n**易判断错的事**：\n1. Step 3 success 回落到 17.19% **不要恐慌**——GRPO 早期波动正常，pass_at_16=0.75 说明模型仍有探索能力。等 step 5 val 再判\n2. **不要因为 WANDB_MODE=disabled 就想重启训练开 W&B**——重启 = 浪费已跑的 steps + GPU 时间。从 logs 解析指标即可\n3. exp025c 状态是 PENDING/failed——这是 verl-agent 路线的残留，**不要尝试恢复它**，该路线已被 D028 终止\n4. 大量 PREPARING 状态的旧实验（exp014a/b/c, exp018, exp019b/c, exp020c/d 等）都是历史遗留，**不要去清理或恢复它们**——它们属于已废弃的 RAGEN GRPO / dense reward 路线\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-copy-2.md"
+}

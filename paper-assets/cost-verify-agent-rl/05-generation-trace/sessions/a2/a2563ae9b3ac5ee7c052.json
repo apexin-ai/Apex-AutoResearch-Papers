@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2563ae9b3ac5ee7c052",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research ares analysis",
+  "task_key": "worker_research_ares_analysis_20260515T185349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ares_analysis_20260515T185349_result.json",
+    "occurrence": 1,
+    "bytes": 992,
+    "sha256": "181a5c32a5e19a8a274ae801a03caef14ac9d5638cf2c67a208ddd9b46d3fdc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/docs/ares_analysis.md`。\n\n核心发现：\n\n1. **ARES 无 ALFWorld 实验**，仅在 TAU-Bench/BrowseComp+/WebArena 上评估。问题结构也不同——ARES 做 effort allocation（每步投入多少 reasoning tokens），B-IAVR 做 verification gating（是否执行额外验证步骤）。\n\n2. **GitHub 无代码**，UCSB-NLP-Chang/Ares 仅有 README，必须从零实现。\n\n3. **Phase D 对比最小方案**：实现 ARES-style SFT binary router（~16-24 人时 + 32-50 GPU 时），前提是 Phase A baseline 达到 ≥50% success rate。核心对比叙事：SFT 需要 oracle 轨迹 + 穷举标注 vs B-IAVR 的 RL 在线学习无需预标注。\n\n4. **关键差异**：ARES 用独立 router + oracle 数据 SFT，B-IAVR 用同模型 control token + action-change reward RL。决策空间、训练信号、数据需求三个维度均有清晰差异化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ares-analysis.md"
+}

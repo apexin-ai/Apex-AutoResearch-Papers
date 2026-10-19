@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ea56f857da6f8033657",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp025b ulimit fix",
+  "task_key": "worker_ops_exp025b_ulimit_fix_20260515T074624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp025b_ulimit_fix_20260515T074624_result.json",
+    "occurrence": 1,
+    "bytes": 123,
+    "sha256": "d070618acda4a52884fe3ff80bd329ff7d003d010b13edbc64b4aebef762b539"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "（90 秒计时器已完成，但训练已在此之前确认失败，结果已在上条回复中汇报。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp025b-ulimit-fix.md"
+}

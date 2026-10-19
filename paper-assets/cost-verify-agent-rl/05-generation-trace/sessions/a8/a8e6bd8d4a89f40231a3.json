@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8e6bd8d4a89f40231a3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops disk cleanup bjb1",
+  "task_key": "worker_ops_disk-cleanup-bjb1_20260514T124603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-bjb1_20260514T124603_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "1fa40fd990accc8db1e9d0c4d00814f8e15e4ae6170684f0ff8070f16972eec2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理报告\n\n| | 使用量 | 使用率 |\n|---|---|---|\n| **清理前** | 113G | 45% |\n| **清理后** | 32G | 13% |\n| **释放** | **81G** | |\n\n### 已删除\n- `/root/autodl-tmp/checkpoints/exp013f/` — 62G（global_step_10/15/20/25/30）\n- `/root/autodl-tmp/checkpoints/exp008_sft/checkpoint-225/` — 9.7G\n- `/root/autodl-tmp/checkpoints/exp008_sft/checkpoint-75/` — 9.7G\n- `/root/autodl-tmp/ray_tmp/*` — 42M\n- `/root/autodl-tmp/tmp/*` — 53M\n\n### 已保留\n- `exp008_sft/final/` — 3.3G，完整（model.safetensors 3.4GB + tokenizer + config）\n- `qwen3_sft_final` symlink → exp008_sft/final ✓\n- `alfworld/` — 2.2G\n- `sft_data/` — 4.3M\n\n### 备注\n- `exp008_grpo` 不存在于服务器上（已被之前清理或从未保存到此路径）\n- 无 wandb 目录、无 /tmp/ray/、无 `__pycache__` 需要清理\n- 当前可用空间 219G，充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-bjb1.md"
+}

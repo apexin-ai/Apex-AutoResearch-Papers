@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f66d0a2bbdb26c8bfa4c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor v9c status urgent",
+  "task_key": "worker_monitor_v9c_status_urgent_20260519T230842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v9c_status_urgent_20260519T230842_result.json",
+    "occurrence": 1,
+    "bytes": 1115,
+    "sha256": "0e25cc8d4a0ef103ddc270e66671936419e776222616f0c24fc04ce54f55d984"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v9c 状态：已崩溃\n\n| 项目 | 值 |\n|------|-----|\n| 进程 | **DEAD**，`EXIT_CODE=1` |\n| 崩溃位置 | Step 3/30（step 2 完成后，step 3 rollout 阶段崩溃） |\n| 运行时长 | ~59 分钟（2 个 step） |\n| GPU | 4 卡全部释放（0 MiB / 0%） |\n\n### Step 2 指标（最后完成的 step）\n\n| 指标 | 值 |\n|------|-----|\n| success | **0.6406** |\n| entropy | 0.0746 |\n| ppo_kl | -0.400 |\n| grad_norm | 2.017 |\n| pg_loss | 0.040 |\n| response_length/max | 16043 |\n| pass@8 | 1.0 |\n\n### 崩溃原因\n\n**vLLM prompt 长度溢出：**\n\n```\nValueError: The decoder prompt (length 16384) plus the number of requested output tokens \n(at least 1) is longer than the maximum model length of 16384.\n```\n\n配置中 `max_prompt_length: 16384` 与 vLLM 的 `max_model_len: 16384` 相同。当某条 prompt 在多轮交互中增长到恰好 16384 tokens 时，无剩余空间生成 output，触发硬错误。\n\n**修复方向：** 将 `max_prompt_length` 降低（如 15360 或 16000），为 generation 留出 headroom；或增大 vLLM 的 `max_model_len`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v9c-status-urgent.md"
+}

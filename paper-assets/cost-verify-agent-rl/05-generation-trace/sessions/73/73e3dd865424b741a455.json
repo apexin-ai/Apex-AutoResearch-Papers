@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73e3dd865424b741a455",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd start sft v3 and prep seed5 reeval",
+  "task_key": "worker_ops_westd_start_sft_v3_and_prep_seed5_reeval_20260522T101004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_start_sft_v3_and_prep_seed5_reeval_20260522T101004_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "587796d8bdb861d6835b0191ce165849db2576231224511e34de610dd8a73811"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SFT baseline v3 已成功加载模型到 GPU 3（90649 MiB 显存占用），checkpoint shards 加载完毕。\n\n### 产出汇总\n\n**1. SFT baseline v3（GPU 3）**\n- 状态：✅ 已启动，模型加载完成\n- Session: `ragen_eval_gpu3`（created 18:11:47）\n- GPU 3 显存: 90649 MiB\n- 日志: `/root/autodl-tmp/logs/ragen_sft_baseline_ood_v3.log`\n- 关键参数: `seed.val=321`, `enable_response_mask=False`, `model=qwen3_exp021_ragen_sft_v4`\n\n**2. seed5 v2 config**\n- 状态：✅ 已创建\n- 路径: `config/_alfworld_exp029_seed5_ood_eval_v2.yaml`\n- 修改: `seed.val: 321`, `experiment_name: seed5-step10-ood-eval-v2`, `enable_response_mask: False`（已为 False，无需改）\n- 未启动，等 GPU 空闲\n\n**3. 4 GPU 状态**\n\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| 0 | 100% | 90467 MiB | ragen_eval_gpu0 |\n| 1 | 100% | 90467 MiB | ragen_eval_gpu1 |\n| 2 | 0% | 90467 MiB | ragen_eval_gpu2 |\n| 3 | 0% | 90649 MiB | SFT baseline v3（刚启动，模型已加载） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-start-sft-v3-and-prep-seed5-reeval.md"
+}

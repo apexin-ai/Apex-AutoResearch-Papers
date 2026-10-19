@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ef80213ec4674b041a2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops emergency disk cleanup westd",
+  "task_key": "worker_ops_emergency-disk-cleanup-westd_20260518T175029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_emergency-disk-cleanup-westd_20260518T175029_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "a05433b355cf8dd212435ae8a1c68d8907d7e91ece345c1042856ae32e4a9b4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**结果：**\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 228G (92%) | 142G (57%) |\n| 可用 | 23G | **109G** |\n| 释放 | — | **~86G** |\n\n**清理内容：**\n- gsweep-g050/g080/g095/g100-h5 checkpoints: 84G\n- exp021_ragen_sft_v4 + qwen3 版: 6.6G\n- 12 个旧 ray sessions: ~1.5G\n\n**保留确认：**\n- `factorial-h2-episode-adv/` (62G, seed1 完成)\n- `factorial-h2-episodeadv-seed2/` (21G, 运行中)\n- 两个活跃 ray sessions (PID 576727 + PID 34193)\n\n109GB 可用，两个实验有充足空间继续运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-emergency-disk-cleanup-westd.md"
+}

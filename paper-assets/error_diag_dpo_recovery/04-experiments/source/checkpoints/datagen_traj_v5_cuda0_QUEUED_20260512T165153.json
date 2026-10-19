@@ -1,0 +1,14 @@
+{
+  "exp_id": "datagen_traj_v5_cuda0",
+  "project": "error_diag_dpo_recovery",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T16:51:53.773Z",
+    "updated_at": "2026-05-12T16:51:53.773Z"
+  },
+  "timestamp": "2026-05-12T16:51:53.786907+00:00",
+  "trigger": "update_registry"
+}

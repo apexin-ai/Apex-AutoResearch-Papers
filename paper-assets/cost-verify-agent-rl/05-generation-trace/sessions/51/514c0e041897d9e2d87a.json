@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "514c0e041897d9e2d87a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops kill g050 confirm g080",
+  "task_key": "worker_ops_kill-g050-confirm-g080_20260518T024844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-g050-confirm-g080_20260518T024844_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "72900a704c803e9aa3b4e89479630afcffa8d96319736f43a1439ce8a51628ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n| 项目 | 状态 |\n|------|------|\n| g050 kill | 已清除（PID 85798 及子进程 85802, 85803 全部 kill -9） |\n| GPU 2,3 释放 | 确认，显存已归零 |\n| Watchdog 自动启动 g080 | 成功，watchdog 检测到 g050 退出后自动启动 |\n| g080 主进程 PID | **955007**（`train.py --config-name _alfworld_gamma_sweep_g080_h5 ... gsweep-g080-h5-seed1`） |\n| g080 GPU 占用 | GPU 2,3 各 550 MiB（正在初始化中，显存将逐步增长） |\n| GPU 0,1 | 不受影响，原有实验继续运行 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-g050-confirm-g080.md"
+}

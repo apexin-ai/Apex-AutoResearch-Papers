@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b27768729f69d9362473",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_18_1779331010.md",
+  "task_key": "loop_18_1779331010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779331010.md",
+    "occurrence": 1,
+    "bytes": 4250,
+    "sha256": "e3e5154df58d8c3cf834f38216cbb7fd9a56934e5d038ba009ced90630bec691"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-19T10:42:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb1-17606 磁盘仅 250GB（/dev/md0），checkpoint ~20GB/step，必须 `max_actor_ckpt_to_keep: 3`，提交前 `df -h` 确认 ≥50GB 余量\n- bjb1-17606 Python 环境只能用 `conda activate base`（非 verl-agent）\n- westd-47453 命令前缀必须带 `export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR && export TORCH_COMPILE_DISABLE=1 && export PYTHONUNBUFFERED=1`\n- exp029_seed2 已在 bjb1 累计 10+ 次失败，D077 决策彻底放弃 bjb1 跑此实验，转 westd\n- GPU 分配需查 `get_project_status` 白名单，不可用白名单外 GPU（即使 Director 指令也要 push back）\n- seed 实验必须用独立 checkpoint 目录（M006 事故：seed2 覆盖 seed1 checkpoint，不可恢复）\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-17606**：`/root/cost-verify-agent-rl/RAGEN/`，`conda activate base`，磁盘 817GB/879GB 可用（3%），当前无实验运行\n- **westd-47453**：`/root/cost-verify-agent-rl/RAGEN/`（推测，需确认），`conda activate base`，磁盘 813GB/879GB 可用（3%）\n  - GPU 0,1: factorial_h2_episodeadv_seed2 (PID 576727, tmux 应存在)\n  - GPU 2,3: hsweep_h10_seed1 (PID 34193, tmux 应存在)\n- **模型**：Qwen3-1.7B SFT v4 checkpoint（来自 exp021_ragen_sft_v4）\n- **W&B**：项目 cost-verify-agent-rl\n- **Cron 活跃**：factorial_h2_episodeadv_seed2 + hsweep_h10_seed1（reconcile 确认均 running）\n\n### 3. 📊 当前状态\n刚收到 hsweep_h20_seed1 (bjb1) 失败 cron 回调。日志尾部无 Traceback，全是 `anchor_obs` 警告。已 spawn 诊断 Worker `worker_diagnose_hsweep_h20_seed1_20260518T184044` SSH 到 bjb1 深查（grep 全文错误、dmesg OOM、磁盘、checkpoint 目录）。Worker 尚未回调。\n\n**RUNNING**:\n| exp_id | server | GPU | 摘要 |\n|--------|--------|-----|------|\n| factorial_h2_episodeadv_seed2 | westd | 0,1 | Cell B seed2 复现，~step 8/15 |\n| hsweep_h10_seed1 | westd | 2,3 | h=10 cliff figure 数据点，刚启动 |\n\n**PREPARING**: 17 个实验（多数是早期遗留，不活跃）\n\n**等待中**:\n- 诊断 Worker 回调 → 完成 on-experiment-failed 流程（更新 registry notes、发飞书卡片、汇报 Director）\n- factorial_h2_episodeadv_seed2 完成回调 → 分析 Cell B seed2 完整轨迹\n- hsweep_h10_seed1 完成回调 → cliff figure h=10 数据点\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 根据 root_cause 更新 registry notes + failure_reason → feishu_send_result_card → 汇报 Director（带资源行）→ 判断是否可 auto-fix 重试 h=20（若是 OOM/磁盘问题，建议转 westd）\n- factorial_h2_episodeadv_seed2 完成 → on-experiment-done 流程，与 seed1 对比 Cell B 退化轨迹，汇报 Director\n- hsweep_h10_seed1 完成 → on-experiment-done 流程，判断 cliff 位置（h=10 是否 >0%），更新 cliff figure 数据\n- westd GPU 0,1 空出（factorial 完成后）→ 按 D077/ROADMAP 部署 exp029_seed2 转 westd 继续\n- h=20 诊断完 + bjb1 GPU 空闲 → 若可修复则重试 h=20 on bjb1；若 bjb1 不可靠则建议 Director 将 h=20 转 westd（需等 GPU 空出）\n\n### 5. 🎯 战略上下文\n- **核心 framing**：诊断 step-independent RL 的两个独立失败机制——information loss + sign misattribution。3-cell factorial 设计：Cell A（两者都有→collapse）、Cell B（只有 info loss→能学不能泛化）、Cell C（两者都解→23.88% OOD）\n- **当前阶段**：核心 claim 支撑已强，正在补充 cliff figure (fig5) 的 h-sweep 数据点（h=2/5/10/20）和 seed2 复现\n- **γ-sweep 已完结 (D075)**：g050/g080/g095/g100 全坍缩，sign misattribution 不仅来自 magnitude decay\n- **h=20 是 cliff figure 关键数据点**：h=5 坍缩、h=10 在跑、h=20 刚失败需重试。如果 h=20 仍坍缩，minimum viable context window > 20 steps\n- **exp029_seed2 是 P0**：核心正向 claim (Cell C 23.88%) 只有 seed1 一个种子，desk-reject 风险。bjb1 已放弃（D077），等 westd GPU 空出后转移\n- **易错点**：bjb1 服务器不稳定（exp029_seed2 10+ 次失败），优先用 westd 跑关键实验；h-sweep 实验 h=20 的 context window 很大，注意 OOM 风险\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779331010.md"
+}

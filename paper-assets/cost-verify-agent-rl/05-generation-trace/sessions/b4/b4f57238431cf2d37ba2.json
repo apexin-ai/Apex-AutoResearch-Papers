@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4f57238431cf2d37ba2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research grpo alternatives",
+  "task_key": "worker_research_grpo-alternatives_20260514T133446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_grpo-alternatives_20260514T133446_result.json",
+    "occurrence": 1,
+    "bytes": 1907,
+    "sha256": "0ffe28b2af408285d506b0b94ae4f4b2505a2b7b6f53defe01d614b0d73ff42b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存至 `artifacts/grpo_alternatives_survey.md`。核心结论：\n\n---\n\n## 推荐排序\n\n**#1 SPEAR** ([arXiv:2509.22601](https://arxiv.org/abs/2509.22601), ICLR 2026, [GitHub](https://github.com/TencentYoutuResearch/SPEAR))\n- **直接在 ALFWorld 上验证，GRPO 基础上 +16.1% success rate**\n- 课程式自模仿学习：前期用 auxiliary reward 探索，后期从 replay buffer 中 self-imitation\n- Plug-and-play 叠加在 GRPO 上，同时解决 cold-start 和 reward gaming\n- 额外开销仅 10-25%\n\n**#2 GiGPO** ([arXiv:2505.10978](https://arxiv.org/abs/2505.10978), NeurIPS 2025)\n- **ALFWorld 上 GRPO +12%**\n- 两层分组：episode-level + step-level anchor state grouping\n- 即使 episode reward 全同，step-level advantage 仍有区分度\n- Critic-free，保持低内存\n\n**#3 SPA-RL** ([arXiv:2505.20732](https://arxiv.org/abs/2505.20732), [GitHub](https://github.com/WangHanLinHenry/SPA-RL-Agent))\n- ALFWorld 验证过，训练 progress estimator 将 sparse final reward 重分配为 step-wise dense reward\n- 从根本上消除 zero-advantage 问题\n\n**#4 DAPO** ([arXiv:2503.14476](https://arxiv.org/abs/2503.14476)) — 最小改动方案\n- Clip-Higher + Dynamic Sampling 改几行代码可集成\n- 但不解决 cold-start（success=0% 时 Dynamic Sampling 无数据可用）\n\n**推荐路径**: exp015 失败 → 先快速加 DAPO 的 Clip-Higher → 再叠加 SPEAR 的 self-imitation + curriculum → 如仍不够则换 GiGPO 作为 base optimizer。\n\nSources:\n- [SPEAR - ICLR 2026](https://arxiv.org/abs/2509.22601)\n- [GiGPO - NeurIPS 2025](https://arxiv.org/abs/2505.10978)\n- [SPA-RL](https://arxiv.org/abs/2505.20732)\n- [DAPO - ByteDance](https://arxiv.org/abs/2503.14476)\n- [SAGE](https://arxiv.org/abs/2602.03143)\n- [HAPO - Amazon](https://arxiv.org/abs/2603.11321)\n- [GDPO - NVIDIA](https://arxiv.org/abs/2601.05242)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-grpo-alternatives.md"
+}

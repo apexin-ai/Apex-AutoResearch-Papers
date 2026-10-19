@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbb697deb363bfa97e90",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp012b step6",
+  "task_key": "worker_monitor_exp012b-step6_20260514T065638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp012b-step6_20260514T065638_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "93f0fedc79d15b146d1c75bdfeb6cb758093945a6ac95cf71b12844dcf5c7700"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **进程活跃**：PID 233689 运行 16 分钟，Ray TaskRunner (90% CPU) 和 WorkerDict (28% CPU) 均正常\n- **日志缓冲**：exp012b.log 自 14:48:36 后未刷新（Python stdout 缓冲），1489 行均为 config dump 和 checkpoint loading\n- **Step 6 rollout 进行中**：group_size=16 使 rollout 时间约为 exp010（group_size=8）的 2 倍，预计再需 2-4 分钟\n\n已提取 exp010 对比基准：\n\n| 指标 | exp010 step 1 | exp010 step 6 | exp010 step 10 (末) |\n|------|-------------|-------------|--------------|\n| success | 4.69% | 3.13% | 0% |\n| action_is_valid | 58.8% | 66.9% | 68.3% |\n| pass@8 | 37.5% | 12.5% | 0% |\n| entropy | 0.0919 | 0.0867 | 0.0889 |\n| ppo_kl | 0.00050 | 0.00181 | 0.00081 |\n| score/mean | 0.022 | 0.030 | -0.287 |\n\n4 分钟后自动回来查 step 6 指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp012b-step6.md"
+}

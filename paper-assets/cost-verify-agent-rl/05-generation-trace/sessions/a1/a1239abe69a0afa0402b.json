@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1239abe69a0afa0402b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp029 seed2 oom check",
+  "task_key": "worker_ops_exp029-seed2-oom-check_20260518T101612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp029-seed2-oom-check_20260518T101612_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "47a538d8ff43ee635c76806cf9c212a945922e3178bf6993616be71a32214223"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **PID 24047 存活？** 是\n- **GPU 0 显存**: 44127 MiB / 97887 MiB\n- **GPU 1 显存**: 43511 MiB / 97887 MiB\n- **当前阶段**: training step 2/15（进度 13%，已运行 29 分钟，预估剩余 ~3h11m）\n- **backward pass 已成功完成**: 是 — step 1 和 step 2 均完成，有完整 metrics 输出（critic/advantages, timing_s/update_actor:186s, perf/throughput:463.6 tokens/s）\n- **W&B run ID**: `7u0o4cnx`（run name: `exp029-episode-level-seed2`）\n\nOOM 关卡已安全通过。显存从初始化 ~4.7 GiB 涨到 ~44 GiB，两张卡稳定运行，无 OOM 迹象。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp029-seed2-oom-check.md"
+}

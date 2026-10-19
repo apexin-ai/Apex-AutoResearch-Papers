@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bc82ca01eea56613d27",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd new seed 2048 5step",
+  "task_key": "worker_ops_westd_new_seed_2048_5step_20260522T015532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_new_seed_2048_5step_20260522T015532_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "24518f967c7d71757b25415359093893c3720d29b12c060edd13cc62ed35bfbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 高负载运转中（val_before_train 在跑），日志输出被缓冲。训练已成功启动。\n\n**启动报告：**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 79754 (tmux), TaskRunner 92858 |\n| GPU | cuda:2 — 36857 MiB, 49% util; cuda:3 — 36753 MiB, 47% util |\n| W&B Run ID | **5j94efd5** |\n| W&B URL | `https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/5j94efd5` |\n| max_turn | **50** ✓ |\n| seed | **2048** ✓ |\n| total_training_steps | **5** |\n| max_response_length | 无（无 cap 对照组）✓ |\n| Experiment name | exp029-new-seed-2048 |\n| Checkpoint dir | `/root/autodl-tmp/checkpoints/exp029_new_seed_2048/` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-new-seed-2048-5step.md"
+}

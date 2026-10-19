@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a2b9e93854d01da6cdb5",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "diagnosis exp003 invalid action",
+  "task_key": "worker_diagnosis_exp003_invalid_action_20260513T235331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp003_invalid_action_20260513T235331.log",
+    "occurrence": 1,
+    "bytes": 929173,
+    "sha256": "157f4c2baec4c741bc8c86d32561f339a10a4c4816d2286770ad70c435ad1380"
+  },
+  "statistics": {
+    "messages": 215,
+    "user_turns": 0,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 77,
+      "tool_result": 77,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 215,
+      "chunks": [
+        {
+          "path": "a2b9e93854d01da6cdb5-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "a2b9e93854d01da6cdb5-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnosis-exp003-invalid-action.md"
+}

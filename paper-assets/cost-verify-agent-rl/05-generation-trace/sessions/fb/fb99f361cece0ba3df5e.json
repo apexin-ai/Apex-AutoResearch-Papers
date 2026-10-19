@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb99f361cece0ba3df5e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp029 urgent check",
+  "task_key": "worker_monitor_exp029_urgent_check_20260516T215529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp029_urgent_check_20260516T215529_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "d4352334c3725242564ffc8d1248ec24c321ada6cfd8ceed15ab8ed04b0f56d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp029 attempt 12 状态：正常运行中**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 PID 902342 | **ALIVE**，已运行 1h43m18s |\n| GPU 0 | 100% 利用率，44887 MiB |\n| GPU 1 | 100% 利用率，44831 MiB |\n| TMUX session | OK |\n| 训练进度 | **3/100 steps (3%)**，已耗时 1h22m，预估剩余 ~44h |\n\n日志尾部全是 `Skipping non-numeric metric 'anchor_obs'` 的 WARNING（无害，仅跳过非数值指标记录），训练正常推进中。无需重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp029-urgent-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3ab30598d650482ee7c",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_10_1778866846.md",
+  "task_key": "loop_10_1778866846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778866846.md",
+    "occurrence": 1,
+    "bytes": 4332,
+    "sha256": "3207b493cee542057417a9135aa42d7f7640f3ab92891977f317901616302410"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T17:29:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 上**仅 cuda:0, cuda:1**（2× RTX PRO 6000 Blackwell 98GB）。不得使用其他 GPU 编号，即使 Director 指令也要 push back\n- exp027 是 MVP 生死实验——**不得中断、不得在同机启动其他 GPU 任务干扰它**\n- exp027 判定阈值（D037）：<20% fail，20-25% weak pass，30%+ strong pass。**不可自行降标准**\n- 论文 framing 锁定 cost-efficiency story（D039），**不走 performance story**，不可擅自切换\n- citation audit 发现 7 篇引用有问题（AgentPRM arXiv ID/作者/标题全错等），写论文前必须修正\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-17606，account=root\n- **工作目录**：`/root/cost-verify-agent-rl`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **环境激活**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **SFT checkpoint**：`/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4`\n- **模型**：Qwen3-1.7B\n- **W&B**：exp027 run ID = `y7jiibqk`\n- **活跃进程**：exp027_stable_grpo, PID=789790, tmux session=`exp027_stable_grpo`, cuda:0+cuda:1\n- **Cron**：1 个 active cron 监控 exp027（reconcile 确认 pid 789790 存活）\n\n### 3. 📊 当前状态\n- **exp027_stable_grpo RUNNING**：50 步 GRPO 训练，针对 exp026 死亡螺旋（零奖励 batch），方案：128 rollouts + entropy 0.01 + LR 5e-7 + KL 0.005。Step 0 val_before_train 完成（success=6.25%，与 SFT baseline 一致）。预估总 wall time 42-58h（从 ~14:33 UTC 开始，预计 5/17 完成）\n- **Worker 池 = 0**（GPU 双卡被 exp027 占满，无空闲 GPU。CPU 任务可以开但当前无待执行 CPU 任务）\n- **Registry 总计 32 个实验**：成功 3 / 负向 4 / 失败 17 / RUNNING 1 / PREPARING 多个（均为历史积压，等 exp027 结论后决策）\n- **等待中**：exp027 cron 回调（训练完成或失败时自动触发）\n\n### 4. 📋 待办（条件触发式）\n- **exp027 cron 回调到达（success）** → 按 on-experiment-done skill 处理：读 metrics，判定 MVP（D037 阈值），若 ≥20% → `complete_mvp()`，更新 registry/report.md，向 Director 汇报，启动 Phase B (B-IAVR selective verification) 规划\n- **exp027 cron 回调到达（failed/negative）** → 按 on-experiment-failed / red-section 处理。若 <20% success → 向 Director 汇报 MVP fail，附 Framing 调整提案，等 Director 决策（申请新服务器 / 重评项目 / pivot）\n- **exp027 训练中间 step 5 出 val 结果** → 可 spawn worker 查 W&B/日志确认 KL < 0.005 约束（近期任务列表项）\n- **Director 要求启动 CPU 任务（文献/写作）** → 立即 spawn worker，不影响 exp027\n\n### 5. 🎯 战略上下文\n- **项目核心**：训练 interactive agent 做 selective self-verification（B-IAVR），用 action-change 作为 verification informativeness reward。框架基于 Self-Guide，模型 Qwen3-1.7B + ALFWorld + verl-agent GRPO\n- **当前卡点**：Phase A MVP 验证——exp027 是第 27 个实验，前面 17 个 failed + 4 个 negative，核心难题是 GRPO 训练不稳定（零奖励死亡螺旋）。exp027 是针对性修复（增大 rollouts + entropy bonus + 降 LR/KL）\n- **决策链关键节点**：D034（两级阈值 MVP 20% / 论文 50%）→ D036（exp026 死亡螺旋确认）→ D037（exp027 判定阈值）→ D039（cost-efficiency framing 锁定）\n- **竞争者**：ARES (arXiv 2603.07915) 是最近竞争者（SFT router, continuous effort, 52.7% token↓）。差异化点：RL-trained binary decision + action-change reward + interactive agent 场景\n- **易踩坑**：\n  - SFT baseline 只有 6.25% success（C003 compliant 16-episode eval），cost-efficiency story 前提是 baseline ≥50%，当前差距巨大——**不要过早承诺论文 claim 强度**\n  - exp027 预估 42-58h，不要因为等待焦虑就中断或调参重启\n  - 历史 PREPARING 实验（exp014a/b/c, exp018, exp019b/c, exp020c/d, exp021, exp025c）是积压，**不要盲目提交**——等 exp027 结论后根据 MVP 判定统一决策\n  - submit_training_job 的 command 必须自带环境激活（conda），不能假设 shell profile 自动加载\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778866846.md"
+}

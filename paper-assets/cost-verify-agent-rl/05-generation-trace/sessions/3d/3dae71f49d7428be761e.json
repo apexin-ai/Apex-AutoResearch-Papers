@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dae71f49d7428be761e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose verify exp029 seed2 westd startup v3",
+  "task_key": "worker_diagnose_verify-exp029-seed2-westd-startup-v3_20260518T225518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_verify-exp029-seed2-westd-startup-v3_20260518T225518_result.json",
+    "occurrence": 1,
+    "bytes": 1711,
+    "sha256": "82be33e12f8aad004c8587bfd8c2038013c01e37a9b6d10ca45bf1231350041a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果：失败\n\n**根因**：启动脚本直接调用 `python`，但未先激活 conda 环境。`python`/`python3` 不在裸 PATH 中。\n\n**环境诊断**：\n- Python 位置：`/root/miniconda3/bin/python`（miniconda3 存在但未加入 PATH）\n- `which python` / `which python3`：均为空\n- conda 需手动激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n**hsweep_h10 的正确启动方式**（从 `ps aux` 提取）：\n```bash\nbash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\n  export TMPDIR=/root/autodl-tmp/tmp && \\\n  export WANDB_DIR=/root/autodl-tmp/wandb && \\\n  export WANDB_TMPDIR=/root/autodl-tmp/tmp && \\\n  export TORCH_COMPILE_DISABLE=1 && \\\n  export PYTHONUNBUFFERED=1 && \\\n  mkdir -p $TMPDIR && \\\n  cd /root/cost-verify-agent-rl/RAGEN && \\\n  python train.py --config-name _alfworld_hsweep_h10 seed.train=10000 \\\n    trainer.experiment_name=hsweep-h10-seed1 \\\n  2>&1 | tee /root/autodl-tmp/cost-verify-agent-rl/logs/hsweep_h10_seed1.log'\n```\n\n**exp029_seed2_westd_resume 的启动脚本缺少** `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 这一步，导致 `python: command not found`（exit code 127）。\n\n**GPU 状态**：\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 0% | 3/97887 MiB (空闲) |\n| 1 | 0% | 3/97887 MiB (空闲) |\n| 2 | 91% | 27473/97887 MiB (hsweep_h10) |\n| 3 | 98% | 27473/97887 MiB (hsweep_h10) |\n\n**修复方向**：重新启动 exp029_seed2 时，需要照搬 hsweep_h10 的环境初始化前缀（conda activate + 环境变量导出），并使用 `CUDA_VISIBLE_DEVICES=0,1` 限定到空闲 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-verify-exp029-seed2-westd-startup-v3.md"
+}

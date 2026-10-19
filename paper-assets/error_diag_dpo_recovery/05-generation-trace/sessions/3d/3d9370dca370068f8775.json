@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d9370dca370068f8775",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code eval alfworld",
+  "task_key": "worker_code_eval-alfworld_20260512T131045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-alfworld_20260512T131045_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "23c042c21189d69cd4fabff57e61398b0bc66b61377f4d3f60fdf6ac7ea3c7e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **文件**: `/root/autodl-tmp/error_diag_dpo_recovery/src/eval_alfworld.py`，9321 bytes\n- **--help 验证通过**，所有 CLI 参数正常解析\n- 复用了 `collect_trajectories.py` 的 8 个函数 + `PREFIXES` 常量\n- `merge_and_unload` 失败时自动 fallback 到 PEFT 推理模式\n- 评估使用 `temperature=0.0`（greedy decoding）\n\n使用示例：\n```bash\n# 评估 base model\npython src/eval_alfworld.py --run_name base_qwen3\n\n# 评估 LoRA 微调模型\npython src/eval_alfworld.py \\\n  --adapter_path outputs/etadn_seed42/checkpoint-100 \\\n  --run_name etadn_seed42\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-alfworld.md"
+}

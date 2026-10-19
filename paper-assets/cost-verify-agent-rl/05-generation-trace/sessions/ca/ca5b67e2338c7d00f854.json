@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca5b67e2338c7d00f854",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra dry run v2",
+  "task_key": "worker_infra_dry-run-v2_20260513T180908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_dry-run-v2_20260513T180908_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "f295115b608f05fd78a4cc886b397c438f30d58165ead768379b1699f9f65023"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/alfworld_dryrun_report.md`。\n\n## 验证结果总结\n\n**PASS** — RAGEN ALFWorld 训练流水线在 vLLM 0.18.1 下完整跑通。\n\n| 验证项 | 结果 |\n|--------|------|\n| vLLM 0.18.1 兼容性 | **兼容**，无需降版本/适配 |\n| 训练流水线 | **完整**，GRPO rollout→reward→update 全通 |\n| 稳态 step/h | **~36.5**（98.64s/step） |\n| ALFWorld 环境交互 | **正常**，8810 训练 games 加载，agent 产生 action 并收到 reward |\n\n**修复了 2 个问题**：\n1. `flash_attn` 缺失 → 改为 try/except lazy import（2 文件）\n2. `ALFWORLD_DATA` 环境变量 → 指向 `/root/autodl-tmp/alfworld/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-dry-run-v2.md"
+}

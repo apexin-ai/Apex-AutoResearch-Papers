@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38d53930211935c8231e",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code v6 pipeline prep",
+  "task_key": "worker_code_v6-pipeline-prep_20260512T230459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v6-pipeline-prep_20260512T230459_result.json",
+    "occurrence": 1,
+    "bytes": 1298,
+    "sha256": "5d34e8bb1ba8e9d58c8a95c5af697cdc33f43b7111b5719ee0af5575b935ce79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已部署到服务器，语法验证和 smoke test 均通过。\n\n### 产出\n\n**1. `scripts/run_v6_pipeline.sh`** — 一键执行 v6 后处理\n```bash\nbash scripts/run_v6_pipeline.sh [GPU_ID]   # 默认 GPU 0\n```\n流程：合并双卡 → CSF 后处理 → 4 版分类（LLM / LLM-nospan / LLM-fewshot / RuleBased） → 对比分析报告。输出到 `outputs/v6_pipeline_<timestamp>/`。\n\n**2. `src/compare_classifiers.py`** — 多分类器对比分析\n```bash\npython src/compare_classifiers.py \\\n    --files f1.jsonl f2.jsonl ... \\\n    --labels \"Name1\" \"Name2\" ... \\\n    --output comparison.json\n```\n输出：分布对比表、Cohen's κ agreement 矩阵、per-method P1 分析（KW test + ordinal check）、majority vote 共识、per-task 明细。\n\n### 预计耗时\n- Step 1-2（合并 + 后处理）：< 1 min\n- Step 3（4 版 LLM 分类）：~30-60 min（取决于 failure 数量和模型推理速度），rulebased < 1 min\n- Step 4（对比分析）：< 30 sec\n\n### 注意\n- `--few_shot` 运行前会自动检测是否已实现，未实现则跳过\n- cuda0/cuda1 的 game_file 不重叠（各处理不同 task），所以 agreement 矩阵需要在同一输入上的不同分类方法间才有意义（pipeline 已正确处理）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v6-pipeline-prep.md"
+}

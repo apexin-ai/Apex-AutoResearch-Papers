@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac9a073c2429127395d8",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix seed200 orphan westd",
+  "task_key": "worker_fix_seed200_orphan_westd_20260522T184832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_seed200_orphan_westd_20260522T184832_result.json",
+    "occurrence": 1,
+    "bytes": 1378,
+    "sha256": "67bfc4792a07f4e05e28a5678d0f33b3f5acc17f4f51be79a62dce7345cec082"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### seed200 — 已清理\n\n| 项目 | 详情 |\n|------|------|\n| **训练进度** | step 2/5 (40%)，最后日志 ~02:31，此后无新输出 |\n| **训练指标** | step 1: success=17.97%, pass@8=68.75% / step 2: success=15.63%, pass@8=68.75% |\n| **Checkpoint** | **无**，目录 `/root/autodl-tmp/checkpoints/exp029-seed200/` 不存在 |\n| **已 kill 进程** | 63675 (bash launcher), 64789 (raylet), 66207 (TaskRunner), 66567/66568 (WorkerDict GPU 2,3), 69739 (wandb-core), 64851 (RuntimeEnvAgent), 64313/69371 (resource trackers) |\n| **GPU 2,3** | 已释放，0 MiB / 0% 利用率 |\n\n### seed100 — 正常运行\n\n| 项目 | 详情 |\n|------|------|\n| **主进程** | PID **72007** (`python train.py --config-name _alfworld_exp029_seed100_episode`)，PPID=1 |\n| **进程树** | 72007 → raylet 73132 → TaskRunner 78400 + WorkerDict 78937 (GPU 0) / 78938 (GPU 1) |\n| **当前阶段** | step 1 训练中，GPU 进程显示 `ref_compute_ref_log_prob`（ref 对数概率计算，update_actor 之前） |\n| **已完成步数** | 0（step 0 初始 eval 已完成，step 1 尚未完成） |\n| **GPU 0,1** | 100% 利用率，各 ~47GB 显存 |\n| **Checkpoint** | 目录尚未创建 |\n| **wandb** | run `zsrodv2f` — exp029-seed100-episode-level |\n\n### 磁盘\n\n```\n/dev/md0   250G  111G  140G  45%  /root/autodl-tmp\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-seed200-orphan-westd.md"
+}

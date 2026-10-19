@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7a8c5bc337ea11b830e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "data wandb figure export",
+  "task_key": "worker_data_wandb-figure-export_20260519T155854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_wandb-figure-export_20260519T155854_result.json",
+    "occurrence": 1,
+    "bytes": 1534,
+    "sha256": "c07da32a45799b635bbc7b48acc3b895f0b51610d593f663ebb5bf88f83e9324"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 JSON 文件已导出到 `/root/autodl-tmp/paper_figures/`。\n\n### 导出结果\n\n| 文件 | 大小 | 内容 |\n|------|------|------|\n| `main_results_training_curves.json` | 11.6KB | Cell A s1: 15 rows, s2: 15; Cell B s1: 14, s2: 14; Cell C s1: 16, s2: 29 |\n| `hsweep_cliff.json` | 4.7KB | h=2: 3 val/14 train; h=10: 2/7; h=20: 0/4; h=full: 4/15 |\n| `entropy_kl_dynamics.json` | 4.1KB | seed1: 14 rows, seed2: 14 rows |\n| `gamma_sweep_curves.json` | 2.7KB | g050: 12, g080: 8, g095: 5, g100: 6 |\n\n### Run ID 修正（与任务描述的差异）\n\n| 原始描述 | 实际使用 | 原因 |\n|----------|----------|------|\n| Cell B seed1: `jsrvwcfd`/`6liw7fm1` | `6liw7fm1` | jsrvwcfd 无数据 (0 keys) |\n| Cell B seed2: `6rqnrlr7` | `w0n74omu` | 6rqnrlr7 无数据 |\n| Cell C seed1: 未知 | `7a59sudo` | exp029-alfworld-episode-level, step 15, 数据最多 |\n| Cell C seed2: 未知 | `9xs5vfbe` | exp029-episode-level-seed2, step 43, 数据最多 |\n| γ=0.95: `d3irreww` | `jv3aa2cj` | d3irreww 是 factorial-h2-episodeadv-seed2，非 gsweep |\n| g050: 未知 | `r6rgpd3p` | gsweep-g050-h5-seed1 |\n| g080: 未知 | `ltoj940d` | gsweep-g080-h5-seed1 |\n| h=10: 未知 | `x09p5xd0` | hsweep-h10-seed1 |\n\n### 缺失\n\n- **h=5**：W&B 中无 hsweep-h5 run\n- **h=20 val**: qi8g4f86 只有 4 个 train step，0 个 val step（crashed 太早）\n- Metric 名称：实际是 `train/AlfworldSG/success`、`val-env/AlfworldSG/success`、`actor/entropy`、`actor/ppo_kl`（非 `train/success_rate` 等）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-wandb-figure-export.md"
+}

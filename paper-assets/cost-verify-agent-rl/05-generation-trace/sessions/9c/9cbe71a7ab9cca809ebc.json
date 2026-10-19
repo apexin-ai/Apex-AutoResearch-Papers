@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cbe71a7ab9cca809ebc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code plan 018 episode advantage",
+  "task_key": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_018_episode_advantage_20260517T190830_result.json",
+    "occurrence": 1,
+    "bytes": 1294,
+    "sha256": "41d45733fb8f1645005297fb7d58f49cd73337989d59ce180e73c9390e6e1fdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 结论：代码已完整实现，无需额外改动\n\n**已有实现覆盖了全部需求：**\n\n| 组件 | 文件 | 行号 | 状态 |\n|------|------|------|------|\n| `compute_episode_returns()` | `step_rewards.py:88` | 计算 episode 级 return，同 episode 所有 window 共享 | ✅ |\n| `advantage_mode` 分支 | `agent_trainer.py:288-292` | 当 `advantage_mode == \"episode_level\"` 时用 episode return 替代 per-window return | ✅ |\n| Config 传参 | `agent_trainer.py:984,1569` | `getattr(self.config.algorithm, 'advantage_mode', None)` | ✅ |\n| 实验 config | `_alfworld_factorial_h2_episode_adv.yaml:74` | `advantage_mode: \"episode_level\"` | ✅ |\n\n**验证结果：**\n- 模块导入成功\n- episode-level mode 下同一 episode 的两个 window advantage 完全相同（0.8660, 0.8660）\n- step-level mode 下同一 episode 的两个 window advantage 不同（0.8211 vs 0.9098，差 0.089）\n- Hydra config 解析正确：`advantage_mode=episode_level`, `context_window_mode=step_independent`, `h=2`\n\n**向后兼容**：`advantage_mode` 默认为 `None`，走原有 `compute_step_discounted_returns` 路径，不影响已有实验。\n\n实验 `factorial_h2_episodeadv_seed1` 的代码已就绪，可以提交训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-018-episode-advantage.md"
+}

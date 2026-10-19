@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd9051f871afc3afe945",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp020b final check",
+  "task_key": "worker_diagnose_exp020b-final-check_20260515T005722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp020b-final-check_20260515T005722_result.json",
+    "occurrence": 1,
+    "bytes": 1271,
+    "sha256": "6dc8e1020dbb5c407fa6bf916b04ad087766054d4a0f8d971d2c51037c133f72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp020b GRPO 训练状态报告\n\n### 状态：**挂起（hung）** — 未正常完成\n\n- 进程 PID 389242 仍存在，状态 sleeping\n- 日志最后写入：08:56（约 6 小时前），停在 step 22/30 的 rollout 阶段\n- GPU 利用率 0%，显存仍占用 40GB × 2\n- 无 error/traceback/OOM\n- 最后保存的 checkpoint：**step 20**\n\n### 关键 Metrics 趋势\n\n| Step | train success | val success | entropy | grad_norm | pass@16 |\n|------|-------------|-------------|---------|-----------|---------|\n| 0 | — | **0%** | — | — | — |\n| 1 | 18.75% | — | 0.107 | 2.78 | 75% |\n| 10 | 18.75% | — | 0.085 | 2.52 | 50% |\n| 20 | 12.5% | **0%** | 0.045 | 5.58 | 100% |\n| 22 | **4.69%** | — | **0.042** | 2.95 | 25% |\n\n### 结论：**Negative — 实验失败**\n\n1. **Val success 始终 0%**：从初始到 step 20 无任何改善\n2. **Train success 持续下降**：18.75% → 4.69%，模型在退化\n3. **Entropy 坍缩严重**：0.107 → 0.042（降了 61%），策略多样性丧失\n4. **训练挂起**：step 22 完成后在 step 23 rollout 阶段卡死约 6 小时，疑似环境交互死锁\n\nGRPO from SFT checkpoint 方案未能改善 agent 性能。进程和 Ray 残留需要清理，是否现在执行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp020b-final-check.md"
+}

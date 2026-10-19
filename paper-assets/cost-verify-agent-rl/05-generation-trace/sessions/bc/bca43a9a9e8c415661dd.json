@@ -1,0 +1,1262 @@
+{
+  "schema_version": "1.0",
+  "id": "bca43a9a9e8c415661dd",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "cron hook scienceworld grpo cell c v4 20260522T203006 134863",
+  "task_key": "cron_hook_scienceworld_grpo_cell_c_v4_20260522T203006_134863",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_scienceworld_grpo_cell_c_v4_20260522T203006_134863.jsonl",
+    "occurrence": 1,
+    "bytes": 51333,
+    "sha256": "e15176f3f653fe3f432939dddcaf04b237d6b264bbe185e939dea903710fb701"
+  },
+  "statistics": {
+    "messages": 63,
+    "user_turns": 2,
+    "tool_calls": 30,
+    "roles": {
+      "user": 2,
+      "tool_call": 30,
+      "tool_result": 29,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T04:07:40.037750+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: scienceworld_grpo_cell_c_v4\n- project: cost-verify-agent-rl\n- server: bjb1-17606"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T04:07:52.729181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T04:07:52.729516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T04:07:56.435804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T04:07:56.860020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T04:07:57.520142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T04:07:57.570858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T04:07:57.874255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (113,446 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-c685d493/bc56d998-2e46-4510-b94e-8a29ddbe2b59/tool-results/mcp-agent-ml-research-read_registry-1779422877793.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-c685d493/bc56d998-2e46-4510-b94e-8a29ddbe2b59/tool-results/mcp-agent-ml-research-read_registry-1779422877793.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-c685d493/bc56d998-2e46-4510-b94e-8a29ddbe2b59/tool-results/mcp-agent-ml-research-read_registry-1779422877793.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1438
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T04:08:01.540595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp029_new_seed_2048\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=79754)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 4680
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T04:08:01.541345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-22T04:07:38Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 153 个实验 — DONE 127, PREPARING 25, RUNNING 1\\\\n**DONE 分布**: failed 54, killed 18, negative 19, success 36\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 2 张 — westd-47453:cuda:2(exp029_new_seed_2048), westd-47453:cuda:3(exp029_new_seed_2048)\\\\n\\\\n### 💾 磁盘余量\\\\n- **bjb1-17606**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\\\n- **westd-47453**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/usr/bin/nvidia-smi`: 813G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `exp029_new_seed_2048` | westd-47453 | cuda:2,cuda:3 | 79754 | `~/runs/cost-verify-agent-rl/exp029_new_seed_2048.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `scienceworld_grpo_cell_c_v4` [failed] — 2026-05-22T04:07:35 — EXIT_CODE=1 (generic error — check log tail)\\\\n- `exp029_seed6_step15_ood` [success] — 2026-05-22T04:04:13\\\\n- `exp029_seed5_step10_ood` [success] — 2026-05-22T04:04:11\\\\n- `exp029_c_prime_resume_mt50_v2` [negative] — 2026-05-22T03:23:39 — Cron misreported as failed (wrong server name bjb1 vs bjb1-17606). Training actu\\\\n- `exp029_c_prime_resume_mt50` [failed] — 2026-05-22T02:10:03 — EXIT_CODE=1 (generic error — check log tail)\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `scienceworld_grpo_cell_c_v4`: EXIT_CODE=1 (generic error — check log tail)\\\\n- `exp029_c_prime_resume_mt50`: EXIT_CODE=1 (generic error — check log tail)\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-22\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp0\n…[truncated 5903 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 4021
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T04:08:01.592979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\\\", \\\"content\\\": \\\"# cost-verify-agent-rl — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-22 03:35 UTC | 更新原因: D120 战略调整：干预降级 Discussion，ScienceWorld 升 P0，seed 2048 崩溃更新 collapse rate\\\\n\\\\n## 核心方向\\\\nStep-independent agent RL 的双机制信用分配病理诊断（信息丢失 M1 + 符号错误归因 M2）+ episode-level 修复。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中（Group C 独立审稿）\\\\n- **核心 claim 证据**: VERY STRONG（factorial + h/γ-sweep + 8B scale + sign accuracy 52%≈random）\\\\n- **跨 seed 崩溃率**: 4/7 = **57%**（Seeds 4,7,8,2048 collapse; Seeds 1,3,6 success）\\\\n- **四种干预全部失败/无效**（A/B/C/C'）→ 降级为 Discussion，不作 core claim\\\\n- **关键短板**: 单环境（ALFWorld only）→ Reviewer 预估 3.0-3.5；补齐 ScienceWorld 后 3.5-4.0\\\\n\\\\n## 叙事决策（D120）\\\\n- Core Claims: 双机制诊断 + factorial 因果分离 + episode-level necessary minimum fix\\\\n- Discussion: 干预失败实验 + response inflation observation + mode shift observation\\\\n- **不 claim**: \\\\\\\"all interventions fail\\\\\\\"（confounds）/ \\\\\\\"inflation ≠ destruction\\\\\\\"（N=1）/ mode shift（N=1）\\\\n- ScienceWorld 跨环境验证 = 论文 Findings→Conference 的关键门槛\\\\n\\\\n## GPU 状态\\\\n| 服务器 | GPU | 任务 | 状态 |\\\\n|--------|-----|------|------|\\\\n| bjb1 | cuda:0 | seed5_step10 OOD (reproducibility) | 🟢 RUNNING |\\\\n| bjb1 | cuda:1 | seed6_step15 OOD (reproducibility) | 🟢 RUNNING |\\\\n| westd | cuda:0,1 | 空闲 | 🔴 待 ScienceWorld |\\\\n| westd | cuda:2,3 | seed 2048 训练 (collapsing, step 2/5) | 🟡 收集数据 |\\\\n\\\\n## 近期任务\\\\n- [ ] seed 2048 跑完 → 收集 collapse metrics + 更新 collapse rate\\\\n- [ ] bjb1 reproducibility eval 完成 → 确认 29.1% 可复现\\\\n- [ ] **[P0] ScienceWorld GRPO 环境诊断 + 代码修复**（CPU Worker 立即开始）\\\\n- [ ] **[P0] ScienceWorld Cell A + Cell C GRPO 训练**（GPU 空闲后立即启动）\\\\n- [ ] 更新 paper_framing.md（纳入 D119/D120 叙事调整）\\\\n- [ ] 统计显著性分析（binomial CI for all OOD comparisons）\\\\n\\\\n## GPU 预算\\\\n本项目分配 6 GPU（bjb1 ×2 + westd ×4）。当前利用率 4/6。\\\\n\\\\n## 核心风险\\\\n1. **\\\\\\\"Episode-level is obvious\\\\\\\" 审稿攻击** — 需在 intro 强调：贡献是分解两个独立失效机制 + factorial 因\n…[truncated 1782 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 4022
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T04:08:09.973347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "filters": "{'exp_id': 'scienceworld_grpo_cell_c_v4'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T04:08:10.478212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4814}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T04:08:18.115700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-c685d493/bc56d998-2e46-4510-b94e-8a29ddbe2b59/tool-results/mcp-agent-ml-research-read_registry-1779422877793.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid, exp in exps.items():\n    if 'scienceworld_grpo_cell_c_v4' in eid:\n        print(json.dumps({eid: exp}, indent=2))\n\"",
+              "description": "Extract scienceworld_grpo_cell_c_v4 experiment details from registry"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T04:08:18.316916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"scienceworld_grpo_cell_c_v4\": {\n    \"status\": \"DONE\",\n    \"created_at\": \"2026-05-22T04:06:03.139Z\",\n    \"updated_at\": \"2026-05-22T04:07:35.584Z\",\n    \"hypothesis\": \"ScienceWorld episode-level GRPO (Cell C) with task filtering (21/30 tasks with SFT success >10%), group_size=16, JVM -Xmx8g. Cross-environment validation of episode-level RL. If success >10% on filtered tasks after 15 steps, confirms episode-level GRPO generalizes beyond ALFWorld. Cell A already confirmed step-independent collapse (0% success) in ScienceWorld.\",\n    \"parent\": \"scienceworld_grpo_cell_c_v3\",\n    \"conclusion\": \"failed\"\n  }\n}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T04:08:27.408408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-c685d493/bc56d998-2e46-4510-b94e-8a29ddbe2b59/tool-results/mcp-agent-ml-research-read_registry-1779422877793.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Also get v3 for parent context\nfor eid in ['scienceworld_grpo_cell_c_v3', 'scienceworld_grpo_cell_c_v4']:\n    if eid in exps:\n        print(f'=== {eid} ===')\n        print(json.dumps(exps[eid], indent=2))\n        print()\n\" 2>&1 | head -80",
+              "description": "Get full details of v3 and v4 ScienceWorld experiments"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T04:08:27.509439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== scienceworld_grpo_cell_c_v3 ===\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-20T18:23:30.854Z\",\n  \"updated_at\": \"2026-05-21T02:44:56.368Z\",\n  \"hypothesis\": \"ScienceWorld \\u73af\\u5883\\u4e0b episode-level GRPO \\u80fd\\u907f\\u514d collapse \\u5e76\\u5b66\\u5230\\u6709\\u6548\\u7b56\\u7565\\uff0c\\u9a8c\\u8bc1 episode-level credit \\u4f5c\\u4e3a fix \\u7684\\u8de8\\u73af\\u5883\\u6cdb\\u5316\\u6027\\uff08v3: \\u78c1\\u76d8\\u6e05\\u7406\\u540e\\u91cd\\u542f\\uff09\",\n  \"parent\": \"scienceworld_grpo_cell_c_v2\",\n  \"conclusion\": \"negative\",\n  \"notes\": \"D109 \\u6b62\\u635f\\uff1astep 3 success=0%, action_is_valid=9.4%(<20% \\u9608\\u503c), score \\u4ece 2.71 \\u964d\\u81f3 0.96, reward \\u4ece 0.5 \\u964d\\u81f3 0.153\\u3002\\u8d8b\\u52bf\\u6076\\u5316\\uff0c\\u91ca\\u653e GPU\\u3002\"\n}\n\n=== scienceworld_grpo_cell_c_v4 ===\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-22T04:06:03.139Z\",\n  \"updated_at\": \"2026-05-22T04:07:35.584Z\",\n  \"hypothesis\": \"ScienceWorld episode-level GRPO (Cell C) with task filtering (21/30 tasks with SFT success >10%), group_size=16, JVM -Xmx8g. Cross-environment validation of episode-level RL. If success >10% on filtered tasks after 15 steps, confirms episode-level GRPO generalizes beyond ALFWorld. Cell A already confirmed step-independent collapse (0% success) in ScienceWorld.\",\n  \"parent\": \"scienceworld_grpo_cell_c_v3\",\n  \"conclusion\": \"failed\"\n}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T04:08:33.826301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__update_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T04:08:33.826801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T04:08:35.289112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T04:08:35.340447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_c685d493."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T04:08:40.208539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T04:08:40.209240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_c685d493."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T04:08:42.680758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T04:08:42.731440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T04:09:05.594795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:scienceworld_grpo_cell_c_v4",
+              "project": "cost-verify-agent-rl",
+              "task_prompt": "## 任务：诊断 scienceworld_grpo_cell_c_v4 实验失败原因\n\n**背景**：\n- exp_id: scienceworld_grpo_cell_c_v4\n- 服务器: bjb1-17606\n- 状态: DONE(failed)，EXIT_CODE=1\n- 这是 ScienceWorld 环境下 episode-level GRPO (Cell C) 实验，第 4 次尝试\n- hypothesis: \"ScienceWorld episode-level GRPO (Cell C) with task filtering (21/30 tasks with SFT success >10%), group_size=16, JVM -Xmx8g\"\n- parent: scienceworld_grpo_cell_c_v3（v3 是 negative，step 3 success=0%）\n- v4 改进: task filtering（只用 SFT success >10% 的 21/30 tasks）、group_size=16、JVM -Xmx8g\n\n**你的任务**：\n1. SSH 到 bjb1-17606，找到实验日志文件。检查以下位置：\n   - `~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v4.log`\n   - `~/runs/cost-verify-agent-rl/` 下其他相关日志\n   - `/root/autodl-tmp/` 下可能的训练输出目录\n   - tmux session 列表看是否有残留\n\n2. 读取日志尾部（至少 200 行），找到：\n   - 具体的 error traceback\n   - 进程启动时间和持续时间\n   - 是否有 OOM / CUDA error / Java error / Python error\n   - 训练是否开始了（有无 step 0 的输出）\n\n3. 检查之前几个 ScienceWorld 版本的日志是否还在（v2, v3），对比错误模式是否一致\n\n4. 检查 ScienceWorld 环境状态：\n   - `pip show scienceworld` 看版本\n   - Java 环境: `java -version`\n   - 相关代码目录结构\n\n5. **输出格式**（写入 save_project_file report）：\n   ```\n   ## scienceworld_grpo_cell_c_v4 失败诊断\n\n   ### 错误摘要\n   [一句话总结失败原因]\n\n   ### 错误详情\n   [关键 traceback 或错误信息，原文引用]\n\n   ### 根因分析\n   [分析根本原因，是代码 bug / 环境问题 / 资源问题 / 数据问题]\n\n   ### 历史对比\n   [与 v2/v3 的错误模式是否一致]\n\n   ### 修复建议\n   [具体可行的修复步骤]\n\n   ### 日志路径\n   [完整日志文件路径]\n   ```\n\n请把诊断报告用 save_project_file 写入 `artifacts/diag_scienceworld_v4.md`。",
+              "tool_groups": "['ssh', 'knowledge']",
+              "context": "服务器 bjb1-17606 使用 aml-train 镜像（conda 环境）。项目代码可能在 /root/autodl-tmp/ 或 /root/ 下。ScienceWorld 是 Java-based 交互式环境，历史上有 JVM 内存问题。"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T04:09:08.969237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_scienceworld_grpo_cell_c_v4_20260522T040906\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_diagnose_scienceworld_grpo_cell_c_v4_20260522T040906.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diagnose_scienceworld_grpo_cell_c_v4_20260522T040906 started. Use get_worker_status('worker_diagnose_scienceworld_grpo_cell_c_v4_20260522T040906') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3374
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T04:09:20.585187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T04:09:20.635888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T04:09:23.666908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T04:27:41.550736+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出诊断。通知 Director 失败情况和诊断进行中。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T20:28:10.032670+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T20:28:19.271619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__list_workers",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T20:28:19.271993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T20:28:22.082210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T20:28:22.082623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T20:28:23.142309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (298,352 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-c685d493/c822836e-5b1d-4177-acbf-3795b8cf43ee/tool-results/mcp-agent-ml-research-read_registry-1779481702879.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-c685d493/c822836e-5b1d-4177-acbf-3795b8cf43ee/tool-results/mcp-agent-ml-research-read_registry-1779481702879.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-c685d493/c822836e-5b1d-4177-acbf-3795b8cf43ee/tool-results/mcp-agent-ml-research-read_registry-1779481702879.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1060
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T20:28:23.142778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 1060
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T20:28:23.142978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "report.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T20:28:23.544466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-22\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp029_seed200_episode_v3: Episode-level GRPO (seed=200) 5-step training for Table 1 data supplement (D122). v3 retry after v2 crashed (Ray actor conflict). Fix: isolated RAY_TMPDIR=/root/autodl-tmp/ray_seed200 + WANDB_DIR=/root/autodl-tmp/wandb_tmp. From scratch, no checkpoint.（排队等待 GPU）\\\\n- exp029_seed5_response_mask_check: Ablation: eval seed5 step10 with enable_response_mask=true (vs baseline 25.37% with mask=false). Tests whether response_mask setting affects OOD eval results, resolving data consistency concern for Table 1.（准备中）\\\\n- exp029_seed100_step5_ood_eval: OOD eval of seed100 step5 checkpoint with unified pipeline (seed.val=321, enable_response_mask=false, 134 OOD tasks). Data point for Table 1 collapse rate analysis (N=9+).（准备中）\\\\n- ood_eval_sft_baseline_v3（准备中）\\\\n- ood_eval_high_kl_step7（准备中）\\\\n- ood_eval_high_kl_step5（准备中）\\\\n- ood_eval_intervention_c_step7（准备中）\\\\n- exp029_c_prime_resume（准备中）\\\\n- c_prime_step5_ood_eval（准备中）\\\\n- exp029_seed7_ood_precollapse: Seed 7 (collapse seed, step 5 = pre-collapse checkpoint) retains OOD generalization ability before response_length explosion. Comparing pre-collapse OOD vs post-collapse OOD reveals whether collapse destroys learned generalization or the model never generalized.（准备中）\\\\n- …另有 23 项\\\\n\\\\n## 近期结论\\\\n- **exp029_seed100_episode** (success): Episode-level GRPO (seed=100) 5-step training for Table 1 data supplement (D122). Same config as exp029 but seed=100, total_steps=5. Expands to N=9 seeds for collapse rate analysis.\\\\n- **exp029_seed300_step5_ood_eval_v3** (negative): OOD eval of seed300 step5 checkpoint with correct config (enable_response_mask=false, seed.val=321, 134 OOD tasks, T=0.4). v2 failed due to config error (response_mask=true → 0.0%). Thi\n…[truncated 3607 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 401
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T20:28:23.544931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T20:28:23.645766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\\\", \\\"content\\\": \\\"# cost-verify-agent-rl — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-22 15:17 UTC | 更新原因: D131 ScienceWorld 终止 + bjb1 转投 seed300 + v6 failed\\\\n\\\\n## 核心方向\\\\nStep-independent agent RL 的双机制信用分配病理诊断（信息丢失 M1 + 符号错误归因 M2）+ episode-level 修复。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中（Group C 独立审稿）\\\\n- **核心 claim 证据**: VERY STRONG（factorial + h/γ-sweep + 8B scale + sign accuracy 52%≈random + 干预实验）\\\\n- **Table 1 完成**: 13 个统一 pipeline 数据点 + 统计分析（Wilson CI + Fisher exact）\\\\n- **Healthy seeds**: 28.36% ± 2.20% (seed4/5/6), all p<0.001 vs SFT\\\\n- **ScienceWorld**: 终止 (D131)。Cell A 跨环境 collapse 确认 ✅，Cell C fix 仅 ALFWorld → Limitations\\\\n- **新 seed 训练**: seed100/200 (westd) + seed300 (bjb1) → 扩展到 N=10\\\\n\\\\n## 统一 OOD Eval 完整数据 (RAGEN pipeline, seed.val=321, 134 tasks)\\\\n| Checkpoint | Type | OOD | Wilson 95% CI | vs SFT |\\\\n|---|---|---|---|---|\\\\n| SFT v3 | baseline | 6.72% (9/134) | [3.5%, 12.3%] | — |\\\\n| seed2048 step5 | collapsed | 8.21% (11/134) | [4.6%, 14.2%] | NS |\\\\n| high_kl step5 | intervention (KL) | 8.21% (11/134) | [4.6%, 14.2%] | NS |\\\\n| seed42 step5 | collapsed | 12.69% (17/134) | [8.0%, 19.4%] | NS |\\\\n| high_kl step7 | intervention (KL) | 12.69% (17/134) | [8.0%, 19.4%] | NS |\\\\n| seed8 step5 | collapsed | 13.43% (18/134) | [8.6%, 20.3%] | NS |\\\\n| seed2 step15 | delayed learner (D130) | 15.67% (21/134) | [10.5%, 22.8%] | p=0.02* |\\\\n| intervention_c step7 | cap (degrading) | 16.42% (22/134) | [11.1%, 23.7%] | p=0.01* |\\\\n| intervention_c step5 | cap (peak) | 19.40% (26/134) | [13.6%, 26.9%] | p=0.003** |\\\\n| seed1 step5 | healthy (non-unified†) | 23.88% (32/134) | [17.4%, 31.8%] | p<0.001*** |\\\\n| seed5 step10 | healthy | 25.37% (34/134) | [18.8%, 33.3%] | p<0.001*** |\\\\n| seed6 step15 | healthy | 29.10% (39/134) | [22.2%, 37.1%] | p<0.001*** |\\\\n| seed4 step15 | healthy | 30.60% (41/134)\n…[truncated 2678 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 100
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T20:28:23.646262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "status": "running"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T20:28:23.746899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 100
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T20:28:28.912749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T20:28:29.867649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4803}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 954
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T20:28:29.868048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['exp_id', 'hypothesis', 'parent']"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T20:28:30.369784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp029_seed300_step5_ood_eval_v4\\\": {\\\"hypothesis\\\": \\\"Re-eval seed300 step5 OOD with corrected full protocol: enable_think=true (v3 used False), context_window_mode=full, enable_response_mask=false, seed.val=321, 134 OOD tasks, T=0.4. v3 gave 0.0% but used enable_think=False which may explain the zero. If v4 > 0% → v3 result was config artifact; if v4 ≈ 0% → genuine zero OOD transfer confirmed.\\\", \\\"parent\\\": \\\"exp029_seed300_step5_ood_eval_v3\\\"}, \\\"exp029_seed100_step5_ood_eval\\\": {\\\"hypothesis\\\": \\\"OOD eval of seed100 step5 checkpoint (healthy training, val pass@1=18.75%). Updated protocol: enable_think=true, context_window_mode=full, enable_response_mask=false, seed.val=321, 134 OOD tasks, T=0.4. Tests whether healthy-training seed100 achieves OOD transfer comparable to seed4/5/6 (25-31%).\\\", \\\"parent\\\": \\\"exp029_seed100_episode\\\"}, \\\"exp029_seed5_response_mask_check\\\": {\\\"hypothesis\\\": \\\"Ablation: eval seed5 step10 with enable_response_mask=true (vs baseline 25.37% with mask=false). Tests whether response_mask setting affects OOD eval results, resolving data consistency concern for Table 1.\\\"}, \\\"ood_eval_sft_baseline_v3\\\": {}, \\\"ood_eval_high_kl_step7\\\": {}, \\\"ood_eval_high_kl_step5\\\": {}, \\\"ood_eval_intervention_c_step7\\\": {}, \\\"exp029_c_prime_resume\\\": {}, \\\"c_prime_step5_ood_eval\\\": {}, \\\"exp029_seed7_ood_precollapse\\\": {\\\"hypothesis\\\": \\\"Seed 7 (collapse seed, step 5 = pre-collapse checkpoint) retains OOD generalization ability before response_length explosion. Comparing pre-collapse OOD vs post-collapse OOD reveals whether collapse destroys learned generalization or the model never generalized.\\\", \\\"parent\\\": \\\"exp029_seed7\\\"}, \\\"exp029_seed4_ood_eval\\\": {}, \\\"exp029_seed6_v2\\\": {\\\"hypothesis\\\": \\\"Episode-level GRPO (seed=789) avoids collapse and learns consistently. Retry of seed6 with correct CUDA_VISIBLE_DEVICES isolation and save_freq=5.\\\"}, \\\"exp029_seed3_ood_final\\\": {\\\"hypothesis\\\": \\\"Ev\n…[truncated 3811 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 501
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T20:28:30.370123+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T20:28:30.420775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"content\\\": \\\"# Project Memory — cost-verify-agent-rl\\\\n\\\\n## 经验教训\\\\n\\\\n### max_prompt_length 必须严格小于 max_model_len (2026-05-19)\\\\nv9c 在 step 3/30 崩溃：`max_prompt_length: 16384 == max_model_len: 16384`，prompt 填满后 vLLM 报 \\\\\\\"prompt + requested output tokens > max_model_len\\\\\\\"。修复：`max_prompt_length = max_model_len - response_length`（15360 = 16384 - 1024）。写 config 时永远预留 generation headroom。\\\\n\\\\n### save_freq 不应设为 999 (2026-05-19)\\\\nv9c 崩溃后无 checkpoint 可恢复（save_freq: 999 = 实际不保存）。30 步训练建议 save_freq: 5~10，代价是少量磁盘但能从中间恢复。\\\\n\\\\n### FSDP2 兼容性修复模式 (2026-05-19)\\\\n- `_fsdp_wrapped_module` → `getattr(model, \\\\\\\"_fsdp_wrapped_module\\\\\\\", model)`\\\\n- `FSDP.summon_full_params(model)` → `FSDP.summon_full_params(model) if isinstance(model, FSDP) else nullcontext()`\\\\n- FSDP2 用 `fully_shard` composable API，不 wrap 模型，不存在 `_fsdp_wrapped_module`\\\\n\\\\n### save_contents 的 yaml 路径必须正确 (2026-05-20)\\\\nverl checkpoint 的 `save_contents` 必须放在 `actor_rollout_ref.actor.checkpoint` 下，不是 `trainer` 下。错误路径导致保存完整 optimizer state（92GB），正确路径只保存 actor weights（33GB）。\\\\n\\\\n### FSDP2 checkpoint 是 rank shards 不是 HF 格式 (2026-05-20)\\\\nFSDP2 保存的 checkpoint 是 `world_size_N` 目录下的 per-rank shards（`__0_0.distcp` 等），不是 HF safetensors。部署/评估前必须用 `convert_fsdp_to_hf.py` 合并为标准 HF 格式。\\\\n\\\\n### NCCL deadlock hang 的模式识别 (2026-05-20)\\\\nv9d step 15 出现 NCCL deadlock：GPU utilization 0% 但显存仍占 ~60GB，进程不退出也不报错。这是典型的 collective 通信死锁（某 rank 未到达同步点）。发现后应直接 kill 进程，不要等待恢复。长训练建议设 `NCCL_TIMEOUT`。\\\\n\\\\n### 8B episode-level GRPO reward 饱和极快 (2026-05-20)\\\\nv9d 训练曲线：40.6%(baseline) → 81.25%(step 5) → 96.875%(step 10) → 100%(step 12)。Step 12 后 advantage=0, pg_loss=0, grad_norm→0，完全无学习信号。教训：8B 模型在简单任务上 episode-level GRPO ≤15 steps 即可饱和，必须提前规划 OOD eval 和 early stopping，否则后续 steps 浪费算力且有 hang 风险。\\\\n\\\\n### ScienceWorld eval valid_action_rate bug (2026-05-19)\\\\n`action_is_valid` 必须对比完整 `valid_actions` \n…[truncated 3079 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T20:28:44.378097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_worker_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T20:28:44.378458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T20:28:47.128475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "cost-verify-agent-rl",
+              "section": "execution"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T20:28:47.580408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": {\\\"bjb1-17606\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"westd-47453\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"]}, \\\"project_path\\\": \\\"/root/cost-verify-agent-rl\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-17606\\\"}, {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-47453\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 451
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T20:28:48.034051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "filters": "{'status': 'QUEUED'}",
+              "fields": "['exp_id', 'hypothesis']"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T20:28:48.535993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp029_seed200_episode_v3\\\": {\\\"hypothesis\\\": \\\"Episode-level GRPO (seed=200) 5-step training for Table 1 data supplement (D122). v3 retry after v2 crashed (Ray actor conflict). Fix: isolated RAY_TMPDIR=/root/autodl-tmp/ray_seed200 + WANDB_DIR=/root/autodl-tmp/wandb_tmp. From scratch, no checkpoint.\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4499}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 501
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T20:28:48.787750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "filters": "{'status': 'ALLOCATED'}",
+              "fields": "['exp_id', 'hypothesis', 'spec']"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T20:28:49.486791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.667}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 699
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T20:28:53.384383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['exp_id', 'conclusion', 'metrics', 'updated_at']",
+              "limit": "10"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T20:28:53.886524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp029_seed100_episode\\\": {\\\"updated_at\\\": \\\"2026-05-22T20:20:22.989Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"training_mode\\\": \\\"healthy\\\", \\\"val_pass_at_1_initial\\\": 0.0625, \\\"val_pass_at_1_final\\\": 0.1875, \\\"val_response_length_initial\\\": 4404, \\\"val_response_length_final\\\": 3769, \\\"val_action_is_valid_final\\\": 0.857, \\\"val_reward_best_at_32\\\": 9.98, \\\"val_reward_mean_at_32\\\": 1.875, \\\"train_step5_success\\\": 0.242, \\\"train_step5_pass_at_8\\\": 0.813, \\\"train_kl_final\\\": 0.01, \\\"total_steps\\\": 5, \\\"wandb_run_id\\\": \\\"zsrodv2f\\\", \\\"checkpoint_hf\\\": \\\"/root/autodl-tmp/checkpoints/qwen_exp029_seed100_step5_hf\\\"}}, \\\"exp029_seed300_step5_ood_eval_v3\\\": {\\\"updated_at\\\": \\\"2026-05-22T19:47:39.979Z\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"ood_pass_at_1\\\": 0, \\\"ood_success\\\": 0, \\\"ood_action_is_valid\\\": 0.9178, \\\"ood_response_length\\\": 4150.7, \\\"ood_episodes\\\": 134, \\\"runtime_enable_response_mask\\\": false}}, \\\"exp029_seed7_response_mask_check\\\": {\\\"updated_at\\\": \\\"2026-05-22T19:33:17.071Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ood_pass_at_1\\\": 0, \\\"ood_success\\\": 0, \\\"ood_action_is_valid\\\": 0.9915, \\\"ood_response_length\\\": 4888.9, \\\"ood_num_actions\\\": 50, \\\"ood_episodes\\\": 134, \\\"runtime_enable_response_mask\\\": true, \\\"baseline_mask_false_ood_pass_at_1\\\": 0.082}}, \\\"exp029_seed300_step5_id_eval_diag\\\": {\\\"updated_at\\\": \\\"2026-05-22T19:19:07.972Z\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"id_pass_at_1\\\": 0, \\\"id_success\\\": 0, \\\"id_action_is_valid\\\": 0.926, \\\"id_response_length\\\": 6224.25, \\\"id_episodes\\\": 32, \\\"runtime_enable_response_mask\\\": true}}, \\\"exp029_seed300_step5_ood_eval_v2\\\": {\\\"updated_at\\\": \\\"2026-05-22T19:16:13.186Z\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"ood_pass_at_1\\\": 0, \\\"ood_success\\\": 0, \\\"ood_reward_mean\\\": 0, \\\"ood_action_is_valid\\\": 0.918, \\\"ood_response_length\\\": 4150.7, \\\"ood_episodes\\\": 134}}, \\\"exp029_seed300_step5_ood_eval\\\": {\\\"updated_at\\\": \\\"2026-0\n…[truncated 856 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T20:28:53.937295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-22T20:28:53.937755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-22T20:30:06.132600+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 `cuda:0,1`，westd-47453 `cuda:0,1,2,3`。不得用白名单外 GPU\n- 所有 OOD eval 必须 `enable_think=true` + `context_window_mode=full` + `enable_response_mask=false` + `seed.val=321` + 134 OOD tasks + T=0.4（D134 协议，违反则数据无效）\n- enable_response_mask 必须三层覆盖：YAML 顶层 + hydra CLI 双层 override + 运行后 log 验证（Hydra 继承 bug，已导致 seed300 v2/ID-diag 两次无效数据）\n- seed1/seed3 checkpoint 永久丢失，不要尝试搜索或重新训练——Table 1 用已有数据 + footnote\n- ScienceWorld Cell C 已终止（D131），不要再尝试任何 ScienceWorld 实验\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-17606**: root@bjb1-17606，工作目录 `/root/cost-verify-agent-rl`，conda base（`/root/miniconda3/bin/python`），aml-train 镜像\n- **westd-47453**: root@westd-47453，工作目录 `/root/cost-verify-agent-rl`，conda base（`/root/miniconda3/bin/python`），aml-train 镜像\n- 模型 base：Qwen2.5-1.5B（主实验线 exp029 系列）\n- HF cache：`/root/autodl-tmp/.hf_cache`（AutoDL），服务器具体路径需确认\n- W&B：项目 `cost-verify-agent-rl`，seed100 run ID `zsrodv2f`\n- seed100 checkpoint：`/root/autodl-tmp/checkpoints/qwen_exp029_seed100_step5_hf`（westd）\n- seed300 checkpoint：需确认路径（bjb1，训练 healthy 完成）\n- **活跃进程**：无。0 cron，0 worker，0 RUNNING 实验。**6 GPU 全部空闲——必须立即提交任务**\n\n### 3. 📊 当前状态\n**刚完成**：\n- `exp029_seed100_episode` SUCCESS：healthy 训练，val 18.75%，checkpoint 已保存 → 等 OOD eval\n- `exp029_seed300_step5_ood_eval_v3` NEGATIVE：0% OOD（0/134），action_is_valid=91.78%，confirmed zero transfer。D133 归类为 \"healthy-but-zero-OOD\" 第三种模式\n- `exp029_seed7_response_mask_check` SUCCESS：验证 mask=true → OOD 0%（vs mask=false 8.2%），确认 mask 确实影响 eval（D134 依据）\n- `exp029_seed200_episode` FAILED：Ray actor 冲突，v3 重试已 QUEUED\n\n**Registry 状态**：\n- RUNNING: 0\n- QUEUED: 1（seed200_v3，等 GPU）\n- PREPARING: 33（多数是历史残留，关键的是 seed300_v4_ood、seed100_ood、seed5_mask_check、seed7_ood_precollapse）\n- 总计 141 实验（success 39 / negative 23 / failed 60）\n\n**等待中**：无 Worker 回调、无 Cron、无 Director 未决决策\n\n### 4. 📋 待办（条件触发式）\n- **立即（BOOT 后第一件事）**→ 6 GPU 全空闲，必须同时提交：(a) seed200_v3 训练（westd cuda:2,3）(b) seed100 step5 OOD eval（westd cuda:0 或 cuda:1）(c) seed300 v4 OOD eval with enable_think=true（bjb1 cuda:0）。三个可并行\n- seed200_v3 训练完成 → 如 healthy 则立即 OOD eval；如 failed 则诊断 Ray 隔离是否生效\n- seed100 OOD eval 完成 → 如 ≥20% 则 healthy-with-OOD 类别（和 seed4/5/6 同组）；如 ≈0% 则第二个 \"healthy-but-zero-OOD\"（强化 D133 发现）\n- seed300 v4 OOD eval 完成 → 如仍 0% 则 D133 彻底确认；如 >0% 则 v3 的 enable_think=false 是 config artifact\n- 所有新 seed OOD eval 完成 → 更新 Table 1 为 N=10 seeds + 重算 collapse rate + Wilson CI + Fisher exact\n- Table 1 完整后 → Paper Agent patch：完整统计表 + ScienceWorld limitation 段 + seed1 footnote\n\n### 5. 🎯 战略上下文\n- **核心论文 claim**：Step-independent agent RL 存在双机制信用分配病理（M1 信息丢失 + M2 符号错误归因），episode-level 修复有效但不稳定\n- **Table 1 是论文核心数据**：当前 13 个统一 pipeline 数据点，扩展到 N=10 seeds（+seed100/200/300）后统计力显著增强\n- **三种训练结局模式**：(1) collapsed（seed42/2048/8）(2) healthy-with-OOD（seed4/5/6, 25-31%）(3) healthy-but-zero-OOD（seed300, D133）。第三种是新发现，叙事价值高——说明即使训练看起来正常，step-independent 训练也不保证泛化\n- **seed2 = delayed learner（D130）**：15.67% OOD，单独分类。step30 checkpoint 已丢失（M019 磁盘清理）\n- **干预实验降级为 supplementary（D128）**：hard cap 部分有效（+13.4pp），KL 10x 极慢，整体叙事从 \"四种干预全失败\" 修正为 \"仅 hard cap 部分有效\"\n- **最易判断错的事**：(1) 不要假设 ROADMAP 中的 GPU 状态表是实时的——它是上次更新的快照 (2) enable_response_mask 的 Hydra bug 极其隐蔽，每次 eval 必须三层覆盖+验证 (3) seed300 0% OOD 是真实结果不是 bug，已三轮验证\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:scienceworld_grpo_cell_c_v4"
+          },
+          "id": "event-000063"
+        }
+      ],
+      "message_count": 32
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-scienceworld-grpo-cell-c-v4-20260522t203006-134863.md"
+}

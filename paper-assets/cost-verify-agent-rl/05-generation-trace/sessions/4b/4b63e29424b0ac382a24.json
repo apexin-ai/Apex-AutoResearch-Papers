@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b63e29424b0ac382a24",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "paper writing experiments setup",
+  "task_key": "worker_paper_writing_experiments_setup_20260518T201250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_setup_20260518T201250_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "9175315212d580424102f6275f9e00754017d03eb60e267cb38d5bf1e9191fa8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Remaining \"ing\" matches are all nouns/adjectives (\"fine-tuning\", \"resulting\", \"training\"), not trailing participial phrases. File is clean.\n\nRewrite complete. The setup (§5.1--5.5) covers ~850 words across five subsections: Environment, Base Model/SFT, RL Config (with booktabs table), Evaluation Protocol (32 in-dist + 134 OOD), and Experimental Conditions (7 conditions with factorial design, baselines, and sweeps). Results stub preserved as placeholder. No em-dashes, no trailing -ing phrases, no \\placeholder in setup content."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-setup.md"
+}

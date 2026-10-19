@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c142484d53e787ad7c65",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code fsdp to hf converter",
+  "task_key": "worker_code_fsdp_to_hf_converter_20260514T095129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fsdp_to_hf_converter_20260514T095129_result.json",
+    "occurrence": 1,
+    "bytes": 1351,
+    "sha256": "26259752d67cdfe2306e4d08d393d455135b5d5777060c0d5a62b2968208e6b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "转换脚本已存在且验证通过。\n\n---\n\n### 结果\n\n**脚本路径**: `/root/cost-verify-agent-rl/RAGEN/scripts/convert_fsdp_to_hf.py`\n\n**Checkpoint 目录结构** (`exp008_grpo/global_step_5/actor/`):\n```\nmodel_world_size_2_rank_{0,1}.pt   # FSDP DTensor 分片 (2-GPU)\noptim_world_size_2_rank_{0,1}.pt   # 优化器状态\nextra_state_world_size_2_rank_{0,1}.pt\nfsdp_config.json                   # {\"FSDP_version\": 1, \"world_size\": 2}\nhuggingface/                       # config.json, tokenizer, generation_config 等\n```\n\n**模型**: Qwen3ForCausalLM, 2B 参数 (311 个 tensor, 4.06 GB @ bf16)\n\n**Dry-run 验证通过**: embed_tokens shape 与 config 一致。\n\n### 使用方法\n\n```bash\n# 完整转换\nCUDA_VISIBLE_DEVICES=\"\" python /root/cost-verify-agent-rl/RAGEN/scripts/convert_fsdp_to_hf.py \\\n    --input-dir /root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/actor \\\n    --output-dir /root/autodl-tmp/checkpoints/exp008_grpo_hf \\\n    --dtype bf16\n\n# 仅验证不写文件\npython scripts/convert_fsdp_to_hf.py --input-dir <actor_dir> --output-dir <任意> --dry-run\n```\n\n`CUDA_VISIBLE_DEVICES=\"\"` 确保纯 CPU 执行，不干扰训练。\n\nverl 框架也有内置工具 `verl/model_merger/` 可用，但自定义脚本更轻量、无额外依赖，推荐直接用它。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fsdp-to-hf-converter.md"
+}

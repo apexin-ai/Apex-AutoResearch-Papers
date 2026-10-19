@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d86f298d70457eb1f36e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "paper figure fig6 training curves",
+  "task_key": "worker_paper_figure_fig6_training_curves_20260518T204247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig6_training_curves_20260518T204247_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "badfcd68bed4c0e6b1e6ad7c21835aa7b56f00b847edaaf52c602aacf2ef6faf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n**输出文件:**\n- PDF: `figures/paper/fig6_training_curves.pdf` (24 KB)\n- PNG: `figures/paper/fig6_training_curves.png` (310 KB)\n- 生成脚本: `figures/paper/gen_fig6_training_curves.py`\n\n**数据来源:**\n- Cell A seed1 (7o9bjszm), Cell B (6liw7fm1), Cell A seed2 (jhwyg4tc): 完整 step-by-step 数据来自 W&B\n- Cell D (6d4oml60): W&B 仅返回 1 个数据点，使用 registry 的 4 个关键点 (step 0/1/5/15) + PCHIP 插值\n\n**Panel (a)** 展示 train success rate: seed1 在 step 3→4 崩溃至 0%, Cell B 在 3-26% 间剧烈振荡, Cell D 从 12.5% 稳步升至 28%。**Panel (b)** 展示 action validity: seed1 从 97% 崩至 ~3% (action_is_effective), 而 Cell B 保持 82-98%, Cell D 保持 95-99%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig6-training-curves.md"
+}

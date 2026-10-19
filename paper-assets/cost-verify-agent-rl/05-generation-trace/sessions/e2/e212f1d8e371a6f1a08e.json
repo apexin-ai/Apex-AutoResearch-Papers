@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "e212f1d8e371a6f1a08e",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "analysis exp021 ragen sft v4",
+  "task_key": "worker_analysis_exp021_ragen_sft_v4_20260515T025919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp021_ragen_sft_v4_20260515T025919.log",
+    "occurrence": 1,
+    "bytes": 942396,
+    "sha256": "44de71ca1a3d93679fc04795497292699e04fdda23592a501d311a64eeccb73d"
+  },
+  "statistics": {
+    "messages": 377,
+    "user_turns": 0,
+    "tool_calls": 150,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 72,
+      "tool_call": 150,
+      "tool_result": 150,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 377,
+      "chunks": [
+        {
+          "path": "e212f1d8e371a6f1a08e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e212f1d8e371a6f1a08e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e212f1d8e371a6f1a08e-part-0003.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp021-ragen-sft-v4.md"
+}

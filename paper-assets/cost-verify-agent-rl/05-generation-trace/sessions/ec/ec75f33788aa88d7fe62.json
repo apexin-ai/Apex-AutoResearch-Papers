@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec75f33788aa88d7fe62",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "data collect expert trajectories",
+  "task_key": "worker_data_collect-expert-trajectories_20260514T130957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_collect-expert-trajectories_20260514T130957_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "1553d1e729da8b99a74bdd1d38e48c7782cb766823e91643d18dc0b010913215"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程都在正常运行：\n- **Expert collection** (PID 340587): 运行 2m36s, CPU 104%, RSS 141MB - 纯 CPU 任务\n- **exp015 训练** (PID 334705): 运行 25m46s, CPU 2.4% (GPU 主导) - 不受影响\n\n收集速度约 100 games / 2.5 min ≈ 40 games/min。3553 个 game 预计 ~90 分钟完成。\n\n收集脚本已在后台稳定运行，支持断点续传。可用以下命令监控进度：\n```bash\nwc -l /root/autodl-tmp/expert_trajectories/expert_trajectories.jsonl\ncat /root/autodl-tmp/logs/expert_collection.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-collect-expert-trajectories.md"
+}

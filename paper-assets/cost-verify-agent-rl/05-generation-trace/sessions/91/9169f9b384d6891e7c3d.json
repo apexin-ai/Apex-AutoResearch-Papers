@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9169f9b384d6891e7c3d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh search step5 checkpoints westd",
+  "task_key": "worker_ssh_search_step5_checkpoints_westd_20260522T231505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_search_step5_checkpoints_westd_20260522T231505_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "f36dbeb62dfa5d9af6319ece7a93ccdcc7aaa2697aa12eadc709370357445b38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**seed4/5/6 的 step5 checkpoint 均不存在**，无论 HF 还是 FSDP 格式，两台服务器都没有。\n\n### 详细情况\n\n| Seed | 服务器 | FSDP 训练目录 | 最新 step | step5 存在？ |\n|------|--------|---------------|-----------|-------------|\n| seed4 | bjb1-17606 | `exp029-seed4/` | global_step_15 | **否**（仅保存了 step15） |\n| seed4 | westd-47453 | 不存在 | — | **否** |\n| seed5 | westd-47453 | `exp029-seed5/` | global_step_10 | **否**（仅保存了 step10） |\n| seed5 | bjb1-17606 | 不存在 | — | **否** |\n| seed6 | 两台均无 | 不存在 | — | **否**（无训练记录） |\n\n### 已有的 HF checkpoint（非 step5）\n\n- **westd**: `qwen_exp029_seed4_step15_hf`, `qwen_exp029_seed5_step10_hf`, `qwen_exp029_seed6_step15_hf`\n- **bjb1**: `qwen_exp029_seed4_step15_hf`\n\n### 缺失清单\n\n- **seed4 step5**: FSDP 目录在 bjb1 但只存了 step15，step5 未保存（save_steps 间隔大于 5）\n- **seed5 step5**: FSDP 目录在 westd 但只存了 step10，step5 未保存\n- **seed6 step5**: 无任何 FSDP 训练目录（仅有 westd 上的 step15 HF），step5 不可恢复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-search-step5-checkpoints-westd.md"
+}

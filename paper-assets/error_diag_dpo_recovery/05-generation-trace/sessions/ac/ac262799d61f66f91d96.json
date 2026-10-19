@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac262799d61f66f91d96",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "viz correction span histogram",
+  "task_key": "worker_viz_correction_span_histogram_20260512T214847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_correction_span_histogram_20260512T214847_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "789e33ca53a56d3daa1964f576837d0c9bf37e6a2a4b84c8fa2616691ebfeb79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| error_type | n | median | mean | std | min | max |\n|---|---|---|---|---|---|---|\n| **action** | **2** | 7.5 | 7.5 | 0.7 | 7 | 8 |\n| verification | 82 | 8.0 | 10.4 | 7.6 | 5 | 41 |\n| planning | 167 | 9.0 | 11.3 | 7.1 | 4 | 41 |\n\n**总分类数**：251\n\n**action 组 n=2，< 10 —— 不满足启动 v6 ICL 的条件。**\n\n直方图文件：\n- PNG: `/root/autodl-tmp/error_diag_dpo_recovery/artifacts/correction_span_histogram.png`\n- PDF: `/root/autodl-tmp/error_diag_dpo_recovery/artifacts/correction_span_histogram.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-correction-span-histogram.md"
+}

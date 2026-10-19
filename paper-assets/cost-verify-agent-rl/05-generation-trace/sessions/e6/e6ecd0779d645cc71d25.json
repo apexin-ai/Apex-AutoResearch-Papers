@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6ecd0779d645cc71d25",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops seed3 cellc status check",
+  "task_key": "worker_ops_seed3-cellc-status-check_20260520T225028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_seed3-cellc-status-check_20260520T225028_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "b58c876b01e56d8552224680c9006a973ad1a5398ab2c3040401799c7729092a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### seed3_v2 (exp029)\n- **状态：仍在运行** (PID 991448 存活)\n- **进度：93% (14/15 steps)**，已运行 5h03m，ETA **~22 分钟**\n- **Step 14 指标：** train success = **38.28%**, pass@8 = **93.75%**（从 step 1 的 13.28% 持续上升）\n- **Checkpoints：** global_step_5, global_step_10 — **无 global_step_15**\n- global_step_15 将在最后一步完成后保存\n\n### Cell C v3 (ScienceWorld)\n- **状态：仍在运行** (PID 88226 存活)\n- **进度：13% (2/15 steps)**，已运行 4h25m，每步 ~2-3h，极慢\n- **Step 0 初始 val：** success = **0.0%**, score = 2.71, final_score = 5.0\n- 尚未到 step 5，无法查看 step 5 val metrics\n- W&B run `ghswaew5` 查询失败（entity 解析问题），但日志中已有完整指标\n\n### OOD eval\n**未启动。** seed3_v2 还剩最后 1 步（~22 分钟），global_step_15 尚未生成。建议 **~30 分钟后再检查**，届时应已完成并可立即启动 OOD eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-seed3-cellc-status-check.md"
+}

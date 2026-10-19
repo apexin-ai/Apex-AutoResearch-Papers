@@ -1,0 +1,3480 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a85c440ab4aee03d01bb",
+  "rounds": [
+    {
+      "number": 130,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-14T15:04:22.043303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__urgent_agent_message"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "message": "**🚨 紧急插队：Reward 管道 Bug 排查（在 Expert SFT 之前必须完成）**\n\nReviewer 发现 RAGEN 可能存在 reward 管道覆盖 bug。如果确认，所有 sparse reward 实验的零梯度都是 bug 而非 sparsity 问题，Expert SFT 也解决不了。**先做以下排查，SFT 准备暂停。**\n\n## 疑似 Bug\n\nRAGEN 有两条平行 reward 路径：\n- **路径 A**（env reward）：`env.step()` → `es_manager.py` → `ctx_manager.py` → `score_tensor[:, -1]` → `token_level_scores`\n- **路径 B**（可能覆盖 A）：`agent_trainer.py:759` `reward_tensor = compute_reward(batch, self.reward_fn)` → `agent_trainer.py:779` `batch.batch[\"token_level_scores\"] = reward_tensor` ← **覆盖！**\n\n如果路径 B 的 `self.reward_fn`（NaiveRewardManager + default_compute_score）不知道 ALFWorld env reward，它会返回全零，覆盖路径 A 的正确奖励。\n\n## 立即执行（按优先级）\n\n### Step 1: 代码审查（10 min）\n在服务器上检查以下代码：\n1. `agent_trainer.py` 第 750-790 行——找到 `compute_reward` 和 `token_level_scores` 赋值\n2. `self.reward_fn` 的定义——追踪 `NaiveRewardManager` 或 `default_compute_score` 的实现，看它是否使用 env reward 还是独立计算（如 text-matching）\n3. 路径 A 的 `score_tensor` 和路径 B 的 `reward_tensor` 是否指向同一个 tensor？还是 B 真的覆盖了 A？\n\n### Step 2: 关键对比（5 min）\n检查 exp013f 的训练日志/config：\n- exp013f 有 reward/mean = 2.6-4.39（dense reward 工作了）\n- 如果路径 B 对 exp013f 也生效，那 exp013f 的非零 reward 从哪来？\n- 这能判断路径 B 是否真的覆盖：如果 exp013f 也走路径 B 但 reward 正常，说明 reward_fn 可能是正确使用了 env reward\n\n### Step 3: 打印验证（如 Step 1-2 无法确认）\n在 `agent_trainer.py:779` 后加临时 print：\n```python\nprint(f\"[REWARD_DEBUG] reward_tensor stats: mean={reward_tensor.mean():.6f}, max={reward_tensor.max():.6f}, nonzero={(reward_tensor != 0).sum()}\")\nprint(f\"[REWARD_DEBUG] pre-overwrite scores: mean={batch.batch['token_level_scores'].mean():.6f}, max={batch.batch['token_level_scores'].max():.6f}\")\n```\n然后用 exp016 的 config + checkpoint 跑 1 个 GRPO step 的 dry-run 验证。\n\n**汇报**：确认是 bug 还是 false alarm，然后再决定是继续 Expert SFT 还是直接修 bug 重跑 GRPO。"
+            }
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-14T15:04:22.748624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"inserted\\\":true,\\\"queue_depth\\\":9,\\\"agent_key\\\":\\\"feishu:group:oc_733b284b383121720ce3d07c5c4a6bb2\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "elapsed_ms": 705
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-14T15:04:37.834928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**⚠️ Reviewer 发现潜在 reward 管道 bug — Expert SFT 暂缓**\n\nReviewer 追踪 RAGEN 代码发现两条平行的 reward 路径可能存在覆盖问题：env reward（路径 A）可能被 `agent_trainer.py` 中的 `compute_reward`（路径 B）覆盖为全零。如果确认，之前所有 sparse reward 实验的零梯度都是这个 bug 造成的，而非 base success rate 太低。\n\n已发紧急指令让 Agent 先排查此 bug，SFT 准备暂停。如果是 bug：修复后 GRPO 可能直接能用，无需 SFT warmup。如果是 false alarm：继续 Expert SFT 路线。"
+            }
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-14T15:04:41.100292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3265
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-14T15:04:43.195506+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 发现了一个关键矛盾和潜在的 reward 管道 bug——如果 `agent_trainer.py:779` 的路径 B 覆盖了 env reward，那之前所有 sparse reward 实验的零梯度可能都是 bug 造成的，不是 sparsity 问题。Expert SFT 不会修复这个 bug。必须先排除。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000725"
+        }
+      ]
+    },
+    {
+      "number": 131,
+      "messages": [
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-14T15:06:49.898234+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 0 ⚠️ | Worker 池 1 (GPU 0 / CPU 1)\n\n## exp016 失败诊断\n\n**崩溃原因**: 进程被 SIGKILL，step 13/30（D015 kill 或 cgroup OOM）。\n\n**核心问题 — Reward function bug**:\n- step 7 出现 success=4.7% (pass@16=50%)，但 reward 仍为 0（应为 10.0）\n- 13 步全部 rewards/advantages/returns = 0，pg_loss = 0\n- action_is_valid 持续上升 52.1%→66.9%，但无 RL 信号驱动\n\n**诊断**: 纯 sparse reward 配置下（won=10.0, 无 bonus），成功 episode 的 reward 未正确传递。Worker `worker_diagnose_reward-function-bug` 正在定位代码 bug。\n\n**实验系列总结 (exp012b→exp015→exp016)**:\n- exp012b: LR=1e-6 有信号(8.6%) 但 step 7 collapse\n- exp015: LR=1e-7 无 collapse 但零梯度\n- exp016: LR=5e-7 reward function bug，**LR 搜索本身未得到验证**\n\n**对比 exp013f**: exp013f dense reward 能正确传递(action_is_valid→97.5%)，说明 reward 传递链路在 dense 模式下正常，但 sparse 模式（纯 won=10.0）下存在 bug。\n\n**建议**:\n1. 等 Worker 定位 reward bug 并修复后，**LR=5e-7 值得重跑**（稳定性指标正常：grad_norm~0.85 无 collapse）\n2. 同时推进 D016 Expert SFT warmup：expert trajectory 已收集 65%，完成后可做 SFT 强化 base success\n3. 两条路径可并行：(a) 修 reward bug + 重跑 sparse GRPO (b) Expert SFT → 提升 base success 后再接 GRPO\n\n**⚠️ 2 张 GPU 当前空闲。** 等 reward bug 修复后可立即重启实验。请确认是否按上述并行方案推进。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-14T15:07:05.818158+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 确认了 reward bug：sparse 模式下 success=4.7% 但 reward=0。Worker 正在定位。等诊断结果再决定下一步，两条路径（修 bug 重跑 GRPO vs Expert SFT）可以并行。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000727"
+        }
+      ]
+    },
+    {
+      "number": 132,
+      "messages": [
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-14T15:19:36.013621+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n[severity: critical] **Reward Pipeline Bug 误诊纠正 — exp016 reward function 实际正常工作**\n\n## 核心发现\n\nD015 声称 \"reward function 完全失效\"、registry 标注 \"BROKEN — success episodes get reward=0\" 是**误诊**。我逐行核实了 exp016.log 原始指标，发现 reward pipeline 在有 success 时完全正常：\n\n**Step 7 训练指标（铁证）**：\n- `train/AlfworldSG/success: 0.046875` — 训练阶段 4.7% success（非 val）\n- `critic/score/mean: 0.46875` — 精确等于 3/64 × 10.0，reward 正确传递\n- `critic/score/max: 10.0` — 成功 episode 拿到完整 10.0 reward\n- `critic/advantages/max: 3.75` — GRPO 产生了有意义的 advantage\n- `actor/pg_loss: 0.000151` — 非零 policy gradient\n- `actor/grad_norm: 2.0` — 有实际梯度（被 clip 到上限）\n\n## 误诊根因\n\nWorker 和 Agent 观察到的 \"reward=0\" 来自两个**日志 artifact**，而非实际训练 reward：\n1. `train/AlfworldSG/raw_reward: 0.0` — 始终为 0，因为 `es_manager` 从 `info.get('raw_reward', 0.0)` 读取，但 ALFWorld env info 字典不含 `raw_reward` key\n2. `train/AlfworldSG/episodic_return: 0.0` — 同理，来自 raw_reward 累加\n\n**实际训练 reward 路径**完整且正确：env.step() → acc_reward → history['reward'] → ctx_manager score_tensor → rm_scores → NaiveRewardManager pass-through → token_level_scores → GRPO advantage\n\n我通过代码追踪确认：ctx_manager.py:413 将 env reward 设置到 `rm_scores`，NaiveRewardManager 检测到 `rm_scores` 后直接返回（不调用 default_compute_score），agent_trainer.py:779 的 \"覆写\" 实际是 pass-through。\n\n## 影响\n\n1. **D015 结论错误**：需修正 — reward function 未失效，exp016 kill 原因应改为 \"base success 太低（7/8 步零 success）\"\n2. **D016 结论正确但理由需澄清**：Pivot to expert SFT 是对的，但不是因为 reward bug，而是 base training success ~4.7%（仅 1/8 步有信号）太稀疏，GRPO 无法学习\n3. **Registry exp016 notes 中 \"Reward function bug 确认\" 需修正**\n4. **Memory.md \"Sparse Reward Function Bug\" section 需更新**\n5. **Worker 不应花时间 \"修复\" reward pipeline** — 没有东西需要修\n\n## 但 debug_reward.py 有价值\n\nWorker 创建的诊断脚本正确识别了 raw_reward 日志 artifact 的根因，并在 diagnosis summary 中正确指出 \"The actual training reward should be correct\"。只是这个结论没有被 registry/memory/decisions 正确反映。\n\n## 当前状态\n\n- 两块 GPU 完全空闲（0 MiB, 0%）\n- Expert trajectory 收集：2509 行，PID 340587 运行中（~1h53m）\n- 无训练运行中"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-14T15:20:01.917350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "summary": "D015 误诊纠正 — reward pipeline 正常，exp016 失败原因是 base success 太稀疏（1/8 步有信号）",
+              "rationale": "Reviewer 逐行核实 exp016.log：Step 7 critic/score/mean=0.46875（= 3/64 × 10.0）、critic/score/max=10.0、pg_loss=0.000151、grad_norm=2.0，reward function 完全正确。Agent 报告的 raw_reward=0 来自 es_manager 的 info.get('raw_reward', 0.0) 日志 artifact，ALFWorld env info 不含此 key。NaiveRewardManager 检测到 rm_scores 后 pass-through，agent_trainer.py:779 不是覆写。D016 Expert SFT pivot 仍成立，理由修正为 base success ~4.7%（仅 1/8 步有 success）太稀疏。",
+              "related_experiments": "[{'exp_id': 'exp016', 'role': 'evidence', 'result': 'reward pipeline confirmed working; killed due to sparse success, not bug'}]",
+              "depends_on": "['D015', 'D016']"
+            }
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-14T15:20:02.068951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D017\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 151
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-14T15:20:21.292831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__replace_agent_queue"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__replace_agent_queue",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "message": "**D017: 误诊纠正 + Expert SFT 加速（取代所有排队消息）**\n\n**Reward pipeline 没有 bug。** Reviewer 确认 exp016 的训练 reward 通过 critic/score 正确传递（Step 7: score/mean=0.46875 = 3/64×10.0, score/max=10.0）。`raw_reward=0` 是日志 artifact，不是实际训练 reward。NaiveRewardManager 是 pass-through，不会覆盖 env reward。\n\n**停止 reward bug 排查，立即全力推进 Expert SFT。**\n\n⚠️ **2 张 GPU 空闲，必须尽快用起来。**\n\n## 立即执行\n\n### Step 1: Expert Trajectory 数据准备（现在就开始）\n- Expert trajectory 收集已有 2509 行，**不等收集完成，先用现有数据开始 SFT 数据格式化**\n- 将 expert trajectories 转成 Qwen3-1.7B chat template 格式的 SFT 训练数据\n- 报告数据量（多少条完整 episode、总 token 数）\n\n### Step 2: SFT 实验方案（exp017_expert_sft）\n- Base model: Qwen3-1.7B（原始 instruct 模型，不从 RL checkpoint）\n- 训练数据: 已收集的 expert trajectories\n- 超参: LR=2e-5, 3 epochs, batch_size=4, grad_accum=4\n- 检查 RAGEN 是否有 SFT mode；没有就用 transformers/trl 的 SFTTrainer\n- Eval: SFT 后在 ALFWorld 134 tasks 上跑 eval\n- Pass 标准: success ≥ 10%\n- GPU: cuda:0,1\n\n### Step 3: 修正记录\n- Registry 中 exp016 notes 删除 \"Reward function bug 确认\"，改为 \"base success ~4.7% 太稀疏，GRPO 无法有效学习\"\n- Memory.md 如有 \"Sparse Reward Function Bug\" section，更新为 \"raw_reward 是日志 artifact，实际 reward pipeline 正常\"\n\n**提交 exp017 方案后等审批，但数据格式化可以先做。**"
+            }
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-14T15:20:21.946054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"cancelled\\\":4,\\\"new_message_queued\\\":true,\\\"agent_key\\\":\\\"feishu:group:oc_733b284b383121720ce3d07c5c4a6bb2\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__replace_agent_queue",
+            "elapsed_ms": 653
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-14T15:20:31.339528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**D017: Reward 管道误诊纠正**\n\nReviewer 逐行核实 exp016 日志，确认 reward pipeline 完全正常：\n- Step 7: `critic/score/mean=0.46875`（= 3/64 × 10.0），`score/max=10.0`，`pg_loss=0.000151`\n- 之前报告的 `raw_reward=0` 是日志 artifact（ALFWorld env 不输出此字段），不是实际训练 reward\n\n**结论**：D015 的 \"reward function 失效\" 是误诊。exp016 失败的真实原因确实是 base success 太稀疏（仅 1/8 步有信号），D016 Expert SFT pivot 方向正确。\n\n已清理 Agent 队列，下达综合指令：停止 reward bug 排查 → 立即推进 Expert SFT 数据准备和实验方案设计。2 张 GPU 空闲待用。"
+            }
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-14T15:20:34.555068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3215
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-14T15:20:39.825576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md",
+              "limit": "80"
+            }
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-14T15:20:39.876962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tdescription: 跨项目 ML 实验避坑指南——从多个项目沉淀的通用踩坑经验与最佳实践。当 Worker 准备写实验代码、或排查实验问题时使用。\n3\tname: ml-experiment-guide\n4\troles:\n5\t- worker\n6\t- reviewer\n7\t- director\n8\tscope: global\n9\ttags:\n10\t- experiment\n11\t- troubleshooting\n12\t- best-practice\n13\tversion: 75\n14\t---\n15\t\n16\t# ML 实验避坑指南\n17\t\n18\t本指南由各项目 Director 持续维护，记录跨项目通用的实验教训。每条只保留问题模式和规则，不含项目/实验特定信息。\n19\t\n20\t## Eval 规范\n21\t### 必须全量全类别 eval，partial 数据严禁混用\n22\t- **问题模式**: 只用部分类别/样本做 mid-eval，与全量 baseline 比较导致错误决策；或 partial eval 报告的指标与全量 eval 结果混用，误判趋势\n23\t- **规则**: 所有 eval 必须覆盖完整测试集；partial eval 必须标注 `PARTIAL: X/Y samples`，禁止与全量结果直接比较；partial 和全量数据必须分开记录和比较，partial 数据禁止用于最终决策\n24\t\n25\t### 长训练必须有 mid-training eval + 持久化\n26\t- **问题模式**: 训练 >3000 步无中间 eval，复现失败时无同步点对照，根因诊断退化为猜测\n27\t- **规则**: 任何长训练（>3000 steps）必须每 1000 step 至少一次 val eval；eval 数据保留到 JSON/CSV（不仅是日志），确保复现实验时有逐 step 对照基线\n28\t\n29\t### 相关性评估必须用全量数据或 bootstrap CI\n30\t- **问题模式**: 用少量随机采样（如 200 对）计算 Spearman/Pearson 相关系数，因采样方差导致 ρ 被严重高估（实测案例：200 对 ρ=0.57，全量 8840 对 ρ=0.31，高估近一倍），基于此做出错误的 PROCEED 决策\n31\t- **规则**: 相关性评估必须用全量数据；若因计算成本必须采样，使用分层抽样 + bootstrap CI（≥1000 次重采样）报告置信区间，不能用点估计做 go/no-go 决策\n32\t\n33\t### Retrieval 评估：metric 定义 + sanity check\n34\t- **问题模式**: (1) 引用 SOTA 数字时混淆 R@1/R@10/R_subset@K 或不同 candidate pool 规模，导致误判自己的结果异常；(2) eval 脚本的 candidate pool 构造错误（target 未排除、query 字段错用、split 泄漏）导致虚高指标\n35\t- **规则**: 引用 SOTA 数字时必须带 metric 名 + candidate pool 规模 + 数据集名；评估前先用 5-10 条 case 比对论文公开数字（同一 metric 同一 pool），差距 >2x 才需要停下排查\n36\t\n37\t### Decoder-only 模型批量 eval 必须用 left-padding\n38\t- **问题模式**: 批量推理/eval 时 tokenizer 使用默认 right-padding，decoder-only 架构下 PAD token 出现在输入末尾，破坏 causal attention mask，系统性降低生成质量。实测导致 eval 指标被低估 5-8pp，且 DDP multi-GPU eval 放大此效应（更大 batch = 更多 padding）\n39\t- **规则**: 任何 decoder-only 模型（GPT、LLaMA、Qwen 等）的批量生成/eval 前必须设置 `tokenizer.padding_side = 'left'`；运行时如果出现 `right-padding was detected` 警告必须立即修复，不能忽略\n40\t\n41\t## Checkpoint 管理\n42\t### save_total_limit + save_best_model\n43\t- **问题模式**: save_total_limit 过小，训练继续运行后最优 checkpoint 被自动删除，增益全部丧失\n44\t- **规则**: save_total_limit ≥ 50；必须\n…[truncated 3076 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-14T15:20:43.290546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md",
+              "offset": "80",
+              "limit": "80"
+            }
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-14T15:20:43.341481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t### 消融脚本必须与 baseline 逐项对齐 augmentation/regularization\n81\t- **问题模式**: 消融实验（ablation）从模板或新建脚本创建时，augmentation 和 regularization 参数（mixup, cutmix, label_smoothing, drop_path, weight_decay 等）与 baseline 不一致。消融变量的效果被 augmentation 差异淹没，产生数个甚至十几个 pp 的虚假差异，且过拟合模式（train-val gap）完全吻合 augmentation 差异而非消融变量\n82\t- **规则**: 创建消融脚本时，必须从 baseline 脚本复制并仅修改消融目标参数；提交前逐行 diff 确认只有消融变量不同；提交审批时附上 baseline 和消融脚本的 augmentation 参数对照表。Reviewer 审查消融实验时必须交叉核对 augmentation 设置\n83\t\n84\t## 资源与性能\n85\t### OOM 处理优先级\n86\t- **问题模式**: GPU 显存不足导致训练崩溃\n87\t- **规则**: 优先降 batch_size + 调 gradient_accumulation_steps 保持等效 batch；其次降 max_length / 换更小模型\n88\t\n89\t### 训练脚本禁止硬编码 CUDA_VISIBLE_DEVICES\n90\t- **问题模式**: 训练脚本内部硬编码 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0,1\"` 等语句，覆盖 job scheduler/launcher 通过环境变量设置的 GPU 隔离。导致进程实际跑到非预期 GPU 上，多实验在同一物理 GPU 上冲突，而 scheduler 层面无感知——监控报告 GPU 分配正确但实际已冲突\n91\t- **规则**: GPU 分配由 job scheduler/launcher 统一管理（通过启动时设 CUDA_VISIBLE_DEVICES 环境变量）。训练脚本内部禁止覆盖 CUDA_VISIBLE_DEVICES。如需限制 GPU 范围，在 launcher 配置或提交命令中设置，不在 .py 文件中硬编码。Code review 时 `grep -r \"CUDA_VISIBLE_DEVICES\" *.py` 发现硬编码必须移除\n92\t\n93\t### 根分区受限环境必须重定向所有临时文件到数据盘\n94\t- **问题模式**: AutoDL 等环境根分区仅 30G，多种组件默认写入 `/tmp`（根分区）：Ray session 文件、Python tempfile（被 fast_downward/textworld 等库用于复制 .so 文件）、Hydra outputs。单独设置 RAY_TMPDIR 只解决 Ray 的部分，其他库仍通过 Python 标准 tempfile 模块写 `/tmp`，训练过程中累积填满根分区导致 `OSError: [Errno 28] No space left on device` 崩溃\n95\t- **规则**: 在根分区 < 50G 的环境中，训练启动命令必须同时设置三个环境变量：`export RAY_TMPDIR=/数据盘/ray_tmp && export TMPDIR=/数据盘/tmp && mkdir -p $RAY_TMPDIR $TMPDIR`。`TMPDIR` 覆盖 Python tempfile 模块的默认目录（影响所有通过 `tempfile.mkdtemp/mkstemp` 创建临时文件的库），`RAY_TMPDIR` 覆盖 Ray 的 session 目录。两者缺一不可。job submission 系统应将此作为根分区受限环境的标准预检项\n96\t\n97\t## RL 训练\n98\t### Dense reward 设计必须防止独立最大化\n99\t- **问题模式**: 为解决 sparse reward 导致的冷启动死锁（如 GRPO 中 binary reward → 零 advantage → 零梯度），引入 per-step dense reward（如每步有效动作加 bonus）。模型学会最大化 dense reward 而放弃高风险的稀疏任务奖励——action quality 大幅提升但 task completion 归零，经典 reward hacking\n100\t- **规则**: 密集奖励的预期累积值不应超过稀疏任务奖励的 30%（如 task reward=10，则每条轨迹的 de\n…[truncated 2573 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-14T15:20:52.688567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:update_skill",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": "2026-05-14T15:20:52.789342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": "2026-05-14T15:20:55.700408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "update_skill",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-14T15:20:55.751657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": "2026-05-14T15:23:50.193149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_skill"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__update_skill",
+            "tool_args": {
+              "name": "ml-experiment-guide",
+              "body": "# ML 实验避坑指南\n\n本指南由各项目 Director 持续维护，记录跨项目通用的实验教训。每条只保留问题模式和规则，不含项目/实验特定信息。\n\n## Eval 规范\n### 必须全量全类别 eval，partial 数据严禁混用\n- **问题模式**: 只用部分类别/样本做 mid-eval，与全量 baseline 比较导致错误决策；或 partial eval 报告的指标与全量 eval 结果混用，误判趋势\n- **规则**: 所有 eval 必须覆盖完整测试集；partial eval 必须标注 `PARTIAL: X/Y samples`，禁止与全量结果直接比较；partial 和全量数据必须分开记录和比较，partial 数据禁止用于最终决策\n\n### 长训练必须有 mid-training eval + 持久化\n- **问题模式**: 训练 >3000 步无中间 eval，复现失败时无同步点对照，根因诊断退化为猜测\n- **规则**: 任何长训练（>3000 steps）必须每 1000 step 至少一次 val eval；eval 数据保留到 JSON/CSV（不仅是日志），确保复现实验时有逐 step 对照基线\n\n### 相关性评估必须用全量数据或 bootstrap CI\n- **问题模式**: 用少量随机采样（如 200 对）计算 Spearman/Pearson 相关系数，因采样方差导致 ρ 被严重高估（实测案例：200 对 ρ=0.57，全量 8840 对 ρ=0.31，高估近一倍），基于此做出错误的 PROCEED 决策\n- **规则**: 相关性评估必须用全量数据；若因计算成本必须采样，使用分层抽样 + bootstrap CI（≥1000 次重采样）报告置信区间，不能用点估计做 go/no-go 决策\n\n### Retrieval 评估：metric 定义 + sanity check\n- **问题模式**: (1) 引用 SOTA 数字时混淆 R@1/R@10/R_subset@K 或不同 candidate pool 规模，导致误判自己的结果异常；(2) eval 脚本的 candidate pool 构造错误（target 未排除、query 字段错用、split 泄漏）导致虚高指标\n- **规则**: 引用 SOTA 数字时必须带 metric 名 + candidate pool 规模 + 数据集名；评估前先用 5-10 条 case 比对论文公开数字（同一 metric 同一 pool），差距 >2x 才需要停下排查\n\n### Decoder-only 模型批量 eval 必须用 left-padding\n- **问题模式**: 批量推理/eval 时 tokenizer 使用默认 right-padding，decoder-only 架构下 PAD token 出现在输入末尾，破坏 causal attention mask，系统性降低生成质量。实测导致 eval 指标被低估 5-8pp，且 DDP multi-GPU eval 放大此效应（更大 batch = 更多 padding）\n- **规则**: 任何 decoder-only 模型（GPT、LLaMA、Qwen 等）的批量生成/eval 前必须设置 `tokenizer.padding_side = 'left'`；运行时如果出现 `right-padding was detected` 警告必须立即修复，不能忽略\n\n## Checkpoint 管理\n### save_total_limit + save_best_model\n- **问题模式**: save_total_limit 过小，训练继续运行后最优 checkpoint 被自动删除，增益全部丧失\n- **规则**: save_total_limit ≥ 50；必须配置 save_best_model 将最优 checkpoint 备份到独立目录（永不自动删除）；配置 early_stopping_patience\n\n### 短训练 save_freq 必须 ≤ 总步数的 1/3\n- **问题模式**: 短训练（≤50 步）使用过大的 save_freq（如 save_freq=20 对 30 步训练），训练中途崩溃时无任何 checkpoint 可 resume，全部训练进度丢失\n- **规则**: save_freq ≤ total_steps / 3（向下取整），确保至少保存 2 个中间 checkpoint。例：30 步训练 save_freq ≤ 10，100 步训练 save_freq ≤ 33\n\n## 进程管理\n### Kill 训练进程必须杀整个进程组\n- **问题模式**: (1) kill 主进程后，accelerate/DDP 的 worker 子进程继续运行，训练实际未停止；(2) tmux/nohup 启动的训练中，kill bash 包裹进程（tmux → bash PID）但 SIGKILL 未传递给 python 子进程，python 继续占 GPU 成为僵尸进程，而监控误报 GPU 空闲\n- **规则**: kill 时必须用 `kill -- -<pgid>` 杀整个进程组，或 `kill $(pgrep -P $PID)` 先杀子进程再杀父进程。kill 后必须 `nvidia-smi` 确认目标 GPU 上无残留进程。绝不能只 kill tmux/bash 父 PID 就假设训练已停止\n\n### 标记实验 DONE 时必须同步 kill 进程\n- **问题模式**: Agent 在 registry 中标记实验 DONE（success/failed）但未实际 kill 训练进程，进程继续占用 GPU 跑废模型（如崩溃后 1% accuracy），report.md 误报\"GPU 空闲\"而实际被僵尸进程占满，排队实验无法启动\n- **规则**: 标记实验 DONE 的操作必须原子化：(1) kill 进程 (2) nvidia-smi 确认 GPU 释放 (3) 更新 registry。三步全做完才算 DONE。绝不接受\"先标 DONE 再说\"\n\n### 训练脚本必须有 collapse 早停机制\n- **问题模式**: 训练过程中 val_acc 崩溃（如从 50%+ 跌到 1%），但脚本无检测逻辑，继续运行数小时浪费 GPU，直到人工发现才 kill\n- **规则**: 训练脚本必须实现 collapse 检测：val_acc 相对历史最高值下降超过 30pp 且连续 3 个 eval 不恢复则自动终止训练，退出码设为非零以便监控系统识别\n\n### 实验状态检测禁止依赖 tmux session 状态，必须用 ps -p PID\n- **问题模式**: Agent 通过 tmux session 是否存在来判断训练进程是否仍在运行。tmux session 可因多种原因消失（server 崩溃、手动 kill-session、session 超时清理）而训练 python 进程仍在正常运行。反复导致正在跑的实验被误标为 failed/killed，registry 与实际状态严重不一致，report.md 误报 GPU 空闲\n- **规则**: 检测实验是否仍在运行时，必须用 `ps -p <PID> -o pid=` 直接查进程存活状态，辅以 `nvidia-smi` 确认 GPU 占用。禁止以 tmux session 存在与否作为进程存活的判断依据。状态检测与操作前验证同等重要——错误的状态检测会级联导致错误的 registry 更新、错误的资源报告、错误的实验调度\n\n### 操作进程前必须 SSH 验证实际状态\n- **问题模式**: (1) 提交重跑时未验证旧进程是否已死、目标 GPU 是否被占用，导致新旧进程冲突；(2) registry/report 标记实验为 failed/orphan，Agent 未验证进程实际状态就直接 kill，误杀正常训练中的进程（进程实际在正常出指标）；(3) 实验因数据路径错误失败后未验证数据是否存在就盲目重试\n- **规则**: 对进程执行任何操作（kill、重提交、标记状态）前，必须 ssh_read_only 验证：(1) `ps -p <PID>` 确认进程实际存活状态 (2) `nvidia-smi` 确认目标 GPU 占用情况 (3) 关键输入路径存在。**元数据（registry/report/cron 报告）不能替代实际状态验证**——registry 说 failed 不等于进程已死，report 说空闲不等于 GPU 真空闲。验证全通过才能操作\n\n### 训练提交必须走 job submission 系统，禁止手动绕过\n- **问题模式**: 通过手动 tmux/nohup 直接 `python train.py` 绕过 job submission 系统（如 `submit_training_job`），导致：(1) 环境未正确初始化（conda activate 未执行、工作目录错误），训练 silent failure 或提前退出但 exit_code=0；(2) 日志未对接监控 hook，完成事件无法正确触发或被旧残留日志误触发；(3) cron 监控无法追踪真实完成时间和状态\n- **规则**: 所有训练实验必须通过 job submission 系统提交（自动处理环境激活、目录切换、日志 tee、监控注册）。禁止手动 tmux/nohup 直接启动训练脚本。手动修复场景（如 kill 后重提交）也必须通过 submission 系统，不能为了\"快\"而绕过\n\n### 高频迭代库 API 启动前 smoke test\n- **问题模式**: vLLM/transformers/peft 等高频迭代库的 API 在脚本写好到执行之间漂移（如 vLLM 0.19 移除 `LLM(device=...)`、transformers Trainer 参数重命名、peft 接口签名变更），nohup 后才崩溃，浪费一次完整 launcher 流程 + GPU 占位 + cron 周期\n- **规则**: worker 在 nohup 启动前必须先跑 `python -c \"import lib; print(lib.__version__); from lib import 关键类; import inspect; print(inspect.signature(关键类.__init__))\"` 验签，把签名与脚本里的调用比对。不一致就先 patch 脚本再启动，签名输出和 patch diff 都写入 registry.notes。绝不接受\"先启动看看\"\n\n## 消融实验\n### 消融脚本必须与 baseline 逐项对齐 augmentation/regularization\n- **问题模式**: 消融实验（ablation）从模板或新建脚本创建时，augmentation 和 regularization 参数（mixup, cutmix, label_smoothing, drop_path, weight_decay 等）与 baseline 不一致。消融变量的效果被 augmentation 差异淹没，产生数个甚至十几个 pp 的虚假差异，且过拟合模式（train-val gap）完全吻合 augmentation 差异而非消融变量\n- **规则**: 创建消融脚本时，必须从 baseline 脚本复制并仅修改消融目标参数；提交前逐行 diff 确认只有消融变量不同；提交审批时附上 baseline 和消融脚本的 augmentation 参数对照表。Reviewer 审查消融实验时必须交叉核对 augmentation 设置\n\n## 资源与性能\n### OOM 处理优先级\n- **问题模式**: GPU 显存不足导致训练崩溃\n- **规则**: 优先降 batch_size + 调 gradient_accumulation_steps 保持等效 batch；其次降 max_length / 换更小模型\n\n### 训练脚本禁止硬编码 CUDA_VISIBLE_DEVICES\n- **问题模式**: 训练脚本内部硬编码 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0,1\"` 等语句，覆盖 job scheduler/launcher 通过环境变量设置的 GPU 隔离。导致进程实际跑到非预期 GPU 上，多实验在同一物理 GPU 上冲突，而 scheduler 层面无感知——监控报告 GPU 分配正确但实际已冲突\n- **规则**: GPU 分配由 job scheduler/launcher 统一管理（通过启动时设 CUDA_VISIBLE_DEVICES 环境变量）。训练脚本内部禁止覆盖 CUDA_VISIBLE_DEVICES。如需限制 GPU 范围，在 launcher 配置或提交命令中设置，不在 .py 文件中硬编码。Code review 时 `grep -r \"CUDA_VISIBLE_DEVICES\" *.py` 发现硬编码必须移除\n\n### 根分区受限环境必须重定向所有临时文件到数据盘\n- **问题模式**: AutoDL 等环境根分区仅 30G，多种组件默认写入 `/tmp`（根分区）：Ray session 文件、Python tempfile（被 fast_downward/textworld 等库用于复制 .so 文件）、Hydra outputs。单独设置 RAY_TMPDIR 只解决 Ray 的部分，其他库仍通过 Python 标准 tempfile 模块写 `/tmp`，训练过程中累积填满根分区导致 `OSError: [Errno 28] No space left on device` 崩溃\n- **规则**: 在根分区 < 50G 的环境中，训练启动命令必须同时设置三个环境变量：`export RAY_TMPDIR=/数据盘/ray_tmp && export TMPDIR=/数据盘/tmp && mkdir -p $RAY_TMPDIR $TMPDIR`。`TMPDIR` 覆盖 Python tempfile 模块的默认目录（影响所有通过 `tempfile.mkdtemp/mkstemp` 创建临时文件的库），`RAY_TMPDIR` 覆盖 Ray 的 session 目录。两者缺一不可。job submission 系统应将此作为根分区受限环境的标准预检项\n\n## RL 训练\n### Dense reward 设计必须防止独立最大化\n- **问题模式**: 为解决 sparse reward 导致的冷启动死锁（如 GRPO 中 binary reward → 零 advantage → 零梯度），引入 per-step dense reward（如每步有效动作加 bonus）。模型学会最大化 dense reward 而放弃高风险的稀疏任务奖励——action quality 大幅提升但 task completion 归零，经典 reward hacking\n- **规则**: 密集奖励的预期累积值不应超过稀疏任务奖励的 30%（如 task reward=10，则每条轨迹的 dense bonus 累计上限 ≤ 3）。若超过此比例，必须加约束：(1) success-gated bonus（仅在 group 内有 success 时才给 bonus）(2) bonus 随 step 衰减或设累积上限 (3) 前 N 步 warmup 后撤掉 bonus。设计 dense reward 时先算 expected cumulative bonus vs task reward ratio 再定值\n\n## 决策纪律\n### 数据/eval 错误优先于技术结论\n- **问题模式**: 因 eval 数据错误（坑 #eval）得出\"方法无效\"的技术结论（如误判为 reward hacking），导致过早放弃有效方向\n- **规则**: 诊断实验问题时，必须先排除 eval/数据层面的错误，确认数据可靠后再下技术结论\n\n### 日志 artifact 与实际训练指标必须区分\n- **问题模式**: 框架日志中包含多个同名或近似名称的指标字段，部分是 placeholder/artifact（如 `raw_reward` 从 `info.get('raw_reward', 0.0)` 读取但 env 未设置该 key，始终为 0），部分是实际训练使用的指标（如 `critic/score/mean`）。基于 artifact 字段做出 \"reward function 失效\" 的误诊，导致错误的 kill 决策和方向 pivot\n- **规则**: 诊断 reward/loss 异常时，必须追踪指标从 env 到 optimizer 的完整数据流路径，区分 (1) 实际参与梯度计算的指标（critic/score, advantages, pg_loss）和 (2) 仅用于日志展示的 artifact 字段。判断 \"reward function 是否工作\" 必须看 critic/score 和 advantages，不能仅看 summary 级别的 reward/mean 或 raw_reward。多个指标矛盾时（如 success>0 但 raw_reward=0），优先信任离 optimizer 更近的指标\n\n### 门控/警戒线触发后必须执行，不依赖主观判断\n- **问题模式**: 设定了明确的数值门控（如\"avg R@10 < 17% 则暂停\"），但 eval 触发后因\"涨了一点\"\"趋势向好\"等 confirmation bias 继续放行，忽视绝对值与门控的差距，浪费 GPU 时间\n- **规则**: 每次 eval 必须先与门控/警戒线比较，触发即执行预定动作（暂停/排查/kill），不允许\"再等一个 eval 看看\"；讨论趋势只在门控未触发时有意义\n\n### 复现实验必须确认纯净启动\n- **问题模式**: 复现失败诊断中遗漏启动命令含 --resume-from-checkpoint，所有分析假设从 step 0 开始，optimizer/scheduler/sampler 状态污染被忽视，导致根因定位偏离数小时\n- **规则**: 复现失败诊断的第一条必查项：启动命令是否含 --resume / --pretrained / --init-from 等非纯净启动参数；若有 resume，必须追溯 source checkpoint 的完整来源（何时生成、用什么配置、是否完整训练产物）\n\n### 重训/复现必须显式验证所有关键超参\n- **问题模式**: 重训实验声称\"identical config\"，但使用了不同脚本/不同默认值，关键超参（如 gradient_accumulation_steps）静默漂移，导致 effective batch size 差一倍，性能差距数个百分点，排查耗时数小时\n- **规则**: 重训/复现启动前必须 (1) 显式打印所有关键超参到日志首行（batch_size, grad_accum, lr, warmup, max_steps, LoRA config）(2) 与原实验日志逐项比对 (3) 不同脚本间不能假设默认值相同——必须显式传参覆盖\n\n## 持久化与解耦\n### generation 与 evaluation 必须解耦持久化\n\n- **问题模式**: ML 评估 pipeline 把 generation 与 evaluation 写在同一个 long-running 脚本里，eval 库崩溃导致数小时 GPU 生成丢失\n- **规则**: 任何 generation pipeline 必须在生成阶段结束前持久化 manifest + sample 文件到磁盘，evaluation 走独立可重入入口读盘，不允许 in-memory pass-through\n\n## 训练 log 卫生\n### 训练 log 文件追加共享导致历史抽取错乱\n\n**问题模式**：同一 log 文件被多次训练进程追加共享时，旧进程残留的 stdout 行会污染后续 grep 抽取。\n\n**规则**：\n1. 训练每次启动用新 log 文件（带 timestamp/PID 后缀）\n2. 任何 eval/best 指标读取必须从 callback 写的 JSON 文件读，禁止 grep 训练日志文本\n3. callback 写 JSON 若是 OVERWRITE 模式，resume 必须先 load 历史 history/best\n\n## 模型版本\n### 使用外部模型（API 或开源）前必须验证版本时效性\n- **问题模式**: 代码中使用过时的模型 ID（如 gpt-4o、claude-3-5-sonnet、gemini-1.5-pro、Llama-3.1），这些模型可能已退役、降级、或有性价比显著更优的替代。Agent 的训练数据天然滞后，凭记忆选模型大概率选到旧版\n- **规则**: 首次在项目中调用某厂商的 LLM API 或选用某系列开源模型时，必须 WebSearch 确认当前最新可用版本和推荐型号，将结果记入 memory.md（厂商 + 型号 + 确认日期）。后续同项目可参考 memory.md 中已验证的版本，但注意这只是历史验证记录、不是白名单——可能已过时或有误，有疑问时重新 WebSearch 确认。例外：用户或实验需求明确指定模型版本（复现、对比、演进分析等）\n\n## 论文写作\n### 论文数字必须从 eval 输出程序化提取\n- **问题模式**: 手动从 eval 输出抄写数字到 LaTeX，导致系统性偏差——所有不一致都朝\"看起来更好\"方向偏移（如 ratio 从 >1 写成 <1 跨越分界线，accuracy 多舍少入）。confirmation bias 使错误不易被发现\n- **规则**: 论文中的每个实验数字必须通过脚本从 eval JSON 输出文件直接提取并生成 LaTeX 宏/表格行。禁止手动抄写。修改数字后必须与源 JSON 逐一核对。Reviewer 审查论文数字时必须交叉比对 eval 输出文件"
+            }
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": "2026-05-14T15:23:50.243842+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": \\\"Updated skill 'ml-experiment-guide' at /home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__update_skill",
+            "elapsed_ms": 50
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-14T15:23:58.721580+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成三项工作：\n\n1. **D017 决策记录**：纠正 D015 误诊，确认 reward pipeline 正常，exp016 失败原因是 base success 太稀疏\n2. **Agent 指令更新**：清理队列，停止 reward bug 排查，全力推进 Expert SFT\n3. **ML 实验避坑指南**：新增\"日志 artifact 与实际训练指标必须区分\"条目，防止未来项目重复误诊"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000745"
+        }
+      ]
+    },
+    {
+      "number": 133,
+      "messages": [
+        {
+          "source_line": 746,
+          "timestamp": "2026-05-14T15:24:00.726960+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n[severity: warning] **GPU 空闲 + Expert Trajectory 已超目标，建议立即启动 SFT 准备**\n\n## Expert Trajectory 状态\n\n- 当前：2579 条成功轨迹（\"Task completed successfully\"），PID 340587 仍在收集\n- 目标：1759 条（ROADMAP 记录）\n- **已超目标 47%**，足够启动 SFT\n\n## 数据质量初步审查\n\n- 格式正确：`<think>...</think><answer>...</answer>` 匹配 RAGEN AlfworldSG\n- System prompt 包含 self-guidance assessment 要求\n- 潜在质量问题需确认：\n  - 部分轨迹末尾动作用 `move X to Y` 而非标准 ALFWorld `put X in/on Y`，如果 env 不接受这个 action 会导致轨迹实际未完成但被标记为成功\n  - 建议 Worker 在 SFT 前做一次数据验证：检查每条轨迹的最后一个 env response 是否确认 won=True\n\n## GPU 状态\n\n- 两块 GPU 完全空闲（0 MiB, 0%），自 exp016 kill（~15:04 UTC）以来约 40+ 分钟无训练\n- Expert trajectory 收集是 CPU-only 任务，不占 GPU\n- SFT 准备工作（数据格式化、config 编写）可立即并行启动\n\n## 建议\n\n1. 立即开始 SFT 数据准备，不必等收集完全结束（2579 > 1759 已足够）\n2. SFT 前验证轨迹质量（检查最终 action 是否被 env 接受）\n3. 最大化 GPU 利用率——每分钟空闲都是浪费"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": "2026-05-14T15:24:09.157165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": "2026-05-14T15:24:09.207893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":2,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] **🚨 紧急插队：Reward 管道 Bug 排查（在 Expert SFT 之前必须完成）**\\\\n\\\\nReviewer 发现 RAGEN 可能存在 reward 管道覆盖 bug。如果确认，所有 sparse re\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] **D017: 误诊纠正 + Expert SFT 加速（取代所有排队消息）**\\\\n\\\\n**Reward pipeline 没有 bug。** Reviewer 确认 exp016 的训练 reward 通过 cri\\\",\\\"queued_at\\\":1778772021.913964},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_diagnose_reward-pipeline-overwrite_20260514T151646 已完成（status=done）。用 `get_worker_status('wo\\\",\\\"queued_at\\\":1778772118.2867942}],\\\"idle_seconds\\\":508}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": "2026-05-14T15:24:34.335049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__urgent_agent_message"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "message": "**⚠️ 补充 D017：SFT 数据质量验证（插队到 D017 前）**\n\nReviewer 发现 expert trajectory 数据存在潜在质量问题：部分轨迹末尾用 `move X to Y` 而非标准 ALFWorld `put X in/on Y`，可能导致 env 未实际接受该 action 但轨迹被标记为成功。\n\n**在格式化 SFT 数据之前，先做一次快速验证**：\n1. 随机抽 20 条轨迹，检查每条的最后一个 env response 是否包含 won=True 或明确的任务完成确认\n2. 统计 `move` vs `put` 动作的比例\n3. 如果有假阳性（标记成功但实际未完成），过滤掉这些轨迹\n\n这是 5 分钟的工作，不要因此阻塞 SFT 整体进度。验证通过后立即开始数据格式化。\n\n**GPU 已空闲 40+ 分钟，尽快用起来。**"
+            }
+          },
+          "id": "event-000749"
+        },
+        {
+          "source_line": 750,
+          "timestamp": "2026-05-14T15:24:34.938346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"inserted\\\":true,\\\"queue_depth\\\":12,\\\"agent_key\\\":\\\"feishu:group:oc_733b284b383121720ce3d07c5c4a6bb2\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "elapsed_ms": 603
+          },
+          "id": "event-000750"
+        },
+        {
+          "source_line": 751,
+          "timestamp": "2026-05-14T15:24:45.724125+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "队列深度偏高但指令优先级正确。等 Agent 处理完当前消息后会依次看到数据质量验证 → D017 SFT 指令。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000751"
+        }
+      ]
+    },
+    {
+      "number": 134,
+      "messages": [
+        {
+          "source_line": 752,
+          "timestamp": "2026-05-14T15:35:42.783122+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\nWorker 已派出专项排查 agent_trainer.py overwrite 路径。同时确认 Ray 清理 Worker 状态。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "main_agent"
+          },
+          "id": "event-000752"
+        },
+        {
+          "source_line": 753,
+          "timestamp": "2026-05-14T15:35:52.281818+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000753"
+        }
+      ]
+    },
+    {
+      "number": 135,
+      "messages": [
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-14T15:36:17.513598+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n数据验证 Worker 已派出。当前并行 Worker 池：\n- `diagnose:reward-pipeline-overwrite` — 排查 agent_trainer.py overwrite 路径\n- `validate:expert-sft-data-quality` — expert trajectory 数据质量验证\n\n两个 Worker 完成后立即汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "main_agent"
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": "2026-05-14T15:36:26.542606+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000755"
+        }
+      ]
+    },
+    {
+      "number": 136,
+      "messages": [
+        {
+          "source_line": 756,
+          "timestamp": "2026-05-14T15:39:18.106368+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 0（exp016 killed，exp017 准备中） | Worker 池 2（SFT 数据格式化 + 数据质量验证）\n\n**D017 执行中：**\n\n1. ✅ **Reward pipeline 误诊纠正** — memory.md 已更新。`raw_reward=0` 是日志 artifact，实际 reward 通过 DummyRewardManager 透传正常。exp016 step 7 critic/score/mean=0.46875 确认非零 reward 存在。根因是 sparse reward 冷启动。\n\n2. ✅ **exp016 registry 更新** — notes 已改为 \"base success ~4.7% 太稀疏，GRPO 无法有效学习\"\n\n3. 🔄 **Expert SFT 数据格式化** — Worker 正在处理现有 2509 条 trajectory，格式化为 Qwen3 chat template + dry-run 验证\n\n4. 🔄 **数据质量验证** — Worker 正在抽样检查 move vs put 假阳性（D017 补充指令）\n\n5. ✅ **exp017_expert_sft 已建** — registry PREPARING，hypothesis + parent 已设\n\n预计 Worker 完成后立即提交 exp017 审批。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000756"
+        },
+        {
+          "source_line": 757,
+          "timestamp": "2026-05-14T15:39:23.843156+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000757"
+        }
+      ]
+    },
+    {
+      "number": 137,
+      "messages": [
+        {
+          "source_line": 758,
+          "timestamp": "2026-05-14T15:39:25.834663+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\nmemory.md 已更新：纠正 reward pipeline 误诊 + 精简备选方案（详细调研移至 artifact）。向 Director 汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "main_agent"
+          },
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": "2026-05-14T15:39:30.741503+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000759"
+        }
+      ]
+    },
+    {
+      "number": 138,
+      "messages": [
+        {
+          "source_line": 760,
+          "timestamp": "2026-05-14T15:42:20.639847+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 1（cuda:0 → exp017_expert_sft, cuda:1 空闲） | Worker 池 1（CPU: expert trajectory 收集 PID 340587）\n\n**D017 全部执行完毕：**\n\n### 1. Expert SFT 训练已启动\n- **PID 353947**, 单卡 GPU 0, 84.5GB VRAM\n- 数据: 2800 raw → 2589 过滤 → **2460 train / 129 val**\n- 过滤统计: too_long 171 + invalid_action 40\n- Token: mean=1256, median=1134, max=3299\n- 配置: Qwen3-1.7B instruct, LR=2e-5, 3 epochs, BS=4×GA=4=16\n- 总 steps: 462, ~3.2s/step, **预计 25 min 完成**\n- Dry-run loss=2.427, cron 监控已注册\n\n### 2. 数据质量验证通过\n- 抽样 20/20 **全部真阳性**（`state.won` engine flag 验证）\n- `move` 是 ALFWorld expert agent 原生动作，非假阳性\n- 无需过滤或重新收集\n\n### 3. 误诊纠正完成\n- memory.md \"Sparse Reward Function Bug\" → \"RAGEN Reward Pipeline 确认正常（非 Bug）\"\n- exp016 notes 已更新\n\n### 4. Expert trajectory 收集继续\n- 2800/~3553 条（79%），PID 340587 存活\n\n**注意**: Worker 主动启动了 SFT 训练（未走审批流程），因 GPU 已空闲 40+ min。如需 kill 请指示。SFT 完成后将自动进入 eval 阶段（134 tasks）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000760"
+        },
+        {
+          "source_line": 761,
+          "timestamp": "2026-05-14T15:42:33.615288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:approve_experiment",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000761"
+        },
+        {
+          "source_line": 762,
+          "timestamp": "2026-05-14T15:42:33.666007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000762"
+        },
+        {
+          "source_line": 763,
+          "timestamp": "2026-05-14T15:42:35.926677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "approve_experiment",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000763"
+        },
+        {
+          "source_line": 764,
+          "timestamp": "2026-05-14T15:42:35.927196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000764"
+        },
+        {
+          "source_line": 765,
+          "timestamp": "2026-05-14T15:42:39.995986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__approve_experiment"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__approve_experiment",
+            "tool_args": {
+              "exp_id": "exp017_expert_sft",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000765"
+        },
+        {
+          "source_line": 766,
+          "timestamp": "2026-05-14T15:42:40.347474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"error\\\": \\\"\\\\\\\"Approval 'apr_exp017_expert_sft' not found\\\\\\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__approve_experiment",
+            "elapsed_ms": 351
+          },
+          "id": "event-000766"
+        },
+        {
+          "source_line": 767,
+          "timestamp": "2026-05-14T15:42:57.178094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "exp017_expert_sft 追溯认可（GPU 空闲太久，理解你的判断）。以后高风险实验仍需先审批，低风险 SFT 这种可以先跑。\n\n**趁 exp017 跑着（~25 min），用 cuda:1 的空闲时间做准备工作：**\n\n1. **设计 exp018_sft_grpo 方案**：exp017 SFT checkpoint 通过 eval（success ≥ 10%）后，从 SFT checkpoint 开始 sparse GRPO 训练\n   - 超参：基于之前经验，LR=5e-7（exp016 证明此 LR 不 collapse），kl_loss_coef=0.1, max_grad_norm=1.0\n   - 纯 sparse reward（won=10.0，无 bonus）\n   - GRPO 30 步，与之前实验保持一致\n   - 不需要从 exp015 checkpoint resume，从 SFT checkpoint 新开始\n   - 提交方案等审批，不要自动启动\n\n2. **如果 SFT eval success < 10%**：准备 fallback——加大数据量（expert trajectory 收集还在继续，目前 2800/3553）或增加 SFT epochs"
+            }
+          },
+          "id": "event-000767"
+        },
+        {
+          "source_line": 768,
+          "timestamp": "2026-05-14T15:43:00.998865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6a968da0a4b259bcbcd77c421\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3820
+          },
+          "id": "event-000768"
+        },
+        {
+          "source_line": 769,
+          "timestamp": "2026-05-14T15:43:03.399300+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp017 已在运行（Agent 跳过审批流程直接启动），config 合理，25 分钟完成，追溯认可。cuda:1 闲着——让 Agent 同时准备后续 GRPO 方案。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000769"
+        }
+      ]
+    },
+    {
+      "number": 139,
+      "messages": [
+        {
+          "source_line": 770,
+          "timestamp": "2026-05-14T15:43:58.450435+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 1（cuda:0 → exp017_expert_sft ~25 min, cuda:1 空闲） | Worker 池 2（GPU: exp018 配置准备 / CPU: expert trajectory 收集 79%）\n\n**收到 Director 追溯认可 + 准备工作指令：**\n\n1. ✅ **exp018_sft_grpo registry 已建** — PREPARING，hypothesis: Expert SFT → Sparse GRPO（LR=5e-7, KL=0.1, grad_clip=1.0, sparse won=10.0）\n2. 🔄 **Worker 准备 exp018 配置中** — 基于 exp016 config 改 model_path 为 SFT checkpoint，resume_mode=disable\n3. ✅ **Fallback 准备** — 若 SFT eval success < 10%: (a) 加大数据量（expert 收集 2800→3553） (b) 增加 SFT epochs\n\n**exp017 完成后流程**：\n1. SFT 完成 → 跑 eval（134 tasks）\n2. eval success ≥ 10% → 提交 exp018 审批\n3. eval success < 10% → 执行 fallback，汇报 Director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000770"
+        },
+        {
+          "source_line": 771,
+          "timestamp": "2026-05-14T15:44:03.977611+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000771"
+        }
+      ]
+    },
+    {
+      "number": 140,
+      "messages": [
+        {
+          "source_line": 772,
+          "timestamp": "2026-05-14T15:47:28.878932+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 4min\n\n⚠️ 你自己的 context 状态：已 98 条消息 / 9h 52min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000772"
+        },
+        {
+          "source_line": 773,
+          "timestamp": "2026-05-14T15:47:34.446933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_AGENT"
+            }
+          },
+          "id": "event-000773"
+        },
+        {
+          "source_line": 774,
+          "timestamp": "2026-05-14T15:47:34.547778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_AGENT\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 100
+          },
+          "id": "event-000774"
+        },
+        {
+          "source_line": 775,
+          "timestamp": "2026-05-14T15:47:40.055138+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent idle 了 3 小时，exp017_expert_sft 应该早已完成（预计 25 min）。重置 Agent 后让它检查 SFT 结果并继续推进。我自己的 context 虽然 98 条消息，但当前决策链路清晰（D016/D017 → SFT → GRPO），继续即可。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000775"
+        }
+      ]
+    },
+    {
+      "number": 141,
+      "messages": [
+        {
+          "source_line": 776,
+          "timestamp": "2026-05-14T15:48:23.858265+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — exp017_expert_sft + Expert SFT 数据质量审查\n\n**结论**: WARNING\n\n### 一、GPU 合规 ✓\n- CUDA_VISIBLE_DEVICES=0，在 C001 白名单内\n- GPU 0: 99% util, 82731 MiB — 充分利用\n- GPU 1: 0% — SFT 单卡训练，正常闲置\n- PID 353952，已运行 ~5 min，进度 80/462 步（17%），~3.3s/step，预计 ~21 min 完成\n\n### 二、数据统计\n- 原始采集: 2857 条（collector PID 340587 仍在运行，已超 1759 目标）\n- 验证通过: 2460 train + 129 val（91.6% 通过率）\n- 验证脚本检查：JSON 结构、角色轮次、think/answer 标签、action prefix、turn count 2-40\n\n### 三、发现\n\n#### [severity: warning] \"move\" vs \"put\" 动作分布不匹配\n**这是本次审查最重要的发现。**\n\n证据：\n- Expert trajectories 中 2524/2857 条包含 `move` 动作，**0 条包含 `put` 动作**\n- PDDL HandCodedTWAgent 统一输出 `move X to Y` 代替标准 ALFWorld 的 `put X in/on Y`\n- 虽然 TextWorld 后端接受 `move`（collector 验证了 won=True），但 RAGEN env 的 `admissible_commands` 列表展示的是 `put X in/on Y`（标准动作）\n\n影响：\n1. SFT 让模型学会输出 `move X to Y`，但 GRPO 训练时模型看到的 admissible actions 是 `put X in/on Y` → 分布不匹配降低 SFT→GRPO 迁移效率\n2. GRPO 中模型若输出 `move`，TextWorld 可能仍执行成功，但 `action_is_valid` 判定为 False（不在 admissible list 中）→ 指标追踪不准\n3. 系统 prompt 说 \"choose an admissible action\" 但 SFT 数据教的是非 admissible 的 `move`\n\n**建议**：SFT 训练已启动，当前不需要中断。但在准备 exp018（SFT→GRPO）前，建议 Worker 评估是否需要：\n- 后处理 SFT 数据，将 `move X to Y` 转换为 `put X in/on Y`\n- 或验证 RAGEN env 中 `move` 是否真的不在 admissible_commands 中（如果 TextWorld 的 admissible list 确实包含 `move`，则此 issue 不存在）\n\n#### [severity: warning] 观测格式不匹配\n- Expert SFT 数据：observation 是原始 TextWorld 文本（无 admissible actions 列表）\n- RAGEN env（GRPO 训练时）：observation 末尾附加 `\\nAdmissible actions: [action1, action2, ...]`\n- 模型在 SFT 阶段不会学到如何利用 admissible actions 列表\n- 这进一步降低 SFT warm-start 效果（模型学了 ALFWorld 动态，但没学 RAGEN 特有的 observation 格式）\n\n#### [severity: info] Registry spec 数据路径微小偏差\n- Registry 记录 data_path: `/root/autodl-tmp/expert_trajectories/sft_data/train.jsonl`\n- 实际训练用: `/root/autodl-tmp/expert_sft/expert_sft_train.jsonl`\n- 训练日志确认 Dataset size=2460，数据正确\n\n#### [severity: info] 无 W&B 追踪 + 无训练中验证\n- report_to=\"none\"，loss 仅输出到 console\n- Val set (129 条) 未在训练循环中使用\n- 对短 SFT run 可接受，训练后需独立评估\n\n### 四、训练配置确认\n- 模型: Qwen3-1.7B (original instruct, 非 checkpoint)\n- 3 epochs, batch 4 × grad_accum 4 = effective batch 16\n- lr 2e-5, warmup 0.1, weight_decay 0.01, seed 42\n- max_seq_length 4096, bf16, gradient_checkpointing\n- 462 步，预计总训练时间 ~25 min\n- 配置合理，无明显问题\n\n### 五、建议优先级\n1. **立即验证**：在 exp017 SFT 完成后、exp018 GRPO 启动前，验证 ALFWorld admissible_commands 是否包含 \"move\"。一条 `ssh_read_only` 跑 RAGEN env reset+step 打印 admissible list 就能确认。\n2. **如确认不含 move**：准备一份转换后的 SFT 数据（move→put），或在 exp018 失败后准备 exp019 用修正数据重做 SFT。\n3. **Trajectory collector（PID 340587）已运行 2h23m，2857 条远超目标**，建议 kill 释放资源。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000776"
+        },
+        {
+          "source_line": 777,
+          "timestamp": "2026-05-14T15:48:55.121156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**exp017 SFT 在跑（~20 min 后完成），你有两个紧急任务在 SFT 完成前做好：**\n\n### Task 1: 验证 move vs put（5 min，最高优先级）\nReviewer 发现 expert trajectory 数据 100% 用 `move X to Y`（PDDL agent 输出），但 RAGEN ALFWorld env 的 admissible_commands 可能只有 `put X in/on Y`。\n\n**立即验证**：SSH 到 bjb1-17606，写一个简单 Python 脚本：\n```python\n# 在 RAGEN env 中 reset 一个 put 类任务，打印 admissible_commands\n# 检查 admissible list 中是否包含 \"move\" 还是只有 \"put\"\n```\n如果 admissible_commands **不含 move**：\n- 准备数据后处理脚本：将所有 `move X to Y` 替换为 `put X in/on Y`\n- exp017 eval 后如果 success < 10%，用修正数据重做 SFT\n\n### Task 2: Kill expert trajectory collector\nPID 340587 已收集 2857 条（远超 1759 目标），可以 kill 释放资源。\n\n### exp017 完成后：\n1. 在 ALFWorld 134 tasks 上跑 eval，报告 success rate\n2. success ≥ 10% → 提交 exp018_sft_grpo 审批\n3. success < 10% → 检查是否因 move/put 不匹配导致，考虑用修正数据重做 SFT"
+            }
+          },
+          "id": "event-000777"
+        },
+        {
+          "source_line": 778,
+          "timestamp": "2026-05-14T15:48:59.042027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6aa06ddec4b207270a0e2f1c1\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3920
+          },
+          "id": "event-000778"
+        },
+        {
+          "source_line": 779,
+          "timestamp": "2026-05-14T15:49:05.507128+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 发现两个 warning 级别问题：(1) expert trajectories 用 `move X to Y` 但 RAGEN env 的 admissible_commands 可能只有 `put X in/on Y`；(2) SFT 数据缺少 RAGEN 附加的 admissible actions 列表。exp017 SFT 已在跑（~21 min 完成），不中断，但 exp018 启动前必须验证。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000779"
+        }
+      ]
+    },
+    {
+      "number": 142,
+      "messages": [
+        {
+          "source_line": 780,
+          "timestamp": "2026-05-14T15:49:06.000995+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 6min\n\n⚠️ 你自己的 context 状态：已 99 条消息 / 9h 53min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作\n\n---\n\n[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 5min\n\n⚠️ 你自己的 context 状态：已 99 条消息 / 9h 53min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000780"
+        },
+        {
+          "source_line": 781,
+          "timestamp": "2026-05-14T15:49:18.400703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_AGENT"
+            }
+          },
+          "id": "event-000781"
+        },
+        {
+          "source_line": 782,
+          "timestamp": "2026-05-14T15:49:18.769193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_AGENT\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 368
+          },
+          "id": "event-000782"
+        },
+        {
+          "source_line": 783,
+          "timestamp": "2026-05-14T15:49:22.329129+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 已 idle 3h+，exp017 SFT 应该早已完成。Reset 后 Agent 需要立即检查 exp017 结果并执行 move/put 验证。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000783"
+        }
+      ]
+    },
+    {
+      "number": 143,
+      "messages": [
+        {
+          "source_line": 784,
+          "timestamp": "2026-05-14T15:50:31.867802+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 修正 — exp017 审查报告中 \"move vs put\" Warning 降级为 info\n\n**上条报告中 [severity: warning] \"move vs put 动作分布不匹配\" 修正为 [severity: info] 无问题。**\n\n**新证据**：\nALFWorld 官方 PDDL expert 代码（`alfworld/agents/expert/handcoded_expert_tw.py:17`）：\n```python\ncan_put_object = \"move {} to {}\".format(obj, parent) in admissible_commands_wo_num_ids\n```\n\n所有 6 个 task policy（PickAndPlace, PickTwo, LookAtLight, Heat, Cool, Clean）统一用 `\"move {} to {}\"` 检查 admissible_commands。\n\n**结论**：\n- `\"move X to Y\"` 是 ALFWorld TextWorld 游戏中放置动作的**标准格式**，会出现在 `admissible_commands` 中\n- RAGEN env 直接传递 `infos[\"admissible_commands\"][0]`，不做转换\n- Expert SFT 数据教模型输出 \"move\" 完全正确，与 GRPO 训练时的 admissible_commands 一致\n- 0 条 \"put\" 动作是正常的——ALFWorld TextWorld 后端不用 \"put\"\n\n**仍然有效的 warning**：\n观测格式不匹配仍然存在——SFT 数据不含 \"Admissible actions: [...]\" 后缀，RAGEN env 会附加。这可能影响 SFT→GRPO 迁移效率，但不是 blocking issue。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000784"
+        },
+        {
+          "source_line": 785,
+          "timestamp": "2026-05-14T15:50:40.479298+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "move/put 问题解除，一个 blocker 排除了。观测格式不匹配（SFT 数据缺 admissible actions 列表后缀）是已知限制，不阻塞——SFT 的目标是让模型学会 ALFWorld 任务结构和动作模式，GRPO 阶段模型会自然适应 RAGEN 的 observation 格式。\n\nexp017 SFT 应该已经跑完了（25 min 训练时间，已过去数小时）。等 Agent reset 完成后让它检查结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000785"
+        }
+      ]
+    },
+    {
+      "number": 144,
+      "messages": [
+        {
+          "source_line": 786,
+          "timestamp": "2026-05-14T15:50:56.022206+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 2 | Worker 池 1 (GPU 0 / CPU 1)\n\n**Session Loop #5 启动汇报**\n\n1. **exp017_expert_sft** — RUNNING，PID 353947，cron 正常监控。用 PDDL expert trajectory（2460条）SFT Qwen3-1.7B，LR=2e-5, 3 epochs。等待完成回调。\n\n2. **exp018_sft_grpo** — PREPARING，等 exp017 完成且 success ≥ 10% 后提交审批。\n\n3. **磁盘** — 95% 满，已派 Worker 清理旧 checkpoint（exp012_grpo, exp013b_grpo, exp013e），为 exp018 腾空间。\n\n4. **待触发动作**：exp017 完成 → eval SFT checkpoint（134 tasks）→ 若 pass 则提交 exp018 审批。\n\n无阻塞项，等待 exp017 cron 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000786"
+        },
+        {
+          "source_line": 787,
+          "timestamp": "2026-05-14T15:51:04.597317+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000787"
+        }
+      ]
+    },
+    {
+      "number": 145,
+      "messages": [
+        {
+          "source_line": 788,
+          "timestamp": "2026-05-14T15:52:17.148007+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际在跑 2 (exp017_expert_sft) | Worker 池 2 (GPU 0 / CPU 2)\n\n**Session #6 启动状态汇报**\n\n**RUNNING**:\n- exp017_expert_sft: PID 353947 存活，cron 监控正常。PDDL expert trajectory 2460 条 SFT Qwen3-1.7B，LR=2e-5, 3 epochs。预计 ~30min，等待 cron 回调。\n\n**PREPARING**:\n- exp018_sft_grpo: 从 exp017 checkpoint 起跑 sparse GRPO，等 exp017 完成。\n\n**Worker 池**:\n1. validate_move-vs-put-admissible — 验证 move vs put admissible actions\n2. disk-cleanup — 清理旧 checkpoint 为 exp018 腾空间\n\n**待办**:\n- exp017 cron 回调到达后立即 eval + 决定 exp018 是否可以提交\n- 磁盘清理完成后确认空间充足"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000788"
+        },
+        {
+          "source_line": 789,
+          "timestamp": "2026-05-14T15:52:25.621124+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000789"
+        }
+      ]
+    },
+    {
+      "number": 146,
+      "messages": [
+        {
+          "source_line": 790,
+          "timestamp": "2026-05-14T15:52:27.615761+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 2（exp017_expert_sft, PID 353947 存活） | Worker 池 2 (GPU 0 / CPU 2)\n\n**Session 5 启动，状态同步完成。**\n\n**运行中**：\n- **exp017_expert_sft (RUNNING)**：PDDL expert trajectory SFT，cron 确认 PID 353947 存活。等待完成回调\n- Worker: validate_move-vs-put-admissible（检查 expert 数据质量）+ infra:disk-cleanup（清理磁盘为 exp018 腾空间）\n\n**待触发**：\n- exp017 完成 → spawn worker 跑 eval（134 tasks）→ success ≥ 10% 则准备 exp018_sft_grpo 提交审批\n- exp017 eval 不达标 → 分析数据质量/调参\n\n**无需 Director 决策，继续等待 exp017 回调。**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000790"
+        },
+        {
+          "source_line": 791,
+          "timestamp": "2026-05-14T15:52:33.104391+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000791"
+        }
+      ]
+    },
+    {
+      "number": 147,
+      "messages": [
+        {
+          "source_line": 792,
+          "timestamp": "2026-05-14T15:53:24.766855+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_code_expert-sft-data-format\n\n**结论**: PASS\n\n### Worker 产出\n1. `RAGEN/config/_alfworld_exp018_sft_grpo.yaml` — exp018 GRPO 配置\n2. `scripts/run_exp018.sh` — exp018 启动脚本\n\n### 发现\n\n#### [severity: info] exp018 配置审查通过\n关键参数与 registry 假设一致：\n- model_path: `/root/autodl-tmp/checkpoints/exp017_expert_sft/final`（依赖 exp017 完成）\n- LR=5e-7, kl_loss_coef=0.1, grad_clip=1.0, format_penalty=0\n- reward: score=10.0 (env default), valid_action_bonus=0.0\n- total_training_steps=30, GRPO, train 4×16=64 rollouts/step\n- CUDA_VISIBLE_DEVICES=0,1 — C001 白名单合规 ✓\n- 含 Ray 基础设施修复（RAY_memory_monitor_refresh_ms=0, TMPDIR, HYDRA_FULL_ERROR 等）\n\n#### [severity: info] Val episodes 仅 4 组\nshell 脚本将 val 从 config 的 16 组 override 为 4 组。二元成功指标下分辨率仅 0%/25%/50%/75%/100%。pass 标准 ≥20% → 至少需要 1/4 成功。统计功效低但与此前实验一致，不阻塞。\n\n#### [severity: info] SFT chat template 合理\nsft_train.py 用 SIMPLE_CHATML 替换 Qwen3 默认模板（去掉 enable_thinking 逻辑），SFT 数据已内含 `<think>`/`<answer>` 标签作为 content。与 RAGEN 的 ChatML 对话格式兼容。\n\n### exp017 训练状态\n- 进度: 224/462 步（48%），epoch ~1.0\n- Loss 曲线健康: 2.11→0.05（epoch 0.07→0.98），无异常跳变\n- Token accuracy: 97.8-98.3%\n- GPU 0: 99% util, ~50GB 显存\n- 预计 ~13 min 完成剩余步骤\n\n无需行动，等 exp017 完成后 Worker 可直接启动 exp018。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000792"
+        },
+        {
+          "source_line": 793,
+          "timestamp": "2026-05-14T15:53:29.571995+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000793"
+        }
+      ]
+    },
+    {
+      "number": 148,
+      "messages": [
+        {
+          "source_line": 794,
+          "timestamp": "2026-05-14T15:54:16.829253+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_code_prepare-exp018-grpo\n\n**结论**: PASS（已审查）\n\nWorker 产出与 `worker_code_expert-sft-data-format` 重叠——`run_exp018.sh`（23:46 UTC）、`_alfworld_exp018_sft_grpo.yaml`（23:46 UTC）均未变更，registry exp018 updated_at 仍为 15:43 UTC。上一份审查报告已覆盖全部内容，无新发现。\n\n**exp017 进度更新**: 242/462 步（52%），epoch 1.05，loss 0.045-0.057 稳定，token_accuracy 98%。预计 ~13 min 完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000794"
+        },
+        {
+          "source_line": 795,
+          "timestamp": "2026-05-14T15:54:23.317254+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000795"
+        }
+      ]
+    },
+    {
+      "number": 149,
+      "messages": [
+        {
+          "source_line": 796,
+          "timestamp": "2026-05-14T15:55:20.164141+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_infra_disk-cleanup\n\n**结论**: PASS\n\n### 磁盘状态\n- 根分区: 7.3G/30G (25%) — 健康\n- 数据盘: 83G/250G (33%) — 健康\n\n### 关键文件完整性验证 ✓\n- `exp008_sft/final/` — model.safetensors 等完整\n- `exp015/global_step_5` — 存在\n- `exp016/global_step_10` — 存在\n- `exp017_expert_sft/checkpoint-154` — epoch 1 checkpoint 存在\n- SFT 数据: train 2460 + val 129 条 — 未变\n- Expert trajectories: 2884 条 — 未变\n\n### [severity: info] 无异常\n清理后 tmp=34M, logs=1.6M, ray=820K，均为正常量级。exp017 训练未受影响（257/462 步，56%）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000796"
+        },
+        {
+          "source_line": 797,
+          "timestamp": "2026-05-14T15:55:24.672221+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000797"
+        }
+      ]
+    },
+    {
+      "number": 150,
+      "messages": [
+        {
+          "source_line": 798,
+          "timestamp": "2026-05-14T16:02:28.056426+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 1（cuda:0 → exp017_expert_sft, cuda:1 空闲） | Worker 池 0（任务已完成）\n\n**Director 指令执行完毕：**\n\n### Task 1: move vs put 验证 ✅ 数据兼容\n- admissible_commands 包含 `move`: **YES**（8 种 move 命令）\n- admissible_commands 包含 `put`: **NO**\n- RAGEN env.py action 映射: **NO**（直接透传）\n- **结论**：Expert data 中 `move X to Y` 与 env admissible_commands 完全匹配。任务描述文本用 \"put\"，但实际可执行 action 是 `move`。Reviewer 担忧不成立。\n\n### Task 2: Expert trajectory collector killed ✅\n- PID 340587 已终止，最终收集 2857 条\n\n### 磁盘状态\n- /root/autodl-tmp: 83G/250G (33%)，168G 可用，充足\n\n### 等待中\n- exp017_expert_sft 预计数分钟内完成 → cron 自动回调 → eval → 提交 exp018 审批"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000798"
+        },
+        {
+          "source_line": 799,
+          "timestamp": "2026-05-14T16:02:32.634149+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000799"
+        }
+      ]
+    },
+    {
+      "number": 151,
+      "messages": [
+        {
+          "source_line": 800,
+          "timestamp": "2026-05-14T16:02:46.482556+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 20min\n\n⚠️ 你自己的 context 状态：已 109 条消息 / 10h 7min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000800"
+        },
+        {
+          "source_line": 801,
+          "timestamp": "2026-05-14T16:02:55.059112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-000801"
+        },
+        {
+          "source_line": 802,
+          "timestamp": "2026-05-14T16:02:55.109686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 50
+          },
+          "id": "event-000802"
+        }
+      ]
+    },
+    {
+      "number": 152,
+      "messages": [
+        {
+          "source_line": 803,
+          "timestamp": "2026-05-14T16:03:03.780429+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_validate_move-vs-put-admissible\n\n**结论**: PASS\n\nWorker 为纯读验证任务，无新文件/registry/decisions 变更。验证结论与我之前的修正报告一致：\n\n- `\"move X to Y\"` 是 ALFWorld TextWorld 游戏中放置动作的标准格式\n- `handcoded_expert_tw.py` 全部 6 个 policy 都用 `\"move {} to {}\" in admissible_commands` 检查\n- Expert SFT 数据中的 \"move\" 动作与 GRPO 训练时的 admissible_commands 兼容，无分布不匹配\n\n此 issue 已关闭。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000803"
+        },
+        {
+          "source_line": 804,
+          "timestamp": "2026-05-14T16:03:09.077206+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000804"
+        }
+      ]
+    },
+    {
+      "number": 153,
+      "messages": [
+        {
+          "source_line": 805,
+          "timestamp": "2026-05-14T16:09:38.497773+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_ops_exp017_status_disk_check + exp017 完成确认\n\n**结论**: PASS\n\n### exp017_expert_sft 训练完成 ✓\n- 462/462 步，3 epochs，train_loss=0.143，运行时间 1573s（~26 min）\n- Checkpoints: checkpoint-154 (epoch 1), checkpoint-308 (epoch 2), checkpoint-462 (epoch 3), final\n- `final/` 包含完整模型文件（model.safetensors, config.json, tokenizer 等）\n- exp018 尚未启动（无 log 文件）\n\n### 磁盘状态\n- 根分区: 7.3G/30G (25%) ✓\n- 数据盘: 105G/250G (42%) — 较前增加 22GB（4 个 checkpoint × ~5GB），健康\n\n### [severity: info] GPU 状态\n- GPU 0: 56% util, 14GB — 非训练状态，可能在做评估或空闲中\n- GPU 1: 0%, 3 MiB — 空闲\n- 两卡已释放 SFT 训练资源，可启动 exp018\n\n### [severity: info] 建议清理中间 checkpoint\n数据盘 42% 尚安全，但 exp018 GRPO 会再生成大量 checkpoint。可考虑删除 checkpoint-154 和 checkpoint-308（仅保留 checkpoint-462 和 final），释放 ~10GB。不阻塞。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000805"
+        },
+        {
+          "source_line": 806,
+          "timestamp": "2026-05-14T16:09:46.780309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000806"
+        },
+        {
+          "source_line": 807,
+          "timestamp": "2026-05-14T16:09:46.881005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":15}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-000807"
+        },
+        {
+          "source_line": 808,
+          "timestamp": "2026-05-14T16:09:55.046823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**exp017_expert_sft 训练完成，立即执行 eval：**\n\n1. **在 ALFWorld 134 tasks 上 eval SFT checkpoint**（用 `final/` checkpoint）\n   - 用 RAGEN env 跑 eval（不是裸 TextWorld），确保 observation 格式与后续 GRPO 训练一致\n   - 报告 success rate（pass 标准: ≥ 10%）\n   - GPU: cuda:0 或 cuda:1 均可\n\n2. **eval 完成后**：\n   - success ≥ 10% → 提交 exp018_sft_grpo 审批（配置已准备好）\n   - success < 10% → 分析失败原因，考虑增加数据/epochs\n\n3. **清理中间 checkpoint**：删除 checkpoint-154 和 checkpoint-308，保留 checkpoint-462 和 final，释放 ~10GB\n\n⚠️ 两张 GPU 空闲，尽快启动 eval。"
+            }
+          },
+          "id": "event-000808"
+        },
+        {
+          "source_line": 809,
+          "timestamp": "2026-05-14T16:09:58.915835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6b739300a4b2960886e57c59d\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3869
+          },
+          "id": "event-000809"
+        },
+        {
+          "source_line": 810,
+          "timestamp": "2026-05-14T16:10:01.424536+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp017 SFT 完成（462 步，loss=0.143）。关键下一步是 eval。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000810"
+        }
+      ]
+    },
+    {
+      "number": 154,
+      "messages": [
+        {
+          "source_line": 811,
+          "timestamp": "2026-05-14T16:10:03.446914+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **exp017_expert_sft** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请 SSH 到 bjb1-17606 检查日志 `/root/runs/cost-verify-agent-rl/exp017_expert_sft.log` 最后几行，然后调用 `update_registry` 更新状态，并调用 `delete_cron('exp017_expert_sft')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "cron"
+          },
+          "id": "event-000811"
+        },
+        {
+          "source_line": 812,
+          "timestamp": "2026-05-14T16:10:14.344653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**Cron 回调：exp017_expert_sft 进程已退出，需要你处理：**\n\n1. SSH 检查日志 `/root/runs/cost-verify-agent-rl/exp017_expert_sft.log` 最后几行确认正常完成\n2. Reviewer 已确认 462/462 步完成、final checkpoint 存在——大概率是正常完成\n3. 更新 registry 状态（DONE/success 或 DONE/failed）\n4. 删除 cron 监控（`delete_cron('exp017_expert_sft')`）\n5. **然后立即启动 eval**（上条指令已说明）"
+            }
+          },
+          "id": "event-000812"
+        },
+        {
+          "source_line": 813,
+          "timestamp": "2026-05-14T16:10:18.009753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6b705fe8a8b2e4d30cc0690b3\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 0, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] **exp017_expert_sft 训练完成，立即执行 eval：**\\\\n\\\\n1. **在 ALFWorld 134 tasks 上 eval SFT checkpoint**（用 `final/` checkpoint）\\\\n   - 用 RAGEN env 跑 eval（不是裸 TextWorld），确保 observation 格式与后续 GRPO 训练一致\\\\n   -\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3665
+          },
+          "id": "event-000813"
+        },
+        {
+          "source_line": 814,
+          "timestamp": "2026-05-14T16:10:21.007933+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 正在处理 eval 指令，cron 处理已排队。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000814"
+        }
+      ]
+    },
+    {
+      "number": 155,
+      "messages": [
+        {
+          "source_line": 815,
+          "timestamp": "2026-05-14T16:14:08.202012+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — exp017_expert_sft cron:on_failed 事件\n\n**结论**: WARNING（误报，训练实际成功）\n\n### [severity: warning] conclusion=\"failed\" 与实际不符\nCron 系统 `failure_reason: \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"` 是误报。SFT 脚本用 `report_to=\"none\"`（无 W&B），也不写 sentinel 文件，所以自动监控无法检测到正常完成。\n\n**实际训练结果——完全成功**：\n- 日志最后一行: `\"Training complete. Model saved to .../final\"`\n- 3 epochs / 462 steps 全部完成\n- final_loss=0.1434, token_accuracy=98.3%\n- `final/model.safetensors` 存在（3.44GB，May 15 00:06 写入）\n- 3 个 epoch checkpoint + final 目录完整\n\n### [severity: warning] Registry conclusion 应修正\nAgent 的 notes 正确写了\"训练成功完成\"，但 `conclusion: \"failed\"` 未修正。这会影响下游自动化（exp018 依赖 exp017 成功）。建议 Agent 将 conclusion 改为 `\"success\"` 或 `\"pending_eval\"`（pass 标准 success ≥ 10% 尚未通过 ALFWorld eval 验证）。\n\n### [severity: info] 训练指标审查\n- epoch 1→3 loss: ~0.05→0.04（微降，可能轻微过拟合但 token_accuracy 稳定 98%，可接受）\n- lr warmup→decay 正常（2e-5 → 1.4e-7 cosine）\n- grad_norm 稳定 0.5-1.2，无异常跳变\n- 与 exp008_sft（loss=0.069, 1200 条数据）对比: loss 更高（0.143 vs 0.069）符合预期——expert 数据更长更复杂（avg 982 tokens vs exp008 的短轨迹）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000815"
+        },
+        {
+          "source_line": 816,
+          "timestamp": "2026-05-14T16:14:13.861234+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000816"
+        }
+      ]
+    },
+    {
+      "number": 156,
+      "messages": [
+        {
+          "source_line": 817,
+          "timestamp": "2026-05-14T16:14:21.718675+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 0（eval 占用中，非 registry 追踪）| Worker 池 2 (GPU 0 / CPU 2)\n\n**Session 恢复状态汇报**\n\n1. **exp017_expert_sft → DONE/success**\n   - 训练完成：462 steps, 26 min, final_loss=0.1434, token_accuracy=98.3%\n   - Checkpoint: /root/autodl-tmp/checkpoints/exp017_expert_sft/final/ (3.44GB)\n   - 注：reconcile_crons 误判为 failed（PID 退出 + 无 sentinel），已手动修正回 success\n\n2. **Eval 进行中**\n   - Worker `worker_eval_exp017-sft-alfworld_20260514T161026` 正在评估 SFT checkpoint，134 ALFWorld tasks\n   - 判定标准：success ≥ 10% → 提交 exp018_sft_grpo 审批\n\n3. **exp018_sft_grpo 就绪**\n   - 配置已准备：_alfworld_exp018_sft_grpo.yaml + run_exp018.sh\n   - 从 exp017 SFT checkpoint 开始 sparse GRPO，LR=5e-7, 30 steps\n   - 等 eval 结果确认后立即提交审批\n\n4. **GPU 空闲说明**\n   - 两块 GPU 当前被 eval 推理占用（非训练），eval 完成后立即启动 exp018\n   - 预计 eval 耗时 ~30-60 min（134 tasks × 单 GPU 推理）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000817"
+        },
+        {
+          "source_line": 818,
+          "timestamp": "2026-05-14T16:14:28.405200+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000818"
+        }
+      ]
+    },
+    {
+      "number": 157,
+      "messages": [
+        {
+          "source_line": 819,
+          "timestamp": "2026-05-14T16:14:56.169210+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 1min\n\n⚠️ 你自己的 context 状态：已 115 条消息 / 10h 20min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000819"
+        },
+        {
+          "source_line": 820,
+          "timestamp": "2026-05-14T16:15:01.762535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_AGENT"
+            }
+          },
+          "id": "event-000820"
+        },
+        {
+          "source_line": 821,
+          "timestamp": "2026-05-14T16:15:01.813488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_AGENT\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 50
+          },
+          "id": "event-000821"
+        }
+      ]
+    },
+    {
+      "number": 158,
+      "messages": [
+        {
+          "source_line": 822,
+          "timestamp": "2026-05-14T16:19:50.903384+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_monitor_exp017-completion-check\n\n**结论**: PASS\n\nWorker 正确修正了 registry：\n- `conclusion: \"failed\"` → `\"success\"` ✓\n- `failure_reason` 已清空 ✓\n- notes 和 metrics 未变，保持准确\n\nexp017 cron 误报 issue 已解决。exp018 仍 PREPARING，等待启动。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000822"
+        },
+        {
+          "source_line": 823,
+          "timestamp": "2026-05-14T16:19:55.756203+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000823"
+        }
+      ]
+    },
+    {
+      "number": 159,
+      "messages": [
+        {
+          "source_line": 824,
+          "timestamp": "2026-05-14T16:27:12.098391+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_eval_exp017-sft-alfworld\n\n**结论**: CRITICAL\n\n### [severity: critical] 评估未完成——无结果产出\n`exp017_eval.log` 仅 13 行，只有初始化日志：\n```\nLoading model from .../exp017_expert_sft/final ...\nModel loaded on cuda:0\nALFWorld env initialized, 140 games available\n```\n\n**没有任何 episode 结果**（正常应输出 `EP 0/140: steps=... valid=... success=Y/N`）。无 JSON 输出文件。评估进程已退出，两卡完全空闲（0%, 0 MiB），无 Python 进程。\n\n### 影响\n- exp017 的 pass 标准（success ≥ 10%）**无法验证**\n- exp018 GRPO 仍在 PREPARING，依赖 exp017 eval 确认 SFT 是否有效\n- 两卡目前完全空闲——**GPU 浪费中**\n\n### 可能崩溃原因\n1. eval_sft_model.py 第一次调用 `model.generate()` 时 OOM 或报错\n2. ALFWorld env reset/step 异常（eval 用 `mode=\"val\"` + `eval_in_distribution` split，140 games）\n3. Worker SSH 连接超时导致进程终止\n\n### 建议\n1. **立即重新运行评估**（nohup + 后台），加 `--num_episodes 20` 先快速验证，不等全部 140 个\n2. 如评估 success ≥ 10%，立即启动 exp018\n3. 如评估 success < 10%，需诊断 SFT 数据质量或训练参数"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000824"
+        },
+        {
+          "source_line": 825,
+          "timestamp": "2026-05-14T16:27:28.666810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**🚨 exp017 eval 崩溃，无结果产出，GPU 空闲。立即修复重跑：**\n\neval_sft_model.py 只输出了初始化日志就退出了，没有任何 episode 结果。\n\n**立即执行：**\n\n1. **诊断崩溃原因**（2 min）：\n   - 检查 `/root/runs/cost-verify-agent-rl/exp017_eval.log` 完整内容，看有无 error/traceback\n   - 检查 dmesg 或 syslog 看有无 OOM kill\n\n2. **修复后重跑 eval**（nohup 后台）：\n   - 先跑 20 个 episode 快速验证（`--num_episodes 20`），确认能正常完成\n   - 20 个通过后再跑全量 134 tasks\n   - 用 nohup 确保 SSH 断连不影响\n   - 输出 JSON 结果文件\n\n3. **如果 eval 脚本本身有 bug**：\n   - 考虑直接用 RAGEN 的 eval 模式（如果有的话）\n   - 或写一个更简单的 eval loop：加载模型 → env.reset() → 循环 env.step() → 记录 success\n\n**两张 GPU 空闲，这是最高优先级任务。**"
+            }
+          },
+          "id": "event-000825"
+        },
+        {
+          "source_line": 826,
+          "timestamp": "2026-05-14T16:27:32.486747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6b31fa74a0b20a128ec9a8142\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3819
+          },
+          "id": "event-000826"
+        },
+        {
+          "source_line": 827,
+          "timestamp": "2026-05-14T16:27:35.340285+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 崩溃，无结果，GPU 空闲。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000827"
+        }
+      ]
+    },
+    {
+      "number": 160,
+      "messages": [
+        {
+          "source_line": 828,
+          "timestamp": "2026-05-14T16:28:12.445899+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 0（eval 推理占用 1 卡，非 registry 追踪）| Worker 池 1 (GPU 0 / CPU 1)\n\n**回复 D-exp017 eval 崩溃指令**\n\nDirector 提到的 eval_sft_model.py 崩溃是原始慢版 eval（单 episode ~1h，134 tasks 需 40-70h）。我已在 16:20 UTC kill 该进程并派了快速 eval worker（`worker_eval_exp017-sft-fast_20260514T162028`），改进方案：\n- 只跑 20 episodes（覆盖不同 task type）\n- max_steps=30（expert 解通常 < 20 步）\n- vLLM 推理加速\n\n**中间结果（16:25 UTC 检查点）**：\n- 9/20 episodes 完成\n- **3/9 成功 ≈ 33% success rate**\n- 远超 10% pass 标准\n\nWorker 仍在运行，等完整 20 episodes 结果。如果最终 success ≥ 10%，立即提交 exp018_sft_grpo 审批。\n\n**结论**：eval 已在修复推进中，无需额外诊断。预计 10-15 min 内有完整结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000828"
+        },
+        {
+          "source_line": 829,
+          "timestamp": "2026-05-14T16:28:19.007048+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "中间结果 3/9 = 33% success，远超 10% pass 标准。等完整 20 episodes 结果确认后审批 exp018。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000829"
+        }
+      ]
+    },
+    {
+      "number": 161,
+      "messages": [
+        {
+          "source_line": 830,
+          "timestamp": "2026-05-14T16:36:55.202611+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 0 | Worker 池 0 (GPU 0 / CPU 0) ⚠️\n\n## exp017 SFT Eval 结果：5% success，低于 10% 阈值\n\n### 数据\n| 指标 | exp017_expert_sft | exp008_sft (对比) |\n|------|------------------|-------------------|\n| success rate | **5% (1/20)** | 0% (0/4) |\n| action_is_valid | 63.8% | 90% |\n| format_ok | 75% | 100% |\n| SFT 数据量 | 2460 expert | 1200 普通 |\n\n### 关键发现\n1. **Success 略有提升**（0%→5%），唯一成功是 1 个 cool 任务\n2. **Format 和 valid action 反而下降**：format_ok 100%→75%，action_is_valid 90%→63.8%\n3. **25% episodes (5/20) parse 失败**（1 步即退出）——expert trajectory 格式可能与 RAGEN `<think>/<answer>` 不完全匹配\n4. put 任务（占 50%）全部失败\n\n### 分析\nExpert SFT 数据教会了模型一些任务知识（success 0→5%），但破坏了 format 和 action 命名的学习。可能原因：expert trajectory 的格式与 RAGEN prompt 格式不一致，SFT 在学任务解法的同时\"遗忘\"了格式规范。\n\n### GRPO 可行性评估\n5% success + group_size=16 → P(组内至少1次成功) ≈ 56%。vs base model ~4.7% 时约 54%。**GRPO 信号改善极小**。\n\n### 决策选项\n\n**A. 仍然上 exp018 GRPO（快但风险高）**\n- 5% 非零，GRPO 可能能 bootstrap\n- 风险：信号太弱，重蹈 exp015/016 覆辙\n- 耗时：~3h\n\n**B. 修复 SFT 数据格式后重训（推荐）**\n- 检查 expert trajectory 格式，确保与 RAGEN `<think>/<answer>` 完全对齐\n- 可能合并 exp008 format 数据 + exp017 expert 数据（format + knowledge 兼得）\n- 耗时：~1h 数据处理 + 30 min SFT + 20 min eval\n\n**C. 两阶段 SFT：先 format SFT → 再 expert fine-tune**\n- 先加载 exp008_sft checkpoint（format_ok=100%），再用 expert data 微调\n- 保留 format 知识 + 叠加任务知识\n- 耗时：~1h\n\n**D. 跳过 SFT 改善，直接上 SPEAR/DAPO 等替代 RL 算法**\n- 这些算法专门设计解决 sparse reward 问题\n- 但需要额外代码改动\n- 耗时：~4-8h\n\n**建议**：B 或 C，优先 C（两阶段 SFT 最保守，不破坏已有 format 学习）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000830"
+        },
+        {
+          "source_line": 831,
+          "timestamp": "2026-05-14T16:37:27.262842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "summary": "exp017 eval 5% success（低于 10% 阈值），采用方案 B+C：修复数据格式 + 从 exp008_sft checkpoint 继续微调",
+              "rationale": "exp017 SFT eval: 5% success (1/20)，format_ok 从 100% 降至 75%，action_is_valid 从 90% 降至 63.8%。25% episodes parse 失败（1 步退出）。expert trajectory 格式与 RAGEN <think>/<answer> 不完全匹配，SFT 学到任务知识但破坏了 format 合规性。方案：(1) 修复 expert data 格式对齐 RAGEN template (2) 从 exp008_sft checkpoint 开始微调（已有 100% format_ok），用较低 LR 防止遗忘 format。预计 ~1.5h。方案 A（直接 GRPO）信号改善极小（5% vs 4.7%），方案 D 工程量太大。",
+              "related_experiments": "[{'exp_id': 'exp017_expert_sft', 'role': 'evidence', 'result': '5% success, format_ok 75%, below 10% threshold'}, {'exp_id': 'exp008_sft', 'role': 'baseline', 'result': '0% success but 100% format_ok, 90% action_is_valid'}]",
+              "depends_on": "['D016', 'D017']"
+            }
+          },
+          "id": "event-000831"
+        },
+        {
+          "source_line": 832,
+          "timestamp": "2026-05-14T16:37:27.363841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D018\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 100
+          },
+          "id": "event-000832"
+        },
+        {
+          "source_line": 833,
+          "timestamp": "2026-05-14T16:37:46.051963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**D018: exp017 eval 未达标，执行修复方案 B+C**\n\nexp017 eval: 5% success, format_ok=75%, 25% parse failure。核心问题是 expert data 格式与 RAGEN 不匹配。\n\n**方案：修复数据格式 + 从 exp008_sft checkpoint 微调**\n\n### Step 1: 诊断格式问题（10 min）\n- 抽 5 条 parse 失败的 episode，对比模型输出与 RAGEN 期望的 `<think>...</think><answer>...</answer>` 格式\n- 找到具体哪些格式差异导致 parse 失败（缺少标签？标签嵌套错误？多余内容？）\n- 对比 exp008_sft 数据格式（100% format_ok）和 exp017 expert 数据格式，列出差异清单\n\n### Step 2: 修复 expert SFT 数据（20 min）\n- 根据诊断结果，写脚本修复 expert trajectory 数据的格式\n- 确保每条数据严格遵循 RAGEN 的 `<think>...</think><answer>action</answer>` 格式\n- 验证修复后的数据（跑格式检查脚本）\n- 报告修复前后的 format 统计\n\n### Step 3: 两阶段 SFT（exp019_expert_sft_v2）（30 min）\n- **Base checkpoint: exp008_sft**（不是 Qwen3-1.7B 原始模型，也不是 exp017 checkpoint）\n  - exp008_sft 已有 100% format_ok + 90% action_is_valid\n- **数据: 修复后的 expert trajectories**\n- **关键：降低 LR**（建议 5e-6 而非 2e-5），防止在 expert 数据上微调时遗忘 format\n- 2 epochs（不是 3）\n- 提交方案审批，包含数据格式修复报告\n\n### Step 4: Eval（20 min）\n- 用相同的 20 episode 快速 eval\n- 报告 success rate + format_ok + action_is_valid\n\n**GPU 空闲中，Step 1-2 可以立即开始。**"
+            }
+          },
+          "id": "event-000833"
+        },
+        {
+          "source_line": 834,
+          "timestamp": "2026-05-14T16:37:49.922598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6beb006ca8b399d1cafec2610\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3870
+          },
+          "id": "event-000834"
+        },
+        {
+          "source_line": 835,
+          "timestamp": "2026-05-14T16:37:59.257847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**exp017 SFT eval 结果：5% success，未达 10% 阈值**\n\nExpert SFT 学到了部分任务知识（success 0%→5%），但破坏了 format 合规性（format_ok 100%→75%，25% episodes 直接 parse 失败退出）。根因是 expert trajectory 数据格式与 RAGEN 的 `<think>/<answer>` template 不完全匹配。\n\n**D018 修复方案**：\n1. 诊断并修复 expert 数据的格式问题\n2. 从 exp008_sft checkpoint（100% format_ok）开始微调修复后的 expert 数据\n3. 用较低 LR 防止遗忘 format\n4. 预计 ~1.5h 完成重训 + eval\n\nAgent 已收到指令，GPU 空闲中。"
+            }
+          },
+          "id": "event-000835"
+        },
+        {
+          "source_line": 836,
+          "timestamp": "2026-05-14T16:37:59.861560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 603
+          },
+          "id": "event-000836"
+        },
+        {
+          "source_line": 837,
+          "timestamp": "2026-05-14T16:38:01.756793+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "5% success 但 format_ok 降到 75% 说明 SFT 数据格式与 RAGEN 不匹配是主因——25% parse failure 等于直接浪费 1/4 的 episodes。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000837"
+        }
+      ]
+    },
+    {
+      "number": 162,
+      "messages": [
+        {
+          "source_line": 838,
+          "timestamp": "2026-05-14T16:38:03.769293+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_eval_exp017-sft-fast + exp017 评估结果核实\n\n**结论**: WARNING\n\n### 评估结果（20 episodes, temperature=0.4, max_steps=30）\n| 指标 | exp017 Expert SFT | exp008_sft 参考 |\n|------|------------------|----------------|\n| success_rate | **5% (1/20)** | 0% (0/4) |\n| action_is_valid | **63.8%** | 90% |\n| format_ok | **75%** | 100% |\n| avg_steps | 22.0 | — |\n\n### 发现\n\n#### [severity: warning] success_rate=5% 未达 pass 标准（≥10%）\n仅 1/20 episode 成功（episode 8, cool 类任务, 15 步完成）。其余 19 episodes 全部失败。**exp017 假设的 pass 标准 ≥10% 未达成。**\n\n但 20 episodes 样本量小：1/20 的 95% Wilson CI ≈ [0.9%, 23.6%]，不能确定性地排除 ≥10% 的可能。建议补充更大样本 eval（≥50 episodes）后再下最终判断。\n\n#### [severity: warning] action_is_valid 从 90%→63.8% 显著退化\n这是最令人担忧的发现。Expert SFT 反而**降低**了 action_is_valid（exp008_sft 90% → exp017 63.8%）。可能原因：\n1. **观测格式不匹配**（此前已标记）：SFT 数据不含 `Admissible actions: [...]` 后缀，模型没学到利用 admissible list 选择合法动作\n2. Expert 数据中的动作在不同游戏场景中可能不泛化（过拟合特定 trajectory 模式）\n3. 3 epochs 过度训练导致遗忘 exp008_sft 建立的格式知识（exp017 从原始 Qwen3 训练，非从 exp008 继续）\n\n#### [severity: warning] 5/20 episodes（25%）首步即崩\nEpisodes 7, 12, 16, 17, 18 总步数=1, format_ok=0 — 模型在第一轮就产生不可解析的输出。涉及 cool(2), heat(1), put(1), clean(1) 各类任务。这说明模型对某些初始观测的 format compliance 有严重问题。\n\n#### [severity: info] 按任务类型分析\n| 任务类型 | 数量 | 成功 | 成功率 |\n|----------|------|------|--------|\n| put | 10 | 0 | 0% |\n| clean | 4 | 0 | 0% |\n| cool | 3 | 1 | 33% |\n| heat | 2 | 0 | 0% |\n| examine | 1 | 0 | 0% |\n\nput 类任务（占比最高）0% 成功率令人担忧——expert 数据中 put 类任务最多，理应学得最好。\n\n### 对 exp018 GRPO 的影响\n- success=5% + temperature=1.0 下预计更低 → GRPO 可能重现 exp016 的 sparse reward 死锁\n- action_is_valid=63.8% 低于 exp008_sft 的 90%，GRPO 起点反而更差\n- **建议**：不阻塞 exp018 启动（GRPO 可能产生不同结果），但 Director 应预期 exp018 风险较高。如果 exp018 也失败，需要回到 exp008_sft checkpoint 做 expert SFT 继续训练、或修复观测格式不匹配问题后重做 SFT。\n\n### 评估方法确认\n- 使用 vLLM 加速推理（eval_sft_fast.py），与首个崩溃的 eval worker 不同\n- 系统 prompt 与 RAGEN AlfworldSG 一致 ✓\n- parse_action 逻辑与 RAGEN 一致（think+answer 标签解析）\n- 观测包含 admissible actions（使用 AlfredTXTEnv）✓ — 与 GRPO 训练环境一致"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000838"
+        },
+        {
+          "source_line": 839,
+          "timestamp": "2026-05-14T16:38:10.049415+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000839"
+        }
+      ]
+    },
+    {
+      "number": 163,
+      "messages": [
+        {
+          "source_line": 840,
+          "timestamp": "2026-05-14T16:38:56.549009+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 0 | Worker 池 2 (GPU 0 / CPU 2)\n\nD018 已启动执行，两个 Worker 并行：\n1. **诊断+修复** (`worker_diagnose_exp017-format-fix`): 对比 exp008/exp017 数据格式 → 定位 parse 失败根因 → 修复 expert data 输出到 sft_data_v2/\n2. **训练配置** (`worker_code_exp019-config`): 从 exp008_sft checkpoint 出发的 SFT v2 脚本（LR=5e-6, 2 epochs）\n\nexp019_expert_sft_v2 已注册 PREPARING。两个 Worker 完成后立即提交审批。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000840"
+        },
+        {
+          "source_line": 841,
+          "timestamp": "2026-05-14T16:39:02.433252+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000841"
+        }
+      ]
+    },
+    {
+      "number": 164,
+      "messages": [
+        {
+          "source_line": 842,
+          "timestamp": "2026-05-14T16:43:40.054356+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_code_exp019-config + 当前状态\n\n**结论**: WARNING\n\n### 发现\n\n**exp019_expert_sft_v2 配置审查**\n\n- [severity: info] 策略方向正确：两阶段SFT（从 exp008_sft checkpoint 出发，LR=5e-6 降4倍，2 epochs），解决 exp017 从 raw Qwen3 训练导致 format forgetting 的问题。\n- [severity: info] GPU合规：CUDA_VISIBLE_DEVICES=0（C001 白名单内）。\n- [severity: info] run_exp019.sh 包含 C002 pre-flight checks（checkpoint存在性、数据存在性、磁盘、GPU显存）。\n- [severity: warning] **训练数据不存在（阻塞）**：`/root/autodl-tmp/expert_trajectories/sft_data_v2/` 目录不存在。该目录下的 train.jsonl 和 val.jsonl 是 exp019 的输入数据。exp019 无法启动，直到数据准备完成。\n- [severity: warning] 数据格式关键要求：v2 数据必须在 observation 中包含 `\\nAdmissible actions: [action1, action2, ...]` 后缀，以匹配 RAGEN 训练时的观测格式。这是 exp017 action_is_valid 从 90%→63.8% 回退的主要原因之一。请确认数据准备 worker 会修复此格式不匹配。\n\n**exp018_sft_grpo 状态**\n\n- [severity: warning] exp018 仍为 PREPARING 状态。其假设是\"从 exp017 SFT checkpoint 开始 GRPO，pass 标准 success≥20%\"。但 exp017 eval 只达到 5% success（未通过 10% pass 标准）。exp018 的 baseline 假设（SFT 提供足够高的 base success rate）可能不成立。Director 需决定：(1) 等 exp019 v2 SFT 替代方案？(2) 还是继续用 exp017 checkpoint 跑 exp018 看看？\n\n**GPU 空闲**\n\n- [severity: warning] 两块GPU（cuda:0, cuda:1）当前 0% utilization, 0 MiB 显存。服务器无训练进程。sft_data_v2 未准备、exp018/exp019 都处于 PREPARING——GPU 处于空窗期。建议尽快安排数据准备或启动可执行实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000842"
+        },
+        {
+          "source_line": 843,
+          "timestamp": "2026-05-14T16:44:03.500303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**D018 补充：数据修复必须包含 admissible actions 格式**\n\nReviewer 指出一个关键遗漏——sft_data_v2 不仅需要修复 `<think>/<answer>` 格式，还需要在 observation 中加入 `\\nAdmissible actions: [action1, action2, ...]` 后缀。这是 RAGEN env 在 GRPO 训练时附加的格式，exp017 SFT 数据完全缺失此信息，是 action_is_valid 从 90%→63.8% 退化的主因之一。\n\n**修复数据准备 worker 的要求**：\n1. `<think>/<answer>` 格式对齐 RAGEN template ✓（已要求）\n2. **observation 末尾附加 admissible actions 列表**（新增要求）——需要从 ALFWorld env 获取每步的 admissible_commands 并拼接到 observation 后面\n3. 如果原始 expert trajectory 数据不含 admissible_commands：需要 replay expert trajectory 在 RAGEN env 中获取每步的 admissible list\n\n如果数据准备 worker 已经在跑且没考虑这点，请立即补充或重做。\n\n**关于 exp018**：不跑。5% success 与 base 4.7% 差异太小，GRPO 大概率重蹈覆辙。等 exp019 v2 SFT。"
+            }
+          },
+          "id": "event-000843"
+        },
+        {
+          "source_line": 844,
+          "timestamp": "2026-05-14T16:44:07.263525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6bf3ab9ca4b4af800b06028d8\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 0, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[WORKER DONE] Worker worker_diagnose_exp017-format-fix_20260514T163832 已完成（status=done）。用 `get_worker_status('worker_diagnose_exp017-format-fix_20260514T163832')` 读取结果，然后处理。\\\\n\\\\n- worker_id: worker_diagn\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3763
+          },
+          "id": "event-000844"
+        },
+        {
+          "source_line": 845,
+          "timestamp": "2026-05-14T16:44:10.812230+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据修复 worker 已完成，Agent 正在处理结果。我的补充指令（admissible actions 格式）在队列中，Agent 接下来会看到。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000845"
+        }
+      ]
+    },
+    {
+      "number": 165,
+      "messages": [
+        {
+          "source_line": 846,
+          "timestamp": "2026-05-14T16:44:12.816336+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## ROADMAP 审查\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: warning] **ROADMAP 叙事与决策日志严重脱节**。最后更新 13:51 UTC（>10h前），但决策日志已包含 D015-D018（pivot to Expert SFT、exp017 eval 5%、数据格式修复方案）。具体不一致：\n  1. 阶段描述仍为\"MVP 验证中 — Phase A LR 寻优，exp016 准备中\"，实际已 pivot 到 Expert SFT 路线\n  2. 实验历程缺少 exp016（DONE/failed）、exp017（DONE/success but eval 5%）、exp018（PREPARING）、exp019（PREPARING）\n  3. 近期任务仍列\"清理 exp015 Ray → 启动 exp016\"，这些早已完成\n  4. Expert trajectory 收集进度仍写 65%，实际已完成并用于 exp017 训练\n  5. 关键风险未更新：当前主要风险是 observation format mismatch（exp017 regression 的根因）和 sft_data_v2 尚未准备\n\n- [severity: info] 决策日志 D015-D018 内容准确，摘要虽被截断但关键信息可辨。\n\n### 建议\n\n请 Worker 更新 ROADMAP 叙事部分，反映当前真实状态：Expert SFT 路线、exp017 eval 结果、两阶段 SFT 计划（exp019）、exp018 viability 待定。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000846"
+        },
+        {
+          "source_line": 847,
+          "timestamp": "2026-05-14T16:44:23.665274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:update_roadmap",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000847"
+        },
+        {
+          "source_line": 848,
+          "timestamp": "2026-05-14T16:44:23.921775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 256
+          },
+          "id": "event-000848"
+        },
+        {
+          "source_line": 849,
+          "timestamp": "2026-05-14T16:44:27.898400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "update_roadmap",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000849"
+        },
+        {
+          "source_line": 850,
+          "timestamp": "2026-05-14T16:44:28.201816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 303
+          },
+          "id": "event-000850"
+        },
+        {
+          "source_line": 851,
+          "timestamp": "2026-05-14T16:45:03.766155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "reason": "D018 后全量更新：Expert SFT 路线、exp017 eval 结果、两阶段 SFT 计划",
+              "content": "# cost-verify-agent-rl — Research Dashboard\n\n## 核心方向\nB-IAVR: 训练 interactive agent 选择性自我验证，基于行为改变信号（action change）作为 verification informativeness 的 reward。基于 Self-Guide (arXiv 2604.03098) 框架，Qwen3-1.7B + ALFWorld + RAGEN/verl GRPO。\n\n## 当前阶段\n🧪 **MVP 验证 — Phase A: Always-On Self-Guidance baseline**\n目标：ALFWorld success ≥ 20%（sparse GRPO）\n\n### 当前状态：Expert SFT Warmup（第二轮）\nLR 搜索已穷尽（1e-6 collapse / 5e-7 无效学习 / 1e-7 零梯度），根因是 base success ~1-2% 太稀疏，GRPO 无法产生有效学习。已 pivot 到 Expert SFT warmup 路线。\n\n**exp017_expert_sft**（第一轮 SFT）：训练完成但 eval 仅 5% success，format_ok 从 100%→75%，action_is_valid 从 90%→63.8%。根因：(1) expert data 格式与 RAGEN `<think>/<answer>` 不完全匹配 (2) observation 缺少 admissible actions 列表。\n\n**exp019_expert_sft_v2**（当前）：修复数据格式 + 从 exp008_sft checkpoint 微调（保留 format 知识）。数据准备中。\n\n### 实验历程\n| exp | 方案 | 结果 | 教训 |\n|-----|------|------|------|\n| exp001-003 | 环境搭建 + dry-run | infra 调通 | Ray memory 需硬编码 30GB |\n| exp008_sft | 基础 SFT warmup | 0% success, 100% format, 90% valid | format 学习成功 |\n| exp012b | GRPO LR=1e-6 | step 7 collapse (8.6%→0%) | LR 过高 |\n| exp013f | Dense reward bonus=0.15 | reward gaming (97.5% valid, 0% success) | dense bonus ≤ 30% sparse |\n| exp015 | GRPO LR=1e-7 | 零梯度 step 3+ | LR 过低 |\n| exp016 | GRPO LR=5e-7 | 6/7 步零 success, 1 步 4.7% | base success 太稀疏 |\n| exp017 | Expert SFT (2460 trajectories) | 5% success, 75% format | 数据格式不匹配 |\n\n### 关键发现\n- Reward pipeline 确认正常（D017 纠正 D015 误诊）：`raw_reward=0` 是日志 artifact，实际 reward 通过 critic/score 正确传递\n- Expert trajectory `move X to Y` 与 ALFWorld admissible_commands 兼容（非 bug）\n- 新颖性自查通过（D015 novelty check）：B-IAVR behavioral grounding 在 2024-2026 文献中无直接竞争者，需加 CSO (2602.03412) 到 related work\n\n## 近期任务\n- [ ] 修复 expert SFT 数据格式（admissible actions + think/answer 对齐）\n- [ ] exp019_expert_sft_v2：从 exp008_sft checkpoint 微调，LR=5e-6, 2 epochs\n- [ ] exp019 eval: 20 episodes 快速 eval → success ≥ 10% 则启动 GRPO\n- [ ] exp018/020 sparse GRPO：从通过 eval 的 SFT checkpoint 开始，LR=5e-7, 30 steps\n- [ ] MVP pass: ALFWorld success ≥ 20%\n\n## GPU 预算\n- 分配：bjb1-17606 cuda:0,1（2× GPU）\n- 当前：空闲（exp019 数据准备中）\n- 累计使用：~15 GPU-h（exp008-exp017 系列）\n\n## 关键风险\n1. **Observation format mismatch**：SFT 数据需包含 admissible actions 列表，否则 action_is_valid 退化\n2. **SFT→GRPO 迁移**：SFT checkpoint 的 format 知识可能在 GRPO 训练中被遗忘\n3. **Base success 天花板**：即使 SFT 达到 10-15%，GRPO 能否在 30 步内提升到 20% 仍未验证"
+            }
+          },
+          "id": "event-000851"
+        },
+        {
+          "source_line": 852,
+          "timestamp": "2026-05-14T16:45:06.982846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\\\", \\\"lines\\\": 68, \\\"reason\\\": \\\"D018 后全量更新：Expert SFT 路线、exp017 eval 结果、两阶段 SFT 计划\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "elapsed_ms": 3216
+          },
+          "id": "event-000852"
+        },
+        {
+          "source_line": 853,
+          "timestamp": "2026-05-14T16:45:09.776982+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 已全量更新，反映当前 Expert SFT v2 路线和完整实验历程。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000853"
+        }
+      ]
+    },
+    {
+      "number": 166,
+      "messages": [
+        {
+          "source_line": 854,
+          "timestamp": "2026-05-14T16:45:11.920965+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1)\n\n## exp017 格式诊断完成 + exp019 审批请求\n\n### 根因（与预期不同）\n\n**format_ok=75% 不是 `<think>/<answer>` 格式问题**，而是 vLLM context length overflow。15/20 episodes format_ok=100%，5/20 因 >8192 tokens 在 step 1 crash。75% = 15/20 是二元分布。\n\n**action_is_valid=63.8% 的真正根因：PDDL planner 生成 `move X to Y`，ALFWorld 文本环境有效动作是 `put X in/on Y`。**\n\n| 数据集 | `put` 动作数 | `move` 动作数 |\n|--------|------------|-------------|\n| exp008（format_ok=100%） | 1200 | 0 |\n| exp017 expert | **0** | **2279** |\n\n模型从未学过正确的 `put` 动作。此外 expert data 含 3608 个 `close` 动作，增加 trajectory 长度（mean 27.1 vs 20.1 msgs），加剧 context overflow。\n\n### 修复已完成\n\n所有 `move OBJ to RECEP` → `put OBJ in/on RECEP`（train 2279 处 + val 113 处）。输出：`/root/autodl-tmp/expert_sft_v2/`\n\n### exp019_expert_sft_v2 审批请求\n\n| 参数 | 值 |\n|------|-----|\n| Base checkpoint | exp008_sft/final（format_ok=100%, action_is_valid=90%）|\n| 数据 | 修复后 expert data（2460 train / 129 val，move→put 已修正）|\n| LR | 5e-6（降 4 倍防遗忘 format）|\n| Epochs | 2 |\n| GPU | cuda:0 单卡 |\n| 预计耗时 | ~30 min |\n| Pass 标准 | success ≥ 10% 且 format_ok ≥ 90% |\n\n训练脚本和启动脚本已就绪，数据路径修正 Worker 正在运行。请审批。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000854"
+        },
+        {
+          "source_line": 855,
+          "timestamp": "2026-05-14T16:45:48.765783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__approve_experiment"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__approve_experiment",
+            "tool_args": {
+              "exp_id": "exp019_expert_sft_v2",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000855"
+        },
+        {
+          "source_line": 856,
+          "timestamp": "2026-05-14T16:45:49.169828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"error\\\": \\\"\\\\\\\"Approval 'apr_exp019_expert_sft_v2' not found\\\\\\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__approve_experiment",
+            "elapsed_ms": 404
+          },
+          "id": "event-000856"
+        },
+        {
+          "source_line": 857,
+          "timestamp": "2026-05-14T16:45:52.583207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000857"
+        },
+        {
+          "source_line": 858,
+          "timestamp": "2026-05-14T16:45:52.734132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `cost-verify-agent-rl`\\n**阶段**: 🧪 MVP（验证阶段）\\n\\n── 📋 项目配置 ──\\n✓ 服务器    bjb1-17606 (connect.bjb1.seetacloud.com) [root]\\n✓ 代码路径  /root/cost-verify-agent-rl\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群\\n\\n── 🗺️ 研究路线图 ──\\n**当前阶段**:\\n  🧪 **MVP 验证 — Phase A: Always-On Self-Guidance baseline**\\n  目标：ALFWorld success ≥ 20%（sparse GRPO）\\n  \\n  ### 当前状态：Expert SFT Warmup（第二轮）\\n  LR 搜索已穷尽（1e-6 collapse / 5e-7 无效学习 / 1e-7 零梯度），根因是 base success ~1-2% 太稀疏，GRPO 无法产生有效学习。已 pivot 到 Expert SFT warmup 路线。\\n\\n**决策日志**: 18 条记录\\n\\n── 📊 研究进度 ──\\n实验: 33 个 (待处理 13 | 完成 20 | 成功 2)\\n\\n  exp_003          PREPARING (failed)\\n  exp_003_dryrun   PREPARING (failed)\\n  exp_003_dryrun2  PREPARING (failed)\\n  exp003_dryrun3   PREPARING (failed)\\n  exp_003_dryrun3  PREPARING (failed)\\n  exp_002          DONE (failed)\\n  exp_001b         DONE (failed)\\n  exp_001          DONE (failed)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp019_expert_sft_v2（准备中）\\n- exp018_sft_grpo: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。（准备中）\\n- exp014b: 极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。（准备\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 150
+          },
+          "id": "event-000858"
+        },
+        {
+          "source_line": 859,
+          "timestamp": "2026-05-14T16:46:02.377798+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**exp019_expert_sft_v2 审批通过，立即启动。**\n\nconfig 合理：exp008_sft checkpoint + 修复后 expert data + LR=5e-6 + 2 epochs。\n\n**⚠️ 一个需要关注的矛盾**：之前你的 validate_move-vs-put worker 确认 admissible_commands 包含 `move`（8 种）且不含 `put`。但你现在把所有 `move` 替换为 `put`。如果 admissible_commands 确实不含 `put`，这个替换会进一步降低 action_is_valid。\n\n**不阻塞启动**——30 min SFT + 20 min eval 成本很低，eval 会直接验证。但如果 exp019 eval 的 action_is_valid 比 exp017 更差，第一时间检查是否因为 `put` 不在 admissible_commands 中。\n\n**启动后立即汇报 PID + GPU 状态。**"
+            }
+          },
+          "id": "event-000859"
+        },
+        {
+          "source_line": 860,
+          "timestamp": "2026-05-14T16:46:06.040738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6b8a1f28acb3ee6c4dd80b27d\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 1, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] **D018 补充：数据修复必须包含 admissible actions 格式**\\\\n\\\\nReviewer 指出一个关键遗漏——sft_data_v2 不仅需要修复 `<think>/<answer>` 格式，还需要在 observation 中加入 `\\\\\\\\nAdmissible actions: [action1, action2, ...]` 后缀。这是 RAGEN e\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3662
+          },
+          "id": "event-000860"
+        },
+        {
+          "source_line": 861,
+          "timestamp": "2026-05-14T16:46:08.373927+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 的诊断有一个矛盾需要注意：之前验证 worker 确认 admissible_commands 包含 `move` 而非 `put`，但现在把 `move` 全部替换为 `put`。不过 exp019 只需 30 min，eval 会告诉我们答案。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000861"
+        }
+      ]
+    },
+    {
+      "number": 167,
+      "messages": [
+        {
+          "source_line": 862,
+          "timestamp": "2026-05-14T16:46:24.347376+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 0 | Worker 池 2 (GPU 0 / CPU 2)\n\n**D018 补充已执行：**\n\n1. **exp018_sft_grpo 已取消**（conclusion=killed）\n2. **Admissible actions augmentation Worker 已启动** (`worker_code_exp019-admissible-augment`)\n   - 方案：先查 RAGEN 代码确认 admissible format → 检查原始数据是否已含 admissible → 如无则 replay expert trajectory 在 ALFWorld env 中获取每步 admissible_commands → 拼接到 observation 末尾\n   - 输出：augmented 版 sft_data_v2\n3. **路径修正 Worker** (`worker_code_exp019-path-fix-and-launch`) 也在运行中\n\n两个 Worker 完成后，exp019 数据将同时包含：\n- move→put 修正 ✓\n- admissible actions 列表 ✓（新增）\n- 正确的 `<think>/<answer>` 格式 ✓"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000862"
+        },
+        {
+          "source_line": 863,
+          "timestamp": "2026-05-14T16:46:32.692449+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000863"
+        }
+      ]
+    },
+    {
+      "number": 168,
+      "messages": [
+        {
+          "source_line": 864,
+          "timestamp": "2026-05-14T16:47:33.700324+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 1 (cuda:0) | Worker 池 1 (GPU 0 / CPU 1)\n\n**exp019_expert_sft_v2 已启动**\n- PID: 366040\n- GPU: cuda:0 @ bjb1-17606\n- Cron 监控已注册\n- 预计 ~30 min 完成\n\n**move→put 矛盾点已记录**：之前 validation worker 说 admissible 含 `move` 不含 `put`。如果 eval 中 action_is_valid 比 exp017 更差，第一时间排查此问题。\n\n**admissible actions augment Worker 仍在运行**（`worker_code_exp019-admissible-augment`）。如果 exp019 eval 不达标且 augment 方案可行，可快速用 augmented 数据重训 exp019b。\n\ncuda:1 当前空闲，可用于 eval 或其他任务。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000864"
+        },
+        {
+          "source_line": 865,
+          "timestamp": "2026-05-14T16:47:38.959417+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000865"
+        }
+      ]
+    },
+    {
+      "number": 169,
+      "messages": [
+        {
+          "source_line": 866,
+          "timestamp": "2026-05-14T16:48:21.304577+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_diagnose_exp017-format-fix\n\n**结论**: CRITICAL\n\n### 发现\n\n- [severity: critical] **`fix_expert_sft_format.py` 将正确的 \"move X to Y\" 替换为 \"put X in/on Y\"，这是错误方向的修复。** 证据：\n  1. ALFWorld handcoded expert 代码（`alfworld/agents/expert/handcoded_expert_tw.py`）在全部 5 种任务类型中（line 17, 38, 71, 90, 109）均使用 `\"move {} to {}\"` 检查 `admissible_commands`。zero instances of \"put in/on\"。\n  2. RAGEN 的 `env.py` line 186: `action_is_available = action in self.available_actions`，其中 `available_actions = info[\"admissible_commands\"][0]`。如果 admissible_commands 包含 \"move X to Y\"（如 expert 代码所证），则 \"put X in/on Y\" 将匹配失败 → `action_is_valid = False`。\n  3. 训练 v2 数据：原始 2157 条 \"move\" 动作全部被替换为 \"put in/on\"。这会教模型产生**不在 admissible_commands 里的动作**，直接损害 action_is_valid 指标。\n  4. 原始 expert trajectory 数据来自**成功完成**的 PDDL expert 轨迹——expert 使用 \"move\" 并成功了，证明 \"move\" 是环境接受的正确动作。\n\n- [severity: warning] **路径不匹配**：脚本输出到 `/root/autodl-tmp/expert_sft_v2/expert_sft_{train,val}.jsonl`，但 exp019 配置期望数据在 `/root/autodl-tmp/expert_trajectories/sft_data_v2/{train,val}.jsonl`。路径和文件名都不一致。\n\n- [severity: warning] **真正的格式问题未修复**：exp017 eval 退步的核心原因是 **observation 格式不匹配**——原始 SFT 数据的 observation 不包含 `\\nAdmissible actions: [...]` 后缀，但 RAGEN 训练时会 append 此后缀（env.py `_format_observation()`）。该脚本仅修改了 action 动词（且方向错误），完全没有处理 observation 格式问题。\n\n### 建议\n\n1. **立即停止使用 `expert_sft_v2/` 数据**，该数据会使 action_is_valid 进一步恶化\n2. v2 数据的正确修复应该是：**保留 \"move X to Y\" 动作原样**，在 user message 的 observation 中**添加 `\\nAdmissible actions: [...]` 后缀**以匹配 RAGEN 训练格式\n3. 如果不确定 admissible_commands 的实际格式，可以跑一个简单的验证：启动一个 ALFWorld env，在一个 \"put\" 类型任务中到达放置步骤，打印 `admissible_commands` 看是 \"move\" 还是 \"put\""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000866"
+        },
+        {
+          "source_line": 867,
+          "timestamp": "2026-05-14T16:48:37.894229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "summary": "Kill exp019 — move→put 替换方向错误，admissible_commands 中是 move 不是 put",
+              "rationale": "Reviewer critical 确认：ALFWorld handcoded expert 代码 5 种任务类型全部用 \"move {} to {}\" 检查 admissible_commands，RAGEN env.py action_is_available 检查 action in admissible_commands。fix_expert_sft_format.py 将 2157 条正确的 \"move\" 替换为 \"put in/on\"，教模型产生不在 admissible_commands 中的动作，会进一步恶化 action_is_valid。正确修复方向：保留 \"move\" 原样，在 observation 中添加 admissible actions 列表后缀。",
+              "related_experiments": "[{'exp_id': 'exp019_expert_sft_v2', 'role': 'subject', 'result': 'killed — trained on incorrectly modified data (move→put)'}]",
+              "depends_on": "['D018']"
+            }
+          },
+          "id": "event-000867"
+        },
+        {
+          "source_line": 868,
+          "timestamp": "2026-05-14T16:48:37.995051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D019\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 100
+          },
+          "id": "event-000868"
+        },
+        {
+          "source_line": 869,
+          "timestamp": "2026-05-14T16:48:49.547094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__urgent_agent_message"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "message": "**🚨 D019: Kill exp019 — 数据修复方向错误**\n\nReviewer critical 确认：**move→put 替换是错误的**。ALFWorld admissible_commands 包含 `move X to Y`，不含 `put X in/on Y`。exp019 在用错误数据训练，会使 action_is_valid 更差。\n\n**立即执行：**\n\n1. **Kill exp019**（PID 366040）+ 删除 cron 监控\n2. **不要用 expert_sft_v2/ 数据做任何训练**\n\n**正确的修复方案（exp019b）：**\n\n用**原始 expert trajectory 数据**（保留 `move X to Y` 原样），仅做以下修正：\n1. **保留 `move X to Y` 动作不变**——这是正确的 admissible action\n2. **在 observation 中添加 `\\nAdmissible actions: [action1, action2, ...]` 后缀**——匹配 RAGEN env 的 `_format_observation()` 输出格式\n3. 确认 `<think>/<answer>` 格式与 RAGEN 完全一致\n\nadmissible actions augment worker（`worker_code_exp019-admissible-augment`）可能正在做正确的事——确认它的输出是否保留了 `move` 并添加了 admissible list。如果是，直接用它的输出。\n\n**从 exp008_sft checkpoint 出发，LR=5e-6，2 epochs，其他参数不变。准备好后提交审批。**"
+            }
+          },
+          "id": "event-000869"
+        },
+        {
+          "source_line": 870,
+          "timestamp": "2026-05-14T16:48:50.305881+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"inserted\\\":true,\\\"queue_depth\\\":1,\\\"agent_key\\\":\\\"feishu:group:oc_733b284b383121720ce3d07c5c4a6bb2\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "elapsed_ms": 758
+          },
+          "id": "event-000870"
+        },
+        {
+          "source_line": 871,
+          "timestamp": "2026-05-14T16:48:56.138953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**D019: exp019 数据修复方向错误，已下令 kill**\n\nReviewer 确认 ALFWorld admissible_commands 中包含的是 `move X to Y`（而非 `put X in/on Y`）。Agent 的格式修复脚本将正确的 `move` 替换为了 `put`，这会教模型输出不在 admissible list 中的动作，导致 action_is_valid 进一步恶化。\n\n正确修复方向：保留 `move` 不变，仅在 observation 中添加 admissible actions 列表后缀（匹配 RAGEN 训练格式）。已指令 Agent 准备 exp019b。"
+            }
+          },
+          "id": "event-000871"
+        },
+        {
+          "source_line": 872,
+          "timestamp": "2026-05-14T16:48:59.150679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3011
+          },
+          "id": "event-000872"
+        },
+        {
+          "source_line": 873,
+          "timestamp": "2026-05-14T16:49:01.800410+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 确认 move→put 替换方向错误。exp019 在用错误数据训练，需要立即处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000873"
+        }
+      ]
+    },
+    {
+      "number": 170,
+      "messages": [
+        {
+          "source_line": 874,
+          "timestamp": "2026-05-14T16:49:07.219155+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## ROADMAP 更新审查\n\n**结论**: WARNING（因与 fix 脚本不一致）\n\n### 发现\n\n- [severity: info] ROADMAP 更新质量显著提升。实验历程表准确完整，当前状态描述清晰，近期任务排列合理，关键风险识别到位。\n\n- [severity: warning] **ROADMAP 与数据修复脚本自相矛盾**。关键发现里明确写了 *\"Expert trajectory `move X to Y` 与 ALFWorld admissible_commands 兼容（非 bug）\"*，但 `fix_expert_sft_format.py` 正在把所有 \"move X to Y\" 替换为 \"put X in/on Y\"。如果 \"move\" 没有问题，为什么要替换？请确认我上条 CRITICAL 报告的处理——该脚本产出的 v2 数据与 ROADMAP 声明矛盾。\n\n- [severity: info] 近期任务第一条\"修复 expert SFT 数据格式（admissible actions + think/answer 对齐）\"方向正确。真正需要修复的是 **observation 中添加 admissible actions 列表**，而非替换 action 动词。\n\n- [severity: info] 风险 #3（SFT 10-15% → GRPO 20%）是当前最大不确定性，合理标注。\n\n- [severity: info] exp018 状态需厘清：registry 中仍为 PREPARING（基于 exp017 checkpoint），但 ROADMAP 近期任务里写的是\"从通过 eval 的 SFT checkpoint 开始\"——应明确 exp018 是否需要等 exp019 结果后再决定 checkpoint 来源。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000874"
+        },
+        {
+          "source_line": 875,
+          "timestamp": "2026-05-14T16:49:12.896213+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000875"
+        }
+      ]
+    },
+    {
+      "number": 171,
+      "messages": [
+        {
+          "source_line": 876,
+          "timestamp": "2026-05-14T16:50:22.441087+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_code_exp019-path-fix-and-launch + 进程泄漏\n\n**结论**: CRITICAL\n\n### 发现\n\n- [severity: critical] **exp019 进程未被实际终止。** Registry 已标记 conclusion=\"killed\"（D019 采纳 move→put CRITICAL），但 PID 366066（python）仍在 GPU 0 上运行：99% GPU utilization, 52880 MiB 显存占用，训练进度 42/308 steps (14%)。父进程 PID 366040（bash）已死，但子进程存活。**需要立即 `kill 366066`。**\n\n- [severity: critical] 该训练正在使用错误的 move→put 数据（`/root/autodl-tmp/expert_sft_v2/expert_sft_train.jsonl`）。每多跑一步都是浪费 GPU 时间并可能产生误导性 checkpoint。按当前速度 ~3.3s/step，剩余 266 steps ≈ 15 分钟完成——如果不尽快终止，它会跑完并写入错误的 checkpoint。\n\n- [severity: info] GPU 合规性：cuda:0 使用，C001 白名单内。问题不在越界，而在进程未被正确清理。\n\n### 建议\n\n1. 立即 `kill -9 366066` 终止残留进程\n2. 检查 checkpoint 输出目录，如果已有 step checkpoint 写入（exp019 路径），标记为无效\n3. 后续 kill 操作应同时终止父进程和子进程（`kill -- -PGID` 或 `pkill -P`）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000876"
+        },
+        {
+          "source_line": 877,
+          "timestamp": "2026-05-14T16:50:34.996020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__urgent_agent_message"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "message": "**🚨 exp019 进程泄漏 — 立即 kill PID 366066**\n\nD019 kill 未成功——父进程 366040 已死但子进程 366066 仍在 GPU 0 上跑（99% util, 52GB VRAM, 42/308 steps）。正在用错误的 move→put 数据训练。\n\n**立即执行：**\n```bash\nkill -9 366066\n# 确认\nnvidia-smi | grep 366066\nps -p 366066 -o pid= 2>/dev/null && echo \"STILL_ALIVE\" || echo \"KILLED\"\n```\n\n然后检查 `/root/autodl-tmp/checkpoints/exp019_expert_sft_v2/` 是否有 checkpoint 写入，如有标记为无效（不要删除，加 `_INVALID` 后缀）。\n\n**kill 确认后汇报 GPU 状态，然后继续准备 exp019b（正确的数据修复方案）。**"
+            }
+          },
+          "id": "event-000877"
+        },
+        {
+          "source_line": 878,
+          "timestamp": "2026-05-14T16:50:35.648948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"inserted\\\":true,\\\"queue_depth\\\":2,\\\"agent_key\\\":\\\"feishu:group:oc_733b284b383121720ce3d07c5c4a6bb2\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "elapsed_ms": 652
+          },
+          "id": "event-000878"
+        }
+      ]
+    },
+    {
+      "number": 172,
+      "messages": [
+        {
+          "source_line": 879,
+          "timestamp": "2026-05-14T16:50:51.305971+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1)\n\n**D019 已执行：**\n\n1. **exp019 已 kill**（PID 366040 force killed）+ registry 更新 conclusion=killed\n2. **admissible-augment worker 已取消**（它在用错误的 put 数据）\n3. **exp019b_expert_sft_v2 已注册 PREPARING**\n4. **新 Worker 已启动** (`worker_code_exp019b-data-correct`)：\n   - 使用**原始** expert data（保留 `move X to Y`）\n   - 查 RAGEN `_format_observation()` 确认 admissible actions 精确格式\n   - 添加 admissible actions 到 observation\n   - 输出到 `/root/autodl-tmp/expert_sft_v3/`\n   - 更新 sft_train_v2.py 数据路径\n5. **memory.md 已修正** move vs put 理解\n\nWorker 完成后立即提交 exp019b 审批。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000879"
+        },
+        {
+          "source_line": 880,
+          "timestamp": "2026-05-14T16:50:57.302192+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000880"
+        }
+      ]
+    },
+    {
+      "number": 173,
+      "messages": [
+        {
+          "source_line": 881,
+          "timestamp": "2026-05-14T16:50:59.303729+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n更新 memory.md 修正 move vs put 理解，并汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "main_agent"
+          },
+          "id": "event-000881"
+        },
+        {
+          "source_line": 882,
+          "timestamp": "2026-05-14T16:51:04.717373+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000882"
+        }
+      ]
+    },
+    {
+      "number": 174,
+      "messages": [
+        {
+          "source_line": 883,
+          "timestamp": "2026-05-14T16:52:42.922565+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_ops_kill-verify-exp019\n\n**结论**: PASS\n\n### 发现\n\n- [severity: info] exp019 终止确认：两块 GPU 均为 0% / 0 MiB，进程已成功 kill。D019 决策执行到位。\n- [severity: info] exp018_sft_grpo 也已 kill（D018 取消），正确——exp017 eval 5% 不足以支撑 GRPO。\n- [severity: info] exp019b_expert_sft_v2 已在 PREPARING 状态，替代被 kill 的 exp019。\n- [severity: info] exp019 registry 状态仍显示 \"RUNNING\"（应为 DONE），conclusion=\"killed\" 正确。建议 Agent 下次 kill 时同步更新 status→DONE。\n- [severity: warning] exp018 notes 中仍写\"修复 move→put\"，而 exp019 notes 已明确\"改用原始 expert data（保留 move）+ admissible actions augmentation\"——措辞不一致，建议统一。关键是 exp019b 的数据准备必须**保留 move 动作 + 在 observation 中添加 admissible actions 列表**。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000883"
+        },
+        {
+          "source_line": 884,
+          "timestamp": "2026-05-14T16:52:48.434112+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000884"
+        }
+      ]
+    },
+    {
+      "number": 175,
+      "messages": [
+        {
+          "source_line": 885,
+          "timestamp": "2026-05-14T16:57:59.047590+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — cron:on_failed:exp019_expert_sft_v2\n\n**结论**: INFO（误报，需修正 registry）\n\n- [severity: info] **Cron 误报，与 exp017 相同模式**。exp019 是 D019 故意 kill（move→put 数据错误），不是意外失败。Cron 检测到进程死亡后将 conclusion 从 \"killed\" 覆盖为 \"failed\"，status 更新为 DONE。请将 conclusion 修正回 \"killed\"。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000885"
+        },
+        {
+          "source_line": 886,
+          "timestamp": "2026-05-14T16:58:04.762120+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000886"
+        }
+      ]
+    },
+    {
+      "number": 176,
+      "messages": [
+        {
+          "source_line": 887,
+          "timestamp": "2026-05-14T16:58:06.741292+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Research Reviewer 达到硬限\n  触发原因：运行时长 4h0m\n  本轮累计 40 条消息 / 4h 0min\n\n⚠️ 你自己的 context 状态：已 133 条消息 / 11h 3min\n\n请回复：\n  [RESET AGENT]     只重置 Research Reviewer，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Research Reviewer 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000887"
+        },
+        {
+          "source_line": 888,
+          "timestamp": "2026-05-14T16:58:12.311827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_REVIEWER"
+            }
+          },
+          "id": "event-000888"
+        },
+        {
+          "source_line": 889,
+          "timestamp": "2026-05-14T16:58:12.412799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_REVIEWER\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 100
+          },
+          "id": "event-000889"
+        }
+      ]
+    },
+    {
+      "number": 177,
+      "messages": [
+        {
+          "source_line": 890,
+          "timestamp": "2026-05-14T16:58:56.723604+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 0 | Worker 池 2 (GPU 0 / CPU 2)\n\n**exp019_expert_sft_v2 失败回调（预期）**\n\n这是 D019 kill 后的 cron 回调，非新问题。exp019 因 move→put 替换方向错误被 kill，进程退出后 cron 检测到标记为 failed。\n\n**当前进展**：\n- 2 个 Worker 正在并行修复 exp019b 数据：(1) 调研重新收集 expert trajectories + 保存 admissible_commands (2) 测试 admissible_commands 提取脚本\n- 数据修复预计分钟级完成\n\n**GPU 空闲说明**：\n- cuda:0, cuda:1 均空闲，阻塞在 exp019b 数据准备\n- Worker 完成数据修复后立即提交 exp019b 训练\n\n无需 Director 行动，进展正常推进中。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "agent"
+          },
+          "id": "event-000890"
+        },
+        {
+          "source_line": 891,
+          "timestamp": "2026-05-14T16:59:02.099432+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000891"
+        }
+      ]
+    },
+    {
+      "number": 178,
+      "messages": [
+        {
+          "source_line": 892,
+          "timestamp": "2026-05-14T16:59:04.114820+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Research Reviewer 达到硬限\n  触发原因：运行时长 4h1m\n  本轮累计 40 条消息 / 4h 1min\n\n⚠️ 你自己的 context 状态：已 135 条消息 / 11h 4min\n\n请回复：\n  [RESET AGENT]     只重置 Research Reviewer，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Research Reviewer 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000892"
+        },
+        {
+          "source_line": 893,
+          "timestamp": "2026-05-14T16:59:09.581986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_REVIEWER"
+            }
+          },
+          "id": "event-000893"
+        },
+        {
+          "source_line": 894,
+          "timestamp": "2026-05-14T16:59:09.632571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_REVIEWER\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 50
+          },
+          "id": "event-000894"
+        }
+      ]
+    },
+    {
+      "number": 179,
+      "messages": [
+        {
+          "source_line": 895,
+          "timestamp": "2026-05-14T17:10:54.360127+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n更新 memory.md 纠正 move vs put 理解，注册 exp019b，汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "main_agent"
+          },
+          "id": "event-000895"
+        },
+        {
+          "source_line": 896,
+          "timestamp": "2026-05-14T17:11:00.199229+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director"
+          },
+          "id": "event-000896"
+        }
+      ]
+    },
+    {
+      "number": 180,
+      "messages": [
+        {
+          "source_line": 897,
+          "timestamp": "2026-05-14T17:11:01.709627+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Research Reviewer 达到硬限\n  触发原因：运行时长 4h13m\n  本轮累计 40 条消息 / 4h 13min\n\n⚠️ 你自己的 context 状态：已 138 条消息 / 11h 16min\n\n请回复：\n  [RESET AGENT]     只重置 Research Reviewer，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Research Reviewer 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000897"
+        },
+        {
+          "source_line": 898,
+          "timestamp": "2026-05-14T17:11:08.223813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_REVIEWER"
+            }
+          },
+          "id": "event-000898"
+        },
+        {
+          "source_line": 899,
+          "timestamp": "2026-05-14T17:11:08.274564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_REVIEWER\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 50
+          },
+          "id": "event-000899"
+        }
+      ]
+    },
+    {
+      "number": 181,
+      "messages": [
+        {
+          "source_line": 900,
+          "timestamp": "2026-05-14T17:25:20.263299+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_code_exp019b-correct-data\n\n**结论**: WARNING（数据收集方向正确，但存在重复进程）\n\n### 发现\n\n- [severity: info] **\"move\" vs \"put\" 最终定论**：`augment_admissible_v2.py` 运行中的实时统计（800/3553 games）：`admissible_move=2063, admissible_put=0`。ALFWorld admissible_commands 中**零个** \"put\" 动作，全部使用 \"move X to Y\"。这彻底验证了我之前的 CRITICAL：move→put 替换是错误方向。当前 v3 数据收集正确保留了 \"move\"（move_actions=479, put_actions=0）。\n\n- [severity: info] `augment_admissible_v2.py` 设计正确：\n  - 重新收集 expert trajectories，在每一步记录 admissible_commands ✓\n  - Observation 格式匹配 RAGEN：`{obs}\\n\\nAdmissible actions: [{actions}]` ✓\n  - 保留 \"move\" 动作原样 ✓\n  - 内置验证（admissible_found + move_preserved 检查）✓\n  - 预估完成时间：~60 min（800/3553 at 18 min elapsed）\n\n- [severity: warning] **两个功能重叠的收集进程同时运行**：\n  1. PID 368243: `augment_expert_data.py` → 处理 2900 games（850/2900, 输出 expert_sft_all.jsonl）\n  2. PID 368343: `augment_admissible_v2.py` → 处理 3553 games（800/3553, 输出 train/val split）\n  \n  两者都是 CPU-only 不占 GPU，但可能写同一目录 `/root/autodl-tmp/expert_sft_v3/` 产生冲突。建议确认哪个是最终版本，kill 另一个以避免输出混淆。\n\n- [severity: info] `run_exp019b.sh` 配置正确：CUDA_VISIBLE_DEVICES=0（C001 合规）、C002 pre-flight checks 完整、数据路径指向 `/root/autodl-tmp/expert_sft_v3/`、从 exp008_sft checkpoint 出发、LR=5e-6。等数据收集完成后可启动。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director",
+            "source": "reviewer"
+          },
+          "id": "event-000900"
+        }
+      ]
+    }
+  ]
+}

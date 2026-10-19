@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "61898bb4e500ef468c40",
+  "project": "error_diag_dpo_recovery",
+  "kind": "worker",
+  "title": "code classify fewshot d025a",
+  "task_key": "worker_code_classify-fewshot-d025a_20260512T225255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_classify-fewshot-d025a_20260512T225255.log",
+    "occurrence": 1,
+    "bytes": 609898,
+    "sha256": "d8f56f360b5a3160d9af5d1200a4a319fd020447bf3fe522e0bdcb8c55064a29"
+  },
+  "statistics": {
+    "messages": 135,
+    "user_turns": 0,
+    "tool_calls": 44,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 43,
+      "record": 1,
+      "tool_call": 44,
+      "tool_result": 44,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 135,
+      "chunks": [
+        {
+          "path": "61898bb4e500ef468c40-part-0001.json",
+          "message_count": 133
+        },
+        {
+          "path": "61898bb4e500ef468c40-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-classify-fewshot-d025a.md"
+}

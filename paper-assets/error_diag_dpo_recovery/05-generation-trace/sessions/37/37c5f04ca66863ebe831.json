@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37c5f04ca66863ebe831",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "infra model download benchmark",
+  "task_key": "worker_infra_model-download-benchmark_20260512T105444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model-download-benchmark_20260512T105444_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "21a899f047c7a8b94e2082eefd482855a439a91785d0b8bc6e282a703b371902"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**执行摘要：**\n\n1. **模型下载加速**：HF 下载慢 (~1MB/s) → 杀掉 HF 下载 + 4 个重复的 Qwen2.5 下载 → 用 hf-mirror.com 并行 wget 4 个 safetensors（关键发现：不走 network_turbo 代理速度从 ~2MB/s 提升到 ~15MB/s，因为 hf-mirror.com 本身就是中国 CDN，不需要代理）\n2. **模型路径**: `/root/autodl-tmp/.hf_cache/Qwen3-8B`，5 个 safetensors 全部下载完成 (16.4GB)\n3. **Benchmark 结果**:\n   - 训练 step time: **0.28s**（2048 tokens，排除 warmup）\n   - 推理: **15.5 tokens/sec**\n   - GPU 内存: **10.6GB**（4-bit 量化，单卡 4090D 轻松承载）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-model-download-benchmark.md"
+}

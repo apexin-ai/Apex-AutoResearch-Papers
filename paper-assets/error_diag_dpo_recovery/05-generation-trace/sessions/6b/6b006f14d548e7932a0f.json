@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b006f14d548e7932a0f",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code fix build dpo pairs gamma",
+  "task_key": "worker_code_fix-build-dpo-pairs-gamma_20260513T070259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-build-dpo-pairs-gamma_20260513T070259_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "041007e67d4d5e6502b8d55aeb849aa41a06313cdd03f0eb541f6f6473531e13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有新参数可用。修改完成：\n\n1. **`--gamma_mode {error_type, continuous}`** — 默认 `error_type` 保持向后兼容，`continuous` 模式计算 `γ(d) = γ_min + (γ_max - γ_min) × d`\n2. **`--gamma_min` / `--gamma_max`** — continuous 模式的范围参数\n3. **`--trajectory_input`** — 直接读 v8 trajectory JSONL，只取 `reward=False`，支持 glob 和逗号分隔\n4. **`build_pair`** 新增 `d` 字段（归一化偏离位置），`metadata` 中记录 `gamma_mode`\n5. **Summary** 在 continuous 模式下展示 d/γ_e 分布统计和 early/mid/late 三组计数\n6. continuous 模式不过滤 `error_type`，缺失时保留 `\"unknown\"`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-build-dpo-pairs-gamma.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65deacc22a1a3f9e345f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp 001",
+  "task_key": "worker_code_exp_001_20260513T182718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_001_20260513T182718_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "e64c88445f511751e59e19f06508cf0c202d385dcf53ae2e925e000dc5e8f9ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并通过验证。总结：\n\n**exp_001 Phase A 执行结果**：\n\n| 项目 | 结论 |\n|------|------|\n| Self-Guide | RAGEN 未内置，通过 `AlfworldSG` 环境标签在 prompt 层面实现 always-on self-guidance |\n| 微调方式 | 全量微调（lora_rank=0），匹配原始论文 + 硬件充足 |\n| 训练配置 | 50 GRPO steps, 16 episodes/step, eval@10/20/30/40/50, checkpoint@10步 |\n| 初始基线 | pass@1=0.0, invalid_action=95%（未训练模型预期表现） |\n| 状态 | 训练循环已启动 (Training Progress: 0/50)，tmux session `exp_001` |\n\n**修改文件**：\n- `config/envs.yaml` — 追加 `AlfworldSG` 环境标签（含 self-guidance instruction）\n- `config/_alfworld_exp001.yaml` — 新建实验配置\n\n**注意**：wandb 未配置，已改为 console-only 日志。训练日志在 `~/runs/cost-verify-agent-rl/exp_001.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-001.md"
+}

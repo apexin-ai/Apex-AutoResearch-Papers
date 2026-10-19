@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42daf8f8ac9aad971e8e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops verify exp029 seed2 bjb1 v2",
+  "task_key": "worker_ops_verify-exp029-seed2-bjb1-v2_20260518T102420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-exp029-seed2-bjb1-v2_20260518T102420_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "da06d6e7dbccb0b25c37cd169430bdafc0d425e6bcd4eaa3f7dba3aa521ffaea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **PID 24047**: alive — `python train.py --config-name _alfworld_exp029_episode_level_seed2`，启动于 17:40，运行约 44 分钟\n- **GPU 0**: 97211 MiB / 97887 MiB (100% util)\n- **GPU 1**: 97211 MiB / 97887 MiB (100% util)\n- **tmux exp029_seed2**: 活跃，正在跑 rollout（TaskRunner 在处理 AlfworldSG 环境交互，最新日志 18:23）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-exp029-seed2-bjb1-v2.md"
+}

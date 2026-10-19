@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9e2d8f62ee11197d397a",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "diagnose check all running progress",
+  "task_key": "worker_diagnose_check-all-running-progress_20260518T202445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_check-all-running-progress_20260518T202445.log",
+    "occurrence": 1,
+    "bytes": 700236,
+    "sha256": "7462227b3bb2c5648385b7f7a99ff8596cf7c05599f41f92747331b9f0ab9196"
+  },
+  "statistics": {
+    "messages": 140,
+    "user_turns": 0,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 55,
+      "tool_result": 55,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 140,
+      "chunks": [
+        {
+          "path": "9e2d8f62ee11197d397a-part-0001.json",
+          "message_count": 124
+        },
+        {
+          "path": "9e2d8f62ee11197d397a-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-check-all-running-progress.md"
+}

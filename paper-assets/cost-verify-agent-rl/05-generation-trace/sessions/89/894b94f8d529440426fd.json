@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "894b94f8d529440426fd",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "paper sign verification fixes",
+  "task_key": "worker_paper_sign-verification-fixes_20260520T144445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sign-verification-fixes_20260520T144445_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "f2e3d7bd2b462ddc60ce23b827aacef077e5fcef48e47e629ca78f6b9a4c4c76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改已完成，验证通过：\n\n1. **引用统一** (line 103, 111): `Proposition 2 (Section~\\ref{sec:formal_probability})` → `Proposition~\\ref{prop:correct_sign}`\n2. **Sign-outcome correlation 行** (line 126): 新增表格行 `$> 0.99$ & $\\approx 1.0$`\n3. **γ=1.0 说明** (line 119 caption): 补充 \"The $\\gamma{=}1.0$ result provides additional evidence...\"\n4. **credit agreement vs P(correct sign) 解释** (line 115): 补充两句关系说明\n5. **p=6.25% 说明** (line 103): 补充 \"(the effective per-window success rate under $h{=}2$ truncation, compared to the episode-level SFT baseline of 12.5\\%)\"\n6. **exp_id 注释** (line 132): 添加 `% exp_id: 7b_cell_a_h2 ...`\n\nLaTeX 语法完整，未改动其他部分。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-sign-verification-fixes.md"
+}

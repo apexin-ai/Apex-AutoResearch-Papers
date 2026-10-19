@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cd8d073708c47fada3f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh seed7 eval westd",
+  "task_key": "worker_ssh_seed7_eval_westd_20260522T223403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed7_eval_westd_20260522T223403_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "ca59a279a3ac243ac1b9d40948d24913866d2d18fd9f70e5b368192efa9fd06a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n### 产出\n\n**配置文件**: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_seed7_high_kl_step5_ood_eval_westd.yaml` — 已创建，D134 协议参数全部就位：\n- `enable_think: True` (agent_proxy 下)\n- `enable_response_mask: false` (YAML 顶级 + actor_rollout_ref.model 双重设置)\n- `context_window_mode: full`\n- `temperature: 0.4` (val_kwargs)\n- 134 OOD tasks, `seed.val: 321`\n- model_path → `/root/autodl-tmp/checkpoints/qwen_exp029_seed7_high_kl_step5_hf`\n\n**Checkpoint 验证**: OK — 1720.6M params，加载正常。\n\n**启动命令**:\n\n```bash\nbash -c \"cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_DIR=/root/autodl-tmp/wandb_tmp python3 -m verl.trainer.main_ppo --config-name _alfworld_seed7_high_kl_step5_ood_eval_westd enable_response_mask=false actor_rollout_ref.model.enable_response_mask=false\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed7-eval-westd.md"
+}

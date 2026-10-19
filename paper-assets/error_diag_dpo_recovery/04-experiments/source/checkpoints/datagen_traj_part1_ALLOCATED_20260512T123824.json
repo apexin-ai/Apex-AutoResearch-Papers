@@ -1,0 +1,28 @@
+{
+  "exp_id": "datagen_traj_part1",
+  "project": "error_diag_dpo_recovery",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T12:03:35.749Z",
+    "updated_at": "2026-05-12T12:38:24.277Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/error_diag_dpo_recovery && python src/collect_trajectories.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-8B --output_dir data/trajectories --split train --temperature 0.7 --max_steps 40 --gpu 0 --num_tasks 500 --part_num 2 --part_idx 1\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "81312",
+      "log_path": "~/runs/error_diag_dpo_recovery/datagen_traj_part1.log",
+      "submitted_at": "2026-05-12T12:03:49.459Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-12T12:38:24.284809+00:00",
+  "trigger": "update_registry"
+}

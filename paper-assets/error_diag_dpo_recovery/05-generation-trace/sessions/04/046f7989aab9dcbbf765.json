@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "046f7989aab9dcbbf765",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "check v6 cuda verify",
+  "task_key": "worker_check_v6_cuda_verify_20260512T221619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_v6_cuda_verify_20260512T221619_result.json",
+    "occurrence": 1,
+    "bytes": 1678,
+    "sha256": "5fec8e43f1474215e2b30f494bf4ab4ddb0d21d57770480707353e974e96885a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v6 ICL 进程状态报告\n\n### 进程信息\n\n| | cuda0 | cuda1 |\n|---|---|---|\n| **PID** | 631287 | 633173 |\n| **GPU** | GPU 0 (10005 MiB, 0% util) | GPU 1 (11489 MiB, 34% util) |\n| **num_tasks** | 300 | 300 |\n| **seed** | 42 | 42 |\n| **part_num/part_idx** | 2/0 | 2/1 |\n| **模型** | Qwen3-14B-AWQ | Qwen3-14B-AWQ |\n| **进度** | 16/300 (SR 11/16 = 68.8%) | 20/300 (SR 17/20 = 85.0%) |\n| **最后日志** | 06:16:41 | 06:15:10 |\n| **启动时间** | ~05:55:54 | ~05:55:59 |\n\n### CUDA_VISIBLE_DEVICES 状态：**未设置**\n\n进程环境中 **没有** `CUDA_VISIBLE_DEVICES`。脚本仅通过 `device_map=f\"cuda:{gpu}\"` (line 213) 将模型放到指定卡上，但进程对全部 6 张 GPU 可见。\n\n**当前无越界**——nvidia-smi 确认 PID 631287 仅在 GPU 0、PID 633173 仅在 GPU 1。但这是软约束（`device_map`），不是硬隔离。`torch.cuda.empty_cache()` (line 551) 等操作理论上可以影响其他卡。\n\n### GPU 全局占用\n\n| GPU | 显存占用 | 利用率 | PID |\n|-----|---------|--------|-----|\n| 0 | 10005 MiB | 0% | 631287 (v6 ICL) |\n| 1 | 11489 MiB | 34% | 633173 (v6 ICL) |\n| 2 | 22123 MiB | 38% | 55024 (其他) |\n| 3 | 22123 MiB | 37% | 311950 (其他) |\n| 4 | 3 MiB | 0% | — |\n| 5 | 9311 MiB | 99% | 279220 (其他) |\n\n### 风险评估\n\n**中等风险**。`device_map` 是软绑定，没有 `CUDA_VISIBLE_DEVICES` 硬隔离。若脚本中任何代码路径（如异常处理、GC）触发非指定卡操作，可能重现 D019 越界。建议后续启动时在 tmux 中加 `CUDA_VISIBLE_DEVICES=0` / `CUDA_VISIBLE_DEVICES=1` 前缀。当前进程已在跑，不建议中断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-v6-cuda-verify.md"
+}

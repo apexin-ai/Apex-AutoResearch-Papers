@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a36da2c07c9ed6147fb3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code factorial reeval config",
+  "task_key": "worker_code_factorial-reeval-config_20260517T205254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_factorial-reeval-config_20260517T205254_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "28e62d78860913a1e282452e76f871d261b50f64822626396e810f68ca8ed394"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过，config 解析正确。\n\n**产出总结：**\n\nConfig 文件已创建于两台服务器：\n- `bjb1-17606:/root/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_reeval_sg_ood.yaml`\n- `westd-47453:/root/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_reeval_sg_ood.yaml`\n\n**Dry-run 验证结果：**\n| 参数 | 值 |\n|------|-----|\n| val.tags | `['AlfworldSG_OOD']` (修复：原为 AlfworldOOD) |\n| val.env_groups | 134 |\n| context_window_mode | step_independent |\n| step_independent_history_length | 2 |\n| advantage_mode | episode_level |\n| val_before_train | True |\n| total_training_steps | 1 |\n| resume_from_path | `.../global_step_PLACEHOLDER` |\n\n**待实验完成后**：将 `resume_from_path` 中的 `PLACEHOLDER` 替换为实际最佳 step 编号即可执行 re-eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-factorial-reeval-config.md"
+}

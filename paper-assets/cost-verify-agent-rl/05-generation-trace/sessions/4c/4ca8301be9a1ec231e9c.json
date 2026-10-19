@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ca8301be9a1ec231e9c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp028c step6plus",
+  "task_key": "worker_monitor_exp028c_step6plus_20260516T030739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp028c_step6plus_20260516T030739_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "6c67365d46c47aa6a804c0679d3f578b52d8d8652ac5a9bfcd7a9d12f77c2e72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp028c Step 6 状态摘要\n\n**进程**: PID 824675 存活，运行 5h30m，6/100 steps (6%)\n\n**GPU**: 双卡正常工作，75-80% 利用率，48.4-48.5GB 显存，40-41°C\n\n**关键指标 @ Step 6**:\n| 指标 | Step 5 | Step 6 | 趋势 |\n|------|--------|--------|------|\n| success | 9.38% | 10.94% | 微升，但远低于 step 4 峰值 18.75% |\n| kl_loss | **0.824** | **0.098** | 大幅回落，危机解除 |\n| action_is_valid | 89.6% | 90.4% | 单调递增，从 74.5% 起步 |\n| entropy | 0.236 | 0.234 | 平稳 |\n| grad_norm | 13.08 | 12.54 | 稳定 |\n\n**判断**: 训练稳定，kl_loss spike 已自愈。但 success rate 在 6 步内没有建立上升趋势（高方差震荡），这是主要隐忧。action_is_valid 持续改善说明模型在学格式，但还没转化为任务成功率。建议 step 10 再查一次，若 success 仍 <15% 需要考虑干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp028c-step6plus.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a742f093dc15c1852e2a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp013b dense reward",
+  "task_key": "worker_code_exp013b-dense-reward_20260514T080513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp013b-dense-reward_20260514T080513_result.json",
+    "occurrence": 1,
+    "bytes": 2790,
+    "sha256": "3fd56eebd6177487852acd258ed2e1e52ce0c64cb42a27b935de7ccfe1077b9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 已释放。以下是完整产出汇总。\n\n---\n\n## 产出\n\n### 1. 代码改动说明\n\n**3 个文件，5 行新增/修改：**\n\n| 文件 | 行号 | 改动 |\n|------|------|------|\n| `RAGEN/ragen/env/alfworld/config.py:15` | 新增 | `valid_action_bonus: float = 0.0` — AlfredEnvConfig dataclass 加字段，默认 0（不影响已有实验） |\n| `RAGEN/ragen/env/alfworld/env.py:196-197` | 新增 | `if action_is_available and self.config.valid_action_bonus > 0: reward += self.config.valid_action_bonus` — step() 中，有效动作加 bonus |\n| `RAGEN/config/envs.yaml:399-422` | 新增 | `AlfworldSG_Dense` tag — 复制 AlfworldSG，env_config 加 `valid_action_bonus: 0.5` |\n| `RAGEN/config/_alfworld_exp013b_dense_reward.yaml` | 新文件 | 基于 exp012，改 experiment_name / log_dir / tags → AlfworldSG_Dense |\n\n**逻辑**：env.py 的 step() 中，在原有 `reward = score * won` 之后，如果 action 是 admissible action（`action_is_available=True`）且 config 中 `valid_action_bonus > 0`，则 reward 追加 0.5。reward 通过 es_manager 的 `_execute_actions → acc_reward += reward` 正常累积到 GRPO 的 reward signal 中。\n\n### 2. 配置 diff（exp012 vs exp013b）\n\n```diff\n- experiment_name: exp012-alfworld-reward-fix\n+ experiment_name: exp013b-alfworld-dense-reward\n- local_log_dir: \"/root/autodl-tmp/checkpoints/exp012_grpo/\"\n+ local_log_dir: \"/root/autodl-tmp/checkpoints/exp013b_grpo/\"\n- default_local_dir: \"/root/autodl-tmp/checkpoints/exp012_grpo/\"\n+ default_local_dir: \"/root/autodl-tmp/checkpoints/exp013b_grpo/\"\n- tags: [\"AlfworldSG\"]          # train & val\n+ tags: [\"AlfworldSG_Dense\"]    # valid_action_bonus=0.5\n```\n\n其余参数不变：lr=1e-6, kl_loss_coef=0.01, group_size=16, format_penalty=0, resume from step 5。\n\n### 3. Dry-run 结果\n\n- 配置解析 ✓（Hydra 无报错）\n- AlfworldSG_Dense tag 识别 ✓\n- 模型加载 ✓（Qwen3ForCausalLM 1.72B, checkpoint step 5）\n- 环境初始化 ✓（3553 train games, 494 eval games）\n- 无 Error/Exception/Traceback\n\n### 4. Pre-flight C002\n\n| 检查项 | 结果 |\n|--------|------|\n| 入口点 train.py | ✓ |\n| Checkpoint exp008_grpo/global_step_5 | ✓ |\n| 根分区空闲 | 23G / 25% 使用 ✓ |\n| GPU | 0 MiB / 0% ✓ |\n| 残留进程 | 无 ✓ |\n\n### 5. 启动命令\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR && \\\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld && \\\nexport CUDA_VISIBLE_DEVICES=0,1 && \\\ncd /root/cost-verify-agent-rl/RAGEN && \\\nnohup python train.py --config-name _alfworld_exp013b_dense_reward > /root/autodl-tmp/checkpoints/exp013b_grpo/train.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp013b-dense-reward.md"
+}

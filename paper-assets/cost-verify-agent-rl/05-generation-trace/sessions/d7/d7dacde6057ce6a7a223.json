@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7dacde6057ce6a7a223",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose verify exp029 seed2 westd startup",
+  "task_key": "worker_diagnose_verify-exp029-seed2-westd-startup_20260518T225115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_verify-exp029-seed2-westd-startup_20260518T225115_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "668fdfac4d4af49e33048f6e8971eb2aa62213b3b44e4a047394243f6fd9b0f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n**exp029_seed2_westd_resume 训练未在运行，启动后立即失败。**\n\n| 检查项 | 结果 |\n|--------|------|\n| tmux session | 不存在（已退出），仅有 `hsweep_h10` session |\n| PID | 无匹配进程 |\n| 日志内容 | `mkdir: missing operand` → `EXIT_CODE=1` |\n| 退出记录 | exit code 1，退出时间 2026-05-18T22:50:03Z |\n| GPU | cuda:0,1 空闲；cuda:2,3 被 `hsweep_h10` 占用 |\n\n**失败原因**：日志显示 `mkdir: missing operand`，说明启动脚本中有一个 `mkdir` 命令缺少目标路径参数，导致进程在训练代码执行前就以 exit code 1 退出了。需要检查提交该实验的启动命令，修复 `mkdir` 参数问题后重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-verify-exp029-seed2-westd-startup.md"
+}

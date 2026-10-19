@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d72401f1c86172b1eec9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research experiment failure analysis",
+  "task_key": "worker_research_experiment_failure_analysis_20260515T114729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_experiment_failure_analysis_20260515T114729_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "fdcc4477940e4292168e227d6830196ffd7b5a2e50354ec23958da5b3c972a83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已生成并注册。核心发现：\n\n**50 个实验，3 个成功（6%），GPU 有效利用率仅 14%。**\n\n失败分布：\n- **Infrastructure 40%**（磁盘满、Ray OOM、cgroup 限制、cron 误报）\n- **Algorithm Design 23%**（sparse 冷启动、reward gaming、full-history 退化）\n- **Format/Environment 23%**（SFT/RAGEN 格式不匹配是单一最大教训）\n- **Hyperparameters 11%**（LR/KL 的可行窗口极窄）\n- **Framework 9%**（RAGEN 结构性限制 + verl-agent 容器不兼容）\n\n最关键的已证伪路线：**RAGEN 全历史 GRPO 3/3 退化**，根因是 context 爆炸而非超参。exp026 的 step-independent rollout 是目前唯一未被证伪的 RL 路线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-experiment-failure-analysis.md"
+}

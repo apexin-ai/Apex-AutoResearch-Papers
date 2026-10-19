@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc1cf9bd94469989f883",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor v9d status check",
+  "task_key": "worker_monitor_v9d_status_check_20260519T231637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v9d_status_check_20260519T231637_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "c5ece4fbbff5c68c7e8447b7d5fe30ea9d9eaae9162dba28e9f86715e8c8e3e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v9d 训练状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **进程 PID 256080** | **ALIVE**，运行 3h26m |\n| **TaskRunner** | `R` (running)，CPU 活跃 |\n| **当前进度** | **Step 0/30** — 仍在第一步的 rollout 阶段 |\n| **Step 3 关卡** | 未到达 |\n| **GPU 利用率** | 4 卡全满：99-100%，每卡 ~23.3 GB |\n| **磁盘** | 54 GB 可用 (79%) |\n| **v9c checkpoint** | 不存在 |\n| **Wandb** | run `76gsxvkb` (`8b-cell-c-v9-fsdp2-offload`) |\n\n**初始验证（val_before_train）已完成：**\n- **success rate: 40.625%**（32 episodes）\n- pass@1: 0.40625\n- action_is_valid: 0.9227\n- avg response_length: 1813.6\n- max_prompt_length 已确认为 15360（v9c 修复生效）\n\n**异常点：** 所有日志文件在 07:18 后停止写入（3.5h 前），但进程和 GPU 均活跃。框架可能只在 step 完成时才刷新日志。第一步已耗时 3.5h，远超预估的 31.5min/step。训练配置为 128 episodes/step（16 groups × 8 group_size），每 episode 最多 50 turns，8B 模型推理量很大，可能是正常的慢——但也可能卡住了。建议持续观察，若再过 1-2h 仍无 step 1 完成日志，可能需要排查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v9d-status-check.md"
+}

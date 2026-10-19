@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb88a0836727c9bd1590",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 fresh status",
+  "task_key": "worker_check_exp029_fresh_status_20260517T031656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_fresh_status_20260517T031656_result.json",
+    "occurrence": 1,
+    "bytes": 1419,
+    "sha256": "49640f228c95af4c13a1a55db3c59878e462226aa92a01a447c1c10719092e36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp029_episode_level 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **训练存活** | **Y** |\n| **原始 PID 902342** | 存活 (wrapper bash) |\n| **实际训练进程** | TaskRunner pid=905580, GPU workers pid=905773/905774 |\n| **tmux session** | `exp029_episode_level` 存活 (创建于 04:12:30) |\n| **日志最后更新** | 2026-05-17 11:14:57 CST (~2 min ago) |\n\n### GPU 占用\n\n| GPU | 显存 | 利用率 | 温度 | 功耗 |\n|-----|------|--------|------|------|\n| cuda:0 | 47739 / 97887 MiB | 100% | 68°C | 471W/600W |\n| cuda:1 | 47741 / 97887 MiB | 100% | 71°C | 440W/600W |\n\n### 最新 metrics (step 12, 已运行 ~5.8h)\n\n| 指标 | 值 |\n|------|-----|\n| **success** | 23.4% |\n| **pass@8** | 62.5% |\n| **entropy** | 0.0419 |\n| **grad_norm** | 3.01 |\n| **ppo_kl** | 0.00886 |\n| **pg_loss** | 0.000497 |\n| **pg_clipfrac** | 0.0058 |\n| **response_length** | 3835 |\n| **throughput** | 553.5 tok/s |\n| **time/step** | ~22.7 min |\n\n### 趋势 (step 4 → step 12)\n\n- success: 32.8% → 23.4% (下降)\n- entropy: 0.0266 → 0.0419 (上升)\n- grad_norm: 1.65 → 3.01 (上升)\n- ppo_kl: 0.0006 → 0.0089 (上升)\n\n当前正在执行 step 13 的 rollout 阶段 (日志中大量 `anchor_obs` warning 是 rollout 收集的正常输出)。Success rate 从 step 4 到 step 12 有所下降，KL 和 grad_norm 在上升，需关注后续 steps 是否稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-fresh-status.md"
+}

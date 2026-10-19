@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebf95d2ef49f665ffefa",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp027 step3 metrics",
+  "task_key": "worker_monitor_exp027_step3_metrics_20260515T190559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp027_step3_metrics_20260515T190559_result.json",
+    "occurrence": 1,
+    "bytes": 1364,
+    "sha256": "fe9bfc1b800cebc2988ef1505babcc81a513709c117991fbe94597a333697f59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the complete picture. The grep shows the structured step:3 line with the actual metrics.\n\n```\nStep 3 状态: 完成 (3/50, 4:08:46 elapsed, Step 4 rollout 进行中)\n\n指标:\n  success:     10.16%  (0.1015625)\n  KL:          0.248   (actor/kl_loss)\n  entropy:     0.385   (actor/entropy)\n  pass@16:     50%     (0.5)\n  grad_norm:   21.31   (actor/grad_norm)\n  reward_mean: 0.483   (critic/rewards/mean)\n\n判定: 绿区 ✓\n  success ≥10%:   10.16% ✓\n  KL < 0.3:       0.248  ✓\n  entropy > 0.15: 0.385  ✓\n  pass@16 ≥ 0.5:  0.5    ✓ (刚好在边界)\n\n趋势分析 (Step 2 → Step 3):\n  success:  10.16% → 10.16%  持平\n  KL:       0.413  → 0.248   ↓40% 显著下降，从黄区回到绿区\n  entropy:  0.360  → 0.385   ↑7%  多样性增加\n  pass@16:  62.5%  → 50%     ↓    下降但仍在绿区阈值\n  batch:    6144   → 6048    略减\n  step时间: 5886s  → 4689s   ↓20% 加速\n```\n\n**关键发现**: Step 3 从黄区升级到绿区。KL 从 0.413 大幅回落到 0.248，说明 Step 2 的 KL 飙升是暂态而非趋势性发散。entropy 同步上升表明策略探索性在恢复。success 稳定在 10.16%（连续两步 13/128 trajectories 成功）。\n\nStep 4 rollout 已在进行中（02:58 UTC 开始），按当前 ~4700s/step 速率，预计 ~04:15 UTC 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp027-step3-metrics.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "493de012ffe74f1ff929",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_2_1778749308.md",
+  "task_key": "loop_2_1778749308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778749308.md",
+    "occurrence": 1,
+    "bytes": 3962,
+    "sha256": "b3c1a0f084470d11c36d72af6760d7f9706ea93bfc2b7f78f89e8a995179f986"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T08:12:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 bjb1-17606 的 cuda:0 和 cuda:1（RTX PRO 6000 Blackwell 94GB）\n- 训练命令必须带 `export TMPDIR=/root/autodl-tmp/tmp && export RAY_TMPDIR=/root/autodl-tmp/ray_tmp`，否则 /tmp 磁盘满崩溃（已踩坑两次：exp007 step 10、exp010 step 11）\n- checkpoint 目录不可被多个实验同时写入（exp009 教训）\n- 提交前必须 `df -h /` 确认根分区剩余空间，低于 5GB 先清理\n- SFT checkpoint symlink 路径必须含 \"qwen\" 字样，否则 response_mask 断言失败（exp009 第 1 次失败教训）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，账号 root\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目代码：`/root/cost-verify-agent-rl/RAGEN`\n- 训练配置：`RAGEN/configs/_alfworld_exp008_sft_grpo.yaml`\n- SFT checkpoint：`/root/autodl-tmp/checkpoints/exp008_sft/final`（symlink `/root/autodl-tmp/checkpoints/qwen3_sft_final → final`）\n- GRPO checkpoint：`/root/autodl-tmp/checkpoints/exp008_grpo/global_step_10/`（exp010 产出，可恢复）\n- 数据：`/root/autodl-tmp/alfworld/`（3553 games）、SFT 数据 `/root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl`（1200 条）\n- ALFWorld 环境变量：`ALFWORLD_DATA=/root/autodl-tmp/alfworld`\n- 活跃进程：无（exp010 已崩溃）\n- Worker `worker_fix-and-resume_exp011_20260514T051004` 正在执行修复 + 恢复任务\n\n### 3. 📊 当前状态\nexp010（GRPO with SFT warmup）在 step 11 因 /tmp 磁盘满崩溃（fast_downward tempfile）。已完成诊断，registry/memory/report 已更新，飞书卡片已发，Director 已汇报。\n\n**等待中**：Worker `fix-and-resume:exp011` 回调——该 Worker 正在清理 /tmp、设 TMPDIR、检查 RAGEN checkpoint 恢复机制、从 global_step_10 提交 exp011。\n\nRegistry 活跃实验：\n- exp011（待 Worker 创建提交）：从 step 10 checkpoint 恢复 GRPO 训练\n- 其余全 DONE（7 failed, 1 success=exp008_sft）+ 若干 PREPARING 历史残留\n\n### 4. 📋 待办\n- Worker `fix-and-resume:exp011` 回调到达 → 检查 exp011 是否成功提交并 RUNNING，确认 TMPDIR 修复生效\n- exp011 完成（success）→ 按 on-experiment-done 流程：分析 30 步 success_rate 是否 ≥76%，对标 Phase A 判定标准\n- exp011 完成（failed）→ 如果又是 /tmp 问题，考虑 patch fast_downward 源码或在训练 loop 中定期清理 /tmp；如果是训练问题，分析 metrics 趋势\n- exp011 success_rate ≥76% → Phase A PASS，解锁 Phase B（B-IAVR selective verification，代码已就绪 61 tests passed）\n- exp011 success_rate < 76% 但有上升趋势 → 延长步数或调超参，向 Director 汇报\n- exp011 success_rate 持续 0% 到 step 30 → negative 结论，走 red-section Framing 调整提案\n\n### 5. 🎯 战略上下文\n- **决策链**：D001(ALFWorld+Qwen3-1.7B) → D002(全量微调) → D003(kill exp003) → D004(parser fix+prompt) → D005(撤回) → D006(SFT warmup→GRPO 两阶段)\n- **核心假设**：SFT warmup 教 ALFWorld 命令语义 → GRPO 从非稀疏 reward 学习任务策略 → success ≥76%\n- **SFT warmup 已验证有效**：action_is_valid 从 8.4%(exp007) 跳到 65.2%(exp010 初始)，但 success_rate 仍为 0%。10 步 GRPO 后 action_is_valid=68.3%，score_mean 从 -0.436 改善到 -0.287，但 success 未破零\n- **易错判断**：success_rate=0% 不代表训练无效——action_is_valid 和 score_mean 都在改善，可能需要更多步数才能看到 success 突破。不要在 step 20 前就下 negative 结论\n- **基础设施反复坑**：/tmp 磁盘满已导致 2 次崩溃。根本原因是 bjb1-17606 根分区只有 30GB，而 ALFWorld 的 fast_downward 每次 reset 都会复制 .so 到 /tmp。TMPDIR 修复应该能解决，但需要在 exp011 中验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778749308.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e45bcda9ba29fd116eb",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose verify hsweep models",
+  "task_key": "worker_diagnose_verify-hsweep-models_20260518T182922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_verify-hsweep-models_20260518T182922_result.json",
+    "occurrence": 1,
+    "bytes": 2020,
+    "sha256": "ca42bd6017969e72ba51284c684594a5687f3bfd2e96c527c2fae56d6c0f5bb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。结果汇总：\n\n## Part 1: Kill h=20\nh=20 进程树（71822/71823/71827/71828）已通过 `kill -9` 全部终止，ps 确认无残留。\n\n## Part 2-5: 模型对照表\n\n**所有 h-sweep 和 g-sweep config 的 `model_path` 完全一致：**\n\n| 实验 | Config 文件 | model_path | 实际模型 | 服务器 |\n|------|-----------|------------|---------|--------|\n| h=2 | `_alfworld_hsweep_h2.yaml` | `qwen3_exp021_ragen_sft_v4` | **Qwen3-1.7B** (SFT) | bjb1 + westd |\n| h=5 | `_alfworld_hsweep_h5.yaml` | `qwen3_exp021_ragen_sft_v4` | **Qwen3-1.7B** (SFT) | bjb1 + westd |\n| h=10 | `_alfworld_hsweep_h10.yaml` | `qwen3_exp021_ragen_sft_v4` | **Qwen3-1.7B** (SFT) | bjb1 + westd |\n| h=20 | `_alfworld_hsweep_h20.yaml` | `qwen3_exp021_ragen_sft_v4` | **Qwen3-1.7B** (SFT) | bjb1 + westd |\n| h=full | `_alfworld_hsweep_full.yaml` | `qwen3_exp021_ragen_sft_v4` | **Qwen3-1.7B** (SFT) | bjb1 + westd |\n| g=0.50,h=5 | `_alfworld_gamma_sweep_g050_h5.yaml` | `qwen3_exp021_ragen_sft_v4` | **Qwen3-1.7B** (SFT) | westd |\n| g=0.80,h=5 | `_alfworld_gamma_sweep_g080_h5.yaml` | `qwen3_exp021_ragen_sft_v4` | **Qwen3-1.7B** (SFT) | westd |\n| g=0.95,h=5 | `_alfworld_gamma_sweep_g095_h5.yaml` | `qwen3_exp021_ragen_sft_v4` | **Qwen3-1.7B** (SFT) | westd |\n| g=1.00,h=5 | `_alfworld_gamma_sweep_g100_h5.yaml` | `qwen3_exp021_ragen_sft_v4` | **Qwen3-1.7B** (SFT) | westd |\n\n**模型身份确认（bjb1 上的 config.json）：**\n- `model_type`: qwen3\n- `hidden_size`: 2048\n- `num_hidden_layers`: 28\n- 这对应 **Qwen3-1.7B**，不是 Qwen2.5-3B\n\n**结论：所有 h-sweep 和 g-sweep 实验统一使用 Qwen3-1.7B SFT checkpoint（exp021），不存在混用 Qwen2.5-3B 的情况。** 如果 registry 记录了 Qwen2.5-3B，那是 registry 记录错误。\n\n**注意：** westd 上 `qwen3_exp021_ragen_sft_v4` 是一个断链 symlink（指向 `exp021_ragen_sft_v4/final/`，目标不存在）。westd 上的实验如果现在启动会因找不到模型而失败。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-verify-hsweep-models.md"
+}

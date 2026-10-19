@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ccc556ac2937daca949",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research hcapo alfworld",
+  "task_key": "worker_research_hcapo_alfworld_20260523T170547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_hcapo_alfworld_20260523T170547_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "7ff2ea1fdcc78e0142f280d103c526904ee2eeb42dbe5700c786664e5521089e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析已写入 `artifacts/hcapo_analysis.md`。核心发现：\n\n**HCAPO**: 91.4% ALFWorld (7B)，+13.8% over GRPO。用 LLM 自身做 hindsight critic 计算 per-step Q-value，composite advantage = episode-level + hindsight-weighted step-level。但仍用 **2-step lookback 窗口化上下文**。\n\n**GiGPO**: 90.2-90.8% ALFWorld (7B)，anchor state grouping 做 step-level advantage。同样用 history length 2。\n\n**Turn-PPO**: 无 ALFWorld 结果，只有 WebShop 和 Sokoban。\n\n**诊断框架分析**:\n- **M1**: HCAPO 和 GiGPO 均未解决。两者都用窗口化上下文，策略端仍有信息损失\n- **M2**: HCAPO 直接解决（hindsight credit assignment），GiGPO 部分解决（anchor state grouping）\n- **差异化空间**: 目前所有竞品都不解决 M1。如果我们同时解决 M1+M2，在长序列/早期上下文关键的任务上有明确优势\n- **风险**: HCAPO 在 ALFWorld 已达 91.4%（smoothing 后 96.9%），bar 很高。需要在更难的任务上证明 M1 的约束性"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-hcapo-alfworld.md"
+}

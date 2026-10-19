@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc7368fe8ce47f12d94f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp012b urgent status",
+  "task_key": "worker_monitor_exp012b-urgent-status_20260514T073713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp012b-urgent-status_20260514T073713_result.json",
+    "occurrence": 1,
+    "bytes": 1813,
+    "sha256": "25c6e897a40d5f945ad23e8725373911f327a25a3c2b72ed310743f5134c73c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp012b 状态报告\n\n### 1. 进程状态：✅ 存活\n- PID 233689 运行中（52 min）\n- 两块 RTX PRO 6000 各占用 ~48GB（ray::WorkerDict）\n- GPU-Util 0% — 正在执行 step 8 rollout（vLLM 推理间歇期，正常）\n- 训练进度：**27% (8/30)**，预计剩余 ~4.5h\n\n### 2. 已完成到 step 7（step 8 进行中）\n\n### 3. 指标表格\n\n| 指标 | Step 5 (val) | Step 6 (train) | Step 7 (train) | exp010 Step 6 |\n|------|-------------|----------------|----------------|---------------|\n| **success** | 0.0% | **8.59%** | ⚠️ **0.0%** | 3.13% |\n| **action_is_valid** | 67.9% | 61.3% | 68.5% | 66.9% |\n| action_is_effective | 98.3% | 87.7% | 90.5% | — |\n| **pass@16** | — | **50.0%** | ⚠️ **0.0%** | 12.5% (pass@8) |\n| pg_loss | — | -0.000286 | 0.0 | — |\n| ppo_kl | — | 0.00390 | 0.00439 | — |\n| entropy | — | 0.1006 | 0.0904 | — |\n| grad_norm | — | **1.477** | **0.094** | — |\n| critic/score/mean | — | 0.859 | 0.0 | — |\n| critic/rewards/mean | — | 0.859 | 0.0 | — |\n\n### 4. 趋势判断：⚠️ 崩塌复现\n\nStep 6 表现强于 exp010（success 8.6% vs 3.1%, pass@16 50% vs 12.5%），但 **step 7 立即崩塌到 0%**。崩塌标志：\n\n- success 8.6% → 0%\n- pass@16 50% → 0%\n- critic/rewards 0.859 → 0.0（全批次无 reward）\n- grad_norm 1.477 → 0.094（梯度几乎消失）\n- pg_loss → 精确 0.0（无梯度更新信号）\n\n模式与 exp010 一致（exp010 在 step 6 崩塌），exp012b 多撑了一步但同样不可逆崩塌。Reward fix 延缓但未解决根因。\n\n### 5. ⚠️ Step 7 起 train success = 0%\n\n当前 step 8 正在执行，但根据 step 7 的完全崩塌（rewards/score 全零、梯度消失），后续 step 大概率维持 0%，继续跑下去价值有限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp012b-urgent-status.md"
+}

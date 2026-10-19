@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e49890f8f4b49db1495f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag bjb1 post restart",
+  "task_key": "worker_diag_bjb1-post-restart_20260519T124528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_bjb1-post-restart_20260519T124528_result.json",
+    "occurrence": 1,
+    "bytes": 1557,
+    "sha256": "bc70107732b346d3d1badfcd596f6dcbe6d864a7d9be5d3ec3ef6516f176f2bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态报告\n\n### 1. Per-task-type eval 进程 — **存活，正在运行**\n\n- tmux 会话 `exp029_per_task_breakdown` 存在\n- `python eval_per_task_type.py` (PID 166489) 正在运行，CPU 25.3%\n- `VLLM::EngineCore` (PID 166766) 正在运行，CPU 86.7%\n- 进度：**67/134 tasks 已完成**（重启后从头重新开始了，不是从 30 续跑）\n  - OK: 16 | FAIL: 51 | 成功率: 23.9% (16/67)\n- 模型：`/root/autodl-tmp/checkpoints/exp029_hf`，vLLM v0.18.1，bf16，max_seq_len=20480\n- 启动时间：20:26（约 19 分钟前），预计还需 ~20 分钟完成剩余 67 tasks\n\n### 2. GPU 状态\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| cuda:0 | 47% | 39,605 / 97,887 MiB |\n| cuda:1 | 0% | 3 / 97,887 MiB |\n\n仅 GPU 0 在用（tensor_parallel_size=1）。\n\n### 3. exp029 checkpoint — **存在**\n\n- `/root/autodl-tmp/checkpoints/exp029/global_step_15/actor/` — 存在\n- `/root/autodl-tmp/checkpoints/exp029_hf` — eval 正在使用的 HF 格式 checkpoint\n\n### 4. 磁盘状态\n\n| 分区 | 大小 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (根) | 30G | 14G | 17G | 47% |\n| /usr/bin/nvidia-smi (数据盘) | 879G | 18G | 817G | 3% |\n\n磁盘充裕，无风险。\n\n### 总结\n\neval 进程在服务器重启后被重新启动（今天 20:26），已完成 67/134，正在正常推进。当前成功率 23.9%（之前 30 tasks 时是 33.3%，随着更多 hard tasks 进入有所下降）。无需干预，等待完成即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-bjb1-post-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "837a9b3ea0c1b8feee7f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code scienceworld format fix",
+  "task_key": "worker_code_scienceworld-format-fix_20260519T121606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scienceworld-format-fix_20260519T121606_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "7899213ab56964777583170c33f74f2cfbd6b0862dbd1110afc7300474887c0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "经过详细对比 RAGEN ctx_manager 和提取脚本，情况和预期不同：\n\n**RAGEN 框架 `_build_turn_state_content` (ctx_manager.py:669-674) 在 RL 训练时会生成这些标记：**\n```\n\\nTurn {n}:\\n\nState:\\n{state}\\n\nYou have {actions_left} actions left. Always output: <think>...</think> <answer>...</answer> ...\n```\n\n且 Reward 作为单独 user message: `Reward:\\n{reward}\\n`\n\n**如果从 SFT 中去掉 \"Turn X:\", \"Reward:\", \"You have X actions left\"，反而会增大 distribution shift。**\n\n真正的格式差异是：\n\n1. **第一轮 Task 位置**：\n   - RAGEN: `State:\\nTask: {desc}\\n{obs}\\n\\nAdmissible actions: [...]` （Task 在 State 内，因为它是 `_format_observation` 的输出）\n   - 提取脚本: `Task: {desc}\\n\\nState:\\n{obs}\\n\\nAdmissible actions: [...]` （Task 在 State 外面）\n\n2. **Reward 值**：\n   - RAGEN: 中间步为 `0.0`（sparse reward），终局为 `(score/100) * config.score`\n   - 提取脚本: 累积的 ScienceWorld 原始分数（5, 10, 25... 逐步增长）\n\n需要修复的是这两个差异，而不是删除标记。要继续按这个方向修吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scienceworld-format-fix.md"
+}

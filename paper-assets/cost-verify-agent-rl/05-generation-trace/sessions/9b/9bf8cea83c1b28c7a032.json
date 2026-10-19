@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bf8cea83c1b28c7a032",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code prep eval and grpo",
+  "task_key": "worker_code_prep-eval-and-grpo_20260514T210716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-eval-and-grpo_20260514T210716_result.json",
+    "occurrence": 1,
+    "bytes": 3073,
+    "sha256": "c0f4be1cbd759ee5c3c8784b4f2e13a9085844bd6a1bc43c8c5d9d035496580a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All info collected. Here's the report:\n\n---\n\n## 任务 1: Eval 脚本准备情况\n\n**脚本**: `/root/cost-verify-agent-rl/scripts/eval_sft_fast.py` ✅ 存在\n\n**vLLM**: v0.18.1 ✅ 已安装\n\n**问题**: 脚本没有 argparse，参数是硬编码的。当前硬编码指向 exp017：\n```python\nmodel_path = \"/root/autodl-tmp/checkpoints/exp017_expert_sft/final/\"\noutput_path = \"/root/cost-verify-agent-rl/artifacts/eval_exp017_fast.json\"\n```\n\n**启动前需修改脚本** 中两行：\n```python\nmodel_path = \"/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final/\"\noutput_path = \"/root/cost-verify-agent-rl/artifacts/eval_exp019b_fast.json\"\n```\n\n**Eval 启动命令**（修改脚本后，在 cuda:1 上运行）：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld\ncd /root/cost-verify-agent-rl\nCUDA_VISIBLE_DEVICES=1 python scripts/eval_sft_fast.py\n```\n\n参数：20 episodes, max 30 steps, temperature 0.4, gpu_memory_utilization=0.85\n\n---\n\n## 任务 2: GRPO 训练准备情况\n\n**入口**: `RAGEN/train.py`（Hydra 配置驱动）\n\n**最相关配置**: `_alfworld_exp018_sft_grpo` — 专门设计为 SFT→GRPO 的配置\n- model_path 当前指向 `exp017_expert_sft/final`，需改为 `exp019b_expert_sft_v3/final`\n- lr: 5e-7, kl_loss_coef: 0.1, total_steps: 30, GRPO with gamma=0.95\n- 使用 2 GPU (cuda:0,1)\n\n**对比 exp015/exp016**:\n| | exp015 | exp016 | exp018 |\n|---|---|---|---|\n| model_path | qwen3_sft_final | qwen3_sft_final | exp017_expert_sft/final |\n| lr | 1e-7 | (check config) | 5e-7 |\n| 其余 | 基本相同 | 基本相同 | 基本相同 |\n\n**GRPO 启动脚本模板** (`run_exp018.sh`):\n```bash\n#!/bin/bash\nset -euo pipefail\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld\nexport RAY_memory_monitor_refresh_ms=0\nexport RAY_SYSTEM_MEMORY=210000000000\nexport HYDRA_FULL_ERROR=1\nexport CUDA_VISIBLE_DEVICES=0,1\ncd /root/cost-verify-agent-rl/RAGEN\npython train.py --config-name _alfworld_exp018_sft_grpo \\\n  model_path=/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final \\\n  trainer.experiment_name=exp020-alfworld-sft-grpo \\\n  trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp020/ \\\n  trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp020/ \\\n  es_manager.val.env_groups=4 \\\n  'es_manager.val.env_configs.n_groups=[4]'\n```\n\n---\n\n## 待处理项\n\n1. **Eval 前**: 需要 `ssh_execute` 修改 `eval_sft_fast.py` 中的 model_path 和 output_path（或者复制一份专用脚本）\n2. **GRPO 前**: 需要创建 exp020 配置 yaml（或用 Hydra CLI override model_path），并创建 `run_exp020.sh`\n3. **时序约束**: Eval 可在 exp019b 完成后立即在 cuda:1 跑；GRPO 需要 2 GPU，必须等 eval 也跑完（或者先跑 eval，eval 完再启动 GRPO 用双卡）\n\n是否现在就修改脚本/创建配置文件？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-eval-and-grpo.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36a56b521fea44184783",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops transition factorial to exp029 westd",
+  "task_key": "worker_ops_transition-factorial-to-exp029-westd_20260518T224739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_transition-factorial-to-exp029-westd_20260518T224739_result.json",
+    "occurrence": 1,
+    "bytes": 511,
+    "sha256": "308cfd66533ddaafffcd6edcadb938ae58a7eda7eefe171c8e3c9c51bf0b20fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇总：\n\n| 项目 | 结果 |\n|---|---|\n| factorial_seed2 清理 | 已删除，释放 62G |\n| 清理后磁盘 | 162G 可用 (36% used) |\n| symlink 测试 | 成功，torch.load 正常读取 |\n| config 路径 | `default_local_dir` 已正确指向 `/root/autodl-tmp/checkpoints/exp029-seed2/`，`resume_mode: auto` |\n| 安全确认 | qwen3_exp021_ragen_sft_v4/、hsweep-h10/ 未动 |\n| 最终磁盘 | 162G 可用，满足 ≥60G 要求 |\n\n准备就绪，未启动训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-transition-factorial-to-exp029-westd.md"
+}

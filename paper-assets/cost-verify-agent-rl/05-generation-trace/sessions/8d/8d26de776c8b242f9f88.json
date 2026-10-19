@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d26de776c8b242f9f88",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra disk cleanup investigation",
+  "task_key": "worker_infra_disk-cleanup-investigation_20260514T124635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_disk-cleanup-investigation_20260514T124635_result.json",
+    "occurrence": 1,
+    "bytes": 2169,
+    "sha256": "1f86cf15291409452454cc4d90fa98dcff0d6f3eba9a404b20d60670cb23e240"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 磁盘调查报告\n\n### 当前磁盘状态\n\n磁盘已从任务描述的 95% 降到 **13%**，有其他进程在调查期间执行了清理。\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| /root/autodl-tmp | 250G | 32G | 219G | 13% |\n| / (根分区) | 30G | 7.3G | 23G | 25% |\n\n### /root/autodl-tmp 各目录明细\n\n| 目录 | 大小 | 状态 | 说明 |\n|------|------|------|------|\n| `.hf_cache/` | **23G** | 可部分清理 | 见下方细分 |\n| `models/Qwen/` | 3.8G | **保留** | Qwen3-1.7B base 模型 |\n| `checkpoints/exp008_sft/final/` | 3.3G | **保留** | SFT warmup 最终模型（memory.md 引用） |\n| `alfworld/` | 2.2G | **保留** | ALFWorld 环境数据 |\n| `pgpf/` | 78M | 可删除 | 旧的 orthogonality 分析脚本，非核心 |\n| `sft_data/` | 4.3M | **保留** | SFT 训练数据 |\n| `logs/`, `ray_tmp/`, `tmp/` | ~0 | 空 | 已清理 |\n\n### HF Cache 细分 (23G)\n\n| 缓存条目 | 大小 | 建议 |\n|----------|------|------|\n| `models--dunzhang--stella_en_1.5B_v5` | **17G** | **可删除** — embedding 模型，非项目核心依赖 |\n| `datasets--teknium--OpenHermes-2.5` | 1.9G | **可删除** — 通用指令数据集，未在当前实验使用 |\n| `datasets--u-10bei--sft_alfworld_trajectory_dataset` | 4.9M | **保留** — ALFWorld SFT 数据 |\n\n### 已被清理的内容（调查期间消失）\n\n| 原目录 | 原大小 | 状态 |\n|--------|--------|------|\n| `checkpoints/exp013f/` (global_step_10-30) | 62G | 已删除 |\n| `checkpoints/exp008_sft/checkpoint-75` | 9.7G | 已删除 |\n| `checkpoints/exp008_sft/checkpoint-225` | 9.7G | 已删除 |\n\n### 可释放空间汇总\n\n| 项目 | 可释放 |\n|------|--------|\n| stella_en_1.5B_v5 (HF cache) | 17G |\n| OpenHermes-2.5 (HF cache) | 1.9G |\n| pgpf/ | 78M |\n| **合计** | **~19G** |\n\n### 结论\n\n磁盘压力已解除（219G 可用）。如仍需进一步释放空间，可删除 stella embedding 模型缓存 (17G) 和 OpenHermes 数据集 (1.9G)。核心资产（exp008_sft/final、Qwen base、alfworld 数据、sft_data）均完好。\n\n需要执行清理吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-cleanup-investigation.md"
+}

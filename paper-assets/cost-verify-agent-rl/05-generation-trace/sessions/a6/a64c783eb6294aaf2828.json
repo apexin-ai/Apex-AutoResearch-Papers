@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a64c783eb6294aaf2828",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp013c early steps",
+  "task_key": "worker_monitor_exp013c-early-steps_20260514T083143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp013c-early-steps_20260514T083143_result.json",
+    "occurrence": 1,
+    "bytes": 137,
+    "sha256": "6fa5845b1f9c2864090f3f932a2b07d39436d4a210e05e5b6caee0a8e97887a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程存活，模型从 step 5 checkpoint 加载完成，vLLM 初始化中。3 分钟后回来检查是否进入训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp013c-early-steps.md"
+}

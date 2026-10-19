@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef687c877f4deffdd0e0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analyze gsweep g050 h5 seed1",
+  "task_key": "worker_analyze_gsweep_g050_h5_seed1_20260517T144350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_gsweep_g050_h5_seed1_20260517T144350_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "e963f0942b5cf1aefb5a174e3341d3c8e90a4f796d1198ce4d176f58b644146c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**gsweep_g050_h5_seed1: 基础设施故障（conclusion=failed）**\n\n- **0 个训练步骤完成**，hypothesis 从未被测试\n- **崩溃原因**：vLLM rollout 初始化时 `torch._inductor/select_algorithm.py` 抛出 `AssertionError: duplicate template name`——这是 westd-47453 上 vLLM 与 PyTorch 版本不兼容\n- **无 W&B 数据、无 checkpoint**\n- **与 hsweep_h2_seed1 的对比无法进行**\n\nRegistry 已更新：metrics（含崩溃原因、阶段、路径）和 notes 均已写入。重试前需修复 westd-47453 上的 vLLM/PyTorch 版本兼容性问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-gsweep-g050-h5-seed1.md"
+}

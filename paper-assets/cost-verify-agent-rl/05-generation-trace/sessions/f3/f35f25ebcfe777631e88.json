@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f35f25ebcfe777631e88",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "verify cell4 equivalence",
+  "task_key": "worker_verify_cell4_equivalence_20260518T013441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_cell4_equivalence_20260518T013441_result.json",
+    "occurrence": 1,
+    "bytes": 2086,
+    "sha256": "0afd303133168e0070b17f7edcc4c929ce31e97a65cfe4f1331477dadf140745"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**Cell 4 被 Cell 3 (exp029) 自动覆盖。假设成立。**\n\n### 分析\n\n**1. Full context 模式下每个 episode 产生几个 window？**\n\n**1 个。** 整个 episode 是单个 batch sample（一条 prompt+response）。\n\n**2. 代码路径确认：**\n\nStep-level advantage 的计算逻辑（line 272）被严格门控：\n\n```python\nif context_window_mode == \"step_independent\" and adv_estimator == AdvantageEstimator.GRPO:\n    # 只有 step_independent 模式进入这里\n    # 这里才会区分 advantage_mode == \"episode_level\" vs step-level\n```\n\n当 `context_window_mode == \"full\"` 时，这整个 block 被跳过。代码走标准 GRPO 路径（`compute_grpo_outcome_advantage`），对每个 sample 的所有 token 赋予相同的 advantage 值（基于 episode reward 的 group normalization）。\n\n**3. Step-level vs episode-level 在单 window 下是否数值等价？**\n\n**是的，结构上等价。** 原因：\n- `compute_step_discounted_returns`：在只有 1 个 step（整个 episode 作为单 sample）时，R_0 = r_0，只有一个值\n- `compute_episode_returns`：所有 step 共享从 step 0 计算的 return，也是同一个值\n- 标准 GRPO outcome advantage：每个 sample 的所有 token 得到同一个 advantage\n\n三者在单 sample 情况下数值相同。\n\n**4. exp029 配置确认：**\n- `context_window_mode: \"full\"`\n- 未设置 `advantage_mode`（无意义，因为不进入 step_independent 分支）\n- 走标准 GRPO outcome advantage = episode-level advantage\n\n### 结论\n\n在 full context 模式下，不存在\"step-level advantage\"这个有意义的区分——整个 episode 是一个不可分割的 sample，只有一个 reward signal，所有 token 共享同一个 advantage 值。Cell 4 在当前代码中无法独立实现，且概念上与 Cell 3 等价。\n\n2×2 矩阵实际是 3-cell：\n| | step-level adv | episode-level adv |\n|---|---|---|\n| step_independent | Cell 1: 0% | Cell 2: 15.63% |\n| full context | Cell 3 = Cell 4: **28.1%** | ← 同一实验 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-cell4-equivalence.md"
+}

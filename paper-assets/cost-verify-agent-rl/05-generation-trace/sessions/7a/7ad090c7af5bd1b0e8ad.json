@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ad090c7af5bd1b0e8ad",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag 8b cell c episode v9d crash2",
+  "task_key": "worker_diag_8b_cell_c_episode_v9d_crash2_20260520T051422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_8b_cell_c_episode_v9d_crash2_20260520T051422_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "c4f943acd058e6964a2a2d371eb4cc7cbd3f7b2e534e05729ba976df0d57fe36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**崩溃原因**：SFT 基础模型 `/root/autodl-tmp/checkpoints/qwen3_8b_sft_v1/checkpoint-231` 在磁盘清理中被删除。代码初始化时 `huggingface_hub` 将不存在的本地路径当作 repo ID 校验，抛出 `HFValidationError`。\n\n**修复方案**：将 config 中 `model_path` 改为仍存在的 `/root/autodl-tmp/models/Qwen3-8B`（base model，架构相同），配合 `resume_mode: auto` 会自动从 step 5 checkpoint（92GB，完好）恢复权重继续训练。\n\n报告已写入 `artifacts/8b_cell_c_episode_v9d/diag_v9d_crash2.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-8b-cell-c-episode-v9d-crash2.md"
+}

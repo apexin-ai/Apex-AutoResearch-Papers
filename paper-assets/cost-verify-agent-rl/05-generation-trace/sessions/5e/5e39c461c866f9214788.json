@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e39c461c866f9214788",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_13_1778902410.md",
+  "task_key": "loop_13_1778902410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778902410.md",
+    "occurrence": 1,
+    "bytes": 5158,
+    "sha256": "667de2a8649653dc4943ae7dd5a92261bdf6b0bdc9916f672508dec2de50c1aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T03:06:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 cuda:0, cuda:1（2× RTX PRO 6000 Blackwell 98GB）。不存在其他分配给本项目的 GPU，不要在其他设备号上启动实验\n- exp028c 是 MVP 生死实验（D050 决策）。不要 kill 它，不要在同 GPU 上启动新进程干扰它\n- exp028c 的 SFT checkpoint 来自 exp021（RAGEN-format v4 SFT, success=6.25%）。不要混淆成其他 checkpoint\n- MVP 阈值（D037）：<20% fail, 20-25% weak pass, 30%+ strong pass。不要自行降低或模糊化阈值\n- submit_training_job 必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不要假设 .venv 存在\n- 论文 framing 是 cost-efficiency story（D039），不是 performance story。不要在汇报中用 SOTA 对比的口吻\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，account=root\n- 工作目录：/root/cost-verify-agent-rl（内含 RAGEN 子目录）\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- SFT checkpoint：/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/（exp028c 的起点）\n- 模型：Qwen3-1.7B\n- ALFWorld 数据：/root/autodl-tmp/alfworld\n- W&B：exp028c run ID = 4yu6qz1m\n- 活跃进程：exp028c PID=824675, cron 监控中（reconcile 确认 \"Job still running\"）\n- GPU 占用：cuda:0 + cuda:1 双卡满载\n\n### 3. 📊 当前状态\n**唯一活跃实验**：exp028c_selfguide_recipe（RUNNING），全面对齐 Self-Guide 论文 recipe 的 GRPO 训练（D050 决策，9 项参数改动 vs exp027）。\n\n已完成 step 0-5，关键指标轨迹：\n- step 0 val: success=6.25%（SFT baseline）\n- step 1: success=13.28%, pass_at_8=37.5%（有学习信号）\n- step 2: success=6.25%, kl_loss=0.1706（回落）\n- step 3: success=15.63%, pass_at_8=68.75%（反弹，最佳 pass_at_8）\n- step 4: success=18.75%（**接近 20% MVP 线**），action_is_valid=87.94%\n- step 5: success=9.4%, **kl_loss 飙升 0.031→0.824**（危险信号）\n- step 5 val: success=6.25%，但 action_is_valid=96.5%（+22pp），score_mean 4.4x 提升\n\n**趋势判断**：success 在 step 4 接近 MVP 线但 step 5 回落伴随 kl_loss 爆炸。模型学到了 valid action 但 success 不稳定。需要看 step 6+ 是否 kl 恢复。\n\n**Worker 池：0**（所有之前的 Worker 已完成/退出）。\n**等待中**：exp028c cron 持续监控（进程存活检测），等后续 step 回调。\n**PREPARING 实验堆积**：约 15 个旧实验停留在 PREPARING 状态（大部分 conclusion=killed/failed），是历史遗留，不需要处理。\n\n### 4. 📋 待办（条件触发式）\n- exp028c step 10 val 出结果 → 按 D037 三层阈值判定：≥30% strong pass → `complete_mvp()` 进 Phase B；20-30% weak pass → 汇报 Director 要更多证据；<20% fail → 汇报 Director 评估项目可行性\n- exp028c kl_loss 持续 >0.5 且 success 连续 2 步 <10% → 可能需要 early stop 并分析根因（kl 爆炸 vs entropy collapse），汇报 Director\n- exp028c 任何 step success ≥20% 且稳定（连续 2 步）→ 即使未到 step 10 也可向 Director 汇报 weak pass 信号\n- exp028c cron 回调 DONE(success) → on-experiment-done skill 全流程：更新 registry/report.md → 分析 metrics → 汇报 Director（带 [资源] 行）→ 文献联动\n- exp028c cron 回调 DONE(failed) → on-experiment-failed skill：查日志诊断 → 更新 registry → 汇报 Director\n- GPU 空闲（exp028c 结束后）→ 立即准备下一个实验，不要让 GPU 闲置\n- Director 分配新 GPU → 并行铺 exp028_prereq_zeroshot_instruct（Qwen3-1.7B-Instruct 零样本 eval，已 PREPARING）\n\n### 5. 🎯 战略上下文\n**项目处于 MVP 生死关头**。exp028c 是第 28 次实验尝试，前 27 次要么 failed 要么 negative 要么 killed。成功率 3/35（且 3 次 success 是 SFT 而非 GRPO）。\n\n**决策链关键节点**：\n- D037: MVP 判定标准（20%/25%/30% 三档）\n- D039: 论文 framing = cost-efficiency（不是 performance）\n- D044: Recipe Gap 根因（SFT 毒药 + binary reward 零梯度 + 参数未对齐）\n- D050: 停止 exp028a → 全面对齐 Self-Guide recipe → exp028c\n\n**最容易判断错的事**：\n1. step 4 的 18.75% 不等于\"快要过了\"——step 5 立刻回落到 9.4% 伴随 kl 爆炸，说明训练不稳定。不要过早乐观汇报\n2. action_is_valid 从 74.5%→96.5% 是真实进步，但 success 没跟上，说明模型学会了\"语法\"但没学会\"策略\"——这是质的区别\n3. PREPARING 状态的旧实验（exp014a/b/c, exp018, exp019b/c, exp020c/d 等）都是历史遗留，conclusion 已设为 killed/failed，不要尝试重新提交它们\n4. 论文竞争者 ARES 的 cost-efficiency 数字（52.7% token 减少）是我们的直接对标，但前提是我们 baseline 性能要先 ≥50%，目前 SFT 才 6.25%——gap 巨大\n5. bjb1-17606 用的是 conda base 环境，不是 venv。历史上多次因为环境路径错误导致实验 failed\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778902410.md"
+}

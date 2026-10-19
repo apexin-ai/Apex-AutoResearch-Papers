@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dfffa7a90d2186638be",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code generate corrections",
+  "task_key": "worker_code_generate-corrections_20260512T131022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_generate-corrections_20260512T131022_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "4716126893938878705c80c2a574da1039e60a4b5adb756fc97c7913d95bee4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**文件**: `/root/autodl-tmp/error_diag_dpo_recovery/src/generate_corrections.py` (12,077 bytes)\n\n**--help 输出正常**，所有 CLI 参数符合要求。\n\n**设计要点**:\n- **简化方案**：Qwen3-14B-AWQ 从头完成整个任务（不做 replay+续写），成功即为 chosen\n- **多轮尝试**：每轮遍历整个 ALFWorld env，只对未成功的 target game_file 尝试纠正。最多 `max_attempts` 轮\n- **AWQ 加载**：直接 `from_pretrained` + `device_map`，无需 BitsAndBytesConfig\n- **复用函数**：从 `collect_trajectories.py` 导入 `get_task_type`, `process_ob`, `load_prompt_resources`, `build_initial_messages`, `parse_action`\n- **DPO pair 构建**：`find_shared_prefix_len` 分离 prompt/continuation，与 `construct_preference.py` 逻辑一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-generate-corrections.md"
+}

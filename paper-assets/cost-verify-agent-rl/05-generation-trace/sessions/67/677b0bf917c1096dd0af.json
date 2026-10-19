@@ -1,0 +1,1315 @@
+{
+  "schema_version": "1.0",
+  "id": "677b0bf917c1096dd0af",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "cron hook exp027 stable grpo 20260516T025813 008312",
+  "task_key": "cron_hook_exp027_stable_grpo_20260516T025813_008312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_exp027_stable_grpo_20260516T025813_008312.jsonl",
+    "occurrence": 1,
+    "bytes": 59075,
+    "sha256": "f592797443a61096fec5fe1d4c84314e7b030c5ab8ca02c6cafac4e6b96bb5f0"
+  },
+  "statistics": {
+    "messages": 66,
+    "user_turns": 2,
+    "tool_calls": 31,
+    "roles": {
+      "user": 2,
+      "tool_call": 31,
+      "tool_result": 31,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T23:46:54.276399+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #13。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 bjb1-17606 cuda:0 和 cuda:1（2× RTX PRO 6000 Blackwell 98GB）。任何其他 GPU 编号必须 push back Director\n- 服务器用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不要创建 venv，不要假设 .venv 存在\n- submit_on_allocated / submit_training_job 的命令必须自带环境激活，GPU 编号从 0 开始（框架自动映射物理 GPU）\n- exp027 MVP 已判定失败（D045），不要再尝试同配置重跑，必须走 exp028 新方案\n- WANDB_MODE 必须 enabled（exp026 教训：disabled 导致 cron 误判）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，SSH account: root\n- 工作目录：/root/cost-verify-agent-rl/RAGEN/\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型 checkpoint：/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4（exp021 SFT，GRPO 的起点）\n- SFT 基础 checkpoint：/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final/\n- 数据：RAGEN expert data（train 16 envs, val 16 envs）\n- W&B project: cost-verify-agent-rl，exp027 run_id: y7jiibqk\n- 日志路径：~/runs/cost-verify-agent-rl/\n- 活跃进程：无（exp027 已退出，GPU 双卡空闲）\n- 活跃 Worker（5个）：exp028_penalty_mechanism 代码、exp028a_director_corrections、gpu_cleanup_and_launch、download_qwen25_instruct、citation_audit\n\n### 3. 📊 当前状态\n刚处理完 exp027_stable_grpo 的 CRON 失败回调。退出原因：Ray raylet 异常终止（ActorUnavailableError RPC Socket closed），step 4 完成后 step 5 过渡时崩溃。但这是 post-mortem——D045 已在 step 4 判定 MVP 未通过（success 13.28% < 20%）。\n\nRegistry 关键状态：\n- 全部 DONE/failed/negative/killed，无 RUNNING 实验\n- exp025c: PENDING（等审批，但 D028 已判定 verl-agent 不可行，实质废弃）\n- 多个 PREPARING 态的旧实验（exp020c/d, exp019b/c, exp018 等）已被决策废弃但未清理\n\n5 个 Worker 正在为 exp028 做准备——等这些 Worker 回调后可以推进下一步实验。\n\n已汇报 Director：exp027 退出确认 + 资源状态（2 GPU 空闲）。Director 无需额外决策。\n\n### 4. 📋 待办\n- Worker `code:exp028_penalty_mechanism` 回调 → 审查代码，合并到 exp028 配置\n- Worker `code:exp028a_director_corrections` 回调 → 审查 Director 修正项，整合\n- Worker `ops:gpu_cleanup_and_launch` 回调 → 确认 GPU 清理完成（Ray 残留进程），准备提交 exp028\n- Worker `setup:download_qwen25_instruct` 回调 → 确认 Qwen2.5 模型下载完成（exp028 可能需要新 base model）\n- Worker `research:citation_audit` 回调 → 审查结果，更新 literature_map\n- exp028 全部 Worker 就绪 → 创建 registry 条目 + 提交审批（PENDING）→ Director 批准后 submit_training_job\n- 2 张 GPU 空闲超过 30min → 必须向 Director 汇报并推动 exp028 尽快上线\n\n### 5. 🎯 战略上下文\n**核心决策链**：D039（framing 锁定 cost-efficiency story）→ D044（Recipe Gap 三大根因：SFT 起点反效果 + binary reward 零梯度 + mini-batch 过小）→ D045（MVP 未通过）。\n\n**项目走向**：Phase A MVP 验证已失败（exp027 是最后一次尝试）。exp028 是 Recipe Gap 修复方案——具体内容由 D044 驱动，5 个 Worker 正在准备代码和配置。下一个\"你\"的首要任务是接收这些 Worker 回调并尽快让 exp028 上 GPU。\n\n**易错点**：\n1. 不要把 exp027 的 step 1 success=35.94% 当成\"接近成功\"——这是训练第一步的虚高，后续持续退化到 10-13%，说明 GRPO 无法在当前 reward 信号下稳定学习\n2. 不要回退到旧的 exp020/exp023 系列方案——这些已被 D022/D026 等决策废弃，根因是 RAGEN 格式不兼容或 GRPO collapse\n3. Ray raylet 崩溃是反复出现的基础设施问题（exp013e, exp027），exp028 提交前确保 Ray 残留进程已清理、object_store_memory 显式设置\n4. 论文 framing 是 cost-efficiency 不是 performance（D039），baseline 性能 gap 是已知风险（当前 6.25% vs 需要 ≥50%）\n5. literature_map 中 7 篇引用有问题（AgentPRM 最严重），写论文前必须修正\n\n## 可查的历史\n前 39 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T23:47:05.790695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T23:47:05.941677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "ToolSearch",
+            "elapsed_ms": 150
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T23:47:10.716857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T23:47:10.717300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T23:47:11.170748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp028c_selfguide_recipe\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T21:38:48.089Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:39:09.274Z\\\", \\\"wandb_run_id\\\": \\\"4yu6qz1m\\\", \\\"notes\\\": \\\"Self-Guide recipe 对齐实验。9项改动 vs exp027: (1) ppo_mini_batch_size 32→128 (原计划256，框架train.py:159断言要求<=env_groups*group_size，step_independent模式下虽展开为~3200样本但validation检查trajectory-level) (2) total_steps 50→100 (3) LR 5e-7→1e-6 (4) KL 0.005→0.01 (5) env_groups 8→16 (6) group_size 16→8 (7) entropy 0.01→0.001 (8) history_length 5→2 (9) loss_agg seq-mean-token-mean→token-mean. model_path=SFT checkpoint confirmed. PID=824675.\\\"}, \\\"exp028a_recipe_fix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T21:08:53.131Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:25:46.006Z\\\", \\\"hypothesis\\\": \\\"invalid_action_penalty (-0.1) 为全失败 GRPO group 提供非零方差梯度信号。从 exp021 SFT checkpoint (6.25% success) 出发，仅增加 invalid_action_penalty_coef=0.1，其余参数与 exp027 完全一致。预期：penalty 让失败 trajectory 间有区分（invalid action 多=reward更低），解决 ~43% group 零梯度问题。Pass: success ≥20%（稳定，非瞬时 peak）。\\\", \\\"parent\\\": \\\"exp027_stable_grpo\\\", \\\"wandb_run_id\\\": \\\"lu42su82\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"与 exp027 功能等价（penalty getattr 默认值=0.1 在 exp027 中已生效）。Director 指令停止。\\\"}, \\\"exp028_prereq_zeroshot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T21:11:06.120Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:11:42.141Z\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"wandb_run_id\\\": \\\"qdvv09da\\\", \\\"metrics\\\": {\\\"success\\\": 0, \\\"action_is_valid\\\": 0.75, \\\"num_actions\\\": 50, \\\"pass_at_1\\\": 0, \\\"response_length\\\": 75.07}, \\\"notes\\\": \\\"Qwen3-1.7B（本身就是 instruct 模型）零样本 ALFWorld eval = 0% success。证明 SFT 从 0%→6.25% 是有益的，D044 '不做SFT' 假设不成立。W&B run: qdvv09da\\\"}, \\\"exp028_prereq_zeroshot_instruct\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T20:59:57.529Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:06:09.982Z\\\", \\\"hypothesis\\\": \\\"Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\\\\\"SFT是毒药\\\\\\\"假设。如果 Instruct ≥15% suc\n…[truncated 34716 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 453
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T23:47:11.171253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T23:47:11.673780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T23:47:12.176260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "status": "running",
+              "limit": "20"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T23:47:12.879823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp028c_selfguide_recipe\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=824675)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 2162
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T23:47:12.931072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp028c_selfguide_recipe | — | — | — | [4yu6qz1m] |\\\\n\\\\n## 待处理\\\\n- exp025c（等待人工审批）\\\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\\\\\"SFT是毒药\\\\\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent <answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。（准备中）\\\\n- exp019b_expert_sft_v2（准备中）\\\\n- exp018_sft_grpo: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_lo\n…[truncated 2680 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1759
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T23:47:12.931802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\\\", \\\"content\\\": \\\"# cost-verify-agent-rl — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 23:30 UTC | 更新原因: exp028c 替代 exp027 为当前活跃实验，更新并行任务和 GPU 累计\\\\n\\\\n## 核心方向\\\\nB-IAVR: 训练 interactive agent 选择性自我验证，基于行为改变信号（action change）作为 verification informativeness 的 reward。基于 Self-Guide (arXiv 2604.03098) 框架，Qwen3-1.7B + ALFWorld + verl-agent GRPO。\\\\n\\\\n**论文 framing（D039）**：cost-efficiency story，不走 performance story。ALFWorld SOTA 88-93%，Self-Guide 1.7B 72.7%，performance 竞争无意义。核心 claim：\\\\\\\"RL-trained selective verification 在接近 baseline 性能的前提下显著减少 verification 开销\\\\\\\"。与 ARES (2603.07915) 差异化：binary decision + action-change reward + interactive agent 场景。\\\\n\\\\n## 当前阶段\\\\n🧪 **MVP 验证 — Phase A: Always-On Self-Guidance baseline**\\\\n目标：ALFWorld success ≥ 20%（GRPO 训练后）\\\\n\\\\n### exp028c_selfguide_recipe（正在训练）\\\\n- D050 决策：全面对齐 Self-Guide recipe（9 项参数改动 vs exp027）\\\\n- 从 exp021 SFT checkpoint 出发\\\\n- PID 824675, W&B 4yu6qz1m, cuda:0+cuda:1\\\\n- 等待 cron 回调首批指标\\\\n\\\\n### 历史关键节点\\\\n- exp027: failed（train success 13.28% peak at step 4，MVP 未通过）\\\\n- D044: Recipe Gap 确认三大根因（SFT 起点差 + binary reward 零梯度 + 参数未对齐）\\\\n- D050: 停止 exp028a（与 exp027 功能等价），全面对齐 Self-Guide recipe → exp028c\\\\n\\\\n### MVP 判定（D037）\\\\n- < 20%: fail → 评估是否继续本项目\\\\n- 20-25%: weak pass（需更多证据）\\\\n- 30%+: strong pass → complete_mvp() → Phase B\\\\n\\\\n### SFT 基线（C003 compliant 16-episode eval）\\\\n- exp021: success=6.25%, action_is_valid=68.75%\\\\n\\\\n## 竞争格局（文献调研 2026-05-15）\\\\n| 竞争者 | 方法 | ALFWorld | 与我们的关系 |\\\\n|--------|------|----------|-------------|\\\\n| ReflAct (EMNLP'25) | Prompting GPT-4 | 93.3% | 不同赛道（大模型 prompting） |\\\\n| AgentPRM (ACM Web'26) | 3B trained PRM | 88-91% | 不同方向（process reward） |\\\\n| Self-Guide (2026) | Always-on verification | 72.7% (1.7B) | 直接基础框架，我们做 selective |\\\\n| ARES (2603.07915) | SFT router, continuous effort | 52.7% token↓ | 最近竞争者，需实验对比 |\\\\n| Thinkless (NeurIPS'25) | RL-trained c\n…[truncated 2433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 1258
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T23:47:12.982396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_check_exp028c_status_20260515T232755\\\", \\\"task_type\\\": \\\"check:exp028c_status\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-15T23:27:55.996074+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 806
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T23:47:40.419216+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T23:47:40.469833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T23:47:45.593820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__fetch_wandb_metrics"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "tool_args": {
+              "run_id": "4yu6qz1m",
+              "metric_names": "['train/success', 'train/action_is_valid', 'train/action_is_effective', 'train/entropy', 'train/kl_loss', 'train/grad_norm', 'train/pg_loss', 'train/pass_at_16', 'train/reward/mean', 'train/num_actions', 'train/response_length', 'val/success', 'val/action_is_valid', 'global_step', '_step', '_runtime']",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T23:47:46.549729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"W&B entity/project not configured. Set in config/projects/*.yaml\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "elapsed_ms": 955
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T23:47:47.001839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_check_exp028c_status_20260515T232755",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T23:47:48.561306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_exp028c_status_20260515T232755\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"check:exp028c_status\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-15T23:27:55.996074+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ToolSearch\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"I'll check the training status now. Let me load the necessary tools first.\\\", \\\"turn_count\\\": 6}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 1559
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T23:47:48.712505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T23:47:48.713236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_ebfcf5b8."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T23:47:55.306582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__fetch_wandb_metrics"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "tool_args": {
+              "run_id": "4yu6qz1m",
+              "metric_names": "['train/success', 'train/action_is_valid', 'train/entropy', 'train/kl_loss', 'train/grad_norm', 'train/pass_at_16', 'train/reward/mean', 'val/success', 'val/action_is_valid', 'global_step', '_step', '_runtime']",
+              "entity": "ali-ccnl",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T23:47:55.658092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T23:47:56.913082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Could not find run <Run ali-ccnl/cost-verify-agent-rl/4yu6qz1m (None)>\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "elapsed_ms": 1606
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T23:47:56.913412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "Glob",
+            "elapsed_ms": 1255
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T23:48:01.242462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__load_project_config",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T23:48:01.293252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T23:48:03.370315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "cost-verify-agent-rl",
+              "section": "execution"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T23:48:03.421062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"project_path\\\": \\\"/root/cost-verify-agent-rl\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-17606\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 50
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T23:48:05.830328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T23:48:05.880943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"config\\\": {\\\"execution\\\": {\\\"project_path\\\": \\\"/root/cost-verify-agent-rl\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-17606\\\"}]}, \\\"feishu\\\": {\\\"chat_id\\\": \\\"oc_4ebf0fb2d0159caa355a1a855f5ac59f\\\", \\\"operational_chat_id\\\": \\\"oc_733b284b383121720ce3d07c5c4a6bb2\\\"}, \\\"project\\\": {\\\"created_at\\\": \\\"2026-05-13T17:31:30.051Z\\\", \\\"description\\\": \\\"Verify When It Matters: Behaviorally-Grounded Selective Verification for Interactive Agents\\\", \\\"name\\\": \\\"cost-verify-agent-rl\\\", \\\"phase\\\": \\\"mvp\\\", \\\"source_idea_id\\\": \\\"idea_009\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 50
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T23:48:27.323611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "status": "done",
+              "limit": "10"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T23:48:27.374461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_run_exp028_prereq_nothink_20260515T210927\\\", \\\"task_type\\\": \\\"run:exp028_prereq_nothink\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T21:09:27.622447+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T21:18:08.418918+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_run_exp028a_recipe_fix_20260515T210934\\\", \\\"task_type\\\": \\\"run:exp028a_recipe_fix\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T21:09:34.301973+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T21:13:07.557087+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_code_exp028ab_parallel_config_20260515T210955\\\", \\\"task_type\\\": \\\"code:exp028ab_parallel_config\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T21:09:55.485479+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T21:14:07.736122+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_cleanup_symlink_and_registry_20260515T211041\\\", \\\"task_type\\\": \\\"ops:cleanup_symlink_and_registry\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T21:10:41.512608+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T21:12:07.395041+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_investigate_exp028a_duplicate_check_20260515T211724\\\", \\\"task_type\\\": \\\"investigate:exp028a_duplicate_check\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T21:17:25.067924+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T21:22:39.171299+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_kill_exp028a_20260515T212452\\\", \\\"task_type\\\": \\\"ops:kill_exp028a\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T21:24:52.804720+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T21:26:09.800793+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_research_selfguide_recipe_extraction_20260515T212518\\\", \\\"task_type\\\": \\\"research:selfguide_recipe_extraction\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-\n…[truncated 989 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T23:48:55.014038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 1 (GPU 0 / CPU 1 check)\n\nLoop #13 session-start 状态同步：\n\n**当前运行**：exp028c_selfguide_recipe RUNNING（PID 824675，W&B 4yu6qz1m，双卡，已运行 ~2h）。Self-Guide recipe 全面对齐的 9 项参数改动 vs exp027。\n\n**已完成的并行任务**（Loop #12 期间）：\n- exp028a killed（D050 确认与 exp027 功能等价）\n- exp028_prereq_zeroshot: Qwen3-1.7B 零样本 = 0% success，证实 SFT 有益\n- 文献扫描 + Phase B 前置分析均已完成\n- exp028c 已配置并提交\n\n**等待中**：exp028c 首批指标（check worker 正在 SSH 读取）。到达后按 D037/D040 三层阈值判定。\n\n**无待决事项**。GPU 满载，并行 CPU 任务已清。等 exp028c cron 回调或 check worker 结果。",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T23:48:58.981393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3967
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T23:49:07.822868+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session-start 初始化完成。\n\n**当前状态**：\n- exp028c_selfguide_recipe 在双卡上训练中（~2h），等待首批指标\n- check worker 正在通过 SSH 读取训练进展\n- 文献扫描和 Phase B 前置分析已完成\n- 已向 Director 汇报\n\n等待 check worker 回调或 exp028c cron 回调，届时按 MVP 阈值（≥20% success）判定。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 36
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T02:56:20.864784+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T02:56:29.934995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T02:56:30.035875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T02:56:34.113148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T02:56:34.113600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T02:56:34.668997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (88,860 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-ebfcf5b8/50258359-cbd7-45c9-a0e9-ff7eda2e518d/tool-results/mcp-agent-ml-research-read_registry-1778900194502.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-ebfcf5b8/50258359-cbd7-45c9-a0e9-ff7eda2e518d/tool-results/mcp-agent-ml-research-read_registry-1778900194502.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 555
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T02:56:35.121763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "report.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T02:56:35.122172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T02:56:36.529916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp028c_selfguide_recipe\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=824675)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 2416
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T02:56:36.530612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp028c_selfguide_recipe | — | — | — | [4yu6qz1m] |\\\\n\\\\n## 待处理\\\\n- exp025c（等待人工审批）\\\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\\\\\"SFT是毒药\\\\\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent <answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_seq=4096。Pass: success ≥ 10%, format_ok ≥ 90%, action_is_valid ≥ 85%。（准备中）\\\\n- exp019b_expert_sft_v2（准备中）\\\\n- exp018_sft_grpo: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_lo\n…[truncated 2680 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1408
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T02:56:36.581513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\\\", \\\"content\\\": \\\"# cost-verify-agent-rl — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 23:30 UTC | 更新原因: exp028c 替代 exp027 为当前活跃实验，更新并行任务和 GPU 累计\\\\n\\\\n## 核心方向\\\\nB-IAVR: 训练 interactive agent 选择性自我验证，基于行为改变信号（action change）作为 verification informativeness 的 reward。基于 Self-Guide (arXiv 2604.03098) 框架，Qwen3-1.7B + ALFWorld + verl-agent GRPO。\\\\n\\\\n**论文 framing（D039）**：cost-efficiency story，不走 performance story。ALFWorld SOTA 88-93%，Self-Guide 1.7B 72.7%，performance 竞争无意义。核心 claim：\\\\\\\"RL-trained selective verification 在接近 baseline 性能的前提下显著减少 verification 开销\\\\\\\"。与 ARES (2603.07915) 差异化：binary decision + action-change reward + interactive agent 场景。\\\\n\\\\n## 当前阶段\\\\n🧪 **MVP 验证 — Phase A: Always-On Self-Guidance baseline**\\\\n目标：ALFWorld success ≥ 20%（GRPO 训练后）\\\\n\\\\n### exp028c_selfguide_recipe（正在训练）\\\\n- D050 决策：全面对齐 Self-Guide recipe（9 项参数改动 vs exp027）\\\\n- 从 exp021 SFT checkpoint 出发\\\\n- PID 824675, W&B 4yu6qz1m, cuda:0+cuda:1\\\\n- 等待 cron 回调首批指标\\\\n\\\\n### 历史关键节点\\\\n- exp027: failed（train success 13.28% peak at step 4，MVP 未通过）\\\\n- D044: Recipe Gap 确认三大根因（SFT 起点差 + binary reward 零梯度 + 参数未对齐）\\\\n- D050: 停止 exp028a（与 exp027 功能等价），全面对齐 Self-Guide recipe → exp028c\\\\n\\\\n### MVP 判定（D037）\\\\n- < 20%: fail → 评估是否继续本项目\\\\n- 20-25%: weak pass（需更多证据）\\\\n- 30%+: strong pass → complete_mvp() → Phase B\\\\n\\\\n### SFT 基线（C003 compliant 16-episode eval）\\\\n- exp021: success=6.25%, action_is_valid=68.75%\\\\n\\\\n## 竞争格局（文献调研 2026-05-15）\\\\n| 竞争者 | 方法 | ALFWorld | 与我们的关系 |\\\\n|--------|------|----------|-------------|\\\\n| ReflAct (EMNLP'25) | Prompting GPT-4 | 93.3% | 不同赛道（大模型 prompting） |\\\\n| AgentPRM (ACM Web'26) | 3B trained PRM | 88-91% | 不同方向（process reward） |\\\\n| Self-Guide (2026) | Always-on verification | 72.7% (1.7B) | 直接基础框架，我们做 selective |\\\\n| ARES (2603.07915) | SFT router, continuous effort | 52.7% token↓ | 最近竞争者，需实验对比 |\\\\n| Thinkless (NeurIPS'25) | RL-trained c\n…[truncated 2433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 1459
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T02:56:46.269845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-ebfcf5b8/50258359-cbd7-45c9-a0e9-ff7eda2e518d/tool-results/mcp-agent-ml-research-read_registry-1778900194502.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Show RUNNING and PREPARING experiments with full details\nfor e in exps:\n    if e.get('status') in ('RUNNING', 'PREPARING', 'PENDING', 'QUEUED', 'ALLOCATED'):\n        print(f\\\"=== {e['exp_id']} ({e['status']}) ===\\\")\n        print(json.dumps(e, indent=2, ensure_ascii=False))\n        print()\n\"\n",
+              "description": "Extract RUNNING/PREPARING experiments from registry"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T02:56:46.672737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 8, in <module>\n    if e.get('status') in ('RUNNING', 'PREPARING', 'PENDING', 'QUEUED', 'ALLOCATED'):\n       ^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "Bash",
+            "elapsed_ms": 402
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T02:56:46.723324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T02:56:46.723715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-6/proje…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T02:56:54.667380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-ebfcf5b8/50258359-cbd7-45c9-a0e9-ff7eda2e518d/tool-results/mcp-agent-ml-research-read_registry-1778900194502.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\n# Check structure\nprint(type(result['data']))\nprint(list(result['data'].keys())[:5])\nexps = result['data']['experiments']\nprint(type(exps))\nif isinstance(exps, dict):\n    for k, v in exps.items():\n        if isinstance(v, dict) and v.get('status') in ('RUNNING', 'PREPARING', 'PENDING', 'QUEUED', 'ALLOCATED'):\n            print(f'=== {k} ({v[\\\"status\\\"]}) ===')\n            print(json.dumps(v, indent=2, ensure_ascii=False)[:2000])\n            print()\nelif isinstance(exps, list):\n    for e in exps:\n        if isinstance(e, dict) and e.get('status') in ('RUNNING', 'PREPARING', 'PENDING', 'QUEUED', 'ALLOCATED'):\n            print(f'=== {e.get(\\\"exp_id\\\",\\\"?\\\")} ({e[\\\"status\\\"]}) ===')\n            print(json.dumps(e, indent=2, ensure_ascii=False)[:2000])\n            print()\n        elif isinstance(e, str):\n            print('STRING ENTRY:', e[:200])\n\" 2>&1 | head -200\n",
+              "description": "Parse registry structure and extract active experiments"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T02:56:54.819484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<class 'dict'>\n['experiments', 'count', 'total', 'baseline']\n<class 'dict'>\n=== exp028c_selfguide_recipe (RUNNING) ===\n{\n  \"status\": \"RUNNING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T21:38:48.089Z\",\n  \"updated_at\": \"2026-05-16T02:44:44.482Z\",\n  \"wandb_run_id\": \"4yu6qz1m\",\n  \"spec\": {\n    \"command\": \"bash scripts/run_exp028c_selfguide_recipe.sh\",\n    \"server\": \"bjb1-17606\",\n    \"data_path\": \"AlfworldSG (env_configs)\",\n    \"data_count\": 128,\n    \"model_name\": \"qwen3_exp021_ragen_sft_v4 (SFT checkpoint)\",\n    \"seed\": 10000\n  },\n  \"notes\": \"Self-Guide recipe 对齐实验。9项改动 vs exp027: (1) ppo_mini_batch_size 32→128 (2) total_steps 50→100 (3) LR 5e-7→1e-6 (4) KL 0.005→0.01 (5) env_groups 8→16 (6) group_size 16→8 (7) entropy 0.01→0.001 (8) history_length 5→2 (9) loss_agg seq-mean-token-mean→token-mean. model_path=SFT checkpoint. PID=824675. step_1_train 三方交叉验证通过。step_2_train 待完成后验证（之前数据为脏数据已清除）。\",\n  \"metrics\": {\n    \"step_0_val\": {\n      \"success\": 6.25,\n      \"pass_at_1\": 6.25,\n      \"action_is_valid\": 74.5,\n      \"score_mean\": 0.119\n    },\n    \"step_1_train\": {\n      \"success\": 13.28,\n      \"pass_at_8\": 37.5,\n      \"action_is_valid\": 76.4,\n      \"action_is_effective\": 96.37,\n      \"entropy\": 0.2634,\n      \"kl_loss\": 0.0128,\n      \"ppo_kl\": 0.019,\n      \"grad_norm\": 16.88,\n      \"score_mean\": 0.843,\n      \"time_s\": 3252,\n      \"note\": \"三方交叉验证通过\"\n    },\n    \"step_2_train\": {\n      \"success\": 6.25,\n      \"pass_at_8\": 25,\n      \"action_is_valid\": 83.2,\n      \"entropy\": 0.247,\n      \"kl_loss\": 0.017,\n      \"grad_norm\": 17.3,\n      \"score_mean\": 0.274,\n      \"time_s\": 3120,\n      \"note\": \"日志+W&B验证通过(Reviewer确认)\"\n    },\n    \"step_3_train\": {\n      \"success\": 15.63,\n      \"pass_at_8\": 68.75,\n      \"action_is_valid\": 85.9,\n      \"entropy\": 0.2488,\n      \"kl_loss\": 0.1118,\n      \"grad_norm\": 12.57,\n      \"score_mean\": 0.661,\n      \"time_s\": 2760,\n      \"note\": \"日志验证\"\n    },\n    \"step_4_train\": {\n      \"success\": 18.75,\n      \"pass_at_8\": 62.5,\n      \"action_is_valid\": 87.94,\n \n…[truncated 7811 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "Bash",
+            "elapsed_ms": 152
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T02:56:58.038685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T02:56:58.089482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"content\\\": \\\"# Citation Audit — 2026-05-15\\\\n\\\\n完整审计结果已写入 artifacts/citation_audit.md。\\\\n\\\\n## 审计摘要\\\\n\\\\n- 验证论文：27 篇（literature_map.yaml 全部条目）+ 1 篇额外（Thinkless）\\\\n- 验证通过：20 篇\\\\n- 需要修正：7 篇（3 个严重问题，2 个中等问题，2 个轻微问题）\\\\n- 关键发现：AgentPRM arXiv ID/作者/标题全错；Huang2024 作者不匹配；DAPO 标题错误；CFGM 会议和年份错误\\\\n\\\\n# Adaptive KL 可行性 — 2026-05-15\\\\n\\\\nverl 框架已内置 `AdaptiveKLController`（Ziegler 2019），RAGEN `agent_trainer.py` 已完整接入 reward-level KL adaptive 链路。**零代码修改，纯 YAML 配置切换**（~8 行）：\\\\n- `algorithm.use_kl_in_reward: True` + `kl_ctrl.type: adaptive`\\\\n- `actor.use_kl_loss: False`\\\\n- `target_kl: 0.1`, `kl_coef: 0.005`（初始值），`horizon: 10000`\\\\n\\\\n当前 exp027 用的是 loss-level KL（`use_kl_loss` + 静态 `kl_loss_coef`）。如需切换，实现 <1h，验证 2-4h。\\\\n\\\\n风险：reward-level KL 通过 advantage 间接影响梯度，与 loss-level 直接约束不同。如 reward-level 效果不理想，备选 Plan C（loss-level adaptive）需 ~30 行代码，半天可完成。\\\\n\\\\n# 失败模式记录\\\\n\\\\n- [失败模式] Ray raylet 异常终止：ActorUnavailableError RPC error Socket closed rpc_code: 14，Raylet 被 SIGKILL（OOM killer 或内存访问错误）。出现于 exp013e（val→train 过渡）和 exp027（step 4→5 过渡）。→ 修复方案：(1) 检查 cgroup 内存限制 vs Ray object_store + worker 内存总和 (2) 降低 env_groups 减少并发内存峰值 (3) 显式设置 ray_kwargs.ray_init.object_store_memory 限制 Ray 内存分配 (4) 用 RAY_memory_monitor_refresh_ms=0 禁用内存监控阈值冲突。\\\\n\\\", \\\"total_chars\\\": 1167, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T02:57:01.880504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T02:57:01.881023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T02:57:05.043252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "limit": "10"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T02:57:05.244482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_fix_literature-map-citations_20260515T235024\\\", \\\"task_type\\\": \\\"fix:literature-map-citations\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-15T23:50:24.989722+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T23:58:34.898841+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_verify_exp028c_step2_metrics_20260516T000125\\\", \\\"task_type\\\": \\\"verify:exp028c_step2_metrics\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-16T00:01:25.440866+00:00\\\", \\\"ended_at\\\": \\\"2026-05-16T00:04:05.947458+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_research_literature-scan_20260516T000327\\\", \\\"task_type\\\": \\\"research:literature-scan\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-16T00:03:27.799781+00:00\\\", \\\"ended_at\\\": \\\"2026-05-16T00:16:08.077714+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_check_exp028c_status_20260516T000951\\\", \\\"task_type\\\": \\\"check:exp028c_status\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-16T00:09:51.140062+00:00\\\", \\\"ended_at\\\": \\\"2026-05-16T00:14:21.119412+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_fix_literature-map-authors-batch2_20260516T001844\\\", \\\"task_type\\\": \\\"fix:literature-map-authors-batch2\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-16T00:18:44.495206+00:00\\\", \\\"ended_at\\\": \\\"2026-05-16T00:19:38.687470+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_check_exp028c_step5_review_20260516T023032\\\", \\\"task_type\\\": \\\"check:exp028c_step5_review\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-16T02:30:33.041194+00:00\\\", \\\"ended_at\\\": \\\"2026-05-16T02:33:43.089830+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_monitor_exp028c_step5_val_20260516T024501\\\", \\\"task_type\\\": \\\"monitor:exp028c_step5_val\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"cancelled\\\", \\\"started_at\\\": \\\"2026-05-16T02:45:02.12\n…[truncated 954 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 201
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T02:57:05.244883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "cost-verify-agent-rl",
+              "section": "execution"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T02:57:05.295277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"project_path\\\": \\\"/root/cost-verify-agent-rl\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-17606\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 50
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T02:57:08.959524+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T02:57:09.060411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T02:57:11.269168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T02:57:11.470320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}], \\\"actually_running_gpus\\\": [], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null}, {\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"idle_min\\\": null}], \\\"running_experiments\\\": [], \\\"worker_pool\\\": {\\\"total\\\": 1, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 1, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_check_exp028c_latest_status_20260516T025544\\\", \\\"task\\\": \\\"check:exp028c_latest_status\\\"}]}, \\\"summary\\\": \\\"分配 2 张, 实际跑 0 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 201
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T02:58:13.006485+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **bjb1-17606 cuda:0 + cuda:1**（2× RTX PRO 6000 Blackwell 98GB）。白名单外的 GPU 一律 push back Director\n- exp028c 是 MVP 生死实验，**不得中断**（PID 824675）。任何服务器操作前确认不影响此进程\n- MVP 判定阈值硬编码（D037）：<20% fail，20-25% weak pass，30%+ strong pass。**不可自行降低标准**\n- 论文 framing 是 **cost-efficiency story**（D039），不是 performance story。任何汇报/分析不要用 SOTA 对比叙事\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/activate` 或对应 conda 路径），不假设 .venv\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-17606，account=root\n- **工作目录**：/root/cost-verify-agent-rl（RAGEN 框架）\n- **Python**：/root/miniconda3/bin/python（conda base 环境）\n- **模型路径**：SFT checkpoint = /root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/（exp028c 的起点）\n- **数据**：ALFWORLD_DATA=/root/autodl-tmp/alfworld，train 数据 = AlfworldSG env_configs（128 条）\n- **W&B**：exp028c run ID = 4yu6qz1m\n- **活跃进程**：exp028c PID=824675，tmux session（推测 exp028c 相关），cuda:0+cuda:1\n- **Cron**：exp028c_selfguide_recipe 活跃（reconcile 确认 pid=824675 仍在运行）\n- **活跃 Worker**：worker_check_exp028c_latest_status（running，正在检查最新状态）\n\n### 3. 📊 当前状态\n**exp028c_selfguide_recipe 正在训练**（Self-Guide recipe 全面对齐，100 步）。已完成到 step 4，指标趋势：\n\n| step | success | pass_at_8 | action_is_valid | kl_loss |\n|------|---------|-----------|-----------------|---------|\n| 0 (val) | 6.25% | — | 74.5% | — |\n| 1 (train) | 13.28% | 37.5% | 76.4% | 0.013 |\n| 2 (train) | 6.25% | 25% | 83.2% | 0.017 |\n| 3 (train) | 15.63% | 68.75% | 85.9% | 0.112 |\n| 4 (train) | 18.75% | 62.5% | 87.9% | 0.031 |\n\n**关键观察**：step 4 success=18.75%，距 MVP 20% 阈值仅 1.25pp。趋势非单调（step 2 回落到 6.25% 后反弹）。action_is_valid 持续上升（74.5→87.9%），说明模型在学习有效行动。kl_loss step 3 有一次 spike（0.112）但 step 4 回落。\n\n**等待中**：\n- Cron 回调：exp028c 后续 step 指标（step 5+ 的 val 结果是关键——train metrics 不等于 val）\n- Worker：worker_check_exp028c_latest_status 正在运行，可能带回 step 5+ 数据\n- 无 Director 待决策项\n\n**项目总览**：35 个实验，成功 3 / 负向 5 / 失败 18。大量历史 PREPARING 状态实验已被废弃（conclusion=failed/killed），是早期迭代遗留。\n\n### 4. 📋 待办（条件触发式）\n- **exp028c cron 回调到达** → 读 metrics，按 D037 三层阈值判定：\n  - val success ≥30% → strong pass → `complete_mvp()` → 汇报 Director 进入 Phase B\n  - val success 20-25% → weak pass → 汇报 Director，建议继续跑完 100 步看是否稳定\n  - val success <20% → 继续等后续 step；如 100 步跑完仍 <20% → MVP fail → 汇报 Director 评估项目可行性\n- **exp028c train success 持续 ≥20%（多步稳定）** → 重点关注 val 是否同步，train≠val\n- **exp028c 训练崩溃/失败** → 读 on-experiment-failed skill → 诊断 → 汇报 Director\n- **exp028c 100 步全部完成** → 全面分析 → 按 on-experiment-done skill 分叉处理\n- **Worker pool <2 且有 CPU 任务可做** → 派 Worker 做 Phase B 前置准备（<VERIFY> token 方案、a_pre 推理开销量化）或文献扫描\n\n### 5. 🎯 战略上下文\n**核心决策链**：D037（MVP 阈值）→ D039（cost-efficiency framing）→ D044（recipe gap 三大根因）→ D050（全面对齐 Self-Guide recipe → exp028c）\n\n**项目处于 MVP 生死关头**。exp028c 是第三次尝试通过 MVP（exp027 failed at 13.28%, exp028a killed）。这次全面对齐了 Self-Guide 论文的 recipe（9 项参数改动），step 4 train success 已到 18.75%，是历史最好。但 **train metrics 不可信作为 MVP 判定**——必须等 val 结果（test_freq=5，step 5 会有 val）。\n\n**易错点**：\n1. **不要把 train success 当 val success 汇报**。exp027 的教训：train 可以到 13.28% 但 val 完全不同\n2. **step 2 的回落（6.25%）不代表训练失败**——Self-Guide 论文也有非单调曲线，整体趋势向上即可\n3. **kl_loss step 3 spike（0.112 vs 正常 0.01-0.03）**——如果后续 KL 持续走高，可能需要介入（但 step 4 已回落，暂时不需要）\n4. **resource usage 显示 GPU idle**——这是监控系统 lag，reconcile 已确认 PID 存活，不要误判为实验停了\n5. **老实验（exp019c/020c/020d/021 等）状态是 PREPARING 但 conclusion=failed/killed**——这些是历史遗留，不需要处理，不要试图重启它们\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp027_stable_grpo"
+          },
+          "id": "event-000066"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp027-stable-grpo-20260516t025813-008312.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45156a548730ab13ba28",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp028c status",
+  "task_key": "worker_check_exp028c_status_20260516T000951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp028c_status_20260516T000951_result.json",
+    "occurrence": 1,
+    "bytes": 2209,
+    "sha256": "851e235395586166c0491ed8493b3d1a7522b79604133035aab5169135f1e684"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full report.\n\n---\n\n## exp028c_selfguide_recipe — 训练状态报告\n\n### 进程状态\n- **PID 824675**: 存活，已运行 2h34m\n- **GPU**: cuda:0 96%, cuda:1 95%, 各使用 29GB / 98GB VRAM — 满载运行\n- 日志最后输出 07:50:59 +0800（输出缓冲，实际仍在计算）\n\n---\n\n### 已完成 Step Metrics\n\n| Metric | Step 0 (val baseline) | Step 1 (train) | Log-W&B 一致 |\n|--------|----------------------|----------------|-------------|\n| success | 6.25% | **13.28%** | ✓ |\n| pass@8 / pass@1 | pass@1: 6.25% | pass@8: **37.5%** | ✓ |\n| action_is_valid | 74.49% | **76.43%** | ✓ |\n| kl_loss | — | 0.01280 | ✓ |\n| entropy | — | 0.2634 | ✓ |\n| grad_norm | — | 16.88 | ✓ |\n| pg_loss | — | 0.00828 | ✓ |\n| ppo_kl | — | 0.01921 | ✓ |\n| pg_clipfrac | — | 4.44% | ✓ |\n| critic/score/mean | — | 0.843 | ✓ |\n| time_per_step | — | 3252s (~54min) | ✓ |\n\n**Step 1 日志与 W&B 完全一致，交叉验证通过。**\n\n---\n\n### Step 2 验证结论: `still_in_progress`\n\n- 日志和 W&B 均只有 step 0（val）和 step 1（train），**无 step 2 数据**\n- W&B `_step: 1` 确认最新已记录 step 为 1\n- 日志中 18,267 行 \"Skipping non-numeric metric\" 警告（07:50:59 +0800）表明 step 2 rollout 已完成，当前正在 compute 阶段（old_log_prob → ref → update_actor）\n- **Registry 中 step_2_train success=6.25% 不可信** — 该值与 step_0 val success 完全一致，疑为混淆。step 2 真实 metrics 尚未产出\n- 预计 step 2 完成时间：~08:25 +0800（基于 step 1 compute 阶段 ~35min）\n\n---\n\n### 异常信号检查\n\n- **grad_norm 16.88**: 正常（pre-clip 值，clip_grad=1.0 会截断）\n- **kl_loss 0.0128**: 健康水位，远低于警戒线\n- **entropy 0.2634**: 偏低但 Qwen3 模型典型值\n- **pg_clipfrac 4.44%**: 保守更新（lr=1e-6 符合预期）\n- **无 collapse / loss spike / gradient explosion 信号**\n\n---\n\n### 进度与 ETA\n\n| 指标 | 值 |\n|------|-----|\n| 已完成 steps | 1 / 100 (1%) |\n| 每 step 耗时 | ~54 min |\n| 总预计耗时 | ~90 hours |\n| 剩余耗时 | ~89 hours (~3.7 天) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp028c-status.md"
+}

@@ -1,0 +1,605 @@
+baseline: null
+experiments:
+  datagen_traj_part0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T12:03:35.667Z'
+    updated_at: '2026-05-12T13:06:21.541Z'
+    spec:
+      command: bash -c "source /etc/network_turbo; source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && cd /root/autodl-tmp/error_diag_dpo_recovery && python
+        src/collect_trajectories.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-8B
+        --output_dir data/trajectories --split train --temperature 0.7 --max_steps
+        40 --gpu 0 --num_tasks 500 --part_num 2 --part_idx 0"
+      server: cqa1-21977
+      gpu:
+      - cuda:0
+      pid: '81234'
+      log_path: ~/runs/error_diag_dpo_recovery/datagen_traj_part0.log
+      submitted_at: '2026-05-12T12:03:47.680Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      conclusion: failed
+      checkpoint_path: N/A
+      wall_clock_seconds: 3753.9
+      gpu_hours: 1.04
+    conclusion: failed
+    completed_at: '2026-05-12T13:06:21.541Z'
+  datagen_traj_part1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T12:03:35.749Z'
+    updated_at: '2026-05-12T13:06:22.432Z'
+    spec:
+      command: bash -c "source /etc/network_turbo; source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && cd /root/autodl-tmp/error_diag_dpo_recovery && python
+        src/collect_trajectories.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-8B
+        --output_dir data/trajectories --split train --temperature 0.7 --max_steps
+        40 --gpu 0 --num_tasks 500 --part_num 2 --part_idx 1"
+      server: cqa1-21977
+      gpu:
+      - cuda:1
+      pid: '81312'
+      log_path: ~/runs/error_diag_dpo_recovery/datagen_traj_part1.log
+      submitted_at: '2026-05-12T12:03:49.459Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      conclusion: failed
+      checkpoint_path: N/A
+      wall_clock_seconds: 3753.0
+      gpu_hours: 1.04
+    conclusion: failed
+    completed_at: '2026-05-12T13:06:22.432Z'
+  datagen_traj_v2_part0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T12:45:45.796Z'
+    updated_at: '2026-05-12T14:29:02.849Z'
+    spec:
+      command: screen -dmS traj_p0 ... python src/collect_trajectories.py --num_tasks
+        500 --part_num 2 --part_idx 0
+      server: cqa1-21977
+      data_path: /root/autodl-tmp/alfworld_data
+      data_count: 250
+      model_name: Qwen3-8B
+      seed: 0
+      hypothesis: 收集 ALFWorld 失败轨迹用于错误分类（v2 screen 重启）
+      checkpoint_path: /root/autodl-tmp/error_diag_dpo_recovery/data/trajectories/train_part0.jsonl
+      log_path: N/A
+    conclusion: failed
+    completed_at: '2026-05-12T14:29:02.849Z'
+  datagen_traj_v2_part1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T12:45:46.435Z'
+    updated_at: '2026-05-12T14:29:03.082Z'
+    spec:
+      command: screen -dmS traj_p1 ... python src/collect_trajectories.py --num_tasks
+        500 --part_num 2 --part_idx 1
+      server: cqa1-21977
+      data_path: /root/autodl-tmp/alfworld_data
+      data_count: 250
+      model_name: Qwen3-8B
+      seed: 0
+      hypothesis: 收集 ALFWorld 失败轨迹用于错误分类（v2 screen 重启）
+      checkpoint_path: /root/autodl-tmp/error_diag_dpo_recovery/data/trajectories/train_part1.jsonl
+      log_path: N/A
+    conclusion: failed
+    completed_at: '2026-05-12T14:29:03.082Z'
+  datagen_traj_v3_collect:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T15:35:37.311Z'
+    updated_at: '2026-05-12T16:08:17.226Z'
+    spec:
+      hypothesis: 修复 action 翻译后用 8B 重新收集 200+ ALFWorld 轨迹，预期 30-50% 成功率产生多样化 success/failure
+        数据
+      model_name: Qwen3-8B (4-bit NF4)
+      server: cqa1-21977
+      data_path: data/trajectories_v3/train.jsonl
+      data_count: 250
+      seed: N/A
+      command: CUDA_VISIBLE_DEVICES=0 python src/collect_trajectories.py --model_name
+        /root/autodl-tmp/.hf_cache/Qwen3-8B --output_dir data/trajectories_v3 --split
+        train --temperature 0.7 --max_steps 40 --gpu 0 --num_tasks 250
+      checkpoint_path: N/A
+      log_path: /root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v3/collect.log
+      failure_reason: 250-task收集崩溃，train.jsonl=0字节，PID 196499已退出
+    conclusion: failed
+    completed_at: '2026-05-12T15:55:26.931Z'
+    notes: PID 230954 killed by Director P0 指令：episode boundary bug 未修复，产生有毒数据。多任务
+      episode 串联到同一 conversation，reward/error_type/correction_horizon 全部不可信。已派 Worker
+      修复 bug 并重新收集。
+  datagen_classify_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T15:35:39.699Z'
+    updated_at: '2026-05-12T22:50:15.021Z'
+    spec:
+      hypothesis: 修复 format_trajectory ICL 前缀 bug 后重新分类错误，预期 error type 分布更均衡
+      model_name: Qwen3-14B-AWQ
+      server: cqa1-21977
+      data_path: data/trajectories_v5_combined/train.jsonl
+      data_count: 500
+      seed: 42
+      command: CUDA_VISIBLE_DEVICES=0 python src/classify_errors.py --failure_dir
+        data/trajectories_v5_combined/ --expert_file data/alfworld_sft.json --output_file
+        data/classified/v5_full_classified.jsonl --model_name /root/autodl-tmp/.hf_cache/Qwen3-14B-AWQ
+        --gpu 0
+      checkpoint_path: /root/autodl-tmp/error_diag_dpo_recovery/data/classified/
+      log_path: /root/autodl-tmp/error_diag_dpo_recovery/logs/
+    notes: 'v5 全量 LLM 分类完成 (Qwen3-14B-AWQ, 251 items, ~20min)。
+
+
+      ## Post-process 结果
+
+      500 total → 187 true_success (37.4%), 4 truncated_success (CSF), 309 true_failure
+
+      309 failures 中: 91 PCB pattern, 218 non-CSF; 251/309 matched expert (58 unmatched)
+
+
+      ## LLM 分类分布 (llm_original_type)
+
+      planning=247 (98.4%), action=4 (1.6%), verification=0
+
+
+      ## PCB Override 后分布 (error_type)
+
+      planning=167 (66.5%), verification=82 (32.7%), action=2 (0.8%)
+
+      82 PCB items: 80 planning→verification, 2 action→verification
+
+
+      ## 三版 KW 分析
+
+      with_override (Full N=251): H=2.23, p=0.135, ordinal=✓ (action 7.5 < verif 10.4
+      < planning 11.3)
+
+      with_override (Dedup N=144): H=1.33, p=0.249, ordinal=✓
+
+      without_override (Full N=251): H=0.15, p=0.698, ordinal=✗
+
+      without_override (Dedup N=144): H=0.08, p=0.778, ordinal=✗
+
+      pcb_excluded (Full/Dedup): SKIPPED (action N=2, <3)
+
+
+      ## Task-type stratified (with_override)
+
+      0/6 significant, 2 insufficient (look_at_obj N=4, pick_and_place N=21)
+
+
+      ## P1 GATE: FAIL ✗
+
+      with_override not significant (p=0.135), 根本原因: action 组 N=2 太小, LLM 几乎全判 planning
+
+
+      ## Alt Metrics 分析 (2026-05-12)
+
+      5 种替代指标全部无法建立 ordinal ordering + significance。
+
+      - norm_correction_span/divergence_ratio: 数学伪影（88% step-1 diverge → 值恒为 1.0）
+
+      - model_post_div_diversity: 唯一真实发现但方向反序（verif 7.0 > planning 6.0），仅 PCB override
+      条件下显著
+
+      - action 组 n=2 使所有三组对比不可靠
+
+      - 结论：替代指标不构成 P1 backup 路径
+
+
+      ## Span Hint 对比实验 (D025, 2026-05-12)
+
+      8 条 v5 样本，有/无 span hint 两版分类完全一致（0 条差异）。
+
+      LLM 在两版中均将全部 8 条归 planning。span hint 不是 98% planning 的根因——14B-AWQ 本身就倾向把 ALFWorld
+      失败归为 planning。
+
+      输出：outputs/classify_compare_with_hint_20.jsonl, outputs/classify_compare_no_hint_20.jsonl'
+    metrics:
+      total_trajectories: 500
+      true_success: 187
+      truncated_success: 4
+      true_failure: 309
+      pcb_count: 82
+      matched_for_classify: 251
+      unmatched: 58
+      llm_original_planning: 247
+      llm_original_action: 4
+      llm_original_verification: 0
+      error_type_planning: 167
+      error_type_verification: 82
+      error_type_action: 2
+      kw_with_override_H: 2.2345
+      kw_with_override_p: 0.13496
+      kw_with_override_ordinal: true
+      kw_without_override_H: 0.1506
+      kw_without_override_p: 0.698003
+      kw_pcb_excluded: SKIPPED
+      p1_gate: FAIL
+      correction_span_action_mean: 7.5
+      correction_span_verification_mean: 10.44
+      correction_span_planning_mean: 11.34
+      task_type_significant: 0
+      task_type_total: 6
+    conclusion: negative
+    completed_at: '2026-05-12T21:55:13.989Z'
+  datagen_traj_v4_cuda1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T16:28:04.776Z'
+    updated_at: '2026-05-12T16:38:48.894Z'
+    spec:
+      command: CUDA_VISIBLE_DEVICES=1 python src/collect_trajectories.py --model_name
+        /root/autodl-tmp/.hf_cache/Qwen3-8B --output_dir data/trajectories_v4_cuda1
+        --split train --temperature 0.7 --max_steps 40 --gpu 0 --num_tasks 250
+      server: cqa1-21977
+      data_path: /root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v4_cuda1/train.jsonl
+      model_name: Qwen3-8B
+      pid: 253522
+      log_path: /tmp/collect_traj_v4_cuda1.log
+      description: D014 temperature sampling failure trajectory collection on cuda:1,
+        episode boundary fix applied
+      data_count: 250
+      seed: 0
+    checkpoint_path: /root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v4_cuda1/train.jsonl
+    log_path: /tmp/collect_traj_v4_cuda1.log
+    conclusion: failed
+    completed_at: '2026-05-12T16:32:23.659Z'
+    metrics:
+      planned: 250
+      completed: 1
+      success: 0
+      failure: 1
+      file_size_bytes: 19445
+      failure_reason: Process exited silently after 1st trajectory (PID 253522), no
+        error in log, possible OOM or uncaught exception with stderr not redirected
+  datagen_traj_v4_cuda0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T16:36:53.768Z'
+    updated_at: '2026-05-12T17:23:16.916Z'
+    spec:
+      command: CUDA_VISIBLE_DEVICES=0 python src/collect_trajectories.py --model_name
+        /root/autodl-tmp/.hf_cache/Qwen3-8B --output_dir /root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v4_cuda0
+        --split train --temperature 0.7 --gpu 0 --num_tasks 250
+      server: cqa1-21977
+      data_path: /root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v4_cuda0/train.jsonl
+      data_count: 250
+      model_name: Qwen3-8B
+      seed: null
+      pid: 257739
+      log_path: /root/autodl-tmp/error_diag_dpo_recovery/traj_v4_cuda0.log
+    conclusion: failed
+    completed_at: '2026-05-12T16:39:12.415Z'
+    notes: ⚠️ 状态误标：cron 误判为 failed，但 PID 257739 实际正常运行中。后被 v5 替代。残留 4 行数据已移至 trajectories_v4_cuda0_residual（2026-05-12T17:22）。
+  datagen_traj_v5_cuda0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T16:51:53.773Z'
+    updated_at: '2026-05-12T21:16:55.203Z'
+    spec:
+      command: CUDA_VISIBLE_DEVICES=0 nohup python src/collect_trajectories.py --num_tasks
+        250 --temperature 0.7 --gpu 0 --output_dir data/trajectories_v5_cuda0 > /tmp/v5_cuda0.log
+        2>&1 &
+      server: cqa1-21977
+      data_path: /root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v5_cuda0/train.jsonl
+      data_count: 125
+      model_name: Qwen3-8B
+      seed: N/A (no seed parameter in script)
+      pid: 266200
+      log_path: /tmp/v5_cuda0.log
+    notes: Task overlap 验证完成：v5 失败 task 与 expert SFT 100% overlap (20/20)。Expert 覆盖
+      1395 unique tasks，远超 v5 当前 40 tasks。pick_heat_then_place 是失败最集中类型 (10/20, 0%
+      SR)。DPO pair 构建可行。
+    conclusion: success
+    checkpoint_path: /root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v5_cuda0/train.jsonl
+    completed_at: '2026-05-12T21:16:41.786Z'
+    metrics:
+      total: 250
+      success: 94
+      failure: 156
+      success_rate: 0.376
+  datagen_traj_v5_cuda1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T16:51:54.226Z'
+    updated_at: '2026-05-12T21:16:56.018Z'
+    spec:
+      command: python src/collect_trajectories.py --num_tasks 250 --temperature 0.7
+        --gpu 1 --output_dir data/trajectories_v5_cuda1
+      server: cqa1-21977
+      data_path: /root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v5_cuda1/train.jsonl
+      data_count: 134
+      model_name: Qwen3-8B
+      seed: N/A (no seed parameter in script)
+      pid: 263025
+      log_path: /tmp/collect_v5_cuda1.log
+    conclusion: success
+    checkpoint_path: /root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v5_cuda1/train.jsonl
+    completed_at: '2026-05-12T21:16:42.187Z'
+    metrics:
+      total: 250
+      success: 93
+      failure: 157
+      success_rate: 0.372
+  datagen_v6_icl_cuda0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T21:56:24.809Z'
+    updated_at: '2026-05-13T02:38:44.435Z'
+    spec:
+      command: python src/collect_trajectories_icl.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-14B-AWQ
+        --gpu 0 --num_tasks 300 --seed 42 --part_num 2 --part_idx 0 --output_dir data/trajectories_v6_icl_cuda0
+      server: cqa1-21977
+      model_name: /root/autodl-tmp/.hf_cache/Qwen3-14B-AWQ
+      seed: 42
+      data_path: data/trajectories_v6_icl_cuda0
+      data_count: 300
+      hypothesis: ICL few-shot 提升模型能力，产生更多样化错误模式（特别是 action error），补充 P1 gate 所需的
+        action 组样本
+      tmux_session: v6_icl_cuda0
+      log_path: logs/v6_icl_cuda0.log
+      part_num: 2
+      part_idx: 0
+    conclusion: failed
+    notes: 服务器项目目录被删除，进程和数据全部丢失。需要重新收集。
+    completed_at: '2026-05-13T02:38:44.435Z'
+  datagen_v6_icl_cuda1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T21:56:47.289Z'
+    updated_at: '2026-05-13T02:38:45.697Z'
+    spec:
+      command: python src/collect_trajectories_icl.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-14B-AWQ
+        --gpu 1 --num_tasks 300 --seed 42 --part_num 2 --part_idx 1 --output_dir data/trajectories_v6_icl_cuda1
+      server: cqa1-21977
+      model_name: Qwen/Qwen3-14B-AWQ
+      seed: 42
+      data_path: data/trajectories_v6_icl_cuda1/train_part1.jsonl
+      data_count: 300
+      hypothesis: ICL few-shot 提升模型能力，产生更多样化错误模式（特别是 action error），补充 P1 gate 所需的
+        action 组样本
+      pid: 633155
+    conclusion: failed
+    notes: 服务器项目目录被删除，进程和数据全部丢失。需要重新收集。
+    completed_at: '2026-05-13T02:38:45.697Z'
+  p1_divergence_timing_v1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T23:44:12.551Z'
+    updated_at: '2026-05-12T23:44:57.832Z'
+    spec:
+      hypothesis: 'P1 pivot: correction span differs by divergence timing (early/mid/late)
+        instead of error type'
+      command: python analyze_p1_divergence_timing.py on v5+v6 partial data
+      server: cqa1-21977
+      data_path: data/classified/ + data/trajectories_v6_icl_*.jsonl
+      data_count: 276
+      model_name: N/A (no LLM needed)
+      seed: 0
+      checkpoint_path: outputs/p1_divergence_timing.json
+      log_path: outputs/
+    conclusion: negative
+    completed_at: '2026-05-12T23:44:22.209Z'
+    metrics:
+      total_records: 276
+      v5_records: 251
+      v6_records: 25
+      early_n: 262
+      mid_n: 12
+      late_n: 2
+      early_median_cs: 7
+      mid_median_cs: 5
+      late_median_cs: 2.5
+      kw_H: 20.76
+      kw_p: 5.0e-06
+      ordinal_holds: true
+      p1_gate: PASS
+      mw_early_gt_mid_p: 3.0e-06
+      early_pct: 94.9
+      caveat: 95% early, 2 late samples only
+    notes: 'D029 Reviewer critical: P1 divergence timing KW 是代数恒等式 (correction_span
+      = expert_length - div_point)，p≈0 不是实证发现。结果作废。P1 降级为描述性分析，P2 (ETADN > single-γ
+      ≥3%) 成为唯一 MVP gate。'
+  datagen_v7_icl_cuda0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T03:28:25.622Z'
+    updated_at: '2026-05-13T06:57:54.376Z'
+    spec:
+      command: python src/collect_trajectories_icl.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-14B-AWQ
+        --expert_file data/alfworld_sft.json --gpu 0 --num_tasks 300 --seed 42 --part_num
+        2 --part_idx 0 --output_dir data/trajectories_v7_icl_cuda0
+      server: cqa1-21977
+      model_name: Qwen3-14B-AWQ
+      seed: 42
+      data_path: data/trajectories_v7_icl_cuda0
+      data_count: 300
+      hypothesis: v7 ICL data collection (disaster recovery), DPO training data for
+        P2 MVP gate
+      pid: 838043
+    conclusion: failed
+    notes: 'D030: temperature regression bug (0.5→0.7), killed and restarted as v8'
+    completed_at: '2026-05-13T06:57:54.376Z'
+  datagen_v7_icl_cuda1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T03:28:27.173Z'
+    updated_at: '2026-05-13T06:57:55.284Z'
+    spec:
+      command: python src/collect_trajectories_icl.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-14B-AWQ
+        --expert_file data/alfworld_sft.json --gpu 0 --num_tasks 300 --seed 42 --part_num
+        2 --part_idx 1 --output_dir data/trajectories_v7_icl_cuda1
+      server: cqa1-21977
+      model_name: Qwen3-14B-AWQ
+      seed: 42
+      data_path: data/trajectories_v7_icl_cuda1
+      data_count: 300
+      hypothesis: v7 ICL data collection (disaster recovery), DPO training data for
+        P2 MVP gate
+      pid: 838422
+    conclusion: failed
+    notes: 'D030: temperature regression bug (0.5→0.7), killed and restarted as v8'
+    completed_at: '2026-05-13T06:57:55.284Z'
+  datagen_v8_icl_cuda0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T06:54:18.623Z'
+    updated_at: '2026-05-13T07:33:59.110Z'
+    spec:
+      command: python src/collect_trajectories_icl.py --temperature 0.5 --model_name
+        /root/autodl-tmp/.hf_cache/Qwen3-14B-AWQ --expert_file data/alfworld_sft.json
+        --gpu 0 --num_tasks 300 --seed 42 --part_num 2 --part_idx 0 --output_dir data/trajectories_v8_icl_cuda0
+      server: cqa1-21977
+      gpu:
+      - cuda:0
+      pid: 763657
+      log_path: ~/runs/error_diag_dpo_recovery/datagen_v8_icl_cuda0.log
+      submitted_at: '2026-05-13T06:55:58.890Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      model_name: Qwen3-14B-AWQ
+      seed: 42
+      data_path: data/trajectories_v8_icl_cuda0
+      data_count: 300
+      hypothesis: v8 ICL data collection (temperature=0.5 fix), DPO training data
+        for P2 MVP gate
+      wall_clock_seconds: 2082.8
+      gpu_hours: 0.58
+    notes: 'D031: 0% SR (14/14 全部失败), killed for diagnosis. 灾难恢复重建脚本有 temperature
+      以外的 regression bug。'
+    conclusion: failed
+    completed_at: '2026-05-13T07:30:41.642Z'
+  datagen_v8_icl_cuda1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T06:54:20.770Z'
+    updated_at: '2026-05-13T07:33:59.697Z'
+    spec:
+      command: python src/collect_trajectories_icl.py --temperature 0.5 --model_name
+        /root/autodl-tmp/.hf_cache/Qwen3-14B-AWQ --expert_file data/alfworld_sft.json
+        --gpu 0 --num_tasks 300 --seed 42 --part_num 2 --part_idx 1 --output_dir data/trajectories_v8_icl_cuda1
+      server: cqa1-21977
+      gpu:
+      - cuda:1
+      pid: 764025
+      log_path: ~/runs/error_diag_dpo_recovery/datagen_v8_icl_cuda1.log
+      submitted_at: '2026-05-13T06:56:01.344Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      model_name: Qwen3-14B-AWQ
+      seed: 42
+      data_path: data/trajectories_v8_icl_cuda1
+      data_count: 300
+      hypothesis: v8 ICL data collection (temperature=0.5 fix), DPO training data
+        for P2 MVP gate
+      wall_clock_seconds: 2096.7
+      gpu_hours: 0.58
+    notes: 'D031: 0% SR (14/14 全部失败), killed for diagnosis. 灾难恢复重建脚本有 temperature
+      以外的 regression bug。'
+    conclusion: failed
+    completed_at: '2026-05-13T07:30:58.061Z'
+  datagen_v9_icl_cuda0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T08:17:25.628Z'
+    updated_at: '2026-05-14T17:57:21.031Z'
+    spec:
+      command: bash -c "cd /root/autodl-tmp/error_diag_dpo_recovery && source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && python artifacts/collect_trajectories_icl.py --model_name
+        /root/autodl-tmp/.hf_cache/Qwen/Qwen3-14B-AWQ --expert_file data/alfworld_sft.json
+        --output_dir data/trajectories_v9_icl_cuda0 --temperature 0.5 --gpu 0 --part_num
+        3 --part_idx 0 --seed 42"
+      server: cqa1-21977
+      gpu:
+      - cuda:0
+      pid: '884782'
+      log_path: ~/runs/error_diag_dpo_recovery/datagen_v9_icl_cuda0.log
+      submitted_at: '2026-05-13T08:17:25.599Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      model_name: Qwen3-14B-AWQ
+      seed: 42
+      data_path: data/trajectories_v9_icl_cuda0
+      data_count: ~200 (part 0/3 of train split)
+      hypothesis: v9 ICL collection with put→move fix, temperature=0.5, for P2 MVP
+        gate DPO training data
+      wall_clock_seconds: 121195.4
+      gpu_hours: 33.67
+    notes: 'v9 ICL 数据收集（D032 fix: put→move translation + max_new_tokens=2048 + episode
+      boundary detection）。Dry-run 2/2 100% SR。'
+    failure_reason: EXIT_CODE=143 (SIGTERM — graceful kill)
+    conclusion: failed
+    completed_at: '2026-05-14T17:57:21.031Z'
+  datagen_v9_icl_cuda1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T08:17:27.562Z'
+    updated_at: '2026-05-14T17:57:22.359Z'
+    spec:
+      command: bash -c "cd /root/autodl-tmp/error_diag_dpo_recovery && source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && python artifacts/collect_trajectories_icl.py --model_name
+        /root/autodl-tmp/.hf_cache/Qwen/Qwen3-14B-AWQ --expert_file data/alfworld_sft.json
+        --output_dir data/trajectories_v9_icl_cuda1 --temperature 0.5 --gpu 0 --part_num
+        3 --part_idx 1 --seed 42"
+      server: cqa1-21977
+      gpu:
+      - cuda:1
+      pid: '885180'
+      log_path: ~/runs/error_diag_dpo_recovery/datagen_v9_icl_cuda1.log
+      submitted_at: '2026-05-13T08:17:27.532Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      model_name: Qwen3-14B-AWQ
+      seed: 42
+      data_path: data/trajectories_v9_icl_cuda1
+      data_count: ~200 (part 1/3 of train split)
+      hypothesis: v9 ICL collection with put→move fix, temperature=0.5, for P2 MVP
+        gate DPO training data
+      wall_clock_seconds: 121194.8
+      gpu_hours: 33.67
+    notes: 'v9 ICL 数据收集（D032 fix: put→move translation + max_new_tokens=2048 + episode
+      boundary detection）。Dry-run 2/2 100% SR。'
+    failure_reason: EXIT_CODE=143 (SIGTERM — graceful kill)
+    conclusion: failed
+    completed_at: '2026-05-14T17:57:22.359Z'
+  datagen_v9_icl_cuda4:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T08:17:29.513Z'
+    updated_at: '2026-05-14T17:57:23.688Z'
+    spec:
+      command: bash -c "cd /root/autodl-tmp/error_diag_dpo_recovery && source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && python artifacts/collect_trajectories_icl.py --model_name
+        /root/autodl-tmp/.hf_cache/Qwen/Qwen3-14B-AWQ --expert_file data/alfworld_sft.json
+        --output_dir data/trajectories_v9_icl_cuda4 --temperature 0.5 --gpu 0 --part_num
+        3 --part_idx 2 --seed 42"
+      server: cqa1-21977
+      gpu:
+      - cuda:4
+      pid: '885698'
+      log_path: ~/runs/error_diag_dpo_recovery/datagen_v9_icl_cuda4.log
+      submitted_at: '2026-05-13T08:17:29.480Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      model_name: Qwen3-14B-AWQ
+      seed: 42
+      data_path: data/trajectories_v9_icl_cuda4
+      data_count: ~200 (part 2/3 of train split)
+      hypothesis: v9 ICL collection with put→move fix, temperature=0.5, for P2 MVP
+        gate DPO training data
+      wall_clock_seconds: 121194.2
+      gpu_hours: 33.67
+    notes: 'v9 ICL 数据收集（D032 fix: put→move translation + max_new_tokens=2048 + episode
+      boundary detection）。Dry-run 2/2 100% SR。'
+    failure_reason: EXIT_CODE=143 (SIGTERM — graceful kill)
+    conclusion: failed
+    completed_at: '2026-05-14T17:57:23.689Z'

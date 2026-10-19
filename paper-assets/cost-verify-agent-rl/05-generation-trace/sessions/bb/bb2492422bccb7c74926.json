@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb2492422bccb7c74926",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research verify competitors and update",
+  "task_key": "worker_research_verify-competitors-and-update_20260517T123836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verify-competitors-and-update_20260517T123836_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "52ae2f14875983cf9f42bdbc7c9e56afb2ebb102af63a1347fd714323d9f121a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件全部写入完成。总结：\n\n## 产出\n\n1. **验证报告** → `artifacts/competitor_verification_20260517.md`\n   - 6 篇论文全部验证通过（5 篇新验证 + HiPER 实验设置确认）\n   - 修正：GAGPO 标题为 \"Generalized Advantage\"（非 \"Grouped Value Proxy\"，后者是方法术语）；MT-GRPO 不含 ALFWorld 评测（在 QA 数据集上）；iStar 也不含 ALFWorld（在 WebShop/VisualSokoban/SOTOPIA 上）\n\n2. **literature_map.yaml** → 新增 Direction 5 \"Multi-Turn Credit Assignment\" 分区，7 个 entries：\n   - Turn-PPO, GAGPO, MT-GRPO, iStar → `direct-competitor`\n   - ArCHer → `method-component/predecessor`\n   - CA Survey → `background`\n   - HiPER → `method-component/background`\n\n3. **paper_framing.md** → Competitive Positioning 表格从 5 行扩展到 11 行，新增 Positioning Strategy 段落（contrarian solution 差异化 + 4 点论述）。Reviewer Attack Surface 新增 #9（Turn-PPO 已解决相同问题）。\n\n`register_artifact` 工具不可用，验证报告已直接写入 artifacts 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verify-competitors-and-update.md"
+}

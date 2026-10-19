@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63493f856432b61cf4e5",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_11_1778879012.md",
+  "task_key": "loop_11_1778879012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778879012.md",
+    "occurrence": 1,
+    "bytes": 4114,
+    "sha256": "575faab1ea57eab45e14369dbab3879e320d600f713ec1795a730b29aa9fca77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T20:39:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 cuda:0, cuda:1（仅 2 卡 RTX PRO 6000 Blackwell 98GB）。禁止用其他 GPU\n- exp027_stable_grpo 正在 cuda:0+1 跑，PID 789790，tmux: exp027_stable_grpo。**不要 kill 它**\n- Director 指令 D042：exp027 跑到 step 10 评估（后改为 step 5 early-stop），不要提前终止\n- MVP 判定阈值 D037：<20% fail，20-25% weak pass，30%+ strong pass\n- 论文 framing 锁定 D039：cost-efficiency story，**不是** performance story。禁止拿 ALFWorld SOTA 比性能\n- exp028 config 正在被 2 个 Worker 并行准备（Recipe Gap 修复），不要重复派 Worker 做同样的事——先查 Worker 状态\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，SSH account: root\n- 工作目录：/root/cost-verify-agent-rl\n- Python：/root/miniconda3/bin/python（conda base 环境，**不是 venv**）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 框架：verl-agent（RAGEN fork），GRPO 训练\n- 模型：Qwen3-1.7B（具体路径在服务器上，需 SSH 确认）\n- W&B：exp027 run ID y7jiibqk\n- 活跃进程：exp027_stable_grpo PID=789790, tmux=exp027_stable_grpo, cuda:0+cuda:1\n- Cron：1 个活跃（exp027_stable_grpo 监控，reconcile 确认 still running）\n\n### 3. 📊 当前状态\n**刚完成**：文献调研 21 篇 + failure taxonomy 51 实验 + framing 方向锁定 D039 + Recipe Gap 诊断 D044。这些都是 exp027 等待期的空窗期产出。\n\n**exp027_stable_grpo [RUNNING]**：\n- 50 步快速验证，目前到 step 3（step 4 进行中）\n- 趋势：step 1 success=35.94% → step 2/3 success=10.16%，KL 从 0.058 涨到 0.248\n- Director D042 要求跑到 step 5 再评估（预计 ~数小时后出结果）\n- 通过 cron 自动监控\n\n**Recipe Gap 诊断 D044**：确认三大根因——(1) SFT 起点有毒 (2) binary reward 零梯度 (3) mini-batch 太小（8× 不足）。exp028 正在准备中。\n\n**其他**：17 个 PREPARING 实验大部分是历史僵尸条目（exp003-exp021 系列），1 个 PENDING（exp025c 等人工审批）。\n\n### 4. 📋 待办（条件触发式）\n- exp027 cron 回调（step 5 完成）→ 读 W&B metrics → 按 D037 阈值判定：≥20% success 则 complete_mvp() 进 Phase B；<20% 则汇报 Director 决策（24h deadline）\n- exp027 success ≥ 30% → strong pass → 立即启动 Phase B (B-IAVR selective verification)，向 Director 申请更多 GPU（预估 600+ GPU-h）\n- exp027 fail → Plan D 启动（exp028 config 已在准备，Recipe Gap 修复版：更好的 SFT 起点 + shaped reward + 更大 batch）\n- exp028 Worker 完成回调 → review config → 提交 Director 审批\n- 任何时候 exp027 连续 2 步 success=0% → early-stop，汇报 Director\n- KL 超过 0.5 → 警告 Director，可能需要提前干预\n\n### 5. 🎯 战略上下文\n**项目核心**：训练 interactive agent 的 selective self-verification（B-IAVR），用 action-change 作为 verification informativeness 的 reward。基于 Self-Guide 框架，Qwen3-1.7B + ALFWorld。\n\n**当前卡点**：MVP 都还没过。27 个实验下来只有 3 个 success（SFT 相关），GRPO 训练反复 collapse。exp027 是最新的稳定化尝试（128 rollouts + entropy bonus + 低 KL），趋势不乐观（step 1 高峰后持续下滑）。\n\n**最容易判断错的事**：\n1. 不要因为 step 1 success=35.94% 就乐观——这是 128 rollouts 的统计波动，step 2/3 已回落到 10.16%\n2. 17 个 PREPARING 实验是历史残留，不要试图重启它们——它们的代码/配置已过时\n3. Recipe Gap（D044）是结构性问题，不是调参能解决的——下一步需要 shaped reward + 更好的 SFT 起点\n4. 竞争者 ARES（arXiv 2603.07915）做的是 SFT router + continuous effort reduction，我们做 RL-trained binary decision + action-change reward——**差异化在方法论，不在 performance**\n5. citation audit 发现 7 篇引用有问题（AgentPRM arXiv ID 全错等），写论文前必须修正\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778879012.md"
+}

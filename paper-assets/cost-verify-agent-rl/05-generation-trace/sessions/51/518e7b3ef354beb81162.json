@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "518e7b3ef354beb81162",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code anonymous repo prep",
+  "task_key": "worker_code_anonymous_repo_prep_20260523T130120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anonymous_repo_prep_20260523T130120_result.json",
+    "occurrence": 1,
+    "bytes": 286,
+    "sha256": "7f8943fd82d7450e1371cd622911bf5c878c710023520d5c3fcdafc1c3e2bc9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Repo**: https://github.com/anonymous-nlp-2026-2/cost-verify-agent-rl\n- **Commit**: `d57f53e`\n- **文件数**: 1947\n- **敏感信息**: 未发现泄露\n- **Token**: 已从 remote URL 清理\n- 产出报告已写入 `artifacts/anonymous_repo_status.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anonymous-repo-prep.md"
+}

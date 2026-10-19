@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b4413033fba266a4d40",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "verify seed4 v2 and seed5 gpu",
+  "task_key": "worker_verify_seed4_v2_and_seed5_gpu_20260521T081044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_seed4_v2_and_seed5_gpu_20260521T081044_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "a490a3e225cbdeb865258648af98e8e43cc851395a8ff881255206c373afd98a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### bjb1-17606 — Seed 4 v2 ✅\n\n| 项目 | 状态 |\n|------|------|\n| PID | 存活 — GPU 进程 PID 299577, 299578 (`actor_rollout_init_model`) |\n| GPU 0 | 4339 MiB / 97887 MiB, 0% util（模型加载阶段） |\n| GPU 1 | 4339 MiB / 97887 MiB, 0% util（模型加载阶段） |\n| CUDA_VISIBLE_DEVICES | `0,1` ✅ |\n| save_freq | `5` ✅ |\n| 阶段 | 正在初始化模型（Qwen3 1.72B），尚未开始训练 |\n\n### westd-47453 — Seed 5 v2 ✅\n\n| 项目 | 状态 |\n|------|------|\n| GPU 0 | 36857 MiB / 97887 MiB, **100% util** — 已在训练 |\n| GPU 1 | 36755 MiB / 97887 MiB, **100% util** — 已在训练 |\n| GPU 2 | **0 MiB, 0% util** — 空闲 ✅ |\n| GPU 3 | **0 MiB, 0% util** — 空闲 ✅ |\n| W&B | run `yyoghk1f`，名称 `exp029-seed5-episode-level` |\n| 进度 | 数据加载完成 (494/494)，已进入训练循环 |\n\n**结论**：两个实验均正常运行在正确的 GPU 上。westd GPU 2,3 空闲，可以启动 Seed 6 v3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-seed4-v2-and-seed5-gpu.md"
+}

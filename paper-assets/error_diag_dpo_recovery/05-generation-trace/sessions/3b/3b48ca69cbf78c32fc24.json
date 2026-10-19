@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3b48ca69cbf78c32fc24",
+  "project": "error_diag_dpo_recovery",
+  "kind": "worker",
+  "title": "code trajectory collection",
+  "task_key": "worker_code_trajectory-collection_20260512T114358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_trajectory-collection_20260512T114358.log",
+    "occurrence": 1,
+    "bytes": 617384,
+    "sha256": "673dd2496dfe3fd245c099ccf06ef178a0fd9d730b09c4d0144272a7a46461cf"
+  },
+  "statistics": {
+    "messages": 205,
+    "user_turns": 0,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 77,
+      "tool_result": 77,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 205,
+      "chunks": [
+        {
+          "path": "3b48ca69cbf78c32fc24-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3b48ca69cbf78c32fc24-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-trajectory-collection.md"
+}

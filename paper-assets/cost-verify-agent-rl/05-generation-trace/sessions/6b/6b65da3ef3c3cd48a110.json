@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b65da3ef3c3cd48a110",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research gigpo cherry pick",
+  "task_key": "worker_research_gigpo_cherry_pick_20260515T065620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_gigpo_cherry_pick_20260515T065620_result.json",
+    "occurrence": 1,
+    "bytes": 876,
+    "sha256": "b7700b6cdd3c0c0e090517aa905aeafc6b1665731f4373177969490eae6223b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析报告已完成并保存。核心发现总结：\n\n**GiGPO vs GRPO 的关键差异**：\n1. **算法层**：GiGPO = episode-level advantage（同 GRPO）+ step-level advantage（anchor state grouping）。当组内全部 episode 同奖励时，GRPO advantage=0 零梯度，而 GiGPO 的 step-level 仍有信号。\n2. **Rollout 层（更重要）**：verl-agent 每步独立构建 prompt（context ~2-3K tokens 恒定），RAGEN 全历史拼接（50步→25K+ tokens）。这导致 RAGEN 数据效率差 ~50x。\n\n**Cherry-pick 方案**：~480 行新增 + ~200 行修改，8 个文件，3-5 天。核心工作是改造 ctx_manager 支持 step-independent 模式。建议先验证 step-independent rollout + GRPO baseline，再叠加 GiGPO 算法。\n\n报告已保存到 `artifacts/verl_agent_analysis/gigpo_cherry_pick_plan.md` 并注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-gigpo-cherry-pick.md"
+}

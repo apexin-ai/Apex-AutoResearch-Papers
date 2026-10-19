@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0abf50015e644aa4c44",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis exp009",
+  "task_key": "worker_analysis_exp009_20260514T034042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp009_20260514T034042_result.json",
+    "occurrence": 1,
+    "bytes": 792,
+    "sha256": "b78fb8d69722db0979f7e8916deb5a38c2e5ee762f7a0d937fa6a23de0161bd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp009 分析结果\n\n**结论：FAILED — 训练从未启动**\n\n### 根因\n\n`train.py:137` 的配置验证检查 `model_path` 是否包含 \"qwen\" 或 \"llama-3\" 字符串来判断是否支持 `enable_response_mask`。SFT checkpoint 路径 `/root/autodl-tmp/checkpoints/exp008_sft/final` 不含这些字符串，但模型实际上是 Qwen3ForCausalLM — 这是一个 bug（路径字符串匹配 vs 模型架构检查）。\n\n### 修复方案\n\n在 `_alfworld_exp008_sft_grpo.yaml` 中添加：\n\n```yaml\nenable_response_mask: False\n```\n\n或者将 checkpoint 路径改为包含 \"qwen\" 的路径。\n\n### 产出\n\n- 报告：`artifacts/exp009/report/exp009_analysis.md`\n- Registry 已更新：status=DONE, conclusion=failed, metrics 记录了失败原因"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp009.md"
+}

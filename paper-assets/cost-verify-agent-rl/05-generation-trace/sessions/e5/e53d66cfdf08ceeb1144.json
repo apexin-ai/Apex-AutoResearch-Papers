@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e53d66cfdf08ceeb1144",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code conditional correlation analysis",
+  "task_key": "worker_code_conditional-correlation-analysis_20260517T162844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_conditional-correlation-analysis_20260517T162844_result.json",
+    "occurrence": 1,
+    "bytes": 1363,
+    "sha256": "b23e1bb61d46a38872e38126b3bb40430523276a42eae735280345fe672b5763"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了。关键发现与预期**完全相反**：\n\n## Conditional Correlation 结果\n\n| 指标 | 值 |\n|---|---|\n| Within FAILED episodes: r(adv, step_return) | **0.6400** (p=3.92e-44, n=371) |\n| Within SUCCESS episodes: r(adv, step_return) | **0.9115** (p=6.30e-12, n=29) |\n| Partial correlation (controlling outcome) | **0.8677** |\n| Unconditional | 0.9006 |\n\n## 判断\n\n**Sign misattribution 假说不成立。** 具体证据：\n\n1. **Within-failure r=0.64 远非 ≈ 0**：即使在失败 episode 内部，advantage 仍然强烈追踪 local step quality (step_return)。这直接否定了 \"失败 episode 内 advantage 对所有 step 一视同仁\" 的假设。\n\n2. **Partial correlation r=0.87**：控制 episode outcome 后，advantage vs step_return 的相关性从 0.90 仅降至 0.87。episode outcome 对 unconditional correlation 的 confounding 效应极小。\n\n3. **先前的 within-failure variance=6.9e-5 线索为什么误导**：失败 episode 的 advantage 绝对方差小是因为失败 episode 的 step_return 本身范围窄（都是负值、差异小），不是因为 advantage 不区分 step。r=0.64 说明在这个窄范围内 advantage 仍然跟踪了 local quality 的相对差异。\n\nstep_independent 模式确实在做 local credit assignment，不只是 episode-level 的 sign 分配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-conditional-correlation-analysis.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "6909919bc1a0caefccb8",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "ops exp019b check and launch",
+  "task_key": "worker_ops_exp019b-check-and-launch_20260514T183544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_exp019b-check-and-launch_20260514T183544.jsonl",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "5304536dfb20c330c095a415b15c1ef39621a3d49ba9bfcc5e07825d7ae60217"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T18:35:53.935150+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_exp019b-check-and-launch_20260514T183544"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-exp019b-check-and-launch.md"
+}

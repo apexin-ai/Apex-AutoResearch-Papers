@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "443dbf8242f761067b33",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 metrics hunt",
+  "task_key": "worker_ops_exp026_metrics_hunt_20260515T122735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_metrics_hunt_20260515T122735_result.json",
+    "occurrence": 1,
+    "bytes": 1805,
+    "sha256": "f192a27545c7fb86188ee3aba4dd07c97549840728404a9da4efac01b49df9ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp026 指标报告\n\n### 指标来源\nRay worker stdout：`/root/autodl-tmp/tmp/ray/session_2026-05-15_18-38-45_487055_778562/logs/worker-f5a9c771...781795.out`\n\n控制台日志被大量 `anchor_obs` 警告刷屏，指标被淹没但实际存在。TensorBoard 无数据因为 config 的 logger 列表是 `['console', 'wandb']` 而 WANDB_MODE=disabled，无 tensorboard backend。\n\n---\n\n### Step 0-2 指标趋势\n\n| 指标 | Step 0 (val) | Step 1 (train) | Step 2 (train) | 趋势 |\n|------|-------------|----------------|----------------|------|\n| **success** | 6.25% | 21.88% | 32.81% | ↑ 显著提升 |\n| **entropy** | — | 0.2672 | 0.3170 | ↑ 未 collapse |\n| **pg_loss** | — | 0.00732 | 0.00571 | ↓ 正常 |\n| **kl_loss** | — | 0.1797 | 0.0974 | ↓ 模型稳定化 |\n| **ppo_kl** | — | 0.0670 | 0.0267 | ↓ |\n| **reward/score mean** | — | 1.218 | 1.620 | ↑ |\n| **grad_norm** | — | 14.43 | 15.62 | 稳定 |\n| **action_is_valid** | 63.1% | 68.6% | 60.3% | 波动 |\n| **pass@16** | — | 100% | 100% | — |\n\n---\n\n### 关键结论\n\n1. **无 entropy collapse** — entropy 从 0.267 → 0.317（反而上升），与 exp020b/022/023c 的前 5 步崩塌形成鲜明对比\n2. **Success rate 快速上升** — 从 baseline 6.25% → 32.8%（2 步内 5× 提升）\n3. **当前状态**：Step 3 正在计算 ref log prob（两卡 100% 利用率），~43 min/step\n4. **下一个判断点**：Step 5 val（test_freq=5），预计 ~22:50（北京时间）\n\n---\n\n### 为什么控制台看不到指标\n\ntmux 的 `capture-pane` 只保留最后 N 行屏幕缓冲区，而 `anchor_obs` 警告每步产生数百行，把指标行推出了可见范围。实际指标每步结束时输出一行到 worker stdout，需从 Ray logs 目录读取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-metrics-hunt.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4f1d376f85088f102c4",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh seed100 step10 hf convert and eval",
+  "task_key": "worker_ssh_seed100_step10_hf_convert_and_eval_20260523T003121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed100_step10_hf_convert_and_eval_20260523T003121_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "a1cf632d8cbf5bcb96f57771779d5baf666db7fb3c618c7d5f10a243a8f01f32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 产出\n\n**1. HF checkpoint**\n- 路径：`/root/autodl-tmp/checkpoints/qwen_exp029_seed100_step10_hf`\n- 参数量：1,720,574,976 (~1.7B，实际是 Qwen2.5-1.5B，不是 3B)\n\n**2. Eval config**\n- 路径：`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_seed100_step10_ood_eval.yaml`\n\n**3. Eval 启动命令**（未执行）：\n```bash\nbash -c \"cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_DIR=/root/autodl-tmp/wandb_tmp python train.py --config-name _alfworld_seed100_step10_ood_eval enable_response_mask=false actor_rollout_ref.model.enable_response_mask=false\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed100-step10-hf-convert-and-eval.md"
+}

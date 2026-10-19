@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "f289184b6ddd121a8128",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "ops cleanup duplicate augment",
+  "task_key": "worker_ops_cleanup-duplicate-augment_20260514T172553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_cleanup-duplicate-augment_20260514T172553.jsonl",
+    "occurrence": 1,
+    "bytes": 177,
+    "sha256": "7819d495f76ae4ec26a2682e763c4f5de2fc08307383455b58d406cfb06589be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T17:26:03.126792+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cleanup-duplicate-augment_20260514T172553"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-cleanup-duplicate-augment.md"
+}

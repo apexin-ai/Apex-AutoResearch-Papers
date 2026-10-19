@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebb41bf2b84595d39c35",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp029 seed2 oom fix restart",
+  "task_key": "worker_ops_exp029-seed2-oom-fix-restart_20260518T054458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp029-seed2-oom-fix-restart_20260518T054458_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "b9fbe75d17a1cccab40e4d03daefbdd79e05f7f5b550dd0223069079cc23c416"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。\n\n**汇报：**\n- **OOM 原因**：`enable_gradient_checkpointing` 未启用（默认 `False`），full context 模式长序列在 `loss.backward()` 时显存不足。seed1 也同样 OOM，非 seed-specific。\n- **修复方案**：方案 2 — 启用 `enable_gradient_checkpointing: true` + 降低 `ppo_max_token_len_per_gpu` 65536→32768\n- **新 PID**：6349（tmux session: `exp029_episode_level_seed2`）\n- **启动确认**：GPU 0/1 各占 4715 MiB，wandb run `etgc8xjn` 已创建，正在加载数据（val_before_train 阶段）\n- **无 checkpoint 可恢复**，从头开始训练\n- **注意**：seed1 (`exp029_episode_level`) 也因相同原因 OOM，需要同样修复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp029-seed2-oom-fix-restart.md"
+}

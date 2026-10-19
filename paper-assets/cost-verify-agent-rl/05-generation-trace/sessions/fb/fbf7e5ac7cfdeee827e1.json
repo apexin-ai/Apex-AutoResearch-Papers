@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbf7e5ac7cfdeee827e1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose westd bjb1 full status",
+  "task_key": "worker_diagnose_westd-bjb1-full-status_20260519T044231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-bjb1-full-status_20260519T044231_result.json",
+    "occurrence": 1,
+    "bytes": 1374,
+    "sha256": "8a025c1a50d5891a2e48588d2b000a6bb65117310fb57712a45596abaa00956d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nwestd-47453 (RTX PRO 6000 96GB × 4)\n──────────────────────────────────────────────────────────\n[cuda:0,1] 空闲 | 0 MiB, 0% util\n[cuda:2,3] 7B zeroshot eval: 运行中 | 65/64 GB, 100% util\n           W&B kbt8a170 state=running, 尚无 metrics（刚启动, 评估 134 OOD games）\n           启动时间: 12:05 UTC\n\nOOD reeval (l0zohzt5): ❌ crashed，无 metrics，无日志残留\n\n额外进程: generate_scienceworld_sft.py (CPU, pid 755747)\n\nSFT 数据: ✅ 已到位 /root/autodl-tmp/expert_sft/expert_sft_train.jsonl (2460 行, 12MB)\n\nbjb1-17606 (RTX PRO 6000 96GB × 2)\n──────────────────────────────────────────────────────────\n[cuda:0,1] h=20 训练: step 3/15 | 97GB/98GB, 100% util\n           W&B qi8g4f86 state=running\n           train success: step1=20.3% → step3=40.6%, pass@8: 68.8% → 87.5%\n           速度: init+step1 ≈6.9h, 之后 ≈22min/step\n           预计完成: ~15:00-16:00 UTC 今日 (May 19)\n```\n\n要点：\n- OOD reeval 已崩溃，需要排查或重跑\n- 7B zeroshot eval 刚启动几分钟，等结果\n- h20 训练正常推进，step 3 success 已到 40.6%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-bjb1-full-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b72c4f1c7259aa827e1b",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "reviewer / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_10.md",
+    "occurrence": 1,
+    "bytes": 4176,
+    "sha256": "a642ce68eaa6de696399fbc867d8602960ed1d912f8b31d97ce8637360d02395"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_messages\nupdated: '2026-05-16T02:31:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **cuda:0, cuda:1 only**（C001 约束）。任何进程跑在 cuda:2+ 立即 CRITICAL\n- 服务器 `bjb1-17606(root)`，SSH 端口可能因 AutoDL 重启变化——连接失败先查端口\n- 模型路径：`/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4`（SFT checkpoint）。`/root/cost-verify-agent-rl/models/Qwen3-1.7B-Instruct` 已被删除（D047/D048 确认 Qwen3-1.7B 就是 instruct 版本）\n- exp028b config 的 model_path 指向不存在路径，已废弃——只看 exp028c\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`bjb1-17606`，代码根 `/root/cost-verify-agent-rl`\n- Python：conda base `/root/miniconda3/bin/python`\n- 模型：`/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4`\n- W&B：entity=`xiaoyucorynne-`，project=`cost-verify-agent-rl`，run_id=`4yu6qz1m`\n- 训练日志：`/root/runs/cost-verify-agent-rl/exp028c_selfguide_recipe.log`\n- Checkpoint 输出：`/root/autodl-tmp/checkpoints/exp028c/`（save_freq=5）\n- 活跃进程：TaskRunner PID=827923（Ray workers PID 828110/828111），2×RTX PRO 6000 48GB\n- 训练配置：`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp028c_selfguide_recipe.yaml`\n\n### 3. 📊 当前状态\n**exp028c_selfguide_recipe** (RUNNING, 3/100 steps)：Self-Guide recipe 对齐实验，avg 2976s/step (~49.6min)，ETA ~80h。\n\n已验证的训练指标：\n| Step | success | pass@8 | KL | entropy | action_is_valid |\n|------|---------|--------|----|---------|-----------------|\n| 0 val | 6.25% | — | — | — | 74.5% |\n| 1 train | 13.28% | 37.5% | 0.019 | 0.263 | 76.4% |\n| 2 train | 6.25% | 25.0% | 0.017 | 0.247 | 83.2% |\n\n**已知日志 bug**：step:2 summary 从未写入日志文件（日志直接跳到 step 3 progress bar），但 W&B 有完整数据。用 W&B 交叉验证，不要只依赖日志 grep \"step:N\"。\n\n**本 session 已发送 7 次 reviewer_post_to_director**：\n1. CRITICAL: exp028b model_path 不存在\n2. WARNING: exp028b 8 个参数错配 + penalty 错误\n3. INFO: exp028c launch 审计通过\n4. INFO: Phase B prereq 分析通过 + step 1 指标\n5. WARNING: 3 个 citation 错误未修\n6. INFO: citation batch1 修复通过 + step 2 数据完整性待验证\n7. WARNING: step 2 数据已验证 + 训练趋势令人担忧 + citation batch2 通过\n\n**等待中**：无活跃 worker 回调。Step 5 val 是下一个关键评估点（~2-3h 后）。\n\n### 4. 📋 待办\n- step 5 val 出结果 → 对比 D037 MVP 阈值（<20% FAIL, 20-25% WEAK, 30%+ proceed Phase B）。如果 val success ≤6.25% → 立即 WARNING，建议 Director 评估是否需要早停或干预\n- step 5 checkpoint 保存 → 检查 `/root/autodl-tmp/checkpoints/exp028c/` 有无 checkpoint\n- 任何新实验启动 → 检查 CUDA_VISIBLE_DEVICES 在 C001 白名单内\n- Director 转发 framing 提案 → Read `negative-framing-review.skill.md` 四维度审查\n- 新 worker_done 通知 → 审查产出，特别关注 literature_map 的 arXiv ID 和作者准确性\n\n### 5. 🎯 战略上下文\n- **D039**：论文 framing 锁定 cost-efficiency（非 performance）。Baseline ≥50% 是 story 可信度前提\n- **D044**：Recipe Gap 分析确认 3 个根因（SFT poisoning、binary reward zero gradients、mini-batch 太小）\n- **D050**：停止 exp028a（与 exp027 功能等价），否定根因 #2，转向全面 recipe alignment\n- **exp028c 核心风险**：success 在 step 2 已回落到 baseline 6.25%。KL 控制住了（0.017 vs exp027 的 0.413）但 success 更差。group_size=8 导致 pass@8 只有 25%（75% group 零奖励）。recipe alignment 可能不足以解决稀疏奖励问题\n- **竞争格局**：PA-MoE+GiGPO 1.5B 在 ALFWorld 达 93.8%（新小模型 SOTA）；Agent-Omit (ICML 2026) 是互补竞争者（减法 vs B-IAVR 的加法）；ARES 是最近竞争者\n- **易错判断**：不要因为日历时间紧就说\"做不完\"——这是 AI 团队 + 弹性 GPU，只有 GPU-hours 不够才是真风险。不要建议降级 venue。不要只看 success 数字——action_is_valid 持续提升是正面信号，模型在学习合法动作\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-copy-3.md"
+}

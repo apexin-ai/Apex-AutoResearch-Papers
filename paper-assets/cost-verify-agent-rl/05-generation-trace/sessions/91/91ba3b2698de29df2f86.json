@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91ba3b2698de29df2f86",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment alfworld seed3 westd",
+  "task_key": "worker_experiment_alfworld-seed3-westd_20260520T164732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_alfworld-seed3-westd_20260520T164732_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "4ef16168689ba59dd48155528b480e95b6a3b0800baa4d984e1020376640e6ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| Config | `_alfworld_exp029_episode_level` on westd ✓ |\n| Checkpoint | 从 bjb1 同步完成 (3.44GB) ✓ |\n| 依赖 | torch 2.10+cu128, verl 0.6.1, alfworld ✓ |\n| GPU | cuda:0,1 空闲，cuda:2,3 运行 Cell C v2 ✓ |\n| 磁盘 | root 17G free, autodl-tmp 22G free ✓ |\n| Registry | `exp029_seed3_episode` → RUNNING ✓ |\n| PID | 980051 |\n| tmux | `exp029_seed3_episode` |\n| Log | `~/runs/cost-verify-agent-rl/exp029_seed3_episode.log` |\n| 关键 overrides | `seed=42, trainer.total_training_steps=15, experiment_name=exp029-seed3-episode-level, output→exp029_seed3/` |\n| Wandb | `WANDB_PROJECT=cost-verify-agent-rl` |\n| Val episodes | 32 (满足 C003 ≥16) |\n| plan_id | plan_003 已关联 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-alfworld-seed3-westd.md"
+}

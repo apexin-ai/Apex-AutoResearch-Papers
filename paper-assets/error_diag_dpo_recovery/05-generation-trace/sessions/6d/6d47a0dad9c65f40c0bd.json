@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d47a0dad9c65f40c0bd",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code classify no span hint",
+  "task_key": "worker_code_classify_no_span_hint_20260512T223926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_classify_no_span_hint_20260512T223926_result.json",
+    "occurrence": 1,
+    "bytes": 2324,
+    "sha256": "d3d5af583514c3836fe257010b65caa7a669061312da07dcf8151e82a5a60539"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行时 taxonomy 去 span hint 效果正确。所有 \"Expected correction span: ...\" 行已移除，错误类型核心定义完整保留。\n\n---\n\n### 修改汇总\n\n**5 处修改：**\n\n#### 1. 新增 `ERROR_TAXONOMY_NO_SPAN`（移除 span 长度描述）\n```python\n# 旧：只有 ERROR_TAXONOMY\n# 新：在其后追加\nERROR_TAXONOMY_NO_SPAN = re.sub(\n    r'\\nExpected correction span:[^\\n]*', '', ERROR_TAXONOMY\n)\n```\n\n移除的 3 行：\n- `Expected correction span: SHORT (1-3 expert steps).`\n- `Expected correction span: MEDIUM (3-6 expert steps).`\n- `Expected correction span: LONG (6+ expert steps).`\n\n#### 2. 新增 `CLASSIFICATION_PROMPT_NO_SPAN`（移除 divergence 区域的 span 数值提示）\n```python\nCLASSIFICATION_PROMPT_NO_SPAN = CLASSIFICATION_PROMPT.replace(\n    \"\\nExpert completes the task in {correction_span} more steps after this point.\", \"\"\n)\n```\n\n移除的行：`Expert completes the task in {correction_span} more steps after this point.`\n\n#### 3. `build_messages()` 增加 `no_span_hint` 参数\n```python\n# 旧\ndef build_messages(task_desc, expert_actions, model_actions, div_info):\n    prompt = CLASSIFICATION_PROMPT.format(\n        taxonomy=ERROR_TAXONOMY,\n\n# 新\ndef build_messages(task_desc, expert_actions, model_actions, div_info, no_span_hint=False):\n    tmpl = CLASSIFICATION_PROMPT_NO_SPAN if no_span_hint else CLASSIFICATION_PROMPT\n    taxonomy = ERROR_TAXONOMY_NO_SPAN if no_span_hint else ERROR_TAXONOMY\n    prompt = tmpl.format(\n        taxonomy=taxonomy,\n```\n\n#### 4. argparse 增加 `--no_span_hint`\n```python\nparser.add_argument(\"--no_span_hint\", action=\"store_true\",\n                    help=\"Remove correction-span length hints from classification prompt\")\n```\n\n#### 5. `main()` 中传参\n```python\n# 旧\nbuild_messages(m[\"task_desc\"], m[\"expert_actions\"],\n               m[\"model_actions\"], m[\"divergence\"])\n# 新\nbuild_messages(m[\"task_desc\"], m[\"expert_actions\"],\n               m[\"model_actions\"], m[\"divergence\"],\n               no_span_hint=args.no_span_hint)\n```\n\n`--help` 验证通过。`--no_span_hint` 模式下，taxonomy 保留完整的错误类型定义（策略错误 / 验证遗漏 / 计划失误的特征描述），仅移除所有 span 长度预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-classify-no-span-hint.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3c740190b56a8447a69",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose cleanup exp020d ray",
+  "task_key": "worker_diagnose_cleanup-exp020d-ray_20260514T223825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cleanup-exp020d-ray_20260514T223825_result.json",
+    "occurrence": 1,
+    "bytes": 237,
+    "sha256": "20e96c63d84183d08fe2e545ba47b540d7d89925d106f3027450b58a9c59d46a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成：\n\n- exp020d 三个 Ray 进程（393854, 394054, 394055）已 kill\n- GPU 上只剩 exp020b 的两个进程（389434, 389435），各占 ~40GB 显存\n- exp020b 主进程 385982 存活，已运行 26 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cleanup-exp020d-ray.md"
+}

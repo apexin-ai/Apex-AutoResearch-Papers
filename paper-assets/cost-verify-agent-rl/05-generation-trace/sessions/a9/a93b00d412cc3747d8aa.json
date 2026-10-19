@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a93b00d412cc3747d8aa",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag h10 seed2 check",
+  "task_key": "worker_diag_h10_seed2_check_20260523T200121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_h10_seed2_check_20260523T200121_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "668e7b56a1b0db9d672faa9969b1812c605664c64c5b079d3943a0c94d3adab6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n**训练状态：被 kill（SIGTERM），未完成**\n\n- PID 42499 已不存在\n- 日志 `/root/autodl-tmp/hsweep_h10_seed2.log` 中明确记录：\n  - `*** SIGTERM received at time=1779561387 on cpu 20 ***`（2026-05-24 02:36:27）\n- 仅完成了 **step 0 初始验证**（`step:0`），5 步训练一步都没跑完就被 kill 了\n  - step 0 initial val success rate: **12.5%**（32 episodes）\n- 日志时间线：02:16:51 创建 → 02:36:27 被 kill，运行约 20 分钟\n- **无 checkpoint** 保存（`/root/autodl-tmp/checkpoints/` 下无 h10-seed2 相关文件）\n- **wandb run ID: `mcjumgd2`**，run name: `hsweep-h10-seed2-1gpu`\n  - 路径：`/root/cost-verify-agent-rl/RAGEN/wandb/run-20260524_021807-mcjumgd2`\n\n结论：训练在完成初始验证后、进入 step 1 训练前被 SIGTERM 终止。需要重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-h10-seed2-check.md"
+}

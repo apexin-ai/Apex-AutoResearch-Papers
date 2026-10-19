@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7f730e2b89347e91f64",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh search collapsed seed late checkpoints",
+  "task_key": "worker_ssh_search_collapsed_seed_late_checkpoints_20260522T215853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_search_collapsed_seed_late_checkpoints_20260522T215853_result.json",
+    "occurrence": 1,
+    "bytes": 1216,
+    "sha256": "d6e3c9b2d4ddb87b44f327139b86704d933884edc3900c08c967771df4e9fd48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "搜索完毕。结果如下：\n\n---\n\n**seed2048:**\n- step5: 存在 — `qwen_seed2048_step5_hf`（HF）+ `seed2048_step5_ood_eval`（eval 输出）\n- step10: **不存在**\n- step15: **不存在**\n\n**seed42:**\n- step5: 存在 — `exp029_seed42_step5_hf` + `qwen_exp029_seed42_step5_hf`（HF）\n- step10: **不存在**\n- step15: **不存在**\n\n**seed8:**\n- step5: 存在 — `qwen_exp029_seed8_step5_hf`（HF）+ `exp029_seed8_ood_precollapse`\n- step10: **不存在**\n- step15: **不存在**\n\n**结论：三个 collapsed seeds 的训练在 step5 之后没有保存任何 checkpoint。** 服务器上完全没有 step10/15 的 FSDP 或 HF checkpoint。训练大概率在 collapse 检测后被提前终止了。\n\n作为对比，非 collapsed 的 seed（seed5）保存了 step10 checkpoint（`exp029-seed5/global_step_10` + `global_step_10_hf`），其他健康 seed 也有 step15（seed2, seed4, seed6 均有 `step15_hf`）。\n\n**如果 Reviewer 需要 \"collapsed seeds 不会在后期恢复\" 的证据，需要重新训练这三个 seed 并让它们跑到 step10-15 保存 checkpoint，或者用训练日志中的 reward/accuracy 曲线来替代 OOD eval 作为间接证据。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-search-collapsed-seed-late-checkpoints.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5053a5636d4acb7b4cd",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_9_1778865544.md",
+  "task_key": "loop_9_1778865544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778865544.md",
+    "occurrence": 1,
+    "bytes": 4792,
+    "sha256": "e45e984ae0eaf01680345fef894e7b522c469d5ee340592611cf889a6dfa97e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T14:30:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: bjb1-17606 cuda:0,cuda:1 only（project config 里没写 gpu_ids，但 ROADMAP 和 D028 后一直只用这两张 RTX PRO 6000 Blackwell 98GB）\n- **禁止 WANDB_MODE=disabled**：exp026 事故教训——cron 依赖 W&B sentinel 检测活跃度，禁用后 5 次 miss → auto-resolve 为 failed（D029/D033）\n- **监控 PID 必须是实际训练进程**（Ray TaskRunner PID），不是 bash wrapper PID。exp026 监控了 778562（shell）而非 781795（TaskRunner），导致误判\n- **verl-agent 在此服务器不可行**：AutoDL cgroup pids.max=20480，Ray 多进程超限。6 次失败、10+ GPU-h 空转，已确认放弃（D028）\n- **submit_training_job 命令必须自带 conda 激活**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`（服务器无 .venv）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-17606, root@, 工作目录 `/root/cost-verify-agent-rl`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **GPU**: 2× RTX PRO 6000 Blackwell 98GB (cuda:0, cuda:1)\n- **SFT checkpoint**: `/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/`（也有 symlink `qwen3_exp021_ragen_sft_v4`）\n- **模型**: Qwen3-1.7B\n- **框架**: RAGEN + cherry-picked step-independent rollout（从 verl-agent 移植的核心创新）\n- **exp026 log**: `/root/autodl-tmp/tmp/ray/session_2026-05-15_18-38-45_487055_778562/logs/worker-...-781795.out`\n- **活跃 Worker**: `worker_ops_exp027_preflight_check_20260515T142700`（exp027 预检，running）\n- **Cron**: reconcile 检测到 exp026 进程已死（miss 1/5），本 session 无活跃 CronList\n\n### 3. 📊 当前状态\n**exp026 已死亡**：step 2 峰值 success=32.81% → step 3 跌至 17.19% → step 4 归零（pass@16=0）。D036 Reviewer 确认 GRPO 死亡螺旋。reconcile_crons 刚检测到进程已消失（miss 1/5，还没 auto-resolve）。registry 仍标 RUNNING 但实际进程已死。\n\n**exp027_stable_grpo PREPARING**：针对 exp026 崩溃原因设计的稳定版。关键变更 vs exp026：LR 1e-6→5e-7、KL 0.01→0.005、新增 entropy bonus 0.01、env_groups 4→8（128 rollouts 降低全零 batch 概率）、save_freq 5（捕获峰值 checkpoint）、50 步快速验证。Worker 正在做 preflight check。\n\n**exp025c**: PENDING 状态但 conclusion=failed，可以忽略（verl-agent 路线已废弃）。\n\n**等待中**: \n- exp027 preflight worker 回调 → 确认就绪后提交审批\n- exp026 cron 继续 miss → 预计 5 次后 auto-resolve 为 failed，届时需确认更新 registry\n\n### 4. 📋 待办（条件触发式）\n- **exp026 cron 达到 5/5 miss → auto-resolve failed** → update_registry conclusion=negative（不是 failed，有有效训练数据）、记录 step 2 峰值 metrics、更新 report.md。**不要标 failed**——有 4 步有效数据，是 negative 结论\n- **exp027 preflight worker 完成 → 脚本/配置就绪** → 立即提交 PENDING 审批 → Director 批准后 submit_on_allocated 启动\n- **exp027 前 5 步出结果（~3-4h after start）** → 检查 success ≥10% 且无连续 2 步归零 → 如果归零模式重现，需考虑更激进修改（GiGPO Phase 2 或 reward shaping）\n- **exp027 success ≥20% 稳定** → complete_mvp()，汇报 Director 进入 Phase B（B-IAVR action-change gating）\n- **exp027 也退化** → 向 Director 提 Framing 调整提案：sparse reward + 小 env 下 GRPO 可能根本不可行，建议 pivot（如 PPO、更大 env_groups、或换 reward design）\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D028: verl-agent 在 AutoDL 不可行 → pivot 到 cherry-pick\n- D035: exp026 step 2 强正向但 step 4 归零 → 死亡螺旋\n- D036: Reviewer 确认根因是 sparse reward + 小 env_groups → 全零 batch → advantage 只有负信号 → 策略回退\n- exp027 是关键修复尝试：更多 rollouts + 更低 LR + entropy bonus\n\n**易错点**：\n- exp026 的 step 1-2 metrics 看起来很好（32.81% success），但这是假象——小 env_groups 下方差极大，step 4 直接归零。不要被早期指标骗了\n- exp026 registry 仍标 RUNNING，但进程已死。下一个 session 需要先处理这个状态不一致（等 cron auto-resolve 或手动更新）\n- checkpoint 路径：exp021 SFT checkpoint 有两个路径（`exp021_ragen_sft_v4/final/` 和 `qwen3_exp021_ragen_sft_v4`），exp027 用的是后者\n- 整个项目 success 3 / negative 3 / failed 17 / 共 51 实验，大量早期失败是 infra 问题而非方法问题\n- B-IAVR（action-change gating）代码已写完（D030/D031 Reviewer 审查通过），但 Phase B 必须等 Phase A MVP ≥20% 才能启动\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778865544.md"
+}

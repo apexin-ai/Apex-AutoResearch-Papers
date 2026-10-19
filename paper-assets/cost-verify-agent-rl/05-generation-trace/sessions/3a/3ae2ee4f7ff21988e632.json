@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ae2ee4f7ff21988e632",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops check bjb1 exp029 seed2",
+  "task_key": "worker_ops_check-bjb1-exp029-seed2_20260518T091347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-bjb1-exp029-seed2_20260518T091347_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "c2436e796193b48d01b24d9770c16a3fa7a89800d1f319b2f33f287fbde68d1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp029_seed2 已死。**\n\n- **PID 16575 存活？** 否。进程不存在（`ps -p 16575` 未匹配到 train.py）\n- **GPU 0 占用：** 0MiB 显存 / 100% 利用率 / 无进程（GPU-Util 100% 但 Processes 列为空，可能是残留状态或驱动异常）\n- **GPU 1 占用：** 0MiB 显存 / 0% 利用率 / 无进程\n- **Ray worker PID 19997/19998 存活？** 否。均不存在\n- **双卡都在用？** 否，两张卡均空闲，无任何训练进程\n\n训练主进程和 Ray worker 全部已终止，GPU 上无运行中的进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-bjb1-exp029-seed2.md"
+}

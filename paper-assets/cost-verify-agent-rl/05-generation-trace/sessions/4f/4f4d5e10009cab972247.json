@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f4d5e10009cab972247",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code phase b readiness check",
+  "task_key": "worker_code_phase-b-readiness-check_20260514T093711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase-b-readiness-check_20260514T093711_result.json",
+    "occurrence": 1,
+    "bytes": 2285,
+    "sha256": "bac7eb8d56fbcda010c08a6c0c8126a202e1f2ffef7e5a466b12c3e10789f546"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完毕。报告如下：\n\n---\n\n## Phase B (B-IAVR) 启动就绪度报告\n\n### 1. Phase B Config 文件 (`config/_alfworld_phase_b.yaml`)\n\n| 检查项 | 结果 |\n|--------|------|\n| `model_path: TO_BE_SET` 占位符 | **PASS** — 等 exp013f 产出后填入 |\n| `experiment_name: phase-b-alfworld-biavr` | **PASS** |\n| `format_penalty: 0` | **PASS** |\n| BIAVR 超参 (beta=0.3, alpha=1.0, lambda_init=0.0, eta=0.01, enable_a_pre=true) | **PASS** |\n| KL loss (coef=0.01, type=kl) | **PASS** |\n| `local_log_dir` 路径 | **WARNING** — 当前指向 `/root/autodl-tmp/checkpoints/exp_003/`，应更新为 Phase B 专用路径（如 `exp_phase_b/`） |\n| Config 注释 | **WARNING** — 注释写 \"update after exp_002 completes\"，应改为 exp013f |\n\n### 2. B-IAVR 代码完整性\n\n| 检查项 | 结果 |\n|--------|------|\n| 测试 68/68 passed (3.41s) | **PASS** |\n| `biavr_changed` 动态计算（非 hardcoded False） | **PASS** — agent_proxy.py L246 初始化 `{}`，L435 由 `_compute_and_update_a_pre` 更新 |\n| 模块完整 (action_canonicalize, reward, verify_mechanism, pre_action) | **PASS** |\n\n### 3. FSDP→HF 转换脚本\n\n| 检查项 | 结果 |\n|--------|------|\n| `scripts/convert_fsdp_to_hf.py` 存在 (5786B) | **PASS** |\n| 支持 --input-dir / --output-dir / --dtype / --dry-run | **PASS** |\n| exp013f checkpoint 目录 `/root/autodl-tmp/checkpoints/exp013f/` | **PASS** — 目录已创建，内容为空（训练进行中，符合预期） |\n\n### 4. vLLM 兼容性\n\n| 检查项 | 结果 |\n|--------|------|\n| vLLM 版本 0.18.1 | **PASS** |\n| `gpu_memory_utilization: 0.4` | **PASS** — 兼容 |\n| `max_model_len: 32768` | **PASS** — 兼容 |\n| `disable_mm_preprocessor_cache` | **PASS** — 代码库中无此参数引用，不存在此问题 |\n\n### 5. 磁盘空间\n\n| 检查项 | 结果 |\n|--------|------|\n| `/root/autodl-tmp/` 116GB 可用 | **PASS** — Phase B 预估需 ~24GB（3 ckpt × 8GB，max_keep=3） |\n| `/` 23GB 可用 | **PASS** — 高于 10GB 阈值 |\n\n---\n\n### 总结\n\n**0 FAIL, 2 WARNING, 其余全 PASS。**\n\n启动前需修复的 WARNING：\n1. `local_log_dir` 从 `exp_003` 改为 Phase B 专用路径\n2. 更新 config 注释中的实验编号引用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase-b-readiness-check.md"
+}

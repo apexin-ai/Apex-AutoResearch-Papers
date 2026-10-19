@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b12a233acf24ad1649c7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose 8b cell c episode",
+  "task_key": "worker_diagnose_8b_cell_c_episode_20260519T114351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_8b_cell_c_episode_20260519T114351_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "fca1a026c0111d8c9807eb62c4030606691587c9f23ed445cc1dde267c4682c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，报告已写入 `artifacts/diagnose_8b_cell_c_oom.md`。\n\n**核心结论**:\n\n- **OOM 触发点**: 第一个 training step 的 `loss.backward()`（`dp_actor.py:468`），不是 rollout 也不是 eval\n- **根因**: `use_dynamic_bsz=False` + `context_window_mode=full`。micro-batch 按样本数切分（每批 1 个样本），但单个 full-context episode 可达 17K tokens。8B 模型在 FSDP backward 时需要聚合全量参数（~16 GB）+ 梯度（~16 GB）+ 激活重计算，单卡峰值 ~88 GiB，只剩 6.47 GiB 不够 8.76 GiB 的分配请求\n- **1.7B 没问题的原因**: 参数量仅 1.7B（vs 8B），backward 峰值 ~15-20 GB，远低于 GPU 容量\n\n**推荐修复**: 启用 `use_dynamic_bsz: True` + 降低 `ppo_max_token_len_per_gpu` 到 16384。这是最小改动且最可能解决的方案。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-8b-cell-c-episode.md"
+}

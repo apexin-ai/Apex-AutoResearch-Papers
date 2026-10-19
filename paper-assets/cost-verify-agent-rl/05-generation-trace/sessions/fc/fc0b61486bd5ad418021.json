@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc0b61486bd5ad418021",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh seed100 resume setup and submit",
+  "task_key": "worker_ssh_seed100_resume_setup_and_submit_20260522T223145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed100_resume_setup_and_submit_20260522T223145_result.json",
+    "occurrence": 1,
+    "bytes": 1063,
+    "sha256": "89c13a9ef3cc3934348a2c18043fced131562ee4d27802ca21064585bb0bc5b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇总：\n\n### 结果\n\n**Config 文件**: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed100_resume_step10.yaml`\n\n与原始 config 的差异：\n- `total_training_steps`: 5 → **10**\n- `resume_mode`: \"disable\" → **\"auto\"**\n- `experiment_name`: 追加 `-resume-step10`\n- `save_freq`: **5**（未改，符合硬约束）\n\n**FSDP Checkpoint**: 完整。`global_step_5/actor/` 包含 model (2×3.8GB) + optimizer states (2×6.4GB) + extra_state + huggingface tokenizer configs，共 21GB。`latest_checkpointed_iteration.txt` 内容为 `5`。\n\n**磁盘**: `/root/autodl-tmp/` 250GB 中已用 111GB，剩余 **140GB**，充足。\n\n**Dry-run**: Hydra 加载成功，所有关键参数正确。\n\n**训练命令**（供主系统提交）：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 python -m verl.trainer.main_generation --config-name _alfworld_exp029_seed100_resume_step10\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed100-resume-setup-and-submit.md"
+}

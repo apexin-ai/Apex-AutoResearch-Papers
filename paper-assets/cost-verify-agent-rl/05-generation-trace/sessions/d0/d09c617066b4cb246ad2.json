@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d09c617066b4cb246ad2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp022 val config check",
+  "task_key": "worker_diagnose_exp022-val-config-check_20260515T032205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp022-val-config-check_20260515T032205_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "28c177ee7f35d21bbbf5f895ab06f8f98863de24317aeb649950b8af38e93e5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. Config 验证 — 全部生效 ✅\n\n| 参数 | YAML 文件值 | Hydra override | **实际生效值** |\n|------|------------|----------------|--------------|\n| `es_manager.val.env_groups` | 4 | `=8` | **8** ✅ |\n| `es_manager.val.env_configs.n_groups` | [4] | `=[8]` | **[8]** ✅ |\n| `kl_loss_coef` | 0.5 (sed已改) | — | **0.5** ✅ |\n\nHydra resolved config 中确认：`'val': {'env_groups': 8, 'group_size': 1, 'env_configs': {'n_groups': [8]}}`\n\n### 2. 训练进度\n\n- **Step 1/30** 刚完成，速度 ~208s/step\n- PID 434853 存活，运行 ~5 分钟\n- GPU 0,1：100% 利用率，各 ~14GB 显存\n\n### 3. Step 0 val_before_train 结果（已完成）\n\n| 指标 | 值 |\n|------|-----|\n| **success** | **0.125** (1/8) |\n| **pass@1** | 0.125 |\n| **action_is_valid** | 0.4875 |\n| **action_is_effective** | 1.0 |\n| **num_actions** | 28.125 |\n| **response_length** | 3017.5 |\n| **reward/mean@8** | 1.25 |\n| **reward/best@8/mean** | 6.61 |\n\n### 4. ⚠️ C003 合规性问题\n\nVal 实际使用 **8 episodes**（env_groups=8 × group_size=1），仍 **不满足 C003 要求的 ≥16 episodes**。12.5% success rate 基于 8 episodes 统计可靠性仍然有限。如需合规，需将 `env_groups` 提升至 16 或将 `group_size` 改为 2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp022-val-config-check.md"
+}

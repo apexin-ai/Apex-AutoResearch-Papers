@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "953decf6998b3de8eb5f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops kill verify exp019",
+  "task_key": "worker_ops_kill-verify-exp019_20260514T165115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-verify-exp019_20260514T165115_result.json",
+    "occurrence": 1,
+    "bytes": 730,
+    "sha256": "0cd11be56cc7ca20c90bf9b81d4eb3e374beca69115914ea0aa02847f838409a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理报告\n\n| 项目 | 状态 |\n|------|------|\n| PID 366066 | 已 kill，确认死亡 |\n| 残留进程 | 无（sft_train/exp019/run_exp019 均无） |\n| Checkpoint | 空目录，已重命名为 `exp019_expert_sft_v2_INVALID` |\n\n### GPU 状态\n\n| GPU | 型号 | VRAM 使用 | 利用率 | 温度 |\n|-----|------|-----------|--------|------|\n| 0 | RTX PRO 6000 (96GB) | **0MiB / 97887MiB** | 0% | 40°C |\n| 1 | RTX PRO 6000 (96GB) | **0MiB / 97887MiB** | 0% | 28°C |\n\n### 磁盘\n\n| 挂载点 | 总量 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| /root/autodl-tmp | 250G | 86G | 165G | 35% |\n\n两块 GPU 完全空闲，磁盘充裕，可立即启动新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-verify-exp019.md"
+}

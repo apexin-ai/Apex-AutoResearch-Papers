@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e87311159f113488132",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis exp029 seed300 episode",
+  "task_key": "worker_analysis_exp029_seed300_episode_20260522T175454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp029_seed300_episode_20260522T175454_result.json",
+    "occurrence": 1,
+    "bytes": 2003,
+    "sha256": "72211a3c475713c14e0c1e593e473e313a8ec3f703634610d84f3bcd8d45cca8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。以下是 exp029_seed300_episode 分析报告。\n\n---\n\n## exp029_seed300_episode 训练结果\n\n### 1. 训练完成状态：**完成** (EXIT_CODE=0)\n- 5 个 step 全部完成，checkpoint 已保存\n- 无致命 error（仅有 W&B BrokenPipe 和 \"Skipping non-numeric metric\" 等无害 warning）\n- 总耗时: ~8885 秒 (~2.5h)\n\n### 2. 每 Step 关键指标\n\n| Step | response_length/mean (rollout) | train/response_length | critic/rewards/mean | actor/ppo_kl |\n|------|------|------|------|------|\n| 0 (eval) | — | — | — | — |\n| 1 | **14019** | 8359 | 1.41 | 0.000368 |\n| 2 | 13308 | 7871 | 1.56 | 0.001005 |\n| 3 | 12393 | 6340 | 1.56 | 0.000293 |\n| 4 | 13088 | 7777 | 1.95 | 0.000461 |\n| 5 | **12691** | — | 1.72 | — |\n\nVal 指标 (step 0 → step 5):\n| Metric | Step 0 | Step 5 |\n|--------|--------|--------|\n| val-env/response_length | 7088 | **6203** |\n| val-core/reward/mean@32 | 1.25 | **2.50** |\n| val-env/pass@1 | 12.5% | **25.0%** |\n\n### 3. Collapse 判断：**Healthy**\n\n理由：\n- **response_length/mean 下降趋势**：14019 → 12691（-9.5%），无爆炸增长\n- **val-env/response_length 下降**：7088 → 6203（-12.5%）\n- **reward 稳步提升**：val reward 从 1.25 → 2.5（翻倍），pass@1 从 12.5% → 25%\n- **KL 极低且稳定**：始终 < 0.001，策略偏移小\n- collapse MI 指标 (step 5): mi_estimate=0.206, retrieval_accuracy=0.547\n\n### 4. Checkpoint 路径\n```\n/root/autodl-tmp/checkpoints/exp029-seed300/global_step_5/actor/\n```\n包含: model (rank 0/1), optim (rank 0/1), extra_state (rank 0/1), huggingface config\n\n### 5. Log 路径\n```\n~/runs/cost-verify-agent-rl/exp029_seed300_episode.log\n```\n\n### 6. 结论\n**Success — 需后续 OOD eval 确认。** seed300 训练表现 healthy，response length 稳定甚至下降，reward 有明确提升趋势。基于此 pattern，预期 OOD 表现在 healthy seed 范围（28-31%）。可直接安排 OOD eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp029-seed300-episode.md"
+}

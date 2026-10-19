@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "877bc8467660666216ed",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "diagnose factorial seed2 exit",
+  "task_key": "worker_diagnose_factorial-seed2-exit_20260518T111245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_factorial-seed2-exit_20260518T111245.log",
+    "occurrence": 1,
+    "bytes": 654646,
+    "sha256": "220bffbd90b9e443be4e454a8b9f874ebfc615636fc236b4df711d68fda9fc59"
+  },
+  "statistics": {
+    "messages": 191,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 191,
+      "chunks": [
+        {
+          "path": "877bc8467660666216ed-part-0001.json",
+          "message_count": 179
+        },
+        {
+          "path": "877bc8467660666216ed-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-factorial-seed2-exit-copy-2.md"
+}

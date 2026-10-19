@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6e06c185ea784f27c8c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "figure fig theoretical sign prob",
+  "task_key": "worker_figure_fig-theoretical-sign-prob_20260517T205039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig-theoretical-sign-prob_20260517T205039_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "05765c2eb514e95ff2a563479d879a9ab47831fc1ab67216985621af67a77ec1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件生成成功。关键数值和产出：\n\n**工作点验证**: p=0.125, K=8 → P(correct sign | update) = **19.04%**，与预期一致。\n\n**图表内容**:\n- 4 条曲线 (K=2,5,8,25)，展示 K 越大、P(correct) 越低\n- 工作点标注在 K=8 曲线上 (p=0.125)\n- y=0.5 虚线 + 浅红色 \"majority incorrect\" 区域\n- serif 字体，无标题，论文级排版\n\n**输出文件**:\n- `/root/cost-verify-agent-rl/artifacts/figures/fig_theoretical_sign_prob.pdf` (29K)\n- `/root/cost-verify-agent-rl/artifacts/figures/fig_theoretical_sign_prob.png` (135K)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig-theoretical-sign-prob.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0ef39a5414367722c16",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "ssh deploy v9 3gpu",
+  "task_key": "worker_ssh_deploy-v9-3gpu_20260513T075451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deploy-v9-3gpu_20260513T075451_result.json",
+    "occurrence": 1,
+    "bytes": 1687,
+    "sha256": "5d425ae4a61f7abcb4b83c42681861313e9716f26e0a6f2c0e59eb96901195c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No episode boundary detection triggered in dry-run (0 occurrences) — which is expected since the successful task 1 completed via `reward=True` from `info[\"won\"]`, not via boundary detection. The boundary detection is a fallback for when ALFWorld auto-resets.\n\n## D031 Report\n\n### Step 1: Code Sync -- PASS\n| File | Status |\n|------|--------|\n| `artifacts/collect_trajectories_icl.py` | FILE1_OK |\n| `src/build_dpo_pairs.py` | FILE2_OK |\n| `src/etadn_discount.py` | FILE3_OK |\n| `src/train_dpo.py` | FILE4_OK |\n| `src/dmpo_loss.py` | FILE5_OK |\n\nVerification greps all passed:\n- `episode boundary` at line 336\n- `max_new_tokens: int = 2048` at line 240\n- `gamma_planning: float = 1.0` at line 33\n- `gamma_min/gamma_max` continuous mode confirmed\n\n### Step 2: Dry-run -- PASS (1/2 = 50%)\n| Task | Type | Reward | Steps | Time |\n|------|------|--------|-------|------|\n| 0 | pick_clean_then_place | False | 40 | 158.6s |\n| 1 | pick_clean_then_place | **True** | 35 | 118.0s |\n\n- `<think>` leakage: **0** (clean)\n- Episode boundary detection: code present, not triggered (normal path used)\n\n### Step 3: v9 Full Collection -- ALREADY RUNNING\nv9 was already launched by a previous session on 3 GPUs:\n\n| GPU | CUDA_VISIBLE_DEVICES | part_idx | Status | Progress |\n|-----|---------------------|----------|--------|----------|\n| 0 | 0 | 0 | Running (PID 884787) | 12/1107, sr=8/12 (66.7%) |\n| 1 | 1 | 1 | Running (PID 885185) | 13/1107, sr=9/13 (69.2%) |\n| 4 | 4 | 2 | Running (PID 885703) | 9/1107, sr=7/9 (77.8%) |\n\nAll 3 jobs running with `--part_num 3`, each processing 1107 tasks. No additional submission needed — v9 is in progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deploy-v9-3gpu.md"
+}

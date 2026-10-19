@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "914ed855bc4c46be279e",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "diagnose scienceworld eval format",
+  "task_key": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scienceworld_eval_format_20260519T181348.log",
+    "occurrence": 1,
+    "bytes": 629383,
+    "sha256": "58f80e0547ded7c7983b0c69e36cc6030a0c37bf971daa3752b1e0aa2e62c966"
+  },
+  "statistics": {
+    "messages": 142,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 47,
+      "tool_result": 47,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 142,
+      "chunks": [
+        {
+          "path": "914ed855bc4c46be279e-part-0001.json",
+          "message_count": 130
+        },
+        {
+          "path": "914ed855bc4c46be279e-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-scienceworld-eval-format.md"
+}

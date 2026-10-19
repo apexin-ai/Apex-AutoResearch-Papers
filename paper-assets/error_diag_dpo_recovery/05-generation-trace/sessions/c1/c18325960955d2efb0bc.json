@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c18325960955d2efb0bc",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code qwen3 8b training compat",
+  "task_key": "worker_code_qwen3-8b-training-compat_20260513T095710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen3-8b-training-compat_20260513T095710_result.json",
+    "occurrence": 1,
+    "bytes": 1326,
+    "sha256": "613a30c47b7fa3a907a8cf202a2006d693c38683e78c3e5a3dfef2412cc1d864"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果已返回。\n\n## 汇报\n\n### Step 1: 模型加载 + forward pass — 通过\n| 项目 | 结果 |\n|------|------|\n| vocab_size | 151,643 |\n| 参数量 | 8.2B |\n| forward pass | logits shape `[1, 2, 151936]` |\n| 状态 | ALL CHECKS PASSED |\n\n模型用 float32 在 CPU 上加载成功，无 OOM。注意 `torch_dtype` 参数已 deprecated，新版应改用 `dtype`。\n\n### Step 2: train_dpo.py 兼容性分析\n\n脚本**没有 `--device` 参数**。只有 `--gpu`（int, default=0），内部硬编码 `device = torch.device(f\"cuda:{args.gpu}\")`。无法直接用 CPU 跑训练。\n\n### Step 3: 1-step CPU 训练 — 跳过\n\ntrain_dpo.py 不支持 CPU 模式，跳过。如需 CPU 验证训练流程，需要改代码把 device 逻辑改为可配置。\n\n### Step 4: 数据文件\n\n`/tmp/v9_early_pairs.jsonl` 存在，21 行。\n\n### 兼容性问题总结\n1. **模型本身与 transformers 兼容，加载和推理无问题**\n2. **train_dpo.py 硬编码 CUDA**，无 CPU fallback — GPU 空闲后可直接跑，不需要改动\n3. **logits 维度 151,936** 与 tokenizer vocab_size 151,643 有差异（模型 embedding 层做了 padding 到 64 的倍数），这是正常行为，不影响训练\n4. `torch_dtype` deprecation warning — 建议后续改为 `dtype`，非阻塞"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen3-8b-training-compat.md"
+}

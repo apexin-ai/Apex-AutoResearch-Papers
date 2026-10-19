@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b6e0002260f399afa60e",
+  "project": "error_diag_dpo_recovery",
+  "kind": "worker",
+  "title": "ssh d032 put fix deploy",
+  "task_key": "worker_ssh_d032-put-fix-deploy_20260513T075913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d032-put-fix-deploy_20260513T075913.log",
+    "occurrence": 1,
+    "bytes": 625235,
+    "sha256": "0a543cd90356afabc8386b061cf95021892f43778b0c922e4262325f5b9fef08"
+  },
+  "statistics": {
+    "messages": 216,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 216,
+      "chunks": [
+        {
+          "path": "b6e0002260f399afa60e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b6e0002260f399afa60e-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d032-put-fix-deploy.md"
+}

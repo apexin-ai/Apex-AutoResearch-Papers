@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f53192146dc0571e7416",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp025b post launch verify",
+  "task_key": "worker_ops_exp025b_post_launch_verify_20260515T073733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp025b_post_launch_verify_20260515T073733_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "04adf25d92c92afafc0f80998ffb5c23389e8dbca10a8b6937e0bc58b1671aa9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp025b 检查结果\n\n| # | 检查项 | 结果 | 详情 |\n|---|--------|------|------|\n| 1 | Python 环境 | **PASS** | `/root/autodl-tmp/conda-envs/verl-agent/bin/python` |\n| 2 | vLLM 模块 | *(未单独检查，见下)* | — |\n| 3 | save_freq 配置 | **PASS** | `trainer.save_freq=25` |\n| 4 | GPU 利用率 | **PASS** | GPU 0: 100%, 6096/97887 MiB; GPU 1: 0%, 6092/97887 MiB |\n| 5 | 进程存活 | **FAIL** | PID 614229 已死 |\n| 6 | 训练日志 | **FAIL — 训练已崩溃** | — |\n\n### 崩溃原因\n\n**Ray GCS 启动失败**。关键错误链：\n\n1. Ray GCS server 抛出 `St12system_error: Resource temporarily unavailable`（很可能是共享内存 `/dev/shm` 不足或端口冲突）\n2. `ray.init()` 连接 GCS 超时 → `RuntimeError: Failed to start GCS`\n3. 进程以 `EXIT_CODE=1` 退出\n\n日志中的 GCS 错误日志路径：`/tmp/ray/session_2026-05-15_15-36-49_561546_614244/logs/gcs_server.out`\n\n### GPU 占用说明\n\n虽然 GPU 显示有 ~6GB 占用，但这可能是之前 Ray 残留进程未清理。训练本身已终止。\n\n### 下一步建议排查\n\n1. 检查是否有残留 Ray 进程占用端口/共享内存：`ray stop --force`\n2. 检查 `/dev/shm` 空间：`df -h /dev/shm`\n3. 查看 GCS 详细日志：`cat /tmp/ray/session_2026-05-15_15-36-49_561546_614244/logs/gcs_server.out`\n\n需要我继续排查并重启训练吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp025b-post-launch-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f93147fea799e8a53104",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research deep read turn ppo v2",
+  "task_key": "worker_research_deep-read-turn-ppo-v2_20260517T121530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_deep-read-turn-ppo-v2_20260517T121530_result.json",
+    "occurrence": 1,
+    "bytes": 1401,
+    "sha256": "9df171f32e869068c97238c7fe49478c5b0c48693ff502d75c6dd169b267ccf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献调研完成，已写入 `memory.md`。覆盖 18 篇论文（2024–2026），结构如下：\n\n**Direct Competitors（5 篇）**:\n- **Turn-PPO** (EACL 2026) — turn-level MDP，发现 GRPO 在 multi-turn 中 uniform advantage + 频繁 crash，最相关竞品\n- **MT-GRPO/MT-PPO** (ICML 2025) — 第一个系统性 turn-level reward design 研究，verifiable + LLM-judge 两种 reward\n- **GiGPO** (NeurIPS 2025) — anchor state grouping 实现 step-level group comparison，critic-free\n- **GAGPO** (2026) — grouped value proxy + 递归 GAE，比 GiGPO variance 更低\n- **HCAPO** (2026) — hindsight credit assignment，LLM 做 post-hoc critic\n\n**Method Components（5 篇）**: iStar (implicit PRM + dual advantage), SPA-RL (progress estimator), VAGEN (bi-level GAE), ArCHer (ICML 2024, 开山之作), HiPER (hierarchical advantage)\n\n**Frameworks/Baselines（4 篇）**: RAGEN/StarPO, WebRL, WebAgent-R1, Planner-R1\n\n**Surveys（3 篇）**: Credit Assignment Survey (47 methods), Practitioner's Guide, DeepSeek-R1 GRPO\n\n**关键结论**: 没有论文使用 \"advantage sign misattribution\" 术语，也没有量化 γ 折扣对 sign 的影响（~29% 保留率）。Turn-PPO 描述了相近现象（uniform advantage assignment），但我们的 sign-level 分析和 step-independent vs episode-level 的受控对比（0% vs 28%）是差异化贡献空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-deep-read-turn-ppo-v2.md"
+}

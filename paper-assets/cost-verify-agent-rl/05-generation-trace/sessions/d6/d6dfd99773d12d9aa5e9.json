@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "d6dfd99773d12d9aa5e9",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops westd start ragen eval gpu123",
+  "task_key": "worker_ops_westd_start_ragen_eval_gpu123_20260522T091558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_start_ragen_eval_gpu123_20260522T091558.log",
+    "occurrence": 1,
+    "bytes": 1437336,
+    "sha256": "64aeb541253dac05c16cad9aa6e0bc4dd3cf46f1563b5db2b6d2190e37d9c029"
+  },
+  "statistics": {
+    "messages": 570,
+    "user_turns": 1,
+    "tool_calls": 186,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 190,
+      "tool_call": 186,
+      "tool_result": 186,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 375,
+      "chunks": [
+        {
+          "path": "d6dfd99773d12d9aa5e9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d6dfd99773d12d9aa5e9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d6dfd99773d12d9aa5e9-part-0003.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 195,
+      "chunks": [
+        {
+          "path": "d6dfd99773d12d9aa5e9-part-0003.json",
+          "message_count": 165
+        },
+        {
+          "path": "d6dfd99773d12d9aa5e9-part-0004.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-westd-start-ragen-eval-gpu123.md"
+}

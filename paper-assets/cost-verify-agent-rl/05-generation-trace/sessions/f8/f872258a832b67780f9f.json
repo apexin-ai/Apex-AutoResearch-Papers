@@ -1,0 +1,966 @@
+{
+  "schema_version": "1.0",
+  "id": "f872258a832b67780f9f",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "edit failure unification table fix",
+  "task_key": "worker_edit_failure_unification_table_fix_20260517T053143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_failure_unification_table_fix_20260517T053143.log",
+    "occurrence": 1,
+    "bytes": 55902,
+    "sha256": "68de41fd6a3933605f27afa808219233ee71ab2240185bd5c7f9df4e009b242d"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+                "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "c819f1fe-bb5d-41f1-b281-ea2b949a8d07",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779008400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "de933b4a-cf37-4266-afb9-85c00532e865",
+                "session_id": "040348de-139c-4910-a60a-98629ed86c23"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me SSH to the server to read the file first, then make the modifications.",
+              "signature": "EogCClkIDRgCKkBJ3pBgbEG7BEjb9shl8by6JOGN+pdBq4Abj8Tjh0dOWaj2cjcI9B31jp3ySs2e1uCCj31pF74bniAIHMVWgtBwMg9jbGF1ZGUtb3B1cy00LTY4ABIMJlsQ+ZpWyv98mkRqGgxf//dVqbmiOiA6WqoiMPQlR6eZn2TNNnOMY3l3emtb+ENC8RBdy2jLW61J/BYr7A02HafD3qfjDyErjGI+tSpdsJaxtkR/PlGxYFVyt+OcA2P9Q/qTqsfpmnY6b5+2vfGfhs5POKZCAUv3Ac/SdoEcioupa6EWdunz9C+8WuX8mP3IPUf+6LTO9vf9y+9EopmrMkeS2XKkT3K4zSBnGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "9ede12c1-53e6-41a9-be16-a66a285683e9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5Zui5s7HdymgLRxCEBm7Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12919,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12919
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A5boUcABpxY64pQBTFusk6",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "ed4b5541-1493-46e5-bdd4-80f1ce56a7e1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5Zui5s7HdymgLRxCEBm7Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12919,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12919
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T05:31:56.176Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01A5boUcABpxY64pQBTFusk6",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "fe545679-68d4-4e6c-af5e-201f9ca340eb",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QULKK7ciFoL6RCuG9c7GeP",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "cat /root/cost-verify-agent-rl/analysis/failure_unification_table.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "8d69d33b-31b3-4b52-81e0-c4c29738c9b7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q1VLHV5kdMjStei5GBekib",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 378,
+                "cache_read_input_tokens": 24760,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 378
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T05:32:00.941Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QULKK7ciFoL6RCuG9c7GeP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Failure Mode Unification: Step-Independent Credit Assignment as Root Cause\\\\n\\\\n## Summary\\\\n\\\\nAll four negative GRPO experiments (exp013f, exp020b, exp026, exp027) exhibit distinct surface symptoms (reward gaming, policy collapse, catastrophic forgetting) yet share a single root cause: step-independent optimization fundamentally cannot assign credit across multi-turn trajectories. The attempted fixes (bonus ratio tuning, KL constraints, LR reduction, entropy bonuses) addressed symptoms without resolving the structural inability to propagate task-level signal through sequential decisions. Episode-level training (exp029) with the same SFT checkpoint achieved 28.125% stable success, confirming the diagnosis.\\\\n\\\\n## Unification Table\\\\n\\\\n| Experiment | Surface Symptom | Attempted Fix | Actual Root Cause | Key Evidence |\\\\n|------------|----------------|---------------|-------------------|--------------|\\\\n| exp013f | Reward gaming: action_is_valid 60%→97.5%, task success 0% | Reduce bonus ratio (1:67���1:1000), success-gated reward | Step-independent optimization maximizes per-step bonus without requiring task completion | Cumulative bonus (29×0.15=4.5) dominated sparse success reward (10.0); episode-level constrains bonus optimization to full trajectories |\\\\n| exp020b | Policy collapse: success 20%→4.69%, entropy collapse 61%, pass@16 75%→25% | Increase KL constraint, fix response_mask, adjust LR | Per-step GRPO destroys inter-step correlations learned by SFT | Entropy 0.107→0.042; model collapsed to \\\\\\\"safe\\\\\\\" per-step actions, losing sequential planning ability |\\\\n| exp026 | Catastrophic collapse: train success peaks 32.81% (step 2) then drops to 0% (step 4) | exp027: increase env_groups (4→8), lower LR (1e-6→5e-7), lower KL, add entropy bonus | gamma^(T-h) decay makes long-horizon credit impossible; gamma^45≈10% signal strength | Model learned locally valid actions (action_is_valid ~72%) but lost task completion; exp029 (episode-level) reached 28.125% stable |\\\\n| exp027 | Same collapse pattern: peak 35.94% (step 1) then decay to 10.16% (step 2-3), Ray OOM crash | Recipe gap analysis → concluded mini-batch/LR/steps mismatch | Still step-independent (h=5); larger rollouts delayed but did not prevent collapse | D045 recipe gap analysis was wrong: the \\\\\\\"62pp gap\\\\\\\" was not about parameter tuning but about fundamental credit assignment mode |\\\\n\\\\n## Diagnostic Timeline\\\\n\\\\n1. **exp013f** (early): Observed reward gaming. Hypothesized bonus ratio was too large. Proposed ratio reduction and success-gating as fixes.\\\\n2. **exp020b** (mid): Observed policy collapse from SFT baseline. Hypothesized KL/LR misconfiguration. Attempted constraint tuning.\\\\n3. **exp026** (late-mid): Observed catastrophic collapse after initial improvement. Hypothesized insufficient rollout diversity and aggressive updates.\\\\n4. **exp027** (late): Applied conventional recipe fixes (more data, lower LR, entropy bonus). Same collapse pattern persisted, plus infrastructure crash.\\\\n5. **D045 recipe gap analysis**: Systematically compared our hyperparameters against published GRPO recipes. Concluded a \\\\\\\"62pp gap\\\\\\\" from parameter mismatch. This diagnosis was incorrect.\\\\n6. **Insight**: Recognized that all failures shared a common structure: the model could learn locally optimal per-step behavior but could not maintain or improve multi-step coherence. The distinguishing variable was not hyperparameters but the granularity of credit assignment.\\\\n7. **exp029 (episode-level)**: Same SFT checkpoint, same task, episode-level training. Achieved 28.125% stable success, confirming that the credit assignment mode was the true bottleneck.\\\\n\\\\n## Implications\\\\n\\\\n- **Community value**: Multi-turn agent training with GRPO is increasingly popular, but published recipes assume single-turn or short-horizon settings. This unification demonstrates that step-independent GRPO has a structural limitation in long-horizon tasks (avg ~50 steps), not merely a tuning challenge. Practitioners attempting multi-turn agent RL should default to episode-level credit assignment rather than iterating on per-step hyperparameters.\\\\n- **Paper placement**: This table belongs in the Experiments section as an analysis subsection (e.g., \\\\\\\"Analysis: Unifying Failure Modes\\\\\\\"). It serves as evidence that episode-level training is not merely one design choice among equals but a necessary condition for multi-turn success. The diagnostic timeline supports the narrative arc: surface-level fixes failed repeatedly until the structural root cause was identified.\\\\n\\\\n## Counter-evidence: Independent Failure Modes\\\\n\\\\n- **exp021 (data quality)**: Failed due to insufficient evaluation episodes (4-episode eval showed 25% but 16-episode eval showed 6.25%). This is a measurement/data quality issue unrelated to step-independent credit assignment.\\\\n- **exp028_prereq (zero-shot diagnostic)**: A diagnostic experiment testing base model capability without RL training. Not a training failure and thus outside the scope of this analysis.\\\\n- **Scope of the claim**: Step-independent credit assignment is the dominant failure mode for GRPO in multi-turn ALFWorld (4/4 training failures), but it is not a universal explanation for all negative results. Infrastructure issues (Ray OOM), evaluation methodology (insufficient episodes), and data quality remain independent failure sources. The unification claim is specific: when GRPO training itself fails to improve task success in long-horizon settings, the credit assignment granularity is the first variable to examine.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "7df98f81-15e1-4f98-b533-7e6d3476d76e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Failure Mode Unification: Step-Independent Credit Assignment as Root Cause\\\\n\\\\n## Summary\\\\n\\\\nAll four negative GRPO experiments (exp013f, exp020b, exp026, exp027) exhibit distinct surface symptoms (reward gaming, policy collapse, catastrophic forgetting) yet share a single root cause: step-independent optimization fundamentally cannot assign credit across multi-turn trajectories. The attempted fixes (bonus ratio tuning, KL constraints, LR reduction, entropy bonuses) addressed symptoms without resolving the structural inability to propagate task-level signal through sequential decisions. Episode-level training (exp029) with the same SFT checkpoint achieved 28.125% stable success, confirming the diagnosis.\\\\n\\\\n## Unification Table\\\\n\\\\n| Experiment | Surface Symptom | Attempted Fix | Actual Root Cause | Key Evidence |\\\\n|------------|----------------|---------------|-------------------|--------------|\\\\n| exp013f | Reward gaming: action_is_valid 60%→97.5%, task success 0% | Reduce bonus ratio (1:67���1:1000), success-gated reward | Step-independent optimization maximizes per-step bonus without requiring task completion | Cumulative bonus (29×0.15=4.5) dominated sparse success reward (10.0); episode-level constrains bonus optimization to full trajectories |\\\\n| exp020b | Policy collapse: success 20%→4.69%, entropy collapse 61%, pass@16 75%→25% | Increase KL constraint, fix response_mask, adjust LR | Per-step GRPO destroys inter-step correlations learned by SFT | Entropy 0.107→0.042; model collapsed to \\\\\\\"safe\\\\\\\" per-step actions, losing sequential planning ability |\\\\n| exp026 | Catastrophic collapse: train success peaks 32.81% (step 2) then drops to 0% (step 4) | exp027: increase env_groups (4→8), lower LR (1e-6→5e-7), lower KL, add entropy bonus | gamma^(T-h) decay makes long-horizon credit impossible; gamma^45≈10% signal strength | Model learned locally valid actions (action_is_valid ~72%) but lost task completion; exp029 (episode-level) reached 28.125% stable |\\\\n| exp027 | Same collapse pattern: peak 35.94% (step 1) then decay to 10.16% (step 2-3), Ray OOM crash | Recipe gap analysis → concluded mini-batch/LR/steps mismatch | Still step-independent (h=5); larger rollouts delayed but did not prevent collapse | D045 recipe gap analysis was wrong: the \\\\\\\"62pp gap\\\\\\\" was not about parameter tuning but about fundamental credit assignment mode |\\\\n\\\\n## Diagnostic Timeline\\\\n\\\\n1. **exp013f** (early): Observed reward gaming. Hypothesized bonus ratio was too large. Proposed ratio reduction and success-gating as fixes.\\\\n2. **exp020b** (mid): Observed policy collapse from SFT baseline. Hypothesized KL/LR misconfiguration. Attempted constraint tuning.\\\\n3. **exp026** (late-mid): Observed catastrophic collapse after initial improvement. Hypothesized insufficient rollout diversity and aggressive updates.\\\\n4. **exp027** (late): Applied conventional recipe fixes (more data, lower LR, entropy bonus). Same collapse pattern persisted, plus infrastructure crash.\\\\n5. **D045 recipe gap analysis**: Systematically compared our hyperparameters against published GRPO recipes. Concluded a \\\\\\\"62pp gap\\\\\\\" from parameter mismatch. This diagnosis was incorrect.\\\\n6. **Insight**: Recognized that all failures shared a common structure: the model could learn locally optimal per-step behavior but could not maintain or improve multi-step coherence. The distinguishing variable was not hyperparameters but the granularity of credit assignment.\\\\n7. **exp029 (episode-level)**: Same SFT checkpoint, same task, episode-level training. Achieved 28.125% stable success, confirming that the credit assignment mode was the true bottleneck.\\\\n\\\\n## Implications\\\\n\\\\n- **Community value**: Multi-turn agent training with GRPO is increasingly popular, but published recipes assume single-turn or short-horizon settings. This unification demonstrates that step-independent GRPO has a structural limitation in long-horizon tasks (avg ~50 steps), not merely a tuning challenge. Practitioners attempting multi-turn agent RL should default to episode-level credit assignment rather than iterating on per-step hyperparameters.\\\\n- **Paper placement**: This table belongs in the Experiments section as an analysis subsection (e.g., \\\\\\\"Analysis: Unifying Failure Modes\\\\\\\"). It serves as evidence that episode-level training is not merely one design choice among equals but a necessary condition for multi-turn success. The diagnostic timeline supports the narrative arc: surface-level fixes failed repeatedly until the structural root cause was identified.\\\\n\\\\n## Counter-evidence: Independent Failure Modes\\\\n\\\\n- **exp021 (data quality)**: Failed due to insufficient evaluation episodes (4-episode eval showed 25% but 16-episode eval showed 6.25%). This is a measurement/data quality issue unrelated to step-independent credit assignment.\\\\n- **exp028_prereq (zero-shot diagnostic)**: A diagnostic experiment testing base model capability without RL training. Not a training failure and thus outside the scope of this analysis.\\\\n- **Scope of the claim**: Step-independent credit assignment is the dominant failure mode for GRPO in multi-turn ALFWorld (4/4 training failures), but it is not a universal explanation for all negative results. Infrastructure issues (Ray OOM), evaluation methodology (insufficient episodes), and data quality remain independent failure sources. The unification claim is specific: when GRPO training itself fails to improve task success in long-horizon settings, the credit assignment granularity is the first variable to examine.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# Failure Mode Unification: Step-Independent Credit Assignment as Root Cause\\n\\n## Summary\\n\\nAll four negative GRPO experiments (exp013f, exp020b, exp026, exp027) exhibit distinct surface symptoms (reward gaming, policy collapse, catastrophic forgetting) yet share a single root cause: step-independent optimization fundamentally cannot assign credit across multi-turn trajectories. The attempted fixes (bonus ratio tuning, KL constraints, LR reduction, entropy bonuses) addressed symptoms without resolving the structural inability to propagate task-level signal through sequential decisions. Episode-level training (exp029) with the same SFT checkpoint achieved 28.125% stable success, confirming the diagnosis.\\n\\n## Unification Table\\n\\n| Experiment | Surface Symptom | Attempted Fix | Actual Root Cause | Key Evidence |\\n|------------|----------------|---------------|-------------------|--------------|\\n| exp013f | Reward gaming: action_is_valid 60%→97.5%, task success 0% | Reduce bonus ratio (1:67���1:1000), success-gated reward | Step-independent optimization maximizes per-step bonus without requiring task completion | Cumulative bonus (29×0.15=4.5) dominated sparse success reward (10.0); episode-level constrains bonus optimization to full trajectories |\\n| exp020b | Policy collapse: success 20%→4.69%, entropy collapse 61%, pass@16 75%→25% | Increase KL constraint, fix response_mask, adjust LR | Per-step GRPO destroys inter-step correlations learned by SFT | Entropy 0.107→0.042; model collapsed to \\\"safe\\\" per-step actions, losing sequential planning ability |\\n| exp026 | Catastrophic collapse: train success peaks 32.81% (step 2) then drops to 0% (step 4) | exp027: increase env_groups (4→8), lower LR (1e-6→5e-7), lower KL, add entropy bonus | gamma^(T-h) decay makes long-horizon credit impossible; gamma^45≈10% signal strength | Model learned locally valid actions (action_is_valid ~72%) but lost task completion; exp029 (episode-level) reached 28.125% stable |\\n| exp027 | Same collapse pattern: peak 35.94% (step 1) then decay to 10.16% (step 2-3), Ray OOM crash | Recipe gap analysis → concluded mini-batch/LR/steps mismatch | Still step-independent (h=5); larger rollouts delayed but did not prevent collapse | D045 recipe gap analysis was wrong: the \\\"62pp gap\\\" was not about parameter tuning but about fundamental credit assignment mode |\\n\\n## Diagnostic Timeline\\n\\n1. **exp013f** (early): Observed reward gaming. Hypothesized bonus ratio was too large. Proposed ratio reduction and success-gating as fixes.\\n2. **exp020b** (mid): Observed policy collapse from SFT baseline. Hypothesized KL/LR misconfiguration. Attempted constraint tuning.\\n3. **exp026** (late-mid): Observed catastrophic collapse after initial improvement. Hypothesized insufficient rollout diversity and aggressive updates.\\n4. **exp027** (late): Applied conventional recipe fixes (more data, lower LR, entropy bonus). Same collapse pattern persisted, plus infrastructure crash.\\n5. **D045 recipe gap analysis**: Systematically compared our hyperparameters against published GRPO recipes. Concluded a \\\"62pp gap\\\" from parameter mismatch. This diagnosis was incorrect.\\n6. **Insight**: Recognized that all failures shared a common structure: the model could learn locally optimal per-step behavior but could not maintain or improve multi-step coherence. The distinguishing variable was not hyperparameters but the granularity of credit assignment.\\n7. **exp029 (episode-level)**: Same SFT checkpoint, same task, episode-level training. Achieved 28.125% stable success, confirming that the credit assignment mode was the true bottleneck.\\n\\n## Implications\\n\\n- **Community value**: Multi-turn agent training with GRPO is increasingly popular, but published recipes assume single-turn or short-horizon settings. This unification demonstrates that step-independent GRPO has a structural limitation in long-horizon tasks (avg ~50 steps), not merely a tuning challenge. Practitioners attempting multi-turn agent RL should default to episode-level credit assignment rather than iterating on per-step hyperparameters.\\n- **Paper placement**: This table belongs in the Experiments section as an analysis subsection (e.g., \\\"Analysis: Unifying Failure Modes\\\"). It serves as evidence that episode-level training is not merely one design choice among equals but a necessary condition for multi-turn success. The diagnostic timeline supports the narrative arc: surface-level fixes failed repeatedly until the structural root cause was identified.\\n\\n## Counter-evidence: Independent Failure Modes\\n\\n- **exp021 (data quality)**: Failed due to insufficient evaluation episodes (4-episode eval showed 25% but 16-episode eval showed 6.25%). This is a measurement/data quality issue unrelated to step-independent credit assignment.\\n- **exp028_prereq (zero-shot diagnostic)**: A diagnostic experiment testing base model capability without RL training. Not a training failure and thus outside the scope of this analysis.\\n- **Scope of the claim**: Step-independent credit assignment is the dominant failure mode for GRPO in multi-turn ALFWorld (4/4 training failures), but it is not a universal explanation for all negative results. Infrastructure issues (Ray OOM), evaluation methodology (insufficient episodes), and data quality remain independent failure sources. The unification claim is specific: when GRPO training itself fails to improve task success in long-horizon settings, the credit assignment granularity is the first variable to examine.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll apply the 4 modifications with `sed`:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "b5c8ae4f-e68d-48ca-80a8-49f728b351d1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SpskSErY8WfveqJ953uFTS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1583,
+                "cache_read_input_tokens": 25138,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1583
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MCAeVXXxqV41XseavFfAzo",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "cd /root/cost-verify-agent-rl/analysis && sed -i 's|gamma\\^(T-h) decay makes long-horizon credit impossible; gamma\\^45≈10% signal strength|GRPO assigns identical group-relative advantage to all h-step windows; non-terminal windows'\\''s actions are uncorrelated with episode outcome → gradient signal is noise|' failure_unification_table.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "ffd872fc-6d5d-4b23-a4bf-e192a1554d2b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SpskSErY8WfveqJ953uFTS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1583,
+                "cache_read_input_tokens": 25138,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1583
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T05:32:06.205Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MCAeVXXxqV41XseavFfAzo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "ad490a0d-10dd-43fd-9c3d-178baf917a92",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G3AnvCeq1JkyAykdd1iXDJ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "cd /root/cost-verify-agent-rl/analysis && sed -i 's|Cumulative bonus (29×0.15=4.5) dominated sparse success reward (10.0); episode-level constrains bonus optimization to full trajectories|In step-independent mode, per-window bonus (0.3) is the only causally linked reward signal; episode success (10.0) is distributed identically across all windows regardless of action quality → model optimizes window-local bonus|' failure_unification_table.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "0cbd3c79-e161-4bfa-b689-c29a09084b81",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SMVHDB1rFbrPfnhmCxDagD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 281,
+                "cache_read_input_tokens": 26721,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 281
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T05:32:10.100Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G3AnvCeq1JkyAykdd1iXDJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "26dc6f34-c802-4199-ba72-d2c9904fd219",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LFwyM7Lv4E4U86Ta7S4iUw",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "cd /root/cost-verify-agent-rl/analysis && sed -i 's|28\\.125% stable success|28.125% at step 15 (single seed, N=32 episodes)|' failure_unification_table.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "d2290320-28c2-432d-ab38-0c9ececc17b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MpZGc5eGfaCkhGqJNxAJ6c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 290,
+                "cache_read_input_tokens": 27002,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 290
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T05:32:14.398Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LFwyM7Lv4E4U86Ta7S4iUw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "922afcc1-f367-4dc6-9d5f-5e10592bfc17",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R8fpc5i3YQrtEjrii6DvPq",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "cd /root/cost-verify-agent-rl/analysis && sed -i 's|D045 recipe gap analysis was wrong|D045 recipe gap analysis was incomplete|' failure_unification_table.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "a3d1920f-ba4f-4f14-accc-700049d778aa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RXn3iR5MGazReu1ox5DKSP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 229,
+                "cache_read_input_tokens": 27292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 229
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T05:32:19.612Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R8fpc5i3YQrtEjrii6DvPq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "be793c32-d53c-4ef8-b246-be3d94aa3c58",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证修改后全文："
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "a4f3a02f-c853-44a6-8db6-85d5a652bbca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CifCnTTbm4YK4bn3Jf2hHM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 221,
+                "cache_read_input_tokens": 27521,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 221
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W3buT8cXeJY4ZUQX9CXp51",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-17606",
+                "command": "cat /root/cost-verify-agent-rl/analysis/failure_unification_table.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "c0c8c567-e0c4-49be-be1a-31455596baa3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CifCnTTbm4YK4bn3Jf2hHM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 221,
+                "cache_read_input_tokens": 27521,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 221
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T05:32:23.007Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W3buT8cXeJY4ZUQX9CXp51",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Failure Mode Unification: Step-Independent Credit Assignment as Root Cause\\\\n\\\\n## Summary\\\\n\\\\nAll four negative GRPO experiments (exp013f, exp020b, exp026, exp027) exhibit distinct surface symptoms (reward gaming, policy collapse, catastrophic forgetting) yet share a single root cause: step-independent optimization fundamentally cannot assign credit across multi-turn trajectories. The attempted fixes (bonus ratio tuning, KL constraints, LR reduction, entropy bonuses) addressed symptoms without resolving the structural inability to propagate task-level signal through sequential decisions. Episode-level training (exp029) with the same SFT checkpoint achieved 28.125% at step 15 (single seed, N=32 episodes), confirming the diagnosis.\\\\n\\\\n## Unification Table\\\\n\\\\n| Experiment | Surface Symptom | Attempted Fix | Actual Root Cause | Key Evidence |\\\\n|------------|----------------|---------------|-------------------|--------------|\\\\n| exp013f | Reward gaming: action_is_valid 60%→97.5%, task success 0% | Reduce bonus ratio (1:67→1:1000), success-gated reward | Step-independent optimization maximizes per-step bonus without requiring task completion | In step-independent mode, per-window bonus (0.3) is the only causally linked reward signal; episode success (10.0) is distributed identically across all windows regardless of action quality → model optimizes window-local bonus |\\\\n| exp020b | Policy collapse: success 20%→4.69%, entropy collapse 61%, pass@16 75%→25% | Increase KL constraint, fix response_mask, adjust LR | Per-step GRPO destroys inter-step correlations learned by SFT | Entropy 0.107→0.042; model collapsed to \\\\\\\"safe\\\\\\\" per-step actions, losing sequential planning ability |\\\\n| exp026 | Catastrophic collapse: train success peaks 32.81% (step 2) then drops to 0% (step 4) | exp027: increase env_groups (4→8), lower LR (1e-6→5e-7), lower KL, add entropy bonus | GRPO assigns identical group-relative advantage to all h-step windows; non-terminal windows's actions are uncorrelated with episode outcome → gradient signal is noise | Model learned locally valid actions (action_is_valid ~72%) but lost task completion; exp029 (episode-level) reached 28.125% stable |\\\\n| exp027 | Same collapse pattern: peak 35.94% (step 1) then decay to 10.16% (step 2-3), Ray OOM crash | Recipe gap analysis → concluded mini-batch/LR/steps mismatch | Still step-independent (h=5); larger rollouts delayed but did not prevent collapse | D045 recipe gap analysis was incomplete: the \\\\\\\"62pp gap\\\\\\\" was not about parameter tuning but about fundamental credit assignment mode |\\\\n\\\\n## Diagnostic Timeline\\\\n\\\\n1. **exp013f** (early): Observed reward gaming. Hypothesized bonus ratio was too large. Proposed ratio reduction and success-gating as fixes.\\\\n2. **exp020b** (mid): Observed policy collapse from SFT baseline. Hypothesized KL/LR misconfiguration. Attempted constraint tuning.\\\\n3. **exp026** (late-mid): Observed catastrophic collapse after initial improvement. Hypothesized insufficient rollout diversity and aggressive updates.\\\\n4. **exp027** (late): Applied conventional recipe fixes (more data, lower LR, entropy bonus). Same collapse pattern persisted, plus infrastructure crash.\\\\n5. **D045 recipe gap analysis**: Systematically compared our hyperparameters against published GRPO recipes. Concluded a \\\\\\\"62pp gap\\\\\\\" from parameter mismatch. This diagnosis was incorrect.\\\\n6. **Insight**: Recognized that all failures shared a common structure: the model could learn locally optimal per-step behavior but could not maintain or improve multi-step coherence. The distinguishing variable was not hyperparameters but the granularity of credit assignment.\\\\n7. **exp029 (episode-level)**: Same SFT checkpoint, same task, episode-level training. Achieved 28.125% at step 15 (single seed, N=32 episodes), confirming that the credit assignment mode was the true bottleneck.\\\\n\\\\n## Implications\\\\n\\\\n- **Community value**: Multi-turn agent training with GRPO is increasingly popular, but published recipes assume single-turn or short-horizon settings. This unification demonstrates that step-independent GRPO has a structural limitation in long-horizon tasks (avg ~50 steps), not merely a tuning challenge. Practitioners attempting multi-turn agent RL should default to episode-level credit assignment rather than iterating on per-step hyperparameters.\\\\n- **Paper placement**: This table belongs in the Experiments section as an analysis subsection (e.g., \\\\\\\"Analysis: Unifying Failure Modes\\\\\\\"). It serves as evidence that episode-level training is not merely one design choice among equals but a necessary condition for multi-turn success. The diagnostic timeline supports the narrative arc: surface-level fixes failed repeatedly until the structural root cause was identified.\\\\n\\\\n## Counter-evidence: Independent Failure Modes\\\\n\\\\n- **exp021 (data quality)**: Failed due to insufficient evaluation episodes (4-episode eval showed 25% but 16-episode eval showed 6.25%). This is a measurement/data quality issue unrelated to step-independent credit assignment.\\\\n- **exp028_prereq (zero-shot diagnostic)**: A diagnostic experiment testing base model capability without RL training. Not a training failure and thus outside the scope of this analysis.\\\\n- **Scope of the claim**: Step-independent credit assignment is the dominant failure mode for GRPO in multi-turn ALFWorld (4/4 training failures), but it is not a universal explanation for all negative results. Infrastructure issues (Ray OOM), evaluation methodology (insufficient episodes), and data quality remain independent failure sources. The unification claim is specific: when GRPO training itself fails to improve task success in long-horizon settings, the credit assignment granularity is the first variable to examine.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "be94fc85-ff60-423c-bb5d-be99d4449359",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Failure Mode Unification: Step-Independent Credit Assignment as Root Cause\\\\n\\\\n## Summary\\\\n\\\\nAll four negative GRPO experiments (exp013f, exp020b, exp026, exp027) exhibit distinct surface symptoms (reward gaming, policy collapse, catastrophic forgetting) yet share a single root cause: step-independent optimization fundamentally cannot assign credit across multi-turn trajectories. The attempted fixes (bonus ratio tuning, KL constraints, LR reduction, entropy bonuses) addressed symptoms without resolving the structural inability to propagate task-level signal through sequential decisions. Episode-level training (exp029) with the same SFT checkpoint achieved 28.125% at step 15 (single seed, N=32 episodes), confirming the diagnosis.\\\\n\\\\n## Unification Table\\\\n\\\\n| Experiment | Surface Symptom | Attempted Fix | Actual Root Cause | Key Evidence |\\\\n|------------|----------------|---------------|-------------------|--------------|\\\\n| exp013f | Reward gaming: action_is_valid 60%→97.5%, task success 0% | Reduce bonus ratio (1:67→1:1000), success-gated reward | Step-independent optimization maximizes per-step bonus without requiring task completion | In step-independent mode, per-window bonus (0.3) is the only causally linked reward signal; episode success (10.0) is distributed identically across all windows regardless of action quality → model optimizes window-local bonus |\\\\n| exp020b | Policy collapse: success 20%→4.69%, entropy collapse 61%, pass@16 75%→25% | Increase KL constraint, fix response_mask, adjust LR | Per-step GRPO destroys inter-step correlations learned by SFT | Entropy 0.107→0.042; model collapsed to \\\\\\\"safe\\\\\\\" per-step actions, losing sequential planning ability |\\\\n| exp026 | Catastrophic collapse: train success peaks 32.81% (step 2) then drops to 0% (step 4) | exp027: increase env_groups (4→8), lower LR (1e-6→5e-7), lower KL, add entropy bonus | GRPO assigns identical group-relative advantage to all h-step windows; non-terminal windows's actions are uncorrelated with episode outcome → gradient signal is noise | Model learned locally valid actions (action_is_valid ~72%) but lost task completion; exp029 (episode-level) reached 28.125% stable |\\\\n| exp027 | Same collapse pattern: peak 35.94% (step 1) then decay to 10.16% (step 2-3), Ray OOM crash | Recipe gap analysis → concluded mini-batch/LR/steps mismatch | Still step-independent (h=5); larger rollouts delayed but did not prevent collapse | D045 recipe gap analysis was incomplete: the \\\\\\\"62pp gap\\\\\\\" was not about parameter tuning but about fundamental credit assignment mode |\\\\n\\\\n## Diagnostic Timeline\\\\n\\\\n1. **exp013f** (early): Observed reward gaming. Hypothesized bonus ratio was too large. Proposed ratio reduction and success-gating as fixes.\\\\n2. **exp020b** (mid): Observed policy collapse from SFT baseline. Hypothesized KL/LR misconfiguration. Attempted constraint tuning.\\\\n3. **exp026** (late-mid): Observed catastrophic collapse after initial improvement. Hypothesized insufficient rollout diversity and aggressive updates.\\\\n4. **exp027** (late): Applied conventional recipe fixes (more data, lower LR, entropy bonus). Same collapse pattern persisted, plus infrastructure crash.\\\\n5. **D045 recipe gap analysis**: Systematically compared our hyperparameters against published GRPO recipes. Concluded a \\\\\\\"62pp gap\\\\\\\" from parameter mismatch. This diagnosis was incorrect.\\\\n6. **Insight**: Recognized that all failures shared a common structure: the model could learn locally optimal per-step behavior but could not maintain or improve multi-step coherence. The distinguishing variable was not hyperparameters but the granularity of credit assignment.\\\\n7. **exp029 (episode-level)**: Same SFT checkpoint, same task, episode-level training. Achieved 28.125% at step 15 (single seed, N=32 episodes), confirming that the credit assignment mode was the true bottleneck.\\\\n\\\\n## Implications\\\\n\\\\n- **Community value**: Multi-turn agent training with GRPO is increasingly popular, but published recipes assume single-turn or short-horizon settings. This unification demonstrates that step-independent GRPO has a structural limitation in long-horizon tasks (avg ~50 steps), not merely a tuning challenge. Practitioners attempting multi-turn agent RL should default to episode-level credit assignment rather than iterating on per-step hyperparameters.\\\\n- **Paper placement**: This table belongs in the Experiments section as an analysis subsection (e.g., \\\\\\\"Analysis: Unifying Failure Modes\\\\\\\"). It serves as evidence that episode-level training is not merely one design choice among equals but a necessary condition for multi-turn success. The diagnostic timeline supports the narrative arc: surface-level fixes failed repeatedly until the structural root cause was identified.\\\\n\\\\n## Counter-evidence: Independent Failure Modes\\\\n\\\\n- **exp021 (data quality)**: Failed due to insufficient evaluation episodes (4-episode eval showed 25% but 16-episode eval showed 6.25%). This is a measurement/data quality issue unrelated to step-independent credit assignment.\\\\n- **exp028_prereq (zero-shot diagnostic)**: A diagnostic experiment testing base model capability without RL training. Not a training failure and thus outside the scope of this analysis.\\\\n- **Scope of the claim**: Step-independent credit assignment is the dominant failure mode for GRPO in multi-turn ALFWorld (4/4 training failures), but it is not a universal explanation for all negative results. Infrastructure issues (Ray OOM), evaluation methodology (insufficient episodes), and data quality remain independent failure sources. The unification claim is specific: when GRPO training itself fails to improve task success in long-horizon settings, the credit assignment granularity is the first variable to examine.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# Failure Mode Unification: Step-Independent Credit Assignment as Root Cause\\n\\n## Summary\\n\\nAll four negative GRPO experiments (exp013f, exp020b, exp026, exp027) exhibit distinct surface symptoms (reward gaming, policy collapse, catastrophic forgetting) yet share a single root cause: step-independent optimization fundamentally cannot assign credit across multi-turn trajectories. The attempted fixes (bonus ratio tuning, KL constraints, LR reduction, entropy bonuses) addressed symptoms without resolving the structural inability to propagate task-level signal through sequential decisions. Episode-level training (exp029) with the same SFT checkpoint achieved 28.125% at step 15 (single seed, N=32 episodes), confirming the diagnosis.\\n\\n## Unification Table\\n\\n| Experiment | Surface Symptom | Attempted Fix | Actual Root Cause | Key Evidence |\\n|------------|----------------|---------------|-------------------|--------------|\\n| exp013f | Reward gaming: action_is_valid 60%→97.5%, task success 0% | Reduce bonus ratio (1:67→1:1000), success-gated reward | Step-independent optimization maximizes per-step bonus without requiring task completion | In step-independent mode, per-window bonus (0.3) is the only causally linked reward signal; episode success (10.0) is distributed identically across all windows regardless of action quality → model optimizes window-local bonus |\\n| exp020b | Policy collapse: success 20%→4.69%, entropy collapse 61%, pass@16 75%→25% | Increase KL constraint, fix response_mask, adjust LR | Per-step GRPO destroys inter-step correlations learned by SFT | Entropy 0.107→0.042; model collapsed to \\\"safe\\\" per-step actions, losing sequential planning ability |\\n| exp026 | Catastrophic collapse: train success peaks 32.81% (step 2) then drops to 0% (step 4) | exp027: increase env_groups (4→8), lower LR (1e-6→5e-7), lower KL, add entropy bonus | GRPO assigns identical group-relative advantage to all h-step windows; non-terminal windows's actions are uncorrelated with episode outcome → gradient signal is noise | Model learned locally valid actions (action_is_valid ~72%) but lost task completion; exp029 (episode-level) reached 28.125% stable |\\n| exp027 | Same collapse pattern: peak 35.94% (step 1) then decay to 10.16% (step 2-3), Ray OOM crash | Recipe gap analysis → concluded mini-batch/LR/steps mismatch | Still step-independent (h=5); larger rollouts delayed but did not prevent collapse | D045 recipe gap analysis was incomplete: the \\\"62pp gap\\\" was not about parameter tuning but about fundamental credit assignment mode |\\n\\n## Diagnostic Timeline\\n\\n1. **exp013f** (early): Observed reward gaming. Hypothesized bonus ratio was too large. Proposed ratio reduction and success-gating as fixes.\\n2. **exp020b** (mid): Observed policy collapse from SFT baseline. Hypothesized KL/LR misconfiguration. Attempted constraint tuning.\\n3. **exp026** (late-mid): Observed catastrophic collapse after initial improvement. Hypothesized insufficient rollout diversity and aggressive updates.\\n4. **exp027** (late): Applied conventional recipe fixes (more data, lower LR, entropy bonus). Same collapse pattern persisted, plus infrastructure crash.\\n5. **D045 recipe gap analysis**: Systematically compared our hyperparameters against published GRPO recipes. Concluded a \\\"62pp gap\\\" from parameter mismatch. This diagnosis was incorrect.\\n6. **Insight**: Recognized that all failures shared a common structure: the model could learn locally optimal per-step behavior but could not maintain or improve multi-step coherence. The distinguishing variable was not hyperparameters but the granularity of credit assignment.\\n7. **exp029 (episode-level)**: Same SFT checkpoint, same task, episode-level training. Achieved 28.125% at step 15 (single seed, N=32 episodes), confirming that the credit assignment mode was the true bottleneck.\\n\\n## Implications\\n\\n- **Community value**: Multi-turn agent training with GRPO is increasingly popular, but published recipes assume single-turn or short-horizon settings. This unification demonstrates that step-independent GRPO has a structural limitation in long-horizon tasks (avg ~50 steps), not merely a tuning challenge. Practitioners attempting multi-turn agent RL should default to episode-level credit assignment rather than iterating on per-step hyperparameters.\\n- **Paper placement**: This table belongs in the Experiments section as an analysis subsection (e.g., \\\"Analysis: Unifying Failure Modes\\\"). It serves as evidence that episode-level training is not merely one design choice among equals but a necessary condition for multi-turn success. The diagnostic timeline supports the narrative arc: surface-level fixes failed repeatedly until the structural root cause was identified.\\n\\n## Counter-evidence: Independent Failure Modes\\n\\n- **exp021 (data quality)**: Failed due to insufficient evaluation episodes (4-episode eval showed 25% but 16-episode eval showed 6.25%). This is a measurement/data quality issue unrelated to step-independent credit assignment.\\n- **exp028_prereq (zero-shot diagnostic)**: A diagnostic experiment testing base model capability without RL training. Not a training failure and thus outside the scope of this analysis.\\n- **Scope of the claim**: Step-independent credit assignment is the dominant failure mode for GRPO in multi-turn ALFWorld (4/4 training failures), but it is not a universal explanation for all negative results. Infrastructure issues (Ray OOM), evaluation methodology (insufficient episodes), and data quality remain independent failure sources. The unification claim is specific: when GRPO training itself fails to improve task success in long-horizon settings, the credit assignment granularity is the first variable to examine.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "四处修改全部完成：\n\n1. **exp026 Key Evidence** → \"GRPO assigns identical group-relative advantage to all h-step windows; non-terminal windows's actions are uncorrelated with episode outcome → gradient signal is noise\" ✓\n2. **exp013f Key Evidence** → \"In step-independent mode, per-window bonus (0.3) is the only causally linked reward signal; episode success (10.0) is distributed identically across all windows regardless of action quality → model optimizes window-local bonus\" ✓\n3. **\"28.125% stable success\"** → \"28.125% at step 15 (single seed, N=32 episodes)\" ✓ (出现在 Summary 和 Diagnostic Timeline 第7点两处均已替换)\n4. **\"D045 recipe gap analysis was wrong\"** → \"D045 recipe gap analysis was incomplete\" ✓"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "uuid": "8b048c43-1e08-44ad-b445-b4aeda933e69",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018LhvssN5VTTCUzK5kujHrk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1638,
+                "cache_read_input_tokens": 27742,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1638
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四处修改全部完成：\n\n1. **exp026 Key Evidence** → \"GRPO assigns identical group-relative advantage to all h-step windows; non-terminal windows's actions are uncorrelated with episode outcome → gradient signal is noise\" ✓\n2. **exp013f Key Evidence** → \"In step-independent mode, per-window bonus (0.3) is the only causally linked reward signal; episode success (10.0) is distributed identically across all windows regardless of action quality → model optimizes window-local bonus\" ✓\n3. **\"28.125% stable success\"** → \"28.125% at step 15 (single seed, N=32 episodes)\" ✓ (出现在 Summary 和 Diagnostic Timeline 第7点两处均已替换)\n4. **\"D045 recipe gap analysis was wrong\"** → \"D045 recipe gap analysis was incomplete\" ✓"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 36378,
+            "duration_api_ms": 34591,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "040348de-139c-4910-a60a-98629ed86c23",
+            "total_cost_usd": 0.24325525,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 17539,
+              "cache_read_input_tokens": 198017,
+              "output_tokens": 1320,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 17539,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 218,
+                  "cache_read_input_tokens": 27742,
+                  "cache_creation_input_tokens": 1638,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1638
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1503,
+                "outputTokens": 13,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001568,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 1320,
+                "cacheReadInputTokens": 198017,
+                "cacheCreationInputTokens": 17539,
+                "webSearchRequests": 0,
+                "costUSD": 0.24168725000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "007a4de4-67ca-4420-b98e-4f770af2a00a"
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ],
+  "readable_path": "readable/worker-executions/edit-failure-unification-table-fix.md"
+}

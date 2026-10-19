@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3d7f52d01ad623cfe8d",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "director / loop_18.md",
+  "task_key": "loop_18",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_18.md",
+    "occurrence": 1,
+    "bytes": 4862,
+    "sha256": "14577b154dccc8b95885cb05b7c3a3b2fad8d5e08a6c56b1748daa944815eeb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: max_messages\nupdated: '2026-05-22T20:29:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：westd cuda:0,1,2,3 + bjb1 cuda:0,1。home-1x5090 不在白名单，用户明确\"不要用\"\n- **bjb1 磁盘脆弱**（250GB 数据盘反复 90%+）：禁止删 SFT checkpoint 和 HF eval checkpoint，清理前附\"保护清单\"（M053）\n- **禁止 `ray stop --force`**（M055）：只能 kill 特定 PID\n- **ScienceWorld 实验线已终止**（D131）：不要做任何 ScienceWorld Cell C 实验\n- **FSDP 训练必须 2 GPU**：1 GPU 配置不等价（M055）\n- **Checkpoint 目录必须含 \"qwen_\" 前缀**：RAGEN ctx_manager.py:35 model detection bug\n- **同机多 Ray session 不稳定**（M057/M059）：seed200 在 westd 崩溃 3 次，多 seed 并行训练必须分服务器\n- **Eval 协议（D134）**：所有 OOD eval 必须 enable_think=true + context_window_mode=full + enable_response_mask=false，全部用 hydra CLI override 双保险，runtime log 确认实际值\n\n### 2. 🖥️ 基础设施快照\n- **westd-47453**：4×RTX PRO 6000 (96GB)，`/root/cost-verify-agent-rl/RAGEN/`，conda base (`/root/miniconda3`)\n  - 磁盘：~45%（140GB free）\n  - **GPU 0,1 空闲**（seed100 训练完成）\n  - **GPU 2,3 有孤儿进程 PID 132938/132939**（seed200 v3 crash 残留，需 kill -9）\n  - seed100 HF 转换进行中或已完成，输出到 `qwen_exp029_seed100_step5_hf`\n- **bjb1-17606**：2×RTX PRO 6000 (96GB)，同路径，conda base\n  - 磁盘：~30GB free（警惕）\n  - **GPU 0,1 空闲**\n  - 有 7 个 HF checkpoint 可用，包括 seed42（尚无统一 OOD eval）、seed300 step5\n  - SFT checkpoint `qwen3_exp021_ragen_sft_v4` 已有\n- **W&B project**：cost-verify-agent-rl\n\n### 3. 📊 当前状态\n**刚做完**：\n- enable_think/response_mask 系统性审计（Reviewer 4 轮 critical 审查后定论）\n- seed300 训练 healthy (val 25%) + 3 次 OOD eval 均 0%（全因 eval config 缺 enable_think=true，D134 确认非 checkpoint 问题）\n- seed100 训练完成（5/5 步，ID success 18.75%，step 4 有 mode collapse 信号但最终 anchor_obs=0.0）\n- seed200 v3 第三次 crash（ActorUnavailableError），westd 上同机多 Ray session 不稳定（M059）\n- Table 1 历史数据审计：seed4/5/6 via RAGEN eval (think=True, full context) 数据安全\n\n**RUNNING**：无（Agent 刚 RESET）\n\n**等待中**：\n- seed100 HF 转换完成 → OOD eval（用修正协议）\n- westd 孤儿进程待 kill（PID 132938/132939）\n- seed200 v4 应在 bjb1 跑（避免 westd Ray 冲突）\n- seed300 需用修正 eval 协议重跑 OOD eval（checkpoint 在 bjb1）\n\n### 4. 📋 待办（条件触发式）\n- **Agent 新 session 就绪** → 发指令：(1) kill westd 132938/132939，(2) 确认 seed100 HF 转换完成，(3) 用修正协议跑 seed100 OOD eval (westd cuda:0)，(4) bjb1 跑 seed300 OOD eval v4 (think=true) + seed200 v4 训练 (cuda:0,1)\n- **seed100 OOD eval 完成** → 分类 healthy/collapsed/zero-OOD，更新 Table 1\n- **seed300 OOD eval v4 完成** → 如 >0% 则修正 D133（不再是\"zero-OOD\"模式），更新 collapse rate\n- **seed200 v4 训练完成** → HF 转换 + OOD eval（修正协议）\n- **全部 seed eval 完成** → 定稿 Table 1（N=10-11），派 Paper Agent patch 论文\n- **bjb1 磁盘 < 10GB** → 紧急清理（保护清单：SFT checkpoint + HF eval checkpoint 不删）\n\n### 5. 🎯 战略上下文\n- **论文核心**：step-independent agent RL 的双机制失效诊断（M1 信息丢失 + M2 符号错误归因）+ episode-level 修复。Diagnostic paper\n- **证据链强**：factorial 2×2 + h-sweep cliff + γ-sweep 全 collapse + 8B scale (90.3% OOD) + sign accuracy 52%≈random + 干预实验（supplementary）\n- **关键决策链**：D122(补seed) → D131(ScienceWorld终止) → D132(seed300 healthy) → D133(seed300 zero-OOD) → **D134(eval协议修正，D133暂缓)**\n- **最大易错点**：\n  1. **eval 协议**——必须 enable_think=true + context_window=full + enable_response_mask=false。之前 3 轮 eval 全因 config 不完整浪费。新 Agent 第一件事就是确认 eval config 正确\n  2. **seed200 必须在 bjb1 跑**——westd 同机多 Ray session 已崩 3 次，不要再在 westd 上并行训练\n  3. **seed300 的\"zero-OOD\"判断(D133)待重新验证**——0% 来自错误 eval config，用修正协议重跑后很可能 >0%\n  4. **不要混淆 RAGEN eval 和 standalone eval**——Table 1 全部来自 RAGEN eval (val_only=True)，standalone eval_checkpoint.py 结果低 15-24pp，不可比\n  5. **Reviewer 曾多次翻转结论**（mask 影响 → 不影响 → 影响 → 不影响；seed200 孤儿 → 正常 → 孤儿）——关键判断以实验数据为准，不要只信 Reviewer 的代码分析\n- **审稿阶段已启动**（Group C review_chat_id: oc_648eaf83d2b24d445764257cf6a55525）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18.md"
+}

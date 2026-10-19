@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5715d9e01b36ab00bab6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp013f wandb check",
+  "task_key": "worker_monitor_exp013f-wandb-check_20260514T094907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp013f-wandb-check_20260514T094907_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "eedabcfc976c80b1d051405314a22c8f7f7556bc23c7b35fe0c7779c58af5045"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**W&B 未启用。**\n\n日志第 1361 行显示 `trainer.logger` 配置为 `['console']`，不包含 `'wandb'`。`agent_trainer.py:408` 的逻辑是 `if \"wandb\" not in self.config.trainer.logger:` 则跳过 wandb 日志。\n\n因此 pg_loss、grad_norm、ppo_kl 这些指标只输出到 console logger，但由于 console logger 可能只打印到 Ray worker 日志（不是 stdout），所以主日志文件里看不到。\n\n如果需要这些指标，有两个选择：\n1. 在配置中将 logger 改为 `['console', 'wandb']` 重启实验\n2. 从 Ray worker 日志中提取（但 `/tmp/ray` 目录不存在，可能 Ray session 被清理了）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp013f-wandb-check.md"
+}

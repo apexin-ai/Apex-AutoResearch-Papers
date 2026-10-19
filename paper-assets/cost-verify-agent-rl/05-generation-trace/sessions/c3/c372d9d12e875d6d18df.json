@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c372d9d12e875d6d18df",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research phase b prereq",
+  "task_key": "worker_research_phase-b-prereq_20260515T232930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_phase-b-prereq_20260515T232930_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "72bfdd71e8095b862c6f2b472cf0d0d571aa6e0d7ebe63d8240048e2544dd6d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已保存到 `artifacts/phase_b_prereq_analysis.md`。\n\n核心结论：\n\n**前置 1（`<VERIFY>` token）**：Qwen3-1.7B 的 embedding 层有 151936 slot，tokenizer 只用了 151669，添加 `<VERIFY>` 后为 151670 — **不需要 resize_token_embeddings**。只需一个离线脚本扩展 tokenizer 并保存到新目录，改 config 的 model_path 即可，所有组件（FSDP actor/ref、vLLM rollout）自动对齐。工作量 1-2h。\n\n**前置 2（a_pre 开销量化）**：核心度量用 token 数而非 latency。在 `BIAVRTracker` 中增加 a_pre token 统计，配合一个基线量化脚本从 Phase A rollout 数据计算 always-on 开销。工作量 2-3h，依赖 Phase A 产出 rollout 数据。\n\n**总预估 4-6 Worker-hours，两个前置条件可与 Phase A 并行推进。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-phase-b-prereq.md"
+}

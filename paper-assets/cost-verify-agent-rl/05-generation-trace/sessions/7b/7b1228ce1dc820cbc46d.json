@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7b1228ce1dc820cbc46d",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "analysis factorial seed task comparison",
+  "task_key": "worker_analysis_factorial-seed-task-comparison_20260519T003751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_factorial-seed-task-comparison_20260519T003751.log",
+    "occurrence": 1,
+    "bytes": 829349,
+    "sha256": "6f2fb677ff56f21861522958070a09265cf1a16ff0cd1c3f5881a55034525c7f"
+  },
+  "statistics": {
+    "messages": 268,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 102,
+      "tool_result": 102,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 268,
+      "chunks": [
+        {
+          "path": "7b1228ce1dc820cbc46d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7b1228ce1dc820cbc46d-part-0002.json",
+          "message_count": 88
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-factorial-seed-task-comparison.md"
+}

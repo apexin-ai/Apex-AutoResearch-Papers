@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acecf5a8048fb5b29fe3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "urgent bjb1 ray cleanup",
+  "task_key": "worker_urgent_bjb1_ray_cleanup_20260521T164013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_bjb1_ray_cleanup_20260521T164013_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "0f12e151706452af826ff5a9a588508fbf18491bf3de16de39268cca1eab7722"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n旧进程: 已杀（325475, 328287, 328288 + 额外残留 305302, 305813）\nGPU 显存: GPU 0 = 0/97887 MiB, GPU 1 = 0/97887 MiB\nhigh_kl (PID 329503): 已死需重启\n  崩溃原因: ray.exceptions.ActorDiedError — \"Owner's node has crashed\"\n  进度: step 1/7 (14%)，step 1 指标: success=15.6%, pass@8=56.25%\nGPU 进程列表: 空，无残留\n```\n\nhigh_kl 实验在 step 1 完成后因 Ray node crash 崩溃，需要重新提交。两张 GPU 已完全释放，服务器状态干净。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-bjb1-ray-cleanup.md"
+}

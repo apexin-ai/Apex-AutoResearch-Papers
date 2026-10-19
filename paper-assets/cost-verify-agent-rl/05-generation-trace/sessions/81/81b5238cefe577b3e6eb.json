@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81b5238cefe577b3e6eb",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh urgent kill seed200v3 westd again",
+  "task_key": "worker_ssh_urgent_kill_seed200v3_westd_again_20260522T204618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_kill_seed200v3_westd_again_20260522T204618_result.json",
+    "occurrence": 1,
+    "bytes": 260,
+    "sha256": "27e5019ffd3e1a0a9bd65d9fb4b49bb1a5b55cc91512c0d8842f5751aeb1bf76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **seed200 进程**：全部清除，无残留\n- **GPU 2,3**：已释放（0 MiB / 97887 MiB）\n- **GPU 0**：seed100_ood 未受影响（90467 MiB，正常运行）\n- **GPU 1**：空闲\n- **tmux**：仅剩 `seed100_ood` session"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-kill-seed200v3-westd-again.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "41dda53b5e113bd67112",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra dry run",
+  "task_key": "worker_infra_dry-run_20260513T174800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_dry-run_20260513T174800_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "b313944d3614e3d5fe6a41ff97b30ccd651db1bbbfccbdb7e01489572102e51f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: {\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"api_error\",\"message\":\"Internal server error\"},\"request_id\":\"req_011Cb11gSFs3xgNzc73xZ4sC\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "details": null,
+                "type": "api_error",
+                "message": "Internal server error"
+              },
+              "request_id": "req_011Cb11gSFs3xgNzc73xZ4sC"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-dry-run.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "614e84b8025cc2ba86f7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 checkpoint and submit",
+  "task_key": "worker_ops_exp026_checkpoint_and_submit_20260515T125816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_checkpoint_and_submit_20260515T125816_result.json",
+    "occurrence": 1,
+    "bytes": 1220,
+    "sha256": "22970425bd88e2898a7bcc0791cf503129124965d54dc3e6764ba91a45bafe5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**无法提交新任务 — 两块 GPU 都在跑 exp026。**\n\n当前状态：\n| 项 | 值 |\n|---|---|\n| tmux session | `exp026`，启动 18:38（今天） |\n| 训练进度 | 3/150 步（2%），step 2 完成于 ~20:21 |\n| GPU 占用 | cuda:0 + cuda:1 各 ~49GB/98GB VRAM |\n| 每步耗时 | ~43 分钟 |\n| Checkpoint | **空**（save_freq=25，尚未到第一个保存点）|\n| 首次 val | step 5（test_freq=5），预计 ~1.5 小时后 |\n| 首次 checkpoint | step 25，预计 ~16 小时后 |\n| 训练完成 150 步 | 预计 ~4.5 天 |\n\n**exp026 train metrics 重现了之前的正向信号**（这是重启后的新 run，指标一致）：\n- step 1: success=21.88%, pass@16=1.0\n- step 2: success=32.81%, pass@16=1.0, entropy=0.317（无 collapse）\n\n**建议选项**：\n1. **让它跑下去** — 等 step 5 val 结果（~1.5h），这是第一个 C003-compliant 验证点。train metrics 强正向，值得等\n2. **Kill 后重提交单卡** — 杀掉当前 run，分拆成 cuda:0 训练 + cuda:1 eval（但无 checkpoint 可 eval，且丢失已跑 2 步进度）\n3. **降低 save_freq** — 修改 config 重启，更频繁保存 checkpoint 以防再次中断\n\n如何处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-checkpoint-and-submit.md"
+}

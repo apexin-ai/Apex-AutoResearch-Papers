@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce8cdb1a7422b5793b8a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research citation audit",
+  "task_key": "worker_research_citation_audit_20260515T204047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation_audit_20260515T204047_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "08f0a5fcf5767ba51791d6330dd2e12fa77d2ebceb6e7b767d3ff26b51f56f19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/citation_audit_report.md`。\n\n**审计结果**：验证了 18/28 篇论文，所有 arXiv ID 均真实有效，无编造 ID。发现 **8 处错误**：\n\n**literature_map.yaml（4 处）**：\n- ❌ Thinkless 作者 \"Du et al.\" → 应为 **\"Fang et al.\"**\n- ❌ AgentPRM (2502.10325) 标题含 \"AgentPRM:\" 前缀，实际标题无此前缀\n- ⚠️ AgentPRM 标注 \"Choudhury et al.\" 但实际为单一作者\n- ⚠️ SPEAR 标题不精确（使用缩写而非完整标题）\n\n**related_work_survey.md（4 处）**：\n- ❌ CorrectBench: \"He et al.\" → **\"Tie et al.\"**\n- ❌ Self-Correction Survey: \"Huang et al.\" → **\"Kamoi et al.\"**\n- ❌ WebAgent-R1: \"Pei et al.\" → **\"Wei et al.\"**\n- ❌ AgentPRM: \"Chatterjee et al.\" → **\"Choudhury\"**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-audit.md"
+}

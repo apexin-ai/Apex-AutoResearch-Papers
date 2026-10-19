@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6e90cfd36dcccdd86b0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis gsweep g100 model check",
+  "task_key": "worker_analysis_gsweep_g100_model_check_20260523T183630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gsweep_g100_model_check_20260523T183630_result.json",
+    "occurrence": 1,
+    "bytes": 416,
+    "sha256": "fad7f66b9f9bc02faedae6f40422898a8f0c32041ac5fb576383bf0ddf6b723d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：Registry 记录错误。**\n\n所有 4 个 gamma sweep 配置（g050/g080/g095/g100）使用的模型路径完全一致：\n\n```\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\n```\n\n这是 Qwen3-1.7B SFT 模型。g100 实验实际用的也是 Qwen3-1.7B，不是 Qwen2.5-3B。Registry 中 `gsweep_g100_h5_seed1` 标记为 Qwen2.5-3B 是记录错误，需要修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gsweep-g100-model-check.md"
+}

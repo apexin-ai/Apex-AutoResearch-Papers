@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea3b848dbddba1dcc04b",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "urgent kill v7 restart v8",
+  "task_key": "worker_urgent_kill-v7-restart-v8_20260513T065318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_kill-v7-restart-v8_20260513T065318_result.json",
+    "occurrence": 1,
+    "bytes": 1117,
+    "sha256": "d69b2051df666954ced78f04aa00d4091422acff10a3fb1d921a873813cd8d5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两卡都已成功加载模型并开始收集 trajectory：\n\n- **cuda:0**: `Collecting 300 trajectories -> data/trajectories_v8_icl_cuda0/train_part0.jsonl`, ICL examples=2\n- **cuda:1**: `Collecting 300 trajectories -> data/trajectories_v8_icl_cuda1/train_part1.jsonl`, ICL examples=2\n- GPU 显存: cuda:0 = 10151 MiB, cuda:1 = 10171 MiB（模型已加载，正常范围）\n\n---\n\n## 检查清单\n\n- [x] v7 进程已 kill（838043/838422 + 子进程 838056/838543 全部 SIGKILL）\n- [x] temperature = 0.5 在命令行显式指定（`--temperature 0.5`）\n- [x] CUDA_VISIBLE_DEVICES 硬设置（cuda:0 → `CUDA_VISIBLE_DEVICES=0`，cuda:1 → `CUDA_VISIBLE_DEVICES=1`）\n- [x] φ Σ=1 自测通过（gamma=0.85/0.92/0.97/1.0 全 PASS）\n- [x] v8 两卡启动成功（nvidia-smi 确认 GPU 0: 10151 MiB, GPU 1: 10171 MiB）\n- [x] γ_max = 1.0 已修复（服务器 + 本地都已是 1.0）\n- [x] Registry 已更新（v7 conclusion=failed + notes; v8 notes 已补充）\n\n**注意**: 首次提交 v8 时因 v7 python 子进程残留导致 OOM，已 kill -9 清理后重新提交成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-kill-v7-restart-v8.md"
+}

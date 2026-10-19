@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b543bd956bdb9206f95",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "train exp029 seed200 episode v3",
+  "task_key": "worker_train_exp029_seed200_episode_v3_20260522T203605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp029_seed200_episode_v3_20260522T203605_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "ec05d8c406f1ceda63a493bb1da01053caf9cf90602b7dfa7379dab0d94bc289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并运行：\n\n- **tmux session**: `exp029_seed200_v3`（westd-47453）\n- **W&B run**: `exp029-seed200-episode-level` → `emzov4dj`\n- **隔离**: RAY_TMPDIR=/root/autodl-tmp/ray_seed200, WANDB_DIR=/root/autodl-tmp/wandb_tmp\n- **GPU**: cuda:2,3\n- **Registry**: exp029_seed200_episode_v3 → RUNNING\n- **日志**: `/root/autodl-tmp/checkpoints/exp029-seed200/train_v3.log`\n\nRay 本地实例独立启动（未连接其他 cluster），v3 隔离修复生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-exp029-seed200-episode-v3.md"
+}

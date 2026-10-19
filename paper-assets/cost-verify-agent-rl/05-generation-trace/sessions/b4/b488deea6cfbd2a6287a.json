@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b488deea6cfbd2a6287a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code fix auto next sequence",
+  "task_key": "worker_code_fix_auto_next_sequence_20260517T082602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_auto_next_sequence_20260517T082602_result.json",
+    "occurrence": 1,
+    "bytes": 472,
+    "sha256": "01eda6e402aebe020ade5b3ddc7659b499103ed720a40aa24555d02fa2f4e2c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**修改前后对比：**\n\n| | 序列 |\n|---|---|\n| 旧 | `2:1 2:2 2:3 5:1 5:2 5:3 10:1 10:2 10:3 20:1 20:2 20:3 full:2 full:3` |\n| 新 | `2:1 2:2 5:1 10:1 20:1 full:1 2:3 5:2 5:3 10:2 10:3 20:2 20:3 full:2 full:3` |\n\n**验证结果：**\n- 语法检查：通过\n- 2:2 完成后下一个：`5:1` ✓\n- `LOG_PER_SAMPLE_ADV=1` 逻辑不受影响（条件判断仍为 `NEXT_H=\"2\" && NEXT_SEED=\"2\"`，2:2 仍在序列中位置正确）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-auto-next-sequence.md"
+}

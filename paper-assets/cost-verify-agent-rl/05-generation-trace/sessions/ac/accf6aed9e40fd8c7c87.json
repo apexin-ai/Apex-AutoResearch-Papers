@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "accf6aed9e40fd8c7c87",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "diagnose eval vs ragen diff",
+  "task_key": "worker_diagnose_eval-vs-ragen-diff_20260514T222025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diagnose_eval-vs-ragen-diff_20260514T222025.jsonl",
+    "occurrence": 1,
+    "bytes": 175,
+    "sha256": "ff438590840b777840334771f6e551374c08d460680f3cf52ba4ffe1ead6df49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T22:20:35.423263+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-vs-ragen-diff_20260514T222025"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-eval-vs-ragen-diff.md"
+}

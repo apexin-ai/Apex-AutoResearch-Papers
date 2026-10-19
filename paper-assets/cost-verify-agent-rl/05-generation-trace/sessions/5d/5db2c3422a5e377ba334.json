@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5db2c3422a5e377ba334",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code prep hsweep h10 config",
+  "task_key": "worker_code_prep-hsweep-h10-config_20260518T163821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-hsweep-h10-config_20260518T163821_result.json",
+    "occurrence": 1,
+    "bytes": 1278,
+    "sha256": "797c03e1d720cdd5381e91006f3a33a8d9b148d2cdcb5609dcad98e53e3a2ac2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无 hsweep checkpoint 目录，干净状态。\n\n---\n\n## 结果\n\n**Config 路径**: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_hsweep_h10.yaml`\n（autodl-tmp 副本已同步）\n\n### 关键参数确认\n\n| 参数 | 值 | 状态 |\n|---|---|---|\n| `step_independent_history_length` | 10 | OK |\n| `CUDA_VISIBLE_DEVICES` | `\"2,3\"` | 已修改（原 \"0,1\"） |\n| `total_training_steps` | 15 | OK |\n| `experiment_name` | `hsweep-h10`（脚本覆盖为 `hsweep-h10-seed1`） | OK |\n| `checkpoint_dir` | `/root/autodl-tmp/checkpoints/hsweep-h10/` | 无冲突 |\n| `model_path` | `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4` | 存在 |\n| `val.env_groups` | 32 | 符合 C003 |\n| seed | 由脚本注入 `seed.train=10000` | OK |\n\n### 与 h=2 的差异\n\n1. `step_independent_history_length`: 2 → **10**\n2. `experiment_name`: hsweep-h2 → **hsweep-h10**\n3. `local_log_dir` / `default_local_dir`: hsweep-h2 → **hsweep-h10**\n4. `CUDA_VISIBLE_DEVICES`: \"0,1\" → **\"2,3\"**（h=2 仍为 0,1）\n\n其余参数（model, lr, kl, gamma, rollout, algorithm, es_manager 等）完全一致。\n\n### 启动命令（g100 kill 后执行）\n\n```bash\ncd /root/cost-verify-agent-rl/scripts && nohup bash launch_hsweep.sh 10 1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-hsweep-h10-config.md"
+}

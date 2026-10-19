@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5ace95e9299c3c9a2cf",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research plan 003b gae feasibility",
+  "task_key": "worker_research_plan_003b_gae_feasibility_20260517T072927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan_003b_gae_feasibility_20260517T072927_result.json",
+    "occurrence": 1,
+    "bytes": 7345,
+    "sha256": "cda65719495626108609d7976c124b63503beea1fd645b700abb2b285d1fb61f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已收集足够信息。以下是完整评估：\n\n---\n\n## GAE 实现可行性评估\n\n### 1. 代码架构概要\n\n**训练循环调用链**：\n```\nRayAgentTrainer.fit()\n  → rollout (actor_rollout_wg.generate_sequences)\n  → compute_log_prob (actor_rollout_wg.compute_log_prob)\n  → [if use_critic] critic_wg.compute_values(batch) → batch[\"values\"]\n  → compute_reward\n  → compute_advantage(batch, adv_estimator=...)\n    ├── GAE路径: core_algos.compute_gae_advantage_return(token_level_rewards, values, response_mask, γ, λ)\n    ├── GRPO路径: compute_grpo_outcome_advantage(...)\n    └── step_independent overlay: assign_step_rewards → compute_step_discounted_returns → compute_grpo_step_advantage\n  → actor update\n  → [if use_critic] critic_wg.update_critic(batch)\n```\n\n**关键发现：verl 框架已内建完整 GAE+Critic 支持。** `AdvantageEstimator.GAE` 路径、Critic Worker、Value Loss 全部已实现。\n\n### 2. Critic Head 实现评估\n\n**不需要从头实现。** verl 已有完整 critic 基础设施：\n\n| 组件 | 文件 | 状态 |\n|------|------|------|\n| Critic Worker | `verl/verl/workers/roles/critic.py` | ✅ 完整实现 |\n| DP Critic | `verl/verl/workers/critic/dp_critic.py` | ✅ 完整实现 |\n| RAGEN Critic | `ragen/workers/critic/dp_critic.py` | ✅ 已适配 |\n| Value Loss | `verl/verl/trainer/ppo/core_algos.py` | ✅ `compute_value_loss` |\n| GAE 计算 | `verl/verl/trainer/ppo/core_algos.py:213` | ✅ `compute_gae_advantage_return` |\n\n**模型初始化机制**（`verl/verl/workers/roles/critic.py:78-90`）：\n- 自动将 `Qwen3ForCausalLM` → `Qwen3ForTokenClassification`\n- 添加 `classifier_dropout=0` 的 linear head（hidden_size → 1）\n- Critic 是**独立模型**（与 actor 分离），用自己的 optimizer 训练\n\n**需要改的**：\n- 配置文件中设置 `algorithm.adv_estimator: gae` 和 `critic.enable: true`\n- 提供 critic 模型路径（可以用 actor 同一 checkpoint 初始化）\n- 分配 GPU 资源给 critic worker\n\n**主要风险**：\n- Critic 需要额外 GPU 显存。Qwen3-1.7B 的 TokenClassification 版本约需 ~4GB（bf16）\n- 2× RTX PRO 6000 96GB 完全够用，但需规划 resource pool 分配\n\n### 3. GAE Advantage 计算评估\n\n**verl 的 token-level GAE 已完整实现**（`core_algos.py:213-260`）：\n\n```python\ndef compute_gae_advantage_return(token_level_rewards, values, response_mask, gamma, lam):\n    # 标准 GAE，per-token 计算\n    # δ_t = r_t + γ*V(s_{t+1}) - V(s_t)\n    # A_t = Σ(γλ)^l * δ_{t+l}\n    # 通过 response_mask 处理 padding\n```\n\n**在 `compute_advantage` 函数中已接入**（`agent_trainer.py:200-208`）：\n```python\nif adv_estimator == AdvantageEstimator.GAE:\n    if bi_level_gae:\n        advantages, returns = core_algos.compute_bi_level_gae_advantage_return(...)\n    else:\n        advantages, returns = core_algos.compute_gae_advantage_return(\n            token_level_rewards=data.batch[\"token_level_rewards\"],\n            values=data.batch[\"values\"],\n            response_mask=data.batch[\"response_mask\"],\n            gamma=gamma, lam=lam,\n        )\n```\n\n**与 step_independent 模式的交互**：\n- 当前 step_independent overlay 只在 `adv_estimator == GRPO` 时生效（`agent_trainer.py:272`）\n- 如果用 GAE，会走标准 token-level GAE 路径\n- 在 `full` context window mode 下，GAE 正常工作：每个 sample 是完整 episode 的所有 tokens\n- 在 `step_independent` mode 下，每个 sample 是单个 turn 的 tokens，GAE 变为 turn 内 token-level 的 GAE。这**不是论文需要的 turn-level GAE**。\n\n**关键问题**：论文的 \"step\" = agent 的一个 action turn。标准 token-level GAE 在 `full` mode 下是���理 baseline（在整个 episode 的 token sequence 上计算 GAE）。在 `step_independent` mode 下则语义变了。\n\n**推荐**：在 `full` context window mode 下跑 GAE baseline。这是最标准的 PPO 实现方式。\n\n**预估新增代码量**：0 行新算法代码。只需配置修改。\n\n### 4. 替代方案：REINFORCE baseline\n\n**与 GRPO 的本质区别**：\n\n| 方法 | 公式 | 区别 |\n|------|------|------|\n| GRPO | A = (R - μ_group) / σ_group | 组内标准化 |\n| REINFORCE baseline | A = R - b | 只减 baseline |\n| REINFORCE++ baseline | A = (R - running_mean) / running_std | 用历史 running stats |\n\n- `compute_grpo_outcome_advantage`：组内 normalize（减均值除标准差）\n- `compute_reinforce_plus_plus_baseline_outcome_advantage`：per-prompt running mean baseline（已在 verl 中实现）\n- 当 group_size = n（GRPO 的 n 次采样），GRPO 的 baseline 是同一 prompt 的其他 sample 均值\n\n**REINFORCE baseline 和 GRPO 不完全等价**：\n- GRPO 的 baseline 是同 batch 内同 prompt 的采样均值（per-batch），方差归一化\n- REINFORCE baseline 通常是 running mean 或 value function 输出\n- 它们数学形式不同，可以作为独立 baseline\n\n**实现成本**：verl 已有 `REINFORCE_PLUS_PLUS_BASELINE`，配置切换即可。\n\n**是否满足 Reviewer 要求**：部分满足。Reviewer 要的是\"标准 RL baseline\"，GAE+Critic 是最标准的 PPO baseline。REINFORCE++ baseline 是轻量替代。\n\n### 5. 兼容性风险\n\n| 风险点 | 严重性 | 说明 |\n|--------|--------|------|\n| Critic GPU 资源分配 | 中 | 需要在 resource pool 中为 critic 分配 GPU，可与 actor 共存（colocate） |\n| `full` mode 下 multi-turn reward | 低 | Token-level rewards 已在 `full` mode 下正确赋值（episode 结束时给 reward） |\n| Checkpoint 管理 | 低 | Critic checkpoint 独立保存/加载，框架已支持 |\n| `step_independent` mode 下 GAE 语义 | 高 | 如果在 step_independent mode 跑 GAE，每个 sample 只是一个 turn，GAE 退化为 turn 内的 token-level TD |\n| bi_level_gae | 低 | 已有实现，可作为 `full` mode 下的增强方案 |\n\n**最大风险**：如果当前实验只支持 `step_independent` mode，切回 `full` mode 可能需要验证 rollout 逻辑是否���常工作。\n\n### 6. 推荐方案\n\n**推荐：在 `full` context window mode 下启用 verl 原生 GAE（γ=1.0, λ=0.95）**\n\n理由：\n1. **零新代码**：verl 已完整实现 GAE + Critic Worker + Value Loss + Checkpoint\n2. **标准 PPO baseline**：完全满足 Reviewer 对 \"standard RL baseline\" 的要求\n3. **公平对比**：`full` mode GAE vs `full` mode episode-level GRPO vs step_independent GRPO，三者使用相同 rollout 粒度\n\n实施步骤：\n1. 修改 config：`algorithm.adv_estimator: gae`，`critic.enable: true`\n2. 设置 critic model path = actor model path（用同一 pretrained model 初始化 value head）\n3. 分配 resource pool（actor+critic 可 colocate 在同一 GPU）\n4. 设置 `gamma: 1.0`, `lam: 0.95`\n\n**预估总工作量**：\n- 代码修改：~20 行（全在 config yaml 中）\n- 验证 critic 正常训练：~2-4 小时\n- 完整 baseline 实验：与当前实验同等时间\n- 潜在 debug（资源分配/显存）：~4-8 小时\n\n**备选方案**（如果 GPU 显存紧张不想跑 critic）：\n- 用 `REINFORCE_PLUS_PLUS_BASELINE`，配置切换一行即可\n- 但说服力弱于 GAE，Reviewer 可能追问"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan-003b-gae-feasibility.md"
+}

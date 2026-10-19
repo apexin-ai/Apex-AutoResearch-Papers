@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71a9da4ce96531ff431f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code phase b integration",
+  "task_key": "worker_code_phase_b_integration_20260513T210014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase_b_integration_20260513T210014_result.json",
+    "occurrence": 1,
+    "bytes": 3066,
+    "sha256": "a2596e63ba9fde6e82a86c0354f6c5fc1e2ebf63c466ab1ce11b919f4cddf10d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**61 tests passed, 0 failures.** 全部通过。\n\n---\n\n## Phase B 集成报告\n\n### 1. 架构\n\n```\nModel output\n  ↓\nctx_manager.get_env_inputs()  ← 检测 <VERIFY> token，解析 action\n  ↓\nagent_proxy.rollout()         ← 追踪 verify_t/action_changed per env per step\n  ↓                              调用 _build_a_pre_inputs() 构建反事实 prompt\n  ↓\n_inject_biavr_rewards()       ← BIAVRTracker.record_step() → biavr_reward 注入 history\n  ↓\nagent_trainer.fit()           ← 每步读取 tracker metrics，执行 lambda 更新\n```\n\n模型自由选择首 token：`<VERIFY><think>...` 或 `<think>...`。GRPO advantage 中自然包含 biavr reward 分量，驱动模型学习何时验证。\n\n### 2. 修改文件\n\n| 文件 | 改动 |\n|------|------|\n| `config/_alfworld_phase_b.yaml` | 新建，Phase B 训练配置，env tag `AlfworldBIAVR`，biavr 参数 β=0.3/α=1.0/η=0.01 |\n| `ragen/llm_agent/ctx_manager.py` | 5 处修改：biavr_enabled 属性、FORMAT_PROMPT 含 `<VERIFY>` 选项、不强制 `<think>` 前缀、get_env_inputs 中解析 verify_t |\n| `ragen/llm_agent/agent_proxy.py` | 初始化 BIAVRTracker、rollout 中追踪 verify/changed、`_inject_biavr_rewards()` 和 `_build_a_pre_inputs()` 两个新方法 |\n| `ragen/trainer/agent_trainer.py` | fit() 中读取 biavr metrics 并更新 lambda |\n| `ragen/biavr/tests/test_biavr.py` | 新增 9 个集成测试（ctx_manager 解析、reward 注入、format prompt、a_pre 消息构建） |\n\n### 3. 关键设计决策\n\n- **不强制 `<think>` 前缀**：RAGEN 原始流程在 prompt 尾部追加 `<think>` 并在解码后补回。B-IAVR 需要模型自主选择 `<VERIFY>` 或直接 `<think>`，因此 biavr 模式跳过这两处强制操作。\n- **reward 后注入而非修改 es_manager**：biavr reward 在 `get_rollout_states()` 之后、`formulate_rollouts()` 之前注入到 history entry 的 `reward` 字段，避免侵入式修改 environment step manager。\n- **`<VERIFY>` 保留在训练目标中**：解析 action 时临时剥离 `<VERIFY>`，但 `llm_response`（写入 history 供训练用）保留完整的 `<VERIFY><think>...` 序列，确保 policy gradient 信号覆盖 verify 决策。\n\n### 4. 测试结果\n\n```\n61 passed in 3.48s\n```\n\n52 个原有单元测试 + 9 个新增集成测试，全部通过，无 GPU 依赖。\n\n### 5. 已知 Gap\n\n**a_pre greedy forward pass 未接线**：`_build_a_pre_inputs()` 已能构建反事实 prompt（移除 self-guidance 的对话历史），但实际 greedy 生成调用未连接到 vLLM engine。原因：vLLM rollout worker 的 sampling params 在初始化时固定（temperature=1.0），per-call 温度覆盖需要深入 verl 的 `RayWorkerGroup` 接口。当前 `biavr_changed` 始终为 `False`，等价于 α 项不生效。\n\n**解决路径**：Phase B 初期可先以 `enable_a_pre=false` 运行（纯 budget penalty `-λ·1[verify]`），待确认基础流程正确后，再实现 a_pre forward pass 以启用 informative verification bonus。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase-b-integration.md"
+}

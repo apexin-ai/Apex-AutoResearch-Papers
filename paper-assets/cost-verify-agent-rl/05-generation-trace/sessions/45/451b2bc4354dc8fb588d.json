@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "451b2bc4354dc8fb588d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code scienceworld format fix v2",
+  "task_key": "worker_code_scienceworld-format-fix-v2_20260519T122222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scienceworld-format-fix-v2_20260519T122222_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "1deeb75803d87e95e8de68d2433fbe5d1d06503c94ce6d9adc3d2e8fb142010a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行中（PID 51279）。已完成 boil 任务（14 train + 5 val = 19 条），正在处理后续 task。\n\n**总结**：\n\n三处修改已完成并重跑：\n\n| 修改 | 内容 |\n|------|------|\n| Fix 1 | 第一轮格式从 `Task:\\n\\nState:\\n{obs}` 改为 `State:\\nTask: {desc}\\n{obs}`（Task 移入 State 内部） |\n| Fix 2a | 中间步 reward 从 `{cumulative_score}` (递增分数) 改为 `0.0` (sparse) |\n| Fix 2b | 终局步追加 `Reward:\\n10.0\\n` 用户消息 |\n\n旧进程（23069/23079）已 kill，新进程 51279 运行中。Whitelist 有 26 tasks / 3612 variations。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scienceworld-format-fix-v2.md"
+}

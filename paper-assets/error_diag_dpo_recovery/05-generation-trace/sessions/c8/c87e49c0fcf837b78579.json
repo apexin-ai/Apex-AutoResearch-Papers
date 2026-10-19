@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c87e49c0fcf837b78579",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "check traj 50 milestone",
+  "task_key": "worker_check_traj-50-milestone_20260512T131441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_traj-50-milestone_20260512T131441_result.json",
+    "occurrence": 1,
+    "bytes": 1111,
+    "sha256": "5040df30353b4ee71f26b7767c20ced6f6cae7432b18da3bd33d4c805542c9c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**轨迹收集进度报告：**\n\n| 项目 | 状态 |\n|------|------|\n| **总轨迹数** | 48 条（part0: 24, part1: 24） |\n| **进度** | 各 24/500，约 4.8% |\n| **traj_p0** | 存活，screen + python 进程均在 |\n| **traj_p1** | 存活，screen + python 进程均在 |\n| **速度** | 每条约 70-95 秒，预计每分片 ~500×80s ≈ 11 小时完成 |\n| **成功率** | 目前 0/24（两个分片均无成功轨迹） |\n\n**GPU 状态：**\n\n| GPU | 显存占用 | 利用率 | 备注 |\n|-----|---------|--------|------|\n| 0 | 7763 MiB | 35% | traj_p0（CUDA_VISIBLE_DEVICES=0） |\n| 1 | 7763 MiB | 41% | traj_p1（CUDA_VISIBLE_DEVICES=1） |\n| 2 | 22099 MiB | 100% | 其他项目（structfuse 训练） |\n| 3 | 0 MiB | 0% | 空闲 |\n| 4 | 8159 MiB | 100% | 其他项目 |\n| 5 | 18736 MiB | 100% | 其他项目 |\n\n**注意**：24 条轨迹成功率 0%，全部 reward=False。可能需要关注模型在 ALFWorld 上的表现是否符合预期——如果 Qwen3-8B zero-shot 本身在这些任务上成功率极低，后续收集到的轨迹可能全是失败轨迹。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-traj-50-milestone.md"
+}

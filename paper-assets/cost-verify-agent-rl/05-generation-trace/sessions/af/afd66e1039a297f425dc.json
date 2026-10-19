@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afd66e1039a297f425dc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose sft baseline ood eval v2",
+  "task_key": "worker_diagnose_sft_baseline_ood_eval_v2_20260521T135709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_sft_baseline_ood_eval_v2_20260521T135709_result.json",
+    "occurrence": 1,
+    "bytes": 553,
+    "sha256": "28daaf66755d664094524553c2756614d20439100d71b293f77f70da6dbb83dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**判定：成功完成**（W&B \"crashed\" 仅因 wandb teardown BrokenPipeError，eval 本身正常完成全部 134 episodes）\n\n**结果：OOD success rate = 5.97%** (8/134)\n\n| 指标 | 值 |\n|------|-----|\n| OOD success_rate | 5.97% |\n| action_is_valid | 69.58% |\n| action_is_effective | 99.40% |\n| avg num_actions | 47.16 |\n| reward_mean@134 | 0.597 |\n| generation time | 1549.6s |\n\nRegistry 已更新为 DONE/success + metrics。Cron 已不存在（此前已清理或未创建）。GPU 3 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-sft-baseline-ood-eval-v2.md"
+}

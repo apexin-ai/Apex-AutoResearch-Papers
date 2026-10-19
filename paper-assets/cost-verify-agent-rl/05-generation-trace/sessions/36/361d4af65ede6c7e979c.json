@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "361d4af65ede6c7e979c",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "fix exp029 config and dryrun",
+  "task_key": "worker_fix_exp029_config_and_dryrun_20260516T085157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp029_config_and_dryrun_20260516T085157.log",
+    "occurrence": 1,
+    "bytes": 1364442,
+    "sha256": "28252ff0f955638a7e29e5eb388e01c1cafb580f8b4b85cd2c7991657a9735ce"
+  },
+  "statistics": {
+    "messages": 684,
+    "user_turns": 1,
+    "tool_calls": 243,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 190,
+      "tool_call": 243,
+      "tool_result": 243,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 550,
+      "chunks": [
+        {
+          "path": "361d4af65ede6c7e979c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "361d4af65ede6c7e979c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "361d4af65ede6c7e979c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "361d4af65ede6c7e979c-part-0004.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 134,
+      "chunks": [
+        {
+          "path": "361d4af65ede6c7e979c-part-0004.json",
+          "message_count": 134
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-exp029-config-and-dryrun.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "a1f1c67b0a6f6ca437f1",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code scienceworld ragen adapter",
+  "task_key": "worker_code_scienceworld-ragen-adapter_20260519T035550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scienceworld-ragen-adapter_20260519T035550.log",
+    "occurrence": 1,
+    "bytes": 846349,
+    "sha256": "7e39e32df50dda9d793dcbae15adab43bb618f5fc8e72546355080742476eea4"
+  },
+  "statistics": {
+    "messages": 558,
+    "user_turns": 0,
+    "tool_calls": 240,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 74,
+      "tool_call": 240,
+      "tool_result": 240,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 558,
+      "chunks": [
+        {
+          "path": "a1f1c67b0a6f6ca437f1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1f1c67b0a6f6ca437f1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1f1c67b0a6f6ca437f1-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1f1c67b0a6f6ca437f1-part-0004.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-scienceworld-ragen-adapter.md"
+}

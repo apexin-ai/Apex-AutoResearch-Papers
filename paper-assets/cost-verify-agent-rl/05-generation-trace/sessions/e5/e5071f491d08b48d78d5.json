@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5071f491d08b48d78d5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "exp exp007 formal training",
+  "task_key": "worker_exp_exp007_formal_training_20260514T004815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp007_formal_training_20260514T004815_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "185975f7ca070ba2bec51967eb83db036354988f9e46d761469b6e7f0839966b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Ray worker 已启动（PID 182293），正在加载模型配置。GPU 显存 29 MiB，模型加载还在早期阶段。训练已成功启动。\n\n---\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| checkpoint 路径 | 已修改：`default_local_dir` → `/root/autodl-tmp/checkpoints/exp_007/`（数据盘） |\n| 磁盘空间 | 数据盘 222GB 可用 |\n| 训练 | 已启动，PID 178832，tmux session `exp007` |\n| 日志 | `/root/autodl-tmp/exp007_formal.log` |\n| GPU | cuda:0, cuda:1，Ray worker 正在加载模型 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp007-formal-training.md"
+}

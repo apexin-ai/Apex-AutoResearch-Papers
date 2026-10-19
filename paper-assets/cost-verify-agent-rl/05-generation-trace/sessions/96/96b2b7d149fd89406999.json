@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96b2b7d149fd89406999",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "urgent kill westd eval cleanup",
+  "task_key": "worker_urgent_kill_westd_eval_cleanup_20260521T121502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_kill_westd_eval_cleanup_20260521T121502_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "1df78459e92c87bb9954dffa1e8e04e84563d2b3488230a5996d3492ac76e16e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 结果汇总\n\n| 项目 | 状态 |\n|------|------|\n| **eval 进程 kill** | 已杀（PID 195885 + 相关子进程） |\n| **GPU 0/1 内存** | 已释放：0 MiB / 0 MiB |\n| **GPU 2/3 内存** | 96007 MiB — 这是 Seed 6 训练占用，正常 |\n| **Seed 6 训练** | 正常运行（主进程 920749 + Worker 927990, 927997） |\n| **临时文件清理** | /tmp 从 25MB → 16MB（清理了旧日志、wandb 临时目录、b64 分片、图表文件等） |\n| **磁盘** | 根分区 14G/30G (46%)，数据盘 148G/250G (60%) |\n\n注意：/tmp 实际只有 25MB 而非 27GB，磁盘占用大头不在 /tmp。如需进一步清理磁盘空间，需要排查数据盘上的 checkpoint 或模型缓存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-kill-westd-eval-cleanup.md"
+}

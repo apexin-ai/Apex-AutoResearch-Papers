@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd52b26e39fb476b70d2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops kill cellc v3 and start seed5",
+  "task_key": "worker_ops_kill-cellc-v3-and-start-seed5_20260521T024238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-cellc-v3-and-start-seed5_20260521T024238_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "036b6c1e90cd9f8b386373e1323c9382a0b8433593b5b7d9a4f6f602f29de304"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，模型正在加载（Qwen3 1.72B，safetensors checkpoint 已加载完成）。\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| **Cell C v3** | 已终止（PID 88226/94753 KILLED），registry → DONE(negative) |\n| **Seed 5 训练** | PID **683267**，GPU 0,1 已占用（各 10795 MiB），模型加载中 |\n| **GPU 状态** | GPU 0: 10795 MiB, GPU 1: 10795 MiB, GPU 2: 0 MiB, GPU 3: 0 MiB |\n| **配置文件** | `_alfworld_exp029_seed5_episode.yaml` + `_alfworld_exp029_seed5_ood_final.yaml` 已就绪 |\n| **Registry** | `exp029_seed5_episode` → RUNNING，spec 完整 |\n\nW&B run 需等 vLLM 初始化完成后才会出现（通常 2-3 分钟）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-cellc-v3-and-start-seed5.md"
+}

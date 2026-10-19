@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e97083ae3616258ff16",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp019b check and launch",
+  "task_key": "worker_ops_exp019b-check-and-launch_20260514T183544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp019b-check-and-launch_20260514T183544_result.json",
+    "occurrence": 1,
+    "bytes": 1234,
+    "sha256": "9c3f6dccdf51428a01d30587c83cd8f369d343d4134fbd655d2fb685eb6fe583"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`run_exp019b.sh` 已存在且配置正确：\n- base model: `/root/autodl-tmp/checkpoints/exp008_sft/final` ✓\n- train data: `/root/autodl-tmp/expert_sft_v3/expert_sft_train.jsonl` ✓\n- val data: `/root/autodl-tmp/expert_sft_v3/expert_sft_val.jsonl` ✓\n- output: `/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/` ✓\n- log: `/root/runs/cost-verify-agent-rl/exp019b_expert_sft_v3.log` ✓\n- LR=5e-6, epochs=2 ✓\n\n---\n\n**报告：**\n\n| 项目 | 状态 |\n|------|------|\n| **数据收集** | **进行中** — 2200/3553 (62%)，已运行 1h32m |\n| **进度详情** | 速率 ~24 tasks/min，剩余 1353 tasks，预计 **~57 分钟后完成**（约 UTC 19:30） |\n| **数据质量** | ok=2180 (99%), valid_sft=2061, move_actions=1747 ✓, put_actions=0 ✓, admissible_move=6145 ✓ |\n| **训练脚本** | `run_exp019b.sh` 已就绪，路径全部指向 v3 ✓ |\n| **GPU** | GPU 0: 0 MiB / 97887 MiB (0%), GPU 1: 0 MiB / 97887 MiB (0%) — 完全空闲 ✓ |\n| **可否启动训练** | **否** — 数据收集仍在运行，v3 目录目前为空（数据在进程结束时写入） |\n\n预计数据收集约 57 分钟后完成，届时可直接执行 `bash scripts/run_exp019b.sh` 启动训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp019b-check-and-launch.md"
+}

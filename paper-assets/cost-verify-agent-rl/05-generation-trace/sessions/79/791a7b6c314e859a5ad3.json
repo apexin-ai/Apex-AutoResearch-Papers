@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "791a7b6c314e859a5ad3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check hsweep h2 seed1 progress",
+  "task_key": "worker_check_hsweep_h2_seed1_progress_20260517T072406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_hsweep_h2_seed1_progress_20260517T072406_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "2da6b4e3afb5d81f95bc5efc39acd4425949a3912f93206b80e6ef8cb318ce86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已有足够信息。总结结果：\n\n---\n\n## hsweep_h2_seed1 训练状态\n\n| 项目 | 值 |\n|------|------|\n| **当前 step** | 2 / 15 |\n| **启动时间** | 2026-05-17 12:17 (约 3.2h 前) |\n| **GPU 使用** | cuda:0 96%, cuda:1 97% (各 34GB/98GB) |\n| **进程** | 正常运行 (pid 920380) |\n\n### 训练指标 (train)\n| Step | success | pass@8 |\n|------|---------|--------|\n| 1 | 18.75% | 43.75% |\n| 2 | 14.84% | 50.00% |\n\n### Val 结果\n- **step 0 (val_before_train)**: success = 0.0%, pass@1 = 0.0%\n- 下一次 val 待确认（可能在 step 5）\n\n### 时间估算\n- Step 1 耗时: ~3150s (~52min)\n- Step 2 耗时: ~2650s (~44min)\n- 平均 ~48min/step，剩余 13 steps → **预计还需 ~10.4 小时**\n\n### auto_next_hsweep.sh 状态\n- **就绪**，序列: `2:1 → 2:2 → 2:3 → 5:1 → ...`\n- h=2 seed2 的 `LOG_PER_SAMPLE_ADV=1` 已配置\n- **但 launch_hsweep.sh 没有自动调用 auto_next**——训练结束后需要手动触发 `auto_next_hsweep.sh 2 1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-hsweep-h2-seed1-progress.md"
+}

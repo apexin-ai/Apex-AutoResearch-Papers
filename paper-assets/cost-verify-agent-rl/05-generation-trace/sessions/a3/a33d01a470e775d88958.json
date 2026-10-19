@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a33d01a470e775d88958",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 status check urgent",
+  "task_key": "worker_ops_bjb1_status_check_urgent_20260522T081328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_status_check_urgent_20260522T081328_result.json",
+    "occurrence": 1,
+    "bytes": 1729,
+    "sha256": "b95ee75455a3ab2f0b883c515ac4a4c125218298fb757c6ea6dc627cc43b2746"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## ScienceWorld v4b 状态报告\n\n### 状态：**运行中**\n\n| 项目 | 值 |\n|------|-----|\n| 实验名 | `scienceworld_grpo_cell_c_v4` |\n| PID | 386364 (已运行 4h04m) |\n| 进度 | **Step 2/15 (13%)** — 刚完成 step 1 的 train，正在做 step 2 的 rollout |\n| 预估总时间 | ~22h（step 1 耗时 18m，step 2 含 eval 耗时 ~2h40m） |\n| tmux session | `scienceworld_grpo_cell_c_v4` |\n\n### GPU 使用\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 0% | 47,911 / 97,887 MiB (49%) |\n| cuda:1 | 0% | 48,761 / 97,887 MiB (50%) |\n\nGPU 利用率 0% 说明当前处于 **rollout/环境交互阶段**（CPU-bound），不在 forward/backward pass。显存占用 ~49GB/卡符合模型已加载的预期。\n\n### 关键指标（Step 1 Train）\n\n| 指标 | 值 |\n|------|-----|\n| success | **0.0** |\n| score | 13.01 |\n| final_score | 16.79 |\n| pass@16 | 0.0 |\n| action_is_valid | 55.9% |\n| action_is_effective | 96.1% |\n| episodic_return | 0.0 |\n| pg_loss | -0.082 |\n| kl_loss | 0.471 |\n| grad_norm | 4.065 |\n| throughput | 118 tokens/s |\n| time_per_step | 1122s (~18.7min) |\n\n### Eval (Step 0, Baseline)\n\n| 指标 | 值 |\n|------|-----|\n| val success | 0.0 |\n| val score | 2.63 |\n| val final_score | 4.84 |\n| val reward@32 mean | 0.484 |\n| val pass@1 | 0.0 |\n\n### 注意事项\n\n- 训练 step 1 的 success=0、pass@16=0，但 score/final_score 非零，说明 agent 有部分进展但未完成任何完整 task。\n- Step 2 耗时显著增加（从 18min 跳到 ~2h40m），可能是 rollout 中环境交互变慢（response_length mean=2069 tokens，max=16208）。\n- 当前正在做 step 2 的 rollout（GPU 空闲），属正常行为。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-status-check-urgent.md"
+}

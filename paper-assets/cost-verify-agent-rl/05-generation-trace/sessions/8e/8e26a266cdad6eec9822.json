@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e26a266cdad6eec9822",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp027 max ckpt fix",
+  "task_key": "worker_code_exp027_max_ckpt_fix_20260515T140851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp027_max_ckpt_fix_20260515T140851_result.json",
+    "occurrence": 1,
+    "bytes": 187,
+    "sha256": "3d18750b58df252b2e79dfc51959f0f50c2fd7b98612fcad6296dde4bd5c28ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n- **文件**: `_alfworld_exp027_stable_grpo.yaml` 第 36 行\n- **修改前**: `max_actor_ckpt_to_keep: 5`\n- **修改后**: `max_actor_ckpt_to_keep: 10`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp027-max-ckpt-fix.md"
+}

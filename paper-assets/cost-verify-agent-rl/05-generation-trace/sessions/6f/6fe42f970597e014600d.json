@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fe42f970597e014600d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 kill v4b and diagnose",
+  "task_key": "worker_ops_bjb1_kill_v4b_and_diagnose_20260522T094714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_kill_v4b_and_diagnose_20260522T094714_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "b79fc3cab6ae9a57e77532b99e3c891a06fe1ca998a300f7e77d0e5e5446e651"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 3. v5 Config 已就绪，关键变更\n\n| 参数 | v4/v4c | v5 | 理由 |\n|------|--------|-----|------|\n| **kl_loss_coef** | 0.01 | **0.05** | 5x 增强 KL 约束，防止一步内策略漂移 |\n| **max_turn** | 100 | **20** | 硬性截断 episode 长度，512×20=10240 上限，阻断 response inflation |\n| **collapse_detection.multi_turn_enabled** | false | **true** | 启用 multi-turn collapse 检测，早期预警 |\n| env_groups | 8 (v4) / 1 (v4c) | **8** | 恢复 v4 的 8 组训练多样性 |\n| lr | 1e-6 | 1e-6 | 未超 1e-6，保持不变 |\n| 其余参数 | — | 不变 | group_size=16, 512 per-turn, etc. |\n\nv5 config 路径：`/root/cost-verify-agent-rl/RAGEN/config/_scienceworld_cell_c_grpo_v5.yaml`\n\n**未启动，等待审批。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-kill-v4b-and-diagnose.md"
+}

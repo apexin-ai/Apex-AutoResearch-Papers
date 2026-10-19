@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e05c4548c881bd113bde",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor eval v2 final check v2",
+  "task_key": "worker_monitor_eval_v2_final_check_v2_20260520T092218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_eval_v2_final_check_v2_20260520T092218_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "fa10a11d4be350218388b0fee93e366b20b24ef8b3000b5c2a4b0a3ad22f9773"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_v2 状态报告\n\n**进程仍在运行** — PID 195853，已运行 9h40m，进度 1390/1796（77.4%），预计还需 ~2.5-3h。\n\n**当前结果：453/1390 成功（32.6%）**\n\n| 任务 | 成功率 | 详情 |\n|------|--------|------|\n| lifespan-longest-lived | 90.3% | 28/31 |\n| lifespan-longest-lived-then-shortest-lived | 90.3% | 28/31 |\n| find-non-living-thing | 77.3% | 58/75 |\n| lifespan-shortest-lived | 67.7% | 21/31 |\n| find-living-thing | 65.3% | 49/75 |\n| find-animal | 49.3% | 37/75 |\n| measure-melting-point-unknown | 36.0% | 27/75 |\n| mendelian-genetics-unknown | 29.2% | 35/120 |\n| inclined-plane-friction (named+unnamed) | ~24% | 93/386 |\n| measure-melting-point-known | 22.9% | 25/109 |\n| test-conductivity | 18.3% | 19/104 |\n| 8 个任务类型 | 0% | boil/freeze/grow-plant/chemistry-mix 等 |\n\n**GPU 状态：** cuda:0,1 均 100% 利用率，84GB/98GB 占用。\n\n**磁盘：** /root/autodl-tmp 190G/250G（76%），空间充足。\n\n**GPU 不空闲，eval_v2 仍在跑，不可启动 Cell A。** 预计 ~2.5h 后完成（剩余 406 个 episode，当前 test-conductivity 区间）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-eval-v2-final-check-v2.md"
+}

@@ -1,0 +1,92 @@
+{
+  "empirical": {
+    "p_correct_sign_per_sample": 0.5207,
+    "p_correct_sign_group_majority": 0.8125,
+    "p_correct_direction_normalized": 0.4807,
+    "p_correct_direction_episode_normalized": 0.8867,
+    "p_misattribution_step_level": 0.0613,
+    "sign_agreement_early_windows": 0.5114,
+    "sign_agreement_late_windows": 0.6386,
+    "n_samples": 3000,
+    "n_episodes": 128,
+    "n_success_episodes": 65,
+    "n_fail_episodes": 63,
+    "episode_success_rate": 0.5078,
+    "n_groups": 16,
+    "group_size_K": 8,
+    "step_return_distribution": {
+      "n_positive": 248,
+      "n_zero": 1482,
+      "n_negative": 1270,
+      "note": "step_return>0 occurs only at terminal success (=10.0), never in failed episodes"
+    },
+    "per_position_sign_agreement": {
+      "pos_0": {"agreement": 0.5387, "n": 659},
+      "pos_1": {"agreement": 0.5028, "n": 545},
+      "pos_2": {"agreement": 0.5000, "n": 452},
+      "pos_3": {"agreement": 0.4931, "n": 361},
+      "pos_4": {"agreement": 0.5055, "n": 275},
+      "pos_5": {"agreement": 0.5114, "n": 219},
+      "pos_6": {"agreement": 0.5312, "n": 160},
+      "pos_7": {"agreement": 0.5652, "n": 115},
+      "pos_8": {"agreement": 0.5385, "n": 78},
+      "pos_9": {"agreement": 0.6226, "n": 53},
+      "pos_10": {"agreement": 0.6053, "n": 38},
+      "pos_11": {"agreement": 0.6667, "n": 24},
+      "pos_12": {"agreement": 0.6000, "n": 10},
+      "pos_13": {"agreement": 0.6667, "n": 6},
+      "pos_14": {"agreement": 0.6667, "n": 3},
+      "pos_15": {"agreement": 1.0000, "n": 2}
+    }
+  },
+  "theoretical": {
+    "p_correct_sign_formula": "P(correct) = 1 - p*(1-p^(h-1))",
+    "p_misattribution_formula": "P(misattrib) = p*(1-p^(h-1))",
+    "p_predicted_misattribution": 0.2048,
+    "p_predicted_correct": 0.7952,
+    "p_grpo_adjusted_misattribution": 0.2050,
+    "p_grpo_adjusted_correct": 0.7950,
+    "parameters": {
+      "h": 2,
+      "p_base": 0.7126,
+      "K": 8,
+      "p_episode_success": 0.5078
+    },
+    "grpo_group_breakdown": [
+      {"m": 1, "P_m": 0.0284, "P_correct_given_m": 0.6359},
+      {"m": 2, "P_m": 0.1026, "P_correct_given_m": 0.6879},
+      {"m": 3, "P_m": 0.2118, "P_correct_given_m": 0.7399},
+      {"m": 4, "P_m": 0.2732, "P_correct_given_m": 0.7920},
+      {"m": 5, "P_m": 0.2255, "P_correct_given_m": 0.8440},
+      {"m": 6, "P_m": 0.1163, "P_correct_given_m": 0.8960},
+      {"m": 7, "P_m": 0.0343, "P_correct_given_m": 0.9480}
+    ]
+  },
+  "comparison": {
+    "empirical_sign_agreement_vs_episode": 0.5207,
+    "theoretical_misattrib": 0.2048,
+    "empirical_misattrib_step_level": 0.0613,
+    "empirical_vs_theoretical_delta": 0.1435,
+    "verdict": "Per-sample advantage sign agrees with episode outcome only 52.07% (near random 50%), confirming severe sign misattribution in step-independent GRPO. Theoretical step-level misattribution rate is 20.5% (p*(1-p) with p=0.71). Empirical step-level misattribution via step_return proxy is 6.1%, but this underestimates the true rate because step_return=0 (neutral) dominates and does not reliably indicate step-level correctness.",
+    "key_findings": [
+      "Advantage sign is near-random w.r.t. episode outcome (52.07% vs 50% chance)",
+      "Group majority voting recovers correct direction 81.25% of the time",
+      "Episode-level normalization recovers 88.67% correct direction",
+      "Window position has weak effect: early 51.1% vs late 63.9% (late benefits from survivorship bias)",
+      "Theoretical misattribution rate p*(1-p^(h-1)) = 20.48% with inferred p=0.7126, h=2"
+    ]
+  },
+  "metadata": {
+    "source_run": "hsweep_h2_seed2",
+    "wandb_run_id": "jhwyg4tc",
+    "data_file": "advantage_log.jsonl",
+    "config": {
+      "context_window_mode": "step_independent",
+      "step_independent_history_length": 2,
+      "adv_estimator": "grpo",
+      "norm_adv_by_std_in_grpo": true,
+      "train_env_groups": 16,
+      "train_group_size": 8
+    }
+  }
+}

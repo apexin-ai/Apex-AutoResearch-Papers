@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7823fbb5533f1e4e0929",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research framing draft",
+  "task_key": "worker_research_framing_draft_20260515T184252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_framing_draft_20260515T184252_result.json",
+    "occurrence": 1,
+    "bytes": 1209,
+    "sha256": "431db182ca7af6324ac97ca9e883ff655073067001b5d2dd170e397a6f5afc55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。摘要：\n\n**Core Insight**: 大多数 self-verification 是 confirmatory 而非 corrective——不改变 agent 行为。用 action change 作为 reward signal，RL 可以训练 agent 只在 verification 真正 informative 时触发验证，实现 cost-efficiency。\n\n**三个 Claims**:\n1. **Selective verification reduces cost while preserving performance** (moderate) — 最强 claim，需 always-on baseline ≥50% + B-IAVR verification ↓40%+ 且 success 持平。当前证据全部缺失，依赖 exp027 pass + Phase B。\n2. **Action change 是有效的 verification informativeness reward** (moderate) — 需训练收敛 + ablation。尚未验证。\n3. **Learned policy > heuristic baselines** (weak) — 需完整 ablation 矩阵（always-on / no-verify / random-p / confidence-threshold）。\n\n**最大 Reviewer Concern**: **Baseline performance insufficient** — cost-efficiency story 的前提是 always-on baseline 本身要够强（≥50%）。如果 baseline 只有 20-30%，\"省验证开销\"在一个本就很弱的系统上没有实际意义。这是当前最大风险，因为 exp027 的 MVP 阈值仅 20%，距 50% 的论文门槛还有很大 gap。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-framing-draft.md"
+}

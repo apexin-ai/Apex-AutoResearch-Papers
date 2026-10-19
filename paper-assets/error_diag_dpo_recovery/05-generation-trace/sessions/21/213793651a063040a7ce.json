@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "213793651a063040a7ce",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code v6 icl leakage fix",
+  "task_key": "worker_code_v6_icl_leakage_fix_20260512T195157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v6_icl_leakage_fix_20260512T195157_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "6a41009b240b4588a44eb1a64ad512943a04ffc37771f00bcd3804aaff8297e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dry-run 通过，5 个 task 全部正常，输出格式验证通过。\n\n修改总结（4 处改动）：\n\n1. **`load_expert_examples`**：`by_type[tt].append(msgs)` → `by_type[tt].append({\"game_file\": item[\"game_file\"], \"msgs\": msgs})`，保留 game_file 信息\n\n2. **`sample_icl_examples` 签名**：新增 `exclude_game_file: str = None` 参数\n\n3. **`sample_icl_examples` 函数体**：同类型采样池和 fallback 池都过滤掉 `game_file == exclude_game_file` 的条目，返回值提取 `c[\"msgs\"]`\n\n4. **`collect_single_trajectory` 调用处**：传入 `exclude_game_file=game_file`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v6-icl-leakage-fix.md"
+}

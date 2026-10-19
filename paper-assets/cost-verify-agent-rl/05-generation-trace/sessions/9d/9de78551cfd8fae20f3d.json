@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "9de78551cfd8fae20f3d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra eval script dryrun",
+  "task_key": "worker_infra_eval-script-dryrun_20260517T114413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_eval-script-dryrun_20260517T114413_result.json",
+    "occurrence": 1,
+    "bytes": 4282,
+    "sha256": "ae576b7035afa4473bf5d343e379b79c739a2a3182f1c5e275a41891233ade33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息收集完毕。\n\n---\n\n## 验证报告\n\n### 1. Checkpoint 路径 + 文件列表\n\n**路径**: `/root/autodl-tmp/checkpoints/hsweep-h2/`\n\n| Checkpoint | 大小 | 状态 |\n|---|---|---|\n| `global_step_5/` | 21G | 完整 |\n| `global_step_10/` | 21G | 完整 |\n\n`latest_checkpointed_iteration.txt` 值为 `10`。\n\n每个 checkpoint 结构一致（以 `global_step_5/actor/` 为例）：\n- `model_world_size_2_rank_0.pt` (3.8G)\n- `model_world_size_2_rank_1.pt` (3.8G)\n- `optim_world_size_2_rank_0.pt` (6.4G)\n- `optim_world_size_2_rank_1.pt` (6.4G)\n- `extra_state_world_size_2_rank_0.pt`, `extra_state_world_size_2_rank_1.pt`\n- `fsdp_config.json` → `{\"FSDP_version\": 1, \"world_size\": 2}`\n- `huggingface/` → config.json + tokenizer 文件（无 safetensors）\n\n模型：**Qwen3ForCausalLM**, hidden_size=2048, 28 layers, GQA (16 heads / 8 KV heads) ≈ 4B 参数。\n\n### 2. Eval 脚本接口 + 输出格式\n\n**脚本**: `/root/cost-verify-agent-rl/scripts/eval_checkpoint_full_context.py` ✅ 存在\n\n**参数**:\n| 参数 | 默认值 | 说明 |\n|---|---|---|\n| `--ckpt_path` | — | 单个 checkpoint 路径（与 `--run_dir` 互斥）|\n| `--run_dir` | — | 批量模式，自动发现所有 `global_step_N` |\n| `--num_episodes` | 32 | C003 硬限制 ≥16 |\n| `--max_steps` | 50 | 每条 trajectory 最大步数 |\n| `--temperature` | 0.4 | 采样温度 |\n| `--output_dir` | `/root/autodl-tmp/eval_results/full_context/` | |\n| `--gpu` | 0 | CUDA 设备号 |\n| `--gpu_memory_utilization` | 0.35 | vLLM GPU 内存占比 |\n| `--fsdp_convert_dir` | None | 自定义 FSDP→HF 转换输出目录 |\n| `--dry_run` | False | 只发现 checkpoint 不执行 eval |\n\n**输出格式**: JSON 文件，包含 `success_rate`, `action_is_valid_rate`, `action_is_effective_rate`, `format_ok_rate`, `avg_steps` 等。批量模式额外输出 batch summary JSON + stdout 表格。\n\n**Full-context 模式**: ✅ 脚本构建完整多轮对话历史（所有 turn 的 state 累积），不做 step_independent 截断。\n\n**FSDP 处理**: ✅ 内置 `convert_fsdp_to_hf()` 函数，自动检测 FSDP 格式并转换为 HF safetensors，然后用 vLLM 加载。已转换的会跳过。\n\n### 3. 依赖状态\n\nread-only 模式无法执行带分号的 python import 检查，但从 `/root/miniconda3/bin/` 和 `lib/` 确认：\n- ✅ `transformers` (config.json 记录 `transformers_version: 4.57.6`)\n- ✅ `vllm` (bin 中有 vllm 命令)\n- ✅ `torch` (有 torchrun)\n- ✅ `accelerate` (FSDP 转换需要，已安装)\n- ✅ RAGEN 环境（脚本 import 的 `ragen.env.alfworld`）\n\n### 4. CPU 加载测试\n\n跳过。checkpoint 是 FSDP 分片格式（2 rank × 3.8G model weights），直接 `from_pretrained` 无法加载，需要先经过脚本内置的 `convert_fsdp_to_hf()` 转换。转换本身需要 ~8G CPU 内存 + 写 ~8G safetensors，在 GPU 被占用时不适合做。\n\n### 5. 磁盘空间警告\n\n`/root/autodl-tmp` **仅剩 35G 可用（87% 已用）**。FSDP→HF 转换两个 checkpoint 需要约 16G（每个 ~8G safetensors），eval 日志可忽略。勉强够用，但建议转换完成后删除 optim 文件释放空间（如不需要恢复训练）。\n\n### 6. 推荐执行命令\n\n等 GPU 空闲后：\n\n```bash\n# 激活 conda 环境\nsource /root/miniconda3/bin/activate\n\n# 批量 eval 所有 checkpoint（推荐）\ncd /root/cost-verify-agent-rl\nCUDA_VISIBLE_DEVICES=0 python scripts/eval_checkpoint_full_context.py \\\n    --run_dir /root/autodl-tmp/checkpoints/hsweep-h2/ \\\n    --num_episodes 32 \\\n    --gpu 0 \\\n    --gpu_memory_utilization 0.35\n\n# 或单个 checkpoint\nCUDA_VISIBLE_DEVICES=0 python scripts/eval_checkpoint_full_context.py \\\n    --ckpt_path /root/autodl-tmp/checkpoints/hsweep-h2/global_step_5/ \\\n    --num_episodes 32 \\\n    --gpu 0\n\n# 先 dry-run 验证 checkpoint 发现\npython scripts/eval_checkpoint_full_context.py \\\n    --run_dir /root/autodl-tmp/checkpoints/hsweep-h2/ \\\n    --dry_run\n```\n\n**注意**: `--gpu_memory_utilization 0.35` 是默认值，Qwen3-4B 在单卡 96G 上足够。如果训练刚结束 GPU 显存还未释放，等几秒或手动确认 `nvidia-smi`。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "FSDP_version": 1,
+              "world_size": 2
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-eval-script-dryrun.md"
+}

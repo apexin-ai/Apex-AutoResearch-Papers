@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51b505530275773c94e3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops cell c v4 vllm fix",
+  "task_key": "worker_ops_cell-c-v4-vllm-fix_20260519T124847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cell-c-v4-vllm-fix_20260519T124847_result.json",
+    "occurrence": 1,
+    "bytes": 89,
+    "sha256": "23ab993b8d477e6aa1d6157b4a9a589fe731c6af66124c23ad3f0e0c38b9b172"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交，等待 2 分钟后第一次检查日志和 GPU 状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cell-c-v4-vllm-fix.md"
+}

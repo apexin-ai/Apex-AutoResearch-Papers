@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4f3fc1914028a8e8c04",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor eval v2 progress",
+  "task_key": "worker_monitor_eval_v2_progress_20260520T093816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_eval_v2_progress_20260520T093816_result.json",
+    "occurrence": 1,
+    "bytes": 209,
+    "sha256": "4500b372fbeb6d49a433f834c5bbd7439e1ae28ed734319a9229bfbb1ac18297"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**进度 1415/1796 (78.8%)，成功率 32.2% (455/1415)，预估剩余 ~3.5 小时。** 当前在跑 test-conductivity 系列（全 FAIL），双卡 vLLM 正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-eval-v2-progress.md"
+}

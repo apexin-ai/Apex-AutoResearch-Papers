@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73d5c44ef472cc8c2e7d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp027 wandb setup and launch",
+  "task_key": "worker_ops_exp027_wandb_setup_and_launch_20260515T143127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp027_wandb_setup_and_launch_20260515T143127_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "087bd876468ee56ce522edcff40d36a508bef7cd22b678598e6699b21576440b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n| 项目 | 状态 |\n|------|------|\n| **W&B 认证** | 已写入 `/root/.netrc`，登录成功（用户 xiaoyucorynne） |\n| **脚本注释修正** | KL=0.04 → KL=0.005，已确认 |\n| **GPU 状态** | 两张卡均空闲（0% 利用率，0 MiB 显存占用，各 ~96GB） |\n| **残留进程** | 无 ray/vllm 残留进程 |\n\nexp027 可随时通过 `submit_training_job` 提交启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp027-wandb-setup-and-launch.md"
+}

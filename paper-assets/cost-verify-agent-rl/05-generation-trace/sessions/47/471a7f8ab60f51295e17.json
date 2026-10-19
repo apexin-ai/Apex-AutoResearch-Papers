@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "471a7f8ab60f51295e17",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "urgent hsweep kill and recover",
+  "task_key": "worker_urgent_hsweep_kill_and_recover_20260524T071457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_hsweep_kill_and_recover_20260524T071457_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "66397b1e7d9b558681632f13f143407caa5666dd11de252340c1101ff370035e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n**1. Kill + GPU 释放**\n- kill -9 95503 成功，GPU 0 已完全释放（0MiB / 97887MiB），无残留进程。\n\n**2. 挂死原因**\n- **不是 OOM**（dmesg/journalctl 在容器内不可用，但日志无 OOM 迹象）。\n- 日志显示进程停在 **step 0**，刚完成初始 validation（`Training Progress: 0%| | 0/5`），打印完 val metrics 后收到 **SIGTERM**（`*** SIGTERM received at time=1779561387`，即 2026-05-24 02:36:27）。\n- 初始 val 结果：`val-env/AlfworldSG/success: 0.125`（pass@1=12.5%）。\n- 判断：进程在 step 0 validation 完成后、进入第一个 training step 之前挂住，之后被外部 SIGTERM 杀掉（可能是 Ray 超时或其他调度信号），随后变成僵尸状态直到今天手动 kill -9。\n\n**3. SFT 数据状态**\n- **SFT_RUNNING**（PID 110512 仍在运行，已跑 2h50m，执行 `generate_scienceworld_sft.py`）\n- train/val jsonl 文件均 **NOT FOUND**，数据尚未生成完毕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-hsweep-kill-and-recover.md"
+}

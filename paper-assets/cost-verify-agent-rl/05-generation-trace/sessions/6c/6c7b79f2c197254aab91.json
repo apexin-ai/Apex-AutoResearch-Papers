@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c7b79f2c197254aab91",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops gpu cleanup and launch",
+  "task_key": "worker_ops_gpu_cleanup_and_launch_20260515T204018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_cleanup_and_launch_20260515T204018_result.json",
+    "occurrence": 1,
+    "bytes": 2314,
+    "sha256": "1bb0a79ffedca1301ab84f9e92df9a75ecf69ecbe28192659d1dd282f079c5e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 完全释放。以下是完整报告：\n\n---\n\n## GPU 清理 + 零样本 eval 启动报告\n\n### GPU 清理\n- Ray 停止: **OK** (46/47 进程 killed，1 个 forcefully terminated)\n- 显存释放: cuda:0 ~48GB→0MiB, cuda:1 ~48GB→0MiB\n- 残留进程: 无\n\n### exp027 退出诊断\n- **退出原因**: Step 4 完成后，进入 step 5 rollout 前被 **SIGKILL 外部终止**（非 OOM/非自然结束）\n- 错误: `ray.exceptions.ActorUnavailableError: RPC error: Socket closed` → Raylet 异常终止\n- EXIT_CODE=1\n- **判断**: 极大可能是 earlystop worker 杀了进程，因为 step 4 success=13.28% 未达阈值\n- 训练轨迹（train success）:\n\n| Step | success | pass@16 | KL |\n|------|---------|---------|-----|\n| 1 | 35.9% | 100% | 0.022 |\n| 2 | 10.15% | 62.5% | 0.025 |\n| 3 | 10.15% | — | — |\n| 4 | **13.28%** | 37.5% | 0.023 |\n\nStep 1→2 发生严重崩塌（35.9%→10.15%），后续未恢复。\n\n### 零样本 eval (exp028_prereq)\n- 状态: **已完成**\n- PID: 812681 (已正常退出)\n- 模型: `/root/cost-verify-agent-rl/models/Qwen3-1.7B-Instruct` → 实际为 Qwen3-1.7B **基座模型**\n- W&B run: `exp028-prereq-zeroshot-instruct` (run ID: qdvv09da)\n- 耗时: ~35 分钟\n- 16 episodes 结果:\n\n| 指标 | 值 |\n|------|-----|\n| **success** | **0.0%** (0/16) |\n| action_is_valid | 0.75% |\n| num_actions | 50.0 (全部 hit max turn) |\n| pass@1 | 0.0% |\n| response_length | 75.07 |\n\n### 关键发现与警告\n\n**\"SFT是毒药\"假设无法通过此实验验证。** 原因：\n\n1. **模型错误**: 服务器上 `Qwen3-1.7B-Instruct` 符号链接指向 **Qwen3-1.7B 基座模型**（非 Instruct）\n2. ModelScope 上 `Qwen/Qwen3-1.7B-Instruct` 返回 404，HuggingFace 返回 401（无 token 且可能不存在独立 Instruct 变体）\n3. Qwen3 系列可能 **不发布独立 Instruct 模型**（base 和 instruct 共用同一 tokenizer/chat template）\n4. 基座模型 0% success 是预期结果（无法遵循指令），**不能**与 SFT checkpoint 6.25% 对比得出结论\n\n**下一步建议**: 需确认 Qwen3 是否有独立 Instruct 权重。如果没有，\"SFT是毒药\"假设需要用其他 Instruct 模型（如 Qwen2.5-1.5B-Instruct）来验证，或者从 HuggingFace 配置 token 后重新下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-cleanup-and-launch.md"
+}

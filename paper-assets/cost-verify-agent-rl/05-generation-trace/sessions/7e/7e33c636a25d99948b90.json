@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e33c636a25d99948b90",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose check all running bjb1",
+  "task_key": "worker_diagnose_check-all-running-bjb1_20260518T125920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_check-all-running-bjb1_20260518T125920_result.json",
+    "occurrence": 1,
+    "bytes": 1568,
+    "sha256": "7b37724169d01c5b69eb456a91c11563c9bdee854b9083ceec741f15d347aeff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 进程状态\n| 项目 | 状态 |\n|------|------|\n| PID 30131 (Ray driver) | **存活**，python 进程，56 线程，State: sleeping |\n| PID 33571 (GPU 0 worker) | **存活**，`ray::WorkerDict.actor_rollout_update_actor` |\n| PID 33572 (GPU 1 worker) | **存活**，`ray::WorkerDict.actor_rollout_update_actor` |\n\n### GPU 占用\n| GPU | 显存 | 利用率 | 温度 |\n|-----|------|--------|------|\n| 0 (RTX PRO 6000) | 97151 / 97887 MiB (99.2%) | 100% | 66°C |\n| 1 (RTX PRO 6000) | 97151 / 97887 MiB (99.2%) | 100% | 63°C |\n\n### RAM\n- 已用 117Gi / 总计 1.0Ti，可用 860Gi\n\n### 训练进度\n- **当前步数：step 10 / 100**（刚完成 step 9，保存 global_step_10 checkpoint @ 20:53:28）\n- 日志文件：`/root/runs/cost-verify-agent-rl/exp029_seed2_100step.log`（6.3MB，持续写入至 20:59:23）\n- Checkpoint 路径：`/root/autodl-tmp/checkpoints/exp029-seed2/global_step_10/`\n- 每 5 步保存一次 checkpoint（已保存 step 5, step 10）\n\n### Step 9 关键指标\n- **success: 7.8%**, pass@8: 50%\n- action_is_valid: 65.8%, action_is_effective: 98.2%\n- entropy: 0.036, ppo_kl: 0.0056, pg_clipfrac: 0.4%\n- grad_norm: 1.79\n- response_length mean: 13219 tokens\n- **timing: ~818s/step（~13.6 min）**，throughput: 517 tokens/s\n\n### 预计剩余时间\n剩 90 步 x ~14 min/step = **约 21 小时**（预计明天 ~18:00 完成）\n\n### 异常\n无异常。训练正常进行，当前正在做 step 10 的 AlfWorld rollout（日志中可见 TaskRunner 在执行环境交互）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-check-all-running-bjb1.md"
+}

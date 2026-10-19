@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b15752c37c66600d127",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_5_1778806494.md",
+  "task_key": "loop_5_1778806494",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778806494.md",
+    "occurrence": 1,
+    "bytes": 4551,
+    "sha256": "dd5770750606c11111f46612002bd45e53124ebf974278b870186211e0757ef4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T16:21:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 bjb1-17606 的 cuda:0 和 cuda:1（gpu_ids 白名单）\n- bjb1-17606 根分区仅 30GB，所有大文件必须放 `/root/autodl-tmp/`，启动脚本必须 `export TMPDIR=/root/autodl-tmp/tmp/ && export RAY_TMPDIR=/root/autodl-tmp/ray_tmp`\n- `/root/autodl-tmp` 磁盘 95% 满（仅剩 ~4GB），**启动任何实验前必须先清理磁盘**（旧 checkpoint、Ray logs）\n- 训练入口是 `python train.py`，不是 `python -m ragen.llm_agent.agent_proxy`（后者是 eval 入口，vLLM 参数不兼容）\n- WandB 中 `raw_reward` 和 `episodic_return` 是日志 artifact（恒为 0），看 `critic/score/*` 判断实际 reward\n- Ray 启动必须带 `RAY_memory_monitor_refresh_ms=0` + `RAY_SYSTEM_MEMORY=210000000000`（cgroup 220GB 限制）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-17606，2× RTX PRO 6000 Blackwell 94GB\n- **工作目录**: `/root/cost-verify-agent-rl/RAGEN/`（训练入口）\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境（不是 venv）\n- **模型 checkpoint**: \n  - SFT v1: `/root/autodl-tmp/checkpoints/exp008_sft/final/`（action_is_valid 90%，success 0%）\n  - Expert SFT: `/root/autodl-tmp/checkpoints/exp017_expert_sft/final/`（3.44GB，2460 条 PDDL trajectory，loss=0.1434）\n  - GRPO step 5: `/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/`\n- **数据集**: \n  - ALFWorld: `/root/autodl-tmp/alfworld/`（3553 train games）\n  - Expert SFT data: `/root/autodl-tmp/expert_trajectories/sft_data/train.jsonl`（2460 条）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**: 无。所有 Worker 已完成，无 cron，两块 GPU 空闲\n\n### 3. 📊 当前状态\n**刚完成**: exp017_expert_sft 训练成功（conclusion=success，3 epochs, 462 steps, 26 min, loss=0.1434, token_accuracy=0.983）。但 **eval 未完成**——worker_eval_exp017-sft-alfworld 被 cancelled，尚未确认 Expert SFT 模型的 ALFWorld success rate（exp017 hypothesis 要求 ≥10%）。\n\n**Registry 状态**:\n- DONE: 19 个（success 1 = exp008_sft, negative 1 = exp013f, failed 12, killed 5）\n- PREPARING: 11 个（exp018_sft_grpo 是唯一活跃候选，其余为历史残留）\n- RUNNING: 0\n- **两块 GPU 空闲 = 失职状态**\n\n**等待中**: 无 Worker 回调、无 cron、无 Director 决策。Session 被 reset 打断了 exp017 eval → exp018 提交的流程。\n\n### 4. 📋 待办（条件触发式）\n- **立即**: 派 Worker eval exp017_expert_sft checkpoint（134 tasks ALFWorld eval），确认 success rate\n- **exp017 eval success ≥ 10%** → 准备 exp018_sft_grpo 脚本（LR=5e-7, kl=0.1, grad_clip=1.0, sparse reward, 30 steps），从 exp017 checkpoint 恢复，提交训练\n- **exp017 eval success < 10%** → 向 Director 汇报，讨论是否 (a) 增加 expert data 量/质量 (b) 切换到 SPEAR/DAPO 方案\n- **磁盘 < 2GB** → 清理旧 checkpoint（exp013b-e, exp015, exp016 的 checkpoint 均可删）\n- **exp018 GRPO step 6-7 出现 collapse**（grad_norm < 0.2 或 success → 0%）→ kill，考虑 DAPO+AR3PO 组合\n- **exp018 success ≥ 20%** → Phase A PASS，启动 Phase B (B-IAVR)，用 `scripts/convert_fsdp_to_hf.py` 转格式\n\n### 5. 🎯 战略上下文\n**核心问题**: GRPO 在 ALFWorld 上的 sparse reward 冷启动。6 次 GRPO 实验（exp010→exp016）全部失败，根因是 base success rate 太低（val ~4.7%，train ~0%），大多数 GRPO group 全零 reward 无差异化信号。\n\n**当前策略**: Expert SFT（PDDL expert trajectories 2460 条）提升 base success → 再接 sparse GRPO。exp017 SFT 已完成训练但未 eval。这是 D016 pivot 方向。\n\n**决策链**: D006(SFT warmup) → D010/D011(format penalty 问题) → D012/D013(dense reward gaming) → D014(LR 搜索) → D015/D016(确认 sparse reward 冷启动死锁 → pivot to Expert SFT) → D017(reward pipeline 正常确认)\n\n**易错点**:\n1. 不要再尝试纯 sparse GRPO + 原 SFT checkpoint（exp008_sft 的 success=0% 证明不够，必须用 exp017 expert SFT）\n2. exp017 registry conclusion=success 但 auto-facts 显示 \"failed\"——这是 cron hook 误判（process dead 检测），实际训练完成且 metrics 正常\n3. Phase B (B-IAVR) 代码已就绪（68 tests passed），但被 Phase A 阻塞，不要提前启动\n4. 磁盘极紧（4.1GB 剩余），任何新实验前必须清理\n5. SPEAR/DAPO/Dr.GRPO 备选方案已调研完（见 memory.md），Expert SFT→GRPO 失败时可快速切换\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778806494.md"
+}

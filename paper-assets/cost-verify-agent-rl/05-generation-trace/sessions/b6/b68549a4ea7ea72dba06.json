@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b68549a4ea7ea72dba06",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops v9d disk cleanup and resume",
+  "task_key": "worker_ops_v9d_disk_cleanup_and_resume_20260520T022403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v9d_disk_cleanup_and_resume_20260520T022403.log",
+    "occurrence": 1,
+    "bytes": 631600,
+    "sha256": "79cc836b2e95a6028528f01886e95ee8f6b02d1a0a3e41e498457f407a2d34ce"
+  },
+  "statistics": {
+    "messages": 244,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 84,
+      "tool_result": 84,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 244,
+      "chunks": [
+        {
+          "path": "b68549a4ea7ea72dba06-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b68549a4ea7ea72dba06-part-0002.json",
+          "message_count": 64
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-v9d-disk-cleanup-and-resume.md"
+}

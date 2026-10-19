@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcf3bd26cf4825827ab1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research verl agent migration",
+  "task_key": "worker_research_verl-agent-migration_20260515T041332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verl-agent-migration_20260515T041332_result.json",
+    "occurrence": 1,
+    "bytes": 1373,
+    "sha256": "fa041f9f05011d691e044d8c47a4fd72de7661f36288b6c8dbca33085a5cd07e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成，迁移方案已写入 `artifacts/verl_agent_migration_plan.md`。核心发现：\n\n---\n\n**verl-agent** 是独立项目 ([langfengQ/verl-agent](https://github.com/langfengQ/verl-agent))，不是 verl 官方模块。核心卖点：\n\n- **Step-independent multi-turn rollout**：每步独立构建输入，context 长度恒定，ALFWorld 可跑 50 步不爆 token\n- **GiGPO 算法**：两层分组优势估计（episode-level + step-level anchor state grouping），对多步任务的 credit assignment 有理论优势\n- **asyncio 异步 rollout**：环境交互不阻塞 GPU\n\n**当前 RAGEN 的问题**：\n\n- verl 子模块停留在 **0.6.1**（最新 0.7.1）\n- 全历史拼接 rollout，~10 turns 有效，长 horizon 效率差\n- ctx_manager.py 72KB + agent_trainer.py 78KB，高度耦合\n\n**三个迁移方案**：\n\n| 方案 | 工作量 | 风险 | 收益 |\n|------|--------|------|------|\n| A: 全量迁移到 verl-agent | 3-4周 | 高 | 最干净，最新算法 |\n| B: 渐进式（升级verl→改rollout→加GiGPO）| 2-3周分阶段 | 中 | 平衡 |\n| **C: Cherry-pick GiGPO** | **3-5天** | **低** | 最小侵入，验证算法价值 |\n\n**推荐当前选方案 C**：项目在活跃实验阶段（23个实验），框架大改风险太高。先移植 GiGPO 验证效果，后续再决定是否做 rollout 重构。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verl-agent-migration.md"
+}

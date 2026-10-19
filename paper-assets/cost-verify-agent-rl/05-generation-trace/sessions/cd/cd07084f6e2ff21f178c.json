@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd07084f6e2ff21f178c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code scienceworld ragen adapter",
+  "task_key": "worker_code_scienceworld-ragen-adapter_20260519T035550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scienceworld-ragen-adapter_20260519T035550_result.json",
+    "occurrence": 1,
+    "bytes": 1370,
+    "sha256": "1463e571e5645c31098e86c6f8a7e95f84ac4af863019f2db21a29032c15e9b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`inclined-plane-friction-named-surfaces` 有 **1038 变体**（692 train + 346 dev），每个 gold 序列 100-700+ 步。仅这个任务预计还需 1-2 小时。总 SFT 生成预计 3-4 小时。\n\n## 完成状态\n\n**已完成的核心产出：**\n\n1. **scienceworld 安装 + JVM** - westd-47453 上可用，30 个任务验证通过\n2. **RAGEN 适配器** - `ragen/env/scienceworld/` 下三个文件：\n   - `config.py`: `ScienceWorldEnvConfig(BaseEnvConfig)`\n   - `env.py`: `ScienceWorldTXTEnv(BaseLanguageBasedEnv)` - 稀疏 reward（episode 结束时 `score/100 * config.score`）\n   - `__init__.py`: 导出\n3. **注册** - `env/__init__.py` + `envs.yaml`（4 个配置：Boil/Melt/Freeze/Mixed）\n4. **功能验证** - reset/step/mode 切换/注册全部通过\n5. **报告** - `artifacts/scienceworld_adapter_report.md`\n\n**后台运行中：**\n- SFT 生成进程 PID 755742 on westd-47453\n- 16/30 任务，~1750 条轨迹已生成\n- 输出文件：`/root/autodl-tmp/expert_sft/scienceworld_sft_{train,val}.jsonl`\n- 监控：`tail -f /root/autodl-tmp/scienceworld_sft_gen.log`\n- 预计总完成：3-4 小时（`inclined-plane-friction-named-surfaces` 单任务 1038 变体）\n\n如果不需要所有 30 个任务的 SFT 数据，可以 kill 当前进程，修改脚本只生成子集（如 boil/melt/freeze 等短序列任务）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scienceworld-ragen-adapter.md"
+}

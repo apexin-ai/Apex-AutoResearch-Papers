@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e99ab5071166a3babaad",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "verify sft confound check",
+  "task_key": "worker_verify_sft_confound_check_20260518T013431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_sft_confound_check_20260518T013431_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "0cbf4fb15028a89c41de2aae95d28310ac42e79168249c60ba703a990393cfaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：无 Confound\n\n所有实验的 `model_path` 完全一致：\n\n| 实验 | 服务器 | model_path |\n|------|--------|-----------|\n| hsweep_h2 (seed1/seed2) | bjb1-17606 | `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4` |\n| factorial_h2_episode_adv | bjb1-17606 | `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4` |\n| factorial_h2_episode_adv | westd-47453 | `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4` |\n| exp029_episode_level | bjb1-17606 | `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4` |\n| exp028c_selfguide_recipe | bjb1-17606 | `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4` |\n\n**全部 5 个实验均使用同一 SFT checkpoint (`qwen3_exp021_ragen_sft_v4`) 作为起点。** Reviewer 的担忧不成立，2×2 factorial 设计不存在模型起点的 confound。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-sft-confound-check.md"
+}

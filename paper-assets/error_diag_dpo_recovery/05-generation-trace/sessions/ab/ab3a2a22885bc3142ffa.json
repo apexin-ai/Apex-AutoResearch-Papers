@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ab3a2a22885bc3142ffa",
+  "project": "error_diag_dpo_recovery",
+  "kind": "worker",
+  "title": "code fix episode boundary and collect",
+  "task_key": "worker_code_fix-episode-boundary-and-collect_20260512T160759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-episode-boundary-and-collect_20260512T160759.log",
+    "occurrence": 1,
+    "bytes": 722999,
+    "sha256": "540f2a7ea3f4cb9746c0420b3313779d3170b15e466a857ae1338fa798d49ed5"
+  },
+  "statistics": {
+    "messages": 316,
+    "user_turns": 0,
+    "tool_calls": 121,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 121,
+      "tool_result": 121,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 316,
+      "chunks": [
+        {
+          "path": "ab3a2a22885bc3142ffa-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab3a2a22885bc3142ffa-part-0002.json",
+          "message_count": 136
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-episode-boundary-and-collect.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c6bca34ddc52b8403e8",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp027 wandb check",
+  "task_key": "worker_monitor_exp027_wandb_check_20260515T174257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp027_wandb_check_20260515T174257_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "d5917bc1c3ffa079898e03689b17efb317070d8d6680e9c62abb0dabd4efa33d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**exp027 状态：运行正常，数据太早无法判定。**\n\nW&B 当前仅有 step 1 的 actor 梯度指标（summary），无 step-level history：\n\n| 指标 | 值 | 判定 |\n|------|-----|------|\n| actor/grad_norm | 19.44 | 正常 |\n| actor/entropy | 0.275 | 单点，无法判趋势 |\n| actor/kl_loss | 0.0576 | 第一步，需后续对比 |\n\ntrain/success、val/success、reward 等核心指标均未上报——这是正常的：runtime ~3h 对应 step 0 (val_before_train) + step 1 rollout/训练，verl 在整步完成后才写 step-level metrics。\n\n**无早期预警信号触发。** 下次有意义的检查点：step 2-3 完成后（~19:30-20:30 UTC）。\n\n报告已写入 `artifacts/exp027_wandb_interim.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp027-wandb-check.md"
+}

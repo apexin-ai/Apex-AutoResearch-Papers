@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "858cb0fd714c5a6c964f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "audit ref verify w1",
+  "task_key": "worker_audit_ref-verify-w1_20260526T101812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ref-verify-w1_20260526T101812_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "7ea8c021632afc4c1f4b8cf4a366b64329d6e57e63b9e439c8d24e111eafa63e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成，报告已写入 `artifacts/ref_audit_worker1.md`。\n\n核心发现：\n- **48 条引用全部真实存在**，无虚构论文\n- **5 个严重问题**：`schulman2015trpo` 作者顺序错、`lightman2024lets` 两个作者名拼写错（Yuri→Yura, Harrison→Harri）、`istar2025` 已被 ICLR 2026 接收但仍标为 arXiv、`kazemnejad2024vineppo` 标题为旧 preprint 版本、`gradientcoupling2025` 标题为 v1 但论文已在 v2 更名\n- **3 个中等问题**：`turnppo2025` venue 待更新、`ouyang2022instructgpt` 作者名 Jeffrey→Jeff、`ahmadian2024back` 缺连字符\n- **14 个 bib entry 未被引用**，其中 `gradientcoupling2025`/`sweetrl2025`/`mtgrpo2025`/`istar2025` 与论文主题高度相关，建议补引或清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-ref-verify-w1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cae3d18dbb014ecc1d4",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd disk cleanup phase2",
+  "task_key": "worker_ops_westd_disk_cleanup_phase2_20260520T050829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_disk_cleanup_phase2_20260520T050829_result.json",
+    "occurrence": 1,
+    "bytes": 2916,
+    "sha256": "a9ff66ab83716b70f9845d0d8f5e8fd425c56e67c4d544e68b7250c941d9562c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。汇报三部分结果。\n\n---\n\n## 1. 删除结果\n\n`scienceworld_sft` 已删除。\n```\n/dev/md0   250G  172G  79G  69%  /root/autodl-tmp\n```\n可用空间 52GB → **79GB**，释放 ~27GB。\n\n---\n\n## 2. 磁盘审计（/root/autodl-tmp，250GB 总量，172GB 已用）\n\n| 目录 | 大小 | 说明 | 可清理？ |\n|------|------|------|----------|\n| `checkpoints/8b-cell-c-v9` | **92GB** | v9d 活跃训练 checkpoint | ⛔ 禁删 |\n| `cost-verify-agent-rl/` | 21GB | 项目代码+数据 | ⛔ |\n| `models/Qwen3-8B` | 16GB | 模型权重 | ⚠️ 看是否还需要 |\n| `models/Qwen3-1.7B` | 3.8GB | 模型权重 | ⚠️ 看是否还需要 |\n| `alfworld/` | 2.2GB | 环境数据 | ⚠️ 看是否还需要 |\n| `fineweb_sample/` | 2.0GB | 数据集 | ⚠️ 看是否还需要 |\n| `expert_sft/` | 797MB | SFT 数据 | ⚠️ 看是否还需要 |\n| `tmp/` | 837MB | 杂项临时文件 | ✅ 可清理 |\n| `wandb/` | 199MB | 实验日志 | ⚠️ |\n| `ray_tmp/` | 128MB | Ray 临时 | ✅ 可清理 |\n| 空目录 (4个) | 0 | 7b-sft-eval-ood, 7b-zeroshot-eval, 8b-cell-c, gae_baseline | ✅ |\n\n**/root/.cache（根分区）：**\n\n| 目录 | 大小 | 可清理？ |\n|------|------|----------|\n| `alfworld` | 2.2GB | ⚠️ 可能与 autodl-tmp/alfworld 重复 |\n| `pip` | 1.4GB | ✅ `pip cache purge` |\n\n**关键发现：** 172GB 中，92GB (53%) 是 v9 训练 checkpoint，21GB 是项目代码，20GB 是模型权重。这三项占 133GB/172GB (77%)。剩余可清理空间有限，最大潜力是 Qwen3 模型（如果不再需要可释放 ~20GB）。\n\n---\n\n## 3. Checkpoint 轮换逻辑分析\n\n**结论：delete-then-write（安全模式）**\n\n关键代码在 `fsdp_checkpoint_manager.py:180-367`：\n\n```python\ndef save_checkpoint(self, local_path, ..., max_ckpt_to_keep=None):\n    # === STEP 1: 先删旧的 (line 207-214) ===\n    if (self.rank == 0\n        and max_ckpt_to_keep\n        and len(self.previous_saved_paths) >= max_ckpt_to_keep):\n        keep_start = len(self.previous_saved_paths) - max_ckpt_to_keep + 1\n        self.remove_previous_save_local_path(self.previous_saved_paths[:keep_start])\n        self.previous_saved_paths = self.previous_saved_paths[keep_start:]\n\n    # === STEP 2: 写新 checkpoint (line 215-366) ===\n    # ... save model, optimizer, tokenizer, etc ...\n\n    # === STEP 3: 记录新路径 (line 367) ===\n    self.previous_saved_paths.append(local_path)\n```\n\n**执行顺序：** 删除旧 checkpoint → 写入新 checkpoint → 记录路径\n\n**峰值磁盘占用 = `max_ckpt_to_keep × checkpoint_size`**\n\n以 `max_actor_ckpt_to_keep=2`、每个 checkpoint 37GB 为例：\n- 保存前：2 个 checkpoint (74GB)\n- Step 1 删除最旧的 → 剩 1 个 (37GB)\n- Step 2 写入新的 → 恢复 2 个 (74GB)\n- 峰值 = 74GB，**不会出现 3×37GB = 111GB 的瞬时峰值**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-disk-cleanup-phase2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d5ef410b0d0c331c64b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose westd status check",
+  "task_key": "worker_diagnose_westd-status-check_20260519T143333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-status-check_20260519T143333_result.json",
+    "occurrence": 1,
+    "bytes": 2509,
+    "sha256": "c160fcafca407389a54d5cd3b019fcc3316d1ec2880593d65683870f9066fe46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-47453 状态汇总\n\n### GPU（4× RTX PRO 6000 96GB）\n**全部空闲。** 0MiB 显存占用，0% 利用率，无 GPU 进程。\n\n### 活跃进程\n两个 ScienceWorld SFT 数据提取脚本正在 **CPU 上** 运行：\n\n| PID | 脚本 | CPU% | 启动时间 |\n|-----|------|------|----------|\n| 19201 | `extract_scienceworld_sft_partial.py` | 39.9% | 19:56 |\n| 51279 | `extract_scienceworld_sft_optimized.py` | 41.5% | 20:30 |\n\n两者各带一个 Java 进程（ScienceWorld 的 Py4J gateway），分别占 ~2.6GB 和 ~2.1GB 内存。\n\n### ScienceWorld SFT 数据提取进展\n- **已生成文件**：\n  - `scienceworld_sft_train.jsonl` — 3,592 条（335MB），20:53 生成\n  - `scienceworld_sft_val.jsonl` — 1,796 条\n  - `scienceworld_sft_train_partial.jsonl` — 1,602 条\n  - `scienceworld_sft_val_partial.jsonl` — 844 条\n- **任务覆盖**：30 个任务类型中大部分已完成。`mendelian-genetics-known-plant` 和 `mendelian-genetics-unknown-plant` 成功率为 0，已被脚本 skip。少数任务有部分 variation 失败（如 `freeze` 12/14、`grow-fruit` 54/62、`inclined-plane-*` 系列部分缺失）。\n- `extract_scienceworld_sft_optimized.py`（优化版）进展到 21/25 个任务，仍在运行。\n\n### 8B SFT 训练脚本\n`scripts/sft_train_8b.py`（5月19日 14:39 更新）已就绪：\n- 模型：Qwen3-8B（`/root/autodl-tmp/models/Qwen3-8B`，已下载）\n- 策略：FSDP full_shard + gradient_checkpointing，bf16\n- **无 CPU offload 配置**（grep 无匹配）\n- 默认数据路径指向 `expert_sft_train.jsonl`（ALFWorld），需改为 ScienceWorld 数据路径\n\n### 磁盘\n| 挂载点 | 大小 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| `/`（根） | 30G | 14G | 17G | 46% |\n| `/dev/sda2`（数据盘） | 879G | 21G | 813G | 3% |\n\n充裕，无风险。\n\n### 代码变动\n`/root/cost-verify-agent-rl` 下无最近 6 小时内修改的 `.py` 文件。`sft_train_8b.py` 最后修改于 14:39（~8h 前），当时只是基础 FSDP 配置，未涉及 CPU offload 改动。\n\n### 关键结论\n1. **4 块 GPU 完全空闲**，可立即启动训练\n2. ScienceWorld SFT 数据提取仍在运行（optimized 版 21/25 tasks），完整数据已有 3,592 train + 1,796 val 条\n3. `sft_train_8b.py` **不含 CPU offload** 逻辑——当前用纯 FSDP full_shard，8B 模型在 4×96GB 上无需 offload\n4. 数据路径需要从 ALFWorld 默认值切换到 ScienceWorld jsonl"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-status-check.md"
+}

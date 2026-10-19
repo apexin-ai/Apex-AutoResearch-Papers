@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "722daabd37796007c7d5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix exp029 val restart",
+  "task_key": "worker_fix_exp029_val_restart_20260516T152511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp029_val_restart_20260516T152511_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "5e598616714ef7799672ef2bbbf691caa9afeadeefbabcb646ab884ee1bb1dfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成汇报\n\n| 项目 | 状态 |\n|------|------|\n| 旧进程 (868459, 871702) | ✓ 已 kill |\n| /tmp 空间 | ✓ 17G 可用 |\n| 配置修改 | ✓ val env_groups: 140→32, n_groups: [140]→[32]，train 未动 |\n| 新主进程 PID | **872859** |\n| 新 TaskRunner PID | **876099** |\n| 训练状态 | ✓ 正在加载模型权重（WorkerDict 初始化中），无报错 |\n\n日志位置：`/root/autodl-tmp/checkpoints/exp029/train_restart.log`\n\ntokenizer 的 regex warning 是已知无害警告（Qwen3 模型 + 旧 tokenizers 库版本），不影响训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp029-val-restart.md"
+}

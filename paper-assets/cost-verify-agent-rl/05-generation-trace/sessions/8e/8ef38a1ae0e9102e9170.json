@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ef38a1ae0e9102e9170",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix copy checkpoint restart",
+  "task_key": "worker_fix_copy-checkpoint-restart_20260517T193025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_copy-checkpoint-restart_20260517T193025_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "5c59311e70cb6f05b5e67e5da0c9e784fec8b319643c4029fd7842845a376bff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n### 1. Checkpoint 传输\n- **方式**：设置临时 SSH 密钥，从 westd 直接 rsync 拉取 bjb1 的 `final/` 目录（3.4GB model.safetensors + 配置文件）\n- **状态**：完成。文件大小完全一致（3441185608 bytes）\n- Symlink `qwen3_exp021_ragen_sft_v4 -> exp021_ragen_sft_v4/final` 已重建\n- 临时 SSH key 已从 bjb1 清理\n\n### 2. 额外问题修复\n- **`/root/autodl-tmp/alfworld/` 也被误删**，导致第一次启动崩溃（`ZeroDivisionError: game_files 为空`）\n- 从 `/root/.cache/alfworld/` 恢复数据后重启成功\n\n### 3. 实验状态\n- **tmux session**: `factorial_h2_episodeadv_seed1` 存活\n- **TaskRunner PID**: 450445（CPU 74%，R 状态）\n- **GPU**: 0 → 38GB, 1 → 38GB（vLLM 引擎已加载）\n- **数据**: 3553 训练游戏 + 134 OOD 评估游戏已加载\n- **wandb run**: `factorial-h2-episode-adv` (ID: `jsrvwcfd`)\n- 当前处于 `val_before_train` 阶段，主日志因 Ray log deduplication 暂停更新，但 worker stdout 确认进展正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-copy-checkpoint-restart.md"
+}

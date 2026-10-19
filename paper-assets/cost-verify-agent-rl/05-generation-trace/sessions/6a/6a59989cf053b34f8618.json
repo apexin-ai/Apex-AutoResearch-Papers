@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a59989cf053b34f8618",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor sft datagen health",
+  "task_key": "worker_monitor_sft_datagen_health_20260524T081057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_sft_datagen_health_20260524T081057_result.json",
+    "occurrence": 1,
+    "bytes": 1201,
+    "sha256": "7c6f578a450e5e9454c7a736585635b45e73e24c72a5a0c2b408f61f86473486"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 健康检查报告\n\n| 检查项 | 结果 |\n|--------|------|\n| **PID 110512（主进程）** | ALIVE — 运行 3h46m，CPU 36.1%，RSS 379MB |\n| **PID 110513（Java backend）** | ALIVE — 运行 3h46m，CPU 62.4% |\n| **输出文件** | `/root/autodl-tmp/expert_sft/` 有 2 个文件，但都是 **5月14日** 生成的旧文件（train 11.5MB, val 613KB），**本次运行未写入新文件** |\n| **日志** | 2999 行，最新到 `train var 151`（score=100, steps=27）。日志在两次采样间**无增长** |\n| **进度** | 已完成 151 个 variation，全部 score=100 |\n\n## 判断：⚠️ CRITICAL — 疑似卡死\n\n依据：\n1. **日志停滞** — 两次读取间 log 行数不变（均为 2999 行），最后一条停在 var 151\n2. **无新输出文件** — 输出目录文件时间戳为 5月14日，本次运行未产出任何新 jsonl\n3. CPU 仍有占用（36%/62%），说明进程未崩溃但可能在某个 variation 上无限循环或等待响应\n\n**可能原因**：var 152 的环境交互卡住（ScienceWorld Java 后端死锁或 API 调用超时无退出）。建议 kill 后排查 var 152 的具体 task，加 timeout 机制后重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-sft-datagen-health.md"
+}

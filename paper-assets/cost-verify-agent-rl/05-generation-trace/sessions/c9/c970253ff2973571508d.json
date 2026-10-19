@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c970253ff2973571508d",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops westd kill eval and setup ragen eval",
+  "task_key": "worker_ops_westd_kill_eval_and_setup_ragen_eval_20260522T090351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_kill_eval_and_setup_ragen_eval_20260522T090351.log",
+    "occurrence": 1,
+    "bytes": 919688,
+    "sha256": "20e69d16e96329739dce7deeaee934c3dc7746dddbab55e1c22d288d0710006b"
+  },
+  "statistics": {
+    "messages": 360,
+    "user_turns": 0,
+    "tool_calls": 128,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 100,
+      "tool_call": 128,
+      "tool_result": 128,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 360,
+      "chunks": [
+        {
+          "path": "c970253ff2973571508d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c970253ff2973571508d-part-0002.json",
+          "message_count": 180
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-westd-kill-eval-and-setup-ragen-eval.md"
+}

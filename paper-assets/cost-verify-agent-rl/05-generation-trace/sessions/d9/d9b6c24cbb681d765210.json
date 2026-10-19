@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9b6c24cbb681d765210",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp019b force launch",
+  "task_key": "worker_ops_exp019b-force-launch_20260514T205332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp019b-force-launch_20260514T205332_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "95894c9fad1609e68f774dc6fb7f90e77050ff1b55c126939b528a747b02bbb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **进程 368343** | **DONE**（已结束） |\n| **数据文件** | **存在且有内容** |\n| `expert_sft_train.jsonl` | 2,546 条，30.7 MB |\n| `expert_sft_val.jsonl` | 133 条，1.5 MB |\n| **augment_v2.log** | 正常结束，日志显示验证通过：admissible_found=50/50, move_preserved=44 |\n| **GPU 0** | 空闲（0 MiB, 0%） |\n| **GPU 1** | 空闲（0 MiB, 0%） |\n| **训练脚本** | `scripts/run_exp019b.sh` 存在（2104 bytes, May 15 01:11） |\n\n**结论**：数据增强进程已成功完成，train/val 数据就绪，两块 GPU 空闲，训练脚本就位。可以启动训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp019b-force-launch.md"
+}

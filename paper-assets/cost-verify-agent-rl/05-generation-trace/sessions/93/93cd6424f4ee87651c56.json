@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93cd6424f4ee87651c56",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra disk cleanup bjb1",
+  "task_key": "worker_infra_disk-cleanup-bjb1_20260515T051142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_disk-cleanup-bjb1_20260515T051142_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "a8e7c4974631b97b857911db11feb023202b9d533273839085e2c2e95804b4ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**释放 ~135G，磁盘使用率从 94% 降至 39%**（98G/250G，剩余 153G）。\n\n**删除内容：**\n| 目录 | 释放空间 |\n|------|---------|\n| exp020b | 62G |\n| exp022 | 21G |\n| exp015 | 21G |\n| exp016 | 21G |\n| exp017_expert_sft | 13G |\n| tmp/* | 132M |\n| 空目录（exp019_INVALID, exp020, exp020c, exp020d, exp023） | ~0 |\n\n**保留内容：**\n- exp008_sft (3.3G) + symlink qwen3_sft_final\n- exp019b_expert_sft_v3 (23G) + 2 个 symlink\n- exp021_ragen_sft_v4 (23G) + symlink qwen3_exp021_ragen_sft_v4\n- exp023c (21G) — 含 global_step_5"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-cleanup-bjb1.md"
+}

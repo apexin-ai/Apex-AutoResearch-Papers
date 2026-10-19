@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43485b681ed48173688c",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_11_1778887676.md",
+  "task_key": "loop_11_1778887676",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778887676.md",
+    "occurrence": 1,
+    "bytes": 5490,
+    "sha256": "be4e1f73ec5b9c8c751fadef5e17fdb5306ab2245fcba16ed065665653448ecd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T21:03:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：bjb1-17606 上 cuda:0, cuda:1（2× RTX PRO 6000 Blackwell 98GB）。config 中无 gpu_ids 字段，但 ROADMAP 和历史实验均只用这两卡。未经 Director 确认不要动其他卡。\n- **exp027 已判定 MVP 未通过（D045）**，不要再尝试恢复或续跑 exp027。\n- **SFT 起点已被诊断为\"毒药\"（D044）**：后续实验禁止从 exp021/exp019b SFT checkpoint 启动 GRPO，必须从 Instruct 模型冷启动。\n- **服务器 conda 环境**：bjb1-17606 用 conda（`/root/miniconda3`），不是 venv。submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`。\n- **禁止 WANDB_MODE=disabled**（D033 教训）：所有实验必须启用 W&B，否则 cron 监控会误判进程死亡。\n- **AutoDL cgroup pids.max=20480 限制**（D028）：verl-agent 在此服务器跑不起来，不要再尝试。只能用 RAGEN 框架。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-17606，工作目录 `/root/cost-verify-agent-rl`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境）\n- **模型路径**：\n  - Qwen3-1.7B base：未明确记录，需 Worker 确认\n  - SFT checkpoint（已废弃）：`/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4`\n  - Qwen3-1.7B-Instruct：exp028 正在准备使用，路径待 Worker 确认\n- **数据**：RAGEN expert data（train 16 envs / val 128 per epoch），具体路径在 RAGEN config 中\n- **W&B**：项目已配置，exp027 run ID `y7jiibqk`\n- **活跃进程**：无（exp027 已终止，PID 789790 不再存活）\n- **活跃 Cron**：reconcile 返回 0（无活跃 cron）\n- **活跃 Worker**：\n  - `worker_run_exp028_prereq_zeroshot_instruct_20260515T210027`（running）— 跑 Qwen3-1.7B-Instruct 零样本 eval\n  - `worker_code_exp028a_blocking_fixes_20260515T210106`（running）— 准备 exp028a 代码修复（Instruct 冷启动 + invalid_action_penalty）\n\n### 3. 📊 当前状态\n**刚做完**：exp027 失败分析 + Recipe Gap 诊断（D043-D045）。确认三大根因：(1) SFT 起点反效果（破坏 instruction-following）(2) Binary reward 零梯度（sparse reward 下 GRPO 无学习信号）(3) Mini-batch 8× env_groups 过小。\n\n**Registry 关键实验**：\n- exp027_stable_grpo: DONE/failed — MVP 未通过，train success 13.28%，进程 step 4 后异常终止\n- exp028_prereq_zeroshot_instruct: PREPARING — Worker 正在跑 Instruct 零样本 eval，验证\"SFT 是毒药\"假设\n- 其余全部 DONE 或废弃的 PREPARING\n\n**等待中**：\n- Worker `worker_run_exp028_prereq_zeroshot_instruct` 回调 → 拿到 Instruct zero-shot baseline\n- Worker `worker_code_exp028a_blocking_fixes` 回调 → exp028a 代码就绪（Instruct 冷启动 GRPO + invalid_action_penalty）\n- Director 尚未对 D044/D045 做出最终决策（继续 Phase A 还是重评项目）\n\n### 4. 📋 待办（条件触发式）\n- **exp028_prereq Worker 完成** → 记录 Instruct zero-shot baseline 到 registry。若 Instruct ≥15% success → 确认\"SFT 是毒药\"，exp028a 从 Instruct 冷启动有意义；若 <15% → 汇报 Director，SFT 和 Instruct 都弱，瓶颈可能在模型/环境而非训练 recipe\n- **exp028a 代码 Worker 完成** → review 代码变更，准备 exp028a 提交（需 Director 审批）\n- **两个 Worker 都完成 + Director 批准** → 提交 exp028a（Instruct 冷启动 GRPO + invalid_action_penalty，cuda:0+cuda:1）\n- **exp028a 结果出来** → 若 train success ≥20% 且稳定上升 → MVP 通过，进入 Phase B（B-IAVR）；若仍 <20% → 汇报 Director，可能需要换服务器跑 verl-agent 原版或重评项目方向\n- **Director 要求 pivot** → 准备 Plan D（GiGPO step-level credit）或申请新服务器（非 AutoDL，无 pids.max 限制）跑 verl-agent\n\n### 5. 🎯 战略上下文\n**项目核心**：B-IAVR（Behavior-Informed Adaptive Verification for RL agents）。训练 interactive agent 学会选择性自我验证，用 action-change 作为 verification informativeness 的 reward。论文 framing 已锁定 cost-efficiency story（D039），不走 performance story。\n\n**决策链关键节点**：\n- D044（当前核心）：Recipe Gap 诊断确认 SFT 起点有害 + binary reward 零梯度。Phase A 策略转为 Instruct 冷启动 + invalid_action_penalty\n- D039：论文 framing = cost-efficiency，前提是 baseline ≥50%（当前最好 13.28% train）\n- D028：verl-agent 在此服务器跑不起来（cgroup 限制），只能用 RAGEN + cherry-pick\n- D034：论文可行性需要 val ≥50%，当前离目标很远\n\n**最容易判断错的事**：\n1. **不要混淆 eval 框架**：eval_sft_fast（exp019b 20%）≠ RAGEN val（exp021 6.25%）。RAGEN eval 是 C003-compliant 标准，论文数字必须用 RAGEN eval。\n2. **不要高估 train success**：历史 train-val gap 巨大（exp023c: train 29.7% vs val 6.25%），train success 仅供趋势参考，MVP 判定必须用 val。\n3. **不要再尝试 verl-agent 原版**：除非换到非 AutoDL 容器化服务器。\n4. **不要从 SFT checkpoint 启动 GRPO**：D044 已确认 SFT 破坏 instruction-following，Instruct 冷启动是唯一正确路线。\n5. **B-IAVR 核心代码已写好**（D031），但有两个 blocking issue 未解决：`<VERIFY>` special token 注册 + a_pre 推理开销量化。Phase B 启动前必须先解决。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778887676.md"
+}

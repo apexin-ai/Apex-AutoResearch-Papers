@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93d2e46f41811f3499b1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis seed7 high kl step7 ood",
+  "task_key": "worker_analysis_seed7_high_kl_step7_ood_20260521T233611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_seed7_high_kl_step7_ood_20260521T233611_result.json",
+    "occurrence": 1,
+    "bytes": 1355,
+    "sha256": "733bcc22c21456e7e069ca1d100471fae89df42c29dd9feaee064eba6e1a56d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新为 DONE/success。\n\n## 结果摘要\n\n**OOD success rate: 13.43%** (18/134 tasks)\n\n| 指标 | 值 |\n|------|-----|\n| pass@1 | 13.43% |\n| action_is_valid | 72.53% |\n| action_is_effective | 99.28% |\n| response_length | 7885 |\n| num_actions | 44.1 |\n\n### 对比定位\n\n13.43% 落入 **intervention cluster (10–15%)**，与 intervention-c step5 (10.45%) 和 intervention-c step7 (14.93%) 聚在一起，远低于自然训练的 seeds (23–31%)，但仍高于 SFT baseline (5.97%)。\n\n### Hypothesis 验证\n\n**部分 confirmed**。OOD 确实偏低，但原因比 \"collapse → low OOD\" 更细致：\n- Seed 4 同样 collapsed 却拿到 30.6% OOD，说明 collapse 本身不决定 OOD\n- 关键区别在于 **训练质量**：Seed 4 跑了 15 步 val=43.75%，seed7_high_kl 只跑 7 步 val=31.25%\n- 更准确的 pattern：**policy-constraining interventions (high KL / hard cap) 限制了泛化能力**，形成与自然训练明显分离的 10–15% OOD cluster\n\n### 一个意外发现\n\naction_is_valid 72.53% 是所有 OOD eval 中最高的（与 Seed 5 的 72.66% 并列），说明 high KL penalty 把 policy 正则化到了语法正确但任务完成率低的方向——有效动作多，但不会解题。\n\n报告已写入 `artifacts/seed7_high_kl_step7_ood/analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-seed7-high-kl-step7-ood.md"
+}

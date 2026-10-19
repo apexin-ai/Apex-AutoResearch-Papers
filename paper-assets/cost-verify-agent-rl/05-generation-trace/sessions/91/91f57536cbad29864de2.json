@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91f57536cbad29864de2",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3952,
+    "sha256": "f123ccf3c8d0ecd8068f6d188e25048a4bd13afafb550ba2baae53c07c9eb7d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-13T23:47:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 bjb1-17606 的 cuda:0 + cuda:1（RTX PRO 6000 Blackwell 94GB×2）\n- 模型/数据/HF cache 必须放数据盘 `/root/autodl-tmp/`，根分区只有 30GB\n- **Qwen3-1.7B 没有独立 Instruct 版本**——Qwen3 系列不区分 base/instruct，`Qwen3-1.7B` 本身就是 conversational 模型。exp004/exp006 的 \"切 Instruct\" 方案无效，`models/Qwen3-1.7B-Instruct` 只是指向同一模型的软链接\n- vLLM 0.18.1 与 RAGEN 兼容（声明要求 0.8.2 但实测无问题），不要降版本\n- submit_training_job 的 command 必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606（AutoDL），工作目录 `/root/cost-verify-agent-rl/RAGEN/`\n- Python：`/root/miniconda3/bin/python` (3.12.3, conda base)\n- 模型：`/root/autodl-tmp/models/Qwen/Qwen3-1.7B`（软链接 `/root/cost-verify-agent-rl/models/Qwen3-1.7B`）\n- 数据：`/root/autodl-tmp/alfworld/`（ALFWORLD_DATA），3553 train / 140 eval games\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 关键软件：PyTorch 2.10.0+cu128, vLLM 0.18.1, verl 0.6.1, RAGEN 0.1\n- 活跃进程：exp003 (PID 157852, tmux=exp003, cuda:0+1)，step 0 GRPO update 阶段\n- Cron：reconcile 返回 0，无活跃 cron（exp003 通过 Worker 轮询监控）\n\n### 3. 📊 当前状态\n刚处理完 Director 的三条并行指令。关键进展：\n\n- **exp003 (RUNNING)**：step 0 rollout 完成，GRPO update 阶段（GPU 100%），等待训练指标输出。baseline: invalid_action=95%, reward_mean=-4.75, success=0。**监控 Worker `monitor:exp003_step0_v2` 正在轮询**\n- **exp005 (PREPARING)**：快速 base 配置已创建，Director 暂不审批（base bootstrap 未验证）\n- **exp006 config Worker `code:exp006_config` 正在运行**：创建 Instruct+Fast 混合配置——但发现 Qwen3 无独立 Instruct 版，已向 Director 汇报此配置实际无意义\n- **Qwen3-1.7B-Instruct 下载**：确认不存在，创建了软链接指向同一模型\n\n等待中：\n- Worker 回调：`monitor:exp003_step0_v2`（exp003 step 0 指标）、`code:exp006_config`\n- Director 决策：Qwen3 无 Instruct 版后的新方案（我建议了 Qwen2.5-3B-Instruct / 简化 prompt / SFT warmup 三选项）\n\n### 4. 📋 待办\n- exp003 step 0 指标回调到达 → 立即汇报 Director pg_loss + invalid_action + advantage_std；非零梯度 → 继续跑；零梯度 → 需要 Director 决策新方案\n- Director 回复 \"Qwen3 无 Instruct\" 后的方案选择 → 按指令准备新模型下载/配置\n- invalid_action <80% at step 5 → exp003 有效，考虑 exp005 加速；>90% → 需要换模型或 SFT warmup\n- exp006 config Worker 完成 → 告知 Director 此配置等同 exp003（同一模型），建议取消\n- Phase B 代码已就绪（61 tests passed），Phase A checkpoint 产出后可直接启动\n\n### 5. 🎯 战略上下文\n- **核心目标**：训练 agent 学会\"何时验证\"（B-IAVR），Phase A 先复现 Self-Guide always-on baseline ≥76% success on ALFWorld\n- **决策链**：D001(ALFWorld+Qwen3-1.7B MVP) → D002(全量微调非LoRA) → 发现 batch size 是 bootstrap 关键(16→128) → 发现 Qwen3 无 Instruct 版\n- **最易判断错的事**：不要再尝试\"切 Instruct 模型\"来解决 bootstrap——Qwen3-1.7B 已经是 instruct/conversational，问题在配置不在模型类型。如果 exp003 的 128 traj/step 仍无法 bootstrap，真正需要的是换模型系列（如 Qwen2.5-3B-Instruct）或加 SFT warmup\n- **ROADMAP 时间预估已过时**：原估 Phase A 2.7h 基于 dry-run 的 36.5 step/h，实际 128 traj/step 慢得多（step 0 已跑 1.5h+）。Director 已意识到并要求加速方案\n- **Phase B 代码完整**：biavr reward + verify mechanism + lagrangian + 61 tests，集成在 RAGEN 分支，等 Phase A checkpoint\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-2.md"
+}

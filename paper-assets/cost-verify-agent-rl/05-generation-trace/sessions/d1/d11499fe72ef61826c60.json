@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d11499fe72ef61826c60",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp 002 step1",
+  "task_key": "worker_monitor_exp_002_step1_20260513T205927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp_002_step1_20260513T205927_result.json",
+    "occurrence": 1,
+    "bytes": 1590,
+    "sha256": "487c65b2f4bf3a3478a78a24dce7443ccfd5139121167c65918ffcbe6c82bdb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_002 已崩溃。** Step 1 在 rollout generation 阶段报错退出（EXIT_CODE=1）。\n\n### 错误原因\n\n```\nValueError: The decoder prompt (length 32768) plus the number of requested output tokens (at least 1) \nis longer than the maximum model length of 32768.\n```\n\n某条 trajectory 的 prompt 在多轮交互中累积到了 32768 tokens，恰好等于 `max_model_len`，导致 vLLM 无法生成任何 output token。\n\n### 初始验证结果（崩溃前完成的）\n\n| 指标 | 值 |\n|------|-----|\n| success | 0.0% |\n| invalid_action | 73.75% |\n| reward/mean | -3.6875 |\n| action_is_valid | 15.1% |\n| action_is_effective | 26.25% |\n| response_length | 9378 tokens |\n\n### GPU 状态（进程已死）\n\n| GPU | 利用率 | 显存 | 温度 |\n|-----|--------|------|------|\n| cuda:0 | 0% | 0 MiB / 97887 MiB | 28°C |\n| cuda:1 | 100%* | 0 MiB / 97887 MiB | 35°C |\n\n*GPU 1 显示 100% 利用率但 0 显存，是进程崩溃后 GPU 计数器未清零。\n\n### 修复方向\n\n需要防止 prompt 超长。几个选项：\n1. **增大 `max_model_len`**（如 33792 或 36864），给 output 留余量——但会增加显存占用\n2. **限制交互轮数或截断 prompt**，在 prompt 接近上限时提前终止 episode\n3. **减小 `max_tokens`（generation）** 并在 rollout 前检查 prompt_len + max_tokens ≤ max_model_len\n\n选项 2 最稳健——即使增大 max_model_len，长 episode 仍可能再次触顶。需要查看配置中是否有 `max_turns` 或 prompt truncation 相关参数。要我去查配置并修复吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp-002-step1.md"
+}

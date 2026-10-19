@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f4c4de7fd1673b25123",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "data find exp029 complete wandb",
+  "task_key": "worker_data_find-exp029-complete-wandb_20260518T205030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_find-exp029-complete-wandb_20260518T205030_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "1c0106bbfbb63b6d2f825e63387a320796b7e776d7b22672890a7380bb2bf469"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：**\n- **正确的 W&B run ID**: `7a59sudo`\n- **URL**: https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/7a59sudo\n- **数据**: 16 行，steps 0-15，完整 15 步训练数据\n- **之前的 run 6d4oml60**: 仅 1 行（step 0 的 val 数据），确认是崩溃前的 run\n\n**Val success 趋势**: 0.125 (step 0) → 0.25 (step 5) → 0.25 (step 10) → 0.28125 (step 15)\n\n**Train success 趋势**: 从 ~0.10-0.18 逐步上升到 step 14-15 的 0.4375\n\nexp029 在 bjb1 上经历了 5 次 W&B runs（aofjc8id → 6d4oml60 → j52mfcnt → ugkd8ys1 → 7a59sudo），前 4 次均在 step 0 崩溃，第 5 次（7a59sudo，04:13 启动）完成了全部 15 步训练。\n\n数据已保存到 `artifacts/exp029/data/wandb_data_7a59sudo.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-find-exp029-complete-wandb.md"
+}

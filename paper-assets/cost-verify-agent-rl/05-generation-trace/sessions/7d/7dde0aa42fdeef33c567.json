@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7dde0aa42fdeef33c567",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp015 early health",
+  "task_key": "worker_monitor_exp015-early-health_20260514T125820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp015-early-health_20260514T125820_result.json",
+    "occurrence": 1,
+    "bytes": 1217,
+    "sha256": "8622cebd0bc3a8093e4efbc4da2c77024c3afc5d1ea3c6602f50322ef7f6d249"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp015 早期健康检查报告\n\n### 状态总结\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | 存活 (PID 334692, 运行 ~6 分钟, 状态 Ss+) |\n| **GPU 0** | 50% 利用率, 41717/97887 MiB (43%) |\n| **GPU 1** | 100% 利用率, 41721/97887 MiB (43%) |\n| **日志行数** | 1629 行 |\n| **当前阶段** | 刚进入训练循环 — \"Training Progress: 0/30\" |\n| **错误/OOM** | 无 |\n\n### 已完成\n\n- Ray 启动成功，Worker (338194, 338195) 和 TaskRunner (337970) 正常\n- Qwen3 1.72B 模型加载成功 (safetensors, 1/1 shard)\n- FSDP 初始化完成 (bfloat16)\n- 数据处理完成: 训练集 8810 条, 验证集 494 条\n- 配置确认: LR=1e-7, kl_loss_coef=0.1, grad_clip=1.0, total_steps=30\n\n### 待确认\n\n- **val→train 过渡尚未发生** — 训练进度条刚出现在 0/30，第一个 step（含 validation rollout）正在执行中\n- 目前无 reward/loss metrics 输出\n\n### 建议\n\n训练刚进入第一步，validation rollout 可能需要 5-10 分钟。建议 **5 分钟后再次检查** 日志尾部，确认：\n1. val metrics 是否输出\n2. val→train 过渡是否成功（这是 exp013e 崩溃点）\n3. 第一步 training metrics"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp015-early-health.md"
+}

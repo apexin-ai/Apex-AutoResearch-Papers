@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cfe365c4c277626d865",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp029 seed2 step40 final",
+  "task_key": "worker_monitor_exp029-seed2-step40-final_20260519T021033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp029-seed2-step40-final_20260519T021033_result.json",
+    "occurrence": 1,
+    "bytes": 84,
+    "sha256": "f3b33140d60260939e911c494b3e2c2197313907ecd99d576bc29d404f6ec7f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Scheduled a check in ~4 minutes. I'll verify step 40 completion then."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp029-seed2-step40-final.md"
+}

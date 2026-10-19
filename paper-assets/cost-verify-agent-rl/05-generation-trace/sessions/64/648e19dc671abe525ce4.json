@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "648e19dc671abe525ce4",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code exp 003 fix truncation",
+  "task_key": "worker_code_exp_003_fix_truncation_20260513T210140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_003_fix_truncation_20260513T210140.log",
+    "occurrence": 1,
+    "bytes": 1333643,
+    "sha256": "15431abf19268f8cbb7ffc59916fdf297db93348b815cede1c52e57967b2754c"
+  },
+  "statistics": {
+    "messages": 479,
+    "user_turns": 1,
+    "tool_calls": 149,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 168,
+      "tool_call": 149,
+      "tool_result": 149,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 393,
+      "chunks": [
+        {
+          "path": "648e19dc671abe525ce4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "648e19dc671abe525ce4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "648e19dc671abe525ce4-part-0003.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 86,
+      "chunks": [
+        {
+          "path": "648e19dc671abe525ce4-part-0003.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-003-fix-truncation.md"
+}

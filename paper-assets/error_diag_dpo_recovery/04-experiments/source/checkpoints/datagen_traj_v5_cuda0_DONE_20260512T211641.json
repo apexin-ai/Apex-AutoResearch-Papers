@@ -1,0 +1,28 @@
+{
+  "exp_id": "datagen_traj_v5_cuda0",
+  "project": "error_diag_dpo_recovery",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T16:51:53.773Z",
+    "updated_at": "2026-05-12T21:16:41.786Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 nohup python src/collect_trajectories.py --num_tasks 250 --temperature 0.7 --gpu 0 --output_dir data/trajectories_v5_cuda0 > /tmp/v5_cuda0.log 2>&1 &",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v5_cuda0/train.jsonl",
+      "data_count": 125,
+      "model_name": "Qwen3-8B",
+      "seed": "N/A (no seed parameter in script)",
+      "pid": 266200,
+      "log_path": "/tmp/v5_cuda0.log"
+    },
+    "notes": "Task overlap 验证完成：v5 失败 task 与 expert SFT 100% overlap (20/20)。Expert 覆盖 1395 unique tasks，远超 v5 当前 40 tasks。pick_heat_then_place 是失败最集中类型 (10/20, 0% SR)。DPO pair 构建可行。",
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v5_cuda0/train.jsonl",
+    "completed_at": "2026-05-12T21:16:41.786Z"
+  },
+  "timestamp": "2026-05-12T21:16:41.802780+00:00",
+  "trigger": "update_registry"
+}

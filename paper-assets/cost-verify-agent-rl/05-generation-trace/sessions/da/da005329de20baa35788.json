@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da005329de20baa35788",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_8_1778853346.md",
+  "task_key": "loop_8_1778853346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778853346.md",
+    "occurrence": 1,
+    "bytes": 4411,
+    "sha256": "12c178e5985203ec7773b2892ba4449dde4186638f4b9ac889d44b8acb1042b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_messages\nupdated: '2026-05-15T12:29:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 bjb1-17606:cuda:0 和 cuda:1，脚本内 GPU 编号从 0 开始（框架自动映射）\n- exp026 registry 被 cron 误标 DONE(failed)，**不可逆**。训练真正完成后需手动 update_registry 更新 conclusion 和 metrics\n- **禁止 WANDB_MODE=disabled + cron 监控**（D029 教训，已存 memory）。后续实验必须启用 W&B\n- exp026 正在运行，**绝对不要 ssh_execute 任何可能影响进程的操作**，只用 ssh_read_only\n- 训练框架是 RAGEN（/root/RAGEN/），不是 verl-agent。verl-agent 路线已被 D028 永久放弃（cgroup pids.max=20480 不兼容 Ray）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，用户 root\n- 训练代码：/root/RAGEN/\n- Python：conda base 环境，/root/miniconda3/bin/python（aml-train 镜像）\n- SFT checkpoint：/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/\n- exp026 config：/root/RAGEN/config/_alfworld_exp026_step_independent_grpo.yaml\n- exp026 启动脚本：/root/RAGEN/scripts/run_exp026_step_independent_grpo.sh\n- 活跃进程：PID 778562（train.py 主进程），782015/782016（Ray rollout workers），tmux session `exp026`\n- W&B：**已禁用**（WANDB_MODE=disabled），这是当前指标盲飞的根因\n- 磁盘：/root/autodl-tmp 137G/250G (55%)，114G 剩余\n- Cron：无活跃 cron（reconcile 返回 0）\n\n### 3. 📊 当前状态\n**exp026**：step 2/150，~40 min/step，预计总计 ~100h。GPU 双卡 66%/65%。Step 0 val: success=6.25%, action_is_valid=63.1%（baseline 符合预期）。**无 per-step 训练指标**（pg_loss/entropy/KL 不可见），Director 紧急指令要求定位指标来源。\n\n**已完成的 D030 并行任务**：\n- Task 3 (failure analysis) ✅：50 实验 3 成功(6%)，GPU 有效利用率 14%，infra 失败 40%，已注册 artifact\n- Task 4 (B-IAVR core) ✅：68/68 测试通过，Lagrangian 对偶方案，a_pre rollout 集成待 exp026 baseline 确认后接入。**等 Director 确认设计决策**\n- Task 2 (analysis script) ✅：analyze_exp026.py 就绪，已注册 artifact\n- Task 1 (literature survey) 🔄：worker_research_related_work_survey_20260515T120839，turn 13 编译中\n\n**等待中的 Worker 回调**：\n- `worker_ops_exp026_metrics_hunt_20260515T122735`（running）— 深入查 TensorBoard/Ray logs/训练代码 logger 配置\n- `worker_research_related_work_survey_20260515T120839`（running）— 文献调研\n\n**已汇报 Director**：D030 四项任务进展 + exp026 指标盲飞初步排查（W&B 禁用确认、进程存活确认）\n\n### 4. 📋 待办\n- metrics_hunt worker 回调 → 读取结果，追加汇报 Director（找到 TensorBoard/Ray 指标？还是确认完全没有渠道？）\n- 文献调研 worker 回调 → 注册 artifact，汇报 Director\n- exp026 到 step 5（~2h 后）→ 派 worker 读 val 指标，这是首个训练效果判断点\n- exp026 到 step 10 → 早停检查：success ≤ 6.25% → 标记 ⚠️ 汇报 Director 评估 kill\n- exp026 到 step 20 → 早停检查：success < 12% → 标记 ⚠️\n- Director 确认 B-IAVR 设计决策 → 生成 DESIGN_DECISIONS.md，准备 Phase 2 接入\n- exp026 真正完成 → 手动 update_registry（conclusion + metrics），因为 cron 已失效\n\n### 5. 🎯 战略上下文\n**核心结论链**：RAGEN full-history GRPO 3/3 退化(D025/D026) → verl-agent cgroup 不兼容(D028) → cherry-pick step-independent rollout 到 RAGEN(exp026) → 目前唯一未被证伪的 RL 路线。\n\n**MVP 目标**：ALFWorld success ≥ 20%（从 SFT baseline 6.25% 需 ~3x 提升）。\n\n**exp026 关键变更 vs 之前失败实验**：context O(1) vs O(steps)、KL 0.01 vs 0.5、LR 1e-6 vs 5e-7、step-level discounted returns vs episode-only sparse。\n\n**最容易判断错的事**：\n1. Registry 显示 exp026 DONE(failed) — 这是 cron 误判，训练实际在跑。不要基于 registry 状态做决策\n2. W&B 被禁用意味着没有自动指标监控 — 必须靠 SSH 手动检查或等 val 输出\n3. ~40 min/step × 150 steps = ~100h，不是之前估计的 3-6 天（实际 ~4 天）\n4. 序列有 truncation 警告（4195-4733 tokens > max 4096）— 可能影响训练质量但不致命\n5. B-IAVR 代码已实现但 a_pre counterfactual inference 未接入 rollout — 这是有意的，等 exp026 baseline 后再接\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778853346.md"
+}

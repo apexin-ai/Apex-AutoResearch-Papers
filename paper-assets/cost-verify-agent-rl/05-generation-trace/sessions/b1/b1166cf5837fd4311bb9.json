@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1166cf5837fd4311bb9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check seed200 v3 alive",
+  "task_key": "worker_check_seed200_v3_alive_20260522T193907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_seed200_v3_alive_20260522T193907_result.json",
+    "occurrence": 1,
+    "bytes": 1517,
+    "sha256": "60ae42ff3604e0700299d1536e7bd24b634a1b5eeb3d253fa1f8befc4549f4fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**PID 129823 — 存活，但只是 bash shell**\n- 状态 `Ss+`（sleeping, session leader, foreground），运行 36 分钟\n- 这是 tmux pane 里的 bash，不是训练主进程本身\n\n**Ray Workers 132938/132939 — 存活，PPID=131094（不是 129823）**\n- 两个 `ray::WorkerDict` 进程，PPID 均为 131094，运行 ~35:53\n- 它们属于 Ray 进程树（父进程 131094 应该是 raylet），不直接挂在 bash 129823 下\n\n**GPU 状态**\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| 0 | 100% | 97247 MiB |\n| 1 | 100% | 97247 MiB |\n| 2 | 0% | 44897 MiB |\n| 3 | 0% | 44509 MiB |\n\nGPU 0,1 满载运行（不属于本项目白名单 GPU 2,3）。GPU 2,3 显存占用 ~44GB 但利用率 0%——说明模型已加载但当前不在计算（可能在等 rollout 或 actor update 阶段只用部分 GPU）。\n\n**训练日志 — 正常推进**\n- step 0 的 val 已完成（pass@1=0.0625, 16 episodes, success=6.25%）\n- step 1 的 train 已完成（success=17.97%, pass@8=68.75%）\n- 进度条显示 `20%|██ | 1/5 [22:35<1:30:21]`，正在跑 step 2\n- 每步约 22.5 分钟，预计还剩 ~1.5 小时\n\n**结论：训练正常运行中。** PID 129823 是 tmux bash shell 而非主进程；实际训练由 Ray 进程树驱动（根进程应为 131094 或其父进程）。GPU 2,3 显存已分配，利用率 0% 是正常的阶段性现象（generation 阶段主要用 vLLM 的 GPU，PPO update 阶段才会用 actor/critic GPU）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-seed200-v3-alive.md"
+}

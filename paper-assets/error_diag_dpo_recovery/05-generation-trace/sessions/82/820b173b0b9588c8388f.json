@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "820b173b0b9588c8388f",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "ops registry and data cleanup",
+  "task_key": "worker_ops_registry-and-data-cleanup_20260512T171821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry-and-data-cleanup_20260512T171821_result.json",
+    "occurrence": 1,
+    "bytes": 1811,
+    "sha256": "9fb3b7c87f451688dc97dd865494dca2ac3ac383699a7969b4854bc86905a2e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### 1. v5_cuda0 数据残留：**无残留，无需清理**\n\n- 文件 Birth time = 00:52:15（被 kill 的 GPU3 进程创建了目录和空文件）\n- PID 266200 在 00:58:56 启动，代码第 407 行用 **`open(output_file, \"w\")`**（覆盖写），启动时清空了整个文件\n- 当前 25 行 = PID 266200 自己写的 25 条 task（log 对得上），无脏数据\n\n### 2. Seed 参数：**脚本无 seed 参数**\n\n- `collect_trajectories.py` 没有 `seed`/`random`/`shuffle` 任何一个关键词\n- argparse 参数只有：`model_name, output_dir, split, temperature, max_steps, max_new_tokens, gpu, num_tasks, part_num, part_idx`\n- task 顺序由 ALFWorld 环境的 `task_gen` 迭代器决定（顺序遍历 game files），**两卡跑的是完全相同的 task 序列**（都是 task 0-249）\n- temperature=0.7 引入采样随机性，所以同一 task 两卡的轨迹不完全一样，但 **task 分布完全重叠**。如果目的是收集更多样的数据，应该用 `--part_num 2 --part_idx 0/1` 做分片\n\n### 3. 两卡进度\n\n| | v5_cuda0 (PID 266200) | v5_cuda1 (PID 263025) |\n|---|---|---|\n| 启动时间 | 00:58:56 | 00:48:20 |\n| 已完成 | 25/250 tasks | 35/250 tasks |\n| 成功率 | ~60.9% (14/23 at log) | ~50.0% (17/34 at log) |\n| 当前速率 | ~1.2 tasks/min | ~1.1 tasks/min |\n\n### 4. 预计完成时间\n\n- cuda0：剩余 225 tasks，约 **187 min ≈ 3.1h**，预计 ~04:20 完成\n- cuda1：剩余 215 tasks，约 **195 min ≈ 3.3h**，预计 ~04:10 完成\n\n### 关键问题\n\n两卡跑相同 task 序列（task 0-249），没有分片。如果需要去重合并，500 条变 250 条（每个 task 有两个不同轨迹版本）。如果原意是覆盖 500 个不同 task，需要现在加 `--part_num 2 --part_idx` 重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-and-data-cleanup.md"
+}

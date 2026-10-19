@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c881b5cd1e38afc79eb",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code hsweep configs",
+  "task_key": "worker_code_hsweep_configs_20260517T002851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hsweep_configs_20260517T002851_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "649dba55efb316c89b17a096aef59c884292021d511e924a1f732c0ff4e2ff65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个 config 全部验证通过。\n\n**关键差异参数汇总**：\n\n| 文件 | context_window_mode | context_window_size | total_training_steps | experiment_name |\n|------|-------------------|--------------------|--------------------|-----------------|\n| `_alfworld_hsweep_h2.yaml` | sliding | 2 | 15 | hsweep-h2-sliding |\n| `_alfworld_hsweep_h5.yaml` | sliding | 5 | 15 | hsweep-h5-sliding |\n| `_alfworld_hsweep_h10.yaml` | sliding | 10 | 15 | hsweep-h10-sliding |\n| `_alfworld_hsweep_h20.yaml` | sliding | 20 | 15 | hsweep-h20-sliding |\n| `_alfworld_hsweep_full.yaml` | full | (无) | 15 | hsweep-full |\n\n所有其他参数与 exp029 完全一致（ppo_mini_batch_size=16, optimizer_offload=True, max_model_len=20480, gpu_memory_utilization=0.35 等）。每个文件的 checkpoint 路径分别指向 `/root/autodl-tmp/checkpoints/hsweep_{h2,h5,h10,h20,full}/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-hsweep-configs.md"
+}

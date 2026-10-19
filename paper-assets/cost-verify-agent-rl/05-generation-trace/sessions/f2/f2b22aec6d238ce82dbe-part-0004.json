@@ -1,0 +1,786 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f2b22aec6d238ce82dbe",
+  "rounds": [
+    {
+      "number": 6,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-26T11:12:10.568Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KrrM15hgfCkp6t6e8LpUiq",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "8e5d1b31-a24c-4408-96f3-77e58df39dc3",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017xfStBb9qkPZUKxnSEDnbD",
+              "name": "WebSearch",
+              "input": {
+                "query": "DeepSeekMath \"Pushing the Limits of Mathematical Reasoning\" Shao accepted conference 2024",
+                "allowed_domains": [
+                  "arxiv.org",
+                  "openreview.net"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "86c45a02-e7cf-41df-a97d-49fb40364e4a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TodkbqwbBVasiyZhyka4cT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3703,
+                "cache_read_input_tokens": 78319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3703
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HECouwgfeWYjCECueSc7fT",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Turn-PPO\" \"Turn-Level Advantage\" EACL 2026 Findings Li Junbo",
+                "allowed_domains": [
+                  "aclanthology.org",
+                  "arxiv.org"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "5810e78c-eafe-4953-b70a-cb53cd7f228f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TodkbqwbBVasiyZhyka4cT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3703,
+                "cache_read_input_tokens": 78319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3703
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-26T11:12:20.096Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017xfStBb9qkPZUKxnSEDnbD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"DeepSeekMath \"Pushing the Limits of Mathematical Reasoning\" Shao accepted conference 2024\"\n\nLinks: [{\"title\":\"[2402.03300] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\",\"url\":\"https://arxiv.org/abs/2402.03300\"},{\"title\":\"DeepSeekMath: Pushing the Limits of Mathematical\",\"url\":\"https://arxiv.org/pdf/2402.03300\"},{\"title\":\"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\",\"url\":\"https://arxiv.org/html/2402.03300v3\"},{\"title\":\"[2402.03300v2] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\",\"url\":\"https://arxiv.org/abs/2402.03300v2\"},{\"title\":\"[2402.03300v3] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\",\"url\":\"https://arxiv.org/abs/2402.03300v3\"},{\"title\":\"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition\",\"url\":\"https://arxiv.org/html/2504.21801v1\"},{\"title\":\"Self-Training Elicits Concise Reasoning in Large Language Models\",\"url\":\"https://arxiv.org/html/2502.20122v3\"}]\n\nBased on the search results, I found information about the DeepSeekMath paper:\n\nThe paper \"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\" was submitted on February 5, 2024, and introduces DeepSeekMath 7B, which continues pre-training DeepSeek-Coder-Base-v1.5 7B with 120B math-related tokens sourced from Common Crawl, together with natural language and code data.\n\nThe paper has authors including Zhihong Shao (who appears to be a primary author).\n\nHowever, the search results show that this paper is published on arXiv (arxiv preprint 2402.03300) rather than being accepted to a traditional conference venue. The most recent version was updated on April 27, 2024. The search results do not indicate acceptance to a specific conference in 2024—it appears to be an arXiv preprint rather than a conference-accepted paper.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "65080f6f-4176-49aa-b2b8-e2a8b770e017",
+            "tool_use_result": {
+              "query": "DeepSeekMath \"Pushing the Limits of Mathematical Reasoning\" Shao accepted conference 2024",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01FqvGNwFtkmo4xyeccLUKnn",
+                  "content": [
+                    {
+                      "title": "[2402.03300] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+                      "url": "https://arxiv.org/abs/2402.03300"
+                    },
+                    {
+                      "title": "DeepSeekMath: Pushing the Limits of Mathematical",
+                      "url": "https://arxiv.org/pdf/2402.03300"
+                    },
+                    {
+                      "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+                      "url": "https://arxiv.org/html/2402.03300v3"
+                    },
+                    {
+                      "title": "[2402.03300v2] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+                      "url": "https://arxiv.org/abs/2402.03300v2"
+                    },
+                    {
+                      "title": "[2402.03300v3] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+                      "url": "https://arxiv.org/abs/2402.03300v3"
+                    },
+                    {
+                      "title": "DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition",
+                      "url": "https://arxiv.org/html/2504.21801v1"
+                    },
+                    {
+                      "title": "Self-Training Elicits Concise Reasoning in Large Language Models",
+                      "url": "https://arxiv.org/html/2502.20122v3"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about the DeepSeekMath paper:\n\nThe paper \"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\" was submitted on February 5, 2024, and introduces DeepSeekMath 7B, which continues pre-training DeepSeek-Coder-Base-v1.5 7B with 120B math-related tokens sourced from Common Crawl, together with natural language and code data.\n\nThe paper has authors including Zhihong Shao (who appears to be a primary author).\n\nHowever, the search results show that this paper is published on arXiv (arxiv preprint 2402.03300) rather than being accepted to a traditional conference venue. The most recent version was updated on April 27, 2024. The search results do not indicate acceptance to a specific conference in 2024—it appears to be an arXiv preprint rather than a conference-accepted paper."
+              ],
+              "durationSeconds": 8.40905993300001
+            }
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-26T11:12:22.535Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HECouwgfeWYjCECueSc7fT",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Turn-PPO\" \"Turn-Level Advantage\" EACL 2026 Findings Li Junbo\"\n\nLinks: [{\"title\":\"Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs - ACL Anthology\",\"url\":\"https://aclanthology.org/2026.findings-eacl.328/\"},{\"title\":\"[2512.17008] Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs\",\"url\":\"https://arxiv.org/abs/2512.17008\"},{\"title\":\"Turn-Level Advantage Estimation with PPO for Improved ...\",\"url\":\"https://aclanthology.org/2026.findings-eacl.328.pdf\"},{\"title\":\"Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs\",\"url\":\"https://arxiv.org/html/2512.17008v1\"},{\"title\":\"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models\",\"url\":\"https://arxiv.org/html/2604.09459v1\"},{\"title\":\"Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved\",\"url\":\"https://arxiv.org/pdf/2512.17008\"},{\"title\":\"Step-level Advantage Assignment for Long-horizon Agents ...\",\"url\":\"https://aclanthology.org/2026.findings-eacl.247.pdf\"},{\"title\":\"Multi-Turn Reinforcement Learning for Tool-Calling Agents with Iterative Reward Calibration\",\"url\":\"https://arxiv.org/html/2604.02869v1\"}]\n\nI found information about the paper you searched for! Here are the results:\n\n## Turn-PPO Paper Summary\n\nThe paper \"Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs\" is authored by Junbo Li, Peng Zhou, Rui Meng, Meet P. Vadera, Lihong Li, and Yang Li, and it appears in the Findings of the Association for Computational Linguistics: EACL 2026, pages 6227–6243, Rabat, Morocco.\n\n### Research Focus\n\nThe paper addresses notable limitations when directly applying the widely used Group Relative Policy Optimization (GRPO) algorithm to multi-turn tasks, particularly in scenarios requiring long-horizon reasoning. \n\nTurn-PPO introduces a variant that operates on a turn-level MDP formulation, as opposed to the commonly used token-level MDP. Turn-PPO computes turn-level advantage estimates using a turn-level value function, replacing the standard token-level importance sampling with turn-level importance ratios, which eliminates the need to handle the enormous variance introduced by token-level credit across multiple turns.\n\n### Results\n\nTurn-PPO demonstrates improved stability and final performance over standard PPO when evaluated on WebShop and Sokoban, confirming that the turn is the natural atomic unit of credit for multi-turn agents.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "e80813de-9b5d-4dd5-b6d1-be02c949722c",
+            "tool_use_result": {
+              "query": "\"Turn-PPO\" \"Turn-Level Advantage\" EACL 2026 Findings Li Junbo",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01U7uqMoKsRS94wivG4zTEXY",
+                  "content": [
+                    {
+                      "title": "Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs - ACL Anthology",
+                      "url": "https://aclanthology.org/2026.findings-eacl.328/"
+                    },
+                    {
+                      "title": "[2512.17008] Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs",
+                      "url": "https://arxiv.org/abs/2512.17008"
+                    },
+                    {
+                      "title": "Turn-Level Advantage Estimation with PPO for Improved ...",
+                      "url": "https://aclanthology.org/2026.findings-eacl.328.pdf"
+                    },
+                    {
+                      "title": "Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs",
+                      "url": "https://arxiv.org/html/2512.17008v1"
+                    },
+                    {
+                      "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+                      "url": "https://arxiv.org/html/2604.09459v1"
+                    },
+                    {
+                      "title": "Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved",
+                      "url": "https://arxiv.org/pdf/2512.17008"
+                    },
+                    {
+                      "title": "Step-level Advantage Assignment for Long-horizon Agents ...",
+                      "url": "https://aclanthology.org/2026.findings-eacl.247.pdf"
+                    },
+                    {
+                      "title": "Multi-Turn Reinforcement Learning for Tool-Calling Agents with Iterative Reward Calibration",
+                      "url": "https://arxiv.org/html/2604.02869v1"
+                    }
+                  ]
+                },
+                "I found information about the paper you searched for! Here are the results:\n\n## Turn-PPO Paper Summary\n\nThe paper \"Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs\" is authored by Junbo Li, Peng Zhou, Rui Meng, Meet P. Vadera, Lihong Li, and Yang Li, and it appears in the Findings of the Association for Computational Linguistics: EACL 2026, pages 6227–6243, Rabat, Morocco.\n\n### Research Focus\n\nThe paper addresses notable limitations when directly applying the widely used Group Relative Policy Optimization (GRPO) algorithm to multi-turn tasks, particularly in scenarios requiring long-horizon reasoning. \n\nTurn-PPO introduces a variant that operates on a turn-level MDP formulation, as opposed to the commonly used token-level MDP. Turn-PPO computes turn-level advantage estimates using a turn-level value function, replacing the standard token-level importance sampling with turn-level importance ratios, which eliminates the need to handle the enormous variance introduced by token-level credit across multiple turns.\n\n### Results\n\nTurn-PPO demonstrates improved stability and final performance over standard PPO when evaluated on WebShop and Sokoban, confirming that the turn is the natural atomic unit of credit for multi-turn agents."
+              ],
+              "durationSeconds": 9.708445888000075
+            }
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Important finding: The grep for the 10 bib keys I was unsure about returned NO MATCHES in any tex file. This means:\n\n**Uncited references (in bib but not \\cite'd in any tex file):**\n1. foerster2018coma\n2. schulman2015trpo\n3. wang2024mathshepherd\n4. andrychowicz2017her\n5. ng1999shaping\n6. agenticrl_survey2026\n7. harutyunyan2019hindsight\n8. arjona2019rudder\n9. dapo2025\n10. ahmadian2024back\n \nLet me double-check this result since these look like standard references that should be cited. I need to verify my grep search actually caught all citation formats like \\cite, \\citep, and \\citet, and review the tex files again more carefully to make sure I didn't miss anything. I should verify this by checking the main.tex and limitations.tex files to make sure I haven't missed any citations to these entries.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "a597b5a4-5af8-4d01-ad4c-a76fe65b0409",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Beg4gkUbMpWVgxYm45WYsj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4456,
+                "cache_read_input_tokens": 82022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4456
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "10 bib keys are not found in any .tex file. Let me verify by checking main.tex and limitations sections."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "b5b8a13c-30bb-4c6f-80ad-9e4f6a16adf0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Beg4gkUbMpWVgxYm45WYsj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4456,
+                "cache_read_input_tokens": 82022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4456
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NhZzpSnvi4cUkeQJLumEpB",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "7b754e40-6321-4335-8246-d921251cfc17",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Beg4gkUbMpWVgxYm45WYsj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4456,
+                "cache_read_input_tokens": 82022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4456
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-26T11:12:43.209Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NhZzpSnvi4cUkeQJLumEpB",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{amssymb}\n14\t\\usepackage{amsthm}\n15\t\\usepackage{enumitem}\n16\t\n17\t\\title{Sign Misattribution in Step-Independent Agent RL:\\\\Dual Mechanism Diagnosis and Episode-Level Correction}\n18\t\n19\t\\author{Anonymous}\n20\t\n21\t\\begin{document}\n22\t\\maketitle\n23\t\n24\t\\begin{abstract}\n25\tReinforcement learning (RL) for multi-turn large language model (LLM) agents requires credit assignment across long interaction trajectories. The dominant training paradigm decomposes these trajectories into fixed-size windows optimized independently via Group Relative Policy Optimization (GRPO), yet this design choice has received little scrutiny. We identify a structural credit assignment pathology driven by two distinct mechanisms: \\textit{policy information loss}, which truncates cross-window context and imposes a constant performance ceiling, and \\textit{advantage sign misattribution}, which causes a substantial fraction of gradient updates for locally correct actions to carry incorrect sign. A partial factorial experiment isolates each mechanism: removing sign misattribution converts catastrophic collapse into bounded learning; additionally removing information loss enables out-of-distribution (OOD) generalization. Direct sign measurement confirms the theoretical prediction, with credit agreement dropping to near-random levels. Episode-level GRPO, which treats the full trajectory as a single optimization sample, structurally eliminates both failure modes but remains seed-dependent: 17.7\\% mean OOD success versus 6.72\\% supervised fine-tuning (SFT) baseline, though only 36\\% of seeds achieve significant generalization, indicating that avoiding collapse is necessary but not sufficient. Cross-scale verification at 8B parameters and cross-environment validation on ScienceWorld provide preliminary evidence that the pathology extends beyond our primary setting\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/cost-verify-agent-rl-52D4/}.}.\n26\t\\end{abstract}\n27\t\n28\t\\input{introduction}\n29\t\\input{related_work}\n30\t\\input{method}\n31\t\\input{theoretical_analysis}\n32\t\\input{experiments}\n33\t\\input{discussion}\n34\t\\input{conclusion}\n35\t\n36\t\\section*{Limitations}\n37\t\n38\tOur experiments span two environments (ALFWorld, ScienceWorld) and two scales (1.7B, 8B); additional environments and scales would strengthen generality, and the 8B and ScienceWorld results are single-seed. Among 11 seeds at 1.7B, only 36\\% achieve significant OOD generalization; the mechanism driving seed-dependent transfer remains open. OOD evaluations are single-run at $\\tau{=}0.4$; multi-run averaging would reduce evaluation variance (Appendix~\\ref{app:eval_variance}). Episode-level training increases sequence length from $O(h)$ to $O(T)$, which may limit scalability to very long episodes without further engineering. We do not reproduce concurrent methods (HCAPO, Turn-PPO, GiGPO); our framework predicts their success through finer-grained credit, consistent with published results (Section~\\ref{sec:discussion}).\n39\t\n40\t\\bibliography{references}\n41\t\n42\t\\clearpage\n43\t\\input{appendix}\n44\t\n45\t\\end{document}\n46\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "43418320-e069-4473-982e-07d050ba2ff2",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/main.tex",
+                "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{amsthm}\n\\usepackage{enumitem}\n\n\\title{Sign Misattribution in Step-Independent Agent RL:\\\\Dual Mechanism Diagnosis and Episode-Level Correction}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nReinforcement learning (RL) for multi-turn large language model (LLM) agents requires credit assignment across long interaction trajectories. The dominant training paradigm decomposes these trajectories into fixed-size windows optimized independently via Group Relative Policy Optimization (GRPO), yet this design choice has received little scrutiny. We identify a structural credit assignment pathology driven by two distinct mechanisms: \\textit{policy information loss}, which truncates cross-window context and imposes a constant performance ceiling, and \\textit{advantage sign misattribution}, which causes a substantial fraction of gradient updates for locally correct actions to carry incorrect sign. A partial factorial experiment isolates each mechanism: removing sign misattribution converts catastrophic collapse into bounded learning; additionally removing information loss enables out-of-distribution (OOD) generalization. Direct sign measurement confirms the theoretical prediction, with credit agreement dropping to near-random levels. Episode-level GRPO, which treats the full trajectory as a single optimization sample, structurally eliminates both failure modes but remains seed-dependent: 17.7\\% mean OOD success versus 6.72\\% supervised fine-tuning (SFT) baseline, though only 36\\% of seeds achieve significant generalization, indicating that avoiding collapse is necessary but not sufficient. Cross-scale verification at 8B parameters and cross-environment validation on ScienceWorld provide preliminary evidence that the pathology extends beyond our primary setting\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/cost-verify-agent-rl-52D4/}.}.\n\\end{abstract}\n\n\\input{introduction}\n\\input{related_work}\n\\input{method}\n\\input{theoretical_analysis}\n\\input{experiments}\n\\input{discussion}\n\\input{conclusion}\n\n\\section*{Limitations}\n\nOur experiments span two environments (ALFWorld, ScienceWorld) and two scales (1.7B, 8B); additional environments and scales would strengthen generality, and the 8B and ScienceWorld results are single-seed. Among 11 seeds at 1.7B, only 36\\% achieve significant OOD generalization; the mechanism driving seed-dependent transfer remains open. OOD evaluations are single-run at $\\tau{=}0.4$; multi-run averaging would reduce evaluation variance (Appendix~\\ref{app:eval_variance}). Episode-level training increases sequence length from $O(h)$ to $O(T)$, which may limit scalability to very long episodes without further engineering. We do not reproduce concurrent methods (HCAPO, Turn-PPO, GiGPO); our framework predicts their success through finer-grained credit, consistent with published results (Section~\\ref{sec:discussion}).\n\n\\bibliography{references}\n\n\\clearpage\n\\input{appendix}\n\n\\end{document}\n",
+                "numLines": 46,
+                "startLine": 1,
+                "totalLines": 46
+              }
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B8ULcA2wDGjC6T42U5nZcX",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\cite[pt]?\\{[^}]*(foerster|schulman2015|mathshepherd|andrychowicz|ng1999|agenticrl_survey|harutyunyan|arjona|dapo|ahmadian)",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper",
+                "glob": "*.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "9713e784-00ea-4070-8c7a-c9983835e2ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Beg4gkUbMpWVgxYm45WYsj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4456,
+                "cache_read_input_tokens": 82022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4456
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-26T11:12:44.964Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B8ULcA2wDGjC6T42U5nZcX",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "e5a11774-7198-4d8f-8d16-4c7d2f1ecdc7",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Confirmed: 10 bib entries are present in references.bib but NOT cited in any .tex file:\n\n1. foerster2018coma\n2. schulman2015trpo\n3. wang2024mathshepherd\n4. andrychowicz2017her\n5. ng1999shaping\n6. agenticrl_survey2026\n7. harutyunyan2019hindsight\n8. arjona2019rudder\n9. dapo2025\n10. ahmadian2024back\n\nThis is an important finding. These references will not appear in the compiled paper since they're not cited, but they bloat the bib file unnecessarily.\n\n\nNow I'm compiling the final report and organizing all findings systematically. I've verified the first batch of entries and they're all correct, with only minor cosmetic differences like the arXiv title for GiGPO omitting a prefix.\n\nContinuing through the second batch, entries 9 through 15 all check out correctly—the DeepSeek Math paper is confirmed as an arXiv preprint, the ICLR 2026 submission has the year properly set despite the naming convention, and the classical papers and recent entries all have accurate bibliographic information.\n\nMoving into the third batch now. The first few entries look good—OAR 2026 is confirmed with the correct arXiv identifier from January, and RAGEN2 2026 checks out. GRPOCollapse2025 matches the latest version though ICML 2026 acceptance isn't fully confirmed. I'm noticing an issue with GradientCoupling2025 though—the bibliography is using an outdated title from the first version, but the paper has since been retitled to focus on gradient coupling as a barrier to generalization in agentic RL. I need to flag that for updating. TurnPPO2025 is correct as an arXiv entry but appears to have more information to verify.\n\nContinuing through batch four, I'm seeing mostly correct entries. Schulman 2017 PPO and Schulman 2015 TRPO are both accurate—the latter with the full author order confirmed—though both are marked as uncited. Foerster 2018 COMA is also uncited. Wang 2024 MathShepherd is starting to come through but the entry seems incomplete.\n\nMoving into batch five, I'm finding some author name discrepancies. Lightman 2024 has two errors: \"Yuri Burda\" should be \"Yura Burda\" and \"Harrison Edwards\" should be \"Harri Edwards.\" Ouyang 2022 InstructGPT has a similar issue where \"Wu, Jeffrey\" needs to be corrected to \"Wu, Jeff\" to match the published proceedings. The other entries in this batch are checking out correctly so far.\n\nNow looking at batch six, I'm noticing that istar2025 has been accepted at ICLR 2026 but the bibliography still lists it as an arXiv preprint only. Similarly, dapo2025 was accepted at NeurIPS 2025 but the entry shows it as an arXiv preprint and it's uncited. Several entries across both batches are marked as uncited despite being correct otherwise, which I'll need to flag for follow-up.\n\nFor the remaining entries, kazemnejad2024vineppo has a significant title mismatch with the official NeurIPS 2024 proceedings version, and ahmadian2024back is missing a hyphen in \"REINFORCE-Style\" while also being uncited. I'm starting to compile the complete report now, and I noticed something about the shao2024deepseekmath entry that I need to examine more closely.\n\nLooking at the DeepSeekMath arXiv page, the author list is quite extensive, but the bibliography truncates it with abbreviated names like \"Li, Y.K.; Wu, Y.\" This is a minor formatting issue rather than a critical error, though full author names would be preferable. Now I'm ready to finalize the report.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "8c16f249-e2bc-4c1a-a096-4eeb144c5bf3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CoRqUqU6QWSnSfoQQzfaGP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1868,
+                "cache_read_input_tokens": 86478,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1868
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Confirmed: 10 bib entries are not cited in any .tex file. Now I have all the data to compile the final report."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "c9dc92a5-6010-4420-8ace-484006955516",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CoRqUqU6QWSnSfoQQzfaGP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1868,
+                "cache_read_input_tokens": 86478,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1868
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0159RV9y8Gpk3EjhzSYjUkDA",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/ref_audit_worker3.md",
+                "content": "# Reference Audit Report — Worker 3\n\n**审核日期**: 2026-05-26\n**bib 文件**: `docs/paper/references.bib`\n**总条目数**: 48\n\n## 核查结果总表\n\n| # | bib key | 标题 | 存在 | 作者 | 年份 | 标题准确 | Venue | 备注 |\n|---|---------|------|------|------|------|----------|-------|------|\n| 1 | `qwen3_2025` | Qwen3 Technical Report | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2505.09388 | |\n| 2 | `shridhar2021alfworld` | ALFWorld: Aligning Text and Embodied Environments for Interactive Learning | ✓ | ✓ | ✓ | ✓ | ✓ ICLR 2021 | |\n| 3 | `digiRL2024` | DigiRL: Training In-The-Wild Device-Control Agents with Autonomous Reinforcement Learning | ✓ | ✓ | ✓ | ✓ | ✓ NeurIPS 2024 | arXiv:2406.11896 |\n| 4 | `feng2025gigpo` | GiGPO: Group-in-Group Policy Optimization for LLM Agent Training | ✓ | ✓ | ✓ | ✓ | ✓ NeurIPS 2025 | arXiv:2505.10978 |\n| 5 | `kim2025reflact` | ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection | ✓ | ✓ | ✓ | ✓ | ✓ EMNLP 2025 | |\n| 6 | `ragen2025` | RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2504.20073 | |\n| 7 | `schulman2016gae` | High-Dimensional Continuous Control Using Generalized Advantage Estimation | ✓ | ✓ | ✓ | ✓ | ✓ ICLR 2016 | |\n| 8 | `selfguide2026` | Co-Evolution of Policy and Internal Reward for Language Agents | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2604.03098 | |\n| 9 | `shao2024deepseekmath` | DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models | ✓ | ✗ | ✓ | ✓ | ✓ arXiv:2402.03300 | 作者列表中 \"Li, Y.K.\" \"Wu, Y.\" 使用缩写，应写全名 |\n| 10 | `spear2025` | SPEAR: Learn the Ropes, Then Trust the Wins... | ✓ | ✓ | ✓ | ✓ | ✓ ICLR 2026 | bib key 名含 2025 仅为命名；year 字段已正确写 2026 |\n| 11 | `sutton1988td` | Learning to Predict by the Methods of Temporal Differences | ✓ | ✓ | ✓ | ✓ | ✓ ML 3(1), 9–44 | 经典文献 |\n| 12 | `wang2022scienceworld` | ScienceWorld: Is Your Agent Smarter Than a 5th Grader? | ✓ | ✓ | ✓ | ✓ | ✓ EMNLP 2022 | |\n| 13 | `williams1992reinforce` | Simple Statistical Gradient-Following Algorithms for Connectionist Reinforcement Learning | ✓ | ✓ | ✓ | ✓ | ✓ ML 8(3–4), 229–256 | 经典文献 |\n| 14 | `irc2026` | Multi-Turn Reinforcement Learning for Tool-Calling Agents with Iterative Reward Calibration | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2604.02869 | |\n| 15 | `mcgrpo2026` | MC-GRPO: Median-Centered Group Relative Policy Optimization for Small-Rollout Reinforcement Learning | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2601.22582 | |\n| 16 | `grpolambda2025` | GRPO-λ: Credit Assignment improves LLM Reasoning | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2510.00194 | 曾投 ICLR 2026 后 Withdrawn |\n| 17 | `oar2026` | Outcome-Grounded Advantage Reshaping for Fine-Grained Credit Assignment in Mathematical Reasoning | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2601.07408 | 2026年1月提交，ID 正确 |\n| 18 | `ragen2_2026` | RAGEN-2: Reasoning Collapse in Agentic RL | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2604.06268 | |\n| 19 | `grpocollapse2025` | On Group Relative Policy Optimization Collapse in Agent Search: The Lazy Likelihood-Displacement | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2512.04220 | 标题匹配最新版本（v1 标题含 \"Death Spiral\" 后缀） |\n| 20 | `gradientcoupling2025` | Rethinking Reward Miscalibration of GRPO in Agentic RL | ✓ | ✓ | ✓ | ✗ | ✗ | **标题已过时**：最新版已更名为 \"Gradient Coupling: The Hidden Barrier to Generalization in Agentic Reinforcement Learning\" |\n| 21 | `turnppo2025` | Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs | ✓ | ✓ | ✓ | ✓ | ✗ | **已被 Findings of EACL 2026 接收**（ACL Anthology: 2026.findings-eacl.328），bib 仍标为 arXiv preprint |\n| 22 | `gagpo2026` | GAGPO: Generalized Advantage Grouped Policy Optimization | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2605.13217 | |\n| 23 | `mtgrpo2025` | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2505.11821 | NeurIPS 2025 Workshop / ICML 2025 Workshop（非主会议） |\n| 24 | `sweetrl2025` | SWEET-RL: Training Multi-Turn LLM Agents on Collaborative Reasoning Tasks | ✓ | ✓ | ✓ | ✓ | ✗ | **已被 ICML 2025 接收**，bib 仍标为 arXiv preprint |\n| 25 | `schulman2017ppo` | Proximal Policy Optimization Algorithms | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:1707.06347 | 从未正式发表于会议，arXiv preprint 正确 |\n| 26 | `foerster2018coma` | Counterfactual Multi-Agent Policy Gradients | ✓ | ✓ | ✓ | ✓ | ✓ AAAI 2018 | ⚠️ **未在任何 tex 文件中引用** |\n| 27 | `schulman2015trpo` | Trust Region Policy Optimization | ✓ | ✓ | ✓ | ✓ | ✓ ICML 2015, pp.1889–1897 | ⚠️ **未在任何 tex 文件中引用** |\n| 28 | `wang2024mathshepherd` | Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations | ✓ | ✓ | ✓ | ✓ | ✓ ACL 2024 | ⚠️ **未在任何 tex 文件中引用** |\n| 29 | `lightman2024lets` | Let's Verify Step by Step | ✓ | ✗ | ✓ | ✓ | ✓ ICLR 2024 | **作者名错误**：\"Yuri Burda\" → \"Yura Burda\"；\"Harrison Edwards\" → \"Harri Edwards\" |\n| 30 | `yao2023react` | ReAct: Synergizing Reasoning and Acting in Language Models | ✓ | ✓ | ✓ | ✓ | ✓ ICLR 2023 | |\n| 31 | `andrychowicz2017her` | Hindsight Experience Replay | ✓ | ✓ | ✓ | ✓ | ✓ NeurIPS 2017 | ⚠️ **未在任何 tex 文件中引用** |\n| 32 | `ng1999shaping` | Policy Invariance Under Reward Transformations: Theory and Application to Reward Shaping | ✓ | ✓ | ✓ | ✓ | ✓ ICML 1999, pp.278–287 | ⚠️ **未在任何 tex 文件中引用** |\n| 33 | `ouyang2022instructgpt` | Training Language Models to Follow Instructions with Human Feedback | ✓ | ✗ | ✓ | ✓ | ✓ NeurIPS 2022 | **作者名**：NeurIPS proceedings 列为 \"Jeff Wu\"，bib 写 \"Jeffrey Wu\" |\n| 34 | `rafailov2023dpo` | Direct Preference Optimization: Your Language Model is Secretly a Reward Model | ✓ | ✓ | ✓ | ✓ | ✓ NeurIPS 2023 | |\n| 35 | `hcapo2026` | Hindsight Credit Assignment for Long-Horizon LLM Agents | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2603.08754 | |\n| 36 | `rcgrpo2026` | RC-GRPO: Reward-Conditioned Group Relative Policy Optimization for Multi-Turn Tool Calling Agents | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2602.03025 | |\n| 37 | `istar2025` | Agentic Reinforcement Learning with Implicit Step Rewards | ✓ | ✓ | ✓ | ✓ | ✗ | **已被 ICLR 2026 接收**（OpenReview 确认），bib 仍标为 arXiv preprint，year 应改为 2026 |\n| 38 | `agenticrl_survey2026` | From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2604.09459 | ⚠️ **未在任何 tex 文件中引用** |\n| 39 | `edgegrpo2025` | EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2507.21848 | 曾投 ICLR 2026 后 Withdrawn |\n| 40 | `harutyunyan2019hindsight` | Hindsight Credit Assignment | ✓ | ✓ | ✓ | ✓ | ✓ NeurIPS 2019 | ⚠️ **未在任何 tex 文件中引用** |\n| 41 | `arjona2019rudder` | RUDDER: Return Decomposition for Delayed Rewards | ✓ | ✓ | ✓ | ✓ | ✓ NeurIPS 2019 | ⚠️ **未在任何 tex 文件中引用** |\n| 42 | `kaelbling1998planning` | Planning and Acting in Partially Observable Stochastic Domains | ✓ | ✓ | ✓ | ✓ | ✓ AI 101(1–2), 99–134 | 经典文献 |\n| 43 | `dapo2025` | DAPO: An Open-Source LLM Reinforcement Learning System at Scale | ✓ | ✓ | ✓ | ✓ | ✗ | **已被 NeurIPS 2025 接收**（poster），bib 仍标为 arXiv preprint。⚠️ **未在任何 tex 文件中引用** |\n| 44 | `vapo2025` | VAPO: Efficient and Reliable Reinforcement Learning for Advanced Reasoning Tasks | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2504.05118 | |\n| 45 | `prime2025` | Process Reinforcement through Implicit Rewards | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2502.01456 | 已提交 ICLR 2026，状态待定 |\n| 46 | `zhou2024archer` | ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL | ✓ | ✓ | ✓ | ✓ | ✓ ICML 2024 | |\n| 47 | `kazemnejad2024vineppo` | VinePPO: Unlocking RL Potential For LLM Reasoning Through Refined Credit Assignment | ✓ | ✓ | ✓ | ✗ | ✗ | **标题与 NeurIPS 2024 proceedings 不一致**：正式标题为 \"VinePPO: Accurate Credit Assignment in RL for LLM Mathematical Reasoning\" |\n| 48 | `ahmadian2024back` | Back to Basics: Revisiting REINFORCE Style Optimization for Learning from Human Feedback in LLMs | ✓ | ✓ | ✓ | ✗ | ✓ ACL 2024 | **标题缺连字符**：ACL Anthology 正式标题为 \"REINFORCE-Style\"（有连字符）。⚠️ **未在任何 tex 文件中引用** |\n\n## 问题汇总\n\n### 必须修正的错误（5 项）\n\n1. **`lightman2024lets` (#29)** — 作者名拼写错误：\n   - `Burda, Yuri` → `Burda, Yura`\n   - `Edwards, Harrison` → `Edwards, Harri`\n\n2. **`kazemnejad2024vineppo` (#47)** — 标题与 NeurIPS 2024 正式 proceedings 不匹配：\n   - bib: \"VinePPO: Unlocking RL Potential For LLM Reasoning Through Refined Credit Assignment\"\n   - 正式: \"VinePPO: Accurate Credit Assignment in RL for LLM Mathematical Reasoning\"\n\n3. **`gradientcoupling2025` (#20)** — 标题已过时，论文已从 v1 更名：\n   - bib: \"Rethinking Reward Miscalibration of GRPO in Agentic RL\"\n   - 最新版: \"Gradient Coupling: The Hidden Barrier to Generalization in Agentic Reinforcement Learning\"\n\n4. **`ouyang2022instructgpt` (#33)** — 作者名：NeurIPS proceedings 使用 \"Jeff Wu\"，bib 写 \"Jeffrey Wu\"\n\n5. **`ahmadian2024back` (#48)** — 标题缺连字符：\"REINFORCE Style\" → \"REINFORCE-Style\"\n\n### 建议更新 Venue（4 项）\n\n6. **`istar2025` (#37)** — 已被 ICLR 2026 正式接收，建议改为 `@inproceedings`，year 改为 2026\n7. **`sweetrl2025` (#24)** — 已被 ICML 2025 接收，建议改为 `@inproceedings`\n8. **`turnppo2025` (#21)** — 已被 Findings of EACL 2026 接收（ACL Anthology: 2026.findings-eacl.328），建议更新\n9. **`dapo2025` (#43)** — 已被 NeurIPS 2025 接收为 poster，建议改为 `@inproceedings`\n\n### 未引用条目（10 项）\n\n以下 bib 条目存在于 `references.bib` 中，但**未在任何 .tex 文件中被 `\\cite` 引用**：\n\n| # | bib key | 说明 |\n|---|---------|------|\n| 26 | `foerster2018coma` | COMA: Counterfactual Multi-Agent Policy Gradients (AAAI 2018) |\n| 27 | `schulman2015trpo` | TRPO (ICML 2015) |\n| 28 | `wang2024mathshepherd` | Math-Shepherd (ACL 2024) |\n| 31 | `andrychowicz2017her` | Hindsight Experience Replay (NeurIPS 2017) |\n| 32 | `ng1999shaping` | Reward Shaping (ICML 1999) |\n| 38 | `agenticrl_survey2026` | Credit Assignment Survey |\n| 40 | `harutyunyan2019hindsight` | Hindsight Credit Assignment (NeurIPS 2019) |\n| 41 | `arjona2019rudder` | RUDDER (NeurIPS 2019) |\n| 43 | `dapo2025` | DAPO (NeurIPS 2025) |\n| 48 | `ahmadian2024back` | REINFORCE-Style (ACL 2024) |\n\nBibTeX + natbib/acl 样式通常只输出被 `\\cite` 引用的条目，因此这些不会出现在编译后的 PDF 中。如果不打算引用，建议从 bib 文件中移除以保持整洁。\n\n### 次要备注\n\n- **`shao2024deepseekmath` (#9)**：作者列表使用了缩写 \"Li, Y.K.\" \"Wu, Y.\"，不规范但 LaTeX 可正常渲染\n- **`grpolambda2025` (#16)**：曾投 ICLR 2026 后被作者 Withdrawn，当前状态为 arXiv preprint\n- **`edgegrpo2025` (#39)**：曾投 ICLR 2026 后被作者 Withdrawn\n- **`grpocollapse2025` (#19)**：v1 标题含 \"Death Spiral\" 后缀，bib 使用最新版标题，正确\n- **`mtgrpo2025` (#23)**：在 NeurIPS 2025 Workshop 和 ICML 2025 Workshop 发表（非主会议）\n- **全部 48 篇论文均真实存在**，无虚构引用\n\n## 统计\n\n| 类别 | 数量 |\n|------|------|\n| 总条目 | 48 |\n| 真实存在 | 48/48 (100%) |\n| 信息完全正确 | 29/48 (60%) |\n| 有错误需修正 | 5 |\n| 建议更新 Venue | 4 |\n| 未引用 | 10 |\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "c81d0c88-eda9-4c46-a273-194d1a9e0336",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CoRqUqU6QWSnSfoQQzfaGP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1868,
+                "cache_read_input_tokens": 86478,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1868
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": "2026-05-26T11:14:43.673Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0159RV9y8Gpk3EjhzSYjUkDA",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/ref_audit_worker3.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "c8259295-8da9-4cce-9a67-5462567dfe4d",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/ref_audit_worker3.md",
+              "content": "# Reference Audit Report — Worker 3\n\n**审核日期**: 2026-05-26\n**bib 文件**: `docs/paper/references.bib`\n**总条目数**: 48\n\n## 核查结果总表\n\n| # | bib key | 标题 | 存在 | 作者 | 年份 | 标题准确 | Venue | 备注 |\n|---|---------|------|------|------|------|----------|-------|------|\n| 1 | `qwen3_2025` | Qwen3 Technical Report | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2505.09388 | |\n| 2 | `shridhar2021alfworld` | ALFWorld: Aligning Text and Embodied Environments for Interactive Learning | ✓ | ✓ | ✓ | ✓ | ✓ ICLR 2021 | |\n| 3 | `digiRL2024` | DigiRL: Training In-The-Wild Device-Control Agents with Autonomous Reinforcement Learning | ✓ | ✓ | ✓ | ✓ | ✓ NeurIPS 2024 | arXiv:2406.11896 |\n| 4 | `feng2025gigpo` | GiGPO: Group-in-Group Policy Optimization for LLM Agent Training | ✓ | ✓ | ✓ | ✓ | ✓ NeurIPS 2025 | arXiv:2505.10978 |\n| 5 | `kim2025reflact` | ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection | ✓ | ✓ | ✓ | ✓ | ✓ EMNLP 2025 | |\n| 6 | `ragen2025` | RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2504.20073 | |\n| 7 | `schulman2016gae` | High-Dimensional Continuous Control Using Generalized Advantage Estimation | ✓ | ✓ | ✓ | ✓ | ✓ ICLR 2016 | |\n| 8 | `selfguide2026` | Co-Evolution of Policy and Internal Reward for Language Agents | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2604.03098 | |\n| 9 | `shao2024deepseekmath` | DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models | ✓ | ✗ | ✓ | ✓ | ✓ arXiv:2402.03300 | 作者列表中 \"Li, Y.K.\" \"Wu, Y.\" 使用缩写，应写全名 |\n| 10 | `spear2025` | SPEAR: Learn the Ropes, Then Trust the Wins... | ✓ | ✓ | ✓ | ✓ | ✓ ICLR 2026 | bib key 名含 2025 仅为命名；year 字段已正确写 2026 |\n| 11 | `sutton1988td` | Learning to Predict by the Methods of Temporal Differences | ✓ | ✓ | ✓ | ✓ | ✓ ML 3(1), 9–44 | 经典文献 |\n| 12 | `wang2022scienceworld` | ScienceWorld: Is Your Agent Smarter Than a 5th Grader? | ✓ | ✓ | ✓ | ✓ | ✓ EMNLP 2022 | |\n| 13 | `williams1992reinforce` | Simple Statistical Gradient-Following Algorithms for Connectionist Reinforcement Learning | ✓ | ✓ | ✓ | ✓ | ✓ ML 8(3–4), 229–256 | 经典文献 |\n| 14 | `irc2026` | Multi-Turn Reinforcement Learning for Tool-Calling Agents with Iterative Reward Calibration | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2604.02869 | |\n| 15 | `mcgrpo2026` | MC-GRPO: Median-Centered Group Relative Policy Optimization for Small-Rollout Reinforcement Learning | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2601.22582 | |\n| 16 | `grpolambda2025` | GRPO-λ: Credit Assignment improves LLM Reasoning | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2510.00194 | 曾投 ICLR 2026 后 Withdrawn |\n| 17 | `oar2026` | Outcome-Grounded Advantage Reshaping for Fine-Grained Credit Assignment in Mathematical Reasoning | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2601.07408 | 2026年1月提交，ID 正确 |\n| 18 | `ragen2_2026` | RAGEN-2: Reasoning Collapse in Agentic RL | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2604.06268 | |\n| 19 | `grpocollapse2025` | On Group Relative Policy Optimization Collapse in Agent Search: The Lazy Likelihood-Displacement | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2512.04220 | 标题匹配最新版本（v1 标题含 \"Death Spiral\" 后缀） |\n| 20 | `gradientcoupling2025` | Rethinking Reward Miscalibration of GRPO in Agentic RL | ✓ | ✓ | ✓ | ✗ | ✗ | **标题已过时**：最新版已更名为 \"Gradient Coupling: The Hidden Barrier to Generalization in Agentic Reinforcement Learning\" |\n| 21 | `turnppo2025` | Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs | ✓ | ✓ | ✓ | ✓ | ✗ | **已被 Findings of EACL 2026 接收**（ACL Anthology: 2026.findings-eacl.328），bib 仍标为 arXiv preprint |\n| 22 | `gagpo2026` | GAGPO: Generalized Advantage Grouped Policy Optimization | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2605.13217 | |\n| 23 | `mtgrpo2025` | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2505.11821 | NeurIPS 2025 Workshop / ICML 2025 Workshop（非主会议） |\n| 24 | `sweetrl2025` | SWEET-RL: Training Multi-Turn LLM Agents on Collaborative Reasoning Tasks | ✓ | ✓ | ✓ | ✓ | ✗ | **已被 ICML 2025 接收**，bib 仍标为 arXiv preprint |\n| 25 | `schulman2017ppo` | Proximal Policy Optimization Algorithms | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:1707.06347 | 从未正式发表于会议，arXiv preprint 正确 |\n| 26 | `foerster2018coma` | Counterfactual Multi-Agent Policy Gradients | ✓ | ✓ | ✓ | ✓ | ✓ AAAI 2018 | ⚠️ **未在任何 tex 文件中引用** |\n| 27 | `schulman2015trpo` | Trust Region Policy Optimization | ✓ | ✓ | ✓ | ✓ | ✓ ICML 2015, pp.1889–1897 | ⚠️ **未在任何 tex 文件中引用** |\n| 28 | `wang2024mathshepherd` | Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations | ✓ | ✓ | ✓ | ✓ | ✓ ACL 2024 | ⚠️ **未在任何 tex 文件中引用** |\n| 29 | `lightman2024lets` | Let's Verify Step by Step | ✓ | ✗ | ✓ | ✓ | ✓ ICLR 2024 | **作者名错误**：\"Yuri Burda\" → \"Yura Burda\"；\"Harrison Edwards\" → \"Harri Edwards\" |\n| 30 | `yao2023react` | ReAct: Synergizing Reasoning and Acting in Language Models | ✓ | ✓ | ✓ | ✓ | ✓ ICLR 2023 | |\n| 31 | `andrychowicz2017her` | Hindsight Experience Replay | ✓ | ✓ | ✓ | ✓ | ✓ NeurIPS 2017 | ⚠️ **未在任何 tex 文件中引用** |\n| 32 | `ng1999shaping` | Policy Invariance Under Reward Transformations: Theory and Application to Reward Shaping | ✓ | ✓ | ✓ | ✓ | ✓ ICML 1999, pp.278–287 | ⚠️ **未在任何 tex 文件中引用** |\n| 33 | `ouyang2022instructgpt` | Training Language Models to Follow Instructions with Human Feedback | ✓ | ✗ | ✓ | ✓ | ✓ NeurIPS 2022 | **作者名**：NeurIPS proceedings 列为 \"Jeff Wu\"，bib 写 \"Jeffrey Wu\" |\n| 34 | `rafailov2023dpo` | Direct Preference Optimization: Your Language Model is Secretly a Reward Model | ✓ | ✓ | ✓ | ✓ | ✓ NeurIPS 2023 | |\n| 35 | `hcapo2026` | Hindsight Credit Assignment for Long-Horizon LLM Agents | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2603.08754 | |\n| 36 | `rcgrpo2026` | RC-GRPO: Reward-Conditioned Group Relative Policy Optimization for Multi-Turn Tool Calling Agents | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2602.03025 | |\n| 37 | `istar2025` | Agentic Reinforcement Learning with Implicit Step Rewards | ✓ | ✓ | ✓ | ✓ | ✗ | **已被 ICLR 2026 接收**（OpenReview 确认），bib 仍标为 arXiv preprint，year 应改为 2026 |\n| 38 | `agenticrl_survey2026` | From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2604.09459 | ⚠️ **未在任何 tex 文件中引用** |\n| 39 | `edgegrpo2025` | EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for Advantage Diversity | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2507.21848 | 曾投 ICLR 2026 后 Withdrawn |\n| 40 | `harutyunyan2019hindsight` | Hindsight Credit Assignment | ✓ | ✓ | ✓ | ✓ | ✓ NeurIPS 2019 | ⚠️ **未在任何 tex 文件中引用** |\n| 41 | `arjona2019rudder` | RUDDER: Return Decomposition for Delayed Rewards | ✓ | ✓ | ✓ | ✓ | ✓ NeurIPS 2019 | ⚠️ **未在任何 tex 文件中引用** |\n| 42 | `kaelbling1998planning` | Planning and Acting in Partially Observable Stochastic Domains | ✓ | ✓ | ✓ | ✓ | ✓ AI 101(1–2), 99–134 | 经典文献 |\n| 43 | `dapo2025` | DAPO: An Open-Source LLM Reinforcement Learning System at Scale | ✓ | ✓ | ✓ | ✓ | ✗ | **已被 NeurIPS 2025 接收**（poster），bib 仍标为 arXiv preprint。⚠️ **未在任何 tex 文件中引用** |\n| 44 | `vapo2025` | VAPO: Efficient and Reliable Reinforcement Learning for Advanced Reasoning Tasks | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2504.05118 | |\n| 45 | `prime2025` | Process Reinforcement through Implicit Rewards | ✓ | ✓ | ✓ | ✓ | ✓ arXiv:2502.01456 | 已提交 ICLR 2026，状态待定 |\n| 46 | `zhou2024archer` | ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL | ✓ | ✓ | ✓ | ✓ | ✓ ICML 2024 | |\n| 47 | `kazemnejad2024vineppo` | VinePPO: Unlocking RL Potential For LLM Reasoning Through Refined Credit Assignment | ✓ | ✓ | ✓ | ✗ | ✗ | **标题与 NeurIPS 2024 proceedings 不一致**：正式标题为 \"VinePPO: Accurate Credit Assignment in RL for LLM Mathematical Reasoning\" |\n| 48 | `ahmadian2024back` | Back to Basics: Revisiting REINFORCE Style Optimization for Learning from Human Feedback in LLMs | ✓ | ✓ | ✓ | ✗ | ✓ ACL 2024 | **标题缺连字符**：ACL Anthology 正式标题为 \"REINFORCE-Style\"（有连字符）。⚠️ **未在任何 tex 文件中引用** |\n\n## 问题汇总\n\n### 必须修正的错误（5 项）\n\n1. **`lightman2024lets` (#29)** — 作者名拼写错误：\n   - `Burda, Yuri` → `Burda, Yura`\n   - `Edwards, Harrison` → `Edwards, Harri`\n\n2. **`kazemnejad2024vineppo` (#47)** — 标题与 NeurIPS 2024 正式 proceedings 不匹配：\n   - bib: \"VinePPO: Unlocking RL Potential For LLM Reasoning Through Refined Credit Assignment\"\n   - 正式: \"VinePPO: Accurate Credit Assignment in RL for LLM Mathematical Reasoning\"\n\n3. **`gradientcoupling2025` (#20)** — 标题已过时，论文已从 v1 更名：\n   - bib: \"Rethinking Reward Miscalibration of GRPO in Agentic RL\"\n   - 最新版: \"Gradient Coupling: The Hidden Barrier to Generalization in Agentic Reinforcement Learning\"\n\n4. **`ouyang2022instructgpt` (#33)** — 作者名：NeurIPS proceedings 使用 \"Jeff Wu\"，bib 写 \"Jeffrey Wu\"\n\n5. **`ahmadian2024back` (#48)** — 标题缺连字符：\"REINFORCE Style\" → \"REINFORCE-Style\"\n\n### 建议更新 Venue（4 项）\n\n6. **`istar2025` (#37)** — 已被 ICLR 2026 正式接收，建议改为 `@inproceedings`，year 改为 2026\n7. **`sweetrl2025` (#24)** — 已被 ICML 2025 接收，建议改为 `@inproceedings`\n8. **`turnppo2025` (#21)** — 已被 Findings of EACL 2026 接收（ACL Anthology: 2026.findings-eacl.328），建议更新\n9. **`dapo2025` (#43)** — 已被 NeurIPS 2025 接收为 poster，建议改为 `@inproceedings`\n\n### 未引用条目（10 项）\n\n以下 bib 条目存在于 `references.bib` 中，但**未在任何 .tex 文件中被 `\\cite` 引用**：\n\n| # | bib key | 说明 |\n|---|---------|------|\n| 26 | `foerster2018coma` | COMA: Counterfactual Multi-Agent Policy Gradients (AAAI 2018) |\n| 27 | `schulman2015trpo` | TRPO (ICML 2015) |\n| 28 | `wang2024mathshepherd` | Math-Shepherd (ACL 2024) |\n| 31 | `andrychowicz2017her` | Hindsight Experience Replay (NeurIPS 2017) |\n| 32 | `ng1999shaping` | Reward Shaping (ICML 1999) |\n| 38 | `agenticrl_survey2026` | Credit Assignment Survey |\n| 40 | `harutyunyan2019hindsight` | Hindsight Credit Assignment (NeurIPS 2019) |\n| 41 | `arjona2019rudder` | RUDDER (NeurIPS 2019) |\n| 43 | `dapo2025` | DAPO (NeurIPS 2025) |\n| 48 | `ahmadian2024back` | REINFORCE-Style (ACL 2024) |\n\nBibTeX + natbib/acl 样式通常只输出被 `\\cite` 引用的条目，因此这些不会出现在编译后的 PDF 中。如果不打算引用，建议从 bib 文件中移除以保持整洁。\n\n### 次要备注\n\n- **`shao2024deepseekmath` (#9)**：作者列表使用了缩写 \"Li, Y.K.\" \"Wu, Y.\"，不规范但 LaTeX 可正常渲染\n- **`grpolambda2025` (#16)**：曾投 ICLR 2026 后被作者 Withdrawn，当前状态为 arXiv preprint\n- **`edgegrpo2025` (#39)**：曾投 ICLR 2026 后被作者 Withdrawn\n- **`grpocollapse2025` (#19)**：v1 标题含 \"Death Spiral\" 后缀，bib 使用最新版标题，正确\n- **`mtgrpo2025` (#23)**：在 NeurIPS 2025 Workshop 和 ICML 2025 Workshop 发表（非主会议）\n- **全部 48 篇论文均真实存在**，无虚构引用\n\n## 统计\n\n| 类别 | 数量 |\n|------|------|\n| 总条目 | 48 |\n| 真实存在 | 48/48 (100%) |\n| 信息完全正确 | 29/48 (60%) |\n| 有错误需修正 | 5 |\n| 建议更新 Venue | 4 |\n| 未引用 | 10 |\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/ref_audit_worker3.md`。\n\n核查结果：\n- **48/48 论文真实存在**，无虚构引用\n- **5 处必须修正**：`lightman2024lets` 作者名拼写（Yuri→Yura, Harrison→Harri）、`kazemnejad2024vineppo` 标题与 NeurIPS proceedings 不一致、`gradientcoupling2025` 标题已过时、`ouyang2022instructgpt` Jeff→Jeffrey、`ahmadian2024back` 缺连字符\n- **4 处 Venue 建议更新**：istar→ICLR 2026、sweetrl→ICML 2025、turnppo→EACL 2026 Findings、dapo→NeurIPS 2025\n- **10 条 bib 条目未在任何 .tex 文件中被引用**（foerster2018coma, schulman2015trpo, wang2024mathshepherd, andrychowicz2017her, ng1999shaping, agenticrl_survey2026, harutyunyan2019hindsight, arjona2019rudder, dapo2025, ahmadian2024back）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "uuid": "95dea1e9-a34a-4b6a-8bdf-259edaaf0642",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JoN9TCG7dt1U9QZe6UtRVy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7418,
+                "cache_read_input_tokens": 88346,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7418
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/ref_audit_worker3.md`。\n\n核查结果：\n- **48/48 论文真实存在**，无虚构引用\n- **5 处必须修正**：`lightman2024lets` 作者名拼写（Yuri→Yura, Harrison→Harri）、`kazemnejad2024vineppo` 标题与 NeurIPS proceedings 不一致、`gradientcoupling2025` 标题已过时、`ouyang2022instructgpt` Jeff→Jeffrey、`ahmadian2024back` 缺连字符\n- **4 处 Venue 建议更新**：istar→ICLR 2026、sweetrl→ICML 2025、turnppo→EACL 2026 Findings、dapo→NeurIPS 2025\n- **10 条 bib 条目未在任何 .tex 文件中被引用**（foerster2018coma, schulman2015trpo, wang2024mathshepherd, andrychowicz2017her, ng1999shaping, agenticrl_survey2026, harutyunyan2019hindsight, arjona2019rudder, dapo2025, ahmadian2024back）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1011480,
+            "duration_api_ms": 2737865,
+            "num_turns": 36,
+            "stop_reason": "end_turn",
+            "session_id": "8a8469d8-8b0d-4eb5-ac5a-e38b065bcfe3",
+            "total_cost_usd": 8.454037249999995,
+            "usage": {
+              "input_tokens": 4883,
+              "cache_creation_input_tokens": 83923,
+              "cache_read_input_tokens": 652099,
+              "output_tokens": 24189,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 83923,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 324,
+                  "cache_read_input_tokens": 88346,
+                  "cache_creation_input_tokens": 7418,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 7418
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1586504,
+                "outputTokens": 55422,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 149,
+                "costUSD": 3.3536140000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5056,
+                "outputTokens": 46067,
+                "cacheReadInputTokens": 4616574,
+                "cacheCreationInputTokens": 258429,
+                "webSearchRequests": 0,
+                "costUSD": 5.100423249999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "0fe4714f-e2c0-4c62-8ea5-85837aa88b44"
+          },
+          "id": "event-000557"
+        }
+      ]
+    }
+  ]
+}

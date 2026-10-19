@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51361cd7b915e7128eae",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose scienceworld grpo cell c v6",
+  "task_key": "worker_diagnose_scienceworld_grpo_cell_c_v6_20260522T151340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scienceworld_grpo_cell_c_v6_20260522T151340_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "6ee5aafa19dc7d3cbe65600e5bc69a3c5a69222b60832f08452e34c3a1fa7d58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**v6 失败根因：`model_path` 指向不存在的路径。**\n\nConfig 中设置了 `model_path: /root/autodl-tmp/checkpoints/qwen3_scienceworld_sft/huggingface`，但该目录在服务器上根本不存在（整个 `qwen3_scienceworld_sft` 目录都没有）。huggingface_hub 库尝试将其当作 Hub repo ID 验证，格式校验失败抛出 `HFValidationError`，启动 ~2.5 分钟后崩溃。\n\n**v5 对比：** v5 是完全不同的问题——成功训练 2.25 小时后在 checkpoint 保存时因磁盘 IO 错误（`torch.save` 写入 optimizer state 失败）崩溃。\n\n**修复：** 需要将 config 的 `model_path` 改为服务器上实际存在的 SFT 模型路径。报告已写入 `artifacts/diag_sw_v6.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scienceworld-grpo-cell-c-v6.md"
+}

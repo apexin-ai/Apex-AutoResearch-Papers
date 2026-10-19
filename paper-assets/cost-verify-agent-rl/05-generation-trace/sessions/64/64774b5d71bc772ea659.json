@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "64774b5d71bc772ea659",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops kill h10 dual reeval restart",
+  "task_key": "worker_ops_kill-h10-dual-reeval-restart_20260518T025914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-h10-dual-reeval-restart_20260518T025914.log",
+    "occurrence": 1,
+    "bytes": 1427544,
+    "sha256": "634db5158de0ab7674dc3770e17f9a73ca343203e357fe1abad0a0e0d15d5b67"
+  },
+  "statistics": {
+    "messages": 745,
+    "user_turns": 1,
+    "tool_calls": 260,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 3,
+      "assistant": 194,
+      "tool_call": 260,
+      "tool_result": 260,
+      "user": 1,
+      "result": 4
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 590,
+      "chunks": [
+        {
+          "path": "64774b5d71bc772ea659-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "64774b5d71bc772ea659-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "64774b5d71bc772ea659-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "64774b5d71bc772ea659-part-0004.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "64774b5d71bc772ea659-part-0004.json",
+          "message_count": 130
+        },
+        {
+          "path": "64774b5d71bc772ea659-part-0005.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-kill-h10-dual-reeval-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3731563ef6fdf74929b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code c prime bjb1 v2",
+  "task_key": "worker_code_c_prime_bjb1_v2_20260521T214840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c_prime_bjb1_v2_20260521T214840_result.json",
+    "occurrence": 1,
+    "bytes": 1667,
+    "sha256": "22aa194ddae9ba716d5380209737ee3c1cb01ffcdfa567c077dc05bea077cd3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并在运行中。\n\n## 产出汇总\n\n### 1. 使用方案：**方案 A**（trajectory-level token cap 代码实现）\n\n### 2. 代码改动（`agent_proxy.py`，694→715 行，+21 行净增）\n\n**3 处修改：**\n\n| 位置 | 行号 | 内容 |\n|------|------|------|\n| rollout() 初始化区 | L253-254 | `max_response_length = getattr(self.config.agent_proxy, 'max_response_length', None)` + `cumulative_response_tokens = np.zeros(len(env_outputs))` |\n| entropy 块之后 | L295-304 | token 计数：优先用 `batch['responses']` tensor 计非 pad token 数，fallback 到 `non_tensor_batch['n_tokens']`，最终 fallback 到 `response_length` 估算 |\n| es_manager.step 之后 | L336-339 | cap 检查：`if np.max(cumulative_response_tokens[active_ids]) >= max_response_length: break`，仅 `not val` 时生效 |\n\n**Val/Train 隔离**：所有 cap 逻辑都有 `not val` 守卫，validation 不受影响。\n\n### 3. Config 文件\n`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_intervention_c_prime.yaml`\n- `response_length: 1024`, `max_response_length: 12000`, `max_turn: 25`\n- `seed.train: 999`, `total_training_steps: 7`, `kl_loss_coef: 0.01`, `save_freq: 5`\n\n### 4. Dry-run：成功（`--cfg job` 解析无 Hydra 错误）\n\n### 5. 训练提交\n- PID: **347250**\n- tmux session: **exp029_intervention_c_prime**\n- Log: `~/runs/cost-verify-agent-rl/exp029_intervention_c_prime.log`\n- W&B run: `exp029-intervention-c-prime` (run ID: zndyygbn)\n\n### 6. GPU 确认\n- cuda:0: RTX PRO 6000 96GB, `ray::WorkerDict` PID 350687, 4706MiB\n- cuda:1: RTX PRO 6000 96GB, `ray::WorkerDict` PID 350688, 4706MiB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c-prime-bjb1-v2.md"
+}

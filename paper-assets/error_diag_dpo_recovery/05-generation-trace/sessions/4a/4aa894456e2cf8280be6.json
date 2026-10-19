@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4aa894456e2cf8280be6",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code dpo pipeline prep",
+  "task_key": "worker_code_dpo-pipeline-prep_20260512T160444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dpo-pipeline-prep_20260512T160444_result.json",
+    "occurrence": 1,
+    "bytes": 2047,
+    "sha256": "86f79dc92aa2fea8fc0ecc8f28120e6ae3325098ff05e3f54e52023bd89deac7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出总结\n\n### 数据格式\n\n| 数据源 | 格式 | 关键字段 | 对话格式 |\n|--------|------|----------|----------|\n| `alfworld_sft.json` (expert, 3119条) | JSON array | `id`, `game_file` (相对路径), `conversations` | `{from: \"human\"/\"gpt\", value}` |\n| `trajectories_v3/train.jsonl` (21条) | JSONL | `task_id` (int), `game_file` (绝对路径+`/game.tw-pddl`), `reward`, `steps` | `{role: \"user\"/\"assistant\", content}` |\n| `classified/classified_errors.jsonl` (88条) | JSONL | 同上 + `error_type`, `failure_step`, `correction_horizon`, `conversations` | 同 trajectory |\n\nTask 匹配通过 `game_file` 归一化：提取最后两级路径 `<task_dir>/<trial_dir>`。\n\n### CLI 接口\n\n**`src/measure_correction_span.py`** (P1 gate)\n```bash\npython src/measure_correction_span.py \\\n  --classified data/classified/classified_errors.jsonl \\\n  --expert eto_repo/data/alfworld_sft.json \\\n  --output data/correction_span_results.jsonl  # 可选\n```\n\n**`src/build_dpo_pairs.py`**\n```bash\npython src/build_dpo_pairs.py \\\n  --classified data/classified/classified_errors.jsonl \\\n  --expert eto_repo/data/alfworld_sft.json \\\n  --trajectory_dir data/trajectories_v3  # 可选，classified 已含 conversations \\\n  --output data/dpo_pairs_v2.jsonl\n```\n\n### Dry-run 结果\n\n**Correction span** (82/88 matched, 6 expert 未匹配):\n- action: N=5, mean=1.20\n- verification: N=4, mean=1.00\n- planning: N=73, mean=5.32\n- **Kruskal-Wallis: H=16.839, p=0.0002 (\\*\\*\\*) — 三类 error type 的 correction span 差异高度显著**\n\n**DPO pairs**: 67/88 成功构建 (15 build_failed, 6 no_expert_match)\n\n### 注意事项\n- **数据盘 100% 满**（169G，structfuse 占 107G）。DPO 输出需写到 root 分区 (`/tmp/` 或 `/root/`) 或先清理空间。\n- 当前 88 条 classified 数据中，verification 类仅 4 条且均未生成 DPO pair（failure_step ≈ expert_steps，无有效 chosen continuation）。等更多轨迹数据收集完成后会改善。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dpo-pipeline-prep.md"
+}

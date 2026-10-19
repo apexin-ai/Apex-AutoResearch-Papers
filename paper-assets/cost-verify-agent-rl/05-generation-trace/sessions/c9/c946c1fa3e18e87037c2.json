@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c946c1fa3e18e87037c2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor gae step10 final",
+  "task_key": "worker_monitor_gae-step10-final_20260517T191214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_gae-step10-final_20260517T191214_result.json",
+    "occurrence": 1,
+    "bytes": 958,
+    "sha256": "6f6d1ac56805026967f18fae4e20581d40fc62ad980267b2014df7c35194ae86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态**: Step 10 正在 actor update 阶段（最后阶段），尚未完成。\n\n已有 val eval 数据（每次 32 episodes）:\n\n| Step | val/success | val/action_is_valid | val/pass@1 |\n|------|------------|-------------------|-----------|\n| 0 | 6.25% | 77.96% | 6.25% |\n| 5 | 12.50% | 69.26% | 12.50% |\n| 10 | *pending* | *pending* | *pending* |\n\nTrain 指标趋势（供参考）:\n\n| Step | train/success | train/action_is_valid | train/pass@8 |\n|------|--------------|---------------------|-------------|\n| 5 | 6.25% | 60.74% | 43.75% |\n| 9 | 3.13% | 60.33% | 25.00% |\n\nStep 9 checkpoint 保存于 02:51 UTC，step 10 rollout 日志到 03:07 UTC 后进入 actor update。按 ~29 min/step 估算，step 10 约在 **03:20 UTC** 完成，届时会触发 val eval（每 5 步一次）。\n\n注意：train success 从 step 5 的 6.25% 降到 step 9 的 3.13%，pass@8 从 43.75% 降到 25%，训练有退化迹象。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-gae-step10-final.md"
+}

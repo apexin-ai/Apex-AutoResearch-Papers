@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "936f4052e6209fae1617",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "setup download qwen25 instruct",
+  "task_key": "worker_setup_download_qwen25_instruct_20260515T204036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_download_qwen25_instruct_20260515T204036_result.json",
+    "occurrence": 1,
+    "bytes": 249,
+    "sha256": "6e66c2b348bb9abbdda971bcbb551151dbf95a10642f13533a2c30ca47d60354"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成，验证通过：\n\n- **路径**: `/root/autodl-tmp/models/Qwen2.5-1.5B-Instruct`\n- **大小**: 2.9GB（单文件 model.safetensors）\n- **参数量**: 1.54B\n- **Tokenizer**: vocab_size=151643\n- 下载缓存已清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-download-qwen25-instruct.md"
+}

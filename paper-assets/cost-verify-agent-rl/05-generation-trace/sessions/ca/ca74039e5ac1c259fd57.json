@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "ca74039e5ac1c259fd57",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose c prime step5 ood",
+  "task_key": "worker_diagnose_c_prime_step5_ood_20260522T003945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_c_prime_step5_ood_20260522T003945_result.json",
+    "occurrence": 1,
+    "bytes": 2063,
+    "sha256": "367c78a591e73ff4d2ac7cbf4c2bb1ce239a6d9b3a5a840fd7b7f74e72c978c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。关键数据：\n\n| 指标 | 值 |\n|------|-----|\n| cgroup pids.max | **20480** |\n| nproc (CPUs) | **208** |\n| 失败 session worker 数 | **~150** |\n| worker crash 原因 | `pthread_create failed: Resource temporarily unavailable` |\n| 当天 Ray sessions | 10 个（05:10 → 08:36），前 9 个均失败 |\n| 当前重启 (08:36) | 运行正常，raylet.err 为空 |\n\n```json\n{\"root_cause\":\"pthread_create failed: Resource temporarily unavailable (worker-997980.err) — cgroup pids.max=20480 被 9 个残留 Ray session + 当前 session 预启动的 ~150 workers (基于 208 CPUs) 耗尽，导致主进程 36 分钟后被 SIGKILL\",\"error_type\":\"resource\",\"fix_steps\":[\"启动前执行 ray stop --force 清理残留 session\",\"设置 RAY_NUM_CPUS=4 限制 Ray worker 预启动数量（实际只需 2-3 个 worker）\",\"定期清理 /root/autodl-tmp/ray_tmp/ray/ 下的过期 session 目录\"],\"can_auto_fix\":true,\"episodes_completed\":\"0/134\",\"partial_results\":\"无\"}\n```\n\n**补充说明**：实验已于 08:36:51 自动重启（PID 57965），当前 `ray::WorkerDict.actor_rollout_generate_sequences` 正在 GPU 0 上运行（8140MiB），raylet 无报错。本次成功的原因是 SIGKILL 清理了所有残留进程后 PID 空间恢复充裕。建议在启动脚本中加入 `ray stop --force` 作为 pre-flight 步骤防止复发。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "pthread_create failed: Resource temporarily unavailable (worker-997980.err) — cgroup pids.max=20480 被 9 个残留 Ray session + 当前 session 预启动的 ~150 workers (基于 208 CPUs) 耗尽，导致主进程 36 分钟后被 SIGKILL",
+              "error_type": "resource",
+              "fix_steps": [
+                "启动前执行 ray stop --force 清理残留 session",
+                "设置 RAY_NUM_CPUS=4 限制 Ray worker 预启动数量（实际只需 2-3 个 worker）",
+                "定期清理 /root/autodl-tmp/ray_tmp/ray/ 下的过期 session 目录"
+              ],
+              "can_auto_fix": true,
+              "episodes_completed": "0/134",
+              "partial_results": "无"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-c-prime-step5-ood.md"
+}

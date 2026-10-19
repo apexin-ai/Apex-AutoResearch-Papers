@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0e4d26e203d33e4276c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops urgent status bjb1",
+  "task_key": "worker_ops_urgent-status-bjb1_20260518T024352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-status-bjb1_20260518T024352_result.json",
+    "occurrence": 1,
+    "bytes": 2439,
+    "sha256": "0f387d2c5ebe8776f191df0df6f3b98b59c551ed35ed761f450d6c3ba2a4ffcc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。汇报如下：\n\n---\n\n## hsweep_h2_seed2 状态：已完成 ✓\n\n- **PID 945877 已退出**，15/15 步全部完成\n- Checkpoint 保存至 `/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15/`\n- ADV log：3000 行（128 episodes: 65 success / 63 fail）\n\n### 训练 Metrics（全 15 步）\n\n| Step | Success | Pass@8 | Entropy | PPO KL | Val |\n|------|---------|--------|---------|--------|-----|\n| 1 | 0.78% | 6.25% | 0.319 | 0.115 | - |\n| 2 | 6.25% | 31.25% | 0.252 | 0.050 | - |\n| 3 | 5.47% | 31.25% | 0.329 | 0.019 | - |\n| 4 | 2.34% | 18.75% | 0.348 | 0.016 | - |\n| 5 | 12.50% | 31.25% | 0.260 | 0.014 | **0.0%** |\n| 6 | 6.25% | 31.25% | 0.253 | 0.011 | - |\n| 7 | **0.00%** | **0.00%** | 0.260 | 0.009 | - |\n| 8 | 7.03% | 31.25% | 0.252 | 0.009 | - |\n| 9 | 3.12% | 25.00% | 0.370 | 0.008 | - |\n| 10 | 3.91% | 12.50% | 0.426 | 0.015 | **0.0%** |\n| 11 | 0.78% | 6.25% | 0.306 | 0.008 | - |\n| 12 | 8.59% | 31.25% | 0.307 | 0.008 | - |\n| 13 | 2.34% | 18.75% | 0.312 | 0.007 | - |\n| 14 | **26.56%** | **68.75%** | 0.320 | 0.007 | - |\n| 15 | **28.12%** | **62.50%** | 0.401 | 0.006 | **9.375%** |\n\nSteps 1-13 低且不稳定（0-12.5%），step 14-15 突然跳升至 26-28%。Val success 从 0% → 9.375%。\n\n### ADV 分析结果 (analyze_advantage_log_v2.py)\n\n- **Sign-outcome agreement: 52.07%**（几乎等于随机）\n- **Point-biserial r = 0.068**（p=1.94e-04，统计显著但效应极弱）\n- P(adv>0 | success) = 37.06%，P(adv>0 | failure) = 30.60%\n- **Magnitude decay γ = 0.9426**（R² = 0.5627）\n- **Distribution overlap: 0.878**（接近 1.0 = 高度重叠）\n- **Verdict: Weak or no sign misattribution**\n- 图表已保存至 `artifacts/advantage_analysis.pdf` 和 `.png`\n\n### exp029 reeval：无法启动\n\nGPU 已被自动链式任务 **hsweep-h10-seed1**（PID 974251，10:47 启动）占满，两卡各 ~37GB、100% 利用率。\n\nSweep 队列序列为：\n```\n2:1 ✓ → 2:2 ✓ → 10:1 ▶ → 5:1 → 20:1 → full:1 → 2:3 → 5:2 → 5:3 → 10:2 → 10:3 → 20:2 → 20:3 → full:2 → full:3\n```\n当前正在运行第 3 个（共 15 个），剩余 12 个。每个约 12 小时。\n\n### 注意\n\nseed2 的 checkpoint 写入了 `hsweep-h2/global_step_15/`，**覆盖了 seed1 的同名 checkpoint**。seed1 的 step 15 checkpoint 已丢失。如果需要恢复 seed1 checkpoint，需要从 wandb 或重新训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-status-bjb1.md"
+}

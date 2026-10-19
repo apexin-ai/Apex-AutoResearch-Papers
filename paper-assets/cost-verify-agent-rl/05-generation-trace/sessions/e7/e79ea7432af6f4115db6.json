@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e79ea7432af6f4115db6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research recipe gap analysis",
+  "task_key": "worker_research_recipe_gap_analysis_20260515T201631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_recipe_gap_analysis_20260515T201631_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "a50400440f847609604c39b8a177703af5a64cfd361326003d4cee4c8b5d32a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析报告已完成并注册。核心发现：\n\n**62pp gap 的三个根因（按优先级）：**\n\n1. **SFT 起点是毒药** — GiGPO 和 Self-Guide **都不做 SFT**，直接从 Instruct 模型冷启动 RL 就达到 72%+。我们的 SFT checkpoint 只有 6.25% success，可能比原版 Instruct 模型更差。从一个几乎不成功的起点做 GRPO = 大部分 group 全失败 → 零梯度。\n\n2. **Binary reward = 零梯度信号** — GiGPO 有 -0.1 invalid action penalty，即使全失败的 group 也有方差（invalid action 多少不同→reward 不同→有梯度）。我们的 0/10 binary reward 在全失败 group 中方差为零，约 43% 的 group 完全无法学习。\n\n3. **Mini-batch size 8× 过小** — 32 vs 256，导致 ~100 次 noisy gradient updates/step vs ~12 次 stable updates。策略可能在单步内剧烈震荡。\n\n**exp028 建议：** \n- Phase A（最小变更验证）：`model_path: Qwen2.5-1.5B-Instruct` + 启用 invalid_action_penalty\n- Phase B（全面对齐）：LR→1e-6, mini-batch→256, steps→150, env_groups→16\n\n详见 `artifacts/docs/recipe_gap_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-recipe-gap-analysis.md"
+}

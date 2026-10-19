@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "771e53cf7693c4813632",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp029 reeval prep",
+  "task_key": "worker_code_exp029-reeval-prep_20260517T204318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp029-reeval-prep_20260517T204318_result.json",
+    "occurrence": 1,
+    "bytes": 1122,
+    "sha256": "aeb7e5a105343484a1da99b4e61b579ac8a2c36365aa14d9f4f6870d90f2243d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。所有配置正确解析：\n\n**产出汇总**:\n\n1. **Checkpoint 路径**: `/root/autodl-tmp/checkpoints/exp029/global_step_15/actor` (FSDP 分片格式，2-GPU)\n\n2. **Eval config**: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_reeval_valid_unseen.yaml`\n   - `resume_mode: resume_path` → 加载 step 15 checkpoint\n   - `val env_groups: 134` + tag `AlfworldSG_OOD` → valid_unseen (OOD)\n   - `context_window_mode: full` (与 exp029 训练一致)\n   - `total_training_steps: 1` + `val_before_train: True` → 先 eval 再跑 1 步训练（看 val_before_train 结果即可）\n\n3. **启动脚本**: `/root/cost-verify-agent-rl/scripts/run_exp029_reeval.sh`\n\n4. **新增 envs 定义**: `AlfworldSG_OOD` — 与 `AlfworldSG` 相同 prompt（Self-Guidance），但 `eval_dataset: \"eval_out_of_distribution\"`\n\n5. **Dry-run 结果**: 配置正确加载，checkpoint 路径存在，tag 正确解析为 OOD split\n\nHydra 的 `_self_` 警告无影响，不影响运行。等 GPU 空闲时执行 `bash /root/cost-verify-agent-rl/scripts/run_exp029_reeval.sh` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp029-reeval-prep.md"
+}

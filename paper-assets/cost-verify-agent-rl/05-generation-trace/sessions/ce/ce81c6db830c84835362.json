@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce81c6db830c84835362",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research generalizability literature",
+  "task_key": "worker_research_generalizability-literature_20260518T032045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_generalizability-literature_20260518T032045_result.json",
+    "occurrence": 1,
+    "bytes": 1745,
+    "sha256": "2358405efce954da9f2e5495075e8a87ceb44531ccfcb0edb1f9ce22b4ae6b92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成，结果已写入 `artifacts/literature_sign_misattribution_evidence.md`。\n\n**核心结论：sign misattribution 不是个例，至少 6 篇独立工作从不同角度报告了相同问题。**\n\n按佐证强度分层汇总：\n\n### Tier 1：直接佐证 sign/advantage 方向错误（6 篇）\n| 论文 | 关键证据 |\n|------|---------|\n| **IRC** (2604.02869) | 唯一明确报告 A^I 与 A^O sign disagreement |\n| **MC-GRPO** (2601.22582) | 5% sign-flip → 4% accuracy drop，定量分析 |\n| **G-RA** (2508.10548) | step reward 与 outcome reward 方向反转可视化 |\n| **GRPO-λ** (2510.00194) | Lemma 1 证明 GRPO advantage 对下游 tokens 有 systematic misattribution |\n| **Outcome-Grounded Reshaping** (2601.07408) | 直接使用 \"advantage misattribution\" 术语 |\n| **Decoupled CA** (ICLR 2026) | invalid actions 在 positive trajectories 中获得 positive credit |\n\n### Tier 2：GRPO Collapse 系统性证据（6 篇）\n- **RAGEN/RAGEN-2**: Echo Trap + advantage collapse 数学证明 (`|g_task| ≤ √Var(R|X)·C`)\n- **Turn-PPO**: GRPO crash，3 种 fix 均失败\n- **GiGPO** (NeurIPS 2025): step vs episode ablation，+13.3pp\n- **GRPO Collapse/Search-R1**: 300 步内 4 模型全 collapse\n- **Gradient Coupling**: 互补视角，gradient interference 机制\n\n### Tier 3：理论基础（3 篇）\n- **RUDDER** (NeurIPS 2019): TD bias 随 delay 指数增长\n- **COCOA** (NeurIPS 2023): spurious contribution estimates\n- **CA Survey** (2026): O(T·Var[R]) variance scaling\n\n**我们的独特贡献**：直接测量 advantage-outcome sign agreement rate (52%≈随机) 并建立与 catastrophic collapse 的因果关系——其他工作没有做过这个定量分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-generalizability-literature.md"
+}

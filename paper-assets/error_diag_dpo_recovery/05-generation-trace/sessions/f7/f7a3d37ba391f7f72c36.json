@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7a3d37ba391f7f72c36",
+  "project": "error_diag_dpo_recovery",
+  "kind": "history",
+  "title": "director / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3858,
+    "sha256": "0a5788d89a653329faab9d7184f588384c9320a9b72d2b8c3e4ccc43889fe5a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-12T14:05:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单：仅 cuda:0 和 cuda:1**。已发生两次越界（cuda:2, cuda:3），Manager 两次警告。第三次不可接受。\n- 所有 GPU 命令**必须**以 `CUDA_VISIBLE_DEVICES=0` 或 `CUDA_VISIBLE_DEVICES=1` 开头，不依赖脚本内 `--gpu` 参数\n- 禁止 `device_map=\"auto\"`，必须用 `device_map=f\"cuda:{args.gpu}\"`\n- GPU 3-5 属于其他项目（cost-verify-agent-rl 等），绝不触碰\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，`ssh -p 21977 root@connect.cqa1.seetacloud.com`，密码 `request_secret(key_id=\"ssh_password_cqa1_21977\")`\n- 工作目录：`/root/autodl-tmp/error_diag_dpo_recovery`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 代码：`/root/autodl-tmp/error_diag_dpo_recovery/src/`（dmpo_loss.py, dmpo_trainer.py, data_utils.py, train_etadn.py, collect_trajectories.py, construct_preference.py, classify_errors.py）\n- 模型：Qwen3-8B `/root/autodl-tmp/.hf_cache/Qwen3-8B`（16.4GB），Qwen3-14B-AWQ 已下载（9.4GB，同 cache 目录）\n- HF_HOME：`/root/autodl-tmp/.hf_cache`\n- 磁盘：根分区 21G free，数据盘 87G free\n- trl 版本：1.4.0\n- 活跃进程：可能还有 screen session `traj_p0`（cuda:0 轨迹收集），但已下令停止。需要 Agent 确认\n\n### 3. 📊 当前状态\n刚做完数据策略转向决策（D009）：放弃 self-correction 收集（0% 成功率确认），改用 ETO expert trajectories as chosen + 8B 失败轨迹 as rejected 构建 DPO pairs。\n\n已完成：代码全部就绪 + dry-run 通过（loss=0.6931, VRAM=8GB）+ 错误分类 taxonomy + DMPO pipeline 设计 v2 + γ_e 概念修正。\n已收集：~52 条 ALFWorld 失败轨迹（全部 reward=False）。\n等待中：Agent 处理 D009 新策略指令（停止收集 → 获取 ETO expert data → 错误分类 → 构建 DPO pairs → 7-run 训练）。\n\nRegistry 无正式实验记录（MVP 阶段，尚未提交正式实验）。\n\n### 4. 📋 待办\n- Agent 汇报 ETO expert data 获取完成 → 确认 task mapping（失败轨迹 vs expert 轨迹的任务对齐）\n- 错误分类完成 → **检查 P1 gate**：correction horizon 是否 action < verification < planning（p<0.05）\n- P1 pass → 批准 7-run DPO 训练（ETADN×3 + DMPO×3 + DPO×1）\n- P1 fail → 项目终止或 pivot\n- 7-run 训练完成 → **检查 P2 gate**：ETADN > single-γ ≥3%（3 seeds 平均）+ **P3 surprise check**\n- P1+P2+P3 全 pass → `complete_mvp()` + 向 Manager 申请加卡（4 张）+ 展开 WebShop/ScienceWorld\n- MVP 通过后 full paper 阶段需要补 SFT→explore→self-correction pipeline（当前 expert-as-chosen 只是 MVP 捷径）\n\n### 5. 🎯 战略上下文\n- **KILL_triage idea（19% 接受率）**，novelty 弱是 3/3 共识。用户明确选择继续冲 May 25 ARR。\n- 决策链：D001（启动）→ D002（Reviewer 修订 MVP）→ D003（用户确认 A）→ D004（4 卡冲 May 25）→ D005（14B 替代 32B）→ D006（QLoRA + 现代栈）→ D007-D008（GPU 越界事故×2）→ D009（expert as chosen 策略转向）\n- **最容易判断错的事**：0% 成功率不代表 pipeline 失败——我们的 DPO pairs 来自 expert vs failure step-level 对比，不需要模型自己生成成功轨迹。但 Reviewer 可能再次 flag 这个问题，需要坚持当前策略除非有新证据。\n- **最容易踩的坑**：GPU 越界。Agent 的 Worker 会传错 GPU 编号（已发生两次）。每次看到 Agent 启动 GPU 进程时主动确认 CUDA_VISIBLE_DEVICES。\n- Manager 只批了 2 卡用于 MVP，加卡需 MVP 通过后重新申请。\n- ScienceWorld 被选为 post-MVP 第一扩展 benchmark（优于 WebShop）。\n- φ(t,T) 归一化：Σφ>1 是 DMPO 设计意图，γ=1 特殊处理为 1/T。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1.md"
+}

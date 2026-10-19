@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f09d297623938da42cc5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 cleanup and c prime resume",
+  "task_key": "worker_ops_bjb1_cleanup_and_c_prime_resume_20260522T011602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_cleanup_and_c_prime_resume_20260522T011602_result.json",
+    "occurrence": 1,
+    "bytes": 852,
+    "sha256": "920ac985613a25e3ddd6326f0725b647cd130f86ac4447d092b19bb361cd692b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training started successfully.\n\n**Report:**\n\n| Item | Value |\n|------|-------|\n| **PID** | 362509 (tmux), TaskRunner 365754, Workers 365951/365952 |\n| **GPU memory** | cuda:0 = 11,113 MiB, cuda:1 = 11,113 MiB |\n| **W&B run ID** | `ij377ngn` |\n| **W&B run name** | `exp029-c-prime-resume` |\n| **Status** | Checkpoint loaded from `global_step_5` (model + optimizer + rng + lr_scheduler on both ranks). Validation data loaded (494 items). Training started. |\n\nCheckpoint resume confirmed:\n- `[Rank 0] Loaded model from .../global_step_5/actor/model_world_size_2_rank_0.pt`\n- `[Rank 1] Loaded optimizer from .../global_step_5/actor/optim_world_size_2_rank_1.pt`\n- `[Rank 1] Loaded rng + lr_scheduler from extra_state`\n\nThe run will execute 2 training steps (step 6 → 7) and save a checkpoint at step 7 (last step trigger)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-cleanup-and-c-prime-resume.md"
+}

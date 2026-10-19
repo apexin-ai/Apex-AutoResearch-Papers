@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da1522627df7bd900668",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research v7 val metrics",
+  "task_key": "worker_research_v7_val_metrics_20260519T184609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_v7_val_metrics_20260519T184609_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "0910ca732ad0ced4e18425b41d8484f51a9b354fe1f01de3d9ed7ee5b9826ee7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## val_before_train 对比：v7 vs v9b\n\n**v7 和 v9b 的 val_before_train 指标完全一致：**\n\n| 指标 | v7 | v9b | 差异 |\n|------|-----|------|------|\n| success | 0.40625 | 0.40625 | 0 |\n| action_is_valid | 0.9245 | 0.9245 | 0 |\n| pass@1 | 0.40625 | 0.40625 | 0 |\n| num_actions | 33.9375 | 33.9375 | 0 |\n| response_length | 1465.0625 | 1465.0625 | 0 |\n| action_is_effective | 0.999375 | 0.999375 | 0 |\n| manager_invalid_action | 0.000625 | 0.000625 | 0 |\n\nFSDP2 (v9b) 与原版 (v7) 在推理阶段数值完全一致，验证通过。\n\n## v9b 训练进度\n\n- **Training Progress: 0/30** — val_before_train 刚完成，训练刚开始（0%）\n- GPU 内存（4x RTX PRO 6000 96GB）：\n\n| GPU | 已用 | 总量 | 占比 |\n|-----|------|------|------|\n| 0 | 26.4 GB | 95.6 GB | 27% |\n| 1 | 27.1 GB | 95.6 GB | 28% |\n| 2 | 26.8 GB | 95.6 GB | 28% |\n| 3 | 27.3 GB | 95.6 GB | 29% |\n\n内存分布均匀，约 27-29%，FSDP2 分片正常。还有大量余量，backward 阶段内存增长应不会 OOM。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-v7-val-metrics.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "feb0fa4e1c65e66be508",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "submit exp029 seed7",
+  "task_key": "worker_submit_exp029_seed7_20260521T122102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp029_seed7_20260521T122102_result.json",
+    "occurrence": 1,
+    "bytes": 783,
+    "sha256": "65e24dddd858b73705cdac5dde99bd24f0b74f1d6cd26cea3f806aee26bc9546"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集。汇报如下：\n\n---\n\n### Seed 7 启动汇报\n\n| 项目 | 状态 |\n|------|------|\n| **Seed 7 PID** | 226699 (python), 226697 (bash wrapper) |\n| **W&B run** | `p6vwsrfk` — https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/p6vwsrfk |\n| **GPU 0,1** | 4.7 GB / 97.9 GB，模型已加载，vLLM rollout 引擎启动中 |\n| **GPU 2,3** | 87.4 GB / 97.9 GB，Seed 6 正常运行 (PID 920749) |\n| **Seed 5 checkpoint** | `exp029-seed5/global_step_10` 存在，可用于 OOD eval |\n| **磁盘** | `/root/autodl-tmp` 148G/250G (60%)，103G 可用 |\n| **配置文件** | `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed7_episode.yaml` |\n| **日志** | `/root/runs/cost-verify-agent-rl/exp029_seed7.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp029-seed7.md"
+}

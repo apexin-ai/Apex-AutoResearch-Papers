@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d14a7d18bb45f9c415fa",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment eval variance seed7hk v4",
+  "task_key": "worker_experiment_eval_variance_seed7hk_v4_20260523T230516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_eval_variance_seed7hk_v4_20260523T230516_result.json",
+    "occurrence": 1,
+    "bytes": 281,
+    "sha256": "a6fe57c19919a3a55a8d49ce56546e1fe4e6a57d0365bf604a3f62a36e19d7c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态：**\n1. Config 已修改：`model_path` → `qwen_exp029_seed7_high_kl_step5_hf` ✓\n2. 3 轮 eval 已启动（PID: 84851），第 1 轮正在运行\n3. Log: `/root/autodl-tmp/eval_variance_logs/seed7hk_fix_v4.log`\n4. 15 分钟后自动轮询进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-eval-variance-seed7hk-v4.md"
+}

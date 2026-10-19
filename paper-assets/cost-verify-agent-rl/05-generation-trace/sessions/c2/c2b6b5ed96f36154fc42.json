@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c2b6b5ed96f36154fc42",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "research phase b prereq",
+  "task_key": "worker_research_phase-b-prereq_20260515T232930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_phase-b-prereq_20260515T232930.log",
+    "occurrence": 1,
+    "bytes": 654566,
+    "sha256": "2ead2c4d8515d124ddf06ca484d36e54eb3c9ee7d5d1834e5bdd1f18efc56158"
+  },
+  "statistics": {
+    "messages": 188,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 188,
+      "chunks": [
+        {
+          "path": "c2b6b5ed96f36154fc42-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "c2b6b5ed96f36154fc42-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-phase-b-prereq.md"
+}

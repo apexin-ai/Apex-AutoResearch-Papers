@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5db620199e649a26779",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_4_1778773757.md",
+  "task_key": "loop_4_1778773757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778773757.md",
+    "occurrence": 1,
+    "bytes": 4415,
+    "sha256": "af3eacf6adac34f3686dfb9e1b63372bbffc35ef70fccbc408d2a3cd4f9c8dc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T14:53:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 bjb1-17606 的 cuda:0, cuda:1（项目配置白名单）\n- `/root/autodl-tmp` 磁盘 95% 满（exp013f 完成时仅剩 4.1GB）——**任何新实验前必须先清理旧 checkpoint**（exp013b/c/d/e 的 checkpoint 可删）\n- conda 环境，不是 venv：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 训练入口是 `python train.py`，**不是** `python -m ragen.llm_agent.agent_proxy`（exp012 踩过）\n- Ray 启动必须带完整环境变量（见基础设施快照），漏任何一个都会崩溃\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-17606, account=root, 2× RTX PRO 6000 Blackwell 94GB\n- **工作目录**: /root/cost-verify-agent-rl/RAGEN（训练脚本在此）\n- **Python**: /root/miniconda3/bin/python（conda base）\n- **SFT checkpoint**: /root/autodl-tmp/checkpoints/exp008_sft/final（symlink qwen3_sft_final）\n- **GRPO checkpoint**: /root/autodl-tmp/checkpoints/exp008_grpo/global_step_5（多数实验的恢复点）\n- **数据**: ALFWorld /root/autodl-tmp/alfworld（3553 train games）；SFT /root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl（1200 条）\n- **Ray 必需环境变量**:\n  ```\n  TMPDIR=/root/autodl-tmp/tmp/\n  ALFWORLD_DATA=/root/autodl-tmp/alfworld\n  RAY_memory_monitor_refresh_ms=0\n  RAY_SYSTEM_MEMORY=210000000000\n  HYDRA_FULL_ERROR=1\n  ```\n- **活跃进程**: exp016 PID=343927, tmux session, cuda:0+cuda:1\n- **活跃 Worker**: worker_monitor_exp016-status-check_20260514T145204（监控 exp016）\n- **Cron**: 本 session 无注册 cron（reconcile 确认 exp016 仍在跑），需要新 session 重新注册\n\n### 3. 📊 当前状态\n- **exp016 RUNNING**：LR=5e-7 折中方案（exp012b 1e-6 collapse vs exp015 1e-7 零梯度）。纯 sparse reward (won=10.0)，kl_loss_coef=0.1, max_grad_norm=1.0，从 exp015/global_step_5 恢复，GRPO 30 步。预估 ~2.8h 完成\n- 一个 monitor worker 在跑，但本 session 无 cron——**新 session 必须 reconcile_crons 并确认 exp016 的 cron 监控存在**\n- Expert trajectory 收集进度 65%（1146/1759），CPU-only 后台任务——**状态未知，需 SSH 确认**\n- exp014a/b/c 全部 killed（D013 撤销），不再推进\n- 文献调研完成：SPEAR/DAPO/Dr.GRPO/AR3PO/GDPO 等备选方案已评估入 memory.md\n\n### 4. 📋 待办（条件触发式）\n- **exp016 cron 回调到达** → spawn worker 分析 metrics：\n  - step 6-7 有 success 且无 collapse → 继续跑完 30 步\n  - step 6-7 collapse（grad_norm 骤降） → kill，LR 5e-7 仍过激，转 expert SFT 强化 warmup 路线\n  - 30 步完成 + success ≥ 20% → Phase A PASS，立即启动 Phase B (B-IAVR)\n  - 30 步完成 + success < 20% → 汇报 Director，推荐 (a) expert SFT 强化 warmup 后重试 sparse GRPO 或 (b) DAPO + AR3PO 组合\n- **Expert trajectory 收集完成** → spawn worker 验证数据质量（格式、覆盖任务类型、success 率）\n- **磁盘告警** → 清理 /root/autodl-tmp/checkpoints/ 下 exp013b~e 的废弃 checkpoint\n\n### 5. 🎯 战略上下文\n- **项目目标**: B-IAVR（训练 agent 学会\"何时验证\"），基于 Self-Guide（always-on self-guidance via GRPO）扩展。Phase B 代码已就绪（68 tests passed），被 Phase A 阻塞\n- **Phase A 判定标准**: ALFWorld success ≥ 20%\n- **决策链核心**：D006（SFT warmup）→ D010/D011（format_penalty 劫持梯度）→ D012（dense reward gaming 确认）→ D013（success-gated bonus 有 bootstrap 问题）→ D014（LR 寻优：1e-6 collapse, 1e-7 零梯度, 5e-7 待验证）\n- **已确认死路**：\n  - Dense reward（valid_action_bonus）→ reward gaming（exp013f）\n  - Success-gated bonus → bootstrap 问题（初始 success=0 时 bonus 永远为 0）\n  - LR=1e-6 + sparse → step 7 catastrophic collapse（exp012b）\n  - LR=1e-7 + sparse → 连续零梯度（exp015）\n- **最容易判断错的事**：exp016 如果也失败，**不要继续微调 LR**——LR 搜索空间已基本穷尽（1e-6/5e-7/1e-7），应该转向 expert SFT 强化 base success（当前 ~4%），或换 GRPO 变体（DAPO+AR3PO）。见 memory.md \"修订后落地建议\"\n- **base success ~4% 是根本瓶颈**：64 rollout 中约 46% group 全零 reward，GRPO 无法从全零 group 学习。expert trajectory 收集（65%）就是为了解决这个问题\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778773757.md"
+}

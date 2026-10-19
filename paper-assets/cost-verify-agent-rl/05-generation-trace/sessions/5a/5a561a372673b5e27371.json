@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a561a372673b5e27371",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "figure overview concept",
+  "task_key": "worker_figure_overview_concept_20260523T124034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_overview_concept_20260523T124034_result.json",
+    "occurrence": 1,
+    "bytes": 433,
+    "sha256": "021c45b02ddbee627fbd645ce186ea521ab82696fbb7ca0ad23efcbea98d499e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`fig_overview.pdf` (36KB) 已生成在 `docs/paper/`。\n\n左半展示 step-independent windowing 的两个机制缺陷（M1 截断上下文 + M2 奖励误归因，红色箭头分别指向窗口边界和被错误惩罚的正确步骤），右半展示 episode-level verification 的完整上下文保留与正确的 advantage 归因。底部对称放置摘要标签。生成脚本在同目录 `gen_fig_overview.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-overview-concept.md"
+}

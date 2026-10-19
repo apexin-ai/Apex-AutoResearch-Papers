@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ce0b47830a9cbe74220",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose grpo val degradation",
+  "task_key": "worker_diagnose_grpo-val-degradation_20260515T042229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo-val-degradation_20260515T042229_result.json",
+    "occurrence": 1,
+    "bytes": 1065,
+    "sha256": "073842cf8153fae2880231aacf7c5ef9bfd954209b6c69efa6e0216c26aa62e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告写入 `/root/cost-verify-agent-rl/RAGEN/artifacts/grpo_val_degradation_diagnosis.md`。\n\n## 核心结论\n\n**根因是 prompt 格式分布偏移**：SFT 训练（`sft_train_v2.py`）使用简化 ChatML 格式（原始 observation + `<answer>` 标签指令），但 GRPO val 使用 RAGEN ctx_manager 构建的完全不同格式（\"Turn N: State:\" wrapper + 矛盾的系统提示 + 轮间 Reward 消息）。\n\n三个差异叠加导致退化：\n\n1. **格式偏移**：模型从未在训练中见过 GRPO 的 prompt 格式\n2. **系统提示自相矛盾**：env_instruction 说\"不要用标签\"，per-turn FORMAT_PROMPT 说\"用 `<answer>` 标签\"\n3. **低温放大**：temp=0.4 确定性地选择了模型在陌生格式下的错误偏好（GRPO train 用 temp=1.0 反而得 70.3%，被随机性部分掩盖）\n\n采样参数（temperature/top_p/top_k）已验证正确应用，不是原因。\n\n**推荐修复**：对齐 GRPO env_instruction 和 turn formatting 到 SFT 训练数据的格式，消除分布偏移。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grpo-val-degradation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2cf7213b4a834fd9799",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "pipeline seed4 fsdp hf scp ood eval",
+  "task_key": "worker_pipeline_seed4_fsdp_hf_scp_ood_eval_20260521T204214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_seed4_fsdp_hf_scp_ood_eval_20260521T204214_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "0cbbe8c784c4e8924dd4b64c80b01e3f7fabbebb10722664eab07e17d17976b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n```\nFSDP→HF 转换: 成功 | 3.8GB bf16 | 15.7s | bjb1:/root/autodl-tmp/checkpoints/exp029-seed4/global_step_15_hf/\nSCP: 成功 | bjb1→westd 直连 | ~5min\nSymlink: /root/autodl-tmp/checkpoints/qwen_exp029_seed4_step15_hf → exp029-seed4/global_step_15_hf\nConfig: /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed4_ood_eval.yaml\n  - model_path: qwen_exp029_seed4_step15_hf\n  - CUDA_VISIBLE_DEVICES: \"0\"\n  - enable_response_mask: False\n  - val_only: True\n  - AlfworldSG_OOD 134 tasks, τ=0.4\nEval PID: 762273 | tmux session: exp029_seed4_ood_eval\nLog: ~/runs/cost-verify-agent-rl/exp029_seed4_ood_eval.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pipeline-seed4-fsdp-hf-scp-ood-eval.md"
+}

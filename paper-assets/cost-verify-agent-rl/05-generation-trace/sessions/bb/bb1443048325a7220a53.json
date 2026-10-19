@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb1443048325a7220a53",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment seed200 ood eval v2",
+  "task_key": "worker_experiment_seed200_ood_eval_v2_20260523T233936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_seed200_ood_eval_v2_20260523T233936_result.json",
+    "occurrence": 1,
+    "bytes": 454,
+    "sha256": "1c79d769f7b6e2cd45e12a58056b22d4aec6796e635a9b745467347262fde03d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OOD eval 已成功启动：\n\n- **PID**: 91697 (wrapper) → 93740 (TaskRunner) → 93920 (WorkerDict)\n- **Config**: `_alfworld_seed200_step5_ood_eval`\n- **Model**: `qwen_exp029_seed200_step5_hf` (Qwen3ForCausalLM, 1.7B)\n- **参数**: 134 OOD tasks, τ=0.4, enable_think=True, val_only=True\n- **日志**: `/root/autodl-tmp/checkpoints/seed200-step5-ood/eval.log`\n- **GPU**: cuda:0, 模型正在加载中\n\n预计 ~25 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-seed200-ood-eval-v2.md"
+}

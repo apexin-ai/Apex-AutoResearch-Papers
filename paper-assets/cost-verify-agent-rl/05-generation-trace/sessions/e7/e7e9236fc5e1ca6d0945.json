@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7e9236fc5e1ca6d0945",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code biavr core mechanism",
+  "task_key": "worker_code_biavr_core_mechanism_20260515T120804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_biavr_core_mechanism_20260515T120804_result.json",
+    "occurrence": 1,
+    "bytes": 2066,
+    "sha256": "b64f196fac9d0edd6c3beba88496d48751e38f663a2aaedb4d81b420b8579aef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "B-IAVR 核心模块已完整实现且全部测试通过。以下是现有实现与任务规格的映射：\n\n### 现有模块（68/68 测试通过）\n\n| 任务要求 | 现有实现 | 状态 |\n|---------|---------|------|\n| `action_change_detector.py` | `action_canonicalize.py` + `pre_action.py` | ✅ 完成 |\n| `verification_reward.py` | `reward.py` (BIAVRTracker + Lagrangian dual) | ✅ 完成 |\n| `selective_gate.py` | `verify_mechanism.py` (`<VERIFY>` token解析 + prompt) | ✅ 完成 |\n| `__init__.py` | 已导出所有公开接口 | ✅ 完成 |\n| `tests/test_biavr.py` | 68 个测试全部通过 | ✅ 完成 |\n\n### 框架集成已就绪\n\n- `ctx_manager.py`: biavr_enabled 属性、`<VERIFY>` token 解析、format prompt 适配、无强制 prefix\n- `agent_trainer.py`: biavr metrics 记录 + lambda 自动更新\n\n### 设计决策（比任务规格更成熟）\n\n现有实现采用了**Lagrangian 对偶**方案而非固定 bonus/penalty：\n- `r_step(t) = -λ·1[verify] + α·1[verify ∧ action_changed]`\n- λ 通过 `λ_{t+1} = max(0, λ_t + η·(verify_rate - β))` 自适应\n- β=0.3 目标验证率，η=0.01 学习率\n\nGate 机制选用 **Option A（token-based）**：模型在输出最前面决定是否输出 `<VERIFY>`，端到端通过 GRPO 训练。\n\n### 缺失项：`DESIGN_DECISIONS.md`\n\n需要创建吗？待确认的关键决策点：\n1. ~~Gate 机制~~ → 已选 token-based `<VERIFY>` prefix\n2. 验证触发条件 → 当前每步均可触发\n3. ~~reward 系数~~ → Lagrangian 自适应（λ₀=0.1, α=1.0, β=0.3, η=0.01）\n4. 与 GRPO advantage 的集成 → biavr reward 叠加到 step reward，通过 BIAVRTracker 在每个 training iteration 结束时更新 λ\n5. **a_pre 计算的 inference cost** → 需要额外一次 greedy forward pass（当前 `pre_action.py` 定义了 prompt 但未在 rollout 循环中调用）\n\na_pre 的 rollout 集成（实际调用 counterfactual inference）是目前唯一还没 wire up 的部分，需要等 exp026 baseline 确认后再接入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-biavr-core-mechanism.md"
+}

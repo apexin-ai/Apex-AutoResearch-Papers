@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "e54eb432f1c065a60db1",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "diagnose reward function bug",
+  "task_key": "worker_diagnose_reward-function-bug_20260514T145624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_reward-function-bug_20260514T145624.log",
+    "occurrence": 1,
+    "bytes": 1212017,
+    "sha256": "aa92f0f408a8f936b57be0fcc94104b20874c9e72be658415801c875d3a753b8"
+  },
+  "statistics": {
+    "messages": 270,
+    "user_turns": 0,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 58,
+      "record": 1,
+      "tool_call": 104,
+      "tool_result": 104,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 270,
+      "chunks": [
+        {
+          "path": "e54eb432f1c065a60db1-part-0001.json",
+          "message_count": 139
+        },
+        {
+          "path": "e54eb432f1c065a60db1-part-0002.json",
+          "message_count": 130
+        },
+        {
+          "path": "e54eb432f1c065a60db1-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-reward-function-bug.md"
+}

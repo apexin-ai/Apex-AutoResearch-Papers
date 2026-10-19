@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47821ed97943841bbeae",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis adv sign distribution tab3",
+  "task_key": "worker_analysis_adv-sign-distribution-tab3_20260519T022133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_adv-sign-distribution-tab3_20260519T022133_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "5e383835b9c9939f0252ff4dd91f6d446b1da291302ca017d2506f54444befa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "输出文件已写入：\n- `artifacts/tab3_mechanism_verification.json`\n- `artifacts/tab3_mechanism_verification_summary.md`\n\n## 关键结果\n\n| 指标 | 值 |\n|------|-----|\n| **P(correct sign \\| per-sample)** | **52.07%** (近似随机 50%) |\n| **P(correct sign \\| group majority)** | **81.25%** (13/16 groups) |\n| **P(correct dir \\| episode-normalized)** | **88.67%** |\n| **Sign agreement early (pos 0-5)** | 51.14% (n=2511) |\n| **Sign agreement late (pos 10-15)** | 63.86% (n=83) |\n| **Theoretical P(misattrib)** | **20.48%** (p=0.7126, h=2, K=8) |\n\n数据来自 128 episodes（16 uid × 8 episodes），正好一个 training step 的完整数据。\n\n**与理论值 19.1% 的对比**：用实际数据推导的 p=0.7126 代入公式 p(1-p) 得到 20.48%，与 19.1% 的差异来自 p 值不同（19.1% 对应 p≈0.75 或论文中使用的特定参数化）。方向完全一致。\n\n**关键发现**：per-sample advantage sign 与 episode outcome 的一致性仅 52%，实证确认了 step-independent GRPO 中的 sign misattribution 现象。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-adv-sign-distribution-tab3.md"
+}

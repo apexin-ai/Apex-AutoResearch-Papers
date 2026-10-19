@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "782c346de8a45aff29e7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix method tex eq3 critical",
+  "task_key": "worker_fix_method_tex_eq3_critical_20260517T071737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_method_tex_eq3_critical_20260517T071737_result.json",
+    "occurrence": 1,
+    "bytes": 1582,
+    "sha256": "af93572d0a13ac2acb4ae9da66838dff19f54e767dda25010ece41144e6290ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成。汇总：\n\n### 改动清单\n\n| 文件 | 位置 | 修复内容 |\n|------|------|----------|\n| `docs/paper/method.tex` (本地) | Eq.(3), line 33 | `γ^{(T-kh)}` → `γ^{(N-k)}` |\n| `docs/paper/method.tex` (本地) | line 36 | 添加 `N=⌈T/h⌉` 定义；`0.99` → `0.95` |\n| `docs/paper/method.tex` (本地) | line 57 | `γ^{(T-kh)}` → `γ^{(N-k)}` |\n| `docs/paper/method.tex` (本地) | line 68 | `γ^{(T-kh)}` → `γ^{(N-k)}`；`γ=0.99, γ^48≈0.62` → `γ=0.95, γ^24≈0.29` |\n| `analysis/failure_unification_table.md` (远程) | line 13 | `γ^48≈8%` → `γ^24≈29%` |\n| `analysis/figures/credit_assignment_analysis.py` (远程) | line 9 docstring | `γ^48 ≈ 8%` → `γ^24 ≈ 29%` |\n| `decisions.yaml` (本地) | line 1040 | `γ^48≈8%` → `γ^{N-1}=γ^24≈29%` |\n| `checkpoints/hsweep_h2_seed1_QUEUED_*.json` (本地) | hypothesis | `gamma^48 ≈ 8%` → `gamma^24 ≈ 29%` |\n| `checkpoints/hsweep_h2_seed1_RUNNING_*.json` (本地) | hypothesis | 同上 |\n\n### 未修改（历史记录）\n\n- `logs/` 目录下的聊天日志和 worker 日志 — 属于历史记录，不应回溯修改\n- `artifacts/dream_reports/` — 自动生成的 dream session 产物，含旧数据但非权威文档\n- `artifacts/wandb_sweep_config.yaml` 中 `values: [0.9, 0.95, 0.99]` — 这是 sweep 参数范围，不是错误引用\n\n### 数值确认\n\n正确值：**γ=0.95, N=⌈50/2⌉=25, first window exponent = N-1 = 24, 0.95^24 ≈ 0.292 (29% signal retention, 71% loss)**。项目中所有权威文件已统一。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-method-tex-eq3-critical.md"
+}

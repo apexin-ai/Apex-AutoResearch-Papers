@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cc7bc2c965d9ccb2f4b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval exp029 seed300 step5 ood eval v4",
+  "task_key": "worker_eval_exp029_seed300_step5_ood_eval_v4_20260522T203644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp029_seed300_step5_ood_eval_v4_20260522T203644_result.json",
+    "occurrence": 1,
+    "bytes": 445,
+    "sha256": "25f3a91efc1672e368f846a5856046ff6c557deace58ff26bcc5c5aab6faa936"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OOD eval v4 已提交并运行。\n\n**状态总结：**\n- PID: 456539，日志: `/root/autodl-tmp/logs/ood_eval_v4_seed300.log`\n- Config dump 验证通过：`enable_think: True` ✓，`enable_response_mask: False` ✓（三层覆盖），`context_window_mode: full` ✓，`seed.val: 321` ✓，134 OOD tasks ✓\n- Registry: `exp029_seed300_step5_ood_eval_v4` → RUNNING\n- 模型正在加载 vLLM，即将开始 134 task eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp029-seed300-step5-ood-eval-v4.md"
+}

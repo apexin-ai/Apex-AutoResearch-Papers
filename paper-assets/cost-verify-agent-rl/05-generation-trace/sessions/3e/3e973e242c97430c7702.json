@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e973e242c97430c7702",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment sw info loss retry bjb1",
+  "task_key": "worker_experiment_sw-info-loss-retry-bjb1_20260520T162931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_sw-info-loss-retry-bjb1_20260520T162931_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "d27eeae8abef8d36d97d8fee82e25de73ba93e017f7db66aa5f386856e5286fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 正常运行中。vLLM TP=2 初始化完成，模型加载成功（1.12s）。\n\n**同步和提交完成，汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| env.py JVM 加固同步 | MD5 一致 `4b0f79f` |\n| eval 脚本同步 | MD5 一致 `bdd8ce4`，373 行 |\n| Checkpoint | `/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/` |\n| GPU | cuda:0,1 RTX PRO 6000 96GB x2 |\n| Job PID | 229078 |\n| tmux session | `sw_info_loss_bjb1` |\n| Log | `~/runs/cost-verify-agent-rl/sw_info_loss_bjb1.log` |\n| Registry | `sw_info_loss_bjb1` → RUNNING, parent=scienceworld_sft_eval_v2 |\n\n两个条件串行运行：先 full context (h=-1, T=0)，完成后自动跑 h=2 (T=0)，各 3 variations/task type。输出分别写 `eval_results_full_T0.json` 和 `eval_results_h2_T0.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-sw-info-loss-retry-bjb1.md"
+}

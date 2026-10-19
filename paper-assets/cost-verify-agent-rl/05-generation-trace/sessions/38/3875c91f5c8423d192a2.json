@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3875c91f5c8423d192a2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "urgent kill hsweep and check data",
+  "task_key": "worker_urgent_kill_hsweep_and_check_data_20260524T081430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_kill_hsweep_and_check_data_20260524T081430_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "99e5cc6095891b4037d31cd8973f23f4319ae333967b5e6bae1a5da53add3ee8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n**1. hsweep kill** — 成功（exit 0）。GPU 已完全释放：0% utilization, 0 MiB / 97887 MiB。\n\n**2. SFT datagen kill** — 成功（exit 0），无残留进程。\n\n**3. 旧 SFT 数据**：\n- 路径：`/root/autodl-tmp/expert_sft/`\n- 文件名是 `expert_sft_train.jsonl` / `expert_sft_val.jsonl`（不是 `scienceworld_sft_*`）\n- Train: **2460 条**（12MB），Val: **129 条**（627KB）\n- 格式：`messages` 格式，多轮对话（system/user/assistant 交替），首条 19 轮\n- **兼容 sft_train_v2: YES**\n\n**结论：CAN_USE_OLD_DATA**（文件名需对应调整，或做 symlink）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-kill-hsweep-and-check-data.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "625c6a30f3ae59f2b594",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp013e ray init fix",
+  "task_key": "worker_code_exp013e-ray-init-fix_20260514T085226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp013e-ray-init-fix_20260514T085226_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "7ab9c8b5ea1493abf8460dac9756486c3bfdfd68d973a4fc41970d4fba723350"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇总：\n\n**1. ray.init() 修改**\n- 文件：`/root/cost-verify-agent-rl/RAGEN/train.py:203`\n- 新增：`ray_init_kwargs[\"object_store_memory\"] = 30 * 1024**3`\n- 位于 `ray.init(**ray_init_kwargs)` 调用前一行\n\n**2. 验证输出**\n- `object_store=32.2GB`（30 GiB = 32.2 GB，符合预期，不再是 70GB）\n\n**3. 配置确认**\n- `env_groups: 4` (train) ✓\n- `valid_action_bonus: 0.15` ✓\n\n**4. GPU/进程清理**\n- 已清除残留 ray WorkerDict 进程（2 个，各占 ~48GB）\n- `ray stop --force` + `/tmp/ray*` 清理完成\n- GPU 无占用进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp013e-ray-init-fix.md"
+}

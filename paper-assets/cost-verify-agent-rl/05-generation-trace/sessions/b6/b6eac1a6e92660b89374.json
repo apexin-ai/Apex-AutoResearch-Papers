@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6eac1a6e92660b89374",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp007 config",
+  "task_key": "worker_code_exp007_config_20260514T001255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp007_config_20260514T001255_result.json",
+    "occurrence": 1,
+    "bytes": 870,
+    "sha256": "77f746780fa13a2dbd37c4918a58365a204ae13f551b0f198fe6736b158a60c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Hydra 加载成功，关键参数全部生效。\n\n---\n\n**产出**\n\n| 文件 | 路径 |\n|------|------|\n| exp007 主配置 | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp007_fixed.yaml` |\n| exp007 dry-run | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp007_dryrun.yaml` |\n\n**与 exp003 的 diff：**\n\n| 参数 | exp003 | exp007 |\n|------|--------|--------|\n| `trainer.total_training_steps` | 100 | 30 |\n| `trainer.experiment_name` | exp003-alfworld-selfguide-prompt-trunc | exp007-alfworld-speed-optimized |\n| `trainer.local_log_dir` | exp_003/ | exp_007/ |\n| `agent_proxy.max_turn` | 50 | 30 |\n| `es_manager.train.env_groups` | 16 | 8 |\n| `collapse_detection.multi_turn_enabled` | true (base default) | **false** |\n\ndry-run 版本额外差异：`total_training_steps: 1`，`local_log_dir` 指向 `exp_007_dryrun/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp007-config.md"
+}

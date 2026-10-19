@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55a8ccc4c2b378534e96",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor hsweep retry health",
+  "task_key": "worker_monitor_hsweep_retry_health_20260524T081104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_hsweep_retry_health_20260524T081104_result.json",
+    "occurrence": 1,
+    "bytes": 1299,
+    "sha256": "fbd941975ea9d8d646c6f1b3975ab1adef50a4e60654a606397700d3145e4df8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 三重验证报告\n\n### 1. PID 存活 ✓\n- PID 119440: **ALIVE**，运行时间 53m27s\n- CPU 0.0% — 正常，这是 Ray 父进程，实际计算由子 worker 执行（GPU worker PID 121680, TaskRunner PID 121489）\n\n### 2. GPU 利用率 ✓\n- **GPU 0: 96% utilization**，显存 31,823 / 97,887 MiB（32.5%）\n- GPU 进程：PID 121680 `ray::WorkerDict.actor_rollout_compute_log_prob`，占用 31,816 MiB\n- 不是空占显存，compute utilization 实打实 96%\n\n### 3. 日志活跃 ✓\n- 日志文件：`/root/runs/cost-verify-agent-rl/hsweep_h10_seed2_retry.log`，1.6MB\n- 最后修改时间：May 24 15:45（与检查时间一致）\n- 最新日志时间戳：`2026-05-24 15:45:37` — 正在写入\n\n### 当前进度\n- 总训练步数：**5 steps**\n- 当前阶段：**正在执行 validation**（AlfworldSG 环境的 val-aux/val-core reward 指标正在计算）\n- Validation 指标示例：`val-aux/unknown/reward/best@256/mean = 10.0`, `val-core/unknown/reward/best@1455/mean = 10.0`\n- 大量 `Skipping non-numeric metric 'anchor_obs'` 警告是正常的（跳过字符串型环境观测值）\n\n### 最终判断：**HEALTHY** ✓✓✓\n\n三项全部通过。GPU 96% 利用率，没有重蹈 M062 覆辙。训练正在正常进行 validation 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-hsweep-retry-health.md"
+}

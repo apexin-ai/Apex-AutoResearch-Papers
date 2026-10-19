@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c649cccb1ee1a91d7bcf",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops scp sft model to westd",
+  "task_key": "worker_ops_scp-sft-model-to-westd_20260518T184853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-sft-model-to-westd_20260518T184853_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "eb308e94809c9a26482165252045c3d832b6bcced27a89dfba8e917a90511ede"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输成功，完整性验证通过。\n\n**结果汇总：**\n\n| 项目 | bjb1 (源) | westd (目标) | 匹配 |\n|------|-----------|-------------|------|\n| 文件数 | 11 个文件 | 11 个文件 | ✓ |\n| 总大小 | 3.3G | 3.3G | ✓ |\n| model.safetensors | 3,441,185,608 bytes | 3,441,185,608 bytes | ✓ |\n| tokenizer.json | 11,422,654 bytes | 11,422,654 bytes | ✓ |\n| 时间戳 | May 15 10:57 | May 15 10:57 | ✓ |\n\n- `final` symlink 已跳过（bjb1 上的原始 symlink 指向另一个目录，westd 不需要）\n- westd 磁盘：99GB 可用 (61% 使用)\n- bjb1 源文件未受影响\n- westd 上正在运行的实验未受影响（传输只写了新目录）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-sft-model-to-westd.md"
+}

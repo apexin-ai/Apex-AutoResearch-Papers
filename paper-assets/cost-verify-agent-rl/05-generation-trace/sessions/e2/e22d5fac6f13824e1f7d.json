@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e22d5fac6f13824e1f7d",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "train scienceworld v6 bjb1",
+  "task_key": "worker_train_scienceworld_v6_bjb1_20260522T144908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_scienceworld_v6_bjb1_20260522T144908.log",
+    "occurrence": 1,
+    "bytes": 643614,
+    "sha256": "f2dcdc75fa28243d70f5dd8e6d528b4781b505b39cc3b7e9eb894e0b4d90597e"
+  },
+  "statistics": {
+    "messages": 326,
+    "user_turns": 1,
+    "tool_calls": 117,
+    "roles": {
+      "log": 1,
+      "system": 40,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 117,
+      "tool_result": 117,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 77,
+      "chunks": [
+        {
+          "path": "e22d5fac6f13824e1f7d-part-0001.json",
+          "message_count": 77
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 249,
+      "chunks": [
+        {
+          "path": "e22d5fac6f13824e1f7d-part-0001.json",
+          "message_count": 103
+        },
+        {
+          "path": "e22d5fac6f13824e1f7d-part-0002.json",
+          "message_count": 146
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-scienceworld-v6-bjb1.md"
+}

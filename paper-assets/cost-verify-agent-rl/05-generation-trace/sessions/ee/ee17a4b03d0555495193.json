@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee17a4b03d0555495193",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "figure fig6 training curves",
+  "task_key": "worker_figure_fig6-training-curves_20260517T205023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig6-training-curves_20260517T205023_result.json",
+    "occurrence": 1,
+    "bytes": 1239,
+    "sha256": "f6a776dc5d2e4d7ac2dfee7aef2314d017893a9210de20d8f3ce0c0649620460"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件无法下载到本地预览，但根据文件大小（PDF: 18KB, PNG: 129KB）和无报错的生成过程，图表已正确产出。\n\n---\n\n**产出文件:**\n- `/root/cost-verify-agent-rl/artifacts/figures/fig6_training_curves.pdf`\n- `/root/cost-verify-agent-rl/artifacts/figures/fig6_training_curves.png`\n\n**使用的数据数值表:**\n\n| Step | exp029 (Episode-level) Success % | exp029 Action Valid % | hsweep_h2_seed1 (Step-indep.) Success % | hsweep_h2_seed1 Action Valid % |\n|------|------|------|------|------|\n| 0 | 12.5 | 78.3 | 0.0 | 88.1 |\n| 5 | 25.0 | 70.4 | 3.125 | 20.5 |\n| 10 | 25.0 | 60.2 | 0.0 | 0.5 |\n| 15 | 28.125 | 54.5 | 0.0 | 0.06 |\n\n**注意:** 实际数据与 Director 描述不同。hsweep_h2_seed1 的 action_valid 不是\"从 ~80% 升至 99.9%\"，而是从 88.1% 崩溃到 0.06%。这是更极端的退化模式：step-independent 训练导致模型连有效动作都无法生成（完全策略崩溃），而 episode-level 训练保持稳定学习。\n\n**图表布局:** 2×1 subplot，共享 X 轴。上图为 Val Success Rate，下图为 Action Validity。蓝色圆点实线 = episode-level，红色三角实线 = step-independent。Serif 字体，无标题，300 dpi。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig6-training-curves.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d074278662f9f5cf200c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code v9 config fix",
+  "task_key": "worker_code_v9_config_fix_20260519T163322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v9_config_fix_20260519T163322_result.json",
+    "occurrence": 1,
+    "bytes": 2745,
+    "sha256": "7c5c11510dedb475ebd86dc2faf9445c2e35f5de967063dc3bf7179766c38cbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改已确认生效。现在计算 KV cache budget。\n\n---\n\n## KV cache budget 计算\n\n**参数**：\n- GPU: RTX PRO 6000, 96 GB VRAM\n- `gpu_memory_utilization = 0.25`\n- `max_model_len = 16384`\n- 模型: Qwen3-8B (FP16), 4 GPU tensor parallel\n- Qwen3-8B: 36 layers, 8 KV heads (GQA), head_dim = 128, FP16\n\n**Step 1: vLLM memory pool**\n```\nVLLM_pool = 0.25 × 96 GB = 24 GB\n```\n\n**Step 2: 模型权重开销**\n- 8B 参数 × 2 bytes (FP16) = 16 GB 总量\n- TP=4: 每 GPU ~4 GB（线性层按 TP 切分）\n- 但 vLLM 的 `gpu_memory_utilization` 只控制 KV cache 之外的部分——vLLM 先加载模型权重，再用 `gpu_mem_util` 比例的显存给 KV cache\n- 实际上 vLLM 的行为是：`KV cache size = gpu_memory_utilization × (total_gpu_mem - model_weight - overhead)`\n- 更准确地说：vLLM 先加载模型（~4GB/GPU with TP=4），然后 `available = total - model - overhead`，KV cache = `gpu_memory_utilization × total_gpu_memory`... \n\n实际上 vLLM 的 `gpu_memory_utilization` 定义是：**vLLM 最多使用 GPU 总显存的这个比例**（包括模型权重 + KV cache）。所以：\n\n```\nvLLM 总可用 = 0.25 × 96 GB = 24 GB\n模型权重 (TP=4) ≈ 4 GB/GPU\nKV cache = 24 - 4 = ~20 GB/GPU\n```\n\n**Step 3: KV cache 需求 (per sequence)**\n```\n每层 KV cache = 2 (K+V) × 8 (KV heads/TP... GQA heads=8, TP=4 → 2 heads/GPU) × 128 (head_dim) × seq_len × 2 bytes\n= 2 × 2 × 128 × 16384 × 2 = 32 MB/layer\n\n36 layers × 32 MB = 1,152 MB ≈ 1.13 GB/sequence\n```\n\n**Step 4: 最大并发 sequences**\n```\n20 GB / 1.13 GB ≈ 17 sequences 可并发\n```\n\n训练配置 `train.env_groups=16, group_size=8`，rollout 阶段每 GPU 需处理 128 个 sequences（但分批处理，`max_num_batched_tokens=20480`，不需要同时全部 in-flight）。17 并发序列足以支撑 chunked prefill 下的 rollout。\n\n---\n\n## 结果汇总\n\n### 关键参数对比\n\n| 参数 | v7 (base) | v9 修正前 | v9 修正后 |\n|------|-----------|----------|----------|\n| `gpu_memory_utilization` | 0.22 | 0.20 | **0.25** ✓ |\n| `max_model_len` | 16384 | 16384 | **16384** (无需改) |\n| `strategy` | default (fsdp1) | fsdp2 | fsdp2 |\n| `offload_policy` | — | True | True |\n| `enable_activation_offload` | — | true | true |\n| `optimizer_offload` (actor) | True (fsdp1) | False (fsdp2) | False |\n\n### KV cache budget\n\n| 项目 | 值 |\n|------|-----|\n| vLLM 总可用 (0.25 × 96GB) | 24 GB/GPU |\n| 模型权重 (TP=4) | ~4 GB/GPU |\n| KV cache 可用 | ~20 GB/GPU |\n| 每序列 KV (16384 tokens) | ~1.13 GB |\n| 最大并发序列数 | ~17 |\n\n**结论**：`gpu_mem_util=0.25 + max_model_len=16384` 组合可行，KV cache 充足。修正完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v9-config-fix.md"
+}

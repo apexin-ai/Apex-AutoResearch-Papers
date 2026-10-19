@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe7f60d64c3ff12a22e7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code 8b cell c episode v5",
+  "task_key": "worker_code_8b_cell_c_episode_v5_20260519T131227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8b_cell_c_episode_v5_20260519T131227_result.json",
+    "occurrence": 1,
+    "bytes": 1896,
+    "sha256": "7eeafdf3632104774afc57c237ec8f10df304c5efac546540ab60e7b8ac4bd95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Experiment crashed again (EXIT_CODE=1)**, this time with a different error:\n\n```\nVLLMValidationError: This model's maximum context length is 8192 tokens. \nHowever, your prompt contains 8450 input tokens (exceeds max_model_len: 8192).\n```\n\nA validation prompt accumulated 8450 tokens during multi-turn ALFWorld, exceeding the `max_model_len: 8192` limit.\n\n---\n\n## Summary\n\n### 1. GPU 清空状态\nAll 4× RTX PRO 6000 96GB were at 0 MiB before launch.\n\n### 2. ScienceWorld PID 状态\n- **PID 51279**: RUNNING — `python3 /root/autodl-tmp/extract_scienceworld_sft_optimized.py`, elapsed ~43 min\n- **PID 755742**: NOT RUNNING (not found)\n- Additional related processes: PID 19201 (`extract_scienceworld_sft_partial.py`) and two Java gateway servers\n\n### 3. Config 修改 diff\n| Field | Before | After |\n|-------|--------|-------|\n| `use_ref` | `True` | `False` |\n| `use_kl_loss` | `True` | `False` |\n| `gpu_memory_utilization` | `0.15` | `0.20` |\n| `max_model_len` | `8192` | `8192` (unchanged) |\n| `ppo_mini_batch_size` | `4` | `4` (unchanged) |\n| `ppo_max_token_len_per_gpu` | `16384` | `16384` (unchanged) |\n\n### 4. 实验提交状态\nSubmitted twice:\n- **1st attempt**: Crashed immediately — `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` incompatible with vLLM CuMemAllocator (`AssertionError`)\n- **2nd attempt** (without expandable_segments): Crashed during val_before_train — prompt exceeded `max_model_len: 8192` (a validation prompt had 8450 tokens)\n\n### 5. Step 1 backward pass\n**Not reached.** Crashed during val_before_train. Two issues discovered:\n1. `expandable_segments:True` is incompatible with this vLLM version (fixed by removing it from the command)\n2. `max_model_len: 8192` is too small for some multi-turn ALFWorld prompts — need to increase it (e.g. to 16384 or 32768) or reduce `max_prompt_length` below 8192"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-8b-cell-c-episode-v5.md"
+}

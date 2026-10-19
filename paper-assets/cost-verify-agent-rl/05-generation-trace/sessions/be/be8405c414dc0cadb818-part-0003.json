@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "session_id": "be8405c414dc0cadb818",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 321,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "导入正常。\n\n---\n\n## 总结\n\n### 数据流追踪结果\n\n**`invalid_action_penalty_coef=0.1` 已在 exp027 中生效。** 路径：\n\n```\nenv.action_is_valid → es_manager.history.info → ctx_manager.non_tensor_batch[\"is_action_valid\"]\n→ assign_step_rewards(-0.1/invalid) → discounted_returns → compute_grpo_step_advantage\n→ 覆写 GRPO outcome advantage → 最终 advantages\n```\n\nexp027 config 中没有显式设置 `invalid_action_penalty_coef`，但代码默认值为 0.1（`agent_trainer.py:1467`），所以 penalty 实际上一直在工作。\n\n### 代码修改\n\n新增 `reward_include_step_penalties` 功能（`agent_trainer.py`）：\n- 将累积 step penalty 注入 `token_level_rewards`（episode-level reward）\n- 使 GRPO outcome advantage 和 GiGPO episode advantage 也能区分不同失败 trajectory\n- 只修改 `token_level_rewards`，不修改 `non_tensor_batch[\"reward\"]`，避免与 `assign_step_rewards` 双重计算\n- 默认关闭，完全向后兼容\n- 8/8 新增测试通过，17/17 GiGPO 现有测试通过\n\n### exp028a 配置\n\n```yaml\nalgorithm:\n  invalid_action_penalty_coef: 0.1        # 显式声明\n  reward_include_step_penalties: true      # 新功能\n```\n\n### 残余问题\n\n对于\"valid but useless\"动作（动作在 admissible_actions 中但无法推进任务），penalty 不生效，失败 episode 仍可能零方差。这需要额外的 reward shaping（如 progress reward）来解决，不在本次修改范围内。\n\n报告已写入 `artifacts/exp027_penalty_dataflow_report.md`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1037009,
+            "duration_api_ms": 1001949,
+            "num_turns": 61,
+            "stop_reason": "end_turn",
+            "session_id": "9534a08b-83a8-490f-9dbb-fc31e9e33841",
+            "total_cost_usd": 3.8358345000000003,
+            "usage": {
+              "input_tokens": 47,
+              "cache_creation_input_tokens": 120371,
+              "cache_read_input_tokens": 3308550,
+              "output_tokens": 48526,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 120371,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 552,
+                  "cache_read_input_tokens": 131779,
+                  "cache_creation_input_tokens": 433,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 433
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2369,
+                "outputTokens": 7104,
+                "cacheReadInputTokens": 815130,
+                "cacheCreationInputTokens": 77163,
+                "webSearchRequests": 0,
+                "costUSD": 0.21585575,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 47,
+                "outputTokens": 48526,
+                "cacheReadInputTokens": 3308550,
+                "cacheCreationInputTokens": 120371,
+                "webSearchRequests": 0,
+                "costUSD": 3.6199787500000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "fbaa8fd1-bf6f-4ff5-aa6b-2e42dd4ee00f"
+          },
+          "id": "event-000321"
+        }
+      ]
+    }
+  ]
+}

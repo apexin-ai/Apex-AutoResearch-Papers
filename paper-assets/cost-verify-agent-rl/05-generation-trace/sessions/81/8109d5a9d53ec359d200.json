@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8109d5a9d53ec359d200",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh check westd seed200 v3 status",
+  "task_key": "worker_ssh_check_westd_seed200_v3_status_20260522T194836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westd_seed200_v3_status_20260522T194836_result.json",
+    "occurrence": 1,
+    "bytes": 1165,
+    "sha256": "496f452d82cec1a6f7c04ee5ced8b050614c5446ecf44e714939a3f5005d590c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### seed100 — 已完成 (5/5)\n- **PID**: 78400 (TaskRunner), GPU workers 78937/78938\n- **GPU**: cuda:0,1，各占 12.6GB，利用率 6%/72%（正在收尾）\n- **进度**: 5/5 steps 全部完成，checkpoint 已保存至 `/root/autodl-tmp/checkpoints/exp029-seed100/global_step_5/`\n- **最终 val 指标**: `val-core/unknown/reward/best@32/mean: 9.98`, `val-core/unknown/reward/mean@32: 0.625`（step 0 baseline）\n- **训练 step 2 指标**: success=16.4%, pass@8=68.8%\n\n### seed200 v3 — 已崩溃 (step 2/5)\n- **原因**: `ActorUnavailableError: RPC error: Socket closed rpc_code: 14`（Ray actor 通信断裂）\n- **最后记录**: step 2, success=21.1%, pass@8=81.25%（W&B run `sy10o3te` 最后写入 03:40）\n- **无 checkpoint 保存**\n- **GPU 2,3 有孤儿 Ray workers**（PID 132938/132939），各占 ~96GB 显存，利用率 94-100%，在空转。需要手动清理。\n\n### 磁盘\n- `/root/autodl-tmp`: 116G/250G (47%)，健康\n\n### 需要处理\n1. 清理 GPU 2,3 上的孤儿 Ray workers（kill 132938, 132939 + 停止 Ray seed200 session）\n2. seed200 v3 需要重跑（无 checkpoint，从头开始）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westd-seed200-v3-status.md"
+}

@@ -1,0 +1,45 @@
+{
+  "exp_id": "p1_divergence_timing_v1",
+  "project": "error_diag_dpo_recovery",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T23:44:12.551Z",
+    "updated_at": "2026-05-12T23:44:55.364Z",
+    "spec": {
+      "hypothesis": "P1 pivot: correction span differs by divergence timing (early/mid/late) instead of error type",
+      "command": "python analyze_p1_divergence_timing.py on v5+v6 partial data",
+      "server": "cqa1-21977",
+      "data_path": "data/classified/ + data/trajectories_v6_icl_*.jsonl",
+      "data_count": 276,
+      "model_name": "N/A (no LLM needed)",
+      "seed": 0,
+      "checkpoint_path": "outputs/p1_divergence_timing.json",
+      "log_path": "outputs/"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-12T23:44:22.209Z",
+    "metrics": {
+      "total_records": 276,
+      "v5_records": 251,
+      "v6_records": 25,
+      "early_n": 262,
+      "mid_n": 12,
+      "late_n": 2,
+      "early_median_cs": 7,
+      "mid_median_cs": 5,
+      "late_median_cs": 2.5,
+      "kw_H": 20.76,
+      "kw_p": 5e-06,
+      "ordinal_holds": true,
+      "p1_gate": "PASS",
+      "mw_early_gt_mid_p": 3e-06,
+      "early_pct": 94.9,
+      "caveat": "95% early, 2 late samples only"
+    }
+  },
+  "timestamp": "2026-05-12T23:44:55.410035+00:00",
+  "trigger": "update_registry"
+}

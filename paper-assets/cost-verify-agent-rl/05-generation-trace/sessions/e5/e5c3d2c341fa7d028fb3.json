@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5c3d2c341fa7d028fb3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "train exp029 seed100 episode",
+  "task_key": "worker_train_exp029_seed100_episode_20260522T144845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp029_seed100_episode_20260522T144845_result.json",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "f248e6280f82eb2f13b244bd9348b9c320428cabd3af74834620a0abe53f498b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志没有新进展，可能在 vLLM 初始化或 val_before_train rollout 中（这些阶段可能不产生大量日志）。进程仍在运行，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-exp029-seed100-episode.md"
+}

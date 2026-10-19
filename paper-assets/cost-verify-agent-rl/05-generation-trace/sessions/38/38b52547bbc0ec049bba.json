@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38b52547bbc0ec049bba",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops kill exp028a",
+  "task_key": "worker_ops_kill_exp028a_20260515T212452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_exp028a_20260515T212452_result.json",
+    "occurrence": 1,
+    "bytes": 261,
+    "sha256": "bb749d0b806c6d1a3d733c902558bf7358bb13b33aaf7b8a26027bad03a3b473"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**GPU 释放确认：**\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 0 MiB | 0% |\n| 1 | 0 MiB | 0% |\n\n**Registry 更新确认：** exp028a_recipe_fix → status=DONE, conclusion=killed, notes 已写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-exp028a.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41de5e851bb2fd79bdfa",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis exp026 full log",
+  "task_key": "worker_analysis_exp026_full_log_20260515T125106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp026_full_log_20260515T125106_result.json",
+    "occurrence": 1,
+    "bytes": 2568,
+    "sha256": "e53793575dbb9b99571047cdc4e5152a2a8af177d552896ee8cf0958862370fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整分析报告：\n\n---\n\n## exp026_step_independent_grpo 训练日志分析\n\n### 进程状态：**仍在运行**（未崩溃）\n\nPID 778562（启动脚本）和 781795（Ray TaskRunner）均存活。cron 检测到的\"进程死亡\"可能是监控了错误的 PID 或 shell wrapper 退出。\n\n### 训练完成步数：2 步（正在执行 step 3）\n\n| Step | 类型 | success | action_is_valid | entropy | pg_loss | kl_loss | ppo_kl | grad_norm | pass@16 |\n|------|------|---------|-----------------|---------|---------|---------|--------|-----------|---------|\n| 0 | val | 6.25% | 63.13% | - | - | - | - | - | - |\n| 1 | train | 21.88% | 68.65% | 0.267 | 0.00732 | 0.180 | 0.0670 | 14.43 | 100% |\n| 2 | train | 32.81% | 60.35% | 0.317 | 0.00571 | 0.0974 | 0.0267 | 15.62 | 100% |\n\n### 关键指标趋势\n- **success_rate**: 6.25% → 21.88% → 32.81%（强劲上升）\n- **entropy**: 0.267 → 0.317（略增，健康）\n- **kl_loss**: 0.180 → 0.0974（下降，策略在收敛）\n- **grad_norm**: 14.43 → 15.62（稳定）\n- **pass@16**: 训练集达到 100%\n\n### Step timing\n- Step 1: 2278s（~38min）\n- Step 2: 2561s（~42.7min）\n- 预估 150 steps 完成时间: ~100 小时\n\n### 配置关键参数\n- `test_freq: 5` — 下次 val eval 在 step 5\n- `save_freq: 25` — 首个 checkpoint 在 step 25\n- `total_training_steps: 150`\n- `val_before_train: true`\n\n### Checkpoint\n- `/root/autodl-tmp/checkpoints/exp026/` — **空目录**（save_freq=25，未到保存点）\n\n### W&B\n- 配置了 `logger: ['console', 'wandb']`，但日志中**未找到 wandb run URL**，wandb 目录不存在。可能初始化静默失败。\n\n### 崩溃原因\n- **没有崩溃。** 进程仍在运行，无 Traceback、无 OOM、无 Error。\n- 磁盘正常：`/root/autodl-tmp/` 114GB 可用 (55%)，根分区 16GB 可用 (50%)\n\n### 日志文件\n- 启动脚本日志: `/root/runs/cost-verify-agent-rl/exp026_step_independent_grpo.log`（9746 行，最后修改 20:21:39）\n- **Ray worker 日志（主要指标来源）**: `/root/autodl-tmp/tmp/ray/session_2026-05-15_18-38-45_487055_778562/logs/worker-f5a9c771de63c207b8db019edc7dedd89a425c2fe97314a2669cdd43-01000000-781795.out`（1496 行，最后修改 20:32:20）\n\n### 注意事项\n1. cron 应监控 PID 781795（TaskRunner）而非 778562（shell wrapper）\n2. 启动脚本日志 80% 是 `anchor_obs` 警告，真正的 step 指标只在 Ray worker 日志\n3. 每步 ~40min，预计 step 5 的首次 val eval 还需约 2 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp026-full-log.md"
+}

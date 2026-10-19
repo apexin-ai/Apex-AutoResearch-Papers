@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f972ea0a798f4262a67",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research why step independent",
+  "task_key": "worker_research_why_step_independent_20260517T051055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_why_step_independent_20260517T051055_result.json",
+    "occurrence": 1,
+    "bytes": 1196,
+    "sha256": "a5b06eff06f031c04274675376454f6d4c159c7faf4e60060922b9a3581289d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `/root/cost-verify-agent-rl/analysis/why_step_independent.md`（138行）。\n\n核心发现总结：\n\n**Step-independent 不是一个有意的算法设计，而是工程路径依赖的产物。** 六个根因按证据强度排序：\n\n1. **Single-turn RLHF 基础设施继承** — verl 最明确：把 multi-turn 拆成 Triplet 让每步\"independently optimized as a valid RLHF trajectory\"，本质是为了兼容已有代码\n2. **Context window 硬约束** — 10步 episode 轻松超 30K tokens，4K-8K context 模型物理放不下\n3. **GPU OOM** — OpenRLHF 多个 issue 显示 8B 模型在 H100 上都 OOM，per-step 大幅降低显存需求\n4. **Batching 效率** — SkyRL-Agent 通过 per-step 分解获得 1.55x 加速\n5. **GRPO/PPO 算法假设** — 设计给 single-turn 的 group-normalized advantage 在 multi-turn sparse reward 下坍塌\n6. **经验误读** — Verlog 发现 memory_length=1-2 效果最好，造成\"step-independent 足够好\"的错觉\n\n论文可以用这些证据支撑 \"diagnosing the hidden cost of community default practice\" 这个 contribution，重点引用 verl-agent（GiGPO）、SUPO、ArCHer、Verlog。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-why-step-independent.md"
+}

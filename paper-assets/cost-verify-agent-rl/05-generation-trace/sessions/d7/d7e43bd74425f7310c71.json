@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7e43bd74425f7310c71",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd seed42 fix and kill seed6",
+  "task_key": "worker_ops_westd_seed42_fix_and_kill_seed6_20260522T133425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_seed42_fix_and_kill_seed6_20260522T133425_result.json",
+    "occurrence": 1,
+    "bytes": 130,
+    "sha256": "99e46074ae7001f611708d0648df6989cda150070b0b009464a93b1f3b5c7fc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "（60s 等待已完成，seed42 eval 模型加载已在上次检查中确认正在进行，无需额外操作。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-seed42-fix-and-kill-seed6.md"
+}

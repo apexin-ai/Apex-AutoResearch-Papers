@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0badb69a01f4ad385a0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp027 preflight check",
+  "task_key": "worker_ops_exp027_preflight_check_20260515T142700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp027_preflight_check_20260515T142700_result.json",
+    "occurrence": 1,
+    "bytes": 1911,
+    "sha256": "fefc84a09cdbf49821bfa30ea90e9f221a3cd61de883522cf988222c36815152"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp027 Pre-flight Check Results\n\n```\nSCRIPT_EXISTS:        yes (/root/cost-verify-agent-rl/scripts/run_exp027_stable_grpo.sh)\nCONFIG_EXISTS:        yes (/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp027_stable_grpo.yaml)\n\nSCRIPT_PARAMS_CORRECT: PARTIAL — 详见下方\n  env_groups (train):   8 ✓ (128 rollouts = 8×16)\n  lr:                   5e-7 ✓\n  kl_loss_coef:         0.005 ✓\n  entropy_coeff:        0.01 ✓\n  save_freq:            5 ✓\n  total_training_steps: 50 ✓\n  max_actor_ckpt_to_keep: 10 ✓\n  logger:               ['console', 'wandb'] ✓\n  val.env_groups:       16 ✓ (满足 C003 ≥16)\n  CUDA_VISIBLE_DEVICES: 0,1 ✓ (满足 C001)\n  ⚠️ 脚本头注释写 KL=0.04，实际 config 是 0.005（注释错误，不影响执行）\n\nCHECKPOINT_EXISTS:    yes\n  /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\n  → symlink → exp021_ragen_sft_v4/final/\n  包含 model.safetensors + tokenizer 文件 ✓\n\nSTEP_INDEPENDENT:     yes (ctx_manager.py, agent_trainer.py, test 文件)\n\nDISK_SPACE:           110GB available on /root/autodl-tmp/\n  需要 ~35GB (10 ckpts × ~3.5GB) → 充足 ✓\n\nGIT_HEAD:             N/A — /root/cost-verify-agent-rl 不是 git repo\n\nWANDB_READY:          ❌ NO\n  - wandb 包已安装 ✓\n  - WANDB_API_KEY 未设置 ✗\n  - ~/.netrc 不存在 ✗\n  - ~/.config/wandb/ 不存在 ✗\n  - 脚本未 source init_wandb.sh，也未 export WANDB_API_KEY\n  - config 指定 logger 含 'wandb'，启动后会因认证失败而出错\n\nPREFLIGHT: ❌ FAIL\n```\n\n**失败原因：W&B 未认证。** 服务器上无 `WANDB_API_KEY` 环境变量、无 `~/.netrc`、无 wandb config 目录。config 中 `logger: ['console', 'wandb']` 要求 W&B 可用，启动后会报错。\n\n**修复方案：** 启动前在服务器上执行 `wandb login` 或在脚本中 `export WANDB_API_KEY=[REDACTED]"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp027-preflight-check.md"
+}

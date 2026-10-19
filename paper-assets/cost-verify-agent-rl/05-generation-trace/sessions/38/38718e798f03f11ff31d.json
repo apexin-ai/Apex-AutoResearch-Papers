@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38718e798f03f11ff31d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code cherry pick ctx manager",
+  "task_key": "worker_code_cherry_pick_ctx_manager_20260515T083451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cherry_pick_ctx_manager_20260515T083451_result.json",
+    "occurrence": 1,
+    "bytes": 1489,
+    "sha256": "ecec1c68297a85d22e4c065ae70b5c996710ebf99189134c8df123738eaa6688"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成总结\n\n### 改动清单\n\n**1. `es_manager.py`** — 添加 `anchor_obs` 字段\n- 在 `_update_cache_history()` 中，每个 history entry 新增 `anchor_obs`（原始环境观测文本），供下游 GiGPO 使用\n\n**2. `ctx_manager.py`** — 添加 `step_independent` 模式（5处修改）\n- **训练 dispatch** (`get_lm_inputs`): 添加 `step_independent` 分支 → `_build_step_independent_samples()`\n- **推理 context window** (`_build_infer_samples`): `step_independent` 使用 `step_independent_history_length`（默认5）做 bounded history 截断\n- **推理 dispatch**: 添加 `step_independent` 分支 → `_build_infer_step_independent_messages()`\n- **`_build_step_independent_samples()`**: 每步生成独立 (prompt, response) 对，context 有界，输出包含 `anchor_obs`\n- **`_build_infer_step_independent_messages()`**: 推理时用同样的 bounded history 构建 prompt\n\n### 配置参数\n\n```yaml\nagent_proxy:\n  context_window_mode: \"step_independent\"\n  step_independent_history_length: 5  # 包含最近N步历史，默认5\n```\n\n### 测试结果\n\n| 指标 | full 模式 | step_independent |\n|------|-----------|-----------------|\n| 样本数 | 2（每episode 1个） | 10（每step 1个） |\n| 序列长度 | 626 tokens | 330 tokens |\n| anchor_obs | 无 | 有 |\n| 有界历史 | 否 | 是（3步测试验证通过） |\n\n现有模式（`full`、`single_turn`、`limited_multi_turn`）的逻辑未被改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cherry-pick-ctx-manager.md"
+}

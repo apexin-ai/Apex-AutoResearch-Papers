@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f4ac798644b79e612c2",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "ops gpu violation fix urgent",
+  "task_key": "worker_ops_gpu-violation-fix-urgent_20260512T165817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-violation-fix-urgent_20260512T165817_result.json",
+    "occurrence": 1,
+    "bytes": 517,
+    "sha256": "ebda952ed350488913cc8a8f06ad24b3caddad51a216cb5bd1e932718bbaecb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修复完成汇报\n\n1. **PID kill 结果**: 265067 (GPU 3 越界) 和 264686 (GPU 0 旧残留) 均已成功 kill\n2. **新 v5_cuda0 进程**: PID **266200**，正在正常收集轨迹 (已完成 1/250 tasks)\n3. **GPU 0**: PID 266200 (python, 7754MiB) — v5_cuda0 ✓\n   **GPU 1**: PID 263025 (python, 7752MiB) — v5_cuda1 ✓\n4. **GPU 2**: VLLM (非本项目) | **GPU 3**: 空闲 (3MiB) | **GPU 4**: 空闲 (3MiB) | **GPU 5**: python3 (非本项目)\n   — **GPU 2-5 无本项目进程** ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-violation-fix-urgent.md"
+}

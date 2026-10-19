@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdcb4f54e25eb41f4369",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "director / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_13.md",
+    "occurrence": 1,
+    "bytes": 5282,
+    "sha256": "f2c522bb6f41adbf5410a40c1c82c0045e9c327d3062effb15baf063d08dab74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_messages\nupdated: '2026-05-19T10:43:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd cuda:0,1,2,3 + bjb1 cuda:0,1。cqa1 不属于本项目\n- westd 根分区仅 30G overlay，`/root/provenance_weight_training` (13G) 不可删（其他项目）。所有 temp 必须重定向到数据盘（TMPDIR/RAY_TMPDIR/TMUX_TMPDIR → /root/autodl-tmp/xxx），已写入 ~/.bashrc\n- 模型统一称 **8B**（Qwen3-8B, 8.2B 参数），不再说\"7B\"\n- exp029_seed2 global_step_30 checkpoint 已丢失（westd 磁盘清理时删除），不要尝试寻找或重建——已决策放弃 seed2 OOD eval (D084)\n- 8B FSDP checkpoint ~94GB，westd autodl-tmp 当前 162GB free。Cell C 配置已设 save_freq=999，Cell A 仍用 save_freq=5（空间够但需监控）\n\n### 2. 🖥️ 基础设施快照\n- **westd-47453**: connect.westd.seetacloud.com, /root/cost-verify-agent-rl, RTX PRO 6000 96GB ×4\n  - 8B SFT checkpoint: `/root/autodl-tmp/checkpoints/qwen3_8b_sft_v1/checkpoint-231/` (31GB)\n  - 8B Cell A config: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_cell_a_h2.yaml`\n  - 8B Cell C config: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_cell_c_episode.yaml` (save_freq=999)\n  - ScienceWorld adapter: `/root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/env/scienceworld/`\n  - ScienceWorld SFT gen script: `generate_scienceworld_sft.py` (background PID 755742, 25/30 task types done)\n- **bjb1-17606**: connect.bjb1.seetacloud.com, /root/cost-verify-agent-rl, RTX PRO 6000 96GB ×2（标注 A6000 48GB 但实际 96GB）\n  - exp029 seed1 checkpoint: `/root/autodl-tmp/checkpoints/exp029/global_step_15/`\n  - 8B SFT checkpoint rsync'd to bjb1 for clean eval\n- **活跃进程**:\n  - 8b_cell_a_h2: PID 849089, tmux `7b_cell_a_h2`, westd cuda:0-3, W&B irxgmlm2, cron 注册\n  - 8b_sft_clean_eval: 刚提交 bjb1 cuda:0,1, tmux `8b_sft_clean_eval`, cron 注册, timeout 2h\n\n### 3. 📊 当前状态\n**刚做完**：h=20 kill (val@5=15.625%, cliff figure 完整)、westd 磁盘修复 (162GB free)、8B SFT 完成 (80.6% OOD)、7B→8B 命名统一、clean eval 提交到 bjb1\n\n**RUNNING**:\n- `8b_cell_a_h2` (westd 4卡): step 1 train 12.5%（从 val_before_train 28.1% 一步腰斩），KL=1.92, entropy=0.115。step 2 rollout 因策略崩溃导致 degenerate loops，已跑 9h+，预计 19:00-20:00 UTC 出 step 2 数据。**这是判断 Q4（完全崩溃 <5%）vs Q5b（退化不崩溃 10-15%）的关键数据点**\n- `8b_sft_clean_eval` (bjb1 2卡): 全上下文 32 in-dist eval，预计 <1h。解决\"52pp loss\"的 eval set confound（80.6% OOD vs 28.1% in-dist 不能直接比较）\n\n**等待**：\n- Cell A step 2 数据 → cron 回调\n- Clean eval 完成 → cron 回调\n- Paper Agent Phase 2 回复（已发多次催促，响应不稳定）\n\n### 4. 📋 待办（条件触发式）\n- Cell A step 2 success <5% → Q4 确认，paper_framing.md 可升级 \"scale-invariant degradation\"，通知 Reviewer + 用户\n- Cell A step 2 success 10-15% → Q5b，framing 写 \"significant degradation at scale, but model capacity provides partial resilience\"\n- Clean eval 完成 → 拿到 8B SFT full-context 32 in-dist 数字，与 h=2 的 28.1% 做 clean 对比，更新 paper_framing.md\n- Clean eval 完成 + bjb1 空闲 → 跑 per-task-type breakdown (plan_016, 纯 eval, 2h GPU) 或等 Cell A 数据决定是否需要其他 eval\n- Cell A 15 步完成 → westd 4卡释放 → 启动 8B Cell C (episode-level, config 已就绪)\n- ScienceWorld SFT 数据生成完成 → 检查 score=100 的 episode 数量是否足够 SFT（Reviewer 警告质量两极分化），决定是否继续 ScienceWorld 线\n- Paper Agent 回复 Phase 2 进度 → 审核 Results 章节 + 推进已有数据的表格/图表\n\n### 5. 🎯 战略上下文\n**项目核心**：诊断 step-independent GRPO 在 multi-turn agent RL 中失败的两个机制（M1 信息损失 + M2 sign misattribution），提出 episode-level 修复。目标 4.0 accept。\n\n**决策链关键节点**：\n- D073: 3-cell narrative pivot（定量分解→定性训练动态对比）\n- D078: factorial 双 seed 完成（Cell B hard ceiling 0.75%）\n- D083: 8B SFT 80.6% → 7B RL hypothesis 从\"RL improves\"调整为\"step-independent still harms strong models\"\n- D084: h=20 val=15.625%, cliff figure 完整, kill h=20\n\n**Cliff figure 完整数据**: h=2(0%), h=5(0%), h=10(6.25%=baseline), h=20(15.625%), h=full(28-31%)\n\n**论文关键缺失数据**：\n1. Cell A step 2+ 数据（Q4 vs Q5b 判断）— 正在跑\n2. Clean comparison eval（消除 eval set confound）— 正在跑\n3. 8B Cell C（scale analysis 正面对照）— 等 Cell A 完成\n4. exp029_seed2 OOD（已放弃，论文用 seed1 23.88% + seed2 in-dist 31.25%）\n\n**易错点**：\n- westd 上不要跑 Ray/vLLM eval（5 次 crash 历史，根因是 /tmp 满），只跑 torchrun 训练\n- Cell A step 2 的 9h+ 延迟是 entropy 崩溃导致的 degenerate rollout（无限循环动作），不是 bug\n- Paper Agent 响应不稳定（4+ 次催促未实质回复），可能需要重建 session\n- ScienceWorld 报告中\"SFT 数据已就绪\"是错的（Reviewer critical），实际还在生成中\n- 8B SFT 论文中不能写\"windowing causes 52pp loss\"——eval set 不同（OOD 134 vs in-dist 32），必须等 clean eval 数据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13.md"
+}

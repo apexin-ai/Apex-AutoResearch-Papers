@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "774551120cf833097d75",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 disk cleanup urgent",
+  "task_key": "worker_ops_bjb1_disk_cleanup_urgent_20260518T002834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_disk_cleanup_urgent_20260518T002834_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "6d6835ca86f4973c7b6f68a06ec8475ebceeaee04d39ffa7495d94938871e511"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 243G (97%) | 181G (73%) |\n| 剩余 | 8G | **70G** ✓ |\n\n**删除的目录（共 ~63G）：**\n- `exp029/global_step_5` — 21G\n- `exp029/global_step_10` — 21G\n- `hsweep-h2/global_step_5` — 21G\n\n**保留的 checkpoint：**\n- `exp029/global_step_15` ✓\n- `hsweep-h2/global_step_10` ✓\n- `hsweep-h2/global_step_15` ✓\n\n剩余 70G，hsweep_h2_seed2 后续 checkpoint save 空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-disk-cleanup-urgent.md"
+}

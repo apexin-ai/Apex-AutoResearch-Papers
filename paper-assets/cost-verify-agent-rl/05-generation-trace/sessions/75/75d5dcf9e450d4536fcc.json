@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75d5dcf9e450d4536fcc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp028c latest status",
+  "task_key": "worker_check_exp028c_latest_status_20260516T025544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp028c_latest_status_20260516T025544_result.json",
+    "occurrence": 1,
+    "bytes": 1852,
+    "sha256": "10caec291832e9e9e7fe57e19bbbd3e43db5c1b8eb5367ce54dbb13fa2a9fa28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp028c 训练状态报告\n\n### 进程状态\n- **存活**: PID 824675, 运行 5h18m\n- **当前进度**: step 6/100 完成 (6%), step 7 训练中\n- **GPU**: 0%, 1% util — 快照捕获到 compute 间隙, 各占 33.2/97.9 GB (34%)\n\n### Step 5 Val 数据 (16 episodes) ✅ 已完成\n\n| 指标 | Step 0 (baseline) | Step 5 | 变化 |\n|------|-------------------|--------|------|\n| **success** | 6.25% (1/16) | **6.25% (1/16)** | 持平 |\n| **pass@1** | 6.25% | **6.25%** | 持平 |\n| **action_is_valid** | 74.5% | **96.5%** | +22pp ↑↑ |\n| action_is_effective | 95.0% | 100% | +5pp ↑ |\n| num_actions | 44.9 | 49.4 | +4.5 |\n| val-core reward mean | 0.119 | **0.518** | 4.4x ↑↑ |\n\n### Train Metrics 趋势\n\n| Step | success | pass@8 | action_is_valid | entropy | kl_loss | grad_norm |\n|------|---------|--------|-----------------|---------|---------|-----------|\n| 1 | 13.3% | 37.5% | 76.4% | 0.263 | 0.013 | 16.9 |\n| 2 | 6.3% | 25.0% | 83.2% | 0.247 | 0.171 | 17.3 |\n| 3 | 15.6% | 68.8% | 85.9% | 0.249 | 0.112 | 12.6 |\n| 4 | 18.8% | 62.5% | 87.9% | 0.234 | 0.031 | 14.5 |\n| 5 | 9.4% | 37.5% | 89.6% | 0.236 | **0.824** | 13.1 |\n\n### 异常/注意事项\n- **KL loss 在 step 5 飙升到 0.824**（前 4 步在 0.013–0.171），需要监控后续是否回落\n- Val success 未提升（仍 6.25%），但 16-episode 方差大，需等更多 val 点\n- **action_is_valid 持续稳步上升**（train: 76% → 90%, val: 74.5% → 96.5%），这是积极信号\n- val-core reward 4.4x 提升表明 rollout 质量在改善\n\n### 速度 & 预估完成时间\n- 平均 ~51 min/step（含 val 的 step 约 60 min）\n- 剩余 94 steps，约 **82 小时 ≈ 3.4 天**\n- 预计完成: **~5月19日 16:00 UTC**\n- Checkpoint: 仅 `global_step_5`（save_freq=5，下次 step 10）\n- 下次 val eval: step 10"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp028c-latest-status.md"
+}

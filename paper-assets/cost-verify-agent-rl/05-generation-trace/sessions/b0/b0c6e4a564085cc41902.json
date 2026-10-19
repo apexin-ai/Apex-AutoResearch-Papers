@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0c6e4a564085cc41902",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix exp028c val episodes",
+  "task_key": "worker_fix_exp028c_val_episodes_20260516T032314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp028c_val_episodes_20260516T032314_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "e71624c4bd2ddd9c6c596040661eed82b0b602498f12d202e37777a5c327b9cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n**修改**：`RAGEN/config/_alfworld_exp028c_selfguide_recipe.yaml` 中 val 的 `env_groups: 16 → 140`，`n_groups: [16] → [140]`。总 val episodes 从 16 提升到 140，对齐 Self-Guide 论文（valid_seen 共 234 games，140 在范围内）。\n\n**对当前训练无影响**——Hydra 在 `train.py` 启动时一次性把配置加载到 OmegaConf 内存对象，运行中不重读 YAML。PID 824675 继续以原 16 episodes 评估。下次重启实验自动生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp028c-val-episodes.md"
+}

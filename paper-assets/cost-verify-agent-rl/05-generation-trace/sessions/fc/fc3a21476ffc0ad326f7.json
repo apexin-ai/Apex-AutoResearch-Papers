@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc3a21476ffc0ad326f7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor scienceworld sft progress",
+  "task_key": "worker_monitor_scienceworld_sft_progress_20260519T161338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_scienceworld_sft_progress_20260519T161338_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "96eb97af7e830b61d5c7e7b8f3bd80213f9c5512b001e88ace551501f7b3604a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## ScienceWorld SFT 训练进度\n\n| 项目 | 值 |\n|------|-----|\n| PID | 120838 ✅ 运行中，已运行 1h23m |\n| 当前 step | **224 / 448**（epoch 1 刚完成，50%） |\n| 最新 loss | 0.0126（step 224），近 100 步在 0.004~0.026 区间波动 |\n| 学习率 | 2.70e-6（cosine 衰减中，初始 5e-6） |\n| 每步耗时 | ~21.3s |\n| 预估剩余 | 224 steps × 21.3s ≈ **1h20m**（预计完成时间约 01:40 UTC） |\n\n训练正常推进，epoch 1 结束，loss 已收敛到较低水平。checkpoint 应在 step 224（刚过）和 step 336、448 保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-scienceworld-sft-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6df93f52f17a65960f22",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "director / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_6.md",
+    "occurrence": 1,
+    "bytes": 3918,
+    "sha256": "5dd26775de5d97ca12a906bef3db062da888781ba68a6149523fe0480c25c576"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_messages\nupdated: '2026-05-15T10:33:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 cuda:0, cuda:1（bjb1-17606 项目分配）\n- AutoDL 容器 cgroup pids.max=20480，verl-agent Ray 架构在此服务器上无法运行（D028 已终止该路线）\n- RAGEN 框架下必须用线程压缩 env vars（OMP/MKL/OPENBLAS_NUM_THREADS=1 等）+ ray_init.num_cpus=8 + enforce_eager=True，否则可能触碰 PID 限制\n- exp026 正式训练刚提交（10:28 UTC），是 12+ 小时 GPU 空转后首次实质训练——不要 kill 除非有明确崩溃证据\n- success 指标有两种口径：step-level（0.04）vs episode-level（25%）。论文和决策必须用 episode-level\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606 (connect.bjb1.seetacloud.com)，root 用户\n- 代码路径：/root/cost-verify-agent-rl（RAGEN 框架）\n- verl-agent 参考代码：/root/autodl-tmp/verl-agent/（仅分析用，不能直接运行训练）\n- Conda env（verl-agent 专用，不用于 RAGEN）：/root/autodl-tmp/conda-envs/verl-agent/\n- RAGEN 用 base conda 环境：source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n- 模型：/root/autodl-tmp/models/Qwen/Qwen3-1___7B/（Qwen3-1.7B，等同 Instruct）\n- SFT checkpoint：/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/\n- 磁盘：root 26% / data 54%\n- 活跃进程：exp026 刚提交（PID 待确认，tmux=exp026），预计 ~26.5h wall clock\n- W&B：应已启用（正式训练脚本含 logger=wandb）\n\n### 3. 📊 当前状态\nexp026_step_independent_grpo 刚提交正式训练（150 steps），状态 ALLOCATED→应很快变 RUNNING。这是 Track B cherry-pick 的核心实验：step-independent rollout + step-level discounted returns GRPO，整合到 RAGEN 框架。\n\ndry run step 0 验证通过：step-level advantage 生效（advantages max=11.93/min=-0.47），无 fallback 警告，RAGEN 下 PID=3573 安全。step 1 在 dry run 中异常退出（无 traceback），正式训练是否能稳定过 step 1 待确认。\n\n等待中：\n- exp026 启动确认（GPU 加载 + val_before_train）\n- step 0-2 稳定性验证\n- Reviewer 独立核验 GPU 合规 + W&B 连接 + step-level advantage 生效\n\n### 4. 📋 待办\n- exp026 启动后 5 分钟 → 确认 GPU 在用（nvidia-smi）+ 日志有输出 + 无 CRITICAL fallback 警告\n- val_before_train 完成 → 检查 episode-level success rate（对比 exp021 的 6.25%）\n- step 0-2 完成 → 让 Reviewer 审查 pg_loss/entropy/success 趋势，对比 exp022-24 的退化 pattern\n- step 1 崩溃 → 带完整 traceback 诊断，可能是 rollout_filter 或 step-level batch 维度问题\n- exp026 success ≥20% → complete_mvp()，进入 research 阶段\n- exp026 退化/失败 → 评估是否需要 GiGPO Phase 2（step-level advantage grouping）或调参\n\n### 5. 🎯 战略上下文\n- 项目处于 MVP 阶段，目标：ALFWorld success ≥20%（GRPO 训练后）\n- SFT baseline：6.25% success（16ep，exp021/exp023c）\n- RAGEN GRPO 路线 3/3 退化失败（exp020b/022/023c），根因是 full-history context 爆炸（D025/D026）\n- D026 pivot 到 verl-agent，D028 因 cgroup 限制放弃直接运行 verl-agent，转为 cherry-pick step-independent rollout 到 RAGEN\n- exp026 vs exp022-24 关键变更：context O(1) vs O(steps)、KL 0.01 vs 0.5、LR 1e-6 vs 5e-7、step-level reward vs episode-only\n- 易错点：(1) 不要再尝试在 bjb1-17606 上跑 verl-agent（Ray 会撞 pids.max）(2) 不要把 step-level success metric（0.04）当成 episode-level success rate（25%）(3) anchor_obs 日志污染问题未修——大量 \"Skipping non-numeric metric\" 警告是正常的，不影响训练 (4) is_action_valid 路径已修复但要确认正式训练中 invalid_action_penalty 是否实际触发\n- cherry-pick Phase 2（GiGPO）方案已就绪（gigpo_cherry_pick_plan.md），等 Phase 1 结果决定是否需要\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6.md"
+}

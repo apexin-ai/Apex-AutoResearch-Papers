@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "5760c2190436a0b9f7d1",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "validate move vs put admissible",
+  "task_key": "worker_validate_move-vs-put-admissible_20260514T154927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_validate_move-vs-put-admissible_20260514T154927.jsonl",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "15b2a832eb13013f2a513d04885c6b12c3a916508709c0835224220ea8bf686f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T15:49:41.333391+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_validate_move-vs-put-admissible_20260514T154927"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/validate-move-vs-put-admissible.md"
+}

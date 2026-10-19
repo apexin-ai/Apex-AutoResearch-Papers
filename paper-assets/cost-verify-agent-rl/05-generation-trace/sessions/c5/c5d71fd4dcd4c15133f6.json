@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5d71fd4dcd4c15133f6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research wandb seed300 seed2 curves",
+  "task_key": "worker_research_wandb_seed300_seed2_curves_20260523T000744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_wandb_seed300_seed2_curves_20260523T000744_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "878306ec3146bbd4c4e555d055dac6334098556f8167d39278d46e2d1785dd36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。\n\n**seed300**:\n- W&B run: `ozyniycy` (`exp029-seed300-episode-level`), crashed but有 4/5 步训练数据\n- seed_value=300, category=healthy\n- 4 步训练数据，success 从 0.14 → 0.20，KL 稳定 ~0.0003-0.001\n\n**seed2**:\n- W&B runs: `efab7i1h` (steps 1-15) + `9xs5vfbe` (steps 16-43，续训)\n- seed_value=43, category=delayed_learner\n- 43 步训练数据，典型 delayed learner 曲线：前 15 步 success 低 (0.03-0.37)，step 23 开始爬升，step 28 达到 0.89 峰值，之后高方差震荡 (KL 也从 ~0.005 飙升到 0.17)\n\n`learning_curve_data.json` 已更新，新增 `delayed_learner_seeds` 分类数组。总计 9 个 seed。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-wandb-seed300-seed2-curves.md"
+}

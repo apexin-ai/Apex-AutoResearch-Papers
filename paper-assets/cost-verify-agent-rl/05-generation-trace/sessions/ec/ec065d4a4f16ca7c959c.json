@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec065d4a4f16ca7c959c",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_4_1778773858.md",
+  "task_key": "loop_4_1778773858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778773858.md",
+    "occurrence": 1,
+    "bytes": 4137,
+    "sha256": "8195d32177553a7a493424a3db94845469cf377010ac32c71252823eba700bbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T15:49:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 cuda:0, cuda:1。config 中未显式列 gpu_ids，但全部实验历史均使用这两张卡，不得使用其他 GPU\n- /root/autodl-tmp 磁盘 95% full（exp013f 结束时仅剩 4.1GB）。提交新实验前必须清理旧 checkpoint（exp008_grpo/global_step_5 已被多次引用，不能删；exp012_grpo、exp013b_grpo、exp013e 可清理）\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不要假设 .venv）\n- WandB 中 `train/*/raw_reward` 和 `episodic_return` 是日志 artifact（恒为 0），实际 reward 看 `critic/score/*`。已被误诊一次（D015→D017 纠正）\n- exp014a/b/c 已被 D013 撤销（killed），不要恢复它们\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，2× RTX PRO 6000 Blackwell 94GB\n- 工作目录：`/root/cost-verify-agent-rl/RAGEN`（训练入口 `python train.py`）\n- Python：`/root/miniconda3/bin/python`（conda base，不是 venv）\n- 模型 checkpoint：`/root/autodl-tmp/checkpoints/`（exp008_sft/final = SFT warmup，exp008_grpo/global_step_5 = GRPO 恢复点）\n- Expert SFT 数据：`/root/autodl-tmp/expert_trajectories/sft_data/train.jsonl`（2460 条 PDDL expert trajectory）\n- ALFWorld 数据：`/root/autodl-tmp/alfworld/`（3553 train games）\n- 必需环境变量：`TMPDIR=/root/autodl-tmp/tmp/`, `ALFWORLD_DATA=/root/autodl-tmp/alfworld`, `RAY_memory_monitor_refresh_ms=0`, `RAY_SYSTEM_MEMORY=210000000000`, `HYDRA_FULL_ERROR=1`\n- 活跃进程：exp017_expert_sft (PID 353947, cron 监控中, bjb1-17606)\n- 无活跃 Worker\n\n### 3. 📊 当前状态\nexp017_expert_sft 正在 RUNNING——用 PDDL expert trajectory 数据（2460条）SFT Qwen3-1.7B instruct，LR=2e-5, 3 epochs, batch=4, grad_accum=4。脚本 `scripts/run_expert_sft.sh`。Pass 标准 success ≥ 10%。Cron 在监控。\n\nexp018_sft_grpo 处于 PREPARING——计划从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练（LR=5e-7, kl=0.1, grad_clip=1.0, won=10.0, 30 步）。Pass: success ≥ 20%。\n\n其余 30 个实验全部 DONE/PREPARING(killed)。无待处理的 Worker 回调或 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- exp017 cron 回调（success）→ spawn Worker eval SFT checkpoint（134 tasks full eval）→ update registry metrics → 若 success ≥ 10% 则准备 exp018 提交审批（PENDING）→ 向 Director 汇报\n- exp017 cron 回调（failed）→ 诊断失败原因 → 若基础设施问题则修复重提交；若算法问题则向 Director 汇报并建议调整\n- exp018 审批通过 → submit_on_allocated，从 exp017 checkpoint 开始 sparse GRPO\n- exp018 完成且 success ≥ 20% → Phase A PASS，启动 Phase B (B-IAVR)：FSDP→HF 转换 + `_alfworld_phase_b.yaml` 配置\n- exp018 失败/negative → 考虑 Tier 1 备选方案（SPEAR 或 DAPO+AR3PO），向 Director 提 pivot 建议\n- 磁盘告警 → 清理 exp012_grpo、exp013b_grpo、exp013e checkpoint 释放空间\n\n### 5. 🎯 战略上下文\n**核心问题链**：Qwen3-1.7B base success ~4% → GRPO sparse reward 无信号 → dense reward 会被 gaming → 唯一出路是先用 Expert SFT 提升 base success rate → 再接 sparse GRPO。\n\n**决策链（关键转折）**：\n- D006: SFT warmup 解决 format 问题（success: action_is_valid 8%→90%）\n- D011-D013: dense reward gaming 确认，放弃 dense reward 路线\n- D016: Pivot to Expert SFT（用 PDDL expert trajectory 而非公开数据集，数据量 2460 vs 之前 1200）\n\n**易错点**：\n1. 不要再尝试 dense reward shaping（exp013f 已证明会 gaming）\n2. 不要把 WandB raw_reward=0 当 bug——这是日志 artifact，看 critic/score\n3. Phase B 代码已就绪（68 tests pass），但绝对不要在 Phase A 未通过时启动\n4. 磁盘只剩 ~4GB，新实验前必须清理旧 checkpoint\n5. Expert SFT 数据（2460 条）比之前的 SFT（1200 条公开数据）质量更高（PDDL solver 生成的 optimal trajectory），预期 success rate 提升显著\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778773858.md"
+}

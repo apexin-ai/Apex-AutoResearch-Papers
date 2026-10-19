@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffcec092923c0d0772e9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp013e ray memory fix",
+  "task_key": "worker_code_exp013e-ray-memory-fix_20260514T085254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp013e-ray-memory-fix_20260514T085254_result.json",
+    "occurrence": 1,
+    "bytes": 1227,
+    "sha256": "6db19111e9db9e0b334d215a123a92eb5d22899b8ef6897c7c3d5a4fede7d31d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 已清空。\n\n## 产出汇总\n\n### 1. ray.init 调用位置\n`/root/cost-verify-agent-rl/RAGEN/train.py:205` — `ray.init(**ray_init_kwargs)`\n\n### 2. 修复方式\n**方式 B（直接改代码）** — 已在 `train.py:203` 硬编码：\n```python\nray_init_kwargs[\"object_store_memory\"] = 30 * 1024**3\n```\n此行在 config 的 `ray_kwargs.ray_init` 被解析后、`ray.init()` 调用前强制覆盖，确保无论 config 怎么写都生效。修复已就位，无需额外改动。\n\n### 3. Dry-run 验证结果\n日志输出确认：\n```\nray init kwargs: {'num_cpus': None, 'runtime_env': {...}, 'object_store_memory': 32212254720}\n```\n- object_store_memory = **32,212,254,720 bytes (~30GB)** ✅\n- 无 SIGKILL/OOM 错误 ✅\n- Workers 正常加载模型 ✅\n\n### 4. 最终启动命令\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR && \\\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld && \\\nexport CUDA_VISIBLE_DEVICES=0,1 && \\\ncd /root/cost-verify-agent-rl/RAGEN && \\\nnohup python train.py --config-name _alfworld_exp013b_dense_reward > /root/autodl-tmp/logs/exp013e.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp013e-ray-memory-fix.md"
+}

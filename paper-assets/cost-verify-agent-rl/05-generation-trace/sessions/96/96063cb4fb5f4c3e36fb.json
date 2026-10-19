@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96063cb4fb5f4c3e36fb",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor v9d save contents verify",
+  "task_key": "worker_monitor_v9d_save_contents_verify_20260520T062024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v9d_save_contents_verify_20260520T062024_result.json",
+    "occurrence": 1,
+    "bytes": 1334,
+    "sha256": "e9224d7673a7f584cb65af83782e6bf87e136adae9b2d04230e1108df91d4936"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：step 10 checkpoint 会是 **~92GB**，`save_contents` 配置**没有生效**。\n\n### 依据\n\n**配置层级错误**：yaml 第 35 行 `save_contents: [\"model\", \"extra\"]` 在 `trainer:` 层级下，但 actor worker 的 checkpoint manager 读的是 `actor_rollout_ref.actor.checkpoint.save_contents`。\n\n完整调用链：\n1. `agent_trainer.py:1113` → `self.actor_rollout_wg.save_checkpoint(...)`\n2. `fsdp_workers.py:1043` → `self.checkpoint_manager.save_checkpoint(...)`\n3. `fsdp_workers.py:847` → checkpoint manager 初始化用 `checkpoint_config=self.config.actor.checkpoint`\n4. yaml 中 `actor_rollout_ref.actor:` 下**没有 `checkpoint:` 子节点**，所以用了 `CheckpointConfig` 的默认值：`[\"model\", \"optimizer\", \"extra\"]`\n5. `trainer.save_contents` 在整个保存路径中**从未被任何代码读取**\n\n**日志也确认了**：resolved config 中 actor 的 checkpoint 配置为 `'save_contents': ['model', 'optimizer', 'extra']`（包含 optimizer）。\n\n### 修复方法\n\nyaml 中需要把 `save_contents` 放到正确层级：\n\n```yaml\nactor_rollout_ref:\n  actor:\n    checkpoint:\n      save_contents: [\"model\", \"extra\"]\n```\n\n**磁盘会满（91GB 可用 < 92GB checkpoint）。需要在 step 10 之前停止训练或修改配置重启。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v9d-save-contents-verify.md"
+}

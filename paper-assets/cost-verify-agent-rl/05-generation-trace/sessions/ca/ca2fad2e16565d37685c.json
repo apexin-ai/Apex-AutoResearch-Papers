@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca2fad2e16565d37685c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp009 relaunch",
+  "task_key": "worker_ops_exp009_relaunch_20260514T034255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp009_relaunch_20260514T034255_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "6a4e599faf33dcfbb3c92409ed3719e84fe8dc0c3eaace4d252f88534d92c967"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成，汇总结果：\n\n### 产出\n\n| 项目 | 状态 |\n|------|------|\n| **Symlink** | `qwen3_sft_final -> exp008_sft/final`，config.json 存在 |\n| **model_path** | 第10行：`/root/autodl-tmp/checkpoints/qwen3_sft_final` |\n| **save_freq** | 第25行：`5` |\n| **response_mask** | 配置中未出现（未设置） |\n| **RAY_TMPDIR** | `.bashrc` 中已设置 `/root/autodl-tmp/ray_tmp` |\n| **GPU** | GPU 0: 0 MiB / 0%，GPU 1: 0 MiB / 0% — 两张卡完全空闲 |\n| **磁盘** | 根分区 30G，已用 7.3G，剩余 23G (25%) |\n\n### 结论\n\n**可以安全提交 exp009。** 所有前置条件满足：symlink 正确指向 SFT checkpoint、model_path 已更新、GPU 空闲、磁盘充足、RAY_TMPDIR 已配置。`response_mask` 未在配置中出现——如果 Director 要求该项必须存在，需确认是否需要补加。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp009-relaunch.md"
+}

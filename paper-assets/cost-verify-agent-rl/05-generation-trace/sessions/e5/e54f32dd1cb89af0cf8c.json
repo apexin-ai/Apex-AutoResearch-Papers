@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e54f32dd1cb89af0cf8c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops restart h20 reduced mem",
+  "task_key": "worker_ops_restart-h20-reduced-mem_20260518T190913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-h20-reduced-mem_20260518T190913_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "0fbb7e3edf1f86f97f70c8967ad9e7eed0a266b48b6c5bb48bf7880eb45a7e22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练稳定运行中：\n\n**汇报**\n\n| 项目 | 状态 |\n|------|------|\n| **Config 修改** | `optimizer_offload: True → False`；`RAY_OBJECT_STORE_MEMORY=16GB`（环境变量） |\n| **PID** | 77613（tmux: `hsweep_h20_seed1`） |\n| **W&B Run** | `qi8g4f86` — https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/qi8g4f86 |\n| **Log** | `~/runs/cost-verify-agent-rl/hsweep_h20_seed1.log` |\n| **CPU 内存** | 118GB used / 1TB total（稳定，无增长趋势） |\n| **GPU 内存** | 每卡 4.7GB / 98GB（vLLM 已加载，rollout 进行中） |\n| **OOM** | 无。当前容器实际内存 ~1TB，远超之前的 220GB 限制 |\n| **当前状态** | Step 0/15 rollout 中（h=20 multi-turn 较慢，属正常） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-h20-reduced-mem.md"
+}

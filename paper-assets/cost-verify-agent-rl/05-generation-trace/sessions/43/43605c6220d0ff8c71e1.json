@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43605c6220d0ff8c71e1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 progress 2h20m",
+  "task_key": "worker_check_exp029_progress_2h20m_20260516T150629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_progress_2h20m_20260516T150629_result.json",
+    "occurrence": 1,
+    "bytes": 1571,
+    "sha256": "3db98ca0b4dec89d41156f8e5ee43fc3c6bffb8edde02d754962418ed39a2907"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp029_episode_level 训练进度\n\n**进程状态**: PID 868459 存活，已运行 **~3h25m**\n\n**当前阶段**: `val_before_train` — 初始化完成后正在做训练前验证，评估 **140 个 ALFWorld games**（`eval_in_distribution` split）\n\n**W&B Run**:\n- Run ID: `5rapt9f1`\n- Run Name: `exp029-alfworld-episode-level`\n- URL: `https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/5rapt9f1`\n\n**GPU 状态**: 两卡均 0% utilization，显存 4.7GB/98GB（模型已加载但 ALFWorld rollout 主要消耗 CPU）\n\n**关键配置**:\n- 模型: Qwen3 1.72B（从 `qwen3_exp021_ragen_sft_v4` 加载）\n- 总训练步数: 100 steps, 30 epochs\n- val: 140 env_groups × group_size 1\n- train: 16 env_groups × group_size 8\n- ALFWorld: `parallel_friendly: False, max_workers: 1`，50 max actions/traj\n- Checkpoint: `/root/autodl-tmp/checkpoints/exp029/`, save_freq=5\n\n**Metrics**: **尚无训练 metrics**。训练尚未开始，停留在 val_before_train。\n\n**Warnings（非致命）**:\n- Ray docker CPU 检测警告\n- Gym -> Gymnasium 迁移提醒\n- FSDP state_dict_type 弃用警告\n- Mistral tokenizer regex 模式不匹配警告\n\n**诊断**: TaskRunner (PID 871702) 占 82% CPU，说明正在活跃执行 ALFWorld 环境交互。因为 `parallel_friendly: False` + `max_workers: 1`，140 个 games 是**串行执行**的，每个 game 最多 50 turns。所有输出被缓冲（stdout 重定向到文件），日志将在 val_before_train 结束后批量刷出。不是 hang，是 ALFWorld 串行 eval 本身就慢。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-progress-2h20m.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59edae9b9fe782f14358",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose intervention c final and c prime progress",
+  "task_key": "worker_diagnose_intervention_c_final_and_c_prime_progress_20260521T222518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_intervention_c_final_and_c_prime_progress_20260521T222518_result.json",
+    "occurrence": 1,
+    "bytes": 1792,
+    "sha256": "611a07e230ba470e1a6b8305d4a1a7d1bc6ed31f347a42d42895ee75a5db7b64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Part A: Intervention C 最终结果（westd-47453）— **Negative**\n\n进程已正常退出 (EXIT_CODE=0)，7/7 steps 完成。\n\n### Step 7（最终）关键指标\n\n| 指标 | Train | Val |\n|------|-------|-----|\n| success | 15.625% | 9.375% |\n| response_length (per-episode) | 870.25 | 927.44 |\n| response_length/mean (total trajectory) | **7170** | — |\n| pass@N | pass@8: 50% | pass@1: 9.375% |\n| aborted_ratio | 0.0 | — |\n| pg_loss | 6.72e-05 | — |\n| kl_loss | 0.0204 | — |\n| grad_norm | 1.31 | — |\n\n### 关键对比：Step 6 → Step 7 崩溃\n\n| 指标 | Step 6 | Step 7 |\n|------|--------|--------|\n| train_success | **38.28%** | 15.625% |\n| train_resp_len | 745 | 870 |\n| response_length/mean | 4662 | **7170** |\n| pass@8 | 93.75% | 50% |\n\n**结论**：Hard cap (512 tokens/turn, 20 turns) **未能阻止 response length 爆炸**。模型通过增加 turn 数绕过了 per-turn 限制——总 trajectory token 数从 4662 飙升到 7170。Train success 在 step 6 达峰 38.28% 后 step 7 崩塌至 15.625%，val_success 仅 9.375%（baseline 6.25%）。三个 intervention (A: len_penalty, B: high_kl, C: hard_cap) 全部 negative。\n\nW&B: `https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/hszaa3vc`\n\nRegistry 已更新为 DONE / negative。\n\n---\n\n## Part B: C'（bjb1-17606）— 进行中\n\n当前进度：**1/7 steps (14%)**，正在执行 step 2 训练。\n\n### Step 0 (baseline eval)\n- val_success: 9.375%\n- val_resp_len: 1135.16\n- val_pass@1: 9.375%\n\n### Step 1 (train)\n- train_success: 28.125%\n- train_resp_len: 815.65\n- train_pass@8: 62.5%\n- kl_loss: 0.000319\n- grad_norm: 2.10\n\nC' 刚完成 step 1，训练节奏正常（~17 min/step on bjb1 2xGPU）。预计还需约 1.5-2 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-intervention-c-final-and-c-prime-progress.md"
+}

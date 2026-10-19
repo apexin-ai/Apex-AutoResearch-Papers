@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b2f746564529d3b81a2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor factorial step3plus",
+  "task_key": "worker_monitor_factorial_step3plus_20260518T000857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_factorial_step3plus_20260518T000857_result.json",
+    "occurrence": 1,
+    "bytes": 1612,
+    "sha256": "01ec063b37106145b6d817ec3d19de06eed1470b85c80a223e4bb2a160b7052c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整，已获取 step 0-4。进程仍在运行（step 5 正在 rollout）。\n\n## 结果汇总\n\n| Step | Train Success | Pass@8 | Action Valid | Entropy | KL Loss | Grad Norm | PG Loss |\n|------|--------------|--------|-------------|---------|---------|-----------|---------|\n| 0 (val) | 2.24% (OOD) | — | 37.8% | — | — | — | — |\n| 1 | **20.31%** | 68.75% | 85.64% | 0.359 | 0.238 | 18.27 | 0.0121 |\n| 2 | 6.25% | 31.25% | 83.96% | 0.569 | 0.208 | 14.73 | 0.0118 |\n| 3 | 5.47% | 31.25% | 79.54% | 0.567 | **1.077** | 12.73 | 0.0126 |\n| 4 | **3.13%** | **18.75%** | 83.70% | 0.617 | 0.638 | 11.33 | 0.0114 |\n\n## 判断：场景 B（持续下降/训练崩溃）\n\n关键证据：\n1. **Success 单调下降**：20.3% → 6.25% → 5.47% → 3.13%，没有任何回升迹象\n2. **Pass@8 同步恶化**：68.75% → 31.25% → 31.25% → 18.75%，表明即使 best-of-8 也在退化\n3. **KL loss 在 step 3 异常飙升**（1.077 vs 正常 0.2），说明 policy 一度剧烈偏移 reference\n4. **Entropy 增加**（0.359 → 0.617）但 success 下降：模型变得更随机但更差，不是在探索有用行为\n5. **Grad norm 递减**（18.3 → 11.3）：有效学习信号在枯竭\n\n结论：episode-level advantage 在 h=2 multi-step 设置下未能正确归因 reward 到各 step。step 1 高 success 可能只是初始 policy 质量，之后 PPO 更新方向错误导致持续退化。这排除了 sign misattribution 作为唯一原因（场景 A 预期 step 3+ 回升），问题更可能是 episode-level advantage 本身的 credit assignment 失败。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-factorial-step3plus.md"
+}

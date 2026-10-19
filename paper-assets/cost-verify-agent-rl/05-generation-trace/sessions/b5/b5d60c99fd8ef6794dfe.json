@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5d60c99fd8ef6794dfe",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "data fig6 wandb fetch",
+  "task_key": "worker_data_fig6_wandb_fetch_20260518T204516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_fig6_wandb_fetch_20260518T204516_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "721d1fcc12bff7ed5b7f983a3cb1396cc60aba92037d8c6764081cefc8e8f920"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Saved to `artifacts/fig6_wandb_data.json` (64KB).\n\nSummary:\n\n| Run ID | Name | Steps | Key Findings |\n|---|---|---|---|\n| `7o9bjszm` | hsweep-h2-seed1 | 15 | train/success collapses to 0, manager_invalid_action spikes to ~0.99 |\n| `6liw7fm1` | factorial-h2-episode-adv | 15 | train/success stays ~0.05-0.20, action_is_valid stable ~0.84 |\n| `6d4oml60` | exp029-episode-level | 1 | Only 1 val-only row (crashed early), val/success=0.125 |\n| `jhwyg4tc` | hsweep-h2-seed2 | 15 | train/success variable 0-0.27, action_is_valid rises to ~0.99 |\n\nStandardized metric keys used: `train/success`, `train/action_is_valid`, `train/manager_invalid_action`, `val/success`, `val/action_is_valid`, etc. Original W&B column names (e.g., `train/AlfworldSG/success`) are stored in `metric_name_mapping`. Full `available_metrics` list included per run.\n\nNote: `6d4oml60` crashed before any training steps were logged (only 1 eval row exists)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-fig6-wandb-fetch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c6cff279411c4d2df40",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp029 seed6 episode",
+  "task_key": "worker_code_exp029_seed6_episode_20260521T025334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp029_seed6_episode_20260521T025334_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "e86a29431787e19c65a81262a735ec3838750db4e30e0ee650a470ee847cc18f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并运行。汇总：\n\n**训练提交结果**：\n- **PID**: 697721 (主进程)\n- **W&B run ID**: `nagp1pi4`\n- **W&B URL**: https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/nagp1pi4\n- **tmux session**: `exp029_seed6`\n- **GPU**: cuda:2,3 (westd-47453)\n\n**配置文件**：\n- 训练配置: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_episode.yaml`\n- OOD eval 配置: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_ood_final.yaml`\n  - `resume_from_path` 已指向 `/root/autodl-tmp/checkpoints/exp029-seed6/exp029-seed6-episode-level/global_step_15`（训练完成后可用，如最佳 step 不是 15 需更新）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp029-seed6-episode.md"
+}

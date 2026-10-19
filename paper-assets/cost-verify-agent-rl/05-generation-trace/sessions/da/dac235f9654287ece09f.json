@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dac235f9654287ece09f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "run exp028a recipe fix",
+  "task_key": "worker_run_exp028a_recipe_fix_20260515T210934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp028a_recipe_fix_20260515T210934_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "cacbc413e2b4b6e3adf4b5ae1de24b631f17a694ac31171d787ecc19c0f38953"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp028a 已启动。**\n\n**修正内容：**\n- Config `model_path` 从 `Qwen3-1.7B-Instruct` 改回 SFT checkpoint `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4`\n- 启动脚本 MODEL 路径同步修正\n- 添加 `WANDB_MODE=online`\n\n**Diff 确认（vs exp027）唯一功能性改动：**`invalid_action_penalty_coef: 0.1`\n\n**训练状态：**\n- PID: 814647 → TaskRunner 817920\n- W&B run: `lu42su82` (exp028a-recipe-fix)\n- W&B URL: https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/lu42su82\n- GPU: cuda:0 + cuda:1，模型加载中\n- Registry: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp028a-recipe-fix.md"
+}

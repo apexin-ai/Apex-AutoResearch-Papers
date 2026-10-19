@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "916beaa34da391df8a2c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp029 per task t04 v2",
+  "task_key": "worker_diagnose_exp029_per_task_t04_v2_20260519T150818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp029_per_task_t04_v2_20260519T150818_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "37396eedef444ce623b972d967586da10d3a715f29274385a62ccc1d8dd5ddce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：exp029_per_task_t04_v2 是 cron 误报，eval 实际已成功完成。**\n\n- 134/134 OOD games 全部跑完，总成功率 19.4%（26/134），结果已保存到 JSON\n- 失败原因：vLLM v0.18.1 关闭时的 EngineCore 进程清理竞争导致非零退出码 + 脚本没写 sentinel 文件/W&B run，触发 cron 的\"无信号=失败\"逻辑\n- GPU 状态干净，无残留进程\n- **不需要重跑**，数据完整可用\n\n诊断报告已注册为 `art_20260519_2e381d`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp029-per-task-t04-v2.md"
+}

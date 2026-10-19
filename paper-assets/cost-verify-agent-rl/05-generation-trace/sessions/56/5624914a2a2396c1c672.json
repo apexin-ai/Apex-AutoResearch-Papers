@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5624914a2a2396c1c672",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp028 prereq zeroshot eval",
+  "task_key": "worker_code_exp028_prereq_zeroshot_eval_20260515T203120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp028_prereq_zeroshot_eval_20260515T203120_result.json",
+    "occurrence": 1,
+    "bytes": 1591,
+    "sha256": "9e19ec7ebe72d464effb0be81c912d0db677f91f0ee0f2c0d1aa796fadfa50bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "配置解析通过。全部产出如下：\n\n---\n\n## 产出总结\n\n### 1. 配置文件\n`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp028_prereq_zeroshot.yaml`\n\n关键参数：\n- `model_path`: Qwen3-1.7B-Instruct（非 SFT checkpoint）\n- `val_only: True` — RAGEN 原生纯 eval 模式，val_before_train 后直接退出\n- `val env_groups: 16, group_size: 1` → 16 episodes（满足 C003）\n- 环境参数与 exp027 一致（step_independent, max_turn=50, AlfworldSG）\n- train 部分设为最小值（不会被执行）\n\n### 2. 启动脚本\n`/root/cost-verify-agent-rl/scripts/run_exp028_prereq_zeroshot.sh`\n- 含 pre-flight 检查（模型/磁盘/GPU/配置）\n- W&B 日志记录\n- 不需要模型下载\n\n### 3. 模型路径\n**无需下载** — `Qwen3-1.7B-Instruct` 已在 `/root/cost-verify-agent-rl/models/Qwen3-1.7B-Instruct/`\n\n### 4. 模型选择说明\n任务标题写的是 Qwen2.5-1.5B-Instruct，但 **SFT checkpoint 是 Qwen3ForCausalLM 架构**（`qwen3_exp021_ragen_sft_v4`）。验证\"SFT 是毒药\"需要苹果对苹果比较：\n- SFT checkpoint（Qwen3-1.7B + SFT）: 6.25%\n- **Qwen3-1.7B-Instruct**（原始权重）: ???  ← 这次 eval\n\n用 Qwen2.5-1.5B-Instruct 测的是另一个模型族的零样本能力，无法直接证明 SFT 是否有害。\n\n### 5. 预估耗时\nexp027 step_0 val（16 episodes）耗时 ~502s ≈ 8 分钟。本次模型相同规模，预估 **~8-10 分钟**。\n\n### 6. 等待 exp027 完成后启动\n```bash\nbash /root/cost-verify-agent-rl/scripts/run_exp028_prereq_zeroshot.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp028-prereq-zeroshot-eval.md"
+}

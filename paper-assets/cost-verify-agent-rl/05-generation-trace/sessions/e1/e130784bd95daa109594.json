@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e130784bd95daa109594",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose seed7 mask check result",
+  "task_key": "worker_diagnose_seed7_mask_check_result_20260522T193051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_seed7_mask_check_result_20260522T193051_result.json",
+    "occurrence": 1,
+    "bytes": 1288,
+    "sha256": "b672a49ea59589dfb6119bd75060f95b59b4e4d58a69c3c608d01132a8e49655"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "BrokenPipeError 在第 8529 行，日志共 8577 行。结果输出在日志末尾（BrokenPipeError 之后），说明这个错误是 vLLM 清理阶段的 pipe 断开，eval 本身已完成。\n\n**结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| **状态** | 完成（进程已退出，结果已输出） |\n| **enable_response_mask** | `True`（config 中确认） |\n| **OOD pass@1** | **0.0**（134 episodes） |\n| **OOD success** | 0.0 |\n| **action_is_valid** | 0.9915 |\n| **action_is_effective** | 1.0 |\n| **response_length** | 4888.9 |\n| **raw_reward** | 0.0 |\n| **num_actions** | 50.0（全部 hit max） |\n| **val-core reward mean@134** | 0.0 |\n\n**解读：** seed7 step5 checkpoint 在 `enable_response_mask=True` 下 OOD pass@1 = 0.0%，134 episodes 全部失败。action_is_valid 很高（99.1%）说明模型格式没问题，但所有 episode 都用满了 50 步上限仍未完成任务。\n\n这与 Reviewer 预期的\"mask 不影响 eval generation\"**不一致**——如果 mask=false baseline 的 OOD 结果不是 0.0%，那说明 response_mask 在 eval 阶段确实产生了影响；如果 baseline 也是 0.0%，则说明 step5 checkpoint 本身在 OOD 上就是 0%，与 mask 无关。需要对比 mask=false 的结果来下结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-seed7-mask-check-result.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8c81c5d2f2b0ccbb74b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp029 seed2 crash3",
+  "task_key": "worker_diagnose_exp029-seed2-crash3_20260518T091521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp029-seed2-crash3_20260518T091521_result.json",
+    "occurrence": 1,
+    "bytes": 2961,
+    "sha256": "e46031645388bfc0fbbe65379292feaebcf4121f1ff249a7b42467bde5015f32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n---\n\n## 诊断结果\n\n### 崩溃原因：OOM（`loss.backward()` 阶段）\n\n**确认是 OOM**，第三次崩溃与前两次原因相同。\n\n### 崩溃位置\n- **Training step 0**（val_before_train 完成后进入第一个 training step 的 backward pass）\n- 仅完成了 step 0 的 validation（success=12.5%），尚未完成任何 training step\n- Traceback：`dp_actor.py:468 → loss.backward()` → `torch.AcceleratorError: CUDA error: out of memory`\n- 崩溃发生在 **Worker PID 19998**（Rank 1，即 cuda:1）\n\n### 当前 config 内存相关参数\n\n| 参数 | 值 |\n|---|---|\n| `enable_gradient_checkpointing` | `true` |\n| `micro_batch_size_per_gpu` | `1` |\n| `ppo_mini_batch_size` | `8` |\n| `ppo_max_token_len_per_gpu` | `16384` |\n| `max_model_len` | `20480` |\n| `max_num_batched_tokens` | `20480` |\n| `max_prompt_length` | `16384` |\n| `response_length` | `1024` |\n| `gpu_memory_utilization` (vLLM rollout) | `0.35` |\n| `optimizer_offload` | `True` |\n| `context_window_mode` | `full` |\n| `train env_groups × group_size` | `16 × 8 = 128 episodes` |\n\n### 日志最后 50 行\n\n```\nray.exceptions.RayTaskError(AcceleratorError): ray::WorkerDict.actor_rollout_update_actor() (pid=19998, ip=172.17.0.6, actor_id=a9d0c5ad21256432b245a66a01000000)\n  File \".../ray/base.py\", line 700, in func\n    return getattr(self.worker_dict[key], name)(*args, **kwargs)\n  File \".../base/decorator.py\", line 442, in inner\n    return func(*args, **kwargs)\n  File \".../transferqueue_utils.py\", line 199, in dummy_inner\n    return func(*args, **kwargs)\n  File \".../profiler/profile.py\", line 256, in wrapper\n    return func(self_instance, *args, **kwargs_inner)\n  File \".../ragen/workers/fsdp_workers.py\", line 169, in update_actor\n    output = self.actor.update_policy(data)\n  File \".../profiler/performance.py\", line 105, in f\n    return self.log(decorated_function, *args, **kwargs)\n  File \".../profiler/performance.py\", line 118, in log\n    output = func(*args, **kwargs)\n  File \".../ragen/workers/actor/dp_actor.py\", line 468, in update_policy\n    loss.backward()\n  File \".../torch/_tensor.py\", line 630, in backward\n    torch.autograd.backward(\n  File \".../torch/autograd/__init__.py\", line 364, in backward\n    _engine_run_backward(\n  File \".../torch/autograd/graph.py\", line 865, in _engine_run_backward\n    return Variable._execution_engine.run_backward(\ntorch.AcceleratorError: CUDA error: out of memory\nEXIT_CODE=1\n```\n\n### 分析\n\n`full` context_window_mode 下 episode 长度达到 ~16K tokens（从 val 结果看 response_length=7088，加上 prompt 可达 16K+）。即使 gradient_checkpointing=True、micro_batch=1、optimizer_offload=True，`ppo_max_token_len_per_gpu=16384` 在 backward pass 时仍然 OOM。这是因为 full 模式的序列远长于 step_independent 模式，activation memory 在 backward 时超出了 GPU 容量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp029-seed2-crash3.md"
+}

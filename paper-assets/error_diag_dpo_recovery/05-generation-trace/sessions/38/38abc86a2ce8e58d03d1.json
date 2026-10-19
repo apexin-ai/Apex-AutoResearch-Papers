@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38abc86a2ce8e58d03d1",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "monitor v9 sr sample 50 r2",
+  "task_key": "worker_monitor_v9-sr-sample-50-r2_20260513T090327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v9-sr-sample-50-r2_20260513T090327_result.json",
+    "occurrence": 1,
+    "bytes": 143,
+    "sha256": "719d020746a91b768d95d1c0ad8eef249452d584d8f6ffb95b07c67b5d82d509"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前进度：cuda0=27, cuda1=31, cuda4=24（共 82 条）。距离 50 条/GPU 目标还差约一半，~5 分钟后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v9-sr-sample-50-r2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a85ea3b9d2070fe5c8c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research scienceworld grpo feasibility",
+  "task_key": "worker_research_scienceworld_grpo_feasibility_20260519T201151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_scienceworld_grpo_feasibility_20260519T201151_result.json",
+    "occurrence": 1,
+    "bytes": 3293,
+    "sha256": "bc4b9a924df923121f7442168d32001dde8ba5354447c2f23302d773fca45fb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完毕。以下是结论。\n\n---\n\n## ScienceWorld GRPO 开发工作量评估\n\n### 1. 集成状态：**完整**\n\n所有核心组件已就绪：\n\n| 组件 | 状态 | 路径 |\n|------|------|------|\n| Env Wrapper | ✅ 完整 | `ragen/env/scienceworld/env.py` — `ScienceWorldTXTEnv` 继承 `BaseLanguageBasedEnv` |\n| Config | ✅ 完整 | `ragen/env/scienceworld/config.py` — `ScienceWorldEnvConfig` |\n| 注册 | ✅ 完整 | `ragen/env/__init__.py` — `REGISTERED_ENVS['scienceworld']` |\n| Env Tags | ✅ 4个 | `envs.yaml`: `ScienceWorldBoil`, `ScienceWorldMelt`, `ScienceWorldFreeze`, `ScienceWorldMixed` |\n| Python 包 | ✅ 已装 | `scienceworld==1.2.3` |\n| SFT Checkpoint | ✅ 4个 | `global_step_{112,224,336,448}`，每个都有 `huggingface/` HF 格式模型 |\n| SFT 训练数据 | ✅ 有 | `scienceworld_sft_{train,val}.parquet` |\n| GRPO Config | ❌ 缺 | 无 `_scienceworld_*.yaml` GRPO 配置文件 |\n\n### 2. 需要开发的内容\n\n**唯一缺少的是 GRPO 训练配置文件**，可以直接从 ALFWorld 的 `_alfworld_exp029_episode_level.yaml` 复制并修改：\n\n需改动的字段：\n- `model_path` → `/root/autodl-tmp/checkpoints/scienceworld_sft/global_step_448/huggingface`\n- `experiment_name` → `scienceworld-grpo-cell-a`（或 cell-c）\n- `es_manager.train/val.env_configs.tags` → `[\"ScienceWorldBoil\"]` 或 `[\"ScienceWorldMixed\"]`\n- `CUDA_VISIBLE_DEVICES` → `\"0,1,2,3\"`（westd-47453 有 4 张 GPU）\n- `n_gpus_per_node` → 4\n- `agent_proxy.max_turn` → 按 ScienceWorld 调整（当前 env 的 `max_steps=100`，但单次 GRPO turn 不一定等于 100 steps）\n- `local_log_dir` / `default_local_dir` → 新路径\n\n### 3. ScienceWorld vs ALFWorld 关键技术差异\n\n| 维度 | ALFWorld | ScienceWorld |\n|------|----------|-------------|\n| Action Space | 文本命令，admissible actions 动态生成 | 同样文本，`get_valid_action_object_combinations()` |\n| Observation | 房间描述 + 物品 | 房间描述 + 物品 + task description |\n| Reward | Binary sparse (won=1 → 10.0) | Continuous sparse (score/100 * 10.0, 0~10) |\n| 并行 | 可多 worker | `max_workers=1`，JVM 单例（`_ENV_CACHE` per thread）|\n| Episode 长度 | ~50 steps | ~100 steps（更长） |\n| 环境启动 | 快（TextWorld） | 慢（JVM 启动） |\n\n**关键风险**：`parallel_friendly: false` + `max_workers: 1`。ScienceWorld 底层是 JVM，当前实现用 thread-local 单例缓存，多 worker rollout 可能需要验证 JVM 线程安全性。ALFWorld 也是 `parallel_friendly: false`，但它基于 TextWorld，不涉及 JVM。\n\n### 4. 工作量估计\n\n| 任务 | 估时 |\n|------|------|\n| 写 GRPO config yaml（Cell A + Cell C） | 30 min |\n| 验证 SFT checkpoint 能正确加载 | 15 min |\n| Dry-run 验证 env + rollout 能跑通 | 1-2 hr（JVM 启动、多线程问题排查） |\n| 正式训练 | 取决于 GPU 时间 |\n\n**总开发工作量：~2-3 小时**（含排查时间）。核心工作就是写一个 yaml 配置文件 + dry-run 验证。\n\n### 5. 建议优先级\n\n1. **先跑 `ScienceWorldBoil` 单任务**（最简单，变量最少）\n2. Dry-run 重点验证 JVM 多线程在 GRPO rollout 下是否稳定\n3. 确认后再扩展到 `ScienceWorldMixed`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-scienceworld-grpo-feasibility.md"
+}

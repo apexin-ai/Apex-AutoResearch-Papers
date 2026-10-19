@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "934e360c0407a0eb43d1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix westd cleanup and watchdog",
+  "task_key": "worker_fix_westd_cleanup_and_watchdog_20260521T110512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd_cleanup_and_watchdog_20260521T110512_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "984612fdb03f3fdf6b8286da6f51293c3b8af0f32e5f047943d89b1cb43cb33b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Watchdog 确认运行中（PID 118779 存在，日志已记录启动）。\n\n---\n\n### 产出汇总\n\n| 项目 | 结果 |\n|------|------|\n| **清理前** | 180G used / 250G (72%) |\n| **清理后** | 166G used / 250G (67%)，释放 14G |\n| **Watchdog PID** | 118779 |\n| **Checkpoint 实际路径** | `exp029-seed5/global_step_5`, `exp029-seed6/global_step_5` |\n| **Watchdog 路径匹配** | 匹配，无需调整 |\n\n注：释放 14G 而非预期 43G，可能是部分目录已被清理或实际占用小于预估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd-cleanup-and-watchdog.md"
+}

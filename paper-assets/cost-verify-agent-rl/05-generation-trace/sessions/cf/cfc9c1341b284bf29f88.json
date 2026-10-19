@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "cfc9c1341b284bf29f88",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code cherry pick reward advantage",
+  "task_key": "worker_code_cherry_pick_reward_advantage_20260515T083522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cherry_pick_reward_advantage_20260515T083522.log",
+    "occurrence": 1,
+    "bytes": 709346,
+    "sha256": "2d18b95060b39914cedaaffa427c2e27d15170fee011dea44647e5810a34dd2e"
+  },
+  "statistics": {
+    "messages": 198,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 198,
+      "chunks": [
+        {
+          "path": "cfc9c1341b284bf29f88-part-0001.json",
+          "message_count": 153
+        },
+        {
+          "path": "cfc9c1341b284bf29f88-part-0002.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-cherry-pick-reward-advantage.md"
+}

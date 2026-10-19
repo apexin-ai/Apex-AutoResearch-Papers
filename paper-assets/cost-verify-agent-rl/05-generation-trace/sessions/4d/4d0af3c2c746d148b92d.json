@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d0af3c2c746d148b92d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 step15 final",
+  "task_key": "worker_check_exp029_step15_final_20260517T040803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_step15_final_20260517T040803_result.json",
+    "occurrence": 1,
+    "bytes": 1130,
+    "sha256": "654a8908b0253b7724f03fb8421b0709c330ca75f53a70ab85fdc5290c576447"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Step 15 val 结果出来了。\n\n## Exp029 Step 15 Validation Results\n\n| Metric | Step 5 | Step 10 | Step 15 |\n|--------|--------|---------|---------|\n| **val success** | 25.0% | 25.0% | **28.125%** |\n| **val pass@1** | 25.0% | 25.0% | **28.125%** |\n| **val action_is_valid** | — | 60.19% | **54.52%** |\n| **val action_is_effective** | — | 99.94% | **76.72%** |\n| **val manager_invalid_action** | — | 0.06% | **23.28%** |\n\n**Pass@N (from best@N reward, reward=10 per success):**\n- pass@2: 4.69/10 = **46.9%**\n- pass@4: 7.26/10 = **72.6%**\n- pass@8: 9.29/10 = **92.9%**\n- pass@16: 9.96/10 = **99.6%**\n\n**Train metrics at step 15:**\n- train success: 43.75%, train pass@8: 75%\n\n**关键观察：**\n- Val success 从 25% 微升至 28.125%（+3.125pp），改善有限\n- action_is_valid 从 60.19% 下降到 54.52%，action_is_effective 从 99.94% 大幅下降到 76.72%\n- manager_invalid_action 从 0.06% 暴涨到 23.28%，说明模型变得更激进但产生了大量无效动作\n- pass@8 = 92.9% 很高，说明模型有能力完成大部分任务，但一致性（pass@1）仍然较低"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-step15-final.md"
+}

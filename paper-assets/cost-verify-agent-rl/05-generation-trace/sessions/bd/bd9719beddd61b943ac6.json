@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd9719beddd61b943ac6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "planning experiment plan",
+  "task_key": "worker_planning_experiment_plan_20260515T194910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_planning_experiment_plan_20260515T194910_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "7f5138801fbe0f2640be72283f241720596f4511515d1682590c28a15ce0628e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/_project/report/experiment_plan.yaml`，17 个实验条目：\n\n| Phase | 数量 | GPU-h | 内容 |\n|-------|------|-------|------|\n| A | 3 | ~504 | exp027 续训 + 扩展训练 + 3-seed 复现 |\n| B | 3 | ~424 | action-change 分析 + B-IAVR 训练 + 3-seed |\n| C | 7 | ~566 | no-verify / random-p / confidence-threshold ablation + entropy 控制分析 + causal intervention + reward 对比 + alpha/beta sweep |\n| D | 2 | ~28 | ARES 复现 + head-to-head 对比 |\n\n关键设计点：\n- **Critical path**: plan_001 → 002 → 005 → 006/012/015\n- **Minimum viable paper**: 11 个实验 ~534 GPU-h（去掉 multi-seed 和 P2 项）\n- 所有 5 个 reviewer concerns 均有对应实验覆盖，RC3（action change = noise）最厚——4 个实验从统计控制和因果干预两个角度防御"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/planning-experiment-plan.md"
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "63fb06bd42c90be72507",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research selfguide paper",
+  "task_key": "worker_research_selfguide-paper_20260513T191610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_selfguide-paper_20260513T191610_result.json",
+    "occurrence": 1,
+    "bytes": 2102912,
+    "sha256": "74b1d03c8c097afb06e7276f7c11e023d2b98f574174127434e36327732bdc29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "63fb06bd42c90be72507-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/research-selfguide-paper.md"
+}

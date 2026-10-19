@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab80d2a897c04e0e9803",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp013d early steps",
+  "task_key": "worker_monitor_exp013d-early-steps_20260514T083537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp013d-early-steps_20260514T083537_result.json",
+    "occurrence": 1,
+    "bytes": 1712,
+    "sha256": "f240f57e8f34a415b3d6ade9eb7159f0cc882643c307b59d7a311bc5dbb4f48f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 监控结果\n\n**两个实验均已崩溃，GPU 已释放（3 MiB each）。**\n\n### exp013d（PID 272157）— 目标实验\n| 项目 | 状态 |\n|------|------|\n| 崩溃时间 | 16:36（初始化阶段） |\n| 崩溃点 | 模型加载后，Raylet 被 SIGKILL |\n| 根因 | **`RAY_object_store_memory=30GB` 未生效**，object store 仍为默认 70.3GB |\n| 到达 step 6？ | **否** — 从未开始任何训练步骤 |\n\n### exp012_test（PID 277765）— 不明来源的测试实验\n| 项目 | 状态 |\n|------|------|\n| 配置 | `_alfworld_exp012_reward_fix`（不是 dense reward） |\n| env_groups | **8**（不是 4） |\n| RAY_object_store_memory | **未设置** |\n| 进展 | 完成 step 5 validation（success=0%, reward=0） |\n| 崩溃点 | **step 6 training rollout** — Actor worker OOM killed |\n| 崩溃原因 | 和 exp013b/c 完全一致：env_groups=8 + object_store 70GB → OOM |\n\n### 诊断\n\n1. **exp013d 的核心问题**：`RAY_object_store_memory` 环境变量在启动 Ray 之前未被 export，所以 Ray 用了默认值（~70% 可见内存 ≈ 70GB）。`env_groups=4` 已正确配置，但环境变量缺失导致初始化阶段就崩溃了（比 exp013b/c 更早）。\n\n2. **exp012_test 是谁启动的？** 可能是另一个 Worker 在 exp013d 崩溃后启动的。它用的是 env_groups=8 + 无 object_store 限制，注定重蹈覆辙。\n\n3. **内存关口未验证** — 两个实验都没活到 step 6 rollout。\n\n### 下一步\n重启 exp013d 时必须确保：\n```bash\nexport RAY_object_store_memory=32212254720  # 30GB in bytes\n```\n在 `python train.py` **之前**执行。可以用 `grep RAY_object /proc/<pid>/environ` 验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp013d-early-steps.md"
+}

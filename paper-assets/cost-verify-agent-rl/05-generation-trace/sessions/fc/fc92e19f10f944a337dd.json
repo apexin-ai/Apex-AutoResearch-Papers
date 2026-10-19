@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc92e19f10f944a337dd",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code credit assignment analysis",
+  "task_key": "worker_code_credit_assignment_analysis_20260517T004901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_credit_assignment_analysis_20260517T004901_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "b3f55700c6153b8c2252715240e8153f09e6a0f29ae41d096d146b4bbd0b2db3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出文件**:\n- 脚本: `/root/cost-verify-agent-rl/analysis/credit_assignment_analysis.py`\n- PDF: `/root/cost-verify-agent-rl/analysis/figures/credit_assignment.pdf` (27.6 KB)\n- PNG: `/root/cost-verify-agent-rl/analysis/figures/credit_assignment.png` (128.9 KB)\n\n**关键数值**:\n- exp028c (h=2): effective discount = 0.7177, 仅能看到 6.7% 的 episode reward\n- exp029 (h=T=35): effective discount = 1.0, 100% reward 可见"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-credit-assignment-analysis.md"
+}

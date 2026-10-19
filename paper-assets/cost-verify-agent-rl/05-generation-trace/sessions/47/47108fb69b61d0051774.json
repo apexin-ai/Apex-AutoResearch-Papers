@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47108fb69b61d0051774",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd urgent disk cleanup",
+  "task_key": "worker_ops_westd_urgent_disk_cleanup_20260522T163005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_urgent_disk_cleanup_20260522T163005_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "da294b6b69dc0028ab76064bcaf04bad07852fa072eaf7674de75f683d025915"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "seed200 训练成功启动。\n\n---\n\n## 汇总\n\n### 磁盘清理\n\n| 操作 | 释放空间 |\n|------|---------|\n| intervention-c-hard-cap (FSDP) | **41G** |\n| exp029-seed6 (FSDP) | **25G** |\n| exp029-seed8 (FSDP) | **21G** |\n| exp029_new_seed_2048 (FSDP) | **25G** |\n| cost-verify-agent-rl/backups/exp029-seed2-bjb1 | **21G** |\n| exp029-seed4 (FSDP) | **3.8G** |\n| wandb + ray_tmp + tmp + eval_results + /tmp/ray* | **~1G** |\n\n| | 磁盘 |\n|--|------|\n| **清理前** | 240G/250G (96%), 11G 可用 |\n| **清理后** | 105G/250G (42%), **146G 可用** |\n\n### seed200 重启\n\n- **PID**: 999987 (nohup), TaskRunner pid=7472\n- **GPU**: cuda:2, cuda:3 (4731 MiB 已加载)\n- **W&B run**: `exp029-seed200-episode-level` (ID: z7e85fie)\n- **日志**: `/root/autodl-tmp/logs/seed200_episode_grpo.log`\n- **配置**: seed=200, 5 steps, GRPO episode-level, val_before_train=True\n- 当前状态：环境初始化完成 (494/494)，即将进入 val_before_train"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-urgent-disk-cleanup.md"
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "90857c6359aec6643206",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "verify caliber framework data",
+  "task_key": "worker_verify_caliber_framework_data_20260524T035844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_caliber_framework_data_20260524T035844.log",
+    "occurrence": 1,
+    "bytes": 1178742,
+    "sha256": "7c25a5142c0b9a7ef084b14cfcf7b962146896bdeb3df538f2552163ae0a1e90"
+  },
+  "statistics": {
+    "messages": 250,
+    "user_turns": 3,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 44,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 89,
+      "tool_result": 89,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 37,
+      "chunks": [
+        {
+          "path": "90857c6359aec6643206-part-0001.json",
+          "message_count": 37
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 107,
+      "chunks": [
+        {
+          "path": "90857c6359aec6643206-part-0001.json",
+          "message_count": 58
+        },
+        {
+          "path": "90857c6359aec6643206-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 66,
+      "chunks": [
+        {
+          "path": "90857c6359aec6643206-part-0002.json",
+          "message_count": 66
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "90857c6359aec6643206-part-0002.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/verify-caliber-framework-data.md"
+}

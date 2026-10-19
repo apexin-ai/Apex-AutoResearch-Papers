@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89b4005a5329f55f90e4",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix exp029 cleanup only",
+  "task_key": "worker_fix_exp029_cleanup_only_20260516T191924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp029_cleanup_only_20260516T191924_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "9548f5ca858637326b0184c824f8faac7c26a9c2f6a1ad8e3b1006e28abf411c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| Step | 状态 | 结果 |\n|------|------|------|\n| 1. Kill 残留进程 | ✅ | 已执行 |\n| 2. GPU 进程检查 | ✅ | 无残留 PID |\n| 3. GPU 显存 | ✅ | GPU 0: 0 MiB, GPU 1: 0 MiB |\n| 4. Cleanup loop | ✅ | 无残留 |\n| 5. /tmp 可用 | ✅ | /tmp → /root/autodl-tmp/tmp, 57G 可用, 可写 |\n| 6. Python tempfile | ✅ | `tempfile.gettempdir()` = `/tmp` |\n| 7. Ray 清理 | ✅ | 已 stop，无残留进程 |\n\n环境就绪，两张卡完全空闲（0 MiB），无任何残留进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp029-cleanup-only.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "9db3d3592e3233e3d93c",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "experiment scienceworld info loss eval",
+  "task_key": "worker_experiment_scienceworld-info-loss-eval_20260520T141325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_scienceworld-info-loss-eval_20260520T141325.log",
+    "occurrence": 1,
+    "bytes": 797955,
+    "sha256": "f2e122366647b4e70b92e1288b89499c76b9492d4bd57f860063df7ec9404285"
+  },
+  "statistics": {
+    "messages": 391,
+    "user_turns": 0,
+    "tool_calls": 152,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 152,
+      "tool_result": 152,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 391,
+      "chunks": [
+        {
+          "path": "9db3d3592e3233e3d93c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9db3d3592e3233e3d93c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9db3d3592e3233e3d93c-part-0003.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-scienceworld-info-loss-eval.md"
+}

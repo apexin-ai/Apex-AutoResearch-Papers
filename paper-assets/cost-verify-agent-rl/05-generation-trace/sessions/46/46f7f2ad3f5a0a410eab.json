@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46f7f2ad3f5a0a410eab",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh search checkpoints for idle gpus",
+  "task_key": "worker_ssh_search_checkpoints_for_idle_gpus_20260523T014214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_search_checkpoints_for_idle_gpus_20260523T014214_result.json",
+    "occurrence": 1,
+    "bytes": 1636,
+    "sha256": "5e4630f849d02935a6a321a54cb185afdfd78d7bffea2c65996ec6eaafceffde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 搜索结果\n\n### seed300 resume (bjb1)\n**状态: SEED300_NOT_FOUND**\n\n`exp029-seed300/` FSDP 目录在 bjb1 上不存在（无 global_step、无 optimizer states）。仅有 HF 格式权重 `qwen_exp029_seed300_step5_hf`（不含 optimizer，无法 resume 训练）。\n\n### seed2 late-step (两台服务器)\n\n**bjb1:** 无 seed2 checkpoint（`*seed2*` 匹配的是 seed200/seed2048）\n\n**westd:** \n- `exp029_seed2_step15_hf` — HF 格式，3.8GB，step **15**（最晚的 seed2 checkpoint）\n- `qwen_exp029_seed2_step15_hf` — 同上的 qwen 前缀副本\n- 无 FSDP 格式 checkpoint\n- **无 step30+ checkpoint**，最远只到 step15\n\n### 其他可用 HF checkpoints\n\n**bjb1 (6个):**\n| checkpoint | step |\n|---|---|\n| `qwen_c_prime_step5_hf` | 5 |\n| `qwen_exp029_seed200_step5_hf` | 5 |\n| `qwen_exp029_seed300_step5_hf` | 5 |\n| `qwen_exp029_seed4_step15_hf` | 15 |\n| `qwen_exp029_seed7_high_kl_step5_hf` | 5 |\n| `qwen_exp029_seed7_high_kl_step7_hf` | 7 |\n\n**westd (14个):**\n| checkpoint | step |\n|---|---|\n| `qwen_c_prime_step5_hf` | 5 |\n| `qwen_exp029_seed100_step10_hf` | 10 |\n| `qwen_exp029_seed100_step5_hf` | 5 |\n| `qwen_exp029_seed2_step15_hf` | 15 |\n| `qwen_exp029_seed42_step5_hf` | 5 |\n| `qwen_exp029_seed4_step15_hf` | 15 |\n| `qwen_exp029_seed5_step10_hf` | 10 |\n| `qwen_exp029_seed6_step15_hf` | 15 |\n| `qwen_exp029_seed7_high_kl_step5_hf` | 5 |\n| `qwen_exp029_seed7_high_kl_step7_hf` | 7 |\n| `qwen_exp029_seed8_step5_hf` | 5 |\n| `qwen_intervention_c_hard_cap_step5_hf` | 5 |\n| `qwen_intervention_c_hard_cap_step7_hf` | 7 |\n| `qwen_seed2048_step5_hf` | 5 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-search-checkpoints-for-idle-gpus.md"
+}

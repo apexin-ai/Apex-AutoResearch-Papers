@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc40ef60e0a2b9d4eeec",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 correct log",
+  "task_key": "worker_check_exp029_correct_log_20260516T190514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_correct_log_20260516T190514_result.json",
+    "occurrence": 1,
+    "bytes": 1756,
+    "sha256": "dfb0ed7b7ce0d8f4fe3ca4286a0a4b9ecf02757cecf1c3af52be97adf3716547"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found the complete step 1 metrics in the wandb output.log.\n\n## Exp029 Step 1 Metrics\n\n### Train Rollout\n| Metric | Value |\n|--------|-------|\n| **train/AlfworldSG/success** | **17.97%** |\n| **train/AlfworldSG/pass@8** | **56.25%** |\n| train/AlfworldSG/action_is_valid | 0.6824 |\n| train/AlfworldSG/action_is_effective | 0.9947 |\n| train/AlfworldSG/num_actions | 42.03 |\n| train/AlfworldSG/manager_invalid_action | 0.0054 |\n| **train/response_length** | **7112.43** |\n| train/batch_size | 128 |\n\n### Actor/PPO\n| Metric | Value |\n|--------|-------|\n| **actor/entropy** | **0.02775** |\n| **actor/kl_loss** | **9.15e-4** |\n| **actor/pg_loss** | **-4.59e-5** |\n| **actor/grad_norm** | **1.267** |\n| actor/pg_clipfrac | 7.80e-4 |\n| actor/ppo_kl | -2.03e-5 |\n| actor/entropy_loss | 0.05552 |\n| actor/kl_coef | 0.01 |\n\n### Critic/Score\n| Metric | Value |\n|--------|-------|\n| critic/score/mean | 1.797 |\n| critic/advantages/mean | -0.238 |\n| response_length/mean | 12689.19 |\n| response_length/max | 16381.0 |\n\n### Initial Validation (Step 0, baseline)\n| Metric | Value |\n|--------|-------|\n| val-env/AlfworldSG/success | 12.5% |\n| val-env/AlfworldSG/pass@1 | 12.5% |\n| val-env/AlfworldSG/action_is_valid | 0.783 |\n\n### Status\n- **Progress**: 1/100 steps, 30m10s/step, ETA ~49h48m\n- **Step 2**: PPO update in progress (compute_policy_loss running on both GPUs)\n- **GPU**: 0: 55788 MiB, 1: 56640 MiB (0% util — between compute phases)\n- **W&B**: run `6d4oml60` — `exp029-alfworld-episode-level`\n\nTraining is healthy. Train success 17.97% vs baseline val 12.5% — slight improvement. pass@8 at 56.25% shows good diversity. grad_norm 1.267 and kl_loss 9.15e-4 are both in normal range with lr=1e-6."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-correct-log.md"
+}

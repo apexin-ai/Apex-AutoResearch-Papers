@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a14304cb3d4d0893ed3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose eval results check",
+  "task_key": "worker_diagnose_eval_results_check_20260521T133357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_results_check_20260521T133357_result.json",
+    "occurrence": 1,
+    "bytes": 1248,
+    "sha256": "1b0c2c7546157f3fd1c800b022c67e56102e13f4399a297534a4640f1473d97c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### exp029_seed6_ood_eval — FAILED\n- **错误**: `ValueError: Unsupported model: /root/autodl-tmp/checkpoints/exp029-seed6/global_step_15_hf`\n- **原因**: `ctx_manager.py:get_special_tokens()` 不识别 RL checkpoint 的 `name_or_path`。SFT baseline 用的是原始 checkpoint 路径 `qwen3_exp021_ragen_sft_v4` 所以没这个问题，而 seed6 的 HF 导出 checkpoint 路径名变了。\n- **修复方向**: 需要在 `get_special_tokens()` 中添加对 RL checkpoint 路径的支持，或者在导出 HF checkpoint 时保留原始 tokenizer 的 `name_or_path`。\n- Registry: DONE/failed, cron 已删除。\n\n### sft_baseline_ood_eval_v2 — STILL RUNNING\n- W&B run: `r9llx4v7`, state=running, 尚无 metrics 产出\n- PID 282634 存活, GPU 3 占用 90GB (0% util — 可能在 CPU-bound 的 Alfworld 环境交互阶段)\n- 评估 134 个 AlfworldSG_OOD 任务，每个最多 50 turns，预计还需较长时间\n- Cron 保留。\n\n### GPU 状态\n| GPU | 显存 | 利用率 | 用途 |\n|-----|------|--------|------|\n| 0 | 97/98 GB | 100% | 其他任务 |\n| 1 | 97/98 GB | 100% | 其他任务 |\n| 2 | 0/98 GB | 0% | 空闲（seed6 eval 已退出）|\n| 3 | 90/98 GB | 0% | SFT baseline OOD eval |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-results-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d13d45ed0a7c2291a627",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code scienceworld grpo cell c config",
+  "task_key": "worker_code_scienceworld_grpo_cell_c_config_20260520T063221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scienceworld_grpo_cell_c_config_20260520T063221_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "446e0324a364d6cf5e41c59b8243d81aa4a0c942b0f61d0c43582868e8f1f11f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Cell C 配置文件 `_scienceworld_cell_c_grpo.yaml` 已创建并验证。\n\n与 Cell A 的 diff 精确为 4 处变更：\n1. **注释头** — Cell A 描述 → Cell C 描述\n2. **`experiment_name`** — `scienceworld-cell-a-h2` → `scienceworld-cell-c-episode`\n3. **`local_log_dir` / `default_local_dir`** — `scienceworld-cell-a/` → `scienceworld-cell-c/`\n4. **`context_window_mode`** — `\"step_independent\"` → `\"full\"`\n\n其余所有参数（model_path, lr, kl_coeff, gamma, response_length, env tags, batch sizes 等）与 Cell A 完全一致。YAML 解析和 Hydra compose 均通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scienceworld-grpo-cell-c-config.md"
+}

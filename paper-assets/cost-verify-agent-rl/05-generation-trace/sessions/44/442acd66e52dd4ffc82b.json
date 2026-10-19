@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "442acd66e52dd4ffc82b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code prepare gsweep configs",
+  "task_key": "worker_code_prepare_gsweep_configs_20260518T001214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_gsweep_configs_20260518T001214_result.json",
+    "occurrence": 1,
+    "bytes": 1147,
+    "sha256": "d43d521a076bdecef01ef9a09c2f94e532dd4b35396565aa7029e54705377073"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个配置文件全部已存在，Hydra 加载验证通过。\n\n**配置汇总：**\n\n| 配置文件 | gamma | h | experiment_name | 路径 |\n|---|---|---|---|---|\n| `_alfworld_gamma_sweep_g080_h5.yaml` | 0.8 | 5 | gsweep-g080-h5 | `/root/cost-verify-agent-rl/RAGEN/config/` |\n| `_alfworld_gamma_sweep_g095_h5.yaml` | 0.95 | 5 | gsweep-g095-h5 | `/root/cost-verify-agent-rl/RAGEN/config/` |\n| `_alfworld_gamma_sweep_g100_h5.yaml` | 1.0 | 5 | gsweep-g100-h5 | `/root/cost-verify-agent-rl/RAGEN/config/` |\n\n**关键参数（所有配置一致）：**\n- `algorithm.gamma` — 字段名确认为 `gamma`\n- `algorithm.high_level_gamma` = 0.95（所有配置统一）\n- `step_independent_history_length` = 5\n- `total_training_steps` = 15\n- `CUDA_VISIBLE_DEVICES` = \"2,3\"\n- `val.env_groups` = 32（满足 C003 ≥16 episodes 约束）\n- checkpoint 输出到 `/root/autodl-tmp/checkpoints/gsweep-g{080,095,100}-h5/`\n\n**注意：** 配置目录是 `config/` 而非任务描述中的 `configs/`。Hydra 有 `_self_` 缺失警告，但不影响运行（与模板 g050 一致）。g050 实验完成后可直接启动 g080。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-gsweep-configs.md"
+}

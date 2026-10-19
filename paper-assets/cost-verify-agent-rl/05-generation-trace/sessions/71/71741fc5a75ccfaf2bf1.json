@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71741fc5a75ccfaf2bf1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp028ab parallel config",
+  "task_key": "worker_code_exp028ab_parallel_config_20260515T210955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp028ab_parallel_config_20260515T210955_result.json",
+    "occurrence": 1,
+    "bytes": 2187,
+    "sha256": "c4930fbac94561a69a2a3da0e499faed4ea89d3855bc6d153e6769e205d878a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。以下是产出总结：\n\n---\n\n## 产出\n\n### 1. 文件清单\n\n| 文件 | 路径 |\n|------|------|\n| exp028a config | `RAGEN/config/_alfworld_exp028a_penalty.yaml` |\n| exp028b config | `RAGEN/config/_alfworld_exp028b_minibatch.yaml` |\n| exp028a script | `scripts/run_exp028a_penalty.sh` |\n| exp028b script | `scripts/run_exp028b_minibatch.sh` |\n\n### 2. exp028a vs exp028b diff（符合预期）\n\n仅 5 处差异：`CUDA_VISIBLE_DEVICES`（0/1）、`ppo_mini_batch_size`（8/32）、`experiment_name`、`local_log_dir`、`default_local_dir`。\n\n### 3. exp027 → exp028a 变更（3 处实质性修改）\n\n| 参数 | exp027 | exp028a |\n|------|--------|---------|\n| `n_gpus_per_node` | 2 | 1 |\n| `CUDA_VISIBLE_DEVICES` | \"0,1\" | \"0\" |\n| `ppo_mini_batch_size` | **32** | **8** |\n| `algorithm.invalid_action_penalty_coef` | 未设（默认0.1） | 0.1（显式） |\n\n### 4. 单卡 vs 双卡适配说明\n\n- exp027 用 **data parallel**（`n_gpus_per_node=2`, `tensor_model_parallel_size=1`），不是 tensor parallel\n- 单卡只需 `n_gpus_per_node: 1`，`tensor_model_parallel_size` 已是 1 无需改\n- 1.7B 模型 + 96GB 显存单卡完全足够（`gpu_memory_utilization=0.4` ≈ 39GB 给 vLLM，剩余 ~57GB 给 actor/ref）\n\n### 5. Hydra 解析验证通过\n\n- exp028a: 128 rollouts / mini_batch 8 = **16 optimization steps/epoch**\n- exp028b: 128 rollouts / mini_batch 32 = **4 optimization steps/epoch**\n- `_self_` 警告为 cosmetic，与项目其他 config 一致\n\n### 6. ⚠️ 需要 Director 确认的差异\n\n**任务表说 exp028a `ppo_mini_batch_size=8` \"与 exp027 一致\"，但 exp027 实际值是 32。** 当前按任务指定值（8）执行。这意味着：\n- exp028a（mini_batch=8）：每 epoch 16 次参数更新，每次用 8 样本\n- exp028b（mini_batch=32）：每 epoch 4 次参数更新，每次用 32 样本 = 与 exp027 单 epoch 更新次数相同\n\n### 7. GPU 状态\n\n两卡当前各占用 ~41GB（可能是 zero-shot eval 或其他进程），未做实际 dry-run 训练以避免干扰。启动前需确认 GPU 已释放。\n\n---\n\n未启动训练，等 Director 审批。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp028ab-parallel-config.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "6a2d213f172bc08fc443",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "diagnose exp020 grpo from sft",
+  "task_key": "worker_diagnose_exp020_grpo_from_sft_20260514T221125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diagnose_exp020_grpo_from_sft_20260514T221125.jsonl",
+    "occurrence": 1,
+    "bytes": 177,
+    "sha256": "b0581e084aac7e5a40f0416b167688e8e3d8f1c06ade21a827eaf67d994e5767"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T22:11:31.956333+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_exp020_grpo_from_sft_20260514T221125"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-exp020-grpo-from-sft.md"
+}

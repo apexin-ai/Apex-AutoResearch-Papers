@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "db8e47161d39ddc66e06",
+  "project": "error_diag_dpo_recovery",
+  "kind": "worker",
+  "title": "exec nohup collect v5 dual gpu",
+  "task_key": "worker_exec_nohup-collect-v5-dual-gpu_20260512T163944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_nohup-collect-v5-dual-gpu_20260512T163944.log",
+    "occurrence": 1,
+    "bytes": 615473,
+    "sha256": "5969206d092f61bef67f919799584926c6d957b4d30196883ed9155ee7265bfb"
+  },
+  "statistics": {
+    "messages": 260,
+    "user_turns": 0,
+    "tool_calls": 82,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 82,
+      "tool_result": 82,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 260,
+      "chunks": [
+        {
+          "path": "db8e47161d39ddc66e06-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "db8e47161d39ddc66e06-part-0002.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exec-nohup-collect-v5-dual-gpu.md"
+}

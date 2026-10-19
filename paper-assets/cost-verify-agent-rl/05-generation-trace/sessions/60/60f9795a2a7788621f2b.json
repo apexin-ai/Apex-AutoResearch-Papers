@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60f9795a2a7788621f2b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code prep exp029 seed2 config",
+  "task_key": "worker_code_prep-exp029-seed2-config_20260518T044832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-exp029-seed2-config_20260518T044832_result.json",
+    "occurrence": 1,
+    "bytes": 1261,
+    "sha256": "24f933e9b56bebb0d18f670b314b91f85d1b564475a5b1583df8bde567d5c034"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "配置完成。汇报：\n\n| 项目 | 值 |\n|---|---|\n| **配置文件** | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level_seed2.yaml` |\n| **运行脚本** | `/root/cost-verify-agent-rl/RAGEN/scripts/run_exp029_episode_level_seed2.sh` |\n| **seed.train** | 43（seed 1 用 10000，从 base.yaml 继承） |\n| **seed.val** | 123（与 seed 1 一致） |\n| **SFT checkpoint（起始模型）** | `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4` — 已确认存在 |\n| **checkpoint 输出路径** | `/root/autodl-tmp/checkpoints/exp029-seed2/` — 独立于 seed 1 的 `exp029/` |\n| **experiment_name** | `exp029-episode-level-seed2` |\n| **total_training_steps** | 15 |\n| **test_freq / save_freq** | 5（eval & save at step 5, 10, 15） |\n| **磁盘空间** | `/root/autodl-tmp/` 114G 可用（55% used） |\n| **dry-run** | 通过 |\n\n**注意事项**：\n- 训练期间 val 用 `AlfworldSG` 32 groups（与 seed 1 一致）。OOD 134-task eval (`AlfworldSG_OOD`) 需训练后用 reeval 配置单独跑（seed 1 也是这样做的，已有 `_alfworld_exp029_reeval_valid_unseen.yaml` 模板）。\n- 入口点：`python train.py --config-name _alfworld_exp029_episode_level_seed2`，与 seed 1 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp029-seed2-config.md"
+}

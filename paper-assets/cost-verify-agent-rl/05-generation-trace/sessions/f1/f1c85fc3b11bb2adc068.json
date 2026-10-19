@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1c85fc3b11bb2adc068",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh check bjb1 seed200 eval urgent",
+  "task_key": "worker_ssh_check_bjb1_seed200_eval_urgent_20260523T030829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_bjb1_seed200_eval_urgent_20260523T030829_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "5e460cf97eb4814fdd27a2d00f5aa017d8eb6c88d320afaa5a4563905f37ec9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：COMPLETED (EXIT_CODE=0)**\n\n进程 477932 已退出，GPU 已释放（两张卡均 0 MiB）。wandb teardown 有个 BrokenPipe 警告，无影响。\n\n### OOD Eval Metrics (seed200, step5, AlfworldSG_OOD, 134 episodes)\n\n| 指标 | 值 |\n|------|-----|\n| **pass@1** | **10.45%** |\n| action_is_valid | 61.06% |\n| action_is_effective | 100% |\n| num_actions (avg) | 45.5 |\n| response_length (avg) | 6854.9 |\n\n**Best@K reward (mean):**\n\n| K | mean |\n|---|------|\n| 2 | 2.15 |\n| 4 | 3.70 |\n| 8 | 5.86 |\n| 16 | 8.22 |\n| 32 | 9.72 |\n| 64 | 10.0 |\n| 128 | 10.0 |\n| 134 (all) | 10.0 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-bjb1-seed200-eval-urgent.md"
+}

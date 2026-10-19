@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a9f9437afcac33c80a0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "cleanup westd seed3 checkpoints",
+  "task_key": "worker_cleanup_westd_seed3_checkpoints_20260521T084651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_westd_seed3_checkpoints_20260521T084651_result.json",
+    "occurrence": 1,
+    "bytes": 310,
+    "sha256": "5f757cc5f4dcd54a68d1ecfc4272c5ef529719ed4c07676d9939298441b6bd52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "删除完成。\n\n| | 删除前 | 删除后 |\n|---|---|---|\n| 已用 | 144G (58%) | 79G (32%) |\n| 可用 | 107G | 172G |\n| 释放 | — | **~65G** |\n\n`exp029-seed3/` 目录已删除。剩余 checkpoints 目录下还有 9 个子目录（exp029_seed3、gae_baseline、各 SFT/eval 等）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-westd-seed3-checkpoints.md"
+}

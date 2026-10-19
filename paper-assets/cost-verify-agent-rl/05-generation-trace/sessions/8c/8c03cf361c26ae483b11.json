@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c03cf361c26ae483b11",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops seed2048 fsdp to hf and batch eval",
+  "task_key": "worker_ops_seed2048_fsdp_to_hf_and_batch_eval_20260522T051704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_seed2048_fsdp_to_hf_and_batch_eval_20260522T051704_result.json",
+    "occurrence": 1,
+    "bytes": 1565,
+    "sha256": "681265541aeef89f61c1d855e133de188b4dcc4db61df40479fbe840f0ed29ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`VLLM_WORKER_MULTIPROC_METHOD=spawn` 修复生效。vLLM 成功加载模型（3.22 GiB），sft_baseline eval 已在跑 134 episodes OOD。GPU 0 使用中（83GB VRAM, 44% utilization）。\n\n---\n\n## 产出汇总\n\n### 1. Seed 2048 最终 Metrics（collapse seed 确认）\n\n| Step | train/success | resp_len/mean | val-env/success | val-core/reward@32 |\n|------|--------------|---------------|-----------------|-------------------|\n| 0 (SFT baseline) | — | — | 3.125% | 0.3125 |\n| 1 | 4.69% | 15,511 | — | — |\n| 5 (final) | 0.78% | 15,790 | **0.0%** | **0.0** |\n\n完全 collapse：response length 近满（~16K），val success/reward 全零。\n\n### 2. FSDP→HF 转换 — 完成\n\n- 输入：`global_step_5/actor/`（FSDP v1, world_size=2）\n- 输出：`global_step_5_hf/`（model.safetensors, 4.06GB bf16, Qwen3ForCausalLM 2B）\n- Symlink：`/root/autodl-tmp/checkpoints/qwen_seed2048_step5_hf`\n- 耗时 16.8s\n\n### 3. Batch OOD Eval — 运行中\n\n- PID=477638，cuda:0，`VLLM_WORKER_MULTIPROC_METHOD=spawn`\n- 11 个 checkpoint（10 原有 + seed2048），134 episodes 每个，串行执行\n- 首个（sft_baseline）已成功加载模型并初始化 134 games\n- 修复了 vLLM v0.18.1 默认 `fork` 导致的 CUDA re-init 错误（根因：`VLLM_WORKER_MULTIPROC_METHOD` 默认 `fork`，RAGEN import 触发 CUDA init 后 fork 子进程无法重新初始化）\n\n### 4. westd GPU 状态\n\n| GPU | 状态 | VRAM |\n|-----|------|------|\n| cuda:0 | eval 运行中 | 83GB / 96GB |\n| cuda:1-3 | 空闲 | 0-3 MiB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-seed2048-fsdp-to-hf-and-batch-eval.md"
+}

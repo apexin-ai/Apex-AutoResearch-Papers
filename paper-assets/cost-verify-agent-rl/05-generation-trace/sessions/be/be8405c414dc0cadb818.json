@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "be8405c414dc0cadb818",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code exp028 penalty mechanism",
+  "task_key": "worker_code_exp028_penalty_mechanism_20260515T202841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp028_penalty_mechanism_20260515T202841.log",
+    "occurrence": 1,
+    "bytes": 953485,
+    "sha256": "c140f0b9633a546b0561bd34764140d6181a01ead23eb9e74d699dc5a00bebf0"
+  },
+  "statistics": {
+    "messages": 321,
+    "user_turns": 1,
+    "tool_calls": 106,
+    "roles": {
+      "log": 1,
+      "system": 49,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 106,
+      "user": 1,
+      "tool_result": 106,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "be8405c414dc0cadb818-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 315,
+      "chunks": [
+        {
+          "path": "be8405c414dc0cadb818-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "be8405c414dc0cadb818-part-0002.json",
+          "message_count": 140
+        },
+        {
+          "path": "be8405c414dc0cadb818-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp028-penalty-mechanism.md"
+}

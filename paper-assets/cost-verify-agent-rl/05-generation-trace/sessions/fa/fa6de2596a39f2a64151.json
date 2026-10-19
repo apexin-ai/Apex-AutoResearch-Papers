@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa6de2596a39f2a64151",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops v9d disk cleanup and resume",
+  "task_key": "worker_ops_v9d_disk_cleanup_and_resume_20260520T022403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v9d_disk_cleanup_and_resume_20260520T022403_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "a9ba06b3061c8b4905add842c75ff02a0477d2a52d747f21b198a79317f2a63a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正在健康运行（4 GPU 100% 利用率），当前处于 val_before_train rollout 阶段，需要几分钟才会有 step 日志。\n\n## 执行摘要\n\n**磁盘清理:**\n- 删除 scienceworld_sft 3 个中间 checkpoint (global_step_112/224/336)，释放 ~81GB\n- 228GB → 147GB 使用，104GB 可用\n\n**配置修改（根因修复）:**\n- `resume_mode: \"disable\"` → `\"auto\"`\n- `max_actor_ckpt_to_keep: 5` → `2` — **这是磁盘满的根因**：5 checkpoint × 37GB = 185GB，超出可用空间。降到 2 后峰值 ~111GB 安全\n\n**Checkpoint:**\n- step 5 checkpoint 完整（4 model shard + 4 optimizer shard，共 37GB）\n\n**训练状态:**\n- tmux session: `8b_cell_c_episode_v9d`\n- W&B run: `vvx8zr0l`\n- 4× RTX PRO 6000 100% 利用率，~25-28GB/GPU\n- 正在做 val_before_train rollout（32 个 ALFWorld 环境）\n\n**待确认:** 第一个 step 日志出现后才能确认是从 step 5 resume 还是从头开始。需要等 5-15 分钟 rollout 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v9d-disk-cleanup-and-resume.md"
+}

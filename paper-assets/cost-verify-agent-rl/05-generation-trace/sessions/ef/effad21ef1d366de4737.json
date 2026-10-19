@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "effad21ef1d366de4737",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose scienceworld grpo cell a exit",
+  "task_key": "worker_diagnose_scienceworld-grpo-cell-a-exit_20260520T135058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scienceworld-grpo-cell-a-exit_20260520T135058_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "0205cdb9854fd801d45b449c8a7de70973bd1b9126acc52480d38cc0e0fafccf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**Cell A 正常完成训练**，非异常退出。\n\n| 项目 | 详情 |\n|------|------|\n| 状态 | **success** — 15/15 steps 全部完成 |\n| Checkpoints | `global_step_5`, `global_step_10`, `global_step_15` 均保存于 `/root/autodl-tmp/checkpoints/scienceworld-cell-a/` |\n| 关键 val 指标 | `val-core/unknown/reward/mean@303 = 0.1`, `val-env/ScienceWorldSG/non-zero/final_score = 1.0` |\n| Traceback | 仅 W&B teardown atexit race condition，无害 |\n| 时间线 | 20:44 启动 → 21:05 step5 ckpt → 21:27 step10 ckpt → 21:46 step15 ckpt + val + 退出 |\n\n**GPU 当前状态**：Cell C 仍在运行（PIDs 774557/774558，已运行 ~1h07m，各占 ~45GB 显存）。Cell A 退出后 GPU 0,1 已被 Cell C 独占使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scienceworld-grpo-cell-a-exit.md"
+}

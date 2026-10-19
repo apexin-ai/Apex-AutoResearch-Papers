@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b184831a131796635e1c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval exp021 ragen val",
+  "task_key": "worker_eval_exp021-ragen-val_20260515T030347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp021-ragen-val_20260515T030347_result.json",
+    "occurrence": 1,
+    "bytes": 305,
+    "sha256": "623088010f5d7259771df7f58b345804f573b218d36eeb761af19734a640840a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册为 `art_20260515_dc1679`。\n\n**总结**：exp021 SFT checkpoint 的 RAGEN val_before_train 验证 **FAIL**。success=6.25%（需 ≥10%），action_is_valid=68.75%（需 ≥85%）。不满足启动 exp022 GRPO 的条件。主要问题是约 31% 的动作格式不合规。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp021-ragen-val.md"
+}

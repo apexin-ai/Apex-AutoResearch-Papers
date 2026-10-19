@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f47c84e2539e5105391",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 seed42 diagnosis",
+  "task_key": "worker_ops_bjb1_seed42_diagnosis_20260522T122051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_seed42_diagnosis_20260522T122051_result.json",
+    "occurrence": 1,
+    "bytes": 1385,
+    "sha256": "cd0bf14aecbc6e2c216a5058c74a7d00f7655e6881ac7e9535362d2c0f658324"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：exp029-seed42\n\n### 进程状态：**已正常完成（非崩溃）**\n\n训练完成了全部 5/5 步后正常退出。Cron 误报——进程退出是因为训练结束，不是崩溃。\n\n### Checkpoint\n\n- **路径**: `/root/autodl-tmp/checkpoints/exp029-seed42/global_step_5/actor/`\n- **`latest_checkpointed_iteration.txt`**: 5\n- **文件完整**: model (2×4GB) + optim (2×6.8GB) + extra_state + huggingface config，两个 rank 都已保存\n- **保存时间**: 2026-05-22 20:13~20:14\n\n### 最终 Metrics（step 5, 32 episodes）\n\n| 指标 | Step 0 | Step 5 |\n|------|--------|--------|\n| pass@1 | 0.125 (4/32) | 0.09375 (3/32) |\n| reward/mean@32 | 1.25 | 0.9375 |\n| reward/best@32/mean | 9.84 | 9.55 |\n| action_is_valid | 0.783 | 0.603 |\n\npass@1 从 12.5% 降到 9.375%，训练未带来改善，反而略有退化。\n\n### W&B\n\n日志末尾有 `BrokenPipeError` 出现在 wandb 的 `service_client.py` 关闭阶段——这是 W&B 清理时的非致命错误，发生在 checkpoint 保存之后。这解释了 Cron 报 \"no W&B\"：run 可能未被正确 finalize，W&B 端显示为 crashed。\n\n### GPU 状态：**空闲**\n\n两张 RTX PRO 6000（96GB）均 0MiB / 0% 利用率，无进程占用。\n\n### 磁盘\n\n`/root/autodl-tmp/`: 212G/250G (85%), 剩余 39G。\n\n### 总训练时长\n\n8323.7s（约 2h 19m）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-seed42-diagnosis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edf8131bc5526cc6dd62",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code d098 fsdp2 full audit",
+  "task_key": "worker_code_d098_fsdp2_full_audit_20260519T185853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d098_fsdp2_full_audit_20260519T185853_result.json",
+    "occurrence": 1,
+    "bytes": 3489,
+    "sha256": "6ae8ca25d9430249faa375c7810e68c9515d35c2785d2f9b7660af675bda0219"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## FSDP1→FSDP1/2 双兼容 全量审计修复报告\n\n### 修改清单\n\n| 文件 | 行号 | FSDP1 模式 | 修复方式 | 在执行路径上? |\n|------|------|-----------|---------|-------------|\n| `ragen/workers/actor/dp_actor.py` | 224 | `self.actor_module._fsdp_wrapped_module` | `getattr(self.actor_module, \"_fsdp_wrapped_module\", self.actor_module)` | **YES — v9b 崩溃点** |\n| `ragen/workers/actor/dp_actor.py` | 227, 248 | `FSDP.summon_full_params(self.actor_module)` | `... if isinstance(self.actor_module, FSDP) else nullcontext()` | **YES** |\n| `ragen/workers/critic/dp_critic.py` | 157 | `self.critic_module._fsdp_wrapped_module` | `getattr(self.critic_module, \"_fsdp_wrapped_module\", self.critic_module)` | **YES** |\n| `ragen/workers/critic/dp_critic.py` | 160, 175 | `FSDP.summon_full_params(self.critic_module)` | `... if isinstance(self.critic_module, FSDP) else nullcontext()` | **YES** |\n| `ragen/workers/sharding_manager/fsdp_vllm.py` | 70, 120 | `self.module._fsdp_wrapped_module` isinstance | `getattr(self.module, \"_fsdp_wrapped_module\", self.module)` | **YES** |\n| `ragen/workers/sharding_manager/fsdp_vllm.py` | 75 | `self.module._fsdp_wrapped_module.base_model.model` | `getattr(self.module, ...).base_model.model` | **YES** |\n| `ragen/workers/sharding_manager/fsdp_vllm.py` | 73, 121 | `FSDP.summon_full_params(self.module)` | `... if isinstance(self.module, FSDP) else nullcontext()` | **YES** |\n| `verl/verl/utils/fsdp_utils.py` | 597 | `FSDP.summon_full_params(submodule)` | `... if isinstance(submodule, FSDP) else nullcontext()` | YES (LoRA 路径) |\n| `verl/verl/utils/fsdp_utils.py` | 629 | `FSDP.summon_full_params(module)` | `... if isinstance(module, FSDP) else nullcontext()` | YES (LoRA 路径) |\n| `verl/verl/workers/sharding_manager/fsdp_vllm.py` | 148 | `FSDP.summon_full_params(self.module)` | `... if isinstance(self.module, FSDP) else nullcontext()` | YES (verl base `__enter__`) |\n\n### 已确认无需修改的文件\n\n| 文件 | 原因 |\n|------|------|\n| `verl/verl/utils/checkpoint/fsdp_checkpoint_manager.py:261` | 已有 `if fsdp_version(self.model) == 1:` 守卫 |\n| `verl/verl/utils/activation_offload.py:531,557` | 已有 `if isinstance(child, FSDP):` 守卫 |\n| `verl/verl/workers/fsdp_workers.py:795` | 已有 `if fsdp_version(...) == 1:` 守卫 |\n| `verl/verl/workers/fsdp_workers.py:661,675,690` | 已用 `getattr(..., \"_fsdp_wrapped_module\", ...)` |\n| `verl/verl/workers/engine/fsdp/transformer_impl.py:633,646` | 已用 `getattr` 模式 |\n| `verl/verl/workers/sharding_manager/fsdp_sglang.py:143` | 已用 `getattr` 模式 |\n| `verl/verl/utils/fsdp_utils.py:590,619` | 已用 `getattr` 模式 |\n| `verl/verl/utils/fsdp_utils.py:580-583,645,663` | 字符串替换操作，FSDP2 名称中不含 `_fsdp_wrapped_module` 时自动无效 |\n| `verl/tests/*`, `verl/recipe/*`, `patches/*` | 不在 GRPO 执行路径 |\n\n### 兼容策略\n\n两种修复模式：\n\n1. **`_fsdp_wrapped_module` 属性访问** → `getattr(model, \"_fsdp_wrapped_module\", model)`\n   - FSDP1: 返回 unwrapped 原始模型\n   - FSDP2: model 自身（composable API 无 wrapper）\n\n2. **`FSDP.summon_full_params(model)`** → `FSDP.summon_full_params(model) if isinstance(model, FSDP) else nullcontext()`\n   - FSDP1: 正常收集完整参数\n   - FSDP2: 跳过（参数是 DTensor，可直接操作）\n\n所有修改保留 FSDP1 完整兼容，5 个文件全部通过 `ast.parse` 语法验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d098-fsdp2-full-audit.md"
+}

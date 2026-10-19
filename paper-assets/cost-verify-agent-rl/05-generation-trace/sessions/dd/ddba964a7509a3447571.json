@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddba964a7509a3447571",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis adv log v2",
+  "task_key": "worker_analysis_adv-log-v2_20260518T025214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_adv-log-v2_20260518T025214_result.json",
+    "occurrence": 1,
+    "bytes": 1482,
+    "sha256": "7ef9c3a8cc8c7279c5c13f9aa2995bc59fd36aaf59fd0d30a505396f4caa288b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本成功运行。核心结果：\n\n### 数据概览\n- 3000 条记录，128 episodes（65 成功 / 63 失败），16 个 window positions\n\n### 4 维度分析结果\n\n**1. Advantage Sign vs Episode Outcome**\n- Sign-outcome agreement: **52.07%**（仅略高于随机）\n- Point-biserial r = **0.068** (p=1.94e-04)，统计显著但效应极弱\n- P(adv>0 | success) = 37.06%，P(adv>0 | failure) = 30.60%，差距仅 ~6.5pp\n\n**2. Advantage Sign vs Window Position**\n- 早期 steps 正 advantage 比例 ~38%，晚期下降至 0%（但晚期样本极少：pos 13-15 仅 2-6 条）\n- Sign-outcome agreement 随 position 增大从 ~50% 升至 ~67%，但样本量不足以下结论\n- Sign rate std = 0.1297\n\n**3. Magnitude Decay Fitting**\n- Fitted γ = **0.9426**，R² = **0.5627**\n- |Adv| 从 pos 0 的 0.016 衰减到后期 ~0.01，存在中等程度的 magnitude decay\n\n**4. Success vs Failure Distribution**\n- Success mean = +0.000734，Failure mean = −0.005438\n- Distribution overlap = **0.8785**（高重叠 → 两类分布几乎不可分）\n\n### Verdict\n**弱 sign misattribution 或无 misattribution**。advantage sign 与 episode outcome 的关联极弱（r=0.068），正负 advantage 的分布高度重叠。\n\n### 生成文件\n- `/root/cost-verify-agent-rl/artifacts/advantage_analysis.pdf`\n- `/root/cost-verify-agent-rl/artifacts/advantage_analysis.png`\n- `/root/cost-verify-agent-rl/artifacts/advantage_analysis_summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-adv-log-v2.md"
+}

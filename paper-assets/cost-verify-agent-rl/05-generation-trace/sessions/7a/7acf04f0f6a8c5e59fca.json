@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7acf04f0f6a8c5e59fca",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code citation fix and metrics script",
+  "task_key": "worker_code_citation_fix_and_metrics_script_20260515T182240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_citation_fix_and_metrics_script_20260515T182240_result.json",
+    "occurrence": 1,
+    "bytes": 2180,
+    "sha256": "e5618530ff06a1a2f12497ab39ba25ca77ba9fde5567ef63c22386e38208e1d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "增量模式正常——第二次运行只输出 header，无重复数据。\n\n现在处理 ROADMAP 的 AgentPRM 拆分。`save_project_file` 不支持写 ROADMAP.md（需要 `update_roadmap` 工具），所以报告需要修改的内容。\n\n---\n\n## 产出报告\n\n### 1. literature_map.yaml 修改清单\n\n| 条目 | 修改内容 |\n|------|----------|\n| `huang2024self-correction-survey` | authors `\"Huang et al.\"` → `\"Kamoi et al.\"` |\n| `feng2025gigpo` (GiGPO) | arxiv_id `null` → `\"2505.10978\"` |\n| `pei2025webagent-r1` | id → `wei2025webagent-r1`, authors `\"Pei et al.\"` → `\"Wei et al.\"` |\n| `dapo2025` | title → `\"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\"` |\n| `chatterjee2025agentprm` | **拆分为两条**：(1) `choudhury2025agentprm` (arXiv 2502.10325, 91% ALFWorld) (2) `xi2025agentprm` (arXiv 2511.08325, ACM Web'26) |\n| `cfgm2026` | id → `cfgm2025`, venue `\"arXiv\"` → `\"EMNLP 2025\"`, year 2026 → 2025 |\n| `kim2025reflact` (ReflAct) | arxiv_id `null` → `\"2505.15182\"` |\n| **新增** `du2025thinkless` | Thinkless, arXiv 2505.13379, NeurIPS 2025, direct-competitor |\n\n**未补充 arXiv ID**（任务提及但无具体 ID 提供）：CorrectBench, SPEAR。如有 ID 请告知。\n\n### 2. ROADMAP.md 需要修改\n\n竞争格局表中 AgentPRM 行需拆分为：\n\n```\n| Choudhury et al. (2502.10325) | 3B trained PRM | 91% | 不同方向（process reward） |\n| Xi et al. (2511.08325, ACM Web'26) | 3B trained PRM | 88-91% | AgentPRM 扩展版 |\n```\n\n`save_project_file` 不支持直接写 ROADMAP.md，需通过 `update_roadmap` 工具或手动修改。\n\n### 3. 提取脚本\n\n**路径**：`/root/runs/cost-verify-agent-rl/extract_step_metrics.sh`\n\n**验证输出**：\n```csv\nstep,success,kl_loss,entropy,grad_norm,timestamp\n0,0.0625,,,,\n1,0.359375,0.05756001640111208,0.2753342390060425,19.440051077315527,4343.20\n2,0.1015625,0.4134434908628464,0.3602766990661621,19.310626896098256,10233.23\n```\n\n- Step 0 是 val 步（无 actor 指标）\n- 支持增量运行（第二次调用无重复输出）\n- 自动查找最新 worker log，也可手动指定路径"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-citation-fix-and-metrics-script.md"
+}

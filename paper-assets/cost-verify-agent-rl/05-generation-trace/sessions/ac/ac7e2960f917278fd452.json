@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac7e2960f917278fd452",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp019b ssh check launch",
+  "task_key": "worker_ops_exp019b-ssh-check-launch_20260514T205419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp019b-ssh-check-launch_20260514T205419_result.json",
+    "occurrence": 1,
+    "bytes": 354,
+    "sha256": "ee7c9792552c93506c0528b1ba4a6b7a23b7808112e3fd31c50e670771a3961d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，运行正常。\n\n- **PID**: 379346\n- **数据**: train 2546 条, val 133 条\n- **模型**: exp008_sft/final (Mistral-Small-3.1-24B)\n- **配置**: lr=5e-6, epochs=2, batch=4, grad_accum=4, max_seq=4096\n- **总步数**: 320 steps\n- **GPU 0**: 49567 MiB 已占用，正在训练\n- **进度**: 1/320 steps, ~9.7s/step"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp019b-ssh-check-launch.md"
+}

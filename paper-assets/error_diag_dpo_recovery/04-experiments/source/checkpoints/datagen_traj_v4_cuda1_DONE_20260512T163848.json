@@ -1,0 +1,37 @@
+{
+  "exp_id": "datagen_traj_v4_cuda1",
+  "project": "error_diag_dpo_recovery",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T16:28:04.776Z",
+    "updated_at": "2026-05-12T16:38:48.894Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python src/collect_trajectories.py --model_name /root/autodl-tmp/.hf_cache/Qwen3-8B --output_dir data/trajectories_v4_cuda1 --split train --temperature 0.7 --max_steps 40 --gpu 0 --num_tasks 250",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v4_cuda1/train.jsonl",
+      "model_name": "Qwen3-8B",
+      "pid": 253522,
+      "log_path": "/tmp/collect_traj_v4_cuda1.log",
+      "description": "D014 temperature sampling failure trajectory collection on cuda:1, episode boundary fix applied",
+      "data_count": 250,
+      "seed": 0
+    },
+    "checkpoint_path": "/root/autodl-tmp/error_diag_dpo_recovery/data/trajectories_v4_cuda1/train.jsonl",
+    "log_path": "/tmp/collect_traj_v4_cuda1.log",
+    "conclusion": "failed",
+    "completed_at": "2026-05-12T16:32:23.659Z",
+    "metrics": {
+      "planned": 250,
+      "completed": 1,
+      "success": 0,
+      "failure": 1,
+      "file_size_bytes": 19445,
+      "failure_reason": "Process exited silently after 1st trajectory (PID 253522), no error in log, possible OOM or uncaught exception with stderr not redirected"
+    }
+  },
+  "timestamp": "2026-05-12T16:38:48.917694+00:00",
+  "trigger": "update_registry"
+}

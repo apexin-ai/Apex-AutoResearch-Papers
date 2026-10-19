@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "349133136b76565f3320",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code fix qlora lr",
+  "task_key": "worker_code_fix-qlora-lr_20260513T101058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-qlora-lr_20260513T101058_result.json",
+    "occurrence": 1,
+    "bytes": 415,
+    "sha256": "d604c08105866ae28027f3317ba2a1975359a18804390bb421653cc9352ed809"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成，无残留 5e-7：\n\n| 文件 | 修改 |\n|------|------|\n| `src/train_dpo.py:472` | `default=5e-7` → `default=2e-5` |\n| `configs/dpo_etadn.yaml:16` | `learning_rate: 5.0e-7` → `2.0e-5` |\n| `configs/dpo_single_gamma.yaml:14` | `learning_rate: 5.0e-7` → `2.0e-5` |\n| `scripts/run_training.sh` | 8 处 `python src/train_dpo.py` 调用均添加了 `--learning_rate 2e-5` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-qlora-lr.md"
+}

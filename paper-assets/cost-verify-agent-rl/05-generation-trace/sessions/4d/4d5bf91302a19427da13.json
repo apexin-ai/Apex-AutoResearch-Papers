@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d5bf91302a19427da13",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra gae baseline westd",
+  "task_key": "worker_infra_gae-baseline-westd_20260517T134928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gae-baseline-westd_20260517T134928_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "93dca4612a303df942272e137f88a8fb8364d17ca55ed77b9e88c5d914547382"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功提交并运行。\n\n---\n\n## 总结\n\n**环境验证结果：**\n- 服务器：westd-47453，Ubuntu 22.04\n- GPU：4× NVIDIA RTX PRO 6000 Blackwell 96GB（使用 cuda:0, cuda:1）\n- Python 3.12.3, PyTorch 2.10.0+cu128, CUDA 12.8\n- verl 0.6.1, TRL 1.1.0\n\n**同步操作：**\n- 从 bjb1-17606 同步 checkpoint (3.3G) ✅\n- 从 bjb1-17606 同步 ALFWorld 数据 (2.2G) ✅\n- 修复 ragen/verl 包路径指向 ✅\n- 从 bjb1-17606 拷贝 PyTorch 补丁（select_algorithm.py duplicate template fix）✅\n- 配置 wandb API key ✅\n\n**GAE → REINFORCE++ 降级原因：**\n- TRL 1.1.0 已移除 `AutoModelForCausalLMWithValueHead`，GAE 所需的 critic head 无法加载\n- 按 plan_003b 备选方案切换到 `reinforce_plus_plus_baseline`（不需要 critic）\n\n**实验状态：**\n- exp_id: `gae_baseline_seed1`\n- tmux session: `gae_baseline_seed1`\n- PID: 40267\n- wandb run: `dt79qyd9`\n- val_before_train (step 0) 已完成：success=6.25%, action_valid=77.96%\n- 正在进入 step 1 training rollout"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gae-baseline-westd.md"
+}

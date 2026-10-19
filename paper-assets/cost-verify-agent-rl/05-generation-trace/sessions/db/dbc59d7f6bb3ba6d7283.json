@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbc59d7f6bb3ba6d7283",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops kill exp011",
+  "task_key": "worker_ops_kill-exp011_20260514T054059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-exp011_20260514T054059_result.json",
+    "occurrence": 1,
+    "bytes": 211,
+    "sha256": "ec6f9822c0788b82ea064aa6656c2e08d378ab33a1d9d2216400b344a62fe2f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp011 GRPO 训练已终止。\n\n- tmux session `exp011` 已 kill\n- 无残留 train.py 进程\n- ray 已停止\n- GPU 状态：cuda:0 `0/97887 MiB`，cuda:1 `0/97887 MiB`，显存已完全释放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-exp011.md"
+}

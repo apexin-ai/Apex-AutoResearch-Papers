@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78c475b9dcb8821ba7fe",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_14.md",
+  "task_key": "loop_14",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14.md",
+    "occurrence": 1,
+    "bytes": 3381,
+    "sha256": "143cc3bb60534b87b570370502405fadec3559dac23db05a946c3f5ee33ee63d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T12:22:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 cuda:0, cuda:1（仅此两张，不可用其他设备）\n- D052 已判定 MVP 失败（train success 21.88% 但 val success 始终 6.25%），项目方向待 Director 决策，不得自行启动新实验\n- exp028c 之后的下一步需要 Director 明确指示（继续/换方向/关项目）\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/bin/activate && ...`（不要假设 .venv 存在）\n- GPU 编号脚本内始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，双卡 RTX PRO 6000 Blackwell 98GB\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 项目代码：具体路径需 SSH 确认（可能 /root/autodl-tmp/ 或 /root/verl-agent/）\n- SFT checkpoint：exp021 RAGEN-format SFT — 具体路径见 registry spec\n- W&B project：cost-verify-agent-rl，run_id=4yu6qz1m (exp028c)\n- 活跃进程：无（exp028c PID=824675 已死）\n- Cron：reconcile 后 0 个活跃 cron\n\n### 3. 📊 当前状态\n刚收到 exp028c_selfguide_recipe 进程异常退出的 cron 回调（\"Process exited without valid W&B metrics\"）。\n\n已完成：\n- Registry 更新 notes + failure_reason\n- 向 Director 汇报（含资源状态 + 关键观察：train 过拟合 vs val 未提升）\n- 派出 Worker `worker_diagnose_exp028c_crash_20260516T082005` SSH 诊断崩溃原因\n\n等待：\n- Worker 回调（诊断结果：崩溃原因 + step 8-10 日志 + checkpoint 存活状态）\n- Director 决策（D052 后项目方向：继续/换框架/换模型规模/关项目）\n\nRegistry 状态：无 RUNNING 实验。PREPARING 中大量历史残留（exp025c PENDING 等审批，其余为已废弃的 PREPARING）。\n\n### 4. 📋 待办\n- Worker `worker_diagnose_exp028c_crash_20260516T082005` 回调 → 补充 registry failure_reason 具体原因 + 确认 checkpoint 存活 → 更新 report.md → 补充汇报 Director\n- Director 决策到达 → 按指示执行（可能选项：换更大模型 / 增加 train games 解决过拟合 / 关项目 / pivot 到新 idea）\n- 如 Director 决定继续 → 核心问题是 train 16 games 过拟合，需扩大 train env 多样性或换泛化策略\n- 如 checkpoint step_7 存活 → 有 21.88% train success 权重可用于后续分析\n\n### 5. 🎯 战略上下文\n- 核心结论链：SFT baseline 6.25% → exp027 GRPO train 13.28% (fail) → exp028c recipe 对齐后 train 21.88% (step 7) 但 val 始终 6.25%\n- **根本矛盾**：模型在 16 个 train games 上学会了（train success 提升），但无法泛化到新 game（val 不动）。这不是训练稳定性问题，是泛化问题\n- D052 判定 MVP 失败的核心依据：step_10_val=0%（灾难性崩溃），即使 train 曾达 21.88%\n- cost-efficiency story（D039）前提是 baseline performance ≥50%，当前 val 仅 6.25%——performance gap 太大，cost-efficiency 无从谈起\n- Self-Guide 论文 72.7% 是用更多 train games + 更强 SFT 起点达到的，16 games 明显不够\n- 易错判断：不要把 train success 当作 MVP 通过的证据——只有 val success ≥20% 才算 pass\n- ROADMAP 竞争格局显示 ARES (52.7% token↓) 是最近竞争者，但我们连 baseline performance 都没达到\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-copy-2.md"
+}

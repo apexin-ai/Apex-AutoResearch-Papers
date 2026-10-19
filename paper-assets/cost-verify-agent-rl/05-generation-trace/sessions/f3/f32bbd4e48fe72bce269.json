@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f32bbd4e48fe72bce269",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research alternative rl algorithms",
+  "task_key": "worker_research_alternative-rl-algorithms_20260514T131751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_alternative-rl-algorithms_20260514T131751_result.json",
+    "occurrence": 1,
+    "bytes": 2824,
+    "sha256": "eb0fdf675d7c974a2b297dbd9bce6070df4633ab1edc727333356ecbedbcf716"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/literature_rl_alternatives.md`（save_project_file 不允许该文件名，白名单仅 memory.md/paper_framing.md/writing_plan.yaml，已转写到 artifacts 目录）。\n\n## 关键结论\n\n**最推荐：SPEAR（P0）** — Tencent Youtu，ICLR 2026\n- 同设置 ALFWorld + Qwen2.5-1.5B 上对 GRPO **+16.1% success（72.8→88.9）**\n- 三个问题全覆盖：tool-call bonus（解决初期 sparse）+ cosine decay 到 0（解决 gaming）+ SIL replay buffer（解决 collapse）\n- 基于 GRPO 修改，代码开源；超参：N_D=2000-4000, T_warmup=T_decay=200, KL=0, clip-higher 0.28/0.2\n\n**次推荐组合：DAPO 组件 + GiGPO（P1）**\n- DAPO **Dynamic Sampling** 直接解决我们「group reward 全相同→零梯度」问题；**Clip-Higher (0.28/0.2)** 防 entropy collapse\n- GiGPO 用 anchor state grouping 做 step-level credit assignment，ALFWorld +12%，已在 verl-agent 中实现\n\n**已纠正原 task 的两点**：\n- \"GDPO = Group Distributionally-robust\"：搜不到该名工作；存在的 GDPO 是 NVlabs 的 \"Group reward-Decoupled\"（多奖励解耦，作用不同）\n- \"DAPO = Decoupled Alignment PO\"：实际是 \"Decoupled Clip and Dynamic sAmpling PO\"（ByteDance）\n\n**重要风险提示**：DAPO Dynamic Sampling 单用会在 success≈0% 初期丢弃所有 group → 无法启动训练；必须配 SPEAR 式 bonus 或 SFT warm-up。\n\n完整调研含 13 个算法的论文、公式、超参、集成方案、风险评估，以及短期/中期落地建议——见上述 md 文件。\n\nSources:\n- [SPEAR — Learn the Ropes, Then Trust the Wins (arXiv 2509.22601)](https://arxiv.org/abs/2509.22601)\n- [GiGPO — Group-in-Group Policy Optimization (arXiv 2505.10978)](https://arxiv.org/abs/2505.10978)\n- [DAPO — Open-Source LLM RL System at Scale (arXiv 2503.14476)](https://arxiv.org/abs/2503.14476)\n- [EPO — Entropy-regularized PO (arXiv 2509.22576)](https://arxiv.org/abs/2509.22576)\n- [GTPO — Gradient and Entropy Control (arXiv 2508.03772)](https://arxiv.org/abs/2508.03772)\n- [GDPO — Group reward-Decoupled (arXiv 2601.05242)](https://arxiv.org/abs/2601.05242)\n- [VAPO — Value-Augmented PPO (arXiv 2504.05118)](https://arxiv.org/abs/2504.05118)\n- [ARPO — Agentic Reinforced PO (arXiv 2507.19849)](https://arxiv.org/abs/2507.19849)\n- [RAGEN/StarPO-S (arXiv 2504.20073)](https://arxiv.org/abs/2504.20073)\n- [MT-GRPO — Turn-Level Reward (arXiv 2505.11821)](https://arxiv.org/abs/2505.11821)\n- [SPEAR code](https://github.com/TencentYoutuResearch/SPEAR)\n- [GiGPO code (verl-agent)](https://github.com/langfengq/verl-agent)\n- [DAPO project page](https://dapo-sia.github.io/)\n- [EPO code](https://github.com/WujiangXu/EPO)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-alternative-rl-algorithms.md"
+}

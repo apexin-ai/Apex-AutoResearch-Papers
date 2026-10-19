@@ -1,0 +1,413 @@
+{
+  "schema_version": "1.0",
+  "id": "c1be4e8c180b31933379",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "eval seed300 step5 ood v2 bjb1",
+  "task_key": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811.jsonl",
+    "occurrence": 1,
+    "bytes": 13245,
+    "sha256": "66e2d688f320729d30fb2123739bcfece7cecd3c54a53244fedff471e65ad7ec"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T18:39:43.084078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T18:39:43.084397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T18:39:43.084598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "account": "root",
+              "command": "ps aux | grep -E \"seed300.*ood_eval|_alfworld_seed300\" | grep -v grep | awk '{print $2}' | xargs kill 2>/dev/null; echo \"=== ray check ===\"; ps aux | grep ray | grep -v grep | head -5; echo \"=== mkdir wandb ===\"; mkdir -p /root/autodl-tmp/wandb_tmp; echo \"DONE\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T18:39:43.084757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== ray check ===\\\\nroot     433097 58.2  0.6 20120888 6719328 ?    SNl  May22 115:35 ray::TaskRunner\\\\n=== mkdir wandb ===\\\\nDONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T18:39:43.084885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "account": "root",
+              "command": "ls -la /root/autodl-tmp/checkpoints/qwen_exp029_seed300_step5_hf/ | head -5"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T18:39:43.085009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T18:39:43.085132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "account": "root",
+              "command": "cat /root/cost-verify-agent-rl/RAGEN/config/_alfworld_seed300_step5_ood_eval.yaml"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T18:39:43.085295+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# exp029_seed300 OOD eval (134 valid_unseen tasks) at global_step_5\\\\n# Single GPU (cuda:0), 1.7B model, thinking disabled\\\\n\\\\ndefaults:\\\\n  - base\\\\n\\\\nhydra:\\\\n  searchpath:\\\\n    - pkg://verl.trainer.config\\\\n\\\\nmodel_path: /root/autodl-tmp/checkpoints/qwen_exp029_seed300_step5_hf\\\\n\\\\nsystem:\\\\n  CUDA_VISIBLE_DEVICES: \\\\\\\"0\\\\\\\"\\\\n\\\\nmicro_batch_size_per_gpu: 1\\\\nppo_mini_batch_size: 16\\\\n\\\\nseed:\\\\n  train: 20000\\\\n  val: 321\\\\n\\\\ntrainer:\\\\n  project_name: cost-verify-agent-rl\\\\n  experiment_name: seed300-step5-ood-eval\\\\n  total_training_steps: 1\\\\n  n_gpus_per_node: 1\\\\n  val_before_train: True\\\\n  val_only: True\\\\n  test_freq: 999\\\\n  save_freq: 999\\\\n  local_log_dir: \\\\\\\"/root/autodl-tmp/checkpoints/seed300-step5-ood/\\\\\\\"\\\\n  default_local_dir: \\\\\\\"/root/autodl-tmp/checkpoints/seed300-step5-ood/\\\\\\\"\\\\n  logger: ['console', 'wandb']\\\\n  max_actor_ckpt_to_keep: 1\\\\n  resume_mode: \\\\\\\"disable\\\\\\\"\\\\n\\\\nactor_rollout_ref:\\\\n  model:\\\\n    override_config:\\\\n      attn_implementation: sdpa\\\\n    enable_response_mask: false\\\\n  actor:\\\\n    use_ref: False\\\\n    use_torch_compile: False\\\\n    use_kl_loss: False\\\\n    kl_loss_coef: 0.0\\\\n    entropy_coeff: 0.0\\\\n    clip_ratio_low: 0.2\\\\n    clip_ratio_high: 0.28\\\\n    loss_agg_mode: \\\\\\\"token-mean\\\\\\\"\\\\n    optim:\\\\n      lr: 1e-7\\\\n  ref:\\\\n    use_torch_compile: False\\\\n    log_prob_max_token_len_per_gpu: 65536\\\\n  rollout:\\\\n    response_length: 1024\\\\n    gpu_memory_utilization: 0.5\\\\n    enable_chunked_prefill: true\\\\n    max_model_len: 20480\\\\n    temperature: 1.0\\\\n    max_num_batched_tokens: 20480\\\\n    enforce_eager: True\\\\n    val_kwargs:\\\\n      do_sample: True\\\\n      temperature: 0.4\\\\n\\\\nalgorithm:\\\\n  adv_estimator: grpo\\\\n  gamma: 0.95\\\\n  high_level_gamma: 0.95\\\\n  norm_adv_by_std_in_grpo: True\\\\n\\\\nagent_proxy:\\\\n  context_window_mode: \\\\\\\"full\\\\\\\"\\\\n  max_context_window: -1\\\\n  step_independent_history_length: 2\\\\n  max_turn: 50\\\\n  max_act\n…[truncated 558 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T18:39:43.085484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "account": "root",
+              "command": "ls /root/autodl-tmp/checkpoints/qwen_exp029_seed300_step5_hf/"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T18:39:43.085642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"added_tokens.json\\\\nchat_template.jinja\\\\nconfig.json\\\\ngeneration_config.json\\\\nmerges.txt\\\\nmodel.safetensors\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T18:39:43.085787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "account": "root",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0 WANDB_DIR=/root/autodl-tmp/wandb_tmp RAY_ADDRESS=\"\" RAY_TMPDIR=/tmp/ray_seed300_eval_v2 VLLM_WORKER_MULTIPROC_METHOD=spawn nohup python train.py --config-name _alfworld_seed300_step5_ood_eval +ray_kwargs.ray_init.num_cpus=20 > /root/autodl-tmp/logs/seed300_step5_ood_eval_v2.log 2>&1 & echo \"PID=$!\""
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T18:39:43.085920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0 WANDB_DIR=/root/autodl-tmp/wandb_tmp RAY_ADDRESS=\\\\\\\"\\\\\\\" RAY_TMPDIR=/tmp/ray_seed300_eval_v2 VLLM_WORKER_MULTIPROC_METHOD=spawn nohup python train.py --config-name _alfworld_seed300_step5_ood_eval +ray_kwargs.ray_init.num_cpus=20 > /root/autodl-tmp/logs/seed300_step5_ood_eval_v2.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=442738\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T18:39:43.086072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "account": "root",
+              "command": "ps -p 442738 -o pid,cmd"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T18:39:43.086198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "account": "root",
+              "command": "tail -30 /root/autodl-tmp/logs/seed300_step5_ood_eval_v2.log"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T18:39:43.086324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID CMD\\\\n442738 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0 WANDB_DIR=/root/autodl-tmp/wandb_tmp RAY_ADDRESS=\\\\\\\"\\\\\\\" RAY_TMPDIR=/tmp/ray_seed300_eval_v2 VLLM_WORKER_MULTIPROC_METHOD=spawn nohup python train.py --config-name _alfworld_seed300_step5_ood_eval +ray_kwargs.ray_init.num_cpus=20 > /root/autodl-tmp/logs/seed300_step5_ood_eval_v2.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T18:39:43.086490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m                   'sandbox_fusion': {'max_concurrent': 64,\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m                                      'memory_limit_mb': 1024,\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m                                      'url': None},\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m                   'strategy': 'fsdp',\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m                   'ulysses_sequence_parallel_size': 1,\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m                   'use_dynamic_bsz': False},\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m  'seed': {'train': 20000, 'val': 321},\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m  'system': {'CUDA_VISIBLE_DEVICES': '0'},\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m  'trainer': {'balance_batch': True,\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m              'critic_warmup': 0,\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m              'default_hdfs_dir': None,\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m              'default_local_dir': '/root/autodl-tmp/checkpoints/seed300-step5-ood/',\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m              'del_local_ckpt_after_load': False,\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m              'device': 'cuda',\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m              'esi_redundant_time': 0,\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m              'exit_after_gradient_analysis': False,\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m              'experiment_name': 'seed300-step5-ood-eval',\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m              'generations_to_log_to_wandb': {'val': 20},\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m              'gradient_analysis_env_groups': None,\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001b[0m              'gradient_analysis_every': 50,\\\\n\\\\u001b[36m(TaskRunner pid=444677)\\\\u001\n…[truncated 2477 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T18:39:43.086674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "account": "root",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T18:39:43.086813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 7933 MiB, 97887 MiB\\\\n1, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T18:39:43.086970+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**启动成功，汇报：**\n\n- **PID**: 442738（子进程 TaskRunner pid=444677）\n- **GPU**: cuda:0 已分配 7933 MiB，cuda:1 空闲（符合约束）\n- **日志**: `/root/autodl-tmp/logs/seed300_step5_ood_eval_v2.log`\n- **状态**: 模型加载中，config 解析正确（seed.val=321, 134 OOD tasks, experiment_name=seed300-step5-ood-eval）\n- tokenizer regex warning 是 Qwen 已知的无害警告，不影响结果"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/eval-seed300-step5-ood-v2-bjb1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4a0fe082eb72f32abc5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment scienceworld info loss eval",
+  "task_key": "worker_experiment_scienceworld-info-loss-eval_20260520T141325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_scienceworld-info-loss-eval_20260520T141325_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "34acabfad555dc09d5f139a7f1a17413b8d933b95a823f2b2d718fdc64eaf541"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 boil episodes 完成（全部 100 步 FAIL）。第三个 format rate 恢复正常（92%），前两个可能是特别难的变体。\n\n**当前进度**: 3/89 episodes, ~142s/episode。预估：\n- Full context eval: ~3 小时（到 ~01:30 CST）\n- h=2 eval: ~1.5 小时（到 ~03:00 CST）\n\n实验在后台稳定运行，后续可通过以下方式检查进度：\n```\nwc -l /root/autodl-tmp/eval_info_loss/scienceworld_full_t0.jsonl  # 已完成 episodes\ntail -5 /root/autodl-tmp/eval_info_loss/run.log  # 最新结果\n```\n\n**关键参数汇总**：\n| 条件 | 温度 | Context | GPU | Episodes |\n|------|------|---------|-----|----------|\n| scienceworld_info_loss_full | T=0 | full | westd cuda:0,1 | 89 |\n| scienceworld_info_loss_h2 | T=0 | h=2 | westd cuda:0,1 | 89 |\n\n**已知参考数据**（不同温度）：\n- Full context, T=0.4 → 30.1% (1796 eps, bjb1 eval_v2)\n- Cell A val_before_train (h=2, T=0.4) → reward_mean ~0.1/10 ≈ 1% (32 eps)\n\nRegistry 已创建 `scienceworld_info_loss_full`（RUNNING）和 `scienceworld_info_loss_h2`（QUEUED）。cuda:2,3 Cell C 未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-scienceworld-info-loss-eval.md"
+}

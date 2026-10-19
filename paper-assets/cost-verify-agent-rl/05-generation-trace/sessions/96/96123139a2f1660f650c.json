@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96123139a2f1660f650c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 kill verify eval",
+  "task_key": "worker_ops_bjb1_kill_verify_eval_20260522T090824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_kill_verify_eval_20260522T090824_result.json",
+    "occurrence": 1,
+    "bytes": 405,
+    "sha256": "bf28fbfb61e91fa3fd8c6352b10ab56b7755fd48ffeb0f52ff07520097ca7daf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n1. **eval 进程已 kill** — PID 400921 (eval_checkpoint.py) 及其子进程 PID 401198 (VLLM::EngineCore) 均已终止\n2. **GPU 显存已释放** — GPU 1 从 83486 MiB 降至 48761 MiB，释放约 34.7 GB。当前 GPU 1 仅剩 v4b 的 ray::WorkerDict (PID 389843, 48734 MiB)\n3. **ScienceWorld v4b 正常运行** — PID 386364 仍存活，运行时间 ~5 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-kill-verify-eval.md"
+}

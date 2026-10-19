@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ede57064aeb6b079df77",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose seed6 exit",
+  "task_key": "worker_diagnose_seed6_exit_20260521T073212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_seed6_exit_20260521T073212_result.json",
+    "occurrence": 1,
+    "bytes": 2006,
+    "sha256": "49f186744d5d37df1f318afe680a01c0f62025253e32cf006599ef44a43413e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：**FAILED**（训练完成但最终 checkpoint 损坏）\n\n### 详情\n\n**训练进度**：15/15 steps 全部完成（step 0-14 的训练循环正常执行完毕）。\n\n**失败点**：在保存 step 15 的 checkpoint 时崩溃：\n```\nRuntimeError: basic_ios::clear: iostream error\nRuntimeError: [enforce fail at inline_container.cc:668] . unexpected pos 2855431360 vs 2855431252\n```\n- 根因：`No space left on device` — 磁盘在写 optimizer state 时满了\n- Ray log 也报了 `No space left on device`\n\n### Checkpoint 状态\n\n| Checkpoint | 状态 | 说明 |\n|---|---|---|\n| `global_step_5` | 完整 | model + optim + extra_state + huggingface |\n| `global_step_10` | 完整 | 同上, `latest_checkpointed_iteration.txt`=10 |\n| `global_step_15` | **损坏** | 仅有 model 文件(~4GB×2), optim 文件截断(2.8GB/3.4GB vs 正常 6.8GB×2), 缺 extra_state 和 huggingface |\n\n### Validation 指标\n\n| Step | val-env/AlfworldSG/success | val/pass@1 |\n|---|---|---|\n| 0 (initial) | **9.375%** (3/32) | 0.09375 |\n| 10 | **40.625%** (13/32) | 0.40625 |\n| 15 | 未执行（崩溃在 eval 之前） | — |\n\n训练 success rate 在 step 14 达到 **78.9%**。\n\n### 可用资产\n- **最新可靠 checkpoint**: `/root/autodl-tmp/checkpoints/exp029-seed6/global_step_10/actor/`\n- **step 15 model 权重可能可用**（model_world_size_2_rank_*.pt 大小正常），但 optimizer 损坏，无法 resume 训练\n- 当前磁盘已恢复到 184G/250G (74% used)，有 67GB 空余\n- GPU 已全部释放\n\n### W&B\n\n日志中未找到与 seed6（cuda:2,3）对应的 W&B run。W&B run `x05q7im0` 的 config 显示 `CUDA_VISIBLE_DEVICES='0,1'` 和 seed=456，属于另一个实验。\n\n### 建议处理\n\n如需 step 15 的完整 checkpoint：需要清理磁盘空间后从 step 10 resume 训练 5 步。或者如果只需 eval，step 15 的 model 权重文件大小与 step 10 一致，可能仍可用于推理（但需要验证文件完整性）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-seed6-exit.md"
+}

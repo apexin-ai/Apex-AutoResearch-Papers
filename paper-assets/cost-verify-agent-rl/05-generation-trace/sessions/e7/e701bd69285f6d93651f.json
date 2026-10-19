@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e701bd69285f6d93651f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra kill exp022",
+  "task_key": "worker_infra_kill-exp022_20260515T035043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-exp022_20260515T035043_result.json",
+    "occurrence": 1,
+    "bytes": 269,
+    "sha256": "f489ef87ea83b4a4d0de17a83744591d5fa7ab998df3c4d141772efe6f68aeae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 完全释放：\n\n| GPU | 利用率 | 显存占用 | 总显存 |\n|-----|--------|----------|--------|\n| 0 | 0% | 0 MiB | 97887 MiB |\n| 1 | 0% | 0 MiB | 97887 MiB |\n\nRay 残留进程已清理，tmux session 已销毁，两张 GPU 显存归零。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-exp022.md"
+}

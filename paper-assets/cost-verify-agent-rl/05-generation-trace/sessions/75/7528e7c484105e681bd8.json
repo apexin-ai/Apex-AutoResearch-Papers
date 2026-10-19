@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7528e7c484105e681bd8",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix exp029 restart",
+  "task_key": "worker_fix_exp029_restart_20260516T122358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp029_restart_20260516T122358_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "a1f1402f1d9f7e9c4e08b5afe70b6671e051dd2b2b04ec9991290fdf810d2a23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。验证结果：\n\n| 参数 | 值 | 状态 |\n|------|-----|------|\n| gpu_memory_utilization | 0.35 | ✓ (从0.5改为0.35) |\n| enable_chunked_prefill | true | ✓ (新增第67行) |\n| max_model_len | 20480 | ✓ |\n| context_window_mode | \"full\" | ✓ |\n| ppo_mini_batch_size | 32 | ✓ |\n\n残留清理：旧进程 855369 已不存在，tmux session 和 dryrun checkpoints 已清除。配置就绪，等待主系统 submit_training_job 启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp029-restart.md"
+}

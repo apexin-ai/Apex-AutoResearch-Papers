@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db03f4ffd1a730cf66f5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops verify rsync then submit clean eval",
+  "task_key": "worker_ops_verify-rsync-then-submit-clean-eval_20260519T105406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-rsync-then-submit-clean-eval_20260519T105406_result.json",
+    "occurrence": 1,
+    "bytes": 130,
+    "sha256": "80e8732fefc30710ed826860cd41b21be2b57da008b155e9e5e9f3729a69ba92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "监控已启动。当前进度：11/18 文件，shard 6 传输中（~30%）。2.5 分钟后自动检查下一轮。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-rsync-then-submit-clean-eval.md"
+}

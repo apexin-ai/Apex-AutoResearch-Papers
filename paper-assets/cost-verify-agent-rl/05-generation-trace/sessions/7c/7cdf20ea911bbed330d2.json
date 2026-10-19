@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cdf20ea911bbed330d2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd checkpoint inventory for ood",
+  "task_key": "worker_ops_westd_checkpoint_inventory_for_ood_20260522T015538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_checkpoint_inventory_for_ood_20260522T015538_result.json",
+    "occurrence": 1,
+    "bytes": 2169,
+    "sha256": "53ef81637bd55a19dec5e520039409a53b8e9fb8a48a7ea9e2ad2b24b87801d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All HF checkpoints verified with complete model files. Here's the full report:\n\n## Checkpoint Inventory\n\n| Checkpoint | Location | Size | HF Ready? | OOD eval done? |\n|---|---|---|---|---|\n| **Seed 4** step 15 | westd + bjb1 | 3.8G HF | Yes | **Yes** (30.60%) |\n| **Seed 5** step 10 | westd | 25G raw + 3.8G HF | Yes | **No** |\n| **Seed 6** step 15 | westd | 25G raw + 3.8G HF | Yes | **No** |\n| **Seed 7 high-KL** step 5 | westd + bjb1 | 3.8G HF | Yes | **Yes** (9.70%) |\n| **Seed 7 high-KL** step 7 | westd + bjb1 | 3.8G HF | Yes | **Yes** |\n| **Seed 8** step 5 | westd | 3.8G HF | Yes | **Yes** (11.94%) |\n| **Seed 1** | — | — | — | **Yes** (23.88%) |\n| **Intervention C** step 5 | — | — | — | **Yes** (10.45%) |\n| **Intervention C** step 7 | — | — | — | **Yes** (14.93%) |\n| **Intervention C hard-cap** step 5 | westd | 3.8G HF | Yes | **No** |\n| **Intervention C hard-cap** step 7 | westd | 3.8G HF (via raw) | Needs convert | **No** |\n| **C'** step 5 | westd + bjb1 | 3.8G HF | Yes | **Yes** (0.0%) |\n| **Seed 2** step 15 | — | — | — | **Gone** — no checkpoint on either server |\n| **Seed 3** final | westd (empty dir) | 0 | — | **Gone** — empty directory |\n| **Seed 7 original** pre-collapse step 5 | — | — | — | **Gone** — only high-KL variant exists |\n\n## Missing (confirmed unrecoverable)\n- **Seed 2 step 15**: not found on either server\n- **Seed 3 final**: empty directory on westd, absent from bjb1\n- **Seed 7 original pre-collapse**: only the high-KL variant checkpoints remain (already OOD eval'd)\n\n## Actionable: OOD eval candidates on westd cuda:0,1\n\nThree checkpoints with HF models ready, no OOD eval yet:\n\n| Priority | Checkpoint | Path on westd |\n|---|---|---|\n| 1 | **Seed 5 step 10** | `exp029-seed5/global_step_10_hf` |\n| 2 | **Seed 6 step 15** | `exp029-seed6/global_step_15_hf` |\n| 3 | **Intervention C hard-cap step 5** | `intervention_c_hard_cap_step5_hf` |\n\n(Intervention C hard-cap step 7 has raw checkpoint but no `_hf` — would need conversion first.)\n\nAll three priority checkpoints are on westd and ready to run OOD eval on cuda:0,1 right now."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-checkpoint-inventory-for-ood.md"
+}

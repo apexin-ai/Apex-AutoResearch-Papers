@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8aa7fa0d080159c322e7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 disk cleanup",
+  "task_key": "worker_ops_bjb1_disk_cleanup_20260522T144205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_disk_cleanup_20260522T144205_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "2542eb1df4998344ae75024736f38b74a93bb73195c4cbde23450e0e415ae24a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理结果\n\n| 指标 | 值 |\n|------|-----|\n| 清理前 | 250GB / 250GB (100%, 0 可用) |\n| 清理后 | 208GB / 250GB (83%, **43GB 可用**) |\n| 释放量 | **~42GB** |\n\n### 已删除\n| 目标 | 大小 |\n|------|------|\n| `scienceworld-cell-c-v5/` | 35GB |\n| `qwen3_scienceworld_sft/` | 7.6GB |\n| `scienceworld_sft/` | 7.6GB |（发现额外的 scienceworld SFT 目录）|\n| `scienceworld-cell-c-v4/` | 0GB |\n| `__pycache__` 目录 | 微量 |\n\n### 跳过（不存在）\n- 8b/v9d checkpoints — 无匹配目录\n- `.cache` 目录 — 不存在\n- 日志 >100MB — 无（最大 2.5MB）\n\n### 未达 50GB 目标\n\n差约 7GB。下一步可选候选：\n- `.hf_cache/models--dunzhang--stella_en_1.5B_v5/` — **17GB**（embedding 模型，删除后可达 60GB 可用）\n\n需要 Director 确认是否删除该 HF 缓存模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-disk-cleanup.md"
+}

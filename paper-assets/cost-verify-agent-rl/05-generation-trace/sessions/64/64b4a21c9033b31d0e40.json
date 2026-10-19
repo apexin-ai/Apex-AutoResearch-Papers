@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64b4a21c9033b31d0e40",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh seed7 step7 eval config westd",
+  "task_key": "worker_ssh_seed7_step7_eval_config_westd_20260522T230743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed7_step7_eval_config_westd_20260522T230743_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "54e4ee159437c6c7f48b7089ec4963d402c2759f571e430d1114ee8849e8f9a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Config 文件**: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_seed7_high_kl_step7_ood_eval_westd.yaml`\n\n**关键参数确认**:\n- model_path: `qwen_exp029_seed7_high_kl_step7_hf` ✓\n- experiment_name: `seed7-high-kl-step7-ood-eval` ✓\n- D134 协议: enable_think=true, enable_response_mask=false, context_window_mode=full, temperature=0.4 ✓\n- 134 OOD tasks, seed.val=321, val_only=True ✓\n- CUDA_VISIBLE_DEVICES: \"0\"\n\n**Checkpoint 验证**: `/root/autodl-tmp/checkpoints/qwen_exp029_seed7_high_kl_step7_hf/` 存在，含 model.safetensors（3.8GB）✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed7-step7-eval-config-westd.md"
+}

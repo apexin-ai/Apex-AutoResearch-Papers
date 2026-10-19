@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65fa448679594f535c79",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose factorial h2 episodeadv seed1",
+  "task_key": "worker_diagnose_factorial_h2_episodeadv_seed1_20260517T192458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_factorial_h2_episodeadv_seed1_20260517T192458_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "fb3ad405871ebe1b0fa36d9e45b3a922b73811ce67e6ba4964ec055b33624059"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已保存到 `artifacts/diagnose_factorial_h2_episodeadv.md`。\n\n**根因**: westd-47453 上 `model_path` 是断裂符号链接。`qwen3_exp021_ragen_sft_v4` -> `exp021_ragen_sft_v4/final`，但目标目录不存在（模型 ~3.4GB 仅在 bjb1-17606 上）。`from_pretrained()` 因 `os.path.isdir()` 返回 `False` 回退到 HuggingFace Hub 解析，触发 `HFValidationError`。\n\n**修复**: 需要从 bjb1-17606 传输模型到 westd-47453，或直接用 scp 同步 `exp021_ragen_sft_v4/final` 目录。这属于 C002 pre-flight checklist 第4项应拦截的问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-factorial-h2-episodeadv-seed1.md"
+}

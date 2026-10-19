@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9ca17b2f544a2f3b5c2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh check bjb1 available checkpoints",
+  "task_key": "worker_ssh_check_bjb1_available_checkpoints_20260522T195631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_bjb1_available_checkpoints_20260522T195631_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "2569de6b510be8c86ef203d81318669572817ad6fabfa48b6c5f5e713efb9e7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 可用 HF Checkpoint（全部含 `model.safetensors` + 完整 tokenizer/config）\n\n| Checkpoint | 大小 | 来源 | Symlink |\n|---|---|---|---|\n| `c_prime_step5_hf` | 3.8G | C' baseline step5 | `qwen_c_prime_step5_hf` |\n| `exp029_seed42_step5_hf` | 3.8G | exp029 seed42 step5 | — |\n| `exp029_seed300_step5_hf` | 3.8G | exp029 seed300 step5 | `qwen_exp029_seed300_step5_hf` |\n| `exp029_seed7_high_kl_step5_hf` | 3.8G | exp029 seed7 high-KL step5 | `qwen_exp029_seed7_high_kl_step5_hf` |\n| `exp029_seed7_high_kl_step7_hf` | 3.8G | exp029 seed7 high-KL step7 | — |\n| `exp029-seed4/global_step_15_hf` | (含在25G目录) | exp029 seed4 step15 | `qwen_exp029_seed4_step15_hf` |\n| `exp021_ragen_sft_v4/final` | (含在23G目录) | SFT v4 baseline | `qwen3_exp021_ragen_sft_v4` |\n\n共 **7 个完整 HF checkpoint** 可直接用于 OOD eval。\n\n注：`exp029-seed4-ood` 和 `seed7-step5-mask-check` 是空目录。Symlink `qwen3_sft_final` 指向已删除的 `exp008_sft/final`（断链），`qwen3-1.7b-exp019b-sft-v3` 和 `qwen3_exp019b_sft` 指向已删除的 `exp019b_expert_sft_v3/final`（断链）。\n\n### 磁盘\n`/root/autodl-tmp`: 250G 总量，130G 已用，**121G 可用（52%）**——空间充足。\n\n### GPU\n2× NVIDIA RTX PRO 6000 (96GB)，**全部空闲**，0% 利用率，0MiB 显存占用。可立即启动 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-bjb1-available-checkpoints.md"
+}

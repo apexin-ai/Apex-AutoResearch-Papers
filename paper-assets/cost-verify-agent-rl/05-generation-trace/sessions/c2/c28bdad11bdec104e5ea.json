@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c28bdad11bdec104e5ea",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp026 progress check",
+  "task_key": "worker_monitor_exp026_progress_check_20260515T135705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp026_progress_check_20260515T135705_result.json",
+    "occurrence": 1,
+    "bytes": 2145,
+    "sha256": "8dd66c4b63fd5e28cd5f0a0af3339873fba96af5d39f087515943a4de5f8014e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp026 训练进度汇总\n\n**进程状态**: PID 781795 运行中，已运行 3h18m，当前正在执行 Step 5。\n\n### 每步关键指标\n\n| Step | Type | Success | Pass@16 | Entropy | KL Loss | Grad Norm | Action Valid | 耗时 |\n|------|------|---------|---------|---------|---------|-----------|-------------|------|\n| 0 | val | 6.25% | — | — | — | — | 63.1% | — |\n| 1 | train | 21.88% | 1.0 | 0.267 | 0.180 | 14.43 | 68.6% | 38m |\n| 2 | train | **32.81%** | 1.0 | 0.317 | 0.097 | 15.62 | 60.3% | 43m |\n| 3 | train | 17.19% | 0.75 | 0.387 | 0.262 | 15.65 | 64.1% | 50m |\n| 4 | train | **0.00%** | **0.0** | 0.387 | 0.054 | 13.81 | 71.7% | 55m |\n\n### 异常信号：Step 4 完全崩溃\n\n**严重问题**：train success 从 step 2 的 32.81% 峰值连续下跌，step 4 归零（success=0%, pass@16=0%）。\n\n特征分析：\n- **entropy 没有崩溃**（维持 0.387），说明不是典型的 policy collapse（策略仍有多样性）\n- **KL loss 反而降低**（0.262→0.054），模型回到了接近 reference policy 的状态\n- **action_is_valid 反而上升**（64.1%→71.7%），格式正确但内容无效\n- 解读：模型可能被 step 3 的负梯度过度惩罚，退回到一个\"格式正确但不解决问题\"的保守策略\n\n### Step 5 Val 结果\n\n**尚无**。Step 5 正在进行中（已进入约 12 分钟），预计还需 ~40 分钟完成。且从日志看，val eval 仅在 step 0 执行过一次（初始 baseline），后续 train step 未触发 val eval。需要确认 eval_interval 配置——如果设为每 5 步 eval 一次，step 5 结束后才会触发第一次训练后 val eval。\n\n### 时间预估\n\n平均每步耗时在增长（38m→55m），以当前 ~50min/step 计算：\n- 剩余 146 步 × 50min = **~121 小时 ≈ 5 天**\n- 但鉴于 step 4 已经归零，继续跑 150 步大概率是无意义的\n\n### 判断\n\nStep 4 train success=0% + pass@16=0% 是明确的训练失败信号。建议等 step 5 完成后确认是否恢复，如果 step 5 仍为 0%，应终止实验并调整超参（降低学习率或增加 entropy bonus）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp026-progress-check.md"
+}

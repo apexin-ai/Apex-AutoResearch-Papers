@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "910e5d12fbaa2a9558c7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "knowledge literature map update",
+  "task_key": "worker_knowledge_literature_map_update_20260515T123343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_literature_map_update_20260515T123343_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "cee725b89ae9a7378a3a72f9075676050d6fa76dc6bbda163a7f33f7560f866f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已创建 `literature_map.yaml`，包含 25 篇论文，按 4 个方向组织：\n\n| 方向 | 篇数 | 分类 |\n|------|------|------|\n| Self-Verification/Correction | 6 | background |\n| Agent RL Training | 8 | method-component / background |\n| Selective Verification | 7 | 4 direct-competitor + 3 background |\n| ALFWorld Benchmarks | 4 | evaluation / baseline |\n\n4 个 direct-competitor：Derailer-Rerailer、Sherlock、ARES、AutoThink。2 个 predecessor：GiGPO、Self-Guide。3 个 baseline：ReflAct、AgentPRM、ReSpAct。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-literature-map-update.md"
+}

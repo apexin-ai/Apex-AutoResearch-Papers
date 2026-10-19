@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b19ed101fa322c1f3892",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp019b correct data",
+  "task_key": "worker_code_exp019b-correct-data_20260514T165141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp019b-correct-data_20260514T165141_result.json",
+    "occurrence": 1,
+    "bytes": 136,
+    "sha256": "17deadbced78577fbab094456ed24becd4d162be769ab503d22638fc2bab618e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process is at 800/2900 games (~28%). Success rate remains excellent (793 ok, 7 not_won). I'll check back in ~4.5 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp019b-correct-data.md"
+}

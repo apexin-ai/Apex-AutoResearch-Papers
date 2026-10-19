@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd564bcdbf5c581bfd8c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix bib corrections",
+  "task_key": "worker_fix_bib-corrections_20260526T105900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bib-corrections_20260526T105900_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "af868547d2f0ced40da54344282d6ce18518f70861e37d3de7527e2409e91950"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 项 bib 修复全部完成，编译通过（0 error, 0 undefined citation, bibtex 0 warning）。\n\n修改汇总：\n\n| # | Key | 修改内容 |\n|---|-----|---------|\n| 1 | `schulman2015trpo` | 作者顺序：Moritz 移到第 3 位，Abbeel 移到第 5 位 |\n| 2 | `lightman2024lets` | Yuri→Yura, Harrison→Harri |\n| 3 | `kazemnejad2024vineppo` | 标题更新为正式版 \"Refining Credit Assignment in RL Training of LLMs\"；venue NeurIPS 2024→ICML 2025 |\n| 4 | `gradientcoupling2025` | 标题更新为 v4 版 \"Gradient Coupling: The Hidden Barrier to Generalization in Agentic Reinforcement Learning\" |\n| 5 | `istar2025` | @article→@inproceedings，arXiv→ICLR 2026，year 2025→2026 |\n| 6 | `wang2024mathshepherd` | venue 补全为 \"Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)\" |\n\n注意：第 3 项 VinePPO 的实际情况与任务预期不同——正式发表在 ICML 2025（非 NeurIPS 2024），标题也做了修改。已按 arXiv 确认的最新信息更新。\n\n报告已写入 `artifacts/bib_fix_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bib-corrections.md"
+}

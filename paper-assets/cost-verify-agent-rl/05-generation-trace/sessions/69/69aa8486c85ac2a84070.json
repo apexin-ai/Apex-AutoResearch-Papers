@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69aa8486c85ac2a84070",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_21.md",
+  "task_key": "loop_21",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_21.md",
+    "occurrence": 1,
+    "bytes": 3915,
+    "sha256": "200e0e91ef48d7f7f1d55d752904066457dd6aee54b1674c0e89adb10f99aa9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 21\nreason: idle_timeout\nupdated: '2026-05-22T18:44:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 cuda:0,1 + westd-47453 cuda:0,1,2,3。**服务器名必须用全名**（bjb1-17606 不是 bjb1），刚因 cron 里写 `bjb1` 导致 exp029_c_prime_resume_mt50_v2 监控全部失败\n- exp029_c_prime_resume_mt50 和 v2 同 PID 376153 — v2 可能从未真正提交（spec 缺 submitted_via），诊断 Worker 正在跑，**必须等 Worker 回调确认再决定是否重跑**\n- C' trajectory cap 实验的 max_turn 必须 ≥50（D118 教训：max_turn=25 导致 OOD=0%，5 步训练后模型严重过拟合训练分布）\n- Seed 1/2/3 的 step-5 checkpoint 已丢失（M046），不要尝试找这些 checkpoint\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-17606**: root@bjb1-17606, 工作目录 /root/cost-verify-agent-rl, Python /root/miniconda3/bin/python, conda base 环境\n- **westd-47453**: root@westd-47453, 工作目录 /root/cost-verify-agent-rl (也有 /root/autodl-tmp/cost-verify-agent-rl)\n- Checkpoints: /root/autodl-tmp/checkpoints/ (两台服务器)\n- HF cache: /root/autodl-tmp/.hf_cache\n- W&B: entity/project 未在 project config 里配置，fetch_wandb_metrics 直接调会报错，需要让 Worker SSH 上去用 wandb CLI 查或手动指定 entity/project\n- **活跃进程**: exp029_new_seed_2048 在 westd-47453 cuda:2,3 (PID 79754, cron 确认 running)\n- **待回调 Worker**: worker_diagnose_exp029_c_prime_resume_mt50_v2_20260522T024218（诊断 bjb1 上 C' resume 实际状态）\n\n### 3. 📊 当前状态\nSession 刚启动，完成了 session-start 初始化（registry + reconcile_crons + report.md + ROADMAP）。收到 exp029_c_prime_resume_mt50_v2 失败 cron 回调，已派诊断 Worker 到 bjb1-17606 检查实际训练状态。\n\n- **RUNNING**: exp029_new_seed_2048 (westd cuda:2,3) — 新 seed=2048 episode-level GRPO 5步训练，Paper Table 1 对照\n- **PREPARING**: 27 个实验待启动（多数是 OOD eval、cross-seed 补充、8b cell_c 系列）\n- **等待中**: \n  - 诊断 Worker 回调 → 确认 C' resume 是否实际完成\n  - exp029_new_seed_2048 cron 回调 → 完成后立即跑 OOD eval\n  - Director 决策：C' 诊断结果出来后决定论文叙事走向（修复 vs 诊断论文）\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 根据结果：(a) 训练实际完成且有 metrics → 更新 registry 为真实 conclusion，汇报 Director；(b) 训练未运行/真的失败 → 用正确服务器名 bjb1-17606 重新提交 C' resume mt50\n- exp029_new_seed_2048 完成 → 立即在 westd cuda:0 或 bjb1 起 OOD eval（step 5 checkpoint）\n- C' 诊断 + new_seed OOD 都出结果 → 汇报 Director 决定论文叙事最终走向\n- bjb1 cuda:0,1 当前空闲（C' resume 失败后释放）→ 诊断结果出来后立即利用，不能空着\n\n### 5. 🎯 战略上下文\n- **核心结论**: 四种干预(A/B/C/C')全部失败或无效，但 collapsed seed 4 OOD=30.6% 与 stable seeds comparable → response inflation ≠ capability destruction\n- **论文叙事分叉点**: C' max_turn=50 诊断结果决定走向。若 step 6-7 train_success >15% → trajectory cap 值得从头跑完整实验（保留 practical contribution）；若 <10% → 四种干预全 negative，切换为诊断论文（双机制 + 崩溃良性 + 干预为何失败 + mode shift）\n- **易错**: (1) W&B fetch_wandb_metrics 不能直接调，config 里没配 entity/project，必须让 Worker SSH 查或手动指定参数；(2) 服务器名永远用全名 bjb1-17606 / westd-47453；(3) submit_training_job 的 command 必须自带 conda 激活（bjb1 用 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **决策链**: D118(C' max_turn=25 无效) → D117(Intervention C mode shift 失败) → D116/D115/D114(四种干预全失败) → D113(崩溃率 50%) → 当前等 C' mt50 诊断做最终叙事判断\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-21.md"
+}

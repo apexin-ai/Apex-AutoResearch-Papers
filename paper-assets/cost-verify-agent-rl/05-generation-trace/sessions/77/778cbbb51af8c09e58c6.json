@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "778cbbb51af8c09e58c6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis hsweep config check",
+  "task_key": "worker_analysis_hsweep_config_check_20260523T180554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_hsweep_config_check_20260523T180554_result.json",
+    "occurrence": 1,
+    "bytes": 1000,
+    "sha256": "9a8a9c5b42db2703f11859c6e55d4af43db674adac571dc194746999f52e7a69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，结果已写入 `artifacts/hsweep_config_analysis.md`。\n\n**核心发现：**\n\n1. **配置一致性问题**：h=20 的 `optimizer_offload=False` 是异常值（其余全为 True），导致 step 1 的 update_actor 花了 4.2h。多 seed 重跑应统一为 True。\n\n2. **实测训练时间**：h=2 约 10-12h/run，h=20 约 20-25h/run（offload=True 估算），15 步。\n\n3. **GPU 问题**：bjb1 nvidia-smi 只显示 **1 张 GPU**，但所有 h-sweep 配置需要 2 张 (`n_gpus_per_node: 2`)。需确认 cuda:1 状态。\n\n4. **30h 不够跑完 8 组**：4 个 h 值 × 2 seeds 串行需要 ~114-138h。推荐方案：\n   - **最小可行**：只加跑 h=2 seed3 + h=5 seed2（~22-26h），结合已有 h=2 seed1,2\n   - **双机方案**：bjb1 跑 h=2,5，westd-47453 跑 h=10,20，~55h 墙钟可覆盖 4 个 h 值各 2-3 seeds\n\n5. **评测**：训练中 inline eval 用 32-task ID set（满足 C003 的 ≥16 episodes 要求），OOD eval 需单独跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-hsweep-config-check.md"
+}

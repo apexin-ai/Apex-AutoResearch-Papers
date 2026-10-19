@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a3184c454f97d1078c5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops cleanup factorial seed1 westd",
+  "task_key": "worker_ops_cleanup-factorial-seed1-westd_20260518T212955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-factorial-seed1-westd_20260518T212955_result.json",
+    "occurrence": 1,
+    "bytes": 310,
+    "sha256": "5297240e56f6acbf5251452f039d69d784f9e780e07b147958ccfdd7c62ccdb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成：\n\n| 项目 | 结果 |\n|---|---|\n| 清理前大小 | 62G |\n| 清理后磁盘 | 250G 总量，167G 已用，84G 可用（67%） |\n| 目标目录 | 已删除 |\n| 其他目录未受影响 | `factorial-h2-episodeadv-seed2`、`gae_baseline`、`qwen3_exp021_ragen_sft_v4` 均在 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-factorial-seed1-westd.md"
+}

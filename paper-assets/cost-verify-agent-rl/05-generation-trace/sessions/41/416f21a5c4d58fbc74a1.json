@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "416f21a5c4d58fbc74a1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 start seed42 episode grpo",
+  "task_key": "worker_ops_bjb1_start_seed42_episode_grpo_20260522T094735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_start_seed42_episode_grpo_20260522T094735_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "8dee0f56dd1f179fce6fd8e2b3fa378f81accf5b5c9738c42eb3feb1372d197b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 和日志一致 — 新输出被 Ray 内部缓冲了。但所有硬指标确认训练正常运行。\n\n## 产出汇总\n\n| 项目 | 状态 |\n|------|------|\n| **GPU 释放** | GPU 0/1 已从 48GB → 0 → 36.7GB（新实验占用）|\n| **Config 路径** | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed42_episode.yaml` |\n| **关键参数** | seed.train=42, seed.val=123, total_training_steps=5, save_freq=5, val_before_train=true, 32 val env_groups |\n| **tmux session** | `seed42_episode_grpo` |\n| **主进程 PID** | 407592 (ray::TaskRunner), 状态 Running |\n| **GPU 显存** | 0: 36.7GB, 1: 36.7GB |\n| **W&B run** | `exp029-seed42-episode-level` (ID: `kvdbh1sz`) |\n| **日志路径** | `/root/autodl-tmp/logs/seed42_episode_grpo.log` |\n| **当前阶段** | val_before_train rollout 推理中（GPU 利用率 74-75%），输出被 Ray 缓冲，日志将在 validation 完成后批量刷新 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-start-seed42-episode-grpo.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d1242ac63176b7996db",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_6_1778818609.md",
+  "task_key": "loop_6_1778818609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778818609.md",
+    "occurrence": 1,
+    "bytes": 4168,
+    "sha256": "1b1dd5081fda3bac2b0d1a985e7130e73b53354e998bca16ce660a417017b98e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_messages\nupdated: '2026-05-15T00:55:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 cuda:0 + cuda:1，只能用这两张\n- checkpoint 路径断言：RAGEN train.py:137 检查 `\"qwen\" in config.model_path.lower()`，微调 checkpoint 路径不含 \"qwen\" 会 AssertionError。必须创建含 \"qwen\" 的 symlink（如 `/root/autodl-tmp/checkpoints/qwen3_exp019b_sft`）\n- kill_job 只杀 tmux 主进程，Ray worker 子进程可能残留在 GPU 上。kill 后必须验证 `nvidia-smi --query-compute-apps` 并手动 kill 残留 Ray 进程\n- eval_sft_fast.py 的结果与 RAGEN val_before_train 不可直接对比（prompt 格式不同），但 Director 已确认实际差异是样本量问题（4 episodes vs 20），不是格式 bug\n- D021（SFT 数据转 RAGEN 格式重训）已被 Director 撤回，不要执行\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，工作目录 `/root/cost-verify-agent-rl/`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型 checkpoint：`/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final/`（Qwen3-1.7B SFT），symlink `/root/autodl-tmp/checkpoints/qwen3_exp019b_sft`\n- GRPO 训练框架：`/root/cost-verify-agent-rl/RAGEN/train.py`，Hydra config `_alfworld_exp018_sft_grpo`\n- ALFWorld 数据：`ALFWORLD_DATA=/root/autodl-tmp/alfworld`\n- SFT 数据：`/root/autodl-tmp/expert_sft_v3/`（v3, RAGEN 格式转换已撤回）\n- exp008_sft checkpoint（基础 format SFT）：`/root/autodl-tmp/checkpoints/exp008_sft/final/`\n- 活跃进程（待确认）：exp020b GRPO — PID 385982 主进程，Ray workers 389434/389435，tmux=exp020b_grpo_from_sft。**Worker worker_diagnose_exp020b-final-results 正在检查是否已完成**\n- W&B 未配置，cron 监控通过 PID + 日志\n\n### 3. 📊 当前状态\n**exp020b_grpo_from_sft** 是核心实验。最后已知状态：step 2/30，success=18.75%（train rollout），pg_loss=6.4e-05，grad_norm=2.78。预计 ~4h 完成 30 步。Director 刚发指令说 GPU 全空闲，训练大概率已结束。\n\n**等待中的 Worker 回调**: `worker_diagnose_exp020b-final-results_20260515T005413` — 正在 SSH 检查 exp020b 最终结果（日志、checkpoint、metrics）。**这是最高优先级**，回调到达后立即处理。\n\nRegistry 中 PREPARING 的实验：\n- exp021_sft_ragen_format：已撤回（D021 撤回），不推进\n- exp020c_grpo_from_sft / exp020d_grpo_from_sft：已失败/killed，不再使用\n\n### 4. 📋 待办\n- Worker exp020b-final-results 回调 → 读取结果：\n  - 训练成功完成（30 步）且有 checkpoint → 立即启动 eval（20+ episodes），更新 registry 为 DONE/success，汇报 Director\n  - 训练失败 → 贴完整错误日志，汇报 Director 决策\n  - 训练仍在运行 → 不碰它，等 cron 回调\n- eval 通过（success ≥ 20%）→ 准备下一阶段实验（Phase B: selective self-verification）或更大规模 eval\n- eval 未通过 → 按 on-experiment-done negative 流程处理，产 Framing 提案\n\n### 5. 🎯 战略上下文\n- **核心方向**：B-IAVR，训练 interactive agent 选择性自我验证，Qwen3-1.7B + ALFWorld + RAGEN GRPO\n- **进展链**：exp001-016 纯 GRPO 全失败（base success 太低）→ D016 pivot to Expert SFT → exp017 SFT 5%（数据格式差）→ exp019b 两阶段 SFT 20% → exp020b GRPO from SFT（当前）\n- **MVP 目标**：ALFWorld success ≥ 20%（sparse GRPO）。exp019b SFT 已达 20%，GRPO 需维持或提升\n- **易错点**：\n  1. val_before_train 显示 0% success 是因为只有 4 episodes 采样方差大，不是格式 bug（Director 已确认，D021 撤回）\n  2. 不要再启动 SFT 数据格式转换（D021 已撤回）\n  3. exp020 系列有 4 个 ID（020/020b/020c/020d），只有 020b 是有效的，其余都是失败重试\n  4. 新实验提交前必须 `ray stop --force` 清理残留进程\n- **决策链**：D011→D016（pivot SFT）→D018（数据格式修复）→D019（kill 错误的 put 替换）→D020（exp019b eval 通过，启动 GRPO）→D021（撤回，格式不是问题）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778818609.md"
+}

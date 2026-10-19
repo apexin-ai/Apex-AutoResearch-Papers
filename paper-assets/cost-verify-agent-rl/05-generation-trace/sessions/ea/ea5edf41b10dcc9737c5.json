@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea5edf41b10dcc9737c5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 urgent",
+  "task_key": "worker_check_exp029_urgent_20260516T122205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_urgent_20260516T122205_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "2c985087eb1b0104c41cdd9456d7fed5954e7ce4972c78923dac1be3841cc904"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp029 状态：已崩溃\n\n**进程**: PID 855369 已死。\n\n**GPU**: 两块 RTX PRO 6000 (96GB) 均空闲，0% 利用率，0 MiB 占用。\n\n**崩溃原因**: vLLM 初始化时内存不足：\n\n```\nValueError: Free memory on device cuda:0 (39.47/94.97 GiB) on startup is less than \ndesired GPU memory utilization (0.5, 47.49 GiB). Decrease GPU memory utilization or \nreduce GPU memory used by other processes.\n```\n\n启动时 cuda:0 只有 39.47 GiB 可用（95 GiB 总量），而 vLLM 要求 50% = 47.49 GiB。说明启动时有其他进程占了约 55 GiB 显存。\n\n**当前状态**: GPU 现在已完全空闲（可能是那些占用进程已结束），可以重新启动实验。\n\n**修复方向**: \n1. 现在 GPU 已空闲，直接重启即可\n2. 或降低 `gpu_memory_utilization` 参数（如 0.4）作为保险"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-urgent.md"
+}

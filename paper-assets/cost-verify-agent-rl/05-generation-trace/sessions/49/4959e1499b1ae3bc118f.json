@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4959e1499b1ae3bc118f",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12.md",
+    "occurrence": 1,
+    "bytes": 3900,
+    "sha256": "a57af11b15217ce7bfa1d48ed5803d66d1f5923343b9feb9a3ca732a64d0c73f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T23:27:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单只有 bjb1-17606 的 cuda:0 和 cuda:1（2× RTX PRO 6000 Blackwell 98GB），Director 指令也不能越过此限制\n- exp028c_selfguide_recipe 正在跑（PID 824675），**不要 kill 它**——这是 D050 决策后的全面 Self-Guide recipe 对齐实验，是当前唯一活跃实验\n- 禁止 WANDB_MODE=disabled（D033 教训：cron 无法监控导致误标 DONE(failed)）\n- submit_training_job 必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不要假设 .venv 存在\n- B-IAVR 代码已实现但 Phase B 前必须解决两个前置（D031）：<VERIFY> special token 注册 + a_pre 推理开销量化\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606（root@），工作目录 `/root/cost-verify-agent-rl`\n- Python：`/root/miniconda3/bin/python`，conda base 环境（不是 venv）\n- SFT checkpoint：`/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/`（exp021，RAGEN 格式 SFT，success=6.25%）\n- 数据：`/root/autodl-tmp/alfworld/`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：exp028c_selfguide_recipe PID=824675，W&B run=4yu6qz1m\n- Cron：1 个活跃（exp028c），间隔 ~300s 监控 PID 存活\n\n### 3. 📊 当前状态\nexp028c_selfguide_recipe 正在训练（RUNNING）。这是 D050 后的全面 Self-Guide recipe 对齐实验，9 项参数变更 vs exp027：ppo_mini_batch_size 128、total_steps 100、LR 1e-6、KL 0.01、env_groups 16、group_size 8、entropy 0.001、history_length 2、loss_agg token-mean。从 exp021 SFT checkpoint 出发。\n\n**没有活跃 Worker（0/0）。** 没有等待中的 Worker 回调或 Director 决策。\n\nRegistry 摘要：35 个实验，3 success / 5 negative / 18 failed / 1 RUNNING / 多个 PREPARING（绝大部分已废弃或 killed）。\n\n### 4. 📋 待办（条件触发式）\n- exp028c cron 回调到达 → spawn worker 读 W&B/日志分析训练曲线（success trend、KL、entropy、pass@16），按三层阈值判定（D037/D040）\n- exp028c val success ≥ 20% → MVP 通过，`complete_mvp()`，向 Director 汇报，启动 Phase B（B-IAVR selective verification）\n- exp028c val success < 20% 但 train 有上升趋势 → 评估是否继续到 100 步或调参\n- exp028c fail/collapse → 汇报 Director，recipe gap 仍未解决，需决策：(1) 向 Director 申请更多 GPU 跑 verl-agent 原版，或 (2) 重评项目\n- 空闲时（exp028c 等待期）→ 可并行做：文献更新 literature_map.yaml、引用审计修复（AgentPRM/Huang2024/DAPO/CFGM 有错）、B-IAVR Phase B 代码准备\n\n### 5. 🎯 战略上下文\n**核心问题**：52 个实验只解决了\"能跑起来\"的工程问题，核心 B-IAVR 选择性验证机制零实验。62pp baseline gap（Self-Guide 72.7% vs 我们最好 ~13% train / 6.25% val）是最大瓶颈。\n\n**决策链关键节点**：\n- D039: cost-efficiency framing 锁定，baseline 必须 ≥50% 才有论文意义\n- D044: Recipe gap 三大根因——SFT毒药(❌D047否定) + 零梯度(❌D050否定，penalty已在exp027生效) + mini-batch过小(✅唯一未验证)\n- D050: 单变量策略连续失败，转为全面对齐 Self-Guide recipe → 即 exp028c\n\n**易判断错的事**：\n- 不要把 eval_sft_fast 的指标（exp019b 20%）和 RAGEN val 的指标（exp021 6.25%）混淆——两个评估框架结果完全不同，RAGEN val 是 truth\n- RAGEN 框架内 SFT baseline 是 6.25%（不是 20%），GRPO 从未在 val 上超过 SFT baseline\n- exp027 的 invalid_action_penalty=0.1 已经默认生效了（step_rewards.py），不要重复添加\n- Qwen3-1.7B 本身就是 instruct 模型（无独立 -Instruct 变体），零样本 0% success\n- B-IAVR 代码已实现（52 tests pass），但 <VERIFY> token 和 a_pre 开销两个前置还没做（D031）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-copy-2.md"
+}

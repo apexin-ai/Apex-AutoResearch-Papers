@@ -1,0 +1,1368 @@
+{
+  "schema_version": "1.0",
+  "session_id": "af513d3a5de347caf340",
+  "rounds": [
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NoMmQyxwekqgGESXqPhr48",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/dpo_config.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "9e4c895b-4cf0-4be2-a3ff-b061e837b27c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AgaKZFDNeGYioXD3TYzfdU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8765,
+                "cache_read_input_tokens": 52416,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8765,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-12T10:50:28.532Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NoMmQyxwekqgGESXqPhr48",
+              "type": "tool_result",
+              "content": "1\t# Copyright 2020-2026 The HuggingFace Team. All rights reserved.\n2\t#\n3\t# Licensed under the Apache License, Version 2.0 (the \"License\");\n4\t# you may not use this file except in compliance with the License.\n5\t# You may obtain a copy of the License at\n6\t#\n7\t#     http://www.apache.org/licenses/LICENSE-2.0\n8\t#\n9\t# Unless required by applicable law or agreed to in writing, software\n10\t# distributed under the License is distributed on an \"AS IS\" BASIS,\n11\t# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n12\t# See the License for the specific language governing permissions and\n13\t# limitations under the License.\n14\t\n15\timport warnings\n16\tfrom dataclasses import dataclass, field\n17\tfrom typing import Any\n18\t\n19\tfrom .base_config import _BaseConfig\n20\t\n21\t\n22\t@dataclass\n23\tclass DPOConfig(_BaseConfig):\n24\t    # docstyle-ignore\n25\t    r\"\"\"\n26\t    Configuration class for the [`DPOTrainer`].\n27\t\n28\t    This class includes only the parameters that are specific to DPO training. For a full list of training arguments,\n29\t    please refer to the [`~transformers.TrainingArguments`] documentation. Note that default values in this class may\n30\t    differ from those in [`~transformers.TrainingArguments`].\n31\t\n32\t    Using [`~transformers.HfArgumentParser`] we can turn this class into\n33\t    [argparse](https://docs.python.org/3/library/argparse#module-argparse) arguments that can be specified on the\n34\t    command line.\n35\t\n36\t    Parameters:\n37\t        > Parameters that control the model\n38\t\n39\t        model_init_kwargs (`dict[str, Any]`, *optional*):\n40\t            Keyword arguments for [`~transformers.AutoModelForCausalLM.from_pretrained`], used when the `model`\n41\t            argument of the [`DPOTrainer`] is provided as a string.\n42\t        disable_dropout (`bool`, *optional*, defaults to `True`):\n43\t            Whether to disable dropout in the model and reference model.\n44\t\n45\t        > Parameters that control the data preprocessing\n46\t\n47\t        dataset_num_proc (`int`, *optional*):\n48\t            Number of processes to use for processing the dataset.\n49\t        max_length (`int` or `None`, *optional*, defaults to `1024`):\n50\t            Maximum length of the tokenized sequence. Sequences longer than `max_length` are truncated from the left or\n51\t            right depending on the `truncation_mode`. If `None`, no truncation is applied.\n52\t        truncation_mode (`str`, *optional*, defaults to `\"keep_start\"`):\n53\t            Truncation mode to use when the sequence exceeds `max_length`. The only supported value is\n54\t            `\"keep_start\"`. The `\"keep_end\"` value is deprecated and will be removed in v2.0.0.\n55\t        padding_free (`bool`, *optional*, defaults to `False`):\n56\t            Whether to perform forward passes without padding by flattening all sequences in the batch into a single\n57\t            continuous sequence. This reduces memory usage by eliminating padding overhead. Currently, this is only\n58\t            supported with the FlashAttention 2 or 3, which can efficiently handle the flattened batch structure.\n59\t        pad_to_multiple_of (`int`, *optional*):\n60\t            If set, the sequences will be padded to a multiple of this value.\n61\t        precompute_ref_log_probs (`bool`, *optional*, defaults to `False`):\n62\t            Whether to precompute the reference model log probabilities for the entire training dataset before\n63\t            training. This allows to save memory during training, as the reference model does not need to be kept in\n64\t            memory.\n65\t        precompute_ref_batch_size (`int`, *optional*):\n66\t            Batch size to use when precomputing reference model log probabilities. This can be set higher than the\n67\t            training batch size to speed up preprocessing. If `None`, defaults to `per_device_train_batch_size` for\n68\t            training and `per_device_eval_batch_size` for evaluation.\n69\t\n70\t        > Parameters that control the training\n71\t\n72\t        loss_type (`list[str]`, *optional*, defaults to `[\"sigmoid\"]`):\n73\t            Type of loss to use. Possible values are: `'sigmoid'`, `'hinge'`, `'ipo'`, `'exo_pair'`, `'nca_pair'`,\n74\t            `'robust'`, `'bco_pair'`, `'sppo_hard'`, `'aot'`, `'aot_unpaired'`, `'apo_zero'`, `'apo_down'`,\n75\t            `'discopop'`, `'sft'`, `'sigmoid_norm'`. If multiple loss types are provided, they will be combined using\n76\t            the weights specified in `loss_weights`.\n77\t        loss_weights (`list[float]`, *optional*):\n78\t            List of loss weights for multi-loss combinations. Used when combining multiple loss types. Example: `[0.8,\n79\t            0.2, 1.0]` for MPO. If not provided, defaults to equal weights (`1.0`) for all loss types.\n80\t        ld_alpha (`float`, *optional*):\n81\t            α parameter from the LD-DPO paper, which controls the weighting of the verbose token log-probabilities in\n82\t            responses. If `None`, no weighting is applied to the verbose part, and the loss is equivalent to the\n83\t            standard DPO loss. Must be in [0.0, 1.0]: `ld_alpha=1.0` applies no weighting, and `ld_alpha=0.0` masks\n84\t            tokens beyond shared lengths.\n85\t        f_divergence_type (`str`, *optional*, defaults to `\"reverse_kl\"`):\n86\t            f-divergence regularizer between policy and reference (f-DPO paper). Possible values are: `reverse_kl`\n87\t            (default), `forward_kl`, `js_divergence`, `alpha_divergence`.\n88\t        f_alpha_divergence_coef (`float`, *optional*, defaults to `0.5`):\n89\t            α coefficient for the α-divergence u^-α regularizer, used only when `f_divergence_type='alpha_divergence'`.\n90\t        label_smoothing (`float`, *optional*, defaults to `0.0`):\n91\t            Label smoothing parameter used in Robust DPO and EXO. In Robust DPO, it is interpreted as the probability\n92\t            that a preference label is flipped and must lie in [0.0, 0.5); a typical value recommended by the Robust\n93\t            DPO paper is 0.1. In EXO, it corresponds to the ε label smoothing parameter, for which the paper recommends\n94\t            a typical value of 1e-3.\n95\t        beta (`float`, *optional*, defaults to `0.1`):\n96\t            Parameter controlling the deviation from the reference model. Higher β means less deviation from the\n97\t            reference model. For the IPO loss (`loss_type='ipo'`), this value is the regularization parameter denoted\n98\t            by τ in the [paper](https://huggingface.co/papers/2310.12036).\n99\t        use_weighting (`bool`, *optional*, defaults to `False`):\n100\t            Whether to apply WPO-style weighting (https://huggingface.co/papers/2406.11827) to preference pairs using\n101\t            the policy's length-normalized sequence probabilities.\n102\t        discopop_tau (`float`, *optional*, defaults to `0.05`):\n103\t            τ/temperature parameter from the DiscoPOP paper, which controls the shape of the log-ratio modulated loss\n104\t            when using `loss_type='discopop'`. The paper recommends the default value `discopop_tau=0.05`.\n105\t        activation_offloading (`bool`, *optional*, defaults to `False`):\n106\t            Whether to offload the activations to the CPU.\n107\t        sync_ref_model (`bool`, *optional*, defaults to `False`):\n108\t            Whether to synchronize the reference model with the active model every `ref_model_sync_steps` steps, using\n109\t            the `ref_model_mixup_alpha` parameter. This synchronization originates from the\n110\t            [TR-DPO](https://huggingface.co/papers/2404.09656) paper. `sync_ref_model=True` is not yet compatible with\n111\t            PEFT or `precompute_ref_log_probs=True`.\n112\t        ref_model_mixup_alpha (`float`, *optional*, defaults to `0.6`):\n113\t            α parameter from the TR-DPO paper, which controls the mix between the current policy and the previous\n114\t            reference policy during updates. The reference policy is updated according to the equation: `π_ref = α *\n115\t            π_θ + (1 - α) * π_ref_prev`. To use this parameter, you must set `sync_ref_model=True`.\n116\t        ref_model_sync_steps (`int`, *optional*, defaults to `512`):\n117\t            τ parameter from the TR-DPO paper, which determines how frequently the current policy is synchronized with\n118\t            the reference policy. To use this parameter, you must set `sync_ref_model=True`.\n119\t\n120\t        > Deprecated parameters\n121\t\n122\t        pad_token:\n123\t\n124\t            <Deprecated version=\"1.1.0\">\n125\t\n126\t            Parameter `pad_token` is deprecated and will be removed in version v2.0.0. Set `tokenizer.pad_token`\n127\t            directly and pass it as `processing_class` to the trainer instead.\n128\t\n129\t            </Deprecated>\n130\t\n131\t    > [!NOTE]\n132\t    > These parameters have default values different from [`~transformers.TrainingArguments`]:\n133\t    > - `logging_steps`: Defaults to `10` instead of `500`.\n134\t    > - `gradient_checkpointing`: Defaults to `True` instead of `False`.\n135\t    > - `bf16`: Defaults to `True` if `fp16` is not set, instead of `False`.\n136\t    > - `learning_rate`: Defaults to `1e-6` instead of `5e-5`.\n137\t    \"\"\"\n138\t\n139\t    _VALID_DICT_FIELDS = _BaseConfig._VALID_DICT_FIELDS + [\"model_init_kwargs\"]\n140\t\n141\t    # Parameters whose default values are overridden from TrainingArguments\n142\t    learning_rate: float = field(\n143\t        default=1e-6,\n144\t        metadata={\"help\": \"The initial learning rate for AdamW.\"},\n145\t    )\n146\t\n147\t    # Parameters that control the model\n148\t    model_init_kwargs: dict[str, Any] | str | None = field(\n149\t        default=None,\n150\t        metadata={\n151\t            \"help\": \"Keyword arguments for `AutoModelForCausalLM.from_pretrained`, used when the `model` argument of \"\n152\t            \"the `DPOTrainer` is provided as a string.\"\n153\t        },\n154\t    )\n155\t    disable_dropout: bool = field(\n156\t        default=True,\n157\t        metadata={\"help\": \"Whether to disable dropout in the model and reference model.\"},\n158\t    )\n159\t\n160\t    # Parameters that control the data preprocessing\n161\t    dataset_num_proc: int | None = field(\n162\t        default=None,\n163\t        metadata={\"help\": \"Number of processes to use for processing the dataset.\"},\n164\t    )\n165\t    max_length: int | None = field(\n166\t        default=1024,\n167\t        metadata={\n168\t            \"help\": \"Maximum length of the tokenized sequence. Sequences longer than `max_length` are truncated from \"\n169\t            \"the left or right depending on the `truncation_mode`. If `None`, no truncation is applied.\"\n170\t        },\n171\t    )\n172\t    truncation_mode: str = field(\n173\t        default=\"keep_start\",\n174\t        metadata={\n175\t            \"help\": \"Truncation mode to use when the sequence exceeds `max_length`. The only supported value is \"\n176\t            \"`'keep_start'`. The `'keep_end'` value is deprecated and will be removed in v2.0.0.\",\n177\t            \"choices\": [\"keep_end\", \"keep_start\"],\n178\t        },\n179\t    )\n180\t    padding_free: bool = field(\n181\t        default=False,\n182\t        metadata={\n183\t            \"help\": \"Whether to perform forward passes without padding by flattening all sequences in the batch into \"\n184\t            \"a single continuous sequence. This reduces memory usage by eliminating padding overhead. Currently, this \"\n185\t            \"is only supported with the FlashAttention 2 or 3, which can efficiently handle the flattened batch \"\n186\t            \"structure.\"\n187\t        },\n188\t    )\n189\t    pad_to_multiple_of: int | None = field(\n190\t        default=None,\n191\t        metadata={\"help\": \"If set, the sequences will be padded to a multiple of this value.\"},\n192\t    )\n193\t    precompute_ref_log_probs: bool = field(\n194\t        default=False,\n195\t        metadata={\n196\t            \"help\": \"Whether to precompute the reference model log probabilities for the entire training dataset \"\n197\t            \"before training. This allows to save memory during training, as the reference model does not need to be \"\n198\t            \"kept in memory.\"\n199\t        },\n200\t    )\n201\t    precompute_ref_batch_size: int | None = field(\n202\t        default=None,\n203\t        metadata={\n204\t            \"help\": \"Batch size to use when precomputing reference model log probabilities. This can be set higher \"\n205\t            \"than the training batch size to speed up preprocessing. If `None`, defaults to \"\n206\t            \"`per_device_train_batch_size` for training and `per_device_eval_batch_size` for evaluation.\"\n207\t        },\n208\t    )\n209\t\n210\t    # Parameters that control the training\n211\t    loss_type: list[str] = field(\n212\t        default_factory=lambda: [\"sigmoid\"],\n213\t        metadata={\n214\t            \"help\": \"Type of loss to use. Possible values are: `'sigmoid'`, `'hinge'`, `'ipo'`, `'exo_pair'`, \"\n215\t            \"`'nca_pair'`, `'robust'`, `'bco_pair'`, `'sppo_hard'`, `'aot'`, `'aot_unpaired'`, `'apo_zero'`, \"\n216\t            \"`'apo_down'`, `'discopop'`, `'sft'`, `'sigmoid_norm'`. If multiple loss types are provided, they will be \"\n217\t            \"combined using the weights specified in `loss_weights`.\",\n218\t        },\n219\t    )\n220\t    loss_weights: list[float] | None = field(\n221\t        default=None,\n222\t        metadata={\n223\t            \"help\": \"List of loss weights for multi-loss combinations. Used when combining multiple loss types. \"\n224\t            \"Example: `[0.8, 0.2, 1.0]` for MPO. If not provided, defaults to equal weights (`1.0`) for all loss \"\n225\t            \"types.\"\n226\t        },\n227\t    )\n228\t    ld_alpha: float | None = field(\n229\t        default=None,\n230\t        metadata={\n231\t            \"help\": \"α parameter from the LD-DPO paper, which controls the weighting of the verbose token \"\n232\t            \"log-probabilities in responses. If `None`, no weighting is applied to the verbose part, and the loss is \"\n233\t            \"equivalent to the standard DPO loss. Must be in [0.0, 1.0]: `ld_alpha=1.0` applies no weighting, and \"\n234\t            \"`ld_alpha=0.0` masks tokens beyond shared lengths.\",\n235\t        },\n236\t    )\n237\t    f_divergence_type: str = field(\n238\t        default=\"reverse_kl\",\n239\t        metadata={\n240\t            \"help\": \"f-divergence regularizer between policy and reference (f-DPO paper). Possible values are: \"\n241\t            \"`reverse_kl` (default), `forward_kl`, `js_divergence`, `alpha_divergence`.\",\n242\t        },\n243\t    )\n244\t    f_alpha_divergence_coef: float = field(\n245\t        default=0.5,\n246\t        metadata={\n247\t            \"help\": \"α coefficient for the α-divergence u^-α regularizer, used only when \"\n248\t            \"`f_divergence_type='alpha_divergence'`.\"\n249\t        },\n250\t    )\n251\t    label_smoothing: float = field(\n252\t        default=0.0,\n253\t        metadata={\n254\t            \"help\": \"Label smoothing parameter used in Robust DPO and EXO. In Robust DPO, it is interpreted as the \"\n255\t            \"probability that a preference label is flipped and must lie in [0.0, 0.5); a typical value recommended \"\n256\t            \"by the Robust DPO paper is 0.1. In EXO, it corresponds to the ε label smoothing parameter, for which the \"\n257\t            \"paper recommends a typical value of 1e-3.\"\n258\t        },\n259\t    )\n260\t    beta: float = field(\n261\t        default=0.1,\n262\t        metadata={\n263\t            \"help\": \"Parameter controlling the deviation from the reference model. Higher β means less deviation from \"\n264\t            \"the reference model. For the IPO loss (`loss_type='ipo'`), this value is the regularization parameter \"\n265\t            \"denoted by τ in the [paper](https://huggingface.co/papers/2310.12036).\"\n266\t        },\n267\t    )\n268\t    use_weighting: bool = field(\n269\t        default=False,\n270\t        metadata={\n271\t            \"help\": \"Whether to apply WPO-style weighting (https://huggingface.co/papers/2406.11827) to preference \"\n272\t            \"pairs using the policy's length-normalized sequence probabilities.\"\n273\t        },\n274\t    )\n275\t    discopop_tau: float = field(\n276\t        default=0.05,\n277\t        metadata={\n278\t            \"help\": \"τ/temperature parameter from the DiscoPOP paper, which controls the shape of the log-ratio \"\n279\t            \"modulated loss when using `loss_type='discopop'`. The paper recommends the default value \"\n280\t            \"`discopop_tau=0.05`.\"\n281\t        },\n282\t    )\n283\t    activation_offloading: bool = field(\n284\t        default=False,\n285\t        metadata={\"help\": \"Whether to offload the activations to the CPU.\"},\n286\t    )\n287\t    sync_ref_model: bool = field(\n288\t        default=False,\n289\t        metadata={\n290\t            \"help\": \"Whether to synchronize the reference model with the active model every `ref_model_sync_steps` \"\n291\t            \"steps, using the `ref_model_mixup_alpha` parameter. This synchronization originates from the \"\n292\t            \"[TR-DPO](https://huggingface.co/papers/2404.09656) paper. `sync_ref_model=True` is not yet compatible \"\n293\t            \"with PEFT or `precompute_ref_log_probs=True`.\"\n294\t        },\n295\t    )\n296\t    ref_model_mixup_alpha: float = field(\n297\t        default=0.6,\n298\t        metadata={\n299\t            \"help\": \"α parameter from the TR-DPO paper, which controls the mix between the current policy and the \"\n300\t            \"previous reference policy during updates. The reference policy is updated according to the equation: \"\n301\t            \"`π_ref = α * π_θ + (1 - α) * π_ref_prev`. To use this parameter, you must set `sync_ref_model=True`.\"\n302\t        },\n303\t    )\n304\t    ref_model_sync_steps: int = field(\n305\t        default=512,\n306\t        metadata={\n307\t            \"help\": \"τ parameter from the TR-DPO paper, which determines how frequently the current policy is \"\n308\t            \"synchronized with the reference policy. To use this parameter, you must set `sync_ref_model=True`.\"\n309\t        },\n310\t    )\n311\t\n312\t    # Deprecated parameters\n313\t    pad_token: str | None = field(\n314\t        default=None,\n315\t        metadata={\n316\t            \"help\": \"Deprecated. Set `tokenizer.pad_token` directly and pass it as `processing_class` to the trainer instead.\"\n317\t        },\n318\t    )\n319\t\n320\t    def __post_init__(self):\n321\t        if isinstance(self.loss_type, str):\n322\t            self.loss_type = [self.loss_type]\n323\t        if self.loss_weights is not None and len(self.loss_weights) != len(self.loss_type):\n324\t            raise ValueError(\n325\t                \"`loss_weights` must have the same length as `loss_type` when combining multiple losses. \"\n326\t                f\"Got {len(self.loss_weights)} weights for {len(self.loss_type)} loss types.\"\n327\t            )\n328\t        if self.pad_token is not None:\n329\t            warnings.warn(\n330\t                \"`pad_token` is deprecated and will be removed in v2.0.0. \"\n331\t                \"Set `tokenizer.pad_token` directly and pass it as `processing_class` to the trainer instead.\",\n332\t                FutureWarning,\n333\t                stacklevel=3,\n334\t            )\n335\t        if self.truncation_mode == \"keep_end\":\n336\t            warnings.warn(\n337\t                \"The `'keep_end'` truncation mode is deprecated and will be removed in v2.0.0. \"\n338\t                \"Use `truncation_mode='keep_start'` (the default) instead.\",\n339\t                FutureWarning,\n340\t                stacklevel=3,\n341\t            )\n342\t\n343\t        super().__post_init__()\n344\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "e67bfee8-488e-44dc-9563-d7ea3486edb9"
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a466609ede15340b7",
+                "tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+                "description": "Searching for def selective_log_softmax",
+                "usage": {
+                  "total_tokens": 61553,
+                  "tool_uses": 19,
+                  "duration_ms": 227605
+                },
+                "last_tool_name": "Grep",
+                "uuid": "74abe013-77b5-4475-872e-6b426bb6e91c",
+                "session_id": "9c825e4f-073f-424a-a943-848e9782783e"
+              }
+            }
+          ],
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ViJxLUbYDFobYKEcPDUxJz",
+              "name": "Grep",
+              "input": {
+                "pattern": "def selective_log_softmax",
+                "path": "/home/ubuntu/.local/lib/python3.14/site-packages/trl",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "bbbcc51a-7cbe-41c0-b40a-f8978e287f0c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AgaKZFDNeGYioXD3TYzfdU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8765,
+                "cache_read_input_tokens": 52416,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8765,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-12T10:50:28.964Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ViJxLUbYDFobYKEcPDUxJz",
+              "type": "tool_result",
+              "content": "Found 1 file\n/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/utils.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "fff6720d-a220-44e8-8425-6a0bc3589ea7"
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a466609ede15340b7",
+                "tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+                "description": "Searching for def selective_log_softmax",
+                "usage": {
+                  "total_tokens": 67606,
+                  "tool_uses": 20,
+                  "duration_ms": 231903
+                },
+                "last_tool_name": "Grep",
+                "uuid": "064533d5-2770-4889-a22a-f8b97bb545b8",
+                "session_id": "9c825e4f-073f-424a-a943-848e9782783e"
+              }
+            }
+          ],
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XkPMnb71GC5xoT1ausDqn6",
+              "name": "Grep",
+              "input": {
+                "pattern": "def selective_log_softmax",
+                "path": "/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/utils.py",
+                "output_mode": "content",
+                "-A": 25
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "c60b217e-8098-4016-8832-fcc9b70dea2f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XFqwGp6ZaZ45MZH85xgWWf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6008,
+                "cache_read_input_tokens": 61181,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6008,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-12T10:50:33.261Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XkPMnb71GC5xoT1ausDqn6",
+              "type": "tool_result",
+              "content": "436:def selective_log_softmax(logits, index) -> torch.Tensor:\n437-    \"\"\"\n438-    A memory-efficient implementation of the common `log_softmax -> gather` operation.\n439-\n440-    This function is equivalent to the following naive implementation:\n441-    ```python\n442-    # for index with shape (...):\n443-    logps = torch.gather(logits.log_softmax(-1), dim=-1, index=index.unsqueeze(-1)).squeeze(-1)\n444-    # for index with shape (..., K):\n445-    logps = torch.gather(logits.log_softmax(-1), dim=-1, index=index)\n446-    ```\n447-\n448-    Args:\n449-        logits (`torch.Tensor`):\n450-            Logits tensor of shape `(..., num_classes)`.\n451-        index (`torch.Tensor`):\n452-            Index tensor of shape `(..., K)` or `(...)`, specifying the positions to gather from the log-softmax\n453-            output. When the last case is used, `K` log-probabilities are gathered per position (e.g. for top-K)\n454-\n455-    Returns:\n456-        `torch.Tensor`:\n457-            Gathered log probabilities with the same shape as `index`.\n458-    \"\"\"\n459-    squeeze = index.ndim == logits.ndim - 1\n460-    if squeeze:\n461-        index = index.unsqueeze(-1)"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "c6ad9ab2-1186-455a-b425-afac0398fd11"
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a466609ede15340b7",
+                "tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+                "description": "Searching for def entropy_from_logits",
+                "usage": {
+                  "total_tokens": 67651,
+                  "tool_uses": 21,
+                  "duration_ms": 232930
+                },
+                "last_tool_name": "Grep",
+                "uuid": "884a393f-a7d6-49e1-8ff2-3921645eb29c",
+                "session_id": "9c825e4f-073f-424a-a943-848e9782783e"
+              }
+            }
+          ],
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018tYWSYfN4NDoay8PLoaAfF",
+              "name": "Grep",
+              "input": {
+                "pattern": "def entropy_from_logits",
+                "path": "/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/utils.py",
+                "output_mode": "content",
+                "-A": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "b93a46dc-4cb0-4846-820d-24630fb220ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XFqwGp6ZaZ45MZH85xgWWf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6008,
+                "cache_read_input_tokens": 61181,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6008,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-12T10:50:34.275Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018tYWSYfN4NDoay8PLoaAfF",
+              "type": "tool_result",
+              "content": "483:def entropy_from_logits(logits: torch.Tensor, chunk_size: int = 128) -> torch.Tensor:\n484-    \"\"\"\n485-    Compute the Shannon entropy (in nats) for each row of *logits* in a memory-efficient way.\n486-\n487-    Instead of materializing the full softmax for all rows at once, the logits are flattened to shape (N, num_classes),\n488-    where N is the product of all leading dimensions. Computation is then performed in chunks of size `chunk_size`\n489-    along this flattened dimension, reducing peak memory usage. The result is reshaped back to match the input's\n490-    leading dimensions.\n491-\n492-    Args:\n493-        logits (`torch.Tensor`):"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "691f12dc-0780-4bd7-8101-092de9862669"
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a466609ede15340b7",
+                "tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+                "description": "Searching for class _BaseTrainer|class _BaseConfig",
+                "usage": {
+                  "total_tokens": 67696,
+                  "tool_uses": 22,
+                  "duration_ms": 233854
+                },
+                "last_tool_name": "Grep",
+                "uuid": "de593d9f-c048-4492-973f-16672445ef2d",
+                "session_id": "9c825e4f-073f-424a-a943-848e9782783e"
+              }
+            }
+          ],
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DW5tXVH6HwrTcsckhzNaez",
+              "name": "Grep",
+              "input": {
+                "pattern": "class _BaseTrainer|class _BaseConfig",
+                "path": "/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer",
+                "output_mode": "content",
+                "-A": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "ec8c5000-4c0d-4050-8213-5cedf26eba0d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XFqwGp6ZaZ45MZH85xgWWf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6008,
+                "cache_read_input_tokens": 61181,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6008,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-12T10:50:35.195Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DW5tXVH6HwrTcsckhzNaez",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/base_config.py:21:class _BaseConfig(TrainingArguments):\n/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/base_config.py-22-    \"\"\"\n/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/base_config.py-23-    Base configuration class for all TRL trainer configurations.\n/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/base_config.py-24-\n/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/base_config.py-25-    Subclasses [`~transformers.TrainingArguments`] and overrides fields that are common across TRL trainers or that\n/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/base_config.py-26-    contain unescaped \"%\" characters which would cause argparse to raise a `TypeError` when rendering `--help` output.\n--\n/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/base_trainer.py:26:class _BaseTrainer(Trainer):\n/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/base_trainer.py-27-    _tag_names = []\n/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/base_trainer.py-28-    _name = \"Base\"\n/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/base_trainer.py-29-    _paper = {}\n/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/base_trainer.py-30-    _template_file = None\n/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/base_trainer.py-31-"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "a01a0fc1-2f48-4b17-b6e0-49b9302aa1dd"
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a466609ede15340b7",
+                "tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+                "description": "Searching for def use_adapter|class use_adapter",
+                "usage": {
+                  "total_tokens": 69214,
+                  "tool_uses": 23,
+                  "duration_ms": 240931
+                },
+                "last_tool_name": "Grep",
+                "uuid": "882cfa84-0643-4dcc-9e86-236c221f0b93",
+                "session_id": "9c825e4f-073f-424a-a943-848e9782783e"
+              }
+            }
+          ],
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019hANpcwPyH4nebtBsJBXvL",
+              "name": "Grep",
+              "input": {
+                "pattern": "def use_adapter|class use_adapter",
+                "path": "/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/utils.py",
+                "output_mode": "content",
+                "-A": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "b197c977-cf86-485c-b050-394fdffd8095",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012JgMyiWCkJWSQwftwHxHmP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1516,
+                "cache_read_input_tokens": 67189,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1516,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": "2026-05-12T10:50:42.264Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019hANpcwPyH4nebtBsJBXvL",
+              "type": "tool_result",
+              "content": "1057:def use_adapter(model: \"PeftModel\", adapter_name: str | None):\n1058-    \"\"\"\n1059-    Context manager to temporarily set and reset the active adapter in a PEFT model.\n1060-\n1061-    Args:\n1062-        model ([`~peft.PeftModel`]):\n1063-            PEFT model to manage.\n1064-        adapter_name (`str` or `None`):\n1065-            Name of the adapter to set as active. If `None`, the context manager will disable all adapters.\n1066-\n1067-    Example:\n1068-    ```python\n1069-    >>> from trl.trainer.utils import use_adapter\n1070-    >>> from peft import AutoPeftModelForCausalLM\n1071-    >>> import torch\n1072-\n1073-    >>> model = AutoPeftModelForCausalLM.from_pretrained(\"path/to/model\")\n1074-    >>> input_ids = torch.tensor([[1, 2, 3]])\n1075-    >>> with use_adapter(model, \"adapter_name\"):\n1076-    ...     outputs = model(input_ids)\n1077-    ```\n1078-    \"\"\"\n1079-\n1080-    if not is_peft_available():\n1081-        raise ImportError(\n1082-            \"You're trying to use a PEFT adapter but PEFT is not installed. Please install it with `pip install peft`.\"\n1083-        )\n1084-    if adapter_name is None:\n1085-        with model.disable_adapter():\n1086-            yield\n1087-    else:"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "7565398d-7e0c-441e-a8f6-488ae98826c8"
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a466609ede15340b7",
+                "tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Check trl DPOTrainer API",
+                "usage": {
+                  "total_tokens": 69898,
+                  "tool_uses": 23,
+                  "duration_ms": 305424
+                },
+                "uuid": "8ef8a39c-d6a2-41b5-b75e-88d02b5a3f12",
+                "session_id": "9c825e4f-073f-424a-a943-848e9782783e"
+              }
+            }
+          ],
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-12T10:51:46.750Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012HVA3sjoP2WKcpzQXRvifr",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Now I have a complete picture. Here is the thorough report.\n\n---\n\n## TRL v1.4.0 DPOTrainer API -- Complete Analysis\n\n**Source file**: `/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/dpo_trainer.py` (1520 lines)\n\n### Architecture Overview\n\n`DPOTrainer` extends `_BaseTrainer`, which extends `transformers.Trainer`. The old methods `get_batch_loss_metrics`, `concatenated_forward`, `get_batch_logps`, and `dpo_loss` **no longer exist** as separate methods. The entire loss pipeline has been consolidated into a single `_compute_loss` method. This is a major refactor from pre-0.12 versions.\n\n---\n\n### Key Methods and Signatures\n\n#### 1. `__init__`\n```python\ndef __init__(\n    self,\n    model: \"str | PreTrainedModel | PeftModel\",\n    ref_model: PreTrainedModel | None = None,\n    args: DPOConfig | None = None,\n    data_collator: DataCollator | None = None,\n    train_dataset: Dataset | IterableDataset | None = None,\n    eval_dataset: Dataset | IterableDataset | dict[str, Dataset | IterableDataset] | None = None,\n    processing_class: PreTrainedTokenizerBase | ProcessorMixin | None = None,\n    compute_metrics: Callable[[EvalPrediction], dict] | None = None,\n    callbacks: list[TrainerCallback] | None = None,\n    optimizers: tuple[...] = (None, None),\n    peft_config: \"PeftConfig | None\" = None,\n)\n```\n\n#### 2. `compute_loss` (dispatcher)\n```python\ndef compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):\n    if self.use_liger_kernel:\n        return self._compute_loss_liger(model, inputs, return_outputs)\n    else:\n        return self._compute_loss(model, inputs, return_outputs)\n```\n\n#### 3. `_compute_loss` (core loss computation -- THE method to override for DMPO)\n```python\ndef _compute_loss(self, model, inputs, return_outputs):\n```\nThis is the single monolithic method (~315 lines) that does everything:\n- Forward pass through policy model\n- Per-token log prob computation via `selective_log_softmax`\n- Reference model forward pass (or uses precomputed ref logps)\n- Log ratio computation\n- f-divergence score transformation\n- Loss computation for all 15 loss types\n- Metrics logging\n\n#### 4. `compute_ref_log_probs`\n```python\ndef compute_ref_log_probs(self, inputs):\n    \"\"\"Computes reference log probabilities for a single padded batch.\"\"\"\n```\nUsed during precomputation. Handles three ref model scenarios: standalone ref_model, PEFT with \"ref\" adapter, PEFT with disabled adapter.\n\n#### 5. `_precompute_ref_logps`\n```python\ndef _precompute_ref_logps(self, dataset: Dataset, name: str, batch_size: int) -> Dataset:\n```\nPrecomputes and caches ref log probs as `.npz` files. Adds `ref_chosen_logps` and `ref_rejected_logps` columns to the dataset.\n\n#### 6. `_prepare_dataset`\n```python\ndef _prepare_dataset(self, dataset, processing_class, args, dataset_name) -> Dataset | IterableDataset:\n```\nHandles: prompt extraction, EOS token addition, tokenization into `prompt_ids`, `chosen_ids`, `rejected_ids`.\n\n#### 7. `_tokenize`\n```python\ndef _tokenize(self, processing_class, input: str | list, **kwargs) -> dict[str, list]:\n```\n\n#### 8. `prediction_step` (eval override)\n```python\ndef prediction_step(self, model, inputs, prediction_loss_only, ignore_keys=None):\n```\n\n#### 9. `training_step` (activation offloading wrapper)\n```python\ndef training_step(self, *args, **kwargs):\n    with self.maybe_activation_offload_context:\n        return super().training_step(*args, **kwargs)\n```\n\n---\n\n### Loss Computation Pipeline (inside `_compute_loss`)\n\n**Step 1: Policy forward pass**\n```python\noutputs = model(**model_kwargs)  # model_kwargs = inputs minus completion_mask, ref_logps\n```\n\n**Step 2: Per-token log probabilities**\n```python\nshift_logits = outputs.logits[..., :-1, :].contiguous()\nshift_labels = input_ids[..., 1:].contiguous()\nshift_completion_mask = completion_mask[..., 1:].contiguous()\nper_token_logps = selective_log_softmax(shift_logits, shift_labels)\nper_token_logps[shift_completion_mask == 0] = 0.0  # mask non-completion tokens\n```\n\n**Step 3: Aggregation (sum over sequence)**\n```python\nif self.ld_alpha is None:\n    logps = per_token_logps.sum(dim=1)  # simple sum\nelse:\n    # LD-DPO: split into shared-length and tail portions\n    # shared_logps + ld_alpha * tail_logps\nchosen_logps, rejected_logps = logps.chunk(2, dim=0)  # batch is [chosen_batch, rejected_batch]\n```\n\n**Step 4: Reference log probabilities**\nThree paths:\n1. `precompute_ref_logps=True`: loaded from `inputs[\"ref_chosen_logps\"]`, `inputs[\"ref_rejected_logps\"]`\n2. PEFT model, no explicit ref_model: disables adapter (or uses \"ref\" adapter copy) in `torch.no_grad()` context\n3. Explicit `self.ref_model`: forward pass through `self.ref_model(**model_kwargs)` in `torch.no_grad()` context\n\nSame `selective_log_softmax` + `sum(dim=1)` aggregation as policy model.\n\n**Step 5: Log ratios and f-divergence scores**\n```python\nchosen_logratios = chosen_logps - ref_chosen_logps\nrejected_logratios = rejected_logps - ref_rejected_logps\n# Then f-divergence transformation (reverse_kl = identity, forward_kl, js_divergence, alpha_divergence)\ndelta_score = chosen_scores - rejected_scores\n```\n\n**Step 6: Loss computation**\nIterates over `(loss_type, loss_weight)` pairs, accumulates `loss += per_sequence_loss.mean() * loss_weight`.\n\n---\n\n### Data Format and Batching\n\n**Input format**: `{prompt, chosen, rejected}` -- explicit prompt recommended. Supports both plain text and conversational (list of message dicts).\n\n**After tokenization** (by `_prepare_dataset`): each example becomes `{prompt_ids, chosen_ids, rejected_ids}`.\n\n**DataCollatorForPreference** concatenates prompt+chosen and prompt+rejected, then pads. The batch tensor layout is:\n```\ninput_ids:       [chosen_0, chosen_1, ..., chosen_N, rejected_0, rejected_1, ..., rejected_N]\ncompletion_mask: [0..0, 1..1, 0..0, 1..1, ...]  (0 for prompt tokens, 1 for completion tokens)\n```\nSo `chunk(2, dim=0)` splits chosen vs rejected halves.\n\n---\n\n### PEFT / QLoRA Handling\n\n1. If `peft_config` is passed: wraps model via `get_peft_model(model, peft_config)`. Sets `self.ref_model = None`.\n2. If model is already a PeftModel with no explicit ref_model: creates a \"ref\" adapter copy:\n   ```python\n   model.add_adapter(\"ref\", model.peft_config[\"default\"])\n   # copies default adapter weights to ref adapter\n   ```\n3. For QLoRA (quantized models): adapter weights are cast to bf16:\n   ```python\n   if getattr(model, \"is_loaded_in_4bit\", False) or getattr(model, \"is_loaded_in_8bit\", False):\n       for param in model.parameters():\n           if param.requires_grad:\n               param.data = param.data.to(torch.bfloat16)\n   ```\n4. Reference model computation with PEFT:\n   ```python\n   model = self.accelerator.unwrap_model(model)\n   with use_adapter(model, adapter_name=\"ref\" if \"ref\" in model.peft_config else None):\n       ref_outputs = self.model(**model_kwargs)\n   ```\n   `use_adapter(model, None)` calls `model.disable_adapter()` -- reverts to base model weights.\n\n---\n\n### DPOConfig Parameters (complete list)\n\n| Parameter | Type | Default | Description |\n|---|---|---|---|\n| `model_init_kwargs` | `dict\\|str\\|None` | `None` | kwargs for `from_pretrained` |\n| `disable_dropout` | `bool` | `True` | Disable dropout in both models |\n| `dataset_num_proc` | `int\\|None` | `None` | Dataset processing workers |\n| `max_length` | `int\\|None` | `1024` | Max tokenized sequence length |\n| `truncation_mode` | `str` | `\"keep_start\"` | Truncation strategy |\n| `padding_free` | `bool` | `False` | Flatten sequences (currently disabled) |\n| `pad_to_multiple_of` | `int\\|None` | `None` | Pad to multiple |\n| `precompute_ref_log_probs` | `bool` | `False` | Precompute ref logps before training |\n| `precompute_ref_batch_size` | `int\\|None` | `None` | Batch size for precomputation |\n| `loss_type` | `list[str]` | `[\"sigmoid\"]` | Loss function(s) |\n| `loss_weights` | `list[float]\\|None` | `None` | Weights for multi-loss |\n| `ld_alpha` | `float\\|None` | `None` | LD-DPO length weighting |\n| `f_divergence_type` | `str` | `\"reverse_kl\"` | f-divergence type |\n| `f_alpha_divergence_coef` | `float` | `0.5` | Alpha divergence coefficient |\n| `label_smoothing` | `float` | `0.0` | Label smoothing |\n| `beta` | `float` | `0.1` | KL penalty strength |\n| `use_weighting` | `bool` | `False` | WPO-style weighting |\n| `discopop_tau` | `float` | `0.05` | DiscoPOP temperature |\n| `activation_offloading` | `bool` | `False` | Offload activations to CPU |\n| `sync_ref_model` | `bool` | `False` | TR-DPO sync |\n| `ref_model_mixup_alpha` | `float` | `0.6` | TR-DPO mix coefficient |\n| `ref_model_sync_steps` | `int` | `512` | TR-DPO sync frequency |\n| `learning_rate` | `float` | `1e-6` | Overridden default |\n\n`_BaseConfig` extends `TrainingArguments`, also overriding: `logging_steps=10`, `gradient_checkpointing=True`, `bf16=True`.\n\n---\n\n### Key Helper: `selective_log_softmax`\n```python\ndef selective_log_softmax(logits, index) -> torch.Tensor:\n    \"\"\"Memory-efficient log_softmax -> gather. Equivalent to:\n    logps = torch.gather(logits.log_softmax(-1), dim=-1, index=index.unsqueeze(-1)).squeeze(-1)\n    \"\"\"\n```\n\n---\n\n### Extension Strategy for DMPO\n\nThe cleanest extension point is to **subclass DPOTrainer and override `_compute_loss`**. This single method contains:\n- The forward pass logic\n- Per-token logp computation\n- Reference logp computation\n- Log ratio computation\n- All loss type implementations\n- All metrics logging\n\nThere is no need to worry about `get_batch_loss_metrics` or `concatenated_forward` -- those methods were removed in the refactor. The entire pipeline lives in `_compute_loss`.\n\nFor a multi-turn variant, you would likely need to:\n1. Override `_compute_loss` to handle turn-level log probability aggregation differently (instead of a single `sum(dim=1)`)\n2. Potentially override `_prepare_dataset` to handle multi-turn tokenization with per-turn completion masks\n3. Potentially provide a custom `DataCollator` that produces per-turn `completion_mask` tensors instead of a single binary mask\n\nThe `completion_mask` tensor is the key mechanism -- it marks which tokens are \"completion\" tokens (1) vs prompt tokens (0). For multi-turn DPO, you'd need turn-level masks."
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a466609ede15340b7 (use SendMessage with to: 'a466609ede15340b7' to continue this agent)\n<usage>total_tokens: 72654\ntool_uses: 23\nduration_ms: 305426</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "602e0a74-289e-445a-9aaa-0aad988b0565",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "I need to understand the latest trl (≥0.12) DPOTrainer API for extending it to implement DMPO (a multi-turn DPO variant). Search for:\n\n1. WebSearch for \"trl DPOTrainer 0.12 2026 API\" or similar\n2. Look at https://huggingface.co/docs/trl/main/en/dpo_trainer for the latest docs\n\nI need to understand:\n- What methods DPOTrainer exposes that can be overridden (especially loss computation, log probability computation)\n- How DPOTrainer handles the data format (chosen/rejected pairs)\n- How reference model log probabilities are computed\n- How per-token log probabilities are aggregated\n- Whether there's a `get_batch_loss_metrics` or similar method\n- The DPOConfig parameters\n- How QLoRA is handled (ref_model with peft)\n\nReport the key methods and their signatures. Be thorough about the loss computation pipeline.",
+              "agentId": "a466609ede15340b7",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Now I have a complete picture. Here is the thorough report.\n\n---\n\n## TRL v1.4.0 DPOTrainer API -- Complete Analysis\n\n**Source file**: `/home/ubuntu/.local/lib/python3.14/site-packages/trl/trainer/dpo_trainer.py` (1520 lines)\n\n### Architecture Overview\n\n`DPOTrainer` extends `_BaseTrainer`, which extends `transformers.Trainer`. The old methods `get_batch_loss_metrics`, `concatenated_forward`, `get_batch_logps`, and `dpo_loss` **no longer exist** as separate methods. The entire loss pipeline has been consolidated into a single `_compute_loss` method. This is a major refactor from pre-0.12 versions.\n\n---\n\n### Key Methods and Signatures\n\n#### 1. `__init__`\n```python\ndef __init__(\n    self,\n    model: \"str | PreTrainedModel | PeftModel\",\n    ref_model: PreTrainedModel | None = None,\n    args: DPOConfig | None = None,\n    data_collator: DataCollator | None = None,\n    train_dataset: Dataset | IterableDataset | None = None,\n    eval_dataset: Dataset | IterableDataset | dict[str, Dataset | IterableDataset] | None = None,\n    processing_class: PreTrainedTokenizerBase | ProcessorMixin | None = None,\n    compute_metrics: Callable[[EvalPrediction], dict] | None = None,\n    callbacks: list[TrainerCallback] | None = None,\n    optimizers: tuple[...] = (None, None),\n    peft_config: \"PeftConfig | None\" = None,\n)\n```\n\n#### 2. `compute_loss` (dispatcher)\n```python\ndef compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):\n    if self.use_liger_kernel:\n        return self._compute_loss_liger(model, inputs, return_outputs)\n    else:\n        return self._compute_loss(model, inputs, return_outputs)\n```\n\n#### 3. `_compute_loss` (core loss computation -- THE method to override for DMPO)\n```python\ndef _compute_loss(self, model, inputs, return_outputs):\n```\nThis is the single monolithic method (~315 lines) that does everything:\n- Forward pass through policy model\n- Per-token log prob computation via `selective_log_softmax`\n- Reference model forward pass (or uses precomputed ref logps)\n- Log ratio computation\n- f-divergence score transformation\n- Loss computation for all 15 loss types\n- Metrics logging\n\n#### 4. `compute_ref_log_probs`\n```python\ndef compute_ref_log_probs(self, inputs):\n    \"\"\"Computes reference log probabilities for a single padded batch.\"\"\"\n```\nUsed during precomputation. Handles three ref model scenarios: standalone ref_model, PEFT with \"ref\" adapter, PEFT with disabled adapter.\n\n#### 5. `_precompute_ref_logps`\n```python\ndef _precompute_ref_logps(self, dataset: Dataset, name: str, batch_size: int) -> Dataset:\n```\nPrecomputes and caches ref log probs as `.npz` files. Adds `ref_chosen_logps` and `ref_rejected_logps` columns to the dataset.\n\n#### 6. `_prepare_dataset`\n```python\ndef _prepare_dataset(self, dataset, processing_class, args, dataset_name) -> Dataset | IterableDataset:\n```\nHandles: prompt extraction, EOS token addition, tokenization into `prompt_ids`, `chosen_ids`, `rejected_ids`.\n\n#### 7. `_tokenize`\n```python\ndef _tokenize(self, processing_class, input: str | list, **kwargs) -> dict[str, list]:\n```\n\n#### 8. `prediction_step` (eval override)\n```python\ndef prediction_step(self, model, inputs, prediction_loss_only, ignore_keys=None):\n```\n\n#### 9. `training_step` (activation offloading wrapper)\n```python\ndef training_step(self, *args, **kwargs):\n    with self.maybe_activation_offload_context:\n        return super().training_step(*args, **kwargs)\n```\n\n---\n\n### Loss Computation Pipeline (inside `_compute_loss`)\n\n**Step 1: Policy forward pass**\n```python\noutputs = model(**model_kwargs)  # model_kwargs = inputs minus completion_mask, ref_logps\n```\n\n**Step 2: Per-token log probabilities**\n```python\nshift_logits = outputs.logits[..., :-1, :].contiguous()\nshift_labels = input_ids[..., 1:].contiguous()\nshift_completion_mask = completion_mask[..., 1:].contiguous()\nper_token_logps = selective_log_softmax(shift_logits, shift_labels)\nper_token_logps[shift_completion_mask == 0] = 0.0  # mask non-completion tokens\n```\n\n**Step 3: Aggregation (sum over sequence)**\n```python\nif self.ld_alpha is None:\n    logps = per_token_logps.sum(dim=1)  # simple sum\nelse:\n    # LD-DPO: split into shared-length and tail portions\n    # shared_logps + ld_alpha * tail_logps\nchosen_logps, rejected_logps = logps.chunk(2, dim=0)  # batch is [chosen_batch, rejected_batch]\n```\n\n**Step 4: Reference log probabilities**\nThree paths:\n1. `precompute_ref_logps=True`: loaded from `inputs[\"ref_chosen_logps\"]`, `inputs[\"ref_rejected_logps\"]`\n2. PEFT model, no explicit ref_model: disables adapter (or uses \"ref\" adapter copy) in `torch.no_grad()` context\n3. Explicit `self.ref_model`: forward pass through `self.ref_model(**model_kwargs)` in `torch.no_grad()` context\n\nSame `selective_log_softmax` + `sum(dim=1)` aggregation as policy model.\n\n**Step 5: Log ratios and f-divergence scores**\n```python\nchosen_logratios = chosen_logps - ref_chosen_logps\nrejected_logratios = rejected_logps - ref_rejected_logps\n# Then f-divergence transformation (reverse_kl = identity, forward_kl, js_divergence, alpha_divergence)\ndelta_score = chosen_scores - rejected_scores\n```\n\n**Step 6: Loss computation**\nIterates over `(loss_type, loss_weight)` pairs, accumulates `loss += per_sequence_loss.mean() * loss_weight`.\n\n---\n\n### Data Format and Batching\n\n**Input format**: `{prompt, chosen, rejected}` -- explicit prompt recommended. Supports both plain text and conversational (list of message dicts).\n\n**After tokenization** (by `_prepare_dataset`): each example becomes `{prompt_ids, chosen_ids, rejected_ids}`.\n\n**DataCollatorForPreference** concatenates prompt+chosen and prompt+rejected, then pads. The batch tensor layout is:\n```\ninput_ids:       [chosen_0, chosen_1, ..., chosen_N, rejected_0, rejected_1, ..., rejected_N]\ncompletion_mask: [0..0, 1..1, 0..0, 1..1, ...]  (0 for prompt tokens, 1 for completion tokens)\n```\nSo `chunk(2, dim=0)` splits chosen vs rejected halves.\n\n---\n\n### PEFT / QLoRA Handling\n\n1. If `peft_config` is passed: wraps model via `get_peft_model(model, peft_config)`. Sets `self.ref_model = None`.\n2. If model is already a PeftModel with no explicit ref_model: creates a \"ref\" adapter copy:\n   ```python\n   model.add_adapter(\"ref\", model.peft_config[\"default\"])\n   # copies default adapter weights to ref adapter\n   ```\n3. For QLoRA (quantized models): adapter weights are cast to bf16:\n   ```python\n   if getattr(model, \"is_loaded_in_4bit\", False) or getattr(model, \"is_loaded_in_8bit\", False):\n       for param in model.parameters():\n           if param.requires_grad:\n               param.data = param.data.to(torch.bfloat16)\n   ```\n4. Reference model computation with PEFT:\n   ```python\n   model = self.accelerator.unwrap_model(model)\n   with use_adapter(model, adapter_name=\"ref\" if \"ref\" in model.peft_config else None):\n       ref_outputs = self.model(**model_kwargs)\n   ```\n   `use_adapter(model, None)` calls `model.disable_adapter()` -- reverts to base model weights.\n\n---\n\n### DPOConfig Parameters (complete list)\n\n| Parameter | Type | Default | Description |\n|---|---|---|---|\n| `model_init_kwargs` | `dict\\|str\\|None` | `None` | kwargs for `from_pretrained` |\n| `disable_dropout` | `bool` | `True` | Disable dropout in both models |\n| `dataset_num_proc` | `int\\|None` | `None` | Dataset processing workers |\n| `max_length` | `int\\|None` | `1024` | Max tokenized sequence length |\n| `truncation_mode` | `str` | `\"keep_start\"` | Truncation strategy |\n| `padding_free` | `bool` | `False` | Flatten sequences (currently disabled) |\n| `pad_to_multiple_of` | `int\\|None` | `None` | Pad to multiple |\n| `precompute_ref_log_probs` | `bool` | `False` | Precompute ref logps before training |\n| `precompute_ref_batch_size` | `int\\|None` | `None` | Batch size for precomputation |\n| `loss_type` | `list[str]` | `[\"sigmoid\"]` | Loss function(s) |\n| `loss_weights` | `list[float]\\|None` | `None` | Weights for multi-loss |\n| `ld_alpha` | `float\\|None` | `None` | LD-DPO length weighting |\n| `f_divergence_type` | `str` | `\"reverse_kl\"` | f-divergence type |\n| `f_alpha_divergence_coef` | `float` | `0.5` | Alpha divergence coefficient |\n| `label_smoothing` | `float` | `0.0` | Label smoothing |\n| `beta` | `float` | `0.1` | KL penalty strength |\n| `use_weighting` | `bool` | `False` | WPO-style weighting |\n| `discopop_tau` | `float` | `0.05` | DiscoPOP temperature |\n| `activation_offloading` | `bool` | `False` | Offload activations to CPU |\n| `sync_ref_model` | `bool` | `False` | TR-DPO sync |\n| `ref_model_mixup_alpha` | `float` | `0.6` | TR-DPO mix coefficient |\n| `ref_model_sync_steps` | `int` | `512` | TR-DPO sync frequency |\n| `learning_rate` | `float` | `1e-6` | Overridden default |\n\n`_BaseConfig` extends `TrainingArguments`, also overriding: `logging_steps=10`, `gradient_checkpointing=True`, `bf16=True`.\n\n---\n\n### Key Helper: `selective_log_softmax`\n```python\ndef selective_log_softmax(logits, index) -> torch.Tensor:\n    \"\"\"Memory-efficient log_softmax -> gather. Equivalent to:\n    logps = torch.gather(logits.log_softmax(-1), dim=-1, index=index.unsqueeze(-1)).squeeze(-1)\n    \"\"\"\n```\n\n---\n\n### Extension Strategy for DMPO\n\nThe cleanest extension point is to **subclass DPOTrainer and override `_compute_loss`**. This single method contains:\n- The forward pass logic\n- Per-token logp computation\n- Reference logp computation\n- Log ratio computation\n- All loss type implementations\n- All metrics logging\n\nThere is no need to worry about `get_batch_loss_metrics` or `concatenated_forward` -- those methods were removed in the refactor. The entire pipeline lives in `_compute_loss`.\n\nFor a multi-turn variant, you would likely need to:\n1. Override `_compute_loss` to handle turn-level log probability aggregation differently (instead of a single `sum(dim=1)`)\n2. Potentially override `_prepare_dataset` to handle multi-turn tokenization with per-turn completion masks\n3. Potentially provide a custom `DataCollator` that produces per-turn `completion_mask` tensors instead of a single binary mask\n\nThe `completion_mask` tensor is the key mechanism -- it marks which tokens are \"completion\" tokens (1) vs prompt tokens (0). For multi-turn DPO, you'd need turn-level masks."
+                }
+              ],
+              "totalDurationMs": 305426,
+              "totalTokens": 72654,
+              "totalToolUseCount": 23,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 682,
+                "cache_read_input_tokens": 68705,
+                "output_tokens": 3266,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 682
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3266,
+                    "cache_read_input_tokens": 68705,
+                    "cache_creation_input_tokens": 682,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 682,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 6,
+                "searchCount": 5,
+                "bashCount": 4,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 8
+              }
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information I need to write the comprehensive design document. Let me summarize what I've learned:\n\n**DMPO Paper (arXiv 2406.14868):**\n\n1. **DMPO Loss (Eq. 16):**\n```\nL_DMPO = -E[ log σ(\n    Σ_{t=0}^{T_w-1} β · φ(t, T_w) · log[π_θ(a_t^w|s_t^w) / π_ref(a_t^w|s_t^w)]\n    - Σ_{t=0}^{T_l-1} β · φ(t, T_l) · log[π_θ(a_t^l|s_t^l) / π_ref(a_t^l|s_t^l)]\n)]\n```\n\n2. **φ(t,T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)**\n\n3. Key innovations: SAOM constraint (makes Z state-independent) + length normalization\n\n**DMPO Implementation:**\n\nDefining the loss function...\n\nThe implementation tracks chosen and rejected response spans using start/end indices from tokenization, applies per-turn coefficients to weight all tokens in that turn, and uses a discount factor γ of 0.7 with β at 0.1. The newer trl v1.4.0 DPOTrainer consolidates everything into a single `_compute_loss` method, concatenating chosen and rejected samples in the batch while using a completion mask to distinguish between prompt and completion tokens, then computing per-token log probabilities selectively.\n\nFor ETADN, I'm replacing the fixed γ with error-type-specific values—around 0.85 for action errors, 0.92 for verification, and 0.97 for planning—which requires computing per-turn masks and per-sample γ values along with a time-decay function. The key extension point is overriding `_compute_loss` to implement the per-turn weighted loss instead of just summing token log probabilities.\n\nNow I'm working through the implementation specifics: I need a turn_mask tensor to track turn boundaries in the sequence, pull γ values per sample from the error type, and handle the ALFWorld data pipeline where each trajectory consists of thought-action-observation cycles paired as chosen/rejected examples. I'll add config flags to toggle between standard DPO, DMPO with global γ, and ETADN with per-sample γ, and the QLoRA reference model will simply be the base model with adapters disabled.\n\nFor the per-turn logp computation, I'm looking at how trl handles the concatenated chosen/rejected batches and need to track turn indices alongside the token logits so I can apply the turn-specific weighting function φ(t,T) when summing log probabilities. Completing the weighting formula with the completion mask, which is essentially how the original DMPO implementation handles coefficients. Now I'm thinking through the error type to gamma mapping—each error classification maps to a specific gamma value, so during collation I'd look up the gamma based on the error type from the DPO pair. For the baseline DMPO approach, all samples use a single global gamma, whereas standard DPO doesn't apply weighting at all, which means the phi function should simplify differently.\n\nActually, I need to reconsider how standard DPO should work—it should weight tokens uniformly across all turns rather than concentrating weight on the first turn. So the distinction between the three modes is clearer: standard DPO just sums all token log probabilities equally without turn-level weighting, DMPO applies turn-level weighting using a global gamma, and ETADN applies turn-level weighting with per-sample gamma values based on error type.\n\nNow I'm working through the VRAM requirements for fine-tuning Qwen3-8B in 4-bit with LoRA on dual 4090D GPUs. The model weights take about 4 GB in 4-bit, LoRA adapters add roughly 400 MB, optimizer states consume around 1.6 GB, and gradients another 400 MB, leaving room for activations depending on sequence length.\n\nFor running two independent training jobs on separate GPUs, each GPU needs to handle the full stack: the 4-bit model, LoRA weights, optimizer states, and gradients total about 6.4 GB, plus 6-8 GB for activations at 4096 token sequences with gradient checkpointing, fitting within the 24 GB limit with a micro batch size of 1. But I also need to account for the reference model's forward pass in the training loop, which adds another memory requirement.\n\nActually, with PEFT the reference model is just the base model with adapters disabled, so it shares the same memory footprint. The key insight is using `precompute_ref_log_probs=True` to compute reference log probabilities before training starts, which eliminates the need to store activations from the reference forward pass during the actual training loop.\n\nNow I'm organizing the design document and mapping out the file structure for the implementation.\n\nStructuring the document with sections for the overview, loss implementation, gamma injection, data pipeline, model configuration, inference, and file organization...\n\nnow I'm moving into the ablation study design.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "6fcd4670-1268-4465-b5c5-16fb04d24fcb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bg2z38amGVBVgaF3eZ4wpu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6283,
+                "cache_read_input_tokens": 38004,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6283
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有技术细节都已收集完毕。现在开始撰写设计文档。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "a1d52148-a354-4d9d-94fc-e7e7a0a252e4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bg2z38amGVBVgaF3eZ4wpu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6283,
+                "cache_read_input_tokens": 38004,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6283
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YZhQTj88YZAkrZ1gjpzFMN",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Research DMPO paper and trl DPOTrainer API",
+                    "status": "completed",
+                    "activeForm": "Researching DMPO paper and trl DPOTrainer API"
+                  },
+                  {
+                    "content": "Write DMPO+ETADN pipeline design document",
+                    "status": "in_progress",
+                    "activeForm": "Writing DMPO+ETADN pipeline design document"
+                  },
+                  {
+                    "content": "Register artifact",
+                    "status": "pending",
+                    "activeForm": "Registering artifact"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "10b3cd6f-b41f-465e-ba77-0b7f090e3f0f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bg2z38amGVBVgaF3eZ4wpu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6283,
+                "cache_read_input_tokens": 38004,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6283
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": "2026-05-12T10:52:55.655Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YZhQTj88YZAkrZ1gjpzFMN",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "5906c77a-4d22-4547-9eb0-af30930319e8",
+            "tool_use_result": {
+              "oldTodos": [],
+              "newTodos": [
+                {
+                  "content": "Research DMPO paper and trl DPOTrainer API",
+                  "status": "completed",
+                  "activeForm": "Researching DMPO paper and trl DPOTrainer API"
+                },
+                {
+                  "content": "Write DMPO+ETADN pipeline design document",
+                  "status": "in_progress",
+                  "activeForm": "Writing DMPO+ETADN pipeline design document"
+                },
+                {
+                  "content": "Register artifact",
+                  "status": "pending",
+                  "activeForm": "Registering artifact"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CgpPF99Cx1Dov5bYCMWKF9",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/artifacts/_project/report/ 2>/dev/null || echo \"DIR_NOT_EXISTS\"",
+                "description": "Check report directory exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "5eec2f73-867e-40a2-ad5c-3f618f293b08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014197es8oFCsMC5CHrLYymU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2864,
+                "cache_read_input_tokens": 44287,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2864
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-12T10:53:00.846Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CgpPF99Cx1Dov5bYCMWKF9",
+              "type": "tool_result",
+              "content": "error_taxonomy_and_prompt.md\nerror_taxonomy_and_prompt_66aca4.md\neto_codebase_survey.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "12b1ae00-c3fc-4514-a478-3ab982e74def",
+            "tool_use_result": {
+              "stdout": "error_taxonomy_and_prompt.md\nerror_taxonomy_and_prompt_66aca4.md\neto_codebase_survey.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018MKGj13Jdk7s2wb8dwZ2Do",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/artifacts/_project/report/dmpo_etadn_pipeline_design_v2.md",
+                "content": "# DMPO + ETADN 训练 Pipeline 设计（v2）\n\n## 0. 术语与背景\n\n**DMPO**（Direct Multi-Turn Preference Optimization, arXiv 2406.14868）：将标准 DPO 扩展到多轮场景。核心创新：(1) 用 state-action occupancy measure (SAOM) 约束替代 policy 约束，使 partition function Z 与当前状态无关从而可消去；(2) 引入长度归一化因子 `(1-γ)/(1-γ^T)` 处理不等长轨迹。\n\n**ETADN**（Error-Type-Aware DMPO with Adaptive Nudging）：将 DMPO 全局 γ 替换为 per-sample γ_e，根据错误类型动态调整时间折扣跨度。\n\n**φ(t,T)** — DMPO 时间折扣函数，为每个 turn 分配信用权重。\n\n---\n\n## 1. DMPO Loss 实现方案\n\n### 1.1 完整 DMPO Loss 公式\n\n标准 DPO loss（单轮）：\n\n```\nL_DPO = -E[ log σ( β · log(π_θ(a^w|s)/π_ref(a^w|s)) - β · log(π_θ(a^l|s)/π_ref(a^l|s)) ) ]\n```\n\nDMPO loss（多轮，论文 Eq.16）：\n\n```\nL_DMPO = -E[ log σ(\n    Σ_{t=0}^{T_w-1} β · φ(t, T_w) · log[π_θ(a_t^w|s_t^w) / π_ref(a_t^w|s_t^w)]\n  - Σ_{t=0}^{T_l-1} β · φ(t, T_l) · log[π_θ(a_t^l|s_t^l) / π_ref(a_t^l|s_t^l)]\n)]\n```\n\n其中时间折扣函数：\n\n```\nφ(t, T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n```\n\n- t = turn index (0-indexed)\n- T = 总 turn 数\n- γ ∈ (0, 1) = 时间折扣因子\n- φ(t, T) 单调递减：早期 turn 权重更高\n\n**特殊情况**：\n- γ → 0: φ(0,T)=1, φ(t>0,T)=0 → 退化为单轮 DPO\n- γ = 1: φ(t,T) = (T-t)/T → 线性衰减\n\n### 1.2 在 trl DPOTrainer 上实现 DMPO\n\n**trl v1.4.0 架构变化**：旧版 `get_batch_loss_metrics`、`concatenated_forward`、`get_batch_logps` 已被合并为单个 `_compute_loss` 方法（~315 行）。扩展点唯一且明确：**override `_compute_loss`**。\n\n**需要修改的核心逻辑**（在 `_compute_loss` 内）：\n\n| 原始 trl 行为 | DMPO 修改 |\n|---|---|\n| `per_token_logps.sum(dim=1)` → 标量 logps | 按 turn 加权求和：`Σ_t φ(t,T,γ) · Σ_{tokens∈turn_t} per_token_logps` |\n| `completion_mask` 二值（0=prompt, 1=completion） | 额外需要 `turn_ids` 标记每个 token 属于哪个 turn |\n| 无 per-sample 参数 | 需要 `gamma_per_sample` 传入每个样本的 γ 值 |\n\n**实现策略**：不修改 per-token logps 的计算方式（`selective_log_softmax` 保持不变），仅在聚合阶段替换 `sum(dim=1)` 为加权求和。\n\n### 1.3 Per-turn log probability 计算\n\nALFWorld 中每个 turn = 一次 agent 回复（Thought + Action），对应 tokenized 序列中一段连续 token。\n\n**Turn 边界标记**：在数据预处理阶段，为每个 token 标记其所属 turn index，生成 `turn_ids` 张量：\n\n```\ntoken:    [<prompt> | Think... Act... | Think... Act... | Think... Act... ]\nturn_ids: [   -1    |       0        |        1        |        2        ]\n```\n\n**加权聚合伪代码**：\n\n```python\ndef dmpo_weighted_logps(per_token_logps, completion_mask, turn_ids, gamma, num_turns):\n    \"\"\"\n    per_token_logps: [batch, seq_len]\n    completion_mask: [batch, seq_len]  (1=completion, 0=prompt)\n    turn_ids:        [batch, seq_len]  (turn index, -1=prompt)\n    gamma:           [batch]           (per-sample γ)\n    num_turns:       [batch]           (per-sample T)\n    Returns:         [batch]           (weighted log probability per sample)\n    \"\"\"\n    # 构建 per-token φ 权重\n    token_weights = torch.zeros_like(per_token_logps)\n    for t in range(turn_ids.max() + 1):\n        mask_t = (turn_ids == t)  # [batch, seq_len]\n        # φ(t, T, γ) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n        phi_t = gamma**t * (1 - gamma**(num_turns - t)) / (1 - gamma**num_turns)\n        token_weights[mask_t] = phi_t.unsqueeze(1).expand_as(token_weights)[mask_t]\n\n    return (per_token_logps * completion_mask * token_weights).sum(dim=1)\n```\n\n**向量化实现**（避免 for 循环，见 `dmpo_loss.py` 详细设计）：\n\n```python\ndef compute_phi_weights(turn_ids, gamma, num_turns, max_turns):\n    \"\"\"全向量化 φ 权重计算\"\"\"\n    t_range = torch.arange(max_turns, device=gamma.device)       # [max_turns]\n    gamma_exp = gamma.unsqueeze(1)                                # [batch, 1]\n    T = num_turns.unsqueeze(1).float()                            # [batch, 1]\n\n    phi = gamma_exp**t_range * (1 - gamma_exp**(T - t_range)) / (1 - gamma_exp**T)\n    # phi: [batch, max_turns]\n\n    # 用 turn_ids gather 到 per-token 权重\n    turn_ids_clamped = turn_ids.clamp(min=0)  # prompt tokens (-1) → 0，后续被 completion_mask 清零\n    token_phi = phi.gather(1, turn_ids_clamped)  # [batch, seq_len]\n    return token_phi\n```\n\n### 1.4 φ(t,T) 权重应用到 per-turn loss\n\n在 `_compute_loss` 中，替换聚合步骤：\n\n```python\n# === 原始 trl ===\n# logps = per_token_logps.sum(dim=1)\n\n# === DMPO 修改 ===\ntoken_phi = compute_phi_weights(turn_ids, gamma, num_turns, max_turns)\nlogps = (per_token_logps * shift_completion_mask * token_phi).sum(dim=1)\n\nchosen_logps, rejected_logps = logps.chunk(2, dim=0)\n# 后续 log ratio、sigmoid loss 与标准 DPO 相同\n```\n\n---\n\n## 2. γ_e 注入方案\n\n### 2.1 Error Type → γ_e 映射\n\n```yaml\n# config.yaml\ngamma_e_mapping:\n  action: 0.85    # 短纠正跨度：执行错误(wrong action)，信用集中在纠正步\n  verify: 0.92    # 中等跨度：验证错误(wrong check)，信用跨检查序列\n  plan:   0.97    # 长跨度：规划错误(wrong plan)，信用分布在整个重规划轨迹\n  default: 0.90   # 未分类 fallback\n```\n\n**直觉**：\n- γ 越小 → φ 衰减越快 → 信用集中在前几个 turn → 适合短程纠正（action error）\n- γ 越大 → φ 衰减越慢 → 信用分散到所有 turn → 适合长程重规划（plan error）\n\n### 2.2 注入流程\n\n```\n数据加载 → 每个样本有 error_type 字段\n       ↓\nDataCollator → 查表得到 gamma_per_sample: [batch_size]\n       ↓\n_compute_loss → gamma_per_sample 传入 compute_phi_weights()\n       ↓\nper-token 权重 → 加权聚合 → 标准 sigmoid loss\n```\n\n**Collator 中的 γ 注入**：\n\n```python\nclass DMPODataCollator(DataCollatorForPreference):\n    def __init__(self, gamma_map, mode, global_gamma=0.9, **kwargs):\n        super().__init__(**kwargs)\n        self.gamma_map = gamma_map\n        self.mode = mode\n        self.global_gamma = global_gamma\n\n    def __call__(self, features):\n        batch = super().__call__(features)\n\n        # 收集 error_type → gamma\n        gammas = []\n        for f in features:\n            if self.mode == \"etadn\":\n                et = f.get(\"error_type\", \"default\")\n                gammas.append(self.gamma_map.get(et, self.gamma_map[\"default\"]))\n            elif self.mode == \"dmpo\":\n                gammas.append(self.global_gamma)\n            else:  # dpo\n                gammas.append(0.0)  # γ=0 → φ(0,T)=1, rest=0 → 等效无加权\n\n        # chosen 和 rejected 使用相同 γ（同一 preference pair 来自同一 error_type）\n        gamma_chosen = torch.tensor(gammas, dtype=torch.float32)\n        gamma_rejected = gamma_chosen.clone()\n        batch[\"gamma\"] = torch.cat([gamma_chosen, gamma_rejected], dim=0)\n\n        return batch\n```\n\n### 2.3 对比：DMPO 全局 γ vs ETADN per-sample γ_e\n\n| 维度 | DMPO | ETADN |\n|---|---|---|\n| γ 来源 | 全局超参（如 0.9） | per-sample，由 error_type 决定 |\n| φ(t,T) 计算 | 同一 batch 所有样本共享 φ 表 | 每个样本有独立 φ 序列 |\n| 信用分配 | 所有轨迹用同一衰减速率 | action error 快衰减，plan error 慢衰减 |\n| 实现复杂度 | γ 为标量 | γ 为 [batch] 向量，compute_phi_weights 需向量化 |\n\n---\n\n## 3. 数据 Pipeline\n\n### 3.1 DPO 数据格式\n\n每个样本包含：\n\n```json\n{\n  \"id\": \"alfworld_task_42_pair_0\",\n  \"error_type\": \"action\",\n  \"prompt\": \"You are in a kitchen. Your task is to ...\",\n  \"chosen\": [\n    {\"role\": \"assistant\", \"content\": \"Think: I need to find a tomato. Act: go to fridge 1\"},\n    {\"role\": \"user\", \"content\": \"Obs: The fridge is closed.\"},\n    {\"role\": \"assistant\", \"content\": \"Think: I should open it. Act: open fridge 1\"},\n    {\"role\": \"user\", \"content\": \"Obs: You open the fridge. You see a tomato 1.\"},\n    {\"role\": \"assistant\", \"content\": \"Think: Found it. Act: take tomato 1 from fridge 1\"},\n    {\"role\": \"user\", \"content\": \"Obs: You pick up the tomato 1.\"}\n  ],\n  \"rejected\": [\n    {\"role\": \"assistant\", \"content\": \"Think: I need to find a tomato. Act: go to countertop 1\"},\n    {\"role\": \"user\", \"content\": \"Obs: On the countertop you see a bread 1.\"},\n    {\"role\": \"assistant\", \"content\": \"Think: Not here. Act: go to countertop 2\"},\n    {\"role\": \"user\", \"content\": \"Obs: On the countertop you see a cup 1.\"},\n    {\"role\": \"assistant\", \"content\": \"Think: Maybe in the cabinet. Act: go to cabinet 1\"},\n    {\"role\": \"user\", \"content\": \"Obs: The cabinet is closed.\"}\n  ],\n  \"chosen_turns\": 3,\n  \"rejected_turns\": 3\n}\n```\n\n### 3.2 多轮对话处理：Turn 定义\n\nALFWorld 轨迹中每个 turn 的结构：\n\n```\nTurn t:\n  Assistant: \"Think: <reasoning>. Act: <action>\"    ← agent 生成\n  User:      \"Obs: <environment_observation>\"        ← 环境返回\n```\n\n**1 turn = 1 个 assistant 回复**（只有 assistant 的 token 参与 loss 计算）。User/Obs 部分通过 `completion_mask=0` 屏蔽。\n\nTurn 数 T = assistant 回复的数量。\n\n### 3.3 Tokenization 与 Turn 标记\n\n```python\ndef tokenize_multiturn(example, tokenizer, max_length):\n    \"\"\"将 prompt + chosen/rejected 多轮对话 tokenize，并标记 turn_ids\"\"\"\n    # 1. 构建完整对话（chat template）\n    messages = [{\"role\": \"system\", \"content\": example[\"prompt\"]}]\n    messages += example[\"chosen\"]  # 或 rejected\n\n    # 2. 分步 tokenize 以获取 turn 边界\n    prompt_ids = tokenizer.apply_chat_template(\n        [messages[0]], tokenize=True, add_generation_prompt=True\n    )\n\n    turn_ids = [-1] * len(prompt_ids)  # prompt tokens 标记为 -1\n    completion_mask = [0] * len(prompt_ids)\n    all_ids = list(prompt_ids)\n    current_turn = 0\n\n    for i in range(1, len(messages), 2):  # step=2, assistant+user pairs\n        # assistant 部分\n        asst_msg = messages[i]\n        asst_ids = tokenizer.encode(asst_msg[\"content\"], add_special_tokens=False)\n        # + chat template 的 role tokens\n        role_ids = tokenizer.encode(\"<|im_start|>assistant\\n\", add_special_tokens=False)\n        end_ids = tokenizer.encode(\"<|im_end|>\\n\", add_special_tokens=False)\n\n        all_ids += role_ids\n        turn_ids += [-1] * len(role_ids)  # role tokens 不参与 loss\n        completion_mask += [0] * len(role_ids)\n\n        all_ids += asst_ids\n        turn_ids += [current_turn] * len(asst_ids)  # assistant content = turn t\n        completion_mask += [1] * len(asst_ids)\n\n        all_ids += end_ids\n        turn_ids += [current_turn] * len(end_ids)\n        completion_mask += [1] * len(end_ids)\n\n        # user/observation 部分\n        if i + 1 < len(messages):\n            user_msg = messages[i + 1]\n            user_ids = tokenizer.encode(\n                f\"<|im_start|>user\\n{user_msg['content']}<|im_end|>\\n\",\n                add_special_tokens=False\n            )\n            all_ids += user_ids\n            turn_ids += [-1] * len(user_ids)  # user tokens 不参与 loss\n            completion_mask += [0] * len(user_ids)\n\n        current_turn += 1\n\n    # 3. 截断\n    all_ids = all_ids[:max_length]\n    turn_ids = turn_ids[:max_length]\n    completion_mask = completion_mask[:max_length]\n\n    return {\n        \"input_ids\": all_ids,\n        \"turn_ids\": turn_ids,\n        \"completion_mask\": completion_mask,\n        \"num_turns\": current_turn,\n    }\n```\n\n**注意**：实际实现中需要更精确地处理 Qwen3 的 chat template（`<|im_start|>`/`<|im_end|>` tokens）。上述为简化版，正式实现应使用 `tokenizer.apply_chat_template` 分段处理，逐段定位 assistant response span。\n\n### 3.4 数据集统计预估\n\n| 维度 | 估计值 |\n|---|---|\n| ALFWorld 任务数 | ~3,500 (train split) |\n| 每任务轨迹数 | 5-10（采样多条） |\n| 有效 preference pairs | ~2,000-5,000（过滤后） |\n| 平均 turn 数 T | 5-15 |\n| 平均序列长度 | 1,500-3,000 tokens |\n\n---\n\n## 4. 模型配置\n\n### 4.1 Qwen3-8B QLoRA 配置\n\n```python\nfrom transformers import AutoModelForCausalLM, BitsAndBytesConfig\nfrom peft import LoraConfig\n\nbnb_config = BitsAndBytesConfig(\n    load_in_4bit=True,\n    bnb_4bit_quant_type=\"nf4\",\n    bnb_4bit_compute_dtype=torch.bfloat16,\n    bnb_4bit_use_double_quant=True,\n)\n\nmodel = AutoModelForCausalLM.from_pretrained(\n    \"Qwen/Qwen3-8B\",\n    quantization_config=bnb_config,\n    torch_dtype=torch.bfloat16,\n    attn_implementation=\"flash_attention_2\",\n    device_map={\"\": device_id},  # 单卡绑定\n)\n\nlora_config = LoraConfig(\n    r=64,\n    lora_alpha=128,\n    target_modules=[\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\",\n                     \"gate_proj\", \"up_proj\", \"down_proj\"],\n    lora_dropout=0.05,\n    task_type=\"CAUSAL_LM\",\n    bias=\"none\",\n)\n```\n\n### 4.2 Ref Model 处理\n\nQLoRA 下 ref_model 的处理方式：**使用 PEFT adapter 禁用机制**。\n\ntrl DPOTrainer 在检测到 PeftModel 且未提供 `ref_model` 时：\n1. 创建 \"ref\" adapter 副本（复制 default adapter 权重）\n2. 前向传播时通过 `use_adapter(model, \"ref\")` 切换到冻结的初始权重\n3. 或者直接 `model.disable_adapter()` → base model = ref model\n\n**推荐方式**：`precompute_ref_log_probs=True`。训练前一次性计算所有样本的 ref logps 并缓存为 `.npz`，训练时从 dataset 直接读取。优势：\n- 训练时无需 ref model 前向传播，节省 ~30% VRAM\n- 训练速度提升 ~40%\n\n### 4.3 VRAM 估算（单卡 RTX 4090D 24GB）\n\n| 组件 | 估计 VRAM |\n|---|---|\n| Qwen3-8B 4-bit weights | ~4.5 GB |\n| LoRA adapters (r=64, 7 modules, bf16) | ~0.4 GB |\n| Optimizer states (AdamW, 2×bf16) | ~1.6 GB |\n| Gradients (bf16) | ~0.4 GB |\n| 激活（gradient checkpointing, seq_len=3072, micro_bs=1） | ~6-8 GB |\n| PyTorch + CUDA overhead | ~2 GB |\n| **总计** | **~15-17 GB** |\n\n剩余 ~7-9 GB 余量。micro_batch_size=2 可能可行但需实测。\n\n**两卡策略**：每张 4090D 跑一个独立 run（不同 seed 或不同 ablation 配置），通过 `CUDA_VISIBLE_DEVICES=0` / `CUDA_VISIBLE_DEVICES=1` 隔离。\n\n### 4.4 训练超参\n\n```yaml\n# config.yaml\ntraining:\n  mode: \"etadn\"            # \"dpo\" | \"dmpo\" | \"etadn\"\n  beta: 0.1                # DPO β\n  global_gamma: 0.90       # DMPO 模式下的全局 γ\n  learning_rate: 1.0e-6\n  lr_scheduler_type: \"constant_with_warmup\"\n  warmup_ratio: 0.1\n  num_train_epochs: 3\n  per_device_train_batch_size: 1\n  gradient_accumulation_steps: 16\n  gradient_checkpointing: true\n  bf16: true\n  max_length: 3072\n  max_prompt_length: 512\n  logging_steps: 5\n  save_steps: 100\n  eval_steps: 50\n  precompute_ref_log_probs: true\n  label_smoothing: 0.0\n  loss_type: \"sigmoid\"\n\nlora:\n  r: 64\n  lora_alpha: 128\n  target_modules: [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\", \"gate_proj\", \"up_proj\", \"down_proj\"]\n  lora_dropout: 0.05\n\ngamma_e_mapping:\n  action: 0.85\n  verify: 0.92\n  plan: 0.97\n  default: 0.90\n```\n\n---\n\n## 5. 推理 Pipeline\n\n### 5.1 轨迹收集\n\n```python\n# collect_trajectories.py\n# 用 Qwen3-8B (当前 policy) 在 ALFWorld 中交互\n# 每个任务采样 K=8 条轨迹（不同 temperature / top-p）\n\nfrom vllm import LLM, SamplingParams  # 或 transformers.generate\n\nmodel = LLM(\n    model=\"path/to/qwen3-8b-merged\",  # LoRA merge 后的 checkpoint\n    tensor_parallel_size=1,\n    gpu_memory_utilization=0.85,\n    max_model_len=4096,\n)\n\nparams = SamplingParams(\n    temperature=0.7,\n    top_p=0.9,\n    max_tokens=256,      # 每步生成上限\n    stop=[\"Obs:\"],       # ALFWorld 环境会返回 Obs\n)\n\n# 循环：generate → parse action → env.step → append obs → repeat\n```\n\n**输出格式**：\n\n```json\n{\n  \"task_id\": \"pick_clean_then_place-Tomato-...\",\n  \"trajectory\": [\n    {\"role\": \"assistant\", \"content\": \"Think: ... Act: go to fridge 1\"},\n    {\"role\": \"user\", \"content\": \"Obs: The fridge is closed.\"},\n    ...\n  ],\n  \"reward\": 1,           # ALFWorld: 1=成功, 0=失败\n  \"num_steps\": 8,\n  \"task_type\": \"pick_clean_then_place\"\n}\n```\n\n### 5.2 错误分类\n\n```python\n# classify_errors.py\n# 用 Qwen3-14B-AWQ 做 zero-shot 分类\n\nCLASSIFY_PROMPT = \"\"\"Analyze the following failed trajectory in ALFWorld.\nThe agent attempted a task but failed. Identify the PRIMARY error type:\n\n- action: Wrong physical action (e.g., went to wrong location, used wrong object)\n- verify: Failed to verify state (e.g., didn't check if object present, skipped confirmation)\n- plan: Wrong high-level plan (e.g., incorrect task decomposition, missed prerequisite steps)\n\nTask: {task_description}\nSuccessful trajectory: {chosen_trajectory}\nFailed trajectory: {rejected_trajectory}\n\nRespond with ONLY one word: action, verify, or plan\"\"\"\n\n# 输出: error_type ∈ {\"action\", \"verify\", \"plan\"}\n```\n\n### 5.3 Preference Pair 构建\n\n```python\n# construct_preference.py\n\ndef construct_pairs(trajectories, error_classifications):\n    \"\"\"\n    策略：\n    1. 同一 task 内，reward=1 的轨迹为 chosen，reward=0 的为 rejected\n    2. 若同一 task 有多条成功/失败轨迹，取最短成功 + 每条失败 → 多个 pairs\n    3. 附加 error_type 标签（来自 classify_errors.py 的输出）\n    \"\"\"\n    pairs = []\n    for task_id, task_trajs in group_by_task(trajectories):\n        chosen_trajs = [t for t in task_trajs if t[\"reward\"] == 1]\n        rejected_trajs = [t for t in task_trajs if t[\"reward\"] == 0]\n\n        if not chosen_trajs or not rejected_trajs:\n            continue\n\n        best_chosen = min(chosen_trajs, key=lambda t: t[\"num_steps\"])\n\n        for rej in rejected_trajs:\n            error_type = error_classifications.get(\n                f\"{task_id}_{rej['traj_id']}\", \"default\"\n            )\n            pairs.append({\n                \"id\": f\"{task_id}_pair_{len(pairs)}\",\n                \"error_type\": error_type,\n                \"prompt\": task_description(task_id),\n                \"chosen\": best_chosen[\"trajectory\"],\n                \"rejected\": rej[\"trajectory\"],\n                \"chosen_turns\": count_assistant_turns(best_chosen[\"trajectory\"]),\n                \"rejected_turns\": count_assistant_turns(rej[\"trajectory\"]),\n            })\n\n    return pairs\n```\n\n---\n\n## 6. 完整文件结构\n\n```\nrl-active-probe-fl/\n├── train_etadn.py              # 主训练入口\n│   - 解析 config.yaml\n│   - 加载模型 + LoRA + BnB 量化\n│   - 构建 dataset + collator\n│   - 初始化 ETADNTrainer\n│   - trainer.train()\n│\n├── dmpo_trainer.py             # ETADNTrainer（继承 trl DPOTrainer）\n│   - override _compute_loss(): 替换 logps 聚合为 φ-weighted\n│   - override _prepare_dataset(): 添加 turn_ids 和 num_turns\n│   - DMPODataCollator: 注入 gamma、pad turn_ids\n│   - 支持三种模式: dpo / dmpo / etadn (通过 config flag)\n│\n├── dmpo_loss.py                # 纯函数：φ(t,T) 计算 + 加权聚合\n│   - compute_phi(t, T, gamma): 单值 φ 计算\n│   - compute_phi_weights(turn_ids, gamma, num_turns): 向量化 per-token 权重\n│   - dmpo_weighted_logps(): per_token_logps → weighted scalar\n│\n├── data_utils.py               # 数据加载与预处理\n│   - load_preference_data(path): 加载 JSON pairs\n│   - tokenize_multiturn(): 带 turn 边界标记的 tokenization\n│   - build_dataset(): HF Dataset 构建\n│\n├── config.yaml                 # 超参配置（见 §4.4）\n│\n├── collect_trajectories.py     # 轨迹收集（§5.1）\n│   - ALFWorld 环境交互\n│   - vLLM / transformers 推理\n│   - 输出 trajectories.jsonl\n│\n├── classify_errors.py          # 错误分类（§5.2）\n│   - Qwen3-14B-AWQ zero-shot\n│   - 输出 error_classifications.json\n│\n├── construct_preference.py     # Preference pair 构建（§5.3）\n│   - 输入: trajectories + error_classifications\n│   - 输出: preference_pairs.json\n│\n├── evaluate.py                 # ALFWorld 评估\n│   - 标准 eval protocol: 134 unseen tasks\n│   - 指标: success rate, average steps\n│   - 按 task type 分组报告\n│\n├── scripts/\n│   ├── run_gpu0.sh             # GPU0 训练脚本 (CUDA_VISIBLE_DEVICES=0)\n│   └── run_gpu1.sh             # GPU1 训练脚本 (CUDA_VISIBLE_DEVICES=1)\n│\n└── alfworld_env/               # ALFWorld 环境 wrapper（从 ETO 移植）\n    ├── env_wrapper.py\n    └── task_configs/\n```\n\n### 6.1 关键模块依赖关系\n\n```\nconfig.yaml\n    ↓\ntrain_etadn.py\n    ├── data_utils.py → tokenize_multiturn()\n    ├── dmpo_trainer.py → ETADNTrainer\n    │       ├── dmpo_loss.py → compute_phi_weights()\n    │       └── DMPODataCollator → gamma injection\n    └── evaluate.py (训练结束后调用)\n\ncollect_trajectories.py → trajectories.jsonl\n    ↓\nclassify_errors.py → error_classifications.json\n    ↓\nconstruct_preference.py → preference_pairs.json\n    ↓\ntrain_etadn.py (读取 preference_pairs.json)\n```\n\n---\n\n## 7. Ablation 设计\n\n### 7.1 三种模式切换\n\n通过 `config.yaml` 中 `training.mode` 字段切换：\n\n| Mode | γ 来源 | φ(t,T) 行为 | 等效于 |\n|---|---|---|---|\n| `dpo` | 不使用 | 所有 token 权重=1（`completion_mask` 原样聚合） | 标准 DPO |\n| `dmpo` | `global_gamma`（标量） | 全局 γ 计算 φ，所有样本共享 | 原始 DMPO |\n| `etadn` | `gamma_e_mapping[error_type]`（per-sample） | per-sample γ_e 计算 φ | ETADN (ours) |\n\n### 7.2 代码中的模式分支\n\n在 `ETADNTrainer._compute_loss` 中：\n\n```python\nif self.mode == \"dpo\":\n    # 标准 DPO: 直接 sum\n    logps = (per_token_logps * shift_completion_mask).sum(dim=1)\nelse:\n    # dmpo 或 etadn: φ-weighted sum\n    # gamma 已由 collator 注入到 batch[\"gamma\"]\n    token_phi = compute_phi_weights(\n        turn_ids=batch[\"turn_ids\"][:, 1:],  # shift 对齐\n        gamma=batch[\"gamma\"],\n        num_turns=batch[\"num_turns\"],\n        max_turns=batch[\"turn_ids\"].max().item() + 1,\n    )\n    logps = (per_token_logps * shift_completion_mask * token_phi).sum(dim=1)\n```\n\n### 7.3 实验矩阵\n\n| Run | Mode | γ / γ_e | GPU | Seed | 目的 |\n|---|---|---|---|---|---|\n| A1 | dpo | — | 0 | 42 | Baseline: 标准 DPO |\n| A2 | dpo | — | 1 | 42 | Baseline 复现 |\n| B1 | dmpo | 0.90 | 0 | 42 | Baseline: DMPO 全局 γ |\n| B2 | dmpo | 0.85 | 1 | 42 | DMPO γ 敏感性 |\n| C1 | etadn | per-sample | 0 | 42 | **Ours**: ETADN |\n| C2 | etadn | per-sample | 1 | 123 | Ours 不同 seed |\n\n**两卡并行策略**：每次在 2 张 4090D 上同时跑 2 个 run。6 个 run 分 3 轮完成。\n\n### 7.4 评估指标\n\n| 指标 | 说明 |\n|---|---|\n| ALFWorld success rate (overall) | 主指标，134 unseen tasks |\n| Success rate per task type | 6 种 task type 的分项成功率 |\n| Average steps to success | 效率指标 |\n| Error type distribution shift | 训练前后的错误类型分布变化 |\n| DMPO reward (Φ(τ)) | 训练过程中 chosen/rejected 的加权 log-ratio |\n| Training loss curve | 收敛性对比 |\n\n---\n\n## 8. ETADNTrainer 核心代码骨架\n\n```python\n# dmpo_trainer.py\n\nfrom trl import DPOTrainer, DPOConfig\nfrom dmpo_loss import compute_phi_weights\n\nclass ETADNConfig(DPOConfig):\n    mode: str = \"etadn\"          # \"dpo\" | \"dmpo\" | \"etadn\"\n    global_gamma: float = 0.90\n    gamma_e_mapping: dict = None  # {\"action\": 0.85, \"verify\": 0.92, \"plan\": 0.97}\n\n\nclass ETADNTrainer(DPOTrainer):\n\n    def __init__(self, *args, mode=\"etadn\", global_gamma=0.9, gamma_e_mapping=None, **kwargs):\n        super().__init__(*args, **kwargs)\n        self.mode = mode\n        self.global_gamma = global_gamma\n        self.gamma_e_mapping = gamma_e_mapping or {}\n\n    def _compute_loss(self, model, inputs, return_outputs=False):\n        \"\"\"Override: DMPO φ-weighted log probability aggregation.\"\"\"\n        # --- 1. 提取额外字段 ---\n        turn_ids = inputs.pop(\"turn_ids\", None)\n        num_turns = inputs.pop(\"num_turns\", None)\n        gamma = inputs.pop(\"gamma\", None)\n        completion_mask = inputs[\"completion_mask\"]\n        input_ids = inputs[\"input_ids\"]\n\n        # --- 2. Policy forward ---\n        model_kwargs = {k: v for k, v in inputs.items()\n                        if k not in (\"completion_mask\", \"ref_chosen_logps\", \"ref_rejected_logps\")}\n        outputs = model(**model_kwargs)\n\n        # --- 3. Per-token logps ---\n        from trl.trainer.utils import selective_log_softmax\n        shift_logits = outputs.logits[..., :-1, :].contiguous()\n        shift_labels = input_ids[..., 1:].contiguous()\n        shift_completion_mask = completion_mask[..., 1:].contiguous()\n        per_token_logps = selective_log_softmax(shift_logits, shift_labels)\n        per_token_logps[shift_completion_mask == 0] = 0.0\n\n        # --- 4. 聚合（核心修改点） ---\n        if self.mode == \"dpo\" or turn_ids is None:\n            logps = per_token_logps.sum(dim=1)\n        else:\n            shift_turn_ids = turn_ids[..., 1:].contiguous()\n            token_phi = compute_phi_weights(shift_turn_ids, gamma, num_turns,\n                                            max_turns=shift_turn_ids.max().item() + 1)\n            logps = (per_token_logps * shift_completion_mask * token_phi).sum(dim=1)\n\n        chosen_logps, rejected_logps = logps.chunk(2, dim=0)\n\n        # --- 5. Reference logps ---\n        if \"ref_chosen_logps\" in inputs:\n            ref_chosen_logps = inputs[\"ref_chosen_logps\"]\n            ref_rejected_logps = inputs[\"ref_rejected_logps\"]\n        else:\n            with torch.no_grad():\n                ref_chosen_logps, ref_rejected_logps = self._compute_ref_logps(\n                    model, inputs, shift_completion_mask,\n                    turn_ids=shift_turn_ids if self.mode != \"dpo\" else None,\n                    gamma=gamma, num_turns=num_turns,\n                )\n\n        # --- 6. Loss (sigmoid, same as standard DPO) ---\n        chosen_logratios = chosen_logps - ref_chosen_logps\n        rejected_logratios = rejected_logps - ref_rejected_logps\n        logits = chosen_logratios - rejected_logratios\n\n        loss = -F.logsigmoid(self.beta * logits).mean()\n\n        # --- 7. Metrics ---\n        chosen_rewards = (self.beta * (chosen_logps - ref_chosen_logps)).detach()\n        rejected_rewards = (self.beta * (rejected_logps - ref_rejected_logps)).detach()\n        reward_margin = (chosen_rewards - rejected_rewards).mean()\n\n        metrics = {\n            \"loss\": loss.detach().item(),\n            \"rewards/chosen\": chosen_rewards.mean().item(),\n            \"rewards/rejected\": rejected_rewards.mean().item(),\n            \"rewards/margin\": reward_margin.item(),\n        }\n        self.store_metrics(metrics, train_eval=\"train\")\n\n        if return_outputs:\n            return loss, {\"logits\": logits}\n        return loss\n```\n\n---\n\n## 9. 风险与注意事项\n\n| 风险 | 缓解 |\n|---|---|\n| `precompute_ref_log_probs` 与自定义 φ-weighted 聚合不兼容 | ref logps 也必须用相同 φ 加权。需确认 precompute 阶段和训练阶段使用一致的 turn_ids 和 gamma |\n| trl 版本更新可能改变 `_compute_loss` 内部结构 | 锁定 trl 版本（pip install trl==1.4.0），在代码中 assert 关键接口存在 |\n| Qwen3 chat template 的 token 边界与手动分段不一致 | 使用 `tokenizer.apply_chat_template` 逐段处理，用 offset mapping 精确定位 assistant token span |\n| φ 权重导致梯度尺度变化 | φ 归一化保证 Σ_t φ(t,T) 接近 1（实际 = (1-γ^T)/(1-γ^T) · Σ γ^t(1-γ^{T-t}) 需验证），若偏差大需调整 β |\n| γ_e 值（0.85/0.92/0.97）为初始设定 | 后续可做 γ_e 敏感性实验（grid search），或作为可学习参数 |\n\n---\n\n## 10. 实施优先级\n\n| Phase | 内容 | 估计时间 |\n|---|---|---|\n| P1 | `dmpo_loss.py` + 单元测试（验证 φ 计算正确性） | 0.5 天 |\n| P2 | `data_utils.py`（tokenization + turn 标记） | 1 天 |\n| P3 | `dmpo_trainer.py`（ETADNTrainer + collator） | 1.5 天 |\n| P4 | `train_etadn.py`（集成 + 小数据 smoke test） | 0.5 天 |\n| P5 | 推理 pipeline（collect + classify + construct） | 2 天 |\n| P6 | 完整训练 + 评估 | 2-3 天 |\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "94fa0121-4afb-4f7c-af41-da09fba2f678",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LJJJWH9ysQpSZPmV1Lw8jM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 171,
+                "cache_read_input_tokens": 47151,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 171
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": "2026-05-12T10:56:13.921Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018MKGj13Jdk7s2wb8dwZ2Do",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/artifacts/_project/report/dmpo_etadn_pipeline_design_v2.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "c39b70fb-3d54-4b50-bc50-c5f543cf7a80",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/artifacts/_project/report/dmpo_etadn_pipeline_design_v2.md",
+              "content": "# DMPO + ETADN 训练 Pipeline 设计（v2）\n\n## 0. 术语与背景\n\n**DMPO**（Direct Multi-Turn Preference Optimization, arXiv 2406.14868）：将标准 DPO 扩展到多轮场景。核心创新：(1) 用 state-action occupancy measure (SAOM) 约束替代 policy 约束，使 partition function Z 与当前状态无关从而可消去；(2) 引入长度归一化因子 `(1-γ)/(1-γ^T)` 处理不等长轨迹。\n\n**ETADN**（Error-Type-Aware DMPO with Adaptive Nudging）：将 DMPO 全局 γ 替换为 per-sample γ_e，根据错误类型动态调整时间折扣跨度。\n\n**φ(t,T)** — DMPO 时间折扣函数，为每个 turn 分配信用权重。\n\n---\n\n## 1. DMPO Loss 实现方案\n\n### 1.1 完整 DMPO Loss 公式\n\n标准 DPO loss（单轮）：\n\n```\nL_DPO = -E[ log σ( β · log(π_θ(a^w|s)/π_ref(a^w|s)) - β · log(π_θ(a^l|s)/π_ref(a^l|s)) ) ]\n```\n\nDMPO loss（多轮，论文 Eq.16）：\n\n```\nL_DMPO = -E[ log σ(\n    Σ_{t=0}^{T_w-1} β · φ(t, T_w) · log[π_θ(a_t^w|s_t^w) / π_ref(a_t^w|s_t^w)]\n  - Σ_{t=0}^{T_l-1} β · φ(t, T_l) · log[π_θ(a_t^l|s_t^l) / π_ref(a_t^l|s_t^l)]\n)]\n```\n\n其中时间折扣函数：\n\n```\nφ(t, T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n```\n\n- t = turn index (0-indexed)\n- T = 总 turn 数\n- γ ∈ (0, 1) = 时间折扣因子\n- φ(t, T) 单调递减：早期 turn 权重更高\n\n**特殊情况**：\n- γ → 0: φ(0,T)=1, φ(t>0,T)=0 → 退化为单轮 DPO\n- γ = 1: φ(t,T) = (T-t)/T → 线性衰减\n\n### 1.2 在 trl DPOTrainer 上实现 DMPO\n\n**trl v1.4.0 架构变化**：旧版 `get_batch_loss_metrics`、`concatenated_forward`、`get_batch_logps` 已被合并为单个 `_compute_loss` 方法（~315 行）。扩展点唯一且明确：**override `_compute_loss`**。\n\n**需要修改的核心逻辑**（在 `_compute_loss` 内）：\n\n| 原始 trl 行为 | DMPO 修改 |\n|---|---|\n| `per_token_logps.sum(dim=1)` → 标量 logps | 按 turn 加权求和：`Σ_t φ(t,T,γ) · Σ_{tokens∈turn_t} per_token_logps` |\n| `completion_mask` 二值（0=prompt, 1=completion） | 额外需要 `turn_ids` 标记每个 token 属于哪个 turn |\n| 无 per-sample 参数 | 需要 `gamma_per_sample` 传入每个样本的 γ 值 |\n\n**实现策略**：不修改 per-token logps 的计算方式（`selective_log_softmax` 保持不变），仅在聚合阶段替换 `sum(dim=1)` 为加权求和。\n\n### 1.3 Per-turn log probability 计算\n\nALFWorld 中每个 turn = 一次 agent 回复（Thought + Action），对应 tokenized 序列中一段连续 token。\n\n**Turn 边界标记**：在数据预处理阶段，为每个 token 标记其所属 turn index，生成 `turn_ids` 张量：\n\n```\ntoken:    [<prompt> | Think... Act... | Think... Act... | Think... Act... ]\nturn_ids: [   -1    |       0        |        1        |        2        ]\n```\n\n**加权聚合伪代码**：\n\n```python\ndef dmpo_weighted_logps(per_token_logps, completion_mask, turn_ids, gamma, num_turns):\n    \"\"\"\n    per_token_logps: [batch, seq_len]\n    completion_mask: [batch, seq_len]  (1=completion, 0=prompt)\n    turn_ids:        [batch, seq_len]  (turn index, -1=prompt)\n    gamma:           [batch]           (per-sample γ)\n    num_turns:       [batch]           (per-sample T)\n    Returns:         [batch]           (weighted log probability per sample)\n    \"\"\"\n    # 构建 per-token φ 权重\n    token_weights = torch.zeros_like(per_token_logps)\n    for t in range(turn_ids.max() + 1):\n        mask_t = (turn_ids == t)  # [batch, seq_len]\n        # φ(t, T, γ) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n        phi_t = gamma**t * (1 - gamma**(num_turns - t)) / (1 - gamma**num_turns)\n        token_weights[mask_t] = phi_t.unsqueeze(1).expand_as(token_weights)[mask_t]\n\n    return (per_token_logps * completion_mask * token_weights).sum(dim=1)\n```\n\n**向量化实现**（避免 for 循环，见 `dmpo_loss.py` 详细设计）：\n\n```python\ndef compute_phi_weights(turn_ids, gamma, num_turns, max_turns):\n    \"\"\"全向量化 φ 权重计算\"\"\"\n    t_range = torch.arange(max_turns, device=gamma.device)       # [max_turns]\n    gamma_exp = gamma.unsqueeze(1)                                # [batch, 1]\n    T = num_turns.unsqueeze(1).float()                            # [batch, 1]\n\n    phi = gamma_exp**t_range * (1 - gamma_exp**(T - t_range)) / (1 - gamma_exp**T)\n    # phi: [batch, max_turns]\n\n    # 用 turn_ids gather 到 per-token 权重\n    turn_ids_clamped = turn_ids.clamp(min=0)  # prompt tokens (-1) → 0，后续被 completion_mask 清零\n    token_phi = phi.gather(1, turn_ids_clamped)  # [batch, seq_len]\n    return token_phi\n```\n\n### 1.4 φ(t,T) 权重应用到 per-turn loss\n\n在 `_compute_loss` 中，替换聚合步骤：\n\n```python\n# === 原始 trl ===\n# logps = per_token_logps.sum(dim=1)\n\n# === DMPO 修改 ===\ntoken_phi = compute_phi_weights(turn_ids, gamma, num_turns, max_turns)\nlogps = (per_token_logps * shift_completion_mask * token_phi).sum(dim=1)\n\nchosen_logps, rejected_logps = logps.chunk(2, dim=0)\n# 后续 log ratio、sigmoid loss 与标准 DPO 相同\n```\n\n---\n\n## 2. γ_e 注入方案\n\n### 2.1 Error Type → γ_e 映射\n\n```yaml\n# config.yaml\ngamma_e_mapping:\n  action: 0.85    # 短纠正跨度：执行错误(wrong action)，信用集中在纠正步\n  verify: 0.92    # 中等跨度：验证错误(wrong check)，信用跨检查序列\n  plan:   0.97    # 长跨度：规划错误(wrong plan)，信用分布在整个重规划轨迹\n  default: 0.90   # 未分类 fallback\n```\n\n**直觉**：\n- γ 越小 → φ 衰减越快 → 信用集中在前几个 turn → 适合短程纠正（action error）\n- γ 越大 → φ 衰减越慢 → 信用分散到所有 turn → 适合长程重规划（plan error）\n\n### 2.2 注入流程\n\n```\n数据加载 → 每个样本有 error_type 字段\n       ↓\nDataCollator → 查表得到 gamma_per_sample: [batch_size]\n       ↓\n_compute_loss → gamma_per_sample 传入 compute_phi_weights()\n       ↓\nper-token 权重 → 加权聚合 → 标准 sigmoid loss\n```\n\n**Collator 中的 γ 注入**：\n\n```python\nclass DMPODataCollator(DataCollatorForPreference):\n    def __init__(self, gamma_map, mode, global_gamma=0.9, **kwargs):\n        super().__init__(**kwargs)\n        self.gamma_map = gamma_map\n        self.mode = mode\n        self.global_gamma = global_gamma\n\n    def __call__(self, features):\n        batch = super().__call__(features)\n\n        # 收集 error_type → gamma\n        gammas = []\n        for f in features:\n            if self.mode == \"etadn\":\n                et = f.get(\"error_type\", \"default\")\n                gammas.append(self.gamma_map.get(et, self.gamma_map[\"default\"]))\n            elif self.mode == \"dmpo\":\n                gammas.append(self.global_gamma)\n            else:  # dpo\n                gammas.append(0.0)  # γ=0 → φ(0,T)=1, rest=0 → 等效无加权\n\n        # chosen 和 rejected 使用相同 γ（同一 preference pair 来自同一 error_type）\n        gamma_chosen = torch.tensor(gammas, dtype=torch.float32)\n        gamma_rejected = gamma_chosen.clone()\n        batch[\"gamma\"] = torch.cat([gamma_chosen, gamma_rejected], dim=0)\n\n        return batch\n```\n\n### 2.3 对比：DMPO 全局 γ vs ETADN per-sample γ_e\n\n| 维度 | DMPO | ETADN |\n|---|---|---|\n| γ 来源 | 全局超参（如 0.9） | per-sample，由 error_type 决定 |\n| φ(t,T) 计算 | 同一 batch 所有样本共享 φ 表 | 每个样本有独立 φ 序列 |\n| 信用分配 | 所有轨迹用同一衰减速率 | action error 快衰减，plan error 慢衰减 |\n| 实现复杂度 | γ 为标量 | γ 为 [batch] 向量，compute_phi_weights 需向量化 |\n\n---\n\n## 3. 数据 Pipeline\n\n### 3.1 DPO 数据格式\n\n每个样本包含：\n\n```json\n{\n  \"id\": \"alfworld_task_42_pair_0\",\n  \"error_type\": \"action\",\n  \"prompt\": \"You are in a kitchen. Your task is to ...\",\n  \"chosen\": [\n    {\"role\": \"assistant\", \"content\": \"Think: I need to find a tomato. Act: go to fridge 1\"},\n    {\"role\": \"user\", \"content\": \"Obs: The fridge is closed.\"},\n    {\"role\": \"assistant\", \"content\": \"Think: I should open it. Act: open fridge 1\"},\n    {\"role\": \"user\", \"content\": \"Obs: You open the fridge. You see a tomato 1.\"},\n    {\"role\": \"assistant\", \"content\": \"Think: Found it. Act: take tomato 1 from fridge 1\"},\n    {\"role\": \"user\", \"content\": \"Obs: You pick up the tomato 1.\"}\n  ],\n  \"rejected\": [\n    {\"role\": \"assistant\", \"content\": \"Think: I need to find a tomato. Act: go to countertop 1\"},\n    {\"role\": \"user\", \"content\": \"Obs: On the countertop you see a bread 1.\"},\n    {\"role\": \"assistant\", \"content\": \"Think: Not here. Act: go to countertop 2\"},\n    {\"role\": \"user\", \"content\": \"Obs: On the countertop you see a cup 1.\"},\n    {\"role\": \"assistant\", \"content\": \"Think: Maybe in the cabinet. Act: go to cabinet 1\"},\n    {\"role\": \"user\", \"content\": \"Obs: The cabinet is closed.\"}\n  ],\n  \"chosen_turns\": 3,\n  \"rejected_turns\": 3\n}\n```\n\n### 3.2 多轮对话处理：Turn 定义\n\nALFWorld 轨迹中每个 turn 的结构：\n\n```\nTurn t:\n  Assistant: \"Think: <reasoning>. Act: <action>\"    ← agent 生成\n  User:      \"Obs: <environment_observation>\"        ← 环境返回\n```\n\n**1 turn = 1 个 assistant 回复**（只有 assistant 的 token 参与 loss 计算）。User/Obs 部分通过 `completion_mask=0` 屏蔽。\n\nTurn 数 T = assistant 回复的数量。\n\n### 3.3 Tokenization 与 Turn 标记\n\n```python\ndef tokenize_multiturn(example, tokenizer, max_length):\n    \"\"\"将 prompt + chosen/rejected 多轮对话 tokenize，并标记 turn_ids\"\"\"\n    # 1. 构建完整对话（chat template）\n    messages = [{\"role\": \"system\", \"content\": example[\"prompt\"]}]\n    messages += example[\"chosen\"]  # 或 rejected\n\n    # 2. 分步 tokenize 以获取 turn 边界\n    prompt_ids = tokenizer.apply_chat_template(\n        [messages[0]], tokenize=True, add_generation_prompt=True\n    )\n\n    turn_ids = [-1] * len(prompt_ids)  # prompt tokens 标记为 -1\n    completion_mask = [0] * len(prompt_ids)\n    all_ids = list(prompt_ids)\n    current_turn = 0\n\n    for i in range(1, len(messages), 2):  # step=2, assistant+user pairs\n        # assistant 部分\n        asst_msg = messages[i]\n        asst_ids = tokenizer.encode(asst_msg[\"content\"], add_special_tokens=False)\n        # + chat template 的 role tokens\n        role_ids = tokenizer.encode(\"<|im_start|>assistant\\n\", add_special_tokens=False)\n        end_ids = tokenizer.encode(\"<|im_end|>\\n\", add_special_tokens=False)\n\n        all_ids += role_ids\n        turn_ids += [-1] * len(role_ids)  # role tokens 不参与 loss\n        completion_mask += [0] * len(role_ids)\n\n        all_ids += asst_ids\n        turn_ids += [current_turn] * len(asst_ids)  # assistant content = turn t\n        completion_mask += [1] * len(asst_ids)\n\n        all_ids += end_ids\n        turn_ids += [current_turn] * len(end_ids)\n        completion_mask += [1] * len(end_ids)\n\n        # user/observation 部分\n        if i + 1 < len(messages):\n            user_msg = messages[i + 1]\n            user_ids = tokenizer.encode(\n                f\"<|im_start|>user\\n{user_msg['content']}<|im_end|>\\n\",\n                add_special_tokens=False\n            )\n            all_ids += user_ids\n            turn_ids += [-1] * len(user_ids)  # user tokens 不参与 loss\n            completion_mask += [0] * len(user_ids)\n\n        current_turn += 1\n\n    # 3. 截断\n    all_ids = all_ids[:max_length]\n    turn_ids = turn_ids[:max_length]\n    completion_mask = completion_mask[:max_length]\n\n    return {\n        \"input_ids\": all_ids,\n        \"turn_ids\": turn_ids,\n        \"completion_mask\": completion_mask,\n        \"num_turns\": current_turn,\n    }\n```\n\n**注意**：实际实现中需要更精确地处理 Qwen3 的 chat template（`<|im_start|>`/`<|im_end|>` tokens）。上述为简化版，正式实现应使用 `tokenizer.apply_chat_template` 分段处理，逐段定位 assistant response span。\n\n### 3.4 数据集统计预估\n\n| 维度 | 估计值 |\n|---|---|\n| ALFWorld 任务数 | ~3,500 (train split) |\n| 每任务轨迹数 | 5-10（采样多条） |\n| 有效 preference pairs | ~2,000-5,000（过滤后） |\n| 平均 turn 数 T | 5-15 |\n| 平均序列长度 | 1,500-3,000 tokens |\n\n---\n\n## 4. 模型配置\n\n### 4.1 Qwen3-8B QLoRA 配置\n\n```python\nfrom transformers import AutoModelForCausalLM, BitsAndBytesConfig\nfrom peft import LoraConfig\n\nbnb_config = BitsAndBytesConfig(\n    load_in_4bit=True,\n    bnb_4bit_quant_type=\"nf4\",\n    bnb_4bit_compute_dtype=torch.bfloat16,\n    bnb_4bit_use_double_quant=True,\n)\n\nmodel = AutoModelForCausalLM.from_pretrained(\n    \"Qwen/Qwen3-8B\",\n    quantization_config=bnb_config,\n    torch_dtype=torch.bfloat16,\n    attn_implementation=\"flash_attention_2\",\n    device_map={\"\": device_id},  # 单卡绑定\n)\n\nlora_config = LoraConfig(\n    r=64,\n    lora_alpha=128,\n    target_modules=[\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\",\n                     \"gate_proj\", \"up_proj\", \"down_proj\"],\n    lora_dropout=0.05,\n    task_type=\"CAUSAL_LM\",\n    bias=\"none\",\n)\n```\n\n### 4.2 Ref Model 处理\n\nQLoRA 下 ref_model 的处理方式：**使用 PEFT adapter 禁用机制**。\n\ntrl DPOTrainer 在检测到 PeftModel 且未提供 `ref_model` 时：\n1. 创建 \"ref\" adapter 副本（复制 default adapter 权重）\n2. 前向传播时通过 `use_adapter(model, \"ref\")` 切换到冻结的初始权重\n3. 或者直接 `model.disable_adapter()` → base model = ref model\n\n**推荐方式**：`precompute_ref_log_probs=True`。训练前一次性计算所有样本的 ref logps 并缓存为 `.npz`，训练时从 dataset 直接读取。优势：\n- 训练时无需 ref model 前向传播，节省 ~30% VRAM\n- 训练速度提升 ~40%\n\n### 4.3 VRAM 估算（单卡 RTX 4090D 24GB）\n\n| 组件 | 估计 VRAM |\n|---|---|\n| Qwen3-8B 4-bit weights | ~4.5 GB |\n| LoRA adapters (r=64, 7 modules, bf16) | ~0.4 GB |\n| Optimizer states (AdamW, 2×bf16) | ~1.6 GB |\n| Gradients (bf16) | ~0.4 GB |\n| 激活（gradient checkpointing, seq_len=3072, micro_bs=1） | ~6-8 GB |\n| PyTorch + CUDA overhead | ~2 GB |\n| **总计** | **~15-17 GB** |\n\n剩余 ~7-9 GB 余量。micro_batch_size=2 可能可行但需实测。\n\n**两卡策略**：每张 4090D 跑一个独立 run（不同 seed 或不同 ablation 配置），通过 `CUDA_VISIBLE_DEVICES=0` / `CUDA_VISIBLE_DEVICES=1` 隔离。\n\n### 4.4 训练超参\n\n```yaml\n# config.yaml\ntraining:\n  mode: \"etadn\"            # \"dpo\" | \"dmpo\" | \"etadn\"\n  beta: 0.1                # DPO β\n  global_gamma: 0.90       # DMPO 模式下的全局 γ\n  learning_rate: 1.0e-6\n  lr_scheduler_type: \"constant_with_warmup\"\n  warmup_ratio: 0.1\n  num_train_epochs: 3\n  per_device_train_batch_size: 1\n  gradient_accumulation_steps: 16\n  gradient_checkpointing: true\n  bf16: true\n  max_length: 3072\n  max_prompt_length: 512\n  logging_steps: 5\n  save_steps: 100\n  eval_steps: 50\n  precompute_ref_log_probs: true\n  label_smoothing: 0.0\n  loss_type: \"sigmoid\"\n\nlora:\n  r: 64\n  lora_alpha: 128\n  target_modules: [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\", \"gate_proj\", \"up_proj\", \"down_proj\"]\n  lora_dropout: 0.05\n\ngamma_e_mapping:\n  action: 0.85\n  verify: 0.92\n  plan: 0.97\n  default: 0.90\n```\n\n---\n\n## 5. 推理 Pipeline\n\n### 5.1 轨迹收集\n\n```python\n# collect_trajectories.py\n# 用 Qwen3-8B (当前 policy) 在 ALFWorld 中交互\n# 每个任务采样 K=8 条轨迹（不同 temperature / top-p）\n\nfrom vllm import LLM, SamplingParams  # 或 transformers.generate\n\nmodel = LLM(\n    model=\"path/to/qwen3-8b-merged\",  # LoRA merge 后的 checkpoint\n    tensor_parallel_size=1,\n    gpu_memory_utilization=0.85,\n    max_model_len=4096,\n)\n\nparams = SamplingParams(\n    temperature=0.7,\n    top_p=0.9,\n    max_tokens=256,      # 每步生成上限\n    stop=[\"Obs:\"],       # ALFWorld 环境会返回 Obs\n)\n\n# 循环：generate → parse action → env.step → append obs → repeat\n```\n\n**输出格式**：\n\n```json\n{\n  \"task_id\": \"pick_clean_then_place-Tomato-...\",\n  \"trajectory\": [\n    {\"role\": \"assistant\", \"content\": \"Think: ... Act: go to fridge 1\"},\n    {\"role\": \"user\", \"content\": \"Obs: The fridge is closed.\"},\n    ...\n  ],\n  \"reward\": 1,           # ALFWorld: 1=成功, 0=失败\n  \"num_steps\": 8,\n  \"task_type\": \"pick_clean_then_place\"\n}\n```\n\n### 5.2 错误分类\n\n```python\n# classify_errors.py\n# 用 Qwen3-14B-AWQ 做 zero-shot 分类\n\nCLASSIFY_PROMPT = \"\"\"Analyze the following failed trajectory in ALFWorld.\nThe agent attempted a task but failed. Identify the PRIMARY error type:\n\n- action: Wrong physical action (e.g., went to wrong location, used wrong object)\n- verify: Failed to verify state (e.g., didn't check if object present, skipped confirmation)\n- plan: Wrong high-level plan (e.g., incorrect task decomposition, missed prerequisite steps)\n\nTask: {task_description}\nSuccessful trajectory: {chosen_trajectory}\nFailed trajectory: {rejected_trajectory}\n\nRespond with ONLY one word: action, verify, or plan\"\"\"\n\n# 输出: error_type ∈ {\"action\", \"verify\", \"plan\"}\n```\n\n### 5.3 Preference Pair 构建\n\n```python\n# construct_preference.py\n\ndef construct_pairs(trajectories, error_classifications):\n    \"\"\"\n    策略：\n    1. 同一 task 内，reward=1 的轨迹为 chosen，reward=0 的为 rejected\n    2. 若同一 task 有多条成功/失败轨迹，取最短成功 + 每条失败 → 多个 pairs\n    3. 附加 error_type 标签（来自 classify_errors.py 的输出）\n    \"\"\"\n    pairs = []\n    for task_id, task_trajs in group_by_task(trajectories):\n        chosen_trajs = [t for t in task_trajs if t[\"reward\"] == 1]\n        rejected_trajs = [t for t in task_trajs if t[\"reward\"] == 0]\n\n        if not chosen_trajs or not rejected_trajs:\n            continue\n\n        best_chosen = min(chosen_trajs, key=lambda t: t[\"num_steps\"])\n\n        for rej in rejected_trajs:\n            error_type = error_classifications.get(\n                f\"{task_id}_{rej['traj_id']}\", \"default\"\n            )\n            pairs.append({\n                \"id\": f\"{task_id}_pair_{len(pairs)}\",\n                \"error_type\": error_type,\n                \"prompt\": task_description(task_id),\n                \"chosen\": best_chosen[\"trajectory\"],\n                \"rejected\": rej[\"trajectory\"],\n                \"chosen_turns\": count_assistant_turns(best_chosen[\"trajectory\"]),\n                \"rejected_turns\": count_assistant_turns(rej[\"trajectory\"]),\n            })\n\n    return pairs\n```\n\n---\n\n## 6. 完整文件结构\n\n```\nrl-active-probe-fl/\n├── train_etadn.py              # 主训练入口\n│   - 解析 config.yaml\n│   - 加载模型 + LoRA + BnB 量化\n│   - 构建 dataset + collator\n│   - 初始化 ETADNTrainer\n│   - trainer.train()\n│\n├── dmpo_trainer.py             # ETADNTrainer（继承 trl DPOTrainer）\n│   - override _compute_loss(): 替换 logps 聚合为 φ-weighted\n│   - override _prepare_dataset(): 添加 turn_ids 和 num_turns\n│   - DMPODataCollator: 注入 gamma、pad turn_ids\n│   - 支持三种模式: dpo / dmpo / etadn (通过 config flag)\n│\n├── dmpo_loss.py                # 纯函数：φ(t,T) 计算 + 加权聚合\n│   - compute_phi(t, T, gamma): 单值 φ 计算\n│   - compute_phi_weights(turn_ids, gamma, num_turns): 向量化 per-token 权重\n│   - dmpo_weighted_logps(): per_token_logps → weighted scalar\n│\n├── data_utils.py               # 数据加载与预处理\n│   - load_preference_data(path): 加载 JSON pairs\n│   - tokenize_multiturn(): 带 turn 边界标记的 tokenization\n│   - build_dataset(): HF Dataset 构建\n│\n├── config.yaml                 # 超参配置（见 §4.4）\n│\n├── collect_trajectories.py     # 轨迹收集（§5.1）\n│   - ALFWorld 环境交互\n│   - vLLM / transformers 推理\n│   - 输出 trajectories.jsonl\n│\n├── classify_errors.py          # 错误分类（§5.2）\n│   - Qwen3-14B-AWQ zero-shot\n│   - 输出 error_classifications.json\n│\n├── construct_preference.py     # Preference pair 构建（§5.3）\n│   - 输入: trajectories + error_classifications\n│   - 输出: preference_pairs.json\n│\n├── evaluate.py                 # ALFWorld 评估\n│   - 标准 eval protocol: 134 unseen tasks\n│   - 指标: success rate, average steps\n│   - 按 task type 分组报告\n│\n├── scripts/\n│   ├── run_gpu0.sh             # GPU0 训练脚本 (CUDA_VISIBLE_DEVICES=0)\n│   └── run_gpu1.sh             # GPU1 训练脚本 (CUDA_VISIBLE_DEVICES=1)\n│\n└── alfworld_env/               # ALFWorld 环境 wrapper（从 ETO 移植）\n    ├── env_wrapper.py\n    └── task_configs/\n```\n\n### 6.1 关键模块依赖关系\n\n```\nconfig.yaml\n    ↓\ntrain_etadn.py\n    ├── data_utils.py → tokenize_multiturn()\n    ├── dmpo_trainer.py → ETADNTrainer\n    │       ├── dmpo_loss.py → compute_phi_weights()\n    │       └── DMPODataCollator → gamma injection\n    └── evaluate.py (训练结束后调用)\n\ncollect_trajectories.py → trajectories.jsonl\n    ↓\nclassify_errors.py → error_classifications.json\n    ↓\nconstruct_preference.py → preference_pairs.json\n    ↓\ntrain_etadn.py (读取 preference_pairs.json)\n```\n\n---\n\n## 7. Ablation 设计\n\n### 7.1 三种模式切换\n\n通过 `config.yaml` 中 `training.mode` 字段切换：\n\n| Mode | γ 来源 | φ(t,T) 行为 | 等效于 |\n|---|---|---|---|\n| `dpo` | 不使用 | 所有 token 权重=1（`completion_mask` 原样聚合） | 标准 DPO |\n| `dmpo` | `global_gamma`（标量） | 全局 γ 计算 φ，所有样本共享 | 原始 DMPO |\n| `etadn` | `gamma_e_mapping[error_type]`（per-sample） | per-sample γ_e 计算 φ | ETADN (ours) |\n\n### 7.2 代码中的模式分支\n\n在 `ETADNTrainer._compute_loss` 中：\n\n```python\nif self.mode == \"dpo\":\n    # 标准 DPO: 直接 sum\n    logps = (per_token_logps * shift_completion_mask).sum(dim=1)\nelse:\n    # dmpo 或 etadn: φ-weighted sum\n    # gamma 已由 collator 注入到 batch[\"gamma\"]\n    token_phi = compute_phi_weights(\n        turn_ids=batch[\"turn_ids\"][:, 1:],  # shift 对齐\n        gamma=batch[\"gamma\"],\n        num_turns=batch[\"num_turns\"],\n        max_turns=batch[\"turn_ids\"].max().item() + 1,\n    )\n    logps = (per_token_logps * shift_completion_mask * token_phi).sum(dim=1)\n```\n\n### 7.3 实验矩阵\n\n| Run | Mode | γ / γ_e | GPU | Seed | 目的 |\n|---|---|---|---|---|---|\n| A1 | dpo | — | 0 | 42 | Baseline: 标准 DPO |\n| A2 | dpo | — | 1 | 42 | Baseline 复现 |\n| B1 | dmpo | 0.90 | 0 | 42 | Baseline: DMPO 全局 γ |\n| B2 | dmpo | 0.85 | 1 | 42 | DMPO γ 敏感性 |\n| C1 | etadn | per-sample | 0 | 42 | **Ours**: ETADN |\n| C2 | etadn | per-sample | 1 | 123 | Ours 不同 seed |\n\n**两卡并行策略**：每次在 2 张 4090D 上同时跑 2 个 run。6 个 run 分 3 轮完成。\n\n### 7.4 评估指标\n\n| 指标 | 说明 |\n|---|---|\n| ALFWorld success rate (overall) | 主指标，134 unseen tasks |\n| Success rate per task type | 6 种 task type 的分项成功率 |\n| Average steps to success | 效率指标 |\n| Error type distribution shift | 训练前后的错误类型分布变化 |\n| DMPO reward (Φ(τ)) | 训练过程中 chosen/rejected 的加权 log-ratio |\n| Training loss curve | 收敛性对比 |\n\n---\n\n## 8. ETADNTrainer 核心代码骨架\n\n```python\n# dmpo_trainer.py\n\nfrom trl import DPOTrainer, DPOConfig\nfrom dmpo_loss import compute_phi_weights\n\nclass ETADNConfig(DPOConfig):\n    mode: str = \"etadn\"          # \"dpo\" | \"dmpo\" | \"etadn\"\n    global_gamma: float = 0.90\n    gamma_e_mapping: dict = None  # {\"action\": 0.85, \"verify\": 0.92, \"plan\": 0.97}\n\n\nclass ETADNTrainer(DPOTrainer):\n\n    def __init__(self, *args, mode=\"etadn\", global_gamma=0.9, gamma_e_mapping=None, **kwargs):\n        super().__init__(*args, **kwargs)\n        self.mode = mode\n        self.global_gamma = global_gamma\n        self.gamma_e_mapping = gamma_e_mapping or {}\n\n    def _compute_loss(self, model, inputs, return_outputs=False):\n        \"\"\"Override: DMPO φ-weighted log probability aggregation.\"\"\"\n        # --- 1. 提取额外字段 ---\n        turn_ids = inputs.pop(\"turn_ids\", None)\n        num_turns = inputs.pop(\"num_turns\", None)\n        gamma = inputs.pop(\"gamma\", None)\n        completion_mask = inputs[\"completion_mask\"]\n        input_ids = inputs[\"input_ids\"]\n\n        # --- 2. Policy forward ---\n        model_kwargs = {k: v for k, v in inputs.items()\n                        if k not in (\"completion_mask\", \"ref_chosen_logps\", \"ref_rejected_logps\")}\n        outputs = model(**model_kwargs)\n\n        # --- 3. Per-token logps ---\n        from trl.trainer.utils import selective_log_softmax\n        shift_logits = outputs.logits[..., :-1, :].contiguous()\n        shift_labels = input_ids[..., 1:].contiguous()\n        shift_completion_mask = completion_mask[..., 1:].contiguous()\n        per_token_logps = selective_log_softmax(shift_logits, shift_labels)\n        per_token_logps[shift_completion_mask == 0] = 0.0\n\n        # --- 4. 聚合（核心修改点） ---\n        if self.mode == \"dpo\" or turn_ids is None:\n            logps = per_token_logps.sum(dim=1)\n        else:\n            shift_turn_ids = turn_ids[..., 1:].contiguous()\n            token_phi = compute_phi_weights(shift_turn_ids, gamma, num_turns,\n                                            max_turns=shift_turn_ids.max().item() + 1)\n            logps = (per_token_logps * shift_completion_mask * token_phi).sum(dim=1)\n\n        chosen_logps, rejected_logps = logps.chunk(2, dim=0)\n\n        # --- 5. Reference logps ---\n        if \"ref_chosen_logps\" in inputs:\n            ref_chosen_logps = inputs[\"ref_chosen_logps\"]\n            ref_rejected_logps = inputs[\"ref_rejected_logps\"]\n        else:\n            with torch.no_grad():\n                ref_chosen_logps, ref_rejected_logps = self._compute_ref_logps(\n                    model, inputs, shift_completion_mask,\n                    turn_ids=shift_turn_ids if self.mode != \"dpo\" else None,\n                    gamma=gamma, num_turns=num_turns,\n                )\n\n        # --- 6. Loss (sigmoid, same as standard DPO) ---\n        chosen_logratios = chosen_logps - ref_chosen_logps\n        rejected_logratios = rejected_logps - ref_rejected_logps\n        logits = chosen_logratios - rejected_logratios\n\n        loss = -F.logsigmoid(self.beta * logits).mean()\n\n        # --- 7. Metrics ---\n        chosen_rewards = (self.beta * (chosen_logps - ref_chosen_logps)).detach()\n        rejected_rewards = (self.beta * (rejected_logps - ref_rejected_logps)).detach()\n        reward_margin = (chosen_rewards - rejected_rewards).mean()\n\n        metrics = {\n            \"loss\": loss.detach().item(),\n            \"rewards/chosen\": chosen_rewards.mean().item(),\n            \"rewards/rejected\": rejected_rewards.mean().item(),\n            \"rewards/margin\": reward_margin.item(),\n        }\n        self.store_metrics(metrics, train_eval=\"train\")\n\n        if return_outputs:\n            return loss, {\"logits\": logits}\n        return loss\n```\n\n---\n\n## 9. 风险与注意事项\n\n| 风险 | 缓解 |\n|---|---|\n| `precompute_ref_log_probs` 与自定义 φ-weighted 聚合不兼容 | ref logps 也必须用相同 φ 加权。需确认 precompute 阶段和训练阶段使用一致的 turn_ids 和 gamma |\n| trl 版本更新可能改变 `_compute_loss` 内部结构 | 锁定 trl 版本（pip install trl==1.4.0），在代码中 assert 关键接口存在 |\n| Qwen3 chat template 的 token 边界与手动分段不一致 | 使用 `tokenizer.apply_chat_template` 逐段处理，用 offset mapping 精确定位 assistant token span |\n| φ 权重导致梯度尺度变化 | φ 归一化保证 Σ_t φ(t,T) 接近 1（实际 = (1-γ^T)/(1-γ^T) · Σ γ^t(1-γ^{T-t}) 需验证），若偏差大需调整 β |\n| γ_e 值（0.85/0.92/0.97）为初始设定 | 后续可做 γ_e 敏感性实验（grid search），或作为可学习参数 |\n\n---\n\n## 10. 实施优先级\n\n| Phase | 内容 | 估计时间 |\n|---|---|---|\n| P1 | `dmpo_loss.py` + 单元测试（验证 φ 计算正确性） | 0.5 天 |\n| P2 | `data_utils.py`（tokenization + turn 标记） | 1 天 |\n| P3 | `dmpo_trainer.py`（ETADNTrainer + collator） | 1.5 天 |\n| P4 | `train_etadn.py`（集成 + 小数据 smoke test） | 0.5 天 |\n| P5 | 推理 pipeline（collect + classify + construct） | 2 天 |\n| P6 | 完整训练 + 评估 | 2-3 天 |\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册 artifact。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "f7d3cae8-3770-46ff-aa17-e17f77f0b085",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014xuHjWZUgxCPDd7X4Q9pQo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11042,
+                "cache_read_input_tokens": 47322,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11042
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J3NEk4VMur51uYC9e1HuiH",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "DMPO+ETADN Pipeline Design v2",
+                "type": "report",
+                "description": "DMPO+ETADN 训练 Pipeline 完整设计文档 v2：DMPO loss 公式与实现、γ_e 注入方案、数据 pipeline、QLoRA 配置、推理 pipeline、文件结构、ablation 设计",
+                "project": "rl-active-probe-fl",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/artifacts/_project/report/dmpo_etadn_pipeline_design_v2.md",
+                "tags": [
+                  "dmpo",
+                  "etadn",
+                  "design",
+                  "pipeline",
+                  "v2"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "b65d3af6-bbcf-4a75-91d2-62bf454a270b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014xuHjWZUgxCPDd7X4Q9pQo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11042,
+                "cache_read_input_tokens": 47322,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11042
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": "2026-05-12T10:56:20.837Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J3NEk4VMur51uYC9e1HuiH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260512_c89733\\\", \\\"name\\\": \\\"DMPO+ETADN Pipeline Design v2\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"DMPO+ETADN 训练 Pipeline 完整设计文档 v2：DMPO loss 公式与实现、γ_e 注入方案、数据 pipeline、QLoRA 配置、推理 pipeline、文件结构、ablation 设计\\\", \\\"path\\\": \\\"projects/rl-active-probe-fl/artifacts/_project/report/dmpo_etadn_pipeline_design_v2_c89733.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"rl-active-probe-fl\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-12T10:56:20.809817+00:00\\\", \\\"tags\\\": [\\\"dmpo\\\", \\\"etadn\\\", \\\"design\\\", \\\"pipeline\\\", \\\"v2\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "e42a41da-ab9f-4f28-8b7c-39a62af5e653",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260512_c89733\\\", \\\"name\\\": \\\"DMPO+ETADN Pipeline Design v2\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"DMPO+ETADN 训练 Pipeline 完整设计文档 v2：DMPO loss 公式与实现、γ_e 注入方案、数据 pipeline、QLoRA 配置、推理 pipeline、文件结构、ablation 设计\\\", \\\"path\\\": \\\"projects/rl-active-probe-fl/artifacts/_project/report/dmpo_etadn_pipeline_design_v2_c89733.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"rl-active-probe-fl\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-12T10:56:20.809817+00:00\\\", \\\"tags\\\": [\\\"dmpo\\\", \\\"etadn\\\", \\\"design\\\", \\\"pipeline\\\", \\\"v2\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_c89733\", \"name\": \"DMPO+ETADN Pipeline Design v2\", \"type\": \"report\", \"description\": \"DMPO+ETADN 训练 Pipeline 完整设计文档 v2：DMPO loss 公式与实现、γ_e 注入方案、数据 pipeline、QLoRA 配置、推理 pipeline、文件结构、ablation 设计\", \"path\": \"projects/rl-active-probe-fl/artifacts/_project/report/dmpo_etadn_pipeline_design_v2_c89733.md\", \"url\": null, \"project\": \"rl-active-probe-fl\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-12T10:56:20.809817+00:00\", \"tags\": [\"dmpo\", \"etadn\", \"design\", \"pipeline\", \"v2\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LjWYmf77fAQTZEdVyNbuW4",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Research DMPO paper and trl DPOTrainer API",
+                    "status": "completed",
+                    "activeForm": "Researching DMPO paper and trl DPOTrainer API"
+                  },
+                  {
+                    "content": "Write DMPO+ETADN pipeline design document",
+                    "status": "completed",
+                    "activeForm": "Writing DMPO+ETADN pipeline design document"
+                  },
+                  {
+                    "content": "Register artifact",
+                    "status": "completed",
+                    "activeForm": "Registering artifact"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "6591d447-2df6-44d4-9a5e-f252fb49ddf3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014xuHjWZUgxCPDd7X4Q9pQo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11042,
+                "cache_read_input_tokens": 47322,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11042
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": "2026-05-12T10:56:22.627Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LjWYmf77fAQTZEdVyNbuW4",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "87907fb4-6597-46aa-b42f-c5afb19bd66c",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Research DMPO paper and trl DPOTrainer API",
+                  "status": "completed",
+                  "activeForm": "Researching DMPO paper and trl DPOTrainer API"
+                },
+                {
+                  "content": "Write DMPO+ETADN pipeline design document",
+                  "status": "in_progress",
+                  "activeForm": "Writing DMPO+ETADN pipeline design document"
+                },
+                {
+                  "content": "Register artifact",
+                  "status": "pending",
+                  "activeForm": "Registering artifact"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Research DMPO paper and trl DPOTrainer API",
+                  "status": "completed",
+                  "activeForm": "Researching DMPO paper and trl DPOTrainer API"
+                },
+                {
+                  "content": "Write DMPO+ETADN pipeline design document",
+                  "status": "completed",
+                  "activeForm": "Writing DMPO+ETADN pipeline design document"
+                },
+                {
+                  "content": "Register artifact",
+                  "status": "completed",
+                  "activeForm": "Registering artifact"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "设计文档已完成并注册（`art_20260512_c89733`）。\n\n核心设计要点：\n\n1. **DMPO Loss**：在 trl v1.4.0 的 `_compute_loss` 中，将 `per_token_logps.sum(dim=1)` 替换为 φ-weighted 聚合。φ(t,T,γ) = γ^t·(1-γ^(T-t))/(1-γ^T) 通过 `turn_ids` 张量映射到每个 token。\n\n2. **ETADN γ_e 注入**：DataCollator 从样本 `error_type` 查表得 γ_e（action=0.85, verify=0.92, plan=0.97），构建 per-sample gamma 向量传入 loss 计算。\n\n3. **三模式 ablation**：`mode` flag 切换 dpo（无加权）/ dmpo（全局 γ）/ etadn（per-sample γ_e），同一代码框架覆盖全部实验。\n\n4. **QLoRA ref model**：`precompute_ref_log_probs=True`，训练前缓存 ref logps，训练时不加载 ref model，省 VRAM。\n\n5. **VRAM**：单卡 ~15-17 GB，24 GB 4090D 可运行。两卡各跑独立 run，6 个实验分 3 轮完成。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "uuid": "f74548ad-2a55-4d81-9678-d7e18023e589",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CBUtLgC6gyDLYPNVP3YcAc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 897,
+                "cache_read_input_tokens": 58364,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 897
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "设计文档已完成并注册（`art_20260512_c89733`）。\n\n核心设计要点：\n\n1. **DMPO Loss**：在 trl v1.4.0 的 `_compute_loss` 中，将 `per_token_logps.sum(dim=1)` 替换为 φ-weighted 聚合。φ(t,T,γ) = γ^t·(1-γ^(T-t))/(1-γ^T) 通过 `turn_ids` 张量映射到每个 token。\n\n2. **ETADN γ_e 注入**：DataCollator 从样本 `error_type` 查表得 γ_e（action=0.85, verify=0.92, plan=0.97），构建 per-sample gamma 向量传入 loss 计算。\n\n3. **三模式 ablation**：`mode` flag 切换 dpo（无加权）/ dmpo（全局 γ）/ etadn（per-sample γ_e），同一代码框架覆盖全部实验。\n\n4. **QLoRA ref model**：`precompute_ref_log_probs=True`，训练前缓存 ref logps，训练时不加载 ref model，省 VRAM。\n\n5. **VRAM**：单卡 ~15-17 GB，24 GB 4090D 可运行。两卡各跑独立 run，6 个实验分 3 轮完成。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 928517,
+            "duration_api_ms": 1019823,
+            "num_turns": 17,
+            "stop_reason": "end_turn",
+            "session_id": "9c825e4f-073f-424a-a943-848e9782783e",
+            "total_cost_usd": 3.389084499999999,
+            "usage": {
+              "input_tokens": 778,
+              "cache_creation_input_tokens": 47420,
+              "cache_read_input_tokens": 356367,
+              "output_tokens": 16537,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 47420,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 404,
+                  "cache_read_input_tokens": 58364,
+                  "cache_creation_input_tokens": 897,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 897
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 413953,
+                "outputTokens": 32465,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 7,
+                "costUSD": 0.6462779999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 4920,
+                "outputTokens": 33171,
+                "cacheReadInputTokens": 1477213,
+                "cacheCreationInputTokens": 184052,
+                "webSearchRequests": 0,
+                "costUSD": 2.7428065000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8fe7534c-f8b4-441f-bd78-4479f3841875"
+          },
+          "id": "event-000214"
+        }
+      ]
+    }
+  ]
+}

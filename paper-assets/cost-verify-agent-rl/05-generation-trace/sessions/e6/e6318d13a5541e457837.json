@@ -1,0 +1,440 @@
+{
+  "schema_version": "1.0",
+  "id": "e6318d13a5541e457837",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "paper writing theoretical analysis",
+  "task_key": "worker_paper_writing_theoretical_analysis_20260517T073023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_theoretical_analysis_20260517T073023.jsonl",
+    "occurrence": 1,
+    "bytes": 30714,
+    "sha256": "7b35c016952dd7b1ed766d8c9aa91e5f48ddadb2ee2766919cfca5220cf96efa"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T07:36:52.204884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T07:36:52.205302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Problem Formulation}\n5\t\\label{sec:problem_formulation}\n6\t\n7\tWe formalize the multi-turn interactive agent as a Partially Observable Markov Decision Process (POMDP) $\\mathcal{M} = (\\mathcal{S}, \\mathcal{A}, \\mathcal{O}, P, \\Omega, R, \\gamma)$, where $\\mathcal{S}$ is the state space of the environment, $\\mathcal{A}$ is the action space (natural language commands), $\\mathcal{O}$ is the observation space (textual feedback from the environment), $P: \\mathcal{S} \\times \\mathcal{A} \\rightarrow \\mathcal{S}$ is the transition function, $\\Omega: \\mathcal{S} \\rightarrow \\mathcal{O}$ is the observation function, $R$ is the reward function, and $\\gamma \\in [0,1]$ is a discount factor. The agent policy $\\pi_\\phi(a_t \\mid h_t)$ generates actions conditioned on the interaction history $h_t = (o_1, a_1, o_2, a_2, \\ldots, o_t)$, where $\\phi$ denotes the policy parameters. An episode consists of $T$ interaction steps, terminating with a binary reward $R \\in \\{0, r_+\\}$ that indicates task success or failure.\n8\t\n9\tIn practice, multi-turn episodes can span 50 or more interaction steps, each containing hundreds of tokens. Training a language model policy on the full history $h_T$ is computationally expensive and often exceeds the model's context window. This motivates the \\textbf{step-independent windowing} approach: the trajectory is partitioned into non-overlapping windows of $h$ consecutive steps, and each window is optimized independently with its own computed return. Concretely, window $k$ observes only $(o_{(k-1)h+1}, a_{(k-1)h+1}, \\ldots, o_{kh})$ and receives a return $R_k$ derived from the episode outcome. This decomposition treats each window as a separate training sample, allowing standard context-length models to process the data. We show below that this seemingly practical choice introduces two failure mechanisms that cause catastrophic training collapse.\n10\t\n11\t\\subsection{GRPO for Language Agents}\n12\t\\label{sec:grpo}\n…[truncated 11907 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T07:36:52.205503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T07:36:52.205920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 4866 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T07:36:52.206127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T07:36:52.206494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T07:36:52.206850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/",
+              "description": "Check paper directory exists"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T07:36:52.207002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "method.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T07:36:52.207170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex",
+              "content": "\\section{Theoretical Analysis}\n\\label{sec:theory}\n\nSection~\\ref{sec:dual_mechanism} identified two failure mechanisms of step-independent training: policy information loss and advantage sign misattribution. We now formalize why sign misattribution is the more fundamental failure, derive the probability of incorrect gradient direction as a function of task success rate, examine why the community has defaulted to step-independent training, and connect our findings to the classical credit assignment literature.\n\n\\subsection{Why Sign Misattribution is Fundamental}\n\\label{sec:sign_fundamental}\n\nThe two mechanisms identified in Section~\\ref{sec:dual_mechanism} produce qualitatively different optimization errors. Policy information loss (Mechanism 1) reduces the information available to each window's policy, producing suboptimal but directionally reasonable gradient updates. Sign misattribution (Mechanism 2) corrupts the gradient direction itself. We formalize this distinction below.\n\n\\textbf{Proposition 1.} \\textit{Under step-independent training with binary episode reward $R_{\\text{episode}} \\in \\{0, r_+\\}$, the probability that window $k$'s advantage $\\hat{A}_k$ has the correct sign (aligned with local action quality) approaches the base success rate $p$ as the number of rollouts $K$ per group increases.}\n\n\\textit{Argument.} Define ``correct sign'' as follows: for a window containing locally beneficial actions, the correct sign of $\\hat{A}_k$ is positive (reinforcement); for a window containing locally detrimental actions, the correct sign is negative (suppression). Under binary reward, the return for window $k$ is $R_k = \\gamma^{(N-k)} \\cdot R_{\\text{episode}}$ (Equation~\\ref{eq:step_return}). In a failed episode ($R_{\\text{episode}} = 0$), all windows receive $R_k = 0$ regardless of their local action quality. If the group contains at least one successful rollout, the group mean $\\mu > 0$, and all windows in the failed episode receive negative advantages after normalization via Equation~\\ref{eq:grpo_advantage}. This includes windows where the agent took locally correct actions, such as correctly identifying a target object in an exploration step. Now consider a window with good local actions. In a successful episode (probability $p$), the window receives positive $\\hat{A}_k$, which is the correct sign. In a failed episode (probability $1 - p$), the window receives negative $\\hat{A}_k$ whenever $\\mu > 0$, which is the wrong sign. The probability that $\\mu = 0$ (all $K$ rollouts in the group failed) is $(1-p)^K$, which shrinks exponentially with $K$. As $K$ grows, nearly every failed episode produces a non-zero group mean, and the window receives the wrong sign with probability approaching $1-p$. The probability of correct sign therefore approaches $p$. \\qed\n\nThe distinction between sign error and magnitude error clarifies why Mechanism 2 is catastrophic while Mechanism 1 is merely suboptimal. The discount factor $\\gamma^{(N-k)}$ in Equation~\\ref{eq:step_return} introduces magnitude decay across window positions: for an episode with $T=50$ steps and $h=2$, the first window ($k=1$) retains $\\gamma^{N-1} = 0.95^{24} \\approx 0.29$ of the terminal window's return. This attenuation reduces the gradient magnitude for early windows but preserves the gradient direction. A gradient with correct sign and reduced magnitude produces slow convergence, a condition recoverable through longer training. A gradient with wrong sign produces active divergence: the optimization pushes the policy away from good behaviors and toward bad ones. Consider a navigation analogy. Magnitude error corresponds to a compass that points correctly but displays a dimmed needle; the traveler moves slowly toward the destination. Sign error corresponds to a compass pointing in the opposite direction; the traveler walks away from the destination with full confidence. The first error is correctable by patience. The second is correctable only by replacing the compass.\n\n\\subsection{Formal Probability Analysis}\n\\label{sec:formal_probability}\n\nWe derive a tighter bound on the probability of correct gradient direction as a function of task difficulty and group size.\n\n\\textbf{Proposition 2.} \\textit{Let $p$ denote the episode success rate and $K$ the number of rollouts per group. Under step-independent training with binary episode reward, the probability that a gradient update for a window with locally good actions has the correct sign satisfies:}\n\\begin{equation}\nP(\\text{correct sign or no update}) = p + (1-p)^{K}\n\\label{eq:correct_bound}\n\\end{equation}\n\\textit{Among gradient updates that occur (non-zero advantage), the fraction with correct sign is:}\n\\begin{equation}\nP(\\text{correct} \\mid \\text{update}) = \\frac{p}{1 - (1-p)^{K}}\n\\label{eq:correct_conditional}\n\\end{equation}\n\n\\textit{Derivation.} For a window with locally good actions, the gradient direction depends on $\\text{sign}(\\hat{A}_k)$, which depends on whether the episode succeeded and whether the group contains any successful rollouts. Three mutually exclusive cases arise.\n\n\\textit{Case 1: Episode succeeded} (probability $p$). The window receives $R_k = \\gamma^{(N-k)} \\cdot r_+ > 0$. With at least one failed rollout in the group, $R_k > \\mu$ after normalization, producing $\\hat{A}_k > 0$. The gradient reinforces the window's actions. For a window with good local actions, this is the correct direction.\n\n\\textit{Case 2: Episode failed, group contains at least one success} (probability $(1-p)[1 - (1-p)^{K-1}]$). The window receives $R_k = 0 < \\mu$, producing $\\hat{A}_k < 0$. The gradient suppresses the window's actions. For a window with good local actions, this is the wrong direction.\n\n\\textit{Case 3: Episode failed, entire group failed} (probability $(1-p) \\cdot (1-p)^{K-1} = (1-p)^{K}$). All returns are zero, so $\\mu = 0$ and $\\sigma = 0$. The advantage is zero, producing no gradient update.\n\nSumming Cases~1 and~3 yields Equation~\\ref{eq:correct_bound}. Since only Cases~1 and~2 produce non-zero gradients, the conditional probability follows as Equation~\\ref{eq:correct_conditional}.\n\nWe evaluate these expressions at the empirical baseline of our experiments. At $p = 6.25\\%$ (the pre-training success rate) and $K = 4$: $(1-p)^K = 0.9375^4 \\approx 0.77$, giving $P(\\text{correct or no update}) \\approx 0.83$. Of the 23\\% of cases that produce a gradient update, only $P(\\text{correct} \\mid \\text{update}) = 0.0625 / 0.23 \\approx 27\\%$ have the correct sign. As $K$ increases to 16, $(1-p)^{K} \\approx 0.36$, and $P(\\text{correct} \\mid \\text{update}) \\approx 9.8\\%$. In the large-$K$ limit, $P(\\text{correct} \\mid \\text{update}) \\to p$, so approximately $1 - p \\approx 94\\%$ of all gradient updates for locally good windows point in the wrong direction. This is consistent with the empirical observation that step-independent training collapses to 0\\% task success (exp026, exp028c) while episode-level training achieves stable improvement (exp029, 28.125\\% validation success at step 15).\n\n\\subsection{Why the Community Defaults to Step-Independent Training}\n\\label{sec:why_defaults}\n\nIf step-independent training is fundamentally flawed for multi-turn agents, why has it become the default? We identify six contributing factors.\n\n\\textbf{1. Context window constraints.} Smaller language models (1B to 4B parameters) typically support context windows of 2048 to 4096 tokens. Multi-turn episodes spanning 50 or more interaction steps easily exceed these limits. Step-independent windowing is a pragmatic response to a hardware constraint, not a deliberate algorithmic choice.\n\n\\textbf{2. Token-level training inertia.} Language model training is organized around predicting the next token over fixed-length sequences. When multi-turn RL inherits this paradigm, the natural unit of optimization becomes a fixed-length window rather than a variable-length episode. The mismatch between token-level optimization and episode-level credit assignment goes unquestioned because it aligns with existing training infrastructure.\n\n\\textbf{3. Framework design accident.} The RAGEN framework~\\cite{ragen2025} implements step-independent mode as its default configuration, not as one option among alternatives. Users inherit this choice without an explicit decision point, and default configurations propagate silently through downstream projects.\n\n\\textbf{4. Memory and compute constraints.} Episode-level training requires processing $O(T)$ tokens per sequence, incurring $O(T^2)$ attention cost with full self-attention. Step-independent training reduces this to $O(h)$ tokens and $O(h^2)$ attention cost per window. The computational savings are immediate and measurable, while the credit assignment failure is subtle and deferred until training collapse occurs.\n\n\\textbf{5. Reward shaping as apparent fix.} Dense reward shaping (per-step bonuses for intermediate goals) appears to address sparse reward problems and has theoretical support in the single-agent RL literature. Our experiment with dense rewards under step-independent training (exp013f) reveals a different failure mode: the agent learns to maximize format-level rewards (action validity rises from 60\\% to 97.5\\%) while task success remains at 0\\%. Reward shaping does not resolve sign misattribution; it creates new optimization targets that the agent can game without solving the underlying task.\n\n\\textbf{6. Absence of negative results.} When step-independent training fails, practitioners attribute the failure to insufficient hyperparameter tuning or the inherent difficulty of sparse rewards. Without published analyses that isolate the credit assignment mechanism as the root cause, the community cannot distinguish between ``this problem is hard'' and ``this training paradigm is broken for this class of problems.''\n\n\\subsection{Connection to Classical Credit Assignment}\n\\label{sec:classical_connection}\n\nOur findings connect to a long line of work on temporal credit assignment in reinforcement learning. We position the step-independent failure mode within this literature and clarify the contribution of our analysis.\n\n\\textbf{Temporal difference learning and eligibility traces.} Sutton's TD($\\lambda$)~\\cite{sutton1988td} provides a spectrum of credit assignment strategies parameterized by $\\lambda \\in [0,1]$. At $\\lambda = 0$, credit is assigned via one-step bootstrapped returns. At $\\lambda = 1$, TD($\\lambda$) reduces to Monte Carlo returns, where each state receives the full episode return. Step-independent training falls below this spectrum: windows are disconnected from each other, so temporal propagation of credit does not occur. Each window receives an independently computed advantage with no mechanism for information to flow across windows within the same episode.\n\n\\textbf{Generalized Advantage Estimation.} GAE($\\lambda, \\gamma$)~\\cite{schulman2016gae} extends TD($\\lambda$) with a separate discount factor for the advantage estimator. GAE(0, $\\gamma$) produces per-step advantages through a learned value function. GAE(1, 1) produces undiscounted Monte Carlo returns, and is equivalent to episode-level GRPO without a critic. The key difference is that GAE uses value function subtraction as the baseline for variance reduction, while GRPO uses group normalization. Episode-level GRPO can be viewed as GAE(1, 1) with a group-relative baseline replacing the learned value function. This substitution is effective when the group provides a representative reference distribution, but it does not address per-step credit assignment within an episode.\n\n\\textbf{REINFORCE.} Williams' REINFORCE algorithm~\\cite{williams1992reinforce} computes policy gradients from complete episode returns with a learned baseline $b(s)$. Episode-level GRPO is equivalent to REINFORCE where the group mean $\\mu$ replaces $b(s)$ and the group standard deviation $\\sigma$ provides normalization. The algorithmic structure is not new. Our contribution is the diagnosis: the community's standard adaptation of this algorithm for multi-turn LLM agents (step-independent windowing) silently breaks the credit assignment structure that REINFORCE assumes.\n\n\\textbf{Multi-agent credit assignment analogy.} Step-independent windows can be understood through cooperative multi-agent games. Each window acts as an independent ``agent'' sharing a team reward (the episode outcome) but optimized without knowledge of other windows' actions. The sign misattribution problem parallels team reward credit assignment in cooperative multi-agent RL: when the team fails, all agents receive identical penalties regardless of individual contribution. In multi-agent RL, this is a recognized problem with known solutions such as counterfactual baselines. In multi-turn LLM agent training, the same structural problem arises from an implementation choice and has not been recognized as a credit assignment failure.\n\nTo summarize our positioning: we do not propose a new credit assignment algorithm. Episode-level training is the standard approach, and GRPO was designed as an episode-level method. What we identify is that the community's adaptation of GRPO to multi-turn settings introduces a systematic sign error in gradient computation. This error is not a gradual performance degradation but a catastrophic failure mode, as confirmed by the contrast between step-independent collapse (exp026, exp028c: 0\\% success) and episode-level stability (exp029: 28.125\\% validation success from a 12.5\\% baseline).\n"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T07:36:52.207441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T07:36:52.207605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"—\" /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex",
+              "description": "Check for em-dashes"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T07:36:52.207762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T07:36:52.207889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \" – \" /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex",
+              "description": "Check for explanatory en-dashes"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T07:36:52.208010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T07:36:52.208126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"ing\\.\" /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex | head -20",
+              "description": "Check for -ing phrase endings"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T07:36:52.208247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15:The distinction between sign error and magnitude error clarifies why Mechanism 2 is catastrophic while Mechanism 1 is merely suboptimal. The discount factor $\\gamma^{(N-k)}$ in Equation~\\ref{eq:step_return} introduces magnitude decay across window positions: for an episode with $T=50$ steps and $h=2$, the first window ($k=1$) retains $\\gamma^{N-1} = 0.95^{24} \\approx 0.29$ of the terminal window's return. This attenuation reduces the gradient magnitude for early windows but preserves the gradient direction. A gradient with correct sign and reduced magnitude produces slow convergence, a condition recoverable through longer training. A gradient with wrong sign produces active divergence: the optimization pushes the policy away from good behaviors and toward bad ones. Consider a navigation analogy. Magnitude error corresponds to a compass that points correctly but displays a dimmed needle; the traveler moves slowly toward the destination. Sign error corresponds to a compass pointing in the opposite direction; the traveler walks away from the destination with full confidence. The first error is correctable by patience. The second is correctable only by replacing the compass.\n65:Our findings connect to a long line of work on temporal credit assignment in reinforcement learning. We position the step-independent failure mode within this literature and clarify the contribution of our analysis."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T07:36:52.208384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n -i \"furthermore\\|moreover\\|additionally\\|it is worth noting\\|notably\\|leverage\\|utilize\\|facilitate\\|delve\" /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex",
+              "description": "Check for banned words"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T07:36:52.208509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T07:36:52.208623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex",
+              "description": "Count words"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T07:36:52.208763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1803 /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T07:36:52.208945+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n- Zero em-dashes\n- Zero explanatory en-dashes\n- Zero banned words (Furthermore, Moreover, Additionally, leverage, utilize, etc.)\n- The \"ing.\" matches are nouns (\"training\", \"learning\"), not trailing participial phrases\n- Word count: 1803 (target: 1800)\n\nSection written to `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/theoretical_analysis.tex`. Structure:\n\n- **4.1** Proposition 1 (sign probability → p as K grows) + sign vs. magnitude error distinction with compass analogy\n- **4.2** Proposition 2 (formal bound: P(correct|update) = p/(1-(1-p)^K)), numerical evaluation at p=6.25% showing ~94% wrong-direction updates in large-K limit\n- **4.3** Six root causes for community default (context constraints, token-level inertia, framework accident, compute, reward shaping illusion, missing negative results), each 2-3 sentences\n- **4.4** Connections to TD(λ), GAE, REINFORCE, multi-agent credit assignment; positioning statement\n\nNotation matches method.tex exactly. Citations use the specified bibtex keys. No preamble included."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_theoretical_analysis_20260517T073023"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-theoretical-analysis.md"
+}

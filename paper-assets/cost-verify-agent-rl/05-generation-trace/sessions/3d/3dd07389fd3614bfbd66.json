@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dd07389fd3614bfbd66",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp027 wandb run verify",
+  "task_key": "worker_ops_exp027_wandb_run_verify_20260515T143545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp027_wandb_run_verify_20260515T143545_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "2d60e048ca34b112c3f26aad269c9b415b13a2385dd0427e7de8f6ba75c2f0fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W&B run 已成功创建。\n\n**W&B Run URL**: https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/y7jiibqk\n\n**Run 名称**: `exp027-alfworld-stable-grpo`\n\n**W&B 目录**: `/root/cost-verify-agent-rl/RAGEN/wandb/run-20260515_223406-y7jiibqk`\n\n**训练进度**: W&B 初始化完成，FSDP worker 已启动，正在处理 eval 数据集（494 条，已完成 100%）。看起来正在进入 `val_before_train` 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp027-wandb-run-verify.md"
+}

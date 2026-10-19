@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0301916cacc3099044c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor gpu quick",
+  "task_key": "worker_monitor_gpu_quick_20260513T202516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_gpu_quick_20260513T202516_result.json",
+    "occurrence": 1,
+    "bytes": 1193,
+    "sha256": "443b9cce30315492d1258094fdc4f252e57ef49659d704384d7a9f88e85edf3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇报\n\n### 1. GPU 进程\n\n| GPU | PID | 进程 | 显存 | 利用率 |\n|-----|-----|------|------|--------|\n| cuda:0 | 120321 | `ray::WorkerDict.actor_rollout_generate_sequences` | 43612 MiB / 97887 MiB | 98% |\n| cuda:1 | 120322 | `ray::WorkerDict.actor_rollout_generate_sequences` | 43614 MiB / 97887 MiB | 97% |\n\n温度正常（72°C / 68°C），功耗 376W / 349W。\n\n### 2. 实验身份\n\n**exp_002**，配置 `_alfworld_exp002`，无 exp_001b 残留。\n\n- 主进程 PID 116879：`python train.py --config-name _alfworld_exp002`\n- tmux session: `exp_002`\n- `CUDA_VISIBLE_DEVICES=0,1`\n- 模型：**Qwen3 1.72B**（vocab_size=151936, tie_word_embeddings=true）\n- 环境：AlfWorld，3553 训练 games，140 验证 games\n\n### 3. 训练进度\n\n刚完成**初始验证**（step 0/100），尚未开始第一个训练 step。\n\n初始验证指标：\n- **success: 0.0**\n- pass@1: 0.0\n- raw_reward: 0.0\n- manager_invalid_action: **73.75%**（大部分动作无效）\n- action_is_valid: 15.1%\n- action_is_effective: 26.25%\n- 验证耗时 699s（~12 min）\n\n训练进度条刚显示 `0%| | 0/100`，正在开始第一个 training step。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-gpu-quick.md"
+}

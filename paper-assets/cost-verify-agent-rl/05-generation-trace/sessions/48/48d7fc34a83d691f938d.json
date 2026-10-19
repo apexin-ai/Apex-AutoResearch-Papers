@@ -1,0 +1,211 @@
+{
+  "schema_version": "1.0",
+  "id": "48d7fc34a83d691f938d",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "knowledge v9d success memory",
+  "task_key": "worker_knowledge_v9d_success_memory_20260520T095446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_knowledge_v9d_success_memory_20260520T095446.jsonl",
+    "occurrence": 1,
+    "bytes": 8459,
+    "sha256": "d6efac5598d193a31af3a0d357b5c40fd6ea9324923f0155e17443357fbd98e6"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T09:55:36.225528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_v9d_success_memory_20260520T095446",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T09:55:36.225897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_v9d_success_memory_20260520T095446",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T09:55:36.226068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_v9d_success_memory_20260520T095446",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T09:55:36.226273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"content\\\": \\\"# Project Memory — cost-verify-agent-rl\\\\n\\\\n## 经验教训\\\\n\\\\n### max_prompt_length 必须严格小于 max_model_len (2026-05-19)\\\\nv9c 在 step 3/30 崩溃：`max_prompt_length: 16384 == max_model_len: 16384`，prompt 填满后 vLLM 报 \\\\\\\"prompt + requested output tokens > max_model_len\\\\\\\"。修复：`max_prompt_length = max_model_len - response_length`（15360 = 16384 - 1024）。写 config 时永远预留 generation headroom。\\\\n\\\\n### save_freq 不应设为 999 (2026-05-19)\\\\nv9c 崩溃后无 checkpoint 可恢复（save_freq: 999 = 实际不保存）。30 步训练建议 save_freq: 5~10，代价是少量磁盘但能从中间恢复。\\\\n\\\\n### FSDP2 兼容性修复模式 (2026-05-19)\\\\n- `_fsdp_wrapped_module` → `getattr(model, \\\\\\\"_fsdp_wrapped_module\\\\\\\", model)`\\\\n- `FSDP.summon_full_params(model)` → `FSDP.summon_full_params(model) if isinstance(model, FSDP) else nullcontext()`\\\\n- FSDP2 用 `fully_shard` composable API，不 wrap 模型，不存在 `_fsdp_wrapped_module`\\\\n\\\\n### ScienceWorld eval valid_action_rate bug (2026-05-19)\\\\n`action_is_valid` 必须对比完整 `valid_actions` 列表，不能对比截断的 `shown[:50]`（前 50 个几乎全是 `connect X to Y` 格式，模型输出的自然语言动作全被误判）。\\\\n\\\\n## 决策原因\\\\n\\\\n### 8B Cell C 用 FSDP2 + CPUOffloadPolicy (2026-05-19)\\\\nFSDP1 峰值 ~91 GB/GPU → OOM（v5-v8 全部失败）。FSDP2 CPUOffloadPolicy 将参数和优化器按 layer 搬到 CPU，峰值降至 ~83 GB/GPU，余量 ~12 GB。不需要租卡。\\\\n\\\\n### ScienceWorld GRPO reward 是 continuous sparse (2026-05-19)\\\\n公式：`reward = (score/100) * 10.0`，范围 0-10，仅 episode 结束发放。Cell A（step-level）预期失败：中间步 reward=0，最后一步有 continuous reward 但 step-level credit assignment 无法利用。Cell C（episode-level）自然兼容。\\\\n\\\\n## 约束\\\\n\\\\n### westd GPU 内存紧张 (2026-05-19)\\\\n8B FSDP2+CPUOffload 训练时 GPU 占用 ~83/95.6 GB (87%)。不要增加 batch size 或 max_model_len，无余量。\\\\n\\\", \\\"total_chars\\\": 1505, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_v9d_success_memory_20260520T095446",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T09:55:36.226470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_v9d_success_memory_20260520T095446",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T09:55:36.226635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_v9d_success_memory_20260520T095446",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T09:55:36.226787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_v9d_success_memory_20260520T095446",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "memory.md",
+              "content": "# Project Memory — cost-verify-agent-rl\n\n## 经验教训\n\n### max_prompt_length 必须严格小于 max_model_len (2026-05-19)\nv9c 在 step 3/30 崩溃：`max_prompt_length: 16384 == max_model_len: 16384`，prompt 填满后 vLLM 报 \"prompt + requested output tokens > max_model_len\"。修复：`max_prompt_length = max_model_len - response_length`（15360 = 16384 - 1024）。写 config 时永远预留 generation headroom。\n\n### save_freq 不应设为 999 (2026-05-19)\nv9c 崩溃后无 checkpoint 可恢复（save_freq: 999 = 实际不保存）。30 步训练建议 save_freq: 5~10，代价是少量磁盘但能从中间恢复。\n\n### FSDP2 兼容性修复模式 (2026-05-19)\n- `_fsdp_wrapped_module` → `getattr(model, \"_fsdp_wrapped_module\", model)`\n- `FSDP.summon_full_params(model)` → `FSDP.summon_full_params(model) if isinstance(model, FSDP) else nullcontext()`\n- FSDP2 用 `fully_shard` composable API，不 wrap 模型，不存在 `_fsdp_wrapped_module`\n\n### save_contents 的 yaml 路径必须正确 (2026-05-20)\nverl checkpoint 的 `save_contents` 必须放在 `actor_rollout_ref.actor.checkpoint` 下，不是 `trainer` 下。错误路径导致保存完整 optimizer state（92GB），正确路径只保存 actor weights（33GB）。\n\n### FSDP2 checkpoint 是 rank shards 不是 HF 格式 (2026-05-20)\nFSDP2 保存的 checkpoint 是 `world_size_N` 目录下的 per-rank shards（`__0_0.distcp` 等），不是 HF safetensors。部署/评估前必须用 `convert_fsdp_to_hf.py` 合并为标准 HF 格式。\n\n### NCCL deadlock hang 的模式识别 (2026-05-20)\nv9d step 15 出现 NCCL deadlock：GPU utilization 0% 但显存仍占 ~60GB，进程不退出也不报错。这是典型的 collective 通信死锁（某 rank 未到达同步点）。发现后应直接 kill 进程，不要等待恢复。长训练建议设 `NCCL_TIMEOUT`。\n\n### 8B episode-level GRPO reward 饱和极快 (2026-05-20)\nv9d 训练曲线：40.6%(baseline) → 81.25%(step 5) → 96.875%(step 10) → 100%(step 12)。Step 12 后 advantage=0, pg_loss=0, grad_norm→0，完全无学习信号。教训：8B 模型在简单任务上 episode-level GRPO ≤15 steps 即可饱和，必须提前规划 OOD eval 和 early stopping，否则后续 steps 浪费算力且有 hang 风险。\n\n### ScienceWorld eval valid_action_rate bug (2026-05-19)\n`action_is_valid` 必须对比完整 `valid_actions` 列表，不能对比截断的 `shown[:50]`（前 50 个几乎全是 `connect X to Y` 格式，模型输出的自然语言动作全被误判）。\n\n## 决策原因\n\n### 8B Cell C 用 FSDP2 + CPUOffloadPolicy (2026-05-19)\nFSDP1 峰值 ~91 GB/GPU → OOM（v5-v8 全部失败）。FSDP2 CPUOffloadPolicy 将参数和优化器按 layer 搬到 CPU，峰值降至 ~83 GB/GPU，余量 ~12 GB。不需要租卡。\n\n### ScienceWorld GRPO reward 是 continuous sparse (2026-05-19)\n公式：`reward = (score/100) * 10.0`，范围 0-10，仅 episode 结束发放。Cell A（step-level）预期失败：中间步 reward=0，最后一步有 continuous reward 但 step-level credit assignment 无法利用。Cell C（episode-level）自然兼容。\n\n## 约束\n\n### westd GPU 内存紧张 (2026-05-19)\n8B FSDP2+CPUOffload 训练时 GPU 占用 ~83/95.6 GB (87%)。不要增加 batch size 或 max_model_len，无余量。\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T09:55:36.226960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_v9d_success_memory_20260520T095446",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T09:55:36.227118+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 4 条新经验：\n\n1. **save_contents yaml 路径** — 必须在 `actor_rollout_ref.actor.checkpoint` 下，错误路径导致 92GB vs 33GB checkpoint\n2. **FSDP2 checkpoint 格式** — rank shards 需 `convert_fsdp_to_hf.py` 合并才能部署\n3. **NCCL deadlock 模式** — 0% GPU util + 高显存占用 = collective 死锁，直接 kill\n4. **8B GRPO 饱和速度** — ≤15 steps 即饱和，需提前规划 OOD eval 和 early stopping"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_v9d_success_memory_20260520T095446"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/knowledge-v9d-success-memory.md"
+}

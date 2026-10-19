@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a502c62b8e748971bb3f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 progress",
+  "task_key": "worker_check_exp029_progress_20260517T025523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_progress_20260517T025523_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "0934f6ff3468412b9076b0626cb47f905615f6f8b97f1dc08330fdcae12a0a2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp029_episode_level 训练状态\n\n**状态：存活，正常运行中**\n\n| 项目 | 值 |\n|------|------|\n| tmux session | ALIVE |\n| 运行进程 | PID 905580 (Ray TaskRunner)，已运行 6h43m |\n| 原始 PID 896477 | 已死（被 Ray 子进程接管） |\n| 日志最后更新 | 2026-05-17 10:54:08（~9分钟前） |\n\n### 进度\n\n- **当前步数**: 14/100 (14%)\n- **已用时间**: 6h36m\n- **预计剩余**: ~37h56m（约 26.5 min/step）\n- **预计完成时间**: 约 5月19日凌晨\n\n### 最新 Metrics（step 12）\n\n| 指标 | 值 |\n|------|------|\n| success | 23.4% |\n| pass@8 | 62.5% |\n| action_is_valid | 55.9% |\n| action_is_effective | 85.4% |\n| entropy | 0.0419 |\n| ppo_kl | 0.00886 |\n| grad_norm | 3.01 |\n| response_length (mean) | 11,787 tokens |\n| throughput | 553.5 tokens/s |\n\n### GPU\n\n- GPU 0: 97233/97887 MiB，0% utilization\n- GPU 1: 97233/97887 MiB，0% utilization\n\nGPU 利用率显示 0% 是因为查询瞬间正处于 ALFWorld 环境交互阶段（CPU-bound），模型权重已加载在显存中，训练正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-progress.md"
+}

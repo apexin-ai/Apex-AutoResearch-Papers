@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db0ec6abd8ee7eb0fba2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops scp seed1 seed3 to westd",
+  "task_key": "worker_ops_scp_seed1_seed3_to_westd_20260522T060453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp_seed1_seed3_to_westd_20260522T060453_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "b32de7310738d348884a392ecc61fe3f0b2838d9fab739062202ca7c415e2d79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**传输失败——checkpoint 不存在。**\n\n两台服务器彻底搜索结果：\n\n- **bjb1** 上仅有 `exp029-seed4/global_step_15_hf` 的 safetensors\n- **westd** 上有 `exp029-seed4` 和 `exp029-seed6` 的 `global_step_15_hf`\n- **seed1** (`exp029_episode_level`) 和 **seed3** (`exp029_seed3_v2`) 的 step15 checkpoint 在两台服务器上均不存在——HF 格式和 FSDP 格式都没有。目录要么不存在，要么为空。\n\n这两个 checkpoint 很可能在之前的磁盘清理中被删除了。Table 1 中已有的 OOD 结果（seed1: 23.88%, seed3: 10.45%）应该来自删除前的评估。\n\n**后续选项：**\n1. 接受已有 OOD 结果，不重新评估\n2. 重新训练 seed1 (seed=10001) 和 seed3 (seed=42) 的 episode-level GRPO 至 step 15，生成新 checkpoint"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-seed1-seed3-to-westd.md"
+}

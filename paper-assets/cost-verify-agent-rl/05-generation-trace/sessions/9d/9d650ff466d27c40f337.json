@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d650ff466d27c40f337",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops restart factorial seed2 v4",
+  "task_key": "worker_ops_restart-factorial-seed2-v4_20260518T112102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-factorial-seed2-v4_20260518T112102_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "eb1fa39a07ca8f647deb7862c962baac98726b27b60d6b14920fbcd53e69c9ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 启动完成\n\n### 前置检查结果\n| 项目 | 状态 |\n|------|------|\n| g095 (PID 416289) | 运行中，GPU 2,3 各 26589MiB |\n| GPU 0,1 | 启动前空闲 → 启动后各 4731MiB |\n| RAM | 启动前 920Gi → 启动后 899Gi 可用（1Ti total） |\n| /tmp 问题 | 已通过 TMPDIR=/root/autodl-tmp/tmp 绕过 |\n\n### 启动信息\n- **PID**: 576727\n- **W&B run ID**: w0n74omu\n- **tmux session**: factorial_seed2\n- **Log**: `/root/autodl-tmp/cost-verify-agent-rl/logs/factorial_seed2_v4.log`\n- **Training Progress**: 0/15 steps（已开始第一个 step 的 rollout）\n- **val_before_train**: False（已确认跳过）\n\n### 修正项\n- 任务中的 `train_grpo_alfworld.py --config configs/...` 路径有误，实际入口是 `RAGEN/train.py --config-name` (Hydra)\n- 首次启动因 tmux 环境缺少 conda PATH 导致 `python: command not found`，已通过 `export PATH=/root/miniconda3/bin:$PATH` 修复\n\n### Registry & Cron\n- Registry: RUNNING，spec 含完整 provenance\n- Cron: 每 15 分钟自动检查（job ee68c5e2）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-factorial-seed2-v4.md"
+}

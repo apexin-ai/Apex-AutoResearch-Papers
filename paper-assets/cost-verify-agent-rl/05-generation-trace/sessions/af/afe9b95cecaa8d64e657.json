@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afe9b95cecaa8d64e657",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis exp013f full metrics",
+  "task_key": "worker_analysis_exp013f-full-metrics_20260514T123434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp013f-full-metrics_20260514T123434_result.json",
+    "occurrence": 1,
+    "bytes": 997,
+    "sha256": "a96afa8bdf25251994f4c467d3f4e7cf9b935a45b6a61eccb9667a28905f2270"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入 `artifacts/exp013f_training_metrics.md`。\n\n## 关键发现\n\n**25 个 train step（6–30）+ 3 个 val 评估点（5/20/30）全部提取完成。**\n\n### 趋势总结\n\n**action_is_valid**：0.556 → 0.860（+54.7%），val 端 0.600 → 0.975。模型明确学会了合法动作格式。\n\n**success**：全程 0–6.25%，后 9 步（22–30）基本为 0。Val success 始终 0%。\n\n### Reward Gaming 定量证据\n\n这是典型的 reward hacking：\n- **score_mean +49%**（2.60→3.87），但 **success 无改善**\n- 后期 **score_max 塌缩到 4.5**（不再有完成任务的 trajectory，前期有 10+）\n- 模型学会产出格式合法的动作刷密集奖励，但放弃了高风险的任务探索\n- Val reward mean@4 从 2.7→4.39，但 val success = 0%\n- 后期 KL 从 0.001 飙至 0.009、grad_norm 尖峰 8.15，策略过度优化密集奖励\n\n### 磁盘\n`/root/autodl-tmp/`: 78% used (57G free)，exp013f checkpoints 占 62G。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp013f-full-metrics.md"
+}

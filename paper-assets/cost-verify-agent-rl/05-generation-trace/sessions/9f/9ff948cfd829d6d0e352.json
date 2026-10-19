@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ff948cfd829d6d0e352",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd parallel ood eval gpu123",
+  "task_key": "worker_ops_westd_parallel_ood_eval_gpu123_20260522T053758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_parallel_ood_eval_gpu123_20260522T053758_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "aa3a1461fa43501d6471ad9e5992ca966f40e22d1bf277c7bba839d0d7afe0c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 全部在跑，全部初始化成功。\n\n| GPU | 显存占用 | 利用率 | Checkpoint | PID |\n|-----|---------|--------|------------|-----|\n| cuda:0 | 83347/97887 MiB | 37% | SFT baseline (batch_ood_eval.sh) | 原有 |\n| cuda:1 | 83347/97887 MiB | 44% | seed4 step15 | 487752 |\n| cuda:2 | 83347/97887 MiB | 29% | seed5 step10 | 489063 |\n| cuda:3 | 83347/97887 MiB | 43% | seed6 step15 | 489064 |\n\n3 个新 eval 均已加载模型、初始化 134 games 环境，正在运行。\n\n**修复要点**：\n1. `--gpu` 参数要传物理 GPU 编号（1/2/3），不能用外层 `CUDA_VISIBLE_DEVICES` + `--gpu 0`（脚本第 362 行会覆盖）\n2. `nohup bash -c` 子 shell 需要在内部 `cd` 或用绝对路径\n3. 用 `/root/miniconda3/bin/python` 全路径避免 conda 未激活问题\n\n**第二轮分配**（当前 3 个完成后）：cuda:1→seed8_step5, cuda:2→intervention_c_step5, cuda:3→intervention_c_step7。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-parallel-ood-eval-gpu123.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac60b44bffb9f3128816",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check bjb1 status cprime seed300ood",
+  "task_key": "worker_check_bjb1_status_cprime_seed300ood_20260522T184844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bjb1_status_cprime_seed300ood_20260522T184844_result.json",
+    "occurrence": 1,
+    "bytes": 1222,
+    "sha256": "ac07d49376011a3088bcca6fc090d9158ee679c14596ff9d72e80ccd4288ee85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. seed300 OOD eval v2\n\n- **状态**: Running（PID 442738，已运行 ~10 分钟）\n- **进度**: 仍在初始化阶段——模型已加载，数据已 tokenize (341 items)，W&B run `wi55yhp9` 已创建，但 **尚未开始生成 rollout**（日志末尾停在 FSDP 加载完成）\n- **GPU**: cuda:0 占用 100%, 56.4/97.9 GB 显存\n\n### 2. C' resume (exp029) step 6-7 metrics\n\n| 指标 | Step 6 (train) | Step 7 (train) | Step 5 初始 val | Step 7 最终 val |\n|------|---------------|----------------|-----------------|-----------------|\n| **success** | **31.25%** | **16.41%** | **21.88%** | **18.75%** |\n| response_length | 4685.5 | 5391.0 | 6891.9 | 7020.4 |\n| pass@8 (train) | 68.75% | 62.50% | — | — |\n| action_is_valid | 71.2% | 70.4% | 63.0% | 70.5% |\n| num_actions | 37.7 | 44.3 | 39.5 | 42.0 |\n\n趋势：train success 从 step 6 的 31.25% 跌至 step 7 的 16.41%，val success 从初始 21.88% 降至 18.75%。conclusion=negative 合理。\n\n### 3. global_step_7 checkpoint\n\n存在：`/root/autodl-tmp/checkpoints/exp029_intervention_c_prime/global_step_7/actor/`\n\n### 4. 磁盘\n\n`/root/autodl-tmp`: **222G / 250G (89%)**，剩余 29G。偏紧。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bjb1-status-cprime-seed300ood.md"
+}

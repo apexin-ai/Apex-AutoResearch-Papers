@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "812667ee6271789f3c1d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops fix eval config step10",
+  "task_key": "worker_ops_fix_eval_config_step10_20260520T093258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_eval_config_step10_20260520T093258_result.json",
+    "occurrence": 1,
+    "bytes": 289,
+    "sha256": "f55d9ab9a14cc084959eabb62b7bce1cc1293c0b19506d9665a036cff21f04bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`resume_from_path` 已从 `global_step_15` 改为 `global_step_10`，YAML 语法验证通过。\n\n- 行 2: `# Checkpoint: global_step_10 (pending; fallback global_step_10)`\n- 行 35: `resume_from_path: \"/root/autodl-tmp/checkpoints/8b-cell-c-v9/global_step_10\"`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-eval-config-step10.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4586d30bc7c2939645d8",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh westd seed100 resume and d134 audit",
+  "task_key": "worker_ssh_westd_seed100_resume_and_d134_audit_20260522T215650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd_seed100_resume_and_d134_audit_20260522T215650_result.json",
+    "occurrence": 1,
+    "bytes": 4321,
+    "sha256": "b96507d54c34c0142a2fd5ee401e8e03cbdc1b077cd15faafd6a673e71cb1860"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。\n\n---\n\n## 汇报\n\n### seed100 resume checkpoint\n- **存在**, 路径: `/root/autodl-tmp/checkpoints/exp029-seed100/global_step_5/`\n- 大小: **21GB**（含 optimizer states，符合 FSDP 完整 checkpoint 预期）\n- 含 optimizer states: **是**\n  - `actor/model_world_size_2_rank_{0,1}.pt`\n  - `actor/optim_world_size_2_rank_{0,1}.pt`\n  - `actor/extra_state_world_size_2_rank_{0,1}.pt`\n- **可以 resume**（world_size=2, .pt 格式, optimizer + model + extra_state 齐全）\n\n---\n\n### D134 审计\n\n**base.yaml 默认值**: enable_think=True, enable_response_mask=**True**, context_window_mode=full, val T=0.5\n\n**D134 协议要求**: enable_think=True, enable_response_mask=**False**, context_window_mode=full, T=**0.4**\n\n所有 eval config 使用 `defaults: - base`，以下为逐项审计（全部 134 episodes）：\n\n| 数据点 | config 文件 | enable_think | enable_response_mask | context_window_mode | val T | 合规 |\n|--------|------------|-------------|---------------------|--------------------|----|-----|\n| seed4 step15 | `_alfworld_exp029_seed4_ood_eval.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| seed4 step15 v2 | `_alfworld_seed4_step15_ood_eval_v2.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| seed5 step10 v2 | `_alfworld_exp029_seed5_ood_eval_v2.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| seed6 step15 | `_alfworld_exp029_seed6_ood_eval.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| seed6 step15 v3 | `_alfworld_seed6_step15_ood_eval_v3.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| seed2 step15 | `_alfworld_seed2_step15_ood_eval.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| seed42 step5 | `_alfworld_seed42_step5_ood_eval.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| seed100 step5 | `_alfworld_seed100_step5_ood_eval.yaml` | True (继承base) | **False** (显式×2†) | full (显式) | **0.4** (显式) | ✅ |\n| seed200 step5 | `_alfworld_seed200_step5_ood_eval.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| seed300 step5 | `_alfworld_seed300_step5_ood_eval.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| SFT baseline | `_alfworld_sft_baseline_ood_eval_v3.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| intervention-c step5 | `_alfworld_intervention_c_step5_ood_eval.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| intervention-c step7 | `_alfworld_intervention_c_step7_ood_eval.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| seed7-high-kl step5 | `_alfworld_seed7_high_kl_step5_ood_eval.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| seed7-high-kl step7 | `_alfworld_seed7_high_kl_step7_ood_eval.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| C' step5 | `_alfworld_c_prime_step5_ood_eval.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n| seed2048 step5 | `_alfworld_seed2048_step5_ood_eval.yaml` | True (继承base) | **False** (显式) | full (显式) | **0.4** (显式) | ✅ |\n\n†seed100 config 有两处 `enable_response_mask: false`（一处在 `actor_rollout_ref.model` 下，一处在顶层），不影响结果，均为 False。\n\n**需要重跑的: 无。全部 17 个 eval config 均 D134 合规。**\n\n---\n\n### GPU 状态 (westd-47453)\n\n| GPU | 显存使用 | 总显存 | 利用率 |\n|-----|---------|-------|--------|\n| 0 | 0 MiB | 97887 MiB | 0% |\n| 1 | 0 MiB | 97887 MiB | 0% |\n| 2 | 0 MiB | 97887 MiB | 0% |\n| 3 | 0 MiB | 97887 MiB | 100%* |\n\n*GPU 3 显示 100% utilization 但 0 MiB 显存占用，无 train.py 进程运行，无 tmux session。可能是驱动残留状态，实际空闲。\n\n4 卡全部可用，无训练进程。checkpoint watchdog 后台运行中（PID 118781）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-seed100-resume-and-d134-audit.md"
+}

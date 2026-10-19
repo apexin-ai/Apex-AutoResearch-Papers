@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbeadfa7e71d0eb3245c",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_10_1778900293.md",
+  "task_key": "loop_10_1778900293",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778900293.md",
+    "occurrence": 1,
+    "bytes": 4840,
+    "sha256": "952d50718720a02607ed1ce86592cedd78b35e7f4f415348747d1212a56c6734"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_wall_time\nupdated: '2026-05-16T02:47:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 bjb1-17606 的 cuda:0 + cuda:1（gpu_ids 白名单）\n- model_path 必须是 SFT checkpoint `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4`，不是 base model\n- Qwen3-1.7B 本身就是 instruct 模型（HF 上有独立 Qwen3-1.7B-Instruct 但我们用的 SFT checkpoint 基于 Qwen3-1.7B）\n- `getattr(self.config.algorithm, \"invalid_action_penalty_coef\", 0.1)` 默认值 0.1 已在所有实验中生效——不要再开\"加 penalty\"的实验\n- `ppo_mini_batch_size` 受 `train.py:159` 断言限制（trajectory 级别检查），最大 128（非 step_independent 展开后的 ~3200）\n- WANDB_MODE 禁止 disabled（会导致 cron 误判实验失败）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，root 账户\n- 工作目录：`/root/cost-verify-agent-rl`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：`/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4`（SFT checkpoint，6.25% val success baseline）\n- GPU：2× RTX PRO 6000 Blackwell 98GB\n- W&B：entity/project 需从 project config 获取，当前 run=4yu6qz1m\n- 活跃进程：exp028c PID=824675，Ray Workers 828110/828111，tmux 管理，cron exp028c_selfguide_recipe 每 120s 轮询\n- 日志：`/tmp/ray/session_latest/logs/worker-*.out`（主日志），`/root/runs/cost-verify-agent-rl/exp028c*.log`（tmux 日志）\n- ⚠️ 日志 step 4 summary 行丢失（W&B 有数据），后续 step 可能同样丢失，以 W&B 为准\n\n### 3. 📊 当前状态\n**exp028c_selfguide_recipe RUNNING**（Self-Guide recipe 对齐，9 参数同时调整 vs exp027）。训练 ~9h，step 4 完成，等待 step 5 val 结果。\n\n已验证 metrics（registry 已更新）：\n\n| Step | Success | Pass@8 | KL | Entropy | Valid% |\n|------|---------|--------|----|---------|--------|\n| 0 val | 6.25% | — | — | — | 74.5% |\n| 1 train | 13.28% | 37.5% | 0.013 | 0.263 | 76.4% |\n| 2 train | 6.25% | 25.0% | 0.017 | 0.247 | 83.2% |\n| 3 train | 15.63% | 68.75% | 0.112 | 0.249 | 85.9% |\n| 4 train | 18.75% | 62.5% | 0.031 | 0.234 | 87.9% |\n\n**等待中**：\n- Worker `worker_check_exp028c_step5_urgent_20260516T024602`（检查 step 5 val）尚未回调\n- Worker `worker_monitor_exp028c_step5_val_20260516T024501`（之前的监控 worker）也未回调\n- Cron `exp028c_selfguide_recipe` 每 120s 轮询进程+W&B\n\n其他已完成：\n- literature_map.yaml 更新完毕（46 篇），6 处 citation 错误已修正（两批）\n- Phase B 前置分析完成（VERIFY token 可行，a_pre 量化方案就绪）\n- exp028a 已 killed（与 exp027 功能等价）\n\n### 4. 📋 待办（条件触发式）\n- **step 5 val Worker 回调到达** → 提取 val success，按 MVP 标准判定（<20% fail / 20-25% weak pass / ≥30% strong pass），汇报 Director\n- **MVP pass（val ≥20%）** → 按 on-experiment-done success 流程：更新 report.md + 反思实验计划 + 文献联动 + 开始准备 Phase B（VERIFY token + a_pre 量化）\n- **MVP fail（val <20%）** → 按 red-section 产 Framing 调整提案，分析是 recipe 问题还是框架问题。注意 train success 18.75% 接近 20%，如果 val 略低于 20% 可能只需更多 steps\n- **step 4 异常慢问题**（>2h vs 正常 50min）→ 如果后续 step 也异常慢，需调查 max_turn=50 是否导致 episode 过长，考虑降低 max_turn\n- **100 步完整训练完成**（~3.6 天后）→ 全面分析，与 Self-Guide 72.7% 对比\n\n### 5. 🎯 战略上下文\n- **核心问题**：exp027 只达 10% success（vs Self-Guide 72.7%，62pp gap）。根因排除了 SFT 和 penalty，聚焦 recipe 参数组合。exp028c 是同时对齐 9 个 Self-Guide 参数的实验\n- **exp028c 趋势积极**：success 6.25→13.28→6.25→15.63→18.75（上升但振荡），KL 极稳定（远优于 exp027），action_is_valid 持续攀升。但离 72.7% 仍遥远\n- **mini_batch 未完全对齐**：Self-Guide 用 256，我们受框架限制只能 128（4× exp027 但仍差 2×）。如果 exp028c 效果不够好，这是下一个调整方向（需改 train.py 断言逻辑）\n- **B-IAVR（项目核心贡献）依赖 baseline GRPO 先跑通**：Phase A = baseline GRPO 达到合理 success（exp028c），Phase B = 加 VERIFY token 做选择性验证\n- **ALFWorld 竞争格局**：PA-MoE 已达 93.8%（1.5B 新 SOTA），accuracy 饱和进一步支持 B-IAVR 聚焦 cost-efficiency 定位\n- **易错点**：(1) 不要再尝试单变量隔离 penalty 实验（已证明 exp027 就有 penalty）(2) step_independent 模式下 ~3200 training samples 但框架校验按 trajectory 级别（128）(3) 日志 summary 行可能丢失，W&B 是更可靠的 metrics 来源\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778900293.md"
+}

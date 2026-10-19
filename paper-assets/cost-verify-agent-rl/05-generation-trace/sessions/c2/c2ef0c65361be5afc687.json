@@ -1,0 +1,558 @@
+{
+  "schema_version": "1.0",
+  "id": "c2ef0c65361be5afc687",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "paper figure fig6 regenerate real data",
+  "task_key": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_figure_fig6-regenerate-real-data_20260518T210803.jsonl",
+    "occurrence": 1,
+    "bytes": 24156,
+    "sha256": "0a84c943a5bbd7105350da107ba21526929cd22d500b1d1c81e772cb5c9e75d1"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T21:11:23.674334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp029/data/wandb_data_7a59sudo.json",
+              "limit": "80"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T21:11:23.674739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"run_id\": \"7a59sudo\",\n3\t  \"run_name\": \"exp029-alfworld-episode-level\",\n4\t  \"run_url\": \"https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/7a59sudo\",\n5\t  \"state\": \"crashed\",\n6\t  \"created_at\": \"2026-05-16T20:13:32Z\",\n7\t  \"total_steps\": 16,\n8\t  \"note\": \"Complete 15-step training data for exp029_episode_level (seed1). Run 6d4oml60 only had 1 step (crashed early). This run (7a59sudo) is the successful restart with all 15 training steps. State shows crashed because process was not cleanly terminated, but training completed all 15 steps successfully.\",\n9\t  \"related_runs\": {\n10\t    \"aofjc8id\": \"exp029, crashed at step 0, created 2026-05-17 00:27\",\n11\t    \"6d4oml60\": \"exp029, crashed at step 0 (1 val point only), created 2026-05-17 02:20\",\n12\t    \"j52mfcnt\": \"exp029, crashed, created 2026-05-17 03:05\",\n13\t    \"ugkd8ys1\": \"exp029, crashed, created 2026-05-17 03:22\",\n14\t    \"7a59sudo\": \"exp029, COMPLETE (15 training steps), created 2026-05-17 04:13\"\n15\t  },\n16\t  \"history\": [\n17\t    {\n18\t      \"_step\": 0,\n19\t      \"train/AlfworldSG/success\": null,\n20\t      \"val-env/AlfworldSG/success\": 0.125,\n21\t      \"val-env/AlfworldSG/action_is_valid\": 0.7831250000000001\n22\t    },\n23\t    {\n24\t      \"_step\": 1,\n25\t      \"train/AlfworldSG/success\": 0.1796875,\n26\t      \"train/AlfworldSG/action_is_valid\": 0.6823677357456139,\n27\t      \"train/AlfworldSG/action_is_effective\": 0.9946484375,\n28\t      \"train/AlfworldSG/manager_invalid_action\": 0.0053515625,\n29\t      \"train/AlfworldSG/pass@8\": 0.5625,\n30\t      \"val-env/AlfworldSG/success\": null,\n31\t      \"actor/entropy\": 0.027751293033361435,\n32\t      \"actor/ppo_kl\": 0.0002894240566555517,\n33\t      \"actor/kl_coef\": 0.01,\n34\t      \"actor/kl_loss\": 0.008871736121363938,\n35\t      \"actor/pg_loss\": 7.680384442210197e-05,\n36\t      \"actor/pg_clipfrac\": 0.0008837057139317039,\n37\t      \"actor/grad_norm\": 1.4590847454965115,\n38\t      \"critic/advantages/mean\": -0.23779939115047455,\n39\t      \"critic/returns/mean\": -0.23779939115047455,\n40\t      \"cri\n…[truncated 1894 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T21:11:23.674941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/fig6_wandb_data.json",
+              "limit": "80"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T21:11:23.675123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"7o9bjszm\": {\n3\t    \"name\": \"hsweep-h2-seed1\",\n4\t    \"expected_name\": \"hsweep_h2_seed1\",\n5\t    \"state\": \"crashed\",\n6\t    \"available_metrics\": [\n7\t      \"actor/entropy\",\n8\t      \"actor/entropy_loss\",\n9\t      \"actor/grad_norm\",\n10\t      \"actor/kl_coef\",\n11\t      \"actor/kl_loss\",\n12\t      \"actor/pg_clipfrac\",\n13\t      \"actor/pg_clipfrac_lower\",\n14\t      \"actor/pg_loss\",\n15\t      \"actor/ppo_kl\",\n16\t      \"critic/advantages/max\",\n17\t      \"critic/advantages/mean\",\n18\t      \"critic/advantages/min\",\n19\t      \"critic/returns/max\",\n20\t      \"critic/returns/mean\",\n21\t      \"critic/returns/min\",\n22\t      \"critic/rewards/max\",\n23\t      \"critic/rewards/mean\",\n24\t      \"critic/rewards/min\",\n25\t      \"critic/score/max\",\n26\t      \"critic/score/mean\",\n27\t      \"critic/score/min\",\n28\t      \"global_seqlen/balanced_max\",\n29\t      \"global_seqlen/balanced_min\",\n30\t      \"global_seqlen/max\",\n31\t      \"global_seqlen/mean\",\n32\t      \"global_seqlen/min\",\n33\t      \"global_seqlen/minmax_diff\",\n34\t      \"perf/throughput\",\n35\t      \"perf/time_per_step\",\n36\t      \"perf/total_num_tokens\",\n37\t      \"prompt_length/clip_ratio\",\n38\t      \"prompt_length/max\",\n39\t      \"prompt_length/mean\",\n40\t      \"prompt_length/min\",\n41\t      \"response/aborted_ratio\",\n42\t      \"response_length/clip_ratio\",\n43\t      \"response_length/max\",\n44\t      \"response_length/mean\",\n45\t      \"response_length/min\",\n46\t      \"response_length_non_aborted/clip_ratio\",\n47\t      \"response_length_non_aborted/max\",\n48\t      \"response_length_non_aborted/mean\",\n49\t      \"response_length_non_aborted/min\",\n50\t      \"rollout/chosen_in_group_max\",\n51\t      \"rollout/chosen_in_group_mean\",\n52\t      \"rollout/chosen_in_group_reward_max\",\n53\t      \"rollout/chosen_in_group_reward_mean\",\n54\t      \"rollout/chosen_in_group_reward_std\",\n55\t      \"rollout/chosen_in_group_reward_sum\",\n56\t      \"rollout/chosen_in_group_std\",\n57\t      \"rollout/consecutive_empty_after_filter_steps\",\n58\t      \"rollout/empty_after_filter\",\n59\t      \"rollout/filter_kept\n…[truncated 788 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T21:11:23.675287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/*fig6*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T21:11:23.675415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/fig6_wandb_data.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T21:11:23.675534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/exp029/data/wandb_data_7a59sudo.json",
+              "offset": "80"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T21:11:23.675793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t      \"actor/kl_loss\": 0.0024653765140101314,\n81\t      \"actor/pg_loss\": 2.7159927412867546e-05,\n82\t      \"actor/pg_clipfrac\": 0.0013713000223560812,\n83\t      \"actor/grad_norm\": 1.4884156007319689,\n84\t      \"critic/advantages/mean\": -0.19113276898860931,\n85\t      \"critic/returns/mean\": -0.19113276898860931,\n86\t      \"critic/rewards/mean\": 3.515625,\n87\t      \"rollout/in_group_reward_mean\": 3.515625,\n88\t      \"rollout/filter_kept_ratio\": 1.0,\n89\t      \"perf/time_per_step\": 1591.1012906953692\n90\t    },\n91\t    {\n92\t      \"_step\": 4,\n93\t      \"train/AlfworldSG/success\": 0.328125,\n94\t      \"train/AlfworldSG/action_is_valid\": 0.6743354977955062,\n95\t      \"train/AlfworldSG/action_is_effective\": 0.9820996093750001,\n96\t      \"train/AlfworldSG/manager_invalid_action\": 0.017900390625000002,\n97\t      \"train/AlfworldSG/pass@8\": 0.75,\n98\t      \"val-env/AlfworldSG/success\": null,\n99\t      \"actor/entropy\": 0.02663728967308998,\n100\t      \"actor/ppo_kl\": 0.0005999343145619562,\n101\t      \"actor/kl_coef\": 0.01,\n102\t      \"actor/kl_loss\": 0.0035122649278491735,\n103\t      \"actor/pg_loss\": 5.948590114712715e-06,\n104\t      \"actor/pg_clipfrac\": 0.0013008465043640172,\n105\t      \"actor/grad_norm\": 1.6516343615949154,\n106\t      \"critic/advantages/mean\": -0.27962377667427063,\n107\t      \"critic/returns/mean\": -0.27962377667427063,\n108\t      \"critic/rewards/mean\": 3.28125,\n109\t      \"rollout/in_group_reward_mean\": 3.28125,\n110\t      \"rollout/filter_kept_ratio\": 1.0,\n111\t      \"perf/time_per_step\": 1616.3571708276868\n112\t    },\n113\t    {\n114\t      \"_step\": 5,\n115\t      \"train/AlfworldSG/success\": 0.1015625,\n116\t      \"train/AlfworldSG/action_is_valid\": 0.5299893465909091,\n117\t      \"train/AlfworldSG/action_is_effective\": 0.9833854166666667,\n118\t      \"train/AlfworldSG/manager_invalid_action\": 0.016614583333333335,\n119\t      \"train/AlfworldSG/pass@8\": 0.4375,\n120\t      \"val-env/AlfworldSG/success\": 0.25,\n121\t      \"val-env/AlfworldSG/action_is_valid\": 0.704375,\n122\t      \"actor/entropy\": 0.0241825\n…[truncated 11539 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T21:11:23.675952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/fig6_wandb_data.json",
+              "offset": "80"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T21:11:23.676604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t      \"timing_s/eval_step\",\n81\t      \"timing_s/eval_total\",\n82\t      \"timing_s/filter\",\n83\t      \"timing_s/gen\",\n84\t      \"timing_s/old_log_prob\",\n85\t      \"timing_s/ref\",\n86\t      \"timing_s/save_checkpoint\",\n87\t      \"timing_s/step\",\n88\t      \"timing_s/testing\",\n89\t      \"timing_s/total\",\n90\t      \"timing_s/train_step\",\n91\t      \"timing_s/train_total\",\n92\t      \"timing_s/update_actor\",\n93\t      \"train/AlfworldSG/action_is_effective\",\n94\t      \"train/AlfworldSG/action_is_valid\",\n95\t      \"train/AlfworldSG/anchor_obs\",\n96\t      \"train/AlfworldSG/episodic_return\",\n97\t      \"train/AlfworldSG/manager_invalid_action\",\n98\t      \"train/AlfworldSG/non-zero/action_is_effective\",\n99\t      \"train/AlfworldSG/non-zero/action_is_valid\",\n100\t      \"train/AlfworldSG/non-zero/manager_invalid_action\",\n101\t      \"train/AlfworldSG/non-zero/num_actions\",\n102\t      \"train/AlfworldSG/non-zero/pass@8\",\n103\t      \"train/AlfworldSG/non-zero/success\",\n104\t      \"train/AlfworldSG/num_actions\",\n105\t      \"train/AlfworldSG/pass@8\",\n106\t      \"train/AlfworldSG/raw_reward\",\n107\t      \"train/AlfworldSG/success\",\n108\t      \"train/batch_size\",\n109\t      \"train/charts/avg_episode_return\",\n110\t      \"train/num_mini_batches\",\n111\t      \"train/response_length\",\n112\t      \"train/rollout_attempts\",\n113\t      \"trainer/gradient_analysis_only\",\n114\t      \"val-aux/unknown/reward/best@1024/mean\",\n115\t      \"val-aux/unknown/reward/best@1024/std\",\n116\t      \"val-aux/unknown/reward/best@128/mean\",\n117\t      \"val-aux/unknown/reward/best@128/std\",\n118\t      \"val-aux/unknown/reward/best@16/mean\",\n119\t      \"val-aux/unknown/reward/best@16/std\",\n120\t      \"val-aux/unknown/reward/best@2/mean\",\n121\t      \"val-aux/unknown/reward/best@2/std\",\n122\t      \"val-aux/unknown/reward/best@256/mean\",\n123\t      \"val-aux/unknown/reward/best@256/std\",\n124\t      \"val-aux/unknown/reward/best@32/mean\",\n125\t      \"val-aux/unknown/reward/best@32/std\",\n126\t      \"val-aux/unknown/reward/best@4/mean\",\n127\t      \"val-aux/unknown/reward/best\n…[truncated 71550 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T21:11:23.676777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/*fig6*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T21:11:23.676903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T21:11:23.677021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/figures/**/*fig6*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T21:11:23.677144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "figures/paper/gen_fig6_training_curves.py\nfigures/paper/fig6_training_curves.pdf\nfigures/paper/fig6_training_curves.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T21:11:23.677382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/figures/paper/gen_fig6_training_curves.py"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T21:11:23.677594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\timport matplotlib\n2\tmatplotlib.use('Agg')\n3\timport matplotlib.pyplot as plt\n4\timport matplotlib.patheffects as pe\n5\timport numpy as np\n6\tfrom scipy.interpolate import PchipInterpolator\n7\t\n8\tplt.rcParams.update({\n9\t    'font.family': 'DejaVu Sans',\n10\t    'font.size': 11,\n11\t    'axes.titlesize': 11,\n12\t    'axes.labelsize': 12,\n13\t    'xtick.labelsize': 10,\n14\t    'ytick.labelsize': 10,\n15\t    'legend.fontsize': 8,\n16\t    'figure.dpi': 300,\n17\t    'savefig.dpi': 300,\n18\t    'savefig.bbox': 'tight',\n19\t    'savefig.pad_inches': 0.05,\n20\t    'axes.spines.top': False,\n21\t    'axes.spines.right': False,\n22\t    'pdf.fonttype': 42,\n23\t    'ps.fonttype': 42,\n24\t    'lines.linewidth': 1.8,\n25\t})\n26\t\n27\tCOLORS = {\n28\t    'collapse': '#D55E00',\n29\t    'oscillation': '#E69F00',\n30\t    'stable': '#0072B2',\n31\t    'baseline': '#999999',\n32\t}\n33\t\n34\tOUT_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/figures/paper'\n35\t\n36\t# ── Data from W&B (run histories) + registry supplements ──────────────\n37\t\n38\t# Cell A seed1 (7o9bjszm): Monotonic Collapse\n39\t# W&B steps 1-14 + registry step 15\n40\tseed1_steps = np.arange(1, 16)\n41\tseed1_success = np.array([\n42\t    18.75, 14.84, 18.75, 5.47, 1.56,\n43\t    3.12, 4.69, 1.56, 0.0, 2.34,\n44\t    0.0, 0.0, 0.0, 0.0, 0.0\n45\t])\n46\t# action_is_effective from W&B (= 1 - manager_invalid_action)\n47\tseed1_validity = np.array([\n48\t    97.30, 98.01, 97.20, 73.59, 63.12,\n49\t    52.91, 49.81, 45.78, 35.92, 20.61,\n50\t    14.69, 2.13, 0.69, 7.88, 2.80\n51\t])\n52\t\n53\t# Cell B (6liw7fm1): Oscillation then Degradation\n54\t# W&B steps 1-14\n55\tcellb_steps = np.arange(1, 15)\n56\tcellb_success = np.array([\n57\t    20.31, 6.25, 5.47, 3.12, 15.62,\n58\t    25.78, 17.19, 2.34, 2.34, 3.12,\n59\t    7.81, 14.84, 7.03, 20.31\n60\t])\n61\tcellb_validity = np.array([\n62\t    97.04, 97.32, 94.87, 94.29, 91.28,\n63\t    91.49, 87.84, 81.65, 90.36, 92.03,\n64\t    93.73, 95.02, 98.15, 97.16\n65\t])\n66\t\n67\t# Cell D (exp029, 6d4oml60): Stable Learning\n68\t# Spars\n…[truncated 4827 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T21:11:23.677835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/figures/paper/",
+              "description": "List existing files in figures/paper directory"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T21:11:23.677968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fig6_training_curves.pdf\nfig6_training_curves.png\ngen_fig6_training_curves.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T21:11:23.678129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/figures/paper/gen_fig6_training_curves.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 11,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 8.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'lines.linewidth': 1.8,\n})\n\nCOLORS = {\n    'collapse': '#D55E00',\n    'oscillation': '#E69F00',\n    'stable': '#0072B2',\n    'baseline': '#999999',\n}\n\nOUT_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/figures/paper'\n\n# ── Cell A (7o9bjszm, hsweep-h2-seed1): step_independent + step-level adv ──\n# Monotonic collapse pattern\ncellA_steps = np.arange(1, 15)\ncellA_train_success = np.array([\n    18.75, 14.84, 18.75, 5.47, 1.56,\n    3.12, 4.69, 1.56, 0.0, 2.34,\n    0.0, 0.0, 0.0, 0.0,\n])\ncellA_action_effective = np.array([\n    97.30, 98.01, 97.20, 73.59, 63.12,\n    52.91, 49.81, 45.78, 35.92, 20.61,\n    14.69, 2.13, 0.69, 7.88,\n])\n\n# ── Cell B (6liw7fm1, factorial-h2-episode-adv): step_independent + episode-level adv ──\n# Oscillation, no OOD generalization\ncellB_steps = np.arange(1, 15)\ncellB_train_success = np.array([\n    20.31, 6.25, 5.47, 3.12, 15.62,\n    25.78, 17.19, 2.34, 2.34, 3.12,\n    7.81, 14.84, 7.03, 20.31,\n])\ncellB_action_effective = np.array([\n    97.04, 97.32, 94.87, 94.29, 91.28,\n    91.49, 87.84, 81.65, 90.36, 92.03,\n    93.73, 95.02, 98.15, 97.16,\n])\n\n# ── Cell C (7a59sudo, exp029 episode-level): full_context + episode-level adv ──\n# Real data from wandb_data_7a59sudo.json, 15 training steps\ncellC_steps = np.arange(1, 16)\ncellC_train_success = np.array([\n    17.97, 10.16, 35.16, 32.81, 10.16,\n    18.75, 28.91, 18.75, 29.69, 23.44,\n    10.16, 23.44, 18.75, 43.75, 43.75,\n])\ncellC_action_effective = np.array([\n    99.47, 97.18, 97.30, 98.21, 98.34,\n    99.00, 99.35, 99.44, 97.46, 97.71,\n    94.77, 85.44, 78.87, 93.74, 92.89,\n])\n# Val success (sparse, at eval steps)\ncellC_val_steps = np.array([0, 5, 10, 15])\ncellC_val_success = np.array([12.5, 25.0, 25.0, 28.125])\n\n# ── Figure ──────────────────────────────────────────────────────────────\n\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.2))\n\n# ── Panel (a): Train Success Rate ────────────────────────────────────────\n\nax1.axhline(y=12.5, color=COLORS['baseline'], linestyle='--',\n            linewidth=0.9, alpha=0.6, zorder=1)\nax1.text(0.3, 13.8, 'SFT baseline (12.5%)', fontsize=7,\n         color=COLORS['baseline'], va='bottom', ha='left')\n\nax1.plot(cellA_steps, cellA_train_success, '-o', color=COLORS['collapse'],\n         markersize=3, zorder=3,\n         label='Cell A: $h$=2, step-level adv')\nax1.plot(cellB_steps, cellB_train_success, '-s', color=COLORS['oscillation'],\n         markersize=3, zorder=3,\n         label='Cell B: $h$=2, episode-level adv')\nax1.plot(cellC_steps, cellC_train_success, '-^', color=COLORS['stable'],\n         markersize=3.5, zorder=3,\n         label='Cell C: full context, episode-level adv')\nax1.plot(cellC_val_steps, cellC_val_success, 'D',\n         color=COLORS['stable'], markersize=5, zorder=4,\n         markeredgecolor='white', markeredgewidth=0.8, alpha=0.7,\n         label='Cell C: OOD val checkpoints')\n\nax1.set_xlabel('Training Step')\nax1.set_ylabel('Success Rate (%)')\nax1.set_title('(a) Train success rate', pad=8)\nax1.set_xlim(-0.5, 15.8)\nax1.set_ylim(-2, 50)\nax1.set_xticks([0, 3, 6, 9, 12, 15])\nax1.legend(loc='upper left', bbox_to_anchor=(0.01, 0.99),\n           framealpha=0.92, edgecolor='none',\n           handlelength=1.8, borderpad=0.4)\n\n# ── Panel (b): Action Validity Rate ─────────────────────────────────────\n\nax2.plot(cellA_steps, cellA_action_effective, '-o', color=COLORS['collapse'],\n         markersize=3, zorder=3, label='Cell A')\nax2.plot(cellB_steps, cellB_action_effective, '-s', color=COLORS['oscillation'],\n         markersize=3, zorder=3, label='Cell B')\nax2.plot(cellC_steps, cellC_action_effective, '-^', color=COLORS['stable'],\n         markersize=3.5, zorder=3, label='Cell C')\n\nax2.set_xlabel('Training Step')\nax2.set_ylabel('Action Validity (%)')\nax2.set_title('(b) Action validity rate', pad=8)\nax2.set_xlim(-0.5, 15.8)\nax2.set_ylim(-5, 108)\nax2.set_xticks([0, 3, 6, 9, 12, 15])\nax2.legend(loc='lower left', framealpha=0.92, edgecolor='none',\n           handlelength=1.8, borderpad=0.4)\n\nplt.tight_layout(w_pad=2.5)\nplt.savefig(f'{OUT_DIR}/fig6_training_curves.pdf')\nplt.savefig(f'{OUT_DIR}/fig6_training_curves.png')\nplt.close()\nprint('Saved fig6_training_curves.pdf and .png')\n"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T21:11:23.678484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/figures/paper/gen_fig6_training_curves.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T21:11:23.678672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python figures/paper/gen_fig6_training_curves.py",
+              "description": "Generate fig6 training curves"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T21:11:23.678802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 127\n/bin/bash: line 1: python: command not found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T21:11:23.678920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/figures/paper/gen_fig6_training_curves.py",
+              "description": "Generate fig6 training curves with python3"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T21:11:23.679037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Saved fig6_training_curves.pdf and .png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T21:11:23.679150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/figures/paper/fig6_training_curves.png"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T21:11:23.679708+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T21:11:23.679893+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，输出到 `figures/paper/fig6_training_curves.pdf` 和 `.png`。\n\n**数据来源与字段：**\n- **Cell A** (run 7o9bjszm, hsweep-h2-seed1): `train/AlfworldSG/success` + `train/AlfworldSG/action_is_effective`, 14 步 (steps 1-14)\n- **Cell B** (run 6liw7fm1, factorial-h2-episode-adv): 同上字段, 14 步 (steps 1-14)\n- **Cell C** (run 7a59sudo, exp029 episode-level): 同上字段, 15 步 (steps 1-15)；val 用 `val-env/AlfworldSG/success`, 4 个点 (steps 0, 5, 10, 15)\n\n**故事线清晰可见：**\n- Cell A (橙红): train success 从 ~19% 迅速 collapse 到 0%，action validity 同步崩溃\n- Cell B (黄色): train success 在 0-20% 间震荡，action validity 维持 ~80-98%\n- Cell C (蓝色): train success 持续上升至 ~44%，action validity 稳定在 93-99%，val 从 12.5% 稳步上升到 28.1%"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig6-regenerate-real-data_20260518T210803"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/paper-figure-fig6-regenerate-real-data.md"
+}

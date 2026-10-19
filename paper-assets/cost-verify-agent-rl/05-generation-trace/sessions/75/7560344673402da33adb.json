@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "7560344673402da33adb",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops exp025c dual gpu dryrun",
+  "task_key": "worker_ops_exp025c_dual_gpu_dryrun_20260515T081352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp025c_dual_gpu_dryrun_20260515T081352.log",
+    "occurrence": 1,
+    "bytes": 587745,
+    "sha256": "ee8fe66d3f44531e0e584e3b4e1e7b0153fa34c9263fba686cd612bf212b1b67"
+  },
+  "statistics": {
+    "messages": 423,
+    "user_turns": 0,
+    "tool_calls": 159,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 159,
+      "tool_result": 159,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 423,
+      "chunks": [
+        {
+          "path": "7560344673402da33adb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7560344673402da33adb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7560344673402da33adb-part-0003.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-exp025c-dual-gpu-dryrun.md"
+}

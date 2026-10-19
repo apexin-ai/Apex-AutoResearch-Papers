@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77f08ab54dd414b359a0",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "exec collect traj cuda1",
+  "task_key": "worker_exec_collect-traj-cuda1_20260512T162449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_collect-traj-cuda1_20260512T162449_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "c87f8fd7a8407c63eaba51307645b17e520da941bb1ad1957318369d04eb105a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并运行中。汇报如下：\n\n**实验 `datagen_traj_v4_cuda1` 已启动**\n\n| 项目 | 详情 |\n|------|------|\n| PID | 253522 |\n| GPU | cuda:1 (RTX 4090 D, 24GB)，当前占用 ~7.7GB |\n| 脚本 | `src/collect_trajectories.py`（含 episode boundary fix，line 340 \"Your task is to:\" 检测） |\n| 模型 | Qwen3-8B (`/root/autodl-tmp/.hf_cache/Qwen3-8B`) |\n| 参数 | `--temperature 0.7 --max_steps 40 --num_tasks 250` |\n| 输出 | `data/trajectories_v4_cuda1/train.jsonl` |\n| 日志 | `/tmp/collect_traj_v4_cuda1.log` |\n| 状态 | 模型已加载，环境已初始化，正在收集轨迹 |\n\n按 8B 模型在 ALFWorld 约 30-40% 成功率估算，250 个 task 预期产出 150-175 条 failure 轨迹，满足 125+ 目标。\n\n监控命令：`tail -20 /tmp/collect_traj_v4_cuda1.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-collect-traj-cuda1.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "48b498b110a986ac723f",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code c prime bjb1 v2",
+  "task_key": "worker_code_c_prime_bjb1_v2_20260521T214840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c_prime_bjb1_v2_20260521T214840.log",
+    "occurrence": 1,
+    "bytes": 565780,
+    "sha256": "df55443e8581ca9c58fde39c6952ab75b00072e8b969322ff809a4c1adbc773e"
+  },
+  "statistics": {
+    "messages": 203,
+    "user_turns": 0,
+    "tool_calls": 69,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 59,
+      "tool_call": 69,
+      "tool_result": 69,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 203,
+      "chunks": [
+        {
+          "path": "48b498b110a986ac723f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "48b498b110a986ac723f-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-c-prime-bjb1-v2.md"
+}

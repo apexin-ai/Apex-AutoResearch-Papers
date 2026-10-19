@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef9aa9a932dd194a63e1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops deploy analyze script",
+  "task_key": "worker_ops_deploy_analyze_script_20260515T151857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy_analyze_script_20260515T151857_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "c53c32a9082e1184931fa58dc1915b99b629f516b896d5a5ab2bdb8413856a3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成：\n\n- **脚本已部署**：`/root/cost-verify-agent-rl/analyze_training.py`\n- **matplotlib 可用**：v3.10.5\n- **dry-run 通过**：`--help` 正常输出\n\n参数化改动：新增 `--name` 参数（默认 `experiment`），所有输出文件名和图表标题使用该参数，不再硬编码 exp026。\n\n用法示例：\n```bash\npython3 /root/cost-verify-agent-rl/analyze_training.py \\\n  --log ~/runs/cost-verify-agent-rl/exp027_stable_grpo.log \\\n  --name exp027 \\\n  --output /root/cost-verify-agent-rl/analysis_output\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-analyze-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5295f06fff6ad3f2d6d3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh seed200 step5 hf convert and eval",
+  "task_key": "worker_ssh_seed200_step5_hf_convert_and_eval_20260523T011103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed200_step5_hf_convert_and_eval_20260523T011103_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "446fd2db79759191354988b815b854c3099ec2e6c82fa1ca9df85b49d1af1610"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。验证清单：\n\n- [x] 训练进程 PID 467039 已退出\n- [x] FSDP checkpoint 存在（2 rank × model + optim + extra_state）\n- [x] HF checkpoint 转换成功：`/root/autodl-tmp/checkpoints/qwen_exp029_seed200_step5_hf`，1,720,574,976 参数，可正常加载\n- [x] eval config 已创建：`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_seed200_step5_ood_eval.yaml`\n- [x] 启动命令如下\n\n**LAUNCH_COMMAND:**\n```\nbash -c \"cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_DIR=/root/autodl-tmp/wandb_tmp python train.py --config-name _alfworld_seed200_step5_ood_eval enable_response_mask=false actor_rollout_ref.model.enable_response_mask=false\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed200-step5-hf-convert-and-eval.md"
+}

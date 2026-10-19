@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47847ef186263c145374",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "verify seed6 v3 final",
+  "task_key": "worker_verify_seed6_v3_final_20260521T081631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_seed6_v3_final_20260521T081631_result.json",
+    "occurrence": 1,
+    "bytes": 1091,
+    "sha256": "ed9d25d7df99fc6a002528be83dafe7fb95b41594cbb0ba4ee525a6c659e0061"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| **0** | 76,248 / 97,887 MiB | 100% | Seed 5 rollout (37.6 + 38.6 GB) |\n| **1** | 76,746 / 97,887 MiB | 100% | Seed 5 rollout (38.1 + 38.6 GB) |\n| **2** | 4,731 / 97,887 MiB | 0% | Seed 6 `ray::WorkerDict` (4.7 GB) |\n| **3** | 4,731 / 97,887 MiB | 0% | Seed 6 `ray::WorkerDict` (4.7 GB) |\n\n### 配置确认\n\n- **CUDA_VISIBLE_DEVICES**: `2,3` ✅ （config 和日志均确认）\n- **save_freq**: `5` ✅\n\n### 判断\n\n- **GPU 隔离正确** ✅ — Seed 6 进程仅出现在 GPU 2,3，GPU 0,1 无任何 Seed 6 进程\n- **Seed 5 未受影响** ✅ — GPU 0,1 显存 ~76GB、利用率 100%，与预期一致\n- **模型尚未完全加载** ⚠️ — GPU 2,3 仅 ~4.7GB，远低于 30GB 阈值。日志显示刚完成 wandb 初始化和数据 tokenization（494 items），模型权重加载还没开始。这属于正常启动阶段，需要再等几分钟。\n\n建议再等 2-3 分钟后复查 `nvidia-smi`，确认 GPU 2,3 显存升到 >30GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-seed6-v3-final.md"
+}

@@ -1,0 +1,1099 @@
+{
+  "schema_version": "1.0",
+  "id": "a8a28004f1d41edb3697",
+  "project": "error_diag_dpo_recovery",
+  "kind": "worker",
+  "title": "code sync fixes to server",
+  "task_key": "worker_code_sync-fixes-to-server_20260513T064459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync-fixes-to-server_20260513T064459.log",
+    "occurrence": 1,
+    "bytes": 112538,
+    "sha256": "4b67286a2ec360b47ea407648a3aa210f2c1f94ca11bc4a3814af1bbeec96027"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl",
+                "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "948acb4d-f106-45b3-acce-bdfa5330e106",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-rl-active-probe-fl/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1778821200,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.77,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "f8458935-329f-4bd7-801d-1d7288f16e34",
+                "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The task is to sync two fixed local files to the remote server. Let me start by reading both local files.",
+              "signature": "EqQCClkIDRgCKkC6HZONjGslHXMszE+9jpO3UMBTODs1LJbWfH6xWrv6OYJm+E5LZOQRnvCh+lFK45d5lFFbnOzxoIq+1GoAol+NMg9jbGF1ZGUtb3B1cy00LTY4ABIMIviclL+V2ujEljRnGgzrhosaJi4Q5x9gzqIiMDIKYnSsZJdnPpbRXmcyx2P4MEUdVjhIRpoK8i9h5GMqa70x2AsE2hYqOB6Lftor9yp5jmFKa9boQHtgtR2jepxO/M4zvPdu7YKUzhoPXjUnbw0rbXeIyWGpngnB2Zy5hacKYHsnh733Rsmt2ekedrzG5Yc/qzyyIzBIPhmCAWhu1GJQBTOxPdeZh3t12Z/+/ukSXyC4Q/CDQACdKRcCO9HAHSQGBbsz4YDr4xgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "7dd6b256-bafa-4ee6-9eb5-bc69d613056b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016tbCXgUassqYMxbbV4GfTf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11260,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11260
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取本地两个文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "d3184db2-1851-4f05-855b-2ed346f5323e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016tbCXgUassqYMxbbV4GfTf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11260,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11260
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013Y5Gk8LJ9EnBtp6QFpEn1P",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/etadn_discount.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "3a13f35c-1cc7-42b5-b9ba-130efb667356",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016tbCXgUassqYMxbbV4GfTf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11260,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11260
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T06:45:12.807Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013Y5Gk8LJ9EnBtp6QFpEn1P",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"ETADN error-type-aware temporal discount for DMPO.\n3\t\n4\tCore formula:\n5\t    φ(t, T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n6\t\n7\tWhere:\n8\t    t = current timestep (0-indexed)\n9\t    T = total trajectory length\n10\t    γ = gamma_e (error-type-specific discount factor)\n11\t\n12\tγ_e mapping:\n13\t    action errors      → γ_a = 0.85 (short correction span, concentrated credit)\n14\t    verification errors → γ_v = 0.92 (medium span, moderate spread)\n15\t    planning errors     → γ_p = 0.97 (long span, near-uniform credit)\n16\t\n17\tIntegration with DPO/DMPO:\n18\t    Standard DPO loss: L = -log σ(β · (log π(y_w|x) - log π(y_l|x)))\n19\t    DMPO adds per-step weighting: replace uniform sum with φ-weighted sum\n20\t    ETADN: γ in φ varies by error_type of the (chosen, rejected) pair\n21\t\n22\tDependencies: torch only\n23\t\"\"\"\n24\timport torch\n25\timport torch.nn.functional as F\n26\tfrom dataclasses import dataclass\n27\t\n28\t\n29\t@dataclass\n30\tclass ETADNConfig:\n31\t    gamma_action: float = 0.85\n32\t    gamma_verification: float = 0.92\n33\t    gamma_planning: float = 0.97\n34\t    beta: float = 0.1\n35\t    label_smoothing: float = 0.0\n36\t\n37\t\n38\tdef phi(t: int, T: int, gamma: float) -> float:\n39\t    \"\"\"DMPO credit assignment weight for timestep t of T.\n40\t\n41\t    φ(t, T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n42\t\n43\t    Sums to 1 over t ∈ [0, T-1] for any γ ∈ (0, 1).\n44\t    \"\"\"\n45\t    if T <= 0:\n46\t        return 0.0\n47\t    if abs(gamma - 1.0) < 1e-8:\n48\t        return 1.0 / T\n49\t    if abs(gamma) < 1e-12:\n50\t        return 1.0 if t == 0 else 0.0\n51\t    numerator = (gamma ** t) * (1.0 - gamma ** (T - t))\n52\t    denominator = 1.0 - gamma ** T\n53\t    return numerator / denominator\n54\t\n55\t\n56\tdef compute_discount_weights(T: int, gamma: float) -> torch.Tensor:\n57\t    \"\"\"φ weight vector of length T. Returns shape (T,) float32 tensor.\"\"\"\n58\t    if T <= 0:\n59\t        return torch.tensor([], dtype=torch.float32)\n60\t    if abs(gamma - 1.0) < 1e-8:\n61\t        return torch.full((T,), 1.0 / T, dtype=torch.float32)\n62\t    if abs(gamma) < 1e-12:\n63\t        w = torch.zeros(T, dtype=torch.float32)\n64\t        w[0] = 1.0\n65\t        return w\n66\t    t = torch.arange(T, dtype=torch.float64)\n67\t    g = torch.tensor(gamma, dtype=torch.float64)\n68\t    numerator = g.pow(t) * (1 - g.pow(T - t))\n69\t    denominator = 1 - g.pow(torch.tensor(T, dtype=torch.float64))\n70\t    w = (numerator / denominator).float()\n71\t    return w / w.sum()\n72\t\n73\t\n74\tdef get_gamma_for_error_type(error_type: str, config: ETADNConfig) -> float:\n75\t    \"\"\"Look up γ_e by error type string.\"\"\"\n76\t    mapping = {\n77\t        \"action\": config.gamma_action,\n78\t        \"verification\": config.gamma_verification,\n79\t        \"planning\": config.gamma_planning,\n80\t    }\n81\t    return mapping.get(error_type, config.gamma_verification)\n82\t\n83\t\n84\t# ---------------------------------------------------------------------------\n85\t# DPO loss variants\n86\t# ---------------------------------------------------------------------------\n87\t\n88\tdef _dpo_loss_from_logratios(\n89\t    chosen_logratios: torch.Tensor,\n90\t    rejected_logratios: torch.Tensor,\n91\t    beta: float,\n92\t    label_smoothing: float = 0.0,\n93\t) -> torch.Tensor:\n94\t    \"\"\"Standard DPO loss from per-sample log-ratio scalars.\n95\t\n96\t    L = -log σ(β · (chosen_logratio - rejected_logratio))\n97\t    \"\"\"\n98\t    logits = beta * (chosen_logratios - rejected_logratios)\n99\t    if label_smoothing > 0:\n100\t        loss = (\n101\t            (1 - label_smoothing) * F.logsigmoid(logits)\n102\t            + label_smoothing * F.logsigmoid(-logits)\n103\t        )\n104\t    else:\n105\t        loss = F.logsigmoid(logits)\n106\t    return -loss.mean()\n107\t\n108\t\n109\tdef uniform_dpo_loss(\n110\t    chosen_logps: torch.Tensor,\n111\t    rejected_logps: torch.Tensor,\n112\t    ref_chosen_logps: torch.Tensor,\n113\t    ref_rejected_logps: torch.Tensor,\n114\t    lengths: torch.Tensor,\n115\t    beta: float = 0.1,\n116\t    label_smoothing: float = 0.0,\n117\t) -> torch.Tensor:\n118\t    \"\"\"Standard DPO with uniform per-token weighting (baseline).\n119\t\n120\t    Args:\n121\t        chosen_logps: (batch, max_len) per-token log probs for chosen\n122\t        rejected_logps: (batch, max_len) per-token log probs for rejected\n123\t        ref_chosen_logps: (batch, max_len) reference model per-token log probs\n124\t        ref_rejected_logps: (batch, max_len) reference model per-token log probs\n125\t        lengths: (batch,) valid token count per sample\n126\t        beta: DPO temperature\n127\t        label_smoothing: label smoothing factor\n128\t    \"\"\"\n129\t    batch_size, max_len = chosen_logps.shape\n130\t    mask = torch.arange(max_len, device=chosen_logps.device).unsqueeze(0) < lengths.unsqueeze(1)\n131\t    mask = mask.float()\n132\t\n133\t    chosen_sums = (chosen_logps * mask).sum(dim=1)\n134\t    rejected_sums = (rejected_logps * mask).sum(dim=1)\n135\t    ref_chosen_sums = (ref_chosen_logps * mask).sum(dim=1)\n136\t    ref_rejected_sums = (ref_rejected_logps * mask).sum(dim=1)\n137\t\n138\t    chosen_logratios = chosen_sums - ref_chosen_sums\n139\t    rejected_logratios = rejected_sums - ref_rejected_sums\n140\t\n141\t    return _dpo_loss_from_logratios(\n142\t        chosen_logratios, rejected_logratios, beta, label_smoothing\n143\t    )\n144\t\n145\t\n146\tdef single_gamma_dpo_loss(\n147\t    chosen_logps: torch.Tensor,\n148\t    rejected_logps: torch.Tensor,\n149\t    ref_chosen_logps: torch.Tensor,\n150\t    ref_rejected_logps: torch.Tensor,\n151\t    lengths: torch.Tensor,\n152\t    gamma: float = 0.92,\n153\t    beta: float = 0.1,\n154\t    label_smoothing: float = 0.0,\n155\t) -> torch.Tensor:\n156\t    \"\"\"DMPO with a single shared γ for all samples (ablation baseline).\"\"\"\n157\t    batch_size, max_len = chosen_logps.shape\n158\t    device = chosen_logps.device\n159\t\n160\t    results_chosen = torch.zeros(batch_size, device=device)\n161\t    results_rejected = torch.zeros(batch_size, device=device)\n162\t    results_ref_chosen = torch.zeros(batch_size, device=device)\n163\t    results_ref_rejected = torch.zeros(batch_size, device=device)\n164\t\n165\t    for i in range(batch_size):\n166\t        T = int(lengths[i].item())\n167\t        if T <= 0:\n168\t            continue\n169\t        w = compute_discount_weights(T, gamma).to(device)\n170\t        results_chosen[i] = (chosen_logps[i, :T] * w).sum()\n171\t        results_rejected[i] = (rejected_logps[i, :T] * w).sum()\n172\t        results_ref_chosen[i] = (ref_chosen_logps[i, :T] * w).sum()\n173\t        results_ref_rejected[i] = (ref_rejected_logps[i, :T] * w).sum()\n174\t\n175\t    chosen_logratios = results_chosen - results_ref_chosen\n176\t    rejected_logratios = results_rejected - results_ref_rejected\n177\t\n178\t    return _dpo_loss_from_logratios(\n179\t        chosen_logratios, rejected_logratios, beta, label_smoothing\n180\t    )\n181\t\n182\t\n183\tdef etadn_dpo_loss(\n184\t    chosen_logps: torch.Tensor,\n185\t    rejected_logps: torch.Tensor,\n186\t    ref_chosen_logps: torch.Tensor,\n187\t    ref_rejected_logps: torch.Tensor,\n188\t    error_types: list[str],\n189\t    lengths: torch.Tensor,\n190\t    config: ETADNConfig,\n191\t) -> torch.Tensor:\n192\t    \"\"\"ETADN-aware DPO loss with per-error-type temporal discount.\n193\t\n194\t    For each sample in the batch:\n195\t    1. Look up γ_e based on error_type\n196\t    2. Compute φ(t, T, γ_e) weights for sequence length T\n197\t    3. Compute weighted sum of per-token log prob differences\n198\t    4. Apply standard DPO loss with β\n199\t    \"\"\"\n200\t    batch_size, max_len = chosen_logps.shape\n201\t    device = chosen_logps.device\n202\t\n203\t    results_chosen = torch.zeros(batch_size, device=device)\n204\t    results_rejected = torch.zeros(batch_size, device=device)\n205\t    results_ref_chosen = torch.zeros(batch_size, device=device)\n206\t    results_ref_rejected = torch.zeros(batch_size, device=device)\n207\t\n208\t    for i in range(batch_size):\n209\t        T = int(lengths[i].item())\n210\t        if T <= 0:\n211\t            continue\n212\t        gamma = get_gamma_for_error_type(error_types[i], config)\n213\t        w = compute_discount_weights(T, gamma).to(device)\n214\t        results_chosen[i] = (chosen_logps[i, :T] * w).sum()\n215\t        results_rejected[i] = (rejected_logps[i, :T] * w).sum()\n216\t        results_ref_chosen[i] = (ref_chosen_logps[i, :T] * w).sum()\n217\t        results_ref_rejected[i] = (ref_rejected_logps[i, :T] * w).sum()\n218\t\n219\t    chosen_logratios = results_chosen - results_ref_chosen\n220\t    rejected_logratios = results_rejected - results_ref_rejected\n221\t\n222\t    return _dpo_loss_from_logratios(\n223\t        chosen_logratios, rejected_logratios, config.beta, config.label_smoothing\n224\t    )\n225\t\n226\t\n227\t# ---------------------------------------------------------------------------\n228\t# Self-tests\n229\t# ---------------------------------------------------------------------------\n230\t\n231\tdef _test_phi_weights_properties():\n232\t    \"\"\"φ weights: positive, monotonically decreasing for γ<1, γ=1 is uniform.\"\"\"\n233\t    for gamma in [0.5, 0.85, 0.92, 0.97, 0.99]:\n234\t        for T in [1, 3, 5, 10, 20]:\n235\t            w = compute_discount_weights(T, gamma)\n236\t            assert len(w) == T\n237\t            assert (w > 0).all(), f\"gamma={gamma}, T={T}: non-positive weights\"\n238\t            for i in range(1, T):\n239\t                assert w[i] <= w[i - 1] + 1e-6, (\n240\t                    f\"gamma={gamma}, T={T}: not monotonically decreasing at {i}\"\n241\t                )\n242\t    # γ=1 → uniform\n243\t    w_uniform = compute_discount_weights(5, 1.0)\n244\t    assert abs(w_uniform.sum().item() - 1.0) < 1e-5\n245\t    assert abs(w_uniform[0].item() - 0.2) < 1e-5\n246\t    # scalar φ matches vectorized\n247\t    for gamma in [0.85, 0.97]:\n248\t        T = 8\n249\t        w = compute_discount_weights(T, gamma)\n250\t        for t in range(T):\n251\t            assert abs(w[t].item() - phi(t, T, gamma)) < 1e-5, (\n252\t                f\"phi mismatch at t={t}, T={T}, gamma={gamma}\"\n253\t            )\n254\t    print(\"  phi weights properties: PASS\")\n255\t\n256\t\n257\tdef _test_phi_shape_by_gamma():\n258\t    \"\"\"Lower γ → steeper decay; higher γ → more uniform.\"\"\"\n259\t    T = 10\n260\t    w_low = compute_discount_weights(T, 0.85)\n261\t    w_high = compute_discount_weights(T, 0.97)\n262\t\n263\t    # φ(0,T,γ) = 1 for all γ, so first weight is the same\n264\t    assert abs(w_low[0].item() - 1.0) < 1e-5\n265\t    assert abs(w_high[0].item() - 1.0) < 1e-5\n266\t    # Lower γ decays faster → last weight should be smaller\n267\t    assert w_low[-1] < w_high[-1], \"Low gamma should decay faster at the tail\"\n268\t    # γ=0.97 should be more uniform (smaller max-min spread)\n269\t    spread_low = (w_low.max() - w_low.min()).item()\n270\t    spread_high = (w_high.max() - w_high.min()).item()\n271\t    assert spread_low > spread_high, \"High gamma should be more uniform\"\n272\t    print(\"  phi shape by gamma: PASS\")\n273\t\n274\t\n275\tdef _test_dpo_loss_gradients():\n276\t    \"\"\"All three loss variants should produce finite loss and valid gradients.\"\"\"\n277\t    torch.manual_seed(42)\n278\t    batch_size, max_len = 4, 8\n279\t    config = ETADNConfig()\n280\t\n281\t    chosen = torch.randn(batch_size, max_len, requires_grad=True)\n282\t    rejected = torch.randn(batch_size, max_len, requires_grad=True)\n283\t    ref_chosen = torch.randn(batch_size, max_len)\n284\t    ref_rejected = torch.randn(batch_size, max_len)\n285\t    lengths = torch.tensor([6, 8, 5, 7])\n286\t    error_types = [\"action\", \"verification\", \"planning\", \"action\"]\n287\t\n288\t    # Uniform DPO\n289\t    loss_u = uniform_dpo_loss(chosen, rejected, ref_chosen, ref_rejected, lengths)\n290\t    loss_u.backward(retain_graph=True)\n291\t    assert torch.isfinite(loss_u), f\"uniform loss not finite: {loss_u}\"\n292\t    assert chosen.grad is not None\n293\t    chosen.grad.zero_()\n294\t\n295\t    # Single-gamma DMPO\n296\t    loss_s = single_gamma_dpo_loss(\n297\t        chosen, rejected, ref_chosen, ref_rejected, lengths, gamma=0.92\n298\t    )\n299\t    loss_s.backward(retain_graph=True)\n300\t    assert torch.isfinite(loss_s), f\"single_gamma loss not finite: {loss_s}\"\n301\t    chosen.grad.zero_()\n302\t\n303\t    # ETADN\n304\t    loss_e = etadn_dpo_loss(\n305\t        chosen, rejected, ref_chosen, ref_rejected, error_types, lengths, config\n306\t    )\n307\t    loss_e.backward()\n308\t    assert torch.isfinite(loss_e), f\"etadn loss not finite: {loss_e}\"\n309\t\n310\t    print(f\"  uniform_dpo_loss:      {loss_u.item():.4f}\")\n311\t    print(f\"  single_gamma_dpo_loss: {loss_s.item():.4f}\")\n312\t    print(f\"  etadn_dpo_loss:        {loss_e.item():.4f}\")\n313\t    print(\"  gradient check: PASS\")\n314\t\n315\t\n316\tdef _test_gamma_lookup():\n317\t    \"\"\"get_gamma_for_error_type should return correct values.\"\"\"\n318\t    config = ETADNConfig()\n319\t    assert get_gamma_for_error_type(\"action\", config) == 0.85\n320\t    assert get_gamma_for_error_type(\"verification\", config) == 0.92\n321\t    assert get_gamma_for_error_type(\"planning\", config) == 0.97\n322\t    assert get_gamma_for_error_type(\"unknown\", config) == 0.92  # fallback\n323\t    print(\"  gamma lookup: PASS\")\n324\t\n325\t\n326\tif __name__ == \"__main__\":\n327\t    print(\"ETADN discount module self-tests\")\n328\t    print(\"=\" * 40)\n329\t    _test_phi_weights_properties()\n330\t    _test_phi_shape_by_gamma()\n331\t    _test_gamma_lookup()\n332\t    _test_dpo_loss_gradients()\n333\t    print(\"=\" * 40)\n334\t    print(\"All tests passed.\")\n335\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "9c630b35-6c80-4409-8997-54975ed4af95",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/etadn_discount.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"ETADN error-type-aware temporal discount for DMPO.\n\nCore formula:\n    φ(t, T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n\nWhere:\n    t = current timestep (0-indexed)\n    T = total trajectory length\n    γ = gamma_e (error-type-specific discount factor)\n\nγ_e mapping:\n    action errors      → γ_a = 0.85 (short correction span, concentrated credit)\n    verification errors → γ_v = 0.92 (medium span, moderate spread)\n    planning errors     → γ_p = 0.97 (long span, near-uniform credit)\n\nIntegration with DPO/DMPO:\n    Standard DPO loss: L = -log σ(β · (log π(y_w|x) - log π(y_l|x)))\n    DMPO adds per-step weighting: replace uniform sum with φ-weighted sum\n    ETADN: γ in φ varies by error_type of the (chosen, rejected) pair\n\nDependencies: torch only\n\"\"\"\nimport torch\nimport torch.nn.functional as F\nfrom dataclasses import dataclass\n\n\n@dataclass\nclass ETADNConfig:\n    gamma_action: float = 0.85\n    gamma_verification: float = 0.92\n    gamma_planning: float = 0.97\n    beta: float = 0.1\n    label_smoothing: float = 0.0\n\n\ndef phi(t: int, T: int, gamma: float) -> float:\n    \"\"\"DMPO credit assignment weight for timestep t of T.\n\n    φ(t, T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n\n    Sums to 1 over t ∈ [0, T-1] for any γ ∈ (0, 1).\n    \"\"\"\n    if T <= 0:\n        return 0.0\n    if abs(gamma - 1.0) < 1e-8:\n        return 1.0 / T\n    if abs(gamma) < 1e-12:\n        return 1.0 if t == 0 else 0.0\n    numerator = (gamma ** t) * (1.0 - gamma ** (T - t))\n    denominator = 1.0 - gamma ** T\n    return numerator / denominator\n\n\ndef compute_discount_weights(T: int, gamma: float) -> torch.Tensor:\n    \"\"\"φ weight vector of length T. Returns shape (T,) float32 tensor.\"\"\"\n    if T <= 0:\n        return torch.tensor([], dtype=torch.float32)\n    if abs(gamma - 1.0) < 1e-8:\n        return torch.full((T,), 1.0 / T, dtype=torch.float32)\n    if abs(gamma) < 1e-12:\n        w = torch.zeros(T, dtype=torch.float32)\n        w[0] = 1.0\n        return w\n    t = torch.arange(T, dtype=torch.float64)\n    g = torch.tensor(gamma, dtype=torch.float64)\n    numerator = g.pow(t) * (1 - g.pow(T - t))\n    denominator = 1 - g.pow(torch.tensor(T, dtype=torch.float64))\n    w = (numerator / denominator).float()\n    return w / w.sum()\n\n\ndef get_gamma_for_error_type(error_type: str, config: ETADNConfig) -> float:\n    \"\"\"Look up γ_e by error type string.\"\"\"\n    mapping = {\n        \"action\": config.gamma_action,\n        \"verification\": config.gamma_verification,\n        \"planning\": config.gamma_planning,\n    }\n    return mapping.get(error_type, config.gamma_verification)\n\n\n# ---------------------------------------------------------------------------\n# DPO loss variants\n# ---------------------------------------------------------------------------\n\ndef _dpo_loss_from_logratios(\n    chosen_logratios: torch.Tensor,\n    rejected_logratios: torch.Tensor,\n    beta: float,\n    label_smoothing: float = 0.0,\n) -> torch.Tensor:\n    \"\"\"Standard DPO loss from per-sample log-ratio scalars.\n\n    L = -log σ(β · (chosen_logratio - rejected_logratio))\n    \"\"\"\n    logits = beta * (chosen_logratios - rejected_logratios)\n    if label_smoothing > 0:\n        loss = (\n            (1 - label_smoothing) * F.logsigmoid(logits)\n            + label_smoothing * F.logsigmoid(-logits)\n        )\n    else:\n        loss = F.logsigmoid(logits)\n    return -loss.mean()\n\n\ndef uniform_dpo_loss(\n    chosen_logps: torch.Tensor,\n    rejected_logps: torch.Tensor,\n    ref_chosen_logps: torch.Tensor,\n    ref_rejected_logps: torch.Tensor,\n    lengths: torch.Tensor,\n    beta: float = 0.1,\n    label_smoothing: float = 0.0,\n) -> torch.Tensor:\n    \"\"\"Standard DPO with uniform per-token weighting (baseline).\n\n    Args:\n        chosen_logps: (batch, max_len) per-token log probs for chosen\n        rejected_logps: (batch, max_len) per-token log probs for rejected\n        ref_chosen_logps: (batch, max_len) reference model per-token log probs\n        ref_rejected_logps: (batch, max_len) reference model per-token log probs\n        lengths: (batch,) valid token count per sample\n        beta: DPO temperature\n        label_smoothing: label smoothing factor\n    \"\"\"\n    batch_size, max_len = chosen_logps.shape\n    mask = torch.arange(max_len, device=chosen_logps.device).unsqueeze(0) < lengths.unsqueeze(1)\n    mask = mask.float()\n\n    chosen_sums = (chosen_logps * mask).sum(dim=1)\n    rejected_sums = (rejected_logps * mask).sum(dim=1)\n    ref_chosen_sums = (ref_chosen_logps * mask).sum(dim=1)\n    ref_rejected_sums = (ref_rejected_logps * mask).sum(dim=1)\n\n    chosen_logratios = chosen_sums - ref_chosen_sums\n    rejected_logratios = rejected_sums - ref_rejected_sums\n\n    return _dpo_loss_from_logratios(\n        chosen_logratios, rejected_logratios, beta, label_smoothing\n    )\n\n\ndef single_gamma_dpo_loss(\n    chosen_logps: torch.Tensor,\n    rejected_logps: torch.Tensor,\n    ref_chosen_logps: torch.Tensor,\n    ref_rejected_logps: torch.Tensor,\n    lengths: torch.Tensor,\n    gamma: float = 0.92,\n    beta: float = 0.1,\n    label_smoothing: float = 0.0,\n) -> torch.Tensor:\n    \"\"\"DMPO with a single shared γ for all samples (ablation baseline).\"\"\"\n    batch_size, max_len = chosen_logps.shape\n    device = chosen_logps.device\n\n    results_chosen = torch.zeros(batch_size, device=device)\n    results_rejected = torch.zeros(batch_size, device=device)\n    results_ref_chosen = torch.zeros(batch_size, device=device)\n    results_ref_rejected = torch.zeros(batch_size, device=device)\n\n    for i in range(batch_size):\n        T = int(lengths[i].item())\n        if T <= 0:\n            continue\n        w = compute_discount_weights(T, gamma).to(device)\n        results_chosen[i] = (chosen_logps[i, :T] * w).sum()\n        results_rejected[i] = (rejected_logps[i, :T] * w).sum()\n        results_ref_chosen[i] = (ref_chosen_logps[i, :T] * w).sum()\n        results_ref_rejected[i] = (ref_rejected_logps[i, :T] * w).sum()\n\n    chosen_logratios = results_chosen - results_ref_chosen\n    rejected_logratios = results_rejected - results_ref_rejected\n\n    return _dpo_loss_from_logratios(\n        chosen_logratios, rejected_logratios, beta, label_smoothing\n    )\n\n\ndef etadn_dpo_loss(\n    chosen_logps: torch.Tensor,\n    rejected_logps: torch.Tensor,\n    ref_chosen_logps: torch.Tensor,\n    ref_rejected_logps: torch.Tensor,\n    error_types: list[str],\n    lengths: torch.Tensor,\n    config: ETADNConfig,\n) -> torch.Tensor:\n    \"\"\"ETADN-aware DPO loss with per-error-type temporal discount.\n\n    For each sample in the batch:\n    1. Look up γ_e based on error_type\n    2. Compute φ(t, T, γ_e) weights for sequence length T\n    3. Compute weighted sum of per-token log prob differences\n    4. Apply standard DPO loss with β\n    \"\"\"\n    batch_size, max_len = chosen_logps.shape\n    device = chosen_logps.device\n\n    results_chosen = torch.zeros(batch_size, device=device)\n    results_rejected = torch.zeros(batch_size, device=device)\n    results_ref_chosen = torch.zeros(batch_size, device=device)\n    results_ref_rejected = torch.zeros(batch_size, device=device)\n\n    for i in range(batch_size):\n        T = int(lengths[i].item())\n        if T <= 0:\n            continue\n        gamma = get_gamma_for_error_type(error_types[i], config)\n        w = compute_discount_weights(T, gamma).to(device)\n        results_chosen[i] = (chosen_logps[i, :T] * w).sum()\n        results_rejected[i] = (rejected_logps[i, :T] * w).sum()\n        results_ref_chosen[i] = (ref_chosen_logps[i, :T] * w).sum()\n        results_ref_rejected[i] = (ref_rejected_logps[i, :T] * w).sum()\n\n    chosen_logratios = results_chosen - results_ref_chosen\n    rejected_logratios = results_rejected - results_ref_rejected\n\n    return _dpo_loss_from_logratios(\n        chosen_logratios, rejected_logratios, config.beta, config.label_smoothing\n    )\n\n\n# ---------------------------------------------------------------------------\n# Self-tests\n# ---------------------------------------------------------------------------\n\ndef _test_phi_weights_properties():\n    \"\"\"φ weights: positive, monotonically decreasing for γ<1, γ=1 is uniform.\"\"\"\n    for gamma in [0.5, 0.85, 0.92, 0.97, 0.99]:\n        for T in [1, 3, 5, 10, 20]:\n            w = compute_discount_weights(T, gamma)\n            assert len(w) == T\n            assert (w > 0).all(), f\"gamma={gamma}, T={T}: non-positive weights\"\n            for i in range(1, T):\n                assert w[i] <= w[i - 1] + 1e-6, (\n                    f\"gamma={gamma}, T={T}: not monotonically decreasing at {i}\"\n                )\n    # γ=1 → uniform\n    w_uniform = compute_discount_weights(5, 1.0)\n    assert abs(w_uniform.sum().item() - 1.0) < 1e-5\n    assert abs(w_uniform[0].item() - 0.2) < 1e-5\n    # scalar φ matches vectorized\n    for gamma in [0.85, 0.97]:\n        T = 8\n        w = compute_discount_weights(T, gamma)\n        for t in range(T):\n            assert abs(w[t].item() - phi(t, T, gamma)) < 1e-5, (\n                f\"phi mismatch at t={t}, T={T}, gamma={gamma}\"\n            )\n    print(\"  phi weights properties: PASS\")\n\n\ndef _test_phi_shape_by_gamma():\n    \"\"\"Lower γ → steeper decay; higher γ → more uniform.\"\"\"\n    T = 10\n    w_low = compute_discount_weights(T, 0.85)\n    w_high = compute_discount_weights(T, 0.97)\n\n    # φ(0,T,γ) = 1 for all γ, so first weight is the same\n    assert abs(w_low[0].item() - 1.0) < 1e-5\n    assert abs(w_high[0].item() - 1.0) < 1e-5\n    # Lower γ decays faster → last weight should be smaller\n    assert w_low[-1] < w_high[-1], \"Low gamma should decay faster at the tail\"\n    # γ=0.97 should be more uniform (smaller max-min spread)\n    spread_low = (w_low.max() - w_low.min()).item()\n    spread_high = (w_high.max() - w_high.min()).item()\n    assert spread_low > spread_high, \"High gamma should be more uniform\"\n    print(\"  phi shape by gamma: PASS\")\n\n\ndef _test_dpo_loss_gradients():\n    \"\"\"All three loss variants should produce finite loss and valid gradients.\"\"\"\n    torch.manual_seed(42)\n    batch_size, max_len = 4, 8\n    config = ETADNConfig()\n\n    chosen = torch.randn(batch_size, max_len, requires_grad=True)\n    rejected = torch.randn(batch_size, max_len, requires_grad=True)\n    ref_chosen = torch.randn(batch_size, max_len)\n    ref_rejected = torch.randn(batch_size, max_len)\n    lengths = torch.tensor([6, 8, 5, 7])\n    error_types = [\"action\", \"verification\", \"planning\", \"action\"]\n\n    # Uniform DPO\n    loss_u = uniform_dpo_loss(chosen, rejected, ref_chosen, ref_rejected, lengths)\n    loss_u.backward(retain_graph=True)\n    assert torch.isfinite(loss_u), f\"uniform loss not finite: {loss_u}\"\n    assert chosen.grad is not None\n    chosen.grad.zero_()\n\n    # Single-gamma DMPO\n    loss_s = single_gamma_dpo_loss(\n        chosen, rejected, ref_chosen, ref_rejected, lengths, gamma=0.92\n    )\n    loss_s.backward(retain_graph=True)\n    assert torch.isfinite(loss_s), f\"single_gamma loss not finite: {loss_s}\"\n    chosen.grad.zero_()\n\n    # ETADN\n    loss_e = etadn_dpo_loss(\n        chosen, rejected, ref_chosen, ref_rejected, error_types, lengths, config\n    )\n    loss_e.backward()\n    assert torch.isfinite(loss_e), f\"etadn loss not finite: {loss_e}\"\n\n    print(f\"  uniform_dpo_loss:      {loss_u.item():.4f}\")\n    print(f\"  single_gamma_dpo_loss: {loss_s.item():.4f}\")\n    print(f\"  etadn_dpo_loss:        {loss_e.item():.4f}\")\n    print(\"  gradient check: PASS\")\n\n\ndef _test_gamma_lookup():\n    \"\"\"get_gamma_for_error_type should return correct values.\"\"\"\n    config = ETADNConfig()\n    assert get_gamma_for_error_type(\"action\", config) == 0.85\n    assert get_gamma_for_error_type(\"verification\", config) == 0.92\n    assert get_gamma_for_error_type(\"planning\", config) == 0.97\n    assert get_gamma_for_error_type(\"unknown\", config) == 0.92  # fallback\n    print(\"  gamma lookup: PASS\")\n\n\nif __name__ == \"__main__\":\n    print(\"ETADN discount module self-tests\")\n    print(\"=\" * 40)\n    _test_phi_weights_properties()\n    _test_phi_shape_by_gamma()\n    _test_gamma_lookup()\n    _test_dpo_loss_gradients()\n    print(\"=\" * 40)\n    print(\"All tests passed.\")\n",
+                "numLines": 335,
+                "startLine": 1,
+                "totalLines": 335
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WwVh7HARXgXKbWkeyMGH4x",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/train_dpo.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "d7940637-1908-4e1c-a527-c0a9ac73b28d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016tbCXgUassqYMxbbV4GfTf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11260,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11260
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T06:45:13.273Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WwVh7HARXgXKbWkeyMGH4x",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"DPO training with ETADN temporal discount weighting.\n3\t\n4\tTwo modes:\n5\t  single_gamma: all samples share one gamma (baseline / gamma sweep)\n6\t  etadn: per-sample gamma_e read from JSONL (ETADN method)\n7\t\n8\tKey design: gamma(d) is NOT computed here. In etadn mode it comes directly\n9\tfrom the JSONL gamma_e field produced by build_dpo_pairs.py.\n10\t\n11\tInput: JSONL from build_dpo_pairs.py\n12\t  Each line: {prompt, chosen, rejected, gamma_e, error_type, ...}\n13\t  prompt/chosen/rejected are lists of message dicts [{role, content}, ...]\n14\t\n15\tOutput: model checkpoints in --output_dir\n16\t\n17\tMemory strategy: reference model logps are precomputed once before training,\n18\tso only the policy model stays on GPU during the training loop.\n19\t\n20\tDependencies: torch, transformers, wandb\n21\t\"\"\"\n22\timport argparse\n23\timport json\n24\timport logging\n25\timport os\n26\timport sys\n27\tfrom functools import partial\n28\tfrom pathlib import Path\n29\t\n30\timport torch\n31\timport torch.nn.functional as F\n32\tfrom torch.utils.data import Dataset, DataLoader\n33\tfrom transformers import (\n34\t    AutoModelForCausalLM,\n35\t    AutoTokenizer,\n36\t    get_cosine_schedule_with_warmup,\n37\t)\n38\t\n39\tsys.path.insert(0, str(Path(__file__).resolve().parent))\n40\tfrom dmpo_loss import compute_phi_weights\n41\t\n42\tlogger = logging.getLogger(\"train_dpo\")\n43\t\n44\t\n45\t# ---------------------------------------------------------------------------\n46\t# Dataset\n47\t# ---------------------------------------------------------------------------\n48\t\n49\t\n50\tclass DPODataset(Dataset):\n51\t    \"\"\"DPO dataset from JSONL with prompt/chosen/rejected message lists.\"\"\"\n52\t\n53\t    def __init__(self, data_path: str, tokenizer, max_length: int, mode: str, gamma: float):\n54\t        self.samples = []\n55\t        with open(data_path) as f:\n56\t            for line in f:\n57\t                if line.strip():\n58\t                    self.samples.append(json.loads(line))\n59\t        self.tokenizer = tokenizer\n60\t        self.max_length = max_length\n61\t        self.mode = mode\n62\t        self.gamma = gamma\n63\t        logger.info(\"Loaded %d DPO samples from %s\", len(self.samples), data_path)\n64\t\n65\t    def __len__(self):\n66\t        return len(self.samples)\n67\t\n68\t    def __getitem__(self, idx):\n69\t        sample = self.samples[idx]\n70\t        prompt = sample[\"prompt\"]\n71\t        chosen = sample[\"chosen\"]\n72\t        rejected = sample[\"rejected\"]\n73\t\n74\t        # gamma source: JSONL gamma_e for etadn, CLI --gamma for single_gamma\n75\t        gamma = sample[\"gamma_e\"] if self.mode == \"etadn\" else self.gamma\n76\t\n77\t        # Tokenize prompt to measure prefix length\n78\t        prompt_ids = self.tokenizer.apply_chat_template(\n79\t            prompt, add_generation_prompt=True, return_dict=False\n80\t        )\n81\t        # Tokenize full sequences (prompt + response)\n82\t        chosen_ids = self.tokenizer.apply_chat_template(prompt + chosen, return_dict=False)\n83\t        rejected_ids = self.tokenizer.apply_chat_template(prompt + rejected, return_dict=False)\n84\t\n85\t        prompt_len = min(len(prompt_ids), self.max_length)\n86\t        chosen_ids = chosen_ids[: self.max_length]\n87\t        rejected_ids = rejected_ids[: self.max_length]\n88\t\n89\t        return {\n90\t            \"idx\": idx,\n91\t            \"chosen_ids\": chosen_ids,\n92\t            \"rejected_ids\": rejected_ids,\n93\t            \"prompt_len\": prompt_len,\n94\t            \"gamma\": gamma,\n95\t        }\n96\t\n97\t\n98\t# ---------------------------------------------------------------------------\n99\t# Collation\n100\t# ---------------------------------------------------------------------------\n101\t\n102\t\n103\tdef collate_dpo(batch: list[dict], pad_token_id: int) -> dict:\n104\t    \"\"\"Pad chosen and rejected sequences separately.\"\"\"\n105\t    max_c = max(len(b[\"chosen_ids\"]) for b in batch)\n106\t    max_r = max(len(b[\"rejected_ids\"]) for b in batch)\n107\t\n108\t    indices, gammas, prompt_lens = [], [], []\n109\t    chosen_ids, chosen_mask, chosen_resp_lens = [], [], []\n110\t    rejected_ids, rejected_mask, rejected_resp_lens = [], [], []\n111\t\n112\t    for b in batch:\n113\t        pl = b[\"prompt_len\"]\n114\t        indices.append(b[\"idx\"])\n115\t        prompt_lens.append(pl)\n116\t        gammas.append(b[\"gamma\"])\n117\t\n118\t        c = b[\"chosen_ids\"]\n119\t        c_pad = max_c - len(c)\n120\t        chosen_ids.append(c + [pad_token_id] * c_pad)\n121\t        chosen_mask.append([1] * len(c) + [0] * c_pad)\n122\t        chosen_resp_lens.append(max(len(c) - pl, 0))\n123\t\n124\t        r = b[\"rejected_ids\"]\n125\t        r_pad = max_r - len(r)\n126\t        rejected_ids.append(r + [pad_token_id] * r_pad)\n127\t        rejected_mask.append([1] * len(r) + [0] * r_pad)\n128\t        rejected_resp_lens.append(max(len(r) - pl, 0))\n129\t\n130\t    return {\n131\t        \"indices\": indices,\n132\t        \"chosen_ids\": torch.tensor(chosen_ids, dtype=torch.long),\n133\t        \"chosen_mask\": torch.tensor(chosen_mask, dtype=torch.long),\n134\t        \"rejected_ids\": torch.tensor(rejected_ids, dtype=torch.long),\n135\t        \"rejected_mask\": torch.tensor(rejected_mask, dtype=torch.long),\n136\t        \"prompt_lens\": prompt_lens,\n137\t        \"chosen_resp_lens\": chosen_resp_lens,\n138\t        \"rejected_resp_lens\": rejected_resp_lens,\n139\t        \"gammas\": gammas,\n140\t    }\n141\t\n142\t\n143\t# ---------------------------------------------------------------------------\n144\t# Per-token log probs\n145\t# ---------------------------------------------------------------------------\n146\t\n147\t\n148\tdef get_per_token_logps(\n149\t    model: torch.nn.Module,\n150\t    input_ids: torch.Tensor,\n151\t    attention_mask: torch.Tensor,\n152\t) -> torch.Tensor:\n153\t    \"\"\"Per-token log P(token_t | prefix[:t]).\n154\t\n155\t    Returns (B, L) where position t holds log P(input_ids[t] | input_ids[:t]).\n156\t    Position 0 is always 0 (no conditioning context for the first token).\n157\t    \"\"\"\n158\t    outputs = model(input_ids=input_ids, attention_mask=attention_mask)\n159\t    logits = outputs.logits[:, :-1, :]  # (B, L-1, V)\n160\t    labels = input_ids[:, 1:]  # (B, L-1)\n161\t    log_probs = F.log_softmax(logits, dim=-1)\n162\t    token_logps = torch.gather(log_probs, 2, labels.unsqueeze(-1)).squeeze(-1)\n163\t    # Left-pad one zero so result[t] aligns with input_ids[t]\n164\t    return F.pad(token_logps, (1, 0), value=0.0)\n165\t\n166\t\n167\t# ---------------------------------------------------------------------------\n168\t# Reference logps precomputation\n169\t# ---------------------------------------------------------------------------\n170\t\n171\t\n172\t@torch.no_grad()\n173\tdef precompute_ref_logps(\n174\t    model: torch.nn.Module,\n175\t    dataset: DPODataset,\n176\t    tokenizer,\n177\t    device: torch.device,\n178\t    batch_size: int,\n179\t) -> tuple[dict[int, torch.Tensor], dict[int, torch.Tensor]]:\n180\t    \"\"\"Precompute reference model logps for all samples (response tokens only).\n181\t\n182\t    Returns two dicts mapping sample index -> (resp_len,) CPU tensor.\n183\t    After this call the model can be switched to training mode in-place.\n184\t    \"\"\"\n185\t    model.eval()\n186\t    loader = DataLoader(\n187\t        dataset,\n188\t        batch_size=batch_size,\n189\t        shuffle=False,\n190\t        collate_fn=partial(collate_dpo, pad_token_id=tokenizer.pad_token_id),\n191\t    )\n192\t\n193\t    ref_chosen: dict[int, torch.Tensor] = {}\n194\t    ref_rejected: dict[int, torch.Tensor] = {}\n195\t\n196\t    for batch in loader:\n197\t        c_logps = get_per_token_logps(\n198\t            model, batch[\"chosen_ids\"].to(device), batch[\"chosen_mask\"].to(device)\n199\t        )\n200\t        r_logps = get_per_token_logps(\n201\t            model, batch[\"rejected_ids\"].to(device), batch[\"rejected_mask\"].to(device)\n202\t        )\n203\t\n204\t        B = batch[\"chosen_ids\"].shape[0]\n205\t        for i in range(B):\n206\t            idx = batch[\"indices\"][i]\n207\t            pl = batch[\"prompt_lens\"][i]\n208\t            c_rl = batch[\"chosen_resp_lens\"][i]\n209\t            r_rl = batch[\"rejected_resp_lens\"][i]\n210\t            ref_chosen[idx] = c_logps[i, pl : pl + c_rl].cpu()\n211\t            ref_rejected[idx] = r_logps[i, pl : pl + r_rl].cpu()\n212\t\n213\t    logger.info(\"Precomputed ref logps for %d samples\", len(ref_chosen))\n214\t    return ref_chosen, ref_rejected\n215\t\n216\t\n217\t# ---------------------------------------------------------------------------\n218\t# Batch loss\n219\t# ---------------------------------------------------------------------------\n220\t\n221\t\n222\tdef compute_batch_loss(\n223\t    policy_model: torch.nn.Module,\n224\t    batch: dict,\n225\t    ref_chosen_all: dict[int, torch.Tensor],\n226\t    ref_rejected_all: dict[int, torch.Tensor],\n227\t    beta: float,\n228\t    device: torch.device,\n229\t) -> tuple[torch.Tensor, dict]:\n230\t    \"\"\"Forward policy model and compute phi-weighted DPO loss.\"\"\"\n231\t    # Policy forward\n232\t    pc_logps = get_per_token_logps(\n233\t        policy_model, batch[\"chosen_ids\"].to(device), batch[\"chosen_mask\"].to(device)\n234\t    )\n235\t    pr_logps = get_per_token_logps(\n236\t        policy_model, batch[\"rejected_ids\"].to(device), batch[\"rejected_mask\"].to(device)\n237\t    )\n238\t\n239\t    B = batch[\"chosen_ids\"].shape[0]\n240\t    losses = []\n241\t    chosen_rewards = []\n242\t    rejected_rewards = []\n243\t\n244\t    for i in range(B):\n245\t        idx = batch[\"indices\"][i]\n246\t        pl = batch[\"prompt_lens\"][i]\n247\t        c_rl = batch[\"chosen_resp_lens\"][i]\n248\t        r_rl = batch[\"rejected_resp_lens\"][i]\n249\t        gamma = batch[\"gammas\"][i]\n250\t\n251\t        if c_rl <= 0 or r_rl <= 0:\n252\t            continue\n253\t\n254\t        # phi discount weights from etadn_discount\n255\t        w_c = compute_phi_weights(c_rl, gamma).to(device)\n256\t        w_r = compute_phi_weights(r_rl, gamma).to(device)\n257\t\n258\t        # Policy response logps\n259\t        pc = pc_logps[i, pl : pl + c_rl]\n260\t        pr = pr_logps[i, pl : pl + r_rl]\n261\t\n262\t        # Precomputed ref response logps\n263\t        rc = ref_chosen_all[idx].to(device)\n264\t        rr = ref_rejected_all[idx].to(device)\n265\t\n266\t        # Weighted log-ratios\n267\t        chosen_logratio = (pc * w_c).sum() - (rc * w_c).sum()\n268\t        rejected_logratio = (pr * w_r).sum() - (rr * w_r).sum()\n269\t\n270\t        logit = beta * (chosen_logratio - rejected_logratio)\n271\t        losses.append(-F.logsigmoid(logit))\n272\t\n273\t        chosen_rewards.append(chosen_logratio.detach())\n274\t        rejected_rewards.append(rejected_logratio.detach())\n275\t\n276\t    if not losses:\n277\t        return torch.tensor(0.0, device=device, requires_grad=True), {}\n278\t\n279\t    loss = torch.stack(losses).mean()\n280\t    cr = torch.stack(chosen_rewards)\n281\t    rr = torch.stack(rejected_rewards)\n282\t    metrics = {\n283\t        \"loss\": loss.item(),\n284\t        \"chosen_reward\": cr.mean().item(),\n285\t        \"rejected_reward\": rr.mean().item(),\n286\t        \"reward_margin\": (cr - rr).mean().item(),\n287\t        \"reward_accuracy\": (cr > rr).float().mean().item(),\n288\t    }\n289\t    return loss, metrics\n290\t\n291\t\n292\t# ---------------------------------------------------------------------------\n293\t# Training\n294\t# ---------------------------------------------------------------------------\n295\t\n296\t\n297\tdef train(args: argparse.Namespace):\n298\t    import wandb\n299\t\n300\t    torch.manual_seed(args.seed)\n301\t    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n302\t\n303\t    wandb.init(\n304\t        project=args.wandb_project,\n305\t        name=args.wandb_run_name or f\"{args.mode}_s{args.seed}\",\n306\t        config=vars(args),\n307\t    )\n308\t\n309\t    # Tokenizer\n310\t    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)\n311\t    if tokenizer.pad_token_id is None:\n312\t        tokenizer.pad_token_id = tokenizer.eos_token_id\n313\t\n314\t    # Model\n315\t    logger.info(\"Loading model: %s\", args.model_name)\n316\t    model = AutoModelForCausalLM.from_pretrained(\n317\t        args.model_name,\n318\t        torch_dtype=torch.bfloat16,\n319\t        trust_remote_code=True,\n320\t        device_map={\"\": device},\n321\t    )\n322\t\n323\t    # Dataset\n324\t    dataset = DPODataset(\n325\t        args.data_path, tokenizer, args.max_length, args.mode, args.gamma\n326\t    )\n327\t\n328\t    # Precompute ref logps (model is the ref at initialization)\n329\t    logger.info(\"Precomputing reference logps...\")\n330\t    ref_chosen, ref_rejected = precompute_ref_logps(\n331\t        model, dataset, tokenizer, device, args.batch_size\n332\t    )\n333\t\n334\t    # Switch to training mode\n335\t    model.gradient_checkpointing_enable()\n336\t    model.train()\n337\t\n338\t    loader = DataLoader(\n339\t        dataset,\n340\t        batch_size=args.batch_size,\n341\t        shuffle=True,\n342\t        collate_fn=partial(collate_dpo, pad_token_id=tokenizer.pad_token_id),\n343\t        drop_last=False,\n344\t    )\n345\t\n346\t    optimizer = torch.optim.AdamW(\n347\t        model.parameters(), lr=args.learning_rate, weight_decay=0.01\n348\t    )\n349\t    total_steps = len(loader) * args.num_epochs\n350\t    warmup_steps = min(total_steps // 10, 100)\n351\t    scheduler = get_cosine_schedule_with_warmup(optimizer, warmup_steps, total_steps)\n352\t\n353\t    # Save training config\n354\t    out_dir = Path(args.output_dir)\n355\t    out_dir.mkdir(parents=True, exist_ok=True)\n356\t    with open(out_dir / \"training_config.json\", \"w\") as f:\n357\t        json.dump(vars(args), f, indent=2)\n358\t\n359\t    global_step = 0\n360\t    for epoch in range(args.num_epochs):\n361\t        epoch_loss = 0.0\n362\t        epoch_steps = 0\n363\t\n364\t        for batch in loader:\n365\t            loss, metrics = compute_batch_loss(\n366\t                model, batch, ref_chosen, ref_rejected, args.beta, device\n367\t            )\n368\t\n369\t            loss.backward()\n370\t            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\n371\t            optimizer.step()\n372\t            scheduler.step()\n373\t            optimizer.zero_grad()\n374\t\n375\t            global_step += 1\n376\t            epoch_loss += loss.item()\n377\t            epoch_steps += 1\n378\t\n379\t            wandb.log(\n380\t                {\n381\t                    \"train/loss\": loss.item(),\n382\t                    \"train/lr\": scheduler.get_last_lr()[0],\n383\t                    **{f\"train/{k}\": v for k, v in metrics.items() if k != \"loss\"},\n384\t                },\n385\t                step=global_step,\n386\t            )\n387\t\n388\t            if global_step % 10 == 0:\n389\t                logger.info(\n390\t                    \"Step %d | Loss %.4f | Margin %.4f | Acc %.2f\",\n391\t                    global_step,\n392\t                    loss.item(),\n393\t                    metrics.get(\"reward_margin\", 0),\n394\t                    metrics.get(\"reward_accuracy\", 0),\n395\t                )\n396\t\n397\t        avg_loss = epoch_loss / max(epoch_steps, 1)\n398\t        logger.info(\"Epoch %d/%d | Avg Loss %.4f\", epoch + 1, args.num_epochs, avg_loss)\n399\t        wandb.log(\n400\t            {\"train/epoch_loss\": avg_loss, \"train/epoch\": epoch + 1}, step=global_step\n401\t        )\n402\t\n403\t        ckpt_dir = out_dir / f\"checkpoint-epoch{epoch + 1}\"\n404\t        model.save_pretrained(ckpt_dir)\n405\t        tokenizer.save_pretrained(ckpt_dir)\n406\t        logger.info(\"Saved checkpoint: %s\", ckpt_dir)\n407\t\n408\t    final_dir = out_dir / \"final\"\n409\t    model.save_pretrained(final_dir)\n410\t    tokenizer.save_pretrained(final_dir)\n411\t    logger.info(\"Training complete. Final model: %s\", final_dir)\n412\t    wandb.finish()\n413\t\n414\t\n415\t# ---------------------------------------------------------------------------\n416\t# CLI\n417\t# ---------------------------------------------------------------------------\n418\t\n419\t\n420\tdef main():\n421\t    parser = argparse.ArgumentParser(\n422\t        description=\"DPO training with ETADN temporal discount\"\n423\t    )\n424\t    parser.add_argument(\"--data_path\", type=str, required=True, help=\"DPO JSONL file\")\n425\t    parser.add_argument(\n426\t        \"--model_name\",\n427\t        type=str,\n428\t        default=\"/root/autodl-tmp/.hf_cache/Qwen3-8B\",\n429\t    )\n430\t    parser.add_argument(\"--output_dir\", type=str, default=\"outputs/dpo\")\n431\t    parser.add_argument(\n432\t        \"--mode\",\n433\t        type=str,\n434\t        choices=[\"single_gamma\", \"etadn\"],\n435\t        required=True,\n436\t    )\n437\t    parser.add_argument(\n438\t        \"--gamma\", type=float, default=0.92, help=\"gamma for single_gamma mode\"\n439\t    )\n440\t    parser.add_argument(\n441\t        \"--gamma_min\", type=float, default=0.85, help=\"gamma_min for etadn (logged only)\"\n442\t    )\n443\t    parser.add_argument(\n444\t        \"--gamma_max\", type=float, default=0.97, help=\"gamma_max for etadn (logged only)\"\n445\t    )\n446\t    parser.add_argument(\"--seed\", type=int, default=42)\n447\t    parser.add_argument(\"--num_epochs\", type=int, default=3)\n448\t    parser.add_argument(\"--batch_size\", type=int, default=4)\n449\t    parser.add_argument(\"--learning_rate\", type=float, default=5e-7)\n450\t    parser.add_argument(\"--max_length\", type=int, default=2048)\n451\t    parser.add_argument(\"--wandb_project\", type=str, default=\"etadn-dpo\")\n452\t    parser.add_argument(\"--wandb_run_name\", type=str, default=None)\n453\t    parser.add_argument(\"--beta\", type=float, default=0.1, help=\"DPO temperature\")\n454\t    parser.add_argument(\"--gpu\", type=int, default=0)\n455\t    args = parser.parse_args()\n456\t\n457\t    logging.basicConfig(\n458\t        level=logging.INFO,\n459\t        format=\"%(asctime)s %(name)s %(levelname)s %(message)s\",\n460\t    )\n461\t\n462\t    train(args)\n463\t\n464\t\n465\tif __name__ == \"__main__\":\n466\t    main()\n467\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "e70805f5-d4bc-4f38-ad9c-718c9d2985dd",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/rl-active-probe-fl/src/train_dpo.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"DPO training with ETADN temporal discount weighting.\n\nTwo modes:\n  single_gamma: all samples share one gamma (baseline / gamma sweep)\n  etadn: per-sample gamma_e read from JSONL (ETADN method)\n\nKey design: gamma(d) is NOT computed here. In etadn mode it comes directly\nfrom the JSONL gamma_e field produced by build_dpo_pairs.py.\n\nInput: JSONL from build_dpo_pairs.py\n  Each line: {prompt, chosen, rejected, gamma_e, error_type, ...}\n  prompt/chosen/rejected are lists of message dicts [{role, content}, ...]\n\nOutput: model checkpoints in --output_dir\n\nMemory strategy: reference model logps are precomputed once before training,\nso only the policy model stays on GPU during the training loop.\n\nDependencies: torch, transformers, wandb\n\"\"\"\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nfrom functools import partial\nfrom pathlib import Path\n\nimport torch\nimport torch.nn.functional as F\nfrom torch.utils.data import Dataset, DataLoader\nfrom transformers import (\n    AutoModelForCausalLM,\n    AutoTokenizer,\n    get_cosine_schedule_with_warmup,\n)\n\nsys.path.insert(0, str(Path(__file__).resolve().parent))\nfrom dmpo_loss import compute_phi_weights\n\nlogger = logging.getLogger(\"train_dpo\")\n\n\n# ---------------------------------------------------------------------------\n# Dataset\n# ---------------------------------------------------------------------------\n\n\nclass DPODataset(Dataset):\n    \"\"\"DPO dataset from JSONL with prompt/chosen/rejected message lists.\"\"\"\n\n    def __init__(self, data_path: str, tokenizer, max_length: int, mode: str, gamma: float):\n        self.samples = []\n        with open(data_path) as f:\n            for line in f:\n                if line.strip():\n                    self.samples.append(json.loads(line))\n        self.tokenizer = tokenizer\n        self.max_length = max_length\n        self.mode = mode\n        self.gamma = gamma\n        logger.info(\"Loaded %d DPO samples from %s\", len(self.samples), data_path)\n\n    def __len__(self):\n        return len(self.samples)\n\n    def __getitem__(self, idx):\n        sample = self.samples[idx]\n        prompt = sample[\"prompt\"]\n        chosen = sample[\"chosen\"]\n        rejected = sample[\"rejected\"]\n\n        # gamma source: JSONL gamma_e for etadn, CLI --gamma for single_gamma\n        gamma = sample[\"gamma_e\"] if self.mode == \"etadn\" else self.gamma\n\n        # Tokenize prompt to measure prefix length\n        prompt_ids = self.tokenizer.apply_chat_template(\n            prompt, add_generation_prompt=True, return_dict=False\n        )\n        # Tokenize full sequences (prompt + response)\n        chosen_ids = self.tokenizer.apply_chat_template(prompt + chosen, return_dict=False)\n        rejected_ids = self.tokenizer.apply_chat_template(prompt + rejected, return_dict=False)\n\n        prompt_len = min(len(prompt_ids), self.max_length)\n        chosen_ids = chosen_ids[: self.max_length]\n        rejected_ids = rejected_ids[: self.max_length]\n\n        return {\n            \"idx\": idx,\n            \"chosen_ids\": chosen_ids,\n            \"rejected_ids\": rejected_ids,\n            \"prompt_len\": prompt_len,\n            \"gamma\": gamma,\n        }\n\n\n# ---------------------------------------------------------------------------\n# Collation\n# ---------------------------------------------------------------------------\n\n\ndef collate_dpo(batch: list[dict], pad_token_id: int) -> dict:\n    \"\"\"Pad chosen and rejected sequences separately.\"\"\"\n    max_c = max(len(b[\"chosen_ids\"]) for b in batch)\n    max_r = max(len(b[\"rejected_ids\"]) for b in batch)\n\n    indices, gammas, prompt_lens = [], [], []\n    chosen_ids, chosen_mask, chosen_resp_lens = [], [], []\n    rejected_ids, rejected_mask, rejected_resp_lens = [], [], []\n\n    for b in batch:\n        pl = b[\"prompt_len\"]\n        indices.append(b[\"idx\"])\n        prompt_lens.append(pl)\n        gammas.append(b[\"gamma\"])\n\n        c = b[\"chosen_ids\"]\n        c_pad = max_c - len(c)\n        chosen_ids.append(c + [pad_token_id] * c_pad)\n        chosen_mask.append([1] * len(c) + [0] * c_pad)\n        chosen_resp_lens.append(max(len(c) - pl, 0))\n\n        r = b[\"rejected_ids\"]\n        r_pad = max_r - len(r)\n        rejected_ids.append(r + [pad_token_id] * r_pad)\n        rejected_mask.append([1] * len(r) + [0] * r_pad)\n        rejected_resp_lens.append(max(len(r) - pl, 0))\n\n    return {\n        \"indices\": indices,\n        \"chosen_ids\": torch.tensor(chosen_ids, dtype=torch.long),\n        \"chosen_mask\": torch.tensor(chosen_mask, dtype=torch.long),\n        \"rejected_ids\": torch.tensor(rejected_ids, dtype=torch.long),\n        \"rejected_mask\": torch.tensor(rejected_mask, dtype=torch.long),\n        \"prompt_lens\": prompt_lens,\n        \"chosen_resp_lens\": chosen_resp_lens,\n        \"rejected_resp_lens\": rejected_resp_lens,\n        \"gammas\": gammas,\n    }\n\n\n# ---------------------------------------------------------------------------\n# Per-token log probs\n# ---------------------------------------------------------------------------\n\n\ndef get_per_token_logps(\n    model: torch.nn.Module,\n    input_ids: torch.Tensor,\n    attention_mask: torch.Tensor,\n) -> torch.Tensor:\n    \"\"\"Per-token log P(token_t | prefix[:t]).\n\n    Returns (B, L) where position t holds log P(input_ids[t] | input_ids[:t]).\n    Position 0 is always 0 (no conditioning context for the first token).\n    \"\"\"\n    outputs = model(input_ids=input_ids, attention_mask=attention_mask)\n    logits = outputs.logits[:, :-1, :]  # (B, L-1, V)\n    labels = input_ids[:, 1:]  # (B, L-1)\n    log_probs = F.log_softmax(logits, dim=-1)\n    token_logps = torch.gather(log_probs, 2, labels.unsqueeze(-1)).squeeze(-1)\n    # Left-pad one zero so result[t] aligns with input_ids[t]\n    return F.pad(token_logps, (1, 0), value=0.0)\n\n\n# ---------------------------------------------------------------------------\n# Reference logps precomputation\n# ---------------------------------------------------------------------------\n\n\n@torch.no_grad()\ndef precompute_ref_logps(\n    model: torch.nn.Module,\n    dataset: DPODataset,\n    tokenizer,\n    device: torch.device,\n    batch_size: int,\n) -> tuple[dict[int, torch.Tensor], dict[int, torch.Tensor]]:\n    \"\"\"Precompute reference model logps for all samples (response tokens only).\n\n    Returns two dicts mapping sample index -> (resp_len,) CPU tensor.\n    After this call the model can be switched to training mode in-place.\n    \"\"\"\n    model.eval()\n    loader = DataLoader(\n        dataset,\n        batch_size=batch_size,\n        shuffle=False,\n        collate_fn=partial(collate_dpo, pad_token_id=tokenizer.pad_token_id),\n    )\n\n    ref_chosen: dict[int, torch.Tensor] = {}\n    ref_rejected: dict[int, torch.Tensor] = {}\n\n    for batch in loader:\n        c_logps = get_per_token_logps(\n            model, batch[\"chosen_ids\"].to(device), batch[\"chosen_mask\"].to(device)\n        )\n        r_logps = get_per_token_logps(\n            model, batch[\"rejected_ids\"].to(device), batch[\"rejected_mask\"].to(device)\n        )\n\n        B = batch[\"chosen_ids\"].shape[0]\n        for i in range(B):\n            idx = batch[\"indices\"][i]\n            pl = batch[\"prompt_lens\"][i]\n            c_rl = batch[\"chosen_resp_lens\"][i]\n            r_rl = batch[\"rejected_resp_lens\"][i]\n            ref_chosen[idx] = c_logps[i, pl : pl + c_rl].cpu()\n            ref_rejected[idx] = r_logps[i, pl : pl + r_rl].cpu()\n\n    logger.info(\"Precomputed ref logps for %d samples\", len(ref_chosen))\n    return ref_chosen, ref_rejected\n\n\n# ---------------------------------------------------------------------------\n# Batch loss\n# ---------------------------------------------------------------------------\n\n\ndef compute_batch_loss(\n    policy_model: torch.nn.Module,\n    batch: dict,\n    ref_chosen_all: dict[int, torch.Tensor],\n    ref_rejected_all: dict[int, torch.Tensor],\n    beta: float,\n    device: torch.device,\n) -> tuple[torch.Tensor, dict]:\n    \"\"\"Forward policy model and compute phi-weighted DPO loss.\"\"\"\n    # Policy forward\n    pc_logps = get_per_token_logps(\n        policy_model, batch[\"chosen_ids\"].to(device), batch[\"chosen_mask\"].to(device)\n    )\n    pr_logps = get_per_token_logps(\n        policy_model, batch[\"rejected_ids\"].to(device), batch[\"rejected_mask\"].to(device)\n    )\n\n    B = batch[\"chosen_ids\"].shape[0]\n    losses = []\n    chosen_rewards = []\n    rejected_rewards = []\n\n    for i in range(B):\n        idx = batch[\"indices\"][i]\n        pl = batch[\"prompt_lens\"][i]\n        c_rl = batch[\"chosen_resp_lens\"][i]\n        r_rl = batch[\"rejected_resp_lens\"][i]\n        gamma = batch[\"gammas\"][i]\n\n        if c_rl <= 0 or r_rl <= 0:\n            continue\n\n        # phi discount weights from etadn_discount\n        w_c = compute_phi_weights(c_rl, gamma).to(device)\n        w_r = compute_phi_weights(r_rl, gamma).to(device)\n\n        # Policy response logps\n        pc = pc_logps[i, pl : pl + c_rl]\n        pr = pr_logps[i, pl : pl + r_rl]\n\n        # Precomputed ref response logps\n        rc = ref_chosen_all[idx].to(device)\n        rr = ref_rejected_all[idx].to(device)\n\n        # Weighted log-ratios\n        chosen_logratio = (pc * w_c).sum() - (rc * w_c).sum()\n        rejected_logratio = (pr * w_r).sum() - (rr * w_r).sum()\n\n        logit = beta * (chosen_logratio - rejected_logratio)\n        losses.append(-F.logsigmoid(logit))\n\n        chosen_rewards.append(chosen_logratio.detach())\n        rejected_rewards.append(rejected_logratio.detach())\n\n    if not losses:\n        return torch.tensor(0.0, device=device, requires_grad=True), {}\n\n    loss = torch.stack(losses).mean()\n    cr = torch.stack(chosen_rewards)\n    rr = torch.stack(rejected_rewards)\n    metrics = {\n        \"loss\": loss.item(),\n        \"chosen_reward\": cr.mean().item(),\n        \"rejected_reward\": rr.mean().item(),\n        \"reward_margin\": (cr - rr).mean().item(),\n        \"reward_accuracy\": (cr > rr).float().mean().item(),\n    }\n    return loss, metrics\n\n\n# ---------------------------------------------------------------------------\n# Training\n# ---------------------------------------------------------------------------\n\n\ndef train(args: argparse.Namespace):\n    import wandb\n\n    torch.manual_seed(args.seed)\n    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n\n    wandb.init(\n        project=args.wandb_project,\n        name=args.wandb_run_name or f\"{args.mode}_s{args.seed}\",\n        config=vars(args),\n    )\n\n    # Tokenizer\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    # Model\n    logger.info(\"Loading model: %s\", args.model_name)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_name,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        device_map={\"\": device},\n    )\n\n    # Dataset\n    dataset = DPODataset(\n        args.data_path, tokenizer, args.max_length, args.mode, args.gamma\n    )\n\n    # Precompute ref logps (model is the ref at initialization)\n    logger.info(\"Precomputing reference logps...\")\n    ref_chosen, ref_rejected = precompute_ref_logps(\n        model, dataset, tokenizer, device, args.batch_size\n    )\n\n    # Switch to training mode\n    model.gradient_checkpointing_enable()\n    model.train()\n\n    loader = DataLoader(\n        dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        collate_fn=partial(collate_dpo, pad_token_id=tokenizer.pad_token_id),\n        drop_last=False,\n    )\n\n    optimizer = torch.optim.AdamW(\n        model.parameters(), lr=args.learning_rate, weight_decay=0.01\n    )\n    total_steps = len(loader) * args.num_epochs\n    warmup_steps = min(total_steps // 10, 100)\n    scheduler = get_cosine_schedule_with_warmup(optimizer, warmup_steps, total_steps)\n\n    # Save training config\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    with open(out_dir / \"training_config.json\", \"w\") as f:\n        json.dump(vars(args), f, indent=2)\n\n    global_step = 0\n    for epoch in range(args.num_epochs):\n        epoch_loss = 0.0\n        epoch_steps = 0\n\n        for batch in loader:\n            loss, metrics = compute_batch_loss(\n                model, batch, ref_chosen, ref_rejected, args.beta, device\n            )\n\n            loss.backward()\n            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\n            optimizer.step()\n            scheduler.step()\n            optimizer.zero_grad()\n\n            global_step += 1\n            epoch_loss += loss.item()\n            epoch_steps += 1\n\n            wandb.log(\n                {\n                    \"train/loss\": loss.item(),\n                    \"train/lr\": scheduler.get_last_lr()[0],\n                    **{f\"train/{k}\": v for k, v in metrics.items() if k != \"loss\"},\n                },\n                step=global_step,\n            )\n\n            if global_step % 10 == 0:\n                logger.info(\n                    \"Step %d | Loss %.4f | Margin %.4f | Acc %.2f\",\n                    global_step,\n                    loss.item(),\n                    metrics.get(\"reward_margin\", 0),\n                    metrics.get(\"reward_accuracy\", 0),\n                )\n\n        avg_loss = epoch_loss / max(epoch_steps, 1)\n        logger.info(\"Epoch %d/%d | Avg Loss %.4f\", epoch + 1, args.num_epochs, avg_loss)\n        wandb.log(\n            {\"train/epoch_loss\": avg_loss, \"train/epoch\": epoch + 1}, step=global_step\n        )\n\n        ckpt_dir = out_dir / f\"checkpoint-epoch{epoch + 1}\"\n        model.save_pretrained(ckpt_dir)\n        tokenizer.save_pretrained(ckpt_dir)\n        logger.info(\"Saved checkpoint: %s\", ckpt_dir)\n\n    final_dir = out_dir / \"final\"\n    model.save_pretrained(final_dir)\n    tokenizer.save_pretrained(final_dir)\n    logger.info(\"Training complete. Final model: %s\", final_dir)\n    wandb.finish()\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"DPO training with ETADN temporal discount\"\n    )\n    parser.add_argument(\"--data_path\", type=str, required=True, help=\"DPO JSONL file\")\n    parser.add_argument(\n        \"--model_name\",\n        type=str,\n        default=\"/root/autodl-tmp/.hf_cache/Qwen3-8B\",\n    )\n    parser.add_argument(\"--output_dir\", type=str, default=\"outputs/dpo\")\n    parser.add_argument(\n        \"--mode\",\n        type=str,\n        choices=[\"single_gamma\", \"etadn\"],\n        required=True,\n    )\n    parser.add_argument(\n        \"--gamma\", type=float, default=0.92, help=\"gamma for single_gamma mode\"\n    )\n    parser.add_argument(\n        \"--gamma_min\", type=float, default=0.85, help=\"gamma_min for etadn (logged only)\"\n    )\n    parser.add_argument(\n        \"--gamma_max\", type=float, default=0.97, help=\"gamma_max for etadn (logged only)\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--num_epochs\", type=int, default=3)\n    parser.add_argument(\"--batch_size\", type=int, default=4)\n    parser.add_argument(\"--learning_rate\", type=float, default=5e-7)\n    parser.add_argument(\"--max_length\", type=int, default=2048)\n    parser.add_argument(\"--wandb_project\", type=str, default=\"etadn-dpo\")\n    parser.add_argument(\"--wandb_run_name\", type=str, default=None)\n    parser.add_argument(\"--beta\", type=float, default=0.1, help=\"DPO temperature\")\n    parser.add_argument(\"--gpu\", type=int, default=0)\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s %(name)s %(levelname)s %(message)s\",\n    )\n\n    train(args)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 467,
+                "startLine": 1,
+                "totalLines": 467
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to load the SSH tools to write files to the server.",
+              "signature": "EvkBClkIDRgCKkChrUNa83SmBEF/uiU1H96W0KfMM3DFCkIo8kILBmIYHSp/NbHInRtX6pEqAg+IYPsvKpMDEqUEFTuYOBrPk11KMg9jbGF1ZGUtb3B1cy00LTY4ABIMse4TjB1JC76nCFQ+GgziR7krgdKAeHITCAoiMDKU9DVlBsBczOv8rHsdCei5plEaSVEa8IdDGfYylkiuBoDj0GzivYK9JunUum8MPCpOzA3CQaXWmqzpfv3JZYbdrD+9qK0lL2BrXsEc0Vii0ycZqwfpR30jvGY3p060Yu9EX7BYyzGwygc1BNZisfqj+Jb9EelKr3op/tJ5GAvoGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "6bc65878-2d1e-40e7-a26d-28d743ac143f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Emoo9gWvKbN8f4cWTkHZfy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11021,
+                "cache_read_input_tokens": 23101,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11021
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已读取。加载 SSH 工具并同步到服务器。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "0423aa8c-ad27-4159-ac25-a0461260956d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Emoo9gWvKbN8f4cWTkHZfy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11021,
+                "cache_read_input_tokens": 23101,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11021
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012PwgmhjNSsxUXnHnNnMwbE",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "c82f09b6-9af3-487b-9d1d-b69ae7062423",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Emoo9gWvKbN8f4cWTkHZfy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11021,
+                "cache_read_input_tokens": 23101,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11021
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T06:45:17.737Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_012PwgmhjNSsxUXnHnNnMwbE",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "01b8d9ff-7338-4560-a36a-cf68e7d18676",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入两个文件到服务器。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "5e096653-19b7-4227-85ad-f52c3d168d67",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UbU5rRn3nWmtB1xVReP6zQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 721,
+                "cache_read_input_tokens": 34122,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 721
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F9Ly4xfMJMTxdqQc7fvRYi",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "account": "root",
+                "command": "cat <<'PYEOF' > /root/autodl-tmp/rl-active-probe-fl/src/etadn_discount.py\n#!/usr/bin/env python3\n\"\"\"ETADN error-type-aware temporal discount for DMPO.\n\nCore formula:\n    φ(t, T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n\nWhere:\n    t = current timestep (0-indexed)\n    T = total trajectory length\n    γ = gamma_e (error-type-specific discount factor)\n\nγ_e mapping:\n    action errors      → γ_a = 0.85 (short correction span, concentrated credit)\n    verification errors → γ_v = 0.92 (medium span, moderate spread)\n    planning errors     → γ_p = 0.97 (long span, near-uniform credit)\n\nIntegration with DPO/DMPO:\n    Standard DPO loss: L = -log σ(β · (log π(y_w|x) - log π(y_l|x)))\n    DMPO adds per-step weighting: replace uniform sum with φ-weighted sum\n    ETADN: γ in φ varies by error_type of the (chosen, rejected) pair\n\nDependencies: torch only\n\"\"\"\nimport torch\nimport torch.nn.functional as F\nfrom dataclasses import dataclass\n\n\n@dataclass\nclass ETADNConfig:\n    gamma_action: float = 0.85\n    gamma_verification: float = 0.92\n    gamma_planning: float = 0.97\n    beta: float = 0.1\n    label_smoothing: float = 0.0\n\n\ndef phi(t: int, T: int, gamma: float) -> float:\n    \"\"\"DMPO credit assignment weight for timestep t of T.\n\n    φ(t, T) = γ^t · (1 - γ^(T-t)) / (1 - γ^T)\n\n    Sums to 1 over t ∈ [0, T-1] for any γ ∈ (0, 1).\n    \"\"\"\n    if T <= 0:\n        return 0.0\n    if abs(gamma - 1.0) < 1e-8:\n        return 1.0 / T\n    if abs(gamma) < 1e-12:\n        return 1.0 if t == 0 else 0.0\n    numerator = (gamma ** t) * (1.0 - gamma ** (T - t))\n    denominator = 1.0 - gamma ** T\n    return numerator / denominator\n\n\ndef compute_discount_weights(T: int, gamma: float) -> torch.Tensor:\n    \"\"\"φ weight vector of length T. Returns shape (T,) float32 tensor.\"\"\"\n    if T <= 0:\n        return torch.tensor([], dtype=torch.float32)\n    if abs(gamma - 1.0) < 1e-8:\n        return torch.full((T,), 1.0 / T, dtype=torch.float32)\n    if abs(gamma) < 1e-12:\n        w = torch.zeros(T, dtype=torch.float32)\n        w[0] = 1.0\n        return w\n    t = torch.arange(T, dtype=torch.float64)\n    g = torch.tensor(gamma, dtype=torch.float64)\n    numerator = g.pow(t) * (1 - g.pow(T - t))\n    denominator = 1 - g.pow(torch.tensor(T, dtype=torch.float64))\n    w = (numerator / denominator).float()\n    return w / w.sum()\n\n\ndef get_gamma_for_error_type(error_type: str, config: ETADNConfig) -> float:\n    \"\"\"Look up γ_e by error type string.\"\"\"\n    mapping = {\n        \"action\": config.gamma_action,\n        \"verification\": config.gamma_verification,\n        \"planning\": config.gamma_planning,\n    }\n    return mapping.get(error_type, config.gamma_verification)\n\n\n# ---------------------------------------------------------------------------\n# DPO loss variants\n# ---------------------------------------------------------------------------\n\ndef _dpo_loss_from_logratios(\n    chosen_logratios: torch.Tensor,\n    rejected_logratios: torch.Tensor,\n    beta: float,\n    label_smoothing: float = 0.0,\n) -> torch.Tensor:\n    \"\"\"Standard DPO loss from per-sample log-ratio scalars.\n\n    L = -log σ(β · (chosen_logratio - rejected_logratio))\n    \"\"\"\n    logits = beta * (chosen_logratios - rejected_logratios)\n    if label_smoothing > 0:\n        loss = (\n            (1 - label_smoothing) * F.logsigmoid(logits)\n            + label_smoothing * F.logsigmoid(-logits)\n        )\n    else:\n        loss = F.logsigmoid(logits)\n    return -loss.mean()\n\n\ndef uniform_dpo_loss(\n    chosen_logps: torch.Tensor,\n    rejected_logps: torch.Tensor,\n    ref_chosen_logps: torch.Tensor,\n    ref_rejected_logps: torch.Tensor,\n    lengths: torch.Tensor,\n    beta: float = 0.1,\n    label_smoothing: float = 0.0,\n) -> torch.Tensor:\n    \"\"\"Standard DPO with uniform per-token weighting (baseline).\n\n    Args:\n        chosen_logps: (batch, max_len) per-token log probs for chosen\n        rejected_logps: (batch, max_len) per-token log probs for rejected\n        ref_chosen_logps: (batch, max_len) reference model per-token log probs\n        ref_rejected_logps: (batch, max_len) reference model per-token log probs\n        lengths: (batch,) valid token count per sample\n        beta: DPO temperature\n        label_smoothing: label smoothing factor\n    \"\"\"\n    batch_size, max_len = chosen_logps.shape\n    mask = torch.arange(max_len, device=chosen_logps.device).unsqueeze(0) < lengths.unsqueeze(1)\n    mask = mask.float()\n\n    chosen_sums = (chosen_logps * mask).sum(dim=1)\n    rejected_sums = (rejected_logps * mask).sum(dim=1)\n    ref_chosen_sums = (ref_chosen_logps * mask).sum(dim=1)\n    ref_rejected_sums = (ref_rejected_logps * mask).sum(dim=1)\n\n    chosen_logratios = chosen_sums - ref_chosen_sums\n    rejected_logratios = rejected_sums - ref_rejected_sums\n\n    return _dpo_loss_from_logratios(\n        chosen_logratios, rejected_logratios, beta, label_smoothing\n    )\n\n\ndef single_gamma_dpo_loss(\n    chosen_logps: torch.Tensor,\n    rejected_logps: torch.Tensor,\n    ref_chosen_logps: torch.Tensor,\n    ref_rejected_logps: torch.Tensor,\n    lengths: torch.Tensor,\n    gamma: float = 0.92,\n    beta: float = 0.1,\n    label_smoothing: float = 0.0,\n) -> torch.Tensor:\n    \"\"\"DMPO with a single shared γ for all samples (ablation baseline).\"\"\"\n    batch_size, max_len = chosen_logps.shape\n    device = chosen_logps.device\n\n    results_chosen = torch.zeros(batch_size, device=device)\n    results_rejected = torch.zeros(batch_size, device=device)\n    results_ref_chosen = torch.zeros(batch_size, device=device)\n    results_ref_rejected = torch.zeros(batch_size, device=device)\n\n    for i in range(batch_size):\n        T = int(lengths[i].item())\n        if T <= 0:\n            continue\n        w = compute_discount_weights(T, gamma).to(device)\n        results_chosen[i] = (chosen_logps[i, :T] * w).sum()\n        results_rejected[i] = (rejected_logps[i, :T] * w).sum()\n        results_ref_chosen[i] = (ref_chosen_logps[i, :T] * w).sum()\n        results_ref_rejected[i] = (ref_rejected_logps[i, :T] * w).sum()\n\n    chosen_logratios = results_chosen - results_ref_chosen\n    rejected_logratios = results_rejected - results_ref_rejected\n\n    return _dpo_loss_from_logratios(\n        chosen_logratios, rejected_logratios, beta, label_smoothing\n    )\n\n\ndef etadn_dpo_loss(\n    chosen_logps: torch.Tensor,\n    rejected_logps: torch.Tensor,\n    ref_chosen_logps: torch.Tensor,\n    ref_rejected_logps: torch.Tensor,\n    error_types: list[str],\n    lengths: torch.Tensor,\n    config: ETADNConfig,\n) -> torch.Tensor:\n    \"\"\"ETADN-aware DPO loss with per-error-type temporal discount.\n\n    For each sample in the batch:\n    1. Look up γ_e based on error_type\n    2. Compute φ(t, T, γ_e) weights for sequence length T\n    3. Compute weighted sum of per-token log prob differences\n    4. Apply standard DPO loss with β\n    \"\"\"\n    batch_size, max_len = chosen_logps.shape\n    device = chosen_logps.device\n\n    results_chosen = torch.zeros(batch_size, device=device)\n    results_rejected = torch.zeros(batch_size, device=device)\n    results_ref_chosen = torch.zeros(batch_size, device=device)\n    results_ref_rejected = torch.zeros(batch_size, device=device)\n\n    for i in range(batch_size):\n        T = int(lengths[i].item())\n        if T <= 0:\n            continue\n        gamma = get_gamma_for_error_type(error_types[i], config)\n        w = compute_discount_weights(T, gamma).to(device)\n        results_chosen[i] = (chosen_logps[i, :T] * w).sum()\n        results_rejected[i] = (rejected_logps[i, :T] * w).sum()\n        results_ref_chosen[i] = (ref_chosen_logps[i, :T] * w).sum()\n        results_ref_rejected[i] = (ref_rejected_logps[i, :T] * w).sum()\n\n    chosen_logratios = results_chosen - results_ref_chosen\n    rejected_logratios = results_rejected - results_ref_rejected\n\n    return _dpo_loss_from_logratios(\n        chosen_logratios, rejected_logratios, config.beta, config.label_smoothing\n    )\n\n\n# ---------------------------------------------------------------------------\n# Self-tests\n# ---------------------------------------------------------------------------\n\ndef _test_phi_weights_properties():\n    \"\"\"φ weights: positive, monotonically decreasing for γ<1, γ=1 is uniform.\"\"\"\n    for gamma in [0.5, 0.85, 0.92, 0.97, 0.99]:\n        for T in [1, 3, 5, 10, 20]:\n            w = compute_discount_weights(T, gamma)\n            assert len(w) == T\n            assert (w > 0).all(), f\"gamma={gamma}, T={T}: non-positive weights\"\n            for i in range(1, T):\n                assert w[i] <= w[i - 1] + 1e-6, (\n                    f\"gamma={gamma}, T={T}: not monotonically decreasing at {i}\"\n                )\n    # γ=1 → uniform\n    w_uniform = compute_discount_weights(5, 1.0)\n    assert abs(w_uniform.sum().item() - 1.0) < 1e-5\n    assert abs(w_uniform[0].item() - 0.2) < 1e-5\n    # scalar φ matches vectorized\n    for gamma in [0.85, 0.97]:\n        T = 8\n        w = compute_discount_weights(T, gamma)\n        for t in range(T):\n            assert abs(w[t].item() - phi(t, T, gamma)) < 1e-5, (\n                f\"phi mismatch at t={t}, T={T}, gamma={gamma}\"\n            )\n    print(\"  phi weights properties: PASS\")\n\n\ndef _test_phi_shape_by_gamma():\n    \"\"\"Lower γ → steeper decay; higher γ → more uniform.\"\"\"\n    T = 10\n    w_low = compute_discount_weights(T, 0.85)\n    w_high = compute_discount_weights(T, 0.97)\n\n    # φ(0,T,γ) = 1 for all γ, so first weight is the same\n    assert abs(w_low[0].item() - 1.0) < 1e-5\n    assert abs(w_high[0].item() - 1.0) < 1e-5\n    # Lower γ decays faster → last weight should be smaller\n    assert w_low[-1] < w_high[-1], \"Low gamma should decay faster at the tail\"\n    # γ=0.97 should be more uniform (smaller max-min spread)\n    spread_low = (w_low.max() - w_low.min()).item()\n    spread_high = (w_high.max() - w_high.min()).item()\n    assert spread_low > spread_high, \"High gamma should be more uniform\"\n    print(\"  phi shape by gamma: PASS\")\n\n\ndef _test_dpo_loss_gradients():\n    \"\"\"All three loss variants should produce finite loss and valid gradients.\"\"\"\n    torch.manual_seed(42)\n    batch_size, max_len = 4, 8\n    config = ETADNConfig()\n\n    chosen = torch.randn(batch_size, max_len, requires_grad=True)\n    rejected = torch.randn(batch_size, max_len, requires_grad=True)\n    ref_chosen = torch.randn(batch_size, max_len)\n    ref_rejected = torch.randn(batch_size, max_len)\n    lengths = torch.tensor([6, 8, 5, 7])\n    error_types = [\"action\", \"verification\", \"planning\", \"action\"]\n\n    # Uniform DPO\n    loss_u = uniform_dpo_loss(chosen, rejected, ref_chosen, ref_rejected, lengths)\n    loss_u.backward(retain_graph=True)\n    assert torch.isfinite(loss_u), f\"uniform loss not finite: {loss_u}\"\n    assert chosen.grad is not None\n    chosen.grad.zero_()\n\n    # Single-gamma DMPO\n    loss_s = single_gamma_dpo_loss(\n        chosen, rejected, ref_chosen, ref_rejected, lengths, gamma=0.92\n    )\n    loss_s.backward(retain_graph=True)\n    assert torch.isfinite(loss_s), f\"single_gamma loss not finite: {loss_s}\"\n    chosen.grad.zero_()\n\n    # ETADN\n    loss_e = etadn_dpo_loss(\n        chosen, rejected, ref_chosen, ref_rejected, error_types, lengths, config\n    )\n    loss_e.backward()\n    assert torch.isfinite(loss_e), f\"etadn loss not finite: {loss_e}\"\n\n    print(f\"  uniform_dpo_loss:      {loss_u.item():.4f}\")\n    print(f\"  single_gamma_dpo_loss: {loss_s.item():.4f}\")\n    print(f\"  etadn_dpo_loss:        {loss_e.item():.4f}\")\n    print(\"  gradient check: PASS\")\n\n\ndef _test_gamma_lookup():\n    \"\"\"get_gamma_for_error_type should return correct values.\"\"\"\n    config = ETADNConfig()\n    assert get_gamma_for_error_type(\"action\", config) == 0.85\n    assert get_gamma_for_error_type(\"verification\", config) == 0.92\n    assert get_gamma_for_error_type(\"planning\", config) == 0.97\n    assert get_gamma_for_error_type(\"unknown\", config) == 0.92  # fallback\n    print(\"  gamma lookup: PASS\")\n\n\nif __name__ == \"__main__\":\n    print(\"ETADN discount module self-tests\")\n    print(\"=\" * 40)\n    _test_phi_weights_properties()\n    _test_phi_shape_by_gamma()\n    _test_gamma_lookup()\n    _test_dpo_loss_gradients()\n    print(\"=\" * 40)\n    print(\"All tests passed.\")\nPYEOF"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "c2ff56a9-55b4-447f-ae6c-9e658914d590",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UbU5rRn3nWmtB1xVReP6zQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 721,
+                "cache_read_input_tokens": 34122,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 721
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T06:46:17.575Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F9Ly4xfMJMTxdqQc7fvRYi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "2195c183-8924-4365-a911-8d8f10cfc3d8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JqfRvBDQQgxuV3QMMsJXn9",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "account": "root",
+                "command": "cat <<'PYEOF' > /root/autodl-tmp/rl-active-probe-fl/src/train_dpo.py\n#!/usr/bin/env python3\n\"\"\"DPO training with ETADN temporal discount weighting.\n\nTwo modes:\n  single_gamma: all samples share one gamma (baseline / gamma sweep)\n  etadn: per-sample gamma_e read from JSONL (ETADN method)\n\nKey design: gamma(d) is NOT computed here. In etadn mode it comes directly\nfrom the JSONL gamma_e field produced by build_dpo_pairs.py.\n\nInput: JSONL from build_dpo_pairs.py\n  Each line: {prompt, chosen, rejected, gamma_e, error_type, ...}\n  prompt/chosen/rejected are lists of message dicts [{role, content}, ...]\n\nOutput: model checkpoints in --output_dir\n\nMemory strategy: reference model logps are precomputed once before training,\nso only the policy model stays on GPU during the training loop.\n\nDependencies: torch, transformers, wandb\n\"\"\"\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nfrom functools import partial\nfrom pathlib import Path\n\nimport torch\nimport torch.nn.functional as F\nfrom torch.utils.data import Dataset, DataLoader\nfrom transformers import (\n    AutoModelForCausalLM,\n    AutoTokenizer,\n    get_cosine_schedule_with_warmup,\n)\n\nsys.path.insert(0, str(Path(__file__).resolve().parent))\nfrom dmpo_loss import compute_phi_weights\n\nlogger = logging.getLogger(\"train_dpo\")\n\n\n# ---------------------------------------------------------------------------\n# Dataset\n# ---------------------------------------------------------------------------\n\n\nclass DPODataset(Dataset):\n    \"\"\"DPO dataset from JSONL with prompt/chosen/rejected message lists.\"\"\"\n\n    def __init__(self, data_path: str, tokenizer, max_length: int, mode: str, gamma: float):\n        self.samples = []\n        with open(data_path) as f:\n            for line in f:\n                if line.strip():\n                    self.samples.append(json.loads(line))\n        self.tokenizer = tokenizer\n        self.max_length = max_length\n        self.mode = mode\n        self.gamma = gamma\n        logger.info(\"Loaded %d DPO samples from %s\", len(self.samples), data_path)\n\n    def __len__(self):\n        return len(self.samples)\n\n    def __getitem__(self, idx):\n        sample = self.samples[idx]\n        prompt = sample[\"prompt\"]\n        chosen = sample[\"chosen\"]\n        rejected = sample[\"rejected\"]\n\n        # gamma source: JSONL gamma_e for etadn, CLI --gamma for single_gamma\n        gamma = sample[\"gamma_e\"] if self.mode == \"etadn\" else self.gamma\n\n        # Tokenize prompt to measure prefix length\n        prompt_ids = self.tokenizer.apply_chat_template(\n            prompt, add_generation_prompt=True, return_dict=False\n        )\n        # Tokenize full sequences (prompt + response)\n        chosen_ids = self.tokenizer.apply_chat_template(prompt + chosen, return_dict=False)\n        rejected_ids = self.tokenizer.apply_chat_template(prompt + rejected, return_dict=False)\n\n        prompt_len = min(len(prompt_ids), self.max_length)\n        chosen_ids = chosen_ids[: self.max_length]\n        rejected_ids = rejected_ids[: self.max_length]\n\n        return {\n            \"idx\": idx,\n            \"chosen_ids\": chosen_ids,\n            \"rejected_ids\": rejected_ids,\n            \"prompt_len\": prompt_len,\n            \"gamma\": gamma,\n        }\n\n\n# ---------------------------------------------------------------------------\n# Collation\n# ---------------------------------------------------------------------------\n\n\ndef collate_dpo(batch: list[dict], pad_token_id: int) -> dict:\n    \"\"\"Pad chosen and rejected sequences separately.\"\"\"\n    max_c = max(len(b[\"chosen_ids\"]) for b in batch)\n    max_r = max(len(b[\"rejected_ids\"]) for b in batch)\n\n    indices, gammas, prompt_lens = [], [], []\n    chosen_ids, chosen_mask, chosen_resp_lens = [], [], []\n    rejected_ids, rejected_mask, rejected_resp_lens = [], [], []\n\n    for b in batch:\n        pl = b[\"prompt_len\"]\n        indices.append(b[\"idx\"])\n        prompt_lens.append(pl)\n        gammas.append(b[\"gamma\"])\n\n        c = b[\"chosen_ids\"]\n        c_pad = max_c - len(c)\n        chosen_ids.append(c + [pad_token_id] * c_pad)\n        chosen_mask.append([1] * len(c) + [0] * c_pad)\n        chosen_resp_lens.append(max(len(c) - pl, 0))\n\n        r = b[\"rejected_ids\"]\n        r_pad = max_r - len(r)\n        rejected_ids.append(r + [pad_token_id] * r_pad)\n        rejected_mask.append([1] * len(r) + [0] * r_pad)\n        rejected_resp_lens.append(max(len(r) - pl, 0))\n\n    return {\n        \"indices\": indices,\n        \"chosen_ids\": torch.tensor(chosen_ids, dtype=torch.long),\n        \"chosen_mask\": torch.tensor(chosen_mask, dtype=torch.long),\n        \"rejected_ids\": torch.tensor(rejected_ids, dtype=torch.long),\n        \"rejected_mask\": torch.tensor(rejected_mask, dtype=torch.long),\n        \"prompt_lens\": prompt_lens,\n        \"chosen_resp_lens\": chosen_resp_lens,\n        \"rejected_resp_lens\": rejected_resp_lens,\n        \"gammas\": gammas,\n    }\n\n\n# ---------------------------------------------------------------------------\n# Per-token log probs\n# ---------------------------------------------------------------------------\n\n\ndef get_per_token_logps(\n    model: torch.nn.Module,\n    input_ids: torch.Tensor,\n    attention_mask: torch.Tensor,\n) -> torch.Tensor:\n    \"\"\"Per-token log P(token_t | prefix[:t]).\n\n    Returns (B, L) where position t holds log P(input_ids[t] | input_ids[:t]).\n    Position 0 is always 0 (no conditioning context for the first token).\n    \"\"\"\n    outputs = model(input_ids=input_ids, attention_mask=attention_mask)\n    logits = outputs.logits[:, :-1, :]  # (B, L-1, V)\n    labels = input_ids[:, 1:]  # (B, L-1)\n    log_probs = F.log_softmax(logits, dim=-1)\n    token_logps = torch.gather(log_probs, 2, labels.unsqueeze(-1)).squeeze(-1)\n    # Left-pad one zero so result[t] aligns with input_ids[t]\n    return F.pad(token_logps, (1, 0), value=0.0)\n\n\n# ---------------------------------------------------------------------------\n# Reference logps precomputation\n# ---------------------------------------------------------------------------\n\n\n@torch.no_grad()\ndef precompute_ref_logps(\n    model: torch.nn.Module,\n    dataset: DPODataset,\n    tokenizer,\n    device: torch.device,\n    batch_size: int,\n) -> tuple[dict[int, torch.Tensor], dict[int, torch.Tensor]]:\n    \"\"\"Precompute reference model logps for all samples (response tokens only).\n\n    Returns two dicts mapping sample index -> (resp_len,) CPU tensor.\n    After this call the model can be switched to training mode in-place.\n    \"\"\"\n    model.eval()\n    loader = DataLoader(\n        dataset,\n        batch_size=batch_size,\n        shuffle=False,\n        collate_fn=partial(collate_dpo, pad_token_id=tokenizer.pad_token_id),\n    )\n\n    ref_chosen: dict[int, torch.Tensor] = {}\n    ref_rejected: dict[int, torch.Tensor] = {}\n\n    for batch in loader:\n        c_logps = get_per_token_logps(\n            model, batch[\"chosen_ids\"].to(device), batch[\"chosen_mask\"].to(device)\n        )\n        r_logps = get_per_token_logps(\n            model, batch[\"rejected_ids\"].to(device), batch[\"rejected_mask\"].to(device)\n        )\n\n        B = batch[\"chosen_ids\"].shape[0]\n        for i in range(B):\n            idx = batch[\"indices\"][i]\n            pl = batch[\"prompt_lens\"][i]\n            c_rl = batch[\"chosen_resp_lens\"][i]\n            r_rl = batch[\"rejected_resp_lens\"][i]\n            ref_chosen[idx] = c_logps[i, pl : pl + c_rl].cpu()\n            ref_rejected[idx] = r_logps[i, pl : pl + r_rl].cpu()\n\n    logger.info(\"Precomputed ref logps for %d samples\", len(ref_chosen))\n    return ref_chosen, ref_rejected\n\n\n# ---------------------------------------------------------------------------\n# Batch loss\n# ---------------------------------------------------------------------------\n\n\ndef compute_batch_loss(\n    policy_model: torch.nn.Module,\n    batch: dict,\n    ref_chosen_all: dict[int, torch.Tensor],\n    ref_rejected_all: dict[int, torch.Tensor],\n    beta: float,\n    device: torch.device,\n) -> tuple[torch.Tensor, dict]:\n    \"\"\"Forward policy model and compute phi-weighted DPO loss.\"\"\"\n    # Policy forward\n    pc_logps = get_per_token_logps(\n        policy_model, batch[\"chosen_ids\"].to(device), batch[\"chosen_mask\"].to(device)\n    )\n    pr_logps = get_per_token_logps(\n        policy_model, batch[\"rejected_ids\"].to(device), batch[\"rejected_mask\"].to(device)\n    )\n\n    B = batch[\"chosen_ids\"].shape[0]\n    losses = []\n    chosen_rewards = []\n    rejected_rewards = []\n\n    for i in range(B):\n        idx = batch[\"indices\"][i]\n        pl = batch[\"prompt_lens\"][i]\n        c_rl = batch[\"chosen_resp_lens\"][i]\n        r_rl = batch[\"rejected_resp_lens\"][i]\n        gamma = batch[\"gammas\"][i]\n\n        if c_rl <= 0 or r_rl <= 0:\n            continue\n\n        # phi discount weights from etadn_discount\n        w_c = compute_phi_weights(c_rl, gamma).to(device)\n        w_r = compute_phi_weights(r_rl, gamma).to(device)\n\n        # Policy response logps\n        pc = pc_logps[i, pl : pl + c_rl]\n        pr = pr_logps[i, pl : pl + r_rl]\n\n        # Precomputed ref response logps\n        rc = ref_chosen_all[idx].to(device)\n        rr = ref_rejected_all[idx].to(device)\n\n        # Weighted log-ratios\n        chosen_logratio = (pc * w_c).sum() - (rc * w_c).sum()\n        rejected_logratio = (pr * w_r).sum() - (rr * w_r).sum()\n\n        logit = beta * (chosen_logratio - rejected_logratio)\n        losses.append(-F.logsigmoid(logit))\n\n        chosen_rewards.append(chosen_logratio.detach())\n        rejected_rewards.append(rejected_logratio.detach())\n\n    if not losses:\n        return torch.tensor(0.0, device=device, requires_grad=True), {}\n\n    loss = torch.stack(losses).mean()\n    cr = torch.stack(chosen_rewards)\n    rr = torch.stack(rejected_rewards)\n    metrics = {\n        \"loss\": loss.item(),\n        \"chosen_reward\": cr.mean().item(),\n        \"rejected_reward\": rr.mean().item(),\n        \"reward_margin\": (cr - rr).mean().item(),\n        \"reward_accuracy\": (cr > rr).float().mean().item(),\n    }\n    return loss, metrics\n\n\n# ---------------------------------------------------------------------------\n# Training\n# ---------------------------------------------------------------------------\n\n\ndef train(args: argparse.Namespace):\n    import wandb\n\n    torch.manual_seed(args.seed)\n    device = torch.device(f\"cuda:{args.gpu}\" if torch.cuda.is_available() else \"cpu\")\n\n    wandb.init(\n        project=args.wandb_project,\n        name=args.wandb_run_name or f\"{args.mode}_s{args.seed}\",\n        config=vars(args),\n    )\n\n    # Tokenizer\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    # Model\n    logger.info(\"Loading model: %s\", args.model_name)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_name,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        device_map={\"\": device},\n    )\n\n    # Dataset\n    dataset = DPODataset(\n        args.data_path, tokenizer, args.max_length, args.mode, args.gamma\n    )\n\n    # Precompute ref logps (model is the ref at initialization)\n    logger.info(\"Precomputing reference logps...\")\n    ref_chosen, ref_rejected = precompute_ref_logps(\n        model, dataset, tokenizer, device, args.batch_size\n    )\n\n    # Switch to training mode\n    model.gradient_checkpointing_enable()\n    model.train()\n\n    loader = DataLoader(\n        dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        collate_fn=partial(collate_dpo, pad_token_id=tokenizer.pad_token_id),\n        drop_last=False,\n    )\n\n    optimizer = torch.optim.AdamW(\n        model.parameters(), lr=args.learning_rate, weight_decay=0.01\n    )\n    total_steps = len(loader) * args.num_epochs\n    warmup_steps = min(total_steps // 10, 100)\n    scheduler = get_cosine_schedule_with_warmup(optimizer, warmup_steps, total_steps)\n\n    # Save training config\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    with open(out_dir / \"training_config.json\", \"w\") as f:\n        json.dump(vars(args), f, indent=2)\n\n    global_step = 0\n    for epoch in range(args.num_epochs):\n        epoch_loss = 0.0\n        epoch_steps = 0\n\n        for batch in loader:\n            loss, metrics = compute_batch_loss(\n                model, batch, ref_chosen, ref_rejected, args.beta, device\n            )\n\n            loss.backward()\n            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\n            optimizer.step()\n            scheduler.step()\n            optimizer.zero_grad()\n\n            global_step += 1\n            epoch_loss += loss.item()\n            epoch_steps += 1\n\n            wandb.log(\n                {\n                    \"train/loss\": loss.item(),\n                    \"train/lr\": scheduler.get_last_lr()[0],\n                    **{f\"train/{k}\": v for k, v in metrics.items() if k != \"loss\"},\n                },\n                step=global_step,\n            )\n\n            if global_step % 10 == 0:\n                logger.info(\n                    \"Step %d | Loss %.4f | Margin %.4f | Acc %.2f\",\n                    global_step,\n                    loss.item(),\n                    metrics.get(\"reward_margin\", 0),\n                    metrics.get(\"reward_accuracy\", 0),\n                )\n\n        avg_loss = epoch_loss / max(epoch_steps, 1)\n        logger.info(\"Epoch %d/%d | Avg Loss %.4f\", epoch + 1, args.num_epochs, avg_loss)\n        wandb.log(\n            {\"train/epoch_loss\": avg_loss, \"train/epoch\": epoch + 1}, step=global_step\n        )\n\n        ckpt_dir = out_dir / f\"checkpoint-epoch{epoch + 1}\"\n        model.save_pretrained(ckpt_dir)\n        tokenizer.save_pretrained(ckpt_dir)\n        logger.info(\"Saved checkpoint: %s\", ckpt_dir)\n\n    final_dir = out_dir / \"final\"\n    model.save_pretrained(final_dir)\n    tokenizer.save_pretrained(final_dir)\n    logger.info(\"Training complete. Final model: %s\", final_dir)\n    wandb.finish()\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"DPO training with ETADN temporal discount\"\n    )\n    parser.add_argument(\"--data_path\", type=str, required=True, help=\"DPO JSONL file\")\n    parser.add_argument(\n        \"--model_name\",\n        type=str,\n        default=\"/root/autodl-tmp/.hf_cache/Qwen3-8B\",\n    )\n    parser.add_argument(\"--output_dir\", type=str, default=\"outputs/dpo\")\n    parser.add_argument(\n        \"--mode\",\n        type=str,\n        choices=[\"single_gamma\", \"etadn\"],\n        required=True,\n    )\n    parser.add_argument(\n        \"--gamma\", type=float, default=0.92, help=\"gamma for single_gamma mode\"\n    )\n    parser.add_argument(\n        \"--gamma_min\", type=float, default=0.85, help=\"gamma_min for etadn (logged only)\"\n    )\n    parser.add_argument(\n        \"--gamma_max\", type=float, default=0.97, help=\"gamma_max for etadn (logged only)\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--num_epochs\", type=int, default=3)\n    parser.add_argument(\"--batch_size\", type=int, default=4)\n    parser.add_argument(\"--learning_rate\", type=float, default=5e-7)\n    parser.add_argument(\"--max_length\", type=int, default=2048)\n    parser.add_argument(\"--wandb_project\", type=str, default=\"etadn-dpo\")\n    parser.add_argument(\"--wandb_run_name\", type=str, default=None)\n    parser.add_argument(\"--beta\", type=float, default=0.1, help=\"DPO temperature\")\n    parser.add_argument(\"--gpu\", type=int, default=0)\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s %(name)s %(levelname)s %(message)s\",\n    )\n\n    train(args)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "7a31e4b9-525f-42a0-9df8-c7cf68bb8ade",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UbU5rRn3nWmtB1xVReP6zQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 721,
+                "cache_read_input_tokens": 34122,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 721
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T06:47:11.625Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JqfRvBDQQgxuV3QMMsJXn9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "5b3e065a-75dc-4e39-b229-ef8e73ec4050",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件写入成功。验证文件大小和语法。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "32ba8da2-a19f-4051-a2dc-24b9e691cc7c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019udybtkbhV1wUeVX787nhY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9474,
+                "cache_read_input_tokens": 34843,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9474
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MXSeY5Dvb6PK1y8oDnuvrK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "account": "root",
+                "command": "ls -la /root/autodl-tmp/rl-active-probe-fl/src/etadn_discount.py /root/autodl-tmp/rl-active-probe-fl/src/train_dpo.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "a0b8a6d1-dd30-4ecc-ad99-e2fb8fc2f863",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019udybtkbhV1wUeVX787nhY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9474,
+                "cache_read_input_tokens": 34843,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9474
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T06:47:18.538Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MXSeY5Dvb6PK1y8oDnuvrK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 12044 May 13 14:46 /root/autodl-tmp/rl-active-probe-fl/src/etadn_discount.py\\\\n-rw-r--r-- 1 root root 15687 May 13 14:47 /root/autodl-tmp/rl-active-probe-fl/src/train_dpo.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "844eab99-1adb-4114-a835-493997d3ba4e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 12044 May 13 14:46 /root/autodl-tmp/rl-active-probe-fl/src/etadn_discount.py\\\\n-rw-r--r-- 1 root root 15687 May 13 14:47 /root/autodl-tmp/rl-active-probe-fl/src/train_dpo.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 12044 May 13 14:46 /root/autodl-tmp/rl-active-probe-fl/src/etadn_discount.py\\n-rw-r--r-- 1 root root 15687 May 13 14:47 /root/autodl-tmp/rl-active-probe-fl/src/train_dpo.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R7bUhCY2H2mjU3yhJ8kBGv",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "account": "root",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -m py_compile /root/autodl-tmp/rl-active-probe-fl/src/etadn_discount.py && echo \"etadn_discount.py: OK\" && python -m py_compile /root/autodl-tmp/rl-active-probe-fl/src/train_dpo.py && echo \"train_dpo.py: OK\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "fa1b9228-f08b-4559-80ca-24fb3373cd87",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019udybtkbhV1wUeVX787nhY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9474,
+                "cache_read_input_tokens": 34843,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9474
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T06:47:24.583Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R7bUhCY2H2mjU3yhJ8kBGv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"etadn_discount.py: OK\\\\ntrain_dpo.py: OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "60effc8d-e407-4717-a5a3-6156c42211aa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"etadn_discount.py: OK\\\\ntrain_dpo.py: OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"etadn_discount.py: OK\\ntrain_dpo.py: OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.62}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件已同步到服务器并通过语法验证：\n\n| 文件 | 大小 | 语法 |\n|------|------|------|\n| `etadn_discount.py` | 12,044 bytes | OK |\n| `train_dpo.py` | 15,687 bytes | OK |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "uuid": "da6c1664-66c9-40e1-9182-c675bb2110f5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YYzswuTueKdrS8CVGBLfJK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 805,
+                "cache_read_input_tokens": 44317,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 805
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件已同步到服务器并通过语法验证：\n\n| 文件 | 大小 | 语法 |\n|------|------|------|\n| `etadn_discount.py` | 12,044 bytes | OK |\n| `train_dpo.py` | 15,687 bytes | OK |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 138813,
+            "duration_api_ms": 138564,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "3c8a84f2-e5bb-47de-b159-cdad13970033",
+            "total_cost_usd": 0.5358022499999999,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 33281,
+              "cache_read_input_tokens": 148224,
+              "output_tokens": 10098,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 33281,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 91,
+                  "cache_read_input_tokens": 44317,
+                  "cache_creation_input_tokens": 805,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 805
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1099,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001189,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 10098,
+                "cacheReadInputTokens": 148224,
+                "cacheCreationInputTokens": 33281,
+                "webSearchRequests": 0,
+                "costUSD": 0.5346132499999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "eba6a7a6-5a31-416e-9cfc-d6ab29a9db1c"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-sync-fixes-to-server.md"
+}

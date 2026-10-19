@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "916b903ee86630a82dd8",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "paper round3 theory experiments",
+  "task_key": "worker_paper_round3_theory_experiments_20260523T164735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round3_theory_experiments_20260523T164735_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "eb5798c604914a91305098497d58bb0ea479b795539cad8e7403646b6d66f155"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes verified. Summary of edits:\n\n**theoretical_analysis.tex:**\n- Proposition 2: `=` → `\\leq`, added \"upper bounded by\"\n- Added tightness explanation after derivation\n- \"only 19.1%\" → \"upper bound of 19.1%\" / \"at most 19.1%\" (4 locations)\n- \"Severity\" paragraph: added `\\leq` and \"at most\"\n- Eq.6 caveat: added single-snapshot disclaimer after 1.32\n\n**experiments.tex:**\n- Section 4.1: \"binary: R ∈ {0, r+}\" → ternary reward with full description bridging theory/experiment\n- Section 4.2: Cell C analysis sentence about non-additive M1-M2 interaction\n- Table 1 caption: seed counts per cell + Table 2 cross-reference\n- Section 4.4: complete rewrite distinguishing (1) sign-episode correlation, (2) credit agreement rate, (3) P(correct|update)\n- Figure caption updated to match new terminology\n- GitHub URL → \"Code available upon acceptance\"\n\n**method.tex:**\n- Added parenthetical noting penalty variant in experiments"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round3-theory-experiments.md"
+}

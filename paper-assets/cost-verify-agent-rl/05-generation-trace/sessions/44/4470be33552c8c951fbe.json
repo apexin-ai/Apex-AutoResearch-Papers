@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4470be33552c8c951fbe",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "run exp028c selfguide recipe",
+  "task_key": "worker_run_exp028c_selfguide_recipe_20260515T213342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp028c_selfguide_recipe_20260515T213342_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "b60e6cf5430e8392dc970190cd6da2d96a502e68f7f0c613ca5e1c207ef9e839"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常运行，双卡满载（41GB VRAM, GPU 利用率 45%/100%）。\n\n## 产出汇总\n\n| 项目 | 状态 |\n|------|------|\n| **参数冲突检查** | `ppo_mini_batch_size` 从计划的 256 降至 **128**。原因：`train.py:159` 断言检查 trajectory 级别（`env_groups*group_size*effective_ratio >= ppo_mini_batch_size`），不考虑 step_independent 展开。实际训练样本 ~3200，128 的 mini-batch 分成 ~25 个 mini-batches |\n| **Config 文件** | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp028c_selfguide_recipe.yaml` |\n| **启动脚本** | `/root/cost-verify-agent-rl/scripts/run_exp028c_selfguide_recipe.sh` |\n| **训练状态** | PID=824675, W&B run=`4yu6qz1m`, 双卡 cuda:0+1 |\n| **Registry** | exp028c_selfguide_recipe → RUNNING, notes 已记录 9 项改动 + 冲突结论 |\n\n**9 项实际改动**：mini_batch 32→128, steps 50→100, LR 5e-7→1e-6, KL 0.005→0.01, env_groups 8→16, group_size 16→8, entropy 0.01→0.001, history_length 5→2, loss_agg seq-mean-token-mean→token-mean。model_path 保持 SFT checkpoint 不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp028c-selfguide-recipe.md"
+}

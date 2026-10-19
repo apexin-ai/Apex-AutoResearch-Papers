@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b051fc271e5e219b22f",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "director / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_3.md",
+    "occurrence": 1,
+    "bytes": 3429,
+    "sha256": "edceab5ce2bb026dadd96d8aca2ed2649d658f54a762434e7f00693c4f85ca9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-14T05:54:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 bjb1-17606 的 cuda:0, cuda:1（RTX PRO 6000 Blackwell 94GB × 2）\n- AutoDL 实例重启后 SSH 端口会变，连接失败先查端口不要反复重试\n- conda 环境用 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要创建 venv\n- 大文件必须放 `/root/autodl-tmp/`，根分区只有 ~30GB\n- pip install 前必须 `source /etc/network_turbo`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606 (connect.bjb1.seetacloud.com)，用户 root\n- 工作目录：/root/cost-verify-agent-rl\n- Python：/root/miniconda3/bin/python（aml-train 镜像，conda base 环境）\n- HF cache：/root/autodl-tmp/.hf_cache\n- Checkpoint 目录：/root/autodl-tmp/checkpoints/\n- SFT checkpoint（exp008_sft 产出）：具体路径需 Agent 确认\n- 活跃进程：无（exp011 已被 kill，GPU 空闲）\n\n### 3. 📊 当前状态\n**刚做完**：Reviewer 确认 exp011 静默崩溃（step 13），reward 分析预测完全验证（action_is_valid 反降 63.6%，entropy 0.089 策略坍缩）。已批准 D007（kill exp011 + reward 修复 + 从 step 5 恢复）并下发 Agent 执行。\n\n**问题**：Agent 收到 D007 后空闲 3 小时未见产出，触发 RESET。**不确定 D007 是否已执行完毕**——下一轮必须先检查：\n1. exp011 registry 是否已更新为 FAILED\n2. reward 修复代码是否已实现\n3. step 5 checkpoint 是否存在可用\n\n**Registry 状态**：\n- exp011: 名义 RUNNING 但实际已死（需确认是否已标 FAILED）\n- exp008_sft: SUCCESS（SFT warmup 完成）\n- exp001~exp010: 全部 FAILED/DONE\n- 8 个 PREPARING 状态的旧实验（exp003 系列等历史残留）\n\n### 4. 📋 待办\n- 接手后立即 `get_project_status` → 确认 exp011 是否已标 FAILED、reward 修复代码是否已提交\n- exp011 未标 FAILED → 让 Agent 更新 registry\n- reward 修复未实现 → 重新下发 D007 指令：(a) format_penalty 降至 -0.01 或 0，(b) 用 `infos[\"score\"]` 实现连续进度奖励，(c) 从 step 5 checkpoint 恢复（需先确认 checkpoint 存在）\n- reward 修复已实现 → 审批新实验（exp012），分配 cuda:0+cuda:1，启动训练\n- 两张 GPU 空闲 → 任何情况下都要尽快占满，不能空转\n\n### 5. 🎯 战略上下文\n**项目**：训练 agent 学会\"何时验证\"（B-IAVR），基于 Self-Guide 扩展，MVP 阶段。\n\n**决策链**：\n- D001: ALFWorld + Qwen3-1.7B 验证 B-IAVR\n- D004: 修改解析器适配 Qwen3 格式\n- D006: 撤回纯 GRPO，改 SFT warmup → GRPO 两阶段\n- D007: Kill exp011，改 reward（连续 score + 降 format_penalty），从 step 5 恢复\n- D008: Reviewer 确认 reward 分析正确\n\n**核心瓶颈**：模型在纯 GRPO 下陷入 \"format-penalty-only\" 死区——score_max=0 连续 5 步，策略坍缩。SFT warmup (exp008_sft) 成功解决了格式问题，但后续 GRPO (exp009→exp010→exp011) 全部因 reward shaping 不当而失败。**reward 修复是当前唯一阻塞项**。\n\n**易踩的坑**：\n- step 5 checkpoint 可能不存在（exp011 从 step 10 启动，save_freq=5 下一次在 step 15；需查 exp009/exp010 是否有 step 5 checkpoint）\n- 如果无可用 checkpoint，只能从 SFT checkpoint 重新开始 GRPO\n- 不要把 PREPARING 状态的旧实验（exp003 系列）当作待执行任务，那些是历史残留\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

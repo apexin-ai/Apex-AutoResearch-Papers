@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3ee9554322a6c345057",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor v9d progress check",
+  "task_key": "worker_monitor_v9d_progress_check_20260520T061739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v9d_progress_check_20260520T061739_result.json",
+    "occurrence": 1,
+    "bytes": 1417,
+    "sha256": "5a048a2f53cc8f5d2eebe8ef455de539147bb2f825295cb690647fa2a954efc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v9d 训练状态报告\n\n### 进度\n- **当前 step: 7/30** (23%)，运行 48 分钟\n- 进程 549487 正常运行，状态 `RNl`\n- 每 step 约 20-23 分钟，预计剩余 ~8 小时\n\n### 关键指标（log 数据）\n\n| 指标 | Step 6 | Step 7 | 趋势 |\n|------|--------|--------|------|\n| train/success | 85.2% | **91.4%** | ↑ |\n| pass@8 | 100% | 100% | 稳定 |\n| pg_loss | 0.00097 | 0.00096 | 稳定 |\n| entropy | 0.0597 | 0.0473 | ↓ (收敛中) |\n| ppo_kl | -0.028 | -0.034 | 正常 |\n| grad_norm | 0.497 | 0.573 | 正常 |\n\n训练 success rate 从 step 6 的 85.2% 提升到 step 7 的 **91.4%**，趋势良好。\n\n### GPU\n- 4 卡均在工作：利用率 75%/61%/82%/100%\n- 显存：每卡 ~24GB / 98GB（~24%）\n\n### 磁盘\n- `/root/autodl-tmp`: 159G / 250G（64%），剩余 92G\n- **checkpoint `global_step_5` 占 92GB**，远超预期的 ~33GB（保存了 model + optimizer + extra）。按 save_freq=5，step 10 会写下一个 checkpoint，`max_actor_ckpt_to_keep=2`，但当前只有 1 个 ckpt 也已占 92GB。两个 ckpt 将占 184GB，剩余空间仅 92G — 刚好够，但比较紧张。\n\n### 异常\n- 无 NaN / OOM / loss spike\n- 大量 `Skipping non-numeric metric 'anchor_obs'` 警告，不影响训练，可忽略\n- **磁盘风险**: 如果 step 10 保存新 checkpoint 前旧的还没删除，可能瞬时需要 184GB 空间。建议关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v9d-progress-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0b31aac585c4d55b913",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose seed300 id eval diag result",
+  "task_key": "worker_diagnose_seed300_id_eval_diag_result_20260522T191708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_seed300_id_eval_diag_result_20260522T191708_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "93147114524def02f40003181da36cf17d63ebcc97ff3a4782cc8a1150164c5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：eval 成功完成，但表现极差。**\n\n| 指标 | 值 |\n|------|-----|\n| **ID pass@1** | **0.0**（32 episodes 全部失败） |\n| success | 0.0 |\n| raw_reward | 0.0 |\n| action_is_valid | 0.925625 |\n| action_is_effective | 1.0 |\n| response_length | 6224.25 |\n| val-core/unknown/reward/mean@32 | 0.0 |\n\n**enable_response_mask runtime 值**：config 中设为 `True`，grep 输出中同时出现了 `'enable_response_mask': False`（某个 config section 的默认值）和 `'enable_response_mask': True`（实际生效值）。最终生效的是 **True**。\n\n**唯一错误**：wandb teardown 时的 `BrokenPipeError`，不影响 eval 结果。\n\n**结论**：seed300 step5 checkpoint 在 ID eval（AlfworldSG, 32 episodes）上 pass@1 = 0.0，模型完全无法完成任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-seed300-id-eval-diag-result.md"
+}

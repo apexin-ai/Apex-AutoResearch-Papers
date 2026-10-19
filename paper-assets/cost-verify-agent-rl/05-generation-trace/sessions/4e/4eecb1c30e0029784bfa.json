@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eecb1c30e0029784bfa",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 disk cleanup scp exp029",
+  "task_key": "worker_ops_bjb1-disk-cleanup-scp-exp029_20260518T203307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1-disk-cleanup-scp-exp029_20260518T203307_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "7b991361050ab787426ee6d58f0400b553431481f82c2017f3eb1ea5b5ffe9f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。最终报告：\n\n---\n\n## 磁盘清理报告 — bjb1-17606\n\n| 项目 | 详情 |\n|------|------|\n| **备份状态** | exp029-seed2 已完整备份到 westd-47453 (`/root/cost-verify-agent-rl/backups/exp029-seed2-bjb1/`)，字节级一致 (21,907,895,269 bytes) |\n| **已清理** | (1) `/root/autodl-tmp/checkpoints/exp029-seed2/` — 释放 ~21G; (2) 5个旧 Ray sessions — 释放少量空间 |\n| **总释放** | ~21G+ |\n| **当前磁盘** | 250G 总量，132G 已用，**119G 可用 (53%)**，checkpoints 目录 84G |\n| **安全确认** | PID 77613 (h=20 训练) 未受影响；hsweep-h20 checkpoints 未动；qwen3_exp021_ragen_sft_v4 模型文件未动 |\n\nh=20 训练在 step 5 写 checkpoint (~20G) 时磁盘空间充裕，无崩溃风险。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-disk-cleanup-scp-exp029.md"
+}

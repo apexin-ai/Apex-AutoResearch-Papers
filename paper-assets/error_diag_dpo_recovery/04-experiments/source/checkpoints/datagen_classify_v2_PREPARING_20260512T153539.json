@@ -1,0 +1,22 @@
+{
+  "exp_id": "datagen_classify_v2",
+  "project": "error_diag_dpo_recovery",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T15:35:39.699Z",
+    "updated_at": "2026-05-12T15:35:39.700Z",
+    "spec": {
+      "hypothesis": "修复 format_trajectory ICL 前缀 bug 后重新分类错误，预期 error type 分布更均衡",
+      "model_name": "Qwen3-14B-AWQ",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/error_diag_dpo_recovery/data/trajectories/",
+      "data_count": 0,
+      "seed": 0
+    }
+  },
+  "timestamp": "2026-05-12T15:35:39.708716+00:00",
+  "trigger": "update_registry"
+}

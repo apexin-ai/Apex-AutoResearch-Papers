@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a80681ee03e8c12f172e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "setup exp029 seed8 and status check",
+  "task_key": "worker_setup_exp029_seed8_and_status_check_20260521T155012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_exp029_seed8_and_status_check_20260521T155012_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "46c839e1b0522f2abcfaa412024486bf1f661b8702a60f857ecbd47f683e676f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSeed 8 配置: 成功\n  路径: /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed8_episode.yaml\n  seed.train=1024, seed.val=555, CUDA=\"2,3\", paths=exp029-seed8, experiment_name=exp029-seed8-episode-level\n  checkpoint 目录已创建\n\nRay 清理: ray stop 已执行，残留进程均属 Seed 7 活跃训练（预期行为）\n\nSeed 7 (westd): step 8/15, 最新已记录 step 6 train_success=52.34%\n  趋势: 31.3% → 44.5% → 49.2% → 69.5% → 39.1% → 52.3% (学到了，但有波动)\n\nSeed 4 (bjb1): step 14/15, 最新已记录 step 12 train_success=20.31%\n  趋势: 13.3% → 11.7% → 14.8% → 19.5% → 25.0% → 38.3% → 12.5% → 14.8% → 25.8% → 38.3% → 21.9% → 20.3%\n  (表现较差，高方差，学习不稳定)\n\nWatchdog westd: ALIVE (PID 118781, uptime 4h44m)\nWatchdog bjb1: ALIVE (PID 313318, uptime 4h44m)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-exp029-seed8-and-status-check.md"
+}

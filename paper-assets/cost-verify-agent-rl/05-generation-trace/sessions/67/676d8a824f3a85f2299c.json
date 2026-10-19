@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "676d8a824f3a85f2299c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp019 path fix and launch",
+  "task_key": "worker_code_exp019-path-fix-and-launch_20260514T164417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp019-path-fix-and-launch_20260514T164417_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "f68cf18b5c461e7a5255b4264ccf2ea3a7f92caba4794c175d79e7a189f83a89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总：\n\n| 检查项 | 状态 |\n|--------|------|\n| sft_train_v2.py 数据路径 | 已修正 → `expert_sft_v2/expert_sft_train.jsonl` / `expert_sft_val.jsonl` |\n| run_exp019.sh 数据路径 | 已修正 → 同上 |\n| 训练数据 | 2460 条（train）/ 129 条（val），格式正确，含 `put` 动作 |\n| exp008_sft checkpoint | 完整（model.safetensors 3.2GB + tokenizer 全套） |\n| 脚本 dry-run | `--help` 正常执行，参数解析无报错 |\n\nexp019 数据路径已修正，就绪可启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp019-path-fix-and-launch.md"
+}

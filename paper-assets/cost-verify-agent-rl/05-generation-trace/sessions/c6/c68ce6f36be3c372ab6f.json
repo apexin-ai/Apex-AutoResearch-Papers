@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c68ce6f36be3c372ab6f",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "research inference diff diagnosis",
+  "task_key": "worker_research_inference-diff-diagnosis_20260515T042541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_inference-diff-diagnosis_20260515T042541.log",
+    "occurrence": 1,
+    "bytes": 743649,
+    "sha256": "47014f83fb9d6cd93a4eb1ed7a0633d0274c98a1e2332431b7868967c80412d9"
+  },
+  "statistics": {
+    "messages": 159,
+    "user_turns": 0,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 61,
+      "tool_result": 61,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 159,
+      "chunks": [
+        {
+          "path": "c68ce6f36be3c372ab6f-part-0001.json",
+          "message_count": 134
+        },
+        {
+          "path": "c68ce6f36be3c372ab6f-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-inference-diff-diagnosis.md"
+}

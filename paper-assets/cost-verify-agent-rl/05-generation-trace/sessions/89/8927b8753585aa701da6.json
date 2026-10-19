@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8927b8753585aa701da6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment prep cellc v3 eval retry",
+  "task_key": "worker_experiment_prep-cellc-v3-eval-retry_20260520T211508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_prep-cellc-v3-eval-retry_20260520T211508_result.json",
+    "occurrence": 1,
+    "bytes": 2200,
+    "sha256": "82c3c1ae0d1c5408de33cfe32f59120b1983ba35beb07a9b32072037da2a0c46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有必要信息已收集完。\n\n---\n\n## Cell C v3 Eval 配置总结\n\n### 1. Eval 方式：内置 val 已足够\n\n训练配置已包含完整 val：\n- `val_before_train: True` → step 0 已执行\n- `test_freq: 5` → val 在 step 0, 5, 10, 15 执行\n- `val.env_groups: 32, group_size: 1` → **32 episodes/val**（满足 C003 ≥16 要求）\n- 温度 0.4（`val_kwargs.temperature: 0.4`）\n\n**不需要独立 eval 脚本。** 服务器上也没有现成的 `eval_scienceworld*.py`。\n\n### 2. Metrics 提取方式\n\n**W&B（首选）：**\n- Project: `cost-verify-agent-rl`\n- Run: `scienceworld-cell-c-episode`（ID: `ghswaew5`）\n- URL: `https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/ghswaew5`\n\n**训练日志：**\n```bash\ngrep \"Training Progress\\|val-env\" /root/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v3.log\n```\n\n**Step 0（SFT baseline）val 结果已出：**\n| Metric | Value |\n|--------|-------|\n| success | 0.0 |\n| pass@1 | 0.0 |\n| score | 2.71/10 |\n| final_score | 5.0 |\n| num_actions | 7.72 |\n| action_is_valid | 0.56 |\n| reward/mean@32 | 0.5 |\n\n### 3. Checkpoint 路径\n\n- 保存目录：`/root/autodl-tmp/checkpoints/scienceworld-cell-c/`\n- save_freq: 5 → 预期 checkpoint 在 **step 5, 10, 15**\n- `max_actor_ckpt_to_keep: 10`（不会被清理）\n- 目录目前还不存在（step 1 刚完成，首次保存在 step 5）\n\n### 4. 训练进度\n\n- Step 1/15（7%），~39 min/step\n- 启动时间：2026-05-21 02:24\n- 预估完成：~2026-05-21 12:00-12:30（约 10h 总时长）\n\n### 5. 潜在问题\n\n- **SFT baseline success=0%**：SFT 模型在 ScienceWorld 上完全无法完成任务。GRPO 需要从 0% 突破。reward/mean=0.5 表明有 partial reward 信号可供学习，但从 0% success 起步风险较高。\n- **无独立 eval**：如果论文需要更多 episodes（如 64 或 128）或 test split eval，需额外编写脚本。当前 32 episodes 的 val 对 paper 基本结论够用。\n- **Step 5 是第一个关键观察点**：第一次 val + checkpoint 保存，可以判断是否有学习信号（success > 0%）。如果 step 5 仍为 0%，需要提前决策是否继续。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-prep-cellc-v3-eval-retry.md"
+}

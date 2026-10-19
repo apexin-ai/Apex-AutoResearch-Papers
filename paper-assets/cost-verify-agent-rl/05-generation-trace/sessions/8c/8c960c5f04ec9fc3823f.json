@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c960c5f04ec9fc3823f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose scienceworld sft exit",
+  "task_key": "worker_diagnose_scienceworld-sft-exit_20260519T160024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scienceworld-sft-exit_20260519T160024_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "be6881376e0509b2a42a320e50227e6838221b045fe34038a2dddebdfc492e64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 不接受自由文本 conclusion，且训练确实还在跑，状态无需变更。\n\n## 诊断结果\n\n| 项目 | 状态 |\n|------|------|\n| 训练 | **仍在运行**，step 186/448 (~41.5%) |\n| 实际 PID | 120838 (torchrun)，workers 120904-120907 |\n| 误报原因 | Cron 监控的 PID 120827 是外层 wrapper shell，已退出；实际训练进程树 120829→120838→workers 完好 |\n| Loss | 0.005-0.015（稳定低值） |\n| GPU | 4×RTX PRO 6000，100% 利用率，各 ~47GB |\n| Checkpoint | global_step_112 完整（HF safetensors + FSDP shards） |\n| 磁盘 | 根 46%，数据盘 45%，充裕 |\n| 预计剩余 | ~1.5h（每 step ~20s × 262 remaining steps） |\n\n**不删除 cron，不更新 registry conclusion。** Cron 后续应改为监控 PID 120838 而非 120827。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scienceworld-sft-exit.md"
+}

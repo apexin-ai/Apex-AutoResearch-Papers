@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9693ae37feee13502634",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_21_1779720957.md",
+  "task_key": "loop_21_1779720957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_21_1779720957.md",
+    "occurrence": 1,
+    "bytes": 4612,
+    "sha256": "38c254c815110ddcc17c8dec8eaa7ba754bd48f0a4bfaf0c39708de1a3fced0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 21\nreason: idle_timeout\nupdated: '2026-05-22T20:30:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 `cuda:0,1`，westd-47453 `cuda:0,1,2,3`。不得用白名单外 GPU\n- 所有 OOD eval 必须 `enable_think=true` + `context_window_mode=full` + `enable_response_mask=false` + `seed.val=321` + 134 OOD tasks + T=0.4（D134 协议，违反则数据无效）\n- enable_response_mask 必须三层覆盖：YAML 顶层 + hydra CLI 双层 override + 运行后 log 验证（Hydra 继承 bug，已导致 seed300 v2/ID-diag 两次无效数据）\n- seed1/seed3 checkpoint 永久丢失，不要尝试搜索或重新训练——Table 1 用已有数据 + footnote\n- ScienceWorld Cell C 已终止（D131），不要再尝试任何 ScienceWorld 实验\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-17606**: root@bjb1-17606，工作目录 `/root/cost-verify-agent-rl`，conda base（`/root/miniconda3/bin/python`），aml-train 镜像\n- **westd-47453**: root@westd-47453，工作目录 `/root/cost-verify-agent-rl`，conda base（`/root/miniconda3/bin/python`），aml-train 镜像\n- 模型 base：Qwen2.5-1.5B（主实验线 exp029 系列）\n- HF cache：`/root/autodl-tmp/.hf_cache`（AutoDL），服务器具体路径需确认\n- W&B：项目 `cost-verify-agent-rl`，seed100 run ID `zsrodv2f`\n- seed100 checkpoint：`/root/autodl-tmp/checkpoints/qwen_exp029_seed100_step5_hf`（westd）\n- seed300 checkpoint：需确认路径（bjb1，训练 healthy 完成）\n- **活跃进程**：无。0 cron，0 worker，0 RUNNING 实验。**6 GPU 全部空闲——必须立即提交任务**\n\n### 3. 📊 当前状态\n**刚完成**：\n- `exp029_seed100_episode` SUCCESS：healthy 训练，val 18.75%，checkpoint 已保存 → 等 OOD eval\n- `exp029_seed300_step5_ood_eval_v3` NEGATIVE：0% OOD（0/134），action_is_valid=91.78%，confirmed zero transfer。D133 归类为 \"healthy-but-zero-OOD\" 第三种模式\n- `exp029_seed7_response_mask_check` SUCCESS：验证 mask=true → OOD 0%（vs mask=false 8.2%），确认 mask 确实影响 eval（D134 依据）\n- `exp029_seed200_episode` FAILED：Ray actor 冲突，v3 重试已 QUEUED\n\n**Registry 状态**：\n- RUNNING: 0\n- QUEUED: 1（seed200_v3，等 GPU）\n- PREPARING: 33（多数是历史残留，关键的是 seed300_v4_ood、seed100_ood、seed5_mask_check、seed7_ood_precollapse）\n- 总计 141 实验（success 39 / negative 23 / failed 60）\n\n**等待中**：无 Worker 回调、无 Cron、无 Director 未决决策\n\n### 4. 📋 待办（条件触发式）\n- **立即（BOOT 后第一件事）**→ 6 GPU 全空闲，必须同时提交：(a) seed200_v3 训练（westd cuda:2,3）(b) seed100 step5 OOD eval（westd cuda:0 或 cuda:1）(c) seed300 v4 OOD eval with enable_think=true（bjb1 cuda:0）。三个可并行\n- seed200_v3 训练完成 → 如 healthy 则立即 OOD eval；如 failed 则诊断 Ray 隔离是否生效\n- seed100 OOD eval 完成 → 如 ≥20% 则 healthy-with-OOD 类别（和 seed4/5/6 同组）；如 ≈0% 则第二个 \"healthy-but-zero-OOD\"（强化 D133 发现）\n- seed300 v4 OOD eval 完成 → 如仍 0% 则 D133 彻底确认；如 >0% 则 v3 的 enable_think=false 是 config artifact\n- 所有新 seed OOD eval 完成 → 更新 Table 1 为 N=10 seeds + 重算 collapse rate + Wilson CI + Fisher exact\n- Table 1 完整后 → Paper Agent patch：完整统计表 + ScienceWorld limitation 段 + seed1 footnote\n\n### 5. 🎯 战略上下文\n- **核心论文 claim**：Step-independent agent RL 存在双机制信用分配病理（M1 信息丢失 + M2 符号错误归因），episode-level 修复有效但不稳定\n- **Table 1 是论文核心数据**：当前 13 个统一 pipeline 数据点，扩展到 N=10 seeds（+seed100/200/300）后统计力显著增强\n- **三种训练结局模式**：(1) collapsed（seed42/2048/8）(2) healthy-with-OOD（seed4/5/6, 25-31%）(3) healthy-but-zero-OOD（seed300, D133）。第三种是新发现，叙事价值高——说明即使训练看起来正常，step-independent 训练也不保证泛化\n- **seed2 = delayed learner（D130）**：15.67% OOD，单独分类。step30 checkpoint 已丢失（M019 磁盘清理）\n- **干预实验降级为 supplementary（D128）**：hard cap 部分有效（+13.4pp），KL 10x 极慢，整体叙事从 \"四种干预全失败\" 修正为 \"仅 hard cap 部分有效\"\n- **最易判断错的事**：(1) 不要假设 ROADMAP 中的 GPU 状态表是实时的——它是上次更新的快照 (2) enable_response_mask 的 Hydra bug 极其隐蔽，每次 eval 必须三层覆盖+验证 (3) seed300 0% OOD 是真实结果不是 bug，已三轮验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-21-1779720957.md"
+}

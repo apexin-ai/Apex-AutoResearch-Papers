@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbb0ea72104e29ac8c17",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8.md",
+    "occurrence": 1,
+    "bytes": 3023,
+    "sha256": "dcdc9948239092d7fd11eac6dd032b410c6fd548810115e497beb3eb6856d787"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T10:33:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 cuda:0, cuda:1（仅此两张，不可用其他）\n- verl-agent 代码在 `/root/autodl-tmp/verl-agent/`，不是 RAGEN 目录\n- SFT baseline 用 16-episode eval 的 6.25%（不是早期 4ep 的 25%，那是小样本噪声）\n- RAGEN GRPO 路线已终止（D026），不要再用 RAGEN 框架跑 GRPO\n- 模型是 Qwen3-1.7B（不是论文原版 Qwen2.5-1.5B），这是框架验证不是严格复现\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，aml-train 镜像\n- Python：`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- verl-agent 代码：`/root/autodl-tmp/verl-agent/`\n- 训练脚本：`examples/grpo_trainer/run_alfworld_exp025.sh`\n- SFT checkpoint：`/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/`\n- 日志目录：`~/runs/cost-verify-agent-rl/`\n- 活跃进程：无（exp025 已崩溃，PID 555182 已退出）\n- Worker：`worker_code_exp025_verl_agent_setup_20260515T062446` 可能仍在运行（06:24 启动的 setup worker），`worker_diagnose_exp025_failure_20260515T071627` 正在诊断中\n\n### 3. 📊 当前状态\nexp025（verl-agent ALFWorld GRPO 复现）提交后仅 143 秒即崩溃，`ModuleNotFoundError` in `ray::TaskRunner.run()`。已派诊断 Worker 读日志定位具体缺失模块，**尚未收到回调**。Registry 已更新 failure_reason，Director 已收到初步失败报告。\n\n两张 GPU 均空闲。16 个实验处于 PREPARING 状态（多为 RAGEN 时代遗留，pivot 后大部分已不适用）。\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 读取具体缺失模块名 → 派修复 Worker 安装依赖 → 重提交 exp025\n- exp025 重跑成功（verl-agent GRPO 能启动） → 注册 cron 监控 → 向 Director 汇报框架可行性验证进展\n- exp025 重跑再次失败 → 评估是否需要更深度的 verl-agent 环境重建（pip install -e . 等）\n- setup Worker（06:24 那个）回调到达 → 检查它是否已完成 verl-agent 环境搭建，与诊断结果交叉验证\n\n### 5. 🎯 战略上下文\n项目处于 **Framework Pivot** 阶段（D026）：RAGEN GRPO 3/3 失败后转向 verl-agent。exp025 是 pivot 后第一个实验，验证 verl-agent 框架能否在 ALFWorld 上训练出 >20% success。MVP 目标是 ALFWorld success ≥20%（从 SFT baseline 6.25% 出发需 ~3x 提升）。\n\n决策链：D018(SFT 不够) → D020(两阶段 SFT 通过) → D021(格式不匹配) → D025(sparse GRPO 终止) → D026(RAGEN GRPO 终止, pivot verl-agent) → D027(kill exp024)。\n\n**易错点**：\n- exp025 崩溃是环境问题不是算法问题，不要因此质疑 verl-agent 路线\n- verl-agent 用 Ray 做分布式，依赖链比 RAGEN 复杂（ray, vllm, verl 等），环境搭建可能需要多轮调试\n- 不要混淆 RAGEN checkpoint 和 verl-agent 期望的模型格式，SFT checkpoint 兼容性待验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-2.md"
+}

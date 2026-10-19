@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5668f7da230b54891c6a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code prepare exp016",
+  "task_key": "worker_code_prepare-exp016_20260514T134532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-exp016_20260514T134532_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "04908e2619a9a6159f8fa070752671710b2616cb04ddba082c307fa2984e33de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有关键参数验证通过。\n\n---\n\n## exp016 准备报告\n\n### 配置文件\n- `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp016_lr_compromise.yaml`\n\n### Checkpoint 确认\n- 路径: `/root/autodl-tmp/checkpoints/exp015/global_step_5/`\n- 大小: **21GB**（含 actor/ 子目录）\n\n### Dry-run 关键参数验证\n| 参数 | 值 | 状态 |\n|------|-----|------|\n| actor LR | **5.0e-07** | OK |\n| kl_loss_coef | 0.1 | OK |\n| grad_clip | 1.0 | OK |\n| resume_mode | resume_path | OK |\n| resume_from_path | /root/autodl-tmp/checkpoints/exp015/global_step_5 | OK |\n| experiment_name | exp016-alfworld-lr-compromise | OK |\n| local_log_dir | /root/autodl-tmp/checkpoints/exp016/ | OK |\n| format_penalty | 0 | OK |\n\n### 磁盘空间\n- `/root/autodl-tmp`: **184GB 可用**（250GB 总量，27% 使用）— 充足\n\n### 启动命令\n```bash\nnohup bash /root/cost-verify-agent-rl/scripts/run_exp016.sh > /root/runs/cost-verify-agent-rl/exp016.log 2>&1 &\n```\n\n等待审批启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-exp016.md"
+}

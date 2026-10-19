@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c06051e402b539a04bd7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp005 config",
+  "task_key": "worker_code_exp005_config_20260513T230226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp005_config_20260513T230226_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "c7fecc2b766f09be9f35f0d9bb9f69b43e444e5d99f5ee587629a3c216b73f6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 验证通过。\n\n**exp005_fast vs exp003 差异：**\n\n| 参数 | exp003 | exp005_fast |\n|------|--------|-------------|\n| `experiment_name` | `exp003-alfworld-selfguide-prompt-trunc` | `exp005-alfworld-fast` |\n| `total_training_steps` | 100 | **30** |\n| `local_log_dir` | `exp_003/` | `exp_005/` |\n| `agent_proxy.max_turn` | 50 | **30** |\n| `es_manager.train.env_groups` | 16 | **8** |\n| `es_manager.train.n_groups` | [16] | [8] |\n\n其余参数（model path, lr, max_prompt_length=4096, max_response_length=1024, max_model_len=8192, group_size=8, val 配置等）均保持不变。\n\n预期加速效果：`env_groups` 减半（traj/step 128→64）+ `max_turn` 降低 40%，每步耗时预计降至 ~25-40 min，30 步总计 ~12-20h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp005-config.md"
+}

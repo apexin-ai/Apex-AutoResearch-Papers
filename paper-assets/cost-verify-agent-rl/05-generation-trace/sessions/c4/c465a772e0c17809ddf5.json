@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c465a772e0c17809ddf5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor hsweep h2 seed2 completion",
+  "task_key": "worker_monitor_hsweep_h2_seed2_completion_20260518T011331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_hsweep_h2_seed2_completion_20260518T011331_result.json",
+    "occurrence": 1,
+    "bytes": 1541,
+    "sha256": "4e7fc126830408211cbf52d2ed6cb2e6aef473c7655117b3a8bb61ee8096000f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### bjb1-17606: hsweep_h2_seed2 — 仍在运行\n\n| 指标 | 值 |\n|------|-----|\n| PID | 945877, 运行 11h03m |\n| 当前进度 | step 12/15 已完成，正在跑 step 13 |\n| ADV log | 2600 行 |\n| train success | 8.59% (step 12) |\n| pass@8 | 31.25% |\n| action_valid | 97.7% |\n| entropy | 0.307 |\n| kl_loss | 0.110 |\n| 每步耗时 | ~2700-3000s (~45-50min) |\n| **预计完成** | **~1.5-2h（剩余 step 13-15）** |\n\n### westd-47453: gsweep watchdog + g050\n\n| 指标 | 值 |\n|------|-----|\n| Watchdog PID | 259808, 运行 8h21m, **存活** |\n| g050 PID | 85798, 运行 10h42m, **存活** |\n| 最新 checkpoint | global_step_10 (07:19) |\n| 当前进度 | step 10/15 刚完成（含 eval），正在跑 step 11 |\n| **train success** | **0%（全程）** |\n| action_valid | 21.5%（训练中），96.4%（eval 中） |\n| manager_invalid_action | 78.3%（训练中） |\n| val reward | 全部 0.0 |\n| 每步耗时 | ~2300-6100s（eval 步更久） |\n| **预计完成** | **~3-5h（剩余 step 11-15）** |\n\n**g050 警告**：训练 success 全程 0%，manager_invalid_action 高达 78%，gamma=0.50 配置下模型似乎没有学到有效行为。eval 中 action_valid 恢复到 96% 但 reward 仍为 0，说明 eval 时行为格式正确但策略无效。g080 链式启动就绪（watchdog 存活），但 g050 结果本身可能没有分析价值。\n\n---\n\n两个实验均在运行中，hsweep_h2_seed2 后续任务（ADV 分析 + exp029 reeval）需等其完成后执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-hsweep-h2-seed2-completion.md"
+}

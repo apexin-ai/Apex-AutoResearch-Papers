@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "920adc4da25feca2c285",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research adaptive kl assessment",
+  "task_key": "worker_research_adaptive_kl_assessment_20260515T184328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_adaptive_kl_assessment_20260515T184328_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "bb79ff60dfa9552ddab4b2eec791f10b92e0556c238f9ee9e8d803e03e4df48d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。核心结论：\n\n**改动量极小 — 零代码修改，纯配置变更。** verl 框架已在 `core_algos.py` 内置了 `AdaptiveKLController`（Ziegler 2019），且 RAGEN 的 `agent_trainer.py` 已完整接入 reward-level KL 的 adaptive 链路。当前项目用的是 loss-level KL（`use_kl_loss` + 静态 `kl_loss_coef`），只需切换到已有的 reward-level KL 即可。\n\n**具体改动**：实验 YAML 中改 ~8 行配置：\n- 开启 `algorithm.use_kl_in_reward: True` + `kl_ctrl.type: adaptive`\n- 关闭 `actor.use_kl_loss: False`\n- 设 `target_kl: 0.1`, `kl_coef: 0.005`（初始值），`horizon: 10000`\n\n**工时**：实现 <1h，验证实验 2-4h。总计 Worker 小时级。\n\n**主要风险**：reward-level 和 loss-level KL 作用机制不同（前者通过 advantage 间接影响梯度）。如果 reward-level 效果不理想，备选方案 B（让 loss-level 也支持 adaptive）需 ~30 行代码改动，半天可完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-adaptive-kl-assessment.md"
+}

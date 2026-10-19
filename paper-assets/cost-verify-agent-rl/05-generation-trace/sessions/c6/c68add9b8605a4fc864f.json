@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c68add9b8605a4fc864f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops status check both servers",
+  "task_key": "worker_ops_status_check_both_servers_20260522T051632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status_check_both_servers_20260522T051632_result.json",
+    "occurrence": 1,
+    "bytes": 1743,
+    "sha256": "b8de4c2e7f4750faece2a9f4a03c8b8b120ed2723859e39b066145aa9ddad71b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. bjb1-17606 — v4b (ScienceWorld)\n\n| 项目 | 值 |\n|------|-----|\n| 进程 386364 | **运行中** (Ss+, 已运行 1h07m) |\n| 当前进度 | **Step 1/15 (7%)**, ~18:44/step, ETA ~4h22m |\n| val success | 0.0 |\n| val score | 2.63, final_score 4.84 |\n| val reward/mean@32 | **0.484** |\n| val response_length | 600.25 |\n| action_is_valid | 0.522, action_is_effective 0.969 |\n| GPU | cuda:0 46.4/97.9 GB, cuda:1 47.3/97.9 GB, 0% util (step 间歇) |\n\n### 2. westd-47453 — exp029 seed 2048 (Alfworld)\n\n| 项目 | 值 |\n|------|-----|\n| 进程 79754 | **已结束**, EXIT_CODE=0, 完成于 05:15:50 UTC |\n| 训练 | **5/5 steps 完成**, 总耗时 ~3.2h |\n| Checkpoint | `global_step_5/` — 6 个 .pt 文件 (model+optim+extra × 2 ranks) |\n\n**Metrics 退化严重：**\n\n| Metric | Step 0 | Step 5 (final) |\n|--------|--------|----------------|\n| val success | 0.031 | **0.0** |\n| val pass@1 | 0.031 | **0.0** |\n| val reward/mean@32 | 0.3125 | **0.0** |\n| val response_length | 9807 | **10934** |\n| train response_length | — | **15790** |\n\n训练完全 collapse——val reward 从 0.31 降到 0.0，response length 膨胀，最终 step 所有 reward 指标归零。W&B teardown 有 BrokenPipeError 但不影响 checkpoint 保存。\n\n### 3. GPU 使用\n\n| 服务器 | GPU | 显存占用 | 利用率 |\n|--------|-----|----------|--------|\n| bjb1-17606 | cuda:0 | 46.4/97.9 GB | 0% (step 间) |\n| bjb1-17606 | cuda:1 | 47.3/97.9 GB | 0% (step 间) |\n| westd-47453 | cuda:0-3 | 0-3 MiB / 97.9 GB | **空闲** |\n\nwestd-47453 四张卡完全空闲，可用于下一个实验。seed 2048 结果表明该 seed 下训练 collapsed，需判断是否重跑或调整超参。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-both-servers.md"
+}

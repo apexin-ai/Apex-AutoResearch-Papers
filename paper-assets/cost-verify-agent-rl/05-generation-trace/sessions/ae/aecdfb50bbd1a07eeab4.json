@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aecdfb50bbd1a07eeab4",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 exit diagnosis",
+  "task_key": "worker_ops_exp026_exit_diagnosis_20260515T105419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_exit_diagnosis_20260515T105419_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "fc584bf942fee80dfffe071e28d90d0e1596c2f26d7078216dd0d172064c9584"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp026 Exit Diagnosis\n\n### Exit type: **未退出 — 进程仍在运行**\n\n进程 PID 781795 (`ray::TaskRunner`) 状态为 `S (sleeping)`，100 个线程活跃。\n\n### Steps completed: 0/150\n刚完成初始 validation，正在执行 step 1 的 rollouts。日志最后写入时间 `18:48:04`，因 rollout 需要时间，输出尚未刷新到日志。\n\n### Initial validation metrics:\n| Metric | Value |\n|--------|-------|\n| pass@1 | **6.25%** (1/16 episodes) |\n| episodic_return | 0.0 |\n| action_is_valid | 63.125% |\n| action_is_effective | 87.875% |\n| reward mean@775 | 0.3226 |\n\n### Errors: **无**\n- 0 traceback, 0 exception\n- 3 个 \"error\" 匹配均为配置字符串 (`'truncation': 'error'`) 和 Ray FutureWarning，非实际错误\n\n### GPU: 仍被占用\n| GPU | Utilization | Memory |\n|-----|------------|--------|\n| 0 | 100% | 41715 MiB |\n| 1 | 43% | 41709 MiB |\n\n### Disk: 正常\n- `/root/autodl-tmp`: 53% (119GB free)\n- `/root`: 50% (16GB free)\n\n### 结论: **进程正常运行中，无需干预。** 启动于 18:28:31，已完成初始 validation，当前在 step 1 rollout 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-exit-diagnosis.md"
+}

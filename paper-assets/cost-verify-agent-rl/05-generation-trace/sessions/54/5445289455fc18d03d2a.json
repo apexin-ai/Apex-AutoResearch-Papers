@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5445289455fc18d03d2a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops fix tmpdir cleanup",
+  "task_key": "worker_ops_fix-tmpdir-cleanup_20260514T050848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-tmpdir-cleanup_20260514T050848_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "b7fec2c95b15066b08057d088984173b98f1cc8ae2be485f8ae0b3ff9c93d450"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有步骤完成。汇总：\n\n| 项目 | 状态 |\n|------|------|\n| /tmp 清理 | 已完成，`/tmp/tmp*` 和 `/tmp/ray` 已删除 |\n| 根分区 `/` | 30G 总量，7.3G 已用 (25%)，23G 可用 |\n| 数据盘 `/root/autodl-tmp/` | 250G 总量，92G 已用 (37%)，159G 可用 |\n| `TMPDIR` 环境变量 | 已添加 `export TMPDIR=/root/autodl-tmp/tmp/` 到 `.bashrc` |\n| exp010 train.py 进程 | 已退出，无残留 |\n| tmux sessions | 无活跃 session |\n\n**根因修复**：`TMPDIR=/root/autodl-tmp/tmp/` 会让 ALFWorld fast_downward 的 `libdownward.so` 临时文件写到数据盘（250G）而非根分区（30G），下次训练不会再因 /tmp 满崩溃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-tmpdir-cleanup.md"
+}

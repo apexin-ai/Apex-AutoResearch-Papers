@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69d90d489c610b829d7f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh seed100 ood eval westd",
+  "task_key": "worker_ssh_seed100_ood_eval_westd_20260522T202124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed100_ood_eval_westd_20260522T202124_result.json",
+    "occurrence": 1,
+    "bytes": 87,
+    "sha256": "1d7d832c1e42326a6cdb29e51fb36c29bb3e0f6fc468e417528d249ba73c1077"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待已完成，eval job 正常运行中，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed100-ood-eval-westd.md"
+}

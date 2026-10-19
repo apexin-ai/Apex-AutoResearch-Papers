@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "579f458a008174b695c7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval exp017 sft fast",
+  "task_key": "worker_eval_exp017-sft-fast_20260514T162028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp017-sft-fast_20260514T162028_result.json",
+    "occurrence": 1,
+    "bytes": 1303,
+    "sha256": "88bb59bf9c2e689fa21c3acd05e48e33baa393cdb381a187b05c3ae3b558c6db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp017 SFT Checkpoint 评估结果\n\n| 指标 | 值 |\n|------|-----|\n| **success rate** | **5.0% (1/20)** |\n| action_is_valid rate | 63.8% |\n| format_ok rate | 75.0% |\n| avg steps/episode | 22.0 |\n| eval time | 126.3s (6.3s/episode) |\n| total time | 149.6s |\n\n**Per-task-type:**\n| Type | Count | Success | Rate |\n|------|-------|---------|------|\n| put | 10 | 0 | 0% |\n| clean | 4 | 0 | 0% |\n| cool | 3 | 1 | 33.3% |\n| heat | 2 | 0 | 0% |\n| examine | 1 | 0 | 0% |\n\n**分析：**\n- success rate 5% (1/20)，低于 10% 门槛\n- 唯一成功的是 1 个 cool 任务（EP 8，15 步完成）\n- format 学得不错（75%），说明 SFT 学到了 `<think>...<answer>` 格式\n- valid action rate 63.8% 说明模型大致知道该做什么动作，但常选到不在 admissible list 中的动作\n- 有 5 个 episode（EP 7/12/16/17/18）只有 1 步就退出（parse 失败导致空 action）\n- put 任务占一半但 0 成功——模型在多步导航+交互的 put 任务上最弱\n\n**结论：** 5% < 10%，按判定标准直接上 GRPO 风险较高。建议分析失败 episode 的具体行为（是否在重复无效动作循环），考虑是否需要更多/更好的 SFT 数据，或者调整 GRPO 的 reward shaping 来补偿 SFT baseline 偏弱的问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp017-sft-fast.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "8452910f7dce5728024d",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "infra gae baseline westd",
+  "task_key": "worker_infra_gae-baseline-westd_20260517T134928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gae-baseline-westd_20260517T134928.log",
+    "occurrence": 1,
+    "bytes": 803523,
+    "sha256": "d2ae8aa62651ce2929290f6c52dcb2e55360541539f79c42c62c39dec9ce0e51"
+  },
+  "statistics": {
+    "messages": 447,
+    "user_turns": 0,
+    "tool_calls": 153,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 137,
+      "tool_call": 153,
+      "tool_result": 153,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 447,
+      "chunks": [
+        {
+          "path": "8452910f7dce5728024d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8452910f7dce5728024d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8452910f7dce5728024d-part-0003.json",
+          "message_count": 87
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-gae-baseline-westd.md"
+}

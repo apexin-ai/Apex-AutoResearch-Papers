@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "592b0201e0654548b8ce",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "director / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_11.md",
+    "occurrence": 1,
+    "bytes": 3827,
+    "sha256": "3abd47895497a5c2c43c315856d06037c7e9e4f89add75738b89b1798ccdfe2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_messages\nupdated: '2026-05-17T07:22:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 bjb1-17606 的 2 张 GPU（项目配置 gpu_ids）。不可使用其他服务器的 GPU\n- γ=0.95（非 0.99），discounting 按 window 数（N=⌈T/h⌉）不是按 step 数。公式：R_k = γ^(N-k) · R_episode。全项目已统一，禁止再出现 γ^48 或 γ=0.99\n- GRPO 算法无 γ（bandit-style），只有 RAGEN 的 step_independent 实现引入 γ。论文措辞必须区分算法层 vs 实现层\n- h-sweep config 用 `context_window_mode: step_independent` + `step_independent_history_length: {h}`（不存在 `sliding` mode）\n- Registry 中 hsweep_h2_seed1 的 hypothesis 含旧数字（gamma^48≈8%），是 registry 残留，auto_build_report_facts 会带出来，不影响论文\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606 (connect.bjb1.seetacloud.com)，用户 root\n- 工作目录：/root/cost-verify-agent-rl\n- 训练框架：RAGEN（/root/cost-verify-agent-rl/RAGEN/）\n- h-sweep 脚本：/root/cost-verify-agent-rl/scripts/launch_hsweep.sh + auto_next_hsweep.sh\n- 活跃进程：hsweep_h2_seed1（PID 920380，双 GPU，tmux session 需确认）\n- auto_next_hsweep.sh 设置了自动进阶：h=2s1→h=2s2(带 LOG_PER_SAMPLE_ADV=1)→h=2s3→h=5s1→...→h=full+bonus\n- Advantage logging patch：agent_trainer.py:343-367，输出到 ~/runs/cost-verify-agent-rl/hsweep_h2_seed2/advantage_log.jsonl\n\n### 3. 📊 当前状态\n**刚完成**：\n- 理论三轮修正收敛到 \"Advantage Sign Misattribution\"（D058），Reviewer 全确认\n- method.tex Eq.(3) 公式错误修复（9 处，全项目统一 γ=0.95, N=25, γ^24≈0.29）\n- Paper Agent 激活，writing_plan.yaml 已审批，正在写 Method + Theoretical Analysis\n\n**RUNNING**：\n- hsweep_h2_seed1（双 GPU，预计再 1-2h 完成 → 自动启动 seed 2 带 advantage logging）\n\n**等待中**：\n- Paper Agent 回传 Method/Theoretical Analysis 初稿（Step 2-4 进行中）\n- h=2 seed 1 完成后 cron 回调\n- h=2 seed 2 的 advantage_log.jsonl 数据（plan_004 empirical verification）\n\n### 4. 📋 待办\n- h=2 seed 1 完成回调 → 检查 success rate 是否 ≈0%（验证 catastrophic collapse），确认 auto_next_hsweep 自动启动了 seed 2\n- h=2 seed 2 完成 → 分析 advantage_log.jsonl：验证 sign vs outcome correlation ~1.0, sign vs local quality ~0\n- Paper Agent 回传初稿 → 审读 Method/Theoretical Analysis，检查与 paper_framing.md 一致性\n- 全部 h-sweep 15 runs 完成 → 画 h-sweep cliff figure（核心 paper figure），启动 multi-seed（plan_003）\n- plan_003b GAE baseline → 评估实现成本（需 critic head），决定 GAE vs REINFORCE baseline\n\n### 5. 🎯 战略上下文\n**决策链**：D054(dual contribution) → D055(Dream response) → D056(exp013f retrospective) → D057(early-stop exp029) → D058(sign misattribution theory)\n\n**核心结论**：Mechanism 2 = Advantage Sign Misattribution。advantage 的符号由 episode 成败决定而非 local action quality。Episode-level 消除 sign misattribution 因为不再拆分 windows。γ^k decay 是 secondary magnitude issue。\n\n**易错点**：\n- 不要把 GRPO 算法的属性和 RAGEN step_independent 实现的属性混淆。\"GRPO has no γ\" 是对算法说的；step_independent 实现确实用 γ\n- paper_framing.md 的 \"episode-level 也是 episode-level credit（非 per-token）\" 是诚实性注记 — 审稿人可能追问，防御是\"方向正确 > 方向错误\"\n- Reviewer 评估：methodology-only paper 需要 plan_004(gradient data) + GAE baseline + Phase B(selective verification) 才够 top venue。不要只靠 h-sweep\n- DR1-C2（novelty concern）最终靠 dual contribution 解决：methodology diagnosis + selective verification。Phase B 必须完成\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11.md"
+}

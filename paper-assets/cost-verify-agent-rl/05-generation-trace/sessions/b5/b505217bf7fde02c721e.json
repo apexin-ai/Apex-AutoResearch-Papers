@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b505217bf7fde02c721e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research gdpo dapo spear survey",
+  "task_key": "worker_research_gdpo-dapo-spear-survey_20260514T133417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_gdpo-dapo-spear-survey_20260514T133417_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "895bd1f5ff2ed5b2b6af743ec659476d9fb69444e823e06b545672bc1128715c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成，memory.md 已更新。核心变更：\n\n**新增 7 个方法**：Scaf-GRPO、AR3PO、POPO、GTPO、GSPO、PRIME、E2H Reasoner\n\n**GDPO 重新评估**：从\"不推荐\"改为 Tier 2。我们确实有双 reward（success_reward + valid_action_bonus），GDPO 的独立归一化直接对抗 exp013f 的 reward gaming 根因。\n\n**修订后推荐排序**：\n| Tier | 方案 | 理由 |\n|------|------|------|\n| **T1 主线** | SPEAR | ALFWorld 直接验证，三痛点全覆盖 |\n| **T1 主线** | DAPO + AR3PO | 稳定性 + response reuse 解决全失败 batch |\n| **T2 最小代价** | Dr. GRPO | 2 行代码 ablation |\n| **T2 最小代价** | GDPO | 双 reward 独立归一化，drop-in 替换 |\n| **T3 补强** | GTPO / EPO | conflict token 过滤 / entropy smoothing |\n\n**落地路径**：exp016 (Dr. GRPO + GDPO) → exp017 (DAPO + AR3PO) → exp018 (SPEAR)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-gdpo-dapo-spear-survey.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3735b59add8b2e007c5d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra hsweep status check",
+  "task_key": "worker_infra_hsweep-status-check_20260517T112333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_hsweep-status-check_20260517T112333_result.json",
+    "occurrence": 1,
+    "bytes": 1884,
+    "sha256": "a036fa9b9566d91bd08154c011df3d4bfdd6632c3becd3e6e99422bda5968f1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a complete picture. Here's the report:\n\n---\n\n## hsweep_h2_seed1 状态报告\n\n### 1. 训练进度与 Metrics\n\n**当前 step: 9**（W&B run `7o9bjszm`，PID 920380 运行 7h06m）\n**Checkpoint: global_step_5**\n\n| Step | train/success | pass@8 | manager_invalid_action |\n|------|-------------|--------|----------------------|\n| 1 | 18.75% | 43.75% | 2.7% |\n| 2 | 14.84% | 50.0% | 2.0% |\n| 3 | 18.75% | 62.5% | 2.8% |\n| 4 | **5.47%** | 25.0% | **26.4%** |\n| 5 | 1.56% | 6.25% | 36.9% |\n| 6 | 3.13% | 25.0% | 47.1% |\n| 7 | 4.69% | 18.75% | 50.2% |\n| 8 | 1.56% | 12.5% | 54.2% |\n| 9 | **0.0%** | **0.0%** | **64.1%** |\n\n**Val (step 0):** success=0.0%, reward/mean@1600=0.0\n**Val (step 5):** success=3.13%, manager_invalid_action=78.1%\n\n### 2. GPU 状态\n- cuda:0: 96% util, 25881/97887 MiB, 45°C\n- cuda:1: 95% util, 25881/97887 MiB, 45°C\n- 进程: PID 923806/923807 (`actor_rollout_update_actor`)\n\n### 3. Watchdog 状态\n- tmux session `hsweep_watchdog` **存在**（created 15:30:44）\n- Pane **内容为空**（scrollback 已清空或脚本在等待状态，无输出）\n\n### 4. auto_next 序列\n**已确认为优化版**: `2:1 → 2:2 → 5:1 → 10:1 → 20:1 → full:1 → 2:3 → 5:2 → ...`\n- h=2 seed2 会启用 `LOG_PER_SAMPLE_ADV=1` 记录 per-sample advantage\n\n---\n\n### ⚠️ 严重告警：训练已崩溃\n\nStep 3→4 发生剧烈恶化，invalid action 从 2.8% 跳到 26.4%，此后持续恶化至 step 9 的 64.1%，success 率归零。这是典型的 **policy collapse**。训练仍在继续但已无意义——当前 step 9 生成的 response 全部失败，每 step 约 38 分钟的 GPU 时间在做无用功。\n\n需要决策：是否终止当前 run 并分析 step 3→4 之间发生了什么（checkpoint 在 step 5，但 step 5 已经崩了），还是让它跑完看是否能自行恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-hsweep-status-check.md"
+}

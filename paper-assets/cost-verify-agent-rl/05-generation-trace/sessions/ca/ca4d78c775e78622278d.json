@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ca4d78c775e78622278d",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "research ragen alfworld code",
+  "task_key": "worker_research_ragen-alfworld-code_20260513T191636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ragen-alfworld-code_20260513T191636.log",
+    "occurrence": 1,
+    "bytes": 635297,
+    "sha256": "4995485a8c62001bf3eeb73de572e3d6055c8146ef7302d9f5c065d007826f2d"
+  },
+  "statistics": {
+    "messages": 221,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 221,
+      "chunks": [
+        {
+          "path": "ca4d78c775e78622278d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ca4d78c775e78622278d-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-ragen-alfworld-code.md"
+}

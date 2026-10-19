@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf71c3da31a7866a83f0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 fix offload and resume v2",
+  "task_key": "worker_ops_bjb1_fix_offload_and_resume_v2_20260522T020852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_fix_offload_and_resume_v2_20260522T020852_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "598dfc5a5acf8369a12f5f8b3438aaab2287f286576c0d7be65246fea342114d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认成功：\n\n- **PID**: 376153 (tmux session: `exp029_c_prime_resume_mt50`)\n- **GPU**: cuda:0 = 11095 MiB, cuda:1 = 11095 MiB\n- **Resume**: 成功从 `global_step_5` 恢复\n  - `[Rank 0] Loaded model from .../global_step_5/actor/model_world_size_2_rank_0.pt`\n  - `[Rank 1] Loaded optimizer from .../global_step_5/actor/optim_world_size_2_rank_1.pt`\n  - lr_scheduler + rng 也已恢复\n- **optimizer_offload**: false ✓\n- **max_turn**: 50 ✓\n- **无 device mismatch 错误** ✓\n- **W&B run ID**: `u6jn1njs` — https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/u6jn1njs"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-fix-offload-and-resume-v2.md"
+}

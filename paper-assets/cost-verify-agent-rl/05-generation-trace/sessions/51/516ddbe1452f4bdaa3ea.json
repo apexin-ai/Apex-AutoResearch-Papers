@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "516ddbe1452f4bdaa3ea",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "train scienceworld sft bjb1",
+  "task_key": "worker_train_scienceworld_sft_bjb1_20260524T220948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_scienceworld_sft_bjb1_20260524T220948_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "f1b3e12c47f671208933780306ca7879e896a51fe5ae7b1bc76575dd07eb54ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常启动，正在 tokenize 数据集（33% 进度）。\n\n**汇报：**\n\n- Checkpoint 不存在，已启动新 SFT 训练\n- 实验 ID: `scienceworld_sft_bjb1`，状态: RUNNING\n- 配置：Qwen3-1.7B → ScienceWorld 3586 条 expert trajectories，单 GPU (cuda:0)，LR=5e-6 cosine，2 epochs，effective batch 16，max_seq_len=16384，每 112 步保存（约半 epoch）\n- 输出：`/root/autodl-tmp/checkpoints/scienceworld_sft_bjb1/final/`\n- ~448 训练步，预计 2-4 小时完成（取决于序列长度分布和 packing 效率）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-scienceworld-sft-bjb1.md"
+}

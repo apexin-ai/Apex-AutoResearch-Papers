@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb2a85f08ae6544f2ebb",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "audit response mask hydra conflict",
+  "task_key": "worker_audit_response_mask_hydra_conflict_20260522T192101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_response_mask_hydra_conflict_20260522T192101_result.json",
+    "occurrence": 1,
+    "bytes": 3313,
+    "sha256": "2648ff8e635940618104d09c89354c17ff4eb5f7fd2c53263079d73e1506f37e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是完整结果。\n\n---\n\n## 1. Runtime `enable_response_mask` 值（表格）\n\n### westd-47453 上的 eval（Table 1 主要数据源）\n\n| Eval | 日志文件 | runtime 值 | 状态 |\n|------|---------|-----------|------|\n| seed4 step15 v2 | `seed4_step15_ood_eval_v2.log` | **False** | ✅ |\n| seed5 step10 v2 | `ragen_seed5_ood_eval_v2.log` | **False** | ✅ |\n| seed6 step15 v2 | `seed6_step15_ood_eval_v2.log` | **False** | ✅ |\n| seed6 step15 v3 | `seed6_step15_ood_eval_v3.log` | **False** | ✅ |\n| seed8 step5 v2 | `ragen_seed8_ood_eval_v2.log` | **False** | ✅ |\n| seed42 v2 | `ragen_seed42_ood_eval_v2.log` | **False** | ✅ |\n| seed2048 v4 | `ragen_seed2048_ood_eval_v4.log` | **False** | ✅ |\n| intervention_c v3 | `ragen_intervention_c_ood_eval_v3.log` | **False** | ✅ |\n| c_prime step5 | `ragen_c_prime_step5_ood_eval.log` | **False** | ✅ |\n| high_kl step5 | `ragen_high_kl_step5_ood_eval.log` | **False** | ✅ |\n| seed2 v2 | `ragen_seed2_ood_eval_v2.log` | **False** | ✅ |\n| SFT baseline v2 | `ragen_sft_ood_eval_v2_restart.log` | 日志中不含该字段（旧格式） | ⚠️ 无法确认 |\n\n### bjb1-17606 上的 seed300 eval\n\n| Eval | 日志文件 | runtime 值 | 状态 |\n|------|---------|-----------|------|\n| seed300 v1 | `seed300_step5_ood_eval.log` | **True** | ❌ BUG |\n| seed300 v2 | `seed300_step5_ood_eval_v2.log` | **True** | ❌ BUG |\n| seed300 ID diag | `seed300_step5_id_eval_diag.log` | **True** | ❌ BUG |\n| seed300 v3 | `seed300_step5_ood_eval_v3.log` | **False** | ✅ 已修复 |\n\n---\n\n## 2. 根因：Hydra 配置层级放错\n\n**bjb1 上的 seed300 config**（`_alfworld_seed300_step5_ood_eval.yaml` 第42行）：\n```yaml\nactor_rollout_ref:\n  model:\n    enable_response_mask: false    # ← 放在了 actor_rollout_ref.model 下面\n```\n\n**base.yaml**（第16行）：\n```yaml\nenable_response_mask: True         # ← 顶层\n```\n\n**代码读取路径**（`ctx_manager.py:893`）：\n```python\nself.config.enable_response_mask   # ← 读的是顶层\n```\n\n所有 westd 上的 eval config（seed4/5/6/8/42/2048 等）把 `enable_response_mask: False` 放在**顶层**（覆盖 base.yaml），所以正确解析为 False。\n\nbjb1 的 seed300 config 把它放在了 `actor_rollout_ref.model` 嵌套路径下，**没有覆盖顶层的 True**，导致 runtime 读到 True。\n\n---\n\n## 3. 结论：历史 eval 是否受影响？\n\n**Table 1 数据不受影响。** 理由：\n\n1. **westd 上的全部 eval** runtime 值均为 `False`，配置正确\n2. **`enable_response_mask` 只影响 loss_mask**（控制哪些 token 参与梯度计算），不影响 generation/rollout 行为。在 `val_only=True` 的 eval 模式下，不做 loss 计算、不做梯度更新，所以即使 seed300 v1/v2 读到了 True，**任务成功率（Alfworld OOD accuracy）不受影响**\n3. **问题仅存在于 bjb1 上的 seed300 config**，且是因为 config 文件写法不同（嵌套在 `actor_rollout_ref.model` 下而非顶层），不是 Hydra 框架 bug\n\n**SFT baseline** 的旧 log 不含 runtime config dump，无法从日志确认，但其 yaml 文件 `_alfworld_sft_baseline_ood_eval_v3.yaml:99` 设置了顶层 `enable_response_mask: False`，与其他正常 eval 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-response-mask-hydra-conflict.md"
+}

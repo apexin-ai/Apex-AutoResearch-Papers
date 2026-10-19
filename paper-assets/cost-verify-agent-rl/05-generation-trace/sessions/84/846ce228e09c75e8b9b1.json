@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "846ce228e09c75e8b9b1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval exp019b fast eval",
+  "task_key": "worker_eval_exp019b-fast-eval_20260514T214641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp019b-fast-eval_20260514T214641_result.json",
+    "occurrence": 1,
+    "bytes": 1539,
+    "sha256": "1096567cb40ff2778085c8b6b1591ea9736b87210c055867978c31cdced7032a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp019b_expert_sft_v3 Fast Eval 结果\n\n| 指标 | 结果 | Pass 标准 | 状态 |\n|------|------|-----------|------|\n| **success_rate** | **20.0%** (4/20) | ≥ 10% | **PASS** |\n| **format_ok_rate** | **100.0%** (全部) | ≥ 90% | **PASS** |\n| **action_is_valid_rate** | **85.33%** | ≥ 85% | **PASS** |\n\n**三项指标全部 PASS。**\n\n### Episode 详情\n\n| EP | Type | Steps | Valid | Format | Success | Time |\n|----|------|-------|-------|--------|---------|------|\n| 0 | put | 30 | 33% | 100% | N | 7.4s |\n| 1 | heat | 30 | 63% | 100% | N | 9.1s |\n| 2 | put | 4 | 100% | 100% | **Y** | 1.3s |\n| 3 | clean | 30 | 90% | 100% | N | 7.1s |\n| 4 | put | 30 | 73% | 100% | N | 7.9s |\n| 5 | put | 30 | 100% | 100% | N | 6.8s |\n| 6 | put | 30 | 83% | 100% | N | 6.7s |\n| 7 | cool | 30 | 90% | 100% | N | 11.0s |\n| 8 | cool | 30 | 90% | 100% | N | 10.3s |\n| 9 | clean | 30 | 100% | 100% | N | 9.3s |\n| 10 | put | 30 | 100% | 100% | N | 12.6s |\n| 11 | put | 10 | 100% | 100% | **Y** | 2.4s |\n| 12 | heat | 30 | 97% | 100% | N | 9.1s |\n| 13 | clean | 30 | 100% | 100% | N | 7.5s |\n| 14 | examine | 30 | 100% | 100% | N | 7.8s |\n| 15 | put | 30 | 83% | 100% | N | 7.3s |\n| 16 | cool | 30 | 100% | 100% | N | 10.2s |\n| 17 | put | 7 | 100% | 100% | **Y** | 2.2s |\n| 18 | clean | 6 | 100% | 100% | **Y** | 2.6s |\n| 19 | put | 30 | 3% | 100% | N | 7.5s |\n\n成功的 4 个 episode（EP2/11/17/18）均以少量步骤（4-10步）高效完成，valid=100%。avg_steps=25.4，eval 总耗时 146s。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp019b-fast-eval.md"
+}

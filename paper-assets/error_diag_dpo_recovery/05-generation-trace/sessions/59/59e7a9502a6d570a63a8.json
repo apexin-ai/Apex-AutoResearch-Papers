@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59e7a9502a6d570a63a8",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "ssh read v8 model output",
+  "task_key": "worker_ssh_read-v8-model-output_20260513T073436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_read-v8-model-output_20260513T073436_result.json",
+    "occurrence": 1,
+    "bytes": 2525,
+    "sha256": "8fe9c10249b87a2f699ce7b367436b407146ab5e770837ab2125e14ea2064c92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 1. v8 assistant 消息内容\n\n第一条轨迹（task_id=0, pick_clean_then_place, reward=False, steps=40）：\n\n```\nassistant[3]: 'Thought: The task is to put a clean potato in the microwave. I need to find a potato first...\\nAction: go to fridge 1'\nassistant[5]: 'Thought: I've reached the fridge. To find a potato...\\nAction: open fridge 1'\n...\nassistant[17]: 'Thought: The microwave is open, but there's an apple inside...I will proceed with placing the potato in...\\nAction: put potato 1 in/on microwave 1'\n```\n\n- 是否以 `<think>` 开头：**否** — 格式正确，全部是 `Thought:` + `Action:`\n- 是否有 `</think>`：**否**\n- 是否有 `Thought:`/`Action:` 格式：**是**，每条都正确\n- 模型是否重复同样的 action：**否**\n\n**关键发现**：msg[18] 环境注入了一个**全新任务**（\"clean some soapbar and put it in toilet\"），模型在完成 potato 任务后被切换到新任务。40 步耗尽，整体 reward=False。\n\n## 2. enable_thinking 支持\n\ntokenizer 参数列表：`['conversation', 'tools', 'documents', 'chat_template', 'add_generation_prompt', 'continue_final_message', 'tokenize', 'padding', 'truncation', 'max_length', 'return_tensors', 'return_dict', 'return_assistant_tokens_mask', 'tokenizer_kwargs', 'kwargs']`\n\nenable_thinking 支持：**否** — 代码第 245 行 `enable_thinking=False` 会触发 TypeError，被 except 捕获后 fallback 到无该参数的调用。**无害但无效。**\n\n## 3. generate 参数\n\n| 参数 | 值 |\n|------|-----|\n| temperature | 0.5（CLI default，代码 default 0.7） |\n| top_p | 0.9 |\n| max_new_tokens | 256 |\n| do_sample | True（temperature > 0） |\n| pad_token_id | tokenizer.pad_token_id or eos_token_id |\n| repetition_penalty | 未设置 |\n\n## 4. v7 vs v8 对比\n\n| 指标 | v7 | v8 |\n|------|-----|-----|\n| success/total | 7/138 (5.1%) | 1/25 (4.0%) |\n| avg steps | 38.6 | 38.6 |\n| max steps | 40 | 40 |\n\nv7 第一条轨迹和 v8 **完全一致**（同 task_id=0，同任务，同消息内容）。两版本行为基本相同。\n\n## 根因判断\n\n**不是 thinking mode 泄露问题。** 模型输出格式完全正确。\n\n真正的问题是**多任务串行 + 步数不够**：\n- 模型 ~18 步完成第一个任务（potato→microwave），环境立刻注入第二个任务（soapbar→toilet）\n- 40 步上限不够完成两个任务，导致 reward=False\n- 几乎所有轨迹都跑满 40 步（avg=38.6），说明步数上限是瓶颈"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-read-v8-model-output.md"
+}

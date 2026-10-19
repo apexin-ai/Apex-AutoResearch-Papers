@@ -1,0 +1,38 @@
+{
+  "exp_id": "datagen_v9_icl_cuda4",
+  "project": "error_diag_dpo_recovery",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T08:17:29.513Z",
+    "updated_at": "2026-05-14T17:57:23.688Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/error_diag_dpo_recovery && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python artifacts/collect_trajectories_icl.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-14B-AWQ --expert_file data/alfworld_sft.json --output_dir data/trajectories_v9_icl_cuda4 --temperature 0.5 --gpu 0 --part_num 3 --part_idx 2 --seed 42\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "885698",
+      "log_path": "~/runs/error_diag_dpo_recovery/datagen_v9_icl_cuda4.log",
+      "submitted_at": "2026-05-13T08:17:29.480Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen3-14B-AWQ",
+      "seed": 42,
+      "data_path": "data/trajectories_v9_icl_cuda4",
+      "data_count": "~200 (part 2/3 of train split)",
+      "hypothesis": "v9 ICL collection with put→move fix, temperature=0.5, for P2 MVP gate DPO training data",
+      "wall_clock_seconds": 121194.2,
+      "gpu_hours": 33.67
+    },
+    "notes": "v9 ICL 数据收集（D032 fix: put→move translation + max_new_tokens=2048 + episode boundary detection）。Dry-run 2/2 100% SR。",
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T17:57:23.689Z"
+  },
+  "timestamp": "2026-05-14T17:57:23.718187+00:00",
+  "trigger": "update_registry"
+}

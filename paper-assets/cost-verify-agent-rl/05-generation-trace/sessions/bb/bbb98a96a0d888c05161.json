@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "bbb98a96a0d888c05161",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code cherry pick ctx manager",
+  "task_key": "worker_code_cherry_pick_ctx_manager_20260515T083451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cherry_pick_ctx_manager_20260515T083451.log",
+    "occurrence": 1,
+    "bytes": 1057315,
+    "sha256": "43edc16e311882ea325904b56d0e5f96755c580acbba1affe88c866cff20cf66"
+  },
+  "statistics": {
+    "messages": 262,
+    "user_turns": 1,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 33,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 90,
+      "tool_result": 90,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 62,
+      "chunks": [
+        {
+          "path": "bbb98a96a0d888c05161-part-0001.json",
+          "message_count": 62
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 200,
+      "chunks": [
+        {
+          "path": "bbb98a96a0d888c05161-part-0001.json",
+          "message_count": 109
+        },
+        {
+          "path": "bbb98a96a0d888c05161-part-0002.json",
+          "message_count": 91
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-cherry-pick-ctx-manager.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dc74b85edb1081cd3a6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research citation verify",
+  "task_key": "worker_research_citation-verify_20260515T172008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation-verify_20260515T172008_result.json",
+    "occurrence": 1,
+    "bytes": 1091,
+    "sha256": "42ad0fc0feaa448bfe7930b0f43bade9b4bb635eb3eb116e1279153c3dcc2cb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。27 篇论文全部验证，结果写入 `artifacts/citation_audit.md`。\n\n**3 个严重问题必须修正：**\n\n1. **AgentPRM** — arXiv ID 完全搞错。当前 `2502.10325` 是 Choudhury 的另一篇论文，真正的 AgentPRM 是 `2511.08325`（Xi et al.）。作者 \"Chatterjee et al.\" 在两篇论文中都不存在。\n2. **Huang2024** — 作者写 \"Huang et al.\"，但第一作者是 Ryo Kamoi，五位作者中无人姓 Huang。\n3. **DAPO** — 标题错误。写的是 \"Decoupled Clip and Dynamic Sampling Policy Optimization\"（技术描述），实际论文标题是 \"An Open-Source LLM Reinforcement Learning System at Scale\"。\n\n**2 个中等问题：**\n- **CFGM** 标注为 \"arXiv 2026\"，实际已发表于 EMNLP 2025\n- **WebAgent-R1** citation key \"pei2025\" 错误，第一作者是 Wei 不是 Pei\n\n**额外发现：** 10 篇论文缺失 arXiv ID 已全部找到（含 ReflAct 2505.15182、GiGPO 2505.10978 等）。Thinkless 确认真实存在（arXiv 2505.13379, NeurIPS 2025），但未收录在 literature_map 中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-verify.md"
+}

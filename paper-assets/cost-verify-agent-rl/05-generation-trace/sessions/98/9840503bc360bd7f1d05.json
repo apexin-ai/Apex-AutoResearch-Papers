@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9840503bc360bd7f1d05",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "verify c prime bjb1",
+  "task_key": "worker_verify_c_prime_bjb1_20260521T220455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_c_prime_bjb1_20260521T220455_result.json",
+    "occurrence": 1,
+    "bytes": 1453,
+    "sha256": "32a0022eadba8fb9e9d43cde62844c6c88697c1f96da94d700d199513b1378e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### 检查 1: Config 文件存在 — **PASS**\n文件存在，2026-05-22 06:01 创建。关键参数确认：\n- `response_length: 1024` (line 65)\n- `max_turn: 25` (line 86)\n- `max_response_length: 12000` (line 90)\n\n### 检查 2: 代码改动 — **PASS**\n`agent_proxy.py` 中 trajectory cap 代码存在：\n- L253: `max_response_length = getattr(self.config.agent_proxy, 'max_response_length', None)`\n- L254: `cumulative_response_tokens = np.zeros(len(env_outputs))`\n- L304: 累加 `cumulative_response_tokens[cap_ids] += turn_toks`\n- L338: 判断 `np.max(cumulative_response_tokens[active_ids]) >= max_response_length`\n\n### 检查 3: 训练进程在跑 — **PASS**（附注意事项）\n- GPU 0/1 各占用 ~36.6GB / ~36.6GB 显存（模型已加载）\n- GPU utilization 当前 0%（处于 val/数据加载阶段，非空闲）\n- PID 350489 (`ray::TaskRunner`) 状态 **R (running)**，102 线程活跃\n- 日志确认进程名为 `exp029-intervention-c-prime`\n\n### 检查 4: 日志有输出 — **PASS**\n日志路径 `/root/runs/cost-verify-agent-rl/exp029_intervention_c_prime.log` 有活跃输出：\n- wandb run `zndyygbn` 已创建，实验名 `exp029-intervention-c-prime`\n- 启动时间 2026-05-22 06:03:37\n- TaskRunner 正在加载数据（8810 items + 494 items 进度条可见）\n- FSDP worker 已初始化\n\n**结论：4/4 PASS，Intervention C' 已在 bjb1-17606 上正常运行。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-c-prime-bjb1.md"
+}

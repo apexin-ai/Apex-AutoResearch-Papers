@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f866845917d9c1896803",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment eval variance seed7hk v2",
+  "task_key": "worker_experiment_eval_variance_seed7hk_v2_20260523T223151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_eval_variance_seed7hk_v2_20260523T223151_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "fb69b055cc0c29a8df911ac5d4bcc56b92716b47fc9bba256f4dda4a7b826555"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行中，模型已成功加载为 `Qwen3ForCausalLM` — symlink 修复生效，之前的 \"Unsupported model\" 错误已解决。\n\n**状态汇总：**\n- Symlink: `/root/autodl-tmp/checkpoints/qwen_exp029_seed7_high_kl_step5_hf` → 原路径 ✓\n- PID: 80610\n- Log: `/root/autodl-tmp/eval_variance_logs/seed7hk_fix_main.log`\n- 预计 3 轮共 ~1.5h\n\n5 分钟后我再检查第一轮 eval 是否正常推进。需要我持续轮询还是你自行检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-eval-variance-seed7hk-v2.md"
+}

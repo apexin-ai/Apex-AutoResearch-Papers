@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "fec383a52002975cf6f5",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "audit data provenance full",
+  "task_key": "worker_audit_data_provenance_full_20260523T105224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data_provenance_full_20260523T105224_result.json",
+    "occurrence": 1,
+    "bytes": 2330152,
+    "sha256": "aa55bc0a956a8fab9a1b67810eb3c5e23594683a66be4e33c12d0dc7439e7bba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "fec383a52002975cf6f5-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/audit-data-provenance-full.md"
+}

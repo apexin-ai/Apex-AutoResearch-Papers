@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "f3fadfcca06aa325bb29",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code sft eval script",
+  "task_key": "worker_code_sft_eval_script_20260514T032212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sft_eval_script_20260514T032212.log",
+    "occurrence": 1,
+    "bytes": 719647,
+    "sha256": "048a834f121e612adb436e68be78491630f8d4285ab452eb36fe45e39bec213a"
+  },
+  "statistics": {
+    "messages": 269,
+    "user_turns": 1,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 89,
+      "user": 1,
+      "tool_result": 89,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "f3fadfcca06aa325bb29-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 263,
+      "chunks": [
+        {
+          "path": "f3fadfcca06aa325bb29-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "f3fadfcca06aa325bb29-part-0002.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-sft-eval-script.md"
+}

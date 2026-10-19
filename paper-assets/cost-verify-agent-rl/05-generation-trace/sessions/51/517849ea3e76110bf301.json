@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "517849ea3e76110bf301",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops kill exp009 cleanup",
+  "task_key": "worker_ops_kill_exp009_cleanup_20260514T040827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_exp009_cleanup_20260514T040827_result.json",
+    "occurrence": 1,
+    "bytes": 676,
+    "sha256": "1d8b8baa736d2b684c379fec6658e0a8da3ae7af3f44999cba94933d209035b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 结果\n\n| 项目 | 状态 |\n|------|------|\n| **exp009 进程** | 全部清理（9 个进程 + 2 个孤儿 ray agent） |\n| **exp010 进程** | 正常运行，PID 199399，step 2/30（7%），每步 ~481s |\n| **GPU 占用** | 仅 exp010 的两个 ray::WorkerDict（PID 202873/202874），GPU 0: 48325 MiB, GPU 1: 48305 MiB，显存占用从 ~97GB 降到 ~48GB/卡 |\n| **checkpoint 目录** | `/root/autodl-tmp/checkpoints/exp008_grpo/` 不存在，无残留 |\n| **日志** | 无 error/traceback/OOM，训练正常推进中 |\n\nexp010 训练指标：train success 4.7%, pass@8 37.5%, val success 0.0%，正在第 2 步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-exp009-cleanup.md"
+}

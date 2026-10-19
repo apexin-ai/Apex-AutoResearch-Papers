@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "36cedbe235bd399ab935",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "research 1 7b cell a entropy kl pattern",
+  "task_key": "worker_research_1_7b-cell-a-entropy-kl-pattern_20260519T112115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_1_7b-cell-a-entropy-kl-pattern_20260519T112115.log",
+    "occurrence": 1,
+    "bytes": 700802,
+    "sha256": "b87c65235dc5ce8cb838ad628c063f7733173238c0c45f712aff569439494b27"
+  },
+  "statistics": {
+    "messages": 145,
+    "user_turns": 0,
+    "tool_calls": 50,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 50,
+      "tool_result": 50,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 145,
+      "chunks": [
+        {
+          "path": "36cedbe235bd399ab935-part-0001.json",
+          "message_count": 119
+        },
+        {
+          "path": "36cedbe235bd399ab935-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-1-7b-cell-a-entropy-kl-pattern.md"
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "a397e73ceedf02e6667d",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code exp024 p0 fixes",
+  "task_key": "worker_code_exp024_p0_fixes_20260515T043629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp024_p0_fixes_20260515T043629.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/code-exp024-p0-fixes.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ac9b5076a2c9a7c58a9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp013e cleanup submit",
+  "task_key": "worker_ops_exp013e-cleanup-submit_20260514T091236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp013e-cleanup-submit_20260514T091236_result.json",
+    "occurrence": 1,
+    "bytes": 362,
+    "sha256": "0b2a606585e8855edfa9c3b72629a50955a3c029168b580b257fa54ad3950620"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认完毕：\n\n| 检查项 | 状态 |\n|--------|------|\n| Ray 残留进程 | 已清理，无残留 |\n| train.py / agent_proxy 进程 | 无 |\n| GPU 0 | 0 MiB / 0% 利用率 |\n| GPU 1 | 0 MiB / 0% 利用率 |\n| object_store_memory 修复 | 存在于 `train.py:203`，设为 30GB |\n\n两块 GPU 完全释放，可以提交 exp013e。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp013e-cleanup-submit.md"
+}

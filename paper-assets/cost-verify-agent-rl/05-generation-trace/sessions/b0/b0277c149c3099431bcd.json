@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0277c149c3099431bcd",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code advantage logging patch",
+  "task_key": "worker_code_advantage_logging_patch_20260517T062349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_advantage_logging_patch_20260517T062349_result.json",
+    "occurrence": 1,
+    "bytes": 1145,
+    "sha256": "e38c237076a9a4af7f406df6d8ec03f0d6a013c4fae111bcbf38da49e4cecf38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**修改的文件：**\n\n1. `/root/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py` — line 343-367（插入 26 行 logging 代码）\n2. `/root/cost-verify-agent-rl/scripts/auto_next_hsweep.sh` — line 45-52（添加环境变量设置 + 传递到 tmux）\n\n**实际可用变量：**\n- `episode_ids` — numpy array `(batch_size,)`，来自 `data.non_tensor_batch[\"episode_ids\"]`\n- `window_position` — 从 `episode_ids` 动态推算（同 episode_id 内按出现顺序编号）\n- `step_returns` — tensor `(batch_size,)`，discounted return per step\n- `advantages` — tensor `(batch_size, response_length)`，取 `.mean()` 得到 per-sample scalar\n- `uid` — 来自 `data.non_tensor_batch[\"uid\"]`，task/prompt group identifier\n\n**记录字段：** `episode_id`, `window_position`, `step_return`, `advantage`, `uid`\n\n**验证结果：** 语法检查 pass。h=2 seed 1 不受影响（`LOG_PER_SAMPLE_ADV` 未设置）。h=2 seed 2 启动时 `auto_next_hsweep.sh` 会自动 export 环境变量并输出到 `/root/runs/cost-verify-agent-rl/hsweep_h2_seed2/advantage_log.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-advantage-logging-patch.md"
+}

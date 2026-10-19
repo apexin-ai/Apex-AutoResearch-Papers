@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88cefbe5f69265a76280",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp027 early eval script",
+  "task_key": "worker_code_exp027_early_eval_script_20260515T151920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp027_early_eval_script_20260515T151920_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "a45684b95013dd3451b651a33f099f73a269000c00441f2962dae9b912f6e2d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No checkpoints yet (empty dir). Both scripts validated:\n\n**脚本路径:**\n- Wrapper: `/root/cost-verify-agent-rl/scripts/eval_checkpoint.sh`\n- Python: `/root/cost-verify-agent-rl/scripts/eval_checkpoint.py`（已修复 3 个问题）\n\n**使用方法:**\n```bash\nbash scripts/eval_checkpoint.sh /root/autodl-tmp/checkpoints/exp027/global_step_5\n# 或指定 GPU:\nbash scripts/eval_checkpoint.sh /root/autodl-tmp/checkpoints/exp027/global_step_5 1\n```\n\n**对 .py 的修复:**\n1. `ALFWORLD_DATA`: `~/.cache/alfworld` → `setdefault(\"/root/autodl-tmp/alfworld\")`\n2. `gpu_memory_utilization`: 0.85 → 0.35\n3. `max_model_len`: 32768 → 8192\n\n**Dry-run 结果:** shell 语法检查 OK，Python `--help` 正常输出。\n\n**GPU 共享方案:** 训练用 vLLM `gpu_memory_utilization=0.4`（~38GB/GPU），eval 用 0.35（~33GB）。单 GPU 总计 71GB < 96GB（RTX PRO 6000），理论上可并行。如果 OOM，需等训练 val 间隙（每 5 step 有一次 val phase）再跑。\n\n**当前状态:** exp027 checkpoint 目录为空，step 5 checkpoint 尚未生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp027-early-eval-script.md"
+}

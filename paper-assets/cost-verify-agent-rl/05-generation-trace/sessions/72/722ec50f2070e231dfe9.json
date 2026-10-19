@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "722ec50f2070e231dfe9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code plot hsweep cliff",
+  "task_key": "worker_code_plot_hsweep_cliff_20260517T074115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plot_hsweep_cliff_20260517T074115_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "1b38993338b6ce6c1c4f745cd563c9ea92e5da03ffeb1bc55fed38b6b3168361"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**1. 数据格式发现**\n- Metrics 在 Ray worker 日志中，格式为 `step:N - key:value - ...`\n- tee'd 日志在 `/root/runs/cost-verify-agent-rl/hsweep-h{H}-seed{N}.log`（带 ANSI+Ray pid 前缀）\n- 关键字段：`val-env/AlfworldSG/success:np.float64(X)` 和 `train/AlfworldSG/success:np.float64(X)`\n- Val eval 在 step 0 和每 5 steps（test_freq=5）\n\n**2. 脚本路径**\n- `/root/cost-verify-agent-rl/scripts/plot_hsweep_cliff.py`（356 行）\n\n**3. 验证结果**\n- 语法检查通过\n- `--demo` 模式：输出 PDF（32KB）+ PNG（316KB），5 条 h 曲线正确生成\n- 真实数据模式：正确读取了 `hsweep-h2-seed1`（当前 step 0-4，val 只有 step 0）\n\n**用法**：\n```bash\n# Demo 模式（合成数据）\npython plot_hsweep_cliff.py --demo --output_dir ./figures/\n\n# 真实数据（数据跑完后）\npython plot_hsweep_cliff.py --output_dir ./figures/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plot-hsweep-cliff.md"
+}

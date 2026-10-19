@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82419e18af5432f59b68",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops scienceworld task filter and config",
+  "task_key": "worker_ops_scienceworld_task_filter_and_config_20260522T035342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scienceworld_task_filter_and_config_20260522T035342_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "23011f1c9035b95ccfacdabcf6891871b7351cb57bd045a0f2753bf10d5d0b1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All verified. Summary of results:\n\n---\n\n### 1. 完整 30 任务 success rate\n见上方表格。数据来源：`/root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json`（1796 episodes, 30.1% overall）\n\n### 2. 筛选后 >10% 任务：21 个\n排除 9 个：`boil`(0%), `chemistry-mix`(0%), `chemistry-mix-paint-tertiary-color`(0%), `freeze`(0%), `grow-fruit`(6.5%), `grow-plant`(0%), `identify-life-stages-1`(0%), `identify-life-stages-2`(0%), `power-component-renewable-vs-nonrenewable-energy`(0%)\n\n### 3. envs.yaml 更新\n新增 `ScienceWorldSG_filtered` tag，21 个任务，其余参数与 `ScienceWorldSG` 一致\n\n### 4. v4 config 更新\n- 训练（line 97）：`tags: [\"ScienceWorldSG_filtered\"]` — 只训练 21 个可学习任务\n- 评估（line 103）：`tags: [\"ScienceWorldSG\"]` — 保持全量 30 任务评估\n- `save_freq: 5` 已是目标值\n- `val_before_train: True` 已确认\n\n### 5. 训练/评估分开任务集：支持\n`es_manager.train` 和 `es_manager.val` 是独立配置块，可以使用不同 tags。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scienceworld-task-filter-and-config.md"
+}

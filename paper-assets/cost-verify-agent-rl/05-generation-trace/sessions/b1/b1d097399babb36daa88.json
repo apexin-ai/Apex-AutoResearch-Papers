@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1d097399babb36daa88",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops ood eval restart v3",
+  "task_key": "worker_ops_ood-eval-restart-v3_20260519T050334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ood-eval-restart-v3_20260519T050334_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "d4e1bbcbbe2e311dedb476e5fe6c43c6fe639a1a9aff8077ee2ae7f9cf62685d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。\n\n**状态汇总：**\n- GPU 0,1 各占用 4722MiB，进程 `actor_rollout_load_checkpoint`（PID 786931, 786932）正在加载 checkpoint\n- Ray TaskRunner PID: 786377\n- W&B run: `exp029-seed2-ood-reeval`，run ID: **ypt94m3v**\n- W&B URL: `https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/ypt94m3v`\n- tmux session: `exp029_seed2_ood_v3`\n- 日志: `/root/autodl-tmp/exp029_seed2_ood_v3.log`\n\n进程正常初始化中，checkpoint 加载完成后将开始 134-task OOD eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ood-eval-restart-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f16c7f50eac48b2c3463",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp013f grep metrics",
+  "task_key": "worker_monitor_exp013f-grep-metrics_20260514T094629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp013f-grep-metrics_20260514T094629_result.json",
+    "occurrence": 1,
+    "bytes": 1199,
+    "sha256": "64624cd1bcdbef70a1472e297be554cda1291f033cb9ec371565bcf4e5bf5de9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n## exp013f 状态\n\n**进程**: PID 313810 ALIVE, 运行 ~14min\n**进度**: Training Progress 20% (6/30), ~289s/step, 预估剩余 ~1.9h\n\n**GPU**:\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 48% | 48GB / 97GB |\n| cuda:1 | 100% | 48GB / 97GB |\n\n## Step 5 验证指标（最近完成的 step）\n\n| 指标 | 值 |\n|------|-----|\n| success | 0.0 |\n| pass@1 | 0.0 |\n| action_is_valid | 0.6 |\n| action_is_effective | 1.0 |\n| num_actions | 30.0 |\n| raw_reward | 0.0 |\n| response_length | 2983.25 |\n| reward/mean@4 | 2.70 |\n| reward/std@4 | 1.598 |\n| reward/best@4/mean | 4.119 |\n| reward/worst@4/mean | 1.170 |\n\n## Step 6/7: 尚不可用\n\n- Step 6 PPO 更新正在执行（两个 rank 已调用 `compute_policy_loss`）\n- **训练指标（pg_loss, grad_norm, ppo_kl, entropy, clipfrac）未输出到 stdout**——日志中只记录每步的 val 指标（`step:N - val-env/...` 格式），训练指标仅发送到 W&B\n- 无 W&B 本地目录（`/root/cost-verify-agent-rl/RAGEN/wandb/` 不存在）\n\n要获取 pg_loss 等训练指标，需要通过 W&B API 查询，或检查代码中是否可以开启 stdout logging。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp013f-grep-metrics.md"
+}

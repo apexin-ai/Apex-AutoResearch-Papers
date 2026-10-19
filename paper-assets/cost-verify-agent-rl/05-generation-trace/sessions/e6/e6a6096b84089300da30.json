@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6a6096b84089300da30",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor hsweep h10 progress",
+  "task_key": "worker_monitor_hsweep_h10_progress_20260524T065505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_hsweep_h10_progress_20260524T065505_result.json",
+    "occurrence": 1,
+    "bytes": 1068,
+    "sha256": "bf5b245b920890e41307d259043e88ea5e4235262245f420667692b2eb956be5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告：hsweep_h10_seed2 已挂死\n\n**状态：异常 — 进程存活但训练已停滞**\n\n| 项目 | 状态 |\n|------|------|\n| PID 95503 | 存活（6h47m），CPU 0.4% |\n| GPU 0 | 利用率 0%，显存 55GB/98GB 占用 |\n| 当前 step | **0/5**（未开始任何训练 step） |\n| 日志最后更新 | 02:36:27（约6.5小时前） |\n\n**关键发现：**\n\n1. Step 0 validation 完成后，进度条刚打印 `Training Progress: 0%|  | 0/5`\n2. 随即 Ray 子进程（PID 42504）收到 **SIGTERM**，导致 worker 被杀\n3. 主进程 95503 仍存活但无任何新输出，已挂死 6.5 小时\n4. 日志文件自 02:36:27 后未写入任何内容\n\n**Step 0 初始 eval 指标（基线，32 episodes）：**\n- success: **12.5%**\n- pass@1: 12.5%\n- reward mean@1455: 0.378\n- action_is_valid: 76.1%\n- action_is_effective: 97.2%\n\n**结论：** 进程需要 kill 后重启。训练从未实际开始（0/5 steps），只完成了初始 validation。SIGTERM 的来源需要排查（可能是其他进程冲突或 OOM killer）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-hsweep-h10-progress.md"
+}

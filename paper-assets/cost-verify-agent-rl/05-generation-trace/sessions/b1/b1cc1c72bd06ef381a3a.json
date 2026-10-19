@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1cc1c72bd06ef381a3a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh check bjb1 seed200 v4 status",
+  "task_key": "worker_ssh_check_bjb1_seed200_v4_status_20260523T000713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_bjb1_seed200_v4_status_20260523T000713_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "7305c5032255cab7750d0f58f85b615d0f236b6e3222725853359fc6aec59d54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**进程存活，训练正常进行中。**\n\n| 项目 | 状态 |\n|------|------|\n| PID 467039 | 存活，运行 1h36m，状态 `Ss+` |\n| GPU 显存 | cuda:0: 44711/97887 MiB, cuda:1: 45329/97887 MiB |\n| GPU 利用率 | 0%（正常，见下方解释） |\n| 训练进度 | **60% (3/5 steps)**，已跑 1h25m，预计剩余 ~58m |\n| 日志最后写入 | 08:01（持续更新中） |\n\n**GPU 0% 利用率原因**：当前处于 rollout/episode 收集阶段（日志显示 TaskRunner 在 AlfworldSG 环境中执行 agent 交互），这是 CPU-bound 操作。GPU 显存仍被占用（~45GB/卡），说明模型仍加载在显存中，等 rollout 结束进入 policy update 时 GPU 利用率会恢复。\n\n**结论：无需干预，预计 ~1 小时内完成。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-bjb1-seed200-v4-status.md"
+}

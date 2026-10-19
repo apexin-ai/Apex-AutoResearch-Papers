@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad3f809f6baf53df0b2a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 step5 val final",
+  "task_key": "worker_ops_exp026_step5_val_final_20260515T142632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_step5_val_final_20260515T142632_result.json",
+    "occurrence": 1,
+    "bytes": 1906,
+    "sha256": "6d31586af44ef21bee97a7adbfe4744980ae7b60e157e55b1ed67bdeb01db2ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已确认全部终止。汇总：\n\n```\nSTEP5_VAL_RESULT: NOT_AVAILABLE (val generation 已启动但未完成即被 kill)\nKILL_STATUS: killed (781795 force_killed, 778562 terminated, 均已验证死亡)\nCHECKPOINT: NONE (exp026/ 目录为空，save_freq=25 未触发)\nFINAL_METRICS_SUMMARY:\n┌──────┬───────┬─────────┬───────────────────┬─────────────────────┬────────┐\n│ Step │ Phase │ Success │ action_is_valid   │ action_is_effective │ pass@16│\n├──────┼───────┼─────────┼───────────────────┼─────────────────────┼────────┤\n│  0   │ val   │  6.25%  │ 63.13%            │ 87.88%              │  -     │\n│  1   │ train │ 21.88%  │ -                 │ -                   │  -     │\n│  2   │ train │ 32.81%  │ 73.13%            │ 93.44%              │  -     │\n│  3   │ train │ 17.19%  │ 71.88%            │ 93.75%              │  -     │\n│  4   │ train │  0.00%  │ 71.69%            │ 93.66%              │  0.00% │\n│  5   │ val   │   -     │   -               │   -                 │  -     │\n└──────┴───────┴─────────┴───────────────────┴─────────────────────┴────────┘\n```\n\n关键观察：action_is_valid/effective 在 step 2-4 保持稳定（~72%/~94%），但 success 从 32.81% 崩至 0%——模型学会了生成\"看起来合理\"的 action 但完全丧失了完成任务的能力。GPU 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-step5-val-final.md"
+}

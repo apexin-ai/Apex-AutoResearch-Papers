@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fe56c3975e09b7ae823",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "verify exp028c step4 kl",
+  "task_key": "worker_verify_exp028c_step4_kl_20260516T025830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_exp028c_step4_kl_20260516T025830_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "dad4a604216a5450c520cd7424e6f2a763e8dc48cb26fda896ba1bb365ba2e2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。结论：\n\n**step 4 的 kl_loss=0.031 没有误录。** W&B 原始数据确认 actor/kl_loss=0.031226，actor/ppo_kl=0.015264，两者是不同的值。\n\n所有 step 的 registry 值与 W&B 一致：\n- step 2: kl_loss=0.1706 ✅, pg_loss=0.007 ✅\n- step 3: kl_loss=0.1118 ✅\n- step 4: kl_loss=0.031 ✅, ppo_kl=0.015 ✅\n\nkl_loss 的完整轨迹是 0.013 → 0.171 → 0.112 → 0.031 → 0.824，非单调波动，step 4 的低值是真实训练动态，不需要修正。\n\n报告已写入 `artifacts/exp028c_selfguide_recipe/intermediate/step4_kl_verification.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-exp028c-step4-kl.md"
+}

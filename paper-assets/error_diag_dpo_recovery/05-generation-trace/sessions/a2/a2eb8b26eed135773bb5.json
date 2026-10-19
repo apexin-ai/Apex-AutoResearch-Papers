@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2eb8b26eed135773bb5",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "code update max length 4096",
+  "task_key": "worker_code_update-max-length-4096_20260513T090746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update-max-length-4096_20260513T090746_result.json",
+    "occurrence": 1,
+    "bytes": 369,
+    "sha256": "5bf71c761a784cb910e89486a2aa6309b896110385d0514b9d03b5670ecc2d21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。三处修改汇总：\n\n| 文件 | 行 | 变更 |\n|------|-----|------|\n| `src/train_dpo.py` | L450 | `default=2048` → `default=4096` |\n| `configs/dpo_etadn.yaml` | | `max_length: 2048` → `max_length: 4096` |\n| `configs/dpo_single_gamma.yaml` | | `max_length: 2048` → `max_length: 4096` |\n\n`--help` 解析正常，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-max-length-4096.md"
+}

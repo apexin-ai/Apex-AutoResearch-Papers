@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a51d1bcfc05e707d20d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops verify exp029 seed2 alive",
+  "task_key": "worker_ops_verify-exp029-seed2-alive_20260518T051452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-exp029-seed2-alive_20260518T051452_result.json",
+    "occurrence": 1,
+    "bytes": 449,
+    "sha256": "67ffc36cadc45ea81b4a2846484fefece969ee1c033d81670250687db9abbceb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程存活，运行正常。**\n\n| 项目 | 状态 |\n|---|---|\n| PID 509 | 存活，已运行 4 分 30 秒，`python train.py --config-name _alfworld_exp029_episode_level_seed2` |\n| tmux session | `exp029_episode_level_seed2` 存在 |\n| GPU 0 | 利用率 100%，显存 37987 MiB（PID 4553 占用） |\n| GPU 1 | 利用率 98%，显存 38857 MiB（PID 4554 占用） |\n\n两张 GPU 满负荷运行，训练正在进行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-exp029-seed2-alive.md"
+}

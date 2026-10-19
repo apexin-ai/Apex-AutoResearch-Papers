@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79e8a4408d43d2e11c70",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research ragen alfworld code",
+  "task_key": "worker_research_ragen-alfworld-code_20260513T191636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ragen-alfworld-code_20260513T191636_result.json",
+    "occurrence": 1,
+    "bytes": 3278,
+    "sha256": "96a585d1e97b582f6f6808aca7b9520a049a9f600bf25e2abd4a02707ee52b1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 调研结果\n\n### 1. RAGEN 官方 ALFWorld Config vs 我们的差异\n\n**RAGEN 没有官方 ALFWorld training config。** 只有环境定义（`envs.yaml` 中的 `Alfworld`/`AlfworldOOD`/`AlfworldSG`），无对应的训练 yaml。所有 `_alfworld_*.yaml` 都是我们写的。\n\n与 base.yaml 默认值对比：\n\n| 参数 | base.yaml 默认 | exp001 | 影响 |\n|------|---------------|--------|------|\n| **model_path** | `Qwen/Qwen2.5-3B-Instruct` | `Qwen3-1.7B` (base) | **致命问题** |\n| train group_size | 16 | 4 | 样本太少 |\n| train env_groups | 8 | 4 | 样本太少 |\n| max_model_len | 3600 | 4096→16384 (已修) | 已修复 |\n| adv_estimator | gae (PPO) | grpo | 不同算法 |\n| max_turn | 5 | 10 | ALFWorld 需要多步 |\n| max_actions_per_turn | 2 | 1 | OK |\n\n### 2. Reward Function 详细说明\n\n**三层结构：**\n\n- **环境层（env.py）**：纯 0/1 sparse reward → `reward = 10.0 * float(won)`。只有任务完成才给 +10，中间无任何 partial reward。\n- **Format penalty（es_manager.py）**：每个 turn 如果 action 解析失败（`_parse_response` 匹配不到 `<think>...</think><answer>...</answer>` 格式），`penalty += -0.1`。10 个 turn 全失败 = -1.0。\n- **最终 reward**：`env_reward + accumulated_penalty`。exp_001 中模型完全不输出正确格式 → 每个 episode reward ≈ 0 + (-1.0) = -1.0。\n\n**为什么 advantage = 0：** GRPO 在 group 内归一化 `(R - mean) / std`。group_size=4，4 个 rollout 都得 -1.0 → std = 0 → advantage = 0 → 无梯度。\n\n### 3. SFT/Warm-start 机制\n\n**不存在。** RAGEN 框架无内置 SFT/warm-start。verl 子模块有 SFT trainer 但 RAGEN 训练流程不使用。整个方案依赖模型零样本能力。\n\n### 4. Instruct vs Base 模型\n\n**RAGEN 所有官方配置使用 Instruct 模型**（`Qwen2.5-3B-Instruct`）。框架假定模型已具备：\n- 遵循 `<think>...</think><answer>...</answer>` 格式\n- 理解 system prompt 中的任务指令\n- 从 admissible actions 列表中选择有效 action\n\n**Qwen3-1.7B 是 base 模型**，不理解 chat 格式，不遵循指令，输出随机文本。\n\n### 5. max_model_len 修复\n\n两个配置文件已修改为 16384：\n- `_alfworld_exp001.yaml`: 4096 → 16384\n- `_alfworld_exp001b.yaml`: 8192 → 16384\n\n### 6. Bootstrap 问题根因分析与修复建议\n\n**根因链路：**\n1. Base 模型不遵循指令 → 不输出 `<think>/<answer>` 格式\n2. `_parse_response` 返回空 actions → format_penalty 累积\n3. 无有效 action 到达环境 → env reward 恒为 0\n4. 每个 episode 总 reward ≈ -1.0，group 内全部相同\n5. GRPO 归一化 std=0 → advantage=0 → 零梯度\n\n**修复方案（优先级排序）：**\n\n1. **P0: 换 Instruct 模型**。下载 `Qwen3-1.7B-Instruct` 或 `Qwen2.5-3B-Instruct`。这是唯一能立即解决零梯度问题的方案。\n2. **P1: 增大 group_size**。从 4 增到 16（匹配 base.yaml 默认值）。更大的 group 增加出现 reward 方差的概率。\n3. **P2: 如果坚持用 base 模型**——需要 SFT warm-start：用少量 `<think>reasoning</think><answer>valid_action</answer>` 样本微调，让模型学会格式。但这偏离了 RAGEN 的设计假设。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ragen-alfworld-code.md"
+}

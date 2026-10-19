@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35849da875815122def2",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "exec step2 classify errors",
+  "task_key": "worker_exec_step2-classify-errors_20260512T145347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_step2-classify-errors_20260512T145347_result.json",
+    "occurrence": 1,
+    "bytes": 1278,
+    "sha256": "bdcab24d4e93ef48756b581d765d42bdad34055c8c0b6957c3c434ad9e11ab55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "88 条分类全部完成，无报错。结果汇总：\n\n## 分类结果\n\n| 错误类型 | 数量 | 占比 | 平均 correction_horizon |\n|----------|------|------|------------------------|\n| **Planning** | 79 | 89.8% | 1.4 |\n| **Action** | 5 | 5.7% | 1.0 |\n| **Verification** | 4 | 4.5% | 1.5 |\n\n## 按 task_type 交叉统计\n\n| Task Type | 总数 | Action | Verification | Planning |\n|-----------|------|--------|-------------|----------|\n| pick_two_obj | 18 | 0 | 0 | 18 |\n| pick_clean_then_place | 20 | 2 | 0 | 18 |\n| pick_heat_then_place | 19 | 0 | 1 | 18 |\n| pick_and_place | 17 | 3 | 3 | 11 |\n| look_at_obj | 7 | 0 | 0 | 7 |\n| pick_cool_then_place | 7 | 0 | 0 | 7 |\n\n## 注意事项\n\n- 总共 88 条（非 89），有 1 条 reward 不是 False 被过滤\n- **P1 Gate FAIL**：horizon(action)=1.0 < horizon(verification)=1.5 但 horizon(planning)=1.4 < horizon(verification)，planning 和 verification 的 horizon 未满足预期大小关系\n- planning 占比极高（89.8%），模型倾向于将大多数错误归为 planning error。可能需要 cross-validation（`--cross_validate`）或调整 prompt 来获得更均衡的分类\n- 输出文件：`/root/autodl-tmp/error_diag_dpo_recovery/data/classified/classified_errors.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-step2-classify-errors.md"
+}

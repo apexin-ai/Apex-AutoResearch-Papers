@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9441982b22966adec657",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor bjb1 eval v2 status",
+  "task_key": "worker_monitor_bjb1_eval_v2_status_20260520T000328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_bjb1_eval_v2_status_20260520T000328_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "7d200c94ef2fb9c8828d291d35afd136f1ddd8ab0514d7bf2ffb5505acc84678"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval v2 状态汇总\n\n**进程**: PID 195853 运行中，启动于 07:42（约21分钟前），**不是**之前报告的18h——这是一次全新重启。\n\n**GPU 状态**:\n| GPU | 显存 | 利用率 | 温度 | 功耗 |\n|-----|------|--------|------|------|\n| cuda:0 | 84,161 / 97,887 MiB (86%) | 41% | 41°C | 145W |\n| cuda:1 | 84,161 / 97,887 MiB (86%) | 95% | 41°C | 176W |\n\n**进度**:\n- 已完成: **464 / 1796** episodes (25.8%)\n- 成功: **167 / 464** (36.0% success rate)\n- Resume 后新增: 25 episodes (从 440 → 464)\n\n**速度与 ETA**:\n- 当前速度: ~1.2 episodes/min (平均 ~50s/episode)\n- 剩余: 1332 episodes\n- 预计剩余: **~18.5 小时** (约明天凌晨 02:30 完成)\n\n**输出文件**: `/root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.jsonl` (68KB, 464行)\n\n**日志文件**: `/tmp/eval_scienceworld_v2_resumed.log`\n\n**注意**: 当前在跑 `inclined-plane-friction-named-surfaces` 系列，很多 episode 跑满100步超时 (FAIL)，拉低速度。后续 task 类型可能更快或更慢。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-bjb1-eval-v2-status.md"
+}

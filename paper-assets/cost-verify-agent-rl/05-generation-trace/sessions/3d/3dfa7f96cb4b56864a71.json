@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dfa7f96cb4b56864a71",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "infra download qwen3 instruct",
+  "task_key": "worker_infra_download_qwen3_instruct_20260513T232446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download_qwen3_instruct_20260513T232446_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "789af621a294726b953f4e61d43b2369a9a68f54ff55e045d538137a2cd4747c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- `Qwen/Qwen3-1.7B-Instruct` 在 HuggingFace 上不存在。Qwen3 系列不区分 base/instruct — `Qwen3-1.7B` 本身就是带对话能力的模型（标签含 \"conversational\"）\n- 已有的 `Qwen3-1.7B` 模型完整可用（3.8GB，2 个 safetensors 分片）\n- 创建了软链接 `/root/cost-verify-agent-rl/models/Qwen3-1.7B-Instruct` → 同一模型\n- exp004 配置 `model_path` 已指向该路径，无需修改\n- 模型加载验证通过：`qwen3, vocab=151936, hidden=2048`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-qwen3-instruct.md"
+}

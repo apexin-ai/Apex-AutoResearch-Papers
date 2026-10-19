@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f61c6a21091124f002f6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose hsweep h10 seed2 retry2",
+  "task_key": "worker_diagnose_hsweep_h10_seed2_retry2_20260524T220142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_hsweep_h10_seed2_retry2_20260524T220142_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "b6c568c793130391fb78e044c3bb89806bc8e3e974575f39df4daba4d62dcfbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**训练正常完成，W&B 服务崩溃导致无在线数据。**\n\n| 项目 | 详情 |\n|------|------|\n| 进程状态 | PID 124827 已退出 |\n| 训练完成度 | 5/5 步全部完成（`total_training_steps=5`） |\n| Checkpoint | `/root/autodl-tmp/checkpoints/hsweep-h10-seed2/global_step_5/` — 完整（model + optimizer + tokenizer） |\n| 训练时长 | ~25,123 秒（~7 小时） |\n| W&B 无数据原因 | W&B AsyncioManager 的 UnixTransport 在训练末尾（05:59:16）关闭，导致 metrics 无法上传 |\n| GPU | cuda:0 已释放（0 MiB） |\n\n**训练 metrics（从 output.log 提取）：**\n- Step 0 val: success=12.5%, pass@1=12.5%\n- Step 1 train: success=7.03%\n- Step 3 train: success=15.63%\n- Step 4 train: success=14.84%\n\n**已完成操作：**\n- Registry → `DONE / success`\n- Cron 监控已清除\n\n**下一步建议：** 如需将 output.log 中的 metrics 同步到 W&B，可用 `wandb sync` 上传本地 `.wandb` 文件：`wandb sync /root/cost-verify-agent-rl/RAGEN/wandb/run-20260524_161721-33j24s39/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-hsweep-h10-seed2-retry2.md"
+}

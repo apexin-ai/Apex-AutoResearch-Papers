@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9afa45d823a87d72a9d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp023 parallel fix",
+  "task_key": "worker_code_exp023-parallel-fix_20260515T035034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp023-parallel-fix_20260515T035034_result.json",
+    "occurrence": 1,
+    "bytes": 1995,
+    "sha256": "bffa1a592ba8d46d253d61346f4894838e21b9fb76f1f8f88d2f1af64f1c4dd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 3 个测试通过 (6.2s)。汇总产出：\n\n---\n\n## 产出汇总\n\n### 1. env.py 修改 (`RAGEN/ragen/env/alfworld/env.py`)\n**改了什么：**\n- 添加 `import threading`\n- 添加 `_RAW_ENV_LOCK = threading.Lock()` 保护 `_RAW_ENV_CACHE`\n- `_get_cached_raw_env()` 内用 `with _RAW_ENV_LOCK:` 包裹缓存读写，消除竞态条件\n- `reset()` 中移除 `np.random.seed(seed)` / `random.seed(seed)` 全局状态修改（不再污染全局随机数）\n- 原文件已备份为 `env.py.bak`\n\n**为什么：** 原实现中多 worker 并发调用 `_get_cached_raw_env()` 时，check-then-write 不是原子操作，可能导致重复创建或部分初始化的 env 被另一线程读取。\n\n### 2. Smoke test 结果：PASS\n- Test 1: 4 线程并发 `__init__`，确认只创建 1 个 `AlfredTWEnv`（缓存命中），每个实例的 `game_files` 是独立副本\n- Test 2: 2 个 env 独立 reset + step\n- Test 3: 交替操作两个 env，验证无状态泄漏\n\n### 3. envs.yaml 修改 (`RAGEN/config/envs.yaml`)\n- 行 378: `AlfworldSG.parallel_friendly: false` → `true`\n- 行 379: `AlfworldSG.max_workers: 1` → `4`\n\n### 4. vLLM 配置修改\n- `_alfworld_exp023_grpo_parallel.yaml` 行 50: `gpu_memory_utilization: 0.4` → `0.6`\n\n### 5. exp023 配置\n- 路径: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp023_grpo_parallel.yaml`\n- 改动: experiment_name → `exp023-alfworld-grpo-parallel`，log/ckpt 目录 → `exp023/`，gpu_memory_utilization → 0.6\n- 其他参数与 exp022 一致（exp021 checkpoint, LR=5e-7, kl_loss_coef=0.5, 30 steps）\n\n### 6. 所有修改的文件\n| 文件 | 操作 |\n|------|------|\n| `RAGEN/ragen/env/alfworld/env.py` | 线程安全修复 |\n| `RAGEN/ragen/env/alfworld/env.py.bak` | 原文件备份 |\n| `RAGEN/config/envs.yaml` | AlfworldSG 并行配置 |\n| `RAGEN/config/_alfworld_exp023_grpo_parallel.yaml` | 新建 exp023 配置 |\n| `tests/test_env_thread_safety.py` | 新建 smoke test |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp023-parallel-fix.md"
+}

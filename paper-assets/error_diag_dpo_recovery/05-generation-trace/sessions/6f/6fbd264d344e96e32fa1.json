@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fbd264d344e96e32fa1",
+  "project": "error_diag_dpo_recovery",
+  "kind": "result",
+  "title": "exec correction feasibility v2",
+  "task_key": "worker_exec_correction-feasibility-v2_20260512T134952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_correction-feasibility-v2_20260512T134952_result.json",
+    "occurrence": 1,
+    "bytes": 194,
+    "sha256": "5854c7282edc9515984724fe5172c9967affdc4ede6b1fb5967b443c21b54ea8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8B correction test 已在 cuda:1 上启动（screen session `corr_8b`），100 episodes (10 tasks × 10 attempts)。预计 75-100 分钟完成。4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-correction-feasibility-v2.md"
+}
