@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "389d50c97a20ab9f0166",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code teal greedy allocation",
+  "task_key": "worker_code_teal-greedy-allocation_20260515T170823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_teal-greedy-allocation_20260515T170823_result.json",
+    "occurrence": 1,
+    "bytes": 1502,
+    "sha256": "81fdf09b765adcef2d012eba67aee4989151e514c3c52f4c5fc9d236c734cbf7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果总结：\n\n## 实现内容\n\n**新文件**: `src/baselines.py` (md5=`8ba03eb8`) — 438 行，包含：\n\n| 函数 | 方法 | 状态 |\n|------|------|------|\n| `teal_greedy_allocation_masks()` | TEAL 论文 Algorithm 1: 逐层重建误差曲线 + 贪心分配 | 完整实现 |\n| `wina_global_masks()` | WINA: score = \\|act\\| × ‖W_col‖₂, 全局 top-K | 完整实现 |\n| `wina_greedy_allocation_masks()` | WINA scoring + TEAL 贪心分配 | 完整实现 |\n| `r_sparse_masks()` | R-Sparse: magnitude channel selection (mask-only) | mask 部分完整 |\n| `r_sparse_svd_cache()` | R-Sparse: 离线 SVD 分解 down_proj | stub，TODO: 集成到推理 forward |\n\n**验证文件**: `src/test_greedy_dryrun.py` (md5=`0631fd03`)\n\n## Dry-run 验证结果 (3 samples, seq_len=512, target=50%)\n\n**TEAL greedy allocation** (4.6s):\n- 全局平均稀疏率: **0.5000** (精确命中目标)\n- 浅层 (0-5): 90% — 误差最小，可大幅剪枝\n- 中层 (15-17): 45-55%\n- 深层 (28-31): 0% — 误差最大，保持 dense\n- **没有任何层达到 100% 剪枝** — 修复了原 vanilla TEAL 的致命问题\n\n**WINA global** (0.2s):\n- 浅层仍被过度剪枝 (Layer 0: 99.7%)，和 vanilla TEAL 类似的问题\n- 说明全局 top-K 方法本身有缺陷，需要 greedy per-layer allocation\n\n**WINA greedy** (4.1s):\n- 分配与 TEAL greedy 几乎一致（误差曲线主导，scoring 差异影响小）\n\nevaluate.py 未修改 (md5 不变)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-teal-greedy-allocation.md"
+}

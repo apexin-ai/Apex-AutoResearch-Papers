@@ -1,0 +1,1246 @@
+{
+  "schema_version": "1.0",
+  "id": "45b7b0f965516149dcce",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "paper mistral dense table fix",
+  "task_key": "worker_paper_mistral-dense-table-fix_20260519T074335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_mistral-dense-table-fix_20260519T074335.log",
+    "occurrence": 1,
+    "bytes": 64249,
+    "sha256": "46a11e184fc5709904f24d07b92422e992718a04aeaeb0e74b2e1c792f2e7d96"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+                "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "ec1df974-377d-4e95-95ba-4de5f8b274e2",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779426000,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.85,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "2688101e-2d0a-40bb-bb54-69c070c8369b",
+                "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the appendix.tex file to find the tab:mistral_downstream table.",
+              "signature": "EoYCClkIDRgCKkB7/7TCLwwa2CxqSjt4CMEbbsfZSQZxR4ZMredeQHoshTrtzOMkHPf88HrHfwyFrQ0Pqf0BEJ/PL2+EjiNwspNDMg9jbGF1ZGUtb3B1cy00LTY4ABIM1i/wrUWNzlnhILy/Ggwmjxtha9dF1Dim26siMNP28JYciSolp5rFG1RK3WmPEBlghKHXJw2YjrxJ6UZveG2dqSPh+HqoTSoEsbTJgSpbgx6ntc1SfhZA+fzuo/1gabz3efBhDFyrRglzpPvVCcFIzqmKnRggOJz5P3Xu1zniNo9ODOwd0BGbTG1xCz1vIdJkXVynOGYSOIb7ZxqrrRj/jyMeyZcbDulArxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "da3d2516-ffa6-430c-b751-4f7986c3a3c2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ENiTMtoRwsk2XoMby17SC2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13998,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13998
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MYb1Ltm9mqCRJ5QNHXtdZx",
+              "name": "Grep",
+              "input": {
+                "pattern": "tab:mistral_downstream",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+                "output_mode": "content",
+                "-n": true,
+                "-C": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "2663542d-5fc3-403d-a559-ef8e514419e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ENiTMtoRwsk2XoMby17SC2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13998,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13998
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T07:43:50.494Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MYb1Ltm9mqCRJ5QNHXtdZx",
+              "type": "tool_result",
+              "content": "361-\\end{table}\n362-\n363-The KL PPL advantage ratio is consistent across architectures (within 8\\% at $\\leq$50\\% sparsity).\n364:Table~\\ref{tab:mistral_downstream} reports downstream task accuracy at 30\\% sparsity on Mistral-7B-v0.3, confirming that KL's downstream advantage generalizes on 5 of 6 tasks;\n365-GSM8K is the sole reversal.\n366-\n367-\\begin{table}[h]\n368-\\centering\n369-\\caption{Mistral-7B-v0.3 downstream evaluation at 30\\% sparsity (seed 42). KL outperforms TEAL on 5 of 6 tasks (largest: ARC-c +9.0pp, HellaSwag +8.8pp); GSM8K is the sole reversal.}\n370:\\label{tab:mistral_downstream}\n371-\\small\n372-\\resizebox{\\columnwidth}{!}{\n373-\\begin{tabular}{lccccccc}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "a72b4990-69a5-4f08-b918-d06fab9dc14f",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "361-\\end{table}\n362-\n363-The KL PPL advantage ratio is consistent across architectures (within 8\\% at $\\leq$50\\% sparsity).\n364:Table~\\ref{tab:mistral_downstream} reports downstream task accuracy at 30\\% sparsity on Mistral-7B-v0.3, confirming that KL's downstream advantage generalizes on 5 of 6 tasks;\n365-GSM8K is the sole reversal.\n366-\n367-\\begin{table}[h]\n368-\\centering\n369-\\caption{Mistral-7B-v0.3 downstream evaluation at 30\\% sparsity (seed 42). KL outperforms TEAL on 5 of 6 tasks (largest: ARC-c +9.0pp, HellaSwag +8.8pp); GSM8K is the sole reversal.}\n370:\\label{tab:mistral_downstream}\n371-\\small\n372-\\resizebox{\\columnwidth}{!}{\n373-\\begin{tabular}{lccccccc}",
+              "numLines": 13
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012t1cAY1wG67noUu38AxLMf",
+              "name": "Grep",
+              "input": {
+                "pattern": "dense.*PPL|PPL.*dense|5\\.52|5\\.06",
+                "-i": true,
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex",
+                "output_mode": "content",
+                "-n": true,
+                "-C": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "dcd77a80-524c-47b1-9c92-f26649a1608f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ENiTMtoRwsk2XoMby17SC2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13998,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13998
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T07:43:51.826Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012t1cAY1wG67noUu38AxLMf",
+              "type": "tool_result",
+              "content": "26-\n27-Table~\\ref{tab:main} presents the primary comparison. Uniform allocation preserves downstream performance best; global allocation is analyzed to understand allocation-quality tradeoffs (\\S\\ref{sec:scaling}).\n28:At 30\\% sparsity, KL distillation with global TEAL allocation achieves PPL 8.96$\\pm$0.02 (3-seed) and reduces TEAL's degradation from dense (10.97 $\\to$ 8.96, an 18\\% improvement). % exp_id: kl30_3seed_global\n29-HellaSwag (86.0\\% retention) and PIQA (92.5\\% retention) confirm moderate degradation on non-reasoning tasks (Appendix~\\ref{app:downstream}). % exp_id: hellaswag_piqa_kl30_uniform\n30-Uniform allocation at 30\\% achieves PPL 8.81$\\pm$0.02 with stable downstream performance (MMLU 40.7$\\pm$1.3\\%, 3-seed), while global top-$k$ exhibits high seed variance (35.7$\\pm$9.5\\%) from late-layer starvation (L31 retention 28.4\\%) interacting with predictor initialization (\\S\\ref{sec:scaling}). % exp_id: bench_kl30_uniform, kl30_s123_uniform, kl30_s456_uniform, kl30_3seed\n--\n178-\\end{figure}\n179-\n180:The regime curve (Figure~\\ref{fig:sparsity_sweep}) is strictly monotonic from PPL 8.17 at 25\\% to 11.80 at 50\\% (global, seed 42), with KL/Dense degradation ranging from $1.34\\times$ to $1.93\\times$.\n181-At matched points, KL improves over TEAL by 18\\% at 30\\% and 49\\% at 50\\%; at 70\\%, where TEAL collapses (PPL 100.11), the advantage reaches 82\\%. % exp_id: regime_kl25_global, regime_kl50_global, kl_70_global_teal\n182-\n--\n230-with PPL 6.77 vs.\\ 8.38; GSM8K is the sole reversal (11.1\\% vs.\\ 15.9\\%,\n231-Table~\\ref{tab:mistral_downstream}); the 50\\% capacity cliff also holds cross-architecture (MMLU 26.4\\%$\\approx$random; Appendix~\\ref{app:cross_arch}). % exp_id: mistral_kl30_downstream, mistral_teal30_downstream, mistral_teal50_downstream\n232:On Qwen-2.5-14B~\\cite{qwen2024qwen25}, KL's PPL advantage generalizes at 30\\% ($1.47\\times$ dense) but MMLU falls to 63.7\\% vs.\\ TEAL's 71.8\\% ($-$8.1pp; Appendix~\\ref{app:14b}); this reversal is absent at 7B on both architectures.\n233-Per-layer mask divergence identifies a structural difference consistent with this reversal: despite similar mean Jaccard ($\\sim$0.40), 14B variance is $2.4\\times$ that of 8B (std 0.076 vs.\\ 0.031), with an early-layer convergence zone (L3--L6, min 0.063 at L4) absent in LLaMA-8B (min 0.353).\n234-This suggests KL's PPL-optimal reallocation redirects resources from early knowledge-encoding layers toward mid-to-late layers, conflicting with factual recall."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "39702196-3468-4373-857d-0ce8e501fd87",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "26-\n27-Table~\\ref{tab:main} presents the primary comparison. Uniform allocation preserves downstream performance best; global allocation is analyzed to understand allocation-quality tradeoffs (\\S\\ref{sec:scaling}).\n28:At 30\\% sparsity, KL distillation with global TEAL allocation achieves PPL 8.96$\\pm$0.02 (3-seed) and reduces TEAL's degradation from dense (10.97 $\\to$ 8.96, an 18\\% improvement). % exp_id: kl30_3seed_global\n29-HellaSwag (86.0\\% retention) and PIQA (92.5\\% retention) confirm moderate degradation on non-reasoning tasks (Appendix~\\ref{app:downstream}). % exp_id: hellaswag_piqa_kl30_uniform\n30-Uniform allocation at 30\\% achieves PPL 8.81$\\pm$0.02 with stable downstream performance (MMLU 40.7$\\pm$1.3\\%, 3-seed), while global top-$k$ exhibits high seed variance (35.7$\\pm$9.5\\%) from late-layer starvation (L31 retention 28.4\\%) interacting with predictor initialization (\\S\\ref{sec:scaling}). % exp_id: bench_kl30_uniform, kl30_s123_uniform, kl30_s456_uniform, kl30_3seed\n--\n178-\\end{figure}\n179-\n180:The regime curve (Figure~\\ref{fig:sparsity_sweep}) is strictly monotonic from PPL 8.17 at 25\\% to 11.80 at 50\\% (global, seed 42), with KL/Dense degradation ranging from $1.34\\times$ to $1.93\\times$.\n181-At matched points, KL improves over TEAL by 18\\% at 30\\% and 49\\% at 50\\%; at 70\\%, where TEAL collapses (PPL 100.11), the advantage reaches 82\\%. % exp_id: regime_kl25_global, regime_kl50_global, kl_70_global_teal\n182-\n--\n230-with PPL 6.77 vs.\\ 8.38; GSM8K is the sole reversal (11.1\\% vs.\\ 15.9\\%,\n231-Table~\\ref{tab:mistral_downstream}); the 50\\% capacity cliff also holds cross-architecture (MMLU 26.4\\%$\\approx$random; Appendix~\\ref{app:cross_arch}). % exp_id: mistral_kl30_downstream, mistral_teal30_downstream, mistral_teal50_downstream\n232:On Qwen-2.5-14B~\\cite{qwen2024qwen25}, KL's PPL advantage generalizes at 30\\% ($1.47\\times$ dense) but MMLU falls to 63.7\\% vs.\\ TEAL's 71.8\\% ($-$8.1pp; Appendix~\\ref{app:14b}); this reversal is absent at 7B on both architectures.\n233-Per-layer mask divergence identifies a structural difference consistent with this reversal: despite similar mean Jaccard ($\\sim$0.40), 14B variance is $2.4\\times$ that of 8B (std 0.076 vs.\\ 0.031), with an early-layer convergence zone (L3--L6, min 0.063 at L4) absent in LLaMA-8B (min 0.353).\n234-This suggests KL's PPL-optimal reallocation redirects resources from early knowledge-encoding layers toward mid-to-late layers, conflicting with factual recall.",
+              "numLines": 17
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y88gnnuDBvgTfxqzaC4VEs",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+                "offset": 367,
+                "limit": 40
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "7ee35a46-8980-4690-a6d5-bcc819220b08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PaPUv37X1zUrQaPRDS2C2p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1634,
+                "cache_read_input_tokens": 25839,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1634
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T07:43:55.422Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y88gnnuDBvgTfxqzaC4VEs",
+              "type": "tool_result",
+              "content": "367\t\\begin{table}[h]\n368\t\\centering\n369\t\\caption{Mistral-7B-v0.3 downstream evaluation at 30\\% sparsity (seed 42). KL outperforms TEAL on 5 of 6 tasks (largest: ARC-c +9.0pp, HellaSwag +8.8pp); GSM8K is the sole reversal.}\n370\t\\label{tab:mistral_downstream}\n371\t\\small\n372\t\\resizebox{\\columnwidth}{!}{\n373\t\\begin{tabular}{lccccccc}\n374\t\\toprule\n375\tMethod & PPL$\\downarrow$ & ARC-c & WG & HS & PIQA & MMLU & GSM8K \\\\\n376\t\\midrule\n377\tDense & 5.06 & 54.4 & 73.2 & 77.9 & 80.1 & 62.5 & 37.8 \\\\\n378\tKL 30\\% & \\textbf{6.77} & \\textbf{50.2} & \\textbf{69.1} & \\textbf{68.9} & \\textbf{75.2} & \\textbf{44.0} & 11.1 \\\\ % exp_id: mistral_kl30_downstream\n379\tTEAL 30\\% & 8.38 & 41.1 & 63.5 & 60.1 & 72.1 & 43.5 & \\textbf{15.9} \\\\ % exp_id: mistral_teal30_downstream\n380\t\\bottomrule\n381\t\\end{tabular}}\n382\t\\end{table}\n383\t\n384\t\n385\t\\section{SPON Orthogonality}\n386\t\\label{app:spon}\n387\t\n388\tSPON~\\cite{xu2026spon} bias correction is weakly correlated with the KL predictor (cosine similarity 0.196, $R^2$=0.038) and yields only 2.4\\% PPL improvement (12.08$\\to$11.79); the predictor already captures most recoverable signal. % exp_id: spon_decomposition, spon_2048_s42, mvp_kl_norm_v2_s42\n389\tThe decomposition confirms that SPON and the KL predictor operate on largely orthogonal error sources.\n390\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "962fcb6e-b7b2-405b-9f24-4c2189203b82",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+                "content": "\\begin{table}[h]\n\\centering\n\\caption{Mistral-7B-v0.3 downstream evaluation at 30\\% sparsity (seed 42). KL outperforms TEAL on 5 of 6 tasks (largest: ARC-c +9.0pp, HellaSwag +8.8pp); GSM8K is the sole reversal.}\n\\label{tab:mistral_downstream}\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccccccc}\n\\toprule\nMethod & PPL$\\downarrow$ & ARC-c & WG & HS & PIQA & MMLU & GSM8K \\\\\n\\midrule\nDense & 5.06 & 54.4 & 73.2 & 77.9 & 80.1 & 62.5 & 37.8 \\\\\nKL 30\\% & \\textbf{6.77} & \\textbf{50.2} & \\textbf{69.1} & \\textbf{68.9} & \\textbf{75.2} & \\textbf{44.0} & 11.1 \\\\ % exp_id: mistral_kl30_downstream\nTEAL 30\\% & 8.38 & 41.1 & 63.5 & 60.1 & 72.1 & 43.5 & \\textbf{15.9} \\\\ % exp_id: mistral_teal30_downstream\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\n\\section{SPON Orthogonality}\n\\label{app:spon}\n\nSPON~\\cite{xu2026spon} bias correction is weakly correlated with the KL predictor (cosine similarity 0.196, $R^2$=0.038) and yields only 2.4\\% PPL improvement (12.08$\\to$11.79); the predictor already captures most recoverable signal. % exp_id: spon_decomposition, spon_2048_s42, mvp_kl_norm_v2_s42\nThe decomposition confirms that SPON and the KL predictor operate on largely orthogonal error sources.\n",
+                "numLines": 24,
+                "startLine": 367,
+                "totalLines": 390
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I can see the Dense row at line 377. The current values are:\n- PPL: 5.06 → should be 5.52\n- ARC-c: 54.4 → should be 60.2\n- WG: 73.2 → should be 78.7\n- HS: 77.9 → should be 83.2\n- PIQA: 80.1 → should be 81.9\n- MMLU: 62.5 → should be 62.4\n- GSM8K: 37.8 → should be 36.5\n\n\nThe caption compares KL against TEAL, not Dense, so the stated margins like ARC-c +9.0pp and HellaSwag +8.8pp should remain accurate even with these Dense updates.\n\nNow I'm searching experiments.tex for the specific dense PPL values mentioned in the task, but the grep results show different numbers—10.97, 6.77, 8.38—none matching the 5.52 or 5.06 I'm looking for around line 344.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "cc3c543d-3b9d-48d5-bc52-e7a2c48bcc06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YF9HouFSGbghA4vXknV77U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 746,
+                "cache_read_input_tokens": 27473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 746
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found the Dense row at line 377. Now let me also check experiments.tex around line 344 for any dense PPL reference."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "6e9d63d8-bed0-4ab1-8805-8d26afef3f84",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YF9HouFSGbghA4vXknV77U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 746,
+                "cache_read_input_tokens": 27473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 746
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GGhrdjtcmapmzfy6JBsfCB",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex",
+                "offset": 220,
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "3826fa8e-a08a-4eb5-9e96-b259676d4579",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YF9HouFSGbghA4vXknV77U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 746,
+                "cache_read_input_tokens": 27473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 746
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T07:44:13.139Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GGhrdjtcmapmzfy6JBsfCB",
+              "type": "tool_result",
+              "content": "220\tGlobal becomes preferable: at 35\\%, MMLU 40.4\\% vs.\\ 37.8\\% (+2.6pp); at 40\\%, MMLU 38.1\\% (Appendix~\\ref{app:alloc_full}). % exp_id: regime_kl35_global, regime_kl35_uniform, regime_kl40_global\n221\t\n222\t\\noindent\\textbf{Capacity-limited ($\\geq$45\\%).}\n223\tGap vanishes for reasoning: at 50\\%, MMLU collapses to near-random under both strategies (28.1 vs.\\ 28.0\\%), though global still helps non-reasoning tasks (HellaSwag +2.29pp; Appendix~\\ref{app:downstream}). Late-layer starvation persists (Figure~\\ref{fig:retention}; Appendix~\\ref{app:retention}). % exp_id: multi_seed_kl50_global, multi_seed_kl50_uniform, hellaswag_piqa_kl50_global, hellaswag_piqa_kl50_uniform\n224\t\n225\t\n226\t\\paragraph{Cross-Architecture and Scale.}\n227\t\\label{sec:cross_arch}\n228\tOn Mistral-7B-v0.3~\\cite{jiang2023mistral}, KL outperforms TEAL on 5 of 6 downstream\n229\ttasks at 30\\% (HellaSwag +8.8pp, ARC +9.0pp, WG +5.6pp, PIQA +3.1pp, MMLU +0.6pp),\n230\twith PPL 6.77 vs.\\ 8.38; GSM8K is the sole reversal (11.1\\% vs.\\ 15.9\\%,\n231\tTable~\\ref{tab:mistral_downstream}); the 50\\% capacity cliff also holds cross-architecture (MMLU 26.4\\%$\\approx$random; Appendix~\\ref{app:cross_arch}). % exp_id: mistral_kl30_downstream, mistral_teal30_downstream, mistral_teal50_downstream\n232\tOn Qwen-2.5-14B~\\cite{qwen2024qwen25}, KL's PPL advantage generalizes at 30\\% ($1.47\\times$ dense) but MMLU falls to 63.7\\% vs.\\ TEAL's 71.8\\% ($-$8.1pp; Appendix~\\ref{app:14b}); this reversal is absent at 7B on both architectures.\n233\tPer-layer mask divergence identifies a structural difference consistent with this reversal: despite similar mean Jaccard ($\\sim$0.40), 14B variance is $2.4\\times$ that of 8B (std 0.076 vs.\\ 0.031), with an early-layer convergence zone (L3--L6, min 0.063 at L4) absent in LLaMA-8B (min 0.353).\n234\tThis suggests KL's PPL-optimal reallocation redirects resources from early knowledge-encoding layers toward mid-to-late layers, conflicting with factual recall.\n235\tVerification requires layer-wise probing beyond our current scope. % exp_id: qwen14b_kl30_s42, qwen14b_teal30_eval, qwen14b_bce30_s42_eval\n236\t\\paragraph{Inference Efficiency.}\n237\t\\label{sec:overhead}\n238\tThe predictor adds 3.17\\,ms (2.7\\% overhead) using 75.96M params (0.9\\% of base), eliminating BCE's 67.2M compensation network; actual speedup requires sparse kernel integration (Appendix~\\ref{app:latency}). % exp_id: latency_profiling\n239\t\n240\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "b03786c8-f00b-4d1e-8c84-2d0f0fb7b66c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex",
+                "content": "Global becomes preferable: at 35\\%, MMLU 40.4\\% vs.\\ 37.8\\% (+2.6pp); at 40\\%, MMLU 38.1\\% (Appendix~\\ref{app:alloc_full}). % exp_id: regime_kl35_global, regime_kl35_uniform, regime_kl40_global\n\n\\noindent\\textbf{Capacity-limited ($\\geq$45\\%).}\nGap vanishes for reasoning: at 50\\%, MMLU collapses to near-random under both strategies (28.1 vs.\\ 28.0\\%), though global still helps non-reasoning tasks (HellaSwag +2.29pp; Appendix~\\ref{app:downstream}). Late-layer starvation persists (Figure~\\ref{fig:retention}; Appendix~\\ref{app:retention}). % exp_id: multi_seed_kl50_global, multi_seed_kl50_uniform, hellaswag_piqa_kl50_global, hellaswag_piqa_kl50_uniform\n\n\n\\paragraph{Cross-Architecture and Scale.}\n\\label{sec:cross_arch}\nOn Mistral-7B-v0.3~\\cite{jiang2023mistral}, KL outperforms TEAL on 5 of 6 downstream\ntasks at 30\\% (HellaSwag +8.8pp, ARC +9.0pp, WG +5.6pp, PIQA +3.1pp, MMLU +0.6pp),\nwith PPL 6.77 vs.\\ 8.38; GSM8K is the sole reversal (11.1\\% vs.\\ 15.9\\%,\nTable~\\ref{tab:mistral_downstream}); the 50\\% capacity cliff also holds cross-architecture (MMLU 26.4\\%$\\approx$random; Appendix~\\ref{app:cross_arch}). % exp_id: mistral_kl30_downstream, mistral_teal30_downstream, mistral_teal50_downstream\nOn Qwen-2.5-14B~\\cite{qwen2024qwen25}, KL's PPL advantage generalizes at 30\\% ($1.47\\times$ dense) but MMLU falls to 63.7\\% vs.\\ TEAL's 71.8\\% ($-$8.1pp; Appendix~\\ref{app:14b}); this reversal is absent at 7B on both architectures.\nPer-layer mask divergence identifies a structural difference consistent with this reversal: despite similar mean Jaccard ($\\sim$0.40), 14B variance is $2.4\\times$ that of 8B (std 0.076 vs.\\ 0.031), with an early-layer convergence zone (L3--L6, min 0.063 at L4) absent in LLaMA-8B (min 0.353).\nThis suggests KL's PPL-optimal reallocation redirects resources from early knowledge-encoding layers toward mid-to-late layers, conflicting with factual recall.\nVerification requires layer-wise probing beyond our current scope. % exp_id: qwen14b_kl30_s42, qwen14b_teal30_eval, qwen14b_bce30_s42_eval\n\\paragraph{Inference Efficiency.}\n\\label{sec:overhead}\nThe predictor adds 3.17\\,ms (2.7\\% overhead) using 75.96M params (0.9\\% of base), eliminating BCE's 67.2M compensation network; actual speedup requires sparse kernel integration (Appendix~\\ref{app:latency}). % exp_id: latency_profiling\n\n",
+                "numLines": 21,
+                "startLine": 220,
+                "totalLines": 240
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018Q7cA5YkEs3kT3GLS64pEn",
+              "name": "Grep",
+              "input": {
+                "pattern": "5\\.06|54\\.4|73\\.2|77\\.9|80\\.1|37\\.8",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "5d3d3bca-dd03-46e7-8fb0-67356ca7501b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YF9HouFSGbghA4vXknV77U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 746,
+                "cache_read_input_tokens": 27473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 746
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T07:44:13.408Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018Q7cA5YkEs3kT3GLS64pEn",
+              "type": "tool_result",
+              "content": "paper/experiments.tex:205:& Uniform & 9.44 & 37.8 \\\\ % exp_id: regime_kl35_uniform\npaper/experiments.tex:220:Global becomes preferable: at 35\\%, MMLU 40.4\\% vs.\\ 37.8\\% (+2.6pp); at 40\\%, MMLU 38.1\\% (Appendix~\\ref{app:alloc_full}). % exp_id: regime_kl35_global, regime_kl35_uniform, regime_kl40_global\npaper/appendix.tex:266:KL (Ours) & \\textbf{7.63} & 54.44 & \\textbf{72.45} & 64.49 & --- \\\\ % exp_id: qwen14b_kl30_uniform\npaper/appendix.tex:296:& Uniform & 9.44 & 38.7 & 66.5 & 37.8 & 4.3 \\\\\npaper/appendix.tex:377:Dense & 5.06 & 54.4 & 73.2 & 77.9 & 80.1 & 62.5 & 37.8 \\\\"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "287154fe-2d8c-4a65-9b9d-a037996b3602",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "paper/experiments.tex:205:& Uniform & 9.44 & 37.8 \\\\ % exp_id: regime_kl35_uniform\npaper/experiments.tex:220:Global becomes preferable: at 35\\%, MMLU 40.4\\% vs.\\ 37.8\\% (+2.6pp); at 40\\%, MMLU 38.1\\% (Appendix~\\ref{app:alloc_full}). % exp_id: regime_kl35_global, regime_kl35_uniform, regime_kl40_global\npaper/appendix.tex:266:KL (Ours) & \\textbf{7.63} & 54.44 & \\textbf{72.45} & 64.49 & --- \\\\ % exp_id: qwen14b_kl30_uniform\npaper/appendix.tex:296:& Uniform & 9.44 & 38.7 & 66.5 & 37.8 & 4.3 \\\\\npaper/appendix.tex:377:Dense & 5.06 & 54.4 & 73.2 & 77.9 & 80.1 & 62.5 & 37.8 \\\\",
+              "numLines": 5
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The grep shows the old Dense values only appear in appendix.tex line 377. The 37.8 in experiments.tex:205 and appendix.tex:296 are for different data (regime_kl35_uniform). The 54.44 in appendix.tex:266 is for qwen14b, not Mistral dense. So the only line I need to change is appendix.tex line 377.\n\nLet me also check if experiments.tex mentions a Mistral dense PPL anywhere.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "9a389ff7-9441-473b-9730-135854346d76",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NTDYq6C9GJh41mobQFmw3b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2167,
+                "cache_read_input_tokens": 28219,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2167
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The old Dense values only appear in appendix.tex line 377. Let me apply the fix."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "7c6e5dcc-2d4d-4513-8367-2c942cf215dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NTDYq6C9GJh41mobQFmw3b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2167,
+                "cache_read_input_tokens": 28219,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2167
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G5D9WnZW5uHj9s3AAWuaUa",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+                "old_string": "Dense & 5.06 & 54.4 & 73.2 & 77.9 & 80.1 & 62.5 & 37.8 \\\\",
+                "new_string": "Dense & 5.52 & 60.2 & 78.7 & 83.2 & 81.9 & 62.4 & 36.5 \\\\ % exp_id: lm_eval_mistral_dense, mistral_dense_hellaswag_piqa"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "17612842-ddae-4940-bdc4-b26cb0805a6b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NTDYq6C9GJh41mobQFmw3b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2167,
+                "cache_read_input_tokens": 28219,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2167
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T07:44:22.527Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G5D9WnZW5uHj9s3AAWuaUa",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "9d16fdbb-e21d-41b7-9ad8-4fb7ff79c3e0",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+              "oldString": "Dense & 5.06 & 54.4 & 73.2 & 77.9 & 80.1 & 62.5 & 37.8 \\\\",
+              "newString": "Dense & 5.52 & 60.2 & 78.7 & 83.2 & 81.9 & 62.4 & 36.5 \\\\ % exp_id: lm_eval_mistral_dense, mistral_dense_hellaswag_piqa",
+              "originalFile": "\\appendix\n\n\\section{Inference Efficiency}\n\\label{app:latency}\n\nTable~\\ref{tab:latency} reports inference throughput on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (96\\,GB; batch size 1, sequence length 2048, fp16, averaged over 100 forward passes).\n\n\\begin{table}[h]\n\\centering\n\\caption{Inference latency on LLaMA-3.1-8B (RTX PRO 6000 Blackwell, batch=1, seq=2048, fp16, 100 forward passes). Overhead is relative to dense inference.}\n\\label{tab:latency}\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\nMethod & Sparsity & ms/fwd & tok/s & Overhead \\\\\n\\midrule\nDense & 0\\% & 119.11$\\pm$0.57 & 17{,}195 & --- \\\\\n\\midrule\nKL predictor-only & 30\\% & 126.64$\\pm$0.70 & 16{,}172 & +6.3\\% \\\\ % exp_id: latency_bench\nKL predictor-only & 50\\% & 126.78$\\pm$0.31 & 16{,}154 & +6.4\\% \\\\ % exp_id: latency_bench\n\\midrule\nPredictor + compensation & 30\\% & 129.94$\\pm$0.75 & 15{,}761 & +9.1\\% \\\\ % exp_id: latency_bench\nPredictor + compensation & 50\\% & 129.71$\\pm$0.53 & 15{,}789 & +8.9\\% \\\\ % exp_id: latency_bench\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe full KL-sparse pipeline adds 6.4\\% overhead to dense inference (126.78 vs.\\ 119.11\\,ms/forward), of which the predictor's 32-layer forward pass contributes 3.17\\,ms (2.7\\%); the remainder arises from mask application and sparse FFN indexing.\nEliminating the compensation network saves an additional $\\sim$2.7\\% latency overhead and 67.2M parameters (the per-layer GEMV required for output rescaling); KL distillation thus provides both quality and efficiency advantages over BCE-based approaches.\nThe overhead is near-identical at 30\\% and 50\\% sparsity because the predictor runs the same computation regardless of target sparsity; only the top-$k$ threshold changes.\n\nNote that the current implementation uses unstructured element-wise masks, which do not translate to wall-clock speedup without sparse kernel support.\nThe pipeline adds $\\sim$6.4\\% overhead; net acceleration requires kernel-level sparse computation optimizations (e.g., Triton block-sparse, cuSPARSE) that are beyond the scope of this work.\nOur contribution is prediction quality and inference simplification (removing the compensation network), not end-to-end latency reduction.\n\n\n\\section{Predictor Bottleneck Sensitivity}\n\\label{app:db_sensitivity}\n\nTable~\\ref{tab:db_sensitivity} reports the effect of predictor bottleneck dimension $d_b$ on PPL at 50\\% sparsity under both TEAL global allocation (the paper's primary inference protocol) and per-token evaluation.\n\n\\begin{table}[h]\n\\centering\n\\caption{Predictor bottleneck sensitivity at 50\\% sparsity (WikiText-2 PPL$\\downarrow$). TEAL global is the primary inference protocol; per-token shown for reference.}\n\\label{tab:db_sensitivity}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n$d_b$ & Params & TEAL global & $\\Delta$ & Per-token \\\\\n\\midrule\n64 & 38.2M (0.48\\%) & 12.076 & +0.9\\% & 10.16 \\\\ % exp_id: db_sensitivity_sweep\n128 & 75.9M (0.95\\%) & 11.963 & --- & 9.218 \\\\ % exp_id: db_sensitivity_sweep\n256 & 151.5M (1.89\\%) & 12.105 & +1.2\\% & 8.586 \\\\ % exp_id: db_sensitivity_sweep\n512 & 302.5M (3.77\\%) & 12.315 & +2.9\\% & 7.93 \\\\ % exp_id: db_sensitivity_sweep\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nUnder TEAL global allocation, increasing $d_b$ beyond 128 provides no benefit (PPL slightly worsens), while per-token evaluation shows monotonic improvement (10.16$\\to$7.93).\nThis divergence indicates that the global top-$k$ allocation mechanism, not predictor capacity, is the binding constraint: additional predictor capacity produces better per-neuron scores, but the global ranking and budget distribution cannot exploit them.\nThe $d_b{=}128$ configuration (75.9M params, $<$1\\% of base model) is therefore optimal for the TEAL inference protocol.\n\n\\subsection{Temperature Schedule Sensitivity}\n\\label{app:tau_sensitivity}\n\n\\begin{table}[h]\n\\centering\n\\caption{Temperature schedule sensitivity at 50\\% sparsity (WikiText-2 PPL$\\downarrow$, TEAL global).}\n\\label{tab:tau_sensitivity}\n\\small\n\\begin{tabular}{lc}\n\\toprule\n$\\tau$ Schedule & PPL$\\downarrow$ \\\\\n\\midrule\nFixed $\\tau{=}0.5$ & \\textbf{11.861} \\\\ % exp_id: tau_schedule_sweep\nLinear $1.0 \\to 0.1$ (default) & 11.963 \\\\ % exp_id: tau_schedule_sweep\nFixed $\\tau{=}0.1$ & 12.072 \\\\ % exp_id: tau_schedule_sweep\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTemperature schedule has minimal impact ($<$1.8\\% PPL variation).\nThe linear annealing default is a conservative choice; even removing annealing entirely (fixed $\\tau{=}0.5$) yields comparable performance.\n\n\\subsection{Training Convergence}\n\\label{app:training_convergence}\n\n\\begin{table}[h]\n\\centering\n\\caption{Training convergence at 50\\% sparsity (WikiText-2 PPL$\\downarrow$, TEAL global).}\n\\label{tab:training_convergence}\n\\small\n\\begin{tabular}{cc}\n\\toprule\nSteps & PPL$\\downarrow$ \\\\\n\\midrule\n200 & 15.158 \\\\ % exp_id: training_steps_sweep\n400 & 12.538 \\\\ % exp_id: training_steps_sweep\n600 & 12.046 \\\\ % exp_id: training_steps_sweep\n800 & 11.907 \\\\ % exp_id: training_steps_sweep\n1000 & \\textbf{11.906} \\\\ % exp_id: training_steps_sweep\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTraining converges rapidly: 95\\% of the quality gap closes by step 600, and performance saturates by step 800 ($\\Delta < 0.001$ between 800 and 1000 steps).\nOur default of 1000 steps provides a conservative margin.\n\n\n\\section{Adaptive Penalty Controller Dynamics}\n\\label{app:lagrangian}\n\nTable~\\ref{tab:lagrangian} reports the convergence of the adaptive penalty controller across sparsity targets.\nThe geometric doubling pattern ($1 \\to 2 \\to 4 \\to 8 \\to \\ldots$) enables $\\lambda$ to reach steady state within $\\sim$10 steps; the deadzone ($\\epsilon = 0.02$) then stabilizes $\\lambda$ once actual sparsity is within $\\pm$2\\% of the target.\n\n\\begin{table}[h]\n\\centering\n\\caption{Penalty controller convergence across sparsity targets (multiplicative schedule, margin $\\epsilon=0.02$, 1000 training steps). Deviation is $|$actual $-$ target$|$ / target.}\n\\label{tab:lagrangian}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nTarget $\\rho$ & $\\lambda_{\\max}$ & Final $\\lambda$ & Actual sparsity & Deviation \\\\\n\\midrule\n30\\% & 5000 & 5000 (cap) & 0.285 & 5.0\\% \\\\ % exp_id: kl_30pct_s42\n40\\% & 5000 & 625 & 0.398 & 0.5\\% \\\\ % exp_id: kl_40pct_s42\n50\\% & 1000 & 8 & 0.504 & 0.8\\% \\\\ % exp_id: kl_50pct_s42\n70\\% & 1000 & 1000 (cap) & 0.688 & 1.7\\% \\\\ % exp_id: kl_70pct_s42\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt 50\\% sparsity, the SwiGLU gate distribution already clusters near the target, so $\\lambda$ remains low (8); the constraint is nearly satisfied by the initial predictor outputs.\nAt 30\\% and 70\\%, the gap between the gate prior and target is larger, driving $\\lambda$ to its respective caps.\nThe 40\\% target converges to $\\lambda = 625$ with only 0.5\\% deviation; this precision reflects a regime where the target is reachable without $\\lambda$ saturation.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{lagrangian_dynamics.pdf}\n\\caption{Adaptive penalty controller convergence across sparsity targets. Upper panel: penalty weight $\\lambda$ (log scale) over training steps. The 30\\% target requires extreme penalty ($\\lambda \\to 5000$) to suppress activations below their natural density, while 50\\% needs only $\\lambda \\approx 8$ since SwiGLU gates already cluster near this sparsity. Lower panel: actual sparsity (solid) converges to the target (dashed) within $\\sim$10 steps via geometric doubling.}\n\\label{fig:lagrangian_dynamics}\n\\end{figure}\n\nTemperature $\\tau$ is annealed linearly from 1.0 to 0.1 over 1000 steps.\nA mild loss increase in the final $\\sim$100 steps is expected: as masks become more binary ($\\tau \\to 0$), discrete rounding noise slightly increases KL divergence, consistent with convergence toward the hard-mask inference regime.\n\nThe controller reliably drives actual sparsity to within 5\\% of the target across all tested regimes, with $\\lambda$ spanning three orders of magnitude (8 to 5000) via geometric doubling.\nFor the 30\\% target, actual sparsity is $\\approx$28.5\\% (5\\% deviation). This does not affect conclusions: TEAL at 28.5\\% actual sparsity yields PPL 10.30 (vs.\\ 10.97 at exact 30\\%), a 0.67 PPL difference negligible relative to the KL vs.\\ TEAL gap (8.96 vs.\\ 10.97).\n\n\n\\section{Out-of-Distribution Evaluation}\n\\label{app:ood}\n\nTo address concerns about data homogeneity between training (WikiText-103) and evaluation (WikiText-2), we evaluate on C4~\\cite{raffel2020c4} validation set under TEAL global allocation.\n\n\\begin{table}[h]\n\\centering\n\\caption{Out-of-distribution evaluation on C4 validation (PPL$\\downarrow$). 30\\% KL reports 2-seed mean$\\pm$std; other entries use seed 42.}\n\\label{tab:ood}\n\\small\n\\begin{tabular}{llc}\n\\toprule\nSparsity & Method & C4 PPL$\\downarrow$ \\\\\n\\midrule\n0\\% & Dense & 9.21 \\\\\n\\midrule\n30\\% & KL predictor (Ours) & \\textbf{16.03$\\pm$0.01} \\\\ % exp_id: c4_ood_kl30_s42, c4_ood_kl30_s123\n\\midrule\n\\multirow{2}{*}{50\\%} & KL predictor (Ours) & \\textbf{18.40} \\\\ % exp_id: eval_c4_ood_kl50\n& TEAL vanilla & 38.75 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt the 30\\% sparsity level, the KL predictor achieves C4 PPL 16.03$\\pm$0.01 (2-seed, $1.74\\times$ dense), confirming OOD generalization.\nAt 50\\%, the KL predictor achieves 52.5\\% relative advantage over TEAL (18.40 vs.\\ 38.75), comparable to the 49\\% advantage on WikiText-2 (11.79 vs.\\ 23.31), confirming that KL-trained predictions generalize across distributions.\n\n\n\\section{Per-Layer Retention Analysis}\n\\label{app:retention}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{per_layer_retention_chart.pdf}\n\\caption{Per-layer neuron retention under global top-$k$ allocation at 30\\%, 50\\%, and 70\\% sparsity. Dashed lines indicate uniform retention baselines. Late layers (L24--31) are consistently starved due to long-tailed activation distributions, with retention dropping to 28.4\\% (L31) even at 30\\% sparsity. At 70\\%, starvation extends to mid-layers (L10--12: 16.7--20.1\\%), explaining the transition to the capacity-limited regime.}\n\\label{fig:retention}\n\\end{figure}\n\n\n\\section{Training Stability}\n\\label{app:stability}\n\nThree-seed evaluation ($s \\in \\{42, 123, 456\\}$) at 50\\% sparsity under uniform allocation yields PPL $11.92 \\pm 0.07$ (CV=0.6\\%); training is stable across random initializations. % exp_id: multi_seed_kl50_uniform\nDownstream metrics are similarly stable: ARC-c $33.8 \\pm 1.2$\\%, WinoGrande $62.9 \\pm 0.1$\\%, MMLU $28.0 \\pm 0.6$\\%, GSM8K $2.2 \\pm 0.1$\\%.\n\nUnder global allocation at 50\\%, MMLU is equally stable: $28.1 \\pm 0.2$\\% (s42=27.89, s123=28.34, s456=27.94); the near-random performance is therefore capacity-limited rather than seed-sensitive ($\\sigma$=0.2pp vs.\\ 9.5pp at 30\\% global). % exp_id: multi_seed_kl50_global\nThe low standard deviation across both allocation strategies indicates that the KL training landscape is well-conditioned for this predictor architecture, with low sensitivity to initialization.\n\n\n\\section{Extended SNR Analysis}\n\\label{app:snr_extended}\n\nWe measure per-layer gradient SNR at 7 checkpoints (steps 0, 50, 100, 150, 200, 250, 300) with 95\\% bootstrap confidence intervals.\nThe SNR trajectory is non-monotonic: KL starts with higher SNR at step 0, but BCE surpasses KL during mid-training (steps 100--250) as its per-neuron classification objective concentrates gradients on the remaining hard neurons. KL's advantage re-emerges in later training and reaches $5.14\\times$ at convergence (step 300: $5.877{\\times}10^{-3}$ vs.\\ $1.144{\\times}10^{-3}$). % exp_id: snr_extended_r6w3\nThis reversal is consistent with KL's gradient coupling becoming effective only after the predictor has learned a coarse mask structure: early training explores broadly (lower SNR), while convergence concentrates signal through the inter-neuron Jacobian pathway (\\S\\ref{sec:method:gradient}).\n\n\n\\section{Extended Downstream Evaluation}\n\\label{app:downstream}\n\nTable~\\ref{tab:downstream} reports HellaSwag and PIQA across sparsity levels and allocation strategies.\n\n\\begin{table}[h]\n\\centering\n\\caption{Extended downstream benchmarks (LLaMA-3.1-8B, seed 42). HellaSwag: 10-shot normalized acc; PIQA: 0-shot normalized acc.}\n\\label{tab:downstream}\n\\small\n\\begin{tabular}{llcc}\n\\toprule\nSparsity & Method & HellaSwag & PIQA \\\\\n\\midrule\n0\\% & Dense & \\textbf{82.35} & \\textbf{80.90} \\\\\n\\midrule\n\\multirow{3}{*}{30\\%}\n& KL uniform & \\textbf{70.85} & \\textbf{74.81} \\\\ % exp_id: hellaswag_piqa_kl30_uniform\n& TEAL vanilla & 66.70 & 73.61 \\\\ % exp_id: downstream_teal30_baseline\n& BCE isocompute & 62.81 & 74.21 \\\\ % exp_id: bce_isocompute_30u_hellaswag_piqa\n\\midrule\n\\multirow{2}{*}{50\\%}\n& KL global & \\textbf{58.95} & \\textbf{69.48} \\\\ % exp_id: hellaswag_piqa_kl50_global\n& KL uniform & 56.66 & 69.10 \\\\ % exp_id: hellaswag_piqa_kl50_uniform\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt 30\\%, the KL predictor retains 86.0\\% of dense HellaSwag accuracy (70.85 vs.\\ 82.35) and 92.5\\% of PIQA (74.81 vs.\\ 80.90), confirming moderate degradation on non-reasoning tasks.\nAt 50\\%, global allocation outperforms uniform on HellaSwag (+2.29pp), consistent with the budget-concentration benefit observed for PPL in the capacity-limited regime (\\S\\ref{sec:scaling}); PIQA shows a smaller gap (+0.38pp).\n\n\n\\section{Compensation Training Convergence}\n\\label{app:comp_convergence}\n\nAll compensation networks~\\cite{gautam2026fastforward} were trained for 1000 steps (lr=$10^{-4}$, batch size 4, seq length 2048). Training loss plateaus by step 700 across all valid runs: 30\\% s42 (final loss 0.70), 30\\% s456 (0.68), 50\\% s42 (1.07), with fluctuations remaining within 0.08 loss units for the final 300 steps. The compensation network converges but provides no quality improvement over the KL predictor alone, confirming that the redundancy result reflects predictor self-sufficiency rather than insufficient compensation training. % exp_id: kl_comp_30_s42, kl_comp_30_s456, kl_comp_50_s42\n\n\n\\section{Qwen-2.5-14B Detailed Results}\n\\label{app:14b}\n\n\\begin{table}[h]\n\\centering\n\\caption{Qwen-2.5-14B at 30\\% sparsity. \\textbf{Bold}: best sparse per column per group. BCE collapses to 6.4\\% native sparsity (\\S\\ref{sec:method:gradient}), so forced global top-$k$ is used.}\n\\label{tab:14b}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n\\midrule\nDense & 5.19 & 67.58 & 81.06 & 79.77 & 87.57 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\emph{Global top-$k$ allocation}} \\\\\nKL (Ours) & \\textbf{7.62} & 57.17 & 72.06 & 63.72 & 48.82 \\\\ % exp_id: qwen14b_kl30_s42\nTEAL & 8.73 & 56.83 & \\textbf{72.69} & \\textbf{71.83} & 49.51 \\\\ % exp_id: qwen14b_teal30_eval\nBCE & 8.76 & \\textbf{57.59} & 72.61 & 71.67 & \\textbf{53.07} \\\\ % exp_id: qwen14b_bce30_s42_eval\n\\midrule\n\\multicolumn{6}{l}{\\emph{Uniform allocation}} \\\\\nKL (Ours) & \\textbf{7.63} & 54.44 & \\textbf{72.45} & 64.49 & --- \\\\ % exp_id: qwen14b_kl30_uniform\nTEAL & 8.01 & \\textbf{55.29} & 69.85 & \\textbf{66.34} & --- \\\\ % exp_id: qwen14b_teal30_uniform\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Full Allocation Analysis}\n\\label{app:alloc_full}\n\nTable~\\ref{tab:phase_full} extends the main-text allocation analysis (Table~\\ref{tab:phase}) with all downstream metrics.\n\n\\begin{table*}[t]\n\\centering\n\\caption{Full allocation analysis: global top-$k$ vs.\\ uniform across sparsity levels (LLaMA-3.1-8B). Entries with $\\pm$: 3-seed mean$\\pm$std ($s \\in \\{42, 123, 456\\}$); others: seed 42. $^\\ast$High MMLU seed variance (individual seeds span 25.3--43.5\\%). 40\\% uniform not evaluated.}\n\\label{tab:phase_full}\n\\begin{tabular}{llccccc}\n\\toprule\nSparsity & Allocation & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n\\midrule\n\\multirow{2}{*}{25\\%}\n& Global & \\textbf{8.17} & 45.4 & 70.6 & \\textbf{46.6} & \\textbf{11.5} \\\\\n& Uniform & 8.23 & \\textbf{46.5} & \\textbf{71.8} & 44.0 & 11.0 \\\\\n\\midrule\n\\multirow{2}{*}{30\\%}\n& Global & 8.96$\\pm$0.02 & \\textbf{43.8$\\pm$3.6} & \\textbf{70.2$\\pm$0.9} & 35.7$\\pm$9.5$^\\ast$ & \\textbf{8.0$\\pm$0.7} \\\\\n& Uniform & \\textbf{8.81$\\pm$0.02} & 43.7$\\pm$2.5 & 68.9$\\pm$0.4 & \\textbf{40.7$\\pm$1.3} & 7.5$\\pm$0.1 \\\\\n\\midrule\n\\multirow{2}{*}{35\\%}\n& Global & \\textbf{9.31} & \\textbf{38.9} & \\textbf{67.6} & \\textbf{40.4} & \\textbf{7.7} \\\\\n& Uniform & 9.44 & 38.7 & 66.5 & 37.8 & 4.3 \\\\\n\\midrule\n40\\% & Global & 10.12 & 41.0 & 65.4 & 38.1 & 5.0 \\\\\n\\midrule\n\\multirow{2}{*}{45\\%}\n& Global & \\textbf{10.80} & \\textbf{39.2} & \\textbf{64.6} & 30.4 & \\textbf{3.0} \\\\\n& Uniform & 10.95 & 37.6 & 63.6 & \\textbf{30.6} & 2.7 \\\\\n\\midrule\n\\multirow{2}{*}{50\\%}\n& Global & \\textbf{11.79} & \\textbf{32.85} & \\textbf{63.46} & \\textbf{28.1$\\pm$0.2} & 1.29 \\\\\n& Uniform & 11.92$\\pm$0.07 & 32.76 & 62.90 & 28.0$\\pm$0.6 & \\textbf{2.12} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\n\\section{Mask Pattern Visualization}\n\\label{app:mask_viz}\n\nFigure~\\ref{fig:mask_heatmap} shows per-layer Jaccard distance between KL-derived and magnitude-based masks at 30\\% and 50\\% sparsity.\nFigure~\\ref{fig:scatter} shows per-neuron importance scores at layer 16.\nFigure~\\ref{fig:mask_comparison} shows binary mask comparisons at layers 2, 16, and 28.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.95\\columnwidth]{neuron_scatter_layer16.pdf}\n\\caption{KL vs.\\ magnitude importance scores for layer 16 neurons at 50\\% sparsity. 41\\% of neurons fall in disagreement quadrants where one method selects a neuron the other discards.}\n\\label{fig:scatter}\n\\end{figure}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{mask_divergence_heatmap.pdf}\n\\caption{Per-layer Jaccard distance between KL-derived and magnitude-based masks at 30\\% and 50\\% sparsity (64 samples, 131K tokens). Divergence peaks in layers 24--28 (Jaccard distance $>$0.73 at 50\\%) and increases with sparsity across all layers.}\n\\label{fig:mask_heatmap}\n\\end{figure*}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{mask_comparison.pdf}\n\\caption{Binary mask comparison between KL-derived and magnitude-based masks at selected layers (L2, L16, L28) for 30\\% and 50\\% sparsity (64 samples). Black = selected by both, light regions = selected by only one method. Deep layers show the largest divergence (L28 Jaccard distance: 0.60 at 30\\%, 0.74 at 50\\%).}\n\\label{fig:mask_comparison}\n\\end{figure*}\n\n\n\\section{Cross-Architecture Comparison}\n\\label{app:cross_arch}\n\nTable~\\ref{tab:cross_arch} evaluates on Mistral-7B-v0.3~\\cite{jiang2023mistral} (GQA + sliding window, dense PPL 5.52).\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-architecture comparison (WikiText-2 PPL$\\downarrow$). Adv = TEAL\\,/\\,KL ratio. LLaMA uses global top-$k$; Mistral uses uniform allocation (matched within each architecture).}\n\\label{tab:cross_arch}\n\\small\n\\begin{tabular}{l@{\\hspace{4pt}}cc@{\\hspace{3pt}}c@{\\hspace{6pt}}|@{\\hspace{6pt}}cc@{\\hspace{3pt}}c}\n\\toprule\n & \\multicolumn{3}{c}{Mistral-7B} & \\multicolumn{3}{c}{LLaMA-8B} \\\\\n & KL & TEAL & Adv & KL & TEAL & Adv \\\\\n\\midrule\n30\\% & \\textbf{6.77} & 8.38 & 1.24$\\times$ & \\textbf{8.96} & 10.97 & 1.22$\\times$ \\\\ % exp_id: kl_30_mistral, teal_30_mistral, kl30_3seed_global\n50\\% & \\textbf{8.65} & 18.31 & 2.12$\\times$ & \\textbf{11.79} & 23.31 & 1.98$\\times$ \\\\ % exp_id: kl_50_mistral, teal_50_mistral\n70\\% & \\textbf{13.33} & 61.72 & 4.63$\\times$ & \\textbf{17.91} & 100.11 & 5.59$\\times$ \\\\ % exp_id: kl_70_mistral, teal_70_mistral\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe KL PPL advantage ratio is consistent across architectures (within 8\\% at $\\leq$50\\% sparsity).\nTable~\\ref{tab:mistral_downstream} reports downstream task accuracy at 30\\% sparsity on Mistral-7B-v0.3, confirming that KL's downstream advantage generalizes on 5 of 6 tasks;\nGSM8K is the sole reversal.\n\n\\begin{table}[h]\n\\centering\n\\caption{Mistral-7B-v0.3 downstream evaluation at 30\\% sparsity (seed 42). KL outperforms TEAL on 5 of 6 tasks (largest: ARC-c +9.0pp, HellaSwag +8.8pp); GSM8K is the sole reversal.}\n\\label{tab:mistral_downstream}\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccccccc}\n\\toprule\nMethod & PPL$\\downarrow$ & ARC-c & WG & HS & PIQA & MMLU & GSM8K \\\\\n\\midrule\nDense & 5.06 & 54.4 & 73.2 & 77.9 & 80.1 & 62.5 & 37.8 \\\\\nKL 30\\% & \\textbf{6.77} & \\textbf{50.2} & \\textbf{69.1} & \\textbf{68.9} & \\textbf{75.2} & \\textbf{44.0} & 11.1 \\\\ % exp_id: mistral_kl30_downstream\nTEAL 30\\% & 8.38 & 41.1 & 63.5 & 60.1 & 72.1 & 43.5 & \\textbf{15.9} \\\\ % exp_id: mistral_teal30_downstream\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\n\\section{SPON Orthogonality}\n\\label{app:spon}\n\nSPON~\\cite{xu2026spon} bias correction is weakly correlated with the KL predictor (cosine similarity 0.196, $R^2$=0.038) and yields only 2.4\\% PPL improvement (12.08$\\to$11.79); the predictor already captures most recoverable signal. % exp_id: spon_decomposition, spon_2048_s42, mvp_kl_norm_v2_s42\nThe decomposition confirms that SPON and the KL predictor operate on largely orthogonal error sources.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 374,
+                  "oldLines": 7,
+                  "newStart": 374,
+                  "newLines": 7,
+                  "lines": [
+                    " \\toprule",
+                    " Method & PPL$\\downarrow$ & ARC-c & WG & HS & PIQA & MMLU & GSM8K \\\\",
+                    " \\midrule",
+                    "-Dense & 5.06 & 54.4 & 73.2 & 77.9 & 80.1 & 62.5 & 37.8 \\\\",
+                    "+Dense & 5.52 & 60.2 & 78.7 & 83.2 & 81.9 & 62.4 & 36.5 \\\\ % exp_id: lm_eval_mistral_dense, mistral_dense_hellaswag_piqa",
+                    " KL 30\\% & \\textbf{6.77} & \\textbf{50.2} & \\textbf{69.1} & \\textbf{68.9} & \\textbf{75.2} & \\textbf{44.0} & 11.1 \\\\ % exp_id: mistral_kl30_downstream",
+                    " TEAL 30\\% & 8.38 & 41.1 & 63.5 & 60.1 & 72.1 & 43.5 & \\textbf{15.9} \\\\ % exp_id: mistral_teal30_downstream",
+                    " \\bottomrule"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the caption. With the updated Dense values, the KL vs TEAL comparison in the caption is still correct (it compares KL to TEAL, not to Dense). But let me verify the numbers make sense, and also check if experiments.tex line 228-231 needs updating since it mentions specific deltas that may be relative to Dense or TEAL."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "9551e65d-7b54-40f1-a0ab-3091e0167718",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JF2R1giamkehruQXsugMPR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 468,
+                "cache_read_input_tokens": 30386,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 468
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R2iaotDqXXXdyq9xTzGaJi",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+                "offset": 367,
+                "limit": 16
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "2c69bfa8-c781-415e-9660-06a9618da817",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JF2R1giamkehruQXsugMPR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 468,
+                "cache_read_input_tokens": 30386,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 468
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T07:44:27.803Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R2iaotDqXXXdyq9xTzGaJi",
+              "type": "tool_result",
+              "content": "367\t\\begin{table}[h]\n368\t\\centering\n369\t\\caption{Mistral-7B-v0.3 downstream evaluation at 30\\% sparsity (seed 42). KL outperforms TEAL on 5 of 6 tasks (largest: ARC-c +9.0pp, HellaSwag +8.8pp); GSM8K is the sole reversal.}\n370\t\\label{tab:mistral_downstream}\n371\t\\small\n372\t\\resizebox{\\columnwidth}{!}{\n373\t\\begin{tabular}{lccccccc}\n374\t\\toprule\n375\tMethod & PPL$\\downarrow$ & ARC-c & WG & HS & PIQA & MMLU & GSM8K \\\\\n376\t\\midrule\n377\tDense & 5.52 & 60.2 & 78.7 & 83.2 & 81.9 & 62.4 & 36.5 \\\\ % exp_id: lm_eval_mistral_dense, mistral_dense_hellaswag_piqa\n378\tKL 30\\% & \\textbf{6.77} & \\textbf{50.2} & \\textbf{69.1} & \\textbf{68.9} & \\textbf{75.2} & \\textbf{44.0} & 11.1 \\\\ % exp_id: mistral_kl30_downstream\n379\tTEAL 30\\% & 8.38 & 41.1 & 63.5 & 60.1 & 72.1 & 43.5 & \\textbf{15.9} \\\\ % exp_id: mistral_teal30_downstream\n380\t\\bottomrule\n381\t\\end{tabular}}\n382\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "08c4ae40-72ad-4062-8630-7b94b4acb5ab",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+                "content": "\\begin{table}[h]\n\\centering\n\\caption{Mistral-7B-v0.3 downstream evaluation at 30\\% sparsity (seed 42). KL outperforms TEAL on 5 of 6 tasks (largest: ARC-c +9.0pp, HellaSwag +8.8pp); GSM8K is the sole reversal.}\n\\label{tab:mistral_downstream}\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccccccc}\n\\toprule\nMethod & PPL$\\downarrow$ & ARC-c & WG & HS & PIQA & MMLU & GSM8K \\\\\n\\midrule\nDense & 5.52 & 60.2 & 78.7 & 83.2 & 81.9 & 62.4 & 36.5 \\\\ % exp_id: lm_eval_mistral_dense, mistral_dense_hellaswag_piqa\nKL 30\\% & \\textbf{6.77} & \\textbf{50.2} & \\textbf{69.1} & \\textbf{68.9} & \\textbf{75.2} & \\textbf{44.0} & 11.1 \\\\ % exp_id: mistral_kl30_downstream\nTEAL 30\\% & 8.38 & 41.1 & 63.5 & 60.1 & 72.1 & 43.5 & \\textbf{15.9} \\\\ % exp_id: mistral_teal30_downstream\n\\bottomrule\n\\end{tabular}}\n\\end{table}",
+                "numLines": 16,
+                "startLine": 367,
+                "totalLines": 390
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Caption is fine (KL vs TEAL deltas: ARC-c 50.2-41.1=+9.1pp≈+9.0pp, HS 68.9-60.1=+8.8pp). Now compile."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "586a1b15-6dc3-42df-9ab7-c936b137470f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P1ctboPbSGLG8HkfPZV6RE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 781,
+                "cache_read_input_tokens": 30854,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 781
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TSy5NmtKHsPeK3quHPkeUy",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper && latexmk -pdf main.tex 2>&1 | tail -20",
+                "description": "Compile LaTeX paper",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "aadffc75-5990-44c1-8e8d-5ebaf04361f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P1ctboPbSGLG8HkfPZV6RE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 781,
+                "cache_read_input_tokens": 30854,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 781
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T07:44:34.115Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TSy5NmtKHsPeK3quHPkeUy",
+              "type": "tool_result",
+              "content": "fonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.\npfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (17 pages, 486908 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "75c15b57-de80-44c0-9dc5-72761a70f3d4",
+            "tool_use_result": {
+              "stdout": "fonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.\npfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (17 pages, 486908 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译 0 errors，17 pages，PDF 生成成功。\n\n`tab:mistral_downstream` 的 Dense 行已替换为实测数据：PPL 5.52, ARC-c 60.2, WG 78.7, HS 83.2, PIQA 81.9, MMLU 62.4, GSM8K 36.5。Caption 无需修改（KL vs TEAL 的 delta 不变）。experiments.tex 中未引用旧的 Dense 绝对值，无需同步修改。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "uuid": "69b43092-d9d6-4ee8-b851-ec424e52ac7c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0117LoqR4eeY1iWciKc1HEUF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 664,
+                "cache_read_input_tokens": 31635,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 664
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译 0 errors，17 pages，PDF 生成成功。\n\n`tab:mistral_downstream` 的 Dense 行已替换为实测数据：PPL 5.52, ARC-c 60.2, WG 78.7, HS 83.2, PIQA 81.9, MMLU 62.4, GSM8K 36.5。Caption 无需修改（KL vs TEAL 的 delta 不变）。experiments.tex 中未引用旧的 Dense 绝对值，无需同步修改。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 53659,
+            "duration_api_ms": 52764,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "a50e0b15-b306-405a-9f5d-4ee0b3195038",
+            "total_cost_usd": 0.280115,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 20458,
+              "cache_read_input_tokens": 186247,
+              "output_tokens": 2294,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20458,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 148,
+                  "cache_read_input_tokens": 31635,
+                  "cache_creation_input_tokens": 664,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 664
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1644,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001734,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 2294,
+                "cacheReadInputTokens": 186247,
+                "cacheCreationInputTokens": 20458,
+                "webSearchRequests": 0,
+                "costUSD": 0.278381,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e3f9b4d1-2b40-470d-aeab-7cb12cac0a50"
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-mistral-dense-table-fix.md"
+}

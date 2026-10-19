@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a5009f208d3900bb1f5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diag c4 kl30 s42 failure",
+  "task_key": "worker_diag_c4_kl30_s42_failure_20260523T010532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_c4_kl30_s42_failure_20260523T010532_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "e1790db8cd5b9b4d73298c291e24b28aff9271fc85b450d6f73ac6d195657919"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论**：训练正常跑到 step 520/1000（loss 收敛、sparsity 达标、step 500 checkpoint 已保存），然后因一个未捕获的 Python 异常退出 (EXIT_CODE=1)。**traceback 丢失**——nohup 启动时没加 `2>&1`，stderr 未写入日志。最可能的崩溃原因是 wandb 异常（该次运行没有生成 wandb 目录，说明 wandb 状态有问题）。\n\n**修复**：\n1. 重新启动时加 `2>&1` 捕获 stderr\n2. `export WANDB_MODE=offline` \n3. 可从 step 500 checkpoint 恢复，不用重跑\n\n报告已写入 `artifacts/diag_c4_kl30_s42.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-c4-kl30-s42-failure.md"
+}

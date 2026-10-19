@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4618ece83315e1370d0a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diag k8 s456 eval check",
+  "task_key": "worker_diag_k8_s456_eval_check_20260523T112548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_k8_s456_eval_check_20260523T112548_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "038b251d92e242757b0c34ee7ab19741abb5141192e812f7d5f3feea7b08fe3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程状态：正常运行，无需重新提交。**\n\n| 项目 | 状态 |\n|------|------|\n| PID 137205 | 存活，运行 2m26s |\n| Python PID 137210 | 115% CPU，2.3GB RAM，正在跑 eval |\n| tmux session | `perlayer_kl_k8_s456_eval` 活跃 |\n| cuda:0 | 100% util, 66099/97887 MiB（跑 k2_s123 + k8_s123） |\n| cuda:1 | 100% util, 48203/97887 MiB（跑 k8_s456） |\n\n**进度**：WikiText-2 已完成（PPL=8.9515），arc_challenge 已完成，当前在跑 MMLU（~34%, 1589/4687 loglikelihood requests）。后续还有 gsm8k、hellaswag、piqa。\n\nDirector 报告 cuda:1 空闲是误判——两张卡都在满载运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-k8-s456-eval-check.md"
+}

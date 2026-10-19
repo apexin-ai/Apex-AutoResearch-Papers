@@ -1,0 +1,49 @@
+{
+  "exp_id": "kl_sparsity45_s42_eval_teal_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:13:25.328Z",
+    "updated_at": "2026-05-18T18:59:13.229Z",
+    "hypothesis": "KL 45% uniform allocation eval completes the dual-column (global + uniform) data for the regime curve.",
+    "parent": "kl_sparsity45_s42",
+    "spec": {
+      "command": "benchmark_eval.py --checkpoint checkpoints/kl_sparsity45_s42/predictor_kl_normalized.pt --sparsity_target 0.45 --allocation uniform",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "42823",
+      "log_path": "~/runs/distill_sparse_swiglu/kl_sparsity45_s42_eval_teal_uniform.log",
+      "submitted_at": "2026-05-18T18:02:00Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_source": "checkpoints/kl_sparsity45_s42/predictor_kl_normalized.pt",
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "data_path": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "data_count": 5,
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 3433.2,
+      "gpu_hours": 0.95
+    },
+    "conclusion": "success",
+    "metrics": {
+      "wikitext2_ppl": 10.9488,
+      "arc_challenge_acc_norm": 0.3763,
+      "winogrande_acc": 0.6361,
+      "mmlu_acc": 0.3063,
+      "gsm8k_exact_match": 0.0273,
+      "actual_sparsity": 0.45,
+      "allocation": "uniform"
+    },
+    "completed_at": "2026-05-18T18:59:13.230Z"
+  },
+  "timestamp": "2026-05-18T18:59:13.560234+00:00",
+  "trigger": "update_registry"
+}

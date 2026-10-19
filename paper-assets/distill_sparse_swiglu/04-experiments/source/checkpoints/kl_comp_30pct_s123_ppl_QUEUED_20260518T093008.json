@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl_comp_30pct_s123_ppl",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:28:39.271Z",
+    "updated_at": "2026-05-18T09:30:07.739Z",
+    "hypothesis": "KL+compensation at 30% sparsity (s123) PPL matches s42 results (~8.98 WikiText2, ~16.04 C4), confirming compensation training stability across seeds.",
+    "parent": "kl_comp_30pct_s123"
+  },
+  "timestamp": "2026-05-18T09:30:08.046471+00:00",
+  "trigger": "update_registry"
+}

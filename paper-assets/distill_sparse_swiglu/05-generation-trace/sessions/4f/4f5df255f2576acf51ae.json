@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f5df255f2576acf51ae",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check k4 downstream progress",
+  "task_key": "worker_check_k4_downstream_progress_20260522T121402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_k4_downstream_progress_20260522T121402_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "826439120f2aec7e2640f133f9bdffeb44e1c271f8644ed367aaa02c683af96e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度汇总：\n\n**PID 51247**, 已运行 41min, cuda:0\n\n**Task 调度方式**（lm-eval-harness 按 num_fewshot 分组）：\n| 组 | Tasks | num_fewshot | 状态 |\n|---|---|---|---|\n| 1 | arc_challenge | 25 | ✅ 完成 |\n| 2 | winogrande, mmlu | 5 | ✅ 完成 |\n| 3 | gsm8k | 8 | ✅ 完成 |\n| 4 | hellaswag | 10 | 🔄 运行中 (1225/40168, 3%, ~18.2 it/s) |\n| 5 | piqa, boolq | — | ⏳ 未开始 |\n\n**Hellaswag ETA**: 剩余 38943 items / 18.2 it/s ≈ **~36 min**\n\n**piqa + boolq** 数据量较小（piqa ~1.8k, boolq ~3.3k），预计 **~10-15 min**。\n\n**整体 ETA**: 约 **45-50 min** 后全部完成。\n\n结果 JSON 目录目前为空（`/root/distill_sparse_swiglu/results/benchmark/perlayer_kl_k4_s42_downstream/`），lm-eval-harness 所有 task group 跑完后才会统一输出 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-k4-downstream-progress.md"
+}

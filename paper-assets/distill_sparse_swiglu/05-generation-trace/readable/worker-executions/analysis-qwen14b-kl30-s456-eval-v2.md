@@ -1,0 +1,1377 @@
+# analysis qwen14b kl30 s456 eval v2
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 27
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_analysis_qwen14b_kl30_s456_eval_v2_20260519T125209.log`
+- **Structured JSON:** [`b4c159a64a290438e2ab.json`](../../sessions/b4/b4c159a64a290438e2ab.json)
+
+## Before a recorded user message
+
+27 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "1e83adaa-5860-4868-a7da-e34e2a882379",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779472800,
+    "rateLimitType": "seven_day",
+    "utilization": 0.78,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "a8742952-4512-4fac-9162-c271ab218b21",
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll read both log files and extract the metrics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "3af3d100-39be-48e7-b35f-35c8238c5293",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01STtQ29iBqVXhb92Svju1hz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13204,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13204
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UimKs7gbW2RnK5nKvVdCfb`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "84f304c2-2ac4-4d62-b101-c5535907debe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01STtQ29iBqVXhb92Svju1hz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13204,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13204
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T12:52:18.579Z_
+
+<details><summary>↩ Tool result · `toolu_01UimKs7gbW2RnK5nKvVdCfb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "747bda33-1bcd-470b-86d7-accdc2e4c40a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read both log files in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "92fa3342-8996-4ad9-bbc9-6aa22333a581",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EXkXmqo5B1bpem1sMLHLJW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 25045,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 930
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011rmLNn5KBzvUukkJ1x6Gsu`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat ~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "d5f3d88f-cb2c-4daf-8eed-0880168e08d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EXkXmqo5B1bpem1sMLHLJW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 25045,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 930
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T8AKUe3USCgqKtRdtzg1pE`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat ~/runs/distill_sparse_swiglu/qwen14b_kl30_s456.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "fe093cc2-2cd0-44b2-861f-c11f2e649c50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EXkXmqo5B1bpem1sMLHLJW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 25045,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 930
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T12:52:24.058Z_
+
+<details><summary>↩ Tool result · `toolu_011rmLNn5KBzvUukkJ1x6Gsu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model: /root/autodl-tmp/models/qwen2.5-14b/\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/579 [00:00<02:08,  4.51it/s]\\rLoading weights:   0%|          | 2/579 [00:00<02:18,  4.16it/s]\\rLoading weights:   2%|▏         | 12/579 [00:00<00:19, 28.78it/s]\\rLoading weights:   4%|▍         | 25/579 [00:00<00:11, 49.78it/s]\\rLoading weights:   7%|▋         | 41/579 [00:00<00:07, 71.23it/s]\\rLoading weights:   9%|▉         | 54/579 [00:01<00:07, 72.71it/s]\\rLoading weights:  14%|█▍        | 80/579 [00:01<00:04, 113.15it/s]\\rLoading weights:  16%|█▌        | 94/579 [00:01<00:04, 99.48it/s] \\rLoading weights:  21%|██        | 120/579 [00:01<00:03, 134.87it/s]\\rLoading weights:  23%|██▎       | 136/579 [00:01<00:03, 132.03it/s]\\rLoading weights:  26%|██▌       | 151/579 [00:01<00:03, 121.19it/s]\\rLoading weights:  29%|██▉       | 168/579 [00:01<00:03, 129.55it/s]\\rLoading weights:  31%|███▏      | 182/579 [00:01<00:03, 131.78it/s]\\rLoading weights:  34%|███▍      | 196/579 [00:02<00:04, 80.62it/s] \\rLoading weights:  41%|████▏     | 240/579 [00:02<00:02, 145.15it/s]\\rLoading weights:  45%|████▌     | 261/579 [00:02<00:02, 137.77it/s]\\rLoading weights:  48%|████▊     | 279/579 [00:02<00:02, 142.28it/s]\\rLoading weights:  51%|█████▏    | 297/579 [00:02<00:02, 132.08it/s]\\rLoading weights:  54%|█████▍    | 313/579 [00:02<00:01, 133.32it/s]\\rLoading weights:  57%|█████▋    | 328/579 [00:03<00:01, 130.09it/s]\\rLoading weights:  59%|█████▉    | 343/579 [00:03<00:01, 121.27it/s]\\rLoading weights:  62%|██████▏   | 357/579 [00:03<00:01, 125.41it/s]\\rLoading weights:  64%|██████▍   | 371/579 [00:03<00:01, 127.60it/s]\\rLoading weights:  66%|██████▋   | 385/579 [00:03<00:01, 130.71it/s]\\rLoading weights:  69%|████���█▉   | 399/579 [00:03<00:01, 126.10it/s]\\rLoading weights:  71%|███████▏  | 413/579 [00:03<00:01, 122.32it/s]\\rLoading weights:  74%|███████▎  | 426/579 [00:03<00:01, 116.32it/s]\\rLoading weights:  76%|███████▋  | 442/579 [00:04<00:01, 124.89it/s]\\rLoading weights:  79%|███████▉  | 456/579 [00:04<00:00, 126.26it/s]\\rLoading weights:  81%|████████  | 470/579 [00:04<00:00, 129.58it/s]\\rLoading weights:  84%|████████▎ | 484/579 [00:04<00:00, 124.80it/s]\\rLoading weights:  86%|████████▌ | 497/579 [00:04<00:00, 111.92it/s]\\rLoading weights:  89%|████████▊ | 513/579 [00:04<00:00, 120.87it/s]\\rLoading weights:  91%|█████████ | 527/579 [00:04<00:00, 125.79it/s]\\rLoading weights:  93%|█████████▎| 540/579 [00:04<00:00, 124.29it/s]\\rLoading weights:  96%|█████████▌| 556/579 [00:04<00:00, 126.26it/s]\\rLoading weights:  98%|█████████▊| 569/579 [00:05<00:00, 118.60it/s]\\rLoading weights: 100%|██████████| 579/579 [00:05<00:00, 113.56it/s]\\nMode: TEAL global mask from predictor (allocation=uniform)\\n  checkpoint: /root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\\nComputing TEAL global masks from predictor ...\\n\\nPer-layer sparsity (TEAL-predictor):\\n  Layer  0: 0.301\\n  Layer  1: 0.000\\n  Layer  2: 0.000\\n  Layer  3: 0.000\\n  Layer  4: 0.000\\n  Layer  5: 0.301\\n  Layer  6: 0.301\\n  Layer  7: 0.301\\n  Layer  8: 0.301\\n  Layer  9: 0.301\\n  Layer 10: 0.301\\n  Layer 11: 0.301\\n  Layer 12: 0.301\\n  Layer 13: 0.301\\n  Layer 14: 0.301\\n  Layer 15: 0.301\\n  Layer 16: 0.301\\n  Layer 17: 0.301\\n  Layer 18: 0.301\\n  Layer 19: 0.301\\n  Layer 20: 0.301\\n  Layer 21: 0.301\\n  Layer 22: 0.301\\n  Layer 23: 0.301\\n  Layer 24: 0.301\\n  Layer 25: 0.301\\n  Layer 26: 0.301\\n  Layer 27: 0.301\\n  Layer 28: 0.301\\n  Layer 29: 0.301\\n  Layer 30: 0.301\\n  Layer 31: 0.301\\n  Layer 32: 0.301\\n  Layer 33: 0.301\\n  Layer 34: 0.301\\n  Layer 35: 0.301\\n  Layer 36: 0.301\\n  Layer 37: 0.301\\n  Layer 38: 0.301\\n  Layer 39: 0.301\\n  Layer 40: 0.301\\n  Layer 41: 0.301\\n  Layer 42: 0.301\\n  Layer 43: 0.301\\n  Layer 44: 0.301\\n  Layer 45: 0.301\\n  Layer 46: 0.301\\n  Layer 47: 0.301\\n  Model-level: 0.275\\n\\n--- WikiText-2 PPL ---\\n  WikiText-2: 145 sequences, seq_len=2048\\n  PPL = 7.6933  (28.7s)\\n\\n--- lm-eval: ['arc_challenge', 'wino\\n\\n... [截断: 输出过长，省略 944950 字符] ...\\n\\n 73%|███████▎  | 2698/3676 [00:18<00:05, 188.82it/s]\\rRunning loglikelihood requests:  74%|███████▍  | 2722/3676 [00:18<00:05, 189.98it/s]\\rRunning loglikelihood requests:  75%|███████▍  | 2746/3676 [00:19<00:04, 190.72it/s]\\rRunning loglikelihood requests:  75%|███████▌  | 2770/3676 [00:19<00:04, 191.38it/s]\\rRunning loglikelihood requests:  76%|███████▌  | 2795/3676 [00:19<00:04, 194.57it/s]\\rRunning loglikelihood requests:  77%|███████▋  | 2819/3676 [00:19<00:04, 194.44it/s]\\rRunning loglikelihood requests:  77%|███████▋  | 2843/3676 [00:19<00:04, 194.49it/s]\\rRunning loglikelihood requests:  78%|███████▊  | 2868/3676 [00:19<00:04, 197.01it/s]\\rRunning loglikelihood requests:  79%|███████▊  | 2893/3676 [00:19<00:03, 198.39it/s]\\rRunning loglikelihood requests:  79%|███████▉  | 2917/3676 [00:19<00:03, 196.81it/s]\\rRunning loglikelihood requests:  80%|████████  | 2941/3676 [00:20<00:03, 187.93it/s]\\rRunning loglikelihood requests:  81%|████████  | 2965/3676 [00:20<00:03, 189.74it/s]\\rRunning loglikelihood requests:  81%|████████▏ | 2989/3676 [00:20<00:03, 191.09it/s]\\rRunning loglikelihood requests:  82%|████████▏ | 3013/3676 [00:20<00:03, 192.05it/s]\\rRunning loglikelihood requests:  83%|████████▎ | 3037/3676 [00:20<00:03, 193.45it/s]\\rRunning loglikelihood requests:  83%|████████▎ | 3061/3676 [00:20<00:03, 195.67it/s]\\rRunning loglikelihood requests:  84%|████████▍ | 3085/3676 [00:20<00:02, 197.18it/s]\\rRunning loglikelihood requests:  85%|████���███▍ | 3109/3676 [00:20<00:02, 198.47it/s]\\rRunning loglikelihood requests:  85%|████████▌ | 3133/3676 [00:21<00:02, 199.65it/s]\\rRunning loglikelihood requests:  86%|████████▌ | 3157/3676 [00:21<00:02, 200.61it/s]\\rRunning loglikelihood requests:  87%|████████▋ | 3181/3676 [00:21<00:02, 201.41it/s]\\rRunning loglikelihood requests:  87%|████████▋ | 3205/3676 [00:21<00:02, 201.97it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 3229/3676 [00:21<00:02, 201.99it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 3253/3676 [00:21<00:02, 201.99it/s]\\rRunning loglikelihood requests:  89%|████████▉ | 3277/3676 [00:21<00:01, 202.25it/s]\\rRunning loglikelihood requests:  90%|████████▉ | 3301/3676 [00:21<00:01, 202.74it/s]\\rRunning loglikelihood requests:  90%|█████████ | 3325/3676 [00:22<00:01, 203.07it/s]\\rRunning loglikelihood requests:  91%|█████████ | 3350/3676 [00:22<00:01, 205.92it/s]\\rRunning loglikelihood requests:  92%|█████████▏| 3374/3676 [00:22<00:01, 205.42it/s]\\rRunning loglikelihood requests:  92%|█████████▏| 3398/3676 [00:22<00:01, 205.54it/s]\\rRunning loglikelihood requests:  93%|█████████▎| 3423/3676 [00:22<00:01, 210.92it/s]\\rRunning loglikelihood requests:  94%|█████████▍| 3447/3676 [00:22<00:01, 212.44it/s]\\rRunning loglikelihood requests:  94%|█████████▍| 3471/3676 [00:22<00:00, 213.87it/s]\\rRunning loglikelihood requests:  95%|█████████▌| 3495/3676 [00:22<00:00, 215.43it/s]\\rRunning loglikelihood requests:  96%|█████████▌| 3519/3676 [00:22<00:00, 216.62it/s]\\rRunning loglikelihood requests:  96%|█████████▋| 3543/3676 [00:23<00:00, 217.48it/s]\\rRunning loglikelihood requests:  97%|█████████▋| 3568/3676 [00:23<00:00, 221.05it/s]\\rRunning loglikelihood requests:  98%|█████████▊| 3592/3676 [00:23<00:00, 220.47it/s]\\rRunning loglikelihood requests:  98%|█████████▊| 3616/3676 [00:23<00:00, 219.88it/s]\\rRunning loglikelihood requests:  99%|█████████▉| 3640/3676 [00:23<00:00, 220.08it/s]\\rRunning loglikelihood requests: 100%|█████████▉| 3664/3676 [00:23<00:00, 221.76it/s]\\rRunning loglikelihood requests: 100%|██████████| 3676/3676 [00:23<00:00, 155.56it/s]\\nfatal: not a git repository (or any of the parent directories): .git\\n  Completed in 5203.8s\\n  arc_challenge: sample_len=1172, acc=0.5051, acc_norm=0.5324\\n  winogrande: sample_len=1267, acc=0.7230\\n  mmlu: sample_len=14042, acc=0.6411\\n  hellaswag: sample_len=10042, acc=0.5197, acc_norm=0.7113\\n  piqa: sample_len=1838, acc=0.7421, acc_norm=0.7552\\n\\nResults saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "cba1530a-c84d-4a3c-81c3-c24155c704d2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/qwen2.5-14b/\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/579 [00:00<02:08,  4.51it/s]\\\\rLoading weights:   0%|          | 2/579 [00:00<02:18,  4.16it/s]\\\\rLoading weights:   2%|▏         | 12/579 [00:00<00:19, 28.78it/s]\\\\rLoading weights:   4%|▍         | 25/579 [00:00<00:11, 49.78it/s]\\\\rLoading weights:   7%|▋         | 41/579 [00:00<00:07, 71.23it/s]\\\\rLoading weights:   9%|▉         | 54/579 [00:01<00:07, 72.71it/s]\\\\rLoading weights:  14%|█▍        | 80/579 [00:01<00:04, 113.15it/s]\\\\rLoading weights:  16%|█▌        | 94/579 [00:01<00:04, 99.48it/s] \\\\rLoading weights:  21%|██        | 120/579 [00:01<00:03, 134.87it/s]\\\\rLoading weights:  23%|██▎       | 136/579 [00:01<00:03, 132.03it/s]\\\\rLoading weights:  26%|██▌       | 151/579 [00:01<00:03, 121.19it/s]\\\\rLoading weights:  29%|██▉       | 168/579 [00:01<00:03, 129.55it/s]\\\\rLoading weights:  31%|███▏      | 182/579 [00:01<00:03, 131.78it/s]\\\\rLoading weights:  34%|███▍      | 196/579 [00:02<00:04, 80.62it/s] \\\\rLoading weights:  41%|████▏     | 240/579 [00:02<00:02, 145.15it/s]\\\\rLoading weights:  45%|████▌     | 261/579 [00:02<00:02, 137.77it/s]\\\\rLoading weights:  48%|████▊     | 279/579 [00:02<00:02, 142.28it/s]\\\\rLoading weights:  51%|█████▏    | 297/579 [00:02<00:02, 132.08it/s]\\\\rLoading weights:  54%|█████▍    | 313/579 [00:02<00:01, 133.32it/s]\\\\rLoading weights:  57%|█████▋    | 328/579 [00:03<00:01, 130.09it/s]\\\\rLoading weights:  59%|█████▉    | 343/579 [00:03<00:01, 121.27it/s]\\\\rLoading weights:  62%|██████▏   | 357/579 [00:03<00:01, 125.41it/s]\\\\rLoading weights:  64%|██████▍   | 371/579 [00:03<00:01, 127.60it/s]\\\\rLoading weights:  66%|██████▋   | 385/579 [00:03<00:01, 130.71it/s]\\\\rLoading weights:  69%|████���█▉   | 399/579 [00:03<00:01, 126.10it/s]\\\\rLoading weights:  71%|███████▏  | 413/579 [00:03<00:01, 122.32it/s]\\\\rLoading weights:  74%|███████▎  | 426/579 [00:03<00:01, 116.32it/s]\\\\rLoading weights:  76%|███████▋  | 442/579 [00:04<00:01, 124.89it/s]\\\\rLoading weights:  79%|███████▉  | 456/579 [00:04<00:00, 126.26it/s]\\\\rLoading weights:  81%|████████  | 470/579 [00:04<00:00, 129.58it/s]\\\\rLoading weights:  84%|████████▎ | 484/579 [00:04<00:00, 124.80it/s]\\\\rLoading weights:  86%|████████▌ | 497/579 [00:04<00:00, 111.92it/s]\\\\rLoading weights:  89%|████████▊ | 513/579 [00:04<00:00, 120.87it/s]\\\\rLoading weights:  91%|█████████ | 527/579 [00:04<00:00, 125.79it/s]\\\\rLoading weights:  93%|█████████▎| 540/579 [00:04<00:00, 124.29it/s]\\\\rLoading weights:  96%|█████████▌| 556/579 [00:04<00:00, 126.26it/s]\\\\rLoading weights:  98%|█████████▊| 569/579 [00:05<00:00, 118.60it/s]\\\\rLoading weights: 100%|██████████| 579/579 [00:05<00:00, 113.56it/s]\\\\nMode: TEAL global mask from predictor (allocation=uniform)\\\\n  checkpoint: /root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\\\\nComputing TEAL global masks from predictor ...\\\\n\\\\nPer-layer sparsity (TEAL-predictor):\\\\n  Layer  0: 0.301\\\\n  Layer  1: 0.000\\\\n  Layer  2: 0.000\\\\n  Layer  3: 0.000\\\\n  Layer  4: 0.000\\\\n  Layer  5: 0.301\\\\n  Layer  6: 0.301\\\\n  Layer  7: 0.301\\\\n  Layer  8: 0.301\\\\n  Layer  9: 0.301\\\\n  Layer 10: 0.301\\\\n  Layer 11: 0.301\\\\n  Layer 12: 0.301\\\\n  Layer 13: 0.301\\\\n  Layer 14: 0.301\\\\n  Layer 15: 0.301\\\\n  Layer 16: 0.301\\\\n  Layer 17: 0.301\\\\n  Layer 18: 0.301\\\\n  Layer 19: 0.301\\\\n  Layer 20: 0.301\\\\n  Layer 21: 0.301\\\\n  Layer 22: 0.301\\\\n  Layer 23: 0.301\\\\n  Layer 24: 0.301\\\\n  Layer 25: 0.301\\\\n  Layer 26: 0.301\\\\n  Layer 27: 0.301\\\\n  Layer 28: 0.301\\\\n  Layer 29: 0.301\\\\n  Layer 30: 0.301\\\\n  Layer 31: 0.301\\\\n  Layer 32: 0.301\\\\n  Layer 33: 0.301\\\\n  Layer 34: 0.301\\\\n  Layer 35: 0.301\\\\n  Layer 36: 0.301\\\\n  Layer 37: 0.301\\\\n  Layer 38: 0.301\\\\n  Layer 39: 0.301\\\\n  Layer 40: 0.301\\\\n  Layer 41: 0.301\\\\n  Layer 42: 0.301\\\\n  Layer 43: 0.301\\\\n  Layer 44: 0.301\\\\n  Layer 45: 0.301\\\\n  Layer 46: 0.301\\\\n  Layer 47: 0.301\\\\n  Model-level: 0.275\\\\n\\\\n--- WikiText-2 PPL ---\\\\n  WikiText-2: 145 sequences, seq_len=2048\\\\n  PPL = 7.6933  (28.7s)\\\\n\\\\n--- lm-eval: ['arc_challenge', 'wino\\\\n\\\\n... [截断: 输出过长，省略 944950 字符] ...\\\\n\\\\n 73%|███████▎  | 2698/3676 [00:18<00:05, 188.82it/s]\\\\rRunning loglikelihood requests:  74%|███████▍  | 2722/3676 [00:18<00:05, 189.98it/s]\\\\rRunning loglikelihood requests:  75%|███████▍  | 2746/3676 [00:19<00:04, 190.72it/s]\\\\rRunning loglikelihood requests:  75%|███████▌  | 2770/3676 [00:19<00:04, 191.38it/s]\\\\rRunning loglikelihood requests:  76%|███████▌  | 2795/3676 [00:19<00:04, 194.57it/s]\\\\rRunning loglikelihood requests:  77%|███████▋  | 2819/3676 [00:19<00:04, 194.44it/s]\\\\rRunning loglikelihood requests:  77%|███████▋  | 2843/3676 [00:19<00:04, 194.49it/s]\\\\rRunning loglikelihood requests:  78%|███████▊  | 2868/3676 [00:19<00:04, 197.01it/s]\\\\rRunning loglikelihood requests:  79%|███████▊  | 2893/3676 [00:19<00:03, 198.39it/s]\\\\rRunning loglikelihood requests:  79%|███████▉  | 2917/3676 [00:19<00:03, 196.81it/s]\\\\rRunning loglikelihood requests:  80%|████████  | 2941/3676 [00:20<00:03, 187.93it/s]\\\\rRunning loglikelihood requests:  81%|████████  | 2965/3676 [00:20<00:03, 189.74it/s]\\\\rRunning loglikelihood requests:  81%|████████▏ | 2989/3676 [00:20<00:03, 191.09it/s]\\\\rRunning loglikelihood requests:  82%|████████▏ | 3013/3676 [00:20<00:03, 192.05it/s]\\\\rRunning loglikelihood requests:  83%|████████▎ | 3037/3676 [00:20<00:03, 193.45it/s]\\\\rRunning loglikelihood requests:  83%|████████▎ | 3061/3676 [00:20<00:03, 195.67it/s]\\\\rRunning loglikelihood requests:  84%|████████▍ | 3085/3676 [00:20<00:02, 197.18it/s]\\\\rRunning loglikelihood requests:  85%|████���███▍ | 3109/3676 [00:20<00:02, 198.47it/s]\\\\rRunning loglikelihood requests:  85%|████████▌ | 3133/3676 [00:21<00:02, 199.65it/s]\\\\rRunning loglikelihood requests:  86%|████████▌ | 3157/3676 [00:21<00:02, 200.61it/s]\\\\rRunning loglikelihood requests:  87%|████████▋ | 3181/3676 [00:21<00:02, 201.41it/s]\\\\rRunning loglikelihood requests:  87%|████████▋ | 3205/3676 [00:21<00:02, 201.97it/s]\\\\rRunning loglikelihood requests:  88%|████████▊ | 3229/3676 [00:21<00:02, 201.99it/s]\\\\rRunning loglikelihood requests:  88%|████████▊ | 3253/3676 [00:21<00:02, 201.99it/s]\\\\rRunning loglikelihood requests:  89%|████████▉ | 3277/3676 [00:21<00:01, 202.25it/s]\\\\rRunning loglikelihood requests:  90%|████████▉ | 3301/3676 [00:21<00:01, 202.74it/s]\\\\rRunning loglikelihood requests:  90%|█████████ | 3325/3676 [00:22<00:01, 203.07it/s]\\\\rRunning loglikelihood requests:  91%|█████████ | 3350/3676 [00:22<00:01, 205.92it/s]\\\\rRunning loglikelihood requests:  92%|█████████▏| 3374/3676 [00:22<00:01, 205.42it/s]\\\\rRunning loglikelihood requests:  92%|█████████▏| 3398/3676 [00:22<00:01, 205.54it/s]\\\\rRunning loglikelihood requests:  93%|█████████▎| 3423/3676 [00:22<00:01, 210.92it/s]\\\\rRunning loglikelihood requests:  94%|█████████▍| 3447/3676 [00:22<00:01, 212.44it/s]\\\\rRunning loglikelihood requests:  94%|█████████▍| 3471/3676 [00:22<00:00, 213.87it/s]\\\\rRunning loglikelihood requests:  95%|█████████▌| 3495/3676 [00:22<00:00, 215.43it/s]\\\\rRunning loglikelihood requests:  96%|█████████▌| 3519/3676 [00:22<00:00, 216.62it/s]\\\\rRunning loglikelihood requests:  96%|█████████▋| 3543/3676 [00:23<00:00, 217.48it/s]\\\\rRunning loglikelihood requests:  97%|█████████▋| 3568/3676 [00:23<00:00, 221.05it/s]\\\\rRunning loglikelihood requests:  98%|█████████▊| 3592/3676 [00:23<00:00, 220.47it/s]\\\\rRunning loglikelihood requests:  98%|█████████▊| 3616/3676 [00:23<00:00, 219.88it/s]\\\\rRunning loglikelihood requests:  99%|█████████▉| 3640/3676 [00:23<00:00, 220.08it/s]\\\\rRunning loglikelihood requests: 100%|█████████▉| 3664/3676 [00:23<00:00, 221.76it/s]\\\\rRunning loglikelihood requests: 100%|██████████| 3676/3676 [00:23<00:00, 155.56it/s]\\\\nfatal: not a git repository (or any of the parent directories): .git\\\\n  Completed in 5203.8s\\\\n  arc_challenge: sample_len=1172, acc=0.5051, acc_norm=0.5324\\\\n  winogrande: sample_len=1267, acc=0.7230\\\\n  mmlu: sample_len=14042, acc=0.6411\\\\n  hellaswag: sample_len=10042, acc=0.5197, acc_norm=0.7113\\\\n  piqa: sample_len=1838, acc=0.7421, acc_norm=0.7552\\\\n\\\\nResults saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading model: /root/autodl-tmp/models/qwen2.5-14b/\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/579 [00:00<02:08,  4.51it/s]\\rLoading weights:   0%|          | 2/579 [00:00<02:18,  4.16it/s]\\rLoading weights:   2%|▏         | 12/579 [00:00<00:19, 28.78it/s]\\rLoading weights:   4%|▍         | 25/579 [00:00<00:11, 49.78it/s]\\rLoading weights:   7%|▋         | 41/579 [00:00<00:07, 71.23it/s]\\rLoading weights:   9%|▉         | 54/579 [00:01<00:07, 72.71it/s]\\rLoading weights:  14%|█▍        | 80/579 [00:01<00:04, 113.15it/s]\\rLoading weights:  16%|█▌        | 94/579 [00:01<00:04, 99.48it/s] \\rLoading weights:  21%|██        | 120/579 [00:01<00:03, 134.87it/s]\\rLoading weights:  23%|██▎       | 136/579 [00:01<00:03, 132.03it/s]\\rLoading weights:  26%|██▌       | 151/579 [00:01<00:03, 121.19it/s]\\rLoading weights:  29%|██▉       | 168/579 [00:01<00:03, 129.55it/s]\\rLoading weights:  31%|███▏      | 182/579 [00:01<00:03, 131.78it/s]\\rLoading weights:  34%|███▍      | 196/579 [00:02<00:04, 80.62it/s] \\rLoading weights:  41%|████▏     | 240/579 [00:02<00:02, 145.15it/s]\\rLoading weights:  45%|████▌     | 261/579 [00:02<00:02, 137.77it/s]\\rLoading weights:  48%|████▊     | 279/579 [00:02<00:02, 142.28it/s]\\rLoading weights:  51%|█████▏    | 297/579 [00:02<00:02, 132.08it/s]\\rLoading weights:  54%|█████▍    | 313/579 [00:02<00:01, 133.32it/s]\\rLoading weights:  57%|█████▋    | 328/579 [00:03<00:01, 130.09it/s]\\rLoading weights:  59%|█████▉    | 343/579 [00:03<00:01, 121.27it/s]\\rLoading weights:  62%|██████▏   | 357/579 [00:03<00:01, 125.41it/s]\\rLoading weights:  64%|██████▍   | 371/579 [00:03<00:01, 127.60it/s]\\rLoading weights:  66%|██████▋   | 385/579 [00:03<00:01, 130.71it/s]\\rLoading weights:  69%|████���█▉   | 399/579 [00:03<00:01, 126.10it/s]\\rLoading weights:  71%|███████▏  | 413/579 [00:03<00:01, 122.32it/s]\\rLoading weights:  74%|███████▎  | 426/579 [00:03<00:01, 116.32it/s]\\rLoading weights:  76%|███████▋  | 442/579 [00:04<00:01, 124.89it/s]\\rLoading weights:  79%|███████▉  | 456/579 [00:04<00:00, 126.26it/s]\\rLoading weights:  81%|████████  | 470/579 [00:04<00:00, 129.58it/s]\\rLoading weights:  84%|████████▎ | 484/579 [00:04<00:00, 124.80it/s]\\rLoading weights:  86%|████████▌ | 497/579 [00:04<00:00, 111.92it/s]\\rLoading weights:  89%|████████▊ | 513/579 [00:04<00:00, 120.87it/s]\\rLoading weights:  91%|█████████ | 527/579 [00:04<00:00, 125.79it/s]\\rLoading weights:  93%|█████████▎| 540/579 [00:04<00:00, 124.29it/s]\\rLoading weights:  96%|█████████▌| 556/579 [00:04<00:00, 126.26it/s]\\rLoading weights:  98%|█████████▊| 569/579 [00:05<00:00, 118.60it/s]\\rLoading weights: 100%|██████████| 579/579 [00:05<00:00, 113.56it/s]\\nMode: TEAL global mask from predictor (allocation=uniform)\\n  checkpoint: /root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\\nComputing TEAL global masks from predictor ...\\n\\nPer-layer sparsity (TEAL-predictor):\\n  Layer  0: 0.301\\n  Layer  1: 0.000\\n  Layer  2: 0.000\\n  Layer  3: 0.000\\n  Layer  4: 0.000\\n  Layer  5: 0.301\\n  Layer  6: 0.301\\n  Layer  7: 0.301\\n  Layer  8: 0.301\\n  Layer  9: 0.301\\n  Layer 10: 0.301\\n  Layer 11: 0.301\\n  Layer 12: 0.301\\n  Layer 13: 0.301\\n  Layer 14: 0.301\\n  Layer 15: 0.301\\n  Layer 16: 0.301\\n  Layer 17: 0.301\\n  Layer 18: 0.301\\n  Layer 19: 0.301\\n  Layer 20: 0.301\\n  Layer 21: 0.301\\n  Layer 22: 0.301\\n  Layer 23: 0.301\\n  Layer 24: 0.301\\n  Layer 25: 0.301\\n  Layer 26: 0.301\\n  Layer 27: 0.301\\n  Layer 28: 0.301\\n  Layer 29: 0.301\\n  Layer 30: 0.301\\n  Layer 31: 0.301\\n  Layer 32: 0.301\\n  Layer 33: 0.301\\n  Layer 34: 0.301\\n  Layer 35: 0.301\\n  Layer 36: 0.301\\n  Layer 37: 0.301\\n  Layer 38: 0.301\\n  Layer 39: 0.301\\n  Layer 40: 0.301\\n  Layer 41: 0.301\\n  Layer 42: 0.301\\n  Layer 43: 0.301\\n  Layer 44: 0.301\\n  Layer 45: 0.301\\n  Layer 46: 0.301\\n  Layer 47: 0.301\\n  Model-level: 0.275\\n\\n--- WikiText-2 PPL ---\\n  WikiText-2: 145 sequences, seq_len=2048\\n  PPL = 7.6933  (28.7s)\\n\\n--- lm-eval: ['arc_challenge', 'wino\\n\\n... [截断: 输出过长，省略 944950 字符] ...\\n\\n 73%|███████▎  | 2698/3676 [00:18<00:05, 188.82it/s]\\rRunning loglikelihood requests:  74%|███████▍  | 2722/3676 [00:18<00:05, 189.98it/s]\\rRunning loglikelihood requests:  75%|███████▍  | 2746/3676 [00:19<00:04, 190.72it/s]\\rRunning loglikelihood requests:  75%|███████▌  | 2770/3676 [00:19<00:04, 191.38it/s]\\rRunning loglikelihood requests:  76%|███████▌  | 2795/3676 [00:19<00:04, 194.57it/s]\\rRunning loglikelihood requests:  77%|███████▋  | 2819/3676 [00:19<00:04, 194.44it/s]\\rRunning loglikelihood requests:  77%|███████▋  | 2843/3676 [00:19<00:04, 194.49it/s]\\rRunning loglikelihood requests:  78%|███████▊  | 2868/3676 [00:19<00:04, 197.01it/s]\\rRunning loglikelihood requests:  79%|███████▊  | 2893/3676 [00:19<00:03, 198.39it/s]\\rRunning loglikelihood requests:  79%|███████▉  | 2917/3676 [00:19<00:03, 196.81it/s]\\rRunning loglikelihood requests:  80%|████████  | 2941/3676 [00:20<00:03, 187.93it/s]\\rRunning loglikelihood requests:  81%|████████  | 2965/3676 [00:20<00:03, 189.74it/s]\\rRunning loglikelihood requests:  81%|████████▏ | 2989/3676 [00:20<00:03, 191.09it/s]\\rRunning loglikelihood requests:  82%|████████▏ | 3013/3676 [00:20<00:03, 192.05it/s]\\rRunning loglikelihood requests:  83%|████████▎ | 3037/3676 [00:20<00:03, 193.45it/s]\\rRunning loglikelihood requests:  83%|████████▎ | 3061/3676 [00:20<00:03, 195.67it/s]\\rRunning loglikelihood requests:  84%|████████▍ | 3085/3676 [00:20<00:02, 197.18it/s]\\rRunning loglikelihood requests:  85%|████���███▍ | 3109/3676 [00:20<00:02, 198.47it/s]\\rRunning loglikelihood requests:  85%|████████▌ | 3133/3676 [00:21<00:02, 199.65it/s]\\rRunning loglikelihood requests:  86%|████████▌ | 3157/3676 [00:21<00:02, 200.61it/s]\\rRunning loglikelihood requests:  87%|████████▋ | 3181/3676 [00:21<00:02, 201.41it/s]\\rRunning loglikelihood requests:  87%|████████▋ | 3205/3676 [00:21<00:02, 201.97it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 3229/3676 [00:21<00:02, 201.99it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 3253/3676 [00:21<00:02, 201.99it/s]\\rRunning loglikelihood requests:  89%|████████▉ | 3277/3676 [00:21<00:01, 202.25it/s]\\rRunning loglikelihood requests:  90%|████████▉ | 3301/3676 [00:21<00:01, 202.74it/s]\\rRunning loglikelihood requests:  90%|█████████ | 3325/3676 [00:22<00:01, 203.07it/s]\\rRunning loglikelihood requests:  91%|█████████ | 3350/3676 [00:22<00:01, 205.92it/s]\\rRunning loglikelihood requests:  92%|█████████▏| 3374/3676 [00:22<00:01, 205.42it/s]\\rRunning loglikelihood requests:  92%|█████████▏| 3398/3676 [00:22<00:01, 205.54it/s]\\rRunning loglikelihood requests:  93%|█████████▎| 3423/3676 [00:22<00:01, 210.92it/s]\\rRunning loglikelihood requests:  94%|█████████▍| 3447/3676 [00:22<00:01, 212.44it/s]\\rRunning loglikelihood requests:  94%|█████████▍| 3471/3676 [00:22<00:00, 213.87it/s]\\rRunning loglikelihood requests:  95%|█████████▌| 3495/3676 [00:22<00:00, 215.43it/s]\\rRunning loglikelihood requests:  96%|█████████▌| 3519/3676 [00:22<00:00, 216.62it/s]\\rRunning loglikelihood requests:  96%|█████████▋| 3543/3676 [00:23<00:00, 217.48it/s]\\rRunning loglikelihood requests:  97%|█████████▋| 3568/3676 [00:23<00:00, 221.05it/s]\\rRunning loglikelihood requests:  98%|█████████▊| 3592/3676 [00:23<00:00, 220.47it/s]\\rRunning loglikelihood requests:  98%|█████████▊| 3616/3676 [00:23<00:00, 219.88it/s]\\rRunning loglikelihood requests:  99%|█████████▉| 3640/3676 [00:23<00:00, 220.08it/s]\\rRunning loglikelihood requests: 100%|█████████▉| 3664/3676 [00:23<00:00, 221.76it/s]\\rRunning loglikelihood requests: 100%|██████████| 3676/3676 [00:23<00:00, 155.56it/s]\\nfatal: not a git repository (or any of the parent directories): .git\\n  Completed in 5203.8s\\n  arc_challenge: sample_len=1172, acc=0.5051, acc_norm=0.5324\\n  winogrande: sample_len=1267, acc=0.7230\\n  mmlu: sample_len=14042, acc=0.6411\\n  hellaswag: sample_len=10042, acc=0.5197, acc_norm=0.7113\\n  piqa: sample_len=1838, acc=0.7421, acc_norm=0.7552\\n\\nResults saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T12:52:24.526Z_
+
+<details><summary>↩ Tool result · `toolu_01T8AKUe3USCgqKtRdtzg1pE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model from /root/autodl-tmp/models/qwen2.5-14b/ ...\\n\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/579 [00:00<01:52,  5.15it/s]\\rLoading weights:   0%|          | 2/579 [00:00<02:12,  4.35it/s]\\rLoading weights:   3%|▎         | 16/579 [00:00<00:14, 39.61it/s]\\rLoading weights:   5%|▌         | 29/579 [00:00<00:08, 62.81it/s]\\rLoading weights:   7%|▋         | 38/579 [00:00<00:07, 68.46it/s]\\rLoading weights:  10%|▉         | 56/579 [00:00<00:06, 81.93it/s]\\rLoading weights:  15%|█▍        | 84/579 [00:01<00:03, 129.18it/s]\\rLoading weights:  17%|█▋        | 99/579 [00:01<00:03, 131.58it/s]\\rLoading weights:  20%|█▉        | 114/579 [00:01<00:03, 125.92it/s]\\rLoading weights:  22%|██▏       | 128/579 [00:01<00:03, 127.97it/s]\\rLoading weights:  26%|██▌       | 148/579 [00:01<00:03, 142.27it/s]\\rLoading weights:  28%|██▊       | 163/579 [00:01<00:03, 110.49it/s]\\rLoading weights:  33%|███▎      | 190/579 [00:01<00:02, 146.21it/s]\\rLoading weights:  36%|███▌      | 208/579 [00:01<00:02, 149.37it/s]\\rLoading weights:  39%|███▉      | 225/579 [00:02<00:02, 142.65it/s]\\rLoading weights:  42%|████▏     | 241/579 [00:02<00:04, 84.25it/s] \\rLoading weights:  51%|█████     | 296/579 [00:02<00:01, 162.12it/s]\\rLoading weights:  55%|█████▌    | 321/579 [00:02<00:01, 160.80it/s]\\rLoading weights:  59%|█████▉    | 343/579 [00:02<00:01, 150.65it/s]\\rLoading weights:  63%|██████▎   | 362/579 [00:03<00:01, 157.61it/s]\\rLoading weights:  66%|██████▌   | 381/579 [00:03<00:01, 142.50it/s]\\rLoading weights:  69%|██████▉   | 400/579 [00:03<00:01, 133.13it/s]\\rLoading weights:  72%|███████▏  | 419/579 [00:03<00:01, 132.11it/s]\\rLoading weights:  75%|███████▍  | 434/579 [00:03<00:01, 132.20it/s]\\rLoading weights:  78%|███████▊  | 454/579 [00:03<00:00, 147.28it/s]\\rLoading weights:  82%|████████▏ | 472/579 [00:03<00:00, 140.55it/s]\\rLoading weights:  84%|████████▍ | 487/579 [00:03<00:00, 140.40it/s]\\rLoading weights:  87%|████████▋ | 502/579 [00:04<00:00, 140.95it/s]\\rLoading weights:  90%|████████▉ | 520/579 [00:04<00:00, 147.24it/s]\\rLoading weights:  93%|█████████▎| 536/579 [00:04<00:00, 138.29it/s]\\rLoading weights:  95%|█████████▌| 551/579 [00:04<00:00, 136.16it/s]\\rLoading weights:  98%|█████████▊| 568/579 [00:04<00:00, 138.48it/s]\\rLoading weights: 100%|██████████| 579/579 [00:04<00:00, 125.34it/s]\\nInitializing predictor wrapper ...\\nUsing Gumbel-sigmoid relaxation\\nSetting up data loader ...\\nTrainable: 117,061,632 / 14,770,033,664 (0.793%)\\nGradient checkpointing enabled\\nKL-normalized Lagrangian: lambda=1.0, target=0.3, margin=0.02, update=every_step, growth=2.0x, decay=0.5x, cap=5000.0\\n[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\n[Step 1/1000] loss=0.625000 kl_raw=0.6172 kl_norm=0.617188 constraint=0.007477 sparsity=0.406 lambda=0.50 tau=0.999 lr=1.00e-05\\n  [Lambda] 1.00 -> 0.50\\n[Step 10/1000] loss=0.523438 kl_raw=0.5234 kl_norm=0.523438 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.991 lr=1.00e-04\\n[Step 20/1000] loss=0.474609 kl_raw=0.4746 kl_norm=0.474609 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.982 lr=2.00e-04\\n[Step 30/1000] loss=0.503906 kl_raw=0.5039 kl_norm=0.503906 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.973 lr=3.00e-04\\n[Step 40/1000] loss=0.367188 kl_raw=0.3672 kl_norm=0.367188 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.964 lr=4.00e-04\\n[Step 50/1000] loss=0.476562 kl_raw=0.4766 kl_norm=0.476562 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.955 lr=5.00e-04\\n[Step 60/1000] loss=0.330078 kl_raw=0.3301 kl_norm=0.330078 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.946 lr=6.00e-04\\n[Step 70/1000] loss=0.279297 kl_raw=0.2793 kl_norm=0.279297 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.937 lr=7.00e-04\\n[Step 80/1000] loss=0.347656 kl_raw=0.3477 kl_norm=0.347656 constraint=0.000062 sparsity=0.398 lambda=0.01 tau=0.928 lr=8.00e-04\\n[Step 90/1000] loss=0.333984 kl_raw=0.3340 kl_norm=0.333984 constraint=0.0\\n\\n... [截断: 输出过长，省略 8220 字符] ...\\n\\n sparsity=0.281 lambda=5000.00 tau=0.361 lr=2.35e-04\\n[Step 720/1000] loss=0.228516 kl_raw=0.2285 kl_norm=0.228516 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.352 lr=2.20e-04\\n[Step 730/1000] loss=0.291016 kl_raw=0.2910 kl_norm=0.291016 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.343 lr=2.06e-04\\n[Step 740/1000] loss=0.156250 kl_raw=0.1562 kl_norm=0.156250 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.334 lr=1.92e-04\\n[Step 750/1000] loss=0.220703 kl_raw=0.1846 kl_norm=0.184570 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.325 lr=1.79e-04\\n[Step 760/1000] loss=0.196289 kl_raw=0.1963 kl_norm=0.196289 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.316 lr=1.65e-04\\n[Step 770/1000] loss=0.306641 kl_raw=0.3066 kl_norm=0.306641 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.307 lr=1.53e-04\\n[Step 780/1000] loss=0.296875 kl_raw=0.2969 kl_norm=0.296875 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.298 lr=1.40e-04\\n[Step 790/1000] loss=0.171875 kl_raw=0.1719 kl_norm=0.171875 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.289 lr=1.28e-04\\n[Step 800/1000] loss=0.202148 kl_raw=0.2021 kl_norm=0.202148 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.280 lr=1.17e-04\\n[Step 810/1000] loss=0.245117 kl_raw=0.2451 kl_norm=0.245117 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.271 lr=1.06e-04\\n[Step 820/1000] loss=0.184570 kl_raw=0.1846 kl_norm=0.184570 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.262 lr=9.55e-05\\n[Step 830/1000] loss=0.182617 kl_raw=0.1826 kl_norm=0.182617 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.253 lr=8.55e-05\\n[Step 840/1000] loss=0.271484 kl_raw=0.2715 kl_norm=0.271484 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.244 lr=7.60e-05\\n[Step 850/1000] loss=0.200195 kl_raw=0.2002 kl_norm=0.200195 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.235 lr=6.70e-05\\n[Step 860/1000] loss=0.197266 kl_raw=0.1973 kl_norm=0.197266 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.226 lr=5.85e-05\\n[Step 870/1000] loss=0.204102 kl_raw=0.2041 kl_norm=0.204102 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.217 lr=5.06e-05\\n[Step 880/1000] loss=0.179688 kl_raw=0.1797 kl_norm=0.179688 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.208 lr=4.32e-05\\n[Step 890/1000] loss=0.192383 kl_raw=0.1924 kl_norm=0.192383 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.199 lr=3.64e-05\\n[Step 900/1000] loss=0.208008 kl_raw=0.2080 kl_norm=0.208008 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.190 lr=3.02e-05\\n[Step 910/1000] loss=0.211914 kl_raw=0.2119 kl_norm=0.211914 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.181 lr=2.45e-05\\n[Step 920/1000] loss=0.178711 kl_raw=0.1787 kl_norm=0.178711 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.172 lr=1.94e-05\\n[Step 930/1000] loss=0.271484 kl_raw=0.2344 kl_norm=0.234375 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.163 lr=1.49e-05\\n[Step 940/1000] loss=0.244141 kl_raw=0.2070 kl_norm=0.207031 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.154 lr=1.09e-05\\n[Step 950/1000] loss=0.196289 kl_raw=0.1963 kl_norm=0.196289 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.145 lr=7.60e-06\\n[Step 960/1000] loss=0.259766 kl_raw=0.2598 kl_norm=0.259766 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.136 lr=4.87e-06\\n[Step 970/1000] loss=0.201172 kl_raw=0.2012 kl_norm=0.201172 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.127 lr=2.74e-06\\n[Step 980/1000] loss=0.433594 kl_raw=0.3965 kl_norm=0.396484 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.118 lr=1.22e-06\\n[Step 990/1000] loss=0.318359 kl_raw=0.2812 kl_norm=0.281250 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.109 lr=3.05e-07\\n[Step 1000/1000] loss=0.308594 kl_raw=0.2715 kl_norm=0.271484 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.100 lr=0.00e+00\\nSaved checkpoint -> checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "cd2f8f4c-4998-424f-9b88-746b79fc4eec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model from /root/autodl-tmp/models/qwen2.5-14b/ ...\\\\n\\\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/579 [00:00<01:52,  5.15it/s]\\\\rLoading weights:   0%|          | 2/579 [00:00<02:12,  4.35it/s]\\\\rLoading weights:   3%|▎         | 16/579 [00:00<00:14, 39.61it/s]\\\\rLoading weights:   5%|▌         | 29/579 [00:00<00:08, 62.81it/s]\\\\rLoading weights:   7%|▋         | 38/579 [00:00<00:07, 68.46it/s]\\\\rLoading weights:  10%|▉         | 56/579 [00:00<00:06, 81.93it/s]\\\\rLoading weights:  15%|█▍        | 84/579 [00:01<00:03, 129.18it/s]\\\\rLoading weights:  17%|█▋        | 99/579 [00:01<00:03, 131.58it/s]\\\\rLoading weights:  20%|█▉        | 114/579 [00:01<00:03, 125.92it/s]\\\\rLoading weights:  22%|██▏       | 128/579 [00:01<00:03, 127.97it/s]\\\\rLoading weights:  26%|██▌       | 148/579 [00:01<00:03, 142.27it/s]\\\\rLoading weights:  28%|██▊       | 163/579 [00:01<00:03, 110.49it/s]\\\\rLoading weights:  33%|███▎      | 190/579 [00:01<00:02, 146.21it/s]\\\\rLoading weights:  36%|███▌      | 208/579 [00:01<00:02, 149.37it/s]\\\\rLoading weights:  39%|███▉      | 225/579 [00:02<00:02, 142.65it/s]\\\\rLoading weights:  42%|████▏     | 241/579 [00:02<00:04, 84.25it/s] \\\\rLoading weights:  51%|█████     | 296/579 [00:02<00:01, 162.12it/s]\\\\rLoading weights:  55%|█████▌    | 321/579 [00:02<00:01, 160.80it/s]\\\\rLoading weights:  59%|█████▉    | 343/579 [00:02<00:01, 150.65it/s]\\\\rLoading weights:  63%|██████▎   | 362/579 [00:03<00:01, 157.61it/s]\\\\rLoading weights:  66%|██████▌   | 381/579 [00:03<00:01, 142.50it/s]\\\\rLoading weights:  69%|██████▉   | 400/579 [00:03<00:01, 133.13it/s]\\\\rLoading weights:  72%|███████▏  | 419/579 [00:03<00:01, 132.11it/s]\\\\rLoading weights:  75%|███████▍  | 434/579 [00:03<00:01, 132.20it/s]\\\\rLoading weights:  78%|███████▊  | 454/579 [00:03<00:00, 147.28it/s]\\\\rLoading weights:  82%|████████▏ | 472/579 [00:03<00:00, 140.55it/s]\\\\rLoading weights:  84%|████████▍ | 487/579 [00:03<00:00, 140.40it/s]\\\\rLoading weights:  87%|████████▋ | 502/579 [00:04<00:00, 140.95it/s]\\\\rLoading weights:  90%|████████▉ | 520/579 [00:04<00:00, 147.24it/s]\\\\rLoading weights:  93%|█████████▎| 536/579 [00:04<00:00, 138.29it/s]\\\\rLoading weights:  95%|█████████▌| 551/579 [00:04<00:00, 136.16it/s]\\\\rLoading weights:  98%|█████████▊| 568/579 [00:04<00:00, 138.48it/s]\\\\rLoading weights: 100%|██████████| 579/579 [00:04<00:00, 125.34it/s]\\\\nInitializing predictor wrapper ...\\\\nUsing Gumbel-sigmoid relaxation\\\\nSetting up data loader ...\\\\nTrainable: 117,061,632 / 14,770,033,664 (0.793%)\\\\nGradient checkpointing enabled\\\\nKL-normalized Lagrangian: lambda=1.0, target=0.3, margin=0.02, update=every_step, growth=2.0x, decay=0.5x, cap=5000.0\\\\n[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n[Step 1/1000] loss=0.625000 kl_raw=0.6172 kl_norm=0.617188 constraint=0.007477 sparsity=0.406 lambda=0.50 tau=0.999 lr=1.00e-05\\\\n  [Lambda] 1.00 -> 0.50\\\\n[Step 10/1000] loss=0.523438 kl_raw=0.5234 kl_norm=0.523438 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.991 lr=1.00e-04\\\\n[Step 20/1000] loss=0.474609 kl_raw=0.4746 kl_norm=0.474609 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.982 lr=2.00e-04\\\\n[Step 30/1000] loss=0.503906 kl_raw=0.5039 kl_norm=0.503906 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.973 lr=3.00e-04\\\\n[Step 40/1000] loss=0.367188 kl_raw=0.3672 kl_norm=0.367188 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.964 lr=4.00e-04\\\\n[Step 50/1000] loss=0.476562 kl_raw=0.4766 kl_norm=0.476562 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.955 lr=5.00e-04\\\\n[Step 60/1000] loss=0.330078 kl_raw=0.3301 kl_norm=0.330078 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.946 lr=6.00e-04\\\\n[Step 70/1000] loss=0.279297 kl_raw=0.2793 kl_norm=0.279297 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.937 lr=7.00e-04\\\\n[Step 80/1000] loss=0.347656 kl_raw=0.3477 kl_norm=0.347656 constraint=0.000062 sparsity=0.398 lambda=0.01 tau=0.928 lr=8.00e-04\\\\n[Step 90/1000] loss=0.333984 kl_raw=0.3340 kl_norm=0.333984 constraint=0.0\\\\n\\\\n... [截断: 输出过长，省略 8220 字符] ...\\\\n\\\\n sparsity=0.281 lambda=5000.00 tau=0.361 lr=2.35e-04\\\\n[Step 720/1000] loss=0.228516 kl_raw=0.2285 kl_norm=0.228516 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.352 lr=2.20e-04\\\\n[Step 730/1000] loss=0.291016 kl_raw=0.2910 kl_norm=0.291016 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.343 lr=2.06e-04\\\\n[Step 740/1000] loss=0.156250 kl_raw=0.1562 kl_norm=0.156250 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.334 lr=1.92e-04\\\\n[Step 750/1000] loss=0.220703 kl_raw=0.1846 kl_norm=0.184570 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.325 lr=1.79e-04\\\\n[Step 760/1000] loss=0.196289 kl_raw=0.1963 kl_norm=0.196289 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.316 lr=1.65e-04\\\\n[Step 770/1000] loss=0.306641 kl_raw=0.3066 kl_norm=0.306641 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.307 lr=1.53e-04\\\\n[Step 780/1000] loss=0.296875 kl_raw=0.2969 kl_norm=0.296875 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.298 lr=1.40e-04\\\\n[Step 790/1000] loss=0.171875 kl_raw=0.1719 kl_norm=0.171875 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.289 lr=1.28e-04\\\\n[Step 800/1000] loss=0.202148 kl_raw=0.2021 kl_norm=0.202148 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.280 lr=1.17e-04\\\\n[Step 810/1000] loss=0.245117 kl_raw=0.2451 kl_norm=0.245117 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.271 lr=1.06e-04\\\\n[Step 820/1000] loss=0.184570 kl_raw=0.1846 kl_norm=0.184570 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.262 lr=9.55e-05\\\\n[Step 830/1000] loss=0.182617 kl_raw=0.1826 kl_norm=0.182617 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.253 lr=8.55e-05\\\\n[Step 840/1000] loss=0.271484 kl_raw=0.2715 kl_norm=0.271484 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.244 lr=7.60e-05\\\\n[Step 850/1000] loss=0.200195 kl_raw=0.2002 kl_norm=0.200195 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.235 lr=6.70e-05\\\\n[Step 860/1000] loss=0.197266 kl_raw=0.1973 kl_norm=0.197266 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.226 lr=5.85e-05\\\\n[Step 870/1000] loss=0.204102 kl_raw=0.2041 kl_norm=0.204102 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.217 lr=5.06e-05\\\\n[Step 880/1000] loss=0.179688 kl_raw=0.1797 kl_norm=0.179688 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.208 lr=4.32e-05\\\\n[Step 890/1000] loss=0.192383 kl_raw=0.1924 kl_norm=0.192383 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.199 lr=3.64e-05\\\\n[Step 900/1000] loss=0.208008 kl_raw=0.2080 kl_norm=0.208008 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.190 lr=3.02e-05\\\\n[Step 910/1000] loss=0.211914 kl_raw=0.2119 kl_norm=0.211914 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.181 lr=2.45e-05\\\\n[Step 920/1000] loss=0.178711 kl_raw=0.1787 kl_norm=0.178711 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.172 lr=1.94e-05\\\\n[Step 930/1000] loss=0.271484 kl_raw=0.2344 kl_norm=0.234375 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.163 lr=1.49e-05\\\\n[Step 940/1000] loss=0.244141 kl_raw=0.2070 kl_norm=0.207031 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.154 lr=1.09e-05\\\\n[Step 950/1000] loss=0.196289 kl_raw=0.1963 kl_norm=0.196289 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.145 lr=7.60e-06\\\\n[Step 960/1000] loss=0.259766 kl_raw=0.2598 kl_norm=0.259766 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.136 lr=4.87e-06\\\\n[Step 970/1000] loss=0.201172 kl_raw=0.2012 kl_norm=0.201172 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.127 lr=2.74e-06\\\\n[Step 980/1000] loss=0.433594 kl_raw=0.3965 kl_norm=0.396484 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.118 lr=1.22e-06\\\\n[Step 990/1000] loss=0.318359 kl_raw=0.2812 kl_norm=0.281250 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.109 lr=3.05e-07\\\\n[Step 1000/1000] loss=0.308594 kl_raw=0.2715 kl_norm=0.271484 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.100 lr=0.00e+00\\\\nSaved checkpoint -> checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading model from /root/autodl-tmp/models/qwen2.5-14b/ ...\\n\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/579 [00:00<01:52,  5.15it/s]\\rLoading weights:   0%|          | 2/579 [00:00<02:12,  4.35it/s]\\rLoading weights:   3%|▎         | 16/579 [00:00<00:14, 39.61it/s]\\rLoading weights:   5%|▌         | 29/579 [00:00<00:08, 62.81it/s]\\rLoading weights:   7%|▋         | 38/579 [00:00<00:07, 68.46it/s]\\rLoading weights:  10%|▉         | 56/579 [00:00<00:06, 81.93it/s]\\rLoading weights:  15%|█▍        | 84/579 [00:01<00:03, 129.18it/s]\\rLoading weights:  17%|█▋        | 99/579 [00:01<00:03, 131.58it/s]\\rLoading weights:  20%|█▉        | 114/579 [00:01<00:03, 125.92it/s]\\rLoading weights:  22%|██▏       | 128/579 [00:01<00:03, 127.97it/s]\\rLoading weights:  26%|██▌       | 148/579 [00:01<00:03, 142.27it/s]\\rLoading weights:  28%|██▊       | 163/579 [00:01<00:03, 110.49it/s]\\rLoading weights:  33%|███▎      | 190/579 [00:01<00:02, 146.21it/s]\\rLoading weights:  36%|███▌      | 208/579 [00:01<00:02, 149.37it/s]\\rLoading weights:  39%|███▉      | 225/579 [00:02<00:02, 142.65it/s]\\rLoading weights:  42%|████▏     | 241/579 [00:02<00:04, 84.25it/s] \\rLoading weights:  51%|█████     | 296/579 [00:02<00:01, 162.12it/s]\\rLoading weights:  55%|█████▌    | 321/579 [00:02<00:01, 160.80it/s]\\rLoading weights:  59%|█████▉    | 343/579 [00:02<00:01, 150.65it/s]\\rLoading weights:  63%|██████▎   | 362/579 [00:03<00:01, 157.61it/s]\\rLoading weights:  66%|██████▌   | 381/579 [00:03<00:01, 142.50it/s]\\rLoading weights:  69%|██████▉   | 400/579 [00:03<00:01, 133.13it/s]\\rLoading weights:  72%|███████▏  | 419/579 [00:03<00:01, 132.11it/s]\\rLoading weights:  75%|███████▍  | 434/579 [00:03<00:01, 132.20it/s]\\rLoading weights:  78%|███████▊  | 454/579 [00:03<00:00, 147.28it/s]\\rLoading weights:  82%|████████▏ | 472/579 [00:03<00:00, 140.55it/s]\\rLoading weights:  84%|████████▍ | 487/579 [00:03<00:00, 140.40it/s]\\rLoading weights:  87%|████████▋ | 502/579 [00:04<00:00, 140.95it/s]\\rLoading weights:  90%|████████▉ | 520/579 [00:04<00:00, 147.24it/s]\\rLoading weights:  93%|█████████▎| 536/579 [00:04<00:00, 138.29it/s]\\rLoading weights:  95%|█████████▌| 551/579 [00:04<00:00, 136.16it/s]\\rLoading weights:  98%|█████████▊| 568/579 [00:04<00:00, 138.48it/s]\\rLoading weights: 100%|██████████| 579/579 [00:04<00:00, 125.34it/s]\\nInitializing predictor wrapper ...\\nUsing Gumbel-sigmoid relaxation\\nSetting up data loader ...\\nTrainable: 117,061,632 / 14,770,033,664 (0.793%)\\nGradient checkpointing enabled\\nKL-normalized Lagrangian: lambda=1.0, target=0.3, margin=0.02, update=every_step, growth=2.0x, decay=0.5x, cap=5000.0\\n[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\n[Step 1/1000] loss=0.625000 kl_raw=0.6172 kl_norm=0.617188 constraint=0.007477 sparsity=0.406 lambda=0.50 tau=0.999 lr=1.00e-05\\n  [Lambda] 1.00 -> 0.50\\n[Step 10/1000] loss=0.523438 kl_raw=0.5234 kl_norm=0.523438 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.991 lr=1.00e-04\\n[Step 20/1000] loss=0.474609 kl_raw=0.4746 kl_norm=0.474609 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.982 lr=2.00e-04\\n[Step 30/1000] loss=0.503906 kl_raw=0.5039 kl_norm=0.503906 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.973 lr=3.00e-04\\n[Step 40/1000] loss=0.367188 kl_raw=0.3672 kl_norm=0.367188 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.964 lr=4.00e-04\\n[Step 50/1000] loss=0.476562 kl_raw=0.4766 kl_norm=0.476562 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.955 lr=5.00e-04\\n[Step 60/1000] loss=0.330078 kl_raw=0.3301 kl_norm=0.330078 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.946 lr=6.00e-04\\n[Step 70/1000] loss=0.279297 kl_raw=0.2793 kl_norm=0.279297 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.937 lr=7.00e-04\\n[Step 80/1000] loss=0.347656 kl_raw=0.3477 kl_norm=0.347656 constraint=0.000062 sparsity=0.398 lambda=0.01 tau=0.928 lr=8.00e-04\\n[Step 90/1000] loss=0.333984 kl_raw=0.3340 kl_norm=0.333984 constraint=0.0\\n\\n... [截断: 输出过长，省略 8220 字符] ...\\n\\n sparsity=0.281 lambda=5000.00 tau=0.361 lr=2.35e-04\\n[Step 720/1000] loss=0.228516 kl_raw=0.2285 kl_norm=0.228516 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.352 lr=2.20e-04\\n[Step 730/1000] loss=0.291016 kl_raw=0.2910 kl_norm=0.291016 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.343 lr=2.06e-04\\n[Step 740/1000] loss=0.156250 kl_raw=0.1562 kl_norm=0.156250 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.334 lr=1.92e-04\\n[Step 750/1000] loss=0.220703 kl_raw=0.1846 kl_norm=0.184570 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.325 lr=1.79e-04\\n[Step 760/1000] loss=0.196289 kl_raw=0.1963 kl_norm=0.196289 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.316 lr=1.65e-04\\n[Step 770/1000] loss=0.306641 kl_raw=0.3066 kl_norm=0.306641 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.307 lr=1.53e-04\\n[Step 780/1000] loss=0.296875 kl_raw=0.2969 kl_norm=0.296875 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.298 lr=1.40e-04\\n[Step 790/1000] loss=0.171875 kl_raw=0.1719 kl_norm=0.171875 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.289 lr=1.28e-04\\n[Step 800/1000] loss=0.202148 kl_raw=0.2021 kl_norm=0.202148 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.280 lr=1.17e-04\\n[Step 810/1000] loss=0.245117 kl_raw=0.2451 kl_norm=0.245117 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.271 lr=1.06e-04\\n[Step 820/1000] loss=0.184570 kl_raw=0.1846 kl_norm=0.184570 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.262 lr=9.55e-05\\n[Step 830/1000] loss=0.182617 kl_raw=0.1826 kl_norm=0.182617 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.253 lr=8.55e-05\\n[Step 840/1000] loss=0.271484 kl_raw=0.2715 kl_norm=0.271484 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.244 lr=7.60e-05\\n[Step 850/1000] loss=0.200195 kl_raw=0.2002 kl_norm=0.200195 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.235 lr=6.70e-05\\n[Step 860/1000] loss=0.197266 kl_raw=0.1973 kl_norm=0.197266 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.226 lr=5.85e-05\\n[Step 870/1000] loss=0.204102 kl_raw=0.2041 kl_norm=0.204102 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.217 lr=5.06e-05\\n[Step 880/1000] loss=0.179688 kl_raw=0.1797 kl_norm=0.179688 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.208 lr=4.32e-05\\n[Step 890/1000] loss=0.192383 kl_raw=0.1924 kl_norm=0.192383 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.199 lr=3.64e-05\\n[Step 900/1000] loss=0.208008 kl_raw=0.2080 kl_norm=0.208008 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.190 lr=3.02e-05\\n[Step 910/1000] loss=0.211914 kl_raw=0.2119 kl_norm=0.211914 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.181 lr=2.45e-05\\n[Step 920/1000] loss=0.178711 kl_raw=0.1787 kl_norm=0.178711 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.172 lr=1.94e-05\\n[Step 930/1000] loss=0.271484 kl_raw=0.2344 kl_norm=0.234375 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.163 lr=1.49e-05\\n[Step 940/1000] loss=0.244141 kl_raw=0.2070 kl_norm=0.207031 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.154 lr=1.09e-05\\n[Step 950/1000] loss=0.196289 kl_raw=0.1963 kl_norm=0.196289 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.145 lr=7.60e-06\\n[Step 960/1000] loss=0.259766 kl_raw=0.2598 kl_norm=0.259766 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.136 lr=4.87e-06\\n[Step 970/1000] loss=0.201172 kl_raw=0.2012 kl_norm=0.201172 constraint=0.000000 sparsity=0.281 lambda=5000.00 tau=0.127 lr=2.74e-06\\n[Step 980/1000] loss=0.433594 kl_raw=0.3965 kl_norm=0.396484 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.118 lr=1.22e-06\\n[Step 990/1000] loss=0.318359 kl_raw=0.2812 kl_norm=0.281250 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.109 lr=3.05e-07\\n[Step 1000/1000] loss=0.308594 kl_raw=0.2715 kl_norm=0.271484 constraint=0.036621 sparsity=0.277 lambda=5000.00 tau=0.100 lr=0.00e+00\\nSaved checkpoint -> checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Got both logs. Let me extract the metrics:
+
+**qwen14b_kl30_s456_eval_v2** (eval log):
+- WikiText-2 PPL = 7.6933
+- arc_challenge: acc=0.5051, acc_norm=0.5324
+- winogrande: acc=0.7230
+- mmlu: acc=0.6411
+- hellaswag: acc=0.5197, acc_norm=0.7113
+- piqa: acc=0.7421, acc_norm=0.7552
+
+
+- Training ran cleanly to completion with model-level sparsity at 0.275, where the first few layers stayed dense while the rest reached 0.301.
+
+**qwen14b_kl30_s456** (training log):
+- Finished all 1000 training steps with final loss of 0.3086, KL norm at 0.2715, and sparsity at 0.277, then saved the checkpoint successfully.
+
+Now I'm comparing these results against the baseline models. Looking at the performance metrics, the s456 variant shows perplexity of 7.69, which beats the uniform TEAL approach but trails slightly behind the KL s42 baseline. On MMLU it scores 64.11%, while on ARC it's 53.24%, and on WG it reaches 72.30%—tracking closely with the KL s42 pattern across most benchmarks.
+
+The key insight is that this confirms a systematic trade-off: the KL-based approaches consistently improve perplexity and WG performance while sacrificing MMLU scores compared to uniform sampling. Since s456 replicates the same pattern as s42, this reversal appears to be a genuine effect rather than noise from the random seed.
+
+Now I need to record both experimental runs in the registry to document these findings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "2ecf2739-7479-451d-a063-30627c585bee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCqdjmd6QoF2qPCr3nX37Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9042,
+      "cache_read_input_tokens": 25975,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Metrics extracted. Now updating both experiments in the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "197a1403-f0d5-4608-8a7c-3f4ff4fcb4f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCqdjmd6QoF2qPCr3nX37Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9042,
+      "cache_read_input_tokens": 25975,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_019FtdRgNaiSQk3e1DG4hmRd`</summary>
+
+```json
+{
+  "exp_id": "qwen14b_kl30_s456_eval_v2",
+  "field": "metrics",
+  "value": {
+    "wikitext2_ppl": 7.6933,
+    "arc_challenge_acc": 0.5051,
+    "arc_challenge_acc_norm": 0.5324,
+    "winogrande_acc": 0.723,
+    "mmlu_acc": 0.6411,
+    "hellaswag_acc": 0.5197,
+    "hellaswag_acc_norm": 0.7113,
+    "piqa_acc": 0.7421,
+    "piqa_acc_norm": 0.7552,
+    "model_sparsity": 0.275
+  },
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "c26921da-81d3-420a-ae42-ac813f62446b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCqdjmd6QoF2qPCr3nX37Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9042,
+      "cache_read_input_tokens": 25975,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014G4EuPddw7br73F6KWEsAR`</summary>
+
+```json
+{
+  "exp_id": "qwen14b_kl30_s456_eval_v2",
+  "field": "log_path",
+  "value": "~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "af151344-6ed2-4296-82b3-f10d3a053335",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCqdjmd6QoF2qPCr3nX37Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9042,
+      "cache_read_input_tokens": 25975,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T12:52:45.178Z_
+
+<details><summary>↩ Tool result · `toolu_019FtdRgNaiSQk3e1DG4hmRd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_kl30_s456_eval_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:20:38.257Z\", \"updated_at\": \"2026-05-19T12:52:44.358Z\", \"hypothesis\": \"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\", \"parent\": \"qwen14b_kl30_s456\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T11:21:13.805Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"finished_at\": \"2026-05-19T12:50:15.974Z\", \"training_hours\": 1.48}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"submitted_at\": \"2026-05-19T11:21:16.055Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\", \"wall_clock_seconds\": 5418.2, \"gpu_hours\": 1.51}, \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T12:50:21.997661+00:00\"}]}, \"metrics\": {\"wikitext2_ppl\": 7.6933, \"arc_challenge_acc\": 0.5051, \"arc_challenge_acc_norm\": 0.5324, \"winogrande_acc\": 0.723, \"mmlu_acc\": 0.6411, \"hellaswag_acc\": 0.5197, \"hellaswag_acc_norm\": 0.7113, \"piqa_acc\": 0.7421, \"piqa_acc_norm\": 0.7552, \"model_sparsity\": 0.275}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:51:34.208Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.366}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "cb8c9a08-4624-4e97-ac3f-57a3ba99459e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen14b_kl30_s456_eval_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:20:38.257Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:52:44.358Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\\\", \\\"parent\\\": \\\"qwen14b_kl30_s456\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-19T11:21:13.805Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T12:50:15.974Z\\\", \\\"training_hours\\\": 1.48}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"100060\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:21:16.055Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\\\", \\\"wall_clock_seconds\\\": 5418.2, \\\"gpu_hours\\\": 1.51}, \\\"pid\\\": \\\"100060\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:50:21.997661+00:00\\\"}]}, \\\"metrics\\\": {\\\"wikitext2_ppl\\\": 7.6933, \\\"arc_challenge_acc\\\": 0.5051, \\\"arc_challenge_acc_norm\\\": 0.5324, \\\"winogrande_acc\\\": 0.723, \\\"mmlu_acc\\\": 0.6411, \\\"hellaswag_acc\\\": 0.5197, \\\"hellaswag_acc_norm\\\": 0.7113, \\\"piqa_acc\\\": 0.7421, \\\"piqa_acc_norm\\\": 0.7552, \\\"model_sparsity\\\": 0.275}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T12:51:34.208Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.366}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_kl30_s456_eval_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:20:38.257Z\", \"updated_at\": \"2026-05-19T12:52:44.358Z\", \"hypothesis\": \"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\", \"parent\": \"qwen14b_kl30_s456\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T11:21:13.805Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"finished_at\": \"2026-05-19T12:50:15.974Z\", \"training_hours\": 1.48}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"submitted_at\": \"2026-05-19T11:21:16.055Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\", \"wall_clock_seconds\": 5418.2, \"gpu_hours\": 1.51}, \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T12:50:21.997661+00:00\"}]}, \"metrics\": {\"wikitext2_ppl\": 7.6933, \"arc_challenge_acc\": 0.5051, \"arc_challenge_acc_norm\": 0.5324, \"winogrande_acc\": 0.723, \"mmlu_acc\": 0.6411, \"hellaswag_acc\": 0.5197, \"hellaswag_acc_norm\": 0.7113, \"piqa_acc\": 0.7421, \"piqa_acc_norm\": 0.7552, \"model_sparsity\": 0.275}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:51:34.208Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.366}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UNCPyEowycVgSBdzWtiS4m`</summary>
+
+```json
+{
+  "exp_id": "qwen14b_kl30_s456_eval_v2",
+  "field": "checkpoint_path",
+  "value": "/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "a51a6d22-ded4-4b53-82b3-fa9f2bbc9df2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCqdjmd6QoF2qPCr3nX37Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9042,
+      "cache_read_input_tokens": 25975,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T12:52:47.404Z_
+
+<details><summary>↩ Tool result · `toolu_014G4EuPddw7br73F6KWEsAR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_kl30_s456_eval_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:20:38.257Z\", \"updated_at\": \"2026-05-19T12:52:46.652Z\", \"hypothesis\": \"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\", \"parent\": \"qwen14b_kl30_s456\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T11:21:13.805Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"finished_at\": \"2026-05-19T12:50:15.974Z\", \"training_hours\": 1.48}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"submitted_at\": \"2026-05-19T11:21:16.055Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\", \"wall_clock_seconds\": 5418.2, \"gpu_hours\": 1.51}, \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T12:50:21.997661+00:00\"}]}, \"metrics\": {\"wikitext2_ppl\": 7.6933, \"arc_challenge_acc\": 0.5051, \"arc_challenge_acc_norm\": 0.5324, \"winogrande_acc\": 0.723, \"mmlu_acc\": 0.6411, \"hellaswag_acc\": 0.5197, \"hellaswag_acc_norm\": 0.7113, \"piqa_acc\": 0.7421, \"piqa_acc_norm\": 0.7552, \"model_sparsity\": 0.275}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:51:34.208Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.189}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "49103b13-955d-486d-91f7-839d9976802c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen14b_kl30_s456_eval_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:20:38.257Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:52:46.652Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\\\", \\\"parent\\\": \\\"qwen14b_kl30_s456\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-19T11:21:13.805Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T12:50:15.974Z\\\", \\\"training_hours\\\": 1.48}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"100060\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:21:16.055Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\\\", \\\"wall_clock_seconds\\\": 5418.2, \\\"gpu_hours\\\": 1.51}, \\\"pid\\\": \\\"100060\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:50:21.997661+00:00\\\"}]}, \\\"metrics\\\": {\\\"wikitext2_ppl\\\": 7.6933, \\\"arc_challenge_acc\\\": 0.5051, \\\"arc_challenge_acc_norm\\\": 0.5324, \\\"winogrande_acc\\\": 0.723, \\\"mmlu_acc\\\": 0.6411, \\\"hellaswag_acc\\\": 0.5197, \\\"hellaswag_acc_norm\\\": 0.7113, \\\"piqa_acc\\\": 0.7421, \\\"piqa_acc_norm\\\": 0.7552, \\\"model_sparsity\\\": 0.275}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T12:51:34.208Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.189}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_kl30_s456_eval_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:20:38.257Z\", \"updated_at\": \"2026-05-19T12:52:46.652Z\", \"hypothesis\": \"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\", \"parent\": \"qwen14b_kl30_s456\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T11:21:13.805Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"finished_at\": \"2026-05-19T12:50:15.974Z\", \"training_hours\": 1.48}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"submitted_at\": \"2026-05-19T11:21:16.055Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\", \"wall_clock_seconds\": 5418.2, \"gpu_hours\": 1.51}, \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T12:50:21.997661+00:00\"}]}, \"metrics\": {\"wikitext2_ppl\": 7.6933, \"arc_challenge_acc\": 0.5051, \"arc_challenge_acc_norm\": 0.5324, \"winogrande_acc\": 0.723, \"mmlu_acc\": 0.6411, \"hellaswag_acc\": 0.5197, \"hellaswag_acc_norm\": 0.7113, \"piqa_acc\": 0.7421, \"piqa_acc_norm\": 0.7552, \"model_sparsity\": 0.275}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:51:34.208Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.189}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T12:52:48.934Z_
+
+<details><summary>↩ Tool result · `toolu_01UNCPyEowycVgSBdzWtiS4m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_kl30_s456_eval_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:20:38.257Z\", \"updated_at\": \"2026-05-19T12:52:48.349Z\", \"hypothesis\": \"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\", \"parent\": \"qwen14b_kl30_s456\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T11:21:13.805Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"finished_at\": \"2026-05-19T12:50:15.974Z\", \"training_hours\": 1.48}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"submitted_at\": \"2026-05-19T11:21:16.055Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\", \"wall_clock_seconds\": 5418.2, \"gpu_hours\": 1.51}, \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T12:50:21.997661+00:00\"}]}, \"metrics\": {\"wikitext2_ppl\": 7.6933, \"arc_challenge_acc\": 0.5051, \"arc_challenge_acc_norm\": 0.5324, \"winogrande_acc\": 0.723, \"mmlu_acc\": 0.6411, \"hellaswag_acc\": 0.5197, \"hellaswag_acc_norm\": 0.7113, \"piqa_acc\": 0.7421, \"piqa_acc_norm\": 0.7552, \"model_sparsity\": 0.275}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:51:34.208Z\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5113}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "cbf64504-2092-485e-a832-d7eda941154e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen14b_kl30_s456_eval_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:20:38.257Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:52:48.349Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\\\", \\\"parent\\\": \\\"qwen14b_kl30_s456\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-19T11:21:13.805Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T12:50:15.974Z\\\", \\\"training_hours\\\": 1.48}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"100060\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:21:16.055Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\\\", \\\"wall_clock_seconds\\\": 5418.2, \\\"gpu_hours\\\": 1.51}, \\\"pid\\\": \\\"100060\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:50:21.997661+00:00\\\"}]}, \\\"metrics\\\": {\\\"wikitext2_ppl\\\": 7.6933, \\\"arc_challenge_acc\\\": 0.5051, \\\"arc_challenge_acc_norm\\\": 0.5324, \\\"winogrande_acc\\\": 0.723, \\\"mmlu_acc\\\": 0.6411, \\\"hellaswag_acc\\\": 0.5197, \\\"hellaswag_acc_norm\\\": 0.7113, \\\"piqa_acc\\\": 0.7421, \\\"piqa_acc_norm\\\": 0.7552, \\\"model_sparsity\\\": 0.275}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T12:51:34.208Z\\\", \\\"checkpoint_path\\\": \\\"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5113}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_kl30_s456_eval_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:20:38.257Z\", \"updated_at\": \"2026-05-19T12:52:48.349Z\", \"hypothesis\": \"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\", \"parent\": \"qwen14b_kl30_s456\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T11:21:13.805Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"finished_at\": \"2026-05-19T12:50:15.974Z\", \"training_hours\": 1.48}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"submitted_at\": \"2026-05-19T11:21:16.055Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\", \"wall_clock_seconds\": 5418.2, \"gpu_hours\": 1.51}, \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T12:50:21.997661+00:00\"}]}, \"metrics\": {\"wikitext2_ppl\": 7.6933, \"arc_challenge_acc\": 0.5051, \"arc_challenge_acc_norm\": 0.5324, \"winogrande_acc\": 0.723, \"mmlu_acc\": 0.6411, \"hellaswag_acc\": 0.5197, \"hellaswag_acc_norm\": 0.7113, \"piqa_acc\": 0.7421, \"piqa_acc_norm\": 0.7552, \"model_sparsity\": 0.275}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:51:34.208Z\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5113}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, eval experiment updated. Now let me update the conclusion and the training experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "60b3cff4-1c0a-4273-83e2-10a97dae2688",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018LxZ36x7wATbsmfJM64ehs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5666,
+      "cache_read_input_tokens": 35017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5666
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+Now updating the eval conclusion and the parent training experiment.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "b998ad8e-3afa-4d9e-987e-c051530f0a2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018LxZ36x7wATbsmfJM64ehs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5666,
+      "cache_read_input_tokens": 35017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5666
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01AK2DDjsPyfjP6zP3wrZsoA`</summary>
+
+```json
+{
+  "exp_id": "qwen14b_kl30_s456_eval_v2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "74d01d62-6883-4588-91ee-91fcc9956e2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018LxZ36x7wATbsmfJM64ehs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5666,
+      "cache_read_input_tokens": 35017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5666
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Tb1ZpBUkJGqgddhx85jKmq`</summary>
+
+```json
+{
+  "exp_id": "qwen14b_kl30_s456",
+  "field": "status",
+  "value": "DONE",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "eaae19fc-5448-4347-beac-841021efd37a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018LxZ36x7wATbsmfJM64ehs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5666,
+      "cache_read_input_tokens": 35017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5666
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T12:52:54.797Z_
+
+<details><summary>↩ Tool result · `toolu_01AK2DDjsPyfjP6zP3wrZsoA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_kl30_s456_eval_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:20:38.257Z\", \"updated_at\": \"2026-05-19T12:52:54.321Z\", \"hypothesis\": \"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\", \"parent\": \"qwen14b_kl30_s456\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T11:21:13.805Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"finished_at\": \"2026-05-19T12:50:15.974Z\", \"training_hours\": 1.48}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"submitted_at\": \"2026-05-19T11:21:16.055Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\", \"wall_clock_seconds\": 5418.2, \"gpu_hours\": 1.51}, \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T12:50:21.997661+00:00\"}]}, \"metrics\": {\"wikitext2_ppl\": 7.6933, \"arc_challenge_acc\": 0.5051, \"arc_challenge_acc_norm\": 0.5324, \"winogrande_acc\": 0.723, \"mmlu_acc\": 0.6411, \"hellaswag_acc\": 0.5197, \"hellaswag_acc_norm\": 0.7113, \"piqa_acc\": 0.7421, \"piqa_acc_norm\": 0.7552, \"model_sparsity\": 0.275}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:51:34.208Z\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1747}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "4d2b6406-558b-48a0-9df3-0a6cf0a31f4b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen14b_kl30_s456_eval_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:20:38.257Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:52:54.321Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\\\", \\\"parent\\\": \\\"qwen14b_kl30_s456\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-19T11:21:13.805Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T12:50:15.974Z\\\", \\\"training_hours\\\": 1.48}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"100060\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:21:16.055Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\\\", \\\"wall_clock_seconds\\\": 5418.2, \\\"gpu_hours\\\": 1.51}, \\\"pid\\\": \\\"100060\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:50:21.997661+00:00\\\"}]}, \\\"metrics\\\": {\\\"wikitext2_ppl\\\": 7.6933, \\\"arc_challenge_acc\\\": 0.5051, \\\"arc_challenge_acc_norm\\\": 0.5324, \\\"winogrande_acc\\\": 0.723, \\\"mmlu_acc\\\": 0.6411, \\\"hellaswag_acc\\\": 0.5197, \\\"hellaswag_acc_norm\\\": 0.7113, \\\"piqa_acc\\\": 0.7421, \\\"piqa_acc_norm\\\": 0.7552, \\\"model_sparsity\\\": 0.275}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T12:51:34.208Z\\\", \\\"checkpoint_path\\\": \\\"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1747}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_kl30_s456_eval_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:20:38.257Z\", \"updated_at\": \"2026-05-19T12:52:54.321Z\", \"hypothesis\": \"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\", \"parent\": \"qwen14b_kl30_s456\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T11:21:13.805Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"finished_at\": \"2026-05-19T12:50:15.974Z\", \"training_hours\": 1.48}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"submitted_at\": \"2026-05-19T11:21:16.055Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"results/benchmark/qwen14b_kl30_s456_eval_v2/results.json\", \"wall_clock_seconds\": 5418.2, \"gpu_hours\": 1.51}, \"pid\": \"100060\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T12:50:21.997661+00:00\"}]}, \"metrics\": {\"wikitext2_ppl\": 7.6933, \"arc_challenge_acc\": 0.5051, \"arc_challenge_acc_norm\": 0.5324, \"winogrande_acc\": 0.723, \"mmlu_acc\": 0.6411, \"hellaswag_acc\": 0.5197, \"hellaswag_acc_norm\": 0.7113, \"piqa_acc\": 0.7421, \"piqa_acc_norm\": 0.7552, \"model_sparsity\": 0.275}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:51:34.208Z\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1747}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T12:52:57.245Z_
+
+<details><summary>↩ Tool result · `toolu_01Tb1ZpBUkJGqgddhx85jKmq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_kl30_s456\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T08:21:07.866Z\", \"updated_at\": \"2026-05-19T12:52:55.464Z\", \"hypothesis\": \"Qwen-14B KL 30% with seed 456 should replicate s42's MMLU reversal pattern (KL < TEAL on MMLU), confirming it is a systematic property of the loss function on this model family rather than seed-specific noise. Multi-seed replication strengthens W2 response about MMLU reversal being architecture-dependent.\", \"parent\": \"qwen14b_kl30_s42\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T08:21:45.434Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s456 --gpu 0 2>&1\\\"\", \"finished_at\": \"2026-05-19T08:39:08.437Z\", \"training_hours\": 0.29}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s456 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"91451\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456.log\", \"submitted_at\": \"2026-05-19T08:21:47.704Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 16267.8, \"gpu_hours\": 4.52}, \"pid\": \"91451\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T08:39:17.923262+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3086, \"final_kl_norm\": 0.2715, \"final_sparsity\": 0.277, \"final_constraint\": 0.0366, \"final_lambda\": 5000, \"final_tau\": 0.1, \"training_steps\": 1000}, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:52:55.464Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4341}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "f0bb8139-c12f-49ed-95f3-2fca4cd54816",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen14b_kl30_s456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T08:21:07.866Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:52:55.464Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B KL 30% with seed 456 should replicate s42's MMLU reversal pattern (KL < TEAL on MMLU), confirming it is a systematic property of the loss function on this model family rather than seed-specific noise. Multi-seed replication strengthens W2 response about MMLU reversal being architecture-dependent.\\\", \\\"parent\\\": \\\"qwen14b_kl30_s42\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-19T08:21:45.434Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s456 --gpu 0 2>&1\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T08:39:08.437Z\\\", \\\"training_hours\\\": 0.29}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s456 --gpu 0 2>&1\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"91451\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T08:21:47.704Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 16267.8, \\\"gpu_hours\\\": 4.52}, \\\"pid\\\": \\\"91451\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T08:39:17.923262+00:00\\\"}]}, \\\"metrics\\\": {\\\"final_loss\\\": 0.3086, \\\"final_kl_norm\\\": 0.2715, \\\"final_sparsity\\\": 0.277, \\\"final_constraint\\\": 0.0366, \\\"final_lambda\\\": 5000, \\\"final_tau\\\": 0.1, \\\"training_steps\\\": 1000}, \\\"checkpoint_path\\\": \\\"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T12:52:55.464Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4341}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_kl30_s456\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T08:21:07.866Z\", \"updated_at\": \"2026-05-19T12:52:55.464Z\", \"hypothesis\": \"Qwen-14B KL 30% with seed 456 should replicate s42's MMLU reversal pattern (KL < TEAL on MMLU), confirming it is a systematic property of the loss function on this model family rather than seed-specific noise. Multi-seed replication strengthens W2 response about MMLU reversal being architecture-dependent.\", \"parent\": \"qwen14b_kl30_s42\", \"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-34887\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T08:21:45.434Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s456 --gpu 0 2>&1\\\"\", \"finished_at\": \"2026-05-19T08:39:08.437Z\", \"training_hours\": 0.29}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s456 --gpu 0 2>&1\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"91451\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456.log\", \"submitted_at\": \"2026-05-19T08:21:47.704Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 16267.8, \"gpu_hours\": 4.52}, \"pid\": \"91451\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s456.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T08:39:17.923262+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3086, \"final_kl_norm\": 0.2715, \"final_sparsity\": 0.277, \"final_constraint\": 0.0366, \"final_lambda\": 5000, \"final_tau\": 0.1, \"training_steps\": 1000}, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:52:55.464Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4341}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Both experiments updated. Here's the summary:
+
+---
+
+## Benchmark Metrics — `qwen14b_kl30_s456_eval_v2`
+
+| Metric | KL s456 | KL s42 | TEAL 30% uniform s42 |
+|---|---|---|---|
+| **WikiText-2 PPL** | **7.69** | 7.63 | 8.01 |
+| **MMLU** | **64.11%** | 64.49% | 66.34% |
+| **ARC-C (norm)** | **53.24%** | 54.44% | 55.29% |
+| **WinoGrande** | **72.30%** | 72.45% | 69.85% |
+| **HellaSwag (norm)** | **71.13%** | — | — |
+| **PIQA (norm)** | **75.52%** | — | — |
+
+## Conclusion: **success** — MMLU reversal is systematic
+
+s456 replicates the same pattern as s42:
+- **PPL improves** over TEAL uniform (7.69 vs 8.01), confirming KL loss learns better masks for perplexity
+- **MMLU drops** below TEAL uniform (64.11% vs 66.34%), and is slightly worse than s42 KL (64.49%)
+- **ARC-C drops** similarly (53.24% vs 55.29% TEAL, 54.44% KL s42)
+- **WinoGrande improves** over TEAL uniform (72.30% vs 69.85%), matching s42 KL (72.45%)
+
+The PPL↑ / MMLU↓ / WG↑ pattern holds across both seeds — this is a systematic property of the KL loss on Qwen-14B, not seed noise.
+
+## Training experiment `qwen14b_kl30_s456`
+Completed 1000/1000 steps, final loss=0.309, sparsity=0.277, checkpoint saved. Marked DONE.
+
+## Anomalies
+None. Both runs exited cleanly (EXIT_CODE=0), no OOM or NaN.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "uuid": "4225ae54-b15d-4f27-81c8-ed031c1b9713",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01La995Xgovwd6LqGjAbyAQu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3274,
+      "cache_read_input_tokens": 40683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3274
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 27_
+
+Both experiments updated. Here's the summary:
+
+---
+
+## Benchmark Metrics — `qwen14b_kl30_s456_eval_v2`
+
+| Metric | KL s456 | KL s42 | TEAL 30% uniform s42 |
+|---|---|---|---|
+| **WikiText-2 PPL** | **7.69** | 7.63 | 8.01 |
+| **MMLU** | **64.11%** | 64.49% | 66.34% |
+| **ARC-C (norm)** | **53.24%** | 54.44% | 55.29% |
+| **WinoGrande** | **72.30%** | 72.45% | 69.85% |
+| **HellaSwag (norm)** | **71.13%** | — | — |
+| **PIQA (norm)** | **75.52%** | — | — |
+
+## Conclusion: **success** — MMLU reversal is systematic
+
+s456 replicates the same pattern as s42:
+- **PPL improves** over TEAL uniform (7.69 vs 8.01), confirming KL loss learns better masks for perplexity
+- **MMLU drops** below TEAL uniform (64.11% vs 66.34%), and is slightly worse than s42 KL (64.49%)
+- **ARC-C drops** similarly (53.24% vs 55.29% TEAL, 54.44% KL s42)
+- **WinoGrande improves** over TEAL uniform (72.30% vs 69.85%), matching s42 KL (72.45%)
+
+The PPL↑ / MMLU↓ / WG↑ pattern holds across both seeds — this is a systematic property of the KL loss on Qwen-14B, not seed noise.
+
+## Training experiment `qwen14b_kl30_s456`
+Completed 1000/1000 steps, final loss=0.309, sparsity=0.277, checkpoint saved. Marked DONE.
+
+## Anomalies
+None. Both runs exited cleanly (EXIT_CODE=0), no OOM or NaN.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 53933,
+  "duration_api_ms": 47743,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "88716c1b-f75b-48da-8a78-96aec16e188a",
+  "total_cost_usd": 0.33565449999999997,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 32116,
+    "cache_read_input_tokens": 138561,
+    "output_tokens": 2547,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 32116,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 546,
+        "cache_read_input_tokens": 40683,
+        "cache_creation_input_tokens": 3274,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3274
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1794,
+      "outputTokens": 27,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001929,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 2547,
+      "cacheReadInputTokens": 138561,
+      "cacheCreationInputTokens": 32116,
+      "webSearchRequests": 0,
+      "costUSD": 0.3337255,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "5ac67440-5429-490f-992a-fafdd3d7441b"
+}
+```
+
+</details>
+
+---

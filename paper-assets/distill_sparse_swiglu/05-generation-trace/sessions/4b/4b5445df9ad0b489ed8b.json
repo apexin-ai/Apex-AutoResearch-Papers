@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b5445df9ad0b489ed8b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl k2 s42 train",
+  "task_key": "worker_analysis_perlayer_kl_k2_s42_train_20260523T055644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_k2_s42_train_20260523T055644_result.json",
+    "occurrence": 1,
+    "bytes": 1558,
+    "sha256": "685224518b9ac8f9f400d09f6e13abab5b6c6f50540585a949aa35d4782c10bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n## K=2 Per-Layer KL Training Results\n\n**Training** (completed, EXIT_CODE=0):\n| Metric | Value |\n|--------|-------|\n| Final avg_kl | 0.0358 |\n| Final avg_sparsity | 0.268 |\n| Wall time | 3843s (~64 min) |\n| Steps | 1000 |\n\n**Two log files** (`perlayer_kl_k2_s42_train.log` and `perlayer_kl_k2_s42.log`) are the **same training run** — identical layer selections, near-identical KL values, just different wall times (~2s difference) from stdout vs nohup capture.\n\n**Checkpoint**: `/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42/`\n- `predictor_perlayer_kl_k4.pt` (152MB, final predictor-only)\n- `predictor_perlayer_kl_k4_step_1000.pt` (456MB, full w/ optimizer)\n- `predictor_perlayer_kl_k4_step_500.pt` (456MB, mid-training)\n- Note: filenames say \"k4\" — naming bug in the training script, but contents are K=2 trained.\n\n**PPL Eval** (WikiText-2, 30% sparsity, TEAL global uniform — same mode as K=8):\n\n| K | WikiText-2 PPL |\n|---|---------------|\n| 1 | 9.0568 |\n| **2** | **10.7958** |\n| 4 | 8.8932 |\n| 8 | 8.9704 |\n| 32 | ~8.81 |\n\nK=2 is an anomalous outlier — **1.74 PPL worse than K=1** and **1.9 worse than K=4**. This suggests K=2 hits a pathological regime: too few layers to learn cross-layer interactions, but enough coupling to interfere with single-layer optimization. Worth investigating whether this is a training artifact (insufficient per-layer sample count: ~62 samples/layer vs K=8's ~250) or a genuine signal about the coupling landscape."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-k2-s42-train.md"
+}

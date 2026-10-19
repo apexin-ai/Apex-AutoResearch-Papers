@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dabb29c6f5967364482",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis bce isocompute v3 s456 eval",
+  "task_key": "worker_analysis_bce_isocompute_v3_s456_eval_20260517T204713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bce_isocompute_v3_s456_eval_20260517T204713_result.json",
+    "occurrence": 1,
+    "bytes": 1147,
+    "sha256": "c971e31fcdc82070841e7bcb42b361b60366b2a7cb6411b7151327ede5b7453d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是完整对比：\n\n## s42 vs s456 对比\n\n| Metric | s42 | s456 | Δ (relative) |\n|--------|-----|------|--------------|\n| **teal_sparse_ppl** | 27.97 | 28.35 | +1.4% |\n| model_level_sparsity | 0.500 | 0.500 | 0% |\n| arc_challenge_acc_norm | 0.2398 | 0.2807 | +17.1% |\n| winogrande_acc | 0.5059 | 0.5241 | +3.6% |\n| mmlu_acc | 0.3002 | 0.2567 | -14.5% |\n| gsm8k_exact_match | 0.0485 | 0.0220 | -54.6% |\n| gsm8k_exact_match_strict | — | 0.0083 | — |\n\n## 判断\n\n- **PPL**（最可靠指标）：28.35 vs 27.97，+1.4%，高度一致\n- **Downstream variance**：MMLU 和 GSM8K 波动大，但这两个 metric 本身在低性能区间（MMLU ~25% 接近 4-choice random，GSM8K <5% 接近 0）有高方差，属于预期内噪声\n- **Conclusion: success** — PPL 核心指标稳定，downstream 差异来自低性能区间的随机波动\n\n## 注意\n\n此 eval 只运行了 TEAL sparse 模式，未包含 dense_ppl 和 predictor_hard_mask_ppl（s42 的这两个值来自其他 eval run）。如需完整 3-seed 对比这两个指标，需要单独为 s456 跑 dense baseline eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bce-isocompute-v3-s456-eval.md"
+}

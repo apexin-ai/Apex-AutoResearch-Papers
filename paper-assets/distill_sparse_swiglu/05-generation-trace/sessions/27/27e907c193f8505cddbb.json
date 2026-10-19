@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27e907c193f8505cddbb",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8.md",
+    "occurrence": 1,
+    "bytes": 4003,
+    "sha256": "ee5cb77206a143fd510b2e1df358749b5c57c3ba4e6748108c8f3deac4c87782"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-16T21:03:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-34887 cuda:0 + cuda:1，其他设备号/服务器禁止\n- evaluate.py 默认 --sparsity_target 0.5，30%/40%/70% eval 必须显式传参\n- KL PPL 论文引用统一用 4-seed mean 12.00±0.07，不用单 seed 最佳 11.91\n- BCE framing 禁止\"anti-learning\"，必须用\"objective mismatch\"\n- SPON framing 禁止\"subsumes\"，必须用\"marginal complement\"\n- command 必须 bash -c \"...\" 包裹（tmux 用 sh 不是 bash）\n- bench_kl30_global/bench_kl50_global 用的是 --sparsity_mode teal_global，不是 uniform\n- LongBench 必须用 --multi_gpu + PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True（单卡 OOM，5 次验证）\n- Registry 录入必须交叉验证原始日志（D032 教训：误录 PPL 导致数据污染）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，用户 root，工作目录 /root/distill_sparse_swiglu/\n- Python：/root/miniconda3/bin/python，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：Llama-3.1-8B at /root/autodl-tmp/models/llama-3.1-8b/；Mistral-7B at /root/autodl-tmp/models/mistral-7b/\n- Checkpoints：/root/distill_sparse_swiglu/checkpoints/（各实验子目录）\n- 日志：~/runs/distill_sparse_swiglu/*.log\n- WANDB_MODE=offline（无 API key）\n- 活跃进程：longbench_kl30_uniform_v6 PID 250629, tmux=longbench_kl30_uniform_v6, cuda:0+cuda:1 (multi-GPU)\n- Cron 监控已就位（reconcile_crons 返回 0）\n\n### 3. 📊 当前状态\n**刚做完**：Session-start 初始化 + 向 Director 汇报全部 benchmark 统一评测完成（含 TEAL 30/50 unified、KL 40% global、multi-seed）。清理了 4 个 QUEUED+failed 的 LongBench 旧实验。\n\n**RUNNING/PREPARING (1)**:\n- longbench_kl30_uniform_v6 (PREPARING, PID 250629, cuda:0+cuda:1) — LongBench 长文本 KL 30% uniform 评测，multi-GPU。Dense baseline (v6) 已完成。\n\n**Worker 池 (2)**:\n1. `worker_ops_longbench-kl30-submit_20260516T165540` — 提交 longbench_kl30_uniform_v6\n2. `worker_analysis_benchmark-table-final_20260516T165941` — 更新 benchmark comparison table 最终版（补 TEAL unified + KL 40% global + multi-seed 数据）\n\n### 4. 📋 待办（条件触发式）\n- longbench_kl30_uniform_v6 完成回调 → 提取 metrics → update registry → 与 longbench_dense_v6 对比（dense: narrativeqa=7.3, qasper=13.4, gov_report=30.5, multi_news=2.5）→ 判断是否值得入 paper\n- analysis worker 回调 → 验证 benchmark_comparison_table.md 完整性 → register_artifact（如未注册）\n- Director 回复 → 可能对 40% global>uniform 反转现象给出 framing 指示 → 按指示更新论文 Discussion\n- LongBench 完成后两卡释放 → 评估是否还有实验需要跑（可能无——所有标准 benchmark 已完成）→ 如无实验则全力推论文定稿\n\n### 5. 🎯 战略上下文\n- **DDL**: EMNLP 2026 ARR May, 2026-05-25（剩 9 天）\n- **核心 narrative**: KL distillation 使 SwiGLU sparse prediction 不需要 compensation。两个 story：(1) KL >> all baselines (PPL+downstream)，(2) Phase transition 30%→40%→50%\n- **全部标准 benchmark 已完成**，完整对比表就绪。论文进入定稿阶段。\n- **最易判断错的事**:\n  - 40% global MMLU=38.1% > uniform 30.7%：这是真实结果不是 bug。Uniform 不是银弹，仅在 30% 有效。论文需要讨论这个 nuance（或改 claim 为\"30% uniform = recommended\"而非\"uniform always better\"）\n  - longbench_kl30_uniform_v6 registry 显示 PREPARING 但实际在跑（submit_training_job 已设 PID，cron 未来得及推进）\n  - bench_kl50_uniform 和 d030_kl50_uniform 是同一个实验的不同命名（数据完全一致：PPL=11.96, MMLU=27.77）——不要重复跑\n  - LongBench dense v6 结果很低（narrativeqa=7.3）——这可能是 Llama-3.1-8B 在 LongBench 上的正常水平（非 instruction-tuned model），不要误认为是 bug\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-2.md"
+}

@@ -1,0 +1,41 @@
+{
+  "exp_id": "perlayer_kl_k16_s42_v3",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:08:36.075Z",
+    "updated_at": "2026-05-23T04:45:35.275Z",
+    "hypothesis": "Per-layer KL predictor with K=16 masked layers (30% sparsity): tests whether further broadening coupling scope beyond K=8 continues to improve train-inference alignment. Part of K-curve {1,2,4,8,16,32}. v3: fix WANDB_MODE=disabled (v2 crashed on wandb API key).",
+    "spec": {
+      "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s42_v3/predictor_perlayer_kl_k4.pt",
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_k16_s42_v3.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T04:42:51.003Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T04:43:02.282673+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "final_kl_step1000": 0.1406,
+      "final_avg_kl": 0.1582,
+      "final_avg_sparsity": 0.286,
+      "wall_time_s": 1982.9,
+      "wikitext2_ppl": null,
+      "note": "No wikitext2 eval in training script; PPL needs separate eval run"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T04:45:35.275Z"
+  },
+  "timestamp": "2026-05-23T04:45:35.897363+00:00",
+  "trigger": "update_registry"
+}

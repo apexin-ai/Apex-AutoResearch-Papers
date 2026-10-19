@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1416d73d82d6d65ac495",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops read latency log",
+  "task_key": "worker_ops_read-latency-log_20260516T144719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read-latency-log_20260516T144719_result.json",
+    "occurrence": 1,
+    "bytes": 2030,
+    "sha256": "41175b1e0c1670907f7c2735113fe0e949b17009c2b4a4dddec038d39eab469a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已完成。完整日志：\n\n```\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\nLoading model from /root/autodl-tmp/models/llama-3.1-8b ...\nLoading weights: 100%|██████████| 291/291 [00:04<00:00, 66.29it/s]\n\nConfig: batch=1, seq_len=2048, warmup=10, iters=100\nDevice: NVIDIA RTX PRO 6000 Blackwell Server Edition\ndtype: float16, attn: flash_attention_2\n\n--- Mode 1: Dense forward ---\n  Mean: 119.11 ± 0.57 ms\n\n--- Mode 2: KL predictor-only 30% ---\n  Mean: 126.64 ± 0.70 ms\n\n--- Mode 3: KL predictor-only 50% ---\n  Mean: 126.78 ± 0.31 ms\n\n--- Mode 4: Predictor+compensation 30% ---\n  Mean: 129.94 ± 0.75 ms\n\n--- Mode 5: Predictor+compensation 50% ---\n  Mean: 129.71 ± 0.53 ms\n\n--- Predictor overhead (all 32 layers, isolated) ---\n  All-layer predictor forward: 3.17 ± 0.06 ms\n  Per-layer average: 0.099 ms\n\n--- Per-layer FFN breakdown (layer 0) ---\n  Dense FFN (1 layer): 2.427 ± 0.037 ms\n  Sparse FFN+predictor (1 layer): 2.686 ± 0.014 ms\n\n================================================================================\n| Method                    | Sparsity | tokens/s   | ms/token   | speedup vs dense   |\n|---------------------------|----------|------------|------------|--------------------|\n| Dense                     | 0%       | 17194.5    | 0.0582     | 1.000             x |\n| KL predictor-only         | 30%      | 16171.8    | 0.0618     | 0.941             x |\n| KL predictor-only         | 50%      | 16154.2    | 0.0619     | 0.939             x |\n| Predictor+compensation    | 30%      | 15761.4    | 0.0634     | 0.917             x |\n| Predictor+compensation    | 50%      | 15788.8    | 0.0633     | 0.918             x |\n================================================================================\n\n--- Raw data ---\nPredictor overhead (32 layers): 3.17 ms (2.7% of dense forward)\nDense FFN per layer: 2.427 ms\nSparse FFN+pred per layer: 2.686 ms\nCompensation overhead estimate: 3.30 ms\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-latency-log.md"
+}

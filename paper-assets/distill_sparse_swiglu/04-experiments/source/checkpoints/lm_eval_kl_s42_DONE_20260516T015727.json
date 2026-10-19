@@ -1,0 +1,41 @@
+{
+  "exp_id": "lm_eval_kl_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:34:42.788Z",
+    "updated_at": "2026-05-16T01:57:27.364Z",
+    "spec": {
+      "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt",
+      "log_path": "~/runs/distill_sparse_swiglu/lm_eval_kl_s42.log"
+    },
+    "notes": "## lm-eval Results (2026-05-16)\n\n| Task | Dense | KL Sparse 50% | Drop |\n|------|-------|---------------|------|\n| arc_challenge | 0.5819 | 0.3771 | -35.2% |\n| winogrande | 0.7814 | 0.6156 | -21.2% |\n| mmlu | 0.6532 | 0.2591 | -60.3% |\n| gsm8k | 0.5004 | 0.0121 | -97.6% |\n\nEXIT_CODE=129 (SIGHUP). 结果保存在 plan_007/ 目录。\n\n### acc_norm 确认 (worker 验证)\n所有指标已正确使用 acc_norm（可用时），无需修正。MMLU 无 acc_norm。\n\n### Mask 逻辑审查 (worker 验证) — 无 bug\n- Mask shape/type/位置/predictor checkpoint 全部正确\n- HFLM 透传验证：logit diff = 0.000000（patch 完整保留到 lm-eval）\n- Per-token sparsity 动态工作：content words 保留更多 neurons\n- 平均 sparsity 0.5031 ≈ 目标 0.50\n\n### 根因确认：PPL-Downstream Disconnect 是真实现象\n\"Paris\" 从 dense top-2 (16.0) 降到 sparse top-5 (14.81)。logit 微小偏移足以翻转 4-choice 答案。\n- PPL 是平均指标 → 多数 token 合理即可\n- MMLU/GSM8K 要求精确知识检索 → 单个 token logit 偏移即致命\n- Predictor 在 C4/WikiText 上训练，优化 PPL 而非 downstream accuracy\n\n### \"A\" Token Bias (debug worker 诊断)\nSparse model MMLU letter-choice 下系统性偏好 \"A\"。是深层表征损伤的症状。\n\n### 服务器进程状态 (00:35 UTC)\n- cuda:0: PID 181121 (Mistral dense gsm8k) — debug 进程已被 kill\n- cuda:1: PID 174850 (Mistral KL gsm8k), PID 179918 (KL sparse rerun)",
+    "metrics": {
+      "arc_challenge_acc_norm": 0.3771,
+      "winogrande_acc": 0.6156,
+      "mmlu_acc": 0.2591,
+      "gsm8k_exact_match": 0.0121,
+      "eval_tasks": [
+        "arc_challenge",
+        "winogrande",
+        "mmlu",
+        "gsm8k"
+      ],
+      "model": "llama-3.1-8b",
+      "condition": "kl_sparse_50pct",
+      "server": "westd-34887",
+      "exit_code": 129,
+      "wall_time_sec": 3010,
+      "flag": "SUSPECT — gsm8k 0.50→0.01 catastrophic drop; PID 179918 rerunning with lm_eval_sparse.py"
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "N/A (eval experiment, source: /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt)",
+    "log_path": "~/runs/distill_sparse_swiglu/lm_eval_kl_s42.log",
+    "completed_at": "2026-05-16T01:57:27.364Z"
+  },
+  "timestamp": "2026-05-16T01:57:27.635158+00:00",
+  "trigger": "update_registry"
+}

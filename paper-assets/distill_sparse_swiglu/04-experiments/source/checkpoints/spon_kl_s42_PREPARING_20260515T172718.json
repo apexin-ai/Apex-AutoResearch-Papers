@@ -1,0 +1,24 @@
+{
+  "exp_id": "spon_kl_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:27:18.621Z",
+    "updated_at": "2026-05-15T17:27:18.622Z",
+    "spec": {
+      "hypothesis": "SPON learnable bias vectors + KL loss 在 50% sparsity 下补偿稀疏化误差，复现论文效果并为 plan_005 组合实验铺路",
+      "loss_type": "kl_spon",
+      "seed": 42,
+      "model_name": "llama-3.1-8b",
+      "sparsity": 0.5,
+      "server": "westd-34887",
+      "parent": "mvp_kl_norm_v2_s42",
+      "data_path": "wikitext-103 (HF cached)"
+    }
+  },
+  "timestamp": "2026-05-15T17:27:18.703760+00:00",
+  "trigger": "update_registry"
+}

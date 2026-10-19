@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03d7a18ffe637915d4d9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis bench results compilation",
+  "task_key": "worker_analysis_bench-results-compilation_20260516T114215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bench-results-compilation_20260516T114215_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "3d1815c239422844c652627ecdbee0a913071d4a75fc7755e90d108ff4632fea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三份产出已完成并注册：\n\n**产出摘要：**\n\n| Artifact | ID | 核心发现 |\n|----------|-----|---------|\n| `benchmark_comparison_table.md` | art_20260516_5db230 | KL 50% uniform PPL=11.96 完胜 BCE 22.51 和 TEAL 27.97 |\n| `iso_compute_analysis.md` | art_20260516_cc2318 | KL 用 2.7× 更少 compute 仍 PPL 低 47%，优势来自 loss function |\n| `threshold_analysis.md` | art_20260516_0d42c9 | MMLU 在 30%→40% 跨越功能阈值 (0.41→0.31)，GSM8K 在 <30% 即已崩溃 |\n\n**关键数据点：**\n- bench_kl30_global 和 bench_kl50_global 已完成（之前标记为 running，实际已 DONE）\n- 30% global MMLU=0.2527 vs uniform=0.4061 — global allocation 在低稀疏度时摧毁 MMLU\n- KL 40% PPL (8.36) 反而低于 KL 30% (8.82)，但 MMLU 崩溃 — PPL-downstream 解耦的直接证据\n- bench_teal50、bench_teal30、bench_kl50_uniform 仍为 QUEUED 状态"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bench-results-compilation.md"
+}

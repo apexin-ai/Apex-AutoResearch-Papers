@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02f07f2e4112caf53397",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect bce isocompute hellaswag piqa",
+  "task_key": "worker_ops_collect-bce-isocompute-hellaswag-piqa_20260519T021259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-bce-isocompute-hellaswag-piqa_20260519T021259_result.json",
+    "occurrence": 1,
+    "bytes": 308,
+    "sha256": "5906f4f952c659958833541ba671ed8aa78ac8a7d0aba992e0cceea4995ee910"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**bce_isocompute_hellaswag_piqa_v2 结果**（TEAL global, 30% sparsity, uniform allocation, checkpoint: bce_isocompute_v3_s42）:\n\n| Task | acc | acc_norm | stderr (norm) |\n|---|---|---|---|\n| **HellaSwag** | 0.4561 | **0.6281** | ±0.0048 |\n| **PIQA** | 0.7285 | **0.7421** | ±0.0102 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-bce-isocompute-hellaswag-piqa.md"
+}

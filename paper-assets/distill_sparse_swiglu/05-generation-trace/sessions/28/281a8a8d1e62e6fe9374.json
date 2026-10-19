@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "281a8a8d1e62e6fe9374",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code mvp training pipeline",
+  "task_key": "worker_code_mvp-training-pipeline_20260515T103054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-training-pipeline_20260515T103054_result.json",
+    "occurrence": 1,
+    "bytes": 1028,
+    "sha256": "c8ecae2f1ed4cb7a3e1e9bafca862624b52989d2bfb78292ee661ce29e001965"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项验证均通过：\n\n- `train.py --help`：参数解析正确，所有参数均可用\n- `SparsityPredictor` forward：输出 shape `(2, 16, 14336)` 正确，参数量 2,373,760（~2.37M）符合预期\n\n### 写入的文件总结\n\n| 文件 | 功能 |\n|------|------|\n| `src/predictor.py` | `SparsityPredictor`（rank-128 bottleneck）、`GumbelSigmoidMask`（τ 退火 + hard threshold）、`PredictorWrapper`（monkey-patch 每层 MLP 注入 mask） |\n| `src/losses.py` | `KLDistillLoss`（T²-scaled KL div）、`BCESparsityLoss`（top-k binary target）、`SparsityRegularizer`（L1 density penalty） |\n| `src/data_utils.py` | SlimPajama streaming loader + WikiText-2/C4 eval dataset packing |\n| `src/train.py` | 完整训练循环：KL 模式（双前向 dense+sparse）、BCE 模式（分层计算）、cosine schedule、W&B logging、checkpoint 保存 |\n| `src/evaluate.py` | TEAL greedy allocation 实现 model-level 50% sparsity、WikiText-2/C4 perplexity 评估、dense baseline 对比 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-training-pipeline.md"
+}

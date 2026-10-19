@@ -1,0 +1,26 @@
+paper_key: "DistiLLM: Towards Streamlined Distillation for Large Language Models"
+title: "DistiLLM: Towards Streamlined Distillation for Large Language Models"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: ["MiniLLM", "SeqKD", "ImitKD", "GKD", "standard KD"]
+  metrics:
+    - {name: "Rouge-L", direction: "higher_better"}
+    - {name: "training speedup", direction: "higher_better"}
+    - {name: "downstream task accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "instruction-following benchmarks", size: "not specified"}
+  ablation_dimensions: ["KL divergence variant (skew KL)", "on-policy vs adaptive off-policy", "training efficiency"]
+  training_recipe: {optimizer: "not specified", lr: "not specified", hardware: "not specified"}
+  method_family: "knowledge distillation for LLMs"
+
+positioning:
+  core_claim: "Skew KL divergence loss combined with adaptive off-policy approach achieves up to 4.3x training speedup over recent KD methods while maintaining student model quality."
+  key_results: "Up to 4.3x speedup compared to recent KD methods; competitive instruction-following performance."
+  limitations: ["still requires teacher forward passes", "focused on auto-regressive models only"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

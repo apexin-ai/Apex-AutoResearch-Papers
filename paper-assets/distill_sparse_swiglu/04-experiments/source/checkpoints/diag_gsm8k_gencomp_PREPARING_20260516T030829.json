@@ -1,0 +1,24 @@
+{
+  "exp_id": "diag_gsm8k_gencomp",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:34:07.736Z",
+    "updated_at": "2026-05-16T03:08:29.420Z",
+    "spec": {
+      "hypothesis": "稀疏模型 GSM8K 退化是推理能力丧失（输出无意义/重复）还是仅格式错误（推理正确但答案格式不匹配）？",
+      "model_name": "meta-llama/Llama-3.1-8B dense vs KL sparse 50%",
+      "eval_data": "GSM8K 5-10 samples, greedy generation",
+      "server": "westd-34887",
+      "seed": 42,
+      "parent": "lm_eval_kl_s42"
+    },
+    "notes": "10 GSM8K samples compared (dense vs KL sparse 50% TEAL). Sparse model suffers FUNDAMENTAL reasoning collapse: (1) 10/10 samples degenerate into repetitive loops within 1-3 sentences; (2) no sample produces correct final answer or completes multi-step reasoning; (3) sparse model can generate topically relevant opening text but immediately enters infinite repetition (e.g. \"We can then use the formula...\" repeated 15+ times); (4) occasional partial correctness in first sentence (Sample 7: correctly computes 9*2=18 but never adds +3); (5) spelling degradation observed (crabs→crbs, skein→skeen). Dense model generates coherent step-by-step reasoning and often reaches correct answers. Conclusion: GSM8K score of 0.0121 is NOT caused by answer extraction/format mismatch — it reflects genuine loss of reasoning and generation ability under 50% TEAL sparsity with KL-trained predictor.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T03:08:29.619385+00:00",
+  "trigger": "update_registry"
+}

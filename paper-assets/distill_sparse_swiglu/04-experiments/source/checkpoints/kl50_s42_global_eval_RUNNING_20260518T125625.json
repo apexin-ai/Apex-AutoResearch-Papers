@@ -1,0 +1,41 @@
+{
+  "exp_id": "kl50_s42_global_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:06:08.725Z",
+    "updated_at": "2026-05-18T12:56:24.919Z",
+    "spec": {
+      "command": "benchmark_eval.py kl50_s42_global_eval",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "25221",
+      "log_path": "~/runs/distill_sparse_swiglu/kl50_s42_global_eval.log",
+      "submitted_at": "2026-05-18T12:06:08.197Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/distill_sparse_swiglu",
+      "data_count": 5,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k"
+    },
+    "metrics": {
+      "wikitext2_ppl": 11.8038,
+      "arc_challenge_acc_norm": 0.3336,
+      "winogrande_acc": 0.6338,
+      "mmlu_acc": 0.2819,
+      "gsm8k_exact_match": 0.0167
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T12:56:25.225679+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2523de0832e4b243d196",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check current gpu eta",
+  "task_key": "worker_ops_check-current-gpu-eta_20260516T122515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-current-gpu-eta_20260516T122515_result.json",
+    "occurrence": 1,
+    "bytes": 958,
+    "sha256": "aa077fe7cf251b9ec0dc84ee6590d864abffda25e1e42b5721945b19f35b3eac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在运行，目前进入最后一个任务 GSM8K 的 tokenization 阶段。\n\n**bench_kl50_uniform** (PID 229957, cuda:0)\n- 状态: **Running** (elapsed: ~5min)\n- WikiText-2 PPL = **11.9631** ✓\n- arc_challenge / winogrande / mmlu: 已完成评估\n- GSM8K: tokenizing 40147/58702 (~68%)\n- 预计剩余: **5–15 分钟**（tokenization ~30s + generation ~1319 examples）\n\n**bench_kl40_global** (PID 230101, cuda:1)\n- 状态: **Running** (elapsed: ~5min)\n- WikiText-2 PPL = **10.1170** ✓\n- arc_challenge / winogrande / mmlu: 已完成评估\n- GSM8K: tokenizing 38505/58702 (~66%)\n- 预计剩余: **5–15 分钟**（同上）\n\n两个实验都已完成前 4 个 benchmark（wikitext2 + 3 个分类任务），正在跑最后的 GSM8K（需要 generation，比 log-likelihood 任务慢很多）。kl40_global 的 PPL 明显优于 kl50_uniform（10.12 vs 11.96），符合 40% sparsity < 50% sparsity 的预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-current-gpu-eta.md"
+}

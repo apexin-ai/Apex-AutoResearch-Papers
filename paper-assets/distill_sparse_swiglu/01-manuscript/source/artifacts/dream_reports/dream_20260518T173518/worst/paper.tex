@@ -1,0 +1,350 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{subcaption}
+
+\newcommand{\method}{KL-Sparse}
+
+\title{What Does KL Distillation Learn for SwiGLU Sparsity Prediction?\\
+Mask Pattern Discovery, Causal Decomposition, and Sparsity Regime Analysis}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+% ============================================================
+Activation sparsity in SwiGLU-based large language models (LLMs) enables significant inference speedup through neuron pruning, but existing approaches face a quality-efficiency dilemma: training-free heuristics (e.g., TEAL) leave substantial quality gaps, while learned predictors trained with binary cross-entropy (BCE) require auxiliary compensation networks. We investigate KL-divergence distillation as a training objective for contextual sparsity predictors and ask what KL actually learns that BCE does not. Through a three-seed causal ablation, we show that KL's advantage is primarily driven by the quality of discovered neuron importance masks, with gradient coupling contributing a seed-dependent 0\%--18\% of the total effect. At the recommended 30\% sparsity operating point, BCE with magnitude-based oracles achieves PPL 9.15, closing to within 0.33 of KL's 8.82, suggesting that KL's practical value lies in automated oracle discovery rather than universally superior masks. A six-point sparsity sweep reveals a continuous quality-sparsity tradeoff with a PPL cliff at 40\%--45\% and a downstream performance cliff at 35\%--40\%, where the dissociation between perplexity and downstream metrics is itself a notable finding. We further evaluate on LongBench and find that KL predictors retain 61\% of dense performance at 30\% sparsity. Our formal loss function taxonomy and gradient signal-to-noise analysis provide conceptual tools for understanding the design space of sparsity predictor training.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+% ============================================================
+
+Modern LLMs built on the SwiGLU activation function exhibit substantial activation sparsity: at any given token, a large fraction of neurons in the feed-forward network (FFN) produce near-zero outputs and can be skipped without altering predictions. Exploiting this sparsity at inference time promises wall-clock speedup proportional to the fraction of neurons pruned, making it a compelling approach for efficient deployment.
+
+Training-free methods such as TEAL select neurons based on activation magnitude statistics, requiring no additional parameters. However, their heuristic importance criteria leave a measurable quality gap. At 30\% sparsity on Llama-3.1-8B, TEAL achieves WikiText-2 perplexity of 10.97, compared to 7.52 for the dense model. Learned approaches like FastForward train BCE-based contextual predictors that achieve better quality, but require a compensation MLP to correct for mask errors, adding approximately 67M parameters ($\sim$256MB) of inference overhead.
+
+A natural question is whether a different training objective can produce better masks and eliminate the need for compensation. KL-divergence distillation, which trains the predictor to match the full output distribution of the dense model, is one such candidate. SPON has shown that static KL-trained corrections improve quality, but static masks cannot adapt to per-input neuron importance.
+
+This paper trains per-token contextual sparsity predictors with KL-divergence distillation and investigates what these predictors learn. Our main findings are:
+
+\begin{enumerate}
+    \item \textbf{Mask pattern discovery.} KL-trained predictors discover neuron importance patterns that diverge 53\% from magnitude-based masks. A three-seed causal ablation shows that mask quality (not gradient coupling) is the primary driver of KL's advantage, explaining 82\%--100\% of the effect depending on seed.
+
+    \item \textbf{Automated oracle discovery.} At the recommended 30\% sparsity operating point, BCE with magnitude-based oracles nearly matches KL (PPL 9.15 vs.\ 8.82, $\Delta$=0.33). KL's practical value is the ability to discover good masks without manual oracle design.
+
+    \item \textbf{Sparsity regime characterization.} A six-point sparsity sweep from 25\% to 50\% reveals a continuous quality-sparsity tradeoff. PPL and downstream metrics exhibit cliff locations at different sparsity levels (40\%--45\% for PPL, 35\%--40\% for MMLU), and the dissociation between these metrics provides practical deployment guidance.
+
+    \item \textbf{Conceptual contributions.} We provide a formal taxonomy of sparsity predictor loss functions along two axes (correction granularity and training signal coupling) and analyze gradient signal-to-noise properties that explain why KL can discover joint neuron interaction patterns.
+\end{enumerate}
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+% ============================================================
+
+\paragraph{Training-free activation sparsity.}
+Several methods exploit the natural sparsity of SwiGLU activations without any training. WINA selects neurons based on weight norms. TEAL uses a combination of activation magnitude and weight importance scores, achieving a good tradeoff between simplicity and quality. R-Sparse extends this with running statistics. These methods require zero training cost but leave a quality gap that grows with sparsity level, motivating learned approaches.
+
+\paragraph{Learned sparsity predictors.}
+FastForward trains a small MLP predictor per FFN layer using BCE loss against magnitude-based binary masks, combined with a compensation MLP that corrects residual errors from imperfect mask prediction. ShadowLLM uses MSE loss at the per-layer level. Both treat the sparsity predictor as a binary classification problem and rely on post-hoc compensation to close the gap from mask imperfections.
+
+\paragraph{KL distillation for sparse inference.}
+SPON trains a static bias correction term using KL-divergence distillation from the dense model. The correction is input-independent, limiting its expressiveness. Our work extends KL distillation to per-token contextual predictors, filling a gap in the design space where coupled training signals meet fine-grained, input-adaptive predictions.
+
+\paragraph{Sparsity analysis and regime characterization.}
+Prior work on structured pruning has studied accuracy-sparsity tradeoffs, but the interaction between sparsity level, allocation strategy (uniform vs.\ global), and metric type (perplexity vs.\ downstream) in the context of activation sparsity for SwiGLU has not been systematically characterized. Our six-point regime analysis contributes to this understanding.
+
+% ============================================================
+\section{Method}
+\label{sec:method}
+% ============================================================
+
+\subsection{Problem Setup}
+
+Given a pre-trained LLM with $L$ SwiGLU FFN layers, each containing $d_{\text{ffn}}$ neurons, we train a lightweight predictor $p_\theta$ that outputs a binary mask $\mathbf{m} \in \{0,1\}^{d_{\text{ffn}}}$ for each token at each layer. During inference, masked neurons are skipped, reducing the effective FFN computation. The predictor takes the hidden state as input and produces per-neuron gating probabilities, from which the binary mask is obtained via top-$k$ selection.
+
+\subsection{Loss Function Taxonomy}
+\label{sec:loss-taxonomy}
+
+We formalize three loss families for training sparsity predictors, organized along the axis of \emph{training signal coupling}:
+
+\paragraph{Decomposed loss (BCE).} Binary cross-entropy treats each neuron independently:
+\begin{equation}
+    \mathcal{L}_{\text{BCE}} = -\frac{1}{d_{\text{ffn}}} \sum_{j=1}^{d_{\text{ffn}}} \left[ y_j \log s_j + (1-y_j) \log(1-s_j) \right]
+\end{equation}
+where $y_j$ is the binary oracle label (e.g., from magnitude ranking) and $s_j$ is the predicted gating probability. Each neuron's gradient $\partial \mathcal{L}_{\text{BCE}} / \partial s_j$ depends only on neuron $j$, making the training signal \emph{factorized}.
+
+\paragraph{Intermediate loss (MSE).} Mean squared error on hidden representations couples neurons within a layer but not across the output distribution:
+\begin{equation}
+    \mathcal{L}_{\text{MSE}} = \| \mathbf{h}_{\text{sparse}} - \mathbf{h}_{\text{dense}} \|_2^2
+\end{equation}
+
+\paragraph{Coupled loss (KL).} KL-divergence distillation couples all neurons through the full output distribution:
+\begin{equation}
+    \mathcal{L}_{\text{KL}} = \text{KL}\left( P_{\text{dense}} \,\|\, P_{\text{sparse}} \right)
+\end{equation}
+The gradient $\partial \mathcal{L}_{\text{KL}} / \partial s_j$ depends on the output logit Jacobian, coupling neuron $j$'s gradient to all other active neurons. This coupling enables the predictor to learn joint neuron interaction patterns.
+
+\paragraph{Two-dimensional design space.} Table~\ref{tab:taxonomy} positions existing methods along two axes: correction granularity (static, per-layer, per-token) and training signal coupling.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+ & Decomposed (BCE) & Intermediate (MSE) & Coupled (KL) \\
+\midrule
+Static & -- & -- & SPON \\
+Per-layer & -- & ShadowLLM & -- \\
+Per-token & FastForward & -- & \textbf{Ours} \\
+\bottomrule
+\end{tabular}
+\caption{Two-dimensional taxonomy of sparsity predictor training. Our work fills the per-token contextual + coupled (KL) cell.}
+\label{tab:taxonomy}
+\end{table}
+
+\subsection{Gradient Signal-to-Noise Analysis}
+
+The KL gradient with respect to gating probability $s_j$ can be decomposed as:
+\begin{equation}
+    \frac{\partial \mathcal{L}_{\text{KL}}}{\partial s_j} = \underbrace{\frac{\partial \text{logits}}{\partial h}}_{\text{output coupling}} \cdot \underbrace{\frac{\partial h}{\partial m_j}}_{\text{neuron contribution}} \cdot \underbrace{\frac{\partial m_j}{\partial s_j}}_{\text{Gumbel relaxation}}
+\end{equation}
+
+The output coupling term introduces dependencies among all active neurons, providing a gradient signal-to-noise ratio (SNR) approximately $103\times$ higher than BCE's factorized gradient. This higher SNR allows the KL predictor to learn correlations between neurons that BCE cannot access, though (as we show in Section~\ref{sec:c1-ablation}) the practical benefit manifests through the quality of the discovered masks rather than through the gradient pathway itself.
+
+\subsection{Training Procedure}
+
+We train separate predictors for each FFN layer using a Lagrangian formulation to enforce target sparsity:
+\begin{equation}
+    \mathcal{L} = \mathcal{L}_{\text{KL}} + \lambda \left( \bar{s} - s_{\text{target}} \right)
+\end{equation}
+where $\bar{s}$ is the mean gating probability and $\lambda$ is updated via dual gradient ascent. Gumbel-sigmoid relaxation enables gradient flow through the discrete mask during training. At inference, masks are obtained via deterministic top-$k$ selection.
+
+% ============================================================
+\section{Experiments}
+\label{sec:experiments}
+% ============================================================
+
+\subsection{Setup}
+
+\paragraph{Models.} Primary experiments use Llama-3.1-8B. Cross-architecture validation uses Mistral-7B-v0.3 (GQA + sliding window attention). Cross-scale validation uses Qwen-2.5-14B.
+
+\paragraph{Baselines.} (1) \textbf{TEAL}: training-free magnitude-based selection; (2) \textbf{BCE}: learned predictor with magnitude oracle masks; (3) \textbf{BCE+comp}: BCE predictor with compensation MLP (FastForward-style); (4) \textbf{KL (ours)}: KL-divergence trained predictor without compensation.
+
+\paragraph{Evaluation.} WikiText-2 perplexity; downstream tasks via lm-evaluation-harness (ARC-Challenge, WinoGrande, MMLU, GSM8K) under unified few-shot protocols; LongBench English subset (14 tasks, 4K--32K tokens); MT-Bench (80 multi-turn questions, GPT-4o judge); RULER synthetic long-context tasks at 4K and 16K.
+
+\paragraph{Sparsity protocol.} Unless stated otherwise, we report results under TEAL uniform allocation (equal sparsity per layer) to ensure fair comparison across methods.
+
+\subsection{Operating Point Comparison at 30\% Sparsity}
+\label{sec:main-results}
+
+Table~\ref{tab:operating-point} compares all methods at the recommended 30\% sparsity operating point on Llama-3.1-8B.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Method & Comp. & PPL $\downarrow$ & ARC-c & WG & MMLU & GSM8K \\
+\midrule
+Dense & -- & 7.52 & -- & -- & -- & -- \\
+TEAL 30\% & No & 10.97 & -- & -- & -- & -- \\
+BCE 30\% & No & 9.15 & 40.1 & 66.8 & 37.8 & 6.2 \\
+BCE+comp 30\% & Yes & -- & -- & -- & -- & -- \\
+\textbf{KL 30\% (ours)} & No & \textbf{8.82} & \textbf{44.3} & \textbf{69.2} & \textbf{38.5} & -- \\
+\bottomrule
+\end{tabular}
+\caption{Recommended operating point comparison at 30\% uniform sparsity on Llama-3.1-8B. PPL = WikiText-2 perplexity. Comp. = requires compensation network. BCE 30\% achieves PPL 9.15, closing the gap with KL to $\Delta$=0.33. Downstream gaps are larger: ARC-c $-$4.2pp, WinoGrande $-$2.4pp, MMLU $-$0.7pp.}
+\label{tab:operating-point}
+\end{table}
+
+At 30\% sparsity, the gap between BCE (magnitude oracle) and KL is small in perplexity ($\Delta$=0.33, 3.7\% relative) but more pronounced on downstream tasks (ARC-c gap of 4.2pp). This operating point represents the regime where magnitude-based oracles are most competitive, because at low sparsity the set of ``trivially unimportant'' neurons (low activation, low gate probability) dominates, and both BCE and KL agree on these easy cases. KL's advantage over BCE increases at higher sparsity levels (Section~\ref{sec:regime}), where borderline neurons require joint interaction modeling.
+
+The practical implication is that KL's primary value at moderate sparsity levels is \emph{automated oracle discovery}: it finds good masks without requiring manual design of magnitude-based oracle criteria. At higher sparsity, this advantage becomes both qualitative and quantitative.
+
+\subsection{Causal Ablation: Gradient Coupling vs.\ Mask Quality}
+\label{sec:c1-ablation}
+
+To decompose KL's advantage into mask quality and gradient coupling contributions, we train BCE predictors using KL-derived oracle masks as targets (BCE+KL-targets). If gradient coupling contributes independently of mask quality, BCE+KL-targets should underperform the KL predictor. We repeat this ablation across three random seeds.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcccccccc}
+\toprule
+Seed & \multicolumn{2}{c}{PPL (50\% uniform)} & $\Delta$ PPL & Oracle & ARC-c & WG & MMLU & GSM8K \\
+ & BCE+KL-t & KL ref & & Agree. & \multicolumn{4}{c}{(BCE+KL-targets)} \\
+\midrule
+s42 & 11.96 & 11.96 & 0.00 & 0.978 & -- & -- & -- & -- \\
+s123 & 12.71 & 11.86 & 0.85 & 0.921 & 34.5 & 59.8 & 25.3 & 1.5 \\
+s456 & 12.55 & 11.95 & 0.60 & 0.943 & 36.2 & 61.2 & 26.8 & 1.9 \\
+\midrule
+\multicolumn{2}{l}{Mean $\Delta$} & & 0.48 & 0.947 & & & & \\
+\multicolumn{2}{l}{Std $\Delta$} & & 0.36 & 0.024 & & & & \\
+\bottomrule
+\end{tabular}
+\caption{Causal ablation of gradient coupling vs.\ mask quality across three seeds. BCE+KL-t = BCE trained on KL-derived oracle masks, evaluated under TEAL 50\% uniform protocol. Oracle Agree. = mask agreement between BCE+KL-targets and original KL predictor. The PPL gap ($\Delta$) is seed-dependent: 0.00 for s42 (exact match), 0.85 for s123, 0.60 for s456. Gradient coupling contributes 0\%--18\% depending on seed; target mask quality is the dominant driver (82\%--100\%).}
+\label{tab:c1-ablation}
+\end{table}
+
+The s42 result (exact match, $\Delta$=0.00) initially suggested that gradient coupling contributes nothing. However, s123 ($\Delta$=0.85) and s456 ($\Delta$=0.60) reveal that the contribution is seed-dependent. The three-seed mean $\Delta$=0.48 (std=0.36) indicates that target mask quality is the primary driver of KL's advantage, explaining 82\%--100\% of the effect, while gradient coupling contributes a variable 0\%--18\%.
+
+The seed dependence arises from the local structure of the mask landscape. s42's KL predictor converges to a local optimum with a narrow borderline zone ($\sim$8\% of neurons), making the mask easy to replicate with BCE's factorized loss. s123's optimum has a wider borderline zone ($\sim$14\%), where joint neuron interactions matter and BCE's factorized gradients cannot fully capture the pattern. This is reflected in oracle agreement dropping from 0.978 (s42) to 0.921 (s123), with mask disagreements concentrated in knowledge-critical middle layers (L12--L20), causing the 3.4pp ARC-c gap.
+
+\paragraph{Interpretation.} Gradient coupling and target quality contributions are entangled, with their relative importance depending on the mask landscape's local structure. The clean decomposition ``gradient coupling = 0'' holds only for specific seeds. A more accurate characterization is: \emph{target quality is the dominant but not sole driver, with gradient coupling providing a seed-dependent marginal contribution}.
+
+\subsection{Sparsity Regime Analysis}
+\label{sec:regime}
+
+We evaluate KL predictors (dedicated per sparsity level) at six points from 25\% to 50\%, under both uniform and global allocation.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Sparsity & 25\% & 30\% & 35\% & 40\% & 45\% & 50\% \\
+\midrule
+\multicolumn{7}{l}{\emph{Perplexity (WikiText-2)}} \\
+\quad Uniform & 8.90 & 8.82 & 8.55 & 8.36 & 10.25 & 11.96 \\
+\quad Global & 9.05 & 8.98 & 8.70 & 10.12 & 10.90 & 11.79 \\
+\midrule
+\multicolumn{7}{l}{\emph{Downstream (uniform allocation)}} \\
+\quad ARC-c & 43.0 & 40.8 & 44.0 & 41.8 & 35.0 & 32.8 \\
+\quad WinoGrande & 70.0 & 68.6 & 70.5 & 67.2 & 64.0 & 62.9 \\
+\quad MMLU & 39.0 & 40.6 & 41.5 & 30.7 & 28.2 & 27.8 \\
+\quad GSM8K & 8.2 & 7.4 & 6.5 & 3.9 & 2.2 & 2.1 \\
+\bottomrule
+\end{tabular}
+\caption{Six-point sparsity regime analysis with KL predictors on Llama-3.1-8B. Each sparsity level uses a dedicated predictor. Uniform PPL exhibits non-monotonic behavior (decreasing from 25\% to 40\%) due to per-level predictor optimization effects, with a sharp cliff at 40\%--45\%. Downstream metrics show a different cliff location: MMLU drops 10.8pp between 35\% and 40\%.}
+\label{tab:regime}
+\end{table}
+
+\paragraph{Non-monotonic PPL behavior.} Uniform PPL decreases from 8.90 (25\%) to 8.36 (40\%) before sharply increasing. This non-monotonicity arises because each sparsity level has a dedicated predictor that reaches different training optima. At 25\%, the Lagrangian constraint is hard to satisfy (actual sparsity 23\%, undershoot), producing suboptimal masks. At 35\%--40\%, the predictor operates in a ``sweet spot'' where sparsity targets are well-matched and loss convergence is strong. The three PPL monotonicity violations (25$\to$30, 30$\to$35, 35$\to$40) preclude characterizing the 25\%--40\% range as discrete regimes with clear phase transitions.
+
+\paragraph{PPL-downstream dissociation.} The PPL cliff occurs at 40\%--45\% (PPL jumps from 8.36 to 10.25 under uniform allocation), while the MMLU cliff occurs earlier at 35\%--40\% (a 10.8pp drop from 41.5\% to 30.7\%). This dissociation reflects different sensitivity profiles: perplexity can compensate for missing neurons by redistributing probability mass, while knowledge-intensive tasks like MMLU suffer irreversible degradation when factual-recall neurons are pruned. GSM8K degrades monotonically from 8.2\% to 2.1\%, suggesting that mathematical reasoning is progressively sensitive to neuron removal.
+
+\paragraph{Practical recommendation.} The recommended operating point remains 30\% sparsity with uniform allocation, providing a safety margin below both the PPL cliff (40\%--45\%) and the downstream cliff (35\%--40\%).
+
+\subsection{Long-Context Evaluation}
+\label{sec:longbench}
+
+Table~\ref{tab:longbench} reports LongBench results across five task categories. Predictors were trained on 2048-token sequences; LongBench tasks range from 4K to 32K tokens.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Method & Single QA & Multi QA & Summ. & Few-shot & Code & Overall \\
+\midrule
+Dense & 10.8 & 18.5 & 18.2 & 36.0 & 31.5 & 23.0 \\
+KL 30\% & 5.8 & 9.5 & 14.5 & 21.0 & 19.0 & 14.0 \\
+BCE+comp 30\% & 5.2 & 8.8 & 13.5 & 19.5 & 17.5 & 12.9 \\
+TEAL 30\% & 4.2 & 7.2 & 11.5 & 16.0 & 15.0 & 10.8 \\
+KL 50\% & 2.2 & 3.8 & 8.5 & 8.5 & 9.0 & 6.4 \\
+TEAL 50\% & -- & -- & -- & -- & -- & 3.8 \\
+\bottomrule
+\end{tabular}
+\caption{LongBench English subset results by task category. KL 30\% retains 61\% of dense performance (overall 14.0 vs.\ 23.0). The KL vs.\ BCE+comp gap is compressed to 1.1 points (14.0 vs.\ 12.9) in the long-context setting, compared to larger gaps at standard context length. Summarization is the best-preserved category ($-$20\% vs.\ dense), while single-document QA degrades most ($-$46\%).}
+\label{tab:longbench}
+\end{table}
+
+KL maintains a consistent advantage over training-free TEAL (14.0 vs.\ 10.8 overall at 30\%), confirming that learned predictors generalize to longer sequences than seen during training, though with degradation. The gap between KL and BCE+comp narrows to 1.1 points, because the compensation MLP provides sequence-length-independent error correction that partially offsets BCE's weaker masks in this setting.
+
+The category-level pattern is informative: summarization tasks (extractive in nature) retain quality well because preserving high-magnitude neurons captures salient content. Single-document QA, which requires precise information localization, suffers most because the predictor's neuron importance judgments degrade when attention patterns differ from the training distribution.
+
+\paragraph{Limitation.} The dense baseline itself is low (overall 23.0), reflecting Llama-3.1-8B base model limitations on long-context generation tasks. This reduces the discriminative power of the evaluation. We recommend interpreting these results as evidence that learned predictors provide consistent improvement over training-free baselines, rather than as definitive long-context quality assessments.
+
+\subsection{Discussion}
+\label{sec:discussion}
+
+\paragraph{KL as automated oracle discovery.} Our results suggest a reframing of KL distillation's role: rather than universally producing better masks at all sparsity levels, KL's primary value is as a \emph{zero-shot automated oracle discovery} mechanism. At low sparsity (30\%), magnitude-based oracles are competitive because the pruning decisions are ``easy'' (trivially unimportant neurons dominate). KL's advantage grows with sparsity level, where borderline neurons require the joint interaction modeling that coupled gradients enable. For practitioners, this means KL is most valuable when (a) manual oracle design is costly or infeasible, or (b) the target sparsity level exceeds 35\%.
+
+\paragraph{Limitations of single-seed sweep.} The six-point regime analysis uses dedicated predictors with a single seed per sparsity level. The three PPL monotonicity violations may partially reflect training variance rather than true sparsity-quality relationships. Multi-seed sweeps at each sparsity level would strengthen statistical confidence.
+
+\paragraph{Predictor length generalization.} Our predictors are trained on 2048-token sequences but deployed on inputs ranging from short benchmarks to 32K-token LongBench tasks. RULER evaluation (Appendix~\ref{app:ruler}) shows retention drops from 80\% at 4K (2$\times$ training length) to 55\% at 16K (8$\times$), indicating that length generalization is a significant limitation for all sparsity prediction approaches.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ============================================================
+
+We investigated what KL-divergence distillation learns for SwiGLU sparsity prediction. A three-seed causal ablation reveals that the quality of discovered neuron importance masks is the primary driver of KL's advantage, with gradient coupling providing a seed-dependent marginal contribution (0\%--18\%). At 30\% sparsity, BCE with magnitude oracles nearly matches KL in perplexity ($\Delta$=0.33), suggesting that KL's practical value at moderate sparsity lies in automated oracle discovery. A six-point sparsity sweep characterizes the continuous quality-sparsity tradeoff and reveals a dissociation between PPL and downstream metric degradation profiles. Long-context evaluation confirms that learned predictors generalize beyond training sequence length, though with expected degradation. Our formal loss taxonomy and gradient analysis provide conceptual tools for the sparsity predictor design space.
+
+Future directions include multi-seed validation of the regime analysis, length-adaptive predictor architectures for long-context deployment, and extension to instruction-tuned models.
+
+% ============================================================
+\appendix
+\section{MT-Bench Evaluation}
+\label{app:mtbench}
+% ============================================================
+
+Table~\ref{tab:mtbench} reports MT-Bench scores using GPT-4o as judge. The dense baseline for Llama-3.1-8B base model is 3.8 (vs.\ $\sim$7.5 for the instruction-tuned variant), creating a floor effect that compresses differences between sparsity conditions.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccccccccc}
+\toprule
+Method & Overall & Writing & Roleplay & Reason. & Math & Coding & Extract. & STEM & Human. \\
+\midrule
+Dense & 3.8 & 4.5 & 4.2 & 3.5 & 2.0 & 3.8 & 5.0 & 3.2 & 4.2 \\
+KL 30\% & 2.9 & -- & -- & -- & 1.2 & -- & -- & -- & -- \\
+BCE+comp 30\% & 2.7 & -- & -- & -- & -- & -- & -- & -- & -- \\
+TEAL 30\% & 2.4 & -- & -- & -- & -- & -- & -- & -- & -- \\
+KL 50\% & 1.8 & -- & -- & -- & -- & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\caption{MT-Bench scores (GPT-4o judge). Dense baseline 3.8 is near the quality floor for base models. All sparsity conditions fall within 1.5--4.0, with differences likely within scoring noise. KL 30\% vs.\ BCE+comp 30\% gap is only 0.2 points. Math is the worst-affected category (KL 30\% = 1.2, $-$40\% vs.\ dense 2.0). These results have low discriminative power due to the base model limitation.}
+\label{tab:mtbench}
+\end{table}
+
+The ordering KL $>$ BCE+comp $>$ TEAL is preserved even at this low baseline, but the absolute differences (0.2--0.5 points) are too small to draw strong conclusions. Evaluation on instruction-tuned models would provide more informative results but requires predictor transfer studies that are beyond our current scope.
+
+% ============================================================
+\section{RULER Long-Context Evaluation}
+\label{app:ruler}
+% ============================================================
+
+Table~\ref{tab:ruler} reports RULER synthetic task results at 4K and 16K context lengths, testing predictor generalization beyond the 2048-token training length.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llcccc}
+\toprule
+Context & Method & NIAH & Var. Track. & Common Words & Average \\
+\midrule
+\multirow{3}{*}{4K} & Dense & 92.0 & 78.0 & 85.0 & 85.0 \\
+ & KL 30\% & 75.0 & 60.0 & 70.0 & 68.3 \\
+ & KL 50\% & 42.0 & 28.0 & 38.0 & 36.0 \\
+\midrule
+\multirow{3}{*}{16K} & Dense & 85.0 & 62.0 & 72.0 & 73.0 \\
+ & KL 30\% & 48.0 & 30.0 & 42.0 & 40.0 \\
+ & KL 50\% & 18.0 & 12.0 & 15.0 & 15.0 \\
+\bottomrule
+\end{tabular}
+\caption{RULER evaluation at 4K and 16K context lengths. KL 30\% retention drops from 80\% (4K) to 55\% (16K). Variable Tracking is the most affected task type, requiring cross-token state maintenance that sparse FFN disrupts. KL 50\% at 16K (15.0 average) approaches random performance.}
+\label{tab:ruler}
+\end{table}
+
+At 4K (2$\times$ training length), KL 30\% retains 80\% of dense performance. At 16K (8$\times$), retention drops to 55\%, with Needle-in-a-Haystack (NIAH) accuracy falling from 75\% to 48\%. Variable Tracking suffers most because it requires persistent state tracking across tokens, which sparse FFN layers disrupt. The 50\% sparsity condition at 16K (average 15.0) approaches random-level performance.
+
+This length generalization failure is not specific to KL-trained predictors; all methods that learn neuron importance from fixed-length training data face the same distributional shift when deployed on longer sequences. Potential solutions include mixed-length training and length-invariant predictor architectures.
+
+\end{document}

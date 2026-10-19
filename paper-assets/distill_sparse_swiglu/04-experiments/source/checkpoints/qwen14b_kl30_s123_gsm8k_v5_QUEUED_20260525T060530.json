@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen14b_kl30_s123_gsm8k_v5",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T06:04:04.443Z",
+    "updated_at": "2026-05-25T06:05:29.907Z",
+    "hypothesis": "Final attempt at s123 GSM8K eval. Prior failures: v2 conda not activated, v3 HF unreachable, v4 stopped at PREPARING. This attempt confirmed via Phase 1: conda env at /root/miniconda3/bin/python (3.12.3), checkpoint exists (234MB), Qwen2.5-14B model + tokenizer complete, GSM8K cached and loadable offline via 'openai/gsm8k' (lm-eval task config matches). Submitting with HF_DATASETS_OFFLINE=1, HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1 since data is fully cached, plus network_turbo + SSL certs as fallback.",
+    "parent": "qwen14b_kl30_s123_gsm8k_v4"
+  },
+  "timestamp": "2026-05-25T06:05:30.587377+00:00",
+  "trigger": "update_registry"
+}

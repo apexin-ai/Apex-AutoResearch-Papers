@@ -1,0 +1,27 @@
+{
+  "exp_id": "mse30_s42_boolq",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:16:56.987Z",
+    "updated_at": "2026-05-22T09:17:12.483Z",
+    "parent": "mse30_s42_train",
+    "hypothesis": "MSE-distilled predictor at 30% sparsity (s42) preserves BoolQ accuracy comparable to other downstream tasks, completing the formal 2D decomposition (loss × sparsity) for the reviewer's request.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id mse30_s42_boolq --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mse30_s42/predictor_mse.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks boolq --seq_len 2048 --gpu 0",
+      "server": "westd-41718",
+      "data_path": "/root/autodl-tmp/.hf_cache/datasets/aps___super_glue/boolq",
+      "data_count": 3270,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/mse30_s42/predictor_mse.pt",
+      "eval_data": "boolq",
+      "log_path": "/root/runs/distill_sparse_swiglu/mse30_s42_boolq.log"
+    }
+  },
+  "timestamp": "2026-05-22T09:17:13.090840+00:00",
+  "trigger": "update_registry"
+}

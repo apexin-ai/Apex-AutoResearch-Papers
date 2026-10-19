@@ -1,0 +1,24 @@
+Gradient SNR v2 - Constrained (Lagrangian, 200 steps, LLaMA-3.1-8B)
+
+KL avg SNR: 5.45e-4
+BCE avg SNR: 5.28e-6
+Ratio: 103.2x (vs 5.76x in unconstrained v1)
+
+KL final sparsity: 0.508 (converged to target 0.5)
+BCE final sparsity: 0.591 (overshoots, single-sided Lagrangian)
+
+Per-layer highlights:
+- L0: 508x ratio
+- L12: 2251x ratio (peak)
+- L29: 128x ratio
+- L31: 5x ratio (only last layer is close)
+
+Key finding: Adding Lagrangian constraint INCREASES the SNR gap (from 5.76x to 103.2x).
+Reviewer concern about unfair comparison is directly refuted - the constrained setting
+makes KL's advantage even more dramatic.
+
+BCE gradient SNR is near-zero (<1e-7) for most layers, confirming local proxy
+targets provide essentially random gradient directions.
+
+Script: /root/distill_sparse_swiglu/scripts/gradient_snr_constrained.py
+JSON: /root/distill_sparse_swiglu/artifacts/gradient_snr_constrained_results.json

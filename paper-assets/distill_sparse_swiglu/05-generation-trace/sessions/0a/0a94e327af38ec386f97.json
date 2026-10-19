@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a94e327af38ec386f97",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b gsm8k s123 check",
+  "task_key": "worker_analysis_qwen14b_gsm8k_s123_check_20260523T150847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_gsm8k_s123_check_20260523T150847_result.json",
+    "occurrence": 1,
+    "bytes": 1667,
+    "sha256": "d76aa8dd1a26e2c868818536b7b9327ef655f91dbdd351ba1fc27a27c6ef74aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果文件不在 westd-34887 上（实验跑在 41718 且该服务器当前不可达）。但 checkpoint 记录里已有 metrics。让我再确认 s42/s456 的 GSM8K 样本数作为对比。\n\n## 报告\n\n### qwen14b_kl30_s123_gsm8k\n\n| 项目 | 值 |\n|------|-----|\n| **结果文件** | `results/benchmark/qwen14b_kl30_s123_gsm8k/results.json`（仅存在于 westd-41718，当前不可达） |\n| **westd-34887 上** | 无此文件，也无日志 |\n| **conclusion** | killed |\n| **checkpoint 记录的 metrics** | exact_match=0.3442, strict=0.3434, actual_sparsity=0.297 |\n| **评估样本数** | **无法直接确认**（results.json 在 41718 上，无法读取 sample_len 字段） |\n| **运行服务器** | westd-41718 cuda:1 |\n| **运行时间** | 2026-05-19 18:23 → 20:52（约 2.5h） |\n\n### 对比：s42 和 s456\n\n| seed | sample_len | exact_match | 运行时间 | 服务器 |\n|------|-----------|-------------|---------|--------|\n| s42 | **1319** (完整) | 0.3548 | 2026-05-22 | westd-34887 |\n| s456 | **1319** (完整) | 0.2608 | 2026-05-20 | westd-34887 |\n\n### 结论\n\n1. **s123 的 GSM8K 评估大概率是完整的**：checkpoint 记录了 metrics（exact_match=0.3442），说明评估脚本正常完成并写出了 results.json。\"killed\" 可能是后续状态管理标记，不是评估中途中断。\n2. **但无法 100% 确认 sample_len=1319**，因为 results.json 在 westd-41718 上，该服务器当前不在可用列表中。\n3. **如需确认**：要么将 westd-41718 加回 SSH 可用列表，要么从 41718 手动将 `results/benchmark/qwen14b_kl30_s123_gsm8k/results.json` 同步到 34887。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-gsm8k-s123-check.md"
+}

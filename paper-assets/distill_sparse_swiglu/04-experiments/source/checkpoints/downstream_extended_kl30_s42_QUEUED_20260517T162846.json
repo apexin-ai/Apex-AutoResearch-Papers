@@ -1,0 +1,15 @@
+{
+  "exp_id": "downstream_extended_kl30_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:28:07.772Z",
+    "updated_at": "2026-05-17T16:28:46.002Z",
+    "hypothesis": "KL-distilled 30% sparsity predictor (s42, global) maintains strong performance on extended downstream benchmarks (HellaSwag, PIQA, TriviaQA, HumanEval) beyond the core evaluation suite, demonstrating broad capability retention at 30% activation sparsity"
+  },
+  "timestamp": "2026-05-17T16:28:46.238519+00:00",
+  "trigger": "update_registry"
+}

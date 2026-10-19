@@ -1,0 +1,29 @@
+{
+  "exp_id": "bce_isocompute_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:29:17.153Z",
+    "updated_at": "2026-05-15T19:36:11.836Z",
+    "hypothesis": "BCE 在等量 FLOPs (2700 步 vs KL 1000 步, ratio=2.71x) 下是否能缩小与 KL 的 PPL 差距？如果不能，说明 KL 的优势来自 loss 函数本身而非计算量（Reviewer Concern #2 defense）。",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=offline python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 2700 --warmup_steps 100 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --dataset wikitext-103 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/bce_isocompute_s42 --wandb_run_name bce_isocompute_2700steps_s42 --gradient_checkpointing\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "120874",
+      "log_path": "~/runs/distill_sparse_swiglu/bce_isocompute_s42.log",
+      "submitted_at": "2026-05-15T19:29:28.887Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "Iso-compute BCE: 2700 步匹配 KL 1000 步的总 FLOPs (ratio=2.71x, 实测 profile_flops.py: KL 0.549s/step vs BCE 0.202s/step @BS=1,SL=512)。\nReviewer Concern #2 defense: 验证 KL 优势来自 loss 函数本身而非计算量差异。\n\n## FLOPs 计算依据\n- KL 每步: dense fwd (no grad) + sparse fwd (grad) + backward w/ gradient checkpointing = 0.549s\n- BCE 每步: dense fwd (no grad) + predictor fwd/bwd (~0.9% model FLOPs) = 0.202s\n- Ratio: 2.71x → 1000 KL steps ≈ 2700 BCE steps\n\n## 监控\n- Step 200: sparsity=0.566 (与 bce_comp_staged_s42 同模式, model_level_sparsity 待 eval 确认)\n- Director 要求: step 1000 时 sparsity >0.55 需汇报, 可能需规划 sparsity-matched ablation"
+  },
+  "timestamp": "2026-05-15T19:36:11.917727+00:00",
+  "trigger": "update_registry"
+}

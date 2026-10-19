@@ -1,0 +1,69 @@
+# diagnose perlayer kl k4
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diagnose_perlayer_kl_k4_20260522T151513_result.json`
+- **Structured JSON:** [`1306e4395e11008922a4.json`](../../sessions/13/1306e4395e11008922a4.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+诊断完成。所有证据已收集。
+
+**诊断结果汇总：**
+
+| 项目 | s123 | s456 |
+|------|------|------|
+| Phase 1 训练 | ✅ 完成 (step 500→2700 + final) | ✅ 完成 (step 500→2700 + final) |
+| Phase 2 PPL | ✅ PPL=8.8897 | ✅ PPL=8.8828 |
+| Phase 3 Downstream | ❌ MMLU 45% (26345/58702) | ❌ MMLU 43% (25029/58702) |
+| Phase 4 Sparsity | ❌ 未开始 | ❌ 未开始 |
+
+**磁盘使用明细：**
+- k4 三组中间 step checkpoint: 3×6×435MB ≈ **7.6GB 可回收**
+- `perlayer_kl_30_s123` step checkpoints: 5×435MB ≈ **2.1GB 可回收**
+- `bce_isocompute_v2_s42` step checkpoints: 4×145MB ≈ **0.6GB 可回收**
+- `/root/temp-adv-distill-vla/`（无关项目）: **8.1GB 可回收**
+- 总可回收: ~**18.4GB**
+
+```json
+{"root_cause":"根分区磁盘100%满（30G/30G，仅剩102MB）。两个实验同时运行Phase 3 downstream MMLU eval时lm-eval-harness写缓存/临时文件撑爆磁盘，进程被同时杀死。s123停在45%(26345/58702 loglikelihood)，s456停在43%(25029/58702)。无OOM（内存充足917GB available）。","error_type":"resource","fix_steps":["删除k4三组实验的中间step checkpoint（保留final .pt和step_2700）：rm checkpoints/perlayer_kl_k4_*/predictor_*step_{500,1000,1500,2000,2500}.pt 释放~6.5GB","删除perlayer_kl_30_s123中间step checkpoint释放~2.1GB","删除/root/temp-adv-distill-vla/释放8.1GB（确认不需要后）","编写eval-only脚本，跳过Phase 1+2，直接从已有checkpoint跑Phase 3+4","两个实验串行或分GPU重跑downstream eval"],"can_auto_fix":true,"partial_results":"训练全部完成（两组各有完整checkpoint含step_2700+final），PPL eval全部完成（s123=8.8897, s456=8.8828, 结果已保存），downstream eval无可抢救数据（lm-eval-harness在全部任务完成后才写结果文件）","training_completed":true}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "data": {
+    "root_cause": "根分区磁盘100%满（30G/30G，仅剩102MB）。两个实验同时运行Phase 3 downstream MMLU eval时lm-eval-harness写缓存/临时文件撑爆磁盘，进程被同时杀死。s123停在45%(26345/58702 loglikelihood)，s456停在43%(25029/58702)。无OOM（内存充足917GB available）。",
+    "error_type": "resource",
+    "fix_steps": [
+      "删除k4三组实验的中间step checkpoint（保留final .pt和step_2700）：rm checkpoints/perlayer_kl_k4_*/predictor_*step_{500,1000,1500,2000,2500}.pt 释放~6.5GB",
+      "删除perlayer_kl_30_s123中间step checkpoint释放~2.1GB",
+      "删除/root/temp-adv-distill-vla/释放8.1GB（确认不需要后）",
+      "编写eval-only脚本，跳过Phase 1+2，直接从已有checkpoint跑Phase 3+4",
+      "两个实验串行或分GPU重跑downstream eval"
+    ],
+    "can_auto_fix": true,
+    "partial_results": "训练全部完成（两组各有完整checkpoint含step_2700+final），PPL eval全部完成（s123=8.8897, s456=8.8828, 结果已保存），downstream eval无可抢救数据（lm-eval-harness在全部任务完成后才写结果文件）",
+    "training_completed": true
+  }
+}
+```
+
+</details>
+
+---

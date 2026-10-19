@@ -1,0 +1,15 @@
+{
+  "exp_id": "bench_kl50_global",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:04:18.606Z",
+    "updated_at": "2026-05-16T07:04:26.665Z",
+    "hypothesis": "KL 50% predictor + global top-k 统一 few-shot 评测 (ARC-c=25, WG=5, MMLU=5, GSM8K=8)。展示 global top-k allocation 问题的严重性，与 bench_dense/bench_kl30_uniform 对比。"
+  },
+  "timestamp": "2026-05-16T07:04:26.802494+00:00",
+  "trigger": "update_registry"
+}

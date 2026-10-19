@@ -1,0 +1,26 @@
+paper_key: "PowerInfer: Fast Large Language Model Serving with a Consumer-grade GPU"
+title: "PowerInfer: Fast Large Language Model Serving with a Consumer-grade GPU"
+venue: "SOSP 2024"
+full_text_available: false
+
+research:
+  baselines: ["llama.cpp", "A100 GPU baseline"]
+  metrics:
+    - {name: "token generation rate (tokens/s)", direction: "higher_better"}
+    - {name: "speedup", direction: "higher_better"}
+    - {name: "model accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "not specified in abstract", size: "N/A"}
+  ablation_dimensions: ["hot/cold neuron partitioning", "GPU-CPU placement", "adaptive predictors"]
+  training_recipe: {optimizer: "N/A (inference system)", lr: "N/A", hardware: "NVIDIA RTX 4090 (consumer GPU)"}
+  method_family: "sparsity-aware inference system"
+
+positioning:
+  core_claim: "Power-law neuron activation locality enables GPU-CPU hybrid inference where hot neurons stay on GPU and cold neurons on CPU, achieving 11.69x speedup over llama.cpp on consumer hardware."
+  key_results: "Average 13.20 tokens/s (peak 29.08); 11.69x over llama.cpp; OPT-30B at 82% of A100 rate on RTX 4090."
+  limitations: ["requires offline profiling for hot/cold neuron identification", "CPU computation for cold neurons adds latency"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

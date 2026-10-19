@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0706f2be0a36dd4b8633",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh eval kl s42",
+  "task_key": "worker_ssh_eval-kl-s42_20260515T155737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-kl-s42_20260515T155737_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "e991f68e9a18657e579acb754609b90a313e4447c0a7b8d98d56e5a5e05c3274"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两组评估全部完成。\n\n```\nevaluate.py md5: 4f2faa315b3e45b0781c1c07c47515eb ✓\n\ns42:  Dense PPL=9.21, Sparse PPL=12.08, Δ%=+31.2%, Model Sparsity=0.498\ns123: Dense PPL=9.25, Sparse PPL=11.91, Δ%=+28.8%, Model Sparsity=0.498\n```\n\n两个 seed 的 per-layer sparsity 分布一致：低层和高层稀疏度高（0.7-0.8），中间层低（0.2-0.4），符合 TEAL global allocation 的预期模式。\n\ns123 略优于 s42（Sparse PPL 11.91 vs 12.08），两者 dense baseline 略有差异（9.25 vs 9.21）是因为 WikiText-2 HF 缓存/tokenization 随机性，可忽略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-kl-s42.md"
+}

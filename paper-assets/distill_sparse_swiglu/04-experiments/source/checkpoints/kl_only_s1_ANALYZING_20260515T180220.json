@@ -1,0 +1,44 @@
+{
+  "exp_id": "kl_only_s1",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:19:37.074Z",
+    "updated_at": "2026-05-15T18:02:20.336Z",
+    "spec": {
+      "hypothesis": "KL normalized v3 seed robustness: seed=1 应与 s42/s123/s456 一致，扩展到 5-seed headline",
+      "loss_type": "kl_normalized_v3",
+      "kl_normalization": "÷seq_len only (v3 fix)",
+      "lagrangian": "lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]",
+      "model_name": "llama-3.1-8b",
+      "seed": 1,
+      "data_path": "wikitext-103 (HF cached)",
+      "parent": "mvp_kl_norm_v2_s42",
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 1 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/kl_only_s1 --wandb_run_name kl_only_s1 --dataset wikitext-103\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "88843",
+      "data_count": null
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T17:57:17.967Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:57:20.105509+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T18:02:20.404111+00:00",
+  "trigger": "update_registry"
+}

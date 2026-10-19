@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a88030d6bf4d780828e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check running exps loop5",
+  "task_key": "worker_ssh_check_running_exps_loop5_20260516T020015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_running_exps_loop5_20260516T020015_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "9952066c6cffe69f2f20e752403f0611caf6326f79236040c2b1dd903c49a086"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/process_check_loop5.md`。\n\n**汇总**:\n\n| 实验 | 状态 | GPU |\n|------|------|-----|\n| lm_eval_teal_50pct (PID 190830) | ALIVE, 56% loglikelihood 进度，预计 30-60min 完成 | cuda:1, 92% util, 20GB |\n| lm_eval_kl_s42 | DONE, **negative** — mmlu 0.26 (≈随机), gsm8k 0.01 | — |\n| lm_eval_kl_30pct (PID 191340) | ALIVE, 运行 2h32m，0% GPU util（需关注） | cuda:0, 16GB |\n\nkl_s42 50% sparsity 全面崩溃，winogrande 勉强 0.62，其余接近随机。GPU 0 上额外发现 kl_30pct 评估在跑但 GPU 利用率为 0，可能卡住或处于 CPU 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-running-exps-loop5.md"
+}

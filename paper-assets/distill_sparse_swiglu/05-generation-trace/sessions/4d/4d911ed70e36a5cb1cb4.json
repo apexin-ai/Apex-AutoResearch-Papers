@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d911ed70e36a5cb1cb4",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval wallclock speedup 30 50",
+  "task_key": "worker_eval_wallclock_speedup_30_50_20260517T152859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_wallclock_speedup_30_50_20260517T152859_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "99d00a7007c77483d2ca7ec55a7ebf397ad29224851d2371f3ac2adfd7685c16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Profiling complete. Registry and artifacts updated.\n\n**Summary:**\n\n- **No wall-clock speedup** with either approach tested:\n  - **Mask-based** (current implementation): 0.87-0.94x — slower due to predictor overhead, all matmuls still execute fully\n  - **Structured skip** (weight subsetting): 0.45-0.74x — GPU gather overhead far exceeds compute savings\n\n- **Theoretical FLOPs reduction is real**, requiring custom sparse kernels to realize:\n  - 30% sparsity: 1.36x (28% actual mean sparsity, 8.27 vs 11.27 GFLOP/token)\n  - 50% sparsity: 2.45x (60.5% actual mean sparsity, 4.61 vs 11.27 GFLOP/token)\n\n- **Predictor overhead is small**: ~1 ms decode, ~2 ms prefill (all 32 layers)\n\nFor the paper, report **theoretical FLOPs reduction** (1.36x / 2.45x), not wall-clock speedup. Wall-clock speedup requires sparse kernels (triton semi-structured, 2:4 sparsity hardware support, or custom gather-scatter kernels) which are outside scope."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-wallclock-speedup-30-50.md"
+}

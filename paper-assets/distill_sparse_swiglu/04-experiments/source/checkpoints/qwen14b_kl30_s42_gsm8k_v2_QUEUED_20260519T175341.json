@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen14b_kl30_s42_gsm8k_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:52:58.669Z",
+    "updated_at": "2026-05-19T17:53:41.374Z",
+    "hypothesis": "KL s42 GSM8K supplement for Qwen-14B (retry). Enables KL vs TEAL comparison on reasoning task. v1 killed due to GPU contention on 41718:1.",
+    "parent": "qwen14b_kl30_s42_eval_uniform_v3"
+  },
+  "timestamp": "2026-05-19T17:53:41.820189+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0178ab3c0e465bf65347",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis bce data source verify",
+  "task_key": "worker_analysis_bce-data-source-verify_20260519T082212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bce-data-source-verify_20260519T082212_result.json",
+    "occurrence": 1,
+    "bytes": 770,
+    "sha256": "e5b1952d2082fb4bee25be3990edbe78721b1e47ad3f5c29254ed3f5fa6d55c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。\n\n**Table 2 \"BCE + comp.*\" PPL 28.13±0.20** — 数据来源确认为 `bce_isocompute_v3_{s42,s123,s456}_eval`（纯 BCE，2700 steps，无 compensation）。PPL 和全部 4 个 downstream 指标均匹配。\n\n**Table 4 \"BCE + Compensation\" PPL 25.44** — 数据来源确认为 `bce_comp_staged_s42` 的 `predictor_hard_mask_ppl`，匹配。\n\n**发现的问题：**\n1. Table 2 脚注 `$^\\ast$` 写的是 \"with compensation (67.2M params)\"，但实际数据来自无 compensation 的 iso-compute 实验。\"comp.\" 实际含义是 computational budget matching，脚注需修正。\n2. MMLU std 实际为 0.44，论文报 0.5（微小的保守取整偏差）。\n\n报告已注册：`artifacts/bce_data_source_verification.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bce-data-source-verify.md"
+}

@@ -1,0 +1,59 @@
+{
+  "exp_id": "bench_dense",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:10:27.292Z",
+    "updated_at": "2026-05-16T06:14:48.136Z",
+    "hypothesis": "D029: Dense baseline benchmark_eval.py 统一 few-shot 评测 (ARC-c=25, WG=5, MMLU=5, GSM8K=8)。所有 sparse 条件对比的基础。",
+    "spec": {
+      "command": "benchmark_eval.py --dense --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "209887",
+      "log_path": "~/runs/distill_sparse_swiglu/bench_dense.log",
+      "submitted_at": "2026-05-16T05:24:03.581Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext2 + arc_challenge + winogrande + mmlu + gsm8k",
+      "data_count": 0,
+      "model_name": "llama-3.1-8b (dense baseline)",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T06:12:49.576Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T06:12:51.738928+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "wikitext2_ppl": 6.1173,
+      "arc_challenge_acc": 0.5478,
+      "arc_challenge_acc_norm": 0.5828,
+      "winogrande_acc": 0.7806,
+      "mmlu_acc": 0.6527,
+      "gsm8k_exact_match": 0.4875,
+      "gsm8k_exact_match_strict": 0.486,
+      "arc_challenge_acc_stderr": 0.0145,
+      "arc_challenge_acc_norm_stderr": 0.0144,
+      "winogrande_acc_stderr": 0.0116,
+      "mmlu_acc_stderr": 0.0038,
+      "gsm8k_exact_match_stderr": 0.0138
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T06:14:48.325465+00:00",
+  "trigger": "update_registry"
+}

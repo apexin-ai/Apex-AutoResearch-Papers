@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "096e23883a7570a61007",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra fix wandb restart 41718",
+  "task_key": "worker_infra_fix_wandb_restart_41718_20260518T002520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_wandb_restart_41718_20260518T002520_result.json",
+    "occurrence": 1,
+    "bytes": 1944,
+    "sha256": "66a6d6fc0d10fe08217c750aa80e0338f4a0876c781cd2b3d7e4bfd7c5ef63f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修复完成。总结报告：\n\n## 诊断结果\n\n**任务描述的错误原因（wandb 缺失）并非实际失败根因。**\n\n**实际失败原因**：westd-41718 无法访问 huggingface.co（`[Errno 101] Network is unreachable`），且本地无 wikitext 数据集缓存。\n\n**失败细节**：\n- `multiseed_kl50.sh` (cuda:0)：seed=123 训练 1000 步完成并保存了 checkpoint，但 eval 阶段加载 wikitext-2 数据时网络不通而 crash。`set -e` 导致脚本停止，seed=456 未执行。\n- `multiseed_kl30_fixed.sh` (cuda:1)：同样模式，seed=123 训练完成但 eval crash。\n- Checkpoints `kl_50pct_s123` 和 `kl_30pct_s123` 已不存在（被后续操作清理），需要完全重跑。\n\n## 已完成的修复\n\n1. **wandb 0.27.0 已安装**（pip install 成功）\n2. **wikitext-103 已下载**到 `/root/autodl-tmp/data/wikitext103/`（522MB，1,801,350 examples）\n3. **wikitext-2 test 已下载**到 `/root/autodl-tmp/data/wikitext2/test/`（1.3MB，4,358 examples）\n4. **WANDB_MODE=offline** 已写入 `/root/.bashrc`\n5. 数据通过 `HF_ENDPOINT=https://hf-mirror.com` 下载（huggingface.co 不通但 hf-mirror.com 可用）\n\n## GPU 状态\n\n两张 RTX PRO 6000 Blackwell 97GB 均空闲（0% util, 0MiB）。\n\n## 需要重启的命令\n\n**cuda:0** — KL 50% multiseed（脚本已存在）：\n```bash\nnohup bash /root/distill_sparse_swiglu/scripts/multiseed_kl50.sh > /root/distill_sparse_swiglu/logs/multiseed_kl50_v2.log 2>&1 &\n```\n\n**cuda:1** — KL 30% multiseed（脚本已存在）：\n```bash\nnohup bash /root/distill_sparse_swiglu/scripts/multiseed_kl30_fixed.sh > /root/distill_sparse_swiglu/logs/multiseed_kl30_fixed_v2.log 2>&1 &\n```\n\n注意：脚本中 `WANDB_MODE=disabled`，而 .bashrc 设为 `offline`。脚本内的设置会覆盖，无影响。两个脚本各跑 2 个 seed（123+456）的 train+eval，预计每个脚本约 2-3 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-wandb-restart-41718.md"
+}

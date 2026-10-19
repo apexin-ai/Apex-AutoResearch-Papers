@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35284887121d11cdbca6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra ssh check westd34887 urgent",
+  "task_key": "worker_infra_ssh_check_westd34887_urgent_20260517T215643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_ssh_check_westd34887_urgent_20260517T215643_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "7016dbbd3fb8c87146836480d5fa53be33ae72db8f5ec78d3dac2ce2a356be4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果:\n\n**两个实验均正常运行，无错误。** 此前 cron 回调失效是误报。\n\n| 实验 | 状态 | PPL | GSM8K 进度 | ETA |\n|------|------|-----|-----------|-----|\n| qwen14b_bce30_s42_eval | 运行中 | 8.7634 | 86% (1137/1319) | ~44min |\n| bce_isocompute_v3_s123_eval | 运行中 | 28.0627 | 16% (209/1319) | ~21min |\n\n两个 GPU 都在满负载工作。完整指标（ARC-c, WinoGrande, MMLU, GSM8K）要等 generate_until 跑完后才会写入 results.json。bce_isocompute_v3_s123 预计 ~06:18 UTC 完成，qwen14b 预计 ~06:41 UTC 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-ssh-check-westd34887-urgent.md"
+}

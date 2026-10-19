@@ -1,0 +1,28 @@
+TEAL vs KL Neuron Overlap Analysis (50% sparsity, LLaMA-3.1-8B, 27 samples)
+
+Overall Jaccard: 0.396 (low overlap)
+Divergence ratio: 43.3% of pruned neurons non-overlapping
+
+KL-only pruned neurons:
+- Mean |activation|: 0.0588 (1.48x global mean of 0.0398)
+- These are high-magnitude neurons KL sacrifices for PPL
+
+TEAL-only pruned neurons:
+- Mean KL gate prob: 0.614 (KL wants to KEEP these)
+- These are low-magnitude neurons TEAL prunes but KL preserves
+
+Per-layer Jaccard (U-shaped):
+- Lowest overlap: L17-L18 (Jaccard ~0.19) - middle layers (knowledge storage)
+- Highest overlap: L26-L28 (Jaccard ~0.55) - late layers
+
+Interpretation: KL optimizes for output distribution (PPL) by pruning neurons
+whose removal least affects next-token prediction, even if they have high
+activation magnitude. TEAL's magnitude-based strategy naturally protects
+high-activation knowledge neurons. Middle-layer divergence aligns with
+knowledge neuron literature (factual knowledge concentrated in mid layers).
+
+This explains the PPL-downstream disconnect: KL wins PPL but TEAL preserves
+knowledge neurons → better MMLU.
+
+Script: /root/distill_sparse_swiglu/scripts/teal_kl_overlap.py
+JSON: /root/distill_sparse_swiglu/artifacts/teal_kl_overlap_analysis.json

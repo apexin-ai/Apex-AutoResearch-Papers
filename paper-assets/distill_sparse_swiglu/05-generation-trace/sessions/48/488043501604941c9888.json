@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "488043501604941c9888",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b teal30 uniform gsm8k",
+  "task_key": "worker_analysis_qwen14b_teal30_uniform_gsm8k_20260520T020501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_teal30_uniform_gsm8k_20260520T020501_result.json",
+    "occurrence": 1,
+    "bytes": 1243,
+    "sha256": "117790a8b396fdf7c681d653025a440afa68839792ce60340e9fbf3b7992ed7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 结果汇总\n\n### 提取指标\n\n| 指标 | 值 |\n|------|-----|\n| gsm8k_exact_match (strict) | **0.5208** |\n| gsm8k_exact_match (flexible) | 0.5208 |\n| gsm8k_exact_match_stderr | ±0.01376 |\n| actual_sparsity (model-level) | 0.293 |\n| sample_len | 1319 |\n\n无 W&B run（纯 lm-eval-harness 离线评测）。\n\n### 对比（Qwen-2.5-14B GSM8K）\n\n| 条件 | gsm8k_exact_match | Δ vs Dense |\n|------|-------------------|------------|\n| Dense | 0.8757 | — |\n| TEAL@27.5% uniform | 0.5709 | -30.48pp |\n| **TEAL@30% uniform (本实验)** | **0.5208** | **-35.49pp** |\n| TEAL@30% global | 0.4951 | -38.06pp |\n| KL@30% uniform s42 | 0.3571 | -51.86pp |\n| KL@30% uniform s123 | 0.3442 | -53.15pp |\n| KL@30% uniform s456 | 0.2608 | -61.49pp |\n\n### Conclusion: success\n\n- TEAL@30% uniform GSM8K=0.5208，显著高于所有 KL@30% uniform 变体（+16.4~26.0pp）\n- 比 TEAL@30% global (0.4951) 高 +2.57pp\n- 比 TEAL@27.5% uniform (0.5709) 低 5.01pp，符合预期（更高稀疏度→更多退化）\n- 数据可用于填补附录表格 TEAL@30% uniform 行的 GSM8K 列\n\n### Registry 更新\n\nmetrics/conclusion/status/spec 全部更新成功，状态已转为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-teal30-uniform-gsm8k.md"
+}

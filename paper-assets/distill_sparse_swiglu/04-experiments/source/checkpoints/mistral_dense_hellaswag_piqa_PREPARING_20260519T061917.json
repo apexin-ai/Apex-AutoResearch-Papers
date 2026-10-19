@@ -1,0 +1,14 @@
+{
+  "exp_id": "mistral_dense_hellaswag_piqa",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:19:17.368Z",
+    "updated_at": "2026-05-19T06:19:17.369Z"
+  },
+  "timestamp": "2026-05-19T06:19:17.777246+00:00",
+  "trigger": "update_registry"
+}

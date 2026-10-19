@@ -1,0 +1,25 @@
+paper_key: "Pointer Sentinel Mixture Models"
+title: "Pointer Sentinel Mixture Models"
+venue: "ICLR 2017"
+full_text_available: false
+
+research:
+  baselines: ["standard softmax LSTM", "pointer networks"]
+  metrics:
+    - {name: "perplexity", direction: "lower_better"}
+  datasets:
+    - {name: "Penn Treebank", size: "standard split"}
+    - {name: "WikiText", size: "introduced in paper"}
+  ablation_dimensions: ["pointer vs softmax mixing", "sentinel gating mechanism"]
+  training_recipe: {optimizer: "not specified", lr: "not specified", hardware: "not specified"}
+  method_family: "mixture of pointer and softmax language models"
+
+positioning:
+  core_claim: "A pointer sentinel mixture model that gates between copying from context and generating from vocabulary achieves 70.9 PPL on Penn Treebank with fewer parameters than standard approaches."
+  key_results: "Penn Treebank PPL 70.9; introduces WikiText corpus as a richer LM evaluation benchmark."
+  limitations: ["limited to copying from recent context window", "sentinel mechanism adds complexity"]
+  relation_to_us: "orthogonal"
+
+narrative: N/A
+figures: N/A
+tables: N/A

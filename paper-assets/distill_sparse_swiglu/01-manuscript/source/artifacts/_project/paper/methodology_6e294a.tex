@@ -1,0 +1,159 @@
+\section{Methodology}
+\label{sec:method}
+
+\subsection{Problem Formulation}
+\label{sec:method:formulation}
+
+We consider a pretrained SwiGLU-based language model with $L$ transformer layers.
+Each feed-forward network (FFN) in layer $\ell$ computes:
+\begin{equation}
+\mathbf{h}^{(\ell)} = \bigl(\mathbf{x}^{(\ell)} \mathbf{W}_{\text{gate}}^{(\ell)} \odot \sigma(\mathbf{x}^{(\ell)} \mathbf{W}_{\text{up}}^{(\ell)})\bigr) \mathbf{W}_{\text{down}}^{(\ell)},
+\label{eq:swiglu}
+\end{equation}
+where $\mathbf{x}^{(\ell)} \in \mathbb{R}^{T \times d}$ is the input hidden state ($d{=}4096$ for Llama-3.1-8B), $\sigma$ denotes SiLU, $\mathbf{W}_{\text{gate}}^{(\ell)}, \mathbf{W}_{\text{up}}^{(\ell)} \in \mathbb{R}^{d \times D}$ and $\mathbf{W}_{\text{down}}^{(\ell)} \in \mathbb{R}^{D \times d}$ are the FFN weight matrices, $D{=}14{,}336$ is the intermediate dimension, and $\odot$ is element-wise multiplication.
+
+A substantial fraction of intermediate neurons produce near-zero activation magnitudes $|\mathbf{W}_{\text{gate}}^{(\ell)} \odot \sigma(\mathbf{W}_{\text{up}}^{(\ell)})|$ for any given input, making them candidates for pruning \cite{placeholder_teal,placeholder_dejavu}.
+Our goal is to train a lightweight \emph{contextual sparsity predictor} $P^{(\ell)}$ for each layer $\ell$ that maps the current hidden state to a binary mask $\mathbf{m}^{(\ell)} \in \{0,1\}^D$ indicating which neurons to retain.
+The sparse FFN computation becomes:
+\begin{equation}
+\tilde{\mathbf{h}}^{(\ell)} = \bigl(\mathbf{x}^{(\ell)} \mathbf{W}_{\text{gate}}^{(\ell)} \odot \sigma(\mathbf{x}^{(\ell)} \mathbf{W}_{\text{up}}^{(\ell)}) \odot \mathbf{m}^{(\ell)}\bigr) \mathbf{W}_{\text{down}}^{(\ell)}.
+\label{eq:sparse_ffn}
+\end{equation}
+We seek a training objective for $P^{(\ell)}$ that preserves the model's output distribution under sparsification, without requiring auxiliary error compensation networks at inference time.
+
+\subsection{Predictor Architecture}
+\label{sec:method:predictor}
+
+Each layer $\ell$ has an independent two-layer MLP predictor:
+\begin{equation}
+P^{(\ell)}(\mathbf{x}) = \mathbf{W}_2^{(\ell)}\, \text{ReLU}\!\bigl(\mathbf{W}_1^{(\ell)} \mathbf{x}\bigr),
+\label{eq:predictor}
+\end{equation}
+where $\mathbf{W}_1^{(\ell)} \in \mathbb{R}^{d \times d_b}$ and $\mathbf{W}_2^{(\ell)} \in \mathbb{R}^{d_b \times D}$ with bottleneck dimension $d_b{=}256$.
+The predictor outputs $D$-dimensional logits $\mathbf{s}^{(\ell)} = P^{(\ell)}(\mathbf{x}^{(\ell)})$, from which the binary mask is derived.
+The total predictor overhead is 75.96M parameters across 32 layers (${\approx}1\%$ of the 8B base model), requiring no additional parameters at inference beyond the predictors themselves.
+
+\subsection{KL Distillation Loss}
+\label{sec:method:kl}
+
+The central design choice is the training objective.
+Prior contextual sparsity predictors \cite{placeholder_dejavu,placeholder_shadowllm,placeholder_fastforward} train with binary cross-entropy (BCE), treating each neuron as an independent binary classification target against the oracle mask (typically the top-$k$ neurons by activation magnitude).
+We instead train predictors via output-distribution distillation: the sparse model's logit distribution should match the dense model's.
+
+Concretely, let $\mathbf{y}_{\text{dense}} = f(\mathbf{x})$ denote the logits from a full dense forward pass, and $\mathbf{y}_{\text{sparse}} = f(\mathbf{x}; \{\mathbf{m}^{(\ell)}\}_\ell)$ the logits from a forward pass with predictor-generated masks applied at every layer.
+The loss is the forward KL divergence:
+\begin{equation}
+\mathcal{L}_{\text{KL}} = \text{KL}\!\bigl(p_{\text{dense}} \,\|\, p_{\text{sparse}}\bigr) = \sum_{v} p_{\text{dense}}^{(v)} \log \frac{p_{\text{dense}}^{(v)}}{p_{\text{sparse}}^{(v)}},
+\label{eq:kl_loss}
+\end{equation}
+where $p_{\text{dense}} = \text{softmax}(\mathbf{y}_{\text{dense}})$ and $p_{\text{sparse}} = \text{softmax}(\mathbf{y}_{\text{sparse}})$, summed over vocabulary $v$ and averaged over sequence positions.
+The base model is frozen; only the predictor parameters $\{P^{(\ell)}\}_\ell$ receive gradients.
+
+\paragraph{Gradient coupling.}
+The critical difference from BCE lies in the gradient structure.
+For a predictor logit $s_j^{(\ell)}$ controlling neuron $j$ in layer $\ell$, the KL gradient is:
+\begin{equation}
+\frac{\partial \mathcal{L}_{\text{KL}}}{\partial s_j^{(\ell)}} = \frac{\partial \mathcal{L}_{\text{KL}}}{\partial \mathbf{y}_{\text{sparse}}} \cdot \frac{\partial \mathbf{y}_{\text{sparse}}}{\partial \mathbf{h}^{(\ell)}} \cdot \frac{\partial \mathbf{h}^{(\ell)}}{\partial m_j^{(\ell)}} \cdot \frac{\partial m_j^{(\ell)}}{\partial s_j^{(\ell)}}.
+\label{eq:kl_gradient}
+\end{equation}
+The Jacobian $\partial \mathbf{y}_{\text{sparse}} / \partial \mathbf{h}^{(\ell)}$ back-propagates through all downstream layers, coupling the gradient for neuron $j$ to the states of \emph{all} retained neurons across the network.
+This means the predictor receives a learning signal that reflects how each neuron's inclusion or exclusion jointly affects the output distribution.
+
+In contrast, BCE defines a per-neuron loss $\mathcal{L}_{\text{BCE}} = -\sum_j [t_j \log \sigma(s_j) + (1{-}t_j)\log(1{-}\sigma(s_j))]$ against oracle targets $t_j$.
+Its gradient $\partial \mathcal{L}_{\text{BCE}} / \partial s_j = \sigma(s_j) - t_j$ depends only on neuron $j$'s own prediction and target---a factorized signal that cannot capture inter-neuron interactions.
+At higher sparsity levels, where pruning decisions interact more strongly through the nonlinear forward pass, this factorization becomes increasingly limiting (\S\ref{sec:experiments}).
+
+\subsection{Gumbel-Sigmoid Relaxation}
+\label{sec:method:gumbel}
+
+KL distillation requires differentiating through the sparse forward pass, which in turn requires continuous relaxation of the discrete mask.
+We use Gumbel-sigmoid sampling \cite{placeholder_gumbel}:
+\begin{equation}
+m_j^{\text{soft}} = \sigma\!\left(\frac{s_j + g_1 - g_2}{\tau}\right), \quad g_1, g_2 \sim \text{Gumbel}(0,1),
+\label{eq:gumbel}
+\end{equation}
+where $\tau$ is a temperature parameter controlling the sharpness of the relaxation.
+During training, $\tau$ anneals from 1.0 to 0.1 over the course of optimization, progressively sharpening the soft masks toward binary decisions.
+At inference, the soft mask is replaced by a hard threshold or folded into the TEAL global allocation (\S\ref{sec:method:teal}).
+
+\paragraph{Why not straight-through estimation?}
+The straight-through estimator (STE)~\cite{placeholder_ste} applies a hard threshold in the forward pass and passes gradients through unchanged.
+In our setting, STE causes severe training instability: the discrete threshold means small parameter changes can flip large numbers of neurons simultaneously, producing discontinuous jumps in sparsity.
+This manifests as violent oscillation of the Lagrangian multiplier $\lambda$ (standard deviation 354 over training vs.\ smooth convergence under Gumbel), failure to reach the target sparsity (achieved 47.0\% vs.\ target 50\%), and degraded TEAL PPL (15.77 vs.\ 12.00).
+Gumbel-sigmoid's continuous relaxation provides smooth gradients that stabilize both the sparsity constraint and the KL objective.
+
+\subsection{Lagrangian Sparsity Control}
+\label{sec:method:lagrangian}
+
+We enforce a model-level sparsity target $s_{\text{target}}$ (e.g., 0.5 for 50\% neuron pruning) via an augmented Lagrangian penalty.
+Let $\bar{s} = \frac{1}{L} \sum_\ell \text{mean}(\mathbf{m}^{(\ell)})$ be the average fraction of \emph{retained} neurons across all layers and tokens in a batch.
+The total loss is:
+\begin{equation}
+\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{KL}} + \lambda \cdot \max\!\bigl(0,\; |\bar{s} - s_{\text{target}}| - \epsilon\bigr),
+\label{eq:lagrangian}
+\end{equation}
+with tolerance $\epsilon{=}0.02$.
+The multiplier $\lambda$ adapts every 25 steps: if the constraint is violated ($|\bar{s} - s_{\text{target}}| > \epsilon$), $\lambda \leftarrow 2\lambda$; otherwise $\lambda \leftarrow \lambda/2$, clamped to $[0.1, \lambda_{\max}]$ with $\lambda_{\max}{=}5000$ and initial $\lambda_0{=}1.0$.
+
+This formulation serves two purposes.
+First, the tolerance band $\epsilon$ prevents the multiplier from oscillating when sparsity is near the target.
+Second, the exponential update schedule reacts quickly to large violations (the multiplier can increase 1000$\times$ within 250 steps) while decaying gently when the constraint is satisfied.
+Unlike a fixed regularization weight, the Lagrangian formulation decouples the sparsity target from the magnitude of the KL loss, which varies across layers and training stages.
+
+\subsection{TEAL-Compatible Inference}
+\label{sec:method:teal}
+
+At inference time, we adopt the TEAL global top-$k$ allocation strategy \cite{placeholder_teal} to guarantee exact model-level sparsity.
+Rather than applying a fixed threshold per layer, TEAL computes a global importance score for every neuron across all layers and retains the top $(1{-}s_{\text{target}}) \times L \times D$ neurons.
+
+We compose the predictor with TEAL by defining the importance score for neuron $j$ in layer $\ell$ as:
+\begin{equation}
+\text{score}_j^{(\ell)} = \sigma\bigl(s_j^{(\ell)}\bigr) \cdot \bigl|a_j^{(\ell)}\bigr|,
+\label{eq:teal_score}
+\end{equation}
+where $\sigma(s_j^{(\ell)})$ is the predictor's sigmoid probability and $|a_j^{(\ell)}|$ is the activation magnitude.
+Before global ranking, scores are normalized by per-layer mean to prevent layers with systematically larger activations from dominating the budget.
+This scoring combines the predictor's learned contextual signal with TEAL's magnitude-based importance, enabling the predictor to redirect the global budget toward neurons it deems critical for output preservation.
+
+The inference pipeline requires only a single additional forward pass through the lightweight predictors (${\sim}76$M parameters), with no compensation networks, no auxiliary GEMV operations, and no post-hoc bias correction.
+
+\subsection{Training Procedure}
+\label{sec:method:training}
+
+\paragraph{Setup.}
+The base model (Llama-3.1-8B) is frozen throughout.
+We train only the predictor parameters on the WikiText-103 training split for 1{,}000 steps with batch size 4 and sequence length 2{,}048.
+We use AdamW \cite{placeholder_adamw} with learning rate $10^{-3}$, 100-step linear warmup, and cosine decay.
+Gradient checkpointing is applied to the base model to fit within GPU memory.
+
+\paragraph{Computational cost.}
+Each KL training step requires two forward passes through the base model (one dense for the reference distribution, one sparse with predictor masks) plus a backward pass through the sparse path.
+This is $2.71\times$ the per-step cost of BCE training, which only requires the dense forward pass to extract oracle targets followed by a predictor-only backward pass.
+The total training cost is approximately 550 GPU-seconds on two RTX PRO 6000 Blackwell GPUs (1{,}000 steps $\times$ 0.549s/step).
+
+\begin{algorithm}[t]
+\caption{KL-Distilled Sparsity Predictor Training}
+\label{alg:training}
+\begin{algorithmic}[1]
+\REQUIRE Dense model $f$, target sparsity $s_{\text{target}}$, tolerance $\epsilon$, steps $N$
+\STATE Initialize predictors $\{P^{(\ell)}\}_{\ell=1}^{L}$; $\lambda \leftarrow 1.0$; $\tau \leftarrow 1.0$
+\FOR{step $= 1$ \TO $N$}
+    \STATE Sample batch $\mathbf{x}$
+    \STATE $\mathbf{y}_{\text{dense}} \leftarrow f(\mathbf{x})$ \hfill \COMMENT{dense forward, no grad}
+    \FOR{each layer $\ell$}
+        \STATE $\mathbf{s}^{(\ell)} \leftarrow P^{(\ell)}(\mathbf{x}^{(\ell)})$
+        \STATE $\mathbf{m}^{(\ell)} \leftarrow \sigma\!\bigl((\mathbf{s}^{(\ell)} + g_1 - g_2)/\tau\bigr)$ \hfill \COMMENT{Gumbel-sigmoid}
+    \ENDFOR
+    \STATE $\mathbf{y}_{\text{sparse}} \leftarrow f(\mathbf{x}; \{\mathbf{m}^{(\ell)}\}_\ell)$ \hfill \COMMENT{sparse forward, with grad}
+    \STATE $\mathcal{L}_{\text{KL}} \leftarrow \text{KL}(p_{\text{dense}} \| p_{\text{sparse}})$
+    \STATE $\bar{s} \leftarrow \text{mean}(\{\mathbf{m}^{(\ell)}\})$
+    \STATE $\mathcal{L}_{\text{total}} \leftarrow \mathcal{L}_{\text{KL}} + \lambda \cdot \max(0, |\bar{s} - s_{\text{target}}| - \epsilon)$
+    \STATE Update $\{P^{(\ell)}\}$ via AdamW on $\mathcal{L}_{\text{total}}$
+    \IF{step $\bmod$ 25 $= 0$}
+        \STATE $\lambda \leftarrow \begin{cases} \min(2\lambda,\, \lambda_{\max}) & \text{if } |\bar{s} - s_{\text{target}}| > \epsilon \\ \max(\lambda/2,\, 0.1) & \text{otherwise}\end{cases}$
+    \ENDIF
+    \STATE $\tau \leftarrow \text{anneal}(\tau)$ \hfill \COMMENT{$1.0 \to 0.1$, cosine schedule}
+\ENDFOR
+\RETURN $\{P^{(\ell)}\}_{\ell=1}^{L}$
+\end{algorithmic}
+\end{algorithm}

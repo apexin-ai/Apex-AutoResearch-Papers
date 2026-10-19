@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d051022db7e961a5222",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check eval kl30 teal",
+  "task_key": "worker_ops_check_eval_kl30_teal_20260516T062124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_eval_kl30_teal_20260516T062124_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "90e8fb9093d3e4d97c3f0c95f307b30b922ac1e738a6bddc1be70f123fb6496c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_kl30_teal_30pct — 成功完成。**\n\nMetrics（WikiText-2, sparsity_target=0.3）：\n\n| 指标 | PPL |\n|------|-----|\n| Dense | 6.12 |\n| Predictor Hard Mask | 7.30 |\n| TEAL Sparse | 8.98 |\n\nModel-level actual sparsity 精确命中 0.300。相比之前误跑 sparsity_target=0.5 得到的 13.63，正确 target=0.3 下 TEAL PPL 降到 8.98，符合预期。\n\nRegistry 已更新 (conclusion=success, status=DONE, metrics 已写入)，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-kl30-teal.md"
+}

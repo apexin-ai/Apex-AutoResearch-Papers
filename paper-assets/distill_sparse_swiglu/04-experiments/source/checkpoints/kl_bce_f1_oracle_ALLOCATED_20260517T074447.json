@@ -1,0 +1,15 @@
+{
+  "exp_id": "kl_bce_f1_oracle",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:44:06.291Z",
+    "updated_at": "2026-05-17T07:44:47.126Z",
+    "hypothesis": "BCE achieves higher per-neuron F1 against oracle magnitude mask than KL, but KL achieves far better PPL, proving that per-neuron mask accuracy is the wrong optimization proxy and output distribution fidelity (KL) is structurally superior"
+  },
+  "timestamp": "2026-05-17T07:44:47.310605+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1983 @@
+# cron hook perlayer kl k2 s456 eval 20260524T035558 981203
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 2
+- **Tool calls:** 30
+- **Original source:** `logs/chats/archive/cron_hook_perlayer_kl_k2_s456_eval_20260524T035558_981203.jsonl`
+- **Structured JSON:** [`8eef5d6092be7f9f296e.json`](../../sessions/8e/8eef5d6092be7f9f296e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+31 recorded events
+
+### User
+
+_source line 1 · 2026-05-23T11:20:46.512262+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: perlayer_kl_k2_s456_eval
+- project: distill_sparse_swiglu
+- server: westd-34887
+- log_path: /root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-23T11:20:58.562049+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_worker_status",
+  "max_results": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_worker_status",
+    "max_results": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-23T11:20:58.562466+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T11:21:01.523756+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T11:21:01.524195+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-23T11:21:02.477518+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-23T11:21:03.038421+00:00_
+
+Error: result (650,986 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1514
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-23T11:21:03.038982+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "distill_sparse_swiglu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T11:21:03.089446+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T11:21:06.448617+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"perlayer_kl_k8_s123_eval\", \"success\": true, \"actions\": [\"Job still running (pid=136226)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 4924
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T11:21:06.500666+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-23T11:20:43Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 401 个实验 — ANALYZING 1, DEPLOYED 1, DONE 398, RUNNING 1\\n**DONE 分布**: failed 40, killed 82, negative 24, success 252\\n\\n### GPU 占用\\n- **实际运行**: 1 张 — westd-34887:cuda:0(perlayer_kl_k8_s123_eval)\\n\\n### 💾 磁盘余量\\n- **westd-34887**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `perlayer_kl_k8_s123_eval` | westd-34887 | cuda:0 | 136226 | `~/runs/distill_sparse_swiglu/perlayer_kl_k8_s123_eval.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `perlayer_kl_k2_s123_eval` [success] — 2026-05-23T11:14:40\\n- `perlayer_kl_k16_s456_v2` [success] — 2026-05-23T10:08:17\\n- `perlayer_kl_k2_s42_train` [success] — 2026-05-23T10:04:05\\n- `perlayer_kl_k16_s123` [success] — 2026-05-23T10:03:37\\n- `perlayer_kl_k16_s456` [failed] — 2026-05-23T09:25:15\\n\\n### 🔴 最近失败原因 (top 3)\\n- `perlayer_kl_k16_s456`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-23\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| perlayer_kl_k8_s123_eval | K=8 s123 eval at 30% TEAL uniform: 7-task downstream for 3-seed K-curve. Completes K=8 multi-seed data alongside existing K=8 s42 eval. | — | — | — |\\n| perlayer_kl_k2_s456_eval | K=2 s456 eval at 30% TEAL uniform: 7-task downstream for 3-seed K-curve. s456 sparsity=0.289. | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **perlayer_kl_k2_s123_eval** (success): K=2 s123 eval at 30% TEAL uniform: 7-task downstream for 3-seed 
+…[truncated 6039 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4023
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T11:21:06.501344+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md\", \"content\": \"# distill_sparse_swiglu — Research Dashboard\\n\\n> 最后更新: 2026-05-23 00:10 UTC | 更新原因: R24 写作修复已派 Paper Agent，DDL 5/25 剩 2 天，更新任务状态\\n\\n## 核心方向\\nKL distillation for SwiGLU sparsity prediction：output-distribution alignment 是 PPL 的主导设计维度。Cross-layer coupling contributes task-dependently（commonsense-dominated vs reasoning-dominated）。C1 target-swap ablation suggests KL-discovered masks carry most quality information（max Δ≤0.79pp）。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Review → R24 写作修复执行中（Paper Agent 已派）\\n- **R24 评分**: 3.0 Findings（fresh review, 2 Critical + 6 Warning + 5 Minor）\\n- **R24 修复方案**（全部写作修复，无需新实验）：\\n  - 🔄 C1: \\\"29-97%\\\" 精确分解 → 定性描述 + K=4 50% 反常假设\\n  - 🔄 C2: §4.2 补 MMLU/GSM8K 退步机制假设（WikiText-103 偏差 + forward KL mode-covering + Meng et al. 2022）\\n  - 🔄 W6: \\\"dominant\\\" → \\\"substantially outperforms\\\"\\n  - 🔄 W3: Limitations 补 \\\"open-ended generation untested\\\"\\n  - 🔄 Minor: 代码释放声明、Introduction MaskLLM 区分、missing refs\\n- **决策 D104**: K=8/K=16 和 Table 4 3-seed 不做（DDL 不允许），转为写作处理\\n- **R23 审批卡**: 已过期（R24 修复将产生新版本）\\n\\n## 近期任务\\n- [ ] Paper Agent 完成 R24 写作修复 → 编译检查 8 页\\n- [ ] 修复完成后 submit_paper_to_review（continue mode）验证\\n- [ ] R25 通过后提交最终版本\\n- [ ] Registry 卫生清理（Agent 已派）\\n\\n## GPU 预算\\n- 分配: westd-34887 cuda:0,1（2× RTX PRO 6000 Blackwell 96GB）\\n- westd-41718 已由用户释放\\n- 当前: 全部空闲（所有实验已完成，剩余全部为写作修复）\\n- DDL: 2026-05-25（EMNLP 2026 ARR May cycle，剩余 2 天）\\n\\n## 关键数据汇总\\n\\n### 2D Decomposition（3-seed K=4-corrected）\\n| Task | Coupling % | 解读 |\\n|------|-----------|------|\\n| ARC-c | 97% | coupling-dominated (commonsense) |\\n| WG | 67% | coupling-dominated (commonsense) |\\n| GSM8K | 29% | mismatch-dominated (reasoning) |\\n| MMLU | >100% | anomalous (allocation alignment artifact) |\\n| PPL (30%) | ~33% | signal type dominates |\\n| PPL (50%) | coupling dominates | K=
+…[truncated 1692 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 3462
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T11:21:06.603183+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 3513
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-23T11:21:17.996488+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Find the target experiment\nfor e in exps:\n    if e.get('exp_id') == 'perlayer_kl_k2_s456_eval':\n        print(json.dumps(e, indent=2))\n        break\n\"",
+  "description": "Extract perlayer_kl_k2_s456_eval from registry JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Find the target experiment\nfor e in exps:\n    if e.get('exp_id') == 'perlayer_kl_k2_s456_eval':\n        print(json.dumps(e, indent=2))\n        break\n\"",
+    "description": "Extract perlayer_kl_k2_s456_eval from registry JSON"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T11:21:21.160784+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 8, in &lt;module>
+    if e.get('exp_id') == 'perlayer_kl_k2_s456_eval':
+       ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "elapsed_ms": 3164
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-23T11:21:22.465590+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Find related K-curve experiments for comparison\nk_curve_exps = [e for e in exps if 'perlayer_kl_k' in e.get('exp_id','') and e.get('status') == 'DONE' and e.get('conclusion') == 'success' and 'eval' in e.get('exp_id','')]\nfor e in k_curve_exps:\n    print(f\\\"{e['exp_id']}: metrics={e.get('metrics',{})}\\\")\n\"",
+  "description": "Find related K-curve eval experiments for comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Find related K-curve experiments for comparison\nk_curve_exps = [e for e in exps if 'perlayer_kl_k' in e.get('exp_id','') and e.get('status') == 'DONE' and e.get('conclusion') == 'success' and 'eval' in e.get('exp_id','')]\nfor e in k_curve_exps:\n    print(f\\\"{e['exp_id']}: metrics={e.get('metrics',{})}\\\")\n\"",
+    "description": "Find related K-curve eval experiments for comparison"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T11:21:22.465932+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-3/proje…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-23T11:21:27.132920+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt') as f:\n    data = json.loads(f.read())\nresult = json.loads(data['result'])\nprint(type(result['data']['experiments']))\nprint(list(result['data'].keys()))\nif isinstance(result['data']['experiments'], dict):\n    if 'perlayer_kl_k2_s456_eval' in result['data']['experiments']:\n        print(json.dumps(result['data']['experiments']['perlayer_kl_k2_s456_eval'], indent=2))\nelif isinstance(result['data']['experiments'], list):\n    print(result['data']['experiments'][0])\n\"",
+  "description": "Probe registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt') as f:\n    data = json.loads(f.read())\nresult = json.loads(data['result'])\nprint(type(result['data']['experiments']))\nprint(list(result['data'].keys()))\nif isinstance(result['data']['experiments'], dict):\n    if 'perlayer_kl_k2_s456_eval' in result['data']['experiments']:\n        print(json.dumps(result['data']['experiments']['perlayer_kl_k2_s456_eval'], indent=2))\nelif isinstance(result['data']['experiments'], list):\n    print(result['data']['experiments'][0])\n\"",
+    "description": "Probe registry data structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T11:21:27.235863+00:00_
+
+&lt;class 'dict'>
+['experiments', 'count', 'total', 'baseline']
+{
+  "status": "ANALYZING",
+  "retry_count": 0,
+  "created_at": "2026-05-23T10:08:28.324Z",
+  "updated_at": "2026-05-23T11:20:39.985Z",
+  "hypothesis": "K=2 s456 eval at 30% TEAL uniform: 7-task downstream for 3-seed K-curve. s456 sparsity=0.289.",
+  "parent": "perlayer_kl_k2_s456",
+  "spec": {
+    "command": "python -u src/benchmark_eval.py ... --checkpoint .../perlayer_kl_k2_s456/predictor_perlayer_kl_k4.pt --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa",
+    "server": "westd-34887",
+    "gpu": [
+      "cuda:1"
+    ],
+    "pid": "132622",
+    "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log",
+    "submitted_at": "2026-05-23T10:09:02.172Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "gpu_ids": [
+      "cuda:1"
+    ],
+    "data_path": "wikitext-103",
+    "data_count": "auto",
+    "model_name": "llama-3.1-8b",
+    "seed": 456,
+    "checkpoint_source": "perlayer_kl_k2_s456",
+    "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa"
+  },
+  "reproduce": {
+    "finished_at": "2026-05-23T11:20:38.521Z"
+  },
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_complete",
+        "action": "agent",
+        "ts": "2026-05-23T11:20:45.516727+00:00"
+      }
+    ]
+  }
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-23T11:21:31.952615+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "log_path": "/root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log",
+  "n": "100",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-34887",
+    "log_path": "/root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log",
+    "n": "100",
+    "project": "distill_sparse_swiglu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T11:21:32.956409+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"Overwriting default num_fewshot of mmlu_moral_disputes from None to 5\", \"Overwriting default num_fewshot of mmlu_moral_scenarios from None to 5\", \"Overwriting default num_fewshot of mmlu_philosophy from None to 5\", \"Overwriting default num_fewshot of mmlu_prehistory from None to 5\", \"Overwriting default num_fewshot of mmlu_professional_law from None to 5\", \"Overwriting default num_fewshot of mmlu_world_religions from None to 5\", \"\\r  0%|          | 0/1267 [00:00<?, ?it/s]\\r100%|██████████| 1267/1267 [00:00<00:00, 37248.86it/s]\", \"\\r  0%|          | 0/100 [00:00<?, ?it/s]\\r 26%|██▌       | 26/100 [00:00<00:00, 253.62it/s]\\r 52%|█████▏    | 52/100 [00:00<00:00, 254.01it/s]\\r 78%|███████▊  | 78/100 [00:00<00:00, 253.63it/s]\\r100%|██████████| 100/100 [00:00<00:00, 250.10it/s]\", \"\\r  0%|          | 0/135 [00:00<?, ?it/s]\\r 19%|█▉        | 26/135 [00:00<00:00, 253.03it/s]\\r 39%|███▊      | 52/135 [00:00<00:00, 253.54it/s]\\r 58%|████���▊    | 78/135 [00:00<00:00, 253.71it/s]\\r 77%|███████▋  | 104/135 [00:00<00:00, 252.21it/s]\\r 96%|█████████▋| 130/135 [00:00<00:00, 253.00it/s]\\r100%|██████████| 135/135 [00:00<00:00, 253.04it/s]\", \"\\r  0%|          | 0/152 [00:00<?, ?it/s]\\r 17%|█▋        | 26/152 [00:00<00:00, 253.96it/s]\\r 34%|███▍      | 52/152 [00:00<00:00, 254.24it/s]\\r 51%|█████▏    | 78/152 [00:00<00:00, 254.05it/s]\\r 68%|██████▊   | 104/152 [00:00<00:00, 249.73it/s]\\r 86%|████████▌ | 130/152 [00:00<00:00, 249.87it/s]\\r100%|██████████| 152/152 [00:00<00:00, 251.30it/s]\", \"\\r  0%|          | 0/144 [00:00<?, ?it/s]\\r 18%|█▊        | 26/144 [00:00<00:00, 250.14it/s]\\r 36%|███▌      | 52/144 [00:00<00:00, 252.22it/s]\\r 54%|█████▍    | 78/144 [00:00<00:00, 250.62it/s]\\r 72%|███████▏  | 104/144 [00:00<00:00, 251.53it/s]\\r 90%|█████████ | 130/144 [00:00<00:00, 252.29it/s]\\r100%|██████████| 144/144 [00:00<00:00, 251.93it/s]\", \"\\r  0%|          | 0/100 [00:00<?, ?it/s]\\
+…[truncated 6672 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1003
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-23T11:21:51.597660+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt') as f:\n    data = json.loads(f.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Get all K-curve eval experiments\ntargets = ['perlayer_kl_k2_s42_eval', 'perlayer_kl_k2_s123_eval', 'perlayer_kl_k2_s456_eval',\n           'perlayer_kl_k4_s42_eval', 'perlayer_kl_k4_s123_eval', 'perlayer_kl_k4_s456_eval',\n           'perlayer_kl_k8_s42_eval', 'perlayer_kl_k8_s123_eval', 'perlayer_kl_k8_s456_eval',\n           'perlayer_kl_k16_s42_eval', 'perlayer_kl_k16_s123_eval', 'perlayer_kl_k16_s456_eval',\n           'perlayer_kl_k2_s456', 'perlayer_kl_k2_s123', 'perlayer_kl_k2_s42_train']\nfor t in targets:\n    if t in exps:\n        e = exps[t]\n        print(f'{t}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}))}'[:300])\n    else:\n        print(f'{t}: NOT FOUND')\n\"",
+  "description": "Get all K-curve eval experiments for comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt') as f:\n    data = json.loads(f.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Get all K-curve eval experiments\ntargets = ['perlayer_kl_k2_s42_eval', 'perlayer_kl_k2_s123_eval', 'perlayer_kl_k2_s456_eval',\n           'perlayer_kl_k4_s42_eval', 'perlayer_kl_k4_s123_eval', 'perlayer_kl_k4_s456_eval',\n           'perlayer_kl_k8_s42_eval', 'perlayer_kl_k8_s123_eval', 'perlayer_kl_k8_s456_eval',\n           'perlayer_kl_k16_s42_eval', 'perlayer_kl_k16_s123_eval', 'perlayer_kl_k16_s456_eval',\n           'perlayer_kl_k2_s456', 'perlayer_kl_k2_s123', 'perlayer_kl_k2_s42_train']\nfor t in targets:\n    if t in exps:\n        e = exps[t]\n        print(f'{t}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}))}'[:300])\n    else:\n        print(f'{t}: NOT FOUND')\n\"",
+    "description": "Get all K-curve eval experiments for comparison"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T11:21:51.700549+00:00_
+
+perlayer_kl_k2_s42_eval: status=DONE, conclusion=success, metrics={"wikitext2_ppl": 10.7958, "arc_challenge_acc_norm": 0.3985, "winogrande_acc": 0.6322, "mmlu_acc": 0.4172, "gsm8k_exact_match": 0.0296, "hellaswag_acc_norm": 0.6773, "piqa_acc_norm": 0.7356}
+perlayer_kl_k2_s123_eval: status=DONE, conclusion=success, metrics={"wikitext2_ppl": 10.8835, "arc_challenge_acc_norm": 0.4078, "winogrande_acc": 0.614, "mmlu_acc": 0.3789, "gsm8k_exact_match": 0.0326, "hellaswag_acc_norm": 0.6605, "piqa_acc_norm": 0.741}
+perlayer_kl_k2_s456_eval: status=ANALYZING, conclusion=None, metrics={}
+perlayer_kl_k4_s42_eval: NOT FOUND
+perlayer_kl_k4_s123_eval: NOT FOUND
+perlayer_kl_k4_s456_eval: NOT FOUND
+perlayer_kl_k8_s42_eval: status=DONE, conclusion=success, metrics={"wikitext2_ppl": 8.9704, "arc_challenge_acc_norm": 0.4104, "winogrande_acc": 0.674, "mmlu_acc": 0.398, "gsm8k_exact_match": 0.0561, "hellaswag_acc_norm": 0.6919, "piqa_acc_norm": 0.7612}
+perlayer_kl_k8_s123_eval: status=RUNNING, conclusion=None, metrics={}
+perlayer_kl_k8_s456_eval: NOT FOUND
+perlayer_kl_k16_s42_eval: NOT FOUND
+perlayer_kl_k16_s123_eval: NOT FOUND
+perlayer_kl_k16_s456_eval: NOT FOUND
+perlayer_kl_k2_s456: status=DONE, conclusion=success, metrics={}
+perlayer_kl_k2_s123: status=DONE, conclusion=success, metrics={}
+perlayer_kl_k2_s42_train: status=DONE, conclusion=success, metrics={"wikitext2_ppl": 10.7958, "wikitext2_ppl_pertoken": 11.0812, "final_avg_kl": 0.0358, "final_avg_sparsity": 0.268, "wall_time_s": 3843, "eval_mode": "teal_global_uniform_30pct"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-23T11:21:59.981076+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "log_path": "/root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log",
+  "n": "20",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-34887",
+    "log_path": "/root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log",
+    "n": "20",
+    "project": "distill_sparse_swiglu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T11:22:07.561392+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"Running loglikelihood requests:   0%|          | 0/40168 [00:00<?, ?it/s]\\rRunning loglikelihood requests:   0%|          | 1/40168 [00:01<13:29:38,  1.21s/it]\\rRunning loglikelihood requests:   0%|          | 9/40168 [00:01<1:42:29,  6.53it/s] \\rRunning loglikelihood requests:   0%|          | 17/40168 [00:02<1:07:11,  9.96it/s]\\rRunning loglikelihood requests:   0%|          | 25/40168 [00:02<54:09, 12.35it/s]  \\rRunning loglikelihood requests:   0%|          | 33/40168 [00:03<47:54, 13.96it/s]\\rRunning loglikelihood requests:   0%|          | 41/40168 [00:03<44:24, 15.06it/s]\\rRunning loglikelihood requests:   0%|          | 49/40168 [00:04<42:14, 15.83it/s]\\rRunning loglikelihood requests:   0%|          | 57/40168 [00:04<40:49, 16.37it/s]\\rRunning loglikelihood requests:   0%|          | 65/40168 [00:04<39:53, 16.75it/s]\\rRunning loglikelihood requests:   0%|          | 73/40168 [00:05<39:19, 17.00it/s]\\rRunning loglikelihood requests:   0%|          | 81/40168 [00:05<38:51, 17.19it/s]\\rRunning loglikelihood requests:   0%|          | 89/40168 [00:06<38:32, 17.33it/s]\\rRunning loglikelihood requests:   0%|          | 97/40168 [00:06<38:19, 17.42it/s]\\rRunning loglikelihood requests:   0%|          | 105/40168 [00:07<38:07, 17.51it/s]\\rRunning loglikelihood requests:   0%|          | 113/40168 [00:07<37:58, 17.58it/s]\\rRunning loglikelihood requests:   0%|          | 121/40168 [00:08<37:51, 17.63it/s]\\rRunning loglikelihood requests:   0%|          | 129/40168 [00:08<37:46, 17.67it/s]\\rRunning loglikelihood requests:   0%|          | 137/40168 [00:08<37:43, 17.68it/s]\\rRunning loglikelihood requests:   0%|          | 145/40168 [00:09<37:38, 17.72it/s]\\rRunning loglikelihood requests:   0%|          | 153/40168 [00:09<37:37, 17.72it/s]\\rRunning loglikelihood requests:   0%|          | 161/40168 [00:10<37:35, 17.74it/s]\\rRunning loglikelihood requests:   0%|          | 169/40168 [00:10<3
+…[truncated 6529 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 7580
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-23T11:22:07.862969+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse_swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt') as f:\n    data = json.loads(f.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Get K=4 experiments  \nk4_exps = [k for k in exps if 'k4' in k and 'perlayer' in k]\nfor k in sorted(k4_exps):\n    e = exps[k]\n    print(f'{k}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}))}'[:350])\n\nprint()\n# Get K=16 experiments\nk16_exps = [k for k in exps if 'k16' in k and 'perlayer' in k]\nfor k in sorted(k16_exps):\n    e = exps[k]\n    print(f'{k}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}))}'[:350])\n\" 2>/dev/null || echo 'path error'\n",
+  "description": "Find K=4 and K=16 experiment names in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse_swiglu--claude-sessions-agent-df6b02fe/362ad396-fcd9-4427-b968-b9f7a370f6b4/tool-results/mcp-agent-ml-research-read_registry-1779535262897.txt') as f:\n    data = json.loads(f.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Get K=4 experiments  \nk4_exps = [k for k in exps if 'k4' in k and 'perlayer' in k]\nfor k in sorted(k4_exps):\n    e = exps[k]\n    print(f'{k}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}))}'[:350])\n\nprint()\n# Get K=16 experiments\nk16_exps = [k for k in exps if 'k16' in k and 'perlayer' in k]\nfor k in sorted(k16_exps):\n    e = exps[k]\n    print(f'{k}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}))}'[:350])\n\" 2>/dev/null || echo 'path error'\n",
+    "description": "Find K=4 and K=16 experiment names in registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T11:22:08.064113+00:00_
+
+path error
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-23T11:22:26.184290+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:perlayer_kl_k2_s456_eval",
+  "project": "distill_sparse_swiglu",
+  "task_prompt": "## 任务\n读取实验 `perlayer_kl_k2_s456_eval` 的完整结果，包括 PPL 和所有 downstream metrics。\n\n## 服务器\nwestd-34887 (root)\n\n## 需要做的事\n\n1. 用 `ssh_read_only` 读取结果 JSON 文件：\n   ```\n   cat /root/distill_sparse_swiglu/results/benchmark/perlayer_kl_k2_s456_eval/results.json\n   ```\n\n2. 如果 JSON 里没有 PPL，用 grep 在日志中搜索：\n   ```\n   grep -i \"ppl\\|perplexity\\|wikitext2\\|word_perplexity\" /root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log\n   ```\n\n3. 也搜索 sparsity 信息：\n   ```\n   grep -i \"sparsity\\|actual.*spars\" /root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log | tail -5\n   ```\n\n## 产出\n返回以下结构化数据：\n- wikitext2_ppl（如果有）\n- arc_challenge_acc_norm\n- winogrande_acc\n- mmlu_acc\n- gsm8k_exact_match\n- hellaswag_acc_norm\n- piqa_acc_norm\n- actual_sparsity（如果有）\n",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:perlayer_kl_k2_s456_eval",
+    "project": "distill_sparse_swiglu",
+    "task_prompt": "## 任务\n读取实验 `perlayer_kl_k2_s456_eval` 的完整结果，包括 PPL 和所有 downstream metrics。\n\n## 服务器\nwestd-34887 (root)\n\n## 需要做的事\n\n1. 用 `ssh_read_only` 读取结果 JSON 文件：\n   ```\n   cat /root/distill_sparse_swiglu/results/benchmark/perlayer_kl_k2_s456_eval/results.json\n   ```\n\n2. 如果 JSON 里没有 PPL，用 grep 在日志中搜索：\n   ```\n   grep -i \"ppl\\|perplexity\\|wikitext2\\|word_perplexity\" /root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log\n   ```\n\n3. 也搜索 sparsity 信息：\n   ```\n   grep -i \"sparsity\\|actual.*spars\" /root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log | tail -5\n   ```\n\n## 产出\n返回以下结构化数据：\n- wikitext2_ppl（如果有）\n- arc_challenge_acc_norm\n- winogrande_acc\n- mmlu_acc\n- gsm8k_exact_match\n- hellaswag_acc_norm\n- piqa_acc_norm\n- actual_sparsity（如果有）\n",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T11:22:29.150713+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/logs/workers/worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226 started. Use get_worker_status('worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2966
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-23T11:22:35.409547+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "filters": "{'status': 'DONE', 'conclusion': 'success'}",
+  "fields": "['exp_id', 'metrics', 'hypothesis']",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "filters": "{'status': 'DONE', 'conclusion': 'success'}",
+    "fields": "['exp_id', 'metrics', 'hypothesis']",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-23T11:40:46.930884+00:00_
+
+Worker 已派出读取完整结果。同时从 registry 收集其他 K 值数据做对比。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+32 recorded events
+
+### User
+
+_source line 32 · 2026-05-24T03:54:08.957453+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-24T03:54:17.719265+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-24T03:54:17.769870+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-24T03:54:22.336147+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-24T03:54:22.336502+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-24T03:54:23.289982+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T03:54:23.701057+00:00_
+
+Error: result (661,549 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/dfdbf4a3-521d-4b67-ba70-ac83110ec340/tool-results/mcp-agent-ml-research-read_registry-1779594863629.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/dfdbf4a3-521d-4b67-ba70-ac83110ec340/tool-results/mcp-agent-ml-research-read_registry-1779594863629.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/dfdbf4a3-521d-4b67-ba70-ac83110ec340/tool-results/mcp-agent-ml-research-read_registry-1779594863629.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1364
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-24T03:54:23.701523+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "distill_sparse_swiglu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-24T03:54:23.752255+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 1415
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-24T03:54:23.752962+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/report.md\", \"content\": \"# Handover — 2026-05-24\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- qwen14b_kl30_s123_gsm8k_v4: Rerun s123 GSM8K eval (v3 failed: HF network unreachable). Added source /etc/network_turbo + HF_DATASETS_OFFLINE fallback.（准备中）\\n- qwen14b_kl30_s123_gsm8k_v3: Rerun s123 GSM8K eval (v2 failed: python not found, conda not activated). Checkpoint on westd-34887.（准备中）\\n- qwen14b_kl30_s123_gsm8k_v2: Rerun s123 GSM8K eval to confirm data completeness — original run (qwen14b_kl30_s123_gsm8k) was killed after ~2.5h on unreachable westd-41718, cannot verify sample_len=1319. Checkpoint available on westd-34887.（准备中）\\n\\n## 近期结论\\n- **perlayer_kl_k4_s42** (success): Per-layer KL distillation with K=4 active layers per step and adaptive lambda scheduling can train the sparsity predictor to achieve avg KL < 0.05 while maintaining ~28% sparsity across all 32 layers.\\n- **mse30_s123_downstream** (success): MSE-trained predictor at 30% sparsity (seed 123) preserves downstream task performance comparable to dense baseline because MSE distillation captures sufficient activation magnitude information to maintain task-relevant features in the sparse SwiGLU network.\\n\\n## 趋势\\n成功 258 / 负向 24 / 失败 40 / 共 404\\narc_challenge_acc_norm: 0.3737 ↓（近 3 次 success）\\ngsm8k_exact_match: 0.0174 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-34887: 无 GPU 信息\\n\\n## 告警\\n- mvp_kl_s123: 已被终止 — unknown\\n- mvp_kl_s456: 已被终止 — unknown\\n- kl_lagrangian_v2: 已被终止 — unknown\\n- kl_normalized_quicktest: 训练失败 — unknown\\n- mvp_kl_norm_s42: 训练失败 — unknown\\n- mvp_kl_norm_s123: 训练失败 — unknown\\n- mvp_kl_norm_s456: 已被终止 — unknown\\n- kl_norm_v3_quicktest: 已被终止 — unknown\\n- spon_kl_s42: 已被终止 — unknown\\n- spon_training_seq2048: 已被终止 — unknown\\n- spon_2048_s42: 已被终止 — unknown\\n- ste_kl_s42
+…[truncated 5023 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 462
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-24T03:54:23.753515+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md\", \"content\": \"# distill_sparse_swiglu — Research Dashboard\\n\\n> 最后更新: 2026-05-23 14:50 UTC | 更新原因: R28 准备完成，更新 ROADMAP 反映当前状态（R24-R27 superseded），清理过时任务\\n\\n## 核心方向\\nKL distillation for SwiGLU sparsity prediction：output-distribution alignment 是 PPL 的主导设计维度（signal type gap 25:1 vs coupling breadth）。Cross-layer coupling contributes task-dependently。C1 target-swap ablation confirms KL-discovered masks carry most quality information。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Review → R28 提交准备（R24→R25→R26→R27 已 supersede）\\n- **最新评分**: R27 = 3.0 Findings（目标 ≥3.5 Conference）\\n- **R27→R28 改进已完成**:\\n  - ✅ K-curve 全 6 个 K 值 3-seed（K=1/2/4/8/16/32）\\n  - ✅ K-curve PPL 图加入正文 §4.5（Figure 2）\\n  - ✅ K=16 MMLU \\\"allocation artifact\\\" 脚注修正（→ high seed variance）\\n  - ✅ K=4 Appendix W 数据修正（copy-paste 错误）\\n  - ✅ Ethics Statement 删除\\n  - ✅ Limitations 压缩 (~90 words)\\n  - ✅ Conclusion 页面溢出修复\\n  - ✅ §4.5 \\\"preliminary\\\" → \\\"3-seed K-curve confirms\\\"\\n  - ✅ C4 control 实验写入 §4.2\\n  - ✅ 写作降级（overclaiming 修复 8 处）\\n- **实验**: 405 个（成功 256），所有 GPU 实验已完成\\n- **K-curve 3-seed 数据**: K=1(9.05±0.02), K=2(10.75±0.15), K=4(8.89±0.005), K=8(8.99±0.06), K=16(8.67±0.02), K=32(8.81±0.02)\\n\\n## 近期任务\\n- [ ] Reviewer 最终数据一致性审查（registry↔paper 全量交叉验证）\\n- [ ] 数据审查通过后 submit_paper_to_review（R28）\\n- [ ] R28 审稿通过后准备最终提交\\n\\n## GPU 预算\\n- 分配: westd-34887 cuda:0,1（2× RTX PRO 6000 Blackwell 96GB）\\n- 当前: 全部空闲（所有实验已完成，剩余全部为论文收尾）\\n- DDL: 2026-05-25（EMNLP 2026 ARR May cycle，剩余 2 天）\\n\\n## 关键数据汇总\\n\\n### 主表数据（30% uniform, 3-seed）\\n| Method | PPL | ARC-c | WG | MMLU | GSM8K |\\n|--------|-----|-------|------|------|-------|\\n| KL uniform | 8.81±0.02 | 43.7±2.5 | 68.9±0.4 | 40.7±1.3 | 7.5±0.1 |\\n| TEAL uniform | 10.82 | 39.33 | 65.04 | 45.86 | 8.79 |\\n| BCE global | 11.25 | 41.2 | 66.0 | 36.3 | 6.0 |\\n| MSE uniform | 18.52±1.68 | 35.
+…[truncated 1811 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-24T03:54:37.803244+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/dfdbf4a3-521d-4b67-ba70-ac83110ec340/tool-results/mcp-agent-ml-research-read_registry-1779594863629.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\nprint(f'Total experiments: {len(exps)}')\n# Show non-DONE experiments\nfor e in exps:\n    if e.get('status') not in ('DONE',):\n        print(f\\\"  {e['exp_id']}: status={e.get('status')}, conclusion={e.get('conclusion')}\\\")\nprint()\n# Show RUNNING experiments\nrunning = [e for e in exps if e.get('status') == 'RUNNING']\nprint(f'RUNNING: {len(running)}')\nfor e in running:\n    print(f\\\"  {e['exp_id']}: server={e.get('server')}, gpu={e.get('gpu_id')}\\\")\nprint()\n# Show PREPARING experiments\npreparing = [e for e in exps if e.get('status') == 'PREPARING']\nprint(f'PREPARING: {len(preparing)}')\nfor e in preparing:\n    print(f\\\"  {e['exp_id']}: hypothesis={e.get('hypothesis','')[:80]}\\\")\n\"\n",
+  "description": "Extract registry status summary"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/dfdbf4a3-521d-4b67-ba70-ac83110ec340/tool-results/mcp-agent-ml-research-read_registry-1779594863629.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\nprint(f'Total experiments: {len(exps)}')\n# Show non-DONE experiments\nfor e in exps:\n    if e.get('status') not in ('DONE',):\n        print(f\\\"  {e['exp_id']}: status={e.get('status')}, conclusion={e.get('conclusion')}\\\")\nprint()\n# Show RUNNING experiments\nrunning = [e for e in exps if e.get('status') == 'RUNNING']\nprint(f'RUNNING: {len(running)}')\nfor e in running:\n    print(f\\\"  {e['exp_id']}: server={e.get('server')}, gpu={e.get('gpu_id')}\\\")\nprint()\n# Show PREPARING experiments\npreparing = [e for e in exps if e.get('status') == 'PREPARING']\nprint(f'PREPARING: {len(preparing)}')\nfor e in preparing:\n    print(f\\\"  {e['exp_id']}: hypothesis={e.get('hypothesis','')[:80]}\\\")\n\"\n",
+    "description": "Extract registry status summary"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-24T03:54:38.305463+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 9, in &lt;module>
+    if e.get('status') not in ('DONE',):
+       ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+Total experiments: 408
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-24T03:54:38.757174+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "memory.md",
+  "max_chars": "8000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "memory.md",
+    "max_chars": "8000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-24T03:54:38.757509+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-3/proje…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-24T03:54:39.359503+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "paper_framing.md",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "paper_framing.md",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-24T03:54:39.359833+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-3/proje…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-24T03:54:44.581789+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/dfdbf4a3-521d-4b67-ba70-ac83110ec340/tool-results/mcp-agent-ml-research-read_registry-1779594863629.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# exps might be a list of dicts or something else - check type\nprint(type(exps))\nif isinstance(exps, list):\n    print(f'Count: {len(exps)}')\n    print(f'First item type: {type(exps[0])}')\n    if isinstance(exps[0], str):\n        print(f'First item: {exps[0][:200]}')\n    elif isinstance(exps[0], dict):\n        print(f'First item keys: {list(exps[0].keys())[:10]}')\nelif isinstance(exps, dict):\n    print(f'Keys: {list(exps.keys())[:10]}')\n\"\n",
+  "description": "Debug registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/dfdbf4a3-521d-4b67-ba70-ac83110ec340/tool-results/mcp-agent-ml-research-read_registry-1779594863629.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# exps might be a list of dicts or something else - check type\nprint(type(exps))\nif isinstance(exps, list):\n    print(f'Count: {len(exps)}')\n    print(f'First item type: {type(exps[0])}')\n    if isinstance(exps[0], str):\n        print(f'First item: {exps[0][:200]}')\n    elif isinstance(exps[0], dict):\n        print(f'First item keys: {list(exps[0].keys())[:10]}')\nelif isinstance(exps, dict):\n    print(f'Keys: {list(exps.keys())[:10]}')\n\"\n",
+    "description": "Debug registry data structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-24T03:54:44.632524+00:00_
+
+&lt;class 'dict'>
+Keys: ['qwen14b_kl30_s123_eval_v4', 'perlayer_kl_k4_s42', 'mse30_s123_downstream', 'qwen14b_kl30_s123_gsm8k_v4', 'qwen14b_kl30_s123_gsm8k_v3', 'qwen14b_kl30_s123_gsm8k_v2', 'perlayer_kl_k16_s456_eval', 'perlayer_kl_k16_s123_eval', 'perlayer_kl_k8_s456_eval', 'perlayer_kl_k8_s123_eval']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-24T03:54:52.310735+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/dfdbf4a3-521d-4b67-ba70-ac83110ec340/tool-results/mcp-agent-ml-research-read_registry-1779594863629.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\ntotal = len(exps)\nrunning = {k:v for k,v in exps.items() if v.get('status') == 'RUNNING'}\npreparing = {k:v for k,v in exps.items() if v.get('status') == 'PREPARING'}\npending = {k:v for k,v in exps.items() if v.get('status') == 'PENDING'}\nqueued = {k:v for k,v in exps.items() if v.get('status') == 'QUEUED'}\nanalyzing = {k:v for k,v in exps.items() if v.get('status') == 'ANALYZING'}\n\nprint(f'Total: {total}')\nprint(f'RUNNING: {len(running)}')\nfor k,v in running.items():\n    print(f'  {k}: server={v.get(\\\"server\\\")}, gpu={v.get(\\\"gpu_id\\\")}')\nprint(f'PREPARING: {len(preparing)}')\nfor k,v in preparing.items():\n    print(f'  {k}')\nprint(f'PENDING: {len(pending)}')\nfor k,v in pending.items():\n    print(f'  {k}')\nprint(f'QUEUED: {len(queued)}')\nprint(f'ANALYZING: {len(analyzing)}')\n\n# Count conclusions\nfrom collections import Counter\nconclusions = Counter(v.get('conclusion') for v in exps.values() if v.get('conclusion'))\nprint(f'Conclusions: {dict(conclusions)}')\n\" 2>&1 | head -40\n",
+  "description": "Extract registry status summary"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-df6b02fe/dfdbf4a3-521d-4b67-ba70-ac83110ec340/tool-results/mcp-agent-ml-research-read_registry-1779594863629.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\ntotal = len(exps)\nrunning = {k:v for k,v in exps.items() if v.get('status') == 'RUNNING'}\npreparing = {k:v for k,v in exps.items() if v.get('status') == 'PREPARING'}\npending = {k:v for k,v in exps.items() if v.get('status') == 'PENDING'}\nqueued = {k:v for k,v in exps.items() if v.get('status') == 'QUEUED'}\nanalyzing = {k:v for k,v in exps.items() if v.get('status') == 'ANALYZING'}\n\nprint(f'Total: {total}')\nprint(f'RUNNING: {len(running)}')\nfor k,v in running.items():\n    print(f'  {k}: server={v.get(\\\"server\\\")}, gpu={v.get(\\\"gpu_id\\\")}')\nprint(f'PREPARING: {len(preparing)}')\nfor k,v in preparing.items():\n    print(f'  {k}')\nprint(f'PENDING: {len(pending)}')\nfor k,v in pending.items():\n    print(f'  {k}')\nprint(f'QUEUED: {len(queued)}')\nprint(f'ANALYZING: {len(analyzing)}')\n\n# Count conclusions\nfrom collections import Counter\nconclusions = Counter(v.get('conclusion') for v in exps.values() if v.get('conclusion'))\nprint(f'Conclusions: {dict(conclusions)}')\n\" 2>&1 | head -40\n",
+    "description": "Extract registry status summary"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-24T03:54:52.815515+00:00_
+
+Total: 408
+RUNNING: 0
+PREPARING: 3
+  qwen14b_kl30_s123_gsm8k_v4
+  qwen14b_kl30_s123_gsm8k_v3
+  qwen14b_kl30_s123_gsm8k_v2
+PENDING: 0
+QUEUED: 0
+ANALYZING: 0
+Conclusions: {'success': 257, 'killed': 84, 'failed': 42, 'negative': 24}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "Bash",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-24T03:54:53.267775+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "memory.md",
+  "max_chars": "8000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "memory.md",
+    "max_chars": "8000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-24T03:54:53.268477+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\", \"content\": \"# Memory — distill_sparse_swiglu\\n\\n## Per-layer KL 实验关键发现 (2026-05-21)\\n\\n### Per-layer KL vs E2E KL downstream gap 分析\\n- 平均 downstream gap = −2.61pp（6 task mean, excl BoolQ）\\n- Commonsense (ARC-c/WG/HS) 平均 −3.89pp，HS 最大 drop (−4.88pp)\\n- Reasoning (MMLU/GSM8K) 平均 −1.87pp\\n- PIQA 几乎无差异 (−0.23pp)\\n- PPL gap: +0.24 (9.05 vs 8.81)\\n- **结论**: per-layer 独立优化丢失跨层 coupling 导致 downstream 一致性下降，commonsense 比 reasoning 更敏感\\n\\n### BoolQ 3-seed 完整对比 (uniform allocation)\\n- **E2E KL BoolQ**: s42=75.60%, s123=70.06%, s456=75.54% → Mean=73.73±3.18%\\n- **Per-layer KL BoolQ**: s42=71.77%, s123=70.46%, s456=51.25% → Mean=64.49±11.49%\\n- **Gap**: −9.24pp (E2E KL 优势明显)\\n- **方差对比**: Per-layer KL 方差 3.6× 大于 E2E KL (11.49 vs 3.18 std)\\n- **结论**: BoolQ 对跨层 coupling 高度敏感，per-layer 独立优化在 NLI 类 task 上不稳定\\n\\n### Convergence 特征\\n- 2-seed 均在 ~6000 步收敛（后续改善 <0.1 PPL）\\n- s123 在 step 8000 出现轻微回弹 (9.16 vs step 6000 的 9.11)，但 step 10000 回到 9.06\\n- 最终 PPL 跨 seed 高度一致 (9.06 vs 9.06)\\n\\n### 数据缓存问题\\n- westd-34887 BoolQ 缓存已通过 embed download 方式部署成功（2026-05-21）\\n- westd-41718 有完整的 super_glue/boolq 缓存\\n- **解决方案**: 在 submit_training_job 命令中嵌入 download 步骤（先联网下载,再切 offline 模式 eval）\\n\\n## Cross-seed Jaccard 分析 (2026-05-22, R18-W7)\\n\\n### 方法学关键区分\\n- 论文 46-68% 使用 **per-token activation magnitudes**（per-token abs(dense_act) top-k），不是 weight norms\\n- 代码确认于 `generate_kl_oracle_masks.py:94-100`：`dense_act.abs().topk(k, dim=-1)`\\n- 论文明确标注 \\\"computed per-token\\\"（experiments.tex:80）\\n\\n### 正确参照系（三层对比，非简单 ratio）\\n- Cross-seed KL Jaccard = 36.3% — **低于 random baseline 10pp** → KL seeds 收敛\\n- Random baseline (30% sparsity) = 46.2%（计算: 1 - (0.7²)/(2×0.7-0.7²) = 0.462）\\n- KL-vs-magnitude (30%) = 46% ≈ random → KL 和 magnitude **本质不相关**\\n- KL-vs-magnitude (50%) = 68% > random 66.7% → 高稀疏度下更强\\n\\n### 教训\\n- 用 weight L2 norms
+…[truncated 3999 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-24T03:54:53.620129+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "paper_framing.md",
+  "max_chars": "4000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "paper_framing.md",
+    "max_chars": "4000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-24T03:54:53.722036+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper_framing.md\", \"content\": \"# Paper Framing — distill_sparse_swiglu\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 2026 cycle)\\n- Deadline: 2026-05-25 (ARR submission)\\n- Track: Efficient Methods for NLP\\n\\n## Core Claims\\n\\n1. **KL distillation discovers fundamentally different (and superior) neuron importance patterns that magnitude-based oracles miss**: The C1 target-swap ablation (D059, 3-seed) suggests that KL-discovered mask targets carry most of the quality information: BCE trained on KL-derived targets approaches KL-level PPL (max Δ≤0.79pp, 3-seed). Standard BCE (magnitude masks) PPL ≈ 22.51. The 46-68% mask divergence (per-layer Jaccard 32%) between KL-derived and magnitude-based masks is the core empirical finding: KL discovers a qualitatively different neuron importance landscape. **2D decomposition (K=4 per-layer KL)**: Signal type (output-distribution vs intermediate loss) accounts for the majority of the PPL gap at 30% (upper bound; not fully orthogonal with coupling scope). Cross-layer coupling contributes 29-97% on downstream tasks (3-seed K=4-corrected): coupling-dominated for commonsense (ARC-c 97%, WG 67%) and mismatch-dominated for reasoning (GSM8K 29%). **Sparsity-dependent pattern**: At 50%, K=4 per-layer KL (PPL 44.23) is worse than K=1 (34.85), revealing that coupling scope dominates at high sparsity—reversing the 30% pattern where signal type dominates. **Implication**: The gradient coupling analysis (§3.6) provides mathematical intuition for *why* KL can discover better targets (coupled gradients explore joint neuron interaction patterns). C1 shows the discovered masks carry most quality info; K=4 shows coupling helps discover better masks with task-dependent contribution. This shifts the contribution from \\\"engineering a better loss\\\" to \\\"discovering that output-distribution d
+…[truncated 2346 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-24T03:55:04.474953+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__load_project_config",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__load_project_config",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-24T03:55:04.525620+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-24T03:55:07.235766+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-24T03:55:07.288540+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "distill_sparse_swiglu",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "distill_sparse_swiglu",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-24T03:55:07.389258+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 153
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-24T03:55:07.389580+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"distill_sparse_swiglu\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": [\"westd-34887:cuda:0\", \"westd-34887:cuda:1\"], \"project_path\": \"/root/distill_sparse_swiglu/\", \"servers\": [{\"account\": \"root\", \"server\": \"westd-34887\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-24T03:55:58.979608+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：仅 `westd-34887:cuda:0` 和 `westd-34887:cuda:1`，其他设备号/服务器一律不可用
+- 所有训练/eval 命令必须加 `WANDB_MODE=disabled`——项目无 W&B API key，不加会启动即崩（K=16 v1/v2 连续踩坑教训）
+- D109 决策：Qwen-14B GSM8K 降为 2-seed (s42+s456) 提交，3 个 PREPARING 状态的 s123 retry（v2/v3/v4）不再跑
+- DDL: **2026-05-25**（EMNLP 2026 ARR May cycle），剩余 ~1 天，纯论文收尾阶段
+- Abstract 不超过 200 words（EMNLP 硬限）；正文 8 页限（不含 references/limitations）
+- submit_training_job 命令必须 `bash -c "..."` 包裹（tmux 用 sh 不支持 source）
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-34887，账号 root
+- **工作目录**: `/root/distill_sparse_swiglu/`
+- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **GPU**: 2× RTX PRO 6000 Blackwell 96GB（cuda:0, cuda:1），当前全部空闲
+- **论文源码**: `projects/distill_sparse_swiglu/paper/`（main.tex + 各章节 .tex）
+- **活跃进程**: 无（0 RUNNING / 0 Worker / 0 Cron）
+- **镜像**: aml-train（连接后 `detect_image` 确认）
+
+### 3. 📊 当前状态
+- **刚完成**: R28 所有实验和写作修复（K-curve 全 6K 值 3-seed、C4 control、overclaiming 修复 8 处、Conclusion 页面溢出修复等）
+- **Registry**: 408 实验（success 257 / negative 24 / failed 42 / killed 84），0 RUNNING
+- **3 个 PREPARING**（qwen14b_kl30_s123_gsm8k_v2/v3/v4）：D109 已决定放弃，不再执行
+- **等待中**: 无 Worker / Cron 回调，无 Director 待决策项
+- **论文版本**: R28 准备中（R27 评分 3.0 Findings，目标 ≥3.5 Conference）
+- **ROADMAP 待办**:
+  1. Reviewer 最终数据一致性审查（registry↔paper 全量交叉验证）
+  2. 审查通过后 submit_paper_to_review（R28）
+  3. R28 审稿通过后准备最终提交
+
+### 4. 📋 待办（条件触发式）
+- Session 启动 → 立即派 Worker 做 registry↔paper 全量数据一致性审查（ROADMAP 第一项），覆盖所有表格/正文数字与 registry exp_id 交叉验证
+- 数据审查通过（无不一致） → submit_paper_to_review（R28）
+- 数据审查发现不一致 → 修正 paper 后再提交审查
+- R28 Reviewer 通过 → 准备最终 ARR 提交（DDL 5/25）
+- R28 Reviewer 有修改意见 → 立即派 Worker 修正，时间极紧不能拖
+
+### 5. 🎯 战略上下文
+- **核心结论**: KL distillation 发现了 magnitude-based oracle 遗漏的 neuron importance pattern。3 个 core claims: (1) KL mask 质量优于 magnitude（C1 target-swap ablation Δ≤0.79pp）；(2) SPON 静态校正与 KL 正交但太弱（cos_sim=0.196）；(3) 稀疏度 regime 决定 allocation vs capacity 瓶颈（≤30% uniform 稳定，≥50% 崩溃）
+- **关键数据**: KL uniform 30% PPL=8.81±0.02 vs TEAL=10.82 vs BCE=11.25 vs MSE=18.52
+- **K-curve**: K=4 最优（PPL 8.89±0.005），K=16 次优（8.67±0.02），K=2 最差（10.75±0.15）
+- **R27→R28 核心改进**: K-curve 3-seed 完整数据 + C4 OOD control + overclaiming 修复
+- **易错点**:
+  - 不要重启那 3 个 PREPARING 的 gsm8k 实验（D109 已放弃）
+  - Qwen-14B 数据只有 2-seed（s42+s456），paper 中不要写 3-seed
+  - BoolQ 对跨层 coupling 高度敏感（per-layer KL 方差 3.6× 大于 E2E KL），引用时注意区分
+  - magnitude mask 论文用 per-token activation magnitudes（非 weight norms），不要混淆
+  - 离线 eval 前必须确认目标服务器 HF datasets 缓存齐全
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:perlayer_kl_k2_s456_eval"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,22 @@
+Results saved on server at /root/distill_sparse_swiglu/artifacts/gradient_snr_results.json
+
+SUMMARY:
+  KL  avg gradient SNR: 5.77e-05
+  BCE avg gradient SNR: 1.00e-05
+  Ratio (KL/BCE):       5.76x
+
+Per-layer SNR (selected):
+  Layer      KL SNR         BCE SNR        Ratio
+  layer_0    1.78e-05       2.67e-07       66.4x
+  layer_1    6.69e-05       5.98e-07       111.9x
+  layer_2    2.42e-05       7.00e-07       34.6x
+  layer_3    3.69e-05       3.05e-07       120.9x
+  layer_4    3.77e-05       2.41e-07       156.3x
+  layer_27   7.93e-06       2.28e-06       3.5x
+  layer_28   1.36e-05       7.99e-06       1.7x
+  layer_29   3.47e-05       1.67e-05       2.1x
+  layer_30   2.79e-04       7.35e-05       3.8x
+  layer_31   4.39e-04       2.08e-04       2.1x
+
+Config: 80 steps, batch_size=2, seq_len=2048, seed=42, LLaMA-3.1-8B, C4 calibration data
+KL time: 81.9s, BCE time: 33.4s

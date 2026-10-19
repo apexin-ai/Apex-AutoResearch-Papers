@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "4367d66ce07041e0ecfa",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "eval kl30 s123 independent",
+  "task_key": "worker_eval_kl30_s123_independent_20260517T112444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl30_s123_independent_20260517T112444.log",
+    "occurrence": 1,
+    "bytes": 934907,
+    "sha256": "94582c201e3de87bd964df6b45fb9eacd26922faf3632c16032ab6f5b87e29d4"
+  },
+  "statistics": {
+    "messages": 568,
+    "user_turns": 0,
+    "tool_calls": 226,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 112,
+      "tool_call": 226,
+      "tool_result": 226,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 568,
+      "chunks": [
+        {
+          "path": "4367d66ce07041e0ecfa-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4367d66ce07041e0ecfa-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4367d66ce07041e0ecfa-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4367d66ce07041e0ecfa-part-0004.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-kl30-s123-independent.md"
+}

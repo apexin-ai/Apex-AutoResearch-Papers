@@ -1,0 +1,38 @@
+{
+  "exp_id": "c1_ablation_bce_kl_targets_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:49:10.286Z",
+    "updated_at": "2026-05-18T15:51:21.827Z",
+    "hypothesis": "KL distillation advantage over BCE comes primarily from gradient coupling (end-to-end differentiation through sparse model output), not from target quality. A BCE predictor trained against KL-derived oracle masks will produce PPL closer to standard BCE (22.51) than KL (11.79), because BCE loss lacks the gradient signal from the downstream language modeling objective.",
+    "spec": {
+      "command": "python -u src/train_bce_kl_targets.py --kl_checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --output_dir checkpoints/c1_ablation_bce_kl_targets_s42 --gpu 0 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42",
+      "server": "westd-41718",
+      "data_path": "/root/autodl-tmp/data/wikitext103/",
+      "data_count": 1000,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt",
+      "checkpoint_path": "checkpoints/c1_ablation_bce_kl_targets_s42/predictor_bce_kl_targets.pt",
+      "log_path": "/root/distill_sparse_swiglu/logs/c1_ablation_bce_kl_targets_s42.log"
+    },
+    "metrics": {
+      "wt2_ppl": 9.29,
+      "eval_sparsity": 0.609,
+      "oracle_agreement": 0.978,
+      "final_bce_loss": 0.0545,
+      "train_steps": 1000,
+      "train_time_sec": 877.1,
+      "reference_kl_ppl": 11.79,
+      "reference_bce_ppl": 22.51
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-18T15:51:21.827Z"
+  },
+  "timestamp": "2026-05-18T15:51:22.133962+00:00",
+  "trigger": "update_registry"
+}

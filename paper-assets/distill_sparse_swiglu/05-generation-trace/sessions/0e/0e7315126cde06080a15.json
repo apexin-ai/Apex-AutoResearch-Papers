@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e7315126cde06080a15",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra wait and extract 14b final",
+  "task_key": "worker_infra_wait_and_extract_14b_final_20260517T223406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_wait_and_extract_14b_final_20260517T223406_result.json",
+    "occurrence": 1,
+    "bytes": 78,
+    "sha256": "8d2bdd73aabf78842ddb734b7bea7a13cecdb28d019c7a604a6f0b59a541d1f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均在运行中。90 秒后回来第 2 次轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-wait-and-extract-14b-final.md"
+}

@@ -1,0 +1,99 @@
+{
+  "exp_id": "mvp_kl_norm_v2_s456",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:19:33.798Z",
+    "updated_at": "2026-05-15T16:41:35.971Z",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s456 --wandb_run_name mvp_kl_norm_v2_s456 --dataset wikitext-103\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "74987",
+      "log_path": "~/runs/distill_sparse_swiglu/mvp_kl_norm_v2_s456.log",
+      "submitted_at": "2026-05-15T15:57:22.577Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103 (HF cached)",
+      "data_count": null,
+      "model_name": "llama-3.1-8b",
+      "seed": 456,
+      "loss_type": "kl_normalized_v3",
+      "kl_normalization": "÷seq_len only (v3 fix)",
+      "lagrangian": "lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]",
+      "hypothesis": "Fixed KL normalization (÷seq_len only, no ÷vocab_size) + Lagrangian produces better sparsity predictor than BCE at 50% sparsity",
+      "wall_clock_seconds": 2653.4,
+      "gpu_hours": 0.74
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T16:33:37.465Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T16:33:38.622345+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "wikitext2_ppl_true_dense": 6.12,
+      "wikitext2_ppl_dense": 9.14,
+      "wikitext2_ppl_sparse": 13.58,
+      "wikitext2_ppl_increase_pct": 48.6,
+      "model_level_sparsity": 0.498,
+      "train_final_kl_raw": 0.32,
+      "train_final_lambda": 1000,
+      "train_final_tau": 0.1,
+      "train_final_sparsity": 0.488,
+      "per_layer_sparsity": {
+        "0": 0.277,
+        "1": 0.725,
+        "2": 0.637,
+        "3": 0.572,
+        "4": 0.406,
+        "5": 0.418,
+        "6": 0.418,
+        "7": 0.391,
+        "8": 0.449,
+        "9": 0.445,
+        "10": 0.457,
+        "11": 0.395,
+        "12": 0.434,
+        "13": 0.363,
+        "14": 0.332,
+        "15": 0.227,
+        "16": 0.258,
+        "17": 0.23,
+        "18": 0.277,
+        "19": 0.348,
+        "20": 0.418,
+        "21": 0.492,
+        "22": 0.578,
+        "23": 0.658,
+        "24": 0.715,
+        "25": 0.779,
+        "26": 0.801,
+        "27": 0.802,
+        "28": 0.778,
+        "29": 0.74,
+        "30": 0.602,
+        "31": 0.5
+      }
+    },
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt",
+    "log_path": "~/runs/distill_sparse_swiglu/mvp_kl_norm_v2_s456.log",
+    "notes": "## 训练指标 (1000 steps)\n- 最终 kl_raw: ~0.29-0.32, sparsity: 0.480-0.488, lambda: 1000 (饱和), tau: 0.1\n- 训练正常完成，无报错\n\n## WikiText-2 评估\n- True Dense PPL: 6.12\n- Dense/Hard-mask PPL: 9.14\n- TEAL Sparse PPL: 13.58\n- PPL increase: 48.6%\n- Model sparsity: 0.498\n\n## 与 sibling 对比\ns456 的 hard-mask PPL (9.14) 略优于 s42 (9.21) 和 s123 (9.25)，但 TEAL sparse PPL (13.58) 偏高。差距 ~1.5-1.7 PPL，在 ±2 阈值内但偏边缘。PPL increase (48.6%) 显著高于 s42 (31.2%) 和 s123 (28.8%)，说明该 seed 的 predictor mask 分布与 TEAL 全局分配匹配度较差。\n\n## 3-seed 汇总 (KL normalized v3)\n| Metric | s42 | s123 | s456 | Mean ± Std |\n|--------|-----|------|------|------------|\n| Dense PPL | 9.21 | 9.25 | 9.14 | 9.20 ± 0.06 |\n| Sparse PPL | 12.08 | 11.91 | 13.58 | 12.52 ± 0.92 |\n| PPL increase | 31.2% | 28.8% | 48.6% | 36.2% ± 10.8% |\n\n## MVP 判定\nKL 3-seed mean sparse PPL = 12.52 vs BCE 3-seed mean sparse PPL = 44.45\n差距 = 31.93 >> 0.3 ppl → **MVP PASS**\nKL normalized v3 在 50% sparsity 下显著优于 BCE baseline。\n\n注意：s456 是 outlier (sparse PPL std=0.92)，seed 敏感性值得关注。",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T16:41:35.971Z"
+  },
+  "timestamp": "2026-05-15T16:41:36.022876+00:00",
+  "trigger": "update_registry"
+}

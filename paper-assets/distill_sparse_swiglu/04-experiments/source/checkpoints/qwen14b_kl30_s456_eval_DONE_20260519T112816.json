@@ -1,0 +1,35 @@
+{
+  "exp_id": "qwen14b_kl30_s456_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T08:41:23.198Z",
+    "updated_at": "2026-05-19T11:28:16.323Z",
+    "hypothesis": "Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 6 downstream tasks) with TEAL uniform allocation at 30% sparsity. Multi-seed replication of qwen14b_kl30_s42 eval to confirm KL vs TEAL performance gap is systematic on Qwen-14B, not seed-specific noise.",
+    "parent": "qwen14b_kl30_s456",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s456_eval --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu,gsm8k --seq_len 2048 --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "93278",
+      "log_path": "~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval.log",
+      "account": "root",
+      "data_path": "wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu,gsm8k",
+      "data_count": 7,
+      "model_name": "qwen2.5-14b",
+      "seed": 456,
+      "checkpoint_source": "qwen14b_kl30_s456",
+      "eval_data": "wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu,gsm8k",
+      "checkpoint_path": "checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-19T11:28:16.323Z"
+  },
+  "timestamp": "2026-05-19T11:28:16.764847+00:00",
+  "trigger": "update_registry"
+}

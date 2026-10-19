@@ -1,0 +1,38 @@
+{
+  "exp_id": "global_30pct_retention",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:35:45.803Z",
+    "updated_at": "2026-05-17T07:36:43.424Z",
+    "hypothesis": "30% global top-k allocation starves middle knowledge layers (L12-20), explaining MMLU degradation; global allocation distributes budget away from layers with uniformly moderate activation scores",
+    "spec": {
+      "command": "python global_30pct_retention_analysis_script.py",
+      "server": "westd-34887",
+      "data_path": "C4 calibration",
+      "data_count": 50,
+      "model_name": "LLaMA-3.1-8B",
+      "seed": 42,
+      "checkpoint_source": "kl_sparsity30_s42_v3",
+      "eval_data": "C4 50 samples seq_len=2048 global top-k retention per layer",
+      "checkpoint_path": "N/A (analysis)",
+      "log_path": "/root/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "early_retention": 0.771,
+      "middle_retention": 0.764,
+      "knowledge_L12_20_retention": 0.797,
+      "late_L24_31_retention": 0.501,
+      "L31_retention": 0.284,
+      "L30_retention": 0.366,
+      "starved_layers": "L27-L31"
+    },
+    "completed_at": "2026-05-17T07:36:43.424Z"
+  },
+  "timestamp": "2026-05-17T07:36:43.621894+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,55 @@
+{
+  "seq_128": {
+    "dense": {"mean_ms": 18.01, "std_ms": 0.57},
+    "mask_30pct": {"mean_ms": 20.75, "std_ms": 0.64, "speedup": 0.868},
+    "skip_30pct": {"mean_ms": 39.70, "std_ms": 1.20, "speedup": 0.454},
+    "mask_50pct": {"mean_ms": 20.49, "std_ms": 1.09, "speedup": 0.879},
+    "skip_50pct": {"mean_ms": 36.92, "std_ms": 1.15, "speedup": 0.488}
+  },
+  "seq_512": {
+    "dense": {"mean_ms": 34.88, "std_ms": 0.57},
+    "mask_30pct": {"mean_ms": 38.18, "std_ms": 0.13, "speedup": 0.913},
+    "skip_30pct": {"mean_ms": 66.83, "std_ms": 1.32, "speedup": 0.522},
+    "mask_50pct": {"mean_ms": 38.23, "std_ms": 0.23, "speedup": 0.912},
+    "skip_50pct": {"mean_ms": 63.01, "std_ms": 1.02, "speedup": 0.553}
+  },
+  "seq_2048": {
+    "dense": {"mean_ms": 116.84, "std_ms": 0.30},
+    "mask_30pct": {"mean_ms": 123.83, "std_ms": 0.22, "speedup": 0.944},
+    "skip_30pct": {"mean_ms": 191.46, "std_ms": 0.74, "speedup": 0.610},
+    "mask_50pct": {"mean_ms": 123.91, "std_ms": 0.12, "speedup": 0.943},
+    "skip_50pct": {"mean_ms": 157.48, "std_ms": 0.68, "speedup": 0.742}
+  },
+  "decode": {
+    "dense": {"mean_ms": 15.18, "std_ms": 2.30},
+    "mask_30pct": {"mean_ms": 16.13, "std_ms": 2.80, "speedup": 0.941},
+    "skip_30pct": {"mean_ms": 22.17, "std_ms": 2.64, "speedup": 0.685},
+    "mask_50pct": {"mean_ms": 16.85, "std_ms": 3.56, "speedup": 0.901},
+    "skip_50pct": {"mean_ms": 22.59, "std_ms": 2.41, "speedup": 0.672}
+  },
+  "flops_30pct": {
+    "mean_sparsity": 0.280,
+    "dense_ffn_gflops_per_token": 11.274,
+    "sparse_ffn_gflops_per_token": 8.120,
+    "predictor_gflops_per_token": 0.151,
+    "net_gflops_per_token": 8.271,
+    "theoretical_speedup": 1.363
+  },
+  "flops_50pct": {
+    "mean_sparsity": 0.605,
+    "dense_ffn_gflops_per_token": 11.274,
+    "sparse_ffn_gflops_per_token": 4.459,
+    "predictor_gflops_per_token": 0.151,
+    "net_gflops_per_token": 4.610,
+    "theoretical_speedup": 2.446
+  },
+  "predictor_overhead": {
+    "seq1_ms": 1.048,
+    "seq128_ms": 2.108,
+    "seq512_ms": 2.448
+  },
+  "hardware": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "torch_version": "2.8.0+cu128",
+  "model": "LLaMA-3.1-8B",
+  "dtype": "float16"
+}

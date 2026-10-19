@@ -1,0 +1,20 @@
+{
+  "exp_id": "c1_ablation_30pct_s42_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:27:36.305Z",
+    "updated_at": "2026-05-19T00:28:15.053Z",
+    "hypothesis": "C1@30% eval: BCE predictor trained on KL oracle masks at 30% sparsity should achieve PPL and downstream metrics close to KL 30% uniform (PPL=8.82, ARC=50.3%, Wino=72.1%, MMLU=44.8%, GSM8K=14.3%), confirming target quality drives KL advantage at the recommended operating point.",
+    "parent": "c1_ablation_30pct_s42_v2",
+    "spec": {
+      "server": "westd-41718",
+      "gpu": "cuda:1"
+    }
+  },
+  "timestamp": "2026-05-19T00:28:15.473201+00:00",
+  "trigger": "update_registry"
+}

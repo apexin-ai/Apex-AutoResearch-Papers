@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3138a92ed32bfb041046",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code plan 007 lm eval prep",
+  "task_key": "worker_code_plan_007_lm_eval_prep_20260515T225501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_007_lm_eval_prep_20260515T225501_result.json",
+    "occurrence": 1,
+    "bytes": 2472,
+    "sha256": "b209813676e8eeca82f864af180147c044003c5ef1c5e23bed0421b4259bd86a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。\n\n---\n\n## 报告\n\n### 1. lm-eval-harness\n- **已安装**，版本 0.4.12\n- `lm_eval.models.huggingface.HFLM` 可用，eval_benchmark.py 已集成\n\n### 2. 集成脚本\n- **已有**，无需创建：\n  - `src/eval_benchmark.py` — 完整的 plan_007 评估脚本，支持所有 10 个 condition（dense, kl_s42, bce_s42 等）\n  - `scripts/run_plan007_benchmark.sh` — Shell 启动器\n  - lm-eval 通过 `HFLM(pretrained=model, tokenizer=tokenizer)` 传入已 patch 的模型，sparse mode 无缝集成\n\n### 3. 数据集缓存（离线服务器）\n| 数据集 | 状态 |\n|--------|------|\n| arc_challenge (allenai/ai2_arc) | 已缓存 |\n| winogrande (allenai/winogrande) | 已缓存 |\n| mmlu (cais/mmlu + hails/mmlu_no_train) | 已缓存 |\n| gsm8k (openai/gsm8k) | 已缓存 |\n| **hellaswag** | **未缓存，blocker** |\n\n### 4. KL predictor checkpoint\n- `/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt` — 存在 ✓\n\n### 5. 已有结果\n- WikiText-2 PPL：所有 condition 已完成（consolidated/results.json）\n- **lm-eval 下游任务：无完整结果**，之前的运行被中断\n\n### 6. 当前 GPU 状态\n- **cuda:0**：空闲（0 MiB）\n- **cuda:1**：正在跑 dense lm-eval（PID 163723，已运行 ~10min，20831 MiB）\n  - 命令：`python -u src/eval_benchmark.py --condition dense --tasks lm_eval --skip_ppl --gpu 0 --batch_size 4`\n\n### 7. Dry-run\n- 模块导入全通过，HFLM/predictor/conditions 配置正确\n- 实际推理验证：正在运行的进程已证明 pipeline 可工作\n\n### 8. 可否立即开跑？\n\n**可以部分开跑**：\n- cuda:0 **现在就能启动 kl_s42 sparse lm-eval**，与 GPU 1 上正在跑的 dense 并行\n- cuda:1 上的 dense 正在运行，等它完成即可\n\n**需要先处理的问题**：\n1. **HellaSwag (blocker)**：未缓存 + 服务器离线无法下载。需要从有网机器下载后传上去，或者先跳过 HellaSwag\n2. **eval_benchmark.py 缺 hellaswag 配置**：`LM_EVAL_TASKS` dict 中没有 hellaswag，需加一行 `(\"hellaswag\", 10)`\n3. **确认运行中的 dense 进程**是否正常：输出目录暂无 results.json（尚未写入），需持续观察\n\n**建议下一步**：\n- 先跳过 HellaSwag 或者提供下载方案\n- 在 cuda:0 上立即启动 kl_s42 的 4 个任务 (arc_challenge, winogrande, mmlu, gsm8k)\n- 等 dense 进程完成后确认结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-007-lm-eval-prep.md"
+}

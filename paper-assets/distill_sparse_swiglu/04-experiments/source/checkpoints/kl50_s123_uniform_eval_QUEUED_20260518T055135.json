@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl50_s123_uniform_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:50:55.894Z",
+    "updated_at": "2026-05-18T05:51:35.150Z",
+    "hypothesis": "Uniform per-layer allocation with KL-trained predictor (seed 123, 50% sparsity) will show worse benchmark performance than global_topk allocation, demonstrating the value of learned budget allocation for phase transition analysis in Table 3.",
+    "parent": "kl50_s123_eval"
+  },
+  "timestamp": "2026-05-18T05:51:35.448822+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1475 @@
+- id: art_20260515_1938be
+  name: report_mvp_bce_s42
+  type: report
+  description: mvp_bce_s42 实验分析报告：BCE loss 训练 1000 steps 完成，最终 loss 0.6430，sparsity
+    0.551
+  path: projects/distill_sparse_swiglu/artifacts/mvp_bce_s42/report/report_mvp_bce_s42.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: mvp_bce_s42
+  skill: ''
+  created_at: '2026-05-15T12:27:29.705745+00:00'
+  tags:
+  - training
+  - bce
+  - mvp
+  - seed42
+- id: art_20260515_caab5d
+  name: mvp_kl_s42_eval_and_collapse_analysis
+  type: report
+  description: mvp_kl_s42 evaluation results and sparsity collapse root cause analysis
+  path: projects/distill_sparse_swiglu/artifacts/mvp_kl_s42/report/mvp_kl_s42_eval_report.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: mvp_kl_s42
+  skill: ''
+  created_at: '2026-05-15T13:27:45.593569+00:00'
+  tags:
+  - eval
+  - kl
+  - sparsity-collapse
+  - analysis
+- id: art_20260515_adad23
+  name: BCE MVP 3-Seed Analysis
+  type: report
+  description: 3-seed aggregated statistics for BCE sparsity predictor MVP (seeds
+    42/123/456). Includes mean±std tables, per-layer sparsity analysis, seed stability
+    assessment (CV), LaTeX snippets for paper, and KL baseline comparison.
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/bce_mvp_3seed_analysis.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:08:07.767370+00:00'
+  tags:
+  - bce
+  - mvp
+  - 3-seed
+  - statistics
+  - baseline
+  - paper
+- id: art_20260515_1a9d62
+  name: eval_results_v2_true_dense
+  type: data
+  description: '统一重评结果(5 checkpoints x 3 PPL modes)。evaluate.py md5: f4086818bb55dc354ea4c6fe8ed8899a。修复将
+    predictor hard mask 误标为 dense 的 bug。'
+  path: null
+  url: file:///root/distill_sparse_swiglu/artifacts/eval_results_v2.json
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:39:11.027238+00:00'
+  tags:
+  - evaluation
+  - true-dense
+  - bugfix
+- id: art_20260515_7b2313
+  name: compensation_module
+  type: intermediate
+  description: TEAL-style error compensation module for sparse SwiGLU activations
+    — ErrorCompensation class with calibrate/compensate/save/load
+  path: projects/distill_sparse_swiglu/artifacts/_project/intermediate/compensation.py
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:42:21.699435+00:00'
+  tags:
+  - compensation
+  - teal
+  - sparsity
+- id: art_20260515_3aaafe
+  name: eval_results_v3_vanilla_teal
+  type: data
+  description: Batch evaluation with vanilla TEAL baseline for all 6 MVP checkpoints.
+    Vanilla TEAL PPL=66036 - naive magnitude pruning is catastrophically bad vs learned
+    predictors.
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/eval_results_v3_vanilla_teal.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:56:41.538308+00:00'
+  tags:
+  - eval
+  - vanilla_teal
+  - baseline
+  - mvp
+- id: art_20260515_cda742
+  name: eval_benchmark.py (plan_007)
+  type: data
+  description: 'lm-eval-harness + PPL evaluation script for all 9 sparsity conditions
+    on Llama-3.1-8B at 50% SwiGLU sparsity. Validated WikiText-2 PPL for all conditions.
+    Server path: /root/distill_sparse_swiglu/src/eval_benchmark.py'
+  path: projects/distill_sparse_swiglu/artifacts/plan_007/data/plan_007_eval_benchmark_info.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: plan_007
+  skill: ''
+  created_at: '2026-05-15T21:47:40.580562+00:00'
+  tags:
+  - evaluation
+  - lm-eval
+  - benchmark
+  - plan_007
+- id: art_20260515_89223d
+  name: plan_007 WikiText-2 PPL Results
+  type: report
+  description: Consolidated WikiText-2 PPL results for all 9 sparsity conditions at
+    50% SwiGLU sparsity on Llama-3.1-8B. Learned predictors (KL=9.65, STE=8.18, SPON=9.41)
+    dramatically outperform static masks (TEAL=48715, WINA=2126, R-Sparse=151).
+  path: projects/distill_sparse_swiglu/artifacts/plan_007/report/plan_007_wikitext2_ppl_results.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: plan_007
+  skill: ''
+  created_at: '2026-05-15T21:47:51.386882+00:00'
+  tags:
+  - results
+  - ppl
+  - benchmark
+  - plan_007
+- id: art_20260515_93a3ff
+  name: plan_006_diagnostic_report
+  type: report
+  description: Root cause analysis and fix report for training-free baseline PPL bug.
+    _global_topk_masks lacked per-layer mean normalization causing 50K+ PPL. Includes
+    remaining issues with R-Sparse, greedy methods.
+  path: projects/distill_sparse_swiglu/artifacts/plan_006/report/diagnostic_report.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: plan_006
+  skill: ''
+  created_at: '2026-05-15T22:04:26.241893+00:00'
+  tags:
+  - diagnostic
+  - bugfix
+  - baseline
+- id: art_20260515_ae40f1
+  name: plan_006_corrected_baselines
+  type: data
+  description: Corrected training-free baseline PPL results at 50% sparsity after
+    fixing _global_topk_masks normalization bug.
+  path: projects/distill_sparse_swiglu/artifacts/plan_006/data/corrected_baselines.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: plan_006
+  skill: ''
+  created_at: '2026-05-15T22:04:36.123678+00:00'
+  tags:
+  - baseline
+  - ppl
+  - sparsity
+  - bugfix
+- id: art_20260515_76e51d
+  name: plan_007_all_ppl_fixed
+  type: data
+  description: 'Complete WikiText-2 PPL results for all 11 conditions after eval_benchmark.py
+    4-bug fix. Key: sparsity70 TEAL PPL 136K to 17.91'
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/plan_007_all_ppl_fixed.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T22:57:42.319563+00:00'
+  tags:
+  - eval
+  - ppl
+  - bug-fix
+  - plan_007
+- id: art_20260515_e2bb0b
+  name: fig1_overview
+  type: chart
+  description: 'Figure 1: 2D taxonomy of activation sparsity methods — Correction
+    Granularity × Training Signal Coupling. Shows positioning of Ours (Per-token Contextual
+    + Coupled KL) vs prior work (SPON, ShadowLLM, FastForward/DejaVu).'
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/fig1_overview.png
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:15:11.837940+00:00'
+  tags:
+  - paper
+  - figure1
+  - taxonomy
+  - overview
+- id: art_20260515_f46bd9
+  name: fig1_overview
+  type: chart
+  description: '2D taxonomy figure: correction granularity × training signal coupling.
+    Positions SPON, ShadowLLM, FastForward/DejaVu and highlights ''Ours'' (per-token
+    contextual × coupled KL).'
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/fig1_overview.pdf
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-15T23:31:47.188594+00:00'
+  tags:
+  - paper
+  - introduction
+  - taxonomy
+- id: art_20260515_4da4bb
+  name: fig2_sparsity_sweep
+  type: chart
+  description: 'Figure 2: Sparsity Sweep — KL Predictor vs TEAL baseline PPL across
+    sparsity levels (28.5%, 50%, 70%) on WikiText-2. PDF + PNG, 300 DPI, Okabe-Ito
+    colors.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/fig2_sparsity_sweep.png
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T23:33:36.952889+00:00'
+  tags:
+  - paper
+  - figure2
+  - sparsity
+  - ppl
+  - wikitext2
+- id: art_20260515_c1d4ef
+  name: fig2_sparsity_sweep
+  type: chart
+  description: 'Sparsity sweep: KL predictor PPL (8.98/12.00/17.91 at 28.5%/50%/70%)
+    vs TEAL training-free (23.31 at 50%). Data: kl_sparsity30_s42_v3, mvp_kl_norm_v2_s42,
+    kl_sparsity70_s42_v2, training_free_baselines. 70% TEAL pending reeval.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/fig2_sparsity_sweep.pdf
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-15T23:52:45.834459+00:00'
+  tags:
+  - paper
+  - experiments
+  - sparsity_sweep
+- id: art_20260515_f0dcd4
+  name: teal_baseline_rerun_log
+  type: data
+  description: TEAL+WINA baseline 三个 sparsity level (30/50/70%) 全量重跑日志，用 D017 bugfix
+    后代码统一评估
+  path: projects/distill_sparse_swiglu/artifacts/training_free_baselines/data/teal_baseline_rerun_2026-05-16.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: training_free_baselines
+  skill: ''
+  created_at: '2026-05-15T23:53:40.208661+00:00'
+  tags:
+  - baseline
+  - teal
+  - wina
+  - rerun
+  - D017
+- id: art_20260515_1fd3e7
+  name: TEAL Baseline Sweep 30/50/70% (P0 Rerun)
+  type: data
+  description: 'Full TEAL + WINA baseline re-evaluation at 30/50/70% sparsity. Confirms
+    50% TEAL=23.31 is correct (not inflated by bug). Vanilla TEAL PPL monotonically
+    increases: 10.97 → 23.31 → 100.11.'
+  path: projects/distill_sparse_swiglu/artifacts/training_free_baselines/data/teal_baseline_sweep_p0_rerun.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: training_free_baselines
+  skill: ''
+  created_at: '2026-05-15T23:53:43.256953+00:00'
+  tags:
+  - baseline
+  - teal
+  - wina
+  - p0
+  - reviewer
+  - rerun
+- id: art_20260515_facb6e
+  name: fig3_subsumption
+  type: chart
+  description: 'Figure 3: SPON Subsumption Decomposition — (a) Logit-space effect
+    magnitude decomposition (Predictor 482.6, SPON 76.2, Interaction 147.7, 6.3× gap,
+    cos_sim=0.196), (b) PPL recovery with/without SPON on Per-token (7.3%) and TEAL
+    (4.8%) paths.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/fig3_subsumption.pdf
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T23:54:44.869705+00:00'
+  tags:
+  - paper
+  - figure3
+  - spon
+  - subsumption
+  - decomposition
+- id: art_20260516_098437
+  name: fig2_sparsity_sweep_v4
+  type: chart
+  description: 'Figure 2 v4: Sparsity Sweep with gap annotations. KL Predictor vs
+    TEAL vs WINA at 28.5%/50%/70%. Data corrected: KL@30%=8.98 (was 8.76), TEAL@30%=10.97
+    added. Gap annotations: Δ=1.99 @30%, Δ=11.3 @50%, 7.7× bracket @70%.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/fig2_sparsity_sweep_098437.pdf
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-16T00:24:23.398909+00:00'
+  tags:
+  - paper
+  - figure2
+  - sparsity
+  - ppl
+  - v4
+  - gap-annotation
+- id: art_20260516_421d82
+  name: gsm8k_gen_compare
+  type: report
+  description: 'GSM8K generation comparison: dense vs KL sparse 50% Llama-3.1-8B.
+    10 samples showing sparse model degrades to repetitive loops (not just format
+    errors).'
+  path: projects/distill_sparse_swiglu/artifacts/diag_gsm8k_gencomp/report/gsm8k_gen_compare.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: diag_gsm8k_gencomp
+  skill: ''
+  created_at: '2026-05-16T00:42:52.067272+00:00'
+  tags:
+  - diagnostic
+  - gsm8k
+  - generation
+  - sparse
+- id: art_20260516_dbc407
+  name: gsm8k_gen_compare
+  type: report
+  description: 'Dense vs KL sparse 50% GSM8K generation comparison (10 samples). Sparse
+    model shows type (A) degeneration: repetitive text loops, no arithmetic, no final
+    answers.'
+  path: projects/distill_sparse_swiglu/artifacts/gsm8k_gen_compare/report/gsm8k_gen_compare_report.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: gsm8k_gen_compare
+  skill: ''
+  created_at: '2026-05-16T00:43:58.579525+00:00'
+  tags:
+  - gsm8k
+  - generation
+  - sparse
+  - qualitative
+- id: art_20260516_6e294a
+  name: methodology_section_v1
+  type: paper
+  description: 'Methodology section draft for EMNLP 2026 submission: KL distillation
+    for SwiGLU sparsity prediction'
+  path: projects/distill_sparse_swiglu/artifacts/_project/paper/methodology_6e294a.tex
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:27:58.954823+00:00'
+  tags:
+  - paper
+  - methodology
+  - emnlp2026
+- id: art_20260516_c10e4f
+  name: related_work
+  type: paper
+  description: Related Work section draft for KL distillation sparse SwiGLU paper
+    (EMNLP 2026 ARR May)
+  path: projects/distill_sparse_swiglu/artifacts/_project/paper/related_work_c10e4f.tex
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:29:07.214206+00:00'
+  tags:
+  - paper
+  - related-work
+  - latex
+- id: art_20260516_93d155
+  name: plan_007_eval_batch_commands
+  type: intermediate
+  description: 'Plan 007 full benchmark eval: 6 conditions的完整 benchmark_eval.py 提交命令，含
+    checkpoint 验证、few-shot 一致性分析、双GPU并行执行顺序'
+  path: projects/distill_sparse_swiglu/artifacts/_project/intermediate/plan_007_eval_batch_commands.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:34:11.815113+00:00'
+  tags:
+  - plan_007
+  - benchmark
+  - eval
+  - downstream
+- id: art_20260516_24dbf5
+  name: plan008_ppl_summary
+  type: report
+  description: Plan_008 sparsity sweep PPL master table + KL vs training-free delta
+    scaling trend + downstream summary + Claim 3 data gap analysis
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/plan008_ppl_summary.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:58:10.212806+00:00'
+  tags:
+  - plan_008
+  - ppl
+  - sparsity_sweep
+  - scaling
+  - claim_3
+- id: art_20260516_b1c4cd
+  name: framing_proposal_30pct_downstream
+  type: report
+  description: Framing 调整提案：30% downstream negative 结果导致 Claim 3 重写，3 种 narrative
+    备选 + 5 组后续实验 + 决策树
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/framing_proposal_30pct_downstream.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:00:19.183328+00:00'
+  tags:
+  - framing
+  - claim3
+  - downstream
+  - 30pct
+  - ppl-disconnect
+- id: art_20260516_2154f6
+  name: d029_remaining_batch
+  type: intermediate
+  description: D029 benchmark 统一重跑剩余命令列表 — 11条 benchmark_eval.py 命令，按 GPU 优先级排序
+  path: projects/distill_sparse_swiglu/artifacts/_project/intermediate/d029_remaining_batch_2154f6.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T04:12:20.798411+00:00'
+  tags:
+  - d029
+  - benchmark
+  - eval-batch
+- id: art_20260516_5bfcb6
+  name: bench_mistral_kl50_ready
+  type: report
+  description: bench_mistral_kl50_s42 预验证报告：前置条件检查清单、推荐启动命令、潜在问题
+  path: projects/distill_sparse_swiglu/artifacts/bench_mistral_kl50_s42/report/bench_mistral_kl50_ready.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: bench_mistral_kl50_s42
+  skill: ''
+  created_at: '2026-05-16T05:05:55.461232+00:00'
+  tags:
+  - benchmark
+  - mistral
+  - prevalidation
+- id: art_20260516_1aed77
+  name: d032_ppl_verification
+  type: report
+  description: D032 数据污染验证报告：确认 mistral_kl_s42 teal_sparse_ppl=8.98 正确，kl_sparsity30_s42_v3
+    从 8.98 修正为 13.63
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/d032_ppl_verification.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T05:05:55.874043+00:00'
+  tags:
+  - d032
+  - data-contamination
+  - ppl-verification
+- id: art_20260516_5db230
+  name: Benchmark Comparison Table
+  type: report
+  description: 'Unified few-shot benchmark results table: Dense vs KL (30/40/50% uniform/global)
+    vs BCE v3 vs TEAL 50%, with relative change percentages'
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/benchmark_comparison_table.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T11:44:52.849632+00:00'
+  tags:
+  - benchmark
+  - D029
+  - plan_007
+  - table
+- id: art_20260516_cc2318
+  name: 'Iso-Compute Analysis (Reviewer Concern #2)'
+  type: report
+  description: 'KL (1000 steps) vs BCE v3 (2700 steps) iso-compute comparison. Conclusion:
+    KL advantage from loss function, not compute.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/iso_compute_analysis.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T11:44:54.676731+00:00'
+  tags:
+  - reviewer_concern
+  - iso_compute
+  - BCE
+  - KL
+  - analysis
+- id: art_20260516_0d42c9
+  name: Sparsity Threshold Analysis (Claim 3)
+  type: report
+  description: 30/40/50% sparsity threshold analysis showing MMLU phase transition
+    at 30-40% and GSM8K collapse at <30%. Supports Claim 3.
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/threshold_analysis.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T11:44:56.811269+00:00'
+  tags:
+  - threshold
+  - claim_3
+  - MMLU
+  - phase_transition
+  - analysis
+- id: art_20260516_b89252
+  name: experiments_section_v1
+  type: paper
+  description: Experiments section (§5) for EMNLP 2026 paper on KL distillation for
+    contextual sparsity prediction. ~2000 words, 6 tables, covers main results, iso-compute,
+    ablation, scaling, SPON analysis, cross-architecture.
+  path: projects/distill_sparse_swiglu/artifacts/_project/paper/experiments.tex
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:27:54.906843+00:00'
+  tags:
+  - paper
+  - experiments
+  - latex
+  - emnlp2026
+- id: art_20260516_d8e146
+  name: introduction.tex
+  type: paper
+  description: Introduction section (§1) for EMNLP 2026 paper on KL distillation for
+    contextual sparsity prediction in SwiGLU LLMs
+  path: projects/distill_sparse_swiglu/artifacts/_project/paper/introduction.tex
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:54:51.509666+00:00'
+  tags:
+  - paper
+  - introduction
+  - latex
+- id: art_20260516_5c0563
+  name: abstract.tex
+  type: paper
+  description: 'EMNLP 2026 abstract for distill_sparse_swiglu: KL-trained sparse predictors
+    eliminate compensation networks in SwiGLU LLMs'
+  path: projects/distill_sparse_swiglu/artifacts/_project/paper/abstract.tex
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T13:13:35.243891+00:00'
+  tags:
+  - paper
+  - abstract
+  - latex
+- id: art_20260516_1d618a
+  name: latency_benchmark_results
+  type: data
+  description: 'Latency benchmark: dense vs sparse predictor-only vs predictor+compensation
+    on Llama-3.1-8B, RTX PRO 6000 Blackwell, batch=1 seq=2048, 100 iterations'
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/latency_benchmark_results.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T14:13:18.210573+00:00'
+  tags:
+  - latency
+  - benchmark
+  - inference
+  - throughput
+- id: art_20260516_d4520a
+  name: training_curves_data
+  type: data
+  description: KL vs BCE training curves data (loss, sparsity, lambda, tau) from 8
+    runs (3 KL seeds + 3 BCE seeds + isocompute + comp_staged). Full data on server
+    at /root/distill_sparse_swiglu/artifacts/training_curves_data.json (53KB). Local
+    copy has sampled key points.
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/training_curves_data.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T19:18:35.579134+00:00'
+  tags:
+  - training_curves
+  - kl_vs_bce
+  - paper_figure
+  - loss_saturation
+- id: art_20260516_50f2c2
+  name: lambda_sparsity_curves
+  type: data
+  description: Lagrangian λ + sparsity ratio + KL loss curves for 4 sparsity targets
+    (30/40/50/70%). For R1-W5 paper figure.
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/lambda_sparsity_curves_meta.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T20:01:23.314452+00:00'
+  tags:
+  - R1-W5
+  - figure-data
+  - lagrangian
+  - training-dynamics
+- id: art_20260517_a23fbf
+  name: 'Gradient SNR Analysis: KL vs BCE'
+  type: data
+  description: Gradient Signal-to-Noise Ratio comparison between KL distillation and
+    BCE activation-matching training over 80 steps. KL avg SNR = 5.77e-5, BCE avg
+    SNR = 1.00e-5, ratio = 5.76x. Per-layer and per-step breakdowns for all 32 layers.
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/gradient_snr_results_summary.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T04:13:31.434376+00:00'
+  tags:
+  - gradient
+  - snr
+  - kl_vs_bce
+  - analysis
+- id: art_20260517_181bca
+  name: gradient_snr_results
+  type: data
+  description: 'Gradient SNR analysis: KL vs BCE over 80 training steps on LLaMA-3.1-8B.
+    KL avg SNR 5.76x higher than BCE, early layers 34-156x difference.'
+  path: projects/distill_sparse_swiglu/artifacts/gradient_snr_kl_vs_bce/data/gradient_snr_results.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: gradient_snr_kl_vs_bce
+  skill: ''
+  created_at: '2026-05-17T04:15:28.602013+00:00'
+  tags:
+  - gradient
+  - snr
+  - kl_vs_bce
+  - ablation
+- id: art_20260517_6e5259
+  name: natural_sparsity_floor_analysis
+  type: data
+  description: 'Natural sparsity floor analysis for kl_30pct_s42_v3: per-layer always-pruned
+    counts, threshold sensitivity, gate probability distributions across 5120 tokens'
+  path: projects/distill_sparse_swiglu/artifacts/kl_sparsity30_s42_v3/data/natural_sparsity_floor_analysis.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: kl_sparsity30_s42_v3
+  skill: ''
+  created_at: '2026-05-17T04:28:13.696315+00:00'
+  tags:
+  - analysis
+  - sparsity
+  - natural-floor
+- id: art_20260517_d62a71
+  name: TEAL vs KL Neuron Overlap Analysis
+  type: data
+  description: Per-token Jaccard similarity between KL predictor and TEAL magnitude
+    pruning at 50% sparsity on C4 (55K tokens). Overall Jaccard=0.396, ~43% divergence.
+    KL-only-pruned neurons have 1.48x higher magnitude than average.
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/teal_kl_overlap_analysis.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T04:28:43.708498+00:00'
+  tags:
+  - analysis
+  - teal
+  - kl
+  - overlap
+  - neuron-pruning
+- id: art_20260517_00ece6
+  name: gradient_snr_constrained_results
+  type: data
+  description: 'Gradient SNR v2: KL vs BCE with identical Lagrangian constraint (200
+    steps, sparsity target 0.5). KL/BCE ratio = 103.2x. KL final sparsity 0.508, BCE
+    0.591.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/gradient_snr_constrained_results.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T04:38:45.199441+00:00'
+  tags:
+  - gradient_snr
+  - kl_vs_bce
+  - lagrangian
+  - ablation
+- id: art_20260517_c369aa
+  name: natural_sparsity_floor_analysis
+  type: data
+  description: 'Natural sparsity floor analysis on kl_30pct predictor: only 0.06%
+    neurons always-pruned (278/458752). 28.5% actual sparsity is almost entirely contextual/dynamic.
+    Late layers (28-31) have slightly higher static sparsity (0.27-0.51%).'
+  path: projects/distill_sparse_swiglu/artifacts/natural_sparsity_floor_30pct/data/natural_sparsity_floor_analysis.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: natural_sparsity_floor_30pct
+  skill: ''
+  created_at: '2026-05-17T04:39:13.645385+00:00'
+  tags:
+  - sparsity
+  - analysis
+  - static_floor
+  - contextual
+- id: art_20260517_a6801a
+  name: teal_kl_overlap_analysis
+  type: data
+  description: 'TEAL vs KL pruned neuron overlap: Jaccard=0.396, 43.3% divergence.
+    KL-only pruned neurons have 1.48x higher magnitude. Middle layers (L17-18) show
+    lowest overlap (0.19), consistent with knowledge neuron hypothesis.'
+  path: projects/distill_sparse_swiglu/artifacts/teal_kl_overlap_analysis/data/teal_kl_overlap_analysis.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: teal_kl_overlap_analysis
+  skill: ''
+  created_at: '2026-05-17T04:40:16.607660+00:00'
+  tags:
+  - overlap
+  - jaccard
+  - teal
+  - kl
+  - knowledge_neurons
+  - mmlu
+- id: art_20260517_4ea97a
+  name: gradient_snr_constrained_v2
+  type: data
+  description: 'Gradient SNR v2 with Lagrangian constraint: KL/BCE ratio 103.2x (up
+    from 5.76x unconstrained). KL converges to target sparsity 0.508, BCE overshoots
+    to 0.591. Directly refutes Reviewer W5 fairness concern.'
+  path: projects/distill_sparse_swiglu/artifacts/gradient_snr_constrained_v2/data/gradient_snr_constrained_v2.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: gradient_snr_constrained_v2
+  skill: ''
+  created_at: '2026-05-17T04:42:57.896692+00:00'
+  tags:
+  - gradient
+  - snr
+  - lagrangian
+  - constrained
+  - kl_vs_bce
+- id: art_20260517_29b602
+  name: sparsity_floor_extended
+  type: data
+  description: 'Extended sparsity floor analysis: 3 checkpoints (30%/50%/70%) x seq_len=2048
+    x 50 samples. Remote: /root/distill_sparse_swiglu/artifacts/sparsity_floor_extended.json'
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/sparsity_floor_extended_summary.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T04:47:53.370297+00:00'
+  tags:
+  - sparsity-floor
+  - analysis
+  - reviewer-response
+- id: art_20260517_b870d6
+  name: lagrangian_dynamics_figure
+  type: chart
+  description: '2-panel figure for Appendix C (R1-W5): (a) Lagrangian multiplier λ
+    dynamics over training steps (log scale), (b) actual vs target sparsity tracking.
+    4 sparsity levels (30/40/50/70%). EMNLP single-column format.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/lagrangian_dynamics_figure.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T04:48:49.540331+00:00'
+  tags:
+  - paper
+  - appendix-c
+  - R1-W5
+  - lagrangian
+  - figure
+- id: art_20260517_2eeac2
+  name: lagrangian_dynamics_figure
+  type: chart
+  description: '2-panel Lagrangian dynamics figure for Appendix C: (a) lambda over
+    steps (log scale, 4 sparsity targets), (b) actual sparsity convergence vs targets.
+    PDF/PNG at paper/figures/.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/lagrangian_dynamics_figure_2eeac2.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T05:07:22.787102+00:00'
+  tags:
+  - figure
+  - lagrangian
+  - appendix
+  - R1-W5
+- id: art_20260517_729302
+  name: TEAL-KL Overlap Selection Bias Corrected
+  type: data
+  description: Permutation test + percentile rank correcting selection bias. z=7260,
+    p=0, median percentile rank 78.6%, 31/32 layers significant.
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/teal_kl_overlap_corrected_summary.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T05:09:51.878324+00:00'
+  tags:
+  - overlap
+  - permutation-test
+  - selection-bias
+  - reviewer-response
+- id: art_20260517_5c2170
+  name: teal_kl_overlap_corrected
+  type: data
+  description: 'TEAL-KL overlap magnitude correction: permutation test z=7260 p~0,
+    median percentile rank 78.6th. Confirms 1.48x magnitude ratio is NOT selection
+    bias. 31/32 layers significant.'
+  path: projects/distill_sparse_swiglu/artifacts/teal_kl_overlap_corrected/data/teal_kl_overlap_corrected.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: teal_kl_overlap_corrected
+  skill: ''
+  created_at: '2026-05-17T05:10:59.565615+00:00'
+  tags:
+  - overlap
+  - permutation_test
+  - magnitude
+  - correction
+  - statistical
+- id: art_20260517_af1a34
+  name: global_30pct_retention_analysis
+  type: data
+  description: Per-layer neuron retention under 30% global top-k allocation. Late
+    layers L27-31 starved (28-49%), knowledge layers unaffected (79.7%).
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/global_30pct_retention_analysis_script.py
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T07:19:29.978932+00:00'
+  tags:
+  - R2-W4
+  - global-allocation
+  - per-layer-retention
+  - sparsity-30pct
+- id: art_20260517_7e2d15
+  name: per_layer_retention_chart
+  type: chart
+  description: Combined per-layer retention line chart (30%/50%/70% sparsity) showing
+    progressive late-layer starvation under global top-k. PDF+PNG at /root/distill_sparse_swiglu/artifacts/per_layer_retention_chart.{pdf,png}
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/per_layer_retention_chart_meta.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T07:48:10.668157+00:00'
+  tags:
+  - retention
+  - visualization
+  - paper-figure
+  - sparsity-comparison
+- id: art_20260517_7e7756
+  name: global_50pct_retention_analysis
+  type: data
+  description: 'Per-layer retention analysis for 50% global top-k sparsity. Late layers
+    (L27-L31) starved below 0.35. Remote: /root/distill_sparse_swiglu/artifacts/global_50pct_retention_analysis.json'
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/global_50pct_retention_analysis.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T07:48:18.078646+00:00'
+  tags:
+  - retention
+  - sparsity
+  - 50pct
+  - global-topk
+- id: art_20260517_205598
+  name: global_70pct_retention_analysis
+  type: data
+  description: 'Per-layer retention analysis for 70% global top-k sparsity. Starvation
+    extends to early-middle layers (L10-L12) plus late layers (L27-L29). Remote: /root/distill_sparse_swiglu/artifacts/global_70pct_retention_analysis.json'
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/global_70pct_retention_analysis.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T07:48:20.662290+00:00'
+  tags:
+  - retention
+  - sparsity
+  - 70pct
+  - global-topk
+- id: art_20260517_f06c61
+  name: per_layer_retention_chart
+  type: chart
+  description: Per-layer retention bar chart (30%/50%/70% sparsity) showing progressive
+    late-layer starvation pattern under global top-k allocation. For paper Appendix.
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/per_layer_retention_chart.pdf
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T08:06:36.063567+00:00'
+  tags:
+  - paper
+  - appendix
+  - retention
+  - starvation
+  - global-topk
+- id: art_20260517_d02275
+  name: gradient_snr_comparison
+  type: chart
+  description: Per-layer Gradient SNR bar chart comparing KL vs BCE under (a) unconstrained
+    (5.76x) and (b) Lagrangian-constrained (103.2x) settings. For paper Appendix §3.5
+    gradient motivation.
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/gradient_snr_comparison.pdf
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T08:34:40.677431+00:00'
+  tags:
+  - paper
+  - appendix
+  - gradient-snr
+  - kl-vs-bce
+- id: art_20260517_b64096
+  name: loss_ablation_ood_data
+  type: data
+  description: Complete loss ablation data (Forward KL / Reverse KL / JSD / TEAL)
+    with WikiText-2 and C4 OOD PPL. For Paper Agent to write Appendix loss ablation
+    table.
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/loss_ablation_ood_data.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T08:35:02.423557+00:00'
+  tags:
+  - paper
+  - appendix
+  - loss-ablation
+  - ood
+  - c4
+- id: art_20260517_f4c0e4
+  name: per_layer_allocation_s42_vs_s123
+  type: data
+  description: Per-layer neuron retention rates under global top-k allocation for
+    s42 vs s123 predictors at 30% sparsity. Shows allocation profiles are nearly identical,
+    ruling out layer-level starvation as MMLU variance cause.
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/per_layer_allocation_s42_vs_s123_pointer.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T13:55:58.078841+00:00'
+  tags:
+  - allocation
+  - per-layer
+  - s42
+  - s123
+  - mmlu-anomaly
+  - mechanistic
+- id: art_20260517_e0ff3d
+  name: wallclock_profile_results
+  type: data
+  description: 'Wall-clock speedup profiling on RTX PRO 6000 Blackwell. No wall-clock
+    speedup: mask-sparse 0.87-0.94x, structured skip 0.45-0.74x. Theoretical FLOPs:
+    1.36x at 30%, 2.45x at 50%.'
+  path: projects/distill_sparse_swiglu/artifacts/wallclock_speedup_30_50/data/wallclock_profile.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: wallclock_speedup_30_50
+  skill: ''
+  created_at: '2026-05-17T15:41:47.613475+00:00'
+  tags:
+  - profiling
+  - latency
+  - speedup
+  - blackwell
+- id: art_20260517_9706f6
+  name: lambda_sparsity_curve
+  type: chart
+  description: Two-panel figure showing Lagrangian λ dynamics and sparsity convergence
+    for 30%/50%/70% targets. 30% shows U-shaped λ control loop; 50%/70% λ saturates
+    immediately. PDF 19KB + PNG 164KB @300dpi.
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/lambda_sparsity_curve_metadata.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T18:05:46.006584+00:00'
+  tags:
+  - paper-figure
+  - lagrangian
+  - training-dynamics
+  - ablation
+- id: art_20260517_b3bc49
+  name: bce_isocompute_v3_s456_eval_results
+  type: data
+  description: 'bce_isocompute_v3_s456 eval: PPL=28.35, ARC_norm=28.07, WG=52.41,
+    MMLU=25.67, GSM8K=2.20. 50% global sparsity, seed 456.'
+  path: projects/distill_sparse_swiglu/artifacts/bce_isocompute_v3_s456/data/bce_isocompute_v3_s456_eval.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: bce_isocompute_v3_s456
+  skill: ''
+  created_at: '2026-05-17T20:47:23.412639+00:00'
+  tags:
+  - eval
+  - bce
+  - isocompute
+  - seed456
+- id: art_20260517_adc7fe
+  name: lambda_sparsity_curve
+  type: chart
+  description: 'λ/sparsity 时序曲线图 (Appendix C, R1-W5): 双面板展示 30%/50%/70% 三个 target
+    的 Lagrangian multiplier 和 sparsity 随 training step 变化。30% 展示完整 U 型控制回路，50%/70%
+    λ 10 步内饱和。'
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/lambda_sparsity_curve_metadata_adc7fe.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T21:51:49.304039+00:00'
+  tags:
+  - R1-W5
+  - appendix-c
+  - lagrangian
+  - phase-transition
+- id: art_20260518_edbba5
+  name: snr_extended_results
+  type: data
+  description: 'Complete SNR extended analysis data (R6-W3): KL vs BCE gradient SNR
+    across 7 checkpoints (steps 0-300), with per-layer breakdown, loss curves, and
+    prior experiment comparison. Final KL/BCE ratio at step 300 = 5.14x.'
+  path: projects/distill_sparse_swiglu/artifacts/snr_extended_r6w3/data/snr_extended_results.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: snr_extended_r6w3
+  skill: ''
+  created_at: '2026-05-18T04:20:06.299224+00:00'
+  tags:
+  - snr
+  - kl_vs_bce
+  - gradient_analysis
+  - r6w3
+- id: art_20260518_27b2e1
+  name: kl30_uniform_v2_results
+  type: data
+  description: 'Evaluation results for KL 30% uniform v2 experiments (seeds 123 and
+    456): wikitext2_ppl, arc_challenge, winogrande, mmlu, gsm8k'
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/kl30_uniform_v2_results.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T13:49:06.218669+00:00'
+  tags:
+  - kl30
+  - uniform
+  - v2
+  - eval
+  - multi-seed
+- id: art_20260518_e133ee
+  name: mask_divergence_heatmap
+  type: chart
+  description: Layer-wise Jaccard distance heatmap between KL-predicted and magnitude-based
+    masks at 30%/50% sparsity. Avg distance 0.515 at 50%.
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/mask_divergence_heatmap_info.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T18:52:07.491208+00:00'
+  tags:
+  - paper-figure
+  - mask-pattern
+  - task-b
+- id: art_20260518_9f630b
+  name: neuron_scatter_layer16
+  type: chart
+  description: 'Neuron importance scatter for Layer 16: KL vs magnitude scores. 35.4%
+    disagreement.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/neuron_scatter_layer16_info.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T18:52:09.144329+00:00'
+  tags:
+  - paper-figure
+  - mask-pattern
+  - task-b
+- id: art_20260518_d76f9f
+  name: mask_comparison
+  type: chart
+  description: 'Binary mask comparison for layers 2/16/28 at 50% sparsity: KL vs magnitude
+    side-by-side.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/chart/mask_comparison_info.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T18:52:12.026959+00:00'
+  tags:
+  - paper-figure
+  - mask-pattern
+  - task-b
+- id: art_20260519_1bf487
+  name: qwen14b_llama8b_mask_divergence_comparison
+  type: data
+  description: 'Per-layer Jaccard divergence between KL-predicted and magnitude-based
+    masks at 30% sparsity for Qwen-14B and LLaMA-8B. Mean J: 0.4016 vs 0.3939.'
+  path: projects/distill_sparse_swiglu/artifacts/qwen14b_mask_divergence_analysis/data/qwen14b_llama8b_mask_divergence_pointer.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: qwen14b_mask_divergence_analysis
+  skill: ''
+  created_at: '2026-05-19T07:03:46.602784+00:00'
+  tags:
+  - mask_divergence
+  - jaccard
+  - cross_scale
+  - qwen14b
+  - llama8b
+- id: art_20260519_b912db
+  name: BCE Data Source Verification (Tables 2 & 4)
+  type: report
+  description: Verification of BCE-related PPL and downstream metrics in Tables 2
+    and 4 against experiment registry. Confirms data sources, flags footnote mislabeling
+    issue.
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/bce_data_source_verification.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T08:26:27.025046+00:00'
+  tags:
+  - verification
+  - paper
+  - bce
+  - round12
+- id: art_20260519_10c6a7
+  name: speedup_benchmark_results
+  type: report
+  description: 'Wall-clock speedup benchmark: dense vs sparse 30% inference latency
+    for LLaMA-3.1-8B on RTX PRO 6000 Blackwell. Measures prefill/decode latency, throughput,
+    memory, predictor overhead. Zero-masking adds 5-7% overhead; no compute savings
+    without sparse CUDA kernels.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/speedup_benchmark_results.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T11:51:59.679775+00:00'
+  tags:
+  - benchmark
+  - speedup
+  - latency
+  - sparse-inference
+  - llama-3.1-8b
+- id: art_20260519_maskviz
+  name: KL vs Magnitude Mask Divergence Visualization
+  type: figure
+  description: 'Three publication-quality figures comparing KL predictor masks vs
+    static magnitude masks on LLaMA-3.1-8B (30% sparsity, 10 WikiText-2 samples).
+    Mean Jaccard divergence 0.4507. Fig1: per-layer heatmap, Fig2: token-level dynamics,
+    Fig3: per-layer bar chart.'
+  path: projects/distill_sparse_swiglu/artifacts/mask_visualization_summary.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: kl_sparsity30_s42_v3
+  skill: ''
+  created_at: '2026-05-19T20:06:00+00:00'
+  tags:
+  - visualization
+  - mask-divergence
+  - kl-vs-magnitude
+  - paper-figure
+  - llama-3.1-8b
+- id: art_20260519_bb2328
+  name: mask_divergence_50pct_64samples
+  type: data
+  description: Mask divergence analysis at 50% sparsity with 64 samples (131K tokens).
+    Mean Jaccard distance = 0.6824, confirming paper claim of ~68%. Per-layer data
+    for 32 layers included.
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/mask_divergence_50pct_64samples.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T12:17:35.463748+00:00'
+  tags:
+  - mask_divergence
+  - 50pct
+  - jaccard
+  - paper_evidence
+- id: art_20260519_48cc33
+  name: FLOPs Overhead Analysis
+  type: report
+  description: 'Computational overhead analysis for KL predictor on LLaMA-3.1-8B:
+    FLOPs breakdown, parameter efficiency vs FastForward, sparsity-level savings table,
+    training cost. For Paper Agent use.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/flops_overhead_analysis.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T12:18:34.710251+00:00'
+  tags:
+  - paper
+  - overhead
+  - flops
+  - efficiency
+- id: art_20260519_eee21f
+  name: preflight_check_report
+  type: report
+  description: 'Pre-submission preflight check report for EMNLP 2026 ARR: compilation,
+    page count, citations, anonymization, references, ethics/limitations, table verification.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/preflight_check_report.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T12:26:17.436284+00:00'
+  tags:
+  - paper
+  - preflight
+  - submission
+- id: art_20260519_810a65
+  name: qwen14b_kl30_s123_eval_v4_results
+  type: report
+  description: Qwen-14B KL30% seed 123 eval v4 results with three-seed comparison
+    and MMLU reversal analysis
+  path: projects/distill_sparse_swiglu/artifacts/qwen14b_kl30_s123_eval_v4/report/qwen14b_kl30_s123_eval_v4_results.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: qwen14b_kl30_s123_eval_v4
+  skill: ''
+  created_at: '2026-05-19T12:58:17.108718+00:00'
+  tags:
+  - eval
+  - qwen14b
+  - kl30
+  - multi-seed
+  - mmlu-reversal
+- id: art_20260519_09dc18
+  name: qwen14b_kl30_3seed_results
+  type: report
+  description: 'Qwen-14B KL 30% three-seed benchmark results (uniform allocation):
+    PPL 7.66±0.03, MMLU 64.36±0.22. MMLU reversal confirmed systematic across all
+    3 seeds (−1.98pp vs TEAL). KL wins PPL/WG, loses MMLU/ARC-c.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/qwen14b_kl30_3seed_results.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T13:06:48.122829+00:00'
+  tags:
+  - qwen-14b
+  - multi-seed
+  - mmlu-reversal
+  - paper-table
+  - cross-scale
+- id: art_20260519_4bed22
+  name: flashinfer_benchmark_llama8b
+  type: data
+  description: 'Sparse FFN gather-matmul benchmark on LLaMA-3.1-8B: dense vs mask_multiply
+    vs sparse (30%/50%) across 4 (batch_size, seq_len) configs. Includes latency,
+    throughput, speedup, and predictor overhead.'
+  path: projects/distill_sparse_swiglu/artifacts/flashinfer_benchmark_llama8b/data/flashinfer_benchmark.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: flashinfer_benchmark_llama8b
+  skill: ''
+  created_at: '2026-05-19T17:53:38.870777+00:00'
+  tags:
+  - benchmark
+  - latency
+  - speedup
+  - sparse_ffn
+  - llama8b
+- id: art_20260522_1abf8d
+  name: cross_seed_jaccard_r18w7
+  type: data
+  description: 'Cross-seed mask Jaccard distance vs KL-vs-magnitude baseline for E2E
+    KL (3 seeds: s42/s123/s456) and Per-layer KL (2 seeds: s42/s456) at 30% uniform
+    sparsity on LLaMA-3.1-8B, WikiText-2 (32 sequences). Cross-seed JD = 36.3% (E2E
+    KL) / 37.4% (Per-layer KL); KL-vs-Mag JD = 42.7% / 41.8%. Divergence ratio 1.18x
+    and 1.12x over cross-seed noise floor. Artifacts on westd-41718: artifacts/cross_seed_jaccard_r18w7_full.json
+    + src/cross_seed_jaccard.py.'
+  path: projects/distill_sparse_swiglu/artifacts/cross_seed_jaccard_r18w7/data/cross_seed_jaccard_summary.txt
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: cross_seed_jaccard_r18w7
+  skill: ''
+  created_at: '2026-05-22T00:12:27.400955+00:00'
+  tags:
+  - mask_divergence
+  - jaccard
+  - cross_seed
+  - kl_predictor
+  - magnitude_baseline
+  - reviewer_concern_2
+- id: art_20260522_d10a18
+  name: perlayer_kl_50_s42 analysis
+  type: report
+  description: 'Training + eval analysis for per-layer KL 50% sparsity experiment.
+    Key finding: PPL=34.85, far worse than E2E KL (11.84) and MSE (18.52).'
+  path: projects/distill_sparse_swiglu/artifacts/perlayer_kl_50_s42/report/analysis.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: perlayer_kl_50_s42
+  skill: ''
+  created_at: '2026-05-22T06:56:13.821593+00:00'
+  tags:
+  - perlayer_kl
+  - 50%_sparsity
+  - negative_result
+  - 2d_decomposition
+- id: art_20260522_9f519a
+  name: perlayer_kl_50_s42_ppl_results
+  type: data
+  description: 'Per-layer KL 50% sparsity (seed 42) WikiText-2 PPL benchmark eval:
+    PPL=34.85, actual sparsity=0.496 (matches training eval, NOT in expected 11.84~18.52
+    range)'
+  path: projects/distill_sparse_swiglu/artifacts/perlayer_kl_50_s42_ppl/data/results.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: perlayer_kl_50_s42_ppl
+  skill: ''
+  created_at: '2026-05-22T07:11:54.910188+00:00'
+  tags:
+  - benchmark
+  - perlayer_kl
+  - sparsity_50
+  - seed_42
+- id: art_20260522_57cadc
+  name: perlayer_kl_50_s42_downstream_analysis
+  type: report
+  description: Per-layer KL 50% downstream evaluation analysis - all 6 tasks near-random,
+    worse than TEAL baseline, confirmed negative
+  path: projects/distill_sparse_swiglu/artifacts/perlayer_kl_50_s42_downstream/report/analysis.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: perlayer_kl_50_s42_downstream
+  skill: ''
+  created_at: '2026-05-22T08:12:53.897652+00:00'
+  tags:
+  - downstream
+  - perlayer
+  - kl
+  - 50pct
+  - negative
+- id: art_20260522_a6bb51
+  name: perlayer_kl_natural_vs_magnitude_30pct
+  type: data
+  description: 'Per-layer predicted sparsity: KL predictor''s NATURAL output (logits>0
+    threshold, no per-layer enforcement) vs magnitude-greedy global top-k baseline
+    matched to KL overall sparsity (32.3%). LLaMA-3.1-8B + checkpoints/kl_sparsity30_s42_v3,
+    4 WikiText-2 samples x 2048 tokens. Region averages: early L0-L7 KL=28.1%/Mag=27.5%
+    (Δ+0.5pp); middle L8-L23 KL=28.1%/Mag=27.3% (Δ+0.9pp); late L24-L31 KL=44.9%/Mag=47.2%
+    (Δ-2.3pp). Within middle: KL more aggressive at L8-L13 (+7-10pp) and L22-L23 (+13-16pp)
+    but LESS aggressive at L15-L19 (-10-16pp). Region-mean evidence does NOT support
+    ''KL concentrates pruning in middle layers'' hypothesis; strongest divergence
+    is at L30-L31 where magnitude prunes 70-73% but KL keeps 82-77%. Remote source:
+    /root/distill_sparse_swiglu/results/perlayer_kl_natural_vs_magnitude.json'
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/perlayer_kl_natural_vs_magnitude.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T10:27:19.246719+00:00'
+  tags:
+  - per-layer
+  - sparsity
+  - kl
+  - magnitude
+  - ablation
+  - rebuttal
+- id: art_20260522_011b5c
+  name: perlayer_kl_vs_mag_30pct
+  type: data
+  description: 'Per-layer sparsity comparison: KL predictor natural output vs magnitude-greedy
+    baseline (both at 32.3% overall). 32 layers, LLaMA-3.1-8B, 4 WikiText-2 samples.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/data/perlayer_kl_vs_mag_30pct.json
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T10:31:54.962150+00:00'
+  tags:
+  - analysis
+  - per-layer-sparsity
+  - kl-vs-magnitude
+  - reviewer-response
+- id: art_20260523_516cfe
+  name: K16 Eval Failure Diagnosis
+  type: report
+  description: Diagnosis of 3 consecutive K=16 eval failures and current status of
+    4th attempt
+  path: projects/distill_sparse_swiglu/artifacts/perlayer_kl_k16_eval/report/k16_eval_diagnosis.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: perlayer_kl_k16_eval
+  skill: ''
+  created_at: '2026-05-23T05:20:37.143457+00:00'
+  tags:
+  - diagnosis
+  - eval
+  - k16
+- id: art_20260524_63b011
+  name: R28 Data Consistency Report
+  type: report
+  description: 'Registry ↔ paper full cross-verification: 284 data points checked,
+    5 critical mismatches, 31 unverifiable entries, 8 minor rounding issues'
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/r28_data_consistency_report.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T01:42:30.322734+00:00'
+  tags:
+  - r28
+  - data-audit
+  - pre-submission
+- id: art_20260525_1b429d
+  name: data_audit_report
+  type: report
+  description: 'Full paper data truthfulness audit: ~280 numbers cross-verified against
+    registry.yaml. 96% exact match. 3 critical issues (Qwen-14B KL uniform row untraceable,
+    C1 gap 0.65→0.63pp, Lagrangian 50% sparsity mismatch), 4 minor issues.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/data_audit_report.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:07:26.294075+00:00'
+  tags:
+  - audit
+  - paper
+  - data-integrity
+- id: art_20260525_34e78c
+  name: data_audit_report
+  type: report
+  description: 'Full paper data truthfulness audit: ~280 numbers cross-verified against
+    registry. 96% exact match. 3 critical + 4 minor issues identified.'
+  path: projects/distill_sparse_swiglu/artifacts/_project/report/data_audit_report_34e78c.md
+  url: null
+  project: distill_sparse_swiglu
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:08:50.970704+00:00'
+  tags:
+  - audit
+  - paper
+  - data-integrity

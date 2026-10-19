@@ -1,0 +1,35 @@
+{
+  "exp_id": "mistral_teal30_baseline",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:46:06.522Z",
+    "updated_at": "2026-05-17T11:48:59.184Z",
+    "hypothesis": "TEAL vanilla magnitude-based pruning at 30% sparsity on Mistral provides the baseline PPL reference for evaluating KL-distilled predictor improvements",
+    "metrics": {
+      "wikitext2_ppl": 8.3807,
+      "model": "Mistral-7B-v0.3",
+      "condition": "teal_vanilla_30pct",
+      "sparsity": 0.3,
+      "allocation": "uniform",
+      "ppl_increase_vs_dense": 2.8569
+    },
+    "conclusion": "success",
+    "spec": {
+      "command": "python src/benchmark_eval.py --baseline_mode teal_vanilla --sparsity 0.3 --allocation uniform",
+      "server": "westd-34887",
+      "data_path": "WikiText-2 test",
+      "data_count": 0,
+      "model_name": "Mistral-7B-v0.3",
+      "seed": 42,
+      "checkpoint_path": "N/A (baseline eval)",
+      "log_path": "/root/distill_sparse_swiglu/results/benchmark/mistral_teal30_baseline/results.json"
+    },
+    "completed_at": "2026-05-17T11:48:59.184Z"
+  },
+  "timestamp": "2026-05-17T11:48:59.390656+00:00",
+  "trigger": "update_registry"
+}

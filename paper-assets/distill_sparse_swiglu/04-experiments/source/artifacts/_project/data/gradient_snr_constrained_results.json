@@ -1,0 +1,1 @@
+KL avg SNR: 5.45e-04, BCE avg SNR: 5.28e-06, ratio: 103.2x. KL final sparsity: 0.508, BCE final sparsity: 0.591. Full results at /root/distill_sparse_swiglu/artifacts/gradient_snr_constrained_results.json

@@ -1,0 +1,158 @@
+\section{Method}
+\label{sec:method}
+
+We present an output-distribution KL framework for training contextual sparsity predictors in SwiGLU-based language models (Figure~\ref{fig:overview}).
+The method replaces per-neuron binary classification (BCE) with an output-distribution alignment objective that couples all pruning decisions through the model's forward pass and achieves competitive performance without auxiliary error compensation networks at inference.
+
+\subsection{Problem Formulation}
+\label{sec:method:formulation}
+
+Consider a pretrained transformer with $L$ layers, each containing a SwiGLU feed-forward network~\cite{shazeer2020glu}.
+For layer $\ell$, the FFN computes:
+\begin{align}
+\mathbf{y}^{(\ell)} = \bigl(\sigma(\mathbf{x}^{(\ell)} \mathbf{W}_g^{(\ell)}) \odot \mathbf{x}^{(\ell)} \mathbf{W}_u^{(\ell)}\bigr) \mathbf{W}_d^{(\ell)},
+\label{eq:swiglu}
+\end{align}
+where $\mathbf{x}^{(\ell)} \in \mathbb{R}^{d}$ is the hidden state after attention ($d{=}4096$), $\sigma$ denotes SiLU, $\mathbf{W}_g^{(\ell)}, \mathbf{W}_u^{(\ell)} \in \mathbb{R}^{d \times d_{\text{ff}}}$ and $\mathbf{W}_d^{(\ell)} \in \mathbb{R}^{d_{\text{ff}} \times d}$ are the gate, up-projection, and down-projection matrices, and $d_{\text{ff}}{=}14{,}336$.
+
+Define the gate activation $\mathbf{g}^{(\ell)} = \sigma(\mathbf{x}^{(\ell)} \mathbf{W}_g^{(\ell)}) \in \mathbb{R}^{d_{\text{ff}}}$.
+Each element $g_j^{(\ell)}$ determines the contribution of neuron $j$ to the output.
+We introduce a binary mask $\mathbf{m}^{(\ell)} \in \{0,1\}^{d_{\text{ff}}}$ that zeros out pruned neurons:
+\begin{align}
+\mathbf{y}_{\text{sparse}}^{(\ell)} = \bigl(\mathbf{m}^{(\ell)} \odot \mathbf{g}^{(\ell)} \odot \mathbf{x}^{(\ell)} \mathbf{W}_u^{(\ell)}\bigr) \mathbf{W}_d^{(\ell)}.
+\label{eq:sparse_ffn}
+\end{align}
+Our goal is to learn a mask predictor $f_\theta^{(\ell)}(\mathbf{x}^{(\ell)}) \to \mathbf{s}^{(\ell)} \in (0,1)^{d_{\text{ff}}}$ that produces per-neuron importance scores from $\mathbf{x}^{(\ell)}$.
+At inference, the scores are fed to a global top-$k$ allocation mechanism~\cite{liu2025teal} that distributes the sparsity budget across layers non-uniformly, retaining the $(1{-}\rho) \times L \times d_{\text{ff}}$ highest-scoring neurons model-wide for a target sparsity ratio $\rho$.
+
+
+\subsection{Predictor Architecture}
+\label{sec:method:predictor}
+
+Each layer $\ell$ has an independent two-layer MLP predictor:
+\begin{align}
+f_\theta^{(\ell)}(\mathbf{x}^{(\ell)}) = \text{GELU}(\mathbf{x}^{(\ell)} \mathbf{W}_1^{(\ell)}) \, \mathbf{W}_2^{(\ell)},
+\label{eq:predictor}
+\end{align}
+where $\mathbf{W}_1^{(\ell)} \in \mathbb{R}^{d \times d_b}$ and $\mathbf{W}_2^{(\ell)} \in \mathbb{R}^{d_b \times d_{\text{ff}}}$ with bottleneck dimension $d_b{=}128$.
+The predictor takes $\mathbf{x}^{(\ell)}$ (the post-attention hidden state) as input, since it already encodes the token's contextual dependencies from self-attention.
+The output is $d_{\text{ff}}$-dimensional logits $\mathbf{s}^{(\ell)}$, from which the mask is derived.
+
+Sweeps over $d_b \in \{64, 128, 256\}$ show diminishing returns beyond 128, with $d_b{=}256$ adding 2$\times$ parameters for $<$0.1pp PPL gain (Appendix~\ref{app:db_sensitivity}).
+We use GELU rather than ReLU to avoid dead predictor neurons during the early exploration phase when Gumbel noise dominates.
+Each predictor has $(4096 \times 128) + (128 \times 14336) = 2.37\text{M}$ parameters; with 32 independent predictors (one per layer), the total overhead is 75.9M, less than 1\% of the 8B base.
+Per-layer independence avoids sequential latency at inference; the $K$-curve analysis (\S\ref{sec:perlayer}) confirms that cross-layer coupling during training provides modest benefit beyond the output-distribution signal.
+
+
+\subsection{Gumbel-Sigmoid Relaxation}
+\label{sec:method:gumbel}
+
+The hard mask $m_j = \mathbf{1}[s_j > \text{threshold}]$ is non-differentiable, preventing gradient flow from the KL objective through the mask to the predictor parameters.
+We apply Gumbel-Sigmoid relaxation~\cite{maddison2017concrete,louizos2018l0,jang2017gumbel} to produce differentiable soft masks:
+{\small
+\begin{align}
+\tilde{m}_j^{(\ell)} \!=\! \sigma_\tau\!\left(\!\log \frac{s_j^{(\ell)}}{1 {-} s_j^{(\ell)}} + \varepsilon_1 {-} \varepsilon_2\right)\!,\; \varepsilon_{1,2} {\sim} \text{Gumbel}(0,1),
+\label{eq:gumbel}
+\end{align}}
+where $\sigma_\tau(x) = \text{sigmoid}(x / \tau)$ and $\tau$ is a temperature parameter.
+The Gumbel noise provides stochastic exploration of mask configurations during training, while the temperature controls sharpness: as $\tau \to 0$, $\tilde{m}_j$ approaches a binary decision.
+
+We anneal $\tau$ linearly from 1.0 to 0.1 over training.
+At high temperature, the soft mask permits gradient flow through all neurons for broad exploration.
+As temperature decreases, the mask concentrates on confident decisions, approximating the hard allocation used at inference.
+
+\paragraph{Comparison with Straight-Through Estimation.}
+The straight-through estimator (STE)~\cite{bengio2013ste} applies a hard threshold in the forward pass and passes gradients through unchanged ($\partial m / \partial s = 1$).
+In our setting, STE produces discontinuous gradient signals: small parameter changes can flip many neurons simultaneously, destabilizing sparsity enforcement (actual 20.8\% at 30\% target).
+Gumbel relaxation eliminates this pathology and contributes a 25.2\% improvement (PPL 15.77 $\to$ 11.79 at 50\% sparsity), as we verify empirically in \S\ref{sec:experiments}.
+
+
+\subsection{KL Divergence Training Objective}
+\label{sec:method:kl}
+
+Let $\mathbf{z}_{\text{dense}}$ denote the output logits from a full dense forward pass, and $\mathbf{z}_{\text{sparse}}$ the logits from a forward pass with predictor-generated soft masks $\{\tilde{\mathbf{m}}^{(\ell)}\}_\ell$ applied at every layer.
+We minimize the forward KL divergence between the dense and sparse output distributions:
+\begin{align}
+\mathcal{L}_{\text{KL}} \!=\! D_{\text{KL}}(p_{\text{dense}} \| p_{\text{sparse}}) \!=\! \sum_{v} p_{\text{dense}}^{(v)} \log \frac{p_{\text{dense}}^{(v)}}{p_{\text{sparse}}^{(v)}},
+\label{eq:kl_loss}
+\end{align}
+where $p_{\text{dense}} = \text{softmax}(\mathbf{z}_{\text{dense}})$ and $p_{\text{sparse}} = \text{softmax}(\mathbf{z}_{\text{sparse}})$, summed over the vocabulary $v$ and averaged over all token positions in the sequence.
+The base model is frozen; only the predictor parameters receive gradients.
+
+We use forward KL (mass-covering) rather than reverse KL, as the goal is to preserve the dense model's primary predictions rather than explore alternative modes.
+In sparsity prediction, mode-covering is critical: false negatives (omitting a rarely but critically active neuron) cascade through downstream layers under global allocation, whereas false positives merely waste capacity~\cite{wu2025rethinking}.
+Forward KL outperforms reverse KL by 7.9\% and JSD by 6.0\% at 50\% (Table~\ref{tab:ablation}).
+No temperature scaling ($T{=}1$) is applied~\cite{hinton2015distilling}.
+
+
+\subsection{Geometric Penalty Schedule}
+\label{sec:method:lagrangian}
+
+We enforce a model-level sparsity target $\rho$ via constrained optimization with $\bar{s} = \frac{1}{L} \sum_\ell \frac{1}{d_{\text{ff}}} \sum_j \tilde{m}_j^{(\ell)}$ denoting the average retained fraction:
+\begin{align}
+\min_\theta \; \mathcal{L}_{\text{KL}} \quad \text{s.t.} \quad \bar{s} = 1 - \rho.
+\label{eq:constrained}
+\end{align}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{lagrangian_dynamics.pdf}
+\vspace{-8pt}
+\caption{Geometric penalty schedule dynamics for 30\% sparsity target ($\lambda_{\max}{=}5000$). Left axis (log): $\lambda$ rises via geometric doubling once sparsity undershoots the target, saturating at its cap. Right axis: actual sparsity converges from natural density (${\approx}$0.41) toward 0.28.}
+\label{fig:lagrangian_dynamics}
+\vspace{-8pt}
+\end{figure}
+
+We relax this via a geometric penalty schedule:
+\begin{align}
+\mathcal{L} = \mathcal{L}_{\text{KL}} + \lambda \!\cdot\! \text{clamp}(|\bar{s} {-} (1{-}\rho)| {-} \epsilon,\, 0)^2,
+\label{eq:lagrangian}
+\end{align}
+where $\epsilon = 0.02$ is a deadzone margin that suppresses oscillation near the target (sensitivity in Appendix~\ref{app:lagrangian}). The penalty weight $\lambda$ is updated via geometric doubling (doubled when sparsity exceeds target, halved otherwise), clamped to $[\lambda_{\text{floor}}, \lambda_{\max}]$, reaching target sparsity within 40--110 steps across all tested regimes (Figure~\ref{fig:lagrangian_dynamics}).
+This schedule avoids the instability of fixed-$\lambda$ training: too low permits unconstrained masks; too high collapses the predictor to trivial uniform scores.
+The deadzone $\epsilon$ is essential---without it, the penalty oscillates around the target and interferes with KL minimization during the critical Gumbel annealing phase (Appendix~\ref{app:lagrangian}).
+
+\subsection{Gradient Analysis: BCE vs.\ KL}
+\label{sec:method:gradient}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{snr_trajectory.pdf}
+\vspace{-8pt}
+\caption{Gradient SNR trajectory across 1000 training steps. BCE (orange) maintains consistently higher SNR than KL (blue) from step 100 onward ($2.3$--$17\times$), yet KL produces superior masks (Table~\ref{tab:main}), confirming that target alignment matters more than gradient clarity.}
+\label{fig:snr_trajectory}
+\vspace{-8pt}
+\end{figure}
+
+We contrast the gradient structure of BCE and KL to build intuition for how KL discovers divergent mask patterns (\S\ref{sec:mask_analysis}).
+
+Under BCE, the predictor trains against oracle masks $m_j^* = \mathbf{1}[|g_j| \geq \text{top-}k\text{ threshold}]$ derived from activation magnitudes.
+The gradient $\partial \mathcal{L}_{\text{BCE}} / \partial s_j = \sigma(s_j) - m_j^*$ depends only on neuron $j$; each neuron is trained independently with no inter-neuron coupling.
+Under output-distribution KL, the chain rule introduces a downstream Jacobian that couples neuron $j$'s gradient to all other retained neurons in layers $\ell$ through $L$, evaluating each neuron in the context of the full sparse computation.
+
+Gradient SNR measurements\footnote{$\text{SNR}_\ell = \|\mathbb{E}[\nabla_{\theta_\ell} \mathcal{L}]\|_2^2 / \text{Var}[\nabla_{\theta_\ell} \mathcal{L}]$, expectation over mini-batches.} reveal that BCE maintains consistently higher SNR than KL throughout training ($2.3\times$ at convergence; Figure~\ref{fig:snr_trajectory}; Appendix~\ref{app:snr_extended}), indicating KL's advantage stems not from gradient clarity but from discovering superior mask patterns via end-to-end search.
+The target-swap ablation in \S\ref{sec:mask_analysis} confirms that the discovered mask targets, not the coupling mechanism itself, drive inference-stage quality.
+
+\subsection{Two-Dimensional Taxonomy of Sparsity Prediction Methods}
+\label{sec:method:taxonomy}
+
+We organize prior work along two axes: \emph{correction granularity} (how the mask adapts to input) and \emph{training signal coupling} (whether the objective captures inter-neuron dependencies).
+
+\begin{table}[t]
+\centering
+\caption{Taxonomy of learned sparsity prediction methods along correction granularity (rows) and training signal coupling (columns). Our method occupies the Per-token $\times$ Coupled cell (organizational framework). Empty cells represent unexplored combinations; their relative merit is an open question.}
+\label{tab:taxonomy}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lccc}
+\toprule
+ & Decomposed (BCE) & Intermediate (MSE) & Coupled (KL) \\
+\midrule
+Static & --- & --- & SPON, MaskLLM \\
+Per-token & DejaVu, FastForward & ShadowLLM, D2DMoE & \textbf{Ours} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Our method combines per-token prediction with coupled KL training (Table~\ref{tab:taxonomy}).
+KL on output logits directly optimizes next-token prediction loss, which composes across layers; per-layer MSE does not: a mask minimizing FFN output error at layer $\ell$ may amplify errors in layers $\ell{+}1 \ldots L$, explaining its $1.7\times$/$9.6\times$ worse PPL (Appendix~\ref{app:taxonomy}).
+

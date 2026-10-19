@@ -1,0 +1,1184 @@
+# analyze qwen14b kl30 s42 gsm8k uniform 20260522T103235 retry2
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_analyze_qwen14b_kl30_s42_gsm8k_uniform_20260522T103235_retry2.log`
+- **Structured JSON:** [`adbbf79394c0aa0a694c.json`](../../sessions/ad/adbbf79394c0aa0a694c.json)
+
+## Before a recorded user message
+
+24 recorded events
+
+### System
+
+_source line 1_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "bdeb484f-b32a-4146-b091-0ef0ba4e2c56",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779450000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2674cfb7-8dff-49b7-a1a8-e26faa5112f8",
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the log file from the server to analyze the experiment results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "bbf84c66-8380-466c-a31c-acc833d9160a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012EpHZvepA18v3beApb4C88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13201,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13201
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JZpDFNeCRuU15XXQ4QdPEf`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "ad377bc4-dfb7-49e7-acc7-3fb3f5806eed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012EpHZvepA18v3beApb4C88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13201,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13201
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-22T10:51:31.229Z_
+
+<details><summary>↩ Tool result · `toolu_01JZpDFNeCRuU15XXQ4QdPEf`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "84b5221f-7843-4894-a841-fd0b940973e4",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014GeG437QS27cu4UWqoe9zW`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -100 /root/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_uniform.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "41d9cb86-1cfb-4cf2-b6ca-1da5e982e077",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQPggrE21TL9rgJ5REryWb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 456,
+      "cache_read_input_tokens": 25042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 456
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SCVbQcEnxwKyhz5djuht6U`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "head -50 /root/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_uniform.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "a659fc8d-1c42-46c8-842b-7bac937ff43f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQPggrE21TL9rgJ5REryWb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 456,
+      "cache_read_input_tokens": 25042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 456
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T10:51:35.877Z_
+
+<details><summary>↩ Tool result · `toolu_014GeG437QS27cu4UWqoe9zW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRunning generate_until requests:  43%|████▎     | 569/1319 [1:51:23<2:39:53, 12.79s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1828) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  44%|████▎     | 577/1319 [1:53:23<2:46:31, 13.47s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1824) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  44%|████▍     | 585/1319 [1:55:23<2:50:32, 13.94s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1821) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  45%|████▍     | 593/1319 [1:55:49<2:09:44, 10.72s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1815) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  46%|████▌     | 601/1319 [1:57:49<2:23:50, 12.02s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1813) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  46%|████▌     | 609/1319 [1:57:58<1:43:30,  8.75s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1810) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  47%|████▋     | 617/1319 [1:58:21<1:21:28,  6.96s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1806) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  47%|████▋     | 625/1319 [1:58:31<1:00:44,  5.25s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1804) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  48%|████▊     | 633/1319 [2:00:30<1:33:18,  8.16s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1802) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  49%|████▊     | 641/1319 [2:02:30<1:55:25, 10.22s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1800) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  49%|████▉     | 649/1319 [2:02:41<1:24:26,  7.56s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1797) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  50%|████▉     | 657/1319 [2:02:56<1:04:20,  5.83s/it][transf\\n\\n... [截断: 输出过长，省略 25391 字符] ...\\n\\nn_classes/text_generation)\\n\\rRunning generate_until requests:  93%|█████████▎| 1233/1319 [3:33:40<10:34,  7.37s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1530) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  94%|█████████▍| 1241/1319 [3:35:36<12:20,  9.49s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1521) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  95%|█████████▍| 1249/1319 [3:37:31<12:47, 10.97s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1509) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  95%|█████████▌| 1257/1319 [3:39:27<12:24, 12.01s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1501) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  96%|█████████▌| 1265/1319 [3:39:39<07:59,  8.88s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1486) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  97%|█████████▋| 1273/1319 [3:41:35<08:04, 10.54s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1474) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  97%|█████████▋| 1281/1319 [3:41:49<05:00,  7.92s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1455) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  98%|█████████▊| 1289/1319 [3:41:59<02:57,  5.91s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1433) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  98%|█████████▊| 1297/1319 [3:42:10<01:40,  4.55s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1415) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  99%|█████████▉| 1305/1319 [3:42:18<00:49,  3.50s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1378) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests: 100%|█████████▉| 1313/1319 [3:44:09<00:39,  6.61s/it]\\rRunning generate_until requests: 100%|██████████| 1319/1319 [3:44:09<00:00, 10.20s/it]\\nfatal: not a git repository (or any of the parent directories): .git\\n  Completed in 13463.9s\\n  gsm8k: sample_len=1319, exact_match=0.3548\\n\\nResults saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s42_gsm8k_uniform/results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "c224b215-c990-4fcf-a75c-063b4db24603",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rRunning generate_until requests:  43%|████▎     | 569/1319 [1:51:23<2:39:53, 12.79s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1828) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  44%|████▎     | 577/1319 [1:53:23<2:46:31, 13.47s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1824) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  44%|████▍     | 585/1319 [1:55:23<2:50:32, 13.94s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1821) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  45%|████▍     | 593/1319 [1:55:49<2:09:44, 10.72s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1815) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  46%|████▌     | 601/1319 [1:57:49<2:23:50, 12.02s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1813) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  46%|████▌     | 609/1319 [1:57:58<1:43:30,  8.75s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1810) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  47%|████▋     | 617/1319 [1:58:21<1:21:28,  6.96s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1806) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  47%|████▋     | 625/1319 [1:58:31<1:00:44,  5.25s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1804) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  48%|████▊     | 633/1319 [2:00:30<1:33:18,  8.16s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1802) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  49%|████▊     | 641/1319 [2:02:30<1:55:25, 10.22s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1800) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  49%|████▉     | 649/1319 [2:02:41<1:24:26,  7.56s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1797) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  50%|████▉     | 657/1319 [2:02:56<1:04:20,  5.83s/it][transf\\\\n\\\\n... [截断: 输出过长，省略 25391 字符] ...\\\\n\\\\nn_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  93%|█████████▎| 1233/1319 [3:33:40<10:34,  7.37s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1530) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  94%|█████████▍| 1241/1319 [3:35:36<12:20,  9.49s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1521) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  95%|█████████▍| 1249/1319 [3:37:31<12:47, 10.97s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1509) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  95%|█████████▌| 1257/1319 [3:39:27<12:24, 12.01s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1501) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  96%|█████████▌| 1265/1319 [3:39:39<07:59,  8.88s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1486) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  97%|█████████▋| 1273/1319 [3:41:35<08:04, 10.54s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1474) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  97%|█████████▋| 1281/1319 [3:41:49<05:00,  7.92s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1455) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  98%|█████████▊| 1289/1319 [3:41:59<02:57,  5.91s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1433) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  98%|█████████▊| 1297/1319 [3:42:10<01:40,  4.55s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1415) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  99%|█████████▉| 1305/1319 [3:42:18<00:49,  3.50s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1378) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests: 100%|█████████▉| 1313/1319 [3:44:09<00:39,  6.61s/it]\\\\rRunning generate_until requests: 100%|██████████| 1319/1319 [3:44:09<00:00, 10.20s/it]\\\\nfatal: not a git repository (or any of the parent directories): .git\\\\n  Completed in 13463.9s\\\\n  gsm8k: sample_len=1319, exact_match=0.3548\\\\n\\\\nResults saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s42_gsm8k_uniform/results.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\rRunning generate_until requests:  43%|████▎     | 569/1319 [1:51:23<2:39:53, 12.79s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1828) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  44%|████▎     | 577/1319 [1:53:23<2:46:31, 13.47s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1824) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  44%|████▍     | 585/1319 [1:55:23<2:50:32, 13.94s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1821) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  45%|████▍     | 593/1319 [1:55:49<2:09:44, 10.72s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1815) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  46%|████▌     | 601/1319 [1:57:49<2:23:50, 12.02s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1813) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  46%|████▌     | 609/1319 [1:57:58<1:43:30,  8.75s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1810) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  47%|████▋     | 617/1319 [1:58:21<1:21:28,  6.96s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1806) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  47%|████▋     | 625/1319 [1:58:31<1:00:44,  5.25s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1804) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  48%|████▊     | 633/1319 [2:00:30<1:33:18,  8.16s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1802) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  49%|████▊     | 641/1319 [2:02:30<1:55:25, 10.22s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1800) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  49%|████▉     | 649/1319 [2:02:41<1:24:26,  7.56s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1797) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  50%|████▉     | 657/1319 [2:02:56<1:04:20,  5.83s/it][transf\\n\\n... [截断: 输出过长，省略 25391 字符] ...\\n\\nn_classes/text_generation)\\n\\rRunning generate_until requests:  93%|█████████▎| 1233/1319 [3:33:40<10:34,  7.37s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1530) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  94%|█████████▍| 1241/1319 [3:35:36<12:20,  9.49s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1521) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  95%|█████████▍| 1249/1319 [3:37:31<12:47, 10.97s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1509) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  95%|█████████▌| 1257/1319 [3:39:27<12:24, 12.01s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1501) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  96%|█████████▌| 1265/1319 [3:39:39<07:59,  8.88s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1486) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  97%|█████████▋| 1273/1319 [3:41:35<08:04, 10.54s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1474) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  97%|█████████▋| 1281/1319 [3:41:49<05:00,  7.92s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1455) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  98%|█████████▊| 1289/1319 [3:41:59<02:57,  5.91s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1433) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  98%|█████████▊| 1297/1319 [3:42:10<01:40,  4.55s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1415) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  99%|█████████▉| 1305/1319 [3:42:18<00:49,  3.50s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1378) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests: 100%|█████████▉| 1313/1319 [3:44:09<00:39,  6.61s/it]\\rRunning generate_until requests: 100%|██████████| 1319/1319 [3:44:09<00:00, 10.20s/it]\\nfatal: not a git repository (or any of the parent directories): .git\\n  Completed in 13463.9s\\n  gsm8k: sample_len=1319, exact_match=0.3548\\n\\nResults saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s42_gsm8k_uniform/results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T10:51:36.430Z_
+
+<details><summary>↩ Tool result · `toolu_01SCVbQcEnxwKyhz5djuht6U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model: /root/autodl-tmp/models/qwen2.5-14b/\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/579 [00:01<12:27,  1.29s/it]\\rLoading weights:   0%|          | 2/579 [00:02<12:40,  1.32s/it]\\rLoading weights:   1%|          | 4/579 [00:02<05:04,  1.89it/s]\\rLoading weights:   1%|          | 5/579 [00:02<03:52,  2.47it/s]\\rLoading weights:   1%|          | 6/579 [00:02<03:02,  3.14it/s]\\rLoading weights:   2%|▏         | 12/579 [00:03<00:57,  9.90it/s]\\rLoading weights:   3%|▎         | 16/579 [00:03<00:41, 13.46it/s]\\rLoading weights:   3%|▎         | 19/579 [00:03<00:45, 12.27it/s]\\rLoading weights:   4%|▍         | 24/579 [00:03<00:31, 17.79it/s]\\rLoading weights:   5%|▍         | 28/579 [00:03<00:27, 20.34it/s]\\rLoading weights:   5%|▌         | 31/579 [00:04<00:32, 17.10it/s]\\rLoading weights:   6%|▋         | 37/579 [00:04<00:22, 24.34it/s]\\rLoading weights:   7%|��         | 41/579 [00:04<00:27, 19.67it/s]\\rLoading weights:   8%|▊         | 44/579 [00:04<00:27, 19.46it/s]\\rLoading weights:   9%|▉         | 51/579 [00:04<00:18, 28.12it/s]\\rLoading weights:   9%|▉         | 55/579 [00:05<00:27, 19.10it/s]\\rLoading weights:  10%|█         | 58/579 [00:05<00:30, 17.27it/s]\\rLoading weights:  11%|█         | 65/579 [00:05<00:20, 24.69it/s]\\rLoading weights:  12%|█▏        | 69/579 [00:05<00:19, 25.51it/s]\\rLoading weights:  13%|█▎        | 73/579 [00:05<00:17, 28.21it/s]\\rLoading weights:  13%|█▎        | 77/579 [00:06<00:27, 18.39it/s]\\rLoading weights:  15%|█▍        | 84/579 [00:06<00:19, 25.26it/s]\\rLoading weights:  15%|█▌        | 88/579 [00:06<00:18, 27.20it/s]\\rLoading weights:  16%|█▌        | 92/579 [00:06<00:21, 22.70it/s]\\rLoading weights:  17%|█▋        | 98/579 [00:06<00:16, 29.18it/s]\\rLoading weights:  18%|█▊        | 102/579 [00:07<00:23, 20.45it/s]\\rLoading weights:  19%|█▊        | 108/579 [00:07<00:17, 26.41it/s]\\rLoading weights:  19%|█▉        | 112/579 [00:07<00:16, 27.83it/s]\\rLoading weights:  20%|██        | 116/579 [00:07<00:19, 23.44it/s]\\rLoading weights:  21%|██        | 121/579 [00:07<00:17, 26.81it/s]\\rLoading weights:  22%|██▏       | 125/579 [00:07<00:19, 23.67it/s]\\rLoading weights:  22%|██▏       | 128/579 [00:08<00:19, 23.21it/s]\\rLoading weights:  23%|██▎       | 134/579 [00:08<00:18, 24.03it/s]\\rLoading weights:  24%|██▎       | 137/579 [00:08<00:18, 24.45it/s]\\rLoading weights:  24%|██▍       | 140/579 [00:08<00:18, 23.24it/s]\\rLoading weights:  25%|██▍       | 143/579 [00:08<00:18, 23.71it/s]\\rLoading weights:  26%|██▌       | 148/579 [00:08<00:14, 29.20it/s]\\rLoading weights:  26%|██▋       | 152/579 [00:09<00:18, 22.96it/s]\\rLoading weights:  27%|██▋       | 155/579 [00:09<00:17, 24.09it/s]\\rLoading weights:  28%|██▊       | 160/579 [00:09<00:14, 28.35it/s]\\rLoading weights:  28%|██▊       | 164/579 [00:09<00:19, 21.03it/s]\\rLoading weights:  29%|██▉       | 168/579 [00:09<00:17, 23.84it/s]\\rLoading weights:  30%|██▉       | 172/579 [00:09<00:15, 25.56it/s]\\rLoading weights:  30%|███       | 175/579 [00:10<00:20, 20.05it/s]\\rLoading weights:  31%|███       | 180/579 [00:10<00:19, 20.30it/s]\\rLoading weights:  32%|███▏      | 185/579 [00:10<00:15, 24.84it/s]\\rLoading weights:  32%|███▏      | 188/579 [00:10<00:16, 23.94it/s]\\rLoading weights:  34%|███▎      | 195/579 [00:10<00:14, 27.02it/s]\\rLoading weights:  34%|███▍      | 198/579 [00:11<00:17, 21.38it/s]\\rLoading weights:  35%|███▌      | 205/579 [00:11<00:12, 29.90it/s]\\rLoading weights:  36%|███▌      | 209/579 [00:11<00:14, 25.02it/s]\\rLoading weights:  37%|███▋      | 213/579 [00:11<00:13, 26.16it/s]\\rLoading weights:  38%|███▊      | 218/579 [00:11<00:11, 30.16it/s]\\rLoading weights:  38%|███▊      | 222/579 [00:11<00:17, 20.32it/s]\\rLoading weights:  40%|███▉      | 230/579 [00:12<00:11, 29.67it/s]\\rLoading weights:  41%|████      | 235/579 [00:12<00:15, 22.53it/s]\\rLoading weights:  42%|████▏     | 242/579 [00:12<00:11, 29.29it/s]\\rLoading weights:  43%|████▎     | 2\\n\\n... [截断: 输出过长，省略 1787 字符] ...\\n\\nts:  64%|██████▎   | 368/579 [00:18<00:08, 23.63it/s]\\rLoading weights:  65%|██████▍   | 374/579 [00:18<00:06, 29.73it/s]\\rLoading weights:  65%|██████▌   | 378/579 [00:18<00:09, 21.28it/s]\\rLoading weights:  66%|██████▋   | 385/579 [00:18<00:06, 28.18it/s]\\rLoading weights:  67%|██████▋   | 389/579 [00:18<00:07, 24.05it/s]\\rLoading weights:  68%|██████▊   | 393/579 [00:19<00:07, 25.17it/s]\\rLoading weights:  69%|██████▊   | 398/579 [00:19<00:06, 29.09it/s]\\rLoading weights:  69%|██████▉   | 402/579 [00:19<00:08, 20.31it/s]\\rLoading weights:  71%|███████   | 409/579 [00:19<00:06, 28.05it/s]\\rLoading weights:  71%|███████▏  | 413/579 [00:20<00:08, 19.35it/s]\\rLoading weights:  72%|███████▏  | 418/579 [00:20<00:06, 23.07it/s]\\rLoading weights:  73%|███████▎  | 424/579 [00:20<00:05, 28.38it/s]\\rLoading weights:  74%|███████▍  | 428/579 [00:20<00:06, 22.63it/s]\\rLoading weights:  75%|███████▍  | 432/579 [00:20<00:05, 25.10it/s]\\rLoading weights:  75%|███████▌  | 436/579 [00:20<00:05, 25.13it/s]\\rLoading weights:  76%|███████▌  | 440/579 [00:21<00:06, 21.11it/s]\\rLoading weights:  77%|███████▋  | 443/579 [00:21<00:07, 18.54it/s]\\rLoading weights:  78%|███████▊  | 449/579 [00:21<00:05, 24.78it/s]\\rLoading weights:  78%|███████▊  | 453/579 [00:21<00:04, 25.57it/s]\\rLoading weights:  79%|███████▉  | 456/579 [00:21<00:04, 26.25it/s]\\rLoading weights:  79%|███████▉  | 459/579 [00:21<00:04, 26.21it/s]\\rLoading weights:  80%|███████▉  | 462/579 [00:22<00:05, 19.57it/s]\\rLoading weights:  81%|████████  | 469/579 [00:22<00:03, 29.33it/s]\\rLoading weights:  82%|████████▏ | 473/579 [00:22<00:04, 24.03it/s]\\rLoading weights:  82%|████████▏ | 477/579 [00:22<00:04, 25.14it/s]\\rLoading weights:  83%|████████▎ | 482/579 [00:22<00:03, 29.56it/s]\\rLoading weights:  84%|████████▍ | 486/579 [00:23<00:04, 20.22it/s]\\rLoading weights:  85%|████████▍ | 492/579 [00:23<00:03, 21.85it/s]\\rLoading weights:  86%|████████▌ | 497/579 [00:23<00:03, 25.63it/s]\\rLoading weights:  87%|████████▋ | 501/579 [00:23<00:03, 25.92it/s]\\rLoading weights:  87%|████████▋ | 505/579 [00:23<00:02, 28.42it/s]\\rLoading weights:  88%|████████▊ | 509/579 [00:24<00:03, 18.14it/s]\\rLoading weights:  89%|████████▉ | 515/579 [00:24<00:02, 23.02it/s]\\rLoading weights:  90%|████████▉ | 519/579 [00:24<00:03, 17.73it/s]\\rLoading weights:  91%|█████████ | 526/579 [00:24<00:02, 21.18it/s]\\rLoading weights:  92%|█████████▏| 533/579 [00:24<00:01, 27.46it/s]\\rLoading weights:  93%|█████████▎| 537/579 [00:25<00:01, 27.49it/s]\\rLoading weights:  94%|█████████▍| 543/579 [00:25<00:01, 27.60it/s]\\rLoading weights:  94%|█████████▍| 547/579 [00:25<00:01, 23.06it/s]\\rLoading weights:  96%|█████████▌| 554/579 [00:25<00:00, 30.24it/s]\\rLoading weights:  96%|█████████▋| 558/579 [00:26<00:00, 21.49it/s]\\rLoading weights:  97%|█████████▋| 564/579 [00:26<00:00, 26.44it/s]\\rLoading weights:  98%|█████████▊| 568/579 [00:26<00:00, 28.18it/s]\\rLoading weights:  99%|█████████▉| 572/579 [00:26<00:00, 23.36it/s]\\rLoading weights: 100%|██████████| 579/579 [00:26<00:00, 21.78it/s]\\nMode: TEAL global mask from predictor (allocation=uniform)\\n  checkpoint: /root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\\nComputing TEAL global masks from predictor ...\\n\\nPer-layer sparsity (TEAL-predictor):\\n  Layer  0: 0.301\\n  Layer  1: 0.297\\n  Layer  2: 0.301\\n  Layer  3: 0.301\\n  Layer  4: 0.301\\n  Layer  5: 0.301\\n  Layer  6: 0.301\\n  Layer  7: 0.297\\n  Layer  8: 0.301\\n  Layer  9: 0.301\\n  Layer 10: 0.297\\n  Layer 11: 0.293\\n  Layer 12: 0.297\\n  Layer 13: 0.297\\n  Layer 14: 0.297\\n  Layer 15: 0.297\\n  Layer 16: 0.293\\n  Layer 17: 0.293\\n  Layer 18: 0.297\\n  Layer 19: 0.289\\n  Layer 20: 0.293\\n  Layer 21: 0.289\\n  Layer 22: 0.297\\n  Layer 23: 0.293\\n  Layer 24: 0.285\\n  Layer 25: 0.285\\n  Layer 26: 0.289\\n  Layer 27: 0.301\\n  Layer 28: 0.293\\n  Layer 29: 0.289\\n  Layer 30: 0.293\\n  Layer 31: 0.301\\n  Layer 32: 0.293\\n  Layer 33: 0.297\\n  Layer 34: 0.297\\n  Layer 35: 0.297\\n  Layer 36: 0.297\\n  Layer 37: 0.297\\n  Layer 38: 0.301\\n  Layer 39: 0.293\\n  Layer 40: 0.297\\n  Layer 41: 0.297\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "9799a98b-1279-448a-a3da-510e253e2a23",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/qwen2.5-14b/\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/579 [00:01<12:27,  1.29s/it]\\\\rLoading weights:   0%|          | 2/579 [00:02<12:40,  1.32s/it]\\\\rLoading weights:   1%|          | 4/579 [00:02<05:04,  1.89it/s]\\\\rLoading weights:   1%|          | 5/579 [00:02<03:52,  2.47it/s]\\\\rLoading weights:   1%|          | 6/579 [00:02<03:02,  3.14it/s]\\\\rLoading weights:   2%|▏         | 12/579 [00:03<00:57,  9.90it/s]\\\\rLoading weights:   3%|▎         | 16/579 [00:03<00:41, 13.46it/s]\\\\rLoading weights:   3%|▎         | 19/579 [00:03<00:45, 12.27it/s]\\\\rLoading weights:   4%|▍         | 24/579 [00:03<00:31, 17.79it/s]\\\\rLoading weights:   5%|▍         | 28/579 [00:03<00:27, 20.34it/s]\\\\rLoading weights:   5%|▌         | 31/579 [00:04<00:32, 17.10it/s]\\\\rLoading weights:   6%|▋         | 37/579 [00:04<00:22, 24.34it/s]\\\\rLoading weights:   7%|��         | 41/579 [00:04<00:27, 19.67it/s]\\\\rLoading weights:   8%|▊         | 44/579 [00:04<00:27, 19.46it/s]\\\\rLoading weights:   9%|▉         | 51/579 [00:04<00:18, 28.12it/s]\\\\rLoading weights:   9%|▉         | 55/579 [00:05<00:27, 19.10it/s]\\\\rLoading weights:  10%|█         | 58/579 [00:05<00:30, 17.27it/s]\\\\rLoading weights:  11%|█         | 65/579 [00:05<00:20, 24.69it/s]\\\\rLoading weights:  12%|█▏        | 69/579 [00:05<00:19, 25.51it/s]\\\\rLoading weights:  13%|█▎        | 73/579 [00:05<00:17, 28.21it/s]\\\\rLoading weights:  13%|█▎        | 77/579 [00:06<00:27, 18.39it/s]\\\\rLoading weights:  15%|█▍        | 84/579 [00:06<00:19, 25.26it/s]\\\\rLoading weights:  15%|█▌        | 88/579 [00:06<00:18, 27.20it/s]\\\\rLoading weights:  16%|█▌        | 92/579 [00:06<00:21, 22.70it/s]\\\\rLoading weights:  17%|█▋        | 98/579 [00:06<00:16, 29.18it/s]\\\\rLoading weights:  18%|█▊        | 102/579 [00:07<00:23, 20.45it/s]\\\\rLoading weights:  19%|█▊        | 108/579 [00:07<00:17, 26.41it/s]\\\\rLoading weights:  19%|█▉        | 112/579 [00:07<00:16, 27.83it/s]\\\\rLoading weights:  20%|██        | 116/579 [00:07<00:19, 23.44it/s]\\\\rLoading weights:  21%|██        | 121/579 [00:07<00:17, 26.81it/s]\\\\rLoading weights:  22%|██▏       | 125/579 [00:07<00:19, 23.67it/s]\\\\rLoading weights:  22%|██▏       | 128/579 [00:08<00:19, 23.21it/s]\\\\rLoading weights:  23%|██▎       | 134/579 [00:08<00:18, 24.03it/s]\\\\rLoading weights:  24%|██▎       | 137/579 [00:08<00:18, 24.45it/s]\\\\rLoading weights:  24%|██▍       | 140/579 [00:08<00:18, 23.24it/s]\\\\rLoading weights:  25%|██▍       | 143/579 [00:08<00:18, 23.71it/s]\\\\rLoading weights:  26%|██▌       | 148/579 [00:08<00:14, 29.20it/s]\\\\rLoading weights:  26%|██▋       | 152/579 [00:09<00:18, 22.96it/s]\\\\rLoading weights:  27%|██▋       | 155/579 [00:09<00:17, 24.09it/s]\\\\rLoading weights:  28%|██▊       | 160/579 [00:09<00:14, 28.35it/s]\\\\rLoading weights:  28%|██▊       | 164/579 [00:09<00:19, 21.03it/s]\\\\rLoading weights:  29%|██▉       | 168/579 [00:09<00:17, 23.84it/s]\\\\rLoading weights:  30%|██▉       | 172/579 [00:09<00:15, 25.56it/s]\\\\rLoading weights:  30%|███       | 175/579 [00:10<00:20, 20.05it/s]\\\\rLoading weights:  31%|███       | 180/579 [00:10<00:19, 20.30it/s]\\\\rLoading weights:  32%|███▏      | 185/579 [00:10<00:15, 24.84it/s]\\\\rLoading weights:  32%|███▏      | 188/579 [00:10<00:16, 23.94it/s]\\\\rLoading weights:  34%|███▎      | 195/579 [00:10<00:14, 27.02it/s]\\\\rLoading weights:  34%|███▍      | 198/579 [00:11<00:17, 21.38it/s]\\\\rLoading weights:  35%|███▌      | 205/579 [00:11<00:12, 29.90it/s]\\\\rLoading weights:  36%|███▌      | 209/579 [00:11<00:14, 25.02it/s]\\\\rLoading weights:  37%|███▋      | 213/579 [00:11<00:13, 26.16it/s]\\\\rLoading weights:  38%|███▊      | 218/579 [00:11<00:11, 30.16it/s]\\\\rLoading weights:  38%|███▊      | 222/579 [00:11<00:17, 20.32it/s]\\\\rLoading weights:  40%|███▉      | 230/579 [00:12<00:11, 29.67it/s]\\\\rLoading weights:  41%|████      | 235/579 [00:12<00:15, 22.53it/s]\\\\rLoading weights:  42%|████▏     | 242/579 [00:12<00:11, 29.29it/s]\\\\rLoading weights:  43%|████▎     | 2\\\\n\\\\n... [截断: 输出过长，省略 1787 字符] ...\\\\n\\\\nts:  64%|██████▎   | 368/579 [00:18<00:08, 23.63it/s]\\\\rLoading weights:  65%|██████▍   | 374/579 [00:18<00:06, 29.73it/s]\\\\rLoading weights:  65%|██████▌   | 378/579 [00:18<00:09, 21.28it/s]\\\\rLoading weights:  66%|██████▋   | 385/579 [00:18<00:06, 28.18it/s]\\\\rLoading weights:  67%|██████▋   | 389/579 [00:18<00:07, 24.05it/s]\\\\rLoading weights:  68%|██████▊   | 393/579 [00:19<00:07, 25.17it/s]\\\\rLoading weights:  69%|██████▊   | 398/579 [00:19<00:06, 29.09it/s]\\\\rLoading weights:  69%|██████▉   | 402/579 [00:19<00:08, 20.31it/s]\\\\rLoading weights:  71%|███████   | 409/579 [00:19<00:06, 28.05it/s]\\\\rLoading weights:  71%|███████▏  | 413/579 [00:20<00:08, 19.35it/s]\\\\rLoading weights:  72%|███████▏  | 418/579 [00:20<00:06, 23.07it/s]\\\\rLoading weights:  73%|███████▎  | 424/579 [00:20<00:05, 28.38it/s]\\\\rLoading weights:  74%|███████▍  | 428/579 [00:20<00:06, 22.63it/s]\\\\rLoading weights:  75%|███████▍  | 432/579 [00:20<00:05, 25.10it/s]\\\\rLoading weights:  75%|███████▌  | 436/579 [00:20<00:05, 25.13it/s]\\\\rLoading weights:  76%|███████▌  | 440/579 [00:21<00:06, 21.11it/s]\\\\rLoading weights:  77%|███████▋  | 443/579 [00:21<00:07, 18.54it/s]\\\\rLoading weights:  78%|███████▊  | 449/579 [00:21<00:05, 24.78it/s]\\\\rLoading weights:  78%|███████▊  | 453/579 [00:21<00:04, 25.57it/s]\\\\rLoading weights:  79%|███████▉  | 456/579 [00:21<00:04, 26.25it/s]\\\\rLoading weights:  79%|███████▉  | 459/579 [00:21<00:04, 26.21it/s]\\\\rLoading weights:  80%|███████▉  | 462/579 [00:22<00:05, 19.57it/s]\\\\rLoading weights:  81%|████████  | 469/579 [00:22<00:03, 29.33it/s]\\\\rLoading weights:  82%|████████▏ | 473/579 [00:22<00:04, 24.03it/s]\\\\rLoading weights:  82%|████████▏ | 477/579 [00:22<00:04, 25.14it/s]\\\\rLoading weights:  83%|████████▎ | 482/579 [00:22<00:03, 29.56it/s]\\\\rLoading weights:  84%|████████▍ | 486/579 [00:23<00:04, 20.22it/s]\\\\rLoading weights:  85%|████████▍ | 492/579 [00:23<00:03, 21.85it/s]\\\\rLoading weights:  86%|████████▌ | 497/579 [00:23<00:03, 25.63it/s]\\\\rLoading weights:  87%|████████▋ | 501/579 [00:23<00:03, 25.92it/s]\\\\rLoading weights:  87%|████████▋ | 505/579 [00:23<00:02, 28.42it/s]\\\\rLoading weights:  88%|████████▊ | 509/579 [00:24<00:03, 18.14it/s]\\\\rLoading weights:  89%|████████▉ | 515/579 [00:24<00:02, 23.02it/s]\\\\rLoading weights:  90%|████████▉ | 519/579 [00:24<00:03, 17.73it/s]\\\\rLoading weights:  91%|█████████ | 526/579 [00:24<00:02, 21.18it/s]\\\\rLoading weights:  92%|█████████▏| 533/579 [00:24<00:01, 27.46it/s]\\\\rLoading weights:  93%|█████████▎| 537/579 [00:25<00:01, 27.49it/s]\\\\rLoading weights:  94%|█████████▍| 543/579 [00:25<00:01, 27.60it/s]\\\\rLoading weights:  94%|█████████▍| 547/579 [00:25<00:01, 23.06it/s]\\\\rLoading weights:  96%|█████████▌| 554/579 [00:25<00:00, 30.24it/s]\\\\rLoading weights:  96%|█████████▋| 558/579 [00:26<00:00, 21.49it/s]\\\\rLoading weights:  97%|█████████▋| 564/579 [00:26<00:00, 26.44it/s]\\\\rLoading weights:  98%|█████████▊| 568/579 [00:26<00:00, 28.18it/s]\\\\rLoading weights:  99%|█████████▉| 572/579 [00:26<00:00, 23.36it/s]\\\\rLoading weights: 100%|██████████| 579/579 [00:26<00:00, 21.78it/s]\\\\nMode: TEAL global mask from predictor (allocation=uniform)\\\\n  checkpoint: /root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\\\\nComputing TEAL global masks from predictor ...\\\\n\\\\nPer-layer sparsity (TEAL-predictor):\\\\n  Layer  0: 0.301\\\\n  Layer  1: 0.297\\\\n  Layer  2: 0.301\\\\n  Layer  3: 0.301\\\\n  Layer  4: 0.301\\\\n  Layer  5: 0.301\\\\n  Layer  6: 0.301\\\\n  Layer  7: 0.297\\\\n  Layer  8: 0.301\\\\n  Layer  9: 0.301\\\\n  Layer 10: 0.297\\\\n  Layer 11: 0.293\\\\n  Layer 12: 0.297\\\\n  Layer 13: 0.297\\\\n  Layer 14: 0.297\\\\n  Layer 15: 0.297\\\\n  Layer 16: 0.293\\\\n  Layer 17: 0.293\\\\n  Layer 18: 0.297\\\\n  Layer 19: 0.289\\\\n  Layer 20: 0.293\\\\n  Layer 21: 0.289\\\\n  Layer 22: 0.297\\\\n  Layer 23: 0.293\\\\n  Layer 24: 0.285\\\\n  Layer 25: 0.285\\\\n  Layer 26: 0.289\\\\n  Layer 27: 0.301\\\\n  Layer 28: 0.293\\\\n  Layer 29: 0.289\\\\n  Layer 30: 0.293\\\\n  Layer 31: 0.301\\\\n  Layer 32: 0.293\\\\n  Layer 33: 0.297\\\\n  Layer 34: 0.297\\\\n  Layer 35: 0.297\\\\n  Layer 36: 0.297\\\\n  Layer 37: 0.297\\\\n  Layer 38: 0.301\\\\n  Layer 39: 0.293\\\\n  Layer 40: 0.297\\\\n  Layer 41: 0.297\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading model: /root/autodl-tmp/models/qwen2.5-14b/\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/579 [00:01<12:27,  1.29s/it]\\rLoading weights:   0%|          | 2/579 [00:02<12:40,  1.32s/it]\\rLoading weights:   1%|          | 4/579 [00:02<05:04,  1.89it/s]\\rLoading weights:   1%|          | 5/579 [00:02<03:52,  2.47it/s]\\rLoading weights:   1%|          | 6/579 [00:02<03:02,  3.14it/s]\\rLoading weights:   2%|▏         | 12/579 [00:03<00:57,  9.90it/s]\\rLoading weights:   3%|▎         | 16/579 [00:03<00:41, 13.46it/s]\\rLoading weights:   3%|▎         | 19/579 [00:03<00:45, 12.27it/s]\\rLoading weights:   4%|▍         | 24/579 [00:03<00:31, 17.79it/s]\\rLoading weights:   5%|▍         | 28/579 [00:03<00:27, 20.34it/s]\\rLoading weights:   5%|▌         | 31/579 [00:04<00:32, 17.10it/s]\\rLoading weights:   6%|▋         | 37/579 [00:04<00:22, 24.34it/s]\\rLoading weights:   7%|��         | 41/579 [00:04<00:27, 19.67it/s]\\rLoading weights:   8%|▊         | 44/579 [00:04<00:27, 19.46it/s]\\rLoading weights:   9%|▉         | 51/579 [00:04<00:18, 28.12it/s]\\rLoading weights:   9%|▉         | 55/579 [00:05<00:27, 19.10it/s]\\rLoading weights:  10%|█         | 58/579 [00:05<00:30, 17.27it/s]\\rLoading weights:  11%|█         | 65/579 [00:05<00:20, 24.69it/s]\\rLoading weights:  12%|█▏        | 69/579 [00:05<00:19, 25.51it/s]\\rLoading weights:  13%|█▎        | 73/579 [00:05<00:17, 28.21it/s]\\rLoading weights:  13%|█▎        | 77/579 [00:06<00:27, 18.39it/s]\\rLoading weights:  15%|█▍        | 84/579 [00:06<00:19, 25.26it/s]\\rLoading weights:  15%|█▌        | 88/579 [00:06<00:18, 27.20it/s]\\rLoading weights:  16%|█▌        | 92/579 [00:06<00:21, 22.70it/s]\\rLoading weights:  17%|█▋        | 98/579 [00:06<00:16, 29.18it/s]\\rLoading weights:  18%|█▊        | 102/579 [00:07<00:23, 20.45it/s]\\rLoading weights:  19%|█▊        | 108/579 [00:07<00:17, 26.41it/s]\\rLoading weights:  19%|█▉        | 112/579 [00:07<00:16, 27.83it/s]\\rLoading weights:  20%|██        | 116/579 [00:07<00:19, 23.44it/s]\\rLoading weights:  21%|██        | 121/579 [00:07<00:17, 26.81it/s]\\rLoading weights:  22%|██▏       | 125/579 [00:07<00:19, 23.67it/s]\\rLoading weights:  22%|██▏       | 128/579 [00:08<00:19, 23.21it/s]\\rLoading weights:  23%|██▎       | 134/579 [00:08<00:18, 24.03it/s]\\rLoading weights:  24%|██▎       | 137/579 [00:08<00:18, 24.45it/s]\\rLoading weights:  24%|██▍       | 140/579 [00:08<00:18, 23.24it/s]\\rLoading weights:  25%|██▍       | 143/579 [00:08<00:18, 23.71it/s]\\rLoading weights:  26%|██▌       | 148/579 [00:08<00:14, 29.20it/s]\\rLoading weights:  26%|██▋       | 152/579 [00:09<00:18, 22.96it/s]\\rLoading weights:  27%|██▋       | 155/579 [00:09<00:17, 24.09it/s]\\rLoading weights:  28%|██▊       | 160/579 [00:09<00:14, 28.35it/s]\\rLoading weights:  28%|██▊       | 164/579 [00:09<00:19, 21.03it/s]\\rLoading weights:  29%|██▉       | 168/579 [00:09<00:17, 23.84it/s]\\rLoading weights:  30%|██▉       | 172/579 [00:09<00:15, 25.56it/s]\\rLoading weights:  30%|███       | 175/579 [00:10<00:20, 20.05it/s]\\rLoading weights:  31%|███       | 180/579 [00:10<00:19, 20.30it/s]\\rLoading weights:  32%|███▏      | 185/579 [00:10<00:15, 24.84it/s]\\rLoading weights:  32%|███▏      | 188/579 [00:10<00:16, 23.94it/s]\\rLoading weights:  34%|███▎      | 195/579 [00:10<00:14, 27.02it/s]\\rLoading weights:  34%|███▍      | 198/579 [00:11<00:17, 21.38it/s]\\rLoading weights:  35%|███▌      | 205/579 [00:11<00:12, 29.90it/s]\\rLoading weights:  36%|███▌      | 209/579 [00:11<00:14, 25.02it/s]\\rLoading weights:  37%|███▋      | 213/579 [00:11<00:13, 26.16it/s]\\rLoading weights:  38%|███▊      | 218/579 [00:11<00:11, 30.16it/s]\\rLoading weights:  38%|███▊      | 222/579 [00:11<00:17, 20.32it/s]\\rLoading weights:  40%|███▉      | 230/579 [00:12<00:11, 29.67it/s]\\rLoading weights:  41%|████      | 235/579 [00:12<00:15, 22.53it/s]\\rLoading weights:  42%|████▏     | 242/579 [00:12<00:11, 29.29it/s]\\rLoading weights:  43%|████▎     | 2\\n\\n... [截断: 输出过长，省略 1787 字符] ...\\n\\nts:  64%|██████▎   | 368/579 [00:18<00:08, 23.63it/s]\\rLoading weights:  65%|██████▍   | 374/579 [00:18<00:06, 29.73it/s]\\rLoading weights:  65%|██████▌   | 378/579 [00:18<00:09, 21.28it/s]\\rLoading weights:  66%|██████▋   | 385/579 [00:18<00:06, 28.18it/s]\\rLoading weights:  67%|██████▋   | 389/579 [00:18<00:07, 24.05it/s]\\rLoading weights:  68%|██████▊   | 393/579 [00:19<00:07, 25.17it/s]\\rLoading weights:  69%|██████▊   | 398/579 [00:19<00:06, 29.09it/s]\\rLoading weights:  69%|██████▉   | 402/579 [00:19<00:08, 20.31it/s]\\rLoading weights:  71%|███████   | 409/579 [00:19<00:06, 28.05it/s]\\rLoading weights:  71%|███████▏  | 413/579 [00:20<00:08, 19.35it/s]\\rLoading weights:  72%|███████▏  | 418/579 [00:20<00:06, 23.07it/s]\\rLoading weights:  73%|███████▎  | 424/579 [00:20<00:05, 28.38it/s]\\rLoading weights:  74%|███████▍  | 428/579 [00:20<00:06, 22.63it/s]\\rLoading weights:  75%|███████▍  | 432/579 [00:20<00:05, 25.10it/s]\\rLoading weights:  75%|███████▌  | 436/579 [00:20<00:05, 25.13it/s]\\rLoading weights:  76%|███████▌  | 440/579 [00:21<00:06, 21.11it/s]\\rLoading weights:  77%|███████▋  | 443/579 [00:21<00:07, 18.54it/s]\\rLoading weights:  78%|███████▊  | 449/579 [00:21<00:05, 24.78it/s]\\rLoading weights:  78%|███████▊  | 453/579 [00:21<00:04, 25.57it/s]\\rLoading weights:  79%|███████▉  | 456/579 [00:21<00:04, 26.25it/s]\\rLoading weights:  79%|███████▉  | 459/579 [00:21<00:04, 26.21it/s]\\rLoading weights:  80%|███████▉  | 462/579 [00:22<00:05, 19.57it/s]\\rLoading weights:  81%|████████  | 469/579 [00:22<00:03, 29.33it/s]\\rLoading weights:  82%|████████▏ | 473/579 [00:22<00:04, 24.03it/s]\\rLoading weights:  82%|████████▏ | 477/579 [00:22<00:04, 25.14it/s]\\rLoading weights:  83%|████████▎ | 482/579 [00:22<00:03, 29.56it/s]\\rLoading weights:  84%|████████▍ | 486/579 [00:23<00:04, 20.22it/s]\\rLoading weights:  85%|████████▍ | 492/579 [00:23<00:03, 21.85it/s]\\rLoading weights:  86%|████████▌ | 497/579 [00:23<00:03, 25.63it/s]\\rLoading weights:  87%|████████▋ | 501/579 [00:23<00:03, 25.92it/s]\\rLoading weights:  87%|████████▋ | 505/579 [00:23<00:02, 28.42it/s]\\rLoading weights:  88%|████████▊ | 509/579 [00:24<00:03, 18.14it/s]\\rLoading weights:  89%|████████▉ | 515/579 [00:24<00:02, 23.02it/s]\\rLoading weights:  90%|████████▉ | 519/579 [00:24<00:03, 17.73it/s]\\rLoading weights:  91%|█████████ | 526/579 [00:24<00:02, 21.18it/s]\\rLoading weights:  92%|█████████▏| 533/579 [00:24<00:01, 27.46it/s]\\rLoading weights:  93%|█████████▎| 537/579 [00:25<00:01, 27.49it/s]\\rLoading weights:  94%|█████████▍| 543/579 [00:25<00:01, 27.60it/s]\\rLoading weights:  94%|█████████▍| 547/579 [00:25<00:01, 23.06it/s]\\rLoading weights:  96%|█████████▌| 554/579 [00:25<00:00, 30.24it/s]\\rLoading weights:  96%|█████████▋| 558/579 [00:26<00:00, 21.49it/s]\\rLoading weights:  97%|█████████▋| 564/579 [00:26<00:00, 26.44it/s]\\rLoading weights:  98%|█████████▊| 568/579 [00:26<00:00, 28.18it/s]\\rLoading weights:  99%|█████████▉| 572/579 [00:26<00:00, 23.36it/s]\\rLoading weights: 100%|██████████| 579/579 [00:26<00:00, 21.78it/s]\\nMode: TEAL global mask from predictor (allocation=uniform)\\n  checkpoint: /root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\\nComputing TEAL global masks from predictor ...\\n\\nPer-layer sparsity (TEAL-predictor):\\n  Layer  0: 0.301\\n  Layer  1: 0.297\\n  Layer  2: 0.301\\n  Layer  3: 0.301\\n  Layer  4: 0.301\\n  Layer  5: 0.301\\n  Layer  6: 0.301\\n  Layer  7: 0.297\\n  Layer  8: 0.301\\n  Layer  9: 0.301\\n  Layer 10: 0.297\\n  Layer 11: 0.293\\n  Layer 12: 0.297\\n  Layer 13: 0.297\\n  Layer 14: 0.297\\n  Layer 15: 0.297\\n  Layer 16: 0.293\\n  Layer 17: 0.293\\n  Layer 18: 0.297\\n  Layer 19: 0.289\\n  Layer 20: 0.293\\n  Layer 21: 0.289\\n  Layer 22: 0.297\\n  Layer 23: 0.293\\n  Layer 24: 0.285\\n  Layer 25: 0.285\\n  Layer 26: 0.289\\n  Layer 27: 0.301\\n  Layer 28: 0.293\\n  Layer 29: 0.289\\n  Layer 30: 0.293\\n  Layer 31: 0.301\\n  Layer 32: 0.293\\n  Layer 33: 0.297\\n  Layer 34: 0.297\\n  Layer 35: 0.297\\n  Layer 36: 0.297\\n  Layer 37: 0.297\\n  Layer 38: 0.301\\n  Layer 39: 0.293\\n  Layer 40: 0.297\\n  Layer 41: 0.297\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the key results. Let me also check for W&B run ID and actual sparsity info by grepping the log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "99a9829b-35bd-4699-aaf4-c709a4acaf5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W5sYw6gi97U9AFvYSpuSXG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7881,
+      "cache_read_input_tokens": 25498,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7881
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Let me also check for W&B run ID and sparsity summary.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "1820a2e5-f64b-4738-a4dc-cb429a1740cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W5sYw6gi97U9AFvYSpuSXG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7881,
+      "cache_read_input_tokens": 25498,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7881
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QjCdfQaNanGCHovAZiQqVs`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -i \"wandb\\|actual_sparsity\\|overall.*sparsity\\|mean.*sparsity\\|avg.*sparsity\\|run_id\\|Run:\" /root/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_uniform.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "44fc2c8a-298a-4b70-acf2-a182f7789b70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W5sYw6gi97U9AFvYSpuSXG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7881,
+      "cache_read_input_tokens": 25498,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7881
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T10:51:43.152Z_
+
+<details><summary>↩ Tool result · `toolu_01QjCdfQaNanGCHovAZiQqVs`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "47360312-1018-4385-9bf6-42ce28a4e9c3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017axPhuGPikmM654EDMmmYb`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -iE \"wandb|actual_sparsity|overall.*sparsity|mean.*sparsity|run_id\" /root/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_uniform.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "9851bfa3-1ed6-458d-aa4d-97e31368cec0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RAVawUaxQck1WmqLDFTng5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 331,
+      "cache_read_input_tokens": 33379,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 331
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779450000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "1de2d420-4478-476d-ad2a-ec1c44122a88",
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T10:51:46.311Z_
+
+<details><summary>↩ Tool result · `toolu_017axPhuGPikmM654EDMmmYb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "6d274b04-acab-4964-84c8-42cb27f997e1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JED9dsZGus8vK7ZWSSYk8E`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -i wandb /root/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_uniform.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "e22c28ff-41f8-4d18-b9a4-deea3029c316",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Y9Nbe4XHGo3Kux1y2RyBd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 258,
+      "cache_read_input_tokens": 33710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 258
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T10:51:52.321Z_
+
+<details><summary>↩ Tool result · `toolu_01JED9dsZGus8vK7ZWSSYk8E`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "4c60baa4-bf0c-4cce-80df-cb3665e0d805",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q5Tvqbmip61ZKC66kA9r6N`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -i sparsity /root/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_uniform.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "77794ea7-4b3d-4513-99f8-9d8c0ba04673",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Y9Nbe4XHGo3Kux1y2RyBd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 258,
+      "cache_read_input_tokens": 33710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 258
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T10:51:53.074Z_
+
+<details><summary>↩ Tool result · `toolu_01Q5Tvqbmip61ZKC66kA9r6N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Per-layer sparsity (TEAL-predictor):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "1f694f71-d739-4891-8bdd-1196cd3fbe4b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Per-layer sparsity (TEAL-predictor):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Per-layer sparsity (TEAL-predictor):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VLTghhe4P9YtrdBUdVWJZL`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s42_gsm8k_uniform/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "a6beaa1e-726c-459d-809f-d31a93e57fab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Y9Nbe4XHGo3Kux1y2RyBd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 258,
+      "cache_read_input_tokens": 33710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 258
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T10:51:53.996Z_
+
+<details><summary>↩ Tool result · `toolu_01VLTghhe4P9YtrdBUdVWJZL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_id\\\": \\\"qwen14b_kl30_s42_gsm8k_uniform\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/qwen2.5-14b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"qwen14b_kl30_s42_gsm8k_uniform\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"lm_eval\\\": {\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.3548,\\n        \\\"exact_match_stderr\\\": 0.013179083387979204\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.35329795299469297,\\n        \\\"exact_match_stderr,strict-match\\\": 0.013166337192115683,\\n        \\\"exact_match,flexible-extract\\\": 0.354814253222138,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.013179083387979204\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-22 14:45:30\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "f57ae04e-f8c8-4fab-b5f9-361bfd6fb3de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"qwen14b_kl30_s42_gsm8k_uniform\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/qwen2.5-14b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"qwen14b_kl30_s42_gsm8k_uniform\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"lm_eval\\\\\\\": {\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match\\\\\\\": 0.3548,\\\\n        \\\\\\\"exact_match_stderr\\\\\\\": 0.013179083387979204\\\\n      }\\\\n    },\\\\n    \\\\\\\"lm_eval_raw\\\\\\\": {\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match,strict-match\\\\\\\": 0.35329795299469297,\\\\n        \\\\\\\"exact_match_stderr,strict-match\\\\\\\": 0.013166337192115683,\\\\n        \\\\\\\"exact_match,flexible-extract\\\\\\\": 0.354814253222138,\\\\n        \\\\\\\"exact_match_stderr,flexible-extract\\\\\\\": 0.013179083387979204\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-22 14:45:30\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_id\\\": \\\"qwen14b_kl30_s42_gsm8k_uniform\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/qwen2.5-14b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"qwen14b_kl30_s42_gsm8k_uniform\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"lm_eval\\\": {\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.3548,\\n        \\\"exact_match_stderr\\\": 0.013179083387979204\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.35329795299469297,\\n        \\\"exact_match_stderr,strict-match\\\": 0.013166337192115683,\\n        \\\"exact_match,flexible-extract\\\": 0.354814253222138,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.013179083387979204\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-22 14:45:30\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+```json
+{
+  "gsm8k_exact_match": 0.3548,
+  "gsm8k_exact_match_stderr": 0.01318,
+  "actual_sparsity": 0.296,
+  "wandb_run_id": null,
+  "success": true,
+  "error_msg": null,
+  "raw_metrics_line": "gsm8k: sample_len=1319, exact_match=0.3548"
+}
+```
+
+关键发现：
+
+- **KL s42 uniform GSM8K = 0.3548**，与 KL s42 global (0.3571) 几乎无差异（Δ = -0.0023，在 stderr 范围内）
+- 两种 allocation 策略（uniform vs global）对 KL predictor 的 GSM8K 性能没有实质影响
+- 相比 TEAL@30% uniform (0.5208) 仍有显著差距（-0.166）
+- 每层 sparsity 均在 0.285–0.301 范围，均值约 0.296（接近目标 0.30）
+- 无 W&B run ID，结果已保存至 `results/benchmark/qwen14b_kl30_s42_gsm8k_uniform/results.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "uuid": "ccf53366-bdb6-4dcb-8aae-3cc27c452c8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V4YzTEnf9qs2no9zWFjoDz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1566,
+      "cache_read_input_tokens": 33968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1566
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 24_
+
+```json
+{
+  "gsm8k_exact_match": 0.3548,
+  "gsm8k_exact_match_stderr": 0.01318,
+  "actual_sparsity": 0.296,
+  "wandb_run_id": null,
+  "success": true,
+  "error_msg": null,
+  "raw_metrics_line": "gsm8k: sample_len=1319, exact_match=0.3548"
+}
+```
+
+关键发现：
+
+- **KL s42 uniform GSM8K = 0.3548**，与 KL s42 global (0.3571) 几乎无差异（Δ = -0.0023，在 stderr 范围内）
+- 两种 allocation 策略（uniform vs global）对 KL predictor 的 GSM8K 性能没有实质影响
+- 相比 TEAL@30% uniform (0.5208) 仍有显著差距（-0.166）
+- 每层 sparsity 均在 0.285–0.301 范围，均值约 0.296（接近目标 0.30）
+- 无 W&B run ID，结果已保存至 `results/benchmark/qwen14b_kl30_s42_gsm8k_uniform/results.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 35291,
+  "duration_api_ms": 34919,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "84411e5b-cd80-4583-9a06-cd7f8289aee8",
+  "total_cost_usd": 0.26947825,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 23693,
+    "cache_read_input_tokens": 163438,
+    "output_tokens": 1516,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23693,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 346,
+        "cache_read_input_tokens": 33968,
+        "cache_creation_input_tokens": 1566,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1566
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1593,
+      "outputTokens": 27,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001728,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 1516,
+      "cacheReadInputTokens": 163438,
+      "cacheCreationInputTokens": 23693,
+      "webSearchRequests": 0,
+      "costUSD": 0.26775024999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "217fc649-1148-4f3a-af55-fc4dce29d9dc"
+}
+```
+
+</details>
+
+---

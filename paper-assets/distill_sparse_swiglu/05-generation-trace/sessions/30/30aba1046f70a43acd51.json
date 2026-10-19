@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30aba1046f70a43acd51",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval revkl 30 s42 boolq uniform",
+  "task_key": "worker_eval_revkl_30_s42_boolq_uniform_20260522T025359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_revkl_30_s42_boolq_uniform_20260522T025359_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "e2216e96f187c4149809b152ac399f57f1592f92e5266ebe5875b3930eabdccf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job running. Calibration done, BoolQ eval started.\n\n**Submitted**: `revkl_30_s42_boolq_uniform`\n- Server: westd-41718, GPU cuda:1 (physical card 1, 40.8 GB used)\n- PID: 362320 (python), tmux PID 362310\n- Log: `/root/distill_sparse_swiglu/logs/revkl_30_s42_boolq_uniform.log`\n- tmux session: `revkl_30_s42_boolq_uniform`\n- Per-layer sparsity uniform ~0.297, model-level 0.297 ✓\n- 当前阶段: lm-eval boolq 启动中，预计 ~30 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-revkl-30-s42-boolq-uniform.md"
+}

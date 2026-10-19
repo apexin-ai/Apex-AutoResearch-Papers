@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "546c1d943d4d654f0ce5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check mse30 s123 downstream result",
+  "task_key": "worker_check_mse30_s123_downstream_result_20260522T104158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_mse30_s123_downstream_result_20260522T104158_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "9e42f2a823e9eb4aee07f3cd3e2f4bfac27e4ab04f6dfd54e703edad1a35b0f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。Cron 不存在（可能已被删除或在其他 session 创建）。\n\n**MSE 30% s123 downstream eval 结果汇总：**\n\n| Benchmark | Metric | Value |\n|-----------|--------|-------|\n| ARC-c | acc_norm | **0.3737** |\n| WinoGrande | acc | **0.5699** |\n| MMLU | acc | **0.2781** |\n| GSM8K | exact_match | **0.0174** |\n| HellaSwag | acc_norm | **0.5358** |\n| PIQA | acc_norm | **0.7067** |\n| BoolQ | acc | **0.6324** |\n\n完成时间 4309.9s，results.json 已保存到 `/root/distill_sparse_swiglu/results/benchmark/mse30_s123_downstream/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-mse30-s123-downstream-result.md"
+}

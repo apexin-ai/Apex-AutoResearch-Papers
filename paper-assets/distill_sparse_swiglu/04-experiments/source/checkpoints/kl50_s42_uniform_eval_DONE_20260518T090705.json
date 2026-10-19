@@ -1,0 +1,38 @@
+{
+  "exp_id": "kl50_s42_uniform_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:10:46.903Z",
+    "updated_at": "2026-05-18T09:07:05.450Z",
+    "hypothesis": "KL 50% uniform allocation (s42) shows downstream degradation vs global_topk, consistent with s123 results, providing multi-seed evidence for allocation strategy comparison in Table 3.",
+    "parent": "bench_kl50_uniform",
+    "spec": {
+      "command": "nohup bash /tmp/run_uniform_eval.sh > ~/runs/distill_sparse_swiglu/kl50_s42_uniform_eval.log 2>&1 < /dev/null &",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "13571",
+      "log_path": "~/runs/distill_sparse_swiglu/kl50_s42_uniform_eval.log",
+      "submitted_at": "2026-05-18T08:52:30Z",
+      "backend": "nohup",
+      "account": "root",
+      "data_path": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "data_count": 0,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "wall_clock_seconds": 875.5,
+      "gpu_hours": 0.24
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-18T09:07:05.451Z"
+  },
+  "timestamp": "2026-05-18T09:07:05.891925+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29bbed213cd600ed3917",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code d030 uniform allocation",
+  "task_key": "worker_code_d030_uniform_allocation_20260516T033012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d030_uniform_allocation_20260516T033012_result.json",
+    "occurrence": 1,
+    "bytes": 1748,
+    "sha256": "b71680303e1cfff3427347195539328eccbe0ab25508045bae5d8df4baaecccd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n### 产出总结\n\n**修改的文件**：\n\n1. **`src/evaluate.py`** — 核心 mask 模块\n   - 新增 `_uniform_topk_masks(layer_scores, sparsity_target)`：每层独立 top-k，确保各层 sparsity 相同\n   - 新增 `_dispatch_masks(layer_scores, sparsity_target, allocation)`：路由到 global/uniform\n   - 修改 4 个 mask 函数签名添加 `allocation=\"global_topk\"` 参数：`teal_global_masks`, `vanilla_teal_global_masks`, `wina_global_masks`, `rsparse_global_masks`\n   - 所有函数内部的 `_global_topk_masks` 调用替换为 `_dispatch_masks`\n\n2. **`src/benchmark_eval.py`** — 统一评测脚本\n   - 新增 `--allocation {global_topk,uniform}` CLI 参数（默认 `global_topk`）\n   - `compute_baseline_masks` 接受并传递 `allocation`\n   - predictor `teal_global` 路径传递 `allocation`\n   - `mode_info` 和打印信息包含 allocation\n\n**使用方式**：\n```bash\n# Uniform per-layer allocation (predictor)\npython src/benchmark_eval.py --exp_id test_uniform \\\n    --checkpoint ... --sparsity_mode teal_global \\\n    --allocation uniform --tasks wikitext2,mmlu\n\n# Uniform per-layer allocation (baseline)\npython src/benchmark_eval.py --exp_id teal_vanilla_uniform \\\n    --baseline_mode teal_vanilla --allocation uniform --tasks wikitext2,mmlu\n```\n\n**不适用 uniform 的模式**（已是 per-layer）：`teal_greedy`, `wina_greedy`, `per_token`。传了 `--allocation uniform` 不会报错，但对这些模式无效（它们不走 `_dispatch_masks`）。\n\n**待做事项**：`src/evaluate.py` 的 `main()` 函数（独立 PPL eval 脚本）没有添加 `--allocation` 参数。如果需要在那个路径也支持 uniform，需要单独加。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d030-uniform-allocation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22ab351bed5dc4c03337",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops westd 34887 fill c4 ood",
+  "task_key": "worker_ops_westd-34887-fill-c4-ood_20260518T084357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-34887-fill-c4-ood_20260518T084357_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "a444747ebb9f75bfd4e5fcdb8550d669835be84cb4f1d955ff7e595bff3a3ab5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Step 1** — kl50_s456_eval wikitext2_ppl = **11.8614**，已更新到 registry。\n\n**Step 2 & 3** — 两个 C4 OOD 评估已提交并确认在跑：\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| c4_ood_kl50_s42 | cuda:0 | 12354 | RUNNING |\n| c4_ood_kl50_s456 | cuda:1 | 12424 | RUNNING |\n\n注意：路径已修正为 `/root/distill_sparse_swiglu/`（autodl-tmp 下无代码目录）。c4_ood_kl50_s456 的旧 conclusion=killed 未能清除（registry 不支持 null），但状态已推进到 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-34887-fill-c4-ood.md"
+}

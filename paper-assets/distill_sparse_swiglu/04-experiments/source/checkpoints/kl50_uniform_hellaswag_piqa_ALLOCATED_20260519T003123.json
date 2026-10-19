@@ -1,0 +1,19 @@
+{
+  "exp_id": "kl50_uniform_hellaswag_piqa",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:30:56.542Z",
+    "updated_at": "2026-05-19T00:31:22.884Z",
+    "hypothesis": "KL 50% uniform predictor HellaSwag/PIQA completes the P1 table: uniform allocation at high sparsity. Expected to show moderate degradation from dense, less severe than global_topk (which had hellaswag=58.95%, piqa=69.48%).",
+    "spec": {
+      "server": "westd-41718",
+      "gpu": "cuda:0"
+    }
+  },
+  "timestamp": "2026-05-19T00:31:23.297690+00:00",
+  "trigger": "update_registry"
+}

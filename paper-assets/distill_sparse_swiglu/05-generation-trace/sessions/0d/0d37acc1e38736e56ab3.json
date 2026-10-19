@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d37acc1e38736e56ab3",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval teal baselines all sparsity rerun",
+  "task_key": "worker_eval_teal_baselines_all_sparsity_rerun_20260515T234032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_teal_baselines_all_sparsity_rerun_20260515T234032_result.json",
+    "occurrence": 1,
+    "bytes": 1097,
+    "sha256": "cd9672e004cdc4c98a8cb8c3c7ce001635c53e1a9fb89c9ca5835bffd8c0eadd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n## 重跑结果（D017 bugfix 后代码统一评估）\n\n| Sparsity | Dense PPL | Vanilla TEAL PPL | WINA PPL |\n|----------|-----------|------------------|----------|\n| 30% | 6.12 | **10.97** | 11.45 |\n| 50% | 6.12 | **23.31** | 27.93 |\n| 70% | 6.12 | **100.11** | 137.24 |\n\n**物理一致性：PASS**\n- TEAL: 10.97 < 23.31 < 100.11 (30% < 50% < 70%)\n- WINA: 11.45 < 27.93 < 137.24 (30% < 50% < 70%)\n- TEAL < WINA at all sparsity levels\n\n**关键发现：**\n- `_global_topk_masks` 已确认包含 per-layer mean normalization fix (`s_f / mu`)\n- 旧 70% TEAL=17.91 是 **predictor-based TEAL**（`kl_sparsity70_s42_v2` 实验），不是 vanilla TEAL，二者不可直接比较\n- Registry 中值已经一致（此次重跑确认了数据可靠性）\n- 代码中无 \"uniform\" baseline（任务中标注\"如果有\"）\n- Registry 和 artifact 已更新\n\n**KL Predictor vs TEAL 对比（50% sparsity 为例）：**\n- KL predictor PPL: 9.14（`mvp_kl_norm_v2_s456`）vs Vanilla TEAL: 23.31 → predictor 大幅优于 TEAL baseline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-teal-baselines-all-sparsity-rerun.md"
+}

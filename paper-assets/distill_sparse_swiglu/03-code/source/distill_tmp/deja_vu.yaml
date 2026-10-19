@@ -1,0 +1,26 @@
+paper_key: "Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time"
+title: "Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time"
+venue: "ICML 2023"
+full_text_available: false
+
+research:
+  baselines: ["FasterTransformer", "Hugging Face implementation"]
+  metrics:
+    - {name: "inference latency", direction: "lower_better"}
+    - {name: "speedup", direction: "higher_better"}
+    - {name: "model accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "not specified in abstract", size: "N/A"}
+  ablation_dimensions: ["attention head sparsity", "MLP sparsity", "predictor design"]
+  training_recipe: {optimizer: "not specified", lr: "not specified", hardware: "GPU"}
+  method_family: "contextual sparsity prediction"
+
+positioning:
+  core_claim: "Input-dependent contextual sparsity in attention heads and MLP parameters can be cheaply predicted per layer, enabling >2x inference speedup on OPT-175B without quality loss."
+  key_results: ">2x speedup over FasterTransformer, >6x over HuggingFace on OPT-175B; no quality or in-context learning degradation."
+  limitations: ["requires training sparsity predictors", "evaluated mainly on OPT family"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

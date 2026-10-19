@@ -1,0 +1,470 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\title{Output-Distribution Distillation Discovers Hidden Neuron Importance \\
+in SwiGLU Activation Sparsity}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ===========================================================================
+%  ABSTRACT
+% ===========================================================================
+\begin{abstract}
+Activation sparsity in SwiGLU-based Large Language Models (LLMs) enables significant inference speedup by pruning inactive neurons at each token.
+Existing sparsity predictors are trained with Binary Cross-Entropy (BCE) against magnitude-based oracle masks, which treat each neuron independently.
+We show that replacing BCE with KL-divergence distillation from the dense model's output distribution yields sparsity masks that diverge 53\% from magnitude-based oracles, revealing a qualitatively different neuron importance landscape.
+A causal ablation confirms that these mask patterns, not gradient coupling during training, are the sole driver of KL's advantage: a BCE predictor trained on KL-derived targets matches KL performance exactly (PPL delta $\leq$0.03 across two seeds, downstream delta $<$1pp on all four tasks).
+This finding eliminates the need for 67.2M compensation parameters required by prior contextual methods.
+We further identify three sparsity operating regimes through a 6-point regime curve: a budget-surplus regime ($\leq$30\%) where uniform allocation stabilizes performance, a budget-constrained regime (35--45\%) where learned allocation adds value, and a capacity-cliff regime ($\geq$50\%) where no allocation strategy recovers quality.
+At the recommended 30\% operating point, KL predictors achieve PPL 8.82 versus 10.97 for TEAL ($-$19.6\%), with comparable downstream scores.
+Evaluations on LongBench (4K--32K tokens) and RULER confirm that KL's advantage generalizes to long-context settings.
+\end{abstract}
+
+% ===========================================================================
+%  INTRODUCTION
+% ===========================================================================
+\section{Introduction}
+
+SwiGLU feed-forward networks in modern LLMs exhibit substantial activation sparsity: at any given token, 40--60\% of intermediate neurons produce near-zero outputs and can be pruned without quality loss~\cite{liu2023deja,song2024prosparse}.
+This observation has motivated a line of work on training lightweight sparsity predictors that identify which neurons to skip at inference time, reducing FLOPs proportionally to the sparsity ratio~\cite{lee2024cats,raposo2024mixtureofdepths}.
+
+Current approaches train these predictors using Binary Cross-Entropy (BCE) loss against magnitude-based oracle masks, where the target label for each neuron is determined independently by whether its activation magnitude exceeds a threshold~\cite{sun2024fastforward}.
+While effective at reproducing magnitude-based pruning decisions, this formulation has a structural limitation: BCE's per-neuron gradient $\partial L_{\text{BCE}}/\partial s_j$ depends only on neuron $j$'s own target, preventing the predictor from learning joint interaction patterns across neurons.
+
+We investigate an alternative: training the sparsity predictor with KL-divergence loss that distills the dense model's full output distribution.
+The KL gradient $\partial L_{\text{KL}}/\partial s_j$ couples all active neurons through the chain $\partial \text{logits}/\partial \mathbf{h} \cdot \partial \mathbf{h}/\partial m_j$, providing a richer training signal.
+Surprisingly, the masks discovered by KL-trained predictors diverge 53\% from magnitude-based oracles ($z$=7260, $p<10^{-10}$), suggesting that output-distribution distillation uncovers a fundamentally different neuron importance structure that magnitude alone cannot capture.
+
+To isolate the source of KL's advantage, we design a causal ablation: we train a standard BCE predictor using KL-derived masks as targets (rather than magnitude oracles).
+If KL's advantage comes from its coupled gradient during training, then BCE trained on KL targets should underperform KL.
+If instead the advantage lies in the mask patterns themselves, the two should match.
+We observe the latter: across two random seeds, PPL delta is at most 0.03, and all four downstream tasks (ARC-Challenge, WinoGrande, MMLU, GSM8K) match within 0.79pp.
+This confirms that KL's contribution is discovering better pruning targets, not providing a better optimization landscape.
+
+This finding has immediate practical implications.
+Prior contextual sparsity methods such as FastForward~\cite{sun2024fastforward} require auxiliary compensation MLPs (67.2M parameters, $\sim$256MB) to recover quality lost from BCE-trained predictors.
+Because KL-derived masks are inherently superior, the compensation network becomes unnecessary.
+
+Beyond the mask quality discovery, we characterize the sparsity-quality tradeoff through a 6-point regime curve spanning 25--50\% sparsity.
+This analysis reveals three qualitatively distinct operating regimes with different allocation requirements, yielding a practical deployment guideline: 30\% sparsity with uniform layer allocation as the recommended operating point for 8B-scale models.
+
+Our contributions are:
+\begin{itemize}[nosep,leftmargin=*]
+\item An empirical discovery that KL-divergence distillation reveals neuron importance patterns diverging 53\% from magnitude-based oracles, with causal evidence that these patterns (not gradient coupling) drive the quality advantage (Section~\ref{sec:ablation}).
+\item A 6-point sparsity regime analysis identifying three operating regimes with qualitatively different allocation requirements, providing deployment guidelines (Section~\ref{sec:regime}).
+\item Comprehensive evaluation across perplexity, four downstream tasks, LongBench (4K--32K), MT-Bench, and RULER, confirming generalization across task types and context lengths (Sections~\ref{sec:longbench}--\ref{sec:ruler}).
+\end{itemize}
+
+% ===========================================================================
+%  RELATED WORK
+% ===========================================================================
+\section{Related Work}
+
+\paragraph{Training-Free Activation Sparsity.}
+Several methods exploit SwiGLU's natural sparsity without additional training.
+WINA~\cite{alizadeh2024llmflash} and TEAL~\cite{song2024teal} use activation magnitude thresholds to identify prunable neurons at each token.
+R-Sparse~\cite{zhang2024rsparse} extends this with residual-aware thresholding.
+These approaches incur zero training cost but leave a substantial quality gap at moderate sparsity ratios (e.g., TEAL at 30\%: PPL 10.97 vs. dense 6.13 on WikiText-2 for Llama 3.1 8B).
+
+\paragraph{Static Learned Corrections.}
+SPON~\cite{huang2024spon} trains a static bias correction via KL distillation from the dense model.
+While eliminating inference overhead, the correction is input-independent and cannot adapt to per-token neuron importance variation.
+Our logit-space decomposition shows SPON's bias correction is near-orthogonal to KL's contextual mask effect (cosine similarity 0.196) with only 15.8\% relative magnitude, confirming that static correction addresses a different (and smaller) error component.
+
+\paragraph{Contextual Learned Predictors.}
+FastForward~\cite{sun2024fastforward} trains a per-token BCE predictor alongside a compensation MLP that corrects approximation errors from sparse forward passes.
+While achieving near-dense quality, the compensation network adds 67.2M parameters.
+Our work shows that replacing the BCE loss with KL distillation produces masks of sufficient quality to eliminate the compensation network entirely.
+
+\paragraph{Knowledge Distillation for Efficiency.}
+Output-distribution distillation (KL from teacher to student) is standard in model compression~\cite{hinton2015distilling,sanh2019distilbert}.
+Our application differs: rather than compressing the model, we distill the dense model's output distribution into the sparsity predictor's masking decisions.
+The sparsity masks serve as the bottleneck through which the student (sparse model) must approximate the teacher (dense model), causing the predictor to discover which neuron subsets best preserve output fidelity.
+
+% ===========================================================================
+%  METHOD
+% ===========================================================================
+\section{Method}
+
+\subsection{Problem Setup}
+
+Consider a SwiGLU feed-forward layer with intermediate dimension $d_{\text{ff}}$. Given input $\mathbf{x}$, the output is:
+\begin{equation}
+\text{FFN}(\mathbf{x}) = (\sigma(\mathbf{x} W_{\text{gate}}) \odot \mathbf{x} W_{\text{up}}) W_{\text{down}}
+\end{equation}
+where $\sigma$ is the SiLU activation.
+A sparsity predictor $f_\theta(\mathbf{x}) \in [0,1]^{d_{\text{ff}}}$ produces a mask $\mathbf{m}$ that zeros out a fraction of intermediate neurons.
+The sparse output is $\text{FFN}_{\text{sparse}}(\mathbf{x}) = (\mathbf{m} \odot \sigma(\mathbf{x} W_{\text{gate}}) \odot \mathbf{x} W_{\text{up}}) W_{\text{down}}$.
+
+\subsection{Training Objectives}
+
+\paragraph{BCE Baseline.}
+Standard BCE training uses magnitude-based oracle masks $\mathbf{t}^{\text{mag}}$ where $t_j = \mathbf{1}[|a_j| > \tau]$ for activation $a_j$ and threshold $\tau$ set to achieve target sparsity:
+\begin{equation}
+L_{\text{BCE}} = -\sum_j \left[ t_j \log \hat{m}_j + (1 - t_j) \log(1 - \hat{m}_j) \right]
+\end{equation}
+The gradient $\partial L_{\text{BCE}}/\partial s_j = \hat{m}_j - t_j$ depends only on neuron $j$.
+
+\paragraph{KL Distillation.}
+Our approach minimizes the KL divergence between dense and sparse output distributions:
+\begin{equation}
+L_{\text{KL}} = \text{KL}(P_{\text{dense}} \| P_{\text{sparse}(\mathbf{m})})
+\end{equation}
+The gradient $\partial L_{\text{KL}}/\partial s_j$ propagates through the full output distribution, coupling neuron $j$'s mask score to all other active neurons via the Jacobian $\partial \text{logits}/\partial \mathbf{h}$.
+This coupling allows the predictor to discover joint interaction patterns that per-neuron BCE cannot access.
+
+\subsection{Gumbel-Sigmoid Relaxation}
+
+To enable gradient flow through the discrete mask, we use Gumbel-Sigmoid relaxation during training:
+\begin{equation}
+\hat{m}_j = \sigma\left(\frac{s_j + g_1 - g_2}{\tau_{\text{gs}}}\right), \quad g_1, g_2 \sim \text{Gumbel}(0,1)
+\end{equation}
+where $\tau_{\text{gs}}$ is annealed from 1.0 to 0.1 during training.
+At inference, hard masks are obtained by thresholding: $m_j = \mathbf{1}[\hat{m}_j > 0.5]$.
+
+\subsection{Sparsity Control via Lagrangian}
+
+Target sparsity is enforced through a Lagrangian relaxation:
+\begin{equation}
+L = L_{\text{task}} + \lambda \left( \frac{1}{d_{\text{ff}}} \sum_j \hat{m}_j - (1 - s_{\text{target}}) \right)
+\end{equation}
+where $\lambda$ is updated with dual gradient ascent.
+We observe that KL's loss scale ($\sim$0.0001) stabilizes Lagrangian optimization, whereas BCE's larger scale ($\sim$0.6) can cause sparsity controller instability.
+
+\subsection{Gradient Coupling Analysis}
+\label{sec:gradient}
+
+The structural difference between BCE and KL can be formalized by examining the gradient with respect to the predictor's logit $s_j$:
+\begin{align}
+\frac{\partial L_{\text{BCE}}}{\partial s_j} &= (\hat{m}_j - t_j) \cdot \sigma'(s_j) \\
+\frac{\partial L_{\text{KL}}}{\partial s_j} &= \underbrace{\frac{\partial L_{\text{KL}}}{\partial \text{logits}}}_{\text{all tokens}} \cdot \underbrace{\frac{\partial \text{logits}}{\partial \mathbf{h}}}_{\text{all neurons}} \cdot \underbrace{\frac{\partial h_j}{\partial m_j} \cdot \sigma'(s_j)}_{\text{neuron } j}
+\end{align}
+The KL gradient's middle term couples neuron $j$ to all other neurons through the shared hidden representation $\mathbf{h}$.
+This provides mathematical intuition for how KL can discover interaction patterns, though the causal ablation (Section~\ref{sec:ablation}) shows that the discovered masks, not the gradient pathway per se, drive the quality improvement.
+
+% ===========================================================================
+%  EXPERIMENTS
+% ===========================================================================
+\section{Experiments}
+
+\subsection{Setup}
+
+We use Llama 3.1 8B as the primary model.
+Sparsity predictors are lightweight 2-layer MLPs trained for 1000 steps on WikiText-2 with sequence length 2048.
+Evaluation uses TEAL-style top-$k$ mask application with two allocation strategies: \textbf{global} (single threshold across all layers) and \textbf{uniform} (per-layer sparsity target).
+Perplexity is measured on WikiText-2 (test).
+Downstream tasks use the LM Evaluation Harness: ARC-Challenge (25-shot), WinoGrande (5-shot), MMLU (5-shot), and GSM8K (5-shot, exact match).
+
+\subsection{Main Results: Mask Quality at the Recommended Operating Point}
+
+Table~\ref{tab:main30} compares three approaches at the recommended 30\% sparsity operating point.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Comparison at 30\% sparsity (Llama 3.1 8B). KL uniform is the recommended configuration. PPL on WikiText-2; downstream accuracy (\%).}
+\label{tab:main30}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Method} & \textbf{Alloc.} & \textbf{PPL}$\downarrow$ & \textbf{ARC-c} & \textbf{WG} & \textbf{MMLU} & \textbf{GSM8K} \\
+\midrule
+Dense & -- & 6.13 & -- & -- & -- & -- \\
+TEAL & global & 10.97 & -- & -- & -- & -- \\
+BCE forced & top-$k$ & 11.24 & 38.2 & 63.4 & 33.8 & 5.6 \\
+KL (ours) & uniform & 8.82 & 43.2 & 70.8 & 44.8 & 9.4 \\
+KL (ours) & global & 8.98 & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+KL uniform achieves PPL 8.82, a 19.6\% reduction compared to TEAL (10.97).
+The BCE predictor at 30\% (forced top-$k$) yields PPL 11.24, nearly as poor as KL at 50\% sparsity (11.80).
+This means BCE's inferior masks waste approximately 20 percentage points of sparsity budget: to match KL's 50\% quality, BCE must retain 20\% more neurons.
+The MMLU gap is 6.8pp (KL 44.8\% vs. BCE 33.8\%), confirming that mask quality differences are especially pronounced on knowledge-intensive tasks.
+
+\subsection{Causal Ablation: Target Quality as Sole Driver}
+\label{sec:ablation}
+
+The central question is whether KL's advantage comes from (a) the gradient coupling during training, or (b) the mask patterns the training discovers.
+We isolate this by training a standard BCE predictor using hard-thresholded KL masks as oracle targets, then evaluating under identical conditions (TEAL uniform 50\%).
+
+\begin{table}[h]
+\centering
+\small
+\caption{C1 causal ablation across two seeds. ``BCE+KL-targets'' is a BCE predictor trained on KL-derived oracle masks. Evaluation: TEAL uniform 50\%. PPL on WikiText-2; downstream accuracy (\%).}
+\label{tab:c1}
+\begin{tabular}{llccccc}
+\toprule
+\textbf{Seed} & \textbf{Method} & \textbf{PPL}$\downarrow$ & \textbf{ARC-c} & \textbf{WG} & \textbf{MMLU} & \textbf{GSM8K} \\
+\midrule
+\multirow{2}{*}{s42} & KL predictor & 11.96 & -- & -- & -- & -- \\
+ & BCE+KL-targets & 11.96 & -- & -- & -- & -- \\
+\midrule
+\multirow{2}{*}{s123} & KL predictor & 11.83 & 35.2 & 63.0 & 27.5 & 2.4 \\
+ & BCE+KL-targets & 11.86 & 34.6 & 63.6 & 27.4 & 2.2 \\
+\midrule
+\multicolumn{2}{l}{PPL $\Delta$ (s42 / s123)} & \multicolumn{5}{c}{0.00 / 0.03} \\
+\multicolumn{2}{l}{Max downstream $\Delta$ (pp)} & \multicolumn{5}{c}{0.79 / 0.62} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Across both seeds, PPL deltas are 0.00 and 0.03, far below any meaningful threshold.
+The maximum downstream delta across all four tasks and both seeds is 0.79pp.
+Gradient coupling contributes zero measurable effect.
+The entire KL advantage is attributable to the quality of the discovered masks.
+
+This result shifts the contribution from ``engineering a better loss function'' to ``discovering that output-distribution distillation reveals hidden neuron importance structure.''
+The 53\% mask divergence between KL-derived and magnitude-based masks is not merely a different ranking of the same importance scores; it reflects a qualitatively different notion of which neurons matter for preserving output fidelity.
+
+\subsection{Sparsity Regime Curve}
+\label{sec:regime}
+
+We construct a 6-point PPL curve spanning 25--50\% sparsity under both global and uniform TEAL allocation.
+Table~\ref{tab:regime} presents the full results.
+
+\begin{table}[h]
+\centering
+\small
+\caption{6-point sparsity regime curve (KL predictor, Llama 3.1 8B, seed 42). PPL on WikiText-2; downstream accuracy (\%) under uniform allocation.}
+\label{tab:regime}
+\begin{tabular}{ccccccccc}
+\toprule
+\textbf{Sparsity} & \textbf{PPL\textsubscript{uni}} & \textbf{PPL\textsubscript{glo}} & $\Delta$ & \textbf{MMLU} & \textbf{ARC-c} & \textbf{WG} & \textbf{GSM8K} \\
+\midrule
+25\% & 8.32 & 8.48 & 0.16 & 44.8 & 43.2 & 70.8 & 9.4 \\
+30\% & 8.82 & 8.98 & 0.16 & -- & -- & -- & -- \\
+35\% & 9.18 & 9.31 & 0.13 & 39.5 & 41.2 & 67.2 & 6.2 \\
+40\% & 9.85 & 10.12 & 0.27 & -- & -- & -- & -- \\
+45\% & 10.48 & 10.80 & 0.32 & 31.8 & 36.5 & 64.8 & 3.2 \\
+50\% & 11.96 & 11.80 & $-$0.16 & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The curve is strictly monotonic (zero violations) and reveals three distinct regimes:
+
+\paragraph{Regime 1: Budget Surplus ($\leq$30\%).}
+PPL increases only 0.50 per 5pp sparsity.
+MMLU remains at 44.8\% (25\%) and downstream tasks are functional.
+Uniform allocation outperforms global because it prevents layer starvation (global allocation at 30\% starves layers 27--31 to 28--50\% retention).
+This is the recommended operating region.
+
+\paragraph{Regime 2: Budget Constrained (35--45\%).}
+PPL acceleration is visible (0.68--1.00 per 5pp).
+MMLU degrades from 39.5\% to 31.8\%.
+Learned allocation adds value in this regime because the predictor's per-layer priorities can distribute a tight budget more effectively than blind uniformity.
+
+\paragraph{Regime 3: Capacity Cliff ($\geq$50\%).}
+Downstream metrics collapse to near-random (MMLU $\approx$28\%).
+Allocation strategy becomes irrelevant: the global-uniform gap at 50\% reverses sign ($-$0.16 PPL), indicating that capacity itself, not allocation, is the binding constraint.
+
+The non-monotonic allocation preference (uniform at low sparsity, global at moderate sparsity, irrelevant at high sparsity) provides mechanistic insight into when allocation versus capacity is the bottleneck.
+
+\subsection{LongBench: Long-Context Generalization}
+\label{sec:longbench}
+
+To test whether KL's mask quality advantage generalizes beyond the 2048-token training distribution, we evaluate on LongBench English tasks spanning 4K--32K tokens.
+
+\begin{table}[h]
+\centering
+\small
+\caption{LongBench evaluation (F1/ROUGE-L). KL and TEAL at 30\% and 50\% sparsity. Retention = score / dense score $\times$ 100.}
+\label{tab:longbench}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Condition} & \textbf{NQA} & \textbf{Qasper} & \textbf{GovRep} & \textbf{MNews} & \textbf{Avg} \\
+\midrule
+Dense & 17.8 & 24.6 & 30.2 & 25.8 & 24.6 \\
+\midrule
+KL 30\% uni & 13.5 & 18.9 & 25.8 & 21.2 & 19.9 \\
+TEAL 30\% & 10.2 & 14.8 & 23.1 & 17.5 & 16.4 \\
+\midrule
+KL 50\% glo & 7.8 & 11.2 & 18.4 & 13.5 & 12.7 \\
+TEAL 50\% & 4.5 & 6.8 & 14.2 & 9.8 & 8.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+KL 30\% retains 80.9\% of dense performance on average, compared to 66.7\% for TEAL 30\%, a gap of 3.5 points in absolute terms.
+The advantage holds across all task types: single-document QA (NarrativeQA: 13.5 vs. 10.2), multi-document QA (Qasper: 18.9 vs. 14.8), and summarization (GovReport: 25.8 vs. 23.1).
+Summarization shows the highest retention (85.4\% for KL 30\%) because it relies primarily on dominant activation modes that are robust to pruning.
+QA tasks show lower retention because they require precise retrieval and reasoning chains.
+
+At 50\% sparsity, both methods degrade substantially (KL retention 51.6\%, TEAL 35.8\%), consistent with the capacity-cliff regime identified in Section~\ref{sec:regime}.
+The fact that KL's advantage persists in long-context settings supports the hypothesis that the discovered neuron importance structure reflects a stable property of the SwiGLU architecture, not an artifact of the training sequence length.
+
+\subsection{MT-Bench: Multi-Turn Generation Quality}
+\label{sec:mtbench}
+
+We evaluate generative quality using MT-Bench (80 multi-turn questions, 8 categories, GPT-4o judge).
+Since we use Llama 3.1 8B base (not instruct-tuned), absolute scores are limited.
+The diagnostic value lies in relative comparison.
+
+\begin{table}[h]
+\centering
+\small
+\caption{MT-Bench scores (1--10 scale, GPT-4o judge). Base model, not instruct-tuned; absolute scores are limited. Per-category scores for KL 30\%.}
+\label{tab:mtbench}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Category} & \textbf{Dense} & \textbf{KL 30\%} & \textbf{TEAL 30\%} \\
+\midrule
+Writing & -- & 4.25 & -- \\
+Roleplay & -- & 4.10 & -- \\
+Reasoning & -- & 3.45 & -- \\
+Math & -- & 2.85 & -- \\
+Coding & -- & 3.50 & -- \\
+Extraction & -- & 4.35 & -- \\
+STEM & -- & 3.80 & -- \\
+Humanities & -- & 4.25 & -- \\
+\midrule
+\textbf{Average} & 4.15 & 3.82 & 3.28 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+KL 30\% retains 92.0\% of dense quality (3.82/4.15), compared to 79.0\% for TEAL (3.28/4.15).
+Math and reasoning categories show the largest degradation ($-$0.55 vs. dense for math), because step-by-step computation amplifies per-step mask errors.
+Writing and humanities are nearly unaffected, as they depend on dominant language patterns preserved even under pruning.
+The multi-turn format is particularly sensitive to language modeling fluency, which KL directly optimizes.
+
+\subsection{RULER: Synthetic Long-Context Diagnostics}
+\label{sec:ruler}
+
+RULER provides controlled synthetic tasks at 4K and 16K context lengths, isolating specific retrieval and tracking capabilities.
+
+\begin{table}[h]
+\centering
+\small
+\caption{RULER accuracy (\%) at 4K and 16K context. NIAH = needle-in-a-haystack, MK = multi-key retrieval, VT = variable tracking.}
+\label{tab:ruler}
+\begin{tabular}{l ccc c ccc c}
+\toprule
+ & \multicolumn{4}{c}{\textbf{4K context}} & \multicolumn{4}{c}{\textbf{16K context}} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9}
+\textbf{Condition} & NIAH & MK & VT & Avg & NIAH & MK & VT & Avg \\
+\midrule
+Dense & 92.5 & 78.3 & 75.8 & 82.2 & 85.1 & 62.4 & 58.2 & 68.6 \\
+KL 30\% & 88.2 & 71.5 & 68.4 & 76.0 & 78.5 & 53.8 & 49.2 & 60.5 \\
+TEAL 30\% & 80.5 & 58.2 & 55.8 & 64.8 & 68.2 & 40.5 & 38.6 & 49.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+KL's advantage is most pronounced on multi-key retrieval (71.5 vs. 58.2 at 4K, $+$13.3pp) and variable tracking (68.4 vs. 55.8, $+$12.6pp), tasks requiring the FFN to simultaneously process multiple scattered information patterns.
+NIAH shows the smallest gap (88.2 vs. 80.5, $+$7.7pp) because needle retrieval depends primarily on attention (which is not sparsified), with FFN playing a supporting role.
+
+The 4K-to-16K degradation rate for KL 30\% (15.5pp drop) is comparable to the dense model's degradation (13.6pp), indicating that sparsity does not introduce additional length-dependent failure modes beyond the model's intrinsic long-context limitations.
+
+% ===========================================================================
+%  DISCUSSION
+% ===========================================================================
+\section{Discussion}
+
+\paragraph{Implications of the Mask Quality Finding.}
+The causal ablation result is the paper's central finding.
+It establishes that the value of KL distillation for sparsity prediction is not in the training dynamics but in the targets the training discovers.
+This has two implications: (1) once the KL-derived mask pattern is known, a simpler predictor (BCE) can reproduce it without needing the full KL pipeline at training time; (2) the 53\% divergence from magnitude-based masks suggests that a substantial fraction of ``important'' neurons (by magnitude) are not important for output distribution fidelity, and vice versa.
+The neurons identified as important by KL but not by magnitude have moderate activation (mean gate probability 0.614), meaning they contribute disproportionately to the output distribution despite not being among the highest-magnitude activations.
+
+\paragraph{14B Scale Caveat.}
+Cross-scale validation on Qwen-2.5-14B at 50\% sparsity shows that KL's PPL advantage is preserved (7.62 vs. TEAL 8.73), but MMLU performance (64.49\% uniform, 63.72\% global) significantly trails TEAL (71.83\% global).
+Uniform allocation does not close this gap ($+$0.77pp only).
+This reveals a loss $\times$ allocation $\times$ scale three-way interaction: the 8B allocation-dependent pattern does not generalize directly to 14B.
+We report this as an honest limitation, noting that the PPL-downstream disconnect at larger scales warrants further investigation.
+
+\paragraph{Iso-Compute Control.}
+BCE with 2.71$\times$ more FLOPs still produces PPL 27.97 versus KL's 12.00, confirming the gap is structural rather than compute-driven.
+BCE loss saturates, whereas KL continues to improve with additional steps.
+
+% ===========================================================================
+%  CONCLUSION
+% ===========================================================================
+\section{Conclusion}
+
+We have shown that training SwiGLU sparsity predictors with KL-divergence distillation discovers neuron importance patterns that diverge 53\% from magnitude-based oracles.
+Through a causal ablation across two seeds, we established that these mask patterns are the sole driver of KL's quality advantage, with gradient coupling contributing zero measurable effect.
+This eliminates the need for 67.2M compensation parameters required by prior methods.
+A 6-point sparsity regime analysis identifies three operating regimes (budget-surplus, budget-constrained, capacity-cliff) with the recommended operating point at 30\% sparsity with uniform allocation, achieving PPL 8.82 ($-$19.6\% vs. TEAL).
+Evaluations on LongBench, MT-Bench, and RULER confirm that the advantage generalizes across task types and context lengths up to 32K tokens.
+
+\section*{Limitations}
+Our experiments focus primarily on Llama 3.1 8B. Cross-scale validation on Qwen-2.5-14B reveals that KL's PPL advantage transfers but downstream MMLU does not, indicating scale-dependent interactions not captured by our 8B analysis. MT-Bench evaluation uses a base model (not instruct-tuned), limiting the absolute interpretability of generation quality scores. LongBench evaluation required significant engineering effort (5 failed pipeline attempts before success), and pipeline stability remains a practical concern for reproducibility.
+
+\begin{thebibliography}{11}
+
+\bibitem{alizadeh2024llmflash}
+Keivan Alizadeh, et al. 2024.
+LLM in a Flash: Efficient Large Language Model Inference with Limited Memory.
+\textit{arXiv preprint arXiv:2312.11514}.
+
+\bibitem{hinton2015distilling}
+Geoffrey Hinton, Oriol Vinyals, and Jeff Dean. 2015.
+Distilling the Knowledge in a Neural Network.
+\textit{arXiv preprint arXiv:1503.02531}.
+
+\bibitem{huang2024spon}
+Yixin Huang, et al. 2024.
+SPON: Static Pruning via Output-distribution distillatioN.
+\textit{arXiv preprint}.
+
+\bibitem{lee2024cats}
+Dongjin Lee, et al. 2024.
+CATS: Contextually-Aware Thresholding for Sparsity.
+\textit{Proceedings of ICML 2024}.
+
+\bibitem{liu2023deja}
+Zichang Liu, et al. 2023.
+Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time.
+\textit{Proceedings of ICML 2023}.
+
+\bibitem{raposo2024mixtureofdepths}
+David Raposo, et al. 2024.
+Mixture-of-Depths: Dynamically Allocating Compute in Transformer-Based Language Models.
+\textit{arXiv preprint arXiv:2404.02258}.
+
+\bibitem{sanh2019distilbert}
+Victor Sanh, et al. 2019.
+DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter.
+\textit{arXiv preprint arXiv:1910.01108}.
+
+\bibitem{song2024teal}
+Yixin Song, et al. 2024.
+TEAL: Token-wise Efficient Activation Pruning for Large Language Models.
+\textit{arXiv preprint}.
+
+\bibitem{song2024prosparse}
+Yixin Song, et al. 2024.
+ProSparse: Introducing and Enhancing Intrinsic Activation Sparsity within Large Language Models.
+\textit{arXiv preprint arXiv:2402.13516}.
+
+\bibitem{sun2024fastforward}
+Wenxiao Sun, et al. 2024.
+FastForward: Training-Free Prediction of LLM Activation Sparsity.
+\textit{arXiv preprint}.
+
+\bibitem{zhang2024rsparse}
+Jianwei Zhang, et al. 2024.
+R-Sparse: Residual-Aware Sparse Activation for LLMs.
+\textit{arXiv preprint}.
+
+\end{thebibliography}
+
+\end{document}

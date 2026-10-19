@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38f2da248182c1e19510",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl k16 s456 eval",
+  "task_key": "worker_analysis_perlayer_kl_k16_s456_eval_20260523T135453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_k16_s456_eval_20260523T135453_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "8dff4dadc56ad90718c2330e77d42d902e7b7a0c355af9de69e5d7615600dbff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。K=16 s456 vs s42 对比：\n\n| Metric | s456 | s42 | Δ |\n|--------|------|-----|---|\n| WikiText-2 PPL ↓ | **8.6550** | 8.6737 | -0.0187 |\n| ARC-c acc_norm ↑ | **0.4155** | 0.4104 | +0.0051 |\n| WinoGrande acc ↑ | **0.6946** | 0.6843 | +0.0103 |\n| MMLU acc ↑ | 0.3873 | **0.4403** | -0.0530 |\n| GSM8K exact_match ↑ | 0.0766 | **0.0811** | -0.0045 |\n| HellaSwag acc_norm ↑ | **0.7015** | 0.6963 | +0.0052 |\n| PIQA acc_norm ↑ | 0.7437 | **0.7590** | -0.0153 |\n\nPPL、ARC-c、WinoGrande、HellaSwag 四项 s456 略优于 s42；MMLU 下降 5.3pp 较显著，PIQA 和 GSM8K 小幅下降。两个 seed 间 MMLU 波动较大，其余指标基本一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-k16-s456-eval.md"
+}

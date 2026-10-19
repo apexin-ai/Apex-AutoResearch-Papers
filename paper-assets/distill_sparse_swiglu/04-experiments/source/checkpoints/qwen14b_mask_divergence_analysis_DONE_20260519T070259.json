@@ -1,0 +1,42 @@
+{
+  "exp_id": "qwen14b_mask_divergence_analysis",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:55:58.629Z",
+    "updated_at": "2026-05-19T07:02:59.470Z",
+    "hypothesis": "Per-layer Jaccard divergence between KL-predicted and magnitude-based masks on Qwen-14B reveals whether cross-scale models exhibit similar layer-wise importance disagreement patterns as LLaMA-8B. Higher divergence at specific layers indicates the predictor discovers non-trivial importance patterns beyond magnitude.",
+    "spec": {
+      "command": "bash run_mask_divergence.sh",
+      "server": "westd-34887",
+      "data_path": "/root/autodl-tmp/data/wikitext2/test",
+      "data_count": 32,
+      "model_name": "qwen2.5-14b + llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/qwen14b_kl30_s42 + checkpoints/kl_sparsity30_s42_v3",
+      "log_path": "logs/mask_divergence_analysis.log",
+      "checkpoint_path": "results/qwen14b_mask_divergence_30pct.json"
+    },
+    "metrics": {
+      "qwen14b_mean_jaccard": 0.4016,
+      "qwen14b_std_jaccard": 0.0756,
+      "qwen14b_max_jaccard": 0.446,
+      "qwen14b_max_layer": 11,
+      "qwen14b_min_jaccard": 0.0627,
+      "qwen14b_min_layer": 4,
+      "llama8b_mean_jaccard": 0.3939,
+      "llama8b_std_jaccard": 0.0314,
+      "llama8b_max_jaccard": 0.4818,
+      "llama8b_max_layer": 0,
+      "llama8b_min_jaccard": 0.3528,
+      "llama8b_min_layer": 14
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T07:02:59.471Z"
+  },
+  "timestamp": "2026-05-19T07:02:59.958601+00:00",
+  "trigger": "update_registry"
+}

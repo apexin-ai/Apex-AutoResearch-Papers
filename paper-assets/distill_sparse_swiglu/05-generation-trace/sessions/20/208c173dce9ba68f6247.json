@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "208c173dce9ba68f6247",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect and fill all 4gpu",
+  "task_key": "worker_ops_collect-and-fill-all-4gpu_20260518T095855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-and-fill-all-4gpu_20260518T095855_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "9efb5dce26b3ab098b595e2a78e9e615ed03af00d0745d4a204e1781cfa89a6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 卡确认运行正常。\n\n## 汇总\n\n### P0: 结果收集完成\n\n| 实验 | wikitext2_ppl | arc_norm | wino | mmlu | gsm8k | 状态 |\n|---|---|---|---|---|---|---|\n| kl_comp_30pct_s42_eval | 8.98 | 0.3993 | 0.6898 | 0.2531 | 0.0842 | DONE ✓ |\n| kl50_s42_uniform_eval | 11.96 | 0.3259 | 0.6235 | 0.2792 | 0.0197 | DONE ✓ |\n| kl_comp_30pct_s123 (41718) | — | — | — | — | — | 已验证 checkpoint 存在 ✓ |\n\n### P1: 4 卡全部填满\n\n| GPU | 实验 | 类型 | 状态 |\n|---|---|---|---|\n| 34887:0 | kl_comp_30pct_s123_eval | downstream benchmark | 正在跑 arc_challenge ✓ |\n| 34887:1 | kl50_s456_uniform_eval | downstream benchmark | 模型加载中 ✓ |\n| 41718:0 | kl_comp_30pct_s456 | compensation 训练 | step 100/1000 ✓ |\n| 41718:1 | kl_comp_50pct_s42 | compensation 训练 (50% sparsity) | 刚启动 ✓ |\n\n34887 首次提交因 httpx 客户端 bug 崩溃，加 `HF_HUB_OFFLINE=1` 后修复。41718 cuda:1 无现成 eval 可跑，提交了 50% sparsity compensation 训练（探索 compensation 在高 sparsity 下是否也有效）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-and-fill-all-4gpu.md"
+}

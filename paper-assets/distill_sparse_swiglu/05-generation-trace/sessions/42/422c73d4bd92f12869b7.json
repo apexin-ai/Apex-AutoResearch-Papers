@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "422c73d4bd92f12869b7",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diagnose lm eval mistral kl 50pct",
+  "task_key": "worker_diagnose_lm_eval_mistral_kl_50pct_20260516T041602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_lm_eval_mistral_kl_50pct_20260516T041602_result.json",
+    "occurrence": 1,
+    "bytes": 1599,
+    "sha256": "5b50e0c7a8a96ceb1470bf95b780a866c2751fe6fdee522a44ab41482fab8533"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验**没有失败**，已正常完成并输出全部结果。\n\n```json\n{\"root_cause\":\"无失败——进程正常退出(rc=0)，所有 task 结果已写入 results/lm_eval_mistral_kl_50pct/。Cron 误判原因：脚本无 sentinel 文件和 W&B 集成，进程退出后 Cron 5次探测 PID 已死即标记 failed\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"无需修复，实验已成功完成\",\"若要避免 Cron 误报，在 lm_eval_sparse.py 结束时写一个 sentinel 文件(如 touch results/lm_eval_mistral_kl_50pct/.done)\"],\"can_auto_fix\":true,\"partial_results\":\"有完整结果：arc_challenge acc=0.293 acc_norm=0.318, winogrande acc=0.629, mmlu acc=0.230, gsm8k exact_match=0.005/0.021\"}\n```\n\n注意：MMLU 0.23（接近随机水平）和 GSM8K 0.005 偏低，可能是 50% sparsity 下 predictor 质量问题，但这属于实验结论而非运行故障。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "无失败——进程正常退出(rc=0)，所有 task 结果已写入 results/lm_eval_mistral_kl_50pct/。Cron 误判原因：脚本无 sentinel 文件和 W&B 集成，进程退出后 Cron 5次探测 PID 已死即标记 failed",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "无需修复，实验已成功完成",
+                "若要避免 Cron 误报，在 lm_eval_sparse.py 结束时写一个 sentinel 文件(如 touch results/lm_eval_mistral_kl_50pct/.done)"
+              ],
+              "can_auto_fix": true,
+              "partial_results": "有完整结果：arc_challenge acc=0.293 acc_norm=0.318, winogrande acc=0.629, mmlu acc=0.230, gsm8k exact_match=0.005/0.021"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-lm-eval-mistral-kl-50pct.md"
+}

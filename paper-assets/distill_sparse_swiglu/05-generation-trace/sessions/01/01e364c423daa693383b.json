@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01e364c423daa693383b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code get teal275 pid register cron",
+  "task_key": "worker_code_get_teal275_pid_register_cron_20260519T150432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_get_teal275_pid_register_cron_20260519T150432_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "5378601b7fe5ecd9f433ecc4d3cfc6938a0f5949a8d7011420000066ce3a4171"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**teal275_v3** (PID 115174, cuda:1):\n- MMLU loglikelihood 阶段 70% (41317/58702)，~104 it/s，预计 ~3 分钟完成 MMLU\n- 日志：`/root/distill_sparse_swiglu/logs/qwen14b_teal275_uniform_eval_v3.log`\n- Registry spec 已更新 PID=115174\n- Cron 监控已注册 (job `2c180a80`，每 2 分钟)\n\n**kl30_v3** (PID 114094, cuda:0):\n- MMLU loglikelihood 阶段 11% (4473/40168)，~10.45 it/s，预计 ~57 分钟完成 MMLU\n- 日志：`/root/runs/distill_sparse_swiglu/qwen14b_kl30_s42_eval_uniform_v3.log`（注意路径在 `/root/runs/` 下，不是常规 logs 目录）\n- kl30 速度慢 10x 是因为要过 predictor 模型\n\n两个实验都在正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-get-teal275-pid-register-cron.md"
+}

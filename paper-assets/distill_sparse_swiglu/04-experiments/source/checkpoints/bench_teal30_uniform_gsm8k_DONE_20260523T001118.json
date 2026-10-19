@@ -1,0 +1,43 @@
+{
+  "exp_id": "bench_teal30_uniform_gsm8k",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T21:59:56.432Z",
+    "updated_at": "2026-05-23T00:11:18.114Z",
+    "hypothesis": "8B TEAL 30% uniform allocation GSM8K eval. 补齐 uniform 分配下的 TEAL baseline，与 KL 30% uniform (bench_kl30_uniform) 和 Dense (bench_dense) 做 GSM8K 三方对比。bench_teal30 用的是 global allocation，本实验用 uniform 保持分配策略一致。",
+    "parent": "bench_teal30",
+    "conclusion": "killed",
+    "completed_at": "2026-05-19T22:21:00.000Z",
+    "metrics": {
+      "gsm8k_exact_match": 0.0879,
+      "actual_sparsity": 0.3
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id bench_teal30_uniform_gsm8k --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.3 --tasks gsm8k --seq_len 2048 --gpu 0\"",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "176588",
+      "log_path": "~/runs/distill_sparse_swiglu/bench_teal30_uniform_gsm8k.log",
+      "submitted_at": "2026-05-19T21:59:55.252Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "LLaMA-3.1-8B",
+      "data_path": "gsm8k",
+      "data_count": 1319,
+      "seed": 42,
+      "checkpoint_source": "N/A (TEAL vanilla)",
+      "eval_data": "gsm8k",
+      "checkpoint_path": "results/benchmark/bench_teal30_uniform_gsm8k/results.json",
+      "wall_clock_seconds": 1251.3
+    }
+  },
+  "timestamp": "2026-05-23T00:11:18.740203+00:00",
+  "trigger": "update_registry"
+}

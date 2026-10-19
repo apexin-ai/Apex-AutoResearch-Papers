@@ -1,0 +1,190 @@
+paper_key: "Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models"
+title: "Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models"
+venue: "ICML 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - TEAL
+    - LaRoSA
+    - WINA
+    - R-sparse
+    - WAS
+    - LoRA (rank 1-32)
+    - Wanda (pruning)
+    - Dense (full model)
+  metrics:
+    - {name: "Perplexity (WikiText)", direction: "lower_better"}
+    - {name: "ARC-Challenge accuracy", direction: "higher_better"}
+    - {name: "ARC-Easy accuracy", direction: "higher_better"}
+    - {name: "BoolQ accuracy", direction: "higher_better"}
+    - {name: "PiQA accuracy", direction: "higher_better"}
+    - {name: "Winogrande accuracy", direction: "higher_better"}
+    - {name: "CommonsenseQA accuracy", direction: "higher_better"}
+    - {name: "MathQA accuracy", direction: "higher_better"}
+    - {name: "MMLU accuracy", direction: "higher_better"}
+    - {name: "TruthfulQA accuracy", direction: "higher_better"}
+    - {name: "OpenBookQA accuracy", direction: "higher_better"}
+    - {name: "MedMCQA accuracy", direction: "higher_better"}
+    - {name: "Inference throughput (tokens/sec)", direction: "higher_better"}
+    - {name: "CKA similarity to dense model", direction: "higher_better"}
+  datasets:
+    - {name: "WikiText-raw-v2", size: "calibration + eval"}
+    - {name: "C4", size: "transferability eval"}
+    - {name: "ARC-Challenge", size: "zero-shot eval"}
+    - {name: "ARC-Easy", size: "zero-shot eval"}
+    - {name: "BoolQ", size: "zero-shot eval"}
+    - {name: "PiQA", size: "zero-shot eval"}
+    - {name: "Winogrande", size: "zero-shot eval"}
+    - {name: "MMLU", size: "zero-shot eval"}
+    - {name: "CommonsenseQA", size: "zero-shot eval"}
+    - {name: "MathQA", size: "zero-shot eval"}
+    - {name: "TruthfulQA", size: "zero-shot eval"}
+    - {name: "OpenBookQA", size: "zero-shot eval"}
+    - {name: "MedMCQA", size: "zero-shot eval"}
+  ablation_dimensions:
+    - "Number of spontaneous neurons (1, 2, 4, 8, 16)"
+    - "Learning target (alpha activation vector vs bias b)"
+    - "Injection location (MLP down-proj vs up-proj vs attention)"
+    - "Layer-wise sensitivity (lower vs upper layers)"
+    - "Dataset transferability (C4 calibration -> WikiText eval)"
+    - "Sparsity level (25%, 50%, 60%)"
+    - "Compatibility with pruning (Wanda)"
+    - "Compatibility with quantization"
+    - "Compatibility with MoE (OLMoE-7B, DeepSeek-MoE-16B)"
+    - "Comparison with LoRA at various ranks"
+    - "Continual pretraining regime"
+    - "Scale-up (32B, 70B models)"
+  training_recipe:
+    optimizer: "not explicitly named (implied Adam-family from LR scale)"
+    lr: "1e-5"
+    epochs: "10"
+    batch_size: "8"
+    block_size: "128"
+    calibration_data: "WikiText-raw-v2"
+    calibration_prompts: "50 prompts, max 64 tokens each"
+    hardware: "4x NVIDIA A6000 GPUs"
+    training_time: "1.14h (Llama3-8B), 1.85h (Mistral-7B), 2.25h (Qwen3-8B), <20min (small models)"
+    loss: "KL divergence between dense and sparse model logits"
+    extra_params: "0.0155% (1 neuron per layer) to 0.016%"
+  method_family: "post-training activation sparsity correction via learnable input-independent anchors"
+
+positioning:
+  core_claim: "Injecting a single learnable input-independent activation vector per layer (absorbed into bias at inference) recovers most accuracy lost from activation sparsity by acting as a representational anchor that prevents distribution shift in hidden states."
+  key_results: "WikiText PPL at 50% sparsity: Llama3-8B 7.83 vs 8.34 TEAL (-6.1%), Mistral-7B 5.86 vs 6.00 (-2.3%), Qwen3-8B 9.26 vs 9.75 (-5.0%). Zero-shot avg: +1.178% relative. Inference: 64.13 tok/s vs 64.28 TEAL (no overhead). Only 0.016% extra params. CKA >95% similarity to dense model. Scales to 70B (+0.96%) and 32B (+0.75%)."
+  limitations:
+    - "Full hardware acceleration with combined quantization/pruning/sparsity requires specialized kernels beyond current implementation"
+    - "Evaluation primarily at 50-60% sparsity; extreme sparsity (>70%) not explored"
+    - "Post-training calibration depends on calibration dataset alignment (though C4->WikiText transfer is shown)"
+    - "No dedicated limitations section in the paper (implicit only)"
+  relation_to_us: "complementary"
+  # SPON addresses the *recovery* side of activation sparsity (fixing accuracy loss after sparsification),
+  # while our work on distilling sparse SwiGLU patterns addresses *discovering and transferring* sparsity
+  # patterns. SPON's bias-absorption trick and KL-distillation from dense model are directly relevant
+  # techniques. Their finding that MLP down-projections in lower layers are most important aligns with
+  # SwiGLU gate structure analysis.
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with Figure 1 showing empirical evidence that neuron activation fraction decays with sequence length under sparsity—a visual-first hook that grounds the problem before any theory. The biological metaphor of 'spontaneous neural activity' adds memorability."
+  tension: "Activation sparsity is 'especially appealing' for LLM inference speedup, yet 'achieving high sparsity levels often entails significant accuracy degradation.' The gap: existing methods treat sparsity as a mask problem but ignore that removing activations destroys the representational anchors learned during pretraining."
+  key_insight: "The absence of input-independent 'universal activations' causes representational drift under sparsity. A single learnable vector per layer, trained via KL divergence, can approximate the Fisher-weighted sparsity residual and be absorbed into bias terms at zero inference cost."
+  argument_chain: "empirical observation (neuron activation decay, Figure 1) -> hypothesis (representational instability from missing universal activations) -> solution (SPON: learnable input-independent vectors) -> theoretical grounding (Fisher-weighted correction via Taylor expansion) -> empirical validation (PPL + zero-shot + CKA) -> ablation (1 neuron suffices, MLP down-proj, lower layers) -> generalization (MoE, pruning, quantization, scale-up)"
+  contribution_framing: "Four contributions: (1) identify representational instability mechanism, (2) propose SPON with theoretical grounding, (3) demonstrate consistent gains across architectures/tasks, (4) show orthogonality with pruning/quantization/MoE. Framed as both a diagnostic insight and a practical fix."
+  intro_structure: "4 paragraphs: P1=problem setup + Figure 1 visual hook (activation decay), P2=hypothesis about representational instability from missing universal activations, P3=SPON solution + biological metaphor + theoretical grounding preview, P4=contribution list with numerical highlights"
+  notable_technique: "The biological metaphor ('spontaneous neural activity') provides a memorable conceptual frame that makes a technical contribution (learnable bias correction) feel like a principled scientific insight rather than an engineering trick. The Figure 1 visual-first opening is effective—readers see the problem before reading about it."
+
+figures:
+  figure_count: 19  # 10 main + 9 appendix (Figures 11-19)
+  figure1:
+    type: "motivation"
+    description: "Line plot showing fraction of neurons activated across ALL tokens as a function of sequence length, with separate curves for different activation sparsity levels. Demonstrates exponential decay—fewer neurons remain universally active as sequences grow, motivating the need for persistent representational anchors."
+    narrative_role: "Visual-first hook that grounds the entire paper's premise. Before any theoretical argument, the reader sees empirical evidence that sparsity creates representational instability. Directly motivates the SPON solution."
+    design_elements: ["multiple sparsity-level curves on same axes", "clear decay trend", "sequence length on x-axis", "activation fraction on y-axis", "placed at top of introduction"]
+    visual_style: "Clean line plot with distinct curve colors per sparsity level. Compact single-panel figure positioned at the very opening of the paper to maximize impact."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "SPON vs SOTA network pruning methods across benchmarks"
+      how_gain_highlighted: "Direct height comparison showing SPON bars consistently taller"
+      design_note: "Positions SPON against a different compression family (pruning) to emphasize orthogonality"
+    - figure_id: "Figure 4"
+      viz_type: "radar_chart"
+      what_compared: "TEAL vs SPON on reasoning tasks at 50% sparsity"
+      how_gain_highlighted: "Radar polygon area visually shows SPON covering more area than TEAL across all dimensions"
+      design_note: "Radar charts effectively show multi-task advantage at a glance; good for 5-6 benchmarks"
+    - figure_id: "Figure 5"
+      viz_type: "heatmap_and_scatter"
+      what_compared: "CKA similarity matrices (dense vs TEAL vs SPON) + t-SNE latent visualizations"
+      how_gain_highlighted: "SPON heatmap diagonal is darker (higher CKA) than TEAL; t-SNE clusters closer to dense"
+      design_note: "Dual visualization (CKA heatmap + t-SNE scatter) provides both quantitative and qualitative representational evidence. Strong mechanistic argument."
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Continual pretraining results: SPON vs baselines across sparsity levels"
+      how_gain_highlighted: "SPON curves consistently above baselines, gap widens at higher sparsity"
+      design_note: "Shows performance across the full sparsity spectrum rather than single operating points"
+    - figure_id: "Figure 11"
+      viz_type: "bar_chart"
+      what_compared: "Scale-up results on Qwen3-32B and Llama3-70B across 11 tasks"
+      how_gain_highlighted: "Side-by-side bars with SPON outperforming in 8+ of 11 tasks per model"
+      design_note: "Appendix placement but critical for scaling claims; shows persistence of gains at 32B and 70B"
+  ablation_figures:
+    - figure_id: "Figure 7"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["injection location (MLP down-proj, up-proj, attention)", "layer position (lower vs upper)"]
+      design_note: "Cleanly separates component-level and layer-level ablation in a single figure. Identifies MLP down-projection in lower layers as the sweet spot."
+    - figure_id: "Figure 8"
+      viz_type: "line_plot"
+      dimensions_varied: ["SPON neuron count vs LoRA rank", "parameter count on x-axis"]
+      design_note: "Plots performance against parameter budget, showing SPON achieves comparable results to LoRA with 2x fewer parameters. Effective Pareto-style comparison."
+    - figure_id: "Figure 9"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["number of active MoE experts (2, 4, 6, 8)", "with/without SPON"]
+      design_note: "Shows SPON's applicability beyond standard dense transformers to MoE architectures"
+    - figure_id: "Figure 10"
+      viz_type: "bar_chart"
+      dimensions_varied: ["quantization bits", "pruning method", "with/without SPON"]
+      design_note: "Demonstrates orthogonality with other compression techniques—key for practical deployment"
+  figure_narrative_role: "Figure 1 (motivation: activation decay) -> Figure 2 (method overview: SPON mechanism) -> Figure 3-4 (main results: pruning comparison + radar tasks) -> Figure 5 (mechanistic evidence: CKA + t-SNE) -> Figure 6 (continual pretraining) -> Figure 7 (ablation: where to inject) -> Figure 8 (ablation: SPON vs LoRA efficiency) -> Figure 9-10 (generalization: MoE + quantization/pruning) -> Figure 11 (scale-up: 32B/70B)"
+
+tables:
+  table_count: 13  # Tables 1-13 across main paper and appendix
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (Full, TEAL, SPON) x sparsity levels (25%, 50%, 60%)"
+    col_axis: "model architectures (Llama3-1B, Llama3-8B, Mistral-7B, Qwen3-8B)"
+    row_organization: "by_category"  # grouped by sparsity level, then method within each level
+    col_organization: "grouped_by_model"
+    highlight_strategy: "bold_best per sparsity level per model"
+    statistical_reporting: "single-run perplexity values (no std reported)"
+    num_baselines: 2  # Full and TEAL
+    design_note: "Compact perplexity table covering 4 models x 3 sparsity levels. Clean layout shows SPON consistently lower PPL than TEAL at every operating point. Missing entries (--) for Llama3-1B at 25%/60% keep table honest about what was tested."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["activation sparsity method (LaRoSA, WINA, R-sparse, WAS, SPON)"]
+      variation_style: "full_numbers"
+      design_note: "Zero-shot accuracy table at 50% sparsity comparing SPON against 4 recent activation sparsity methods. Row-per-method, col-per-benchmark. Shows SPON wins on average across both Llama3-8B and Mistral-7B backbones."
+    - table_id: "Table 3"
+      what_varied: ["inference method (Full, TEAL, SPON)"]
+      variation_style: "full_numbers"
+      design_note: "Inference latency table (tokens/sec) proving SPON adds negligible overhead vs TEAL. Critical for the 'zero-cost at inference' claim."
+    - table_id: "Table 4"
+      what_varied: ["learning target (alpha vs bias b)", "number of neurons (1-16)"]
+      variation_style: "full_numbers"
+      design_note: "Key ablation showing alpha-space learning with 1 neuron (PPL 15.43) beats bias-space learning with 16 neurons (PPL 16.43). Validates the core design choice."
+    - table_id: "Table 5"
+      what_varied: ["method (Full, TEAL, SPON)"]
+      variation_style: "full_numbers"
+      design_note: "Computational complexity comparison (GFLOPs, GMACs, Params) showing SPON adds only 0.002B parameters. Proves negligible computational overhead."
+    - table_id: "Table 10"
+      what_varied: ["method (LoRA at rank 1-32 vs SPON at 1 neuron)", "parameter budget"]
+      variation_style: "full_numbers"
+      design_note: "Head-to-head with LoRA showing SPON achieves comparable accuracy with 2x fewer extra parameters (0.0155% vs 0.0326% for LoRA rank-1)."
+    - table_id: "Table 13"
+      what_varied: ["with/without SPON after Wanda pruning"]
+      variation_style: "checkmark_grid"
+      design_note: "Shows SPON is complementary to weight pruning (Wanda), improving accuracy on pruned models across 3 architectures and 6 benchmarks."
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 6-9 (detailed zero-shot results per task for all models, continual pretraining results across sparsity levels 0.0-0.6 for each architecture), Tables 11-12 (MoE expert sparsity results for OLMoE-7B and DeepSeek-MoE-16B)"
+    reason: "Main paper keeps high-level aggregated results (Table 1-2 PPL + avg accuracy); appendix provides per-task breakdowns and specialized architecture results (MoE) that would clutter the main narrative but are needed for reproducibility."

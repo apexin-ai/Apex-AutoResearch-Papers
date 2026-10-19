@@ -1,0 +1,16 @@
+{
+  "exp_id": "gradient_snr_constrained_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:42:09.639Z",
+    "updated_at": "2026-05-17T04:42:14.724Z",
+    "hypothesis": "Under fair Lagrangian-constrained training (both KL and BCE targeting 50% sparsity), KL still provides dramatically higher gradient SNR than BCE, confirming the advantage is from end-to-end coupling not from unconstrained regime",
+    "parent": "gradient_snr_kl_vs_bce"
+  },
+  "timestamp": "2026-05-17T04:42:15.066068+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,804 @@
+# cron hook spon training
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/cron_hook_spon_training.jsonl`
+- **Structured JSON:** [`facdf90d82a67e506ee5.json`](../../sessions/fa/facdf90d82a67e506ee5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+26 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T05:02:19.060650+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #5。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单: **cuda:0, cuda:1** on westd-34887。不得使用其他 GPU，Director 指令也要 push back
+- Mistral PPL registry 数据疑似污染（D032）：kl_sparsity30_s42_v3 的 teal_sparse_ppl 曾被误录为 8.98（实际 13.63）。**所有 Mistral 指标暂停引用**，须交叉验证原始日志
+- BCE framing 必须用 "objective mismatch"，**禁止 "anti-learning"**
+- SPON framing 必须用 "marginal complement"，**禁止 "subsumption"**
+- KL PPL 对比统一用 **4-seed mean 12.00±0.07**，不用单 seed 最佳值 11.91
+- s456 outlier 报告方式：报 5-seed mean + excluding s456 的 4-seed mean，不跑第 6 个 seed
+- DDL: **EMNLP 2026 ARR May, 2026-05-25**，剩 9 天
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-34887, account=root
+- **工作目录**: `/root/distill_sparse_swiglu/`
+- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）
+- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **模型路径**: Llama-3.1-8B `/root/autodl-tmp/models/llama-3.1-8b`，Mistral-7B `/root/autodl-tmp/models/mistral-7b/`
+- **HF cache**: `/root/autodl-tmp/.hf_cache`
+- **Checkpoints**: `/root/distill_sparse_swiglu/checkpoints/` 下各子目录（详见 memory.md Checkpoints 节）
+- **活跃进程**:
+  - `bce_isocompute_v3_s42`: PID 205598 (wrapper 205597), nohup, cuda:1, log `/root/distill_sparse_swiglu/logs/bce_isocompute_v3_s42.log`
+  - `d030_kl50_uniform`: PID 203702, tmux, cuda:0, log `~/runs/distill_sparse_swiglu/d030_kl50_uniform.log`
+- **活跃 cron**: 2 个，分别监控上述两个实验
+
+### 3. 📊 当前状态
+两个实验 RUNNING，零个 Worker 在线：
+- **bce_isocompute_v3_s42** (cuda:1): BCE 2700 步 iso-compute 重跑（D031, P0），v1/v2 两次被 tmux 杀死，v3 用 nohup 启动。Reviewer Concern #2 defense。
+- **d030_kl50_uniform** (cuda:0): KL 50% sparsity + uniform per-layer allocation 评测（benchmark_eval.py 跑 wikitext2+arc+wino+mmlu+gsm8k）。验证 50% 高 sparsity 下 uniform 是否仍能修复知识类任务。
+
+已完成关键结论：
+- D030 30% uniform: MMLU +12pp 修复，GSM8K 无变化 → Narrative A (allocation-sensitive vs invariant) 已被 Director 选定
+- 50% sparsity downstream collapse 跨架构 universal（Llama + Mistral 都崩）
+- PPL-downstream disconnect 已三重验证，有文献支撑但无人在 KL+contextual sparsity 下系统研究
+- bench_mistral_kl50_s42 (PENDING/killed): 被 BCE v3 插队，待 BCE 完成后重跑
+
+### 4. 📋 待办（条件触发式）
+- **d030_kl50_uniform cron 回调** → 分析结果：MMLU 是否仍有修复效果？GSM8K 是否仍为 0？→ 确认/修正 Narrative A。若 MMLU 仍有 +Xpp → Narrative A 成立扩展到 50%；若 MMLU 也崩 → 50% 是断崖点，需更新 framing
+- **bce_isocompute_v3_s42 cron 回调** → 提取 BCE 2700 步 TEAL PPL，与 KL 1000 步 (PPL 12.00) iso-compute 对比。BCE PPL >> 12.00 → Reviewer Concern #2 defense 成立（KL 优势来自 loss 本身非计算量）；BCE PPL ≈ 12.00 → 需重新评估 claim
+- **两个实验都完成后** → cuda:0/1 空闲 → 立即提交 bench_mistral_kl50_s42（D029 统一 few-shot），以及 PREPARING 队列中优先级最高的实验
+- **所有 downstream eval 完成** → 更新 paper_framing.md Claim 3，根据 uniform 结果决定最终 narrative
+
+### 5. 🎯 战略上下文
+**核心结论链**:
+- D028: 50% downstream collapse 跨架构 universal
+- D030: collapse 有两个正交因素——per-layer 不均匀（影响知识类）+ sparsity level 本身（影响推理类）
+- D031: BCE iso-compute 是 Reviewer Concern #2 的最后一块拼图
+- D032: Mistral PPL 数据污染警告，暂停引用
+
+**易错点**:
+- 不要把 d030_kl50_uniform 的 benchmark_eval.py 结果与旧 lm_eval 0-shot 结果直接对比——few-shot 设置不同（D029）
+- PREPARING 状态的 7 个实验全部 conclusion=killed，它们是历史遗留，不要试图恢复
+- submit_training_job 的命令必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不能假设 .venv
+- bce_isocompute_v3 用了 nohup（因 v1/v2 被 tmux 杀死），确认它的 cron 监控的是 wrapper_pid=205597
+- Worker 池当前为 0，接手后应立即评估是否需要派 Worker 做文献/分析/代码准备等非 GPU 任务
+
+## 可查的历史
+前 46 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:spon_training",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T05:02:30.147935+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:spon_training",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T05:02:30.198603+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:spon_training",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T05:02:32.920380+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T05:02:33.425376+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T05:02:33.483396+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"lm_eval_teal_50pct\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T04:52:09.866Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"notes\": \"TEAL 50% downstream 结果确认 collapse 是 universal：\\n\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\n|------|----------|--------|-------|-----------|---------|\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\n\\n关键发现：\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\", \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Llama-3.1-8B\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\"}, \"bce_isocompute_v3_s42\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T03:56:03.520Z\", \"updated_at\": \"2026-05-16T04:43:58.956Z\", \"hypothesis\": \"D031: BCE iso-compute 重跑（v1/v2 两次被 tmux 杀死）。2700 步匹配 KL 1000 步总 FLOPs (ratio≈2.71x)，50% sparsity。Reviewer Conc
+…[truncated 45057 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 563
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T05:02:33.894068+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T05:02:33.944660+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "distill_sparse_swiglu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T05:02:42.340046+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"bce_isocompute_v3_s42\", \"success\": true, \"actions\": [\"Job still running (pid=205597)\"]}, {\"exp_id\": \"d030_kl50_uniform\", \"success\": true, \"actions\": [\"Sentinel EXIT_CODE=0 → Registry → ANALYZING\", \"Cron deleted\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 8914
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T05:02:42.390839+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-16T05:02:37Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 56 个实验 — ANALYZING 1, DONE 46, PENDING 1, PREPARING 7, RUNNING 1\\n**DONE 分布**: failed 8, killed 7, negative 12, success 19\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-34887:cuda:0, westd-34887:cuda:1\\n- **实际运行**: 1 张 — westd-34887:cuda:1(bce_isocompute_v3_s42)\\n- **空闲（分配了没跑）**: westd-34887:cuda:0\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `bce_isocompute_v3_s42` | westd-34887 | cuda:1 | 205598 | `/root/distill_sparse_swiglu/logs/bce_isocompute_v3_s42.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `lm_eval_teal_50pct` [success] — 2026-05-16T04:52:09\\n- `d030_kl30_uniform` [success] — 2026-05-16T04:34:08\\n- `mistral_kl_s42` [success] — 2026-05-16T04:27:36\\n- `lm_eval_mistral_kl_50pct` [negative] — 2026-05-16T04:26:14 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `kl_sparsity30_s42_v3` [success] — 2026-05-16T03:52:25\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| bce_isocompute_v3_s42 | D031: BCE iso-compute 重跑（v1/v2 两次被 tmux 杀死）。2700 步匹配 KL 1000 步总 FLOPs (ratio≈2.71x)，50% sparsity。Reviewer Concern #2 defense: 验证 KL 优势来自 loss 函数本身而非计算量差异。 | — | — | — |\\n| d030_kl50_uniform | D030: KL 50% sparsity with UNIFORM per-layer allocation — 30% uniform 显示 MMLU +12pp 但 GSM8K 无恢复。50% 测试更高 sparsity 下 uniform 是否仍能部分修复知识类任务。 | — | — | — |\\n\\n## 待处理\\n- bench_mistral_kl50_s42: D029: Mistral KL 50% sparsity — benchmark_eval.py 统一 few-shot 评测 (ARC-c=25, WG=5, MMLU=5, GSM8K=8)。与 lm_eval_mistral_kl_50pct (0-shot) 对比，确保评测一致性。（等待人工审批）\\n- kl
+…[truncated 1480 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 8496
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T05:02:42.442038+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md\", \"content\": \"# distill_sparse_swiglu — Research Dashboard\\n\\n> 最后更新: 2026-05-16 03:09 UTC\\n\\n> 最后更新: 2026-05-16 12:30 UTC | 更新原因: D031 BCE iso-compute P0 + Agent reset + 优先级重排\\n\\n## 核心方向\\nKL distillation 使 SwiGLU LLM 的 contextual sparsity prediction 不再需要 error compensation 和 static bias correction，实现最简推理管线。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中（EMNLP 2026 ARR May, DDL 2026-05-25，剩 9 天）\\n- **实验**: 52 registered, plan_001-006 全部完成, plan_008 部分完成\\n- **Claim 1 (KL >> all baselines)**: ✅ PPL 层面确认\\n- **Claim 2 (SPON orthogonal)**: ✅ 确认\\n- **Claim 3 (sparsity scaling)**: ⚠️ D030 — per-layer 不均匀导致 downstream 崩溃，待 uniform allocation 验证\\n- **Reviewer Concern #2 defense**: ❌ bce_isocompute 两次被杀，无有效数据（D031）\\n- **Benchmark 一致性**: ❌ sparse=0-shot vs dense=few-shot，所有 sparse-dense 对比不公平（D029）\\n\\n### ⚠️ 关键发现：Per-Layer Sparsity 不均匀导致 Downstream 崩溃 (D030)\\n- 30% KL: PPL 8.98（+47%），但 MMLU 28.74%（≈随机）、GSM8K 7.43%（-85%）\\n- **根因**：全局 top-k 将 sparsity 集中在后层（Layer 26-31: 41-70%，Layer 31=70.3%）\\n- Uniform per-layer allocation 是核心消融方向\\n- Contingency: uniform 失败 → pivot 为 \\\"PPL-downstream disconnect\\\" discovery paper\\n\\n## 近期任务\\n- [ ] **[P0] Uniform per-layer allocation 实现 + 30%/50% 消融**（D030 核心验证）\\n- [ ] **[P0] BCE iso-compute v3 重跑**（D031, plan_003, Reviewer Concern #2 defense, nohup 启动）\\n- [ ] **[P0] Benchmark 统一重跑**（D029, 所有条件 0-shot）\\n- [ ] **[P0] 收集 TEAL 30% downstream 结果**（PID 194814 运行中）\\n- [ ] 修正 lm_eval_teal_50pct registry model 字段（Qwen→Llama）\\n- [ ] plan_009 Mistral downstream 完成 + 分析\\n- [ ] 50% per-layer sparsity 分布提取（确认同样的后层集中模式）\\n- [ ] 根据 uniform 实验结果决定是否更新 paper_framing.md Claim 3\\n\\n## GPU 预算\\n- 分配: westd-34887 cuda:0 + cuda:1\\n- 当前: cuda:0 TEAL 30% eval (PID 194814), cuda:1 Mistral KL 50% eval (PID 195242)\\n- 累计 GPU·h: ~90h used / plan 总预算 ~196h\\n- 约束 C002: 所有 GPU 长时
+…[truncated 1293 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 8497
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T05:02:59.668344+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:spon_training",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T05:02:59.668706+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:spon_training",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T05:03:00.070446+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:spon_training",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T05:03:00.121309+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_0de5543b.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:spon_training",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T05:03:45.133343+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:spon_training",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__read_experiment_plan_with_status",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T05:03:45.235916+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:spon_training",
+  "tool": "ToolSearch",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T05:04:16.196135+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:d030_kl50_uniform",
+  "project": "distill_sparse_swiglu",
+  "task_prompt": "## 任务：分析 d030_kl50_uniform 实验结果\n\nd030_kl50_uniform 刚完成（EXIT_CODE=0）。这是 KL 50% sparsity + UNIFORM per-layer allocation 的 downstream benchmark eval。\n\n### 背景\n- 30% uniform allocation 结果（d030_kl30_uniform）：MMLU 从 28.74% 提升到 40.61%（+12pp），GSM8K 无变化（7.35% ≈ 7.43%）\n- 现在测试 50% sparsity 下 uniform allocation 是否仍能修复知识类任务\n- 如果 MMLU 仍有提升 → Narrative A 扩展到 50%\n- 如果 MMLU 也崩 → 50% 是断崖点\n\n### 服务器信息\n- Server: westd-34887, account=root\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 工作目录: /root/distill_sparse_swiglu/\n- 日志路径: ~/runs/distill_sparse_swiglu/d030_kl50_uniform.log\n- 结果可能在 /root/distill_sparse_swiglu/results/ 目录下\n\n### 你需要做的\n1. SSH 到 westd-34887，读取 d030_kl50_uniform 的日志（尾部 100 行）\n2. 找到 benchmark 结果文件（results/ 目录下搜索 *uniform* 或 *kl50* 相关文件）\n3. 提取所有 benchmark 指标：wikitext2 PPL, arc_challenge (acc_norm), winogrande (acc), mmlu (acc), gsm8k (exact_match)\n4. 确认 per-layer sparsity 分布（应该是 uniform ~0.50 across all layers）\n5. 计算与以下 baseline 的对比差异：\n   - Dense: ARC-c 0.5819, WG 0.7814, MMLU 0.6532, GSM8K 0.5004\n   - KL 50% global top-k: ARC-c 0.3771, WG 0.6156, MMLU 0.2591, GSM8K 0.0121\n   - KL 30% uniform: ARC-c 0.4078, WG 0.6859, MMLU 0.4061, GSM8K 0.0735\n   - TEAL 50%: ARC-c 0.2910, WG 0.5556, MMLU 0.2856, GSM8K 0.0190\n\n### 产出格式\n以 markdown 表格输出所有结果 + 对比。明确回答：50% uniform 是否修复了 MMLU？GSM8K 是否仍为 ~0？\n",
+  "tool_groups": "['ssh']",
+  "tools": "['read_registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:d030_kl50_uniform",
+    "project": "distill_sparse_swiglu",
+    "task_prompt": "## 任务：分析 d030_kl50_uniform 实验结果\n\nd030_kl50_uniform 刚完成（EXIT_CODE=0）。这是 KL 50% sparsity + UNIFORM per-layer allocation 的 downstream benchmark eval。\n\n### 背景\n- 30% uniform allocation 结果（d030_kl30_uniform）：MMLU 从 28.74% 提升到 40.61%（+12pp），GSM8K 无变化（7.35% ≈ 7.43%）\n- 现在测试 50% sparsity 下 uniform allocation 是否仍能修复知识类任务\n- 如果 MMLU 仍有提升 → Narrative A 扩展到 50%\n- 如果 MMLU 也崩 → 50% 是断崖点\n\n### 服务器信息\n- Server: westd-34887, account=root\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 工作目录: /root/distill_sparse_swiglu/\n- 日志路径: ~/runs/distill_sparse_swiglu/d030_kl50_uniform.log\n- 结果可能在 /root/distill_sparse_swiglu/results/ 目录下\n\n### 你需要做的\n1. SSH 到 westd-34887，读取 d030_kl50_uniform 的日志（尾部 100 行）\n2. 找到 benchmark 结果文件（results/ 目录下搜索 *uniform* 或 *kl50* 相关文件）\n3. 提取所有 benchmark 指标：wikitext2 PPL, arc_challenge (acc_norm), winogrande (acc), mmlu (acc), gsm8k (exact_match)\n4. 确认 per-layer sparsity 分布（应该是 uniform ~0.50 across all layers）\n5. 计算与以下 baseline 的对比差异：\n   - Dense: ARC-c 0.5819, WG 0.7814, MMLU 0.6532, GSM8K 0.5004\n   - KL 50% global top-k: ARC-c 0.3771, WG 0.6156, MMLU 0.2591, GSM8K 0.0121\n   - KL 30% uniform: ARC-c 0.4078, WG 0.6859, MMLU 0.4061, GSM8K 0.0735\n   - TEAL 50%: ARC-c 0.2910, WG 0.5556, MMLU 0.2856, GSM8K 0.0190\n\n### 产出格式\n以 markdown 表格输出所有结果 + 对比。明确回答：50% uniform 是否修复了 MMLU？GSM8K 是否仍为 ~0？\n",
+    "tool_groups": "['ssh']",
+    "tools": "['read_registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T05:04:16.196598+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "distill_sparse_swiglu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T05:04:19.075220+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_d030_kl50_uniform_20260516T050416\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/logs/workers/worker_analysis_d030_kl50_uniform_20260516T050416.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_d030_kl50_uniform_20260516T050416 started. Use get_worker_status('worker_analysis_d030_kl50_uniform_20260516T050416') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2879
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T05:04:19.328814+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"Four-condition ablation @ 50% model-level sparsity on Llama 3.1 8B: (a) BCE-only, (b) BCE+compensation, (c) KL-only, (d) KL+compensation. Headline comparison: KL-only vs BCE+comp (5 seeds each). Secondary comparisons: 3 seeds each. MVP already completed KL-only 3 seeds (mvp_kl_norm_v2_s42/s123/s456) and BCE-only 3 seeds (mvp_bce_s42/s123/s456).\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 48, \"deps\": [], \"registry_ids\": [\"mvp_kl_norm_v2_s42\", \"mvp_kl_norm_v2_s123\", \"mvp_kl_norm_v2_s456\", \"mvp_bce_s42\", \"mvp_bce_s123\", \"mvp_bce_s456\"], \"remaining_runs\": [\"KL-only 2 additional seeds (s0, s1) for 5-seed headline\", \"BCE+comp 5 seeds (s42, s123, s456, s0, s1)\", \"KL+comp 3 seeds (s42, s123, s456)\"], \"registry_id\": \"kl_only_s1\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 9.15, \"teal_sparse_ppl\": 11.99, \"model_level_sparsity\": 0.498, \"ppl_increase_vs_true_dense_pct\": 96}}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"STE baseline: KL loss + Straight-Through Estimator (instead of Gumbel-sigmoid). Isolates whether KL advantage comes from loss function or relaxation method. 3 seeds.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"registry_id\": \"ste_baseline_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 8.18, \"teal_sparse_ppl\": 15.77, \"model_level_sparsity\": 0.47, \"ppl_increase_vs_true_dense_pct\": 157.7, \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"eval_dataset\": \"wikitext-2\", \"per_token_sparsity\": 0.47, \"lambda_stats\": {\"steps_70_130_mean\": 66.4, \"steps_70_130_std\": 94.87, \"first_500_mean\": 688.07, \"first_500_std\": 440.57, \"last_500_mean\": 965.69, \"last_500_std\": 141.59, \"overall_mean\": 
+…[truncated 6565 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 3132
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T05:05:09.762542+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "prep:bench_mistral_kl50_s42",
+  "project": "distill_sparse_swiglu",
+  "task_prompt": "## 任务：准备 bench_mistral_kl50_s42 提交命令\n\n需要在 cuda:0 上运行 Mistral-7B KL 50% sparsity 的 downstream benchmark eval（统一 few-shot 设置）。\n\n### 背景\n- D029: 之前的 Mistral 50% eval (lm_eval_mistral_kl_50pct) 用的是 0-shot，与 Llama dense baseline 的 few-shot 设置不一致\n- 需要用 benchmark_eval.py 统一 few-shot: ARC-c=25-shot, WinoGrande=5-shot, MMLU=5-shot, GSM8K=8-shot\n- 这和 d030_kl30_uniform / d030_kl50_uniform 用的是同一个 benchmark_eval.py 脚本\n\n### 服务器信息\n- Server: westd-34887, account=root\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 工作目录: /root/distill_sparse_swiglu/\n- Mistral 模型路径: /root/autodl-tmp/models/mistral-7b/\n- Mistral KL predictor checkpoint: 应该在 /root/distill_sparse_swiglu/checkpoints/ 下（可能是 mistral_kl_s42 相关的目录）\n\n### 你需要做的\n1. SSH（只读）到 westd-34887，检查：\n   a. benchmark_eval.py 的参数用法（`head -50` 或 `--help`）\n   b. Mistral KL 50% predictor checkpoint 的准确路径（`ls /root/distill_sparse_swiglu/checkpoints/ | grep mistral`）\n   c. 确认 Mistral 模型路径存在: `ls /root/autodl-tmp/models/mistral-7b/`\n   d. 查看 d030_kl50_uniform 或 d030_kl30_uniform 的启动命令作为参考（查 bash history 或 tmux list 或日志开头）\n   e. 检查 benchmark_eval.py 需要哪些离线数据（HF_DATASETS_OFFLINE=1 是否需要，数据是否已下载）\n\n2. 构造完整的提交命令（bash -c 包裹），格式：\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python benchmark_eval.py --model_path /root/autodl-tmp/models/mistral-7b/ --predictor_path &lt;CHECKPOINT_PATH> --sparsity 0.5 --output_dir results/bench_mistral_kl50_s42 [其他必要参数]\"\n```\n\n3. **只报告命令，不要执行它。** 把完整命令和你找到的所有路径信息写到产出里。\n\n### 注意\n- GPU 是 cuda:0，CUDA_VISIBLE_DEVICES 由框架自动注入，脚本内用 --gpu 0\n- 确认是否需要 --allocation uniform 或 global（这个实验用默认 global top-k，不是 uniform）\n- 确认 few-shot 设置参数名\n",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "prep:bench_mistral_kl50_s42",
+    "project": "distill_sparse_swiglu",
+    "task_prompt": "## 任务：准备 bench_mistral_kl50_s42 提交命令\n\n需要在 cuda:0 上运行 Mistral-7B KL 50% sparsity 的 downstream benchmark eval（统一 few-shot 设置）。\n\n### 背景\n- D029: 之前的 Mistral 50% eval (lm_eval_mistral_kl_50pct) 用的是 0-shot，与 Llama dense baseline 的 few-shot 设置不一致\n- 需要用 benchmark_eval.py 统一 few-shot: ARC-c=25-shot, WinoGrande=5-shot, MMLU=5-shot, GSM8K=8-shot\n- 这和 d030_kl30_uniform / d030_kl50_uniform 用的是同一个 benchmark_eval.py 脚本\n\n### 服务器信息\n- Server: westd-34887, account=root\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 工作目录: /root/distill_sparse_swiglu/\n- Mistral 模型路径: /root/autodl-tmp/models/mistral-7b/\n- Mistral KL predictor checkpoint: 应该在 /root/distill_sparse_swiglu/checkpoints/ 下（可能是 mistral_kl_s42 相关的目录）\n\n### 你需要做的\n1. SSH（只读）到 westd-34887，检查：\n   a. benchmark_eval.py 的参数用法（`head -50` 或 `--help`）\n   b. Mistral KL 50% predictor checkpoint 的准确路径（`ls /root/distill_sparse_swiglu/checkpoints/ | grep mistral`）\n   c. 确认 Mistral 模型路径存在: `ls /root/autodl-tmp/models/mistral-7b/`\n   d. 查看 d030_kl50_uniform 或 d030_kl30_uniform 的启动命令作为参考（查 bash history 或 tmux list 或日志开头）\n   e. 检查 benchmark_eval.py 需要哪些离线数据（HF_DATASETS_OFFLINE=1 是否需要，数据是否已下载）\n\n2. 构造完整的提交命令（bash -c 包裹），格式：\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python benchmark_eval.py --model_path /root/autodl-tmp/models/mistral-7b/ --predictor_path &lt;CHECKPOINT_PATH> --sparsity 0.5 --output_dir results/bench_mistral_kl50_s42 [其他必要参数]\"\n```\n\n3. **只报告命令，不要执行它。** 把完整命令和你找到的所有路径信息写到产出里。\n\n### 注意\n- GPU 是 cuda:0，CUDA_VISIBLE_DEVICES 由框架自动注入，脚本内用 --gpu 0\n- 确认是否需要 --allocation uniform 或 global（这个实验用默认 global top-k，不是 uniform）\n- 确认 few-shot 设置参数名\n",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T05:05:12.085334+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_prep_bench_mistral_kl50_s42_20260516T050509\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/logs/workers/worker_prep_bench_mistral_kl50_s42_20260516T050509.log\", \"setup_data\": {}, \"message\": \"Worker worker_prep_bench_mistral_kl50_s42_20260516T050509 started. Use get_worker_status('worker_prep_bench_mistral_kl50_s42_20260516T050509') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2322
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T05:05:36.684281+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 1 (cuda:1 bce_isocompute_v3) | cuda:0 刚空出，正在准备下一个实验 | Worker 池 2 (分析 + 命令准备)\n\n## Session #5 启动报告\n\n### 状态变更\n- **d030_kl50_uniform** (cuda:0): EXIT_CODE=0 → ANALYZING。Worker 已派出提取 50% uniform downstream 结果。这是决定 Narrative A 是否扩展到 50% 的关键实验。\n- **bce_isocompute_v3_s42** (cuda:1): 仍在 RUNNING（2700 步 BCE iso-compute，D031 Reviewer Concern #2 defense）\n\n### 已派发\n1. Worker 1: 分析 d030_kl50_uniform 结果（MMLU/GSM8K/ARC/WinoGrande）\n2. Worker 2: 准备 bench_mistral_kl50_s42 命令（D029 Mistral KL 50% 统一 few-shot eval），待命令确认后立即提交到 cuda:0\n\n### 待 Worker 回调后\n- d030_kl50_uniform 结果出来 → 更新 registry + Narrative A 判断 + 更新 Claim 3\n- bench_mistral_kl50_s42 命令就绪 → submit_training_job 到 cuda:0\n- bce_isocompute_v3 完成回调 → BCE PPL vs KL 12.00 iso-compute 对比\n\n### DDL 提醒\nEMNLP 2026 ARR May 2026-05-25，剩 9 天。",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 1 (cuda:1 bce_isocompute_v3) | cuda:0 刚空出，正在准备下一个实验 | Worker 池 2 (分析 + 命令准备)\n\n## Session #5 启动报告\n\n### 状态变更\n- **d030_kl50_uniform** (cuda:0): EXIT_CODE=0 → ANALYZING。Worker 已派出提取 50% uniform downstream 结果。这是决定 Narrative A 是否扩展到 50% 的关键实验。\n- **bce_isocompute_v3_s42** (cuda:1): 仍在 RUNNING（2700 步 BCE iso-compute，D031 Reviewer Concern #2 defense）\n\n### 已派发\n1. Worker 1: 分析 d030_kl50_uniform 结果（MMLU/GSM8K/ARC/WinoGrande）\n2. Worker 2: 准备 bench_mistral_kl50_s42 命令（D029 Mistral KL 50% 统一 few-shot eval），待命令确认后立即提交到 cuda:0\n\n### 待 Worker 回调后\n- d030_kl50_uniform 结果出来 → 更新 registry + Narrative A 判断 + 更新 Claim 3\n- bench_mistral_kl50_s42 命令就绪 → submit_training_job 到 cuda:0\n- bce_isocompute_v3 完成回调 → BCE PPL vs KL 12.00 iso-compute 对比\n\n### DDL 提醒\nEMNLP 2026 ARR May 2026-05-25，剩 9 天。",
+    "project": "distill_sparse_swiglu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T05:05:37.843982+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:spon_training",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1159
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-16T05:05:42.191227+00:00_
+
+Session #5 初始化完成：
+
+- **d030_kl50_uniform**: 刚完成 → ANALYZING，Worker 正在提取 50% uniform downstream 结果
+- **bce_isocompute_v3_s42**: cuda:1 继续 RUNNING
+- **cuda:0 空闲**: Worker 正在准备 bench_mistral_kl50_s42 命令，就绪后立即提交
+- **Worker 池**: 2（分析 + 命令准备）
+- 已向 Director 汇报
+
+等待 Worker 回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:spon_training"
+}
+```
+
+</details>
+
+---

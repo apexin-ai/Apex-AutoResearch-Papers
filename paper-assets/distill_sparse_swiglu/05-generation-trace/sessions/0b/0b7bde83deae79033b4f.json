@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b7bde83deae79033b4f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops verify checkpoints and gpu model",
+  "task_key": "worker_ops_verify-checkpoints-and-gpu-model_20260518T202751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-checkpoints-and-gpu-model_20260518T202751_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "787a3d243cedd394a4a36bd037c8e4aea19a0d61e00c041672db2ab38cefecab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1. **s123 checkpoint**: 存在，两个路径均有\n   - `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt`\n   - `/root/distill_sparse_swiglu/checkpoints/kl_30pct_s123/predictor_kl_normalized.pt`\n\n2. **s456 checkpoint**: 存在，两个路径均有\n   - `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt`\n   - `/root/distill_sparse_swiglu/checkpoints/kl_30pct_s456/predictor_kl_normalized.pt`\n\n3. **westd-34887**: NVIDIA RTX PRO 6000 Blackwell Server Edition × 2, 每卡 97887 MiB (~96 GB)\n\n4. **westd-41718**: NVIDIA RTX PRO 6000 Blackwell Server Edition × 2, 每卡 97887 MiB (~96 GB)\n\n两台服务器 GPU 型号和显存完全一致，4 个 checkpoint 文件全部存在（注意 s123/s456 各有两份，分别在 `kl_sparsity30_*` 和 `kl_30pct_*` 目录下）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-checkpoints-and-gpu-model.md"
+}

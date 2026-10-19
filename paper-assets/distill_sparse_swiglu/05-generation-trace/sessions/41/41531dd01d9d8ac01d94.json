@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41531dd01d9d8ac01d94",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra extract bce30 westd34887 only",
+  "task_key": "worker_infra_extract_bce30_westd34887_only_20260517T224241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_extract_bce30_westd34887_only_20260517T224241_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "c1465fe5a74b6229841e1c5a931a8ed02fda460fed022ab0fc69b5c9c55af1e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。Cron 不存在（可能已被清理）。\n\n## 结果汇总：`qwen14b_bce30_s42_eval`\n\n| Metric | Value |\n|--------|-------|\n| wikitext2_ppl | **8.7634** |\n| arc_challenge_acc_norm | **0.5759** |\n| winogrande_acc | **0.7261** |\n| mmlu_acc | **0.7167** |\n| gsm8k_exact_match | **0.5307** |\n\n配置：Qwen2.5-14B, BCE predictor, 30% sparsity (global_topk allocation), seed=42。总运行时间约 5.9 小时（21080s）。\n\nPPL eval 还显示：dense baseline PPL = 5.18，predictor hard mask PPL = 5.57，TEAL sparse PPL = 8.76。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-extract-bce30-westd34887-only.md"
+}

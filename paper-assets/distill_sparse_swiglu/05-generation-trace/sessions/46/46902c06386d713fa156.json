@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46902c06386d713fa156",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl k8 s42 eval check",
+  "task_key": "worker_analysis_perlayer_kl_k8_s42_eval_check_20260523T044816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_k8_s42_eval_check_20260523T044816_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "503c616ef070dd4f6c8b816b5257a14b57b2552a1992417776f90a310f6c23f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**K=8 eval 结果（perlayer_kl_k8_s42_eval → DONE/success）：**\n\n| Metric | Value |\n|--------|-------|\n| wikitext2 PPL | 8.9704 |\n| ARC-C acc_norm | 0.4104 |\n| WinoGrande acc | 0.6740 |\n| MMLU acc | 0.3980 |\n| GSM8K exact_match | 0.0561 |\n| HellaSwag acc_norm | 0.6919 |\n| PIQA acc_norm | 0.7612 |\n\n**K=2 训练已提交（perlayer_kl_k2_s42_train → RUNNING）：**\n- 服务器：westd-34887 cuda:1\n- PID：112468\n- 1000 steps, save_every=500, gradient_checkpointing\n- Cron 监控已注册（120s 间隔）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-k8-s42-eval-check.md"
+}

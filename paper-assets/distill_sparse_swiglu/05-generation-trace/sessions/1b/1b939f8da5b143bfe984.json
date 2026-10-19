@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b939f8da5b143bfe984",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "fix mistral registry backfill",
+  "task_key": "worker_fix_mistral_registry_backfill_20260517T114351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_mistral_registry_backfill_20260517T114351_result.json",
+    "occurrence": 1,
+    "bytes": 1583,
+    "sha256": "f221b41f3bd48d75be545cb01c2a7e1e087982d60547dc22d8b26d543b612bad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 12 Mistral experiments registered. Summary:\n\n## 已注册 Mistral 实验汇总\n\n| exp_id | Mode | Sparsity | WikiText-2 PPL | vs Dense | Conclusion |\n|--------|------|----------|----------------|----------|------------|\n| `mistral_dense_ppl` | Dense | 0% | **5.5238** | — | success |\n| `mistral_kl30_pertoken` | KL per-token | 30% | 6.048 | +0.52 | success |\n| `mistral_kl30_teal_global` | KL teal-global | 30% | 6.7733 | +1.25 | success |\n| `mistral_teal30_baseline` | TEAL vanilla | 30% | 8.3807 | +2.86 | success |\n| `mistral_kl50_pertoken` | KL per-token | 50% | 7.2931 | +1.77 | success |\n| `mistral_kl50_teal_global` | KL teal-global | 50% | 8.6489 | +3.13 | success |\n| `mistral_teal50_baseline` | TEAL vanilla | 50% | 18.3061 | +12.78 | success |\n| `mistral_kl70_pertoken` | KL per-token | 70% | 9.1086 | +3.58 | success |\n| `mistral_kl70_teal_global` | KL teal-global | 70% | 13.3254 | +7.80 | success |\n| `mistral_teal70_baseline` | TEAL vanilla | 70% | 61.716 | +56.19 | success |\n\n**Downstream (lm-eval-harness):**\n\n| exp_id | ARC-C (norm) | WinoGrande | MMLU | GSM8K | Conclusion |\n|--------|-------------|------------|------|-------|------------|\n| `lm_eval_mistral_dense` | 0.6024 | 0.7869 | 0.6244 | 0.3654 | success |\n| `lm_eval_mistral_kl_50pct` | 0.3183 | 0.6290 | 0.2295 | 0.0045 | negative |\n\n9 新注册 + 3 已存在（`mistral_teal50_baseline`, `lm_eval_mistral_dense`, `lm_eval_mistral_kl_50pct`），共 12 条。KL predictor 在所有 sparsity 下均显著优于 TEAL vanilla baseline（PPL 降幅 28%~85%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-mistral-registry-backfill.md"
+}

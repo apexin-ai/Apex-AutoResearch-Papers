@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22993b205f3ad09f8925",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis k16 eval results",
+  "task_key": "worker_analysis_k16_eval_results_20260523T132639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k16_eval_results_20260523T132639_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "d14f5c48435e0b29a5c1672c64af6720a1054efe1e9dc5e3caff79b0ccf83e1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I can see the task pipeline. Both have completed arc_challenge, winogrande+mmlu, gsm8k, and are currently running hellaswag (10042×4 = 40168 loglikelihood requests). After hellaswag, piqa and wikitext2 remain.\n\n## K=16 s123 eval\n状态: **RUNNING**\n当前: hellaswag — 24% (9681/40168), ~20.75 it/s\n已完成: arc_challenge, winogrande+mmlu, gsm8k\n待运行: piqa (~3 min), wikitext2 (~5-10 min)\n预计剩余: **~35 min**\n\n## K=16 s456 eval\n状态: **RUNNING**\n当前: hellaswag — 16% (6601/40168), ~19.48 it/s\n已完成: arc_challenge, winogrande+mmlu, gsm8k\n待运行: piqa (~3 min), wikitext2 (~5-10 min)\n预计剩余: **~40 min**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-k16-eval-results.md"
+}

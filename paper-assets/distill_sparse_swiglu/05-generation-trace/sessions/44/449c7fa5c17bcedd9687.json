@@ -1,0 +1,775 @@
+{
+  "schema_version": "1.0",
+  "id": "449c7fa5c17bcedd9687",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "ops mask divergence 50pct 64samples",
+  "task_key": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_mask-divergence-50pct-64samples_20260519T121559.jsonl",
+    "occurrence": 1,
+    "bytes": 33864,
+    "sha256": "970fca42104f36ba690228b9393ca5d6a48f13fc2637f1790b59e5f371a85007"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T12:17:41.798303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T12:17:41.798645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T12:17:41.798835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "find /root/distill_sparse_swiglu/checkpoints/ -name \"*.pt\" | head -50",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T12:17:41.798972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "filters": "{'exp_id': 'mvp_kl_norm_v2_s42'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T12:17:41.799169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\\\\n/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\\\\n/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt\\\\n/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt\\\\n/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt\\\\n/root/distill_sparse_swiglu/checkpoints/kl_comp_30pct_s42/compensation.pt\\\\n/root/distill_sparse_swiglu/checkpoints/kl_comp_30pct_s42/predictor_with_comp.pt\\\\n/root/distill_sparse_swiglu/checkpoints/kl_comp_30pct_s123/compensation.pt\\\\n/root/distill_sparse_swiglu/checkpoints/kl_comp_30pct_s123/predictor_with_comp.pt\\\\n/root/distill_sparse_swiglu/checkpoints/kl_comp_30pct_s456/compensation.pt\\\\n/root/distill_sparse_swiglu/checkpoints/kl_comp_30pct_s456/predictor_with_comp.pt\\\\n/root/distill_sparse_swiglu/checkpoints/kl_comp_50pct_s42/compensation.pt\\\\n/root/distill_sparse_swiglu/checkpoints/kl_comp_50pct_s42/predictor_with_comp.pt\\\\n/root/distill_sparse_swiglu/checkpoints/c1_ablation_bce_kl_targets_s42/predictor_bce_kl_targets.pt\\\\n/root/distill_sparse_swiglu/checkpoints/c1_ablation_bce_kl_targets_s42/predictor_kl_normalized.pt\\\\n/root/distill_sparse_swiglu/checkpoints/bce_30pct_s42/predictor_bce.pt\\\\n/root/distill_sparse_swiglu/checkpoints/kl_sparsity25_s42/predictor_kl_normalized.pt\\\\n/root/distill_sparse_swiglu/checkpoints/kl_sparsity25_s123/predictor_kl_normalized.pt\\\\n/root/distill_sparse_swiglu/checkpoints/c1_ablation_bce_kl_targets_s123/predictor_bce_kl_targets.pt\\\\n/root/distill_sparse_swiglu/checkpoints/c1_ablation_bce_kl_targets_s123_v2/predictor_bce_kl_targets.pt\\\\n/root/distill_sparse_swiglu/checkpoints/c1_ablation_30pct_s456/predictor_bce_kl_targets.pt\\\\n/root/distill_sparse_swiglu/checkpoints/c1_ablation_30pct_s123/predictor_bce_kl_targets.pt\\\\n/root/distill_spars\n…[truncated 435 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T12:17:41.799323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": \\\"bench_dense\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.702}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T12:17:41.799709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/distill_sparse_swiglu && python src/analyze_mask_divergence.py --help",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T12:17:41.799899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/distill_sparse_swiglu && python src/analyze_mask_divergence.py --help'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\npython: can't open file '/root/distill_sparse_swiglu/src/analyze_mask_divergence.py': [Errno 2] No such file or directory\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T12:17:41.800128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['exp_id', 'hypothesis', 'checkpoint_path', 'config']",
+              "limit": "20"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T12:17:41.800483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"qwen14b_kl30_s456_eval\\\": {\\\"hypothesis\\\": \\\"Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 6 downstream tasks) with TEAL uniform allocation at 30% sparsity. Multi-seed replication of qwen14b_kl30_s42 eval to confirm KL vs TEAL performance gap is systematic on Qwen-14B, not seed-specific noise.\\\"}, \\\"qwen14b_kl30_s123_eval\\\": {\\\"hypothesis\\\": \\\"The qwen14b_kl30_s123 predictor at 30% TEAL uniform sparsity will maintain downstream benchmark performance (ARC, WinoGrande, HellaSwag, PIQA, MMLU, GSM8K) within acceptable degradation from the dense baseline.\\\"}, \\\"qwen14b_kl30_s123_eval_v3\\\": {\\\"hypothesis\\\": \\\"Qwen-14B KL 30% s123 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Retry after v2 OOM. Multi-seed replication to confirm MMLU reversal is systematic.\\\"}, \\\"qwen14b_kl30_s123_eval_v2\\\": {\\\"hypothesis\\\": \\\"Qwen-14B KL 30% s123 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.\\\"}, \\\"teal_28.5pct_sanity\\\": {\\\"hypothesis\\\": \\\"TEAL vanilla at 28.5% sparsity (matching KL predictor's actual achieved sparsity) produces similar PPL to TEAL at 30%, confirming the 1.5pp sparsity gap does not meaningfully affect the KL vs TEAL comparison. If PPL difference is < 0.1, the comparison is fair.\\\"}, \\\"mistral_dense_hellaswag_piqa\\\": {\\\"hypothesis\\\": \\\"Mistral-7B-v0.3 Dense baseline on HellaSwag (10-shot) and PIQA (0-shot). Required to complete Dense row in tab:mistral_downstream. Parent: lm_eval_mistral_dense.\\\"}, \\\"bce_gumbel_no_penalty_s42\\\": {\\\"hypothesis\\\": \\\"BCE+Gumbel without adaptive penalty controller isolates the effect of Gumbel relaxation from Lagrangian sparsity control. If PPL degrades significantly vs bce_gumbel_lagrangian_isolation (38.02), penalty controller is necessary; if similar, Gumbel a\n…[truncated 4179 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T12:17:41.800689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "find /root/distill_sparse_swiglu/ -name \"*mask_divergence*\" -o -name \"*divergence*\" | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T12:17:41.800840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/distill_sparse_swiglu/results/mask_visualization_dryrun/fig3_jaccard_divergence.pdf\\\\n/root/distill_sparse_swiglu/results/mask_visualization_dryrun/fig3_jaccard_divergence.png\\\\n/root/distill_sparse_swiglu/results/mask_visualization/fig3_jaccard_divergence.pdf\\\\n/root/distill_sparse_swiglu/results/mask_visualization/fig3_jaccard_divergence.png\\\\n/root/distill_sparse_swiglu/src/visualize_mask_divergence.py\\\\n/root/distill_sparse_swiglu/figures/mask_divergence_heatmap_30pct_64samples.pdf\\\\n/root/distill_sparse_swiglu/figures/mask_divergence_heatmap_30pct_64samples.png\\\\n/root/distill_sparse_swiglu/figures/mask_divergence_heatmap_50pct_64samples.pdf\\\\n/root/distill_sparse_swiglu/figures/mask_divergence_heatmap_50pct_64samples.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T12:17:41.801049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "find /root/distill_sparse_swiglu/results/ -path \"*mask*\" -type f | head -30",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T12:17:41.801212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/distill_sparse_swiglu/results/mask_visualization_dryrun/fig1_mask_heatmap.pdf\\\\n/root/distill_sparse_swiglu/results/mask_visualization_dryrun/fig1_mask_heatmap.png\\\\n/root/distill_sparse_swiglu/results/mask_visualization_dryrun/fig2_token_dynamics.pdf\\\\n/root/distill_sparse_swiglu/results/mask_visualization_dryrun/fig2_token_dynamics.png\\\\n/root/distill_sparse_swiglu/results/mask_visualization_dryrun/fig3_jaccard_divergence.pdf\\\\n/root/distill_sparse_swiglu/results/mask_visualization_dryrun/fig3_jaccard_divergence.png\\\\n/root/distill_sparse_swiglu/results/mask_visualization_dryrun/stats.json\\\\n/root/distill_sparse_swiglu/results/mask_visualization/fig1_mask_heatmap.pdf\\\\n/root/distill_sparse_swiglu/results/mask_visualization/fig1_mask_heatmap.png\\\\n/root/distill_sparse_swiglu/results/mask_visualization/fig2_token_dynamics.pdf\\\\n/root/distill_sparse_swiglu/results/mask_visualization/fig2_token_dynamics.png\\\\n/root/distill_sparse_swiglu/results/mask_visualization/fig3_jaccard_divergence.pdf\\\\n/root/distill_sparse_swiglu/results/mask_visualization/fig3_jaccard_divergence.png\\\\n/root/distill_sparse_swiglu/results/mask_visualization/stats.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T12:17:41.801347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/distill_sparse_swiglu && python src/visualize_mask_divergence.py --help",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T12:17:41.801477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "ls /root/distill_sparse_swiglu/src/*mask* /root/distill_sparse_swiglu/src/*diverge* 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T12:17:41.801615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: visualize_mask_divergence.py [-h] --model_path MODEL_PATH\\\\n                                    --predictor_path PREDICTOR_PATH\\\\n                                    [--sparsity SPARSITY]\\\\n                                    [--num_samples NUM_SAMPLES]\\\\n                                    [--seq_len SEQ_LEN] [--gpu GPU]\\\\n                                    [--output_dir OUTPUT_DIR]\\\\n                                    [--bottleneck_dim BOTTLENECK_DIM]\\\\n                                    [--viz_layer VIZ_LAYER]\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --model_path MODEL_PATH\\\\n  --predictor_path PREDICTOR_PATH\\\\n  --sparsity SPARSITY\\\\n  --num_samples NUM_SAMPLES\\\\n  --seq_len SEQ_LEN\\\\n  --gpu GPU\\\\n  --output_dir OUTPUT_DIR\\\\n  --bottleneck_dim BOTTLENECK_DIM\\\\n  --viz_layer VIZ_LAYER\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T12:17:41.801752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/distill_sparse_swiglu/src/debug_mask_v2.py\\\\n/root/distill_sparse_swiglu/src/debug_mask_verify.py\\\\n/root/distill_sparse_swiglu/src/diag_mask.py\\\\n/root/distill_sparse_swiglu/src/generate_kl_oracle_masks.py\\\\n/root/distill_sparse_swiglu/src/visualize_mask_divergence.py\\\\n/root/distill_sparse_swiglu/src/visualize_mask_divergence.py\\\\n/root/distill_sparse_swiglu/src/visualize_mask_patterns.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T12:17:41.801906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "cat /root/distill_sparse_swiglu/results/mask_visualization/stats.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T12:17:41.802074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"sparsity\\\\\\\": 0.3,\\\\n  \\\\\\\"num_samples\\\\\\\": 10,\\\\n  \\\\\\\"jaccard_mean\\\\\\\": 0.4507,\\\\n  \\\\\\\"jaccard_min\\\\\\\": 0.3486,\\\\n  \\\\\\\"jaccard_max\\\\\\\": 0.5948,\\\\n  \\\\\\\"jaccard_min_layer\\\\\\\": 16,\\\\n  \\\\\\\"jaccard_max_layer\\\\\\\": 28,\\\\n  \\\\\\\"per_layer_jaccard\\\\\\\": [\\\\n    0.4254,\\\\n    0.4435,\\\\n    0.4698,\\\\n    0.4294,\\\\n    0.4322,\\\\n    0.4257,\\\\n    0.4062,\\\\n    0.4457,\\\\n    0.4596,\\\\n    0.4544,\\\\n    0.4701,\\\\n    0.4676,\\\\n    0.443,\\\\n    0.4219,\\\\n    0.4026,\\\\n    0.3732,\\\\n    0.3486,\\\\n    0.3592,\\\\n    0.3498,\\\\n    0.3962,\\\\n    0.4159,\\\\n    0.4388,\\\\n    0.4727,\\\\n    0.4938,\\\\n    0.5397,\\\\n    0.565,\\\\n    0.5828,\\\\n    0.5887,\\\\n    0.5948,\\\\n    0.5394,\\\\n    0.3973,\\\\n    0.3684\\\\n  ],\\\\n  \\\\\\\"per_layer_kl_sparsity\\\\\\\": [\\\\n    0.2015,\\\\n    0.2606,\\\\n    0.3299,\\\\n    0.2683,\\\\n    0.2781,\\\\n    0.2792,\\\\n    0.2668,\\\\n    0.3251,\\\\n    0.363,\\\\n    0.3414,\\\\n    0.3571,\\\\n    0.3605,\\\\n    0.3206,\\\\n    0.292,\\\\n    0.2523,\\\\n    0.1896,\\\\n    0.142,\\\\n    0.1715,\\\\n    0.1544,\\\\n    0.2255,\\\\n    0.2488,\\\\n    0.2813,\\\\n    0.3353,\\\\n    0.3654,\\\\n    0.4308,\\\\n    0.4658,\\\\n    0.5116,\\\\n    0.5273,\\\\n    0.5435,\\\\n    0.4604,\\\\n    0.2301,\\\\n    0.1746\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T12:17:41.802232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "find /root/distill_sparse_swiglu/results/ -path \"*50*\" -type f | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T12:17:41.802378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/distill_sparse_swiglu/results/benchmark/bench_kl50_global/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/bench_kl50_uniform/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/bench_kl50_uniform_s123/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/bench_kl50_uniform_s456/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/bench_teal50/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/d030_kl50_uniform/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/jsd_50pct_s42_eval/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/kl50_s456_global/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/kl_50pct_s123_global/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_pertoken/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_teal_global/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_teal50_baseline/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/reverse_kl_50pct_s42_eval/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/kl50_global_s123_reeval/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/c4_ood_kl50_s42/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/kl_comp_50pct_s42_eval/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/kl50_global_hellaswag_piqa_v2/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/kl50_uniform_hellaswag_piqa/results.json\\\\n/root/distill_sparse_swiglu/results/lm_eval_mistral_kl_50pct/results.json\\\\n/root/distill_sparse_swiglu/results/lm_eval_mistral_kl_50pct/summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T12:17:41.802511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "find /root/distill_sparse_swiglu/results/ -name \"*.json\" -path \"*diverge*\" -o -name \"*.json\" -path \"*mask_div*\" | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T12:17:41.802636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T12:17:41.802791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "find /root/distill_sparse_swiglu/ -path \"*mask_divergence_50*\" -type f 2>/dev/null; find /root/distill_sparse_swiglu/ -path \"*50pct*64*\" -type f 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T12:17:41.802926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/distill_sparse_swiglu/logs/vis_mask_50pct_64s.log\\\\n/root/distill_sparse_swiglu/figures/mask_divergence_heatmap_50pct_64samples.pdf\\\\n/root/distill_sparse_swiglu/figures/mask_divergence_heatmap_50pct_64samples.png\\\\n/root/distill_sparse_swiglu/figures/neuron_scatter_layer16_50pct_64samples.pdf\\\\n/root/distill_sparse_swiglu/figures/neuron_scatter_layer16_50pct_64samples.png\\\\n/root/distill_sparse_swiglu/figures/mask_comparison_50pct_64samples.pdf\\\\n/root/distill_sparse_swiglu/figures/mask_comparison_50pct_64samples.png\\\\n/root/distill_sparse_swiglu/figures/mask_stats_50pct_64samples.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T12:17:41.803069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "head -80 /root/distill_sparse_swiglu/src/visualize_mask_divergence.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T12:17:41.803241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Visualize KL vs Magnitude mask divergence for paper figures.\\\\n\\\\nGenerates 3 publication-quality figures:\\\\n1. Per-layer mask comparison heatmap (KL, Magnitude, Divergence)\\\\n2. Token-level mask dynamics for single layer\\\\n3. Per-layer Jaccard divergence bar chart\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport gc\\\\nimport importlib.util\\\\nimport json\\\\nimport os\\\\nimport sys\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nfrom matplotlib.gridspec import GridSpec\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom predictor import PredictorWrapper\\\\nfrom data_utils import get_eval_dataset\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nplt.rcParams.update({\\\\n    \\\\\\\"font.size\\\\\\\": 7,\\\\n    \\\\\\\"axes.labelsize\\\\\\\": 7,\\\\n    \\\\\\\"xtick.labelsize\\\\\\\": 6,\\\\n    \\\\\\\"ytick.labelsize\\\\\\\": 6,\\\\n    \\\\\\\"font.family\\\\\\\": \\\\\\\"sans-serif\\\\\\\",\\\\n})\\\\n\\\\n\\\\ndef _best_attn():\\\\n    if importlib.util.find_spec(\\\\\\\"flash_attn\\\\\\\"):\\\\n        return \\\\\\\"flash_attention_2\\\\\\\"\\\\n    return \\\\\\\"sdpa\\\\\\\"\\\\n\\\\n\\\\ndef compute_static_mag_masks(model, sparsity):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Gate_proj weight L2 norm per neuron -> top-k mask (static).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    masks, norms = {}, {}\\\\n    D = model.config.intermediate_size\\\\n    k = int(D * (1 - sparsity))\\\\n    for li, layer in enumerate(model.model.layers):\\\\n        w = layer.mlp.gate_proj.weight.float()\\\\n        n = w.norm(dim=1).cpu()\\\\n        _, idx = n.topk(k)\\\\n        m = torch.zeros(D, dtype=torch.bool)\\\\n        m[idx] = True\\\\n        masks[li] = m\\\\n        norms[li] = n.numpy()\\\\n    return masks, norms\\\\n\\\\n\\\\ndef plot_fig1(kl_avg, mag_masks, mag_norms, kl_sp, N, D, out):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Per-layer mask comparison heatmap (3 panels).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_bins = 512\\\\n    bs = D // n_bins\\\\n\\\\n    kl_s = np.zeros((N, D))\\\\n    mg_s = np.zeros((N, D), d\n…[truncated 739 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T12:17:41.803423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "cat /root/distill_sparse_swiglu/figures/mask_stats_50pct_64samples.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T12:17:41.803576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"sparsity\\\\\\\": 0.5,\\\\n  \\\\\\\"n_samples\\\\\\\": 64,\\\\n  \\\\\\\"total_tokens\\\\\\\": 131072,\\\\n  \\\\\\\"jaccard_similarity_mean\\\\\\\": 0.3176,\\\\n  \\\\\\\"jaccard_distance_mean\\\\\\\": 0.6824,\\\\n  \\\\\\\"per_layer_jaccard_sim\\\\\\\": [\\\\n    0.373,\\\\n    0.2589,\\\\n    0.2807,\\\\n    0.3093,\\\\n    0.3261,\\\\n    0.3224,\\\\n    0.3201,\\\\n    0.2888,\\\\n    0.2912,\\\\n    0.2729,\\\\n    0.2827,\\\\n    0.305,\\\\n    0.3079,\\\\n    0.3012,\\\\n    0.354,\\\\n    0.39,\\\\n    0.3888,\\\\n    0.3846,\\\\n    0.3629,\\\\n    0.3418,\\\\n    0.3307,\\\\n    0.3254,\\\\n    0.3002,\\\\n    0.2812,\\\\n    0.2662,\\\\n    0.2529,\\\\n    0.2483,\\\\n    0.2563,\\\\n    0.271,\\\\n    0.3002,\\\\n    0.3921,\\\\n    0.4766\\\\n  ],\\\\n  \\\\\\\"per_layer_jaccard_dist\\\\\\\": [\\\\n    0.627,\\\\n    0.7411,\\\\n    0.7193,\\\\n    0.6907,\\\\n    0.6739,\\\\n    0.6776,\\\\n    0.6799,\\\\n    0.7112,\\\\n    0.7088,\\\\n    0.7271,\\\\n    0.7173,\\\\n    0.695,\\\\n    0.6921,\\\\n    0.6988,\\\\n    0.646,\\\\n    0.61,\\\\n    0.6112,\\\\n    0.6154,\\\\n    0.6371,\\\\n    0.6582,\\\\n    0.6693,\\\\n    0.6746,\\\\n    0.6998,\\\\n    0.7188,\\\\n    0.7338,\\\\n    0.7471,\\\\n    0.7517,\\\\n    0.7437,\\\\n    0.729,\\\\n    0.6998,\\\\n    0.6079,\\\\n    0.5234\\\\n  ],\\\\n  \\\\\\\"neuron_scatter_disagree_pct\\\\\\\": 40.59\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T12:17:41.803742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-41718",
+              "command": "tail -30 /root/distill_sparse_swiglu/logs/vis_mask_50pct_64s.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T12:17:41.803886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Processed 28/64 samples (57344 tokens)\\\\n  Processed 32/64 samples (65536 tokens)\\\\n  Processed 36/64 samples (73728 tokens)\\\\n  Processed 40/64 samples (81920 tokens)\\\\n  Processed 44/64 samples (90112 tokens)\\\\n  Processed 48/64 samples (98304 tokens)\\\\n  Processed 52/64 samples (106496 tokens)\\\\n  Processed 56/64 samples (114688 tokens)\\\\n  Processed 60/64 samples (122880 tokens)\\\\n  Processed 64/64 samples (131072 tokens)\\\\n\\\\nTotal tokens analyzed: 131072\\\\n\\\\nGenerating mask divergence heatmap...\\\\n  Saved mask_divergence_heatmap_50pct_64samples.pdf/png\\\\nGenerating neuron scatter...\\\\n  Saved neuron_scatter_layer16_50pct_64samples.pdf/png\\\\nGenerating mask comparison grid...\\\\n/root/distill_sparse_swiglu/src/visualize_mask_patterns.py:254: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.\\\\n  plt.tight_layout()\\\\n  Saved mask_comparison_50pct_64samples.pdf/png\\\\n\\\\nStats saved to /root/distill_sparse_swiglu/figures/mask_stats_50pct_64samples.json\\\\n\\\\n==================================================\\\\nMean Jaccard similarity: 0.3176\\\\nMean Jaccard distance:   0.6824\\\\nScatter disagree (L16): 40.6%\\\\n==================================================\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T12:17:41.804067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/mask_divergence_50pct_64samples.md",
+              "content": "# Mask Divergence Analysis: 50% Sparsity, 64 Samples\n\n## Summary\n- **Sparsity**: 50%\n- **Samples**: 64 (seq_len=2048, total tokens=131,072)\n- **Checkpoint**: `mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\n- **Model**: LLaMA-3.1-8B\n\n## Aggregate Statistics\n| Metric | Value |\n|--------|-------|\n| Mean Jaccard Similarity | 0.3176 |\n| **Mean Jaccard Distance** | **0.6824** |\n| Min Jaccard Distance | 0.5234 (layer 31) |\n| Max Jaccard Distance | 0.7517 (layer 26) |\n| Neuron Scatter Disagree (L16) | 40.6% |\n\n## Per-Layer Jaccard Distance\n\n| Layer | Jaccard Dist | Layer | Jaccard Dist |\n|-------|-------------|-------|-------------|\n| 0 | 0.6270 | 16 | 0.6112 |\n| 1 | 0.7411 | 17 | 0.6154 |\n| 2 | 0.7193 | 18 | 0.6371 |\n| 3 | 0.6907 | 19 | 0.6582 |\n| 4 | 0.6739 | 20 | 0.6693 |\n| 5 | 0.6776 | 21 | 0.6746 |\n| 6 | 0.6799 | 22 | 0.6998 |\n| 7 | 0.7112 | 23 | 0.7188 |\n| 8 | 0.7088 | 24 | 0.7338 |\n| 9 | 0.7271 | 25 | 0.7471 |\n| 10 | 0.7173 | 26 | 0.7517 |\n| 11 | 0.6950 | 27 | 0.7437 |\n| 12 | 0.6921 | 28 | 0.7290 |\n| 13 | 0.6988 | 29 | 0.6998 |\n| 14 | 0.6460 | 30 | 0.6079 |\n| 15 | 0.6100 | 31 | 0.5234 |\n\n## Key Observations\n- Mean Jaccard distance 68.24% confirms the paper's claim (~68%)\n- Divergence is highest in layers 24-28 (>0.73), indicating KL predictor discovers substantially different importance patterns from magnitude in deeper layers\n- Layers 15-17 and 30-31 show lowest divergence (~0.52-0.61), suggesting magnitude and KL agree more in early attention layers and the final layer\n- Range: 0.5234 to 0.7517 (spread of 0.2283)\n\n## Data Source\n- JSON: `/root/distill_sparse_swiglu/figures/mask_stats_50pct_64samples.json`\n- Figures: `/root/distill_sparse_swiglu/figures/mask_divergence_heatmap_50pct_64samples.{pdf,png}`\n- Log: `/root/distill_sparse_swiglu/logs/vis_mask_50pct_64s.log`\n"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T12:17:41.804225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/mask_divergence_50pct_64samples.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T12:17:41.804350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "mask_divergence_50pct_64samples",
+              "type": "data",
+              "description": "Mask divergence analysis at 50% sparsity with 64 samples (131K tokens). Mean Jaccard distance = 0.6824, confirming paper claim of ~68%. Per-layer data for 32 layers included.",
+              "project": "distill_sparse_swiglu",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/mask_divergence_50pct_64samples.md",
+              "tags": "['mask_divergence', '50pct', 'jaccard', 'paper_evidence']"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T12:17:41.804493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_bb2328\\\", \\\"name\\\": \\\"mask_divergence_50pct_64samples\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Mask divergence analysis at 50% sparsity with 64 samples (131K tokens). Mean Jaccard distance = 0.6824, confirming paper claim of ~68%. Per-layer data for 32 layers included.\\\", \\\"path\\\": \\\"projects/distill_sparse_swiglu/artifacts/_project/data/mask_divergence_50pct_64samples.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"distill_sparse_swiglu\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T12:17:35.463748+00:00\\\", \\\"tags\\\": [\\\"mask_divergence\\\", \\\"50pct\\\", \\\"jaccard\\\", \\\"paper_evidence\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T12:17:41.804664+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已存在，无需重新运行。结果汇总：\n\n**50% Sparsity Mask Divergence (64 samples, 131K tokens)**\n\n| Metric | Value |\n|--------|-------|\n| Mean Jaccard Distance | **0.6824 (68.24%)** |\n| Min (layer 31) | 0.5234 |\n| Max (layer 26) | 0.7517 |\n\n论文声称的 ~68% divergence 与实测数据一致。数据来源文件 `/root/distill_sparse_swiglu/figures/mask_stats_50pct_64samples.json`，已注册为 artifact `art_20260519_bb2328`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_mask-divergence-50pct-64samples_20260519T121559"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/ops-mask-divergence-50pct-64samples.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48e2fbda2a5f5150aa31",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval kl sparsity40 global final results",
+  "task_key": "worker_eval_kl_sparsity40_global_final_results_20260520T092539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl_sparsity40_global_final_results_20260520T092539_result.json",
+    "occurrence": 1,
+    "bytes": 113,
+    "sha256": "093f9ee125788481f5923c36d86d1ca4c3f5f2ff6180cff03c1e32610520d373"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 270 秒后唤醒。届时会自动检查 PID 197972 状态并提取两组 eval 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kl-sparsity40-global-final-results.md"
+}

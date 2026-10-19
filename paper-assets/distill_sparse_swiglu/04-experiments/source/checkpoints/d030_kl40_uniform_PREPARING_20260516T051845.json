@@ -1,0 +1,14 @@
+{
+  "exp_id": "d030_kl40_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:18:45.733Z",
+    "updated_at": "2026-05-16T05:18:45.733Z"
+  },
+  "timestamp": "2026-05-16T05:18:45.881090+00:00",
+  "trigger": "update_registry"
+}

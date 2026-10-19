@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a63dfa9fd139ca3dcb1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check all 4gpu status",
+  "task_key": "worker_ops_check_all_4gpu_status_20260520T003803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_all_4gpu_status_20260520T003803_result.json",
+    "occurrence": 1,
+    "bytes": 1399,
+    "sha256": "e3e62d690a9e6f268ac777181a33f282af828522f8837c005932a201a38609cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### westd-41718\n\n| GPU | 实验 | PID | 状态 | GPU 利用率 | 显存 | 进度 |\n|-----|------|-----|------|-----------|------|------|\n| cuda:0 | bench_teal50_uniform_6task | 182919 | **运行中** | 100% | 45551/97887 MiB | MMLU loglikelihood 63% (25465/40168) |\n| cuda:1 | kl30_uniform_hspiqa_s123 | 183059 | **已完成** ✓ | 0% | 0 MiB | EXIT_CODE=0 |\n\n**kl30_uniform_hspiqa_s123 结果：**\n| Task | acc | acc_norm |\n|------|-----|----------|\n| hellaswag | 0.5100 | 0.7067 |\n| piqa | 0.7410 | 0.7481 |\n\nbench_teal50_uniform_6task 已完成 wikitext2 PPL + ARC/WinoGrande/HellaSwag/PIQA，当前在跑 MMLU（最大的 task），预计还需 ~15-20 分钟。\n\n---\n\n### westd-34887\n\n| GPU | 实验 | PID | 状态 | GPU 利用率 | 显存 | 进度 |\n|-----|------|-----|------|-----------|------|------|\n| cuda:0 | kl30_uniform_hspiqa_s456 | 142999 | **运行中** | 100% | 47681/97887 MiB | MMLU loglikelihood 99% (39961/40168)，即将完成 |\n| cuda:1 | qwen14b_teal30_uniform_gsm8k | 133911 | **运行中** | 73% | 37277/97887 MiB | GSM8K generate_until 73% (961/1319) |\n\n- **kl30_uniform_hspiqa_s456**：MMLU 99%，几分钟内完成，之后还有 hellaswag + piqa 两个 task（~35 min）。\n- **qwen14b_teal30_uniform_gsm8k**：GSM8K 生成式评估，73%，已跑 ~4h，剩余 ~358 items × ~13.5s/it ≈ **~80 min**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-4gpu-status.md"
+}

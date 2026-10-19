@@ -1,0 +1,23 @@
+{
+  "wikitext2_ppl": 34.8473,
+  "sparsity": 0.496,
+  "sparsity_target": 0.5,
+  "source": "benchmark_eval.py log (/root/runs/distill_sparse_swiglu/perlayer_kl_50_s42_ppl.log)",
+  "checkpoint": "checkpoints/perlayer_kl_50_s42/predictor_perlayer_kl.pt",
+  "model": "/root/autodl-tmp/models/llama-3.1-8b",
+  "sparsity_mode": "teal_global",
+  "allocation": "uniform",
+  "seq_len": 2048,
+  "n_sequences": 141,
+  "timestamp": "2026-05-22 14:53:28",
+  "per_layer_sparsity": {
+    "min": 0.484,
+    "max": 0.500,
+    "mean": 0.496
+  },
+  "training_status": {
+    "completed_steps": 10000,
+    "final_avg_kl": 0.0282,
+    "exit_code": 0
+  }
+}

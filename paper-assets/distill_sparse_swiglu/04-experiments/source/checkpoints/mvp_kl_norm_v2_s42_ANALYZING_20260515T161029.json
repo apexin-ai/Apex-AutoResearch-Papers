@@ -1,0 +1,73 @@
+{
+  "exp_id": "mvp_kl_norm_v2_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:19:01.567Z",
+    "updated_at": "2026-05-15T16:10:29.797Z",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42 --wandb_run_name mvp_kl_norm_v2_s42 --dataset wikitext-103\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "72734",
+      "log_path": "~/runs/distill_sparse_swiglu/mvp_kl_norm_v2_s42.log",
+      "submitted_at": "2026-05-15T15:19:01.533Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "Fixed KL normalization (÷seq_len only, no ÷vocab_size) + Lagrangian produces better sparsity predictor than BCE at 50% sparsity",
+      "data_path": "wikitext-103 (HF cached)",
+      "data_count": null,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "loss_type": "kl_normalized_v3",
+      "kl_normalization": "÷seq_len only (v3 fix)",
+      "lagrangian": "lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T15:55:23.754Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T15:55:24.584694+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "training": {
+        "final_kl_raw": 0.3047,
+        "final_kl_norm": 0.3047,
+        "final_sparsity": 0.488,
+        "final_lambda": 1000,
+        "final_total_loss": 0.3047,
+        "final_constraint": 0,
+        "final_tau": 0.1,
+        "kl_start": 1.18,
+        "kl_end": 0.305,
+        "steps": 1000
+      },
+      "wikitext2": {
+        "dense_ppl": 9.21,
+        "sparse_ppl": 12.08,
+        "increase_pct": 31.2,
+        "model_level_sparsity": 0.498,
+        "calibration_samples": 32,
+        "eval_md5": "4f2faa315b3e45b0781c1c07c47515eb"
+      }
+    },
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt",
+    "log_path": "~/runs/distill_sparse_swiglu/mvp_kl_norm_v2_s42.log",
+    "notes": "KL normalized v3 (÷seq_len only, 修复了 ÷vocab_size bug) + Lagrangian 约束, 1000步训练。WikiText-2 eval: sparse 12.08 / dense 9.21 (Δ=+31.2%), model sparsity=0.498。注意: dense PPL (9.21) 与 BCE baseline 统一eval数字 (dense ~28) 差距大, 推测 BCE baseline 的统一eval使用了不同的 WikiText 版本或评估参数。以相对增幅比较: KL Δ=+31.2% 显著优于 BCE Δ=+56.4%, 表明 KL 蒸馏损失在保持稀疏模型质量上优于 BCE。需要用相同eval条件重新评估 BCE baseline 以做严格对比。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T16:10:29.834924+00:00",
+  "trigger": "update_registry"
+}

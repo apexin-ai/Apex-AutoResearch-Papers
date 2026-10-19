@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e4cd03d596aa843c205",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code flashinfer install",
+  "task_key": "worker_code_flashinfer_install_20260519T162318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_flashinfer_install_20260519T162318_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "5b0860573fecd5da702801601708fb7c0ca28e19761f1a19aebb6058980e158f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "安装完成。汇总：\n\n**安装方式**: pip（已预装，`Requirement already satisfied`）\n\n**版本**: flashinfer-python **0.6.11.post3**\n\n**注意**: Blackwell GPU (SM 12.x) 需要 CUDA ≥12.9，当前环境 CUDA 12.8 会输出警告 `Failed to get device capability`，但导入正常。\n\n**Sparse/mask 相关 API**:\n\n顶层:\n- `flashinfer.BlockSparseAttentionWrapper` — 块稀疏注意力\n- `flashinfer.VariableBlockSparseAttentionWrapper` — 可变块稀疏注意力\n- `flashinfer.sparse` — 稀疏注意力子模块\n- `flashinfer.top_k_mask_logits` — top-k mask logits\n\n`flashinfer.sparse` 子模块:\n- `BlockSparseAttentionWrapper`\n- `VariableBlockSparseAttentionWrapper`\n- `MaskMode`\n- `convert_bsr_mask_layout`\n- `segment_packbits`\n- `block_sparse_attention_run_trace`\n- `variable_block_sparse_attention_run_trace`\n- `determine_attention_backend`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-flashinfer-install.md"
+}

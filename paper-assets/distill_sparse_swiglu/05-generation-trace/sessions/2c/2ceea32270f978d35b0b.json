@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "2ceea32270f978d35b0b",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "analysis per layer allocation profile",
+  "task_key": "worker_analysis_per_layer_allocation_profile_20260517T133538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per_layer_allocation_profile_20260517T133538.log",
+    "occurrence": 1,
+    "bytes": 653548,
+    "sha256": "658f9653c632556df5b2a052e142375a07b90719d0a2aff740e2b1e0a6cfc49e"
+  },
+  "statistics": {
+    "messages": 293,
+    "user_turns": 1,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 29,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 111,
+      "user": 1,
+      "tool_result": 111,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "2ceea32270f978d35b0b-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 286,
+      "chunks": [
+        {
+          "path": "2ceea32270f978d35b0b-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "2ceea32270f978d35b0b-part-0002.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-per-layer-allocation-profile.md"
+}

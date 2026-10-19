@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21148dfb18f049de1b93",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval check 14b uniform results",
+  "task_key": "worker_eval_check_14b_uniform_results_20260518T002608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check_14b_uniform_results_20260518T002608_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "8707bc6b4a4b60cd09d7915cdd0429eb272b932e725616f19c4051b08e2ebae9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验仍在进行中，都在 GSM8K generate 阶段（最后一个 task，也是最慢的）。\n\n根据日志 tail 中的进度条：\n\n```\nqwen14b_kl30_uniform_eval: 进行中\n  GSM8K generate: 25% (329/1319), 已耗时 1h02min, 预计剩余 ~3.5h\n\nqwen14b_teal30_uniform_eval: 进行中\n  GSM8K generate: 15% (201/1319), 已耗时 51min, 预计剩余 ~4.7h\n```\n\nwikitext2, arc_challenge, winogrande, mmlu 的 loglikelihood 阶段已全部完成，但结果只在最后一起写入 results.json。中间无法提取已完成 task 的数值。\n\n**预计完成时间：**\n- KL uniform: ~3.5h 后（约 UTC 12:00）\n- TEAL uniform: ~4.7h 后（约 UTC 13:15）\n\nGSM8K 的 generate_until 在 14B 模型上非常慢（~12-15s/item, 1319 items），这是超出原先 5h 预估的主因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-14b-uniform-results.md"
+}

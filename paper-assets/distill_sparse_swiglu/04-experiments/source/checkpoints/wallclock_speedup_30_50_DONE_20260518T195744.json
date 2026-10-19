@@ -1,0 +1,53 @@
+{
+  "exp_id": "wallclock_speedup_30_50",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:28:09.668Z",
+    "updated_at": "2026-05-18T19:57:43.693Z",
+    "hypothesis": "Predictor overhead characterization: KL predictor adds minimal inference overhead (target < 5% of total inference time) at 30% and 50% sparsity levels, measured as ms/token and % of dense baseline. No sparse kernel exists (mask-and-multiply only), so no wall-clock speedup expected. Positive if overhead is small enough to be practical when sparse kernels become available.",
+    "conclusion": "success",
+    "metrics": {
+      "dense_tok_s_bs1": 17308.5,
+      "dense_tok_s_bs8": 15636.6,
+      "kl30_tok_s_bs1": 16089.2,
+      "kl30_tok_s_bs8": 14697.4,
+      "kl50_tok_s_bs1": 16056.8,
+      "kl50_tok_s_bs8": 14756.8,
+      "overhead_bs1_30pct": "7%",
+      "overhead_bs1_50pct": "7%",
+      "overhead_bs8_30pct": "6%",
+      "overhead_bs8_50pct": "6%",
+      "predictor_latency_bs1_ms": 3.2,
+      "predictor_latency_bs8_ms": 14.4,
+      "note": "mask-and-multiply only, no sparse kernel. Memory identical across conditions."
+    },
+    "spec": {
+      "command": "bash -c \"source /root/.bashrc && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_latency.py --device cuda:0\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "49534",
+      "log_path": "~/runs/distill_sparse_swiglu/wallclock_speedup_30_50.log",
+      "submitted_at": "2026-05-18T19:22:13.822Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A (benchmark)",
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "data_path": "wikitext2 (inference benchmark)",
+      "data_count": 100,
+      "eval_data": "N/A (latency benchmark)",
+      "wall_clock_seconds": 2129.9,
+      "gpu_hours": 0.59
+    },
+    "completed_at": "2026-05-18T19:57:43.694Z"
+  },
+  "timestamp": "2026-05-18T19:57:44.035520+00:00",
+  "trigger": "update_registry"
+}

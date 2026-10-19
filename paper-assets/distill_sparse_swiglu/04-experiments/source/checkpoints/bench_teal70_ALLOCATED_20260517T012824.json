@@ -1,0 +1,22 @@
+{
+  "exp_id": "bench_teal70",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T01:19:59.714Z",
+    "updated_at": "2026-05-17T01:28:24.138Z",
+    "hypothesis": "TEAL vanilla baseline at 70% sparsity on LLaMA-3.1-8B provides reference point showing magnitude-based pruning degradation at high sparsity",
+    "metrics": {
+      "wikitext2_ppl": 100.11,
+      "dense_ppl": 6.12,
+      "actual_sparsity": 0.7,
+      "source": "training_free_baselines experiment"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T01:28:24.313803+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+Lagrangian Dynamics Figure (Appendix C, R1-W5)
+
+Generated files:
+- PDF: /root/distill_sparse_swiglu/paper/figures/lagrangian_dynamics.pdf
+- PNG: /root/distill_sparse_swiglu/paper/figures/lagrangian_dynamics.png (1036x1336px, 300 DPI)
+- Script: /root/distill_sparse_swiglu/scripts/plot_lagrangian_dynamics.py
+
+Content:
+(a) Upper panel: λ curves (log scale) for 30%/40%/50%/70% targets
+    - 30%: λ 0.01 → 5000
+    - 70%: λ 2 → 1000
+(b) Lower panel: actual sparsity (solid) vs target (dashed)
+
+Note: 50% experiment only has 200 steps data (others have 1000 steps)

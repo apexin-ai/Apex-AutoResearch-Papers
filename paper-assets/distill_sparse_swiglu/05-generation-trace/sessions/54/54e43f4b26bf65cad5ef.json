@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54e43f4b26bf65cad5ef",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval perlayer kl 50 s42 downstream",
+  "task_key": "worker_eval_perlayer_kl_50_s42_downstream_20260522T065238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_perlayer_kl_50_s42_downstream_20260522T065238_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "1423c1a6d4209adba857c8a20726992478baa6a75fad06ee963e79cb1e319659"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running successfully on westd-41718 cuda:1.\n\n- **PID**: 374289 (python)\n- **tmux session**: `perlayer_kl_50_s42_downstream`\n- **日志**: `/root/runs/distill_sparse_swiglu/perlayer_kl_50_s42_downstream.log`\n- **状态**: 已加载 checkpoint，稀疏度配置正确（model-level 0.496），arc_challenge 进行中 ~92%，6 个 task 顺序评测中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-perlayer-kl-50-s42-downstream.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "perlayer_kl_k8_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:00:06.503Z",
+    "updated_at": "2026-05-23T02:03:59.071Z",
+    "hypothesis": "K=8 per-layer KL training masks 8/32 layers per step (vs K=4). Tests whether doubling masking breadth improves train-inference alignment and downstream quality at 30% sparsity."
+  },
+  "timestamp": "2026-05-23T02:03:59.697550+00:00",
+  "trigger": "update_registry"
+}

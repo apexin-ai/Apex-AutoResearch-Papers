@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "0ee0b98c1b04344db3d5",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "analysis cross seed jaccard r18w7",
+  "task_key": "worker_analysis_cross_seed_jaccard_r18w7_20260521T235456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_cross_seed_jaccard_r18w7_20260521T235456.jsonl",
+    "occurrence": 1,
+    "bytes": 362,
+    "sha256": "aade0495aa4307fe5f56072a513d1c4e02eb58100b3f3db5fd1247064fdaf921"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T23:55:06.166223+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_seed_jaccard_r18w7_20260521T235456"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T23:55:13.353506+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross_seed_jaccard_r18w7_20260521T235456"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-cross-seed-jaccard-r18w7.md"
+}

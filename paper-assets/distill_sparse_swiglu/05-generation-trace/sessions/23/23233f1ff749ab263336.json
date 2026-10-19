@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23233f1ff749ab263336",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diag check mistral ckpt",
+  "task_key": "worker_diag_check_mistral_ckpt_20260525T091900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_check_mistral_ckpt_20260525T091900_result.json",
+    "occurrence": 1,
+    "bytes": 1469,
+    "sha256": "888a5681729382d7c013dea9dec10908ff57e947ada7bdde5962213af30c10c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n### Mistral 模型\n\n**Base 模型**: `/root/autodl-tmp/models/mistral-7b/` (Mistral-7B, 3 shard safetensors)\n\n**Checkpoints** (distilled):\n| 路径 | 说明 |\n|------|------|\n| `checkpoints/mistral_kl_s42` | KL (默认 sparsity), seed 42 |\n| `checkpoints/mistral_kl30_s42` | KL 30%, seed 42 |\n| `checkpoints/mistral_kl30_s123` | KL 30%, seed 123 |\n| `checkpoints/mistral_kl30_s456` | KL 30%, seed 456 |\n| `checkpoints/mistral_kl70_s42` | KL 70%, seed 42 |\n\n### Qwen 14B Checkpoints\n\n| Checkpoint | 说明 |\n|-----------|------|\n| `qwen14b_kl30_s42` | KL 30%, seed 42 |\n| `qwen14b_kl30_s123` | KL 30%, seed 123 |\n| `qwen14b_kl30_s456` | KL 30%, seed 456 |\n| `qwen14b_bce30_s42` | BCE 30%, seed 42 |\n\n**Qwen14b boolq 结果: 不存在。** 没有任何 `*qwen14b*boolq*` 的 benchmark 结果文件。\n\n### benchmark_eval.py 支持的 tasks\n\n| Task | num_fewshot |\n|------|------------|\n| arc_challenge | 25 |\n| winogrande | 5 |\n| mmlu | 5 |\n| gsm8k | 8 |\n| hellaswag | 10 |\n| piqa | 0 |\n| **boolq** | **0** |\n| longbench (+ 各子集) | 0 |\n\n### 推荐 cuda:1 任务\n\nQwen14b boolq 结果完全缺失，且 `benchmark_eval.py` 已支持 boolq (0-shot)。建议在 cuda:1 上跑 Qwen14b KL 30% 三个 seed (s42/s123/s456) 的 boolq eval。Qwen14b 约 14B 参数，单卡能跑 inference (不需要训练)。如果同时要补 Mistral，可以串行排在后面——Mistral 7B 更小更快。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-check-mistral-ckpt.md"
+}

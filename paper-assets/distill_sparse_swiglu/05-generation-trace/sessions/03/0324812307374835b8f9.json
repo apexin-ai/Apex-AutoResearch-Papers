@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0324812307374835b8f9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval qwen14b dense baseline",
+  "task_key": "worker_eval_qwen14b_dense_baseline_20260517T184635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen14b_dense_baseline_20260517T184635_result.json",
+    "occurrence": 1,
+    "bytes": 72,
+    "sha256": "4ca3d7e812d7e9eb31dfe3ad67b3e8dc012812d4f2f47179207a03b10cbc257e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认，无需额外操作。实验正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen14b-dense-baseline.md"
+}

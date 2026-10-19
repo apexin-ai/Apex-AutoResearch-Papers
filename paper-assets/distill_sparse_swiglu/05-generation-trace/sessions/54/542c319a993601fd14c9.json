@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "542c319a993601fd14c9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh jsd30 uniform eval",
+  "task_key": "worker_ssh_jsd30_uniform_eval_20260520T192013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_jsd30_uniform_eval_20260520T192013_result.json",
+    "occurrence": 1,
+    "bytes": 323,
+    "sha256": "b1cb64e42432bfaff1737def29bf2ba7eab0bd2130a62ef1d0d3e38f82c3153d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval is running healthy on westd-41718 cuda:0:\n- WikiText-2 PPL = **8.8848** (done)\n- arc_challenge (25-shot) completed, now running MMLU tokenization\n- PID: 278960\n- Log: `/root/distill_sparse_swiglu/logs/jsd_30_s42_uniform_eval.log`\n- Registry: `jsd_30_s42_uniform_eval` → RUNNING, parent=jsd_30_s42"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-jsd30-uniform-eval.md"
+}

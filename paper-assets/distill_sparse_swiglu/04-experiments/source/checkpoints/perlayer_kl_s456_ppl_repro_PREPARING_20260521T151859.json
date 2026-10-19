@@ -1,0 +1,30 @@
+{
+  "exp_id": "perlayer_kl_s456_ppl_repro",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:42:26.659Z",
+    "updated_at": "2026-05-21T15:18:59.186Z",
+    "hypothesis": "Reproducibility check: per-layer KL s456 PPL should match original 9.0282. Running with same checkpoint on different eval session to verify stability.",
+    "parent": "perlayer_kl_30_s456_ppl",
+    "spec": {
+      "command": "bash -c \"echo '=== PRE-CHECK ===' && ls -la /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id perlayer_kl_s456_ppl_repro --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0 2>&1\"",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "330816",
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_s456_ppl_repro.log",
+      "submitted_at": "2026-05-21T14:42:47.729Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T15:18:59.719748+00:00",
+  "trigger": "update_registry"
+}

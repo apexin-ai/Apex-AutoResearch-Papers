@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26e6c3dd74badd548395",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops mask divergence 30pct 64samples",
+  "task_key": "worker_ops_mask-divergence-30pct-64samples_20260519T121550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mask-divergence-30pct-64samples_20260519T121550_result.json",
+    "occurrence": 1,
+    "bytes": 65,
+    "sha256": "f629d687b8ef717af3f1c14975632ed59330b4cc3783f76c010b0f21308f58a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行已启动，3 分钟后自动检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mask-divergence-30pct-64samples.md"
+}

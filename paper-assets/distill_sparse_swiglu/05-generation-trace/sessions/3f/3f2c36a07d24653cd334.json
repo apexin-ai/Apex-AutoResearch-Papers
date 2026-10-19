@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f2c36a07d24653cd334",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis teal30 actual sparsity",
+  "task_key": "worker_analysis_teal30_actual_sparsity_20260519T225206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_teal30_actual_sparsity_20260519T225206_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "4300e2fbc2c1385e64d0ed48d7b5423f967e9c5e4d97e2993a338a317ad7aad0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了。\n\n**TEAL@30% uniform 的 actual sparsity = 0.293**（model-level）\n\n来源：`~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log`，48 层逐层 sparsity 范围 0.277–0.301，model-level 汇总为 **0.293**。\n\n与 KL actual sparsity 的对比：\n- KL actual sparsity: **0.296**\n- TEAL actual sparsity: **0.293**\n- 差值: **0.003**（TEAL 略低）\n\n两者 actual sparsity 基本一致，差异可忽略，公平对比成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-teal30-actual-sparsity.md"
+}

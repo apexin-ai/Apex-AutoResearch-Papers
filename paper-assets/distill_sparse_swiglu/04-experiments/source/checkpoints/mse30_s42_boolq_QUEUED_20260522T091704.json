@@ -1,0 +1,16 @@
+{
+  "exp_id": "mse30_s42_boolq",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:16:56.987Z",
+    "updated_at": "2026-05-22T09:17:03.373Z",
+    "parent": "mse30_s42_train",
+    "hypothesis": "MSE-distilled predictor at 30% sparsity (s42) preserves BoolQ accuracy comparable to other downstream tasks, completing the formal 2D decomposition (loss × sparsity) for the reviewer's request."
+  },
+  "timestamp": "2026-05-22T09:17:04.067165+00:00",
+  "trigger": "update_registry"
+}

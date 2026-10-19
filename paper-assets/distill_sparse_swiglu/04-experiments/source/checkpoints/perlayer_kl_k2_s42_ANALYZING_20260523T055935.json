@@ -1,0 +1,59 @@
+{
+  "exp_id": "perlayer_kl_k2_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:00:08.662Z",
+    "updated_at": "2026-05-23T05:59:34.572Z",
+    "hypothesis": "K=2 per-layer KL training masks 2/32 layers per step. Tests whether minimal per-step layer coverage (K=2) still learns effective sparse predictors via cumulative exposure across steps.",
+    "spec": {
+      "command": "WANDB_MODE=disabled python -u src/train_perlayer_kl_k4.py --num_masked_layers 2 --seed 42 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42 --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": 112035,
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_k2_s42.log",
+      "submitted_at": "2026-05-23T04:49:02.415Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "data_path": "wikitext-103",
+      "data_count": "auto",
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "num_steps": 1000,
+      "sparsity_target": 0.3,
+      "num_masked_layers": 2
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T05:55:07.575Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T05:55:16.289504+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "final_avg_kl": 0.0358,
+      "final_avg_sparsity": 0.268,
+      "wall_time_s": 3841.2,
+      "training_steps": 1000,
+      "note": "training only, PPL eval not yet run"
+    },
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42/predictor_perlayer_kl_k4.pt",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T05:59:35.199093+00:00",
+  "trigger": "update_registry"
+}

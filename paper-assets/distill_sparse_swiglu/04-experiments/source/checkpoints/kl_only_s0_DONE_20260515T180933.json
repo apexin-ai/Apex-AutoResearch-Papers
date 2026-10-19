@@ -1,0 +1,58 @@
+{
+  "exp_id": "kl_only_s0",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:19:35.138Z",
+    "updated_at": "2026-05-15T18:09:33.157Z",
+    "spec": {
+      "hypothesis": "KL normalized v3 seed robustness: seed=0 应与 s42/s123/s456 一致，扩展到 5-seed headline",
+      "loss_type": "kl_normalized_v3",
+      "kl_normalization": "÷seq_len only (v3 fix)",
+      "lagrangian": "lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]",
+      "model_name": "llama-3.1-8b",
+      "seed": 0,
+      "data_path": "wikitext-103 (HF cached)",
+      "parent": "mvp_kl_norm_v2_s42",
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 0 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/kl_only_s0 --wandb_run_name kl_only_s0 --dataset wikitext-103\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "88764",
+      "data_count": null
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T17:57:15.663Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:57:16.587876+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "true_dense_ppl": 6.12,
+      "predictor_hard_mask_ppl": 9.19,
+      "teal_sparse_ppl": 12.03,
+      "model_level_sparsity": 0.499,
+      "ppl_increase_vs_hard_mask_pct": 30.9,
+      "eval_dataset": "wikitext2",
+      "seq_len": 2048,
+      "calibration_samples": 32
+    },
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/kl_only_s0/predictor_kl_normalized.pt",
+    "log_path": "~/runs/distill_sparse_swiglu/kl_only_s0.log",
+    "notes": "训练 1000 步正常完成，最终 loss=0.305, sparsity=0.488, lambda=1000。WikiText-2 评估：true_dense=6.12, hard_mask=9.19, teal_sparse=12.03, sparsity=0.499, PPL increase=30.9%。\\n\\n## 5-seed 汇总表 (KL normalized v3)\\n| Metric | s0 | s1 | s42 | s123 | s456 | Mean ± Std |\\n|--------|----|----|-----|------|------|------------|\\n| Dense PPL | 9.19 | 9.15 | 9.21 | 9.25 | 9.14 | 9.19 ± 0.04 |\\n| Sparse PPL | 12.03 | 11.99 | 12.08 | 11.91 | 13.58 | 12.32 ± 0.71 |\\n| PPL increase | 30.9% | 31.0% | 31.2% | 28.8% | 48.6% | 34.1% ± 8.2% |\\n\\n5-seed headline: sparse PPL 12.32 ± 0.71 (排除 s456 异常值后 4-seed mean=12.00 ± 0.07)。s0 结果与 s42/s123 高度一致，确认 KL normalized v3 seed 鲁棒性良好。s456 仍为唯一异常值。",
+    "completed_at": "2026-05-15T18:09:33.157Z"
+  },
+  "timestamp": "2026-05-15T18:09:33.212543+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,41 @@
+{
+  "exp_id": "perlayer_kl_k8_s456_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:23:30.498Z",
+    "updated_at": "2026-05-23T12:35:23.434Z",
+    "hypothesis": "K=8 s456 eval at 30% TEAL uniform: 7-task downstream for 3-seed K-curve.",
+    "parent": "perlayer_kl_k8_s456",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py ... --checkpoint .../perlayer_kl_k8_s456/predictor_perlayer_kl_k4.pt",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "137205",
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_k8_s456_eval.log",
+      "submitted_at": "2026-05-23T11:24:02.040Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "data_path": "wikitext-103",
+      "data_count": "auto",
+      "model_name": "llama-3.1-8b",
+      "seed": 456,
+      "checkpoint_source": "perlayer_kl_k8_s456",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T12:35:21.840Z"
+    }
+  },
+  "timestamp": "2026-05-23T12:35:24.068805+00:00",
+  "trigger": "update_registry"
+}

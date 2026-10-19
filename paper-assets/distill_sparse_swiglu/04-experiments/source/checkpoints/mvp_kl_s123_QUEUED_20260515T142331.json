@@ -1,0 +1,29 @@
+{
+  "exp_id": "mvp_kl_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:51:00.876Z",
+    "updated_at": "2026-05-15T14:23:31.427Z",
+    "spec": {
+      "hypothesis": "KL-trained predictor captures joint neuron interactions via end-to-end gradient flow, outperforming BCE at 50% sparsity",
+      "loss_type": "kl",
+      "seed": 123,
+      "model": "Llama-3.1-8B",
+      "sparsity": 0.5,
+      "steps": 1000,
+      "batch_size": 4,
+      "seq_len": 2048,
+      "gpu": "cuda:0",
+      "server": "westd-34887",
+      "eval": "WikiText-2 + C4 perplexity"
+    },
+    "notes": "KL 系列统一用 batch_size=2 + gradient_accumulation_steps=2 (有效batch=4), 因 KL 端到端反向传播显存需求高于 BCE",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T14:23:31.454360+00:00",
+  "trigger": "update_registry"
+}

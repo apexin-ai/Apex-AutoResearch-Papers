@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "310136af095bd1183776",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval pertoken hard mask 50pct",
+  "task_key": "worker_eval_pertoken_hard_mask_50pct_20260517T083639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_pertoken_hard_mask_50pct_20260517T083639_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "b59e5d3fc6e706c1ff9770f0923ee6bef27fb1c1d113aeef08426ca83cb22366"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**d_b=256 per-token hard mask PPL = 8.5862**\n\n完整退化分解：\n\n| 配置 | WikiText-2 PPL |\n|------|---------|\n| Dense | 6.12 |\n| Per-token hard (d_b=256) | **8.59** |\n| Per-token hard (d_b=128) | 9.22 |\n| Global hard (d_b=256, teal_global) | 11.79 |\n| TEAL vanilla (magnitude, global) | 23.31 |\n\nd_b=256 per-token (8.59) 确实优于 d_b=128 (9.22)，符合预期。退化链：Dense → Per-token hard 贡献 +2.47 PPL（predictor 误差），Per-token → Global hard 贡献 +3.20 PPL（token 间分配不均），Global hard → TEAL vanilla 贡献 +11.52 PPL（magnitude 选择能力差距）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-pertoken-hard-mask-50pct.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28c076cf3f1115e2491c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra read results 34887",
+  "task_key": "worker_infra_read_results_34887_20260518T005138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_read_results_34887_20260518T005138_result.json",
+    "occurrence": 1,
+    "bytes": 3136,
+    "sha256": "4b671a12d1611946eaf26d922ad84eddd9405c5b841dc2147088f872b2ad8f6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "共找到 20 个 `results*.json` 文件（最近 25 小时内修改）。以下是完整汇总：\n\n---\n\n### 文件列表与核心指标\n\n| # | 文件路径 | 模型 | 模式 | Sparsity | Alloc | WikiText2 PPL | ARC-C acc | WinoGrande | MMLU | GSM8K EM |\n|---|---------|------|------|----------|-------|--------------|-----------|------------|------|----------|\n| 1 | `checkpoints/kl_mag_reg_a001/results.json` | — | — | 48.4% | — | 11.82 | — | — | — | — |\n| 2 | `results/benchmark/mistral_dense_ppl/` | Mistral-7B | dense | — | — | **5.5238** | — | — | — | — |\n| 3 | `results/benchmark/mistral_kl30_pertoken/` | Mistral-7B | per_token (KL) | 30% | uniform | 6.048 | — | — | — | — |\n| 4 | `results/benchmark/mistral_kl30_teal_global/` | Mistral-7B | teal_global (KL) | 30% | uniform | 6.7733 | — | — | — | — |\n| 5 | `results/benchmark/mistral_teal30_baseline/` | Mistral-7B | teal_vanilla | 30% | uniform | 8.3807 | — | — | — | — |\n| 6 | `results/benchmark/mistral_kl50_pertoken/` | Mistral-7B | per_token (KL) | 50% | uniform | 7.2931 | — | — | — | — |\n| 7 | `results/benchmark/mistral_kl50_teal_global/` | Mistral-7B | teal_global (KL) | 50% | uniform | 8.6489 | — | — | — | — |\n| 8 | `results/benchmark/mistral_teal50_baseline/` | Mistral-7B | teal_vanilla | 50% | uniform | 18.3061 | — | — | — | — |\n| 9 | `results/benchmark/mistral_kl70_pertoken/` | Mistral-7B | per_token (KL) | 70% | uniform | 9.1086 | — | — | — | — |\n| 10 | `results/benchmark/mistral_kl70_teal_global/` | Mistral-7B | teal_global (KL) | 70% | uniform | 13.3254 | — | — | — | — |\n| 11 | `results/benchmark/mistral_teal70_baseline/` | Mistral-7B | teal_vanilla | 70% | uniform | 61.716 | — | — | — | — |\n| 12 | `results/benchmark/kl70_teal_global_llama/` | LLaMA-3.1-8B | teal_global (KL) | 70% | uniform | 18.5432 | 0.2125 | — | 0.267 | — |\n| 13 | `results/benchmark/teal_vanilla70_llama/` | LLaMA-3.1-8B | teal_vanilla | 70% | uniform | 125.4204 | 0.1928 | — | 0.2615 | — |\n| 14 | `results/benchmark/reverse_kl_50pct_s42_eval/` | LLaMA-3.1-8B | teal_global (rev KL) | 50% | global_topk | 12.7969 | — | — | — | — |\n| 15 | `results/benchmark/jsd_50pct_s42_eval/` | LLaMA-3.1-8B | teal_global (JSD) | 50% | global_topk | 12.5428 | — | — | — | — |\n| 16 | `results/benchmark/db256_pertoken_wikitext2/` | LLaMA-3.1-8B | per_token (KL, d_b=256) | 50% | global_topk | 8.5862 | — | — | — | — |\n| 17 | `results/benchmark/kl_50pct_s123_global/` | LLaMA-3.1-8B | teal_global (KL, s123) | 50% | global_topk | 11.745 | 0.329 | 0.6125 | 0.2752 | 0.0281 |\n| 18 | `results/benchmark/kl_30pct_s123/` | LLaMA-3.1-8B | teal_global (KL, s123) | 30% | global_topk | 8.9748 | 0.4181 | 0.693 | 0.3807 | 0.0758 |\n| 19 | `results/benchmark/kl30_s123_uniform/` | LLaMA-3.1-8B | teal_global (KL, s123) | 30% | uniform | 8.8308 | 0.4096 | 0.6938 | 0.3944 | 0.0751 |\n| 20 | `results/benchmark/kl50_s456_global/` | LLaMA-3.1-8B | teal_global (KL, s456) | 50% | global_topk | 11.8057 | 0.3276 | 0.6488 | 0.2794 | 0.0212 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-read-results-34887.md"
+}

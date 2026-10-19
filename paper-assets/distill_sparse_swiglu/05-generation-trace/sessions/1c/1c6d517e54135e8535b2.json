@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c6d517e54135e8535b2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis bench dense results",
+  "task_key": "worker_analysis_bench_dense_results_20260516T061410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bench_dense_results_20260516T061410_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "68f591353621cb9f84b1fefa246c8a2894d4e664183848abd4735e256b3e5ea1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## bench_dense 完整指标 — Llama-3.1-8B Dense Baseline\n\n| Benchmark | Metric | Value | Stderr |\n|-----------|--------|-------|--------|\n| **WikiText-2** | PPL | **6.1173** | — |\n| **ARC-Challenge** (25-shot) | acc | 0.5478 | ±0.0145 |\n| | acc_norm | **0.5828** | ±0.0144 |\n| **WinoGrande** (5-shot) | acc | **0.7806** | ±0.0116 |\n| **MMLU** (5-shot) | acc | **0.6527** | ±0.0038 |\n| **GSM8K** (8-shot) | exact_match (flexible) | **0.4875** | ±0.0138 |\n| | exact_match (strict) | 0.4860 | ±0.0138 |\n\n所有 5 项 benchmark 正常完成，EXIT_CODE=0。Results JSON 已保存在 `/root/distill_sparse_swiglu/results/benchmark/bench_dense/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bench-dense-results.md"
+}

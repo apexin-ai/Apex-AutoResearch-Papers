@@ -1,0 +1,73 @@
+# reviewer / loop_4.md
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_4.md`
+- **Structured JSON:** [`c17e911f5693d047cf25.json`](../../sessions/c1/c17e911f5693d047cf25.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 4
+reason: max_wall_time
+updated: '2026-05-16T02:55:23+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 只能用 cuda:0 和 cuda:1（westd-34887，C001 约束）。每次审查 RUNNING 实验必查 CUDA_VISIBLE_DEVICES 是否越界。
+- lm_eval_teal_50pct registry 中 model 字段写错为 "Qwen2.5-7B-Instruct"，实际是 llama-3.1-8b。Agent 尚未修正，审查时注意不要被 registry metadata 误导。
+- ssh_read_only 不支持 shell metacharacters（`|`, `2>/dev/null`, `&&`）。用纯命令，不拼管道。
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-34887(root)，项目目录 /root/distill_sparse_swiglu/
+- Python：/root/miniconda3/bin/python（conda base）
+- 模型：/root/distill_sparse_swiglu/models/llama-3.1-8b, /root/autodl-tmp/models/Mistral-7B-v0.3
+- HF cache：/root/autodl-tmp/.hf_cache（HF_HUB_OFFLINE=1 必须设置，AutoDL 网络不稳）
+- 日志目录：/root/runs/distill_sparse_swiglu/
+- 结果目录：/root/distill_sparse_swiglu/results/
+- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/
+- 活跃进程：截至 handoff 时两个 GPU 均空闲（lm_eval_kl_30pct_s42 和 lm_eval_teal_50pct 均已完成）
+
+### 3. 📊 当前状态
+刚完成两个 P0 诊断实验的审查并发了 3 条 critical review：
+1. **TEAL 50% downstream** (DONE): 崩溃与 KL 50% 一致，确认 50% collapse 是 universal
+2. **30% KL downstream** (DONE, negative): MMLU 28.74%≈随机，ARC-c 37.37%≈50% 水平。30% 不能作为推荐配置
+3. **Per-layer sparsity 根因分析** (已完成): 30% 和 50% 都呈现后层过度剪枝（Layer 31=70%），统一解释所有 downstream failure
+
+Registry PREPARING 但未启动：lm_eval_teal_30pct（建立完整曲线）
+Director 刚批准 D030，ROADMAP 已更新，P0 是 uniform per-layer allocation 消融实验。
+两个 GPU 空闲，等 Agent 实现 _perlayer_topk_masks 并启动实验。
+
+### 4. 📋 待办
+- Agent 提交 uniform per-layer 30%/50% 实验 → 审查代码改动是否只改了 mask 选取逻辑（不应改 predictor 训练）→ 监控 GPU 合规 → 结果出来后对比 global vs uniform downstream
+- Uniform 30% MMLU > 40% → 支持 "per-layer allocation insight" 作为核心 contribution，审查论文 narrative pivot
+- Uniform 30% MMLU ≈ 28% (仍随机) → per-layer 分布不是唯一根因，需要更深入的诊断（可能是 predictor 训练目标本身的问题）
+- lm_eval_teal_30pct 完成 → 对比 TEAL 30% vs KL 30% downstream，补全 sparsity-task tradeoff 曲线
+- 论文章节提交审查 → 按 5.1-5.2 维度审查（method/related work workers 已完成，可能很快提交）
+
+### 5. 🎯 战略上下文
+**决策链**：D025(retracted)→D026(sparsity destroys representations)→D027/D028(50% collapse universal)→D030(per-layer imbalance root cause)
+
+**核心结论**：KL predictor 在 PPL 上显著优于 baselines（Claim 1 成立），但 PPL 优势完全不 translate 到 downstream tasks。根因是全局 top-k 将 sparsity 集中在后层（Layer 26-31 达 50-70%），而这些层对 downstream 至关重要。
+
+**最容易判断错的事**：
+1. 不要被 PPL 数字迷惑——PPL 8.98（仅+47%）但 MMLU 已崩溃到随机。PPL 作为 sparse model 质量指标不可信。
+2. ARC-c 在 30% 和 50% 几乎一样（37.37% vs 37.71%），不是 noise，是后层 sparsity 在两个 target 下都在崩溃区（~70%）。
+3. uniform per-layer 实验是 make-or-break：成功则论文有清晰 contribution（insight + fix），失败则需要根本性 rethink。
+4. DDL 2026-05-25（9 天），GPU 预算充足（90/196h used），不存在算力瓶颈。
+
+
+---

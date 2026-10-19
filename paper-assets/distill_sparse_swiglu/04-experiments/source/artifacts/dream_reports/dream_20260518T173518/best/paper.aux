@@ -1,0 +1,77 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{liu2023deja}
+\citation{song2024prosparse}
+\citation{lee2024cats}
+\citation{raposo2024mixtureofdepths}
+\citation{sun2024fastforward}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{sun2024fastforward}
+\citation{alizadeh2024llmflash}
+\citation{song2024teal}
+\citation{zhang2024rsparse}
+\citation{huang2024spon}
+\citation{sun2024fastforward}
+\citation{hinton2015distilling}
+\citation{sanh2019distilbert}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training-Free Activation Sparsity.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Static Learned Corrections.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contextual Learned Predictors.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Knowledge Distillation for Efficiency.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Training Objectives}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{BCE Baseline.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{KL Distillation.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Gumbel-Sigmoid Relaxation}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Sparsity Control via Lagrangian}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Gradient Coupling Analysis}{4}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:gradient}{{3.5}{4}{Gradient Coupling Analysis}{subsection.3.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results: Mask Quality at the Recommended Operating Point}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comparison at 30\% sparsity (Llama 3.1 8B). KL uniform is the recommended configuration. PPL on WikiText-2; downstream accuracy (\%).}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main30}{{1}{4}{Comparison at 30\% sparsity (Llama 3.1 8B). KL uniform is the recommended configuration. PPL on WikiText-2; downstream accuracy (\%)}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Causal Ablation: Target Quality as Sole Driver}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:ablation}{{4.3}{4}{Causal Ablation: Target Quality as Sole Driver}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces C1 causal ablation across two seeds. ``BCE+KL-targets'' is a BCE predictor trained on KL-derived oracle masks. Evaluation: TEAL uniform 50\%. PPL on WikiText-2; downstream accuracy (\%).}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:c1}{{2}{5}{C1 causal ablation across two seeds. ``BCE+KL-targets'' is a BCE predictor trained on KL-derived oracle masks. Evaluation: TEAL uniform 50\%. PPL on WikiText-2; downstream accuracy (\%)}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Sparsity Regime Curve}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:regime}{{4.4}{5}{Sparsity Regime Curve}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 6-point sparsity regime curve (KL predictor, Llama 3.1 8B, seed 42). PPL on WikiText-2; downstream accuracy (\%) under uniform allocation.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:regime}{{3}{5}{6-point sparsity regime curve (KL predictor, Llama 3.1 8B, seed 42). PPL on WikiText-2; downstream accuracy (\%) under uniform allocation}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Regime 1: Budget Surplus ($\leq $30\%).}{5}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Regime 2: Budget Constrained (35--45\%).}{5}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Regime 3: Capacity Cliff ($\geq $50\%).}{5}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}LongBench: Long-Context Generalization}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:longbench}{{4.5}{6}{LongBench: Long-Context Generalization}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces LongBench evaluation (F1/ROUGE-L). KL and TEAL at 30\% and 50\% sparsity. Retention = score / dense score $\times $ 100.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:longbench}{{4}{6}{LongBench evaluation (F1/ROUGE-L). KL and TEAL at 30\% and 50\% sparsity. Retention = score / dense score $\times $ 100}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}MT-Bench: Multi-Turn Generation Quality}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:mtbench}{{4.6}{6}{MT-Bench: Multi-Turn Generation Quality}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces MT-Bench scores (1--10 scale, GPT-4o judge). Base model, not instruct-tuned; absolute scores are limited. Per-category scores for KL 30\%.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:mtbench}{{5}{6}{MT-Bench scores (1--10 scale, GPT-4o judge). Base model, not instruct-tuned; absolute scores are limited. Per-category scores for KL 30\%}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}RULER: Synthetic Long-Context Diagnostics}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:ruler}{{4.7}{7}{RULER: Synthetic Long-Context Diagnostics}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces RULER accuracy (\%) at 4K and 16K context. NIAH = needle-in-a-haystack, MK = multi-key retrieval, VT = variable tracking.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:ruler}{{6}{7}{RULER accuracy (\%) at 4K and 16K context. NIAH = needle-in-a-haystack, MK = multi-key retrieval, VT = variable tracking}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications of the Mask Quality Finding.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{14B Scale Caveat.}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Iso-Compute Control.}{7}{section*.12}\protected@file@percent }
+\bibcite{alizadeh2024llmflash}{1}
+\bibcite{hinton2015distilling}{2}
+\bibcite{huang2024spon}{3}
+\bibcite{lee2024cats}{4}
+\bibcite{liu2023deja}{5}
+\bibcite{raposo2024mixtureofdepths}{6}
+\bibcite{sanh2019distilbert}{7}
+\bibcite{song2024teal}{8}
+\bibcite{song2024prosparse}{9}
+\bibcite{sun2024fastforward}{10}
+\bibcite{zhang2024rsparse}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\gdef \@abspage@last{8}

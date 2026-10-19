@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18ff01906e814dcd70d1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260516T122602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_20260516T122602_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "40976774d97f53e15112a1cc0e9c8509bf3ac4f711a5797131086c19fe10be3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex`。\n\n结构概览：\n- **5.1 Setup** — 模型/predictor/训练/评估/baseline 完整描述\n- **5.2 Main Results** — Table 1 (30%/50% sparsity, 5 methods, 5 metrics)，重点叙述 KL PPL 优势和 50% downstream collapse\n- **5.3 Iso-Compute** — BCE 2.71× compute 仍 2.37× worse，结构性失败分析\n- **5.4 Ablation** — Table 3 (Gumbel/STE/SPON/BCE+comp)，量化各组件贡献\n- **5.5 Scaling & Phase Transition** — PPL sweep (30/50/70%) + MMLU degradation band 分析，推荐 30% 操作点\n- **5.6 SPON Analysis** — L2 norm/cosine similarity 分解，解释 subsumption effect\n- **5.7 Cross-Architecture** — Mistral-7B 验证泛化性\n\n所有定量 claim 均附 `% exp_id:` 注释，禁用词已规避，数字精度符合规范。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-copy-5.md"
+}

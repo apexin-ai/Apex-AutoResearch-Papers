@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24b15040d047438de561",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_10_1779047906.md",
+  "task_key": "loop_10_1779047906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1779047906.md",
+    "occurrence": 1,
+    "bytes": 4013,
+    "sha256": "e503df897e56891dc9308981b714cbf9603e6e7908ac0c09a15d6ed4c647ce2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-17T18:48:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 cuda:0 + cuda:1，绝不用其他卡\n- 训练命令中 `--gpu 0` 始终从 0 开始（框架自动映射物理 GPU）\n- W&B 在该服务器上禁用（`WANDB_MODE=disabled`），所有指标从日志提取\n- HF 离线模式（`HF_HUB_OFFLINE=1`），模型必须预先下载到本地\n- Qwen-2.5-14B 用 `--gradient_checkpointing` + `--batch_size 1`，否则 OOM\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，工作目录 `/root/distill_sparse_swiglu`\n- Python：`/root/miniconda3/bin/python`（直接用绝对路径，不需要 conda activate）\n- 模型路径：LLaMA-8B `/root/autodl-tmp/models/llama3.1-8b-instruct/`，Qwen-14B `/root/autodl-tmp/models/qwen2.5-14b/`，Mistral-7B `/root/autodl-tmp/models/mistral-7b-instruct-v0.3/`\n- 数据集：wikitext-103，HF cache `/root/autodl-tmp/.hf_cache/datasets`\n- Checkpoint 目录：`/root/distill_sparse_swiglu/checkpoints/`\n- 日志目录：`~/runs/distill_sparse_swiglu/`\n- 磁盘充裕：`/usr/bin/nvidia-smi` 分区 817G/879G 可用\n\n### 3. 📊 当前状态\n**刚收到 cron 回调**：`qwen14b_kl30_s42`（Qwen-2.5-14B 跨架构验证）训练正常退出，已转 ANALYZING。我派了 Worker `worker_analysis_qwen14b_kl30_s42_20260517T144541` 去 SSH 读日志 + 跑评估 + 写 registry，**Worker 尚未回调**。\n\n**RUNNING 实验**：\n- `kl30_s456_uniform_eval`：cuda:0，PID 49864，30% uniform seed 456 的 MMLU 评估，cron 监控中\n- `kl30_s456_train`：report.md 列为运行中（可能已完成但 cron 未同步，reconcile 时只看到 uniform_eval）\n\n**ANALYZING**：\n- `qwen14b_kl30_s42`：等 Worker 回调\n- 另有 2 个 ANALYZING（检查 registry 确认）\n\n**PREPARING（12 个）**：大部分是历史残留（kl50_s456_train、mag_preservation_reg 等），非活跃\n\n### 4. 📋 待办\n- Worker `worker_analysis_qwen14b_kl30_s42_20260517T144541` 完成 → 读 Worker 产出，更新 registry（conclusion + metrics），刷新 report.md，向 Director 汇报（含 [资源] 行 + 与 LLaMA-8B 1.47x ratio 对比）\n- `kl30_s456_uniform_eval` cron 回调 → 同样分析日志，提取 MMLU，与 s42/s123 uniform 结果对比，完成 30% uniform 3-seed 验证\n- `kl30_s456_train` 如果也完成 → 需要接续跑 eval（global + uniform + downstream），用已有的 eval pipeline\n- Qwen14B 实验如果 success → 这是 cross-architecture claim 的关键数据点，需要立即写入论文 Table（可能是 Table 3 或新增行），派 Paper Worker\n- Qwen14B 如果 negative → 按 on-experiment-done negative 流程，分析证伪粒度（完全不 work vs 需要调参），汇报 Director\n- cuda:1 空闲 → Worker 回调后立即安排下一个任务（优先 kl50_s456 系列或其他矩阵缺口）\n\n### 5. 🎯 战略上下文\n- **论文目标**：EMNLP 2026 ARR May，DDL 2026-05-25，剩 8 天\n- **核心 narrative**：KL distillation 使 SwiGLU LLM 的 contextual sparsity prediction 不再需要 error compensation 和 static bias correction\n- **三大 Claim**：(1) KL >> baselines（strong）(2) SPON orthogonal（adequate）(3) Three-regime phase transition（strong）\n- **当前重点**：Round 1 审稿 3.0/5，4 critical 已 resolved，2 warning in_progress（SNR patch + λ curve）。下一步是完成 warning 修复后提交 Round 2 review\n- **Qwen-14B 实验**是 D048 决策产物（用户建议增加跨规模验证），属于 cross-architecture claim 的补强。LLaMA-8B 基准：dense PPL=6.12, 30% sparse PPL=8.98, ratio=1.47x\n- **易错点**：(1) Qwen 模型的 evaluate.py 可能需要架构适配（SwiGLU 层命名不同），Worker 需要检查 (2) 不要把 Qwen-14B 的绝对 PPL 和 LLaMA-8B 直接比——应比较 dense→sparse ratio (3) `kl30_s456_train` 可能已完成但 reconcile 没捕获到，接手后先 reconcile 确认 (4) 论文中 Qwen 结果需要 dense baseline PPL，如果 Worker 没跑要补跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1779047906.md"
+}

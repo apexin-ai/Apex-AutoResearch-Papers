@@ -1,0 +1,40 @@
+{
+  "exp_id": "bce_comp_staged_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:27:26.983Z",
+    "updated_at": "2026-05-15T18:21:40.228Z",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train_bce_comp.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 1000 --batch_size 4 --seq_len 2048 --predictor_lr 1e-3 --comp_lr 1e-3 --seed 42 --sparsity_target 0.5 --comp_warmup_steps 200 --comp_bottleneck 256 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/bce_comp_staged_s42 --wandb_run_name bce_comp_staged_s42 --dataset wikitext-103\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "100045",
+      "log_path": "~/runs/distill_sparse_swiglu/bce_comp_staged_s42.log",
+      "submitted_at": "2026-05-15T18:02:08.405Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-34887",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-34887",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T17:59:11.805Z",
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train_bce_comp.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 1000 --batch_size 4 --seq_len 2048 --predictor_lr 1e-3 --comp_lr 1e-3 --seed 42 --sparsity_target 0.5 --comp_warmup_steps 200 --comp_bottleneck 256 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/bce_comp_staged_s42 --wandb_run_name bce_comp_staged_s42 --dataset wikitext-103\"",
+      "finished_at": "2026-05-15T18:21:40.121Z",
+      "training_hours": 0.37
+    },
+    "pid": "100045",
+    "log_path": "~/runs/distill_sparse_swiglu/bce_comp_staged_s42.log"
+  },
+  "timestamp": "2026-05-15T18:21:40.277370+00:00",
+  "trigger": "update_registry"
+}

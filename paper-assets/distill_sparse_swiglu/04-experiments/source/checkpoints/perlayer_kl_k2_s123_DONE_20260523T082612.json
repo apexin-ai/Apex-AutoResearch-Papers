@@ -1,0 +1,34 @@
+{
+  "exp_id": "perlayer_kl_k2_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:54:21.055Z",
+    "updated_at": "2026-05-23T08:26:11.409Z",
+    "hypothesis": "K=2 per-layer KL predictor seed=123 for 3-seed K-curve. Part of R20-W1 multi-seed validation at 30% sparsity.",
+    "spec": {
+      "command": "python -u src/train_perlayer_kl_k4.py --num_masked_layers 2 --seed 123 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s123 --gpu 0",
+      "server": "westd-34887",
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "pid": "123969",
+      "data_path": "wikitext-103",
+      "data_count": "auto",
+      "model_name": "llama-3.1-8b",
+      "seed": 123,
+      "num_steps": 1000,
+      "sparsity_target": 0.3,
+      "num_masked_layers": 2,
+      "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s123/predictor_perlayer_kl_k4.pt",
+      "log_path": "/root/runs/distill_sparse_swiglu/perlayer_kl_k2_s123.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T08:26:11.409Z"
+  },
+  "timestamp": "2026-05-23T08:26:12.255291+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,36 @@
+{
+  "exp_id": "kl_50pct_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:45:30.258Z",
+    "updated_at": "2026-05-17T11:46:12.691Z",
+    "hypothesis": "Multi-seed validation: KL 50% with seed=123 should produce PPL consistent with s42=11.79, confirming result stability",
+    "spec": {
+      "command": "python src/train_kl.py --seed 123 --sparsity_target 0.5 + benchmark_eval.py",
+      "server": "westd-34887",
+      "data_path": "wikitext-103 local",
+      "data_count": "full",
+      "model_name": "LLaMA-3.1-8B",
+      "seed": 123,
+      "checkpoint_path": "checkpoints/kl_50pct_s123/predictor_kl_normalized.pt",
+      "log_path": "results/benchmark/kl_50pct_s123_global/results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "ppl_wikitext2": 11.745,
+      "arc_challenge_acc_norm": 0.3814,
+      "winogrande_acc": 0.6125,
+      "mmlu_acc": 0.2752,
+      "gsm8k_exact_match": 0.0281,
+      "sparsity": 0.5,
+      "allocation": "global"
+    },
+    "completed_at": "2026-05-17T11:46:12.691Z"
+  },
+  "timestamp": "2026-05-17T11:46:12.984971+00:00",
+  "trigger": "update_registry"
+}

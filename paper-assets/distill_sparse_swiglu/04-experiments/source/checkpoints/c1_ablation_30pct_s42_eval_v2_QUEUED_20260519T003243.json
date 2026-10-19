@@ -1,0 +1,16 @@
+{
+  "exp_id": "c1_ablation_30pct_s42_eval_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:32:20.594Z",
+    "updated_at": "2026-05-19T00:32:42.931Z",
+    "hypothesis": "C1@30% eval on 34887 (checkpoint confirmed there). PPL already measured: 9.4463. Running full downstream (ARC, WinoGrande, MMLU, GSM8K) with TEAL uniform 30%.",
+    "parent": "c1_ablation_30pct_s42_v2"
+  },
+  "timestamp": "2026-05-19T00:32:43.428322+00:00",
+  "trigger": "update_registry"
+}

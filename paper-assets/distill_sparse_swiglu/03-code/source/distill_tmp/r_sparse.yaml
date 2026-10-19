@@ -1,0 +1,284 @@
+paper_key: "r_sparse"
+title: "R-Sparse: Rank-Aware Activation Sparsity for Efficient LLM Inference"
+authors: "Zhenyu Zhang, Zechun Liu, Yuandong Tian, Harshit Khaitan, Zhangyang Wang, Steven Li"
+venue: "ICLR 2025"
+arxiv_id: "2504.19449"
+full_text_available: true
+
+research:
+  baselines:
+    - "Full (dense) model"
+    - "ReLUfication (Zhang et al. 2024a)"
+    - "CATS (Lee et al. 2024)"
+    - "GRIFFIN (Song et al. 2024b)"
+    - "INT4 GPTQ quantization"
+  metrics:
+    - {name: "Accuracy (Winogrande)", direction: "higher_better"}
+    - {name: "Accuracy (PIQA)", direction: "higher_better"}
+    - {name: "Accuracy (SciQ)", direction: "higher_better"}
+    - {name: "Accuracy (OpenBookQA)", direction: "higher_better"}
+    - {name: "Accuracy (HellaSwag)", direction: "higher_better"}
+    - {name: "Accuracy (BoolQ)", direction: "higher_better"}
+    - {name: "Accuracy (ARC-Easy)", direction: "higher_better"}
+    - {name: "Accuracy (ARC-Challenge)", direction: "higher_better"}
+    - {name: "Perplexity (WikiText-2)", direction: "lower_better"}
+    - {name: "ROUGE-L (XSUM)", direction: "higher_better"}
+    - {name: "Generation Speed (tokens/s)", direction: "higher_better"}
+  datasets:
+    - {name: "Winogrande", type: "commonsense reasoning"}
+    - {name: "PIQA", type: "commonsense reasoning"}
+    - {name: "SciQ", type: "commonsense reasoning"}
+    - {name: "OpenBookQA", type: "commonsense reasoning"}
+    - {name: "HellaSwag", type: "commonsense reasoning"}
+    - {name: "BoolQ", type: "commonsense reasoning"}
+    - {name: "ARC-Easy", type: "commonsense reasoning"}
+    - {name: "ARC-Challenge", type: "commonsense reasoning"}
+    - {name: "WikiText-2", type: "language modeling"}
+    - {name: "XSUM", type: "summarization"}
+    - {name: "C4", type: "calibration", size: "16 samples, seq_len 4096"}
+  models_evaluated:
+    - "Llama-2-7B"
+    - "Llama-3-8B"
+    - "Mistral-7B"
+  ablation_dimensions:
+    - "Sparse-only vs Low-rank-only vs Combined R-Sparse (component necessity)"
+    - "Uniform vs Adaptive per-layer sparsification recipe"
+    - "Quantization compatibility (FP16 vs INT4, with/without R-Sparse)"
+    - "Sparsity ratio sweep (40%, 50%, 60%, 70%)"
+    - "Number of calibration samples (1, 16, 128, 1024)"
+    - "Cross-dataset generalization (C4, GitHub, ArXiv, StackExchange, Wikipedia)"
+    - "MLP-only vs All-layer sparsity (GRIFFIN comparison)"
+  training_recipe:
+    optimizer: "N/A (training-free)"
+    lr: "N/A"
+    hardware: "Single A6000 GPU for evolutionary search (~1 hour)"
+    calibration: "16 C4 samples, sequence length 4096"
+    search_algorithm: "Evolutionary search, 5 generations, group-wise (28 layer groups)"
+    kernel: "Custom Triton kernels for sparse + low-rank computation"
+  method_family: "activation sparsity + low-rank decomposition (training-free, input-side)"
+
+positioning:
+  core_claim: "Activation sparsity in non-ReLU LLMs can be achieved training-free by decomposing linear layer computation into sparse (input channel thresholding) and low-rank (SVD) components, exploiting the rank-aware structure where importance concentrates in the bottom-right of the input-channel x SVD-index contribution matrix."
+  key_results: >
+    Llama-2-7B 50% sparsity: 64.06% avg accuracy (vs 65.88% dense, -1.82pp);
+    Llama-3-8B 50% sparsity: 66.20% avg (vs 69.44% dense, -3.24pp);
+    Mistral-7B 50% sparsity: 68.39% avg (vs 69.89% dense, -1.50pp);
+    Generation speed: up to 43% improvement with custom Triton kernels;
+    vs CATS@40%: +18.74pp on Llama-2-7B;
+    vs GRIFFIN@50%: +18.15pp on Llama-2-7B;
+    ReLUfication without retraining: 35.34% avg (catastrophic failure);
+    Compatible with INT4: 50% sparsity + INT4 = 65.76% avg (vs 67.32% INT4-only)
+  limitations:
+    - "Only evaluated on 7-8B parameter models (Llama-2-7B, Llama-3-8B, Mistral-7B); no larger-scale validation"
+    - "Requires ~1 hour evolutionary search per model on A6000 for optimal per-layer recipe"
+    - "Custom Triton kernels needed for actual speedup; without them, sparsity alone does not accelerate"
+    - "KV cache compression not explored (acknowledged as future work)"
+    - "Accuracy degradation increases at higher sparsity (70%: significant drops across tasks)"
+    - "Only tested on Llama/Mistral families; generalization to other architectures (e.g., Qwen, Phi) not shown"
+  relation_to_us: "competitor"
+  relation_detail: >
+    Direct competitor. We distill sparse SwiGLU activation patterns via knowledge distillation;
+    R-Sparse achieves input-side sparsity training-free via rank-aware decomposition.
+    Key differentiator: R-Sparse is training-free but uses a fundamentally different sparsity mechanism
+    (input channel magnitude thresholding + SVD low-rank residual) rather than learning sparse activation patterns.
+    R-Sparse targets the input side of linear layers; our approach targets the intermediate activation
+    within SwiGLU (gate * up). R-Sparse applies to both attention and MLP; ours focuses on MLP FFN.
+    R-Sparse's 50% model-level sparsity includes attention layers, making direct comparison nuanced.
+
+narrative:
+  story_type: "化繁为简型"
+  hook: >
+    Opens with the memory-bound nature of LLM inference during autoregressive decoding,
+    establishing that activation sparsity is a promising but under-exploited direction for non-ReLU models.
+    The hook is the gap: existing methods either require expensive retraining (ReLUfication: 150B tokens on 64 A100s)
+    or achieve limited sparsity (CATS/GRIFFIN: only MLP, <=50% MLP-level).
+  tension: >
+    Three explicit challenges frame the tension: (1) non-ReLU activations (SiLU/GELU) don't produce natural zeros,
+    (2) predicting which channels to keep is hard without auxiliary networks, (3) existing training-free methods
+    can only sparsify MLP outputs at modest ratios. ReLUfication is presented as the straw man that "works but costs too much."
+  key_insight: >
+    Two-part insight presented in Section 3 (Motivation Cases I and II):
+    Case I: Non-sparse activation components can be approximated as data-dependent biases
+    (demonstrated via soft multi-phase ReLU recovering 90% sparsity performance with just 2 discrete levels).
+    Case II: The contribution matrix (input channels x SVD components) has a rank-aware structure where
+    importance concentrates in the bottom-right corner -- enabling efficient combined sparse + low-rank approximation.
+    This insight is visualized in Figure 1 (the central figure) showing the L-shaped importance pattern.
+  argument_chain: >
+    Memory-bound inference problem → activation sparsity as solution → three challenges with existing approaches →
+    Motivation Case I (non-sparse as bias) → Motivation Case II (rank-aware structure in contribution matrix) →
+    R-Sparse framework (sparse + low-rank decomposition) → Evolutionary search for per-layer recipe →
+    Validation on 3 models x 10 tasks → Speedup with Triton kernels → Quantization compatibility
+  contribution_framing: >
+    Contributions are implicitly stated through claims rather than an explicit numbered list.
+    Six implicit contributions: (1) training-free approach, (2) non-ReLU compatibility,
+    (3) input-side sparsity without prediction, (4) higher sparsity ratios than prior training-free methods,
+    (5) coverage of both attention and MLP, (6) rank-aware decomposition combining sparse + low-rank.
+    The framing emphasizes "training-free" as the primary selling point, repeated multiple times.
+  intro_structure: >
+    7 paragraphs: (1) LLM inference bottleneck + activation sparsity promise, (2) memory efficiency motivation,
+    (3) three challenges with existing methods, (4) paper's training-free approach,
+    (5) two key observations (motivation cases), (6) R-Sparse framework description,
+    (7) experimental results summary. Classic problem-gap-insight-method-results flow.
+  notable_technique: >
+    The dual motivation case structure is effective: Case I provides intuition (non-sparse = bias),
+    Case II provides the structural insight (rank-aware concentration). This two-step buildup
+    makes the combined sparse+low-rank decomposition feel inevitable rather than arbitrary.
+    The heatmap visualization of the contribution matrix (Figure 1) is the centerpiece --
+    it makes the rank-aware structure immediately visually obvious.
+
+figures:
+  figure_count: 9
+  figure1:
+    type: "motivation"
+    description: >
+      Heatmap of the contribution matrix for Layer 0, self_attn.v_proj of Llama-2-7B.
+      X-axis: Input Channel Index (0-4096), Y-axis: SVD Index (0-4096).
+      Color scale: blue (low, ~0) to red (high, ~0.00020). The importance concentrates
+      in an L-shaped pattern in the bottom-right corner: high-magnitude input channels (rightmost)
+      and large singular values (bottom rows). A green rectangle highlights the sparse component
+      (rightmost input channels), a yellow rectangle highlights the low-rank component (bottom SVD rows),
+      and their overlap in the bottom-right is the highest-importance region.
+    narrative_role: >
+      The central motivating figure -- visually proves the rank-aware structure that justifies
+      the sparse + low-rank decomposition. Makes the key insight immediately tangible.
+    design_elements:
+      - "Blue-to-red continuous heatmap for importance values"
+      - "Colored rectangles (green for sparse, yellow for low-rank) annotating the two components"
+      - "Input channels and SVD indices sorted from small to large for clear visualization"
+      - "Single representative layer (v_proj) to demonstrate the pattern"
+    visual_style: >
+      Clean single-panel heatmap with matplotlib default colorbar. Blue dominant background with
+      red concentration in L-shaped corner pattern. Green and yellow semi-transparent rectangles
+      overlaid as annotations. Standard academic figure style, no decorative elements.
+  result_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "R-Sparse vs Full vs CATS vs GRIFFIN across 10 tasks at sparsity ratios 0-80%"
+      how_gain_highlighted: >
+        R-Sparse (blue line) maintains near-flat accuracy until ~50% sparsity while CATS (orange)
+        and GRIFFIN (red) collapse much earlier. The visual dominance of R-Sparse's stability
+        versus competitors' steep drops makes the advantage immediately obvious.
+      design_note: >
+        10 subplots (2 rows x 5 cols) covering all evaluation tasks. Line plots allow smooth
+        sparsity-performance tradeoff visualization. Full model shown as dashed black line.
+        Color coding consistent: Full=black dashed, CATS=orange, GRIFFIN=red, Ours=blue.
+        This is the most comprehensive comparison figure in the paper.
+    - figure_id: "Figure 6"
+      viz_type: "bar_chart"
+      what_compared: "Generation speed (tokens/s) of Dense vs R-Sparse for Llama-2-7B and Llama-3-8B"
+      how_gain_highlighted: >
+        Red bars (R-Sparse) consistently taller than gray bars (Dense) across all generation lengths.
+        Simple paired bar chart makes speedup visually clear.
+      design_note: >
+        Two panels (one per model). X-axis: generation length (128-2048). Y-axis: tokens/s.
+        Gray vs red color scheme. Clean, minimal design focused on the speedup message.
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      dimensions_varied: ["Number of discrete quantization levels (1 vs 2) at 90% sparsity"]
+      design_note: >
+        Demonstrates Motivation Case I: performance recovery from catastrophic 90% sparsity
+        when using 2 discrete levels instead of 1. Two task panels (OBQA, ARC-C).
+    - figure_id: "Figure 3"
+      viz_type: "heatmap"
+      dimensions_varied: ["Layer position (first, middle, last)", "Input channel importance", "SVD component importance"]
+      design_note: >
+        Shows the rank-aware structure persists across layers but with varying intensity.
+        Three vertically stacked heatmaps for different layer positions.
+    - figure_id: "Figure 7"
+      viz_type: "line_plot"
+      dimensions_varied: ["MLP-only vs All-layer sparsity (GRIFFIN comparison)"]
+      design_note: "Shows GRIFFIN's performance when extended to all layers (not just MLP), demonstrating the challenge."
+    - figure_id: "Figure 8"
+      viz_type: "heatmap"
+      dimensions_varied: ["Number of calibration samples (1, 16, 128, 1024)"]
+      design_note: "Multiple heatmaps showing pattern stability across sample counts, proving data-independence."
+    - figure_id: "Figure 9"
+      viz_type: "heatmap"
+      dimensions_varied: ["Dataset domain (GitHub, ArXiv, StackExchange, Wikipedia)"]
+      design_note: "Four heatmaps showing cross-domain pattern consistency, reinforcing generalization claim."
+  figure_narrative_role: >
+    Figure 1 (motivation heatmap: rank-aware structure) → Figure 2 (motivation bar: non-sparse as bias) →
+    Figure 3 (motivation heatmap: cross-layer consistency) → Figure 4 (method overview: sparse + low-rank diagram) →
+    Figure 5 (main result: sparsity-performance curves across 10 tasks) →
+    Figure 6 (efficiency: generation speed bars) → Figure 7 (extended comparison: GRIFFIN all-layer) →
+    Figure 8-9 (robustness: sample count and dataset generalization).
+    Flow: motivation (3 figs) → method (1 fig) → main results (1 fig) → efficiency (1 fig) → robustness (3 figs).
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "tasks (8 commonsense reasoning benchmarks + Average)"
+    row_organization: "by_category"
+    col_organization: "flat (one column per task)"
+    highlight_strategy: "bold_best implied (R-Sparse consistently near-best among sparsity methods)"
+    statistical_reporting: "single run, no std reported"
+    num_baselines: 4
+    baseline_details:
+      - "Full model (dense, 0% sparsity)"
+      - "ReLUfication (no retraining variant)"
+      - "CATS at 22% and 40% sparsity"
+      - "GRIFFIN at 33% and 50% sparsity"
+      - "R-Sparse at 40% and 50% sparsity"
+    key_numbers:
+      llama2_7b:
+        full: 65.88
+        relufication: 35.34
+        cats_40pct: 45.32
+        griffin_50pct: 45.91
+        r_sparse_50pct: 64.06
+      llama3_8b:
+        full: 69.44
+        r_sparse_50pct: 66.20
+      mistral_7b:
+        full: 69.89
+        r_sparse_50pct: 68.39
+    design_note: >
+      Three model blocks in one table. Each model has Full + baselines + R-Sparse rows.
+      Clean layout with 8 individual task columns + average. The devastating ReLUfication
+      failure (35.34% vs 65.88% full) is a powerful visual contrast with R-Sparse's 64.06%.
+      No std/CI reported -- single-run numbers. Tasks span WG/PIQA/SciQ/OBQA/HS/BoolQ/ArcE/ArcC.
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["Quantization method (FP16/INT4)", "R-Sparse sparsity (0%/40%/50%)"]
+      variation_style: "full_numbers"
+      key_numbers:
+        fp16_full: 68.10
+        int4_full: 67.32
+        r_sparse_40pct_fp16: 67.51
+        r_sparse_50pct_fp16: 67.50
+        r_sparse_40pct_int4: 66.41
+        r_sparse_50pct_int4: 65.76
+      design_note: >
+        Demonstrates orthogonal compatibility with quantization. 6 rows covering the 2x3 grid
+        of {FP16, INT4} x {0%, 40%, 50%}. Only 4 tasks (WG/PIQA/SciQ/OBQA) + Average.
+    - table_id: "Table 3"
+      what_varied: ["Component: Full, Sparse-only, Low-rank-only, R-Sparse combined"]
+      variation_style: "full_numbers"
+      key_numbers:
+        full: 68.10
+        sparse_only: 66.25
+        low_rank_only: 33.05
+        r_sparse_combined: 67.50
+      design_note: >
+        Critical component ablation showing low-rank alone is catastrophic (33.05%),
+        sparse alone is decent (66.25%), but combined R-Sparse (67.50%) outperforms
+        sparse-alone by 1.25pp and approaches full model (68.10%). Proves both components
+        are necessary but sparse is the dominant contributor.
+    - table_id: "Table 4"
+      what_varied: ["Sparsification recipe: Uniform vs Adaptive", "Sparsity ratio: 40-70%"]
+      variation_style: "full_numbers"
+      key_numbers:
+        uniform_50pct_avg: "baseline"
+        adaptive_50pct_avg: "+0.89pp over uniform"
+        uniform_70pct_avg: "baseline"
+        adaptive_70pct_avg: "+1.95pp over uniform"
+      design_note: >
+        Shows per-layer adaptive recipe outperforms uniform, with larger gains at higher sparsity.
+        4 tasks x 4 sparsity levels x 2 strategies. Confirms the evolutionary search is worthwhile.
+  supplementary_tables:
+    in_appendix: false
+    content: "No separate appendix tables mentioned; all main tables in the body."
+    reason: "Paper is compact with 4 tables covering the key dimensions: main results, quantization, component ablation, recipe comparison."

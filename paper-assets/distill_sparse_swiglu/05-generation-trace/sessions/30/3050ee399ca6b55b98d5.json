@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "3050ee399ca6b55b98d5",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "analysis jaccard mask cross seed",
+  "task_key": "worker_analysis_jaccard_mask_cross_seed_20260521T024027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_jaccard_mask_cross_seed_20260521T024027.jsonl",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "5d512626f52e558814a52934de79c4eb68bd7f56a2279f1f62747b92b85aa3a2"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T02:40:39.178311+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_jaccard_mask_cross_seed_20260521T024027"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T02:40:47.687672+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_jaccard_mask_cross_seed_20260521T024027"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-jaccard-mask-cross-seed.md"
+}

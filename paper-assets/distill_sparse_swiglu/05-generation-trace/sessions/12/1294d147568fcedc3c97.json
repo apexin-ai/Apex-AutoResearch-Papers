@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1294d147568fcedc3c97",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra verify uniform eval start",
+  "task_key": "worker_infra_verify_uniform_eval_start_20260517T225436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify_uniform_eval_start_20260517T225436_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "64499633733ad20cac5ac49bf7c978d537537b9ecd5bc1133538d1192d4e85ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 两个 uniform 实验：❌ 启动失败\n\n两个日志内容完全相同：\n```\nbash: line 1: python: command not found\nEXIT_CODE=127\n```\n\n**根因**：nohup 启动的 shell 没有 conda PATH。`/root/miniconda3/bin/python` 存在（symlink → python3.12），但 nohup 环境中 `$PATH` 未包含 `/root/miniconda3/bin/`。\n\n**GPU 状态**：cuda:0 和 cuda:1 均空闲（0MiB / 0% utilization），无任何 python 进程。\n\n### 2. c4_ood_kl30_s42：✅ 已完成\n\n- EXIT_CODE=0\n- allocation=global_topk，model-level sparsity=0.300\n- **C4 OOD PPL = 16.0458**（132 sequences, seq_len=2048）\n- 结果已保存到 `/root/distill_sparse_swiglu/results/benchmark/c4_ood_kl30_s42/results.json`\n\n### 修复建议\n\n重新提交两个 uniform 实验时，启动命令需要改为：\n```bash\nnohup /root/miniconda3/bin/python script.py ... > log.log 2>&1 &\n```\n或在脚本开头加 `source /root/miniconda3/bin/activate`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-uniform-eval-start.md"
+}

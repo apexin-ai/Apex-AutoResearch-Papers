@@ -1,0 +1,32 @@
+{
+  "exp_id": "qwen14b_dense_hspiqa",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:15:01.916Z",
+    "updated_at": "2026-05-19T18:14:44.020Z",
+    "hypothesis": "Qwen-14B dense baseline hellaswag+piqa supplement. Completing 6-task suite for 14B comparison table.",
+    "parent": "qwen14b_dense_baseline",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_dense_hspiqa --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --dense --tasks hellaswag,piqa --seq_len 2048 --gpu 0",
+      "server": "westd-41718",
+      "gpu": 0,
+      "pid": 162200,
+      "model_name": "qwen2.5-14b",
+      "data_path": "hellaswag,piqa (lm_eval builtin)",
+      "data_count": null,
+      "seed": null,
+      "eval_data": "hellaswag,piqa",
+      "checkpoint_source": "dense (no checkpoint)"
+    },
+    "log_path": "/root/distill_sparse_swiglu/logs/qwen14b_dense_hspiqa.log",
+    "checkpoint_path": "N/A",
+    "conclusion": "success",
+    "completed_at": "2026-05-19T18:14:44.020Z"
+  },
+  "timestamp": "2026-05-19T18:14:44.429408+00:00",
+  "trigger": "update_registry"
+}

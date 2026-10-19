@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03d33392ad922a8bc226",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops bce framework iso p0",
+  "task_key": "worker_ops_bce-framework-iso-p0_20260516T191340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bce-framework-iso-p0_20260516T191340_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "466fdb5eddac15b7daf95c5854a3eaca0eb43aee41acd648c47854d445b619ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training is running on cuda:1. Run 1 (lr=1e-4) completed successfully in ~17 min. Run 2 (lr=1e-3) has started. Summary so far:\n\n**Run 1 (lr=1e-4) training complete:**\n- Final BCE loss: ~0.716\n- Final sparsity: ~0.512 (target: 0.50)\n- Checkpoint saved: `checkpoints/bce_framework_lr1e4/predictor_bce_gumbel.pt`\n- Training time: ~1012s (1.01s/step)\n\nAll framework components working correctly:\n- Gumbel-sigmoid mask with tau annealing (1.0 → 0.1)\n- Lagrangian constraint: lambda stabilized at 4.0, sparsity converged to ~50%\n- BCE loss computed against magnitude oracle\n\nRuns 2 (lr=1e-3) and 3 (lr=3e-3) are queued serially. Total ETA for all 3 runs: ~50 min from now. I'll check back when run 2 is further along."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bce-framework-iso-p0.md"
+}

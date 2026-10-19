@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl_comp_30pct_s42_ppl",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:00:32.715Z",
+    "updated_at": "2026-05-18T09:02:23.444Z",
+    "hypothesis": "KL+compensation at 30% sparsity (s42) reduces perplexity degradation on WikiText-2 and C4 compared to KL-only predictor, confirming compensation heads improve language modeling quality.",
+    "parent": "kl_comp_30pct_s42"
+  },
+  "timestamp": "2026-05-18T09:02:23.790906+00:00",
+  "trigger": "update_registry"
+}

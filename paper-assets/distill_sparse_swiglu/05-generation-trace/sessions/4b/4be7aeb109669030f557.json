@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4be7aeb109669030f557",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code mask visualization",
+  "task_key": "worker_code_mask_visualization_20260518T183453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mask_visualization_20260518T183453_result.json",
+    "occurrence": 1,
+    "bytes": 1163,
+    "sha256": "fd81bae0b98619c771b4c8ecbbcaefbbacc5803a8040eb7b176aca3793ff7aae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 3 个图已成功生成并保存。\n\n### 产出总结\n\n**脚本**: `/root/distill_sparse_swiglu/src/visualize_mask_patterns.py`\n\n**生成的图片**（PDF + PNG，300 dpi，均在 `/root/distill_sparse_swiglu/figures/` 和 `artifacts/`）：\n\n| 图 | 文件名 | 尺寸 | 关键发现 |\n|---|---|---|---|\n| Fig 1: Layer-wise Divergence Heatmap | `mask_divergence_heatmap.{pdf,png}` | 双栏宽 6.75\" | Jaccard distance 0.34-0.69; 50% sparsity 平均 0.515（超过一半 neuron 选择不同） |\n| Fig 2: Neuron Importance Scatter | `neuron_scatter_layer16.{pdf,png}` | 单栏宽 3.3\" | Layer 16 有 35.4% disagreement (2497 KL-only, 2585 mag-only) |\n| Fig 3: Concrete Mask Comparison | `mask_comparison.{pdf,png}` | 双栏宽 6.75\" | Layers 2/16/28 的 KL vs magnitude binary mask 并排对比 |\n\n**关键 takeaway**: 50% sparsity 下 KL predictor 和 magnitude pruning 平均有超过 50% 的 Jaccard distance，说明 KL distillation 学到了显著不同于 magnitude-based pruning 的 sparsity pattern。这为论文中 \"KL discovers fundamentally different mask patterns\" 的 claim 提供了直接 visual evidence。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mask-visualization.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05d349bf8c1add248a6e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops s3 backup final",
+  "task_key": "worker_ops_s3_backup_final_20260525T205604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3_backup_final_20260525T205604_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "f0a6c1dc6ea73134956958f0a27d108f7e286637a652aaac7cfb44bd4eb9e7a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "S3 备份完成。汇报：\n\n| 项目 | 结果 |\n|------|------|\n| **Tarball 大小** | 17.17 GB (18,432,093,807 bytes) |\n| **S3 URI** | `s3://agent-ml-manager-backups-emnlp/manager-backup/backends/distill_sparse_swiglu/project-archive/distill_sparse_swiglu-final-20260525T205700Z.tar.gz` |\n| **上传速率** | 16.9 MB/s（耗时 1039.8 秒） |\n| **清理** | 已删除 `/tmp/upload_s3.py`、`/tmp/upload_s3.log`、`/tmp/_tar_ts.txt` 及 tarball |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s3-backup-final.md"
+}

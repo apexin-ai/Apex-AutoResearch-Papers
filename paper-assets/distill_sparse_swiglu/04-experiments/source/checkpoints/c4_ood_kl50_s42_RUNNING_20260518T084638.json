@@ -1,0 +1,35 @@
+{
+  "exp_id": "c4_ood_kl50_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:14:11.123Z",
+    "updated_at": "2026-05-18T08:46:37.777Z",
+    "hypothesis": "KL 50% s42 predictor C4 OOD PPL matches s123 result (~23.6), confirming cross-seed OOD consistency at 50% sparsity and completing the 30%/50% sparsity x seed OOD matrix.",
+    "parent": "c4_ood_kl50_s123",
+    "spec": {
+      "command": "nohup bash -c 'source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/benchmark_eval.py --exp_id c4_ood_kl50_s42 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks c4 --gpu 0'",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "12354",
+      "log_path": "~/runs/distill_sparse_swiglu/c4_ood_kl50_s42.log",
+      "submitted_at": "2026-05-18T16:45:00Z",
+      "submitted_via": "submit_training_job",
+      "backend": "nohup",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/c4_val",
+      "data_count": 0,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt",
+      "eval_data": "c4"
+    }
+  },
+  "timestamp": "2026-05-18T08:46:38.170525+00:00",
+  "trigger": "update_registry"
+}

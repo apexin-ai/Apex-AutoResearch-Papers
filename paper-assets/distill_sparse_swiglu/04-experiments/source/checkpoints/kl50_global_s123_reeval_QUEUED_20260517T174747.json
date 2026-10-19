@@ -1,0 +1,19 @@
+{
+  "exp_id": "kl50_global_s123_reeval",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T17:41:56.673Z",
+    "updated_at": "2026-05-17T17:47:46.774Z",
+    "hypothesis": "Re-eval 50% KL global s123 with correct checkpoint (mvp_kl_norm_v2_s123) to fix data consistency issue in Table 2 Row 6, where previous eval used kl_50pct_s123 checkpoint instead",
+    "parent": "kl_50pct_s123_global",
+    "server": "westd-41718",
+    "gpu": "cuda:0",
+    "account": "root"
+  },
+  "timestamp": "2026-05-17T17:47:47.028181+00:00",
+  "trigger": "update_registry"
+}

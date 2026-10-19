@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dd8e9576e04b45918bc",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh ste 30 s42",
+  "task_key": "worker_ssh_ste_30_s42_20260520T171035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_ste_30_s42_20260520T171035_result.json",
+    "occurrence": 1,
+    "bytes": 320,
+    "sha256": "353a9cd0c4bd86a94ef3372330fa18d04cf1b35ac9f80a83fe6b38c04a955135"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "前置检查结果：\n- **westd-41718 cuda:0 被占用**（48GB/98GB, 100% utilization）。cuda:1 空闲。\n- train.py 支持 `--relaxation ste`（line 70）。\n- STE checkpoint 命名确认：`predictor_kl_normalized.pt`（与 eval 命令一致）。\n\ncuda:0 不可用，改用 **cuda:1** 提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-ste-30-s42.md"
+}

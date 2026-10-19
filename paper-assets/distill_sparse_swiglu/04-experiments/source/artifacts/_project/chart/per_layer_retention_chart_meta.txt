@@ -1,0 +1,1 @@
+Line chart: x=layer index 0-31, y=retention ratio 0-1. Three lines (30% blue, 50% orange, 70% red) with uniform baseline dashed lines. Starved regions shaded. 7x3.5 inches, 300 DPI. Remote paths: /root/distill_sparse_swiglu/artifacts/per_layer_retention_chart.pdf and .png

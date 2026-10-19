@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32ed177f53cf0d7cf44c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis kl only s1",
+  "task_key": "worker_analysis_kl_only_s1_20260515T175828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kl_only_s1_20260515T175828_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "6f9dbf6583e842619ced705eb20b545beab99fae1144c8a25e4256fec81fc4b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完成。\n\n## 汇总\n\n**kl_only_s1** (KL normalized v3, seed=1) — **success**\n\n| Metric | s1 | s42 | s123 | s456 |\n|--------|-----|-----|------|------|\n| Hard-mask PPL | **9.15** | 9.21 | 9.25 | 9.14 |\n| TEAL Sparse PPL | **11.99** | 12.08 | 11.91 | 13.58 |\n| PPL increase | **31.0%** | 31.2% | 28.8% | 48.6% |\n| Model sparsity | **0.498** | 0.498 | 0.498 | 0.498 |\n\ns1 与 s42/s123 高度一致，属于 4 个 seed 中表现较好的一组（s456 是 outlier）。还差 1 个 seed 即可凑齐 5-seed headline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kl-only-s1.md"
+}

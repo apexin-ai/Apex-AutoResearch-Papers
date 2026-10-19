@@ -1,0 +1,4 @@
+Remote path: /root/distill_sparse_swiglu/paper/figures/lagrangian_dynamics.pdf (and .png)
+Script: /root/distill_sparse_swiglu/scripts/plot_lagrangian_dynamics.py
+Server: westd-34887
+Size: 1036x1336 px, 300 DPI, single-column (3.5" wide)

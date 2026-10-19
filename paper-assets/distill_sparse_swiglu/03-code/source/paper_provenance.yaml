@@ -1,0 +1,230 @@
+paper:
+  title: ''
+  version: 3
+  generated_at: '2026-05-16T13:47:52.034654+00:00'
+claims:
+- id: C001
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: KL predictor achieves PPL 11.79 at 50% sparsity
+  type: quantitative
+  evidence:
+  - exp_id: bench_kl50_global
+    metric: ppl
+    value: 11.79
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Vanilla TEAL PPL 23.31 at 50%
+  type: quantitative
+  evidence:
+  - exp_id: bench_teal50
+    metric: ppl
+    value: 23.31
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: BCE 2700 steps PPL 27.97
+  type: quantitative
+  evidence:
+  - exp_id: eval_bce_v3_s42
+    metric: ppl
+    value: 27.97
+  decisions: []
+  deprecated: false
+- id: C010
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: KL advantage 18% at 30%, 49% at 50%, 82% at 70%
+  type: quantitative
+  evidence:
+  - exp_id: kl_30_global_teal
+    metric: relative_advantage
+    value: 18%
+  - exp_id: bench_kl50_global
+    metric: relative_advantage
+    value: 49%
+  - exp_id: kl_70_global_teal
+    metric: relative_advantage
+    value: 82%
+  decisions: []
+  deprecated: false
+- id: C015
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Mistral +63% degradation vs LLaMA +93%
+  type: quantitative
+  evidence:
+  - exp_id: kl_50_mistral
+    metric: relative_degradation
+    value: +63%
+  - exp_id: bench_kl50_global
+    metric: relative_degradation
+    value: +93%
+  decisions: []
+  deprecated: false
+- id: C021
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: SPON cos_sim 0.196, recovers 2.4%
+  type: quantitative
+  evidence:
+  - exp_id: spon_decomposition
+    metric: cosine_similarity
+    value: 0.196
+  - exp_id: spon_2048_s42
+    metric: recovery_pct
+    value: 2.4%
+  decisions: []
+  deprecated: false
+- id: C028
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Predictor 2.37M/layer, 75.9M total
+  type: quantitative
+  evidence:
+  - exp_id: architecture
+    metric: params_per_layer
+    value: 2.37M
+  decisions: []
+  deprecated: false
+- id: C029
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: KL predictor PPL 11.79 at 50% sparsity vs TEAL 23.31 vs BCE 27.97
+  type: quantitative
+  evidence:
+  - exp_id: bench_kl50_global
+    metric: ppl
+    value: 11.79
+  - exp_id: bench_teal50
+    metric: ppl
+    value: 23.31
+  - exp_id: eval_bce_v3_s42
+    metric: ppl
+    value: 27.97
+  decisions: []
+  deprecated: false
+- id: C031
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: KL advantage 18% at 30%, 49% at 50%, 82% at 70%
+  type: quantitative
+  evidence:
+  - exp_id: kl_30_global_teal
+    metric: relative_advantage
+    value: 18%
+  - exp_id: bench_kl50_global
+    metric: relative_advantage
+    value: 49%
+  - exp_id: kl_70_global_teal
+    metric: relative_advantage
+    value: 82%
+  decisions: []
+  deprecated: false
+- id: C034
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Non-monotonic allocation: budget-surplus ≤30% uniform better, budget-constrained
+    ~40% global better, capacity-cliff ≥50% both fail'
+  type: qualitative
+  evidence:
+  - exp_id: bench_kl30_uniform
+  - exp_id: bench_kl40_global
+  - exp_id: d030_kl40_uniform
+  - exp_id: bench_kl50_global
+  - exp_id: d030_kl50_uniform
+  decisions: []
+  deprecated: false
+- id: C038
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: SPON cos_sim 0.196, recovers 2.4%
+  type: quantitative
+  evidence:
+  - exp_id: spon_decomposition
+    metric: cosine_similarity
+    value: 0.196
+  decisions: []
+  deprecated: false
+- id: C043
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Mistral +63% degradation from dense vs +93% on LLaMA
+  type: quantitative
+  evidence:
+  - exp_id: kl_50_mistral
+    metric: relative_degradation
+    value: +63%
+  - exp_id: bench_kl50_global
+    metric: relative_degradation
+    value: +93%
+  decisions: []
+  deprecated: false
+- id: C049
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 40% sparsity PPL 8.36 but MMLU degrades
+  type: quantitative
+  evidence:
+  - exp_id: d030_kl40_uniform
+    metric: ppl
+    value: 8.36
+  decisions: []
+  deprecated: false
+- id: C056
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Predictor 2.37M/layer, 75.9M total
+  type: quantitative
+  evidence:
+  - exp_id: architecture
+    metric: params_per_layer
+    value: 2.37M
+  decisions: []
+  deprecated: false
+tables: []
+figures: []
+_completeness:
+  coverage: 14/14
+  claims: 14
+  tables: 0
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 14
+    tier3: 0
+    tierX: 0
+  last_checked: '2026-05-17T02:15:50.783739+00:00'

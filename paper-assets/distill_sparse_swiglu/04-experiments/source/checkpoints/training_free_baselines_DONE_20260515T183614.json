@@ -1,0 +1,36 @@
+{
+  "exp_id": "training_free_baselines",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:31:40.470Z",
+    "updated_at": "2026-05-15T18:36:14.506Z",
+    "spec": {
+      "hypothesis": "Training-free baselines (TEAL Greedy, Vanilla TEAL, R-Sparse, WINA) at 50% sparsity establish lower bound",
+      "model_name": "llama-3.1-8b",
+      "server": "westd-34887",
+      "data_path": "wikitext-2",
+      "seed": 42,
+      "command": "evaluate.py with various baseline methods"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "dense_ppl": 6.12,
+      "teal_greedy_ppl": 50035,
+      "vanilla_teal_ppl": 66036,
+      "r_sparse_ppl": 74929,
+      "wina_ppl": 82567,
+      "model_level_sparsity": 0.5,
+      "eval_dataset": "wikitext-2",
+      "eval_seq_len": 2048
+    },
+    "checkpoint_path": "N/A (evaluation-only, no model trained)",
+    "log_path": "worker_eval_training_free_baselines output",
+    "completed_at": "2026-05-15T18:36:14.506Z"
+  },
+  "timestamp": "2026-05-15T18:36:14.562608+00:00",
+  "trigger": "update_registry"
+}

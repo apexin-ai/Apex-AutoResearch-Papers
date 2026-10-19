@@ -1,0 +1,24 @@
+========== TEAL Baseline Rerun Results (2026-05-16) ==========
+Code: evaluate.py with _global_topk_masks per-layer mean normalization fix (D017)
+Model: LLaMA-3.1-8B, bf16, WikiText-2 test (141 sequences, seq_len=2048)
+Server: westd-34887, cuda:1
+
+=== Summary (sparsity_target=30%) ===
+  true_dense: 6.12
+  vanilla_teal: 10.97
+  wina: 11.45
+
+=== Summary (sparsity_target=50%) ===
+  true_dense: 6.12
+  vanilla_teal: 23.31
+  wina: 27.93
+
+=== Summary (sparsity_target=70%) ===
+  true_dense: 6.12
+  vanilla_teal: 100.11
+  wina: 137.24
+
+Physical Consistency: PASS
+  TEAL: 10.97 < 23.31 < 100.11 ✓
+  WINA: 11.45 < 27.93 < 137.24 ✓
+  TEAL < WINA at all sparsity levels ✓

@@ -1,0 +1,14 @@
+{
+  "exp_id": "c1_ablation_30pct_s42_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:27:36.305Z",
+    "updated_at": "2026-05-19T00:27:36.305Z"
+  },
+  "timestamp": "2026-05-19T00:27:36.690991+00:00",
+  "trigger": "update_registry"
+}

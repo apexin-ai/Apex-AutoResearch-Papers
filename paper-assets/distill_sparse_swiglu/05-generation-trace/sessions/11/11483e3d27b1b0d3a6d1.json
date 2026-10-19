@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11483e3d27b1b0d3a6d1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis kl only seeds",
+  "task_key": "worker_analysis_kl_only_seeds_20260515T175825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kl_only_seeds_20260515T175825_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "4a06b084b46fa50a2705e9be35dac0552d8d9fb20d0b321317394a115ac02ff0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成分析并更新 registry 为 DONE。\n\n## 汇总\n\n### 训练结果\n| | kl_only_s0 (seed=0) | kl_only_s1 (seed=1) |\n|---|---|---|\n| 训练步数 | 1000/1000 | 1000/1000 |\n| 最终 loss | 0.305 | 0.332 |\n| 最终 sparsity | 0.488 | 0.484 |\n| lambda/tau | 1000/0.100 | 1000/0.100 |\n\n### 评估结果 (WikiText-2, sparsity_target=50%)\n| | s0 | s1 | s42 | s123 | s456 |\n|---|---|---|---|---|---|\n| true_dense | 6.12 | 6.12 | - | - | - |\n| Dense PPL | 9.19 | 9.15 | 9.21 | 9.25 | 9.14 |\n| Sparse PPL | 12.03 | 11.99 | 12.08 | 11.91 | 13.58 |\n| PPL increase | 30.9% | 31.0% | 31.2% | 28.8% | 48.6% |\n\n### 5-seed Headline\n- **Sparse PPL: 12.32 ± 0.71** (5-seed)\n- 排除 s456 异常值后: **12.00 ± 0.07** (4-seed)\n- Dense PPL: **9.19 ± 0.04** (极度稳定)\n- s0 和 s1 与 s42/s123 高度一致，s456 仍为唯一异常值\n- 结论: 两个实验均 **success**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kl-only-seeds.md"
+}

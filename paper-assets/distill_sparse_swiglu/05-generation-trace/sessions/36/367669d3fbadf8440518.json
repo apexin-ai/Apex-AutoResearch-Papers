@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "367669d3fbadf8440518",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh add grad accum",
+  "task_key": "worker_ssh_add-grad-accum_20260515T121326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_add-grad-accum_20260515T121326_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "31d44f606f88a5c109f3a93c9d34c90d2986b58d904880830aeb95ba0be21db6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dry-run 通过。结果确认：\n\n1. **已有 gradient_accumulation_steps 参数** — 但原实现有 bug（loss 未 scale、step 计数错误）\n2. **修改内容**：\n   - `train_kl` 和 `train_bce` 改为 nested loop：外层 `opt_step`（optimizer step），内层 micro-batch\n   - loss 除以 `gradient_accumulation_steps` 再 backward\n   - tau 退火、logging、wandb.log 全部基于 optimizer step\n   - `num_steps` 语义 = optimizer step 数（总 forward = num_steps × ga）\n3. **dry-run 验证**：\n   - 3 个 optimizer step（Step 1/3 → 3/3），每步 2 次 forward（共 6 次 forward）\n   - loss 正常下降/变化，无 OOM，checkpoint 正常保存\n   - batch_size=2 + ga=2 → effective batch=4"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-add-grad-accum.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a1923548d0a80c98d54",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh unified eval v2",
+  "task_key": "worker_ssh_unified-eval-v2_20260515T161753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_unified-eval-v2_20260515T161753_result.json",
+    "occurrence": 1,
+    "bytes": 959,
+    "sha256": "2b4420dd1b3de964a2166640ab12dc9e6b0b944705b38434ec7f2b9726c38c34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 checkpoint 全部评估完毕。\n\n```\nevaluate.py md5 (真实 v2): 4f2faa315b3e45b0781c1c07c47515eb\n\nBCE s42:  Dense PPL=27.96, Sparse PPL=44.54, Δ%=+59.3%, Model Sparsity=0.496\nBCE s123: Dense PPL=28.38, Sparse PPL=44.59, Δ%=+57.1%, Model Sparsity=0.496\nBCE s456: Dense PPL=28.14, Sparse PPL=43.03, Δ%=+52.9%, Model Sparsity=0.496\n\nDense PPL 与 KL eval 一致性: 否 (KL Dense=9.21 vs BCE Dense≈28)\n```\n\n**关键发现：Dense PPL 仍然是 ~28，不是 9.21。** 同一个 evaluate.py（同一个 md5）跑出来 Dense PPL 差 3 倍，说明问题不在 evaluate.py 版本差异——而是 KL eval 和 BCE eval 的**运行参数或环境**不同。可能的原因：\n\n1. KL eval 当时用了不同的 `--calibration_samples` 或 `--seq_len`\n2. 模型权重路径不同（不同的 llama-3.1-8b 副本）\n3. WikiText-2 数据集缓存版本不同\n\n需要查 KL eval 的实际运行日志来确认参数差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-unified-eval-v2.md"
+}

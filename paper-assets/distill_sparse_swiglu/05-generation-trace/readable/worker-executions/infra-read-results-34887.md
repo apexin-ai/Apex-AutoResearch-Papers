@@ -1,0 +1,1137 @@
+# infra read results 34887
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/workers/worker_infra_read_results_34887_20260518T005138.log`
+- **Structured JSON:** [`d8934c31f64318ff6561.json`](../../sessions/d8/d8934c31f64318ff6561.json)
+
+## Before a recorded user message
+
+23 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "da878141-987a-49f1-a9f3-fde207f1ab3b",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779472800,
+    "rateLimitType": "seven_day",
+    "utilization": 0.51,
+    "isUsingOverage": false
+  },
+  "uuid": "4694588b-d0d9-4999-aa4e-5016c84839b5",
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to SSH to westd-34887 and find recent results.json files, then output their contents. Let me use the ssh_execute tool for this.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "bb4b30a7-2abf-4079-bf71-1288e032732a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BRMhRHEoQ2MMkk8xsxZcxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13267,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13267
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MJX67mZQ3dZ2PCmLrwArFz`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "c7569034-ad94-4902-aa73-da01f8600016",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BRMhRHEoQ2MMkk8xsxZcxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13267,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13267
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T00:51:54.943Z_
+
+<details><summary>↩ Tool result · `toolu_01MJX67mZQ3dZ2PCmLrwArFz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "3eb0f04f-5c53-41a2-bdcf-0b5ed221e901",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KZYNsNz1UngSvS69RCmzyK`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "find /root -name 'results*.json' -mmin -1500 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "83b709fd-501a-4c0f-9d9c-26154ed8f78d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQyYbmzQzD1KH1gbsGhjcR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 398,
+      "cache_read_input_tokens": 25108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 398
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T00:52:00.613Z_
+
+<details><summary>↩ Tool result · `toolu_01KZYNsNz1UngSvS69RCmzyK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/distill_sparse_swiglu/checkpoints/kl_mag_reg_a001/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_pertoken/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_teal30_baseline/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_teal_global/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_pertoken/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_teal50_baseline/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_teal_global/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_dense_ppl/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_pertoken/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_teal_global/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_teal70_baseline/results.json\\n/root/distill_sparse_swiglu/results/benchmark/kl70_teal_global_llama/results.json\\n/root/distill_sparse_swiglu/results/benchmark/teal_vanilla70_llama/results.json\\n/root/distill_sparse_swiglu/results/benchmark/reverse_kl_50pct_s42_eval/results.json\\n/root/distill_sparse_swiglu/results/benchmark/jsd_50pct_s42_eval/results.json\\n/root/distill_sparse_swiglu/results/benchmark/db256_pertoken_wikitext2/results.json\\n/root/distill_sparse_swiglu/results/benchmark/kl_50pct_s123_global/results.json\\n/root/distill_sparse_swiglu/results/benchmark/kl_30pct_s123/results.json\\n/root/distill_sparse_swiglu/results/benchmark/kl30_s123_uniform/results.json\\n/root/distill_sparse_swiglu/results/benchmark/kl50_s456_global/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "4284f787-815d-4eb1-a216-0af07d306b03",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_mag_reg_a001/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_pertoken/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_teal30_baseline/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_teal_global/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_pertoken/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_teal50_baseline/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_teal_global/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_dense_ppl/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_pertoken/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_teal_global/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/mistral_teal70_baseline/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/kl70_teal_global_llama/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/teal_vanilla70_llama/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/reverse_kl_50pct_s42_eval/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/jsd_50pct_s42_eval/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/db256_pertoken_wikitext2/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/kl_50pct_s123_global/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/kl_30pct_s123/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/kl30_s123_uniform/results.json\\\\n/root/distill_sparse_swiglu/results/benchmark/kl50_s456_global/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/distill_sparse_swiglu/checkpoints/kl_mag_reg_a001/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_pertoken/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_teal30_baseline/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_teal_global/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_pertoken/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_teal50_baseline/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_teal_global/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_dense_ppl/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_pertoken/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_teal_global/results.json\\n/root/distill_sparse_swiglu/results/benchmark/mistral_teal70_baseline/results.json\\n/root/distill_sparse_swiglu/results/benchmark/kl70_teal_global_llama/results.json\\n/root/distill_sparse_swiglu/results/benchmark/teal_vanilla70_llama/results.json\\n/root/distill_sparse_swiglu/results/benchmark/reverse_kl_50pct_s42_eval/results.json\\n/root/distill_sparse_swiglu/results/benchmark/jsd_50pct_s42_eval/results.json\\n/root/distill_sparse_swiglu/results/benchmark/db256_pertoken_wikitext2/results.json\\n/root/distill_sparse_swiglu/results/benchmark/kl_50pct_s123_global/results.json\\n/root/distill_sparse_swiglu/results/benchmark/kl_30pct_s123/results.json\\n/root/distill_sparse_swiglu/results/benchmark/kl30_s123_uniform/results.json\\n/root/distill_sparse_swiglu/results/benchmark/kl50_s456_global/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+找到 20 个文件。现在输出内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "53db7a6e-4c26-48c9-9d3b-2902aa64bd08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LWtrMNCsvy9nbxSxZTNHkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 25506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 830
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PArPZJFodM52Ggwdb5fz7f`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "for f in $(find /root -name 'results*.json' -mmin -1500 2>/dev/null | head -10); do echo \"===FILE:$f===\"; cat \"$f\" | head -200; echo; done",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "98be1c00-f2c5-470f-ac2a-9ce8968e3660",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LWtrMNCsvy9nbxSxZTNHkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 25506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 830
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Jo7PKLf8K8SpNeU4ZFQR1h`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "for f in $(find /root -name 'results*.json' -mmin -1500 2>/dev/null | tail -n +11 | head -10); do echo \"===FILE:$f===\"; cat \"$f\" | head -200; echo; done",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "8a44c626-2f52-481b-84d7-223a6b253517",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LWtrMNCsvy9nbxSxZTNHkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 25506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 830
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T00:52:08.307Z_
+
+<details><summary>↩ Tool result · `toolu_01PArPZJFodM52Ggwdb5fz7f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"===FILE:/root/distill_sparse_swiglu/checkpoints/kl_mag_reg_a001/results.json===\\n{\\n  \\\"alpha\\\": 0.01,\\n  \\\"ppl\\\": 11.820770263671875,\\n  \\\"final_sparsity\\\": 0.484375,\\n  \\\"steps\\\": 1000,\\n  \\\"seed\\\": 42\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_pertoken/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_kl30_pertoken\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_kl30_pertoken\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"per_token\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 6.048\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 08:58:52\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_teal30_baseline/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_teal30_baseline\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": null,\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": \\\"teal_vanilla\\\",\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_teal30_baseline\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"baseline_teal_vanilla\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 8.3807\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 08:59:37\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_teal_global/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_kl30_teal_global\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_kl30_teal_global\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 6.7733\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:00:59\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_pertoken/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_kl50_pertoken\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_kl50_pertoken\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"per_token\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 7.2931\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:03:00\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/\\n\\n... [截断: 输出过长，省略 500 字符] ...\\n\\n\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"baseline_teal_vanilla\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 18.3061\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:03:31\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_teal_global/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_kl50_teal_global\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_kl50_teal_global\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 8.6489\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:04:02\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_dense_ppl/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_dense_ppl\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": null,\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": true,\\n    \\\"exp_id\\\": \\\"mistral_dense_ppl\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"dense\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 5.5238\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:06:01\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_pertoken/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_kl70_pertoken\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_kl70_pertoken\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"per_token\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 9.1086\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:13:35\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_teal_global/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_kl70_teal_global\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_kl70_teal_global\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 1,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 13.3254\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:14:08\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "a9b72817-9ab5-4791-a15f-aeaea0dda4af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"===FILE:/root/distill_sparse_swiglu/checkpoints/kl_mag_reg_a001/results.json===\\\\n{\\\\n  \\\\\\\"alpha\\\\\\\": 0.01,\\\\n  \\\\\\\"ppl\\\\\\\": 11.820770263671875,\\\\n  \\\\\\\"final_sparsity\\\\\\\": 0.484375,\\\\n  \\\\\\\"steps\\\\\\\": 1000,\\\\n  \\\\\\\"seed\\\\\\\": 42\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_pertoken/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_kl30_pertoken\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/mistral-7b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_kl30_pertoken\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 6.048\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 08:58:52\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_teal30_baseline/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_teal30_baseline\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/mistral-7b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": null,\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"teal_vanilla\\\\\\\",\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_teal30_baseline\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"baseline_teal_vanilla\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 8.3807\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 08:59:37\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_teal_global/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_kl30_teal_global\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/mistral-7b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_kl30_teal_global\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 6.7733\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 09:00:59\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_pertoken/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_kl50_pertoken\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/mistral-7b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_kl50_pertoken\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 7.2931\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 09:03:00\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/\\\\n\\\\n... [截断: 输出过长，省略 500 字符] ...\\\\n\\\\n\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"baseline_teal_vanilla\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 18.3061\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 09:03:31\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_teal_global/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_kl50_teal_global\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/mistral-7b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_kl50_teal_global\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 8.6489\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 09:04:02\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_dense_ppl/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_dense_ppl\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/mistral-7b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": null,\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": true,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_dense_ppl\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"dense\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 5.5238\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 09:06:01\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_pertoken/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_kl70_pertoken\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/mistral-7b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_kl70_pertoken\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.7,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.7,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 9.1086\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 09:13:35\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_teal_global/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_kl70_teal_global\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/mistral-7b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_kl70_teal_global\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.7,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 1,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.7,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 13.3254\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 09:14:08\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"===FILE:/root/distill_sparse_swiglu/checkpoints/kl_mag_reg_a001/results.json===\\n{\\n  \\\"alpha\\\": 0.01,\\n  \\\"ppl\\\": 11.820770263671875,\\n  \\\"final_sparsity\\\": 0.484375,\\n  \\\"steps\\\": 1000,\\n  \\\"seed\\\": 42\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_pertoken/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_kl30_pertoken\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_kl30_pertoken\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"per_token\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 6.048\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 08:58:52\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_teal30_baseline/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_teal30_baseline\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": null,\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": \\\"teal_vanilla\\\",\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_teal30_baseline\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"baseline_teal_vanilla\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 8.3807\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 08:59:37\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_teal_global/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_kl30_teal_global\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_kl30_teal_global\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 6.7733\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:00:59\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_pertoken/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_kl50_pertoken\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_kl50_pertoken\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"per_token\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 7.2931\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:03:00\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/\\n\\n... [截断: 输出过长，省略 500 字符] ...\\n\\n\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"baseline_teal_vanilla\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 18.3061\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:03:31\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl50_teal_global/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_kl50_teal_global\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_kl50_teal_global\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 8.6489\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:04:02\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_dense_ppl/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_dense_ppl\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": null,\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": true,\\n    \\\"exp_id\\\": \\\"mistral_dense_ppl\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"dense\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 5.5238\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:06:01\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_pertoken/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_kl70_pertoken\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_kl70_pertoken\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"per_token\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 9.1086\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:13:35\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_kl70_teal_global/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_kl70_teal_global\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_kl70_teal_global\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 1,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mistral_kl70_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 13.3254\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:14:08\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T00:52:12.762Z_
+
+<details><summary>↩ Tool result · `toolu_01Jo7PKLf8K8SpNeU4ZFQR1h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_teal70_baseline/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_teal70_baseline\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": null,\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": \\\"teal_vanilla\\\",\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_teal70_baseline\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"baseline_teal_vanilla\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 61.716\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:15:18\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl70_teal_global_llama/results.json===\\n{\\n  \\\"exp_id\\\": \\\"kl70_teal_global_llama\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,mmlu\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl70_teal_global_llama\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 18.5432,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.2125,\\n        \\\"acc_stderr\\\": 0.011953482906582826,\\n        \\\"acc_norm\\\": 0.2474,\\n        \\\"acc_norm_stderr\\\": 0.01261035266329266\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.267,\\n        \\\"acc_stderr\\\": 0.0037079494901554977\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.21245733788395904,\\n        \\\"acc_stderr,none\\\": 0.011953482906582826,\\n        \\\"acc_norm,none\\\": 0.24744027303754265,\\n        \\\"acc_norm_stderr,none\\\": 0.01261035266329266\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.2669847600056972,\\n        \\\"acc_stderr,none\\\": 0.0037079494901554977,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:21:30\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/teal_vanilla70_llama/results.json===\\n{\\n  \\\"exp_id\\\": \\\"teal_vanilla70_llama\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": null,\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,mmlu\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": \\\"teal_vanilla\\\",\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"teal_vanilla70_llama\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 1,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"baseline_teal_vanilla\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 125.4204,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.1928,\\n        \\\"acc_stderr\\\": 0.01152905546566343,\\n        \\\"acc_norm\\\": 0.2295,\\n        \\\"acc_norm_stderr\\\": 0.012288926760890708\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.2615,\\n        \\\"acc_stderr\\\": 0.003686989320490661\\n      }\\n    },\\n    \\\"lm_eval_ra\\n\\n... [截断: 输出过长，省略 10674 字符] ...\\n\\n\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.40955631399317405,\\n        \\\"acc_stderr,none\\\": 0.014370358632472406,\\n        \\\"acc_norm,none\\\": 0.45307167235494883,\\n        \\\"acc_norm_stderr,none\\\": 0.014546892052005678\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"name\\\": \\\"winogrande\\\",\\n        \\\"alias\\\": \\\"winogrande\\\",\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc,none\\\": 0.6937647987371744,\\n        \\\"acc_stderr,none\\\": 0.01295438597280241\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.3943882637800883,\\n        \\\"acc_stderr,none\\\": 0.004034814754960025,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.07278241091736164,\\n        \\\"exact_match_stderr,strict-match\\\": 0.00715560476116748,\\n        \\\"exact_match,flexible-extract\\\": 0.07505686125852919,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.007257633145486642\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 20:53:15\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl50_s456_global/results.json===\\n{\\n  \\\"exp_id\\\": \\\"kl50_s456_global\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl50_s456_global\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 11.8057,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.3276,\\n        \\\"acc_stderr\\\": 0.013715847940719344,\\n        \\\"acc_norm\\\": 0.3319,\\n        \\\"acc_norm_stderr\\\": 0.01376098820088056\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc\\\": 0.6488,\\n        \\\"acc_stderr\\\": 0.013415981370545133\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.2794,\\n        \\\"acc_stderr\\\": 0.003760013722133796\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.0212,\\n        \\\"exact_match_stderr\\\": 0.003970449129848636\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.32764505119453924,\\n        \\\"acc_stderr,none\\\": 0.013715847940719344,\\n        \\\"acc_norm,none\\\": 0.3319112627986348,\\n        \\\"acc_norm_stderr,none\\\": 0.01376098820088056\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"name\\\": \\\"winogrande\\\",\\n        \\\"alias\\\": \\\"winogrande\\\",\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc,none\\\": 0.648776637726914,\\n        \\\"acc_stderr,none\\\": 0.013415981370545133\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.2794473721692067,\\n        \\\"acc_stderr,none\\\": 0.003760013722133796,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.015163002274450341,\\n        \\\"exact_match_stderr,strict-match\\\": 0.003366022949726325,\\n        \\\"exact_match,flexible-extract\\\": 0.02122820318423048,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.003970449129848636\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 21:33:57\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "8966ca76-b798-4067-90ed-a80c88dc016d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_teal70_baseline/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_teal70_baseline\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/mistral-7b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": null,\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"teal_vanilla\\\\\\\",\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_teal70_baseline\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.7,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"baseline_teal_vanilla\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.7,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 61.716\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 09:15:18\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl70_teal_global_llama/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"kl70_teal_global_llama\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2,arc_challenge,mmlu\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"kl70_teal_global_llama\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.7,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.7,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 18.5432,\\\\n    \\\\\\\"lm_eval\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc\\\\\\\": 0.2125,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.011953482906582826,\\\\n        \\\\\\\"acc_norm\\\\\\\": 0.2474,\\\\n        \\\\\\\"acc_norm_stderr\\\\\\\": 0.01261035266329266\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc\\\\\\\": 0.267,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.0037079494901554977\\\\n      }\\\\n    },\\\\n    \\\\\\\"lm_eval_raw\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.21245733788395904,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.011953482906582826,\\\\n        \\\\\\\"acc_norm,none\\\\\\\": 0.24744027303754265,\\\\n        \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.01261035266329266\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.2669847600056972,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.0037079494901554977,\\\\n        \\\\\\\"sample_count\\\\\\\": {\\\\n          \\\\\\\"acc,none\\\\\\\": 14042\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 09:21:30\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/teal_vanilla70_llama/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"teal_vanilla70_llama\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": null,\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2,arc_challenge,mmlu\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"teal_vanilla\\\\\\\",\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"teal_vanilla70_llama\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.7,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 1,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"baseline_teal_vanilla\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.7,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 125.4204,\\\\n    \\\\\\\"lm_eval\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc\\\\\\\": 0.1928,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.01152905546566343,\\\\n        \\\\\\\"acc_norm\\\\\\\": 0.2295,\\\\n        \\\\\\\"acc_norm_stderr\\\\\\\": 0.012288926760890708\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc\\\\\\\": 0.2615,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.003686989320490661\\\\n      }\\\\n    },\\\\n    \\\\\\\"lm_eval_ra\\\\n\\\\n... [截断: 输出过长，省略 10674 字符] ...\\\\n\\\\n\\\\n    },\\\\n    \\\\\\\"lm_eval_raw\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.40955631399317405,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.014370358632472406,\\\\n        \\\\\\\"acc_norm,none\\\\\\\": 0.45307167235494883,\\\\n        \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.014546892052005678\\\\n      },\\\\n      \\\\\\\"winogrande\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1267,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.6937647987371744,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.01295438597280241\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.3943882637800883,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.004034814754960025,\\\\n        \\\\\\\"sample_count\\\\\\\": {\\\\n          \\\\\\\"acc,none\\\\\\\": 14042\\\\n        }\\\\n      },\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match,strict-match\\\\\\\": 0.07278241091736164,\\\\n        \\\\\\\"exact_match_stderr,strict-match\\\\\\\": 0.00715560476116748,\\\\n        \\\\\\\"exact_match,flexible-extract\\\\\\\": 0.07505686125852919,\\\\n        \\\\\\\"exact_match_stderr,flexible-extract\\\\\\\": 0.007257633145486642\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 20:53:15\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl50_s456_global/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"kl50_s456_global\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"kl50_s456_global\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 11.8057,\\\\n    \\\\\\\"lm_eval\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc\\\\\\\": 0.3276,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.013715847940719344,\\\\n        \\\\\\\"acc_norm\\\\\\\": 0.3319,\\\\n        \\\\\\\"acc_norm_stderr\\\\\\\": 0.01376098820088056\\\\n      },\\\\n      \\\\\\\"winogrande\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1267,\\\\n        \\\\\\\"acc\\\\\\\": 0.6488,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.013415981370545133\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc\\\\\\\": 0.2794,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.003760013722133796\\\\n      },\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match\\\\\\\": 0.0212,\\\\n        \\\\\\\"exact_match_stderr\\\\\\\": 0.003970449129848636\\\\n      }\\\\n    },\\\\n    \\\\\\\"lm_eval_raw\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.32764505119453924,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.013715847940719344,\\\\n        \\\\\\\"acc_norm,none\\\\\\\": 0.3319112627986348,\\\\n        \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.01376098820088056\\\\n      },\\\\n      \\\\\\\"winogrande\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1267,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.648776637726914,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.013415981370545133\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.2794473721692067,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.003760013722133796,\\\\n        \\\\\\\"sample_count\\\\\\\": {\\\\n          \\\\\\\"acc,none\\\\\\\": 14042\\\\n        }\\\\n      },\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match,strict-match\\\\\\\": 0.015163002274450341,\\\\n        \\\\\\\"exact_match_stderr,strict-match\\\\\\\": 0.003366022949726325,\\\\n        \\\\\\\"exact_match,flexible-extract\\\\\\\": 0.02122820318423048,\\\\n        \\\\\\\"exact_match_stderr,flexible-extract\\\\\\\": 0.003970449129848636\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 21:33:57\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"===FILE:/root/distill_sparse_swiglu/results/benchmark/mistral_teal70_baseline/results.json===\\n{\\n  \\\"exp_id\\\": \\\"mistral_teal70_baseline\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": null,\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": \\\"teal_vanilla\\\",\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_teal70_baseline\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"baseline_teal_vanilla\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 61.716\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:15:18\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl70_teal_global_llama/results.json===\\n{\\n  \\\"exp_id\\\": \\\"kl70_teal_global_llama\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,mmlu\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl70_teal_global_llama\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 18.5432,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.2125,\\n        \\\"acc_stderr\\\": 0.011953482906582826,\\n        \\\"acc_norm\\\": 0.2474,\\n        \\\"acc_norm_stderr\\\": 0.01261035266329266\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.267,\\n        \\\"acc_stderr\\\": 0.0037079494901554977\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.21245733788395904,\\n        \\\"acc_stderr,none\\\": 0.011953482906582826,\\n        \\\"acc_norm,none\\\": 0.24744027303754265,\\n        \\\"acc_norm_stderr,none\\\": 0.01261035266329266\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.2669847600056972,\\n        \\\"acc_stderr,none\\\": 0.0037079494901554977,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:21:30\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/teal_vanilla70_llama/results.json===\\n{\\n  \\\"exp_id\\\": \\\"teal_vanilla70_llama\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": null,\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,mmlu\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": \\\"teal_vanilla\\\",\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"teal_vanilla70_llama\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 1,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"baseline_teal_vanilla\\\",\\n    \\\"sparsity_target\\\": 0.7,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 125.4204,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.1928,\\n        \\\"acc_stderr\\\": 0.01152905546566343,\\n        \\\"acc_norm\\\": 0.2295,\\n        \\\"acc_norm_stderr\\\": 0.012288926760890708\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.2615,\\n        \\\"acc_stderr\\\": 0.003686989320490661\\n      }\\n    },\\n    \\\"lm_eval_ra\\n\\n... [截断: 输出过长，省略 10674 字符] ...\\n\\n\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.40955631399317405,\\n        \\\"acc_stderr,none\\\": 0.014370358632472406,\\n        \\\"acc_norm,none\\\": 0.45307167235494883,\\n        \\\"acc_norm_stderr,none\\\": 0.014546892052005678\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"name\\\": \\\"winogrande\\\",\\n        \\\"alias\\\": \\\"winogrande\\\",\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc,none\\\": 0.6937647987371744,\\n        \\\"acc_stderr,none\\\": 0.01295438597280241\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.3943882637800883,\\n        \\\"acc_stderr,none\\\": 0.004034814754960025,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.07278241091736164,\\n        \\\"exact_match_stderr,strict-match\\\": 0.00715560476116748,\\n        \\\"exact_match,flexible-extract\\\": 0.07505686125852919,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.007257633145486642\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 20:53:15\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl50_s456_global/results.json===\\n{\\n  \\\"exp_id\\\": \\\"kl50_s456_global\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl50_s456_global\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 11.8057,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.3276,\\n        \\\"acc_stderr\\\": 0.013715847940719344,\\n        \\\"acc_norm\\\": 0.3319,\\n        \\\"acc_norm_stderr\\\": 0.01376098820088056\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc\\\": 0.6488,\\n        \\\"acc_stderr\\\": 0.013415981370545133\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.2794,\\n        \\\"acc_stderr\\\": 0.003760013722133796\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.0212,\\n        \\\"exact_match_stderr\\\": 0.003970449129848636\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.32764505119453924,\\n        \\\"acc_stderr,none\\\": 0.013715847940719344,\\n        \\\"acc_norm,none\\\": 0.3319112627986348,\\n        \\\"acc_norm_stderr,none\\\": 0.01376098820088056\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"name\\\": \\\"winogrande\\\",\\n        \\\"alias\\\": \\\"winogrande\\\",\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc,none\\\": 0.648776637726914,\\n        \\\"acc_stderr,none\\\": 0.013415981370545133\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.2794473721692067,\\n        \\\"acc_stderr,none\\\": 0.003760013722133796,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.015163002274450341,\\n        \\\"exact_match_stderr,strict-match\\\": 0.003366022949726325,\\n        \\\"exact_match,flexible-extract\\\": 0.02122820318423048,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.003970449129848636\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 21:33:57\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+还有被截断的内容，补充获取剩余文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "91ac0348-cf3c-4848-8919-ceb41cec0295",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNWZSyzzaWGV6vLRHgvLoj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10157,
+      "cache_read_input_tokens": 26336,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10157
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016i47kSrJz9cQbG3tM9uDtf`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "for f in /root/distill_sparse_swiglu/results/benchmark/reverse_kl_50pct_s42_eval/results.json /root/distill_sparse_swiglu/results/benchmark/jsd_50pct_s42_eval/results.json /root/distill_sparse_swiglu/results/benchmark/db256_pertoken_wikitext2/results.json /root/distill_sparse_swiglu/results/benchmark/kl_50pct_s123_global/results.json /root/distill_sparse_swiglu/results/benchmark/kl_30pct_s123/results.json; do echo \"===FILE:$f===\"; cat \"$f\" | head -200; echo; done",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "3c494095-2e81-4a16-901e-3699fca9ab8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNWZSyzzaWGV6vLRHgvLoj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10157,
+      "cache_read_input_tokens": 26336,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10157
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Gq2wU88FdR8NVUqF3Dj59p`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "for f in /root/distill_sparse_swiglu/results/benchmark/kl30_s123_uniform/results.json /root/distill_sparse_swiglu/results/benchmark/kl50_s456_global/results.json; do echo \"===FILE:$f===\"; cat \"$f\" | head -200; echo; done",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "afc6a0a9-35ce-49a4-8ab3-a7aecde1414c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNWZSyzzaWGV6vLRHgvLoj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10157,
+      "cache_read_input_tokens": 26336,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10157
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T00:52:22.071Z_
+
+<details><summary>↩ Tool result · `toolu_016i47kSrJz9cQbG3tM9uDtf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"===FILE:/root/distill_sparse_swiglu/results/benchmark/reverse_kl_50pct_s42_eval/results.json===\\n{\\n  \\\"exp_id\\\": \\\"reverse_kl_50pct_s42_eval\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/reverse_kl_50pct_s42/predictor_reverse_kl.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"reverse_kl_50pct_s42_eval\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/reverse_kl_50pct_s42/predictor_reverse_kl.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 12.7969\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 14:59:38\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/jsd_50pct_s42_eval/results.json===\\n{\\n  \\\"exp_id\\\": \\\"jsd_50pct_s42_eval\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/jsd_50pct_s42/predictor_jsd.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"jsd_50pct_s42_eval\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 1,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/jsd_50pct_s42/predictor_jsd.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 12.5428\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 15:00:08\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/db256_pertoken_wikitext2/results.json===\\n{\\n  \\\"exp_id\\\": \\\"db256_pertoken_wikitext2\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/db_sweep_256/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"db256_pertoken_wikitext2\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 256,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"per_token\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/db_sweep_256/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 8.5862\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 16:40:21\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl_50pct_s123_global/results.json===\\n{\\n  \\\"exp_id\\\": \\\"kl_50pct_s123_global\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl_50pct_s123_global\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 11.745,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.329\\n\\n... [截断: 输出过长，省略 492 字符] ...\\n\\n29533836357\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.3293515358361775,\\n        \\\"acc_stderr,none\\\": 0.013734057652635537,\\n        \\\"acc_norm,none\\\": 0.38139931740614336,\\n        \\\"acc_norm_stderr,none\\\": 0.014194389086685315\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"name\\\": \\\"winogrande\\\",\\n        \\\"alias\\\": \\\"winogrande\\\",\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc,none\\\": 0.6124704025256511,\\n        \\\"acc_stderr,none\\\": 0.013692354636016781\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.27517447657028915,\\n        \\\"acc_stderr,none\\\": 0.003733872941384197,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.02047005307050796,\\n        \\\"exact_match_stderr,strict-match\\\": 0.003900413385915716,\\n        \\\"exact_match,flexible-extract\\\": 0.028051554207733132,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.004548229533836357\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 19:02:48\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl_30pct_s123/results.json===\\n{\\n  \\\"exp_id\\\": \\\"kl_30pct_s123\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl_30pct_s123\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 8.9748,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.4181,\\n        \\\"acc_stderr\\\": 0.014413988396996116,\\n        \\\"acc_norm\\\": 0.4531,\\n        \\\"acc_norm_stderr\\\": 0.014546892052005678\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc\\\": 0.693,\\n        \\\"acc_stderr\\\": 0.012963688616969423\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.3807,\\n        \\\"acc_stderr\\\": 0.003995787846575871\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.0758,\\n        \\\"exact_match_stderr\\\": 0.007291205723162577\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.4180887372013652,\\n        \\\"acc_stderr,none\\\": 0.014413988396996116,\\n        \\\"acc_norm,none\\\": 0.45307167235494883,\\n        \\\"acc_norm_stderr,none\\\": 0.014546892052005678\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"name\\\": \\\"winogrande\\\",\\n        \\\"alias\\\": \\\"winogrande\\\",\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc,none\\\": 0.6929755327545383,\\n        \\\"acc_stderr,none\\\": 0.012963688616969423\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.3807149978635522,\\n        \\\"acc_stderr,none\\\": 0.003995787846575871,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.07657316148597422,\\n        \\\"exact_match_stderr,strict-match\\\": 0.007324564881451574,\\n        \\\"exact_match,flexible-extract\\\": 0.0758150113722517,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.007291205723162577\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 19:11:51\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "1c54e0f6-4a65-409f-a637-59d588370fdc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"===FILE:/root/distill_sparse_swiglu/results/benchmark/reverse_kl_50pct_s42_eval/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"reverse_kl_50pct_s42_eval\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/reverse_kl_50pct_s42/predictor_reverse_kl.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"reverse_kl_50pct_s42_eval\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/reverse_kl_50pct_s42/predictor_reverse_kl.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 12.7969\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 14:59:38\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/jsd_50pct_s42_eval/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"jsd_50pct_s42_eval\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/jsd_50pct_s42/predictor_jsd.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"jsd_50pct_s42_eval\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 1,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/jsd_50pct_s42/predictor_jsd.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 12.5428\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 15:00:08\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/db256_pertoken_wikitext2/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"db256_pertoken_wikitext2\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/db_sweep_256/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"db256_pertoken_wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 256,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/db_sweep_256/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 8.5862\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 16:40:21\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl_50pct_s123_global/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"kl_50pct_s123_global\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"kl_50pct_s123_global\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 11.745,\\\\n    \\\\\\\"lm_eval\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc\\\\\\\": 0.329\\\\n\\\\n... [截断: 输出过长，省略 492 字符] ...\\\\n\\\\n29533836357\\\\n      }\\\\n    },\\\\n    \\\\\\\"lm_eval_raw\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.3293515358361775,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.013734057652635537,\\\\n        \\\\\\\"acc_norm,none\\\\\\\": 0.38139931740614336,\\\\n        \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.014194389086685315\\\\n      },\\\\n      \\\\\\\"winogrande\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1267,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.6124704025256511,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.013692354636016781\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.27517447657028915,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.003733872941384197,\\\\n        \\\\\\\"sample_count\\\\\\\": {\\\\n          \\\\\\\"acc,none\\\\\\\": 14042\\\\n        }\\\\n      },\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match,strict-match\\\\\\\": 0.02047005307050796,\\\\n        \\\\\\\"exact_match_stderr,strict-match\\\\\\\": 0.003900413385915716,\\\\n        \\\\\\\"exact_match,flexible-extract\\\\\\\": 0.028051554207733132,\\\\n        \\\\\\\"exact_match_stderr,flexible-extract\\\\\\\": 0.004548229533836357\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 19:02:48\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl_30pct_s123/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"kl_30pct_s123\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"kl_30pct_s123\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 8.9748,\\\\n    \\\\\\\"lm_eval\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc\\\\\\\": 0.4181,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.014413988396996116,\\\\n        \\\\\\\"acc_norm\\\\\\\": 0.4531,\\\\n        \\\\\\\"acc_norm_stderr\\\\\\\": 0.014546892052005678\\\\n      },\\\\n      \\\\\\\"winogrande\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1267,\\\\n        \\\\\\\"acc\\\\\\\": 0.693,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.012963688616969423\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc\\\\\\\": 0.3807,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.003995787846575871\\\\n      },\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match\\\\\\\": 0.0758,\\\\n        \\\\\\\"exact_match_stderr\\\\\\\": 0.007291205723162577\\\\n      }\\\\n    },\\\\n    \\\\\\\"lm_eval_raw\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.4180887372013652,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.014413988396996116,\\\\n        \\\\\\\"acc_norm,none\\\\\\\": 0.45307167235494883,\\\\n        \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.014546892052005678\\\\n      },\\\\n      \\\\\\\"winogrande\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1267,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.6929755327545383,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.012963688616969423\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.3807149978635522,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.003995787846575871,\\\\n        \\\\\\\"sample_count\\\\\\\": {\\\\n          \\\\\\\"acc,none\\\\\\\": 14042\\\\n        }\\\\n      },\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match,strict-match\\\\\\\": 0.07657316148597422,\\\\n        \\\\\\\"exact_match_stderr,strict-match\\\\\\\": 0.007324564881451574,\\\\n        \\\\\\\"exact_match,flexible-extract\\\\\\\": 0.0758150113722517,\\\\n        \\\\\\\"exact_match_stderr,flexible-extract\\\\\\\": 0.007291205723162577\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 19:11:51\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"===FILE:/root/distill_sparse_swiglu/results/benchmark/reverse_kl_50pct_s42_eval/results.json===\\n{\\n  \\\"exp_id\\\": \\\"reverse_kl_50pct_s42_eval\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/reverse_kl_50pct_s42/predictor_reverse_kl.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"reverse_kl_50pct_s42_eval\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/reverse_kl_50pct_s42/predictor_reverse_kl.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 12.7969\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 14:59:38\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/jsd_50pct_s42_eval/results.json===\\n{\\n  \\\"exp_id\\\": \\\"jsd_50pct_s42_eval\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/jsd_50pct_s42/predictor_jsd.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"jsd_50pct_s42_eval\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 1,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/jsd_50pct_s42/predictor_jsd.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 12.5428\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 15:00:08\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/db256_pertoken_wikitext2/results.json===\\n{\\n  \\\"exp_id\\\": \\\"db256_pertoken_wikitext2\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/db_sweep_256/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"db256_pertoken_wikitext2\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 256,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"per_token\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/db_sweep_256/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 8.5862\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 16:40:21\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl_50pct_s123_global/results.json===\\n{\\n  \\\"exp_id\\\": \\\"kl_50pct_s123_global\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl_50pct_s123_global\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 11.745,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.329\\n\\n... [截断: 输出过长，省略 492 字符] ...\\n\\n29533836357\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.3293515358361775,\\n        \\\"acc_stderr,none\\\": 0.013734057652635537,\\n        \\\"acc_norm,none\\\": 0.38139931740614336,\\n        \\\"acc_norm_stderr,none\\\": 0.014194389086685315\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"name\\\": \\\"winogrande\\\",\\n        \\\"alias\\\": \\\"winogrande\\\",\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc,none\\\": 0.6124704025256511,\\n        \\\"acc_stderr,none\\\": 0.013692354636016781\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.27517447657028915,\\n        \\\"acc_stderr,none\\\": 0.003733872941384197,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.02047005307050796,\\n        \\\"exact_match_stderr,strict-match\\\": 0.003900413385915716,\\n        \\\"exact_match,flexible-extract\\\": 0.028051554207733132,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.004548229533836357\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 19:02:48\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl_30pct_s123/results.json===\\n{\\n  \\\"exp_id\\\": \\\"kl_30pct_s123\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl_30pct_s123\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 8.9748,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.4181,\\n        \\\"acc_stderr\\\": 0.014413988396996116,\\n        \\\"acc_norm\\\": 0.4531,\\n        \\\"acc_norm_stderr\\\": 0.014546892052005678\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc\\\": 0.693,\\n        \\\"acc_stderr\\\": 0.012963688616969423\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.3807,\\n        \\\"acc_stderr\\\": 0.003995787846575871\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.0758,\\n        \\\"exact_match_stderr\\\": 0.007291205723162577\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.4180887372013652,\\n        \\\"acc_stderr,none\\\": 0.014413988396996116,\\n        \\\"acc_norm,none\\\": 0.45307167235494883,\\n        \\\"acc_norm_stderr,none\\\": 0.014546892052005678\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"name\\\": \\\"winogrande\\\",\\n        \\\"alias\\\": \\\"winogrande\\\",\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc,none\\\": 0.6929755327545383,\\n        \\\"acc_stderr,none\\\": 0.012963688616969423\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.3807149978635522,\\n        \\\"acc_stderr,none\\\": 0.003995787846575871,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.07657316148597422,\\n        \\\"exact_match_stderr,strict-match\\\": 0.007324564881451574,\\n        \\\"exact_match,flexible-extract\\\": 0.0758150113722517,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.007291205723162577\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 19:11:51\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T00:52:22.941Z_
+
+<details><summary>↩ Tool result · `toolu_01Gq2wU88FdR8NVUqF3Dj59p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"===FILE:/root/distill_sparse_swiglu/results/benchmark/kl30_s123_uniform/results.json===\\n{\\n  \\\"exp_id\\\": \\\"kl30_s123_uniform\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl30_s123_uniform\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 8.8308,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.4096,\\n        \\\"acc_stderr\\\": 0.014370358632472406,\\n        \\\"acc_norm\\\": 0.4531,\\n        \\\"acc_norm_stderr\\\": 0.014546892052005678\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc\\\": 0.6938,\\n        \\\"acc_stderr\\\": 0.01295438597280241\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.3944,\\n        \\\"acc_stderr\\\": 0.004034814754960025\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.0751,\\n        \\\"exact_match_stderr\\\": 0.007257633145486642\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.40955631399317405,\\n        \\\"acc_stderr,none\\\": 0.014370358632472406,\\n        \\\"acc_norm,none\\\": 0.45307167235494883,\\n        \\\"acc_norm_stderr,none\\\": 0.014546892052005678\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"name\\\": \\\"winogrande\\\",\\n        \\\"alias\\\": \\\"winogrande\\\",\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc,none\\\": 0.6937647987371744,\\n        \\\"acc_stderr,none\\\": 0.01295438597280241\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.3943882637800883,\\n        \\\"acc_stderr,none\\\": 0.004034814754960025,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.07278241091736164,\\n        \\\"exact_match_stderr,strict-match\\\": 0.00715560476116748,\\n        \\\"exact_match,flexible-extract\\\": 0.07505686125852919,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.007257633145486642\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 20:53:15\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl50_s456_global/results.json===\\n{\\n  \\\"exp_id\\\": \\\"kl50_s456_global\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl50_s456_global\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 11.8057,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.3276,\\n        \\\"acc_stderr\\\": 0.013715847940719344,\\n        \\\"acc_norm\\\": 0.3319,\\n        \\\"acc_norm_stderr\\\": 0.01376098820088056\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc\\\": 0.6488,\\n        \\\"acc_stderr\\\": 0.013415981370545133\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.2794,\\n        \\\"acc_stderr\\\": 0.003760013722133796\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.0212,\\n        \\\"exact_match_stderr\\\": 0.003970449129848636\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.32764505119453924,\\n        \\\"acc_stderr,none\\\": 0.013715847940719344,\\n        \\\"acc_norm,none\\\": 0.3319112627986348,\\n        \\\"acc_norm_stderr,none\\\": 0.01376098820088056\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"name\\\": \\\"winogrande\\\",\\n        \\\"alias\\\": \\\"winogrande\\\",\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc,none\\\": 0.648776637726914,\\n        \\\"acc_stderr,none\\\": 0.013415981370545133\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.2794473721692067,\\n        \\\"acc_stderr,none\\\": 0.003760013722133796,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.015163002274450341,\\n        \\\"exact_match_stderr,strict-match\\\": 0.003366022949726325,\\n        \\\"exact_match,flexible-extract\\\": 0.02122820318423048,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.003970449129848636\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 21:33:57\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "ef0429e0-8100-4d27-b3d6-2396fae1fb9e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"===FILE:/root/distill_sparse_swiglu/results/benchmark/kl30_s123_uniform/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"kl30_s123_uniform\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"kl30_s123_uniform\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 8.8308,\\\\n    \\\\\\\"lm_eval\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc\\\\\\\": 0.4096,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.014370358632472406,\\\\n        \\\\\\\"acc_norm\\\\\\\": 0.4531,\\\\n        \\\\\\\"acc_norm_stderr\\\\\\\": 0.014546892052005678\\\\n      },\\\\n      \\\\\\\"winogrande\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1267,\\\\n        \\\\\\\"acc\\\\\\\": 0.6938,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.01295438597280241\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc\\\\\\\": 0.3944,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.004034814754960025\\\\n      },\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match\\\\\\\": 0.0751,\\\\n        \\\\\\\"exact_match_stderr\\\\\\\": 0.007257633145486642\\\\n      }\\\\n    },\\\\n    \\\\\\\"lm_eval_raw\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.40955631399317405,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.014370358632472406,\\\\n        \\\\\\\"acc_norm,none\\\\\\\": 0.45307167235494883,\\\\n        \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.014546892052005678\\\\n      },\\\\n      \\\\\\\"winogrande\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1267,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.6937647987371744,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.01295438597280241\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.3943882637800883,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.004034814754960025,\\\\n        \\\\\\\"sample_count\\\\\\\": {\\\\n          \\\\\\\"acc,none\\\\\\\": 14042\\\\n        }\\\\n      },\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match,strict-match\\\\\\\": 0.07278241091736164,\\\\n        \\\\\\\"exact_match_stderr,strict-match\\\\\\\": 0.00715560476116748,\\\\n        \\\\\\\"exact_match,flexible-extract\\\\\\\": 0.07505686125852919,\\\\n        \\\\\\\"exact_match_stderr,flexible-extract\\\\\\\": 0.007257633145486642\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 20:53:15\\\\\\\"\\\\n}\\\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl50_s456_global/results.json===\\\\n{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"kl50_s456_global\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"kl50_s456_global\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"global_topk\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 11.8057,\\\\n    \\\\\\\"lm_eval\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc\\\\\\\": 0.3276,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.013715847940719344,\\\\n        \\\\\\\"acc_norm\\\\\\\": 0.3319,\\\\n        \\\\\\\"acc_norm_stderr\\\\\\\": 0.01376098820088056\\\\n      },\\\\n      \\\\\\\"winogrande\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1267,\\\\n        \\\\\\\"acc\\\\\\\": 0.6488,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.013415981370545133\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc\\\\\\\": 0.2794,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.003760013722133796\\\\n      },\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match\\\\\\\": 0.0212,\\\\n        \\\\\\\"exact_match_stderr\\\\\\\": 0.003970449129848636\\\\n      }\\\\n    },\\\\n    \\\\\\\"lm_eval_raw\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.32764505119453924,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.013715847940719344,\\\\n        \\\\\\\"acc_norm,none\\\\\\\": 0.3319112627986348,\\\\n        \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.01376098820088056\\\\n      },\\\\n      \\\\\\\"winogrande\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1267,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.648776637726914,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.013415981370545133\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc,none\\\\\\\": 0.2794473721692067,\\\\n        \\\\\\\"acc_stderr,none\\\\\\\": 0.003760013722133796,\\\\n        \\\\\\\"sample_count\\\\\\\": {\\\\n          \\\\\\\"acc,none\\\\\\\": 14042\\\\n        }\\\\n      },\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match,strict-match\\\\\\\": 0.015163002274450341,\\\\n        \\\\\\\"exact_match_stderr,strict-match\\\\\\\": 0.003366022949726325,\\\\n        \\\\\\\"exact_match,flexible-extract\\\\\\\": 0.02122820318423048,\\\\n        \\\\\\\"exact_match_stderr,flexible-extract\\\\\\\": 0.003970449129848636\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 21:33:57\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"===FILE:/root/distill_sparse_swiglu/results/benchmark/kl30_s123_uniform/results.json===\\n{\\n  \\\"exp_id\\\": \\\"kl30_s123_uniform\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl30_s123_uniform\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_30pct_s123/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 8.8308,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.4096,\\n        \\\"acc_stderr\\\": 0.014370358632472406,\\n        \\\"acc_norm\\\": 0.4531,\\n        \\\"acc_norm_stderr\\\": 0.014546892052005678\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc\\\": 0.6938,\\n        \\\"acc_stderr\\\": 0.01295438597280241\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.3944,\\n        \\\"acc_stderr\\\": 0.004034814754960025\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.0751,\\n        \\\"exact_match_stderr\\\": 0.007257633145486642\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.40955631399317405,\\n        \\\"acc_stderr,none\\\": 0.014370358632472406,\\n        \\\"acc_norm,none\\\": 0.45307167235494883,\\n        \\\"acc_norm_stderr,none\\\": 0.014546892052005678\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"name\\\": \\\"winogrande\\\",\\n        \\\"alias\\\": \\\"winogrande\\\",\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc,none\\\": 0.6937647987371744,\\n        \\\"acc_stderr,none\\\": 0.01295438597280241\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.3943882637800883,\\n        \\\"acc_stderr,none\\\": 0.004034814754960025,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.07278241091736164,\\n        \\\"exact_match_stderr,strict-match\\\": 0.00715560476116748,\\n        \\\"exact_match,flexible-extract\\\": 0.07505686125852919,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.007257633145486642\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 20:53:15\\\"\\n}\\n===FILE:/root/distill_sparse_swiglu/results/benchmark/kl50_s456_global/results.json===\\n{\\n  \\\"exp_id\\\": \\\"kl50_s456_global\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl50_s456_global\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 11.8057,\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.3276,\\n        \\\"acc_stderr\\\": 0.013715847940719344,\\n        \\\"acc_norm\\\": 0.3319,\\n        \\\"acc_norm_stderr\\\": 0.01376098820088056\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc\\\": 0.6488,\\n        \\\"acc_stderr\\\": 0.013415981370545133\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.2794,\\n        \\\"acc_stderr\\\": 0.003760013722133796\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.0212,\\n        \\\"exact_match_stderr\\\": 0.003970449129848636\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"name\\\": \\\"arc_challenge\\\",\\n        \\\"alias\\\": \\\"arc_challenge\\\",\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc,none\\\": 0.32764505119453924,\\n        \\\"acc_stderr,none\\\": 0.013715847940719344,\\n        \\\"acc_norm,none\\\": 0.3319112627986348,\\n        \\\"acc_norm_stderr,none\\\": 0.01376098820088056\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"name\\\": \\\"winogrande\\\",\\n        \\\"alias\\\": \\\"winogrande\\\",\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc,none\\\": 0.648776637726914,\\n        \\\"acc_stderr,none\\\": 0.013415981370545133\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"alias\\\": \\\"mmlu\\\",\\n        \\\"name\\\": \\\"mmlu\\\",\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc,none\\\": 0.2794473721692067,\\n        \\\"acc_stderr,none\\\": 0.003760013722133796,\\n        \\\"sample_count\\\": {\\n          \\\"acc,none\\\": 14042\\n        }\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.015163002274450341,\\n        \\\"exact_match_stderr,strict-match\\\": 0.003366022949726325,\\n        \\\"exact_match,flexible-extract\\\": 0.02122820318423048,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.003970449129848636\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 21:33:57\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+第一批输出中有部分被截断，补充获取。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "5cdf7804-a66c-4b7d-80b6-445141744b3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01656G1ZApLSQzpsEVGzZj7x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8629,
+      "cache_read_input_tokens": 36493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8629
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015Crgp9Ng57HyTA3xvpxX1x`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/distill_sparse_swiglu/results/benchmark/mistral_teal50_baseline/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "165ffa18-1c77-473e-8cbd-c6399366d4a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01656G1ZApLSQzpsEVGzZj7x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8629,
+      "cache_read_input_tokens": 36493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8629
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T00:52:30.704Z_
+
+<details><summary>↩ Tool result · `toolu_015Crgp9Ng57HyTA3xvpxX1x`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_id\\\": \\\"mistral_teal50_baseline\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": null,\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": \\\"teal_vanilla\\\",\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_teal50_baseline\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"baseline_teal_vanilla\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 18.3061\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:03:31\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "c4daa64a-86ca-46ae-be76-8e4f40662889",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_teal50_baseline\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/mistral-7b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": null,\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"teal_vanilla\\\\\\\",\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mistral_teal50_baseline\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"baseline_teal_vanilla\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.5,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 18.3061\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 09:03:31\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_id\\\": \\\"mistral_teal50_baseline\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/mistral-7b/\\\",\\n    \\\"checkpoint\\\": null,\\n    \\\"tasks\\\": \\\"wikitext2\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": \\\"teal_vanilla\\\",\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"mistral_teal50_baseline\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"baseline_teal_vanilla\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"wikitext2_ppl\\\": 18.3061\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-17 09:03:31\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+共找到 20 个 `results*.json` 文件（最近 25 小时内修改）。以下是完整汇总：
+
+---
+
+### 文件列表与核心指标
+
+| # | 文件路径 | 模型 | 模式 | Sparsity | Alloc | WikiText2 PPL | ARC-C acc | WinoGrande | MMLU | GSM8K EM |
+|---|---------|------|------|----------|-------|--------------|-----------|------------|------|----------|
+| 1 | `checkpoints/kl_mag_reg_a001/results.json` | — | — | 48.4% | — | 11.82 | — | — | — | — |
+| 2 | `results/benchmark/mistral_dense_ppl/` | Mistral-7B | dense | — | — | **5.5238** | — | — | — | — |
+| 3 | `results/benchmark/mistral_kl30_pertoken/` | Mistral-7B | per_token (KL) | 30% | uniform | 6.048 | — | — | — | — |
+| 4 | `results/benchmark/mistral_kl30_teal_global/` | Mistral-7B | teal_global (KL) | 30% | uniform | 6.7733 | — | — | — | — |
+| 5 | `results/benchmark/mistral_teal30_baseline/` | Mistral-7B | teal_vanilla | 30% | uniform | 8.3807 | — | — | — | — |
+| 6 | `results/benchmark/mistral_kl50_pertoken/` | Mistral-7B | per_token (KL) | 50% | uniform | 7.2931 | — | — | — | — |
+| 7 | `results/benchmark/mistral_kl50_teal_global/` | Mistral-7B | teal_global (KL) | 50% | uniform | 8.6489 | — | — | — | — |
+| 8 | `results/benchmark/mistral_teal50_baseline/` | Mistral-7B | teal_vanilla | 50% | uniform | 18.3061 | — | — | — | — |
+| 9 | `results/benchmark/mistral_kl70_pertoken/` | Mistral-7B | per_token (KL) | 70% | uniform | 9.1086 | — | — | — | — |
+| 10 | `results/benchmark/mistral_kl70_teal_global/` | Mistral-7B | teal_global (KL) | 70% | uniform | 13.3254 | — | — | — | — |
+| 11 | `results/benchmark/mistral_teal70_baseline/` | Mistral-7B | teal_vanilla | 70% | uniform | 61.716 | — | — | — | — |
+| 12 | `results/benchmark/kl70_teal_global_llama/` | LLaMA-3.1-8B | teal_global (KL) | 70% | uniform | 18.5432 | 0.2125 | — | 0.267 | — |
+| 13 | `results/benchmark/teal_vanilla70_llama/` | LLaMA-3.1-8B | teal_vanilla | 70% | uniform | 125.4204 | 0.1928 | — | 0.2615 | — |
+| 14 | `results/benchmark/reverse_kl_50pct_s42_eval/` | LLaMA-3.1-8B | teal_global (rev KL) | 50% | global_topk | 12.7969 | — | — | — | — |
+| 15 | `results/benchmark/jsd_50pct_s42_eval/` | LLaMA-3.1-8B | teal_global (JSD) | 50% | global_topk | 12.5428 | — | — | — | — |
+| 16 | `results/benchmark/db256_pertoken_wikitext2/` | LLaMA-3.1-8B | per_token (KL, d_b=256) | 50% | global_topk | 8.5862 | — | — | — | — |
+| 17 | `results/benchmark/kl_50pct_s123_global/` | LLaMA-3.1-8B | teal_global (KL, s123) | 50% | global_topk | 11.745 | 0.329 | 0.6125 | 0.2752 | 0.0281 |
+| 18 | `results/benchmark/kl_30pct_s123/` | LLaMA-3.1-8B | teal_global (KL, s123) | 30% | global_topk | 8.9748 | 0.4181 | 0.693 | 0.3807 | 0.0758 |
+| 19 | `results/benchmark/kl30_s123_uniform/` | LLaMA-3.1-8B | teal_global (KL, s123) | 30% | uniform | 8.8308 | 0.4096 | 0.6938 | 0.3944 | 0.0751 |
+| 20 | `results/benchmark/kl50_s456_global/` | LLaMA-3.1-8B | teal_global (KL, s456) | 50% | global_topk | 11.8057 | 0.3276 | 0.6488 | 0.2794 | 0.0212 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "uuid": "7e806ca3-4e08-45ce-8be1-8899b6472b65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xjxmr64CF2ruAdFkT58U3f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 45122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 812
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 23_
+
+共找到 20 个 `results*.json` 文件（最近 25 小时内修改）。以下是完整汇总：
+
+---
+
+### 文件列表与核心指标
+
+| # | 文件路径 | 模型 | 模式 | Sparsity | Alloc | WikiText2 PPL | ARC-C acc | WinoGrande | MMLU | GSM8K EM |
+|---|---------|------|------|----------|-------|--------------|-----------|------------|------|----------|
+| 1 | `checkpoints/kl_mag_reg_a001/results.json` | — | — | 48.4% | — | 11.82 | — | — | — | — |
+| 2 | `results/benchmark/mistral_dense_ppl/` | Mistral-7B | dense | — | — | **5.5238** | — | — | — | — |
+| 3 | `results/benchmark/mistral_kl30_pertoken/` | Mistral-7B | per_token (KL) | 30% | uniform | 6.048 | — | — | — | — |
+| 4 | `results/benchmark/mistral_kl30_teal_global/` | Mistral-7B | teal_global (KL) | 30% | uniform | 6.7733 | — | — | — | — |
+| 5 | `results/benchmark/mistral_teal30_baseline/` | Mistral-7B | teal_vanilla | 30% | uniform | 8.3807 | — | — | — | — |
+| 6 | `results/benchmark/mistral_kl50_pertoken/` | Mistral-7B | per_token (KL) | 50% | uniform | 7.2931 | — | — | — | — |
+| 7 | `results/benchmark/mistral_kl50_teal_global/` | Mistral-7B | teal_global (KL) | 50% | uniform | 8.6489 | — | — | — | — |
+| 8 | `results/benchmark/mistral_teal50_baseline/` | Mistral-7B | teal_vanilla | 50% | uniform | 18.3061 | — | — | — | — |
+| 9 | `results/benchmark/mistral_kl70_pertoken/` | Mistral-7B | per_token (KL) | 70% | uniform | 9.1086 | — | — | — | — |
+| 10 | `results/benchmark/mistral_kl70_teal_global/` | Mistral-7B | teal_global (KL) | 70% | uniform | 13.3254 | — | — | — | — |
+| 11 | `results/benchmark/mistral_teal70_baseline/` | Mistral-7B | teal_vanilla | 70% | uniform | 61.716 | — | — | — | — |
+| 12 | `results/benchmark/kl70_teal_global_llama/` | LLaMA-3.1-8B | teal_global (KL) | 70% | uniform | 18.5432 | 0.2125 | — | 0.267 | — |
+| 13 | `results/benchmark/teal_vanilla70_llama/` | LLaMA-3.1-8B | teal_vanilla | 70% | uniform | 125.4204 | 0.1928 | — | 0.2615 | — |
+| 14 | `results/benchmark/reverse_kl_50pct_s42_eval/` | LLaMA-3.1-8B | teal_global (rev KL) | 50% | global_topk | 12.7969 | — | — | — | — |
+| 15 | `results/benchmark/jsd_50pct_s42_eval/` | LLaMA-3.1-8B | teal_global (JSD) | 50% | global_topk | 12.5428 | — | — | — | — |
+| 16 | `results/benchmark/db256_pertoken_wikitext2/` | LLaMA-3.1-8B | per_token (KL, d_b=256) | 50% | global_topk | 8.5862 | — | — | — | — |
+| 17 | `results/benchmark/kl_50pct_s123_global/` | LLaMA-3.1-8B | teal_global (KL, s123) | 50% | global_topk | 11.745 | 0.329 | 0.6125 | 0.2752 | 0.0281 |
+| 18 | `results/benchmark/kl_30pct_s123/` | LLaMA-3.1-8B | teal_global (KL, s123) | 30% | global_topk | 8.9748 | 0.4181 | 0.693 | 0.3807 | 0.0758 |
+| 19 | `results/benchmark/kl30_s123_uniform/` | LLaMA-3.1-8B | teal_global (KL, s123) | 30% | uniform | 8.8308 | 0.4096 | 0.6938 | 0.3944 | 0.0751 |
+| 20 | `results/benchmark/kl50_s456_global/` | LLaMA-3.1-8B | teal_global (KL, s456) | 50% | global_topk | 11.8057 | 0.3276 | 0.6488 | 0.2794 | 0.0212 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 63084,
+  "duration_api_ms": 51438,
+  "num_turns": 8,
+  "stop_reason": "end_turn",
+  "session_id": "65b8fe05-dffa-4a18-9ad9-e0855637e327",
+  "total_cost_usd": 0.36646724999999997,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 34093,
+    "cache_read_input_tokens": 170406,
+    "output_tokens": 2674,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 34093,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1486,
+        "cache_read_input_tokens": 45122,
+        "cache_creation_input_tokens": 812,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 812
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1203,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001283,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 2674,
+      "cacheReadInputTokens": 170406,
+      "cacheCreationInputTokens": 34093,
+      "webSearchRequests": 0,
+      "costUSD": 0.36518425,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "dca5ad2a-33f6-4789-9dc6-5c5f1ed62416"
+}
+```
+
+</details>
+
+---

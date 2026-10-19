@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4632aef25920a398cc18",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis compile qwen14b table",
+  "task_key": "worker_analysis_compile_qwen14b_table_20260519T203614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_compile_qwen14b_table_20260519T203614_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "a6fdcf11f1ac6b898fa80ac3ac3161ab71088270e4a40267de785d225d1a43a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在 report.md 中插入 \"## Qwen-14B 对比表\" 部分，包含：\n\n- **主表**: Dense / TEAL@27.5% / KL mean±std（3-seed），GSM8K 标注 pending\n- **Seed 明细表**: s42/s123/s456 各指标\n- **Appendix 表**: TEAL@30% nominal-matched，缺失格标 \"—\"，GSM8K 标 queued\n- **关键发现**: KL 在 common-sense 任务 (WG/HS/PIQA) 占优 +1.2~2.8pp，TEAL 在 knowledge-intensive 任务 (ARC/MMLU) 占优 +3.5~3.8pp"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-compile-qwen14b-table.md"
+}

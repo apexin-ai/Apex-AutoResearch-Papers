@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36108450e6441f432e6e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval wina greedy baseline",
+  "task_key": "worker_eval_wina_greedy_baseline_20260515T185653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_wina_greedy_baseline_20260515T185653_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "e5905de3e4dd44a660d2d731ca13a4ead9e46309bfa0852a38c98ffa069bf29d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总 training-free baselines 全景：\n\n| Method | Strategy | PPL (50% sparsity) |\n|--------|----------|-------------------|\n| Dense | — | 6.12 |\n| **WINA greedy** | **per-layer allocation** | **2,126** |\n| TEAL greedy | per-layer allocation | 50,035 |\n| Vanilla TEAL | global top-K | 66,036 |\n| R-Sparse | global top-K | 74,929 |\n| WINA (global) | global top-K | 82,567 |\n\nWINA greedy 是表现最好的 training-free baseline（PPL 2126），比 global top-K 变体好 1-2 个数量级，这得益于贪心分配将 sparsity 预算集中在早期层（低 error 层 90% 剪枝）、保留后期层完整。但仍是 Dense PPL 的 347 倍，确认 **training-free 方法在 50% SwiGLU sparsity 下全面失败**，Claim 1 无懈可击。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-wina-greedy-baseline.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl30_8b_s123_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T01:54:48.304Z",
+    "updated_at": "2026-05-18T01:54:55.209Z",
+    "hypothesis": "KL 30% s123 downstream eval (PPL+ARC+WG+MMLU+GSM8K) validates cross-seed consistency of KL advantage for Table 2 multi-seed reporting.",
+    "parent": "kl30_8b_s123_train"
+  },
+  "timestamp": "2026-05-18T01:54:55.528463+00:00",
+  "trigger": "update_registry"
+}

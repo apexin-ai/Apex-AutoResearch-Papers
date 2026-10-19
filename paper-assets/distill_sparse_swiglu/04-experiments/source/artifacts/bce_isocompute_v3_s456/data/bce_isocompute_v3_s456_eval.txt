@@ -1,0 +1,7 @@
+exp_id: bce_isocompute_v3_s456
+wikitext2_ppl: 28.3503
+arc_challenge_acc_norm: 0.2807
+winogrande_acc: 0.5241
+mmlu_acc: 0.2567
+gsm8k_exact_match: 0.0220
+config: bce loss, 50% global_topk sparsity, teal_global mode, seed 456

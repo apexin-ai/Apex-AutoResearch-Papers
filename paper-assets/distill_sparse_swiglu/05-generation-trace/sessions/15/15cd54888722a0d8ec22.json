@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15cd54888722a0d8ec22",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops db sweep collect and eval",
+  "task_key": "worker_ops_db-sweep-collect-and-eval_20260516T215608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_db-sweep-collect-and-eval_20260516T215608_result.json",
+    "occurrence": 1,
+    "bytes": 1485,
+    "sha256": "31c1990f08f71930be61083f90a294268035f6e3944c1779b54ecb0f2d0ce084"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇总如下：\n\n---\n\n## d_b Sweep 完整结果\n\n| d_b | Final Loss | per_token PPL | teal_global PPL | Sparsity | Predictor Params |\n|-----|:---:|:---:|:---:|:---:|:---:|\n| 64  | 0.361 | 10.158 | **12.076** | 0.500 | ~38M |\n| 128 | ~0.30 | 9.218 | **11.963** | 0.500 | ~76M |\n| 256 | 0.270 | 8.586 | **12.105** | 0.500 | ~151M |\n| 512 | 0.224 | 7.933 | **12.315** | 0.500 | ~302M |\n\n---\n\n## 状态报告\n\n1. **训练完成情况**：三个 d_b (64/256/512) 均完成 1000/1000 steps\n2. **冗余进程**：无（GPU 空闲，无重复进程）\n3. **teal_global eval**：全部完成并保存到 `results/benchmark/db_sweep_{64,256,512}_teal/`\n\n## 关键发现\n\n**per_token PPL 随 d_b 单调递减**（更大 predictor → 更好 token 级预测），但 **teal_global PPL 不受益于更大 d_b**，反而轻微恶化：\n\n- per_token: 10.16 → 9.22 → 8.59 → 7.93（d_b↑ → PPL↓）\n- teal_global: 12.08 → **11.96** → 12.11 → 12.32（d_b=128 最优）\n\n**解释**：teal_global 将 per-token predictions 在 calibration 样本上平均为静态 mask，抹杀了 token-level granularity。更大的 predictor 过度拟合 token 级模式，这些模式在 averaging 时相互抵消。\n\n**结论**：d_b=128 是最优选择——在 static mask 场景下效果最好，同时保持合理的参数开销（76M/32层 = 2.37M/layer）。增大 predictor 的收益仅体现在 per-token dynamic 模式下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-db-sweep-collect-and-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "104e735ad8e9a1e52020",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper pre flight check",
+  "task_key": "worker_paper_pre-flight-check_20260519T122319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_pre-flight-check_20260519T122319_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "b1d6fb82bd9eb617c8cfb20e5f9e506d49842f5e40281108684b27626c74091b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**PASS** — 2 minor warnings.\n\n| Check | Status | Detail |\n|-------|--------|--------|\n| LaTeX Compilation | ✅ | 0 errors, 4 benign float warnings |\n| Page Count | ✅ | 8 body pages (exactly at ARR limit) |\n| Citations | ✅ | 0 undefined, 46 cites / 47 bib entries |\n| Anonymization | ✅ | `[review]` mode, `\\author{Anonymous}`, no leaks |\n| Reference Consistency | ⚠️ | 0 undefined refs; `fig:overview` defined but never referenced; 3 orphan appendix sections (`app:stability`, `app:tau_sensitivity`, `app:training_convergence`) |\n| Ethics/Limitations | ✅ | Both substantive; full NLP checklist filled |\n| Table Cross-check | ✅ | 3 sampled numbers have consistent exp_id annotations |\n| AI Style (bonus) | ✅ | 0 dashes |\n\n**Action needed**: `fig:overview` in `method.tex:151` is labeled but never `\\ref`'d — either add a reference or remove the label. Three appendix sections are orphaned from the body text."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-pre-flight-check.md"
+}

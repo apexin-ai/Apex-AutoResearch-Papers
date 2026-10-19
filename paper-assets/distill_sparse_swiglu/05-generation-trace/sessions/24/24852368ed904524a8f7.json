@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24852368ed904524a8f7",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code prep eval kl30 30pct",
+  "task_key": "worker_code_prep_eval_kl30_30pct_20260516T052218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_eval_kl30_30pct_20260516T052218_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "741d0249f2d43c966ab4f7da7075505ab762693abdf186101159c10173a9802c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存到 `artifacts/eval_kl30_30pct_command.md`。\n\n关键修正：\n- **参数名是 `--checkpoint`**，任务模板中的 `--predictor_path` 不存在\n- **evaluate.py 没有 `--output_dir`**，结果输出到 stdout，命令已加日志重定向\n- 两个脚本的 `--sparsity_target` 默认都是 0.5，所有命令都显式传了 0.3\n- benchmark_eval.py 也需要传 `--sparsity_target 0.3`，已准备了 per_token 和 teal_global 两种模式的命令"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-eval-kl30-30pct.md"
+}

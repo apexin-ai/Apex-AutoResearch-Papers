@@ -1,0 +1,4513 @@
+# analysis qwen14b teal30 uniform gsm8k
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 89
+- **Recorded user turns:** 1
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_analysis_qwen14b_teal30_uniform_gsm8k_20260520T020501.log`
+- **Structured JSON:** [`c57bd59d301d19ad30c0.json`](../../sessions/c5/c57bd59d301d19ad30c0.json)
+
+## Before a recorded user message
+
+26 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__compare_wandb_runs",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__fetch_wandb_metrics",
+    "mcp__agent-ml-research__fetch_wandb_run_history",
+    "mcp__agent-ml-research__get_best_wandb_run",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__list_wandb_runs",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "21808d27-2434-4c40-8fd7-45af8b80503e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779426000,
+    "rateLimitType": "seven_day",
+    "utilization": 0.94,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "bf53c3d9-14fd-4d13-9b92-7be6ff0cb0ac",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the log file and checking the registry for related experiments in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "d0c3de75-11e6-4ee4-ab53-8b7f97d233ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GSqNQB1uPfhVR7SifDYdWq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13040,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13040
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TSo4mpg9gbYWwgJTh4yzNZ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__update_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "410c22cf-5423-42f2-953d-7b67bff01198",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GSqNQB1uPfhVR7SifDYdWq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13040,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13040
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T02:05:27.669Z_
+
+<details><summary>↩ Tool result · `toolu_01TSo4mpg9gbYWwgJTh4yzNZ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "753a8b58-d863-4099-81c3-1309fab4f861",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 31
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FVQeYcUopXoRS3UnMoqJpu`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat ~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "cc8ac5f8-e83b-45af-b04a-02754ef7d494",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P1TmWTwWSUhXDVT1uMSbw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 24881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1619
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01UAY8D5PukYM94mRFL4QWLn`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "filters": {
+    "exp_id": "qwen14b_teal30_uniform_gsm8k"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "9d0e4c7e-26c5-46ab-97cd-7501a4b3d5a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P1TmWTwWSUhXDVT1uMSbw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 24881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1619
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015RDpA2hkDaW9TBdcpPJACo`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "filters": {
+    "exp_id": "qwen14b_teal30_uniform_eval_4task"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "8e28f672-3836-494d-a6b0-f1db300337f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P1TmWTwWSUhXDVT1uMSbw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 24881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1619
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Jo9eWPa3C2SmWF4crwfTop`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "filters": {
+    "exp_id": "qwen14b_teal275_uniform_eval_v3"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "acca6fb9-0448-4449-a106-e98a38775cbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P1TmWTwWSUhXDVT1uMSbw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 24881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1619
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T02:05:37.004Z_
+
+<details><summary>↩ Tool result · `toolu_01FVQeYcUopXoRS3UnMoqJpu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model: /root/autodl-tmp/models/qwen2.5-14b/\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/579 [00:00<01:46,  5.43it/s]\\rLoading weights:   0%|          | 2/579 [00:00<01:59,  4.84it/s]\\rLoading weights:   3%|▎         | 16/579 [00:00<00:13, 42.59it/s]\\rLoading weights:   5%|▌         | 29/579 [00:00<00:08, 65.54it/s]\\rLoading weights:   7%|▋         | 42/579 [00:00<00:06, 80.33it/s]\\rLoading weights:   9%|▉         | 52/579 [00:00<00:07, 71.96it/s]\\rLoading weights:  15%|█▍        | 84/579 [00:01<00:03, 133.72it/s]\\rLoading weights:  17%|█▋        | 100/579 [00:01<00:03, 124.20it/s]\\rLoading weights:  20%|██        | 118/579 [00:01<00:03, 136.93it/s]\\rLoading weights:  23%|██▎       | 136/579 [00:01<00:04, 106.73it/s]\\rLoading weights:  29%|██▉       | 168/579 [00:01<00:02, 149.33it/s]\\rLoading weights:  32%|███▏      | 186/579 [00:01<00:02, 139.20it/s]\\rLoading weights:  35%|███▌      | 203/579 [00:01<00:02, 143.70it/s]\\rLoading weights:  38%|███▊      | 219/579 [00:02<00:03, 112.35it/s]\\rLoading weights:  43%|████▎     | 251/579 [00:02<00:02, 155.34it/s]\\rLoading weights:  47%|████▋     | 270/579 [00:02<00:02, 142.25it/s]\\rLoading weights:  50%|████▉     | 288/579 [00:02<00:01, 148.80it/s]\\rLoading weights:  53%|█████▎    | 305/579 [00:02<00:01, 142.66it/s]\\rLoading weights:  55%|█████▌    | 321/579 [00:02<00:01, 143.10it/s]\\rLoading weights:  59%|█████▊    | 339/579 [00:02<00:01, 152.33it/s]\\rLoading weights:  61%|██████▏   | 356/579 [00:02<00:01, 137.15it/s]\\rLoading weights:  64%|██████▍   | 371/579 [00:03<00:01, 139.68it/s]\\rLoading weights:  67%|██████▋   | 388/579 [00:03<00:01, 142.92it/s]\\rLoading weights:  70%|██████▉   | 403/579 [00:03<00:01, 132.10it/s]\\rLoading weights:  73%|██��████▎  | 420/579 [00:03<00:01, 140.85it/s]\\rLoading weights:  75%|███████▌  | 436/579 [00:03<00:01, 142.45it/s]\\rLoading weights:  78%|███████▊  | 451/579 [00:03<00:00, 133.30it/s]\\rLoading weights:  80%|████████  | 466/579 [00:03<00:00, 135.30it/s]\\rLoading weights:  84%|████████▎ | 484/579 [00:03<00:00, 142.82it/s]\\rLoading weights:  86%|████████▌ | 499/579 [00:04<00:00, 130.70it/s]\\rLoading weights:  89%|████████▊ | 513/579 [00:04<00:00, 132.78it/s]\\rLoading weights:  92%|█████████▏| 532/579 [00:04<00:00, 140.75it/s]\\rLoading weights:  94%|█████████▍| 547/579 [00:04<00:00, 131.07it/s]\\rLoading weights:  97%|█████████▋| 563/579 [00:04<00:00, 136.38it/s]\\rLoading weights: 100%|██████████| 579/579 [00:04<00:00, 126.19it/s]\\nMode: baseline (teal_vanilla), sparsity_target=0.3, allocation=uniform\\nComputing baseline masks ...\\n\\nPer-layer sparsity (teal_vanilla):\\n  Layer  0: 0.297\\n  Layer  1: 0.301\\n  Layer  2: 0.297\\n  Layer  3: 0.297\\n  Layer  4: 0.297\\n  Layer  5: 0.301\\n  Layer  6: 0.297\\n  Layer  7: 0.301\\n  Layer  8: 0.297\\n  Layer  9: 0.293\\n  Layer 10: 0.289\\n  Layer 11: 0.297\\n  Layer 12: 0.297\\n  Layer 13: 0.277\\n  Layer 14: 0.293\\n  Layer 15: 0.281\\n  Layer 16: 0.289\\n  Layer 17: 0.289\\n  Layer 18: 0.297\\n  Layer 19: 0.285\\n  Layer 20: 0.289\\n  Layer 21: 0.289\\n  Layer 22: 0.297\\n  Layer 23: 0.297\\n  Layer 24: 0.281\\n  Layer 25: 0.293\\n  Layer 26: 0.293\\n  Layer 27: 0.285\\n  Layer 28: 0.297\\n  Layer 29: 0.293\\n  Layer 30: 0.289\\n  Layer 31: 0.297\\n  Layer 32: 0.297\\n  Layer 33: 0.293\\n  Layer 34: 0.281\\n  Layer 35: 0.285\\n  Layer 36: 0.289\\n  Layer 37: 0.293\\n  Layer 38: 0.293\\n  Layer 39: 0.297\\n  Layer 40: 0.293\\n  Layer 41: 0.293\\n  Layer 42: 0.289\\n  Layer 43: 0.293\\n  Layer 44: 0.301\\n  Layer 45: 0.297\\n  Layer 46: 0.301\\n  Layer 47: 0.301\\n  Model-level: 0.293\\n\\n--- lm-eval: ['gsm8k'] ---\\n`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.\\nPassed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration\\n  Running ['gsm8k'] (num_fewshot=8) ...\\nUsing the latest cached version of the datas\\n\\n... [截断: 输出过长，省略 57802 字符] ...\\n\\nain_classes/text_generation)\\n\\rRunning generate_until requests:  93%|█████████▎| 1233/1319 [5:04:25<20:45, 14.48s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1530) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  94%|█████████▍| 1241/1319 [5:06:20<18:49, 14.47s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1521) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  95%|█████████▍| 1249/1319 [5:08:16<16:52, 14.46s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1509) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  95%|█████████▌| 1257/1319 [5:10:11<14:55, 14.45s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1501) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  96%|█████████▌| 1265/1319 [5:12:07<12:59, 14.44s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1486) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  97%|█████████▋| 1273/1319 [5:14:02<11:03, 14.43s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1474) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  97%|█████████▋| 1281/1319 [5:15:57<09:07, 14.41s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1455) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  98%|█████████▊| 1289/1319 [5:17:52<07:11, 14.40s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1433) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  98%|█████████▊| 1297/1319 [5:19:46<05:16, 14.38s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1415) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  99%|█████████▉| 1305/1319 [5:21:41<03:21, 14.36s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1378) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests: 100%|█████████▉| 1313/1319 [5:23:32<01:25, 14.21s/it]\\rRunning generate_until requests: 100%|██████████| 1319/1319 [5:23:32<00:00, 14.72s/it]\\nfatal: not a git repository (or any of the parent directories): .git\\n  Completed in 19426.2s\\n  gsm8k: sample_len=1319, exact_match=0.5208\\n\\nResults saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "b9f78660-15d0-4c6e-a627-31cd1dcdde7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/qwen2.5-14b/\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/579 [00:00<01:46,  5.43it/s]\\\\rLoading weights:   0%|          | 2/579 [00:00<01:59,  4.84it/s]\\\\rLoading weights:   3%|▎         | 16/579 [00:00<00:13, 42.59it/s]\\\\rLoading weights:   5%|▌         | 29/579 [00:00<00:08, 65.54it/s]\\\\rLoading weights:   7%|▋         | 42/579 [00:00<00:06, 80.33it/s]\\\\rLoading weights:   9%|▉         | 52/579 [00:00<00:07, 71.96it/s]\\\\rLoading weights:  15%|█▍        | 84/579 [00:01<00:03, 133.72it/s]\\\\rLoading weights:  17%|█▋        | 100/579 [00:01<00:03, 124.20it/s]\\\\rLoading weights:  20%|██        | 118/579 [00:01<00:03, 136.93it/s]\\\\rLoading weights:  23%|██▎       | 136/579 [00:01<00:04, 106.73it/s]\\\\rLoading weights:  29%|██▉       | 168/579 [00:01<00:02, 149.33it/s]\\\\rLoading weights:  32%|███▏      | 186/579 [00:01<00:02, 139.20it/s]\\\\rLoading weights:  35%|███▌      | 203/579 [00:01<00:02, 143.70it/s]\\\\rLoading weights:  38%|███▊      | 219/579 [00:02<00:03, 112.35it/s]\\\\rLoading weights:  43%|████▎     | 251/579 [00:02<00:02, 155.34it/s]\\\\rLoading weights:  47%|████▋     | 270/579 [00:02<00:02, 142.25it/s]\\\\rLoading weights:  50%|████▉     | 288/579 [00:02<00:01, 148.80it/s]\\\\rLoading weights:  53%|█████▎    | 305/579 [00:02<00:01, 142.66it/s]\\\\rLoading weights:  55%|█████▌    | 321/579 [00:02<00:01, 143.10it/s]\\\\rLoading weights:  59%|█████▊    | 339/579 [00:02<00:01, 152.33it/s]\\\\rLoading weights:  61%|██████▏   | 356/579 [00:02<00:01, 137.15it/s]\\\\rLoading weights:  64%|██████▍   | 371/579 [00:03<00:01, 139.68it/s]\\\\rLoading weights:  67%|██████▋   | 388/579 [00:03<00:01, 142.92it/s]\\\\rLoading weights:  70%|██████▉   | 403/579 [00:03<00:01, 132.10it/s]\\\\rLoading weights:  73%|██��████▎  | 420/579 [00:03<00:01, 140.85it/s]\\\\rLoading weights:  75%|███████▌  | 436/579 [00:03<00:01, 142.45it/s]\\\\rLoading weights:  78%|███████▊  | 451/579 [00:03<00:00, 133.30it/s]\\\\rLoading weights:  80%|████████  | 466/579 [00:03<00:00, 135.30it/s]\\\\rLoading weights:  84%|████████▎ | 484/579 [00:03<00:00, 142.82it/s]\\\\rLoading weights:  86%|████████▌ | 499/579 [00:04<00:00, 130.70it/s]\\\\rLoading weights:  89%|████████▊ | 513/579 [00:04<00:00, 132.78it/s]\\\\rLoading weights:  92%|█████████▏| 532/579 [00:04<00:00, 140.75it/s]\\\\rLoading weights:  94%|█████████▍| 547/579 [00:04<00:00, 131.07it/s]\\\\rLoading weights:  97%|█████████▋| 563/579 [00:04<00:00, 136.38it/s]\\\\rLoading weights: 100%|██████████| 579/579 [00:04<00:00, 126.19it/s]\\\\nMode: baseline (teal_vanilla), sparsity_target=0.3, allocation=uniform\\\\nComputing baseline masks ...\\\\n\\\\nPer-layer sparsity (teal_vanilla):\\\\n  Layer  0: 0.297\\\\n  Layer  1: 0.301\\\\n  Layer  2: 0.297\\\\n  Layer  3: 0.297\\\\n  Layer  4: 0.297\\\\n  Layer  5: 0.301\\\\n  Layer  6: 0.297\\\\n  Layer  7: 0.301\\\\n  Layer  8: 0.297\\\\n  Layer  9: 0.293\\\\n  Layer 10: 0.289\\\\n  Layer 11: 0.297\\\\n  Layer 12: 0.297\\\\n  Layer 13: 0.277\\\\n  Layer 14: 0.293\\\\n  Layer 15: 0.281\\\\n  Layer 16: 0.289\\\\n  Layer 17: 0.289\\\\n  Layer 18: 0.297\\\\n  Layer 19: 0.285\\\\n  Layer 20: 0.289\\\\n  Layer 21: 0.289\\\\n  Layer 22: 0.297\\\\n  Layer 23: 0.297\\\\n  Layer 24: 0.281\\\\n  Layer 25: 0.293\\\\n  Layer 26: 0.293\\\\n  Layer 27: 0.285\\\\n  Layer 28: 0.297\\\\n  Layer 29: 0.293\\\\n  Layer 30: 0.289\\\\n  Layer 31: 0.297\\\\n  Layer 32: 0.297\\\\n  Layer 33: 0.293\\\\n  Layer 34: 0.281\\\\n  Layer 35: 0.285\\\\n  Layer 36: 0.289\\\\n  Layer 37: 0.293\\\\n  Layer 38: 0.293\\\\n  Layer 39: 0.297\\\\n  Layer 40: 0.293\\\\n  Layer 41: 0.293\\\\n  Layer 42: 0.289\\\\n  Layer 43: 0.293\\\\n  Layer 44: 0.301\\\\n  Layer 45: 0.297\\\\n  Layer 46: 0.301\\\\n  Layer 47: 0.301\\\\n  Model-level: 0.293\\\\n\\\\n--- lm-eval: ['gsm8k'] ---\\\\n`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.\\\\nPassed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration\\\\n  Running ['gsm8k'] (num_fewshot=8) ...\\\\nUsing the latest cached version of the datas\\\\n\\\\n... [截断: 输出过长，省略 57802 字符] ...\\\\n\\\\nain_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  93%|█████████▎| 1233/1319 [5:04:25<20:45, 14.48s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1530) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  94%|█████████▍| 1241/1319 [5:06:20<18:49, 14.47s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1521) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  95%|█████████▍| 1249/1319 [5:08:16<16:52, 14.46s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1509) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  95%|█████████▌| 1257/1319 [5:10:11<14:55, 14.45s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1501) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  96%|█████████▌| 1265/1319 [5:12:07<12:59, 14.44s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1486) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  97%|█████████▋| 1273/1319 [5:14:02<11:03, 14.43s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1474) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  97%|█████████▋| 1281/1319 [5:15:57<09:07, 14.41s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1455) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  98%|█████████▊| 1289/1319 [5:17:52<07:11, 14.40s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1433) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  98%|█████████▊| 1297/1319 [5:19:46<05:16, 14.38s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1415) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests:  99%|█████████▉| 1305/1319 [5:21:41<03:21, 14.36s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1378) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\\\n\\\\rRunning generate_until requests: 100%|█████████▉| 1313/1319 [5:23:32<01:25, 14.21s/it]\\\\rRunning generate_until requests: 100%|██████████| 1319/1319 [5:23:32<00:00, 14.72s/it]\\\\nfatal: not a git repository (or any of the parent directories): .git\\\\n  Completed in 19426.2s\\\\n  gsm8k: sample_len=1319, exact_match=0.5208\\\\n\\\\nResults saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading model: /root/autodl-tmp/models/qwen2.5-14b/\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/579 [00:00<01:46,  5.43it/s]\\rLoading weights:   0%|          | 2/579 [00:00<01:59,  4.84it/s]\\rLoading weights:   3%|▎         | 16/579 [00:00<00:13, 42.59it/s]\\rLoading weights:   5%|▌         | 29/579 [00:00<00:08, 65.54it/s]\\rLoading weights:   7%|▋         | 42/579 [00:00<00:06, 80.33it/s]\\rLoading weights:   9%|▉         | 52/579 [00:00<00:07, 71.96it/s]\\rLoading weights:  15%|█▍        | 84/579 [00:01<00:03, 133.72it/s]\\rLoading weights:  17%|█▋        | 100/579 [00:01<00:03, 124.20it/s]\\rLoading weights:  20%|██        | 118/579 [00:01<00:03, 136.93it/s]\\rLoading weights:  23%|██▎       | 136/579 [00:01<00:04, 106.73it/s]\\rLoading weights:  29%|██▉       | 168/579 [00:01<00:02, 149.33it/s]\\rLoading weights:  32%|███▏      | 186/579 [00:01<00:02, 139.20it/s]\\rLoading weights:  35%|███▌      | 203/579 [00:01<00:02, 143.70it/s]\\rLoading weights:  38%|███▊      | 219/579 [00:02<00:03, 112.35it/s]\\rLoading weights:  43%|████▎     | 251/579 [00:02<00:02, 155.34it/s]\\rLoading weights:  47%|████▋     | 270/579 [00:02<00:02, 142.25it/s]\\rLoading weights:  50%|████▉     | 288/579 [00:02<00:01, 148.80it/s]\\rLoading weights:  53%|█████▎    | 305/579 [00:02<00:01, 142.66it/s]\\rLoading weights:  55%|█████▌    | 321/579 [00:02<00:01, 143.10it/s]\\rLoading weights:  59%|█████▊    | 339/579 [00:02<00:01, 152.33it/s]\\rLoading weights:  61%|██████▏   | 356/579 [00:02<00:01, 137.15it/s]\\rLoading weights:  64%|██████▍   | 371/579 [00:03<00:01, 139.68it/s]\\rLoading weights:  67%|██████▋   | 388/579 [00:03<00:01, 142.92it/s]\\rLoading weights:  70%|██████▉   | 403/579 [00:03<00:01, 132.10it/s]\\rLoading weights:  73%|██��████▎  | 420/579 [00:03<00:01, 140.85it/s]\\rLoading weights:  75%|███████▌  | 436/579 [00:03<00:01, 142.45it/s]\\rLoading weights:  78%|███████▊  | 451/579 [00:03<00:00, 133.30it/s]\\rLoading weights:  80%|████████  | 466/579 [00:03<00:00, 135.30it/s]\\rLoading weights:  84%|████████▎ | 484/579 [00:03<00:00, 142.82it/s]\\rLoading weights:  86%|████████▌ | 499/579 [00:04<00:00, 130.70it/s]\\rLoading weights:  89%|████████▊ | 513/579 [00:04<00:00, 132.78it/s]\\rLoading weights:  92%|█████████▏| 532/579 [00:04<00:00, 140.75it/s]\\rLoading weights:  94%|█████████▍| 547/579 [00:04<00:00, 131.07it/s]\\rLoading weights:  97%|█████████▋| 563/579 [00:04<00:00, 136.38it/s]\\rLoading weights: 100%|██████████| 579/579 [00:04<00:00, 126.19it/s]\\nMode: baseline (teal_vanilla), sparsity_target=0.3, allocation=uniform\\nComputing baseline masks ...\\n\\nPer-layer sparsity (teal_vanilla):\\n  Layer  0: 0.297\\n  Layer  1: 0.301\\n  Layer  2: 0.297\\n  Layer  3: 0.297\\n  Layer  4: 0.297\\n  Layer  5: 0.301\\n  Layer  6: 0.297\\n  Layer  7: 0.301\\n  Layer  8: 0.297\\n  Layer  9: 0.293\\n  Layer 10: 0.289\\n  Layer 11: 0.297\\n  Layer 12: 0.297\\n  Layer 13: 0.277\\n  Layer 14: 0.293\\n  Layer 15: 0.281\\n  Layer 16: 0.289\\n  Layer 17: 0.289\\n  Layer 18: 0.297\\n  Layer 19: 0.285\\n  Layer 20: 0.289\\n  Layer 21: 0.289\\n  Layer 22: 0.297\\n  Layer 23: 0.297\\n  Layer 24: 0.281\\n  Layer 25: 0.293\\n  Layer 26: 0.293\\n  Layer 27: 0.285\\n  Layer 28: 0.297\\n  Layer 29: 0.293\\n  Layer 30: 0.289\\n  Layer 31: 0.297\\n  Layer 32: 0.297\\n  Layer 33: 0.293\\n  Layer 34: 0.281\\n  Layer 35: 0.285\\n  Layer 36: 0.289\\n  Layer 37: 0.293\\n  Layer 38: 0.293\\n  Layer 39: 0.297\\n  Layer 40: 0.293\\n  Layer 41: 0.293\\n  Layer 42: 0.289\\n  Layer 43: 0.293\\n  Layer 44: 0.301\\n  Layer 45: 0.297\\n  Layer 46: 0.301\\n  Layer 47: 0.301\\n  Model-level: 0.293\\n\\n--- lm-eval: ['gsm8k'] ---\\n`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.\\nPassed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration\\n  Running ['gsm8k'] (num_fewshot=8) ...\\nUsing the latest cached version of the datas\\n\\n... [截断: 输出过长，省略 57802 字符] ...\\n\\nain_classes/text_generation)\\n\\rRunning generate_until requests:  93%|█████████▎| 1233/1319 [5:04:25<20:45, 14.48s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1530) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  94%|█████████▍| 1241/1319 [5:06:20<18:49, 14.47s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1521) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  95%|█████████▍| 1249/1319 [5:08:16<16:52, 14.46s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1509) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  95%|█████████▌| 1257/1319 [5:10:11<14:55, 14.45s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1501) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  96%|█████████▌| 1265/1319 [5:12:07<12:59, 14.44s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1486) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  97%|█████████▋| 1273/1319 [5:14:02<11:03, 14.43s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1474) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  97%|█████████▋| 1281/1319 [5:15:57<09:07, 14.41s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1455) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  98%|█████████▊| 1289/1319 [5:17:52<07:11, 14.40s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1433) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  98%|█████████▊| 1297/1319 [5:19:46<05:16, 14.38s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1415) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests:  99%|█████████▉| 1305/1319 [5:21:41<03:21, 14.36s/it][transformers] Both `max_new_tokens` (=2048) and `max_length`(=1378) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)\\n\\rRunning generate_until requests: 100%|█████████▉| 1313/1319 [5:23:32<01:25, 14.21s/it]\\rRunning generate_until requests: 100%|██████████| 1319/1319 [5:23:32<00:00, 14.72s/it]\\nfatal: not a git repository (or any of the parent directories): .git\\n  Completed in 19426.2s\\n  gsm8k: sample_len=1319, exact_match=0.5208\\n\\nResults saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T02:05:38.331Z_
+
+<details><summary>↩ Tool result · `toolu_01UAY8D5PukYM94mRFL4QWLn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": \"bench_dense\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.284}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "65e77c3d-1bf8-412a-b1a1-5312b8298953",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": \\\"bench_dense\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.284}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": \"bench_dense\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.284}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T02:05:39.670Z_
+
+<details><summary>↩ Tool result · `toolu_015RDpA2hkDaW9TBdcpPJACo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": \"bench_dense\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3066}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "3bbb2f13-bb5b-4d9b-9d4b-6a4220547d22",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": \\\"bench_dense\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3066}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": \"bench_dense\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3066}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T02:05:40.827Z_
+
+<details><summary>↩ Tool result · `toolu_01Jo9eWPa3C2SmWF4crwfTop`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": \"bench_dense\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1315}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "aac8f232-b4ac-4bb1-b92d-e3d07efbf765",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": \\\"bench_dense\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1315}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": \"bench_dense\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1315}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log shows the GSM8K evaluation completed with:
+- exact_match = 0.5208
+- Model-level sparsity: 0.293
+- Mode: baseline (teal_vanilla), sparsity_target=0.3, allocation=uniform
+- Results saved to /root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json
+
+The registry searches returned empty for all three experiment IDs. Let me check the results JSON for more detail, and also search the registry more broadly for related experiments.
+
+Let me also look for a W&B run ID in the log - I don't see one in the truncated output. 
+
+Now I'll examine the results JSON directly and do a broader search across the registry to find any matching experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "5588aa51-9671-4325-b0d4-3caa4e18fc3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E5FQHTxnHvuH8gkP3i8EHm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4472,
+      "cache_read_input_tokens": 26500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+日志提取到 GSM8K exact_match=0.5208。结果 JSON 可能有更多细节，同时 registry 中这些实验 ID 都未找到，需要更广泛搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "583c43dd-9775-4bd5-93a1-e9c98b9220fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E5FQHTxnHvuH8gkP3i8EHm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4472,
+      "cache_read_input_tokens": 26500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UNVsScvz3pmQa6JPucrfKr`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "5beb4ca8-4b5d-4421-8622-dede2f98b81e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E5FQHTxnHvuH8gkP3i8EHm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4472,
+      "cache_read_input_tokens": 26500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T02:05:52.636Z_
+
+<details><summary>↩ Tool result · `toolu_01UNVsScvz3pmQa6JPucrfKr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_id\\\": \\\"qwen14b_teal30_uniform_gsm8k\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/qwen2.5-14b/\\\",\\n    \\\"checkpoint\\\": null,\\n    \\\"tasks\\\": \\\"gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": \\\"teal_vanilla\\\",\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"qwen14b_teal30_uniform_gsm8k\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"baseline_teal_vanilla\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"lm_eval\\\": {\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.5208,\\n        \\\"exact_match_stderr\\\": 0.013760506094029868\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.5208491281273692,\\n        \\\"exact_match_stderr,strict-match\\\": 0.013760506094029868,\\n        \\\"exact_match,flexible-extract\\\": 0.5208491281273692,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.013760506094029868\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-20 04:39:02\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "7af83e7e-7d04-4819-9315-e5a1cdc9ffbd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"qwen14b_teal30_uniform_gsm8k\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/qwen2.5-14b/\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": null,\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"per_token\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"teal_vanilla\\\\\\\",\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"qwen14b_teal30_uniform_gsm8k\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"baseline_teal_vanilla\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"lm_eval\\\\\\\": {\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match\\\\\\\": 0.5208,\\\\n        \\\\\\\"exact_match_stderr\\\\\\\": 0.013760506094029868\\\\n      }\\\\n    },\\\\n    \\\\\\\"lm_eval_raw\\\\\\\": {\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"alias\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match,strict-match\\\\\\\": 0.5208491281273692,\\\\n        \\\\\\\"exact_match_stderr,strict-match\\\\\\\": 0.013760506094029868,\\\\n        \\\\\\\"exact_match,flexible-extract\\\\\\\": 0.5208491281273692,\\\\n        \\\\\\\"exact_match_stderr,flexible-extract\\\\\\\": 0.013760506094029868\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-20 04:39:02\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_id\\\": \\\"qwen14b_teal30_uniform_gsm8k\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/qwen2.5-14b/\\\",\\n    \\\"checkpoint\\\": null,\\n    \\\"tasks\\\": \\\"gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"per_token\\\",\\n    \\\"baseline_mode\\\": \\\"teal_vanilla\\\",\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"qwen14b_teal30_uniform_gsm8k\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"baseline_teal_vanilla\\\",\\n    \\\"sparsity_target\\\": 0.3,\\n    \\\"allocation\\\": \\\"uniform\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"lm_eval\\\": {\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.5208,\\n        \\\"exact_match_stderr\\\": 0.013760506094029868\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n      \\\"gsm8k\\\": {\\n        \\\"name\\\": \\\"gsm8k\\\",\\n        \\\"alias\\\": \\\"gsm8k\\\",\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match,strict-match\\\": 0.5208491281273692,\\n        \\\"exact_match_stderr,strict-match\\\": 0.013760506094029868,\\n        \\\"exact_match,flexible-extract\\\": 0.5208491281273692,\\n        \\\"exact_match_stderr,flexible-extract\\\": 0.013760506094029868\\n      }\\n    }\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-20 04:39:02\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Le7dfK3sMU3ra3Cf1oRX6N`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -i \"wandb\\|run_id\\|run id\" ~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "359e7bb1-229c-4bae-9566-1ce5210e16b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E5FQHTxnHvuH8gkP3i8EHm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4472,
+      "cache_read_input_tokens": 26500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T02:05:53.378Z_
+
+<details><summary>↩ Tool result · `toolu_01Le7dfK3sMU3ra3Cf1oRX6N`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "d28154b6-a09b-44f9-b765-acc94228719e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Hv7LxPgrBCySsbQmT7qUb1`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "limit": 0,
+  "fields": [
+    "exp_id",
+    "status",
+    "metrics",
+    "conclusion"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "9f72fb3a-3f1a-431a-927a-0386953b5ea8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E5FQHTxnHvuH8gkP3i8EHm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4472,
+      "cache_read_input_tokens": 26500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T02:05:55.101Z_
+
+<details><summary>↩ Tool result · `toolu_01Hv7LxPgrBCySsbQmT7qUb1`</summary>
+
+```text
+Error: result (66,169 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "69c6a1bc-9032-42e9-86b4-281b6d1b7521",
+  "tool_use_result": {
+    "content": "Error: result (66,169 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"qwen14b_teal30_uniform_gsm8k\": {\"status\": \"ANALYZING\"}, \"qwen14b_kl30_global_hspiqa\": {\"status\": \"PREPARING\"}, \"bench_teal50_uniform_gsm8k\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"gsm8k_exact_match_flexible\": 0.0174}}, \"qwen14b_teal30_uniform_hspiqa\": {\"status\": \"RUNNING\"}, \"qwen14b_kl30_uniform_hspiqa\": {\"status\": \"PREPARING\"}, \"bench_teal50_uniform_6task\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 23.9, \"arc_challenge_acc_norm\": 0.2747, \"winogrande_acc\": 0.5438, \"mmlu_acc\": 0.2926, \"hellaswag_acc_norm\": 0.3935, \"piqa_acc_norm\": 0.6366}}, \"kl30_uniform_hspiqa_s456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.7168, \"piqa_acc_norm\": 0.7524}}, \"kl30_uniform_hspiqa_s123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.7067, \"piqa_acc_norm\": 0.7481}}, \"qwen14b_kl30_s456_gsm8k\": {\"status\": \"DONE\", \"metrics\": {\"gsm8k_exact_match\": 0.2608, \"gsm8k_exact_match_stderr\": 0.01209, \"gsm8k_exact_match_strict\": 0.2547, \"gsm8k_exact_match_strict_stderr\": 0.012, \"actual_sparsity\": 0.297}, \"conclusion\": \"success\"}, \"c1_eval_30pct_s456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9773, \"arc_challenge_acc_norm\": 0.4718, \"winogrande_acc\": 0.6882, \"mmlu_acc\": 0.3656, \"gsm8k_exact_match\": 0.0842}}, \"bench_teal30_uniform_6task\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 10.8173, \"arc_challenge_acc_norm\": 0.3933, \"winogrande_acc\": 0.6504, \"mmlu_acc\": 0.4586, \"hellaswag_acc_norm\": 0.6331, \"piqa_acc_norm\": 0.728, \"actual_sparsity\": 0.3}}, \"qwen14b_kl30_s42_gsm8k_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"gsm8k_exact_match\": 0.3571, \"gsm8k_exact_match_strict\": 0.3541, \"gsm8k_exact_match_stderr\": 0.0132, \"actual_sparsity\": 0.296, \"sample_len\": 1319}}, \"bench_teal30_uniform_gsm8k\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"gsm8k_exact_match\": 0.0879, \"actual_sparsity\": 0.3}}, \"bench_kl30_uniform_gsm8k_d075\": {\"status\": \"PREPARING\"}, \"qwen14b_kl30_s123_gsm8k\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"gsm8k_exact_match\": 0.3442, \"gsm8k_exact_match_strict\": 0.3434, \"actual_sparsity\": 0.297}}, \"qwen14b_kl30_s456_eval_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 7.8992, \"arc_challenge_acc_norm\": 0.5145, \"winogrande_acc\": 0.7316, \"hellaswag_acc_norm\": 0.7249, \"piqa_acc_norm\": 0.7677, \"mmlu_acc\": 0.6351, \"actual_sparsity\": 0.297}}, \"qwen14b_kl30_s123_eval_v5\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 7.9367, \"arc_challenge_acc_norm\": 0.541, \"winogrande_acc\": 0.7403, \"hellaswag_acc_norm\": 0.7287, \"piqa_acc_norm\": 0.765, \"mmlu_acc\": 0.6234, \"actual_sparsity\": 0.296}}, \"qwen14b_kl30_s42_eval_uniform_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 7.8715, \"arc_challenge_acc\": 0.5051, \"arc_challenge_acc_norm\": 0.5495, \"winogrande_acc\": 0.7127, \"mmlu_acc\": 0.648, \"hellaswag_acc_norm\": 0.7268, \"piqa_acc_norm\": 0.7476, \"actual_sparsity\": 0.296}}, \"qwen14b_dense_4task_v2\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 5.1854, \"arc_challenge_acc_norm\": 0.6758, \"winogrande_acc\": 0.8106, \"mmlu_acc\": 0.7977}, \"conclusion\": \"success\"}, \"qwen14b_teal275_uniform_eval_v3\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 7.7087, \"arc_challenge_acc_norm\": 0.57, \"winogrande_acc\": 0.7167, \"mmlu_acc\": 0.6738, \"gsm8k_exact_match\": 0.5709}, \"conclusion\": \"success\"}, \"qwen14b_teal275_hspiqa\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc\": 0.5092, \"hellaswag_acc_norm\": 0.6993, \"piqa_acc\": 0.753, \"piqa_acc_norm\": 0.7476, \"model_sparsity\": 0.268, \"runtime_seconds\": 3551.3}}, \"qwen14b_dense_hspiqa\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc\": 0.6444, \"hellaswag_acc_norm\": 0.8421, \"piqa_acc\": 0.809, \"piqa_acc_norm\": 0.8194}}, \"qwen14b_kl30_s42_gsm8k\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"qwen14b_dense_4task\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"flashinfer_benchmark_llama8b_v2\": {\"status\": \"PREPARING\"}, \"flashinfer_benchmark_llama8b\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"qwen14b_teal275_uniform_hspiqa\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc\": 0.5092, \"hellaswag_acc_norm\": 0.6993, \"piqa_acc\": 0.753, \"piqa_acc_norm\": 0.7476}}, \"qwen14b_kl30_s456_eval_v2\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 7.6933, \"arc_challenge_acc\": 0.5051, \"arc_challenge_acc_norm\": 0.5324, \"winogrande_acc\": 0.723, \"mmlu_acc\": 0.6411, \"hellaswag_acc\": 0.5197, \"hellaswag_acc_norm\": 0.7113, \"piqa_acc\": 0.7421, \"piqa_acc_norm\": 0.7552, \"model_sparsity\": 0.275}, \"conclusion\": \"success\"}, \"qwen14b_teal30_uniform_hspiqa_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc\": 0.4936, \"hellaswag_acc_norm\": 0.6756, \"piqa_acc\": 0.7443, \"piqa_acc_norm\": 0.7427}}, \"qwen14b_teal275_uniform_eval_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"qwen14b_teal275_uniform_eval\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"qwen14b_kl30_s42_eval_uniform_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"qwen14b_kl30_s42_eval_uniform\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"qwen14b_kl30_s123\": {\"status\": \"DONE\", \"metrics\": {\"final_loss_kl_norm\": 0.326, \"final_kl_raw\": 0.326, \"final_sparsity\": 0.277, \"final_constraint\": 0.037, \"final_lambda\": 5000, \"final_tau\": 0.1, \"steps\": 1000, \"trainable_params\": \"117M (0.793%)\"}, \"conclusion\": \"success\"}, \"qwen14b_kl30_s123_eval_v4\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 7.6607, \"arc_challenge_acc\": 0.5222, \"arc_challenge_acc_norm\": 0.5606, \"winogrande_acc\": 0.7293, \"hellaswag_acc\": 0.5179, \"hellaswag_acc_norm\": 0.7132, \"piqa_acc\": 0.7388, \"piqa_acc_norm\": 0.7535, \"mmlu_acc\": 0.6449}, \"conclusion\": \"success\"}, \"qwen14b_kl30_s456\": {\"status\": \"DONE\", \"metrics\": {\"final_loss\": 0.3086, \"final_kl_norm\": 0.2715, \"final_sparsity\": 0.277, \"final_constraint\": 0.0366, \"final_lambda\": 5000, \"final_tau\": 0.1, \"training_steps\": 1000}, \"conclusion\": \"success\"}, \"qwen14b_kl30_s456_eval\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"qwen14b_kl30_s123_eval\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"qwen14b_kl30_s123_eval_v3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"qwen14b_kl30_s123_eval_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"teal_28.5pct_sanity\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 10.3}, \"conclusion\": \"success\"}, \"mistral_dense_hellaswag_piqa\": {\"status\": \"DONE\", \"metrics\": {\"hellaswag_acc_norm\": 0.832, \"piqa_acc_norm\": 0.8188}, \"conclusion\": \"success\"}, \"bce_gumbel_no_penalty_s42\": {\"status\": \"DONE\", \"metrics\": {\"training_bce_loss\": 0.6307, \"training_sparsity\": 0.383, \"wikitext2_ppl\": 32.22, \"training_time_seconds\": 977.6}, \"conclusion\": \"success\"}, \"qwen14b_mask_divergence_analysis\": {\"status\": \"DONE\", \"metrics\": {\"qwen14b_mean_jaccard\": 0.4016, \"qwen14b_std_jaccard\": 0.0756, \"qwen14b_max_jaccard\": 0.446, \"qwen14b_max_layer\": 11, \"qwen14b_min_jaccard\": 0.0627, \"qwen14b_min_layer\": 4, \"llama8b_mean_jaccard\": 0.3939, \"llama8b_std_jaccard\": 0.0314, \"llama8b_max_jaccard\": 0.4818, \"llama8b_max_layer\": 0, \"llama8b_min_jaccard\": 0.3528, \"llama8b_min_layer\": 14}, \"conclusion\": \"success\"}, \"mistral_kl30_hellaswag_piqa\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.6892, \"piqa_acc_norm\": 0.7519}}, \"eval_c1_retrain_30pct_s456\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.82, \"arc_challenge_acc_norm\": 0.4471, \"winogrande_acc\": 0.6993, \"mmlu_acc\": 0.4104, \"gsm8k_exact_match\": 0.066}, \"conclusion\": \"success\"}, \"eval_c1_retrain_30pct_s123\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.84, \"arc_challenge_acc_norm\": 0.4471, \"winogrande_acc\": 0.6977, \"mmlu_acc\": 0.3992, \"gsm8k_exact_match\": 0.0682}, \"conclusion\": \"success\"}, \"c1_retrain_30pct_s456\": {\"status\": \"DONE\", \"metrics\": {\"training_agreement\": 0.977, \"training_sparsity\": 0.312, \"wikitext2_ppl\": 7.38, \"actual_sparsity\": 0.346}, \"conclusion\": \"success\"}, \"c1_retrain_30pct_s123\": {\"status\": \"DONE\", \"metrics\": {\"training_agreement\": 0.977, \"training_sparsity\": 0.31, \"wikitext2_ppl\": 7.54, \"actual_sparsity\": 0.332}, \"conclusion\": \"success\"}, \"mistral_teal50_downstream\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 18.3061, \"arc_challenge_acc_norm\": 0.2457, \"winogrande_acc\": 0.5091, \"mmlu_acc\": 0.2635, \"gsm8k_exact_match\": 0.0341, \"hellaswag_acc_norm\": 0.3603, \"piqa_acc_norm\": 0.6045}, \"conclusion\": \"success\"}, \"mistral_teal30_downstream\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.3807, \"arc_challenge_acc_norm\": 0.4113, \"winogrande_acc\": 0.6354, \"mmlu_acc\": 0.4348, \"gsm8k_exact_match\": 0.1592, \"hellaswag_acc_norm\": 0.6011, \"piqa_acc_norm\": 0.7214}, \"conclusion\": \"success\"}, \"c1_ablation_30pct_s456\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.84, \"mmlu_acc\": 0.367, \"winogrande_acc\": 0.6938}, \"conclusion\": \"success\"}, \"c1_ablation_30pct_s123\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.83, \"mmlu_acc\": 0.3833, \"winogrande_acc\": 0.7119}, \"conclusion\": \"success\"}, \"mistral_kl30_downstream\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge_acc_norm\": 0.5017, \"winogrande_acc\": 0.6914, \"mmlu_acc\": 0.4404, \"gsm8k_exact_match\": 0.1114}, \"conclusion\": \"success\"}, \"bce_50pct_teal_global_unified\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 27.97, \"arc_challenge_acc_norm\": 0.2765, \"winogrande_acc\": 0.5162, \"mmlu_acc\": 0.2614, \"gsm8k_exact_match\": 0.019}, \"conclusion\": \"success\"}, \"bce_isocompute_hellaswag_piqa_v2\": {\"status\": \"DONE\", \"metrics\": {\"hellaswag_acc_norm\": 0.6281, \"piqa_acc_norm\": 0.7421}, \"conclusion\": \"success\"}, \"c1_ablation_30pct_eval_34887\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"kl30_uniform_hellaswag_piqa\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.7085, \"piqa_acc_norm\": 0.7481, \"note\": \"from v2 retry\"}}, \"kl50_global_hellaswag_piqa\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"hellaswag_acc_norm\": 0.5895, \"piqa_acc_norm\": 0.6948, \"note\": \"from v2 retry\"}}, \"kl50_uniform_hellaswag_piqa\": {\"status\": \"DONE\", \"metrics\": {\"hellaswag_acc_norm\": 0.5666, \"piqa_acc_norm\": 0.691}, \"conclusion\": \"success\"}, \"c1_ablation_30pct_s42_eval_v2\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 9.4463, \"arc_challenge_acc_norm\": 0.4027, \"winogrande_acc\": 0.674, \"mmlu_acc\": 0.4229, \"gsm8k_exact_match\": 0.0758}, \"conclusion\": \"success\"}, \"c1_ablation_30pct_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"agreement\": 0.975}, \"conclusion\": \"success\"}, \"dense_baseline_hellaswag_piqa\": {\"status\": \"DONE\", \"metrics\": {\"hellaswag_acc_norm\": 0.8235, \"piqa_acc_norm\": 0.809}, \"conclusion\": \"success\"}, \"bce_isocompute_hellaswag_piqa\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"c1_ablation_30pct_s42_eval\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"kl50_global_hellaswag_piqa_v2\": {\"status\": \"DONE\", \"metrics\": {\"hellaswag_acc_norm\": 0.5895, \"piqa_acc_norm\": 0.6948}, \"conclusion\": \"success\"}, \"kl30_uniform_hellaswag_piqa_v2\": {\"status\": \"DONE\", \"metrics\": {\"hellaswag_acc_norm\": 0.7085, \"piqa_acc_norm\": 0.7481}, \"conclusion\": \"success\"}, \"kl30_s42_global_mmlu_recheck\": {\"status\": \"DONE\", \"metrics\": {\"mmlu_acc\": 0.2527, \"mmlu_stderr\": 0.00364}, \"conclusion\": \"success\"}, \"c1_ablation_30pct_s42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"kl30_s456_global_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9332, \"arc_challenge_acc_norm\": 0.4633, \"winogrande_acc\": 0.7111, \"mmlu_acc\": 0.4382, \"gsm8k_exact_match\": 0.0758, \"actual_sparsity\": 0.3, \"allocation\": \"global_topk\"}}, \"kl30_s123_global_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9748, \"arc_challenge_acc_norm\": 0.4531, \"winogrande_acc\": 0.693, \"mmlu_acc\": 0.3807, \"gsm8k_exact_match\": 0.0758, \"actual_sparsity\": 0.3, \"allocation\": \"global_topk\"}}, \"kl30_s456_uniform_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.7947, \"arc_challenge_acc_norm\": 0.4505, \"winogrande_acc\": 0.6875, \"mmlu_acc\": 0.4198, \"gsm8k_exact_match\": 0.0758, \"actual_sparsity\": 0.3, \"allocation\": \"uniform\", \"eval_wall_time_sec\": 2325.3}}, \"kl30_s123_uniform_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.8308, \"arc_challenge_acc_norm\": 0.4531, \"winogrande_acc\": 0.6938, \"mmlu_acc\": 0.3944, \"gsm8k_exact_match\": 0.0751, \"actual_sparsity\": 0.3, \"allocation\": \"uniform\", \"eval_wall_time_sec\": 2157.6}}, \"wallclock_speedup_30_50\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"dense_tok_s_bs1\": 17308.5, \"dense_tok_s_bs8\": 15636.6, \"kl30_tok_s_bs1\": 16089.2, \"kl30_tok_s_bs8\": 14697.4, \"kl50_tok_s_bs1\": 16056.8, \"kl50_tok_s_bs8\": 14756.8, \"overhead_bs1_30pct\": \"7%\", \"overhead_bs1_50pct\": \"7%\", \"overhead_bs8_30pct\": \"6%\", \"overhead_bs8_50pct\": \"6%\", \"predictor_latency_bs1_ms\": 3.2, \"predictor_latency_bs8_ms\": 14.4, \"note\": \"mask-and-multiply only, no sparse kernel. Memory identical across conditions.\"}}, \"kl_sparsity35_s42_eval_teal_uniform\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 9.4416, \"arc_challenge_acc_norm\": 0.3874, \"winogrande_acc\": 0.6654, \"mmlu_acc\": 0.3783, \"gsm8k_exact_match\": 0.0432, \"actual_sparsity\": 0.35, \"allocation\": \"uniform\"}}, \"kl_sparsity25_s42_eval_teal_uniform\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.2344, \"arc_challenge_acc_norm\": 0.465, \"winogrande_acc\": 0.7182, \"mmlu_acc\": 0.4395, \"gsm8k_exact_match\": 0.1099, \"actual_sparsity\": 0.25, \"allocation\": \"uniform\"}}, \"kl_sparsity25_s42_eval_teal\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.169, \"arc_challenge_acc_norm\": 0.4539, \"winogrande_acc\": 0.7056, \"mmlu_acc\": 0.466, \"gsm8k_exact_match\": 0.1145, \"actual_sparsity\": 0.23, \"allocation\": \"global_topk\"}}, \"kl_sparsity40_s42_eval_teal_uniform\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"c1_ablation_bce_kl_targets_s123_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.0537, \"ppl\": 9.32, \"sparsity\": 0.615, \"agreement\": 0.979, \"note\": \"Consistent with s42 (PPL=9.29, sparsity=0.609, agreement=0.978). Both seeds converge to ~61% eval sparsity. C1 confirmed multi-seed robust.\"}}, \"kl_sparsity45_s42_eval_teal_uniform\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 10.9488, \"arc_challenge_acc_norm\": 0.3763, \"winogrande_acc\": 0.6361, \"mmlu_acc\": 0.3063, \"gsm8k_exact_match\": 0.0273, \"actual_sparsity\": 0.45, \"allocation\": \"uniform\"}}, \"kl_sparsity45_s42_eval_teal\": {\"status\": \"DONE\", \"metrics\": {\"ppl_wikitext2\": 10.803, \"arc_challenge_acc\": 0.3498, \"arc_challenge_acc_norm\": 0.3916, \"winogrande_acc\": 0.6464, \"mmlu_acc\": 0.3037, \"gsm8k_exact_match\": 0.0296, \"actual_sparsity\": 0.449}, \"conclusion\": \"success\"}, \"kl_sparsity35_s42_eval_teal\": {\"status\": \"DONE\", \"metrics\": {\"ppl_wikitext2\": 9.3133, \"arc_challenge_acc\": 0.3643, \"arc_challenge_acc_norm\": 0.3891, \"winogrande_acc\": 0.6764, \"mmlu_acc\": 0.4041, \"gsm8k_exact_match\": 0.0773, \"actual_sparsity\": 0.336}, \"conclusion\": \"success\"}, \"bce_30pct_s42_eval\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 11.2445, \"arc_challenge_acc\": 0.3848, \"arc_challenge_acc_norm\": 0.4121, \"winogrande_acc\": 0.6598, \"mmlu_acc\": 0.3633, \"gsm8k_exact_match\": 0.0599, \"gsm8k_exact_match_strict\": 0.0538, \"sparsity_target\": 0.3, \"allocation\": \"global_topk\", \"training_sparsity_native\": 0.042, \"eval_wall_time_sec\": 2275.8}, \"conclusion\": \"negative\"}, \"c1_ablation_bce_kl_targets_s123\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"ppl\": 11.71, \"sparsity\": 0.5, \"agreement\": 0.834, \"bce_loss\": 0.448, \"note\": \"BCE+KL-targets PPL=11.71 ≈ KL PPL=11.79 at matched 50% sparsity, confirming target quality as primary driver\"}}, \"kl_sparsity25_s123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.153, \"final_sparsity\": 0.23, \"steps\": 1000}}, \"kl_sparsity35_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.203, \"final_sparsity\": 0.336, \"steps\": 1000}}, \"kl_sparsity45_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.33, \"final_sparsity\": 0.449, \"steps\": 1000}}, \"c1_ablation_eval_uniform\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.9638, \"arc_challenge_acc_norm\": 0.3217, \"winogrande_acc\": 0.6314, \"mmlu_acc\": 0.2779, \"gsm8k_exact_match\": 0.0205, \"sparsity_target\": 0.5, \"allocation\": \"uniform\"}}, \"c1_ablation_bce_kl_targets_s42\": {\"status\": \"DONE\", \"metrics\": {\"wt2_ppl\": 9.29, \"eval_sparsity\": 0.609, \"oracle_agreement\": 0.978, \"final_bce_loss\": 0.0545, \"train_steps\": 1000, \"train_time_sec\": 877.1, \"reference_kl_ppl\": 11.79, \"reference_bce_ppl\": 22.51}, \"conclusion\": \"success\"}, \"kl_sparsity25_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss_final\": 0.1582, \"kl_normalized_final\": 0.1582, \"sparsity_actual\": 0.23, \"sparsity_target\": 0.25, \"lambda_final\": 5000, \"tau_final\": 0.1, \"steps\": 1000}}, \"bce_30pct_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"kl30_s456_uniform_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.8284, \"arc_challenge_acc_norm\": 0.4505, \"winogrande_acc\": 0.6953, \"mmlu_acc\": 0.3727, \"gsm8k_exact_match\": 0.0705}}, \"kl30_s123_uniform_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.8186, \"arc_challenge_acc_norm\": 0.471, \"winogrande_acc\": 0.6961, \"mmlu_acc\": 0.3763, \"gsm8k_exact_match\": 0.0705}}, \"kl50_s42_global_eval\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 11.8038, \"arc_challenge_acc_norm\": 0.3336, \"winogrande_acc\": 0.6338, \"mmlu_acc\": 0.2819, \"gsm8k_exact_match\": 0.0167}, \"conclusion\": \"success\"}, \"kl_comp_50pct_s42_eval\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 11.7933, \"arc_challenge_acc_norm\": 0.3285, \"winogrande_acc\": 0.6346, \"mmlu_acc\": 0.2789, \"gsm8k_exact_match\": 0.0129}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s456_eval\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.9614, \"arc_challenge_acc_norm\": 0.4462, \"winogrande_acc\": 0.7143, \"mmlu_acc\": 0.2714, \"gsm8k_exact_match\": 0.0887}, \"conclusion\": \"success\"}, \"kl50_s456_uniform_eval\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 11.9538, \"arc_challenge_acc_norm\": 0.3831, \"winogrande_acc\": 0.6196, \"mmlu_acc\": 0.275, \"gsm8k_exact_match\": 0.0288}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s123_eval\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.9788, \"arc_challenge_acc_norm\": 0.3993, \"winogrande_acc\": 0.6898, \"mmlu_acc\": 0.2531, \"gsm8k_exact_match\": 0.0842}, \"conclusion\": \"success\"}, \"kl_comp_50pct_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"kl_comp_30pct_s456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"kl50_s42_uniform_eval\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 11.9638, \"arc_challenge_acc_norm\": 0.3259, \"winogrande_acc\": 0.6235, \"mmlu_acc\": 0.2792, \"gsm8k_exact_match\": 0.0197}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s42_eval\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.9788, \"arc_challenge_acc_norm\": 0.3993, \"winogrande_acc\": 0.6898, \"mmlu_acc\": 0.2531, \"gsm8k_exact_match\": 0.0842}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s123_ppl\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.9768, \"c4_ppl\": 16.0401, \"sparsity\": 0.3, \"allocation\": \"global_topk\", \"model\": \"llama-3.1-8b\", \"seed\": 123}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s123\": {\"status\": \"DONE\", \"metrics\": {\"final_loss\": 0.7617, \"steps\": 1000, \"compensation_params\": 67248128, \"compensation_pct\": 0.837, \"mean_head_norm_final\": 9.2012, \"loss_trajectory\": [2.0469, 1.3828, 1.0703, 0.9609, 0.8711, 0.7305, 0.6875, 0.7773, 0.7969, 0.7617]}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s42_ppl\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.9768, \"c4_ppl\": 16.0401, \"sparsity\": 0.3, \"allocation\": \"global_topk\", \"model\": \"llama-3.1-8b\", \"seed\": 42}, \"conclusion\": \"success\"}, \"kl_comp_30pct_s42\": {\"status\": \"DONE\", \"metrics\": {\"final_loss\": 0.6992, \"steps\": 1000, \"compensation_params\": 67248128, \"compensation_pct\": 0.837, \"mean_head_norm_final\": 9.2012, \"loss_trajectory\": [2.3594, 1.3516, 1.0859, 0.9219, 0.8789, 0.8281, 0.7461, 0.7344, 0.6953, 0.6992]}, \"conclusion\": \"success\"}, \"c4_ood_kl50_s456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"c4_ppl\": 23.9867, \"sparsity\": 0.5, \"allocation\": \"global_topk\", \"seed\": 456}}, \"c4_ood_kl50_s42\": {\"status\": \"DONE\", \"metrics\": {\"c4_ppl\": 23.5297, \"sparsity\": 0.5, \"allocation\": \"global_topk\", \"seed\": 42}, \"conclusion\": \"success\"}, \"kl50_s456_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.8614, \"arc_challenge_acc_norm\": 0.3754, \"winogrande_acc\": 0.6417, \"mmlu_acc\": 0.2784, \"gsm8k_exact_match\": 0.0212}}, \"c4_ood_kl30_s456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"c4_ood_kl30_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"c4_ppl\": 16.0401, \"allocation\": \"global_topk\", \"sparsity\": 0.3, \"model\": \"llama-3.1-8b\", \"seed\": 42}, \"conclusion\": \"success\"}, \"c4_ood_kl50_s123\": {\"status\": \"DONE\", \"metrics\": {\"c4_ppl\": 23.6064, \"allocation\": \"global_topk\", \"sparsity\": 0.5, \"model\": \"llama-3.1-8b\"}, \"conclusion\": \"success\"}, \"downstream_ext_kl50_uniform_s42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"downstream_ext_kl30_uniform_s123\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"c4_ood_dense_baseline_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"c4_ppl\": 9.2075, \"model\": \"llama-3.1-8b\", \"eval_sequences\": 132, \"seq_len\": 2048}}, \"c4_ood_kl30_s123_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"c4_ppl\": 16.0259, \"allocation\": \"global_topk\", \"sparsity\": 0.3, \"model\": \"llama-3.1-8b\", \"eval_sequences\": 132, \"seq_len\": 2048}}, \"kl50_s456_train\": {\"status\": \"DONE\", \"metrics\": {\"final_loss\": 0.397, \"final_kl_normalized\": 0.397, \"final_sparsity\": 0.492, \"final_lambda\": 5000, \"final_tau\": 0.1, \"steps_completed\": 1000}, \"conclusion\": \"success\"}, \"kl50_s123_uniform_eval\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 11.89, \"arc_challenge_acc_norm\": 37.88, \"winogrande_acc\": 62.19, \"mmlu_acc\": 27.75, \"gsm8k_exact_match\": 2.35, \"comparison_vs_global_topk\": {\"ppl_delta\": -0.94, \"arc_c_delta\": -5.55, \"wg_delta\": -6.71, \"mmlu_delta\": -8.2, \"gsm8k_delta\": -5}, \"note\": \"Uniform allocation: better PPL but catastrophic downstream degradation vs global_topk. Confirms global_topk allocation is critical for downstream quality.\"}, \"conclusion\": \"success\"}, \"c4_ood_kl30_s123\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"c4_ood_dense_baseline\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"kl50_s123_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.745, \"arc_challenge\": 0.3814, \"winogrande\": 0.6125, \"mmlu\": 0.2752, \"gsm8k\": 0.0281}}, \"snr_extended_r6w3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"kl_snr_step300\": 0.0058773, \"bce_snr_step300\": 0.00114449, \"snr_ratio_step300\": 5.14, \"kl_train_time_s\": 641, \"bce_train_time_s\": 320, \"num_checkpoints\": 7, \"steps_range\": \"0-300\"}}, \"kl30_8b_s456_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9614, \"arc_challenge_acc\": 0.436, \"arc_challenge_acc_norm\": 0.4462, \"winogrande_acc\": 0.7143, \"mmlu_acc\": 0.2714, \"gsm8k_exact_match\": 0.0887}}, \"kl30_8b_s123_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9267, \"arc_challenge_acc\": 0.4462, \"arc_challenge_acc_norm\": 0.4744, \"winogrande_acc\": 0.7024, \"mmlu_acc\": 0.3836, \"gsm8k_exact_match\": 0.0917}}, \"bce_isocompute_v3_s42_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 27.9696, \"arc_challenge_acc\": 0.2346, \"arc_challenge_acc_norm\": 0.2765, \"winogrande_acc\": 0.5162, \"mmlu_acc\": 0.2614, \"gsm8k_exact_match\": 0.019}}, \"qwen14b_kl30_uniform_eval_4task\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 7.63, \"mmlu_acc\": 0.6449, \"arc_challenge_acc_norm\": 0.5444, \"winogrande_acc\": 0.7245}, \"conclusion\": \"negative\"}, \"qwen14b_teal30_uniform_eval_4task\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.01, \"mmlu_acc\": 0.6634, \"arc_challenge_acc_norm\": 0.5529, \"winogrande_acc\": 0.6985}, \"conclusion\": \"success\"}, \"kl30_8b_s456_train\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9614, \"sparsity\": 0.3, \"training_loss\": 0.148}}, \"kl30_8b_s123_train\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9267, \"sparsity\": 0.3, \"training_loss\": 0.147}}, \"qwen14b_teal30_uniform_eval\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"qwen14b_kl30_uniform_eval\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"c4_ood_kl30_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"c4_ppl\": 16.0458, \"allocation\": \"global_topk\", \"sparsity\": 0.3, \"model\": \"llama-3.1-8b\", \"eval_sequences\": 132, \"seq_len\": 2048}}, \"qwen14b_teal30_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.7332, \"arc_challenge_acc_norm\": 0.5683, \"winogrande_acc\": 0.7269, \"mmlu_acc\": 0.7183, \"gsm8k_exact_match\": 0.4951}}, \"qwen14b_bce30_s42_eval\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.7634, \"arc_challenge_acc_norm\": 0.5759, \"winogrande_acc\": 0.7261, \"mmlu_acc\": 0.7167, \"gsm8k_exact_match\": 0.5307}, \"conclusion\": \"negative\"}, \"qwen14b_dense_baseline\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ppl\": 5.1854, \"arc_challenge\": 0.6758, \"winogrande\": 0.8106, \"mmlu\": 0.7977, \"gsm8k\": 0.8757}}, \"bce_isocompute_v3_s123_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 28.0627, \"arc_challenge_acc_norm\": 0.2696, \"winogrande_acc\": 0.513, \"mmlu_acc\": 0.2655, \"gsm8k_exact_match\": 0.022}}, \"bce_isocompute_v3_s123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"bce_isocompute_v3_s456_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"teal_sparse_ppl\": 28.3503, \"model_level_sparsity\": 0.5, \"arc_challenge_acc\": 0.2312, \"arc_challenge_acc_stderr\": 0.01232, \"arc_challenge_acc_norm\": 0.2807, \"arc_challenge_acc_norm_stderr\": 0.01313, \"winogrande_acc\": 0.5241, \"winogrande_acc_stderr\": 0.01404, \"mmlu_acc\": 0.2567, \"mmlu_acc_stderr\": 0.00367, \"gsm8k_exact_match\": 0.022, \"gsm8k_exact_match_stderr\": 0.00404, \"gsm8k_exact_match_strict\": 0.00834, \"gsm8k_exact_match_strict_stderr\": 0.0025}}, \"bce_isocompute_v3_s456\": {\"status\": \"DONE\", \"metrics\": {\"final_loss\": 0.6368, \"final_sparsity\": 0.51, \"training_steps\": 2700}, \"conclusion\": \"success\"}, \"qwen14b_kl30_s42_eval\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 7.6232, \"arc_challenge_acc_norm\": 0.5717, \"winogrande_acc\": 0.7206, \"mmlu_acc\": 0.6372, \"gsm8k_exact_match\": 0.4882}, \"conclusion\": \"success\"}, \"c4_download\": {\"status\": \"PREPARING\"}, \"kl50_global_s123_reeval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.7184, \"arc_challenge_acc_norm\": 0.3635, \"winogrande_acc\": 0.6109, \"mmlu_acc\": 0.2834, \"gsm8k_exact_match\": 0.0258}}, \"downstream_teal30_baseline\": {\"status\": \"DONE\", \"metrics\": {\"hellaswag_acc\": 0.4878, \"hellaswag_acc_norm\": 0.667, \"piqa_acc\": 0.7258, \"piqa_acc_norm\": 0.7361, \"boolq_acc\": 0.685}, \"conclusion\": \"success\"}, \"kl30_s456_uniform_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.4198, \"ppl_uniform\": 8.7947, \"arc_challenge\": 0.4505, \"winogrande\": 0.6875, \"gsm8k\": 0.0758}}, \"downstream_dense_baseline\": {\"status\": \"DONE\", \"metrics\": {\"hellaswag_acc_norm\": 0.8233, \"hellaswag_acc_norm_stderr\": 0.0038, \"piqa_acc_norm\": 0.8074, \"piqa_acc_norm_stderr\": 0.0092, \"boolq_acc\": 0.8294, \"boolq_acc_stderr\": 0.0066}, \"conclusion\": \"success\"}, \"qwen14b_bce30_s42_v2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"predictor_native_sparsity\": 0.064, \"lambda_max\": 50000, \"final_bce_loss\": 0.5324, \"steps\": 1000, \"constraint_satisfied\": false, \"sparsity_trajectory\": \"49%→5% collapse in 50 steps, no recovery over 950 steps\", \"note\": \"10x stronger Lagrangian produces identical sparsity as v1 (lambda=5000). Confirms BCE gradient insufficiency is fundamental, not constraint strength.\"}}, \"qwen14b_bce30_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"dense_ppl\": 5.18, \"predictor_hard_mask_ppl\": 5.57, \"teal_global_ppl\": 8.76, \"ppl_ratio_hard_mask\": 1.075, \"ppl_ratio_hard_mask_note\": \"at predictor native 6.4% sparsity, not comparable to KL's 28.1%\", \"ppl_ratio_teal\": 1.69, \"actual_sparsity_teal\": 0.3, \"predictor_native_sparsity\": 0.064, \"training_log_sparsity_note\": \"Training Lagrangian failed (predictor sparsity=6.4%). Inference via TEAL forces 30% externally. TEAL PPL 8.76 is valid for method comparison.\", \"final_loss\": 0.5561, \"final_bce_loss\": 0.5324, \"steps\": 1000, \"constraint_satisfied\": false}}, \"downstream_extended_kl30_s42\": {\"status\": \"DONE\", \"metrics\": {\"hellaswag_acc_norm\": 0.727, \"hellaswag_acc\": 0.527, \"piqa_acc_norm\": 0.7595, \"piqa_acc\": 0.747, \"boolq_acc\": 0.7685}, \"conclusion\": \"success\"}, \"kl30_s123_eval\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.8308, \"arc_challenge_acc_norm\": 0.4531, \"winogrande_acc\": 0.6938, \"mmlu_acc\": 0.3944, \"gsm8k_exact_match\": 0.0751, \"actual_sparsity\": 0.3, \"allocation\": \"uniform\"}}, \"kl30_s456_train\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.2021, \"actual_sparsity\": 0.289, \"constraint_satisfied\": true, \"training_steps\": 1000}}, \"qwen14b_kl30_s42\": {\"status\": \"DONE\", \"metrics\": {\"dense_ppl\": 5.18, \"predictor_hard_mask_ppl\": 6.8, \"teal_global_ppl\": 7.62, \"ppl_ratio_hard_mask\": 1.31, \"ppl_ratio_teal\": 1.47, \"final_loss\": 0.3398, \"training_sparsity\": 0.281, \"teal_sparsity\": 0.3, \"lambda\": 5000, \"steps\": 1000}, \"conclusion\": \"success\"}, \"kl50_s456_global_eval\": {\"status\": \"DONE\", \"metrics\": {\"ppl_wikitext2\": 11.8057, \"arc_challenge\": 0.3319, \"winogrande\": 0.6488, \"mmlu\": 0.2794, \"gsm8k\": 0.0212}, \"conclusion\": \"success\"}, \"kl30_s456_global_eval\": {\"status\": \"DONE\", \"metrics\": {\"ppl_wikitext2\": 8.9332, \"arc_challenge\": 0.4633, \"winogrande\": 0.7111, \"mmlu\": 0.4382, \"gsm8k\": 0.0758}, \"conclusion\": \"success\"}, \"kl_30pct_s123\": {\"status\": \"DONE\", \"metrics\": {\"ppl_wikitext2\": 8.9748, \"arc_challenge_acc_norm\": 0.4531, \"winogrande_acc\": 0.693, \"mmlu_acc\": 0.3807, \"gsm8k_exact_match\": 0.0758, \"sparsity\": 0.3, \"allocation\": \"global\"}, \"conclusion\": \"success\"}, \"mistral_teal70_baseline\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 61.716, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"teal_vanilla_70pct\", \"sparsity\": 0.7, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 56.1922}, \"conclusion\": \"success\"}, \"mistral_teal30_baseline\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.3807, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"teal_vanilla_30pct\", \"sparsity\": 0.3, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 2.8569}, \"conclusion\": \"success\"}, \"mistral_kl70_teal_global\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 13.3254, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_teal_global_70pct\", \"sparsity\": 0.7, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 7.8016}, \"conclusion\": \"success\"}, \"mistral_kl50_teal_global\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.6489, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_teal_global_50pct\", \"sparsity\": 0.5, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 3.1251}, \"conclusion\": \"success\"}, \"mistral_kl30_teal_global\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 6.7733, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_teal_global_30pct\", \"sparsity\": 0.3, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 1.2495}, \"conclusion\": \"success\"}, \"mistral_kl70_pertoken\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 9.1086, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_pertoken_70pct\", \"sparsity\": 0.7, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 3.5848}, \"conclusion\": \"success\"}, \"mistral_kl50_pertoken\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 7.2931, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_pertoken_50pct\", \"sparsity\": 0.5, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 1.7693}, \"conclusion\": \"success\"}, \"mistral_kl30_pertoken\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 6.048, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_pertoken_30pct\", \"sparsity\": 0.3, \"allocation\": \"uniform\", \"ppl_increase_vs_dense\": 0.5242}, \"conclusion\": \"success\"}, \"mistral_dense_ppl\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 5.5238, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"dense\", \"sparsity\": 0}, \"conclusion\": \"success\"}, \"kl_50pct_s123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ppl_wikitext2\": 11.745, \"arc_challenge_acc_norm\": 0.3814, \"winogrande_acc\": 0.6125, \"mmlu_acc\": 0.2752, \"gsm8k_exact_match\": 0.0281, \"sparsity\": 0.5, \"allocation\": \"global\"}}, \"lm_eval_mistral_dense\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"arc_challenge_acc_norm\": 0.6024, \"winogrande_acc\": 0.7869, \"mmlu_acc\": 0.6244, \"gsm8k_exact_match\": 0.3654, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"dense\", \"server\": \"westd-34887\"}}, \"lm_eval_mistral_kl_50pct\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"arc_challenge_acc\": 0.2927, \"arc_challenge_acc_norm\": 0.3183, \"arc_challenge_acc_norm_stderr\": 0.0136, \"winogrande_acc\": 0.629, \"winogrande_acc_stderr\": 0.0136, \"mmlu_acc\": 0.2295, \"mmlu_acc_stderr\": 0.0035, \"mmlu_stem_acc\": 0.2125, \"mmlu_humanities_acc\": 0.2421, \"mmlu_social_sciences_acc\": 0.2171, \"mmlu_other_acc\": 0.2398, \"gsm8k_exact_match_strict\": 0.0045, \"gsm8k_exact_match_flexible\": 0.0212, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_distill_50pct_sparsity_s42\", \"arc_challenge_retention_vs_dense\": 0.528, \"winogrande_retention_vs_dense\": 0.799, \"mmlu_retention_vs_dense\": 0.368, \"gsm8k_retention_vs_dense\": 0.012}}, \"mistral_teal50_baseline\": {\"status\": \"DONE\", \"metrics\": {\"teal_baseline_ppl\": 18.3061, \"dense_ppl\": 5.5238, \"teal_vs_dense_ratio\": 3.31}, \"conclusion\": \"success\"}, \"kl50_s456_train_eval\": {\"status\": \"PREPARING\"}, \"kl_bce_f1_oracle\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"bce_f1\": 0.6128, \"bce_precision\": 0.6132, \"bce_recall\": 0.6124, \"kl_f1\": 0.5397, \"kl_precision\": 0.5112, \"kl_recall\": 0.5715, \"random_f1\": 0.5, \"kl_ppl\": 11.79, \"bce_ppl\": 22.51}}, \"global_30pct_retention\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"early_retention\": 0.771, \"middle_retention\": 0.764, \"knowledge_L12_20_retention\": 0.797, \"late_L24_31_retention\": 0.501, \"L31_retention\": 0.284, \"L30_retention\": 0.366, \"starved_layers\": \"L27-L31\"}}, \"reverse_kl_50pct_s42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"ppl_wikitext2\": 12.8, \"vs_forward_kl\": \"+1.01 (+8.6%)\", \"sparsity\": 0.5}}, \"jsd_50pct_s42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"ppl_wikitext2\": 12.54, \"vs_forward_kl\": \"+0.75 (+6.4%)\", \"sparsity\": 0.5}}, \"mag_preservation_reg\": {\"status\": \"PREPARING\", \"conclusion\": \"failed\"}, \"teal_kl_overlap_corrected\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"z_score\": 7260.3, \"p_value\": 0, \"median_percentile_rank\": 78.6, \"iqr_q1\": 64.4, \"iqr_q3\": 89.1, \"layers_significant\": \"31/32\", \"exception_layer\": 31}}, \"sparsity_floor_extended\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"floor_30pct\": 0.0499, \"floor_50pct\": 0.0726, \"floor_70pct\": 0.1936, \"late_layer_max_30\": 0.4604, \"late_layer_max_50\": 1.2347, \"late_layer_max_70\": 4.3666, \"threshold\": 0.1, \"seq_len\": 2048, \"num_samples\": 50}}, \"gradient_snr_constrained_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"kl_avg_snr\": 0.000545, \"bce_avg_snr\": 5.28e-06, \"snr_ratio\": 103.2, \"kl_final_sparsity\": 0.508, \"bce_final_sparsity\": 0.591, \"steps\": 200}}, \"teal_kl_overlap_analysis\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_jaccard\": 0.396, \"divergence_ratio\": 0.433, \"kl_only_pruned_magnitude_ratio\": 1.48, \"teal_only_pruned_mean_gate_prob\": 0.614, \"min_jaccard_layer\": \"L17-L18 (0.19)\", \"max_jaccard_layer\": \"L26-L28 (0.55)\"}}, \"natural_sparsity_floor_30pct\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"always_pruned_ratio\": 0.0006, \"always_pruned_count\": 278, \"total_neurons\": 458752, \"late_layer_max_ratio\": 0.0051, \"threshold\": 0.1}}, \"gradient_snr_kl_vs_bce\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"kl_avg_snr\": 5.77e-05, \"bce_avg_snr\": 1e-05, \"snr_ratio\": 5.76, \"early_layer_ratio_range\": \"34-156x\", \"late_layer_ratio_range\": \"2-4x\"}}, \"training_free_wina_greedy\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"wina_greedy_ppl\": 2126.03, \"dense_ppl\": 6.12, \"model_level_sparsity\": 0.5, \"eval_dataset\": \"WikiText-2\", \"eval_seq_len\": 2048, \"greedy_allocation_summary\": \"layers 0-11: 0.90, layer 12: 0.85, layer 13: 0.80, layer 14: 0.70, layers 15-16: 0.50-0.55, layers 17-20: 0.30-0.35, layers 21-24: 0.05-0.15, layers 25-31: 0.00\"}}, \"bench_teal70\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 100.11, \"dense_ppl\": 6.12, \"actual_sparsity\": 0.7, \"source\": \"training_free_baselines experiment (vanilla teal global)\"}, \"conclusion\": \"success\"}, \"bench_kl70_global\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 17.91, \"dense_ppl\": 6.12, \"actual_sparsity\": 0.7, \"source\": \"kl_sparsity70_s42_v2 (teal_global_masks protocol)\", \"vanilla_teal_ppl\": 100.11}, \"conclusion\": \"success\"}, \"bench_kl50_global\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.7933, \"arc_challenge_acc_norm\": 0.3285, \"winogrande_acc\": 0.6346, \"mmlu_acc\": 0.2789, \"gsm8k_exact_match\": 0.0129, \"actual_sparsity\": 0.5}}, \"bench_kl30_uniform\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.8157, \"arc_challenge_acc_norm\": 0.4078, \"winogrande_acc\": 0.6859, \"mmlu_acc\": 0.4061, \"gsm8k_exact_match\": 0.0735, \"actual_sparsity\": 0.3}, \"conclusion\": \"success\"}, \"eval_kl30_teal_30pct\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 7.3, \"teal_sparse_ppl\": 8.98, \"sparsity_target\": 0.3, \"actual_sparsity\": 0.3}}, \"bench_dense\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 6.1173, \"arc_challenge_acc\": 0.5478, \"arc_challenge_acc_norm\": 0.5828, \"winogrande_acc\": 0.7806, \"mmlu_acc\": 0.6527, \"gsm8k_exact_match\": 0.4875}, \"conclusion\": \"success\"}, \"kl_sparsity30_s42_v2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"final_loss\": 0.1465, \"kl_normalized\": 0.1465, \"kl_raw\": 0.1465, \"model_level_sparsity\": 0.281, \"sparsity_target\": 0.3, \"lambda_sparse_final\": 1000, \"lambda_max_cap\": 1000, \"tau_final\": 0.1, \"constraint_loss_final\": 0, \"training_steps\": 1000, \"wall_clock_seconds\": 2662.6, \"gpu_hours\": 0.74, \"note\": \"No PPL evaluation in training script. Sparsity stuck at 0.281 (same as v1). Lambda hit cap=1000 by step 220 and could not push sparsity further. W&B run was offline (not synced).\"}}, \"bce_gumbel_lagrangian_isolation\": {\"status\": \"DONE\", \"metrics\": {\"lr_1e4_ppl\": 42.99, \"lr_1e3_ppl\": 48.4, \"lr_3e3_ppl\": 38.02, \"lr_1e4_bce_loss\": 0.7158, \"lr_1e3_bce_loss\": 0.6781, \"lr_3e3_bce_loss\": 0.6632, \"lr_1e4_sparsity\": 0.514, \"lr_1e3_sparsity\": 0.506, \"lr_3e3_sparsity\": 0.504, \"best_ppl\": 38.02, \"best_lr\": \"3e-3\", \"kl_baseline_ppl\": 11.79, \"gap_vs_kl\": 26.23}, \"conclusion\": \"success\"}, \"eval_c4_ood_kl50\": {\"status\": \"DONE\", \"metrics\": {\"dense_ppl\": 9.2075, \"kl_50_global_ppl\": 18.401, \"teal_50_ppl\": 38.7503, \"kl_vs_dense_ratio\": 2, \"teal_vs_dense_ratio\": 4.21}, \"conclusion\": \"success\"}, \"longbench_kl30_uniform_v6\": {\"status\": \"DONE\", \"metrics\": {\"longbench_narrativeqa\": 4.12, \"longbench_qasper\": 6.23, \"longbench_gov_report\": 16.97, \"longbench_multi_news\": 18.01, \"runtime_seconds\": 6156.6}, \"conclusion\": \"negative\"}, \"longbench_dense_v6\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"longbench_narrativeqa\": 7.3, \"longbench_qasper\": 13.4, \"longbench_gov_report\": 30.5, \"longbench_multi_news\": 2.5}}, \"bench_kl50_uniform_s456\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 11.9604, \"arc_challenge_acc_norm\": 0.3345, \"winogrande_acc\": 0.6275, \"mmlu_acc\": 0.2874, \"gsm8k_exact_match\": 0.0212, \"actual_sparsity\": 0.5}, \"conclusion\": \"success\"}, \"bench_kl50_uniform_s123\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 11.83, \"arc_challenge_acc_norm\": 0.3515, \"winogrande_acc\": 0.6298, \"mmlu_acc\": 0.2751, \"gsm8k_exact_match\": 0.0235, \"actual_sparsity\": 0.5}, \"conclusion\": \"success\"}, \"latency_benchmark\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"gpu_model\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition\", \"dtype\": \"float16\", \"attn\": \"flash_attention_2\", \"batch\": 1, \"seq_len\": 2048, \"warmup\": 10, \"iters\": 100, \"dense_ms\": 119.11, \"dense_std\": 0.57, \"dense_tokens_per_s\": 17194.5, \"kl_30pct_ms\": 126.64, \"kl_30pct_std\": 0.7, \"kl_30pct_tokens_per_s\": 16171.8, \"kl_30pct_speedup\": 0.941, \"kl_50pct_ms\": 126.78, \"kl_50pct_std\": 0.31, \"kl_50pct_tokens_per_s\": 16154.2, \"kl_50pct_speedup\": 0.939, \"comp_30pct_ms\": 129.94, \"comp_30pct_std\": 0.75, \"comp_30pct_tokens_per_s\": 15761.4, \"comp_30pct_speedup\": 0.917, \"comp_50pct_ms\": 129.71, \"comp_50pct_std\": 0.53, \"comp_50pct_tokens_per_s\": 15788.8, \"comp_50pct_speedup\": 0.918, \"predictor_overhead_ms\": 3.17, \"predictor_overhead_pct\": 2.7, \"per_layer_predictor_ms\": 0.099, \"dense_ffn_per_layer_ms\": 2.427, \"sparse_ffn_pred_per_layer_ms\": 2.686, \"compensation_overhead_ms\": 3.3}}, \"bench_kl40_global\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 10.117, \"arc_challenge_acc_norm\": 0.4096, \"winogrande_acc\": 0.6535, \"mmlu_acc\": 0.3806, \"gsm8k_exact_match\": 0.05, \"actual_sparsity\": 0.4}}, \"bench_kl50_uniform\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.963, \"arc_challenge_acc_norm\": 0.3276, \"winogrande_acc\": 0.629, \"mmlu_acc\": 0.2777, \"gsm8k_exact_match\": 0.0212, \"actual_sparsity\": 0.5}}, \"bench_teal50\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 23.31, \"arc_challenge_acc_norm\": 0.2841, \"winogrande_acc\": 0.5304, \"mmlu_acc\": 0.2832, \"gsm8k_exact_match\": 0.0197, \"actual_sparsity\": 0.5}}, \"bench_teal30\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 10.97, \"arc_challenge_acc_norm\": 0.4232, \"winogrande_acc\": 0.6606, \"mmlu_acc\": 0.3861, \"gsm8k_exact_match\": 0.0788, \"actual_sparsity\": 0.3}}, \"bench_kl30_global\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 8.9768, \"arc_challenge_acc_norm\": 0.3968, \"winogrande_acc\": 0.7017, \"mmlu_acc\": 0.2527, \"gsm8k_exact_match\": 0.0879, \"actual_sparsity\": 0.3}}, \"lm_eval_dense\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge_acc_norm\": 0.5819, \"winogrande_acc\": 0.7814, \"mmlu_acc\": 0.6532, \"gsm8k_exact_match\": 0.5004, \"eval_tasks\": [\"arc_challenge\", \"winogrande\", \"mmlu\", \"gsm8k\"], \"model\": \"llama-3.1-8b\", \"condition\": \"dense\", \"server\": \"westd-34887\"}, \"conclusion\": \"success\"}, \"lm_eval_kl_s42\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge_acc_norm\": 0.3771, \"winogrande_acc\": 0.6156, \"mmlu_acc\": 0.2591, \"gsm8k_exact_match\": 0.0121, \"eval_tasks\": [\"arc_challenge\", \"winogrande\", \"mmlu\", \"gsm8k\"], \"model\": \"llama-3.1-8b\", \"condition\": \"kl_sparse_50pct\", \"server\": \"westd-34887\", \"exit_code\": 129, \"wall_time_sec\": 3010, \"flag\": \"SUSPECT — gsm8k 0.50→0.01 catastrophic drop; PID 179918 rerunning with lm_eval_sparse.py\"}, \"conclusion\": \"negative\"}, \"kl_sparsity70_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 13.84, \"predictor_teal_sparse_ppl\": 17.91, \"vanilla_teal_sparse_ppl\": 100.11, \"teal_sparse_ppl\": 17.91, \"teal_sparse_ppl_static_baseline\": 17.91, \"model_level_sparsity\": 0.7, \"teal_sparse_note\": \"17.91 = predictor-based TEAL (teal_global_masks: predictor-gated magnitude scoring + global topk @70%). vanilla TEAL @70% = 100.11. 代码来源: quick_sp70.py L10 imports teal_global_masks, L60 调用. plan_007_all_ppl_fixed.json 的 mode=static_mask_70pct metadata 有误导性.\", \"eval_dataset\": \"wikitext-2\", \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"per_layer_sparsity_range\": [0.508, 0.876]}, \"conclusion\": \"success\"}, \"training_free_baselines\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"dense_ppl\": 6.12, \"vanilla_teal_global_ppl_30pct\": 10.97, \"vanilla_teal_global_ppl_50pct\": 23.31, \"vanilla_teal_global_ppl_70pct\": 100.11, \"wina_global_ppl_30pct\": 11.45, \"wina_global_ppl_50pct\": 27.93, \"wina_global_ppl_70pct\": 137.24, \"uniform_50pct_ppl\": 23.9, \"teal_greedy_ppl\": 33.47, \"vanilla_teal_global_ppl\": 23.31, \"wina_global_ppl\": 27.93, \"rsparse_global_ppl\": 151.2}}, \"bce_comp_staged_s42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 25.44, \"predictor_hard_mask_ppl_no_comp\": 27.96, \"teal_sparse_ppl\": 44.54, \"model_level_sparsity\": 0.558, \"ppl_increase_vs_true_dense_pct\": 315.7, \"comp_loss_final\": 0.0033, \"bce_loss_final\": 0.6379, \"eval_seq_len\": 2048, \"calibration_samples\": 32}}, \"spon_training\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"true_dense_ppl\": 6.1193, \"predictor_hard_mask_ppl\": 9.2165, \"spon_sparse_ppl\": 9.0977, \"spon_recovery_pct\": 3.8, \"ppl_improvement_from_spon\": 0.1188, \"ppl_increase_vs_true_dense_pct\": 48.7, \"ppl_increase_no_spon_vs_true_dense_pct\": 50.6, \"mean_bias_norm\": 0.040596, \"max_bias_norm\": 0.054199, \"teal_sparse_ppl\": 12.08, \"teal_with_spon_ppl\": 11.93, \"spon_dense_ppl_degradation\": 6.19, \"model_level_sparsity\": 0.5, \"eval_seq_len\": 2048, \"eval_samples\": 141, \"trainable_params\": 458752, \"trainable_pct\": 0.0057}}, \"kl_only_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 9.15, \"teal_sparse_ppl\": 11.99, \"model_level_sparsity\": 0.498, \"ppl_increase_vs_true_dense_pct\": 96}}, \"kl_only_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 9.19, \"teal_sparse_ppl\": 12.03, \"model_level_sparsity\": 0.499, \"ppl_increase_vs_true_dense_pct\": 96.57, \"eval_seq_len\": 2048, \"calibration_samples\": 32}}, \"mvp_kl_norm_v2_s456\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.14, \"teal_sparse_ppl\": 13.58, \"model_level_sparsity\": 0.498, \"ppl_increase_vs_true_dense_pct\": 121.9, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"mvp_kl_norm_v2_s123\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.2474, \"teal_sparse_ppl\": 11.9128, \"model_level_sparsity\": 0.4979, \"ppl_increase_vs_true_dense_pct\": 94.7, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"mvp_kl_norm_v2_s42\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.2142, \"teal_sparse_ppl\": 12.0776, \"model_level_sparsity\": 0.4979, \"ppl_increase_vs_true_dense_pct\": 97.4, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"kl_lagrangian_quicktest\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"final_kl_loss\": 418, \"final_constraint_loss\": 1.211, \"final_sparsity\": 0.141, \"final_lambda\": 5.06, \"steps\": 200, \"sparsity_trajectory\": [0.406, 0.387, 0.289, 0.168, 0.141]}}, \"mvp_bce_s456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 28.1437, \"teal_sparse_ppl\": 43.033, \"model_level_sparsity\": 0.4957, \"ppl_increase_vs_true_dense_pct\": 603.3, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}}, \"mvp_bce_s123\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 28.3817, \"teal_sparse_ppl\": 44.5864, \"model_level_sparsity\": 0.4957, \"ppl_increase_vs_true_dense_pct\": 629, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"mvp_bce_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 27.9603, \"teal_sparse_ppl\": 44.537, \"model_level_sparsity\": 0.4957, \"ppl_increase_vs_true_dense_pct\": 628, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}}, \"mvp_kl_s42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"final_total_loss\": 3.3438, \"final_kl_loss\": 3.2969, \"final_reg_loss\": 0.05, \"final_sparsity\": 0, \"steps\": 1000, \"tau_final\": 0.1, \"wikitext2_ppl_dense\": 6.12, \"wikitext2_ppl_sparse\": 455.93, \"wikitext2_ppl_increase_pct\": 7349, \"model_level_sparsity\": 0.372, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/mvp_kl_s42/predictor_kl.pt\"}}, \"mistral_kl70_s42\": {\"status\": \"DONE\", \"metrics\": {\"kl_per_token_ppl\": 9.1086, \"kl_teal_global_ppl\": 13.3254, \"teal_baseline_ppl\": 61.716, \"dense_ppl\": 5.5238, \"kl_advantage_ratio\": 6.77, \"final_loss\": 0.3945, \"actual_sparsity\": 0.682}, \"conclusion\": \"success\"}, \"mistral_kl30_s42\": {\"status\": \"DONE\", \"metrics\": {\"kl_per_token_ppl\": 6.048, \"kl_teal_global_ppl\": 6.7733, \"teal_baseline_ppl\": 8.3807, \"dense_ppl\": 5.5238, \"kl_advantage_ratio\": 1.386, \"ppl_vs_dense_pct\": 9.5}, \"conclusion\": \"success\"}, \"plan_005_subsumption_s42\": {\"status\": \"DONE\", \"metrics\": {\"linearity_ratio\": 0.2644, \"linearity_ratio_std\": 0.0073, \"magnitude_ratio\": 0.1578, \"magnitude_ratio_std\": 0.0088, \"cosine_similarity\": 0.1962, \"cosine_similarity_std\": 0.0268, \"predictor_effect_norm\": 482.65, \"spon_correction_norm\": 76.2, \"interaction_norm\": 147.74, \"num_samples\": 50, \"seq_len\": 2048, \"conclusion_type\": \"weak_subsumption\"}, \"conclusion\": \"success\"}, \"eval_bce_v3_s42\": {\"status\": \"DONE\", \"metrics\": {\"dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 22.51, \"teal_sparse_ppl\": 27.97, \"model_level_sparsity\": 0.5, \"arc_challenge_acc\": 0.2048, \"arc_challenge_acc_norm\": 0.2398, \"arc_challenge_acc_norm_stderr\": 0.0125, \"winogrande_acc\": 0.5059, \"winogrande_acc_stderr\": 0.0141, \"mmlu_acc\": 0.3002, \"mmlu_acc_stderr\": 0.0038, \"gsm8k_exact_match\": 0.0485, \"gsm8k_exact_match_strict\": 0.0425, \"gsm8k_exact_match_stderr\": 0.0059}, \"conclusion\": \"success\"}, \"lm_eval_teal_30pct\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge\": {\"acc\": 0.3933, \"acc_norm\": 0.4155, \"acc_stderr\": 0.0143, \"acc_norm_stderr\": 0.0144}, \"winogrande\": {\"acc\": 0.6559, \"acc_stderr\": 0.0134}, \"mmlu\": {\"acc\": 0.3598, \"acc_stderr\": 0.004}, \"mmlu_stem\": {\"acc\": 0.313}, \"mmlu_humanities\": {\"acc\": 0.3305}, \"mmlu_social_sciences\": {\"acc\": 0.4108}, \"mmlu_other\": {\"acc\": 0.401}, \"gsm8k\": {\"exact_match_strict\": 0.0849, \"exact_match_flexible\": 0.0925, \"strict_stderr\": 0.0077, \"flexible_stderr\": 0.008}, \"actual_sparsity\": 0.3}, \"conclusion\": \"negative\"}, \"lm_eval_kl_30pct_s42\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge_acc\": 0.3575, \"arc_challenge_acc_norm\": 0.3737, \"winogrande_acc\": 0.6756, \"mmlu_acc\": 0.2874, \"gsm8k_exact_match_strict\": 0.0743, \"gsm8k_exact_match_flexible\": 0.0781, \"actual_sparsity\": 0.3, \"model\": \"llama-3.1-8b\", \"condition\": \"kl_distill_30pct_sparsity_s42\", \"mmlu_stem_acc\": 0.2499, \"mmlu_social_sciences_acc\": 0.2896, \"mmlu_humanities_acc\": 0.2786, \"mmlu_other_acc\": 0.3363}, \"conclusion\": \"negative\"}, \"gsm8k_gen_compare\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"d030_kl40_uniform\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.3627, \"arc_challenge_acc_norm\": 0.4181, \"winogrande_acc\": 0.6717, \"mmlu_acc\": 0.3068, \"gsm8k_exact_match\": 0.0394, \"actual_sparsity\": 0.398}, \"conclusion\": \"success\"}, \"d030_kl50_uniform\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wikitext2_ppl\": 11.96, \"arc_challenge_acc_norm\": 0.3276, \"winogrande_acc\": 0.629, \"mmlu_acc\": 0.2777, \"gsm8k_exact_match\": 0.0212, \"actual_sparsity\": 0.5, \"allocation\": \"uniform\", \"per_layer_sparsity\": \"uniform 0.500 across all 32 layers\", \"mmlu_change_vs_global\": \"+1.86pp (0.2591 → 0.2777, not significant)\", \"gsm8k_change_vs_global\": \"+0.91pp (0.0121 → 0.0212, not significant)\", \"conclusion_note\": \"50% uniform 未能修复 MMLU/GSM8K collapse. Uniform allocation 的修复效应在 50% sparsity 下消失。\"}}, \"bce_isocompute_v3_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"steps\": 2700, \"loss\": 0.6382, \"bce_loss\": 0.6371, \"reg_loss\": 0.001, \"sparsity\": 0.51, \"training_time_seconds\": 2828, \"note\": \"BCE saturation confirmed: step 500→2700 only 0.006 improvement\"}}, \"spon_2048_s42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.2165, \"spon_sparse_ppl\": 8.991, \"spon_recovery_pct\": 7.3, \"ppl_improvement_from_spon\": 0.2255, \"mean_bias_norm\": 0.05312, \"max_bias_norm\": 0.065918, \"model_level_sparsity\": 0.498, \"eval_seq_len\": 2048, \"training_seq_len\": 2048, \"eval_samples\": 141, \"trainable_params\": 458752, \"trainable_pct\": 0.0057, \"training_steps\": 1000, \"final_loss\": 0.377, \"dense_with_spon_ppl\": 6.1823, \"dense_ppl_degradation\": 0.0651, \"teal_sparse_no_spon_ppl\": 12.0776, \"teal_sparse_with_spon_ppl\": 11.7907, \"spon_recovery_teal_pct\": 4.8, \"teal_sparsity\": 0.4979}}, \"kl_sparsity30_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"loss\": 0.165, \"kl_normalized\": 0.165, \"kl_raw\": 0.165, \"sparsity\": 0.285, \"lambda_sparse\": 5000, \"tau\": 0.1, \"constraint_loss\": 0, \"steps\": 1000, \"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 7.3, \"teal_sparse_ppl\": 8.98, \"teal_sparse_ppl_note\": \"已通过 eval_kl30_teal_30pct 独立验证 (sparsity_target=0.3, D034)\", \"model_level_sparsity\": 0.3, \"eval_dataset\": \"wikitext-2\", \"eval_seq_len\": 2048}, \"conclusion\": \"success\"}, \"steps_curve_v2\": {\"status\": \"DONE\", \"metrics\": {\"step200_ppl\": 15.158, \"step400_ppl\": 12.538, \"step600_ppl\": 12.046, \"step800_ppl\": 11.907, \"step1000_ppl\": 11.906, \"convergence_step\": 800, \"ppl_800_vs_1000_delta\": 0.001}, \"conclusion\": \"success\"}, \"tau_schedule_ablation\": {\"status\": \"DONE\", \"metrics\": {\"tau_linear_baseline_ppl\": 11.963, \"tau_fixed05_ppl\": 11.861, \"tau_fixed01_ppl\": 12.072, \"tau_fixed05_loss\": 0.248, \"tau_fixed01_loss\": 0.43, \"best_tau\": \"fixed_0.5\", \"ppl_range\": 0.211}, \"conclusion\": \"success\"}, \"steps_curve_s42_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"steps_curve_s42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"steps_curve_s42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"db_sensitivity_sweep\": {\"status\": \"DONE\", \"metrics\": {\"db64_per_token_ppl\": 10.158, \"db64_teal_global_ppl\": 12.076, \"db64_sparsity\": 0.5, \"db64_loss\": 0.361, \"db128_teal_global_ppl\": 11.963, \"db128_per_token_ppl\": 9.218, \"db256_per_token_ppl\": 8.586, \"db256_teal_global_ppl\": 12.105, \"db256_sparsity\": 0.5, \"db256_loss\": 0.27, \"db512_per_token_ppl\": 7.933, \"db512_teal_global_ppl\": 12.315, \"db512_sparsity\": 0.5, \"db512_loss\": 0.224, \"best_teal_global_db\": 128, \"best_teal_global_ppl\": 11.963}, \"conclusion\": \"success\"}, \"longbench_kl30_uniform_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"longbench_dense_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"longbench_kl30_uniform_v3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"longbench_dense_v3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"longbench_dense_v5\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"longbench_dense_v4\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"longbench_dense\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"longbench_kl30_uniform\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"bench_mistral_kl50_s42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"lm_eval_teal_50pct\": {\"status\": \"DONE\", \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Llama-3.1-8B\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\"}, \"d030_kl30_uniform\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.8157, \"arc_challenge_acc_norm\": 0.4078, \"winogrande_acc\": 0.6859, \"mmlu_acc\": 0.4061, \"gsm8k_exact_match\": 0.0735, \"actual_sparsity\": 0.3, \"allocation\": \"uniform\", \"per_layer_sparsity\": \"uniform 0.301 across all 32 layers\", \"mmlu_improvement_vs_global\": \"+11.87pp (0.2874 → 0.4061)\", \"gsm8k_change_vs_global\": \"no change (0.0743 → 0.0735, within noise)\"}, \"conclusion\": \"success\"}, \"mistral_kl_s42\": {\"status\": \"DONE\", \"metrics\": {\"train_final_loss\": 0.2188, \"train_final_kl_raw\": 0.2188, \"train_final_kl_norm\": 0.2188, \"train_final_constraint\": 0, \"train_final_sparsity\": 0.48, \"train_final_lambda\": 1000, \"train_final_tau\": 0.1, \"train_steps_completed\": 1000, \"true_dense_ppl\": 5.52, \"predictor_hard_mask_ppl\": 7.3, \"teal_sparse_ppl\": 8.98, \"model_level_sparsity\": 0.5, \"eval_dataset\": \"wikitext-2\", \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"eval_samples\": 159}, \"conclusion\": \"success\"}, \"kl_lagrangian_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"kl_norm_v3_quicktest\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\", \"metrics\": {\"step1_kl_raw\": 1.1797, \"step1_kl_norm\": 1.1797, \"step1_sparsity\": 0.406, \"step1_lambda\": 2, \"step50_kl_raw\": 0.7344, \"step50_kl_norm\": 0.7344, \"step50_sparsity\": 0.514, \"step50_lambda\": 1.95, \"step100_kl_raw\": 0.625, \"step100_kl_norm\": 0.625, \"step100_sparsity\": 0.496, \"step100_lambda\": 1000, \"step150_kl_raw\": 0.5703, \"step150_kl_norm\": 0.5703, \"step150_sparsity\": 0.48, \"step150_lambda\": 1000, \"step200_kl_raw\": 0.6836, \"step200_kl_norm\": 0.6836, \"step200_sparsity\": 0.477, \"step200_lambda\": 1000, \"step200_constraint\": 0.01178, \"kl_trend\": \"decreasing (1.18→0.57 min, uptick to 0.68 at end)\", \"sparsity_range\": \"0.477-0.514 after step 50\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/kl_norm_v3_quicktest/predictor_kl_normalized.pt\"}}, \"mvp_kl_norm_s456\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"spon_kl_s42\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"diag_30pct_downstream\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"diag_gsm8k_gencomp\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"diag_teal_downstream\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"bce_isocompute_s42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_spon_supp_retry\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"lm_eval_dense_test\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"lm_eval_mistral_downstream\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_kl_s123\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_kl_s456\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"bce_isocompute_v2_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.6637, \"final_bce_loss\": 0.6586, \"final_reg_loss\": 0.0051, \"final_sparsity\": 0.502, \"training_steps\": 1000, \"training_time_sec\": 1047.8, \"reg_weight\": 2, \"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 26.76, \"teal_sparse_ppl\": 54.84, \"eval_seq_len\": 2048, \"eval_dataset\": \"wikitext-2\"}}, \"kl_sparsity70_s42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"kl_sparsity30_s42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"ste_baseline_s42\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 8.18, \"teal_sparse_ppl\": 15.77, \"model_level_sparsity\": 0.47, \"ppl_increase_vs_true_dense_pct\": 157.7, \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"eval_dataset\": \"wikitext-2\", \"per_token_sparsity\": 0.47, \"lambda_stats\": {\"steps_70_130_mean\": 66.4, \"steps_70_130_std\": 94.87, \"first_500_mean\": 688.07, \"first_500_std\": 440.57, \"last_500_mean\": 965.69, \"last_500_std\": 141.59, \"overall_mean\": 826.88, \"overall_std\": 354.23}}, \"conclusion\": \"success\"}, \"spon_supp_eval_retry\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"bce_isocompute_s42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"ste_kl_s42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"spon_training_seq2048\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_kl_norm_s123\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_kl_norm_s42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"kl_normalized_quicktest\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"step1_kl\": 1.18, \"step200_kl\": 0.641, \"step200_sparsity\": 0.504, \"final_lambda\": 8, \"sparsity_converged_step\": 80, \"sparsity_trajectory\": [0.406, 0.398, 0.398, 0.457, 0.52, 0.506, 0.504, 0.504], \"lambda_trajectory\": [1, 2, 4, 8, 8, 8, 8, 8]}}}, \"count\": 269, \"total\": 269, \"baseline\": \"bench_dense\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.734}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Got the detailed results. Now I need to search the registry for related experiments. The full registry is too large, let me search more specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "649ba392-8591-469a-ad47-07bb71d75802",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1c5uxFdqbuTg3MfNCXkE3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2145,
+      "cache_read_input_tokens": 30972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2145
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+结果 JSON 已获取。让我搜索 registry 中的对比实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "99236adc-075c-4bb6-9f6e-a11276dee830",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1c5uxFdqbuTg3MfNCXkE3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2145,
+      "cache_read_input_tokens": 30972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2145
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_0189CNoRgQDDoNtEUTsw329s`</summary>
+
+```json
+{
+  "description": "Search registry for comparisons",
+  "prompt": "Read the file /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt\n\nThis is a JSON file with schema {result: string} where the string is itself JSON containing experiment registry data.\n\nI need you to find and extract info about these specific experiments (or close matches):\n1. Any experiment with \"teal30\" or \"teal_30\" in the exp_id (especially ones with \"uniform\" and/or \"gsm8k\")\n2. Any experiment with \"teal275\" or \"teal_275\" in the exp_id (especially ones with \"uniform\")\n3. Any experiment with \"kl30\" or \"kl_30\" in the exp_id (especially ones with \"gsm8k\")\n4. The dense baseline experiment (exp_id containing \"dense\" or \"baseline\")\n\nFor each match, report: exp_id, status, conclusion, metrics (especially gsm8k if present), and any other key fields.\n\nAlso check: is there an experiment with exp_id exactly \"qwen14b_teal30_uniform_gsm8k\"? If not, what's the closest match?\n\nReport all findings verbatim - don't summarize the numbers, I need exact values.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "70927b0c-d685-45ec-a3e9-d40a5bc098d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1c5uxFdqbuTg3MfNCXkE3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2145,
+      "cache_read_input_tokens": 30972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2145
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 26_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Search registry for comparisons",
+  "task_type": "local_agent",
+  "prompt": "Read the file /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt\n\nThis is a JSON file with schema {result: string} where the string is itself JSON containing experiment registry data.\n\nI need you to find and extract info about these specific experiments (or close matches):\n1. Any experiment with \"teal30\" or \"teal_30\" in the exp_id (especially ones with \"uniform\" and/or \"gsm8k\")\n2. Any experiment with \"teal275\" or \"teal_275\" in the exp_id (especially ones with \"uniform\")\n3. Any experiment with \"kl30\" or \"kl_30\" in the exp_id (especially ones with \"gsm8k\")\n4. The dense baseline experiment (exp_id containing \"dense\" or \"baseline\")\n\nFor each match, report: exp_id, status, conclusion, metrics (especially gsm8k if present), and any other key fields.\n\nAlso check: is there an experiment with exp_id exactly \"qwen14b_teal30_uniform_gsm8k\"? If not, what's the closest match?\n\nReport all findings verbatim - don't summarize the numbers, I need exact values.",
+  "uuid": "841ef94e-34ac-443a-a84b-99b202fe55ce",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+## Round 1
+
+63 recorded events
+
+### User
+
+_source line 27 · 2026-05-20T02:06:08.567Z_
+
+Read the file /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt
+
+This is a JSON file with schema {result: string} where the string is itself JSON containing experiment registry data.
+
+I need you to find and extract info about these specific experiments (or close matches):
+1. Any experiment with "teal30" or "teal_30" in the exp_id (especially ones with "uniform" and/or "gsm8k")
+2. Any experiment with "teal275" or "teal_275" in the exp_id (especially ones with "uniform")
+3. Any experiment with "kl30" or "kl_30" in the exp_id (especially ones with "gsm8k")
+4. The dense baseline experiment (exp_id containing "dense" or "baseline")
+
+For each match, report: exp_id, status, conclusion, metrics (especially gsm8k if present), and any other key fields.
+
+Also check: is there an experiment with exp_id exactly "qwen14b_teal30_uniform_gsm8k"? If not, what's the closest match?
+
+Report all findings verbatim - don't summarize the numbers, I need exact values.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "efea3f8f-a380-4f6f-8015-b54e333ab2df"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BGKPHSfD6C5mdfR7ZoRi5r`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -i wandb ~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "617a7038-c9ee-424e-8bb0-4496bf81dd9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1c5uxFdqbuTg3MfNCXkE3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2145,
+      "cache_read_input_tokens": 30972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2145
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 29_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Reading ~/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt",
+  "usage": {
+    "total_tokens": 15696,
+    "tool_uses": 1,
+    "duration_ms": 3508
+  },
+  "last_tool_name": "Read",
+  "uuid": "5fdc8cad-9068-4b6a-bb37-00ecbb465c1a",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QJdBKCLiVBzhrCxFV1iG7S`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "23a1d404-e6e4-46d0-bbdc-48ce450b68db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017mZ8YPxbpZcd1irTwtz6W5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15689,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 15689,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T02:06:12.429Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01QJdBKCLiVBzhrCxFV1iG7S`</summary>
+
+```text
+File content (30317 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "ea7d1397-0ff4-4146-bf86-d1c916725275",
+  "tool_use_result": "Error: File content (30317 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 32_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Reading ~/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt",
+  "usage": {
+    "total_tokens": 16810,
+    "tool_uses": 2,
+    "duration_ms": 6911
+  },
+  "last_tool_name": "Read",
+  "uuid": "75261f1f-be0c-40df-85d8-c69d1b028184",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DfzD27i8n1Phc36fTC6y69`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt",
+  "limit": 1000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "fd0263f6-c0f2-43a1-a98a-e791225cd4b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzjpQixjSMCuHy7o3ALBHy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1051,
+      "cache_read_input_tokens": 15689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1051,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T02:06:15.762Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01DfzD27i8n1Phc36fTC6y69`</summary>
+
+```text
+File content (30317 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "58e6ba79-1710-41ba-bd46-e90f3cad907e",
+  "tool_use_result": "Error: File content (30317 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 35_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Reading ~/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt",
+  "usage": {
+    "total_tokens": 17101,
+    "tool_uses": 3,
+    "duration_ms": 9704
+  },
+  "last_tool_name": "Read",
+  "uuid": "6f4a8ff8-1c26-4098-a51e-aeaed9fc2810",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RqyBwF23JPr6hR5bzgvaSg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt",
+  "limit": 500
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "8728b200-90f5-49e6-80f3-b83581f4010c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Mt2t43vNvN8YEGA8D4nAQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 16740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 219,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T02:06:18.595Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01RqyBwF23JPr6hR5bzgvaSg`</summary>
+
+```text
+File content (30317 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "c2952135-c8cf-4580-bb9a-15a6b7504c6a",
+  "tool_use_result": "Error: File content (30317 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 38_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Searching for teal.?30|teal_30|teal30",
+  "usage": {
+    "total_tokens": 17321,
+    "tool_uses": 4,
+    "duration_ms": 19508
+  },
+  "last_tool_name": "Grep",
+  "uuid": "b6afb8c2-339f-4966-bb74-452f358d7e83",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Qk7Nn9fUxm5mDvuJpENWji`</summary>
+
+```json
+{
+  "pattern": "teal.?30|teal_30|teal30",
+  "path": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt",
+  "output_mode": "content",
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "befc5818-9848-495b-b7da-7d24261ca43d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GmC1qn4AT61BpEimCdjwSJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 16959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 218,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T02:06:28.100Z_
+
+<details><summary>↩ Tool result · `toolu_01Qk7Nn9fUxm5mDvuJpENWji`</summary>
+
+```text
+1:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "df6e138b-3e50-4bf4-9511-adbdc800a6cb"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 41_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Searching for teal.?275|teal_275|teal275",
+  "usage": {
+    "total_tokens": 17322,
+    "tool_uses": 5,
+    "duration_ms": 20919
+  },
+  "last_tool_name": "Grep",
+  "uuid": "0c87a9e9-d66b-475d-9d87-5bf68cb41c44",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01S1YKR88JiZFYc4curmEuBb`</summary>
+
+```json
+{
+  "pattern": "teal.?275|teal_275|teal275",
+  "path": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt",
+  "output_mode": "content",
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "000a2a3b-0aae-4c63-8829-a8687d18b0e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GmC1qn4AT61BpEimCdjwSJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 16959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 218,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T02:06:29.510Z_
+
+<details><summary>↩ Tool result · `toolu_01S1YKR88JiZFYc4curmEuBb`</summary>
+
+```text
+1:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "89d96003-dc5c-4989-9513-1813f1e465a4"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 44_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Searching for kl.?30|kl_30|kl30",
+  "usage": {
+    "total_tokens": 17323,
+    "tool_uses": 6,
+    "duration_ms": 22282
+  },
+  "last_tool_name": "Grep",
+  "uuid": "0713f361-4572-458f-8101-2cf0b312aa5a",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01DUTB8MyajFqL43rb45uFym`</summary>
+
+```json
+{
+  "pattern": "kl.?30|kl_30|kl30",
+  "path": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt",
+  "output_mode": "content",
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "0e62539e-c1aa-4026-92b1-c08fcaff6dc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GmC1qn4AT61BpEimCdjwSJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 16959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 218,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T02:06:30.863Z_
+
+<details><summary>↩ Tool result · `toolu_01DUTB8MyajFqL43rb45uFym`</summary>
+
+```text
+1:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "1421375c-5df5-4b29-b09d-1257670a44ce"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 47_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Searching for dense|baseline",
+  "usage": {
+    "total_tokens": 17324,
+    "tool_uses": 7,
+    "duration_ms": 23634
+  },
+  "last_tool_name": "Grep",
+  "uuid": "75e11dbc-7568-41c1-b516-d9746b29a317",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01ERNXBMNQ1F3rf7zYkyixvy`</summary>
+
+```json
+{
+  "pattern": "dense|baseline",
+  "path": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt",
+  "output_mode": "content",
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "b7114ba4-6b20-4097-b24b-da4a1992ed13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GmC1qn4AT61BpEimCdjwSJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 16959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 218,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T02:06:32.220Z_
+
+<details><summary>↩ Tool result · `toolu_01ERNXBMNQ1F3rf7zYkyixvy`</summary>
+
+```text
+1:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "0e3f61d9-c711-4486-8483-73f3e35fb5bb"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 50_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Running Parse the JSON registry file and list all experiment IDs",
+  "usage": {
+    "total_tokens": 18253,
+    "tool_uses": 8,
+    "duration_ms": 30309
+  },
+  "last_tool_name": "Bash",
+  "uuid": "282a2747-c1f7-4571-afc5-c338104d8b0e",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01U2SAr4sVgemkMfdwXRupS7`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\n# The result field is itself a JSON string\nregistry = json.loads(data['result'])\n# Print all experiment IDs first\nif isinstance(registry, dict):\n    for k in registry:\n        print(f'KEY: {k}')\nelif isinstance(registry, list):\n    for item in registry:\n        if isinstance(item, dict) and 'exp_id' in item:\n            print(f'EXP_ID: {item[\\\"exp_id\\\"]}')\n        elif isinstance(item, dict):\n            print(f'KEYS: {list(item.keys())[:5]}')\n\" 2>&1 | head -80",
+  "description": "Parse the JSON registry file and list all experiment IDs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "2a28bc13-abdc-4982-bbea-bde9c3ffd958",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Pp8GQidFhUKzQVfVRwbBT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 927,
+      "cache_read_input_tokens": 17177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 927,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T02:06:39.149Z_
+
+<details><summary>↩ Tool result · `toolu_01U2SAr4sVgemkMfdwXRupS7`</summary>
+
+```text
+KEY: success
+KEY: data
+KEY: error
+KEY: metadata
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "d11382f6-0d45-4385-8b56-9b362d69989f"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 53_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Running Inspect the registry JSON structure",
+  "usage": {
+    "total_tokens": 18818,
+    "tool_uses": 9,
+    "duration_ms": 38359
+  },
+  "last_tool_name": "Bash",
+  "uuid": "e4d188c1-aac8-4df5-a695-35ddd0f5a264",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013qY2xfQgEguYMw9Vj6HTMe`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nprint('Top-level keys:', list(registry.keys()))\nprint()\nif 'data' in registry:\n    d = registry['data']\n    if isinstance(d, dict):\n        print('data keys:', list(d.keys())[:10])\n        # check structure of first item\n        for k, v in list(d.items())[:1]:\n            print(f'Sample key={k}, type={type(v).__name__}')\n            if isinstance(v, dict):\n                print(f'  sub-keys: {list(v.keys())}')\n    elif isinstance(d, list):\n        print(f'data is list, len={len(d)}')\n        if d:\n            print(f'First item keys: {list(d[0].keys()) if isinstance(d[0], dict) else type(d[0])}')\n    elif isinstance(d, str):\n        # might be double-encoded\n        d2 = json.loads(d)\n        print(f'data is string->parsed type={type(d2).__name__}')\n        if isinstance(d2, dict):\n            print(f'data keys: {list(d2.keys())[:10]}')\n\" 2>&1",
+  "description": "Inspect the registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "aee89651-e309-4ca1-9683-295a963a6723",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RG2hMDfXgfU2vKVm6Eg9au",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 18104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 492,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-20T02:06:47.024Z_
+
+<details><summary>↩ Tool result · `toolu_013qY2xfQgEguYMw9Vj6HTMe`</summary>
+
+```text
+Top-level keys: ['success', 'data', 'error', 'metadata']
+
+data keys: ['experiments', 'count', 'total', 'baseline']
+Sample key=experiments, type=dict
+  sub-keys: ['qwen14b_teal30_uniform_gsm8k', 'qwen14b_kl30_global_hspiqa', 'bench_teal50_uniform_gsm8k', 'qwen14b_teal30_uniform_hspiqa', 'qwen14b_kl30_uniform_hspiqa', 'bench_teal50_uniform_6task', 'kl30_uniform_hspiqa_s456', 'kl30_uniform_hspiqa_s123', 'qwen14b_kl30_s456_gsm8k', 'c1_eval_30pct_s456', 'bench_teal30_uniform_6task', 'qwen14b_kl30_s42_gsm8k_v2', 'bench_teal30_uniform_gsm8k', 'bench_kl30_uniform_gsm8k_d075', 'qwen14b_kl30_s123_gsm8k', 'qwen14b_kl30_s456_eval_v3', 'qwen14b_kl30_s123_eval_v5', 'qwen14b_kl30_s42_eval_uniform_v3', 'qwen14b_dense_4task_v2', 'qwen14b_teal275_uniform_eval_v3', 'qwen14b_teal275_hspiqa', 'qwen14b_dense_hspiqa', 'qwen14b_kl30_s42_gsm8k', 'qwen14b_dense_4task', 'flashinfer_benchmark_llama8b_v2', 'flashinfer_benchmark_llama8b', 'qwen14b_teal275_uniform_hspiqa', 'qwen14b_kl30_s456_eval_v2', 'qwen14b_teal30_uniform_hspiqa_v2', 'qwen14b_teal275_uniform_eval_v2', 'qwen14b_teal275_uniform_eval', 'qwen14b_kl30_s42_eval_uniform_v2', 'qwen14b_kl30_s42_eval_uniform', 'qwen14b_kl30_s123', 'qwen14b_kl30_s123_eval_v4', 'qwen14b_kl30_s456', 'qwen14b_kl30_s456_eval', 'qwen14b_kl30_s123_eval', 'qwen14b_kl30_s123_eval_v3', 'qwen14b_kl30_s123_eval_v2', 'teal_28.5pct_sanity', 'mistral_dense_hellaswag_piqa', 'bce_gumbel_no_penalty_s42', 'qwen14b_mask_divergence_analysis', 'mistral_kl30_hellaswag_piqa', 'eval_c1_retrain_30pct_s456', 'eval_c1_retrain_30pct_s123', 'c1_retrain_30pct_s456', 'c1_retrain_30pct_s123', 'mistral_teal50_downstream', 'mistral_teal30_downstream', 'c1_ablation_30pct_s456', 'c1_ablation_30pct_s123', 'mistral_kl30_downstream', 'bce_50pct_teal_global_unified', 'bce_isocompute_hellaswag_piqa_v2', 'c1_ablation_30pct_eval_34887', 'kl30_uniform_hellaswag_piqa', 'kl50_global_hellaswag_piqa', 'kl50_uniform_hellaswag_piqa', 'c1_ablation_30pct_s42_eval_v2', 'c1_ablation_30pct_s42_v2', 'dense_baseline_hellaswag_piqa', 'bce_isocompute_hellaswag_piqa', 'c1_ablation_30pct_s42_eval', 'kl50_global_hellaswag_piqa_v2', 'kl30_uniform_hellaswag_piqa_v2', 'kl30_s42_global_mmlu_recheck', 'c1_ablation_30pct_s42', 'kl30_s456_global_v3', 'kl30_s123_global_v3', 'kl30_s456_uniform_v3', 'kl30_s123_uniform_v3', 'wallclock_speedup_30_50', 'kl_sparsity35_s42_eval_teal_uniform', 'kl_sparsity25_s42_eval_teal_uniform', 'kl_sparsity25_s42_eval_teal', 'kl_sparsity40_s42_eval_teal_uniform', 'c1_ablation_bce_kl_targets_s123_v2', 'kl_sparsity45_s42_eval_teal_uniform', 'kl_sparsity45_s42_eval_teal', 'kl_sparsity35_s42_eval_teal', 'bce_30pct_s42_eval', 'c1_ablation_bce_kl_targets_s123', 'kl_sparsity25_s123', 'kl_sparsity35_s42', 'kl_sparsity45_s42', 'c1_ablation_eval_uniform', 'c1_ablation_bce_kl_targets_s42', 'kl_sparsity25_s42', 'bce_30pct_s42', 'kl30_s456_uniform_v2', 'kl30_s123_uniform_v2', 'kl50_s42_global_eval', 'kl_comp_50pct_s42_eval', 'kl_comp_30pct_s456_eval', 'kl50_s456_uniform_eval', 'kl_comp_30pct_s123_eval', 'kl_comp_50pct_s42', 'kl_comp_30pct_s456', 'kl50_s42_uniform_eval', 'kl_comp_30pct_s42_eval', 'kl_comp_30pct_s123_ppl', 'kl_comp_30pct_s123', 'kl_comp_30pct_s42_ppl', 'kl_comp_30pct_s42', 'c4_ood_kl50_s456', 'c4_ood_kl50_s42', 'kl50_s456_eval', 'c4_ood_kl30_s456', 'c4_ood_kl30_s42_v2', 'c4_ood_kl50_s123', 'downstream_ext_kl50_uniform_s42', 'downstream_ext_kl30_uniform_s123', 'c4_ood_dense_baseline_v2', 'c4_ood_kl30_s123_v2', 'kl50_s456_train', 'kl50_s123_uniform_eval', 'c4_ood_kl30_s123', 'c4_ood_dense_baseline', 'kl50_s123_eval', 'snr_extended_r6w3', 'kl30_8b_s456_eval', 'kl30_8b_s123_eval', 'bce_isocompute_v3_s42_eval', 'qwen14b_kl30_uniform_eval_4task', 'qwen14b_teal30_uniform_eval_4task', 'kl30_8b_s456_train', 'kl30_8b_s123_train', 'qwen14b_teal30_uniform_eval', 'qwen14b_kl30_uniform_eval', 'c4_ood_kl30_s42', 'qwen14b_teal30_eval', 'qwen14b_bce30_s42_eval', 'qwen14b_dense_baseline', 'bce_isocompute_v3_s123_eval', 'bce_isocompute_v3_s123', 'bce_isocompute_v3_s456_eval', 'bce_isocompute_v3_s456', 'qwen14b_kl30_s42_eval', 'c4_download', 'kl50_global_s123_reeval', 'downstream_teal30_baseline', 'kl30_s456_uniform_eval', 'downstream_dense_baseline', 'qwen14b_bce30_s42_v2', 'qwen14b_bce30_s42', 'downstream_extended_kl30_s42', 'kl30_s123_eval', 'kl30_s456_train', 'qwen14b_kl30_s42', 'kl50_s456_global_eval', 'kl30_s456_global_eval', 'kl_30pct_s123', 'mistral_teal70_baseline', 'mistral_teal30_baseline', 'mistral_kl70_teal_global', 'mistral_kl50_teal_global', 'mistral_kl30_teal_global', 'mistral_kl70_pertoken', 'mistral_kl50_pertoken', 'mistral_kl30_pertoken', 'mistral_dense_ppl', 'kl_50pct_s123', 'lm_eval_mistral_dense', 'lm_eval_mistral_kl_50pct', 'mistral_teal50_baseline', 'kl50_s456_train_eval', 'kl_bce_f1_oracle', 'global_30pct_retention', 'reverse_kl_50pct_s42', 'jsd_50pct_s42', 'mag_preservation_reg', 'teal_kl_overlap_corrected', 'sparsity_floor_extended', 'gradient_snr_constrained_v2', 'teal_kl_overlap_analysis', 'natural_sparsity_floor_30pct', 'gradient_snr_kl_vs_bce', 'training_free_wina_greedy', 'bench_teal70', 'bench_kl70_global', 'bench_kl50_global', 'bench_kl30_uniform', 'eval_kl30_teal_30pct', 'bench_dense', 'kl_sparsity30_s42_v2', 'bce_gumbel_lagrangian_isolation', 'eval_c4_ood_kl50', 'longbench_kl30_uniform_v6', 'longbench_dense_v6', 'bench_kl50_uniform_s456', 'bench_kl50_uniform_s123', 'latency_benchmark', 'bench_kl40_global', 'bench_kl50_uniform', 'bench_teal50', 'bench_teal30', 'bench_kl30_global', 'lm_eval_dense', 'lm_eval_kl_s42', 'kl_sparsity70_s42_v2', 'training_free_baselines', 'bce_comp_staged_s42', 'spon_training', 'kl_only_s1', 'kl_only_s0', 'mvp_kl_norm_v2_s456', 'mvp_kl_norm_v2_s123', 'mvp_kl_norm_v2_s42', 'kl_lagrangian_quicktest', 'mvp_bce_s456', 'mvp_bce_s123', 'mvp_bce_s42', 'mvp_kl_s42', 'mistral_kl70_s42', 'mistral_kl30_s42', 'plan_005_subsumption_s42', 'eval_bce_v3_s42', 'lm_eval_teal_30pct', 'lm_eval_kl_30pct_s42', 'gsm8k_gen_compare', 'd030_kl40_uniform', 'd030_kl50_uniform', 'bce_isocompute_v3_s42', 'spon_2048_s42', 'kl_sparsity30_s42_v3', 'steps_curve_v2', 'tau_schedule_ablation', 'steps_curve_s42_v3', 'steps_curve_s42_v2', 'steps_curve_s42', 'db_sensitivity_sweep', 'longbench_kl30_uniform_v2', 'longbench_dense_v2', 'longbench_kl30_uniform_v3', 'longbench_dense_v3', 'longbench_dense_v5', 'longbench_dense_v4', 'longbench_dense', 'longbench_kl30_uniform', 'bench_mistral_kl50_s42', 'lm_eval_teal_50pct', 'd030_kl30_uniform', 'mistral_kl_s42', 'kl_lagrangian_v2', 'kl_norm_v3_quicktest', 'mvp_kl_norm_s456', 'spon_kl_s42', 'diag_30pct_downstream', 'diag_gsm8k_gencomp', 'diag_teal_downstream', 'bce_isocompute_s42_v2', 'eval_spon_supp_retry', 'lm_eval_dense_test', 'lm_eval_mistral_downstream', 'mvp_kl_s123', 'mvp_kl_s456', 'bce_isocompute_v2_s42', 'kl_sparsity70_s42', 'kl_sparsity30_s42', 'ste_baseline_s42', 'spon_supp_eval_retry', 'bce_isocompute_s42', 'ste_kl_s42', 'spon_training_seq2048', 'mvp_kl_norm_s123', 'mvp_kl_norm_s42', 'kl_normalized_quicktest']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "e24f788d-4b07-4627-86e5-22a87b3da18f"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 56_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Running Extract teal30 experiments from registry",
+  "usage": {
+    "total_tokens": 23122,
+    "tool_uses": 10,
+    "duration_ms": 48024
+  },
+  "last_tool_name": "Bash",
+  "uuid": "4ed9f74d-479f-4940-a5bb-a12ccae01f89",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01MCWivsJ34ACpdsJNtiCFok`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexperiments = registry['data']['experiments']\n\n# 1. teal30 experiments\nprint('='*80)\nprint('=== TEAL30 EXPERIMENTS ===')\nprint('='*80)\nfor eid, exp in experiments.items():\n    if 'teal30' in eid or 'teal_30' in eid:\n        print(f'\\n--- {eid} ---')\n        print(json.dumps(exp, indent=2))\n\" 2>&1",
+  "description": "Extract teal30 experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "d88a38a2-337c-4c21-9dc8-057cd476c03a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HEf7H8LEUcUEsomXSSRo4h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4302,
+      "cache_read_input_tokens": 18596,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4302,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T02:06:56.682Z_
+
+<details><summary>↩ Tool result · `toolu_01MCWivsJ34ACpdsJNtiCFok`</summary>
+
+```text
+================================================================================
+=== TEAL30 EXPERIMENTS ===
+================================================================================
+
+--- qwen14b_teal30_uniform_gsm8k ---
+{
+  "status": "ANALYZING"
+}
+
+--- qwen14b_teal30_uniform_hspiqa ---
+{
+  "status": "RUNNING"
+}
+
+--- bench_teal30_uniform_6task ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "wikitext2_ppl": 10.8173,
+    "arc_challenge_acc_norm": 0.3933,
+    "winogrande_acc": 0.6504,
+    "mmlu_acc": 0.4586,
+    "hellaswag_acc_norm": 0.6331,
+    "piqa_acc_norm": 0.728,
+    "actual_sparsity": 0.3
+  }
+}
+
+--- bench_teal30_uniform_gsm8k ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "gsm8k_exact_match": 0.0879,
+    "actual_sparsity": 0.3
+  }
+}
+
+--- qwen14b_teal30_uniform_hspiqa_v2 ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "hellaswag_acc": 0.4936,
+    "hellaswag_acc_norm": 0.6756,
+    "piqa_acc": 0.7443,
+    "piqa_acc_norm": 0.7427
+  }
+}
+
+--- mistral_teal30_downstream ---
+{
+  "status": "DONE",
+  "metrics": {
+    "wikitext2_ppl": 8.3807,
+    "arc_challenge_acc_norm": 0.4113,
+    "winogrande_acc": 0.6354,
+    "mmlu_acc": 0.4348,
+    "gsm8k_exact_match": 0.1592,
+    "hellaswag_acc_norm": 0.6011,
+    "piqa_acc_norm": 0.7214
+  },
+  "conclusion": "success"
+}
+
+--- qwen14b_teal30_uniform_eval_4task ---
+{
+  "status": "DONE",
+  "metrics": {
+    "wikitext2_ppl": 8.01,
+    "mmlu_acc": 0.6634,
+    "arc_challenge_acc_norm": 0.5529,
+    "winogrande_acc": 0.6985
+  },
+  "conclusion": "success"
+}
+
+--- qwen14b_teal30_uniform_eval ---
+{
+  "status": "DONE",
+  "conclusion": "failed"
+}
+
+--- qwen14b_teal30_eval ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "wikitext2_ppl": 8.7332,
+    "arc_challenge_acc_norm": 0.5683,
+    "winogrande_acc": 0.7269,
+    "mmlu_acc": 0.7183,
+    "gsm8k_exact_match": 0.4951
+  }
+}
+
+--- downstream_teal30_baseline ---
+{
+  "status": "DONE",
+  "metrics": {
+    "hellaswag_acc": 0.4878,
+    "hellaswag_acc_norm": 0.667,
+    "piqa_acc": 0.7258,
+    "piqa_acc_norm": 0.7361,
+    "boolq_acc": 0.685
+  },
+  "conclusion": "success"
+}
+
+--- mistral_teal30_baseline ---
+{
+  "status": "DONE",
+  "metrics": {
+    "wikitext2_ppl": 8.3807,
+    "model": "Mistral-7B-v0.3",
+    "condition": "teal_vanilla_30pct",
+    "sparsity": 0.3,
+    "allocation": "uniform",
+    "ppl_increase_vs_dense": 2.8569
+  },
+  "conclusion": "success"
+}
+
+--- eval_kl30_teal_30pct ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "dense_ppl": 6.12,
+    "predictor_hard_mask_ppl": 7.3,
+    "teal_sparse_ppl": 8.98,
+    "sparsity_target": 0.3,
+    "actual_sparsity": 0.3
+  }
+}
+
+--- bench_teal30 ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "wikitext2_ppl": 10.97,
+    "arc_challenge_acc_norm": 0.4232,
+    "winogrande_acc": 0.6606,
+    "mmlu_acc": 0.3861,
+    "gsm8k_exact_match": 0.0788,
+    "actual_sparsity": 0.3
+  }
+}
+
+--- lm_eval_teal_30pct ---
+{
+  "status": "DONE",
+  "metrics": {
+    "arc_challenge": {
+      "acc": 0.3933,
+      "acc_norm": 0.4155,
+      "acc_stderr": 0.0143,
+      "acc_norm_stderr": 0.0144
+    },
+    "winogrande": {
+      "acc": 0.6559,
+      "acc_stderr": 0.0134
+    },
+    "mmlu": {
+      "acc": 0.3598,
+      "acc_stderr": 0.004
+    },
+    "mmlu_stem": {
+      "acc": 0.313
+    },
+    "mmlu_humanities": {
+      "acc": 0.3305
+    },
+    "mmlu_social_sciences": {
+      "acc": 0.4108
+    },
+    "mmlu_other": {
+      "acc": 0.401
+    },
+    "gsm8k": {
+      "exact_match_strict": 0.0849,
+      "exact_match_flexible": 0.0925,
+      "strict_stderr": 0.0077,
+      "flexible_stderr": 0.008
+    },
+    "actual_sparsity": 0.3
+  },
+  "conclusion": "negative"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "c7ef4781-a3e9-47ad-aa95-60a51d2a0ca2"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 59_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Running Extract teal275 experiments from registry",
+  "usage": {
+    "total_tokens": 23123,
+    "tool_uses": 11,
+    "duration_ms": 50134
+  },
+  "last_tool_name": "Bash",
+  "uuid": "1d1aaf97-20f9-4cc3-8597-c9b0194fcf80",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QkRirKcbDuhYDa5QaoJQRh`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexperiments = registry['data']['experiments']\n\n# 2. teal275 experiments\nprint('='*80)\nprint('=== TEAL275 EXPERIMENTS ===')\nprint('='*80)\nfor eid, exp in experiments.items():\n    if 'teal275' in eid or 'teal_275' in eid:\n        print(f'\\n--- {eid} ---')\n        print(json.dumps(exp, indent=2))\n\" 2>&1",
+  "description": "Extract teal275 experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "41c57aac-13d9-4b1e-92ea-8c709ab7d0fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HEf7H8LEUcUEsomXSSRo4h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4302,
+      "cache_read_input_tokens": 18596,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4302,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-20T02:06:58.794Z_
+
+<details><summary>↩ Tool result · `toolu_01QkRirKcbDuhYDa5QaoJQRh`</summary>
+
+```text
+================================================================================
+=== TEAL275 EXPERIMENTS ===
+================================================================================
+
+--- qwen14b_teal275_uniform_eval_v3 ---
+{
+  "status": "DONE",
+  "metrics": {
+    "wikitext2_ppl": 7.7087,
+    "arc_challenge_acc_norm": 0.57,
+    "winogrande_acc": 0.7167,
+    "mmlu_acc": 0.6738,
+    "gsm8k_exact_match": 0.5709
+  },
+  "conclusion": "success"
+}
+
+--- qwen14b_teal275_hspiqa ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "hellaswag_acc": 0.5092,
+    "hellaswag_acc_norm": 0.6993,
+    "piqa_acc": 0.753,
+    "piqa_acc_norm": 0.7476,
+    "model_sparsity": 0.268,
+    "runtime_seconds": 3551.3
+  }
+}
+
+--- qwen14b_teal275_uniform_hspiqa ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "hellaswag_acc": 0.5092,
+    "hellaswag_acc_norm": 0.6993,
+    "piqa_acc": 0.753,
+    "piqa_acc_norm": 0.7476
+  }
+}
+
+--- qwen14b_teal275_uniform_eval_v2 ---
+{
+  "status": "DONE",
+  "conclusion": "failed"
+}
+
+--- qwen14b_teal275_uniform_eval ---
+{
+  "status": "DONE",
+  "conclusion": "killed"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "4bc9f71a-0f78-4c52-9479-58d69ad03eb5"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 62_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Running Extract kl30+gsm8k experiments from registry",
+  "usage": {
+    "total_tokens": 23124,
+    "tool_uses": 12,
+    "duration_ms": 52719
+  },
+  "last_tool_name": "Bash",
+  "uuid": "46be54c4-a532-4b3c-8b8d-9ff73166c182",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KWqSsCSZHq68NVHvymqmii`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexperiments = registry['data']['experiments']\n\n# 3. kl30 experiments with gsm8k\nprint('='*80)\nprint('=== KL30 EXPERIMENTS (with gsm8k) ===')\nprint('='*80)\nfor eid, exp in experiments.items():\n    if ('kl30' in eid or 'kl_30' in eid) and 'gsm8k' in eid:\n        print(f'\\n--- {eid} ---')\n        print(json.dumps(exp, indent=2))\n\" 2>&1",
+  "description": "Extract kl30+gsm8k experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "46ff7e35-c845-4d45-8adb-af7464ae4a95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HEf7H8LEUcUEsomXSSRo4h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4302,
+      "cache_read_input_tokens": 18596,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4302,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T02:07:01.400Z_
+
+<details><summary>↩ Tool result · `toolu_01KWqSsCSZHq68NVHvymqmii`</summary>
+
+```text
+================================================================================
+=== KL30 EXPERIMENTS (with gsm8k) ===
+================================================================================
+
+--- qwen14b_kl30_s456_gsm8k ---
+{
+  "status": "DONE",
+  "metrics": {
+    "gsm8k_exact_match": 0.2608,
+    "gsm8k_exact_match_stderr": 0.01209,
+    "gsm8k_exact_match_strict": 0.2547,
+    "gsm8k_exact_match_strict_stderr": 0.012,
+    "actual_sparsity": 0.297
+  },
+  "conclusion": "success"
+}
+
+--- qwen14b_kl30_s42_gsm8k_v2 ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "gsm8k_exact_match": 0.3571,
+    "gsm8k_exact_match_strict": 0.3541,
+    "gsm8k_exact_match_stderr": 0.0132,
+    "actual_sparsity": 0.296,
+    "sample_len": 1319
+  }
+}
+
+--- bench_kl30_uniform_gsm8k_d075 ---
+{
+  "status": "PREPARING"
+}
+
+--- qwen14b_kl30_s123_gsm8k ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "gsm8k_exact_match": 0.3442,
+    "gsm8k_exact_match_strict": 0.3434,
+    "actual_sparsity": 0.297
+  }
+}
+
+--- qwen14b_kl30_s42_gsm8k ---
+{
+  "status": "DONE",
+  "conclusion": "killed"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "2f802985-9b7f-4b29-a3fe-58d997bf6f26"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 65_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Running Extract dense/baseline experiments from registry",
+  "usage": {
+    "total_tokens": 23125,
+    "tool_uses": 13,
+    "duration_ms": 68928
+  },
+  "last_tool_name": "Bash",
+  "uuid": "ed70648e-2197-47ab-a92f-db8928c3fb6e",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01X5Q96uxxpPX286QZdAXsJf`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexperiments = registry['data']['experiments']\n\n# 4. Dense baseline experiments\nprint('='*80)\nprint('=== DENSE / BASELINE EXPERIMENTS ===')\nprint('='*80)\nfor eid, exp in experiments.items():\n    if 'dense' in eid or 'baseline' in eid:\n        # Only qwen14b ones\n        if 'qwen14b' in eid:\n            print(f'\\n--- {eid} ---')\n            print(json.dumps(exp, indent=2))\n\" 2>&1",
+  "description": "Extract dense/baseline experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "922ff7d0-d79a-451f-8cf5-878766e4edc6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HEf7H8LEUcUEsomXSSRo4h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4302,
+      "cache_read_input_tokens": 18596,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4302,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-20T02:07:17.598Z_
+
+<details><summary>↩ Tool result · `toolu_01X5Q96uxxpPX286QZdAXsJf`</summary>
+
+```text
+================================================================================
+=== DENSE / BASELINE EXPERIMENTS ===
+================================================================================
+
+--- qwen14b_dense_4task_v2 ---
+{
+  "status": "DONE",
+  "metrics": {
+    "wikitext2_ppl": 5.1854,
+    "arc_challenge_acc_norm": 0.6758,
+    "winogrande_acc": 0.8106,
+    "mmlu_acc": 0.7977
+  },
+  "conclusion": "success"
+}
+
+--- qwen14b_dense_hspiqa ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "hellaswag_acc": 0.6444,
+    "hellaswag_acc_norm": 0.8421,
+    "piqa_acc": 0.809,
+    "piqa_acc_norm": 0.8194
+  }
+}
+
+--- qwen14b_dense_4task ---
+{
+  "status": "DONE",
+  "conclusion": "failed"
+}
+
+--- qwen14b_dense_baseline ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "ppl": 5.1854,
+    "arc_challenge": 0.6758,
+    "winogrande": 0.8106,
+    "mmlu": 0.7977,
+    "gsm8k": 0.8757
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "1325e927-933c-4f53-b0bb-181b891df087"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 68_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Running Check exact qwen14b_teal30_uniform_gsm8k and baseline/metadata fields",
+  "usage": {
+    "total_tokens": 27487,
+    "tool_uses": 14,
+    "duration_ms": 80110
+  },
+  "last_tool_name": "Bash",
+  "uuid": "7cd9d174-63d5-45f6-823f-c972d7604b35",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015sXUS3fpr19PrSTPrai5Sa`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexperiments = registry['data']['experiments']\n\n# Check qwen14b_teal30_uniform_gsm8k exactly\nprint('=== qwen14b_teal30_uniform_gsm8k (exact) ===')\nif 'qwen14b_teal30_uniform_gsm8k' in experiments:\n    print(json.dumps(experiments['qwen14b_teal30_uniform_gsm8k'], indent=2))\nelse:\n    print('NOT FOUND')\n\n# Also check the baseline field\nprint()\nprint('=== registry baseline field ===')\nif 'baseline' in registry['data']:\n    print(json.dumps(registry['data']['baseline'], indent=2))\n\n# Also print metadata\nprint()\nprint('=== registry metadata ===')\nif 'metadata' in registry:\n    print(json.dumps(registry['metadata'], indent=2))\n\" 2>&1",
+  "description": "Check exact qwen14b_teal30_uniform_gsm8k and baseline/metadata fields"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "a1f5103f-c9c7-4258-98c6-f676c78b75a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MhjJtXTBbTSsPVuFppjSHz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4354,
+      "cache_read_input_tokens": 22898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4354,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T02:07:28.911Z_
+
+<details><summary>↩ Tool result · `toolu_015sXUS3fpr19PrSTPrai5Sa`</summary>
+
+```text
+=== qwen14b_teal30_uniform_gsm8k (exact) ===
+{
+  "status": "ANALYZING"
+}
+
+=== registry baseline field ===
+"bench_dense"
+
+=== registry metadata ===
+{
+  "elapsed_seconds": 0.734
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "71d95ca8-eb20-4b26-a6c6-4d47191b1be6"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 71_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "description": "Running Extract all qwen14b kl30 experiments",
+  "usage": {
+    "total_tokens": 27491,
+    "tool_uses": 15,
+    "duration_ms": 83402
+  },
+  "last_tool_name": "Bash",
+  "uuid": "3422d5a5-3f7a-487a-8cd0-1c06a071895d",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XTdJuaukjMJYzEdwzB8Hix`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexperiments = registry['data']['experiments']\n\n# kl30 experiments that have gsm8k in their metrics (not just in name)\nprint('=== ALL KL30 EXPERIMENTS (qwen14b) ===')\nfor eid, exp in sorted(experiments.items()):\n    if ('kl30' in eid or 'kl_30' in eid) and 'qwen14b' in eid:\n        print(f'\\n--- {eid} ---')\n        print(json.dumps(exp, indent=2))\n\" 2>&1",
+  "description": "Extract all qwen14b kl30 experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "43b03110-6cb5-4427-9fba-636bd7ae1192",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MhjJtXTBbTSsPVuFppjSHz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4354,
+      "cache_read_input_tokens": 22898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4354,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-20T02:07:32.063Z_
+
+<details><summary>↩ Tool result · `toolu_01XTdJuaukjMJYzEdwzB8Hix`</summary>
+
+```text
+=== ALL KL30 EXPERIMENTS (qwen14b) ===
+
+--- qwen14b_kl30_global_hspiqa ---
+{
+  "status": "PREPARING"
+}
+
+--- qwen14b_kl30_s123 ---
+{
+  "status": "DONE",
+  "metrics": {
+    "final_loss_kl_norm": 0.326,
+    "final_kl_raw": 0.326,
+    "final_sparsity": 0.277,
+    "final_constraint": 0.037,
+    "final_lambda": 5000,
+    "final_tau": 0.1,
+    "steps": 1000,
+    "trainable_params": "117M (0.793%)"
+  },
+  "conclusion": "success"
+}
+
+--- qwen14b_kl30_s123_eval ---
+{
+  "status": "DONE",
+  "conclusion": "killed"
+}
+
+--- qwen14b_kl30_s123_eval_v2 ---
+{
+  "status": "DONE",
+  "conclusion": "failed"
+}
+
+--- qwen14b_kl30_s123_eval_v3 ---
+{
+  "status": "DONE",
+  "conclusion": "failed"
+}
+
+--- qwen14b_kl30_s123_eval_v4 ---
+{
+  "status": "DONE",
+  "metrics": {
+    "wikitext2_ppl": 7.6607,
+    "arc_challenge_acc": 0.5222,
+    "arc_challenge_acc_norm": 0.5606,
+    "winogrande_acc": 0.7293,
+    "hellaswag_acc": 0.5179,
+    "hellaswag_acc_norm": 0.7132,
+    "piqa_acc": 0.7388,
+    "piqa_acc_norm": 0.7535,
+    "mmlu_acc": 0.6449
+  },
+  "conclusion": "success"
+}
+
+--- qwen14b_kl30_s123_eval_v5 ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "wikitext2_ppl": 7.9367,
+    "arc_challenge_acc_norm": 0.541,
+    "winogrande_acc": 0.7403,
+    "hellaswag_acc_norm": 0.7287,
+    "piqa_acc_norm": 0.765,
+    "mmlu_acc": 0.6234,
+    "actual_sparsity": 0.296
+  }
+}
+
+--- qwen14b_kl30_s123_gsm8k ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "gsm8k_exact_match": 0.3442,
+    "gsm8k_exact_match_strict": 0.3434,
+    "actual_sparsity": 0.297
+  }
+}
+
+--- qwen14b_kl30_s42 ---
+{
+  "status": "DONE",
+  "metrics": {
+    "dense_ppl": 5.18,
+    "predictor_hard_mask_ppl": 6.8,
+    "teal_global_ppl": 7.62,
+    "ppl_ratio_hard_mask": 1.31,
+    "ppl_ratio_teal": 1.47,
+    "final_loss": 0.3398,
+    "training_sparsity": 0.281,
+    "teal_sparsity": 0.3,
+    "lambda": 5000,
+    "steps": 1000
+  },
+  "conclusion": "success"
+}
+
+--- qwen14b_kl30_s42_eval ---
+{
+  "status": "DONE",
+  "metrics": {
+    "wikitext2_ppl": 7.6232,
+    "arc_challenge_acc_norm": 0.5717,
+    "winogrande_acc": 0.7206,
+    "mmlu_acc": 0.6372,
+    "gsm8k_exact_match": 0.4882
+  },
+  "conclusion": "success"
+}
+
+--- qwen14b_kl30_s42_eval_uniform ---
+{
+  "status": "DONE",
+  "conclusion": "failed"
+}
+
+--- qwen14b_kl30_s42_eval_uniform_v2 ---
+{
+  "status": "DONE",
+  "conclusion": "killed"
+}
+
+--- qwen14b_kl30_s42_eval_uniform_v3 ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "wikitext2_ppl": 7.8715,
+    "arc_challenge_acc": 0.5051,
+    "arc_challenge_acc_norm": 0.5495,
+    "winogrande_acc": 0.7127,
+    "mmlu_acc": 0.648,
+    "hellaswag_acc_norm": 0.7268,
+    "piqa_acc_norm": 0.7476,
+    "actual_sparsity": 0.296
+  }
+}
+
+--- qwen14b_kl30_s42_gsm8k ---
+{
+  "status": "DONE",
+  "conclusion": "killed"
+}
+
+--- qwen14b_kl30_s42_gsm8k_v2 ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "gsm8k_exact_match": 0.3571,
+    "gsm8k_exact_match_strict": 0.3541,
+    "gsm8k_exact_match_stderr": 0.0132,
+    "actual_sparsity": 0.296,
+    "sample_len": 1319
+  }
+}
+
+--- qwen14b_kl30_s456 ---
+{
+  "status": "DONE",
+  "metrics": {
+    "final_loss": 0.3086,
+    "final_kl_norm": 0.2715,
+    "final_sparsity": 0.277,
+    "final_constraint": 0.0366,
+    "final_lambda": 5000,
+    "final_tau": 0.1,
+    "training_steps": 1000
+  },
+  "conclusion": "success"
+}
+
+--- qwen14b_kl30_s456_eval ---
+{
+  "status": "DONE",
+  "conclusion": "killed"
+}
+
+--- qwen14b_kl30_s456_eval_v2 ---
+{
+  "status": "DONE",
+  "metrics": {
+    "wikitext2_ppl": 7.6933,
+    "arc_challenge_acc": 0.5051,
+    "arc_challenge_acc_norm": 0.5324,
+    "winogrande_acc": 0.723,
+    "mmlu_acc": 0.6411,
+    "hellaswag_acc": 0.5197,
+    "hellaswag_acc_norm": 0.7113,
+    "piqa_acc": 0.7421,
+    "piqa_acc_norm": 0.7552,
+    "model_sparsity": 0.275
+  },
+  "conclusion": "success"
+}
+
+--- qwen14b_kl30_s456_eval_v3 ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "wikitext2_ppl": 7.8992,
+    "arc_challenge_acc_norm": 0.5145,
+    "winogrande_acc": 0.7316,
+    "hellaswag_acc_norm": 0.7249,
+    "piqa_acc_norm": 0.7677,
+    "mmlu_acc": 0.6351,
+    "actual_sparsity": 0.297
+  }
+}
+
+--- qwen14b_kl30_s456_gsm8k ---
+{
+  "status": "DONE",
+  "metrics": {
+    "gsm8k_exact_match": 0.2608,
+    "gsm8k_exact_match_stderr": 0.01209,
+    "gsm8k_exact_match_strict": 0.2547,
+    "gsm8k_exact_match_strict_stderr": 0.012,
+    "actual_sparsity": 0.297
+  },
+  "conclusion": "success"
+}
+
+--- qwen14b_kl30_uniform_eval ---
+{
+  "status": "DONE",
+  "conclusion": "failed"
+}
+
+--- qwen14b_kl30_uniform_eval_4task ---
+{
+  "status": "DONE",
+  "metrics": {
+    "wikitext2_ppl": 7.63,
+    "mmlu_acc": 0.6449,
+    "arc_challenge_acc_norm": 0.5444,
+    "winogrande_acc": 0.7245
+  },
+  "conclusion": "negative"
+}
+
+--- qwen14b_kl30_uniform_hspiqa ---
+{
+  "status": "PREPARING"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "026f12b0-eb88-4f0d-acf0-8bd780f4f4a9"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 74_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "abb1824d24b1e5f41",
+  "tool_use_id": "toolu_0189CNoRgQDDoNtEUTsw329s",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Search registry for comparisons",
+  "usage": {
+    "total_tokens": 30793,
+    "tool_uses": 15,
+    "duration_ms": 129180
+  },
+  "uuid": "619c30de-598b-4be9-951f-21dc584e5fc4",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356"
+}
+```
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-20T02:08:17.751Z_
+
+<details><summary>↩ Tool result · `toolu_0189CNoRgQDDoNtEUTsw329s`</summary>
+
+```text
+Here are the complete findings:
+
+---
+
+## 1. `qwen14b_teal30_uniform_gsm8k` (exact match EXISTS)
+
+- **exp_id**: `qwen14b_teal30_uniform_gsm8k`
+- **status**: `"ANALYZING"`
+- **No metrics, no conclusion** -- just `{"status": "ANALYZING"}`
+
+This experiment exists but has no results yet.
+
+### Other teal30 experiments (all matches):
+
+| exp_id | status | conclusion | key metrics |
+|--------|--------|-----------|-------------|
+| `qwen14b_teal30_uniform_hspiqa` | RUNNING | -- | -- |
+| `qwen14b_teal30_uniform_hspiqa_v2` | DONE | success | hellaswag_acc=0.4936, hellaswag_acc_norm=0.6756, piqa_acc=0.7443, piqa_acc_norm=0.7427 |
+| `qwen14b_teal30_uniform_eval_4task` | DONE | success | wikitext2_ppl=8.01, mmlu_acc=0.6634, arc_challenge_acc_norm=0.5529, winogrande_acc=0.6985 |
+| `qwen14b_teal30_uniform_eval` | DONE | **failed** | -- |
+| `qwen14b_teal30_eval` | DONE | success | wikitext2_ppl=8.7332, arc_challenge_acc_norm=0.5683, winogrande_acc=0.7269, mmlu_acc=0.7183, **gsm8k_exact_match=0.4951** |
+| `bench_teal30_uniform_6task` | DONE | success | wikitext2_ppl=10.8173, arc_challenge_acc_norm=0.3933, winogrande_acc=0.6504, mmlu_acc=0.4586, hellaswag_acc_norm=0.6331, piqa_acc_norm=0.728, actual_sparsity=0.3 |
+| `bench_teal30_uniform_gsm8k` | DONE | success | **gsm8k_exact_match=0.0879**, actual_sparsity=0.3 |
+| `bench_teal30` | DONE | success | wikitext2_ppl=10.97, arc_challenge_acc_norm=0.4232, winogrande_acc=0.6606, mmlu_acc=0.3861, **gsm8k_exact_match=0.0788**, actual_sparsity=0.3 |
+| `mistral_teal30_downstream` | DONE | success | wikitext2_ppl=8.3807, arc_challenge_acc_norm=0.4113, winogrande_acc=0.6354, mmlu_acc=0.4348, **gsm8k_exact_match=0.1592**, hellaswag_acc_norm=0.6011, piqa_acc_norm=0.7214 |
+| `mistral_teal30_baseline` | DONE | success | wikitext2_ppl=8.3807, ppl_increase_vs_dense=2.8569, sparsity=0.3 |
+| `downstream_teal30_baseline` | DONE | success | hellaswag_acc=0.4878, hellaswag_acc_norm=0.667, piqa_acc=0.7258, piqa_acc_norm=0.7361, boolq_acc=0.685 |
+| `eval_kl30_teal_30pct` | DONE | success | dense_ppl=6.12, predictor_hard_mask_ppl=7.3, teal_sparse_ppl=8.98 |
+| `lm_eval_teal_30pct` | DONE | **negative** | arc_challenge_acc_norm=0.4155, winogrande_acc=0.6559, mmlu_acc=0.3598, **gsm8k exact_match_strict=0.0849, exact_match_flexible=0.0925**, actual_sparsity=0.3 |
+
+**Note**: `qwen14b_teal30_eval` (global allocation, not uniform) has **gsm8k_exact_match=0.4951**. The uniform variant `qwen14b_teal30_uniform_gsm8k` is still in ANALYZING status with no metrics.
+
+---
+
+## 2. TEAL275 experiments
+
+| exp_id | status | conclusion | key metrics |
+|--------|--------|-----------|-------------|
+| `qwen14b_teal275_uniform_eval_v3` | DONE | success | wikitext2_ppl=7.7087, arc_challenge_acc_norm=0.57, winogrande_acc=0.7167, mmlu_acc=0.6738, **gsm8k_exact_match=0.5709** |
+| `qwen14b_teal275_hspiqa` | DONE | success | hellaswag_acc=0.5092, hellaswag_acc_norm=0.6993, piqa_acc=0.753, piqa_acc_norm=0.7476, model_sparsity=0.268 |
+| `qwen14b_teal275_uniform_hspiqa` | DONE | success | hellaswag_acc=0.5092, hellaswag_acc_norm=0.6993, piqa_acc=0.753, piqa_acc_norm=0.7476 |
+| `qwen14b_teal275_uniform_eval_v2` | DONE | **failed** | -- |
+| `qwen14b_teal275_uniform_eval` | DONE | **killed** | -- |
+
+---
+
+## 3. KL30 experiments with gsm8k
+
+| exp_id | status | conclusion | key metrics |
+|--------|--------|-----------|-------------|
+| `qwen14b_kl30_s42_gsm8k_v2` | DONE | success | **gsm8k_exact_match=0.3571**, gsm8k_exact_match_strict=0.3541, gsm8k_exact_match_stderr=0.0132, actual_sparsity=0.296 |
+| `qwen14b_kl30_s123_gsm8k` | DONE | success | **gsm8k_exact_match=0.3442**, gsm8k_exact_match_strict=0.3434, actual_sparsity=0.297 |
+| `qwen14b_kl30_s456_gsm8k` | DONE | success | **gsm8k_exact_match=0.2608**, gsm8k_exact_match_strict=0.2547, gsm8k_exact_match_stderr=0.01209, actual_sparsity=0.297 |
+| `qwen14b_kl30_s42_gsm8k` | DONE | **killed** | -- |
+| `bench_kl30_uniform_gsm8k_d075` | PREPARING | -- | -- |
+
+Also, `qwen14b_kl30_s42_eval` has gsm8k in its metrics: **gsm8k_exact_match=0.4882** (this uses global allocation, not uniform).
+
+### Other notable qwen14b_kl30 experiments (with full downstream metrics):
+
+- `qwen14b_kl30_s123_eval_v4`: wikitext2_ppl=7.6607, arc_norm=0.5606, winogrande=0.7293, hellaswag_norm=0.7132, piqa_norm=0.7535, mmlu=0.6449
+- `qwen14b_kl30_s123_eval_v5` (uniform, sparsity=0.296): wikitext2_ppl=7.9367, arc_norm=0.541, winogrande=0.7403, hellaswag_norm=0.7287, piqa_norm=0.765, mmlu=0.6234
+- `qwen14b_kl30_s42_eval_uniform_v3` (uniform, sparsity=0.296): wikitext2_ppl=7.8715, arc_norm=0.5495, winogrande=0.7127, mmlu=0.648, hellaswag_norm=0.7268, piqa_norm=0.7476
+- `qwen14b_kl30_s456_eval_v2`: wikitext2_ppl=7.6933, arc_norm=0.5324, winogrande=0.723, mmlu=0.6411, hellaswag_norm=0.7113, piqa_norm=0.7552
+- `qwen14b_kl30_s456_eval_v3` (uniform, sparsity=0.297): wikitext2_ppl=7.8992, arc_norm=0.5145, winogrande=0.7316, hellaswag_norm=0.7249, piqa_norm=0.7677, mmlu=0.6351
+- `qwen14b_kl30_uniform_eval_4task`: wikitext2_ppl=7.63, mmlu=0.6449, arc_norm=0.5444, winogrande=0.7245 (conclusion: **negative**)
+
+---
+
+## 4. Dense baseline (Qwen 14B)
+
+**`qwen14b_dense_baseline`**: status=DONE, conclusion=success
+- ppl=5.1854
+- arc_challenge=0.6758
+- winogrande=0.8106
+- mmlu=0.7977
+- **gsm8k=0.8757**
+
+**`qwen14b_dense_4task_v2`**: status=DONE, conclusion=success
+- wikitext2_ppl=5.1854
+- arc_challenge_acc_norm=0.6758
+- winogrande_acc=0.8106
+- mmlu_acc=0.7977
+
+**`qwen14b_dense_hspiqa`**: status=DONE, conclusion=success
+- hellaswag_acc=0.6444, hellaswag_acc_norm=0.8421
+- piqa_acc=0.809, piqa_acc_norm=0.8194
+
+**`qwen14b_dense_4task`**: status=DONE, conclusion=**failed**
+
+The registry's `baseline` field points to `"bench_dense"` (Mistral benchmark, not Qwen).
+
+---
+
+## Summary of gsm8k numbers across conditions (Qwen 14B)
+
+| Condition | exp_id | gsm8k_exact_match | sparsity |
+|-----------|--------|-------------------|----------|
+| Dense | qwen14b_dense_baseline | **0.8757** | 0% |
+| KL30 global s42 | qwen14b_kl30_s42_eval | 0.4882 | ~0.30 |
+| KL30 uniform s42 | qwen14b_kl30_s42_gsm8k_v2 | 0.3571 | 0.296 |
+| KL30 uniform s123 | qwen14b_kl30_s123_gsm8k | 0.3442 | 0.297 |
+| KL30 uniform s456 | qwen14b_kl30_s456_gsm8k | 0.2608 | 0.297 |
+| TEAL30 global | qwen14b_teal30_eval | 0.4951 | ~0.30 |
+| TEAL30 uniform | qwen14b_teal30_uniform_gsm8k | **ANALYZING (no metrics yet)** | -- |
+| TEAL27.5 uniform | qwen14b_teal275_uniform_eval_v3 | 0.5709 | ~0.275 |
+
+agentId: abb1824d24b1e5f41 (use SendMessage with to: 'abb1824d24b1e5f41' to continue this agent)
+&lt;usage>total_tokens: 33560
+tool_uses: 15
+duration_ms: 129181&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "8e3a8522-5951-4a7b-82bf-f4d3b50e68d6",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "Read the file /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/74318742-6b7e-4408-93db-310611d13356/tool-results/mcp-agent-ml-research-read_registry-1779242755086.txt\n\nThis is a JSON file with schema {result: string} where the string is itself JSON containing experiment registry data.\n\nI need you to find and extract info about these specific experiments (or close matches):\n1. Any experiment with \"teal30\" or \"teal_30\" in the exp_id (especially ones with \"uniform\" and/or \"gsm8k\")\n2. Any experiment with \"teal275\" or \"teal_275\" in the exp_id (especially ones with \"uniform\")\n3. Any experiment with \"kl30\" or \"kl_30\" in the exp_id (especially ones with \"gsm8k\")\n4. The dense baseline experiment (exp_id containing \"dense\" or \"baseline\")\n\nFor each match, report: exp_id, status, conclusion, metrics (especially gsm8k if present), and any other key fields.\n\nAlso check: is there an experiment with exp_id exactly \"qwen14b_teal30_uniform_gsm8k\"? If not, what's the closest match?\n\nReport all findings verbatim - don't summarize the numbers, I need exact values.",
+    "agentId": "abb1824d24b1e5f41",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the complete findings:\n\n---\n\n## 1. `qwen14b_teal30_uniform_gsm8k` (exact match EXISTS)\n\n- **exp_id**: `qwen14b_teal30_uniform_gsm8k`\n- **status**: `\"ANALYZING\"`\n- **No metrics, no conclusion** -- just `{\"status\": \"ANALYZING\"}`\n\nThis experiment exists but has no results yet.\n\n### Other teal30 experiments (all matches):\n\n| exp_id | status | conclusion | key metrics |\n|--------|--------|-----------|-------------|\n| `qwen14b_teal30_uniform_hspiqa` | RUNNING | -- | -- |\n| `qwen14b_teal30_uniform_hspiqa_v2` | DONE | success | hellaswag_acc=0.4936, hellaswag_acc_norm=0.6756, piqa_acc=0.7443, piqa_acc_norm=0.7427 |\n| `qwen14b_teal30_uniform_eval_4task` | DONE | success | wikitext2_ppl=8.01, mmlu_acc=0.6634, arc_challenge_acc_norm=0.5529, winogrande_acc=0.6985 |\n| `qwen14b_teal30_uniform_eval` | DONE | **failed** | -- |\n| `qwen14b_teal30_eval` | DONE | success | wikitext2_ppl=8.7332, arc_challenge_acc_norm=0.5683, winogrande_acc=0.7269, mmlu_acc=0.7183, **gsm8k_exact_match=0.4951** |\n| `bench_teal30_uniform_6task` | DONE | success | wikitext2_ppl=10.8173, arc_challenge_acc_norm=0.3933, winogrande_acc=0.6504, mmlu_acc=0.4586, hellaswag_acc_norm=0.6331, piqa_acc_norm=0.728, actual_sparsity=0.3 |\n| `bench_teal30_uniform_gsm8k` | DONE | success | **gsm8k_exact_match=0.0879**, actual_sparsity=0.3 |\n| `bench_teal30` | DONE | success | wikitext2_ppl=10.97, arc_challenge_acc_norm=0.4232, winogrande_acc=0.6606, mmlu_acc=0.3861, **gsm8k_exact_match=0.0788**, actual_sparsity=0.3 |\n| `mistral_teal30_downstream` | DONE | success | wikitext2_ppl=8.3807, arc_challenge_acc_norm=0.4113, winogrande_acc=0.6354, mmlu_acc=0.4348, **gsm8k_exact_match=0.1592**, hellaswag_acc_norm=0.6011, piqa_acc_norm=0.7214 |\n| `mistral_teal30_baseline` | DONE | success | wikitext2_ppl=8.3807, ppl_increase_vs_dense=2.8569, sparsity=0.3 |\n| `downstream_teal30_baseline` | DONE | success | hellaswag_acc=0.4878, hellaswag_acc_norm=0.667, piqa_acc=0.7258, piqa_acc_norm=0.7361, boolq_acc=0.685 |\n| `eval_kl30_teal_30pct` | DONE | success | dense_ppl=6.12, predictor_hard_mask_ppl=7.3, teal_sparse_ppl=8.98 |\n| `lm_eval_teal_30pct` | DONE | **negative** | arc_challenge_acc_norm=0.4155, winogrande_acc=0.6559, mmlu_acc=0.3598, **gsm8k exact_match_strict=0.0849, exact_match_flexible=0.0925**, actual_sparsity=0.3 |\n\n**Note**: `qwen14b_teal30_eval` (global allocation, not uniform) has **gsm8k_exact_match=0.4951**. The uniform variant `qwen14b_teal30_uniform_gsm8k` is still in ANALYZING status with no metrics.\n\n---\n\n## 2. TEAL275 experiments\n\n| exp_id | status | conclusion | key metrics |\n|--------|--------|-----------|-------------|\n| `qwen14b_teal275_uniform_eval_v3` | DONE | success | wikitext2_ppl=7.7087, arc_challenge_acc_norm=0.57, winogrande_acc=0.7167, mmlu_acc=0.6738, **gsm8k_exact_match=0.5709** |\n| `qwen14b_teal275_hspiqa` | DONE | success | hellaswag_acc=0.5092, hellaswag_acc_norm=0.6993, piqa_acc=0.753, piqa_acc_norm=0.7476, model_sparsity=0.268 |\n| `qwen14b_teal275_uniform_hspiqa` | DONE | success | hellaswag_acc=0.5092, hellaswag_acc_norm=0.6993, piqa_acc=0.753, piqa_acc_norm=0.7476 |\n| `qwen14b_teal275_uniform_eval_v2` | DONE | **failed** | -- |\n| `qwen14b_teal275_uniform_eval` | DONE | **killed** | -- |\n\n---\n\n## 3. KL30 experiments with gsm8k\n\n| exp_id | status | conclusion | key metrics |\n|--------|--------|-----------|-------------|\n| `qwen14b_kl30_s42_gsm8k_v2` | DONE | success | **gsm8k_exact_match=0.3571**, gsm8k_exact_match_strict=0.3541, gsm8k_exact_match_stderr=0.0132, actual_sparsity=0.296 |\n| `qwen14b_kl30_s123_gsm8k` | DONE | success | **gsm8k_exact_match=0.3442**, gsm8k_exact_match_strict=0.3434, actual_sparsity=0.297 |\n| `qwen14b_kl30_s456_gsm8k` | DONE | success | **gsm8k_exact_match=0.2608**, gsm8k_exact_match_strict=0.2547, gsm8k_exact_match_stderr=0.01209, actual_sparsity=0.297 |\n| `qwen14b_kl30_s42_gsm8k` | DONE | **killed** | -- |\n| `bench_kl30_uniform_gsm8k_d075` | PREPARING | -- | -- |\n\nAlso, `qwen14b_kl30_s42_eval` has gsm8k in its metrics: **gsm8k_exact_match=0.4882** (this uses global allocation, not uniform).\n\n### Other notable qwen14b_kl30 experiments (with full downstream metrics):\n\n- `qwen14b_kl30_s123_eval_v4`: wikitext2_ppl=7.6607, arc_norm=0.5606, winogrande=0.7293, hellaswag_norm=0.7132, piqa_norm=0.7535, mmlu=0.6449\n- `qwen14b_kl30_s123_eval_v5` (uniform, sparsity=0.296): wikitext2_ppl=7.9367, arc_norm=0.541, winogrande=0.7403, hellaswag_norm=0.7287, piqa_norm=0.765, mmlu=0.6234\n- `qwen14b_kl30_s42_eval_uniform_v3` (uniform, sparsity=0.296): wikitext2_ppl=7.8715, arc_norm=0.5495, winogrande=0.7127, mmlu=0.648, hellaswag_norm=0.7268, piqa_norm=0.7476\n- `qwen14b_kl30_s456_eval_v2`: wikitext2_ppl=7.6933, arc_norm=0.5324, winogrande=0.723, mmlu=0.6411, hellaswag_norm=0.7113, piqa_norm=0.7552\n- `qwen14b_kl30_s456_eval_v3` (uniform, sparsity=0.297): wikitext2_ppl=7.8992, arc_norm=0.5145, winogrande=0.7316, hellaswag_norm=0.7249, piqa_norm=0.7677, mmlu=0.6351\n- `qwen14b_kl30_uniform_eval_4task`: wikitext2_ppl=7.63, mmlu=0.6449, arc_norm=0.5444, winogrande=0.7245 (conclusion: **negative**)\n\n---\n\n## 4. Dense baseline (Qwen 14B)\n\n**`qwen14b_dense_baseline`**: status=DONE, conclusion=success\n- ppl=5.1854\n- arc_challenge=0.6758\n- winogrande=0.8106\n- mmlu=0.7977\n- **gsm8k=0.8757**\n\n**`qwen14b_dense_4task_v2`**: status=DONE, conclusion=success\n- wikitext2_ppl=5.1854\n- arc_challenge_acc_norm=0.6758\n- winogrande_acc=0.8106\n- mmlu_acc=0.7977\n\n**`qwen14b_dense_hspiqa`**: status=DONE, conclusion=success\n- hellaswag_acc=0.6444, hellaswag_acc_norm=0.8421\n- piqa_acc=0.809, piqa_acc_norm=0.8194\n\n**`qwen14b_dense_4task`**: status=DONE, conclusion=**failed**\n\nThe registry's `baseline` field points to `\"bench_dense\"` (Mistral benchmark, not Qwen).\n\n---\n\n## Summary of gsm8k numbers across conditions (Qwen 14B)\n\n| Condition | exp_id | gsm8k_exact_match | sparsity |\n|-----------|--------|-------------------|----------|\n| Dense | qwen14b_dense_baseline | **0.8757** | 0% |\n| KL30 global s42 | qwen14b_kl30_s42_eval | 0.4882 | ~0.30 |\n| KL30 uniform s42 | qwen14b_kl30_s42_gsm8k_v2 | 0.3571 | 0.296 |\n| KL30 uniform s123 | qwen14b_kl30_s123_gsm8k | 0.3442 | 0.297 |\n| KL30 uniform s456 | qwen14b_kl30_s456_gsm8k | 0.2608 | 0.297 |\n| TEAL30 global | qwen14b_teal30_eval | 0.4951 | ~0.30 |\n| TEAL30 uniform | qwen14b_teal30_uniform_gsm8k | **ANALYZING (no metrics yet)** | -- |\n| TEAL27.5 uniform | qwen14b_teal275_uniform_eval_v3 | 0.5709 | ~0.275 |"
+      }
+    ],
+    "totalDurationMs": 129181,
+    "totalTokens": 33560,
+    "totalToolUseCount": 15,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3301,
+      "cache_read_input_tokens": 27252,
+      "output_tokens": 3006,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3301
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3006,
+          "cache_read_input_tokens": 27252,
+          "cache_creation_input_tokens": 3301,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3301,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 3,
+      "searchCount": 4,
+      "bashCount": 8,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T02:08:18.219Z_
+
+<details><summary>↩ Tool result · `toolu_01BGKPHSfD6C5mdfR7ZoRi5r`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "f4edd902-4d29-445d-84d8-3332c5b0d46f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me summarize:
+
+**GSM8K result for qwen14b_teal30_uniform_gsm8k:**
+- exact_match (strict-match) = 0.5208
+- exact_match (flexible-extract) = 0.5208
+- exact_match_stderr = 0.01376
+- sample_len = 1319
+- actual model-level sparsity = 0.293
+
+**No W&B run** (grep found nothing)
+
+**Comparison:**
+| Condition | gsm8k_exact_match |
+
+
+|-----------|-------------------|
+| Dense | 0.8757 |
+| TEAL@27.5% uniform | 0.5709 |
+| TEAL@30% uniform (THIS) | 0.5208 |
+| TEAL@30% global | 0.4951 |
+| KL@30% uniform s42 | 0.3571 |
+| KL@30% uniform s123 | 0.3442 |
+| KL@30% uniform s456 | 0.2608 |
+
+Looking at the results, TEAL@30% uniform at 0.5208 outperforms the global variant and all the KL-based approaches, though it's notably lower than the 27.5% uniform configuration.
+
+Now I'm updating the registry with the metrics from this run—recording the exact match score of 0.5208, the standard error, and the actual sparsity achieved—and marking this as a success since TEAL@30% uniform maintains solid GSM8K performance well above the KL variants. The experiment already exists in analyzing status, so I'll update it with the log path and mark it complete.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "2871e3ca-4d00-4a71-bb4a-d816baeac417",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxrSUYeDSG2sYQzu3LCQXD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3948,
+      "cache_read_input_tokens": 33117,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3948
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+数据齐全，无 W&B run。现在更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "3737453c-a208-47a5-ab31-32acb20fccee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxrSUYeDSG2sYQzu3LCQXD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3948,
+      "cache_read_input_tokens": 33117,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3948
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014XQAZGeUyfLFU29f13qhq3`</summary>
+
+```json
+{
+  "exp_id": "qwen14b_teal30_uniform_gsm8k",
+  "field": "metrics",
+  "value": {
+    "gsm8k_exact_match": 0.5208,
+    "gsm8k_exact_match_strict": 0.5208,
+    "gsm8k_exact_match_flexible": 0.5208,
+    "gsm8k_exact_match_stderr": 0.01376,
+    "actual_sparsity": 0.293,
+    "sample_len": 1319
+  },
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "11dabb6f-4d97-4b71-92a8-47fe069b9698",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxrSUYeDSG2sYQzu3LCQXD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3948,
+      "cache_read_input_tokens": 33117,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3948
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T02:08:34.930Z_
+
+<details><summary>↩ Tool result · `toolu_014XQAZGeUyfLFU29f13qhq3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_teal30_uniform_gsm8k\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T19:33:08.754Z\", \"updated_at\": \"2026-05-20T02:08:34.386Z\", \"hypothesis\": \"TEAL@30% uniform allocation GSM8K eval for Qwen-14B. Nominal-matched comparison for appendix table. Supplements existing TEAL@30% uniform 4-task + HS+PIQA data.\", \"parent\": \"qwen14b_teal30_uniform_eval_4task\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && python -u src/benchmark_eval.py --exp_id qwen14b_teal30_uniform_gsm8k --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.3 --tasks gsm8k --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"133911\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\", \"submitted_at\": \"2026-05-19T20:38:45.636Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"gsm8k\", \"data_count\": 1319, \"model_name\": \"Qwen2.5-14B\", \"seed\": 42, \"checkpoint_source\": \"teal_vanilla_baseline\", \"eval_data\": \"gsm8k\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T02:03:46.832Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T02:03:55.703490+00:00\"}]}, \"metrics\": {\"gsm8k_exact_match\": 0.5208, \"gsm8k_exact_match_strict\": 0.5208, \"gsm8k_exact_match_flexible\": 0.5208, \"gsm8k_exact_match_stderr\": 0.01376, \"actual_sparsity\": 0.293, \"sample_len\": 1319}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2372}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "8ff8d783-1077-41c9-9add-7d62146c9c9e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen14b_teal30_uniform_gsm8k\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T19:33:08.754Z\\\", \\\"updated_at\\\": \\\"2026-05-20T02:08:34.386Z\\\", \\\"hypothesis\\\": \\\"TEAL@30% uniform allocation GSM8K eval for Qwen-14B. Nominal-matched comparison for appendix table. Supplements existing TEAL@30% uniform 4-task + HS+PIQA data.\\\", \\\"parent\\\": \\\"qwen14b_teal30_uniform_eval_4task\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && python -u src/benchmark_eval.py --exp_id qwen14b_teal30_uniform_gsm8k --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.3 --tasks gsm8k --seq_len 2048 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"133911\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T20:38:45.636Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"Qwen2.5-14B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"teal_vanilla_baseline\\\", \\\"eval_data\\\": \\\"gsm8k\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T02:03:46.832Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T02:03:55.703490+00:00\\\"}]}, \\\"metrics\\\": {\\\"gsm8k_exact_match\\\": 0.5208, \\\"gsm8k_exact_match_strict\\\": 0.5208, \\\"gsm8k_exact_match_flexible\\\": 0.5208, \\\"gsm8k_exact_match_stderr\\\": 0.01376, \\\"actual_sparsity\\\": 0.293, \\\"sample_len\\\": 1319}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2372}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_teal30_uniform_gsm8k\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T19:33:08.754Z\", \"updated_at\": \"2026-05-20T02:08:34.386Z\", \"hypothesis\": \"TEAL@30% uniform allocation GSM8K eval for Qwen-14B. Nominal-matched comparison for appendix table. Supplements existing TEAL@30% uniform 4-task + HS+PIQA data.\", \"parent\": \"qwen14b_teal30_uniform_eval_4task\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && python -u src/benchmark_eval.py --exp_id qwen14b_teal30_uniform_gsm8k --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.3 --tasks gsm8k --seq_len 2048 --gpu 0\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"133911\", \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\", \"submitted_at\": \"2026-05-19T20:38:45.636Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"gsm8k\", \"data_count\": 1319, \"model_name\": \"Qwen2.5-14B\", \"seed\": 42, \"checkpoint_source\": \"teal_vanilla_baseline\", \"eval_data\": \"gsm8k\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T02:03:46.832Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T02:03:55.703490+00:00\"}]}, \"metrics\": {\"gsm8k_exact_match\": 0.5208, \"gsm8k_exact_match_strict\": 0.5208, \"gsm8k_exact_match_flexible\": 0.5208, \"gsm8k_exact_match_stderr\": 0.01376, \"actual_sparsity\": 0.293, \"sample_len\": 1319}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2372}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_018k2Cn1qFhf6fRKudkDiYE5`</summary>
+
+```json
+{
+  "exp_id": "qwen14b_teal30_uniform_gsm8k",
+  "field": "spec",
+  "value": {
+    "log_path": "~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log",
+    "checkpoint_path": "N/A (eval-only, uses dense model with runtime masking)",
+    "results_path": "/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json"
+  },
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "9bd2762a-641c-4937-b26f-e2b8b299dfa8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxrSUYeDSG2sYQzu3LCQXD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3948,
+      "cache_read_input_tokens": 33117,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3948
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T02:08:37.363Z_
+
+<details><summary>↩ Tool result · `toolu_018k2Cn1qFhf6fRKudkDiYE5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_teal30_uniform_gsm8k\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T19:33:08.754Z\", \"updated_at\": \"2026-05-20T02:08:36.887Z\", \"hypothesis\": \"TEAL@30% uniform allocation GSM8K eval for Qwen-14B. Nominal-matched comparison for appendix table. Supplements existing TEAL@30% uniform 4-task + HS+PIQA data.\", \"parent\": \"qwen14b_teal30_uniform_eval_4task\", \"spec\": {\"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\", \"checkpoint_path\": \"N/A (eval-only, uses dense model with runtime masking)\", \"results_path\": \"/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T02:03:46.832Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T02:03:55.703490+00:00\"}]}, \"metrics\": {\"gsm8k_exact_match\": 0.5208, \"gsm8k_exact_match_strict\": 0.5208, \"gsm8k_exact_match_flexible\": 0.5208, \"gsm8k_exact_match_stderr\": 0.01376, \"actual_sparsity\": 0.293, \"sample_len\": 1319}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1431}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "0ce7378a-8ab3-44ef-b8cd-cac143b4cf64",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen14b_teal30_uniform_gsm8k\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T19:33:08.754Z\\\", \\\"updated_at\\\": \\\"2026-05-20T02:08:36.887Z\\\", \\\"hypothesis\\\": \\\"TEAL@30% uniform allocation GSM8K eval for Qwen-14B. Nominal-matched comparison for appendix table. Supplements existing TEAL@30% uniform 4-task + HS+PIQA data.\\\", \\\"parent\\\": \\\"qwen14b_teal30_uniform_eval_4task\\\", \\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval-only, uses dense model with runtime masking)\\\", \\\"results_path\\\": \\\"/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T02:03:46.832Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T02:03:55.703490+00:00\\\"}]}, \\\"metrics\\\": {\\\"gsm8k_exact_match\\\": 0.5208, \\\"gsm8k_exact_match_strict\\\": 0.5208, \\\"gsm8k_exact_match_flexible\\\": 0.5208, \\\"gsm8k_exact_match_stderr\\\": 0.01376, \\\"actual_sparsity\\\": 0.293, \\\"sample_len\\\": 1319}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1431}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_teal30_uniform_gsm8k\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T19:33:08.754Z\", \"updated_at\": \"2026-05-20T02:08:36.887Z\", \"hypothesis\": \"TEAL@30% uniform allocation GSM8K eval for Qwen-14B. Nominal-matched comparison for appendix table. Supplements existing TEAL@30% uniform 4-task + HS+PIQA data.\", \"parent\": \"qwen14b_teal30_uniform_eval_4task\", \"spec\": {\"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\", \"checkpoint_path\": \"N/A (eval-only, uses dense model with runtime masking)\", \"results_path\": \"/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T02:03:46.832Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T02:03:55.703490+00:00\"}]}, \"metrics\": {\"gsm8k_exact_match\": 0.5208, \"gsm8k_exact_match_strict\": 0.5208, \"gsm8k_exact_match_flexible\": 0.5208, \"gsm8k_exact_match_stderr\": 0.01376, \"actual_sparsity\": 0.293, \"sample_len\": 1319}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1431}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, metrics and spec updated. Now let me set conclusion and status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "997b906a-65a6-49c8-9a64-00c9c400fc8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MwjnUtKjQRfPmYuNpUH2kA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2267,
+      "cache_read_input_tokens": 37065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2267
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01LPoVG7LnaNt4QC7GhEx5rQ`</summary>
+
+```json
+{
+  "exp_id": "qwen14b_teal30_uniform_gsm8k",
+  "field": "conclusion",
+  "value": "success",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "2ac7a245-50b5-4008-8331-f4e78a229f8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MwjnUtKjQRfPmYuNpUH2kA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2267,
+      "cache_read_input_tokens": 37065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2267
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-20T02:08:42.148Z_
+
+<details><summary>↩ Tool result · `toolu_01LPoVG7LnaNt4QC7GhEx5rQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_teal30_uniform_gsm8k\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T19:33:08.754Z\", \"updated_at\": \"2026-05-20T02:08:41.681Z\", \"hypothesis\": \"TEAL@30% uniform allocation GSM8K eval for Qwen-14B. Nominal-matched comparison for appendix table. Supplements existing TEAL@30% uniform 4-task + HS+PIQA data.\", \"parent\": \"qwen14b_teal30_uniform_eval_4task\", \"spec\": {\"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\", \"checkpoint_path\": \"N/A (eval-only, uses dense model with runtime masking)\", \"results_path\": \"/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T02:03:46.832Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T02:03:55.703490+00:00\"}]}, \"metrics\": {\"gsm8k_exact_match\": 0.5208, \"gsm8k_exact_match_strict\": 0.5208, \"gsm8k_exact_match_flexible\": 0.5208, \"gsm8k_exact_match_stderr\": 0.01376, \"actual_sparsity\": 0.293, \"sample_len\": 1319}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1806}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "4e205c20-4c80-4b8d-a469-05133fb836f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen14b_teal30_uniform_gsm8k\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T19:33:08.754Z\\\", \\\"updated_at\\\": \\\"2026-05-20T02:08:41.681Z\\\", \\\"hypothesis\\\": \\\"TEAL@30% uniform allocation GSM8K eval for Qwen-14B. Nominal-matched comparison for appendix table. Supplements existing TEAL@30% uniform 4-task + HS+PIQA data.\\\", \\\"parent\\\": \\\"qwen14b_teal30_uniform_eval_4task\\\", \\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval-only, uses dense model with runtime masking)\\\", \\\"results_path\\\": \\\"/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T02:03:46.832Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T02:03:55.703490+00:00\\\"}]}, \\\"metrics\\\": {\\\"gsm8k_exact_match\\\": 0.5208, \\\"gsm8k_exact_match_strict\\\": 0.5208, \\\"gsm8k_exact_match_flexible\\\": 0.5208, \\\"gsm8k_exact_match_stderr\\\": 0.01376, \\\"actual_sparsity\\\": 0.293, \\\"sample_len\\\": 1319}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1806}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_teal30_uniform_gsm8k\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T19:33:08.754Z\", \"updated_at\": \"2026-05-20T02:08:41.681Z\", \"hypothesis\": \"TEAL@30% uniform allocation GSM8K eval for Qwen-14B. Nominal-matched comparison for appendix table. Supplements existing TEAL@30% uniform 4-task + HS+PIQA data.\", \"parent\": \"qwen14b_teal30_uniform_eval_4task\", \"spec\": {\"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\", \"checkpoint_path\": \"N/A (eval-only, uses dense model with runtime masking)\", \"results_path\": \"/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T02:03:46.832Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T02:03:55.703490+00:00\"}]}, \"metrics\": {\"gsm8k_exact_match\": 0.5208, \"gsm8k_exact_match_strict\": 0.5208, \"gsm8k_exact_match_flexible\": 0.5208, \"gsm8k_exact_match_stderr\": 0.01376, \"actual_sparsity\": 0.293, \"sample_len\": 1319}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1806}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01C9Y7izqEj5JRHDdqvHga91`</summary>
+
+```json
+{
+  "exp_id": "qwen14b_teal30_uniform_gsm8k",
+  "field": "status",
+  "value": "DONE",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "4a286da7-ff1f-4cb7-9fe5-027945af845e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BTTmtiVwxsxNww5yH7dRB3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 703,
+      "cache_read_input_tokens": 39332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 703
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-20T02:08:47.883Z_
+
+<details><summary>↩ Tool result · `toolu_01C9Y7izqEj5JRHDdqvHga91`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_teal30_uniform_gsm8k\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T19:33:08.754Z\", \"updated_at\": \"2026-05-20T02:08:46.221Z\", \"hypothesis\": \"TEAL@30% uniform allocation GSM8K eval for Qwen-14B. Nominal-matched comparison for appendix table. Supplements existing TEAL@30% uniform 4-task + HS+PIQA data.\", \"parent\": \"qwen14b_teal30_uniform_eval_4task\", \"spec\": {\"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\", \"checkpoint_path\": \"N/A (eval-only, uses dense model with runtime masking)\", \"results_path\": \"/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T02:03:46.832Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T02:03:55.703490+00:00\"}]}, \"metrics\": {\"gsm8k_exact_match\": 0.5208, \"gsm8k_exact_match_strict\": 0.5208, \"gsm8k_exact_match_flexible\": 0.5208, \"gsm8k_exact_match_stderr\": 0.01376, \"actual_sparsity\": 0.293, \"sample_len\": 1319}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T02:08:46.221Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.7549}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "2e56efe8-0821-4d52-bef7-6dc4a2763820",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen14b_teal30_uniform_gsm8k\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T19:33:08.754Z\\\", \\\"updated_at\\\": \\\"2026-05-20T02:08:46.221Z\\\", \\\"hypothesis\\\": \\\"TEAL@30% uniform allocation GSM8K eval for Qwen-14B. Nominal-matched comparison for appendix table. Supplements existing TEAL@30% uniform 4-task + HS+PIQA data.\\\", \\\"parent\\\": \\\"qwen14b_teal30_uniform_eval_4task\\\", \\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval-only, uses dense model with runtime masking)\\\", \\\"results_path\\\": \\\"/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T02:03:46.832Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T02:03:55.703490+00:00\\\"}]}, \\\"metrics\\\": {\\\"gsm8k_exact_match\\\": 0.5208, \\\"gsm8k_exact_match_strict\\\": 0.5208, \\\"gsm8k_exact_match_flexible\\\": 0.5208, \\\"gsm8k_exact_match_stderr\\\": 0.01376, \\\"actual_sparsity\\\": 0.293, \\\"sample_len\\\": 1319}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T02:08:46.221Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7549}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen14b_teal30_uniform_gsm8k\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T19:33:08.754Z\", \"updated_at\": \"2026-05-20T02:08:46.221Z\", \"hypothesis\": \"TEAL@30% uniform allocation GSM8K eval for Qwen-14B. Nominal-matched comparison for appendix table. Supplements existing TEAL@30% uniform 4-task + HS+PIQA data.\", \"parent\": \"qwen14b_teal30_uniform_eval_4task\", \"spec\": {\"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_gsm8k.log\", \"checkpoint_path\": \"N/A (eval-only, uses dense model with runtime masking)\", \"results_path\": \"/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_gsm8k/results.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T02:03:46.832Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T02:03:55.703490+00:00\"}]}, \"metrics\": {\"gsm8k_exact_match\": 0.5208, \"gsm8k_exact_match_strict\": 0.5208, \"gsm8k_exact_match_flexible\": 0.5208, \"gsm8k_exact_match_stderr\": 0.01376, \"actual_sparsity\": 0.293, \"sample_len\": 1319}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T02:08:46.221Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.7549}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88_
+
+Registry 更新完成。
+
+## 结果汇总
+
+### 提取指标
+
+| 指标 | 值 |
+|------|-----|
+| gsm8k_exact_match (strict) | **0.5208** |
+| gsm8k_exact_match (flexible) | 0.5208 |
+| gsm8k_exact_match_stderr | ±0.01376 |
+| actual_sparsity (model-level) | 0.293 |
+| sample_len | 1319 |
+
+无 W&B run（纯 lm-eval-harness 离线评测）。
+
+### 对比（Qwen-2.5-14B GSM8K）
+
+| 条件 | gsm8k_exact_match | Δ vs Dense |
+|------|-------------------|------------|
+| Dense | 0.8757 | — |
+| TEAL@27.5% uniform | 0.5709 | -30.48pp |
+| **TEAL@30% uniform (本实验)** | **0.5208** | **-35.49pp** |
+| TEAL@30% global | 0.4951 | -38.06pp |
+| KL@30% uniform s42 | 0.3571 | -51.86pp |
+| KL@30% uniform s123 | 0.3442 | -53.15pp |
+| KL@30% uniform s456 | 0.2608 | -61.49pp |
+
+### Conclusion: success
+
+- TEAL@30% uniform GSM8K=0.5208，显著高于所有 KL@30% uniform 变体（+16.4~26.0pp）
+- 比 TEAL@30% global (0.4951) 高 +2.57pp
+- 比 TEAL@27.5% uniform (0.5709) 低 5.01pp，符合预期（更高稀疏度→更多退化）
+- 数据可用于填补附录表格 TEAL@30% uniform 行的 GSM8K 列
+
+### Registry 更新
+
+metrics/conclusion/status/spec 全部更新成功，状态已转为 DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "uuid": "6fa37284-884f-4cb8-af98-74274dc25fe3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PZrujEABJ3vhv95MX5uWBX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 40035,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 731
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 89_
+
+Registry 更新完成。
+
+## 结果汇总
+
+### 提取指标
+
+| 指标 | 值 |
+|------|-----|
+| gsm8k_exact_match (strict) | **0.5208** |
+| gsm8k_exact_match (flexible) | 0.5208 |
+| gsm8k_exact_match_stderr | ±0.01376 |
+| actual_sparsity (model-level) | 0.293 |
+| sample_len | 1319 |
+
+无 W&B run（纯 lm-eval-harness 离线评测）。
+
+### 对比（Qwen-2.5-14B GSM8K）
+
+| 条件 | gsm8k_exact_match | Δ vs Dense |
+|------|-------------------|------------|
+| Dense | 0.8757 | — |
+| TEAL@27.5% uniform | 0.5709 | -30.48pp |
+| **TEAL@30% uniform (本实验)** | **0.5208** | **-35.49pp** |
+| TEAL@30% global | 0.4951 | -38.06pp |
+| KL@30% uniform s42 | 0.3571 | -51.86pp |
+| KL@30% uniform s123 | 0.3442 | -53.15pp |
+| KL@30% uniform s456 | 0.2608 | -61.49pp |
+
+### Conclusion: success
+
+- TEAL@30% uniform GSM8K=0.5208，显著高于所有 KL@30% uniform 变体（+16.4~26.0pp）
+- 比 TEAL@30% global (0.4951) 高 +2.57pp
+- 比 TEAL@27.5% uniform (0.5709) 低 5.01pp，符合预期（更高稀疏度→更多退化）
+- 数据可用于填补附录表格 TEAL@30% uniform 行的 GSM8K 列
+
+### Registry 更新
+
+metrics/conclusion/status/spec 全部更新成功，状态已转为 DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 240534,
+  "duration_api_ms": 230622,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "74318742-6b7e-4408-93db-310611d13356",
+  "total_cost_usd": 0.8423275000000001,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 28925,
+    "cache_read_input_tokens": 243743,
+    "output_tokens": 3641,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28925,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 566,
+        "cache_read_input_tokens": 40035,
+        "cache_creation_input_tokens": 731,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 731
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1611,
+      "outputTokens": 28,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001751,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 22,
+      "outputTokens": 10806,
+      "cacheReadInputTokens": 397158,
+      "cacheCreationInputTokens": 59478,
+      "webSearchRequests": 0,
+      "costUSD": 0.8405765000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "65a22987-b1de-41f5-a627-9b5ed0f90bfe"
+}
+```
+
+</details>
+
+---

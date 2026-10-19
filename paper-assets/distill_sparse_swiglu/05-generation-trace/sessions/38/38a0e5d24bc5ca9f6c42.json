@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38a0e5d24bc5ca9f6c42",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops fix longbench data resubmit",
+  "task_key": "worker_ops_fix-longbench-data-resubmit_20260516T131704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-longbench-data-resubmit_20260516T131704_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "a8442426588dc53b513665091eec5d77d67b444e34ab4bd6973c8b7d1e12cb21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已成功进入 lm-eval 评估阶段，数据加载正常，无报错。\n\n## 总结\n\n| 项目 | 结果 |\n|------|------|\n| **数据下载** | 4 个子集全部成功：narrativeqa(200), qasper(200), gov_report(200), multi_news(200) |\n| **根因** | lm_eval 用 `Xnhyacinth/LongBench`（非 THUDM/LongBench），旧版 THUDM 依赖已废弃的 dataset scripts |\n| **旧实验 registry** | longbench_kl30_uniform、longbench_dense 已标记 DONE/failed |\n| **longbench_kl30_uniform_v2** | cuda:0, PID=234888, 已进入 eval（sparsity 30% uniform, model-level=0.300） |\n| **longbench_dense_v2** | cuda:1, PID=235029, 已进入 eval（dense baseline） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-longbench-data-resubmit.md"
+}

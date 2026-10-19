@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3edb446759df955475e7",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research kl distill literature",
+  "task_key": "worker_research_kl-distill-literature_20260515T142708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_kl-distill-literature_20260515T142708_result.json",
+    "occurrence": 1,
+    "bytes": 1207,
+    "sha256": "79e833559d52d5772387097b2960f494ea343967fc127f599058d8c48b0efc41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献调研完成。`literature_map.yaml` 已写入，包含 20 篇论文，覆盖 4 个方向。\n\n**核心发现：我们的工作有明确的 novelty gap。**\n\n1. **KL for sparsity predictor training**: 无先例。现有 predictor（DejaVu, ShadowLLM）用 BCE；SPON 用 KL 但训练 bias correction 而非 predictor；其余方案（TEAL, CATS, R-Sparse, SVD-CSP）是 training-free。\n\n2. **Output distribution preservation**: Minitron (NeurIPS 2024) 验证 logit-only KL 优于 intermediate matching；SPON (ICML 2026) 用 KL 做 dense/sparse distribution matching——两者都支持我们\"KL 优于 BCE\"的核心假设。\n\n3. **SPON**: 最接近的竞争者，但 SPON 是 input-independent 的全局 bias correction，我们是 input-dependent 的 per-token predictor，更灵活。\n\n4. **Predictor-based sparsity**: 关键 competitor 是 DIP（MLSys 2025），其结论是 SwiGLU sparsity pattern 难以预测所以放弃 predictor。我们需要用 KL-trained predictor 证明这个结论可以被推翻。\n\n**Related work 定位建议**: 论文中应重点对比 TEAL (baseline)、DejaVu/ShadowLLM (BCE predictor)、SPON (KL bias)、DIP (predictor-free SwiGLU)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-kl-distill-literature.md"
+}

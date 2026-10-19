@@ -1,0 +1,16 @@
+{
+  "exp_id": "c1_ablation_30pct_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:25:43.181Z",
+    "updated_at": "2026-05-18T23:26:03.895Z",
+    "hypothesis": "C1 causal ablation at 30% sparsity (recommended operating point): BCE predictor trained on KL-derived oracle masks should achieve similar PPL and downstream metrics as the KL predictor at 30%, demonstrating that KL's advantage comes from mask quality (target effect) rather than gradient coupling. At 30% where downstream metrics are well-preserved, C1 should show smaller gaps than at 50% where degradation was severe.",
+    "parent": "c1_ablation_s42"
+  },
+  "timestamp": "2026-05-18T23:26:04.356541+00:00",
+  "trigger": "update_registry"
+}

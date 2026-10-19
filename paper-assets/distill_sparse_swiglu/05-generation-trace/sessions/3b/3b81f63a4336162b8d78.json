@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b81f63a4336162b8d78",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research table2 seed audit",
+  "task_key": "worker_research_table2_seed_audit_20260517T171934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_table2_seed_audit_20260517T171934_result.json",
+    "occurrence": 1,
+    "bytes": 3901,
+    "sha256": "626b7c4aace1726906a20d9321a1510d10131839353aaf59b9bf7dbe43b7f520"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the complete audit:\n\n## Table 2 (tab:main) Multi-Seed Audit\n\nPaper caption says: *\"MMLU for 30% KL reports 3-seed mean±std; 50% uniform PPL is 3-seed (11.92±0.07); all other entries use seed 42.\"*\n\n| # | Sparsity | Method | Alloc | Seeds Done | Seeds Missing | Action Needed | Est. GPU Time |\n|---|----------|--------|-------|------------|---------------|---------------|---------------|\n| 1 | 0% | Dense | — | N/A (deterministic) | — | None | — |\n| 2 | 30% | TEAL vanilla | global | 1 (s42), deterministic | — | None | — |\n| 3 | 30% | KL global (Ours) | global | **3** (s42, s123, s456) | None | None | — |\n| 4 | 30% | KL uniform | uniform | **3** (s42, s123, s456) | None | None | — |\n| 5 | 50% | TEAL vanilla | global | 1 (s42), deterministic | — | None | — |\n| 6 | 50% | KL global (Ours) | global | **3** (s42, s123, s456) | None* | See note below | ~1.5h |\n| 7 | 50% | KL uniform | uniform | **3** (s42, s123, s456) | None | None | — |\n| 8 | 50% | BCE (2700 steps) | per-token | **1** (s42) | s123, s456 | Train + Eval | ~5h |\n\n### Detailed Seed Inventory\n\n**Row 3 — 30% KL global** (3 seeds complete):\n| Seed | Benchmark Dir | Checkpoint | PPL | MMLU |\n|------|--------------|------------|-----|------|\n| s42 | `bench_kl30_global` | `kl_sparsity30_s42_v3` | 8.977 | 25.27% |\n| s123 | `kl_30pct_s123` | `kl_30pct_s123` | 8.975 | 38.07% |\n| s456 | `kl30_s456_global` | `kl_30pct_s456` | 8.933 | 43.82% |\n| | | **3-seed mean±std** | — | **35.7±9.5%** ✓ |\n\n**Row 4 — 30% KL uniform** (3 seeds complete):\n| Seed | Benchmark Dir | Checkpoint | PPL | MMLU |\n|------|--------------|------------|-----|------|\n| s42 | `bench_kl30_uniform` | `kl_sparsity30_s42_v3` | 8.816 | 40.61% |\n| s123 | `kl30_s123_uniform` | `kl_30pct_s123` | 8.831 | 39.44% |\n| s456 | `kl30_s456_uniform` | `kl_30pct_s456` | 8.795 | 41.98% |\n| | | **3-seed mean±std** | — | **40.7±1.3%** ✓ |\n\n**Row 6 — 50% KL global** (3 seeds exist, but consistency issue):\n| Seed | Benchmark Dir | Checkpoint | PPL | MMLU |\n|------|--------------|------------|-----|------|\n| s42 | `bench_kl50_global` | `mvp_kl_norm_v2_s42` | 11.790 | 27.89% |\n| s123 | `kl_50pct_s123_global` | **`kl_50pct_s123`** ⚠️ | 11.745 | 27.52% |\n| s456 | `kl50_s456_global` | `mvp_kl_norm_v2_s456` | 11.806 | 27.94% |\n\n⚠️ **s123 uses `kl_50pct_s123` checkpoint instead of `mvp_kl_norm_v2_s123`** (different training config from s42/s456). The `mvp_kl_norm_v2_s123` checkpoint exists but has not been benchmarked with global allocation. Re-eval needed for consistency (~1.5h).\n\n**Row 7 — 50% KL uniform** (3 seeds complete, consistent checkpoints):\n| Seed | Benchmark Dir | Checkpoint | PPL | MMLU |\n|------|--------------|------------|-----|------|\n| s42 | `bench_kl50_uniform` | `mvp_kl_norm_v2_s42` | 11.963 | 27.77% |\n| s123 | `bench_kl50_uniform_s123` | `mvp_kl_norm_v2_s123` | 11.833 | 27.51% |\n| s456 | `bench_kl50_uniform_s456` | `mvp_kl_norm_v2_s456` | 11.960 | 28.74% |\n| | | **3-seed mean±std** | **11.92±0.07** ✓ | — |\n\n**Row 8 — 50% BCE (2700 steps)** (1 seed only):\n- s42: `bce_isocompute_v3_s42` checkpoint + benchmark exist\n- s123: no checkpoint, no benchmark → **train (~46min) + eval (~1.5h) = ~2.3h**\n- s456: no checkpoint, no benchmark → **train (~46min) + eval (~1.5h) = ~2.3h**\n\n### Summary of Gaps\n\n| Priority | Action | Est. GPU Time |\n|----------|--------|---------------|\n| 1. Row 6 s123 consistency | Re-eval `mvp_kl_norm_v2_s123` with global alloc | ~1.5h |\n| 2. Row 8 BCE s123 | Train BCE 2700 steps + eval 5 tasks | ~2.3h |\n| 3. Row 8 BCE s456 | Train BCE 2700 steps + eval 5 tasks | ~2.3h |\n| **Total** | | **~6.1h** |\n\nRows 1-5 and 7 are fully covered. The only actionable gaps are the 50% KL global s123 checkpoint mismatch and the missing BCE multi-seed runs."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-table2-seed-audit.md"
+}

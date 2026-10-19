@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08c87b26a87ffa4f1ec2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops qwen14b kl30 s456 analyze",
+  "task_key": "worker_ops_qwen14b-kl30-s456-analyze_20260519T084001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen14b-kl30-s456-analyze_20260519T084001_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "80df655b063f1de6871774125336e9f6dcd32433b34f8edfca85c0f1332fb464"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 进程正常启动，模型已加载，正在计算 TEAL global masks。\n\n**总结：**\n\n| 项目 | 状态 |\n|------|------|\n| **qwen14b_kl30_s456 训练** | DONE (success) — loss=0.309, KL_norm=0.272, sparsity=27.7%, 1000 steps |\n| **qwen14b_kl30_s456_eval** | RUNNING (PID 93278) — 7 任务 (WikiText-2 PPL + ARC/WG/HS/PIQA/MMLU/GSM8K), TEAL uniform 30%, cuda:1 |\n| **Log** | `~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_eval.log` |\n\n注意：任务提供的参数名（`--predictor_path`, `--eval_tasks`, `--few_shot_config`, `--allocation_mode`）与 `benchmark_eval.py` 实际接口不符，已修正为 `--checkpoint`, `--tasks`, `--allocation`。few-shot counts 已内置于脚本 `LM_EVAL_DEFAULTS` 中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen14b-kl30-s456-analyze.md"
+}

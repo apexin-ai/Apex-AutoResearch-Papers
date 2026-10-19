@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "41283a1777a39b544fca",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "train perlayer kl k4 s123 fix",
+  "task_key": "worker_train_perlayer_kl_k4_s123_fix_20260522T133918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_train_perlayer_kl_k4_s123_fix_20260522T133918.jsonl",
+    "occurrence": 1,
+    "bytes": 177,
+    "sha256": "f72e3b0aa0309233e86fc32ada42e47fd96457c8b85247dace5940472efa588e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T13:39:30.763705+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_train_perlayer_kl_k4_s123_fix_20260522T133918"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/train-perlayer-kl-k4-s123-fix.md"
+}

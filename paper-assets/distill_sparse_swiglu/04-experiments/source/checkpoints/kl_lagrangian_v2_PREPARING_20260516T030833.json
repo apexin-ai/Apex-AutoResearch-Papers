@@ -1,0 +1,29 @@
+{
+  "exp_id": "kl_lagrangian_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:34:10.257Z",
+    "updated_at": "2026-05-16T03:08:33.111Z",
+    "spec": {
+      "hypothesis": "Lagrangian v2: lambda_init=50 + 2x update rate, 解决 KL/constraint 3 个数量级尺度差",
+      "loss_type": "kl_lagrangian_v2",
+      "seed": 42,
+      "model": "Llama-3.1-8B",
+      "sparsity": 0.5,
+      "steps": 200,
+      "batch_size": 4,
+      "seq_len": 2048,
+      "gpu": "cuda:0",
+      "server": "westd-34887",
+      "parent": "kl_lagrangian_quicktest"
+    },
+    "notes": "取消: Director 改为方案 C（KL 归一化 + Lagrangian），v2 仅调参数不够。新实验 kl_normalized_quicktest 替代。",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T03:08:33.227282+00:00",
+  "trigger": "update_registry"
+}

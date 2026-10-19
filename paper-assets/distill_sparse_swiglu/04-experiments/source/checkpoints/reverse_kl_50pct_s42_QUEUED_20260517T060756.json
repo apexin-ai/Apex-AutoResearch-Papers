@@ -1,0 +1,15 @@
+{
+  "exp_id": "reverse_kl_50pct_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:00:23.139Z",
+    "updated_at": "2026-05-17T06:07:56.781Z",
+    "hypothesis": "Reverse KL (mode-seeking, KL(p_sparse||p_dense)) produces different sparsity patterns than forward KL (mode-covering); mode-seeking may concentrate probability mass on fewer but more important neurons, potentially improving downstream at cost of PPL"
+  },
+  "timestamp": "2026-05-17T06:07:56.992580+00:00",
+  "trigger": "update_registry"
+}

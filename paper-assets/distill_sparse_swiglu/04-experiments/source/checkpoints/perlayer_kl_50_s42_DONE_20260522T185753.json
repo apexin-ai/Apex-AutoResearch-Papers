@@ -1,0 +1,56 @@
+{
+  "exp_id": "perlayer_kl_50_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:47:41.520Z",
+    "updated_at": "2026-05-22T18:57:52.472Z",
+    "hypothesis": "Per-layer KL 50% uniform training (seed 42). Tests whether 2D decomposition (signal type × coupling scope) holds at higher sparsity. PPL should fall between E2E KL 50% (11.84) and MSE (18.52). If gap to E2E KL is small (&lt;5%), signal type dominates PPL even at 50%, strengthening the 2D claim.",
+    "spec": {
+      "command": "python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.5 --seed 42 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --output_dir checkpoints/perlayer_kl_50_s42 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000 --save_every 2000",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "359439",
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_50_s42.log",
+      "submitted_at": "2026-05-22T01:48:10.026Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103",
+      "data_count": "~10000 steps × 4 batch × 2048 seq_len",
+      "model_name": "llama-3.1-8b",
+      "seed": "42",
+      "checkpoint_path": "checkpoints/perlayer_kl_50_s42/predictor_perlayer_kl.pt",
+      "wall_clock_seconds": 61782.4,
+      "gpu_hours": 17.16
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T06:52:32.968Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T06:52:43.663223+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "avg_kl": 0.0282,
+      "sparsity_mean": 0.496,
+      "wikitext2_ppl": 34.85,
+      "training_steps": 10000,
+      "training_duration_s": 18216
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-22T18:57:52.472Z"
+  },
+  "timestamp": "2026-05-22T18:57:53.059899+00:00",
+  "trigger": "update_registry"
+}

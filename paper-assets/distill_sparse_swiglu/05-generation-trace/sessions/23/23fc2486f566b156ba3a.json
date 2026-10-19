@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "23fc2486f566b156ba3a",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "prep perlayer kl 50 eval env 34887",
+  "task_key": "worker_prep_perlayer_kl_50_eval_env_34887_20260522T035816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_prep_perlayer_kl_50_eval_env_34887_20260522T035816.jsonl",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "e6046eece7c6e0e75f32275e3441911f9b5cfa35b4463613ca52ae294356b133"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T03:58:26.274540+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_perlayer_kl_50_eval_env_34887_20260522T035816"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/prep-perlayer-kl-50-eval-env-34887.md"
+}

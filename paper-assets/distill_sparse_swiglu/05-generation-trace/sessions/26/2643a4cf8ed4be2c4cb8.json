@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2643a4cf8ed4be2c4cb8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "fix westd 34887 cuda1 reeval",
+  "task_key": "worker_fix_westd-34887-cuda1-reeval_20260518T050514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd-34887-cuda1-reeval_20260518T050514_result.json",
+    "occurrence": 1,
+    "bytes": 213,
+    "sha256": "64048323fa5ca97d4d77dec36c386175cba4218173cbb6b2ad599606cc79059c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已成功启动。\n\n- **PID**: 103625\n- **GPU**: cuda:1，占用 ~41.7GB 显存\n- **进度**: WikiText-2 PPL=8.9332 已完成，arc_challenge 正在评估中（~67%），离线缓存正常工作"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd-34887-cuda1-reeval.md"
+}

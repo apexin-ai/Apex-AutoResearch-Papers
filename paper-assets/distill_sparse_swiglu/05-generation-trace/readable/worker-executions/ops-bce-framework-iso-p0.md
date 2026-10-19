@@ -1,0 +1,19 @@
+# ops bce framework iso p0
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 607
+- **Recorded user turns:** 0
+- **Tool calls:** 265
+- **Original source:** `logs/workers/worker_ops_bce-framework-iso-p0_20260516T191340.log`
+- **Structured JSON:** [`388f678e40213245e85e.json`](../../sessions/38/388f678e40213245e85e.json)
+
+## Browse this transcript
+
+This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+
+[Part 1](ops-bce-framework-iso-p0/part-001.md) · [Part 2](ops-bce-framework-iso-p0/part-002.md)

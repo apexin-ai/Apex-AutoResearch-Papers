@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1aed2d8b5af3688852cd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "fix revkl 30 s42 boolq uniform",
+  "task_key": "worker_fix_revkl_30_s42_boolq_uniform_20260522T032151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_revkl_30_s42_boolq_uniform_20260522T032151_result.json",
+    "occurrence": 1,
+    "bytes": 223,
+    "sha256": "74a72edba525ded3fae4f86771465b551ca9a71967e651ff926631e3e1f48457"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正在运行，已完成约 33% 的 loglikelihood 推理，数据集离线加载正常，无报错。\n\n进程 PID=364470，日志在 `logs/revkl_30_s42_boolq_uniform.log`，预计几分钟内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-revkl-30-s42-boolq-uniform.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen14b_kl30_s456_eval_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:20:38.257Z",
+    "updated_at": "2026-05-19T11:20:56.285Z",
+    "hypothesis": "Qwen-14B KL 30% s456 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.",
+    "parent": "qwen14b_kl30_s456"
+  },
+  "timestamp": "2026-05-19T11:20:56.724081+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e826fec762b9f3ce149",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper figure fix fig2 and audit refs",
+  "task_key": "worker_paper_figure_fix_fig2_and_audit_refs_20260515T233926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fix_fig2_and_audit_refs_20260515T233926_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "502c791077644b2508caf9f08c9db0b1ab2f3ffb647c2ac88f3973db5020b8cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. fig2 重新生成 ✓\n- `figures/paper/gen_fig2.py` 中 28.5% 数据点已从 8.76 修正为 **8.98**\n- PDF 和 PNG 已重新生成，`artifacts/_project/chart/` 副本已同步\n\n### 2. TEAL baseline 补充\n- **50%**: 23.31 — 已有 ✓\n- **70%**: 17.91 — **新增** ✓（来自 kl_sparsity70_s42_v2 的 teal_sparse_ppl_static_baseline）\n- **28.5%**: **无数据**，未补充\n- TEAL 两点用虚线连接，70% 处 TEAL=KL=17.91（重合），50% 处 Δ=11.31\n\n### 3. 8.76 引用审计\n全量搜索结果——`gen_fig2.py` 是唯一需要修改的文件，已修复。其余引用均为保留旧值的历史记录，无需改动：\n\n| 文件 | 性质 | 操作 |\n|------|------|------|\n| `figures/paper/gen_fig2.py:29` | 数据点 | ✅ 已修正为 8.98 |\n| `registry.yaml:1996` | `teal_sparse_ppl_old_wrong_target: 8.76` | 保留（显式标记旧错误值） |\n| `registry.yaml:1997,2011` | 注释说明旧值来源 | 保留 |\n| `decisions.yaml:271,273` | 决策记录（记录发现问题的过程） | 保留 |\n| `logs/workers/*` | Worker 执行日志 | 不可变历史记录 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fix-fig2-and-audit-refs.md"
+}

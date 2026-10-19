@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3600eac53686c9a7ebde",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis mistral kl s42",
+  "task_key": "worker_analysis_mistral_kl_s42_20260515T225403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mistral_kl_s42_20260515T225403_result.json",
+    "occurrence": 1,
+    "bytes": 1089,
+    "sha256": "32d8c1fbe191c91e1e4bb042bf2a4294550d804a044ab9ba5544836f9f904063"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry already has complete results (populated by the on_complete hook). All data verified against the logs and evaluation I ran independently.\n\n## mistral_kl_s42 结果\n\n### 训练指标\n| Metric | Value |\n|--------|-------|\n| Final loss | 0.2188 |\n| Final sparsity | 0.480 |\n| Final lambda | 1000.00 |\n| Final tau | 0.100 |\n| Steps | 1000/1000 |\n| EXIT_CODE | 0 |\n\n### WikiText-2 PPL 评估 (50% sparsity)\n\n| Metric | Mistral-7B | Llama-3.1-8B (4-seed mean) |\n|--------|-----------|---------------------------|\n| true_dense_ppl | **5.52** | 6.12 |\n| predictor_hard_mask_ppl | **7.30** (1.32x) | — |\n| teal_sparse_ppl | **8.98** (1.63x) | 12.00±0.07 (1.96x) |\n| model_level_sparsity | 0.500 | 0.500 |\n\n### 结论：**Claim 4 确认** (cross-architecture generalization)\n\n- PPL 8.98 远低于 15 的阈值\n- Mistral 绝对 PPL 更低（8.98 vs 12.00），降级比例也更小（1.63x vs 1.96x）\n- Per-layer sparsity 分布合理：前后层高（~0.6），中间层低（~0.36-0.47）\n- Registry 已更新：status=DONE, conclusion=success"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mistral-kl-s42.md"
+}

@@ -1,0 +1,34 @@
+{
+  "exp_id": "kl50_s456_global_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:56:48.642Z",
+    "updated_at": "2026-05-17T13:34:45.591Z",
+    "hypothesis": "50% global allocation with seed 456 produces MMLU consistent with s42 (0.2789) and s123 (0.2752), completing the 3-seed global baseline at 50% sparsity",
+    "spec": {
+      "command": "cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl50_s456_global --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "44798",
+      "log_path": "~/runs/distill_sparse_swiglu/kl50_s456_global_eval.log",
+      "submitted_at": "2026-05-17T13:33:43.512Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-2 + lm-eval cached",
+      "data_count": "full",
+      "model_name": "LLaMA-3.1-8B",
+      "seed": 456,
+      "checkpoint_source": "checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k"
+    }
+  },
+  "timestamp": "2026-05-17T13:34:45.961746+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fa4f2fc99a9a4d5b230",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "setup download boolq and submit evals",
+  "task_key": "worker_setup_download_boolq_and_submit_evals_20260521T233645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_download_boolq_and_submit_evals_20260521T233645_result.json",
+    "occurrence": 1,
+    "bytes": 372,
+    "sha256": "2be44d0f77b34936008ae063bf8c519aaf9c20e6f14b3a59b17306349feb0db5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已经在运行中（是之前提交的 session，刚启动约 1 分钟）：\n\n- **perlayer_kl_s123_boolq** — PID 310025, cuda:0, 正在运行 `benchmark_eval.py`\n- **kl30_uniform_boolq_s456** — PID 310164, cuda:1, 正在运行 `benchmark_eval.py`\n\nBoolQ 数据集已缓存成功，两个 eval 实验正在执行，无需重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-download-boolq-and-submit-evals.md"
+}

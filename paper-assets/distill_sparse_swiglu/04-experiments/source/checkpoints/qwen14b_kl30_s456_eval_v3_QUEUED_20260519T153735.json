@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen14b_kl30_s456_eval_v3",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:37:22.929Z",
+    "updated_at": "2026-05-19T15:37:34.656Z",
+    "hypothesis": "Qwen-14B KL s456 eval with D075 sigmoid fix + uniform allocation on westd-41718. Standard 6-task list. Re-run of v2 to verify on different server. Completing 3-seed comparison table.",
+    "parent": "qwen14b_kl30_s456"
+  },
+  "timestamp": "2026-05-19T15:37:35.098704+00:00",
+  "trigger": "update_registry"
+}

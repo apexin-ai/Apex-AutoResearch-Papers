@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d6eda50c01e5ce0c717",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh dry run training",
+  "task_key": "worker_ssh_dry-run-training_20260515T111136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_dry-run-training_20260515T111136_result.json",
+    "occurrence": 1,
+    "bytes": 97,
+    "sha256": "b2597bdb90d489892439e3ef3eada0cc246baabbe341cd9ad1ae3d20e326c1e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个 bug 已全部修复，训练（KL/BCE）和评估流水线端到端跑通。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-dry-run-training.md"
+}

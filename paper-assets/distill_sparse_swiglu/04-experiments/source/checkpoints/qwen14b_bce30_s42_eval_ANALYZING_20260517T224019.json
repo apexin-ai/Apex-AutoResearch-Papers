@@ -1,0 +1,38 @@
+{
+  "exp_id": "qwen14b_bce30_s42_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:47:04.947Z",
+    "updated_at": "2026-05-17T22:40:18.275Z",
+    "hypothesis": "Qwen-14B BCE predictor at 30% sparsity shows worse downstream performance (MMLU, ARC, WinoGrande, GSM8K) than KL predictor, confirming objective mismatch penalty persists in downstream tasks beyond PPL (KL TEAL PPL=7.62 vs BCE TEAL PPL=8.76)",
+    "parent": "qwen14b_bce30_s42",
+    "server": "westd-34887",
+    "gpu": "cuda:0",
+    "account": "root",
+    "spec": {
+      "command": "cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_bce30_s42_eval --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_bce30_s42/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "59122",
+      "log_path": "~/runs/distill_sparse_swiglu/qwen14b_bce30_s42_eval.log",
+      "submitted_at": "2026-05-17T16:47:51.067Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "59122",
+    "log_path": "~/runs/distill_sparse_swiglu/qwen14b_bce30_s42_eval.log",
+    "reproduce": {
+      "command": "cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_bce30_s42_eval --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_bce30_s42/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0",
+      "finished_at": "2026-05-17T22:40:16.602Z"
+    }
+  },
+  "timestamp": "2026-05-17T22:40:19.053287+00:00",
+  "trigger": "update_registry"
+}

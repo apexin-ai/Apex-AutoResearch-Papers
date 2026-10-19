@@ -1,0 +1,1864 @@
+# analysis 30pct retention deploy
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/chats/worker_analysis_30pct_retention_deploy_20260517T071611.jsonl`
+- **Structured JSON:** [`6b6bc7a982e8591f1072.json`](../../sessions/6b/6b6bc7a982e8591f1072.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+61 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T07:19:47.777427+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T07:19:47.777767+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T07:19:47.777956+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "ls /root/distill_sparse_swiglu/scripts/global_30pct_retention_analysis*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "ls /root/distill_sparse_swiglu/scripts/global_30pct_retention_analysis*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T07:19:47.778133+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "ls /root/distill_sparse_swiglu/checkpoints/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "ls /root/distill_sparse_swiglu/checkpoints/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T07:19:47.778282+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/distill_sparse_swiglu/scripts/global_30pct_retention_analysis*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T07:19:47.778429+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bce_comp_staged_s42\\nbce_framework_lr1e3\\nbce_framework_lr1e4\\nbce_framework_lr3e3\\nbce_isocompute_s42\\nbce_isocompute_s42_v2\\nbce_isocompute_v2_dryrun\\nbce_isocompute_v2_s42\\nbce_isocompute_v3_s42\\ndb_sweep_256\\ndb_sweep_512\\ndb_sweep_64\\njsd_50pct_s42\\nkl_lagrangian_quicktest\\nkl_mag_reg_a001\\nkl_mag_reg_a001_dryrun\\nkl_mag_reg_a01\\nkl_norm_v2_quicktest\\nkl_norm_v3_quicktest\\nkl_normalized_quicktest\\nkl_only_s0\\nkl_only_s1\\nkl_sparsity30_s42\\nkl_sparsity30_s42_v3\\nkl_sparsity40_s42\\nkl_sparsity70_s42\\nmistral_dryrun\\nmistral_kl30_s42\\nmistral_kl70_s42\\nmistral_kl_s42\\nmvp_bce_s123\\nmvp_bce_s42\\nmvp_bce_s456\\nmvp_kl_norm_s123\\nmvp_kl_norm_s42\\nmvp_kl_norm_v2_s123\\nmvp_kl_norm_v2_s42\\nmvp_kl_norm_v2_s456\\nmvp_kl_s42\\npredictor_kl.pt\\nreverse_kl_50pct_s42\\nspon_2048_s42\\nspon_kl_s42\\nste_baseline_s42\\nste_kl_s42\\nsteps_curve_s42\\ntau_ablation_dryrun\\ntau_ablation_fixed01\\ntau_ablation_fixed05\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T07:19:47.778561+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "artifacts/global_30pct*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "artifacts/global_30pct*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T07:19:47.778693+00:00_
+
+artifacts/global_30pct_retention_analysis_script.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T07:19:47.778835+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis_script.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis_script.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T07:19:47.779074+00:00_
+
+1	"""Per-layer retention analysis for 30% global top-k allocation.
+2	
+3	Demonstrates which layers get starved by global allocation, explaining
+4	why MMLU=25.27% (global) << 38.61% (TEAL) / 40.61% (uniform).
+5	"""
+6	
+7	import importlib.util
+8	import json
+9	import os
+10	import sys
+11	import torch
+12	from transformers import AutoModelForCausalLM, AutoTokenizer
+13	
+14	sys.path.insert(0, "/root/distill_sparse_swiglu/src")
+15	from data_utils import get_eval_dataset
+16	from predictor import PredictorWrapper
+17	
+18	MODEL_PATH = "/root/autodl-tmp/models/llama-3.1-8b"
+19	PREDICTOR_PATH = "/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt"
+20	SPARSITY_TARGET = 0.3
+21	NUM_CALIB = 50
+22	SEQ_LEN = 2048
+23	OUTPUT_PATH = "/root/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis.json"
+24	DEVICE = "cuda:0"
+25	
+26	
+27	def best_attn_impl():
+28	    if importlib.util.find_spec("flash_attn"):
+29	        return "flash_attention_2"
+30	    return "sdpa"
+31	
+32	
+33	def global_topk_masks(layer_scores, sparsity_target):
+34	    """Normalize per-layer scores by mean, then global top-k."""
+35	    items = sorted(layer_scores.items())
+36	    normalized = []
+37	    for li, s in items:
+38	        s_f = s.float()
+39	        mu = s_f.mean()
+40	        normalized.append((li, s_f / mu if mu > 1e-12 else s_f))
+41	    all_s = torch.cat([s for _, s in normalized])
+42	    num_keep = int(len(all_s) * (1.0 - sparsity_target))
+43	    thr = torch.topk(all_s, num_keep).values[-1]
+44	    return {li: (s >= thr).to(torch.bfloat16) for li, s in normalized}
+45	
+46	
+47	@torch.no_grad()
+48	def compute_layer_scores(wrapper, input_ids, calib_batch_size=4):
+49	    """Compute per-layer neuron importance scores from predictor + activations."""
+50	    accum_scores = {}
+51	    n_batches = 0
+52	    for start in range(0, input_ids.size(0), calib_batch_size):
+53	        batch = input_ids[start:start + calib_batch_size]
+54	        wrapper.forward_dense(batch, capture_intermediates=
+…[truncated 9436 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T07:19:47.779242+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "ls /root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "ls /root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T07:19:47.779372+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"predictor_kl_normalized.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T07:19:47.779494+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "head -50 /root/distill_sparse_swiglu/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "head -50 /root/distill_sparse_swiglu/evaluate.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T07:19:47.779615+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/distill_sparse_swiglu/evaluate.py' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T07:19:47.779770+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "ls /root/autodl-tmp/models/llama-3.1-8b/config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "ls /root/autodl-tmp/models/llama-3.1-8b/config.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T07:19:47.779903+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/models/llama-3.1-8b/config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T07:19:47.780039+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "ls /root/distill_sparse_swiglu/src/data_utils.py /root/distill_sparse_swiglu/src/predictor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "ls /root/distill_sparse_swiglu/src/data_utils.py /root/distill_sparse_swiglu/src/predictor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T07:19:47.780168+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/distill_sparse_swiglu/src/data_utils.py\\n/root/distill_sparse_swiglu/src/predictor.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T07:19:47.780295+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "find /root/distill_sparse_swiglu/scripts/ -name \"*.py\" -maxdepth 1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "find /root/distill_sparse_swiglu/scripts/ -name \"*.py\" -maxdepth 1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T07:19:47.780423+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/distill_sparse_swiglu/scripts/gradient_snr_analysis.py\\n/root/distill_sparse_swiglu/scripts/train_kl_mag_reg.py\\n/root/distill_sparse_swiglu/scripts/teal_kl_overlap.py\\n/root/distill_sparse_swiglu/scripts/gradient_snr_constrained.py\\n/root/distill_sparse_swiglu/scripts/sparsity_floor_extended.py\\n/root/distill_sparse_swiglu/scripts/plot_lagrangian_dynamics.py\\n/root/distill_sparse_swiglu/scripts/teal_kl_overlap_corrected.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T07:19:47.780561+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -n \"def forward_dense\\|def get_intermediates\\|def get_layer_inputs\\|class PredictorWrapper\" /root/distill_sparse_swiglu/src/predictor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "grep -n \"def forward_dense\\|def get_intermediates\\|def get_layer_inputs\\|class PredictorWrapper\" /root/distill_sparse_swiglu/src/predictor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T07:19:47.780682+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T07:19:47.780800+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -n \"def forward_dense\" /root/distill_sparse_swiglu/src/predictor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "grep -n \"def forward_dense\" /root/distill_sparse_swiglu/src/predictor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T07:19:47.780938+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -n \"def get_intermediates\" /root/distill_sparse_swiglu/src/predictor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "grep -n \"def get_intermediates\" /root/distill_sparse_swiglu/src/predictor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T07:19:47.781105+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -n \"def get_layer_inputs\" /root/distill_sparse_swiglu/src/predictor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "grep -n \"def get_layer_inputs\" /root/distill_sparse_swiglu/src/predictor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T07:19:47.781230+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"175:    def forward_dense(self, input_ids, attention_mask=None, capture_intermediates=False):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T07:19:47.781347+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -n \"class PredictorWrapper\" /root/distill_sparse_swiglu/src/predictor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "grep -n \"class PredictorWrapper\" /root/distill_sparse_swiglu/src/predictor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T07:19:47.781464+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"195:    def get_intermediates(self):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T07:19:47.781577+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"198:    def get_layer_inputs(self):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T07:19:47.781690+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"94:class PredictorWrapper(nn.Module):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T07:19:47.781832+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -n \"gumbel_mask\" /root/distill_sparse_swiglu/src/predictor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "grep -n \"gumbel_mask\" /root/distill_sparse_swiglu/src/predictor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T07:19:47.781952+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"120:        self.gumbel_mask = GumbelSigmoidMask()\\n153:                mask = wrapper.gumbel_mask(logits)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T07:19:47.782133+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis_script.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis_script.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T07:19:47.782306+00:00_
+
+File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T07:19:47.782473+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "account": "root",
+  "command": "cat > /root/distill_sparse_swiglu/scripts/global_30pct_retention_analysis_script.py << 'SCRIPT_EOF'\n\"\"\"Per-layer retention analysis for 30% global top-k allocation.\n\nDemonstrates which layers get starved by global allocation, explaining\nwhy MMLU=25.27% (global) << 38.61% (TEAL) / 40.61% (uniform).\n\"\"\"\n\nimport importlib.util\nimport json\nimport os\nimport sys\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nsys.path.insert(0, \"/root/distill_sparse_swiglu/src\")\nfrom data_utils import get_eval_dataset\nfrom predictor import PredictorWrapper\n\nMODEL_PATH = \"/root/autodl-tmp/models/llama-3.1-8b\"\nPREDICTOR_PATH = \"/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\"\nSPARSITY_TARGET = 0.3\nNUM_CALIB = 50\nSEQ_LEN = 2048\nOUTPUT_PATH = \"/root/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis.json\"\nDEVICE = \"cuda:0\"\n\n\ndef best_attn_impl():\n    if importlib.util.find_spec(\"flash_attn\"):\n        return \"flash_attention_2\"\n    return \"sdpa\"\n\n\ndef global_topk_masks(layer_scores, sparsity_target):\n    \"\"\"Normalize per-layer scores by mean, then global top-k.\"\"\"\n    items = sorted(layer_scores.items())\n    normalized = []\n    for li, s in items:\n        s_f = s.float()\n        mu = s_f.mean()\n        normalized.append((li, s_f / mu if mu > 1e-12 else s_f))\n    all_s = torch.cat([s for _, s in normalized])\n    num_keep = int(len(all_s) * (1.0 - sparsity_target))\n    thr = torch.topk(all_s, num_keep).values[-1]\n    return {li: (s >= thr).to(torch.bfloat16) for li, s in normalized}\n\n\n@torch.no_grad()\ndef compute_layer_scores(wrapper, input_ids, calib_batch_size=4):\n    \"\"\"Compute per-layer neuron importance scores from predictor + activations.\"\"\"\n    accum_scores = {}\n    n_batches = 0\n    for start in range(0, input_ids.size(0), calib_batch_size):\n        batch = input_ids[start:start + calib_batch_size]\n        wrapper.forward_dense(batch, capture_intermediates=True)\n        intermediates = wrapper.get_intermediates()\n        layer_inputs = wrapper.get_layer_inputs()\n        with torch.no_grad():\n            for layer_idx in range(len(wrapper.predictors)):\n                if layer_idx not in layer_inputs or layer_idx not in intermediates:\n                    continue\n                logits = wrapper.predictors[layer_idx](layer_inputs[layer_idx])\n                hard_mask = (logits > 0).float()\n                mag = intermediates[layer_idx].abs().float()\n                scores = (mag * hard_mask).mean(dim=(0, 1))\n                if layer_idx not in accum_scores:\n                    accum_scores[layer_idx] = scores\n                else:\n                    accum_scores[layer_idx] = accum_scores[layer_idx] + scores\n        n_batches += 1\n        if start == 0:\n            print(f\"  Dry-run batch 0 OK, layers={len(accum_scores)}, \"\n                  f\"score shape={accum_scores[0].shape}\")\n    layer_scores = {li: accum_scores[li] / n_batches for li in sorted(accum_scores)}\n    return layer_scores\n\n\ndef analyze_retention(masks, n_layers=32, inter_dim=14336):\n    \"\"\"Compute per-layer retention statistics.\"\"\"\n    per_layer = []\n    for li in range(n_layers):\n        mask = masks[li]\n        retained = mask.sum().item()\n        ratio = retained / inter_dim\n        per_layer.append({\n            \"layer\": li,\n            \"retained_neurons\": int(retained),\n            \"mean_retention\": round(ratio, 4),\n        })\n\n    retentions = [p[\"mean_retention\"] for p in per_layer]\n\n    early = retentions[:8]\n    middle = retentions[8:24]\n    knowledge = retentions[12:21]\n    late = retentions[24:]\n\n    min_layer = min(per_layer, key=lambda x: x[\"mean_retention\"])\n    max_layer = max(per_layer, key=lambda x: x[\"mean_retention\"])\n\n    starved = [p for p in per_layer if p[\"mean_retention\"] < 0.50]\n\n    return {\n        \"per_layer_retention\": per_layer,\n        \"starved_layers\": starved,\n        \"knowledge_layer_avg_retention\": round(sum(knowledge) / len(knowledge), 4),\n        \"early_layer_avg_retention\": round(sum(early) / len(early), 4),\n        \"middle_layer_avg_retention\": round(sum(middle) / len(middle), 4),\n        \"late_layer_avg_retention\": round(sum(late) / len(late), 4),\n        \"min_retention_layer\": {\n            \"layer\": min_layer[\"layer\"],\n            \"retention\": min_layer[\"mean_retention\"]\n        },\n        \"max_retention_layer\": {\n            \"layer\": max_layer[\"layer\"],\n            \"retention\": max_layer[\"mean_retention\"]\n        },\n        \"uniform_baseline_retention\": 0.70,\n        \"sparsity_target\": SPARSITY_TARGET,\n        \"num_calib_samples\": NUM_CALIB,\n    }\n\n\ndef main():\n    print(f\"=== Global 30% Per-Layer Retention Analysis ===\")\n    print(f\"Model: {MODEL_PATH}\")\n    print(f\"Predictor: {PREDICTOR_PATH}\")\n    print(f\"Sparsity target: {SPARSITY_TARGET}\")\n    print(f\"Calibration: {NUM_CALIB} samples, seq_len={SEQ_LEN}\")\n    print()\n\n    device = torch.device(DEVICE)\n\n    print(\"Loading model...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        device_map={\"\": device},\n        attn_implementation=best_attn_impl(),\n    )\n    model.eval()\n\n    print(\"Loading predictor...\")\n    wrapper = PredictorWrapper(model, bottleneck_size=128)\n    ckpt = torch.load(PREDICTOR_PATH, map_location=device, weights_only=True)\n    wrapper.predictors.load_state_dict(ckpt[\"predictors\"])\n    wrapper.predictors.to(device=device, dtype=torch.bfloat16)\n    wrapper.predictors.eval()\n    wrapper.gumbel_mask.hard = True\n\n    print(\"Loading calibration data (C4)...\")\n    calib_data = get_eval_dataset(\"c4\", tokenizer, SEQ_LEN)\n    n_calib = min(NUM_CALIB, len(calib_data))\n    calib_ids = torch.stack([calib_data[i][\"input_ids\"] for i in range(n_calib)]).to(device)\n    print(f\"  Using {n_calib} sequences, shape={calib_ids.shape}\")\n\n    # --- Dry run with 2 samples ---\n    print(\"\\n--- Dry run (2 samples) ---\")\n    dry_ids = calib_ids[:2]\n    dry_scores = compute_layer_scores(wrapper, dry_ids, calib_batch_size=2)\n    dry_masks = global_topk_masks(dry_scores, SPARSITY_TARGET)\n    dry_total = sum(m.numel() for m in dry_masks.values())\n    dry_kept = sum(m.sum().item() for m in dry_masks.values())\n    print(f\"  Dry-run sparsity: {1 - dry_kept/dry_total:.4f} (target: {SPARSITY_TARGET})\")\n    for li in [0, 15, 16, 17, 31]:\n        r = dry_masks[li].sum().item() / 14336\n        print(f\"  Layer {li}: retention={r:.4f}\")\n    print(\"  Dry run OK, proceeding with full calibration...\\n\")\n\n    # --- Full calibration ---\n    print(f\"--- Full calibration ({n_calib} samples) ---\")\n    layer_scores = compute_layer_scores(wrapper, calib_ids, calib_batch_size=4)\n    global_masks = global_topk_masks(layer_scores, SPARSITY_TARGET)\n\n    total_n = sum(m.numel() for m in global_masks.values())\n    total_kept = sum(m.sum().item() for m in global_masks.values())\n    actual_sparsity = 1 - total_kept / total_n\n    print(f\"  Actual global sparsity: {actual_sparsity:.4f}\")\n\n    # --- Analyze ---\n    result = analyze_retention(global_masks)\n    result[\"actual_global_sparsity\"] = round(actual_sparsity, 4)\n\n    # Print summary\n    print(f\"\\n{'='*60}\")\n    print(\"PER-LAYER RETENTION (global top-k, 30% target)\")\n    print(f\"{'='*60}\")\n    print(f\"{'Layer':<6} {'Retention':<10} {'Neurons Kept':<14} {'Status'}\")\n    print(\"-\" * 50)\n    for p in result[\"per_layer_retention\"]:\n        status = \"STARVED\" if p[\"mean_retention\"] < 0.50 else \"\"\n        if p[\"mean_retention\"] < 0.30:\n            status = \"CRITICAL\"\n        print(f\"  {p['layer']:<4} {p['mean_retention']:<10.4f} \"\n              f\"{p['retained_neurons']:<14} {status}\")\n\n    print(f\"\\n--- Summary ---\")\n    print(f\"Early layers (0-7):      avg retention = {result['early_layer_avg_retention']:.4f}\")\n    print(f\"Middle layers (8-23):    avg retention = {result['middle_layer_avg_retention']:.4f}\")\n    print(f\"Knowledge layers (12-20): avg retention = {result['knowledge_layer_avg_retention']:.4f}\")\n    print(f\"Late layers (24-31):     avg retention = {result['late_layer_avg_retention']:.4f}\")\n    print(f\"Min retention: layer {result['min_retention_layer']['layer']} \"\n          f\"({result['min_retention_layer']['retention']:.4f})\")\n    print(f\"Max retention: layer {result['max_retention_layer']['layer']} \"\n          f\"({result['max_retention_layer']['retention']:.4f})\")\n    print(f\"Starved layers (<50%): {len(result['starved_layers'])}\")\n    print(f\"Uniform baseline: every layer = 0.70\")\n\n    # Interpretation\n    knowledge_ret = result[\"knowledge_layer_avg_retention\"]\n    n_starved = len(result[\"starved_layers\"])\n    if knowledge_ret < 0.50:\n        interpretation = (\n            f\"Knowledge layers (L12-L20) retain only {knowledge_ret:.1%} of neurons under \"\n            f\"global allocation, far below the uniform 70%. This severe under-allocation \"\n            f\"destroys factual knowledge stored in middle-layer FFNs, explaining the MMLU \"\n            f\"collapse from 40.61% (uniform) to 25.27% (global). {n_starved} layers are \"\n            f\"starved below 50% retention.\"\n        )\n    elif knowledge_ret < 0.65:\n        interpretation = (\n            f\"Knowledge layers (L12-L20) retain {knowledge_ret:.1%}, moderately below \"\n            f\"uniform 70%. Combined with {n_starved} starved layers, global allocation \"\n            f\"causes uneven capacity distribution that degrades knowledge tasks.\"\n        )\n    else:\n        interpretation = (\n            f\"Knowledge layers retain {knowledge_ret:.1%}, close to uniform. \"\n            f\"The MMLU gap may stem from other factors (e.g., specific critical layers \"\n            f\"being starved rather than the entire middle region).\"\n        )\n    result[\"interpretation\"] = interpretation\n    print(f\"\\nInterpretation: {interpretation}\")\n\n    # Also store raw normalized scores for further analysis\n    score_stats = []\n    for li in sorted(layer_scores):\n        s = layer_scores[li].float()\n        score_stats.append({\n            \"layer\": li,\n            \"mean_score\": round(s.mean().item(), 6),\n            \"std_score\": round(s.std().item(), 6),\n            \"max_score\": round(s.max().item(), 6),\n            \"min_score\": round(s.min().item(), 6),\n        })\n    result[\"raw_score_stats\"] = score_stats\n\n    # Save\n    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)\n    with open(OUTPUT_PATH, \"w\") as f:\n        json.dump(result, f, indent=2)\n    print(f\"\\nResults saved to {OUTPUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-34887",
+    "account": "root",
+    "command": "cat > /root/distill_sparse_swiglu/scripts/global_30pct_retention_analysis_script.py << 'SCRIPT_EOF'\n\"\"\"Per-layer retention analysis for 30% global top-k allocation.\n\nDemonstrates which layers get starved by global allocation, explaining\nwhy MMLU=25.27% (global) << 38.61% (TEAL) / 40.61% (uniform).\n\"\"\"\n\nimport importlib.util\nimport json\nimport os\nimport sys\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nsys.path.insert(0, \"/root/distill_sparse_swiglu/src\")\nfrom data_utils import get_eval_dataset\nfrom predictor import PredictorWrapper\n\nMODEL_PATH = \"/root/autodl-tmp/models/llama-3.1-8b\"\nPREDICTOR_PATH = \"/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\"\nSPARSITY_TARGET = 0.3\nNUM_CALIB = 50\nSEQ_LEN = 2048\nOUTPUT_PATH = \"/root/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis.json\"\nDEVICE = \"cuda:0\"\n\n\ndef best_attn_impl():\n    if importlib.util.find_spec(\"flash_attn\"):\n        return \"flash_attention_2\"\n    return \"sdpa\"\n\n\ndef global_topk_masks(layer_scores, sparsity_target):\n    \"\"\"Normalize per-layer scores by mean, then global top-k.\"\"\"\n    items = sorted(layer_scores.items())\n    normalized = []\n    for li, s in items:\n        s_f = s.float()\n        mu = s_f.mean()\n        normalized.append((li, s_f / mu if mu > 1e-12 else s_f))\n    all_s = torch.cat([s for _, s in normalized])\n    num_keep = int(len(all_s) * (1.0 - sparsity_target))\n    thr = torch.topk(all_s, num_keep).values[-1]\n    return {li: (s >= thr).to(torch.bfloat16) for li, s in normalized}\n\n\n@torch.no_grad()\ndef compute_layer_scores(wrapper, input_ids, calib_batch_size=4):\n    \"\"\"Compute per-layer neuron importance scores from predictor + activations.\"\"\"\n    accum_scores = {}\n    n_batches = 0\n    for start in range(0, input_ids.size(0), calib_batch_size):\n        batch = input_ids[start:start + calib_batch_size]\n        wrapper.forward_dense(batch, capture_intermediates=True)\n        intermediates = wrapper.get_intermediates()\n        layer_inputs = wrapper.get_layer_inputs()\n        with torch.no_grad():\n            for layer_idx in range(len(wrapper.predictors)):\n                if layer_idx not in layer_inputs or layer_idx not in intermediates:\n                    continue\n                logits = wrapper.predictors[layer_idx](layer_inputs[layer_idx])\n                hard_mask = (logits > 0).float()\n                mag = intermediates[layer_idx].abs().float()\n                scores = (mag * hard_mask).mean(dim=(0, 1))\n                if layer_idx not in accum_scores:\n                    accum_scores[layer_idx] = scores\n                else:\n                    accum_scores[layer_idx] = accum_scores[layer_idx] + scores\n        n_batches += 1\n        if start == 0:\n            print(f\"  Dry-run batch 0 OK, layers={len(accum_scores)}, \"\n                  f\"score shape={accum_scores[0].shape}\")\n    layer_scores = {li: accum_scores[li] / n_batches for li in sorted(accum_scores)}\n    return layer_scores\n\n\ndef analyze_retention(masks, n_layers=32, inter_dim=14336):\n    \"\"\"Compute per-layer retention statistics.\"\"\"\n    per_layer = []\n    for li in range(n_layers):\n        mask = masks[li]\n        retained = mask.sum().item()\n        ratio = retained / inter_dim\n        per_layer.append({\n            \"layer\": li,\n            \"retained_neurons\": int(retained),\n            \"mean_retention\": round(ratio, 4),\n        })\n\n    retentions = [p[\"mean_retention\"] for p in per_layer]\n\n    early = retentions[:8]\n    middle = retentions[8:24]\n    knowledge = retentions[12:21]\n    late = retentions[24:]\n\n    min_layer = min(per_layer, key=lambda x: x[\"mean_retention\"])\n    max_layer = max(per_layer, key=lambda x: x[\"mean_retention\"])\n\n    starved = [p for p in per_layer if p[\"mean_retention\"] < 0.50]\n\n    return {\n        \"per_layer_retention\": per_layer,\n        \"starved_layers\": starved,\n        \"knowledge_layer_avg_retention\": round(sum(knowledge) / len(knowledge), 4),\n        \"early_layer_avg_retention\": round(sum(early) / len(early), 4),\n        \"middle_layer_avg_retention\": round(sum(middle) / len(middle), 4),\n        \"late_layer_avg_retention\": round(sum(late) / len(late), 4),\n        \"min_retention_layer\": {\n            \"layer\": min_layer[\"layer\"],\n            \"retention\": min_layer[\"mean_retention\"]\n        },\n        \"max_retention_layer\": {\n            \"layer\": max_layer[\"layer\"],\n            \"retention\": max_layer[\"mean_retention\"]\n        },\n        \"uniform_baseline_retention\": 0.70,\n        \"sparsity_target\": SPARSITY_TARGET,\n        \"num_calib_samples\": NUM_CALIB,\n    }\n\n\ndef main():\n    print(f\"=== Global 30% Per-Layer Retention Analysis ===\")\n    print(f\"Model: {MODEL_PATH}\")\n    print(f\"Predictor: {PREDICTOR_PATH}\")\n    print(f\"Sparsity target: {SPARSITY_TARGET}\")\n    print(f\"Calibration: {NUM_CALIB} samples, seq_len={SEQ_LEN}\")\n    print()\n\n    device = torch.device(DEVICE)\n\n    print(\"Loading model...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        device_map={\"\": device},\n        attn_implementation=best_attn_impl(),\n    )\n    model.eval()\n\n    print(\"Loading predictor...\")\n    wrapper = PredictorWrapper(model, bottleneck_size=128)\n    ckpt = torch.load(PREDICTOR_PATH, map_location=device, weights_only=True)\n    wrapper.predictors.load_state_dict(ckpt[\"predictors\"])\n    wrapper.predictors.to(device=device, dtype=torch.bfloat16)\n    wrapper.predictors.eval()\n    wrapper.gumbel_mask.hard = True\n\n    print(\"Loading calibration data (C4)...\")\n    calib_data = get_eval_dataset(\"c4\", tokenizer, SEQ_LEN)\n    n_calib = min(NUM_CALIB, len(calib_data))\n    calib_ids = torch.stack([calib_data[i][\"input_ids\"] for i in range(n_calib)]).to(device)\n    print(f\"  Using {n_calib} sequences, shape={calib_ids.shape}\")\n\n    # --- Dry run with 2 samples ---\n    print(\"\\n--- Dry run (2 samples) ---\")\n    dry_ids = calib_ids[:2]\n    dry_scores = compute_layer_scores(wrapper, dry_ids, calib_batch_size=2)\n    dry_masks = global_topk_masks(dry_scores, SPARSITY_TARGET)\n    dry_total = sum(m.numel() for m in dry_masks.values())\n    dry_kept = sum(m.sum().item() for m in dry_masks.values())\n    print(f\"  Dry-run sparsity: {1 - dry_kept/dry_total:.4f} (target: {SPARSITY_TARGET})\")\n    for li in [0, 15, 16, 17, 31]:\n        r = dry_masks[li].sum().item() / 14336\n        print(f\"  Layer {li}: retention={r:.4f}\")\n    print(\"  Dry run OK, proceeding with full calibration...\\n\")\n\n    # --- Full calibration ---\n    print(f\"--- Full calibration ({n_calib} samples) ---\")\n    layer_scores = compute_layer_scores(wrapper, calib_ids, calib_batch_size=4)\n    global_masks = global_topk_masks(layer_scores, SPARSITY_TARGET)\n\n    total_n = sum(m.numel() for m in global_masks.values())\n    total_kept = sum(m.sum().item() for m in global_masks.values())\n    actual_sparsity = 1 - total_kept / total_n\n    print(f\"  Actual global sparsity: {actual_sparsity:.4f}\")\n\n    # --- Analyze ---\n    result = analyze_retention(global_masks)\n    result[\"actual_global_sparsity\"] = round(actual_sparsity, 4)\n\n    # Print summary\n    print(f\"\\n{'='*60}\")\n    print(\"PER-LAYER RETENTION (global top-k, 30% target)\")\n    print(f\"{'='*60}\")\n    print(f\"{'Layer':<6} {'Retention':<10} {'Neurons Kept':<14} {'Status'}\")\n    print(\"-\" * 50)\n    for p in result[\"per_layer_retention\"]:\n        status = \"STARVED\" if p[\"mean_retention\"] < 0.50 else \"\"\n        if p[\"mean_retention\"] < 0.30:\n            status = \"CRITICAL\"\n        print(f\"  {p['layer']:<4} {p['mean_retention']:<10.4f} \"\n              f\"{p['retained_neurons']:<14} {status}\")\n\n    print(f\"\\n--- Summary ---\")\n    print(f\"Early layers (0-7):      avg retention = {result['early_layer_avg_retention']:.4f}\")\n    print(f\"Middle layers (8-23):    avg retention = {result['middle_layer_avg_retention']:.4f}\")\n    print(f\"Knowledge layers (12-20): avg retention = {result['knowledge_layer_avg_retention']:.4f}\")\n    print(f\"Late layers (24-31):     avg retention = {result['late_layer_avg_retention']:.4f}\")\n    print(f\"Min retention: layer {result['min_retention_layer']['layer']} \"\n          f\"({result['min_retention_layer']['retention']:.4f})\")\n    print(f\"Max retention: layer {result['max_retention_layer']['layer']} \"\n          f\"({result['max_retention_layer']['retention']:.4f})\")\n    print(f\"Starved layers (<50%): {len(result['starved_layers'])}\")\n    print(f\"Uniform baseline: every layer = 0.70\")\n\n    # Interpretation\n    knowledge_ret = result[\"knowledge_layer_avg_retention\"]\n    n_starved = len(result[\"starved_layers\"])\n    if knowledge_ret < 0.50:\n        interpretation = (\n            f\"Knowledge layers (L12-L20) retain only {knowledge_ret:.1%} of neurons under \"\n            f\"global allocation, far below the uniform 70%. This severe under-allocation \"\n            f\"destroys factual knowledge stored in middle-layer FFNs, explaining the MMLU \"\n            f\"collapse from 40.61% (uniform) to 25.27% (global). {n_starved} layers are \"\n            f\"starved below 50% retention.\"\n        )\n    elif knowledge_ret < 0.65:\n        interpretation = (\n            f\"Knowledge layers (L12-L20) retain {knowledge_ret:.1%}, moderately below \"\n            f\"uniform 70%. Combined with {n_starved} starved layers, global allocation \"\n            f\"causes uneven capacity distribution that degrades knowledge tasks.\"\n        )\n    else:\n        interpretation = (\n            f\"Knowledge layers retain {knowledge_ret:.1%}, close to uniform. \"\n            f\"The MMLU gap may stem from other factors (e.g., specific critical layers \"\n            f\"being starved rather than the entire middle region).\"\n        )\n    result[\"interpretation\"] = interpretation\n    print(f\"\\nInterpretation: {interpretation}\")\n\n    # Also store raw normalized scores for further analysis\n    score_stats = []\n    for li in sorted(layer_scores):\n        s = layer_scores[li].float()\n        score_stats.append({\n            \"layer\": li,\n            \"mean_score\": round(s.mean().item(), 6),\n            \"std_score\": round(s.std().item(), 6),\n            \"max_score\": round(s.max().item(), 6),\n            \"min_score\": round(s.min().item(), 6),\n        })\n    result[\"raw_score_stats\"] = score_stats\n\n    # Save\n    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)\n    with open(OUTPUT_PATH, \"w\") as f:\n        json.dump(result, f, indent=2)\n    print(f\"\\nResults saved to {OUTPUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T07:19:47.782692+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T07:19:47.782841+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "account": "root",
+  "command": "cd /root/distill_sparse_swiglu && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python scripts/global_30pct_retention_analysis_script.py 2>&1' > logs/global_30pct_retention_analysis.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-34887",
+    "account": "root",
+    "command": "cd /root/distill_sparse_swiglu && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python scripts/global_30pct_retention_analysis_script.py 2>&1' > logs/global_30pct_retention_analysis.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T07:19:47.782973+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=7086\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T07:19:47.783154+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -30 /root/distill_sparse_swiglu/logs/global_30pct_retention_analysis.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "tail -30 /root/distill_sparse_swiglu/logs/global_30pct_retention_analysis.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T07:19:47.783285+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T07:19:47.783608+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "account": "root",
+  "command": "which python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-34887",
+    "account": "root",
+    "command": "which python3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T07:19:47.783830+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python3'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T07:19:47.784075+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "account": "root",
+  "command": "ls /root/miniconda3/bin/python /root/anaconda3/bin/python /opt/conda/bin/python /usr/bin/python3 2>/dev/null; find /root -maxdepth 3 -name \"python*\" -type f 2>/dev/null | head -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-34887",
+    "account": "root",
+    "command": "ls /root/miniconda3/bin/python /root/anaconda3/bin/python /opt/conda/bin/python /usr/bin/python3 2>/dev/null; find /root -maxdepth 3 -name \"python*\" -type f 2>/dev/null | head -5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T07:19:47.784233+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1.conda\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T07:19:47.784393+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "account": "root",
+  "command": "cd /root/distill_sparse_swiglu && nohup bash -c 'export PATH=/root/miniconda3/bin:$PATH && CUDA_VISIBLE_DEVICES=0 python scripts/global_30pct_retention_analysis_script.py 2>&1' > logs/global_30pct_retention_analysis.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-34887",
+    "account": "root",
+    "command": "cd /root/distill_sparse_swiglu && nohup bash -c 'export PATH=/root/miniconda3/bin:$PATH && CUDA_VISIBLE_DEVICES=0 python scripts/global_30pct_retention_analysis_script.py 2>&1' > logs/global_30pct_retention_analysis.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T07:19:47.784531+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=7116\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 17.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T07:19:47.784651+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -30 /root/distill_sparse_swiglu/logs/global_30pct_retention_analysis.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "tail -30 /root/distill_sparse_swiglu/logs/global_30pct_retention_analysis.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T07:19:47.784787+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  16   0.8304     11904          \\n  17   0.8616     12352          \\n  18   0.8973     12864          \\n  19   0.8705     12480          \\n  20   0.8661     12416          \\n  21   0.8482     12160          \\n  22   0.8080     11584          \\n  23   0.7768     11136          \\n  24   0.7321     10496          \\n  25   0.6875     9856           \\n  26   0.5804     8320           \\n  27   0.4933     7072           STARVED\\n  28   0.4040     5792           STARVED\\n  29   0.4598     6592           STARVED\\n  30   0.3661     5248           STARVED\\n  31   0.2835     4064           CRITICAL\\n\\n--- Summary ---\\nEarly layers (0-7):      avg retention = 0.7712\\nMiddle layers (8-23):    avg retention = 0.7640\\nKnowledge layers (12-20): avg retention = 0.7966\\nLate layers (24-31):     avg retention = 0.5008\\nMin retention: layer 31 (0.2835)\\nMax retention: layer 18 (0.8973)\\nStarved layers (<50%): 5\\nUniform baseline: every layer = 0.70\\n\\nInterpretation: Knowledge layers retain 79.7%, close to uniform. The MMLU gap may stem from other factors (e.g., specific critical layers being starved rather than the entire middle region).\\n\\nResults saved to /root/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-17T07:19:47.784948+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/distill_sparse_swiglu/logs/global_30pct_retention_analysis.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "cat /root/distill_sparse_swiglu/logs/global_30pct_retention_analysis.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-17T07:19:47.785118+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "cat /root/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-17T07:19:47.785299+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n=== Global 30% Per-Layer Retention Analysis ===\\nModel: /root/autodl-tmp/models/llama-3.1-8b\\nPredictor: /root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\\nSparsity target: 0.3\\nCalibration: 50 samples, seq_len=2048\\n\\nLoading model...\\n\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<00:35,  8.24it/s]\\rLoading weights:   1%|          | 2/291 [00:00<00:38,  7.55it/s]\\rLoading weights:   5%|▍         | 14/291 [00:00<00:05, 51.06it/s]\\rLoading weights:  10%|▉         | 28/291 [00:00<00:03, 82.26it/s]\\rLoading weights:  14%|█▍        | 42/291 [00:00<00:02, 96.27it/s]\\rLoading weights:  20%|██        | 59/291 [00:00<00:01, 116.27it/s]\\rLoading weights:  24%|██▍       | 71/291 [00:00<00:02, 102.32it/s]\\rLoading weights:  30%|██▉       | 86/291 [00:00<00:01, 107.71it/s]\\rLoading weights:  39%|███▉      | 113/291 [00:01<00:01, 147.67it/s]\\rLoading weights:  45%|████▍     | 130/291 [00:01<00:01, 147.03it/s]\\rLoading weights:  50%|█████     | 146/291 [00:01<00:01, 143.94it/s]\\rLoading weights:  55%|█████▌    | 161/291 [00:01<00:01, 128.27it/s]\\rLoading weights:  61%|██████    | 177/291 [00:01<00:00, 135.88it/s]\\rLoading weights:  66%|██████▋   | 193/291 [00:01<00:00, 138.83it/s]\\rLoading weights:  71%|███████▏  | 208/291 [00:01<00:00, 129.84it/s]\\rLoading weights:  76%|███████▋  | 222/291 [00:01<00:00, 119.85it/s]\\rLoading weights:  82%|████████▏ | 238/291 [00:02<00:00, 125.28it/s]\\rLoading weights:  86%|████████▋ | 251/291 [00:02<00:00, 120.04it/s]\\rLoading weights:  91%|█████████ | 265/291 [00:02<00:00, 124.33it/s]\\rLoading weights:  96%|█████████▌| 278/291 [00:02<00:00, 122.84it/s]\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 117.61it/s]\\nLoading predictor...\\nLoading calibration data (C4)...\\n  Using 50 sequences
+…[truncated 2743 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T07:19:47.785682+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_retention\\\": [\\n    {\\n      \\\"layer\\\": 0,\\n      \\\"retained_neurons\\\": 11520,\\n      \\\"mean_retention\\\": 0.8036\\n    },\\n    {\\n      \\\"layer\\\": 1,\\n      \\\"retained_neurons\\\": 12544,\\n      \\\"mean_retention\\\": 0.875\\n    },\\n    {\\n      \\\"layer\\\": 2,\\n      \\\"retained_neurons\\\": 11392,\\n      \\\"mean_retention\\\": 0.7946\\n    },\\n    {\\n      \\\"layer\\\": 3,\\n      \\\"retained_neurons\\\": 10816,\\n      \\\"mean_retention\\\": 0.7545\\n    },\\n    {\\n      \\\"layer\\\": 4,\\n      \\\"retained_neurons\\\": 10880,\\n      \\\"mean_retention\\\": 0.7589\\n    },\\n    {\\n      \\\"layer\\\": 5,\\n      \\\"retained_neurons\\\": 10880,\\n      \\\"mean_retention\\\": 0.7589\\n    },\\n    {\\n      \\\"layer\\\": 6,\\n      \\\"retained_neurons\\\": 10560,\\n      \\\"mean_retention\\\": 0.7366\\n    },\\n    {\\n      \\\"layer\\\": 7,\\n      \\\"retained_neurons\\\": 9856,\\n      \\\"mean_retention\\\": 0.6875\\n    },\\n    {\\n      \\\"layer\\\": 8,\\n      \\\"retained_neurons\\\": 9472,\\n      \\\"mean_retention\\\": 0.6607\\n    },\\n    {\\n      \\\"layer\\\": 9,\\n      \\\"retained_neurons\\\": 9536,\\n      \\\"mean_retention\\\": 0.6652\\n    },\\n    {\\n      \\\"layer\\\": 10,\\n      \\\"retained_neurons\\\": 9344,\\n      \\\"mean_retention\\\": 0.6518\\n    },\\n    {\\n      \\\"layer\\\": 11,\\n      \\\"retained_neurons\\\": 9216,\\n      \\\"mean_retention\\\": 0.6429\\n    },\\n    {\\n      \\\"layer\\\": 12,\\n      \\\"retained_neurons\\\": 9472,\\n      \\\"mean_retention\\\": 0.6607\\n    },\\n    {\\n      \\\"layer\\\": 13,\\n      \\\"retained_neurons\\\": 9792,\\n      \\\"mean_retention\\\": 0.683\\n    },\\n    {\\n      \\\"layer\\\": 14,\\n      \\\"retained_neurons\\\": 10240,\\n      \\\"mean_retention\\\": 0.7143\\n    },\\n    {\\n      \\\"layer\\\": 15,\\n      \\\"retained_neurons\\\
+…[truncated 8610 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-17T07:19:47.785891+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T07:19:47.786040+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-17T07:19:47.786169+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "global_30pct_retention_analysis",
+  "type": "data",
+  "description": "Per-layer neuron retention under 30% global top-k allocation. Shows late layers (L27-31) are severely starved (28-49%), not knowledge layers as hypothesized.",
+  "project": "distill_sparse_swiglu",
+  "tags": "['R2-W4', 'global-allocation', 'per-layer-retention', 'sparsity-30pct']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "global_30pct_retention_analysis",
+    "type": "data",
+    "description": "Per-layer neuron retention under 30% global top-k allocation. Shows late layers (L27-31) are severely starved (28-49%), not knowledge layers as hypothesized.",
+    "project": "distill_sparse_swiglu",
+    "tags": "['R2-W4', 'global-allocation', 'per-layer-retention', 'sparsity-30pct']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T07:19:47.786298+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"One of source_path, content, or url must be provided.\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T07:19:47.786416+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "cat /root/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T07:19:47.786754+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_layer_retention\\\": [\\n    {\\n      \\\"layer\\\": 0,\\n      \\\"retained_neurons\\\": 11520,\\n      \\\"mean_retention\\\": 0.8036\\n    },\\n    {\\n      \\\"layer\\\": 1,\\n      \\\"retained_neurons\\\": 12544,\\n      \\\"mean_retention\\\": 0.875\\n    },\\n    {\\n      \\\"layer\\\": 2,\\n      \\\"retained_neurons\\\": 11392,\\n      \\\"mean_retention\\\": 0.7946\\n    },\\n    {\\n      \\\"layer\\\": 3,\\n      \\\"retained_neurons\\\": 10816,\\n      \\\"mean_retention\\\": 0.7545\\n    },\\n    {\\n      \\\"layer\\\": 4,\\n      \\\"retained_neurons\\\": 10880,\\n      \\\"mean_retention\\\": 0.7589\\n    },\\n    {\\n      \\\"layer\\\": 5,\\n      \\\"retained_neurons\\\": 10880,\\n      \\\"mean_retention\\\": 0.7589\\n    },\\n    {\\n      \\\"layer\\\": 6,\\n      \\\"retained_neurons\\\": 10560,\\n      \\\"mean_retention\\\": 0.7366\\n    },\\n    {\\n      \\\"layer\\\": 7,\\n      \\\"retained_neurons\\\": 9856,\\n      \\\"mean_retention\\\": 0.6875\\n    },\\n    {\\n      \\\"layer\\\": 8,\\n      \\\"retained_neurons\\\": 9472,\\n      \\\"mean_retention\\\": 0.6607\\n    },\\n    {\\n      \\\"layer\\\": 9,\\n      \\\"retained_neurons\\\": 9536,\\n      \\\"mean_retention\\\": 0.6652\\n    },\\n    {\\n      \\\"layer\\\": 10,\\n      \\\"retained_neurons\\\": 9344,\\n      \\\"mean_retention\\\": 0.6518\\n    },\\n    {\\n      \\\"layer\\\": 11,\\n      \\\"retained_neurons\\\": 9216,\\n      \\\"mean_retention\\\": 0.6429\\n    },\\n    {\\n      \\\"layer\\\": 12,\\n      \\\"retained_neurons\\\": 9472,\\n      \\\"mean_retention\\\": 0.6607\\n    },\\n    {\\n      \\\"layer\\\": 13,\\n      \\\"retained_neurons\\\": 9792,\\n      \\\"mean_retention\\\": 0.683\\n    },\\n    {\\n      \\\"layer\\\": 14,\\n      \\\"retained_neurons\\\": 10240,\\n      \\\"mean_retention\\\": 0.7143\\n    },\\n    {\\n      \\\"layer\\\": 15,\\n      \\\"retained_neurons\\\
+…[truncated 8610 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-17T07:19:47.786923+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "global_30pct_retention_analysis",
+  "type": "data",
+  "description": "Per-layer neuron retention under 30% global top-k allocation. Late layers L27-31 starved (28-49%), knowledge layers unaffected (79.7%).",
+  "project": "distill_sparse_swiglu",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis_script.py",
+  "tags": "['R2-W4', 'global-allocation', 'per-layer-retention', 'sparsity-30pct']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "global_30pct_retention_analysis",
+    "type": "data",
+    "description": "Per-layer neuron retention under 30% global top-k allocation. Late layers L27-31 starved (28-49%), knowledge layers unaffected (79.7%).",
+    "project": "distill_sparse_swiglu",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis_script.py",
+    "tags": "['R2-W4', 'global-allocation', 'per-layer-retention', 'sparsity-30pct']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-17T07:19:47.787093+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_af1a34\", \"name\": \"global_30pct_retention_analysis\", \"type\": \"data\", \"description\": \"Per-layer neuron retention under 30% global top-k allocation. Late layers L27-31 starved (28-49%), knowledge layers unaffected (79.7%).\", \"path\": \"projects/distill_sparse_swiglu/artifacts/_project/data/global_30pct_retention_analysis_script.py\", \"url\": null, \"project\": \"distill_sparse_swiglu\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-17T07:19:29.978932+00:00\", \"tags\": [\"R2-W4\", \"global-allocation\", \"per-layer-retention\", \"sparsity-30pct\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-17T07:19:47.787274+00:00_
+
+分析完成。结果与原始假设**不同**：
+
+## 30% Global Top-k Per-Layer Retention 结果
+
+| 区域 | 层范围 | 平均 Retention | vs Uniform 70% |
+|------|--------|---------------|-----------------|
+| Early | L0-7 | **77.1%** | +7.1% |
+| Middle | L8-23 | **76.4%** | +6.4% |
+| Knowledge | L12-20 | **79.7%** | +9.7% |
+| **Late** | **L24-31** | **50.1%** | **-19.9%** |
+
+### 5 个 Starved 层（全在尾部）
+
+| Layer | Retention | 状态 |
+|-------|-----------|------|
+| L27 | 49.3% | STARVED |
+| L28 | 40.4% | STARVED |
+| L29 | 46.0% | STARVED |
+| L30 | 36.6% | STARVED |
+| L31 | **28.4%** | **CRITICAL** |
+
+### 关键发现
+
+原假设"中间层知识层被饿死"**不成立**。实际上：
+
+1. **被饿死的是尾部层 L27-31**，而非 knowledge layers。Global allocation 反而给了 knowledge layers 更多 neurons（79.7% > uniform 70%）。
+
+2. **原因**：尾部层激活分布极度长尾。L31 的 std/mean = 1.89，max = 9.89（是 mean 的 56 倍）。Mean-normalization 后，少数高分 neuron 在全局竞争中"虹吸"了预算，但该层大多数 neuron 被淘汰。
+
+3. **对 MMLU 的影响**：尾部层负责最终 token logit 形成。L31 只保留 28.4% neurons，直接破坏了输出分布的精度，解释了 MMLU 25.27%（global）vs 38.61%（TEAL）的差距。TEAL 的 per-layer uniform 保障每层至少 70%，避免了这种尾部崩溃。
+
+这一发现需要调整论文中关于 global allocation 失败机制的叙述：问题不是"饿死知识层"，而是**尾部层长尾分布导致的 budget 虹吸效应**。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_30pct_retention_deploy_20260517T071611"
+}
+```
+
+</details>
+
+---

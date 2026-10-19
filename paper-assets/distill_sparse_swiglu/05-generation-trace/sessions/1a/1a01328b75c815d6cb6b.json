@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a01328b75c815d6cb6b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code snr extended r6w3",
+  "task_key": "worker_code_snr_extended_r6w3_20260518T015700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_snr_extended_r6w3_20260518T015700_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "17fb2b7922ed3d881bd0d3176ff607deaf7c695391ef18ee5b4ca3d533ef352d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已成功创建并提交运行：\n\n- **脚本**: `/root/distill_sparse_swiglu/scripts/gradient_snr_extended.py`\n- **PID**: 92073（实际 python 子进程）\n- **日志**: `/root/distill_sparse_swiglu/logs/snr_extended_r6w3.log`\n- **GPU**: cuda:0，已开始 Phase 1 KL distillation，step 0 snapshot 已产出\n- **输出**: 完成后写入 `/root/distill_sparse_swiglu/artifacts/snr_extended_results.json`\n\n注意：`submit_training_job` 工具在当前环境不可用，已按 C002 约束用 nohup + 日志重定向启动。300 steps (batch_size=4, seq_len=2048) 预计运行约 15-20 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-snr-extended-r6w3.md"
+}

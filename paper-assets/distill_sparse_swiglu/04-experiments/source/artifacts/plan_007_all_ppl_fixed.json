@@ -1,0 +1,18 @@
+{
+  "description": "Plan 007 WikiText-2 PPL - all conditions, fixed eval_benchmark.py, full dataset",
+  "model": "LLaMA-3.1-8B",
+  "dataset": "WikiText-2 (test, seq_len=2048, 141 sequences)",
+  "conditions": {
+    "dense": {"ppl": 6.1173},
+    "kl_s42": {"ppl": 9.2142},
+    "bce_s42": {"ppl": 27.9603},
+    "bce_comp_s42": {"ppl": 25.4384},
+    "ste_s42": {"ppl": 8.1762},
+    "spon_s42": {"ppl": 8.9968},
+    "teal_vanilla": {"ppl": 23.3113},
+    "wina": {"ppl": 27.9262},
+    "rsparse": {"ppl": 151.2021},
+    "uniform_50": {"ppl": 23.8998},
+    "sparsity70_teal": {"ppl": 17.913, "old_broken": 136069.61}
+  }
+}

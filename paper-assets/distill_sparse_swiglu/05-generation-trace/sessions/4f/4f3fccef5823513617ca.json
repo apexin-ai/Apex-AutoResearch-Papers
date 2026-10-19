@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f3fccef5823513617ca",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check kl30 pipeline diff",
+  "task_key": "worker_check_kl30_pipeline_diff_20260517T115421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_kl30_pipeline_diff_20260517T115421_result.json",
+    "occurrence": 1,
+    "bytes": 2941,
+    "sha256": "4088f35001e867b7d3224127468ecf9111fbc44c24c9855b624941bff1f21b30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "排查完成。以下是完整结论。\n\n---\n\n## 排查结果\n\n### 训练配置对比\n\n| 参数 | s42 (kl_sparsity30_s42_v3) | s123 (kl_30pct_s123) | 是否一致 |\n|------|---------------------------|---------------------|----------|\n| **lambda_max** | **5000.0** | **5000** | **✓ 一致** |\n| lr | 0.001 | 1e-3 | ✓ |\n| num_steps | 1000 | 1000 | ✓ |\n| batch_size | 4 | 4 | ✓ |\n| seq_len | 2048 | 2048 | ✓ |\n| sparsity_target | 0.3 | 0.3 | ✓ |\n| loss_type | kl_normalized | kl_normalized | ✓ |\n| dataset | wikitext-103 | wikitext-103 | ✓ |\n| gradient_checkpointing | True | True | ✓ |\n| seed | 42 | 123 | 预期不同 |\n\n**来源**：s42 v3 配置来自 wandb 离线记录 `offline-run-20260516_051217-06u4phga`，s123 配置来自 `scripts/multiseed_kl30_fixed.sh`。\n\n### Eval 配置对比\n\n| 参数 | s42 (bench_kl30_global) | s123 (kl_30pct_s123) | 一致 |\n|------|------------------------|---------------------|------|\n| sparsity_mode | teal_global | teal_global | ✓ |\n| allocation | global_topk | global_topk | ✓ |\n| sparsity_target | 0.3 | 0.3 | ✓ |\n| batch_size | 8 | 8 | ✓ |\n| seq_len | 2048 | 2048 | ✓ |\n| few_shot | 未记录（lm-eval-harness 默认） | 未记录（同上） | ✓ |\n\n### Benchmark 结果对比\n\n| 指标 | s42 | s123 | 差异 |\n|------|-----|------|------|\n| wikitext2_ppl | **8.9768** | **8.9748** | ≈0 (几乎相同) |\n| ARC (acc) | 37.20% | 41.81% | -4.6pp |\n| ARC (acc_norm) | 39.68% | 45.31% | -5.6pp |\n| WinoGrande | 70.17% | 69.30% | +0.9pp |\n| **MMLU** | **25.27%** | **38.07%** | **-12.8pp** |\n| GSM8K | 8.79% | 7.58% | +1.2pp |\n\n### 关于 kl_sparsity30_s42.log 的误导\n\n`kl_sparsity30_s42.log` 显示 `cap=1000`，但这是 **v1 训练的日志**（wandb run `gxgzh438`，产出 `kl_sparsity30_s42` checkpoint）。论文引用的 v3 checkpoint 是 **后续重新训练**的，wandb 记录明确显示 `lambda_max: 5000.0`。v3 的训练日志未被单独保存为 .log 文件。\n\n### 结论\n\n**差异是纯种子方差，不是配置差异。**\n\n训练配置完全一致（包括 lambda_max=5000）。但 MMLU 的 12.8pp 种子方差异常大，而 perplexity 几乎完全相同（8.977 vs 8.975），WinoGrande/GSM8K 也在噪声范围内。\n\n这说明 **30% global_topk 下 MMLU 对 sparsity pattern 极度敏感**：不同 seed 导致不同神经元被保留，perplexity 不受影响但 MMLU 崩塌。这实际上 **强化了 uniform allocation 的论点**（uniform 提供更稳定的性能），但论文的 framing 需要调整：\n\n1. 不能用单个 s42 的 25.27% 作为 global_topk 的代表性结果（它可能只是 unlucky seed）\n2. \"+15.3pp recovery\" 的 claim 混入了 seed 方差，实际 uniform 的增量可能没那么大\n3. 建议：报告 s42/s123 的 MMLU 均值和标准差，或说明 global_topk 在 30% 下 MMLU 方差很大，这本身就是 uniform 的卖点"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-kl30-pipeline-diff.md"
+}

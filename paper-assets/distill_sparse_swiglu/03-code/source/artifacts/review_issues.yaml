@@ -1,0 +1,446 @@
+issues:
+  # ============================================================
+  # Round 31 — New/Recurring issues
+  # ============================================================
+
+  - id: "R31-N1"
+    summary: "无实际推理加速（6.4% overhead），acceleration 叙事仍脱节"
+    category: framing
+    severity: critical
+    status: open
+    first_raised_round: 16
+    last_seen_round: 31
+    mentions:
+      - {round: 16, reviewers: [1, 2], note: "首次提出 wall-clock speedup 缺失"}
+      - {round: 27, reviewers: [1, 2], note: "R27-W5 framed as structural limitation"}
+      - {round: 31, reviewers: [1], note: "R1-N1 Must-Fix。predictor 引入 6.4% overhead，论文仍暗示 sparsity→speedup 的叙事链。R2 未独立提出但未反驳。"}
+    action_items:
+      - {round: 31, action: "彻底剥离 acceleration 叙事，明确 framing 为 quality preservation 而非 speedup", assigned_to: "", status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-N2"
+    summary: "主表 sparsity mismatch（KL 28.5% vs TEAL 29.3%）未严格控制"
+    category: experiment
+    severity: critical
+    status: open
+    first_raised_round: 22
+    last_seen_round: 31
+    mentions:
+      - {round: 22, reviewers: [1, 2], note: "R22-W3 首次提出，脚注修复"}
+      - {round: 31, reviewers: [1], note: "R1-N2 Must-Fix。~0.8pp 差异可能贡献部分 PPL gain。需 iso-sparsity 对比或说明公平性机制。R2 未独立提出。"}
+    action_items:
+      - {round: 31, action: "提供 iso-sparsity 对比数据或详细论证 TEAL oracle top-k 机制如何保证公平性", assigned_to: "", status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-N3"
+    summary: "'Signal type > coupling scope' 核心 claim 依赖未充分调优的 MSE baseline"
+    category: experiment
+    severity: critical
+    status: open
+    first_raised_round: 29
+    last_seen_round: 31
+    mentions:
+      - {round: 29, reviewers: [1, 2], note: "R29-W5。MSE 用 KL 相同超参。"}
+      - {round: 30, reviewers: [1, 2], note: "R30-W1。Limitations 补了 lr sweep 数据(gap 缩至 8.45)。"}
+      - {round: 31, reviewers: [1], note: "R1-N3 Must-Fix。MSE 仅用 1e-3 lr，缺乏完整 lr sweep。如 MSE 在更低 lr 下接近 KL，核心叙事崩塌。R2 未独立提出 Must-Fix 但在 W2 中暗示方法论叙事脆弱。"}
+    action_items:
+      - {round: 31, action: "补充 MSE lr grid search 或进一步软化 'signal type > coupling' claim", assigned_to: "", status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-W1"
+    summary: "Contribution #4（task-type analysis, n=3）不应作为正式贡献"
+    category: framing
+    severity: critical
+    status: open
+    first_raised_round: 24
+    last_seen_round: 31
+    mentions:
+      - {round: 24, reviewers: [1, 2], note: "R24-W2 统计力不足首次提出"}
+      - {round: 30, reviewers: [1, 2], note: "降级为 directional observations"}
+      - {round: 31, reviewers: [1, 2], note: "R2-W1 Must-Fix + R1 AGREE。n=3 task 类别无统计意义；GSM8K 归入 knowledge-intensive 分类有误。两位 Reviewer 共识：降级为 observation。"}
+    action_items:
+      - {round: 31, action: "将 Contribution #4 从 numbered contribution 降级为 §4.2 的 preliminary observation", assigned_to: "", status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-W2"
+    summary: "论文在 method paper 和 empirical study 之间定位模糊，核心方法增量性质"
+    category: framing
+    severity: critical
+    status: open
+    first_raised_round: 25
+    last_seen_round: 31
+    mentions:
+      - {round: 25, reviewers: [2], note: "R25-N1 首次提出 novelty 有限"}
+      - {round: 27, reviewers: [1, 2], note: "共识：新颖性为组合级别"}
+      - {round: 30, reviewers: [1, 2], note: "Empirical study 定位已部分调整"}
+      - {round: 31, reviewers: [1, 2], note: "R2-W2 Must-Fix。R1 REBUT（部分同意）：问题识别和 target-swap insight 有价值，但同意应 reposition 为 empirical investigation。Target-swap 发现实际削弱了方法论叙事。"}
+    action_items:
+      - {round: 31, action: "Introduction 明确定位为 empirical investigation；重组 contribution list 以 findings 为核心而非方法本身", assigned_to: "", status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-S1"
+    summary: "与 MaskLLM 的方法论区分论证不够深入"
+    category: writing
+    severity: warning
+    status: open
+    first_raised_round: 16
+    last_seen_round: 31
+    mentions:
+      - {round: 31, reviewers: [1, 2], note: "R2-W3 Should-Fix + R1 AGREE。两者共享 KL+frozen weights+learnable masks，但 static N:M vs contextual per-token 的方法论含义（exploration space、temperature schedule、Gumbel-Softmax vs Gumbel-Sigmoid 选择）未讨论。"}
+    action_items:
+      - {round: 31, action: "§2 或 §3.7 增加 1-2 段 MaskLLM 技术对比", assigned_to: "", status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-S2"
+    summary: "Abstract 'renders compensation redundant' 表述过强"
+    category: writing
+    severity: warning
+    status: open
+    first_raised_round: 31
+    last_seen_round: 31
+    mentions:
+      - {round: 31, reviewers: [1, 2], note: "R2-W5 Should-Fix。R1 部分同意方向（overclaiming）但指出 R2 引用 Table 4 证据不准确——实际 compensation redundancy 在 Appendix J 验证。50% sparsity 下可能仍有增益。"}
+    action_items:
+      - {round: 31, action: "Abstract 'renders...redundant' 改为条件化表述（如 'substantially reduces the need for' + 注明 30% sparsity 条件）", assigned_to: "", status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-S3"
+    summary: "C1 ablation 二值化丢失 ranking 信息构成 confound"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 24
+    last_seen_round: 31
+    mentions:
+      - {round: 24, reviewers: [1, 2], note: "R24-W3 首次提出"}
+      - {round: 28, reviewers: [1, 2], note: "双方 AGREE"}
+      - {round: 31, reviewers: [1], note: "R1-S2 Should-Fix。二值化 mask 丢失 gating score ranking，target-swap 比较不干净。R2 Q1 也隐含此问题。"}
+    action_items:
+      - {round: 31, action: "§4.4 增加 binarization confound 的显式讨论段", assigned_to: "", status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-S4"
+    summary: "K-curve decomposition 受 train-inference mismatch 污染"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 20
+    last_seen_round: 31
+    mentions:
+      - {round: 31, reviewers: [1], note: "R1-S4 Should-Fix。训练用 Gumbel 连续近似，推理用 hard top-k，gap 可能混淆 K-curve 归因。R2 未独立提出。"}
+    action_items:
+      - {round: 31, action: "§4.5 K-curve 讨论中增加 train-inference gap caveat", assigned_to: "", status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-S5"
+    summary: "Table 1 taxonomy 贡献性质模糊，未产生可验证预测"
+    category: framing
+    severity: warning
+    status: open
+    first_raised_round: 31
+    last_seen_round: 31
+    mentions:
+      - {round: 31, reviewers: [1, 2], note: "R2-W4 Should-Fix + R1 AGREE。Taxonomy 仅指出占据特定格子，未推导 non-obvious 预测。建议定位为文献综述组织工具或推导可验证假设。"}
+    action_items:
+      - {round: 31, action: "明确 Table 1 定位为 literature organization（非独立贡献）或从中推导可检验假设", assigned_to: "", status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-S6"
+    summary: "模型规模仅 7B-14B，Conclusion 用语暗示更广泛适用性"
+    category: writing
+    severity: warning
+    status: open
+    first_raised_round: 22
+    last_seen_round: 31
+    mentions:
+      - {round: 31, reviewers: [1, 2], note: "R2-W6 Should-Fix + R1 AGREE。'generalizing to' 措辞需改为 'extends to'。Limitations 需明确 model scale 限制。"}
+    action_items:
+      - {round: 31, action: "Conclusion 'generalizing' → 'extends to'；Limitations 增加 model scale 限制说明", assigned_to: "", status: open}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-M1"
+    summary: "训练数据单一（WikiText-103）对 predictor 泛化的影响"
+    category: experiment
+    severity: info
+    status: open
+    first_raised_round: 31
+    last_seen_round: 31
+    mentions:
+      - {round: 31, reviewers: [1, 2], note: "R2-W7 Nice-to-have + R1 AGREE。C4 OOD PPL 从 8.82 恶化到 11.55 显示 non-trivial sensitivity。Appendix D 已部分覆盖。"}
+    action_items: []
+    resolution: ""
+    resolution_round: null
+
+  - id: "R31-M2"
+    summary: "术语不一致（predictor-TEAL / KL predictor / our predictor 混用）"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 31
+    last_seen_round: 31
+    mentions:
+      - {round: 31, reviewers: [1, 2], note: "R2-W8 Nice-to-have + R1 AGREE。首次出现时定义标准名称并全文统一。"}
+    action_items: []
+    resolution: ""
+    resolution_round: null
+
+  # ============================================================
+  # Round 30 — Previously resolved (carried forward)
+  # ============================================================
+
+  - id: "R30-W1"
+    summary: "Contribution #2 (signal type > coupling) 的数值基础同时受 MSE 未调参和 K=1 confound 侵蚀"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 30
+    last_seen_round: 31
+    mentions:
+      - {round: 30, reviewers: [1, 2], note: "R1-N2(MSE未调参)+R1-S4(decomposition confound)。"}
+      - {round: 31, reviewers: [1], note: "Recurring as R31-N3 with escalated severity. Limitations fix deemed insufficient—core claim still relies on untuned MSE."}
+    action_items:
+      - {round: 30, action: "limitations.tex 补 MSE sweep 已有结果", assigned_to: "paper_agent", status: done}
+      - {round: 30, action: "intro L29 'dominates'→'substantially exceeds'", assigned_to: "paper_agent", status: done}
+    resolution: "Limitations now includes MSE lr sweep data. Intro softened. But issue escalated in R31 as fix deemed insufficient."
+    resolution_round: 30
+
+  - id: "R20-W1"
+    summary: "Per-layer KL decomposition 的 train-inference mismatch confound 未解决"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 20
+    last_seen_round: 31
+    mentions:
+      - {round: 31, reviewers: [1], note: "Recurring as R31-S4 at reduced severity (Should-Fix)."}
+    action_items: []
+    resolution: "Structural confound accepted. §4.5 framing exhaustively adjusted over 10 rounds."
+    resolution_round: 30
+
+  - id: "R20-N2"
+    summary: "MMLU/GSM8K 跨架构系统性退步缺乏因果机制分析"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 18
+    last_seen_round: 30
+    resolution: "Reframed as dual-factor explanation (allocation-induced primary + mode-covering secondary)."
+    resolution_round: 30
+
+  - id: "R24-W2"
+    summary: "高方差下游指标统计可靠性不足"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 24
+    last_seen_round: 31
+    mentions:
+      - {round: 31, reviewers: [1, 2], note: "Recurring as part of R31-W1 (Contribution #4 demotion)."}
+    resolution: "All 'systematic' instances replaced with 'directional decline (n=3)'. Contribution #4 softened."
+    resolution_round: 30
+
+  - id: "R25-N1"
+    summary: "方法新颖性边界需更清晰论证"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 25
+    last_seen_round: 31
+    mentions:
+      - {round: 31, reviewers: [1, 2], note: "Recurring as R31-W2 with escalated severity (critical). Positioning still unresolved."}
+    resolution: "Empirical study positioning stabilized in R30. But R31 escalates as full repositioning not yet done."
+    resolution_round: 30
+
+  - id: "R24-W3"
+    summary: "C1 ablation soft→hard mask representation 残余 confound"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 24
+    last_seen_round: 31
+    mentions:
+      - {round: 24, reviewers: [1, 2], note: "Oracle 二值化丢失排序信息。"}
+      - {round: 31, reviewers: [1], note: "Recurring as R31-S3."}
+    action_items: []
+    resolution: ""
+    resolution_round: null
+
+  - id: "R28-W4"
+    summary: "30% 下缺少 BCE isocompute (2700 steps) 对比"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 28
+    last_seen_round: 30
+    mentions:
+      - {round: 28, reviewers: [1, 2], note: "R28 双方 AGREE。"}
+      - {round: 30, reviewers: [1], note: "R30 R1-S6。iso-compute gap 仍存在。"}
+    action_items:
+      - {round: 30, action: "Defer to camera-ready.", assigned_to: "director", status: done}
+    resolution: ""
+    resolution_round: null
+
+  - id: "R28-W5"
+    summary: "主评估指标单一（WikiText-2 PPL），C4 OOD 不充分"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 28
+    last_seen_round: 30
+    resolution: ""
+    resolution_round: null
+
+  - id: "R28-W3"
+    summary: "MSE 50% baseline 仅 s42 有效（s123 catastrophic），作为 baseline 不可信"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 28
+    last_seen_round: 29
+    resolution: ""
+    resolution_round: null
+
+  # ============================================================
+  # Resolved (older rounds — compact, unchanged)
+  # ============================================================
+
+  - id: "R27-C2"
+    summary: "'Primary design dimension' claim 在知识任务不成立"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 24
+    last_seen_round: 30
+    resolution: "Not raised in R28-R30. Conclusion scope-limited."
+    resolution_round: 30
+
+  - id: "R29-W5"
+    summary: "MSE baseline 可能未在最优超参下评估"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 29
+    last_seen_round: 30
+    resolution: "Limitations contains MSE lr sweep data. Merged with R30-W1."
+    resolution_round: 30
+
+  - id: "R29-W7"
+    summary: "STE undershoot 可能高估 Gumbel 独立贡献"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 29
+    last_seen_round: 30
+    resolution: "STE sparsity mismatch analysis added."
+    resolution_round: 30
+
+  - id: "R30-W6"
+    summary: "SVD Contextual Sparsity Predictors 并行工作未讨论"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 30
+    last_seen_round: 30
+    resolution: "Related Work now discusses SVD-CSP as concurrent work."
+    resolution_round: 30
+
+  - id: "R30-RV1"
+    summary: "Qwen-14B s456 GSM8K eval batch_size 不一致"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 30
+    last_seen_round: 30
+    resolution: "Appendix reports 2-seed mean excluding s456."
+    resolution_round: 30
+
+  - id: "R26-W1"
+    summary: "14.5% PPL improvement 引用基准不一致"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 26
+    last_seen_round: 28
+    resolution: "Table 2 caption clarified."
+    resolution_round: 28
+
+  - id: "R28-W1"
+    summary: "Conclusion 仅 2 句话"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 28
+    last_seen_round: 30
+    resolution: "Conclusion expanded."
+    resolution_round: 30
+
+  - id: "R28-W2"
+    summary: "Contribution labels misleading"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 28
+    last_seen_round: 30
+    resolution: "Labels removed entirely."
+    resolution_round: 30
+
+  - id: "R29-W6"
+    summary: "BCE+Gumbel 劣于 BCE 的协同效应未讨论"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 29
+    last_seen_round: 29
+    resolution: "Observation noted in §4.3."
+    resolution_round: 29
+
+  - id: "R27-W5"
+    summary: "Wall-clock speedup 缺失"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 16
+    last_seen_round: 28
+    resolution: "论文已 framed 为 empirical study."
+    resolution_round: 23
+
+  - id: "R25-W1"
+    summary: "BCE 30% uniform 对比已补充"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 25
+    last_seen_round: 26
+    resolution: "Table 2 已加。"
+    resolution_round: 27
+
+  - id: "R25-M1"
+    summary: "术语不一致"
+    category: writing
+    severity: minor
+    status: resolved
+    first_raised_round: 25
+    last_seen_round: 27
+    resolution: "统一为 output-distribution KL。"
+    resolution_round: 27
+
+  - id: "R22-W5"
+    summary: "规模泛化仅 7-14B"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 22
+    last_seen_round: 27
+    resolution: "Limitations 已覆盖。"
+    resolution_round: 25

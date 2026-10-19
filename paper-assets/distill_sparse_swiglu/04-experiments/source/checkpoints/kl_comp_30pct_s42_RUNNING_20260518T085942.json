@@ -1,0 +1,36 @@
+{
+  "exp_id": "kl_comp_30pct_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:18:40.552Z",
+    "updated_at": "2026-05-18T08:59:42.610Z",
+    "hypothesis": "Per-layer compensation heads (0.837% extra params) trained on KL-distilled 30% sparsity predictor recover quality lost to sparse activation, reducing compensation loss from 2.36 to 0.70 over 1000 steps.",
+    "spec": "ignore",
+    "metrics": {
+      "final_loss": 0.6992,
+      "steps": 1000,
+      "compensation_params": 67248128,
+      "compensation_pct": 0.837,
+      "mean_head_norm_final": 9.2012,
+      "loss_trajectory": [
+        2.3594,
+        1.3516,
+        1.0859,
+        0.9219,
+        0.8789,
+        0.8281,
+        0.7461,
+        0.7344,
+        0.6953,
+        0.6992
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T08:59:42.932591+00:00",
+  "trigger": "update_registry"
+}

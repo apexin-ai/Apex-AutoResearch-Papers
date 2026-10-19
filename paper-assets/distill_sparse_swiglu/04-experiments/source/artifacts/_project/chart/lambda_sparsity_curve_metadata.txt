@@ -1,0 +1,11 @@
+Remote path (westd-34887): /root/distill_sparse_swiglu/figures/lambda_sparsity_curve.pdf and .png
+
+Data sources:
+- 30% target: kl_sparsity30_s42_v3.log (cap=5000, 101 points, steps 1-1000)
+- 50% target: mvp_kl_norm_v2_s42.log (cap=1000, 101 points)
+- 70% target: kl_sparsity70_s42_v2.log (cap=1000, 101 points)
+
+Key observations:
+- 30% target: λ U-shaped (natural sparsity > target initially, λ suppressed to 0.01, then rises exponentially to cap 5000 as sparsity drops below target)
+- 50%/70% target: λ saturates to cap within ~10 steps (initial sparsity 0.406 far below targets)
+- All final sparsities slightly below target (systematic bias ~1.2-1.5pp under cap constraint)

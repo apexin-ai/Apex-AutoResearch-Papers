@@ -1,0 +1,26 @@
+{
+  "exp_id": "db_sensitivity_sweep",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:02:33.553Z",
+    "updated_at": "2026-05-16T20:02:33.553Z",
+    "spec": {
+      "command": "train.py --loss_type kl_normalized --bottleneck_dim {64,256,512} --num_steps 1000 --sparsity_target 0.5 --lr 1e-3 --seed 42",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "model_name": "llama-3.1-8b",
+      "data_path": "WikiText-103 train",
+      "data_count": null,
+      "seed": 42,
+      "hypothesis": "Predictor bottleneck dimension d_b has low sensitivity to final PPL, justifying default d_b=128 choice"
+    }
+  },
+  "timestamp": "2026-05-16T20:02:33.738476+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl_comp_30pct_s42_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:00:31.189Z",
+    "updated_at": "2026-05-18T09:02:21.907Z",
+    "hypothesis": "KL+compensation at 30% sparsity (s42) improves downstream benchmark quality over KL-only predictor, validating that compensation heads recover quality lost to sparse activation.",
+    "parent": "kl_comp_30pct_s42"
+  },
+  "timestamp": "2026-05-18T09:02:22.238476+00:00",
+  "trigger": "update_registry"
+}

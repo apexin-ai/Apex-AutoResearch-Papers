@@ -1,0 +1,15 @@
+{
+  "exp_id": "teal_28.5pct_sanity",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:52:16.546Z",
+    "updated_at": "2026-05-19T06:52:32.259Z",
+    "hypothesis": "TEAL vanilla at 28.5% sparsity (matching KL predictor's actual achieved sparsity) produces similar PPL to TEAL at 30%, confirming the 1.5pp sparsity gap does not meaningfully affect the KL vs TEAL comparison. If PPL difference is < 0.1, the comparison is fair."
+  },
+  "timestamp": "2026-05-19T06:52:33.113947+00:00",
+  "trigger": "update_registry"
+}

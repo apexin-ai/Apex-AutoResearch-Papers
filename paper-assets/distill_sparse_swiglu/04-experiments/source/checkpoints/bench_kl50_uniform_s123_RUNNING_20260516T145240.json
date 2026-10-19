@@ -1,0 +1,32 @@
+{
+  "exp_id": "bench_kl50_uniform_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:27:17.469Z",
+    "updated_at": "2026-05-16T14:52:40.496Z",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py --exp_id bench_kl50_uniform_s123 --checkpoint checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "244544",
+      "log_path": "~/runs/distill_sparse_swiglu/bench_kl50_uniform_s123.log",
+      "submitted_at": "2026-05-16T14:49:46.268Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "llama-3.1-8b",
+      "data_path": "wikitext-2 + downstream",
+      "data_count": 159,
+      "seed": 123,
+      "checkpoint_source": "mvp_kl_norm_v2_s123"
+    }
+  },
+  "timestamp": "2026-05-16T14:52:40.665473+00:00",
+  "trigger": "update_registry"
+}

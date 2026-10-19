@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d28073ae0b7c0f62e79",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze kl sparsity40 s42 retrain uniform",
+  "task_key": "worker_analyze_kl_sparsity40_s42_retrain_uniform_20260520T064809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_kl_sparsity40_s42_retrain_uniform_20260520T064809_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "1c2be5d141935c4d01cf1e70747764780cf30e0e62c30b73c324357d61528a59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果摘要\n\n- **训练**: 成功（1000/1000 steps, 最终 loss=0.2598, sparsity=0.387）\n- **checkpoint_path**: `/root/distill_sparse_swiglu/checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt` (145MB, 2026-05-20 14:12)\n- **allocation**: uniform, sparsity_target=0.4\n\n| 指标 | 值 |\n|------|-----|\n| wikitext2_ppl | **10.76** |\n| arc_challenge | 39.59% (acc_norm) |\n| winogrande | 63.06% |\n| mmlu | 35.50% |\n| gsm8k | 3.56% |\n\n**对比 global 40%**: global PPL=10.12, uniform PPL=10.76, 差距 Δ=+0.64。uniform 略差于 global，符合预期（global 分配可以按层重要性调整 sparsity，uniform 则均匀分配）。\n\n结果已保存至 `/root/distill_sparse_swiglu/results/benchmark/kl_sparsity40_s42_retrain_uniform/results.json`，时间戳 2026-05-20 14:12:19。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-kl-sparsity40-s42-retrain-uniform.md"
+}

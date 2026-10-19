@@ -1,0 +1,15 @@
+{
+  "exp_id": "natural_sparsity_floor_30pct",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:39:07.157Z",
+    "updated_at": "2026-05-17T04:39:25.453Z",
+    "hypothesis": "KL predictor at 30% sparsity has a significant static sparsity floor (always-pruned neurons), explaining why actual sparsity (28.5%) undershoots target; if floor is high, predictor relies heavily on static patterns rather than contextual decisions"
+  },
+  "timestamp": "2026-05-17T04:39:25.651947+00:00",
+  "trigger": "update_registry"
+}

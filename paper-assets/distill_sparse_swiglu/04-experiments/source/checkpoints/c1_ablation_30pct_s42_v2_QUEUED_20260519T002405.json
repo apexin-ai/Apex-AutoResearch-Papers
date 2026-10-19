@@ -1,0 +1,16 @@
+{
+  "exp_id": "c1_ablation_30pct_s42_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:23:44.772Z",
+    "updated_at": "2026-05-19T00:24:05.364Z",
+    "hypothesis": "C1 causal ablation at 30% sparsity: BCE predictor trained on KL-derived oracle masks should achieve similar PPL and downstream metrics as KL predictor, demonstrating target quality (not gradient coupling) drives KL advantage. V2: fixed script path (train_bce_kl_targets.py exists on 41718 not 34887).",
+    "parent": "c1_ablation_30pct_s42"
+  },
+  "timestamp": "2026-05-19T00:24:05.720637+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dd85549315ba4894916",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops archive westd34887",
+  "task_key": "worker_ops_archive_westd34887_20260525T204209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_archive_westd34887_20260525T204209_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "131f81d7f08c17ff33f89679d4c1d22f90823148c2cc8be8cb5768377ee08242"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "归档完成。汇总：\n\n**归档位置：** `/root/autodl-tmp/distill_sparse_swiglu_archive/`（根分区空间不足，改用数据盘）\n\n| 目录 | 大小 | 内容 |\n|------|------|------|\n| `code/` | 12G | 完整项目代码（含 checkpoints 副本），无 .git（服务器原始就没有） |\n| `checkpoints/` | 11G | 68个实验目录 + `predictor_perlayer_kl.pt` |\n| `results/` | 54M | `results_dir/` + `run_logs/`（~/runs/） + `wandb/` |\n| `paper/` | 708K | 论文 LaTeX + `figures/`（8个 PDF/PNG 图表） |\n| `data/` | 0 | 空（autodl-tmp 下只有公开数据集，未复制） |\n| **总计** | **23G** | |\n\n**备注：**\n- 原始数据未删除\n- `.git` 在服务器端不存在（代码是 sync 过去的），完整 git 历史在本地仓库\n- `/root/autodl-tmp/data/`（c4_val, wikitext103, wikitext2）为公开评估数据集，未归档\n- `/root/autodl-tmp/models/`（66G HF 模型）未归档"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-archive-westd34887.md"
+}

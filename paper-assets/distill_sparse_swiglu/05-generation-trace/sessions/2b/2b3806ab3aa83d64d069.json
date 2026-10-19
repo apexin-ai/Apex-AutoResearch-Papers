@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b3806ab3aa83d64d069",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh collect mistral final",
+  "task_key": "worker_ssh_collect_mistral_final_20260520T150701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_collect_mistral_final_20260520T150701_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "e4e8db601706b22f3a1a9fe610c316d350cac768c16ad7f7bd40978892eb847f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n两张 RTX PRO 6000 (96GB) 均空闲，0% 利用率，无运行进程。Eval 已全部完成。\n\n## Mistral KL30 Eval 结果\n\n| Metric | s123 | s456 |\n|---|---|---|\n| **WikiText2 PPL** ↓ | 7.1491 | **6.8752** |\n| **ARC-c** (acc_norm) ↑ | 0.3780 | **0.4684** |\n| **WinoGrande** (acc) ↑ | 0.7017 | **0.7143** |\n| **MMLU** (acc) ↑ | **0.4423** | 0.4161 |\n| **GSM8K** (exact_match) ↑ | **0.0773** | 0.0697 |\n| **HellaSwag** (acc_norm) ↑ | 0.6961 | **0.7050** |\n| **PIQA** (acc_norm) ↑ | **0.7459** | 0.7448 |\n\n**s456 在 4/7 指标上优于 s123**（PPL、ARC-c、WG、HS），尤其 ARC-c 差距显著 (+9.04pp)。s123 在 MMLU (+2.62pp)、GSM8K (+0.76pp)、PIQA (+0.11pp) 上略优。\n\n两个 eval 的配置一致：sparsity_target=0.3, uniform allocation, bottleneck_size=128, seq_len=2048。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-collect-mistral-final.md"
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "33904d60bf53763850f0",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "check mse30 s123 downstream 20260522T151006 retry2",
+  "task_key": "worker_check_mse30_s123_downstream_20260522T151006_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_mse30_s123_downstream_20260522T151006_retry2.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/check-mse30-s123-downstream-20260522t151006-retry2.md"
+}

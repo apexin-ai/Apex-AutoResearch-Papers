@@ -1,0 +1,685 @@
+\appendix
+
+\section{Inference Efficiency}
+\label{app:latency}
+
+Table~\ref{tab:latency} reports inference throughput on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (96\,GB; batch size 1, sequence length 2048, fp16, averaged over 100 forward passes).
+
+\begin{table}[h]
+\centering
+\caption{Inference latency on LLaMA-3.1-8B (RTX PRO 6000 Blackwell, batch=1, seq=2048, fp16, 100 forward passes). Overhead is relative to dense inference.}
+\label{tab:latency}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{llcccc}
+\toprule
+Method & Sparsity & ms/fwd & tok/s & Overhead \\
+\midrule
+Dense & 0\% & 119.11$\pm$0.57 & 17{,}195 & --- \\
+\midrule
+KL predictor-only & 30\% & 126.64$\pm$0.70 & 16{,}172 & +6.3\% \\
+KL predictor-only & 50\% & 126.78$\pm$0.31 & 16{,}154 & +6.4\% \\
+\midrule
+Predictor + compensation & 30\% & 129.94$\pm$0.75 & 15{,}761 & +9.1\% \\
+Predictor + compensation & 50\% & 129.71$\pm$0.53 & 15{,}789 & +8.9\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The full KL-sparse pipeline adds 6.4\% overhead to dense inference (126.78 vs.\ 119.11\,ms/forward), of which the predictor's 32-layer forward pass contributes 3.17\,ms (2.7\%); the remainder arises from mask application and sparse FFN indexing.
+Eliminating the compensation network saves an additional $\sim$2.7\% latency overhead and 67.2M parameters (the per-layer GEMV required for output rescaling); output-distribution KL thus provides both quality and efficiency advantages over BCE-based approaches.
+The overhead is near-identical at 30\% and 50\% sparsity because the predictor runs the same computation regardless of target sparsity; only the top-$k$ threshold changes.
+
+Note that the current implementation uses unstructured element-wise masks, which do not translate to wall-clock speedup without sparse kernel support.
+The pipeline adds $\sim$6.4\% overhead; net acceleration requires kernel-level sparse computation optimizations (e.g., Triton block-sparse, cuSPARSE) that are beyond the scope of this work.
+Our contribution is prediction quality and inference simplification (removing the compensation network), not end-to-end latency reduction.
+
+
+\section{Predictor Bottleneck Sensitivity}
+\label{app:db_sensitivity}
+
+Table~\ref{tab:db_sensitivity} reports the effect of predictor bottleneck dimension $d_b$ on PPL at 50\% sparsity under both TEAL global allocation (the paper's primary inference protocol) and per-token evaluation.
+
+\begin{table}[h]
+\centering
+\caption{Predictor bottleneck sensitivity at 50\% sparsity (WikiText-2 PPL$\downarrow$). TEAL global is the primary inference protocol; per-token shown for reference.}
+\label{tab:db_sensitivity}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lcccc}
+\toprule
+$d_b$ & Params & TEAL global & $\Delta$ & Per-token \\
+\midrule
+64 & 38.2M (0.48\%) & 12.076 & +0.9\% & 10.16 \\
+128 & 75.9M (0.95\%) & 11.963 & --- & 9.218 \\
+256 & 151.5M (1.89\%) & 12.105 & +1.2\% & 8.586 \\
+512 & 302.5M (3.77\%) & 12.315 & +2.9\% & 7.93 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Under TEAL global allocation, increasing $d_b$ beyond 128 provides no benefit (PPL slightly worsens), while per-token evaluation shows monotonic improvement (10.16$\to$7.93).
+This divergence indicates that the global top-$k$ allocation mechanism, not predictor capacity, is the binding constraint: additional predictor capacity produces better per-neuron scores, but the global ranking and budget distribution cannot exploit them.
+The $d_b{=}128$ configuration (75.9M params, $<$1\% of base model) is therefore optimal for the TEAL inference protocol.
+
+\subsection{Temperature Schedule Sensitivity}
+\label{app:tau_sensitivity}
+
+\begin{table}[h]
+\centering
+\caption{Temperature schedule sensitivity at 50\% sparsity (WikiText-2 PPL$\downarrow$, TEAL global).}
+\label{tab:tau_sensitivity}
+\small
+\begin{tabular}{lc}
+\toprule
+$\tau$ Schedule & PPL$\downarrow$ \\
+\midrule
+Fixed $\tau{=}0.5$ & \textbf{11.861} \\
+Linear $1.0 \to 0.1$ (default) & 11.963 \\
+Fixed $\tau{=}0.1$ & 12.072 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Temperature schedule has minimal impact ($<$1.8\% PPL variation).
+The linear annealing default is a conservative choice; even removing annealing entirely (fixed $\tau{=}0.5$) yields comparable performance.
+
+\subsection{Training Convergence}
+\label{app:training_convergence}
+
+\begin{table}[h]
+\centering
+\caption{Training convergence at 50\% sparsity (WikiText-2 PPL$\downarrow$, TEAL global).}
+\label{tab:training_convergence}
+\small
+\begin{tabular}{cc}
+\toprule
+Steps & PPL$\downarrow$ \\
+\midrule
+200 & 15.158 \\
+400 & 12.538 \\
+600 & 12.046 \\
+800 & 11.907 \\
+1000 & \textbf{11.906} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Training converges rapidly: 95\% of the quality gap closes by step 600, and performance saturates by step 800 ($\Delta < 0.001$ between 800 and 1000 steps).
+Our default of 1000 steps provides a conservative margin.
+
+
+\section{Geometric Penalty Schedule Dynamics}
+\label{app:lagrangian}
+
+Table~\ref{tab:lagrangian} reports the convergence of the geometric penalty schedule across sparsity targets.
+The geometric doubling pattern ($1 \to 2 \to 4 \to 8 \to \ldots$) enables $\lambda$ to reach steady state within $\sim$10 steps; the deadzone ($\epsilon = 0.02$) then stabilizes $\lambda$ once actual sparsity is within $\pm$2\% of the target.
+
+\begin{table}[h]
+\centering
+\caption{Geometric penalty schedule convergence across sparsity targets (margin $\epsilon=0.02$, 1000 training steps). Deviation is $|$actual $-$ target$|$ / target.}
+\label{tab:lagrangian}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lccccc}
+\toprule
+Target $\rho$ & $\lambda_{\max}$ & Final $\lambda$ & Actual sparsity & Deviation \\
+\midrule
+30\% & 5000 & 5000 (cap) & 0.285 & 5.0\% \\
+40\% & 5000 & 625 & 0.398 & 0.5\% \\
+50\% & 1000 & 8 & 0.504 & 0.8\% \\
+70\% & 1000 & 1000 (cap) & 0.688 & 1.7\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+At 50\% sparsity, the SwiGLU gate distribution already clusters near the target, so $\lambda$ remains low (8); the constraint is nearly satisfied by the initial predictor outputs.
+At 30\% and 70\%, the gap between the gate prior and target is larger, driving $\lambda$ to its respective caps.
+The 40\% target converges to $\lambda = 625$ with only 0.5\% deviation; this precision reflects a regime where the target is reachable without $\lambda$ saturation.
+
+Figure~\ref{fig:lagrangian_dynamics} (main text) illustrates the controller dynamics for the 30\% target.
+
+Temperature $\tau$ is annealed linearly from 1.0 to 0.1 over 1000 steps.
+A mild loss increase in the final $\sim$100 steps is expected: as masks become more binary ($\tau \to 0$), discrete rounding noise slightly increases KL divergence, consistent with convergence toward the hard-mask inference regime.
+
+The controller reliably drives actual sparsity to within 5\% of the target across all tested regimes, with $\lambda$ spanning three orders of magnitude (8 to 5000) via geometric doubling.
+For the 30\% target, actual sparsity is $\approx$28.5\% (5\% deviation). This does not affect conclusions: TEAL at 28.5\% actual sparsity yields PPL 10.30 (vs.\ 10.97 at exact 30\%), a 0.67 PPL difference negligible relative to the KL vs.\ TEAL gap (8.96 vs.\ 10.97).
+
+
+\section{Out-of-Distribution Evaluation}
+\label{app:ood}
+
+To address concerns about data homogeneity between training (WikiText-103) and evaluation (WikiText-2), we evaluate on C4~\cite{raffel2020c4} validation set under TEAL global allocation.
+
+\begin{table}[h]
+\centering
+\caption{Out-of-distribution evaluation on C4 validation (PPL$\downarrow$). 30\% KL reports 2-seed mean$\pm$std; other entries use seed 42.}
+\label{tab:ood}
+\small
+\begin{tabular}{llc}
+\toprule
+Sparsity & Method & C4 PPL$\downarrow$ \\
+\midrule
+0\% & Dense & 9.21 \\
+\midrule
+30\% & KL predictor (Ours) & \textbf{16.03$\pm$0.01} \\
+\midrule
+\multirow{2}{*}{50\%} & KL predictor (Ours) & \textbf{18.40} \\
+& TEAL vanilla & 38.75 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At the 30\% sparsity level, the KL predictor achieves C4 PPL 16.03$\pm$0.01 (2-seed, global allocation, $1.74\times$ dense), confirming OOD generalization.
+At 50\%, the KL predictor achieves 52.5\% relative advantage over TEAL (18.40 vs.\ 38.75), comparable to the 50\% advantage on WikiText-2 (11.92 vs.\ 23.90), confirming that KL-trained predictions generalize across distributions.
+
+\paragraph{Uniform Allocation.}
+Under uniform allocation at 30\%, C4 PPL across three seeds is 18.22 (s42), 16.37 (s123), 16.36 (s456), yielding mean 16.98$\pm$1.07 ($1.84\times$ dense).
+The cross-seed variance is substantially higher than in-domain: CV=6.3\% on C4 vs.\ 0.2\% on WikiText-2 (PPL 8.81$\pm$0.02), driven by seed 42's elevated C4 PPL (18.22 vs.\ 16.37 for other seeds).
+Global allocation's cross-layer budget flexibility partially compensates for domain shift (PPL 16.03 global vs.\ 16.98 uniform), consistent with the Limitations observation that the predictor partially overfits to training-domain activation patterns.
+
+\paragraph{Downstream Task Robustness.}
+Table~\ref{tab:ood_downstream} compares downstream performance when the predictor generates masks from C4 text (OOD) vs.\ WikiText (in-domain), both at 30\% uniform allocation (seed 42). All six benchmarks show $\Delta$$\leq$1.1pp, confirming that predictor masks are robust to calibration domain shift.
+
+\begin{table}[h]
+\centering
+\caption{Downstream task robustness to calibration domain shift (KL 30\% uniform, seed 42). WikiText: predictor masks from in-domain text; C4: masks from OOD text. Metrics: acc\_norm (ARC-c, HS, PIQA), acc (WG, MMLU), exact\_match (GSM8K).}
+\label{tab:ood_downstream}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lcccccc}
+\toprule
+Calibration & ARC-c & WG & MMLU & GSM8K & HS & PIQA \\
+\midrule
+WikiText & 40.8 & 68.6 & 40.6 & 7.4 & 70.9 & 74.8 \\
+C4 (OOD) & 40.4 & 69.3 & 41.4 & 6.3 & 70.7 & 74.0 \\
+\midrule
+$\Delta$ & $-$0.4 & +0.7 & +0.8 & $-$1.1 & $-$0.2 & $-$0.8 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+
+\section{Per-Layer Retention Analysis}
+\label{app:retention}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{per_layer_retention_chart.pdf}
+\vspace{-8pt}
+\caption{Per-layer neuron retention under global top-$k$ at 30\%, 50\%, and 70\% sparsity. Dashed lines: uniform baselines. Late layers (L24--31) are starved (28.4\% at L31 even at 30\%).}
+\label{fig:retention}
+\end{figure}
+
+Figure~\ref{fig:retention} shows per-layer neuron retention under global top-$k$ allocation. Late layers (L24--31) are consistently starved due to long-tailed activation distributions, with retention dropping to 28.4\% (L31) even at 30\% sparsity. At 70\%, starvation extends to mid-layers (L10--12: 16.7--20.1\%), explaining the transition to the capacity-limited regime.
+
+
+\section{Training Stability}
+\label{app:stability}
+
+Three-seed evaluation ($s \in \{42, 123, 456\}$) at 50\% sparsity under uniform allocation yields PPL $11.92 \pm 0.07$ (CV=0.6\%); training is stable across random initializations.
+Downstream metrics are similarly stable: ARC-c $33.8 \pm 1.2$\%, WinoGrande $62.9 \pm 0.1$\%, MMLU $28.0 \pm 0.6$\%, GSM8K $2.2 \pm 0.1$\%.
+
+Under global allocation at 50\%, MMLU is $28.3 \pm 0.7$\%; the near-random performance is capacity-limited rather than seed-sensitive ($\sigma$=0.7pp vs.\ 9.5pp at 30\% global).
+The low standard deviation across both allocation strategies indicates that the KL training landscape is well-conditioned for this predictor architecture, with low sensitivity to initialization.
+
+\subsection{Cross-Seed Mask Consistency}
+\label{app:cross_seed_jaccard}
+
+To assess whether KL predictors discover consistent mask patterns across initializations, we compute pairwise Jaccard distances among three independently trained KL predictors (s42/s123/s456) at 30\% uniform allocation (100 sequences, WikiText-2 validation).
+
+The mean cross-seed Jaccard distance is 0.363 (IoU = 0.637), substantially lower than the KL-vs-magnitude divergence (0.46--0.68), confirming that KL-discovered patterns form a distinct cluster from magnitude-based masks.
+Per-layer divergence follows a U-shaped pattern: lowest at embedding-adjacent layers (L0: 0.33), peaking at early layers (L1: 0.41), with a mid-network valley (L12--14: 0.33). The random baseline Jaccard distance is 0.462.
+
+While specific mask configurations vary moderately across seeds (Jaccard distance 36.3\%), the resulting PPL is highly stable (8.81$\pm$0.02, CV=0.2\%), suggesting multiple near-equivalent optima in the activation mask space.
+The cross-seed divergence (36.3\%) is substantially lower than the KL-vs-magnitude divergence (46--68\%), confirming that KL discovers effective patterns that cluster distinctly from magnitude-based selection.
+
+
+\section{MSE Baseline Configuration}
+\label{app:mse_config}
+
+The MSE predictor uses identical architecture (two-layer MLP, bottleneck $d_b{=}128$), training data (WikiText-103, 1000 steps), optimizer (AdamW, lr=$1{\times}10^{-3}$, weight decay $1{\times}10^{-2}$, cosine decay), Gumbel-Sigmoid mask generation ($\tau$: $1.0 \to 0.1$), and adaptive Lagrangian sparsity control as the KL and BCE predictors.
+The only difference is the loss target: per-layer $\|\mathbf{W}_d^{(\ell)}(\tilde{\mathbf{m}}^{(\ell)} \odot \mathbf{g}^{(\ell)} \odot \mathbf{x}^{(\ell)} \mathbf{W}_u^{(\ell)}) - \mathbf{y}_{\text{dense}}^{(\ell)}\|_2^2$, replacing the end-to-end KL divergence.
+This controlled comparison isolates the effect of output-distribution alignment: all three predictors see identical data in identical order with identical architectures; only the loss function differs.
+
+MSE uses $\lambda_{\max}{=}1000$ (vs.\ KL's 5000) because MSE's per-layer gradient magnitude is approximately $5\times$ larger than KL's end-to-end gradient, requiring proportionally less penalty pressure to achieve comparable sparsity control. Both reach their target sparsity within 110 steps.
+At 50\% target, MSE converges to the target sparsity for seed 42; however, with seed 123, sparsity reaches only 5.1\% under the same $\lambda_{\max}$ cap (eval PPL$=$15{,}789, random-level), indicating high sensitivity to initialization, a failure mode not observed with KL-based losses.
+At 30\%, MSE achieves 27.7\% actual sparsity for s42 (gap 2.3pp).
+The 3-seed MSE mean (18.52$\pm$1.68; s42=20.43, s123=17.73, s456=17.39) is still $1.7\times$ worse than TEAL (10.82), confirming that the performance deficit stems from the loss function, not insufficient sparsity pressure.
+
+
+\section{Extended SNR Analysis}
+\label{app:snr_extended}
+
+Figure~\ref{fig:snr_trajectory} plots gradient SNR across the full 1000-step training for both KL and BCE predictors, measured at 14 checkpoints (LLaMA-3.1-8B, C4) with 95\% bootstrap confidence intervals.
+From step 100 onward, BCE maintains consistently higher SNR than KL (2.3--17$\times$ depending on training phase), with the gap narrowing toward convergence ($2.3\times$ at step 1000: $2.026{\times}10^{-3}$ vs.\ $8.78{\times}10^{-4}$).
+Despite KL's noisier gradient signal, KL-trained predictors produce substantially better masks (Table~\ref{tab:main}), confirming that \emph{target alignment} matters more than gradient clarity for mask quality.
+BCE's higher SNR reflects its simpler per-neuron classification objective, which concentrates gradients on individual neuron decisions; KL's coupled gradient distributes signal across all mask decisions jointly, yielding lower SNR but discovering compositionally superior mask patterns (\S\ref{sec:method:gradient}).
+
+Figure~\ref{fig:snr_trajectory} (main text) plots the full SNR trajectory.
+
+
+\section{Extended Downstream Evaluation}
+\label{app:downstream}
+
+Table~\ref{tab:downstream} reports HellaSwag and PIQA across sparsity levels and allocation strategies.
+
+\begin{table}[h]
+\centering
+\caption{Extended downstream benchmarks (LLaMA-3.1-8B). HellaSwag: 10-shot normalized acc; PIQA: 0-shot normalized acc. KL 30\% uniform: 3-seed mean$\pm$std; others: seed 42.}
+\label{tab:downstream}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{llcc}
+\toprule
+Sparsity & Method & HellaSwag & PIQA \\
+\midrule
+0\% & Dense & \textbf{82.35} & \textbf{80.90} \\
+\midrule
+\multirow{3}{*}{30\%}
+& KL uniform & \textbf{71.07$\pm$0.54} & \textbf{74.95$\pm$0.25} \\
+& TEAL uniform & 63.31 & 72.80 \\
+& BCE isocompute & 62.81 & 74.21 \\
+\midrule
+\multirow{3}{*}{50\%}
+& KL global & \textbf{58.95} & \textbf{69.48} \\
+& KL uniform & 56.66 & 69.10 \\
+& TEAL uniform & 39.35 & 63.66 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+At 30\%, the KL predictor retains 86.3\% of dense HellaSwag accuracy (71.07$\pm$0.54 vs.\ 82.35, 3-seed) and 92.6\% of PIQA (74.95$\pm$0.25 vs.\ 80.90), confirming moderate degradation on non-reasoning tasks.
+At 50\%, global allocation outperforms uniform on HellaSwag (+2.29pp), consistent with the budget-concentration benefit observed for PPL in the capacity-limited regime (\S\ref{sec:scaling}); PIQA shows a smaller gap (+0.38pp).
+
+
+\section{Compensation Training Convergence}
+\label{app:comp_convergence}
+
+All compensation networks~\cite{gautam2026fastforward} were trained for 1000 steps (lr=$10^{-4}$, batch size 4, seq length 2048). Training loss plateaus by step 700 across all valid runs: 30\% s42 (final loss 0.70), 30\% s456 (0.68), 50\% s42 (1.07), with fluctuations remaining within 0.08 loss units for the final 300 steps. The compensation network converges but provides no quality improvement over the KL predictor alone, confirming that the redundancy result reflects predictor self-sufficiency rather than insufficient compensation training.
+
+
+\section{Qwen-2.5-14B Detailed Results}
+\label{app:14b}
+
+\begin{table}[h]
+\centering
+\caption{Qwen-2.5-14B at 30\% nominal sparsity. Actual sparsity differs: KL 29.6\% (3-seed), TEAL 29.3\% (target 30\%). \textbf{Bold}: best sparse per column per group. BCE collapses to 6.4\% native sparsity (\S\ref{sec:method:gradient}), so forced global top-$k$ is used.}
+\label{tab:14b}
+\small
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lcccccccc}
+\toprule
+Method & PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K & HS & PIQA \\
+\midrule
+Dense & 5.19 & 67.58 & 81.06 & 79.77 & 87.57 & 84.20 & 81.94 \\
+\midrule
+\multicolumn{8}{l}{\emph{Global top-$k$ allocation}} \\
+KL (Ours) & \textbf{7.62} & 57.17 & 72.06 & 63.72 & 48.82 & \textbf{75.01} & \textbf{77.37} \\
+TEAL & 8.73 & 56.83 & \textbf{72.69} & \textbf{71.83} & 49.51 & 70.51 & 74.70 \\
+BCE & 8.76 & \textbf{57.59} & 72.61 & 71.67 & \textbf{53.07} & 53.43 & 68.28 \\
+\midrule
+\multicolumn{8}{l}{\emph{Uniform allocation}} \\
+KL (Ours) & \textbf{7.90} & 53.50 & \textbf{72.82} & 63.55 & 35.8$^\diamond$ & \textbf{72.68$\pm$0.2} & \textbf{76.01$\pm$1.1} \\
+TEAL & 8.01 & \textbf{55.29} & 69.85 & \textbf{66.34} & \textbf{52.1} & 67.72 & 74.70 \\
+\bottomrule
+\multicolumn{8}{l}{\footnotesize $^\diamond$GSM8K: 2-seed mean (s42: 35.5, s123: 36.1); third seed excluded due to evaluation batch size mismatch.} \\
+\end{tabular}}
+\end{table}
+
+Under global allocation, BCE's HellaSwag drops to 53.43\% ($-$17pp vs.\ TEAL), indicating that the magnitude-based predictor's mask quality degrades severely when combined with non-uniform budget distribution at 14B scale.
+
+\section{Full Allocation Analysis}
+\label{app:alloc_full}
+
+\begin{table}[t]
+\centering
+\caption{Allocation summary (LLaMA-3.1-8B). $\pm$: 3-seed; $^\ast$high seed variance.}
+\label{tab:phase}
+\footnotesize
+\begin{tabular}{llcc}
+\toprule
+Sparsity & Allocation & PPL$\downarrow$ & MMLU \\
+\midrule
+\multirow{2}{*}{30\%}
+& Global & 8.96$\pm$0.02 & 35.7$\pm$9.5$^\ast$ \\
+& Uniform & \textbf{8.81$\pm$0.02} & \textbf{40.7$\pm$1.3} \\
+\midrule
+\multirow{2}{*}{50\%}
+& Global & \textbf{11.84$\pm$0.15} & \textbf{28.3$\pm$0.7} \\
+& Uniform & 11.92$\pm$0.07 & 28.0$\pm$0.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:phase_full} extends Table~\ref{tab:phase} with all downstream metrics.
+
+\begin{table*}[t]
+\centering
+\caption{Full allocation analysis: global top-$k$ vs.\ uniform across sparsity levels (LLaMA-3.1-8B). Entries with $\pm$: 3-seed mean$\pm$std ($s \in \{42, 123, 456\}$); others: seed 42. $^\ast$High MMLU seed variance (individual seeds span 25.3--43.5\%).}
+\label{tab:phase_full}
+\begin{tabular}{llccccc}
+\toprule
+Sparsity & Allocation & PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K \\
+\midrule
+\multirow{2}{*}{25\%}
+& Global & \textbf{8.17} & 45.4 & 70.6 & \textbf{46.6} & \textbf{11.5} \\
+& Uniform & 8.23 & \textbf{46.5} & \textbf{71.8} & 44.0 & 11.0 \\
+\midrule
+\multirow{2}{*}{30\%}
+& Global & 8.96$\pm$0.02 & \textbf{43.8$\pm$3.6} & \textbf{70.2$\pm$0.9} & 35.7$\pm$9.5$^\ast$ & \textbf{8.0$\pm$0.7} \\
+& Uniform & \textbf{8.81$\pm$0.02} & 43.7$\pm$2.5 & 68.9$\pm$0.4 & \textbf{40.7$\pm$1.3} & 7.5$\pm$0.1 \\
+\midrule
+\multirow{2}{*}{35\%}
+& Global & \textbf{9.31} & \textbf{38.9} & \textbf{67.6} & \textbf{40.4} & \textbf{7.7} \\
+& Uniform & 9.44 & 38.7 & 66.5 & 37.8 & 4.3 \\
+\midrule
+\multirow{2}{*}{40\%}
+& Global & \textbf{10.14} & 39.5 & \textbf{67.5} & \textbf{39.5} & \textbf{6.6} \\
+& Uniform & 10.76 & \textbf{39.6} & 63.1 & 35.5 & 3.6 \\
+\midrule
+\multirow{2}{*}{45\%}
+& Global & \textbf{10.80} & \textbf{39.2} & \textbf{64.6} & 30.4 & \textbf{3.0} \\
+& Uniform & 10.95 & 37.6 & 63.6 & \textbf{30.6} & 2.7 \\
+\midrule
+\multirow{2}{*}{50\%}
+& Global & \textbf{11.84$\pm$0.15} & \textbf{36.3$\pm$3.2} & \textbf{63.8$\pm$0.3} & \textbf{28.3$\pm$0.7} & \textbf{2.7$\pm$1.3} \\
+& Uniform & 11.92$\pm$0.07 & 33.8$\pm$1.2 & 62.9$\pm$0.1 & 28.0$\pm$0.6 & 2.2$\pm$0.1 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+\section{Mask Pattern Visualization}
+\label{app:mask_viz}
+
+Figure~\ref{fig:mask_heatmap} (main text) shows per-layer Jaccard distance between KL-derived and magnitude-based masks at 30\% and 50\% sparsity.
+Figure~\ref{fig:scatter} shows per-neuron importance scores at layer 16.
+Figure~\ref{fig:mask_comparison} shows binary mask comparisons at layers 2, 16, and 28.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{neuron_scatter_layer16.pdf}
+\caption{KL vs.\ magnitude importance scores for layer 16 neurons at 50\% sparsity. 41\% of neurons fall in disagreement quadrants where one method selects a neuron the other discards.}
+\label{fig:scatter}
+\end{figure}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{mask_comparison.pdf}
+\caption{Binary mask comparison between KL-derived and magnitude-based masks at selected layers (L2, L16, L28) for 30\% and 50\% sparsity (64 samples). Black = selected by both, light regions = selected by only one method. Deep layers show the largest divergence (L28 Jaccard distance: 0.60 at 30\%, 0.74 at 50\%).}
+\label{fig:mask_comparison}
+\end{figure*}
+
+
+\section{Cross-Architecture Comparison}
+\label{app:cross_arch}
+
+Table~\ref{tab:cross_arch} evaluates on Mistral-7B-v0.3~\cite{jiang2023mistral} (GQA + sliding window, dense PPL 5.52).
+
+\begin{table}[h]
+\centering
+\caption{Cross-architecture comparison (WikiText-2 PPL$\downarrow$). Adv = TEAL\,/\,KL ratio. \textbf{Note:} LLaMA results use global top-$k$ allocation; Mistral results use uniform allocation. Mistral 30\%: 3-seed mean$\pm$std; other rows: seed 42.}
+\label{tab:cross_arch}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{l@{\hspace{4pt}}cc@{\hspace{3pt}}c@{\hspace{6pt}}|@{\hspace{6pt}}cc@{\hspace{3pt}}c}
+\toprule
+ & \multicolumn{3}{c}{Mistral-7B} & \multicolumn{3}{c}{LLaMA-8B} \\
+ & KL & TEAL & Adv & KL & TEAL & Adv \\
+\midrule
+30\% & \textbf{6.93$\pm$0.19} & 8.38 & 1.21$\times$ & \textbf{8.96} & 10.97 & 1.22$\times$ \\
+50\% & \textbf{8.65} & 18.31 & 2.12$\times$ & \textbf{11.79} & 23.31 & 1.98$\times$ \\
+70\% & \textbf{13.33} & 61.72 & 4.63$\times$ & \textbf{17.91} & 100.11 & 5.59$\times$ \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The KL PPL advantage ratio is consistent across architectures (within 8\% at $\leq$50\% sparsity).
+Table~\ref{tab:mistral_downstream} reports downstream task accuracy at 30\% sparsity on Mistral-7B-v0.3 (3-seed). KL improves PPL ($-$17.3\%) and commonsense tasks (WG +6.7pp) but MMLU is tied (43.3\% vs.\ 43.5\%); ARC-c shows high seed variance ($\sigma$=6.4pp); GSM8K reverses.
+
+\begin{table}[h]
+\centering
+\caption{Mistral-7B-v0.3 downstream evaluation at 30\% sparsity. $\pm$: 3-seed mean$\pm$std ($s \in \{42, 123, 456\}$); TEAL is deterministic (single run). ARC-c exhibits high seed variance ($\sigma$=6.4pp).}
+\label{tab:mistral_downstream}
+\small
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lccccccc}
+\toprule
+Method & PPL$\downarrow$ & ARC-c & WG & HS & PIQA & MMLU & GSM8K \\
+\midrule
+Dense & 5.52 & 60.2 & 78.7 & 83.2 & 81.9 & 62.4 & 36.5 \\
+KL 30\% & \textbf{6.93$\pm$0.19} & \textbf{44.9$\pm$6.4} & \textbf{70.2$\pm$1.2} & \textbf{69.7$\pm$0.8} & \textbf{74.8$\pm$0.4} & 43.3$\pm$1.5 & 8.6$\pm$2.2 \\
+TEAL 30\% & 8.38 & 41.1 & 63.5 & 60.1 & 72.1 & \textbf{43.5} & \textbf{15.9} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+
+\section{Taxonomy Discussion}
+\label{app:taxonomy}
+
+\paragraph{Correction granularity.}
+\emph{Static} methods~\cite{xu2025spon} learn a fixed bias vector per layer that does not depend on the input token.
+\emph{Per-token} methods~\cite{liu2023dejavu,gautam2026fastforward,akhauri2024shadowllm,szatkowski2024d2dmoe} produce a unique mask for each input position, conditioning on the token's hidden state at each layer.
+
+\paragraph{Training signal coupling.}
+\emph{Decomposed} objectives (BCE) treat each neuron independently, optimizing per-element classification against an oracle mask.
+\emph{Intermediate} objectives (MSE on hidden states) capture local coupling within a single layer but not end-to-end output effects.
+\emph{Coupled} objectives (KL on output distribution) propagate gradients through the full forward pass; each mask decision's gradient reflects its joint effect with all other masks on the final distribution.
+
+SPON~\cite{xu2025spon} distills a per-layer bias via KL but cannot adapt to per-input neuron importance (static $\times$ coupled).
+DejaVu~\cite{liu2023dejavu} and FastForward~\cite{gautam2026fastforward} achieve per-token granularity but use BCE, where each neuron's gradient is independent of other mask states.
+D2DMoE~\cite{szatkowski2024d2dmoe} provides intermediate coupling (MSE on hidden states) but not end-to-end output effects.
+We define \emph{output-distribution alignment} as whether the training loss optimizes a quantity that composes across layers.
+KL on output logits directly optimizes next-token prediction loss, which does not suffer from error composition; per-layer MSE minimizes reconstruction error independently at each layer, but layer-wise optima do not compose: a mask minimizing FFN output error at layer $\ell$ may amplify errors in layers $\ell{+}1 \ldots L$.
+The SNR analysis (\S\ref{sec:method:gradient}) corroborates this: KL achieves the best masks despite $2.3\times$ lower SNR than BCE, while MSE produces the worst masks.
+The framework predicts that losses operating on output-level quantities should outperform intermediate-level losses, a hypothesis consistent with our MSE results and testable with alternative output-level objectives.
+
+\section{Oracle Mask Provenance}
+\label{app:oracle_provenance}
+
+C1's oracle masks are extracted from a converged KL predictor and binarized via hard threshold (logits $> 0$, equivalent to $\sigma > 0.5$); they reflect one specific training trajectory (optimizer state, data order, Gumbel noise).
+The s42/s123/s456 consistency ($\leq$1.70pp) provides partial evidence of robustness, but does not rule out trajectory-dependent confounds.
+
+\section{SPON Orthogonality}
+\label{app:spon}
+
+SPON~\cite{xu2025spon} bias correction is weakly correlated with the KL predictor (cosine similarity 0.196, $R^2$=0.038) and yields only 2.4\% PPL improvement (12.08$\to$11.79); the predictor already captures most recoverable signal.
+The decomposition confirms that SPON and the KL predictor operate on largely orthogonal error sources.
+
+\section{Per-Layer KL Downstream Decomposition}
+\label{app:perlayer_downstream}
+
+Table~\ref{tab:perlayer_downstream} reports raw downstream numbers for the signal type vs.\ coupling scope decomposition at 30\% sparsity (\S\ref{sec:perlayer}). BoolQ's $\approx$100\% coupling is an upper bound confounded by high cross-seed variance ($\pm$11.5pp for per-layer KL); the $K{=}4$ pilot (Table~\ref{tab:k4_downstream}) suggests much of this gap is train--inference mismatch.
+
+\begin{table}[h]
+\centering
+\caption{2D decomposition at 30\% sparsity (LLaMA-3.1-8B, uniform allocation). All rows are 3-seed mean$\pm$std. Signal type = per-layer KL $-$ MSE; coupling = E2E KL $-$ per-layer KL. Percentages are upper bounds (dimensions not fully orthogonal; see \S\ref{sec:perlayer}).}
+\label{tab:perlayer_downstream}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lcccccc}
+\toprule
+& PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K & BoolQ \\
+\midrule
+E2E KL & 8.81$\pm$0.02 & 43.7 & 68.9 & 40.7 & 7.5 & 73.7 \\
+Per-layer KL & 9.05$\pm$0.02 & 39.9 & 65.9 & 38.6 & 5.8 & 64.5 \\
+MSE & 18.52$\pm$1.68 & 35.8$\pm$4.1 & 59.8$\pm$2.6 & 30.7$\pm$2.6 & 2.3$\pm$0.7 & 64.5$\pm$5.3 \\
+\midrule
+Total gap & 9.71 & 7.9 & 9.1 & 10.0 & 5.2 & 9.2 \\
+Signal type (\%) & 97.5 & 51.9 & 67.0 & 79.0 & 67.3 & $\approx$0 \\
+Coupling (\%) & 2.5 & 48.1 & 33.0 & 21.0 & 32.7 & $\approx$100 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\section{$K{=}4$ Mismatch Control}
+\label{app:k4_downstream}
+
+Table~\ref{tab:k4_downstream} reports 3-seed $K{=}4$ per-layer KL results at 30\% sparsity.
+Training with $K{=}4$ random layers per step reduces the train--inference mismatch (4/32 vs.\ 1/32 layers masked during training, while inference applies all 32).
+The gap closure column reports the fraction of the $K{=}1 \to$ E2E KL gap closed by $K{=}4$.
+
+\begin{table}[h]
+\centering
+\caption{3-seed $K{=}4$ mismatch control at 30\% sparsity (LLaMA-3.1-8B, uniform allocation, $s \in \{42, 123, 456\}$). Actual sparsity 29.6\%; per-layer sparsity std=0.003 (near-uniform). Gap closure $= (K{=}4 - K{=}1) / (\text{E2E} - K{=}1) \times 100$.}
+\label{tab:k4_downstream}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lcccc}
+\toprule
+& $K{=}4$ (3-seed) & $K{=}1$ (3-seed) & E2E KL (3-seed) & Gap closure (\%) \\
+\midrule
+PPL$\downarrow$ & 8.89$\pm$0.01 & 9.05$\pm$0.02 & 8.81$\pm$0.02 & 66.7 \\
+ARC-c & 40.0$\pm$1.3 & 39.9 & 43.7$\pm$2.5 & 2.6 \\
+WG & 66.9$\pm$0.2 & 65.9 & 68.9$\pm$0.4 & 33.3 \\
+MMLU$^\ast$ & 42.7$\pm$1.4 & 38.6 & 40.7$\pm$1.3 & $>$100 \\
+GSM8K & 7.0$\pm$1.6 & 5.8 & 7.5$\pm$0.1 & 70.6 \\
+BoolQ$^\dagger$ & 67.7$\pm$7.5 & 64.5$\pm$11.5 & 73.7 & 34.8 \\
+\bottomrule
+\end{tabular}}
+\vspace{2pt}
+{\footnotesize $^\ast$MMLU $K{=}4$ systematically exceeds E2E across all 3 seeds; attributable to $K{=}4$'s near-uniform per-layer sparsity (std=0.003) matching uniform eval allocation. Independently confirmed: removing the predictor's middle-layer valley yields MMLU=44.0\% (Appendix~\ref{app:constraint}).
+$^\dagger$BoolQ exhibits high inter-seed variance for both $K{=}4$ (std=7.5) and $K{=}1$ (std=11.5); gap closure unreliable.}
+\end{table}
+
+\section{Per-Layer Sparsity Constraint Analysis}
+\label{app:constraint}
+
+To test the causal role of the KL predictor's learned per-layer allocation, we evaluate two inference-time interventions at 30\% overall sparsity (seed 42, uniform allocation baseline):
+
+\begin{table}[h]
+\centering
+\caption{Per-layer sparsity constraint analysis. \emph{Protect late}: cap L22--L28 sparsity $\leq$30\%; \emph{Remove valley}: override L14--L18 sparsity to 30\%. Budget redistributed to maintain 30\% overall.}
+\label{tab:constraint}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lcccc}
+\toprule
+Condition & PPL & ARC-c & MMLU & GSM8K \\
+\midrule
+KL baseline (s42) & 8.82 & 40.8 & 40.6 & 7.4 \\
+Protect late layers & 9.26 & 42.4 & 40.7 & 6.5 \\
+Remove valley & 8.76 & 39.3 & 44.0 & 9.0 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Protecting late layers (L22--L28) does not improve knowledge-intensive metrics despite reducing their sparsity from 48--57\% to $\leq$30\%, while worsening PPL by 5.2\%.
+Conversely, removing the protection valley (forcing L14--L18 to 30\% instead of 14--18\%) improves MMLU by +3.4pp and GSM8K by +1.6pp at the cost of ARC-c $-$1.5pp.
+The KL predictor's learned allocation thus represents a task-dependent trade-off, prioritizing commonsense reasoning via middle-layer protection, rather than a uniformly optimal pattern.
+This allocation trade-off also explains the $K{=}4$ MMLU anomaly (\S\ref{app:k4_downstream}): $K{=}4$'s near-uniform learned sparsity (std=0.003) inherently removes the valley, producing MMLU=43.5 comparable to the remove-valley condition (44.0).
+
+\section{Per-Layer Sparsity Distribution}
+\label{app:perlayer_sparsity}
+
+The KL predictor at 30\% target sparsity learns a non-uniform per-layer allocation that differs markedly from magnitude-based selection.
+Aggregate sparsity is similar across broad regions (early L0--L7: KL 28.1\% vs.\ magnitude 27.5\%; late L24--L31: 44.9\% vs.\ 47.2\%), but middle layers (L8--L23) exhibit high internal variance despite similar averages (28.2\% vs.\ 27.3\%).
+Table~\ref{tab:perlayer_sparsity} highlights three sub-ranges.
+
+\begin{table}[h]
+\centering
+\caption{Per-layer sparsity sub-ranges: KL predictor vs.\ magnitude (LLaMA-3.1-8B, 30\%, uniform allocation). Ranges denote min--max across layers in each group.}
+\label{tab:perlayer_sparsity}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lccc}
+\toprule
+Layer Range & KL (\%) & Mag (\%) & $\Delta$ (pp) \\
+\midrule
+L8--L12 (high pruning) & 32--36 & 25--26 & $+$7 to $+$10 \\
+L14--L18 (protection valley) & 14--18 & 28--30 & $-$8 to $-$16 \\
+L22--L28 (aggressive pruning) & 48--57 & --- & --- \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\section{C4 Training Data Control}
+\label{app:c4_control}
+
+To test whether WikiText-103's narrow domain drives the knowledge-task regression (\S\ref{sec:experiments}), we train the KL predictor on C4~\cite{raffel2020c4} (diverse web text) under identical hyperparameters (1000 steps, 30\% uniform, s42).
+
+\begin{table}[h]
+\centering
+\caption{C4-trained vs.\ WikiText-trained KL predictor (LLaMA-3.1-8B, 30\% uniform, s42).}
+\label{tab:c4_control}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{lcccccc}
+\toprule
+Training Data & PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K & HS / PIQA \\
+\midrule
+WikiText-103 & 8.82 & 40.78 & 68.59 & 40.6 & 7.35 & 70.85 / 74.81 \\
+C4 & 11.55 & 43.09 & 68.67 & 39.95 & 4.09 & 69.24 / 75.03 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The C4-trained predictor achieves comparable MMLU (40.0\% vs.\ 40.6\%) but worse GSM8K (4.1\% vs.\ 7.4\%) and higher PPL (11.55 vs.\ 8.82), despite training on more diverse text.
+This rules out training data composition as the primary cause of knowledge-task regression and supports the hypothesis that forward KL's mode-covering property structurally under-protects rare reasoning-critical activations.
+
+\section{Per-Layer Coupling Breadth Analysis}
+\label{app:k_curve}
+
+We vary the number of layers coupled per training step ($K$) from 1 (pure per-layer) to 32 (end-to-end), evaluating all predictors under TEAL uniform allocation at 30\% sparsity on LLaMA-3.1-8B.
+
+\begin{table}[h]
+\centering
+\caption{K-curve: coupling breadth vs.\ predictor quality (30\%, TEAL uniform, LLaMA-3.1-8B). All values are 3-seed mean$\pm$std (s42/s123/s456) except $K{=}1$ downstream (single seed). ``---'' = not evaluated.}
+\label{tab:k_curve}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{cccccccc}
+\toprule
+$K$ & PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K & HS & PIQA \\
+\midrule
+1 & 9.05$\pm$0.02 & 39.9 & 65.9 & 38.6 & 5.8 & --- & --- \\
+2 & 10.75$\pm$0.15 & 39.7$\pm$1.2 & 63.2$\pm$1.7 & 38.3$\pm$3.2 & 2.8$\pm$0.6 & 66.5$\pm$1.0 & 73.5$\pm$0.7 \\
+4 & 8.89$\pm$0.01 & 40.0$\pm$1.2 & 66.9$\pm$0.2 & 42.7$\pm$1.4 & 7.0$\pm$1.6 & 67.8$\pm$1.0 & 74.5$\pm$0.5 \\
+8 & 9.00$\pm$0.06 & 40.7$\pm$1.0 & 68.7$\pm$1.3 & 40.4$\pm$0.6 & 6.8$\pm$1.3 & 69.0$\pm$1.1 & 75.1$\pm$1.1 \\
+16 & 8.67$\pm$0.02 & 41.9$\pm$1.1 & 68.5$\pm$0.9 & 40.9$\pm$2.9 & 8.5$\pm$1.2 & 70.1$\pm$0.4 & 75.0$\pm$0.8 \\
+32 (E2E) & 8.81$\pm$0.02 & 43.7$\pm$2.5 & 68.9$\pm$0.4 & 40.7$\pm$1.3 & 7.5$\pm$0.1 & --- & --- \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+PPL exhibits a non-monotonic U-shape (Figure~\ref{fig:k_curve_ppl}): $K{=}2$ is worst (10.75$\pm$0.15), likely due to insufficient per-layer updates (${\sim}$62 updates/layer vs.\ ${\sim}$250 at $K{=}8$). $K{=}16$ achieves the lowest PPL (8.67$\pm$0.02), marginally better than E2E (8.81$\pm$0.02). $K{=}16$ MMLU exhibits high seed variance (std=2.9; s42=44.0, s123=40.0, s456=38.7), with the 3-seed mean (40.9) indistinguishable from E2E (40.7$\pm$1.3).
+The signal type gap ($K{=}1$ KL 9.05 vs.\ per-layer MSE 18.52$\pm$1.68) of 9.47 PPL exceeds the coupling breadth range within KL (best $K{=}16$ 8.67 vs.\ worst $K{=}2$ 10.75 = 2.08 PPL), reinforcing that output-distribution alignment, not coupling scope, is the primary quality lever for PPL at this sparsity level.
+
+\section{Licenses}
+\label{app:licenses}
+
+LLaMA-3.1-8B is released under the Llama 3.1 Community License Agreement.
+Mistral-7B-v0.3 is released under the Apache 2.0 License.
+Qwen-2.5-14B is released under the Apache 2.0 License.
+WikiText-103 and WikiText-2~\cite{merity2017pointer} are released under the Creative Commons Attribution-ShareAlike License (CC BY-SA 3.0).
+All evaluation benchmarks (ARC, WinoGrande, MMLU, GSM8K, HellaSwag, PIQA) are publicly available under their respective licenses.
+Our code will be released under the MIT License upon acceptance.
+
+\section{Reproducibility Details}
+\label{app:reproducibility}
+
+\paragraph{Software environment.}
+All experiments use Python 3.8, PyTorch 2.4.0 (CUDA 12.4), and HuggingFace Transformers 4.39.2.
+Downstream evaluation uses a custom fork of lm-evaluation-harness~\cite{eval-harness} integrated with the predictor inference pipeline.
+Flash Attention is used when available, with PyTorch SDPA as fallback.
+
+\paragraph{Dataset statistics.}
+Table~\ref{tab:dataset_stats} summarizes all datasets used in this work.
+
+\begin{table}[h]
+\centering
+\caption{Dataset statistics. Predictor training uses WikiText-103; perplexity evaluation uses WikiText-2 and C4 validation splits; downstream evaluation uses standard benchmarks with their default splits.}
+\label{tab:dataset_stats}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{llrl}
+\toprule
+Dataset & Split & Examples & Usage \\
+\midrule
+WikiText-103 & Train & 28{,}475 articles & Predictor training \\
+WikiText-2 & Test & 245K tokens & Perplexity evaluation \\
+C4 & Validation & --- & OOD perplexity \\
+\midrule
+ARC-Challenge & Test & 1{,}172 & 25-shot \\
+WinoGrande & Validation & 1{,}267 & 5-shot \\
+MMLU & Test & 14{,}042 & 5-shot \\
+GSM8K & Test & 1{,}319 & 8-shot \\
+HellaSwag & Validation & 10{,}042 & 10-shot \\
+PIQA & Validation & 1{,}838 & 0-shot \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\section{Use of AI Assistance}
+
+We used Claude for coding, code drafting, debugging, and language polishing.

@@ -1,0 +1,40 @@
+{
+  "exp_id": "revkl_30_s42_uniform_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "conclusion": "killed",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:51:26.599Z",
+    "updated_at": "2026-05-23T00:10:56.836Z",
+    "completed_at": "2026-05-20T21:10:00.000Z",
+    "metrics": {
+      "ppl": 9.3081,
+      "arc_challenge": 0.4283,
+      "winogrande": 0.7009,
+      "mmlu": 0.3749,
+      "gsm8k": 0.0697,
+      "hellaswag": 0.6969,
+      "piqa": 0.7459
+    },
+    "log_path": "/root/distill_sparse_swiglu/logs/reverse_kl_30_s42_uniform_eval.log",
+    "checkpoint_path": "checkpoints/reverse_kl_30_s42/predictor_reverse_kl.pt",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && CKPT=\\$(ls checkpoints/reverse_kl_30_s42/predictor_*.pt 2>/dev/null | head -1) && if [ -z \\\"\\$CKPT\\\" ]; then echo 'ERROR: No predictor checkpoint found in checkpoints/reverse_kl_30_s42/'; ls -la checkpoints/reverse_kl_30_s42/ 2>/dev/null; exit 1; fi && echo \\\"Using checkpoint: \\$CKPT\\\" && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id revkl_30_s42_uniform_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint \\$CKPT --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\"",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "280143",
+      "log_path": "~/runs/distill_sparse_swiglu/revkl_30_s42_uniform_eval.log",
+      "submitted_at": "2026-05-20T19:51:25.944Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-23T00:10:57.469435+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d1e1869afac008b2602",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect uniform v2 results",
+  "task_key": "worker_ops_collect-uniform-v2-results_20260518T130448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-uniform-v2-results_20260518T130448_result.json",
+    "occurrence": 1,
+    "bytes": 543,
+    "sha256": "ca59817b7e9d723f02dc1b31b3e376719cdeb30477cac0c4c3f10ca1dde572b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验仍在运行中，还没有 results.json。都在跑 MMLU（最后一个 task）的 loglikelihood 阶段。\n\n## kl30_s123_uniform_v2 (41718:0)\n状态: running — MMLU 3393/58702 (~6%), ~42 it/s\n预计剩余: ~22 分钟\n\n## kl30_s456_uniform_v2 (41718:1)\n状态: running — MMLU 3233/58702 (~6%), ~44 it/s\n预计剩余: ~21 分钟\n\n## GPU 状态\nwestd-34887: cuda:0 [空闲], cuda:1 [空闲]\nwestd-41718: cuda:0 [100%, 67G/98G], cuda:1 [96%, 67G/98G]\n\n约 20-25 分钟后再查应该能拿到结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-uniform-v2-results.md"
+}

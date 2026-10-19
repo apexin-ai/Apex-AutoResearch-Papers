@@ -1,0 +1,53 @@
+{
+  "exp_id": "bench_kl50_uniform_s456",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:27:20.124Z",
+    "updated_at": "2026-05-16T15:35:24.500Z",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py --exp_id bench_kl50_uniform_s456 --checkpoint checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 1",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "245022",
+      "log_path": "~/runs/distill_sparse_swiglu/bench_kl50_uniform_s456.log",
+      "submitted_at": "2026-05-16T14:50:27.834Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "llama-3.1-8b",
+      "data_path": "wikitext-2 + downstream",
+      "data_count": 159,
+      "seed": 456,
+      "checkpoint_source": "mvp_kl_norm_v2_s456"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T15:32:45.150Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T15:32:47.250911+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "wikitext2_ppl": 11.9604,
+      "arc_challenge_acc_norm": 0.3345,
+      "winogrande_acc": 0.6275,
+      "mmlu_acc": 0.2874,
+      "gsm8k_exact_match": 0.0212,
+      "actual_sparsity": 0.5
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T15:35:24.649785+00:00",
+  "trigger": "update_registry"
+}

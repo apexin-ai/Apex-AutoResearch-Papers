@@ -1,0 +1,37 @@
+{
+  "exp_id": "c4_ood_downstream_kl30",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:30:03.220Z",
+    "updated_at": "2026-05-20T14:13:42.638Z",
+    "hypothesis": "KL predictor trained on WikiText-103 maintains downstream task quality when mask predictions are generated from C4 OOD text, demonstrating domain-agnostic mask transfer",
+    "spec": {
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "254228",
+      "model_name": "llama-3.1-8b",
+      "checkpoint_source": "checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt",
+      "data_path": "c4_val (calibration) + downstream benchmarks",
+      "seed": 42,
+      "log_path": "/root/distill_sparse_swiglu/logs/c4_ood_downstream_kl30.log"
+    },
+    "metrics": {
+      "arc_challenge_acc_norm": 0.4036,
+      "winogrande_acc": 0.693,
+      "mmlu_acc": 0.4137,
+      "gsm8k_exact_match": 0.0629,
+      "hellaswag_acc_norm": 0.7074,
+      "piqa_acc_norm": 0.7399,
+      "model_level_sparsity": 0.295
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T14:13:43.090995+00:00",
+  "trigger": "update_registry"
+}

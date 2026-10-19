@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d7670f5697b3b245f0d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops chain c4 s456 and mse check",
+  "task_key": "worker_ops_chain_c4_s456_and_mse_check_20260520T030912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_chain_c4_s456_and_mse_check_20260520T030912_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "0666ff5a388081cf4e06837216ddf914db13f3f224118604dfab34556b28ddce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s456 已完成。汇总：\n\n```\nC4 s123: 完成 PPL=16.3686\nC4 s456: 完成 PPL=16.3551\ns456 checkpoint: 存在\nMSE 训练: step 480/1000, loss=0.0035, sparsity=0.297, checkpoint: 无（训练中）\n```\n\n两个 seed 的 C4 PPL 非常接近（16.37 vs 16.36），方差极小。MSE 训练约 48% 进度，在 cuda:0 上正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-chain-c4-s456-and-mse-check.md"
+}

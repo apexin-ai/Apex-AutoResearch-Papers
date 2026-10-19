@@ -1,0 +1,38 @@
+{
+  "exp_id": "tau_schedule_ablation",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T23:53:42.391Z",
+    "updated_at": "2026-05-16T23:57:22.210Z",
+    "spec": {
+      "command": "train.py --loss_type kl_normalized --tau_start {0.5/0.1} --tau_end {0.5/0.1} --num_steps 1000",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "model_name": "llama-3.1-8b",
+      "data_path": "WikiText-103 train",
+      "data_count": 0,
+      "seed": 42,
+      "hypothesis": "Temperature schedule has minor impact on final PPL - method is robust to tau choice within reasonable range",
+      "checkpoint_path": "checkpoints/tau_ablation_fixed{05,01}/predictor_kl_normalized.pt",
+      "log_path": "/root/distill_sparse_swiglu/logs/tau_ablation.log"
+    },
+    "metrics": {
+      "tau_linear_baseline_ppl": 11.963,
+      "tau_fixed05_ppl": 11.861,
+      "tau_fixed01_ppl": 12.072,
+      "tau_fixed05_loss": 0.248,
+      "tau_fixed01_loss": 0.43,
+      "best_tau": "fixed_0.5",
+      "ppl_range": 0.211
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T23:57:22.363693+00:00",
+  "trigger": "update_registry"
+}

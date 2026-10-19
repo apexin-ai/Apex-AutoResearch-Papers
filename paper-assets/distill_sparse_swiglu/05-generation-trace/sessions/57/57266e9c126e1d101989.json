@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57266e9c126e1d101989",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval kl sparsity70 v2 ppl",
+  "task_key": "worker_eval_kl_sparsity70_v2_ppl_20260515T220605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl_sparsity70_v2_ppl_20260515T220605_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "3b9b9f8f25d180e38aec89d5f448a235e8edc772bcdc89278409f39746a191cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**kl_sparsity70_s42_v2 评估结果（WikiText-2, seq_len=2048）：**\n- **true_dense_ppl**: 6.12\n- **predictor_hard_mask_ppl**: 13.84（per-token sparsity ~0.699，合理）\n- **teal_sparse_ppl**: 136069.61（**异常**，已标记 `teal_ppl_anomaly: true`）\n- **eval_model_level_sparsity**: 0.699\n\nhard_mask 13.84 符合预期趋势（50%→9.19, 70%→13.84）。TEAL 全局 mask PPL 爆炸可能原因：70% 全局排序下，某些关键层（如 Layer 14-16 仅 0.508-0.557 sparsity）的 neuron 被全局 budget 重新分配后过度裁剪。需要检查 `teal_global_masks` 中实际分配给各层的 mask ratio 是否合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kl-sparsity70-v2-ppl.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl50_global_s123_downstream_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T17:42:51.552Z",
+    "updated_at": "2026-05-22T17:43:42.175Z",
+    "hypothesis": "Re-eval KL 50% global s123 downstream (ARC-c, WG, MMLU, GSM8K) to complete 3-seed data for Table 2. Previous attempt (kl50_global_s123_reeval) failed with EXIT_CODE=1 due to wrong arg names (--predictor_path instead of --checkpoint, missing --sparsity_mode).",
+    "parent": "kl50_global_s123_reeval"
+  },
+  "timestamp": "2026-05-22T17:43:43.005325+00:00",
+  "trigger": "update_registry"
+}

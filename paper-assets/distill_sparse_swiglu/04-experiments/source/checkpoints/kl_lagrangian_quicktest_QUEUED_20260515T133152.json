@@ -1,0 +1,44 @@
+{
+  "exp_id": "kl_lagrangian_quicktest",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:17:49.894Z",
+    "updated_at": "2026-05-15T13:31:52.163Z",
+    "spec": {
+      "hypothesis": "Lagrangian multiplier 自适应约束替代固定 reg_weight，防止 KL 训练稀疏性坍塌",
+      "loss_type": "kl_lagrangian",
+      "seed": 42,
+      "model": "Llama-3.1-8B",
+      "sparsity": 0.5,
+      "steps": 200,
+      "batch_size": 4,
+      "seq_len": 2048,
+      "gpu": "cuda:0",
+      "server": "westd-34887",
+      "parent": "mvp_kl_s42"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "final_kl_loss": 418,
+      "final_constraint_loss": 1.211,
+      "final_sparsity": 0.141,
+      "final_lambda": 5.06,
+      "steps": 200,
+      "sparsity_trajectory": [
+        0.406,
+        0.387,
+        0.289,
+        0.168,
+        0.141
+      ]
+    },
+    "notes": "NEGATIVE: Lagrangian 仍无法阻止稀疏性坍塌。Sparsity 0.406→0.141。根因: KL loss (~418) vs constraint (~1.2)，3 个数量级差距。lambda ×1.5 增长太慢 + cap=100 不够。即使 lambda=100, constraint=36 仍远小于 KL=418。梯度信号不足: clamp 约束项的梯度被 vocab 维度 KL 梯度淹没。",
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/kl_lagrangian_quicktest/predictor_kl.pt"
+  },
+  "timestamp": "2026-05-15T13:31:52.182663+00:00",
+  "trigger": "update_registry"
+}

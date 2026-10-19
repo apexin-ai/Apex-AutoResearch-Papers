@@ -1,0 +1,61 @@
+{
+  "exp_id": "perlayer_kl_k16_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:05:26.988Z",
+    "updated_at": "2026-05-23T10:02:23.827Z",
+    "hypothesis": "K=16 per-layer KL predictor seed=123 for 3-seed K-curve validation. Part of R20-W1 multi-seed validation at 30% sparsity.",
+    "spec": {
+      "command": "python -u src/train_perlayer_kl_k4.py --num_masked_layers 16 --seed 123 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s123 --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "128425",
+      "log_path": "/root/runs/distill_sparse_swiglu/perlayer_kl_k16_s123.log",
+      "submitted_at": "2026-05-23T09:06:17.402Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "data_path": "wikitext-103",
+      "data_count": "auto",
+      "model_name": "llama-3.1-8b",
+      "seed": 123,
+      "num_steps": 1000,
+      "sparsity_target": 0.3,
+      "num_masked_layers": 16,
+      "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s123/predictor_perlayer_kl_k4.pt",
+      "wall_clock_seconds": 3366.4,
+      "gpu_hours": 0.94
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T09:40:47.981Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T09:40:56.934045+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "avg_kl": 0.1617,
+      "avg_sparsity": 0.287,
+      "final_kl": 0.1436,
+      "wall_time_s": 1982.8
+    },
+    "completed_at": "2026-05-23T10:02:23.827Z"
+  },
+  "timestamp": "2026-05-23T10:02:24.454874+00:00",
+  "trigger": "update_registry"
+}

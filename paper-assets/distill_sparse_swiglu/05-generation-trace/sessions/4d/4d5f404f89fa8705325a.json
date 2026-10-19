@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d5f404f89fa8705325a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis kl30 s456 global eval",
+  "task_key": "worker_analysis_kl30_s456_global_eval_20260517T141851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kl30_s456_global_eval_20260517T141851_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "beb91ff212af4be399640d12b92996d633687d89fe81884d2f9601c86ec93527"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验的 registry 已全部更新。摘要如下：\n\n## kl30 Global (30% sparsity) — 3-seed 对比\n\n| Metric | s42 | s123 | **s456** |\n|---|---|---|---|\n| MMLU | 0.2527 | 0.3807 | **0.4382** |\n| PPL | — | — | **8.93** |\n| ARC-C | — | — | **0.4633** |\n| WinoGrande | — | — | **0.7111** |\n| GSM8K | — | — | **0.0758** |\n\ns456 的 MMLU=0.4382 远高于 s42 (0.2527) 和 s123 (0.3807)。30% global allocation 下三个 seed 的 MMLU 方差极大（range 0.186），表明该配置下 seed sensitivity 是一个严重问题。\n\n## kl50 Global (50% sparsity) — 3-seed 对比\n\n| Metric | s42 | s123 | **s456** |\n|---|---|---|---|\n| MMLU | 0.2789 | 0.2752 | **0.2794** |\n| PPL | — | — | **11.81** |\n| ARC-C | — | — | **0.3319** |\n| WinoGrande | — | — | **0.6488** |\n| GSM8K | — | — | **0.0212** |\n\ns456 的 MMLU=0.2794 与 s42 (0.2789) 和 s123 (0.2752) 高度一致（range 仅 0.004）。50% global allocation 的 seed variance 极小，结果稳定。\n\n## 关键发现\n\n- **50% global**: seed variance 可忽略 (MMLU std ~0.002)，三个 seed 收敛到相近水平\n- **30% global**: seed variance 异常大 (MMLU range 0.186)，s456 甚至比 s42 高 18.5 个百分点。这对论文中 30% 配置的可信度构成挑战，可能需要讨论或额外分析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kl30-s456-global-eval.md"
+}

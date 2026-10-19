@@ -1,0 +1,82 @@
+{
+  "exp_id": "ste_baseline_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-15T18:35:42.177Z",
+    "updated_at": "2026-05-15T20:03:55.571Z",
+    "server": "westd-34887",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-34887",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T18:39:42.234Z",
+      "finished_at": "2026-05-15T19:53:10.785Z",
+      "training_hours": 1.22
+    },
+    "completed_at": "2026-05-15T18:50:00.760Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "negative"
+      },
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T19:53:11.891844+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=offline python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --relaxation ste --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/ste_baseline_s42 --wandb_run_name ste_baseline_s42 --dataset wikitext-103\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "116142",
+      "log_path": "~/runs/distill_sparse_swiglu/ste_baseline_s42.log",
+      "submitted_at": "2026-05-15T19:17:21.463Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103",
+      "data_count": null,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "wall_clock_seconds": 2794.1,
+      "gpu_hours": 0.78
+    },
+    "notes": "STE baseline 代码实现完成 (Worker worker_code_ste_baseline_20260515T183635)。修改：src/predictor.py 新增 STEMask 类（hard threshold + STE gradient），src/train.py 新增 --relaxation ste/gumbel 参数。\n\n## WikiText-2 评估 (seq_len=2048, 141 sequences, calibration=32)\n- True Dense PPL: 6.12\n- Predictor Hard Mask PPL: 8.18 (per-token sparsity=0.470, 低于 target 0.5)\n- TEAL Sparse PPL: **15.77** (global 50% sparsity)\n\n## vs Gumbel-sigmoid 对比 (TEAL Sparse PPL, 公平 50% 全局稀疏度)\n| 指标 | STE | Gumbel 4-seed mean | 差异 |\n|------|-----|---------------------|------|\n| TEAL Sparse PPL | 15.77 | 12.00 ± 0.07 | +31.4% |\n| Hard Mask PPL | 8.18 | 9.19 ± 0.04 | -11.0%* |\n| Per-token sparsity | 0.470 | 0.498 | -2.8pp |\n\n*Hard mask PPL 不可直接比较：STE per-token sparsity 仅 0.470（低于 Gumbel 0.498），较低稀疏度自然带来较低 PPL。\n\n## Lambda 震荡统计\nSTE hard threshold 导致 Lagrangian multiplier 剧烈震荡：\n- Steps 70-130 (关键不稳定区间): mean=66.40, std=94.87, range=[0.01, 1000]\n- 前 500 步 (51 pts): mean=688.07, std=440.57, min=0.01, max=1000\n- 后 500 步 (51 pts): mean=965.69, std=141.59, min=250, max=1000\n- 全程: mean=826.88, std=354.23\n\nLambda 在前 100 步内从 0.01 飙升到 1000 再回落到 3.91，反复震荡。对比 Gumbel 训练中 lambda 平稳收敛到 cap，STE 的 constraint 满足极不稳定。\n\n## 根因分析\nSTE hard threshold (>0.5=keep, ≤0.5=prune) 导致：\n1. 离散 sparsity 值（sigmoid 微小变化可翻转大量 neuron）→ constraint 满足不稳定\n2. Lambda 被迫在 0.01-1000 间震荡以追踪快速变化的 constraint violation\n3. 最终收敛到 lambda=1000 (cap) 但 per-token sparsity 仅 0.470（未达 target 0.5）\n4. 逐层稀疏度极端两极化（Layer 0-17: 5-56%, Layer 18-31: 56-90%），导致 TEAL 全局分配效果差\n\n## Conclusion: SUCCESS (验证 Gumbel 必要性)\nTEAL sparse PPL 15.77 显著差于 Gumbel 12.00 (+31.4%)，确认 Gumbel soft mask 的平滑梯度对 KL distillation 训练至关重要。可直接用于 Reviewer Concern #3 defense。",
+    "hypothesis": "STE relaxation (hard threshold + straight-through gradient) 是否能匹配 Gumbel-sigmoid 的 KL distillation 效果？如果差距大，说明 Gumbel soft mask 对 KL 训练至关重要（Reviewer Concern #3 defense）。",
+    "metrics": {
+      "true_dense_ppl": 6.12,
+      "predictor_hard_mask_ppl": 8.18,
+      "teal_sparse_ppl": 15.77,
+      "model_level_sparsity": 0.47,
+      "ppl_increase_vs_true_dense_pct": 157.7,
+      "eval_seq_len": 2048,
+      "calibration_samples": 32,
+      "eval_dataset": "wikitext-2",
+      "per_token_sparsity": 0.47,
+      "lambda_stats": {
+        "steps_70_130_mean": 66.4,
+        "steps_70_130_std": 94.87,
+        "first_500_mean": 688.07,
+        "first_500_std": 440.57,
+        "last_500_mean": 965.69,
+        "last_500_std": 141.59,
+        "overall_mean": 826.88,
+        "overall_std": 354.23
+      }
+    },
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/ste_baseline_s42/predictor_kl_normalized.pt",
+    "log_path": "~/runs/distill_sparse_swiglu/ste_baseline_s42.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T20:03:55.656158+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "mse30_lr1e4_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T10:08:12.674Z",
+    "updated_at": "2026-05-24T10:09:00.622Z",
+    "hypothesis": "MSE loss has ~5x larger gradient magnitude than KL. Using LR=1e-4 (10x lower than default 1e-3) should stabilize MSE training and improve downstream performance at 30% sparsity."
+  },
+  "timestamp": "2026-05-24T10:09:01.276215+00:00",
+  "trigger": "update_registry"
+}

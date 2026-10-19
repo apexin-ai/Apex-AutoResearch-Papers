@@ -1,0 +1,39 @@
+{
+  "exp_id": "perlayer_kl_k4_s42_ppl",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:33:49.662Z",
+    "updated_at": "2026-05-22T11:35:36.618Z",
+    "hypothesis": "Per-layer KL K=4 (4 active layers per step) PPL eval at 30% uniform sparsity. Tests whether K=4 reduces train-inference mismatch vs K=1 (PPL=9.05). If PPL < 9.05, the mask-pattern-discovery story needs softening (K=4 fixes mismatch). If PPL ≈ 9.05, mismatch is not the dominant PPL factor. If PPL > 9.05, K=4 introduces new dynamics. Result determines C1 narrative.",
+    "parent": "perlayer_kl_k4_s42",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -u src/benchmark_eval.py --exp_id perlayer_kl_k4_s42_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_k4_s42/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0",
+      "server": "westd-34887",
+      "data_path": "wikitext2",
+      "data_count": 1,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/perlayer_kl_k4_s42/predictor_perlayer_kl_k4.pt",
+      "eval_data": "wikitext2",
+      "log_path": "/root/runs/distill_sparse_swiglu/perlayer_kl_k4_s42_ppl.log",
+      "pid": 51577,
+      "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k4_s42/predictor_perlayer_kl_k4.pt"
+    },
+    "metrics": {
+      "wikitext2_ppl": 8.8932,
+      "sparsity_mean": 0.296,
+      "ppl_k1_baseline": 9.05,
+      "ppl_e2e_kl_baseline": 8.81,
+      "delta_vs_k1": -0.16,
+      "delta_vs_e2e_kl": 0.08
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-22T11:35:36.618Z"
+  },
+  "timestamp": "2026-05-22T11:35:37.196226+00:00",
+  "trigger": "update_registry"
+}

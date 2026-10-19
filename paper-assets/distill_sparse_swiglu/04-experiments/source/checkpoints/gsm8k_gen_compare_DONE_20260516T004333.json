@@ -1,0 +1,29 @@
+{
+  "exp_id": "gsm8k_gen_compare",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:35:56.904Z",
+    "updated_at": "2026-05-16T00:43:33.229Z",
+    "hypothesis": "GSM8K 生成质量对比：dense vs KL sparse 50% greedy 生成 5-10 样本。判断退化是\"推理丧失（重复/无意义文本）\"还是\"仅数字算错\"。",
+    "spec": {
+      "command": "python src/gsm8k_gen_compare.py",
+      "server": "westd-34887",
+      "model_name": "Llama-3.1-8B",
+      "data_path": "openai/gsm8k test split",
+      "data_count": 10,
+      "seed": 42,
+      "description": "GSM8K generation quality comparison: dense vs KL sparse 50%"
+    },
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt",
+    "log_path": "/root/distill_sparse_swiglu/artifacts/gsm8k_gen_compare.txt",
+    "conclusion": "negative",
+    "completed_at": "2026-05-16T00:43:29.657Z",
+    "notes": "50% KL sparse 退化属于 (A) 推理丧失/重复文本生成。10/10 样本中 sparse 模型均陷入 degenerate repetition loop：起始 1-3 个短语看似合理后立刻进入句子级重复，从未产生任何算术运算或最终答案。Sample 7 最接近成功（正确算出 9×2=18）但无法完成后续加法。偶见拼写退化(crabs→crbs)。Dense 模型推理链完整（4/10 答对），sparse 50% 的 autoregressive generation 被彻底摧毁。GSM8K exact_match 从 0.5004→0.0121 是因为完全无法推理而非仅算错数。"
+  },
+  "timestamp": "2026-05-16T00:43:33.416415+00:00",
+  "trigger": "update_registry"
+}

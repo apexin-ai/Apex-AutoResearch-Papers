@@ -1,0 +1,26 @@
+paper_key: "Categorical Reparameterization with Gumbel-Softmax"
+title: "Categorical Reparameterization with Gumbel-Softmax"
+venue: "ICLR 2017"
+full_text_available: false
+
+research:
+  baselines: ["REINFORCE", "straight-through estimator", "NVIL"]
+  metrics:
+    - {name: "gradient variance", direction: "lower_better"}
+    - {name: "log-likelihood", direction: "higher_better"}
+  datasets:
+    - {name: "MNIST", size: "60K"}
+    - {name: "structured output prediction tasks", size: "not specified"}
+  ablation_dimensions: ["temperature annealing", "straight-through vs soft samples"]
+  training_recipe: {optimizer: "not specified", lr: "not specified", hardware: "not specified"}
+  method_family: "gradient estimation for discrete variables"
+
+positioning:
+  core_claim: "Gumbel-Softmax provides a continuous relaxation of categorical distributions enabling low-variance gradient estimation through the reparameterization trick."
+  key_results: "Outperforms existing gradient estimators on structured output prediction and unsupervised generative modeling with categorical latent variables."
+  limitations: ["biased gradient estimator", "temperature tuning required"]
+  relation_to_us: "orthogonal"
+
+narrative: N/A
+figures: N/A
+tables: N/A

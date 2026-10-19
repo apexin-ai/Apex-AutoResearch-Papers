@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "155b9712cf0d8ba3074e",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_4_1778899923.md",
+  "task_key": "loop_4_1778899923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778899923.md",
+    "occurrence": 1,
+    "bytes": 4835,
+    "sha256": "e6592446db91e958417b07b0feda7675c03acb3798afcaf93c153d008a9b6dfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-16T02:29:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 只能用 **westd-34887 cuda:0 + cuda:1**（gpu_ids=[0,1]）。历史上 cuda:2/3 曾被其他项目占用，严禁越界\n- KL PPL 统一引用 **4-seed mean 12.00±0.07**（TEAL sparse PPL），禁止用单 seed 最佳值 11.91\n- BCE framing 必须用 **\"objective mismatch\"**，**禁止用 \"anti-learning\"**（Director 已审批）\n- SPON framing 必须用 **\"marginal complement\"**，**禁止用 \"subsumes\"**\n- s456 outlier 报法：报 \"5-seed mean: 12.32±0.71\" + \"Excluding s456: 12.00±0.07\"，不跑第 6 seed\n- **DDL: EMNLP 2026 ARR May, 2026-05-25**（距今 9 天）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-34887, account=root, 工作目录 `/root/distill_sparse_swiglu/`\n- **Python**: conda 环境（aml-train 镜像），`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: Llama-3.1-8B（HF cache），Mistral-7B `/root/autodl-tmp/models/mistral-7b/`\n- **Checkpoints**: `/root/distill_sparse_swiglu/checkpoints/` 下各实验子目录（详见 memory.md Checkpoints 节）\n- **活跃进程**:\n  - lm_eval_teal_50pct: PID 190830, cron 监控中（TEAL 50% downstream eval）\n  - lm_eval_kl_30pct_s42: PID 191335, cron 监控中（KL 30% downstream eval）\n- **活跃 Worker**:\n  - worker_writing_method-section (running, started 02:25 UTC)\n  - worker_writing_related-work (running, started 02:26 UTC)\n\n### 3. 📊 当前状态\n**刚完成**：50% sparsity downstream eval 确认 NEGATIVE（D027）——PPL 12.00 但 ARC-c/WinoGrande/MMLU/GSM8K 全面崩溃。GSM8K 生成对比证实 autoregressive 推理链断裂。PPL-downstream disconnect 已有文献支撑（artifacts/literature_ppl_downstream_disconnect.md）。\n\n**正在跑**：\n| exp_id | GPU | 内容 | 备注 |\n|--------|-----|------|------|\n| lm_eval_teal_50pct | cuda:0 | TEAL 50% downstream eval | 判断 downstream 崩溃是否所有 50% 方法共有 |\n| lm_eval_kl_30pct_s42 | cuda:1 | KL 30% downstream eval | 决定论文是否能 claim 30% 为推荐配置 |\n\n**正在写**：2 个 writing Worker（method-section + related-work）正在执行，尚未返回。\n\n**PREPARING 但实际 killed/搁置**：diag_teal_downstream, diag_gsm8k_gencomp, diag_30pct_downstream（这些是 diagnostic 实验，在 D027 确认根因后部分已无必要）。lm_eval_teal_30pct 是下一个要提交的 eval。\n\n**Registry 总计**: 成功 17 / 负向 9 / 失败 8 / killed 7 / 共 ~50\n\n### 4. 📋 待办（条件触发式）\n- **lm_eval_teal_50pct cron 回调** → 分析结果。若 TEAL 50% downstream 也崩溃 → 确认 50% sparsity 是通用瓶颈（强化 \"sparsity-task tradeoff\" narrative）。若 TEAL 不崩 → KL predictor 特有问题，需 deep dive\n- **lm_eval_kl_30pct_s42 cron 回调** → 若 30% downstream 保持 → claim \"30% 为推荐配置\" 成立，论文 narrative 转为条件性（30% 全能 / 50% PPL-only）。若 30% 也崩 → 更大的问题，需重评 sparsity scaling claim\n- **writing Worker 回调** → 审查 method section + related work 草稿，整合到论文\n- **lm_eval_teal_30pct** → 30%/50% eval 出结果后立即提交，完成 sparsity-task tradeoff 曲线\n- **plan_009 Mistral downstream** → Mistral dense baseline 已完成（ARC-c 0.6024），下一步是 Mistral KL 50% 训练+eval\n- **plan_007 full benchmark** → lm-eval 脚本就绪，KL + training-free 先跑（等 GPU 空出）\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D027: 50% sparsity downstream NEGATIVE → 论文 narrative 必须条件化（\"50% for PPL/throughput, 30% for full capability preservation\"）\n- D026: downstream 崩溃根因是稀疏化摧毁深层表征，非 eval bug\n- D023: Claim 1 三层梯队确认（KL 12.00 >> training-free 23-28 >> BCE 54.84）\n- Claim 2 (SPON orthogonal) ✅ 已关闭\n- Claim 3 (sparsity scaling) 🔄 30%/70% 数据在收集中\n\n**最容易判断错的事**：\n1. **不要把 50% downstream 崩溃当成项目失败**——这是已知现象（4 篇文献支撑），正确 framing 是 \"PPL-downstream disconnect\"，论文可以 claim 发现了这个现象并提供 sparsity-task tradeoff 指导\n2. **lm_eval_teal_50pct 的结果极其关键**——它决定 downstream 崩溃归因于 sparsity 本身还是 KL predictor 特有问题，两种结果对应完全不同的 narrative\n3. **PREPARING 状态的 diag_* 实验大多已 killed**——不要试图复活它们，D027 后 diagnostic 方向已变\n4. **Mistral 泛化 (plan_009) 目前只有 dense baseline**——KL training 还没开始，需要 GPU 空出后启动\n5. **距 DDL 仅 9 天**——不要开新的大实验线，聚焦收尾：30% eval → sparsity tradeoff 曲线 → full benchmark table → 论文定稿\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778899923.md"
+}

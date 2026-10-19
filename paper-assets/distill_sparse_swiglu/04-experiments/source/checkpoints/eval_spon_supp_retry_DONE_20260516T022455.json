@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_spon_supp_retry",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:44:22.659Z",
+    "updated_at": "2026-05-16T02:24:55.659Z",
+    "spec": {
+      "command": "python src/eval_spon_supplementary.py --gpu 0 --seq_len 2048",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "123231",
+      "log_path": "~/runs/distill_sparse_swiglu/eval_spon_supp_retry.log",
+      "submitted_at": "2026-05-15T19:44:22.577Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "spon eval",
+      "data_count": 0,
+      "model_name": "meta-llama/Llama-3.1-8B",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 24033.1,
+      "gpu_hours": 6.68
+    },
+    "conclusion": "failed",
+    "notes": "PID 123231 已死亡。SPON 补充 eval，tmux session 消失，被后续实验覆盖。",
+    "completed_at": "2026-05-16T02:24:55.659Z"
+  },
+  "timestamp": "2026-05-16T02:24:55.763864+00:00",
+  "trigger": "update_registry"
+}

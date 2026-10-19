@@ -1,0 +1,30 @@
+{
+  "exp_id": "ste_baseline_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:35:42.177Z",
+    "updated_at": "2026-05-15T18:35:54.422Z",
+    "spec": {
+      "hypothesis": "STE (Straight-Through Estimator) 替代 Gumbel-sigmoid，隔离 relaxation method vs loss function (KL) 的贡献",
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "server": "westd-34887",
+      "parent": "mvp_kl_norm_v2_s42",
+      "plan_id": "plan_002",
+      "data_path": "wikitext-103 (HF cached)",
+      "loss_type": "kl_normalized",
+      "relaxation": "ste",
+      "sparsity": 0.5,
+      "steps": 1000,
+      "seq_len": 2048,
+      "batch_size": 4,
+      "gpu": "cuda:1"
+    }
+  },
+  "timestamp": "2026-05-15T18:35:54.476492+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,197 @@
+paper_key: "relu_strikes_back"
+title: "ReLU Strikes Back: Exploiting Activation Sparsity in Large Language Models"
+venue: "ICLR 2024 (Oral)"
+authors: "Iman Mirzadeh, Keivan Alizadeh, Sachin Mehta, Carlo C Del Mundo, Oncel Tuzel, Golnoosh Samei, Mohammad Rastegari, Mehrdad Farajtabar"
+affiliation: "Apple"
+full_text_available: true
+
+research:
+  baselines:
+    - "OPT 1.3B/2.7B/6.7B (original, ReLU-native)"
+    - "Llama 7B (original, SiLU)"
+    - "Falcon 7B (original, GELU)"
+    - "Smaller dense models at equivalent FLOPS (Appendix E)"
+    - "Random sparsity baseline (for aggregated sparsity comparison)"
+  metrics:
+    - {name: "Zero-shot accuracy (avg over 9 tasks)", direction: "higher_better"}
+    - {name: "MMLU 5-shot accuracy", direction: "higher_better"}
+    - {name: "Activation sparsity (%)", direction: "higher_better"}
+    - {name: "FLOPS per token (G)", direction: "lower_better"}
+    - {name: "Aggregated sparsity (% neurons unused over t tokens)", direction: "higher_better"}
+    - {name: "Perplexity (WikiText)", direction: "lower_better"}
+  datasets:
+    - {name: "RefinedWeb", size: "100B tokens (pretrain) / 30-50B tokens (finetune)", role: "training"}
+    - {name: "WikiText (validation)", size: "standard", role: "sparsity measurement & perplexity"}
+    - {name: "LM Eval Harness (9 tasks)", size: "standard", role: "zero-shot evaluation"}
+    - {name: "MMLU", size: "standard", role: "5-shot evaluation"}
+  eval_tasks_detail:
+    zero_shot: ["Arc-Easy", "Arc-Challenge", "HellaSwag", "BoolQ", "PIQA", "LAMBADA", "TriviaQA", "WinoGrande", "SciQ"]
+    few_shot: ["MMLU 5-shot (Humanities, STEM, Social Sciences, Other)"]
+  ablation_dimensions:
+    - "Activation function type (ReLU vs SiLU vs GELU, parameterized via β in f(x)=x·σ(βx))"
+    - "Relufication stage (Stage 1: replace activation only vs Stage 2: add ReLU after norm)"
+    - "Model family (OPT vs Llama vs Falcon)"
+    - "Model scale (1.3B, 2.7B, 6.7B, 7B)"
+    - "Finetuning token budget (convergence curves)"
+    - "Shifted ReLU bias b (ReLU(x-b), b=0 vs b=1)"
+    - "Weight reuse interval γ (aggregated sparsity application)"
+    - "Speculative decoding γ (draft length)"
+  training_recipe:
+    optimizer: "AdamW"
+    lr: "1.5e-5 (fixed, for finetuning)"
+    distributed: "ZeRO stage 1"
+    stage1_tokens: "30B tokens on RefinedWeb"
+    stage2_tokens: "50B tokens on RefinedWeb"
+    pretrain_from_scratch: "OPT 1.3B on 100B RefinedWeb tokens"
+    hardware: "Multiple GPUs (Apple ML team, specific count not stated)"
+  method_family: "Activation sparsity via ReLU replacement (relufication)"
+
+positioning:
+  core_claim: "ReLU activation in LLMs produces negligible performance difference vs GELU/SiLU but enables >90% activation sparsity, yielding up to 3x inference FLOPS reduction; pretrained non-ReLU models can be converted via lightweight finetuning (relufication)."
+  key_results: |
+    - Training from scratch: ReLU/SiLU/GELU produce nearly identical loss curves on OPT 1.3B (100B tokens)
+    - Relufication Stage 1: Falcon 7B sparsity ~1%→94%, Llama 7B ~0%→62%
+    - Relufication Stage 2: Falcon 7B FLOPS 6.6G→2.2G (67% reduction), accuracy 66.8%→64.8% (-2.0pp)
+    - Relufication Stage 2: Llama 7B FLOPS 6.6G→2.9G (56% reduction), accuracy 68.4%→66.4% (-2.0pp)
+    - Relufication Stage 2: OPT 6.7B FLOPS 4.5G→2.8G (38% reduction), accuracy 59.8%→58.6% (-1.2pp)
+    - Aggregated sparsity: ~50% neurons unused across 150 tokens (OPT-6.7B)
+    - Sparse speculative decoding: 1.27x speedup over standard (γ=16)
+    - Shifted ReLU: Llama sparsity 65%→95% with ReLU(x-1)
+    - Relufied large models outperform equivalent-FLOPS smaller dense models by ~2% (Appendix E)
+  limitations:
+    - "Limited finetuning budget (30-50B tokens vs 1T+ original pretraining) may leave residual performance gaps"
+    - "QKV projection sparsity (30-56%) significantly lower than FFN sparsity (60-97%)"
+    - "Semi-structured sparsity benefits depend on hardware support (cuSPARSE, A100)"
+    - "Llama relufication achieves only 65% sparsity vs Falcon's 95% due to preactivation distribution differences (SwiGLU vs GELU)"
+    - "Shifted ReLU exploration is preliminary; deeper investigation needed"
+  relation_to_us: "foundation"
+  relation_detail: "Our work on distilling sparse SwiGLU patterns builds directly on ReLU Strikes Back's foundational demonstration that activation sparsity in LLM FFNs is exploitable. Their key limitation — Llama/SwiGLU models achieve only 65% sparsity vs 95% for GELU models — is precisely the problem space we address. Their relufication approach requires replacing the activation function entirely; we instead learn to distill and exploit the natural sparsity patterns within SwiGLU without replacing the activation."
+
+narrative:
+  story_type: "化繁为简型 (Simplification/Back-to-Basics)"
+  hook: "Opens with the computational burden of LLM inference, then makes a contrarian move: argues that the older, 'abandoned' ReLU activation is actually superior for inference efficiency. The title itself is a narrative hook — 'Strikes Back' implies a comeback story."
+  tension: "Modern LLMs (Llama, Falcon, PaLM) have moved to smoother activations (GELU, SiLU/Swish) for marginal training improvements, but this abandons the massive inference efficiency that ReLU's hard zero-gating provides. The community optimized for training metrics while ignoring inference cost."
+  key_insight: "Activation function choice has negligible impact on final model quality at scale, but dramatic impact on inference efficiency. This asymmetry has been overlooked because the field focused on training loss rather than deployment cost. ReLU's hard zeros create exploitable structured sparsity that smoother activations cannot."
+  argument_chain: |
+    1. Problem: LLM inference is expensive, especially on resource-constrained devices
+    2. Observation: ReLU produces >90% sparsity in FFN activations; modern activations produce ~0%
+    3. Experiment 1: Train from scratch with different activations → performance identical, sparsity vastly different
+    4. Experiment 2: Relufication — convert pretrained models to ReLU with lightweight finetuning → performance recovers quickly
+    5. Two-stage approach: Stage 1 (replace activation) + Stage 2 (add ReLU after norms) → up to 3x FLOPS reduction
+    6. Applications: Aggregated sparsity for weight reuse, sparse speculative decoding, shifted ReLU for harder cases
+    7. Validation: Relufied large models outperform smaller dense models at equivalent FLOPS
+  contribution_framing: "Three contributions, cleanly stated at end of introduction: (1) from-scratch experiments showing activation function doesn't matter for performance, (2) relufication procedure for pretrained models with two stages, (3) aggregated sparsity concept and shifted ReLU variant."
+  intro_structure: |
+    ~6 paragraphs:
+    P1: LLM inference cost problem + existing approaches (quantization, pruning, speculative decoding)
+    P2: Activation sparsity as underexplored alternative; ReLU's natural advantage
+    P3: Key observation — OPT (ReLU-native) has >90% sparsity → 32% FLOPS savings
+    P4: Why this matters — modern models abandoned ReLU, losing this benefit
+    P5: Relufication concept — convert pretrained models back to ReLU
+    P6: Three contributions enumerated
+  notable_technique: "The parameterized activation family f(x)=x·σ(βx) that smoothly interpolates between SiLU (β=1), GELU-approx (β=1.7), and ReLU (β→∞) is an elegant experimental device. It allows controlled ablation of activation smoothness while keeping everything else fixed — much more convincing than comparing separate activations."
+
+figures:
+  figure_count: 11  # main paper ~8, appendix ~3
+  figure1:
+    type: "motivation"
+    description: "Shows activation sparsity patterns in OPT models — visualizes which neurons fire (non-zero) vs are dormant (zero) across FFN layers. Demonstrates that >90% of FFN activations are zero with ReLU, creating massive structured sparsity."
+    narrative_role: "Establishes the core observation that motivates the entire paper: ReLU-native models already have enormous activation sparsity that can be exploited. This visual makes the abstract claim concrete and memorable."
+    design_elements: ["Heatmap/matrix visualization of neuron activations", "Color coding for active vs inactive neurons", "Layer-by-layer view showing consistency across depth"]
+    visual_style: "Matrix visualization showing sparsity patterns, likely with dark/light contrast for active/inactive neurons across layers"
+  figure2:
+    figure_id: "Figure 2"
+    type: "ablation_result"
+    description: "Training from scratch with parameterized activation f(x)=x·σ(βx) for β∈{∞,8,1.7,1} (ReLU→SiLU). Top row: sparsity vs training steps (ReLU dramatically higher). Bottom row: loss/performance vs training steps (nearly identical across all β values)."
+    narrative_role: "The key 'no performance difference' evidence. Visual overlap of loss curves makes the argument immediately convincing — you can see that activation choice doesn't matter for quality but matters enormously for sparsity."
+    design_elements: ["Dual-row layout (sparsity above, performance below)", "Multiple β curves overlaid", "Clear separation in top row, overlap in bottom row"]
+  figure4:
+    figure_id: "Figure 4"
+    type: "method_result"
+    description: "Sparsity improvement after Stage 1 relufication. Shows Falcon going from ~1% to 94% sparsity, Llama from ~0% to 62% sparsity across layers."
+    narrative_role: "Demonstrates relufication works — pretrained models can gain ReLU's sparsity benefits without retraining from scratch."
+    design_elements: ["Before/after comparison", "Per-layer sparsity bars or lines", "Model comparison (Falcon vs Llama)"]
+  figure5:
+    figure_id: "Figure 5"
+    type: "analysis"
+    description: "Preactivation distributions before and after relufication finetuning, showing distributions remain stable — enabling sparsity prediction before costly finetuning."
+    narrative_role: "Provides theoretical grounding for why relufication works quickly: the learned representations don't need to change much."
+  figure6:
+    figure_id: "Figure 6"
+    type: "convergence"
+    description: "Performance recovery curves during relufication finetuning. Shows models quickly recover lost accuracy within initial training steps."
+    narrative_role: "Addresses the practical concern of 'how much finetuning is needed' — answer: surprisingly little."
+  figure7:
+    figure_id: "Figure 7"
+    type: "application_result"
+    description: "Four-panel figure: (a-b) Aggregated sparsity over tokens showing ~50% neurons unused after 150 tokens, significantly above random baseline; (c) Weight reuse with minimal perplexity impact; (d) Sparse speculative decoding speedup (1.27x at γ=16)."
+    narrative_role: "Extends the core contribution to practical applications, showing the sparsity isn't just theoretical but enables concrete inference optimizations."
+    design_elements: ["Multi-panel layout (4 subplots)", "Comparison with random baseline", "Speedup curves"]
+  figure8:
+    figure_id: "Figure 8"
+    type: "method_variant"
+    description: "Shifted ReLU results: ReLU(x-1) applied to Llama pushes sparsity from 65% to 95% while maintaining comparable accuracy. Shows accuracy recovery curve and sparsity levels during finetuning."
+    narrative_role: "Addresses the Llama low-sparsity problem identified earlier, showing a simple fix exists."
+  result_figures:
+    - figure_id: "Figure 2 (bottom row)"
+      viz_type: "line_plot"
+      what_compared: "Training loss/performance across activation functions (β parameter)"
+      how_gain_highlighted: "Overlapping curves demonstrate equivalence — the 'gain' is that ReLU matches others while being sparser"
+      design_note: "Pairing with sparsity plot above creates powerful visual contrast: same performance, vastly different sparsity"
+    - figure_id: "Figure 7d"
+      viz_type: "line_plot"
+      what_compared: "Sparse vs standard vs random speculative decoding speedup across γ values"
+      how_gain_highlighted: "Aggregated sparsity curve stays above random baseline, gap widens at larger γ"
+      design_note: "Including random baseline makes the structured nature of sparsity visually obvious"
+  ablation_figures:
+    - figure_id: "Figure 2 (top row)"
+      viz_type: "line_plot"
+      dimensions_varied: ["β (activation smoothness parameter)"]
+      design_note: "Continuous parameterization avoids discrete comparison; shows smooth relationship between β and sparsity"
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      dimensions_varied: ["model family (Falcon vs Llama)", "layer index"]
+      design_note: "Per-layer granularity reveals that sparsity is consistent across depth, not concentrated in specific layers"
+    - figure_id: "Figure 8"
+      viz_type: "line_plot"
+      dimensions_varied: ["shifted ReLU bias b", "finetuning tokens"]
+      design_note: "Shows both the sparsity boost and the performance recovery trajectory simultaneously"
+  figure_narrative_role: |
+    Figure 1 (motivation: sparsity exists in ReLU models) →
+    Figure 2 (key experiment: activation choice doesn't affect performance) →
+    Figure 3 (method: relufication procedure overview) →
+    Figure 4-5 (Stage 1 results: sparsity gains + distribution stability) →
+    Figure 6 (convergence: quick performance recovery) →
+    Figure 7 (applications: aggregated sparsity + speculative decoding) →
+    Figure 8 (extension: shifted ReLU for harder cases).
+    Classic "observe → validate → apply → extend" arc.
+
+tables:
+  table_count: 2  # main paper; additional in appendix
+  main_result_table:
+    table_id: "Table 1"
+    title: "Relufication results across models and stages"
+    row_axis: "models × stages"
+    col_axis: "Input Sparsity (3 components) | FLOPS (G) | Avg Accuracy (%)"
+    row_organization: "by_model_then_stage"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "Comparison within model groups (original → s1 → s2 progression)"
+    statistical_reporting: "Single run numbers, no std reported"
+    num_baselines: 5  # OPT 1.3B/2.7B/6.7B, Falcon 7B, Llama 7B original versions
+    key_numbers:
+      - "Falcon 7B: 6.6G→4.1G→2.2G FLOPS (67% total reduction), 66.8%→65.2%→64.8% accuracy"
+      - "Llama 7B: 6.6G→4.8G→2.9G FLOPS (56% total reduction), 68.4%→67.1%→66.4% accuracy"
+      - "OPT 6.7B: 4.5G→4.5G→2.8G FLOPS (38% total reduction), 59.8%→59.8%→58.6% accuracy"
+    design_note: "Three-column sparsity breakdown (input/down/up projections) reveals where sparsity comes from. Progressive stage comparison within each model group makes the cost-benefit tradeoff immediately visible."
+  secondary_table:
+    table_id: "Table 2"
+    title: "MMLU 5-shot results across activation functions"
+    row_axis: "models"
+    col_axis: "MMLU categories (Humanities, STEM, Social Sciences, Other)"
+    highlight_strategy: "Within-group comparison showing <2% gap"
+    design_note: "Demonstrates that relufication doesn't disproportionately harm any knowledge domain — gaps are consistent across categories"
+  ablation_tables: []  # Ablations primarily presented as figures rather than tables
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix E: Comparison of relufied large models vs equivalent-FLOPS smaller dense models (~2% advantage for relufied). Appendix B: FLOPS correlation with actual latency on A100."
+    reason: "Main paper focuses on the sparsity-accuracy tradeoff; hardware-specific speedup validation and dense-equivalent comparisons are supporting evidence placed in appendix to maintain narrative focus."

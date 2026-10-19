@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3da0624433e07fbbff1d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect mask divergence 30pct 64samples",
+  "task_key": "worker_ops_collect-mask-divergence-30pct-64samples_20260519T122029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-mask-divergence-30pct-64samples_20260519T122029_result.json",
+    "occurrence": 1,
+    "bytes": 1119,
+    "sha256": "63502ce608bd46a29349b8a0fd5bb25c6bcb072a4522a40a9de80d063ad62f40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both GPUs are running Qwen-14B benchmark evals. No mask divergence computation is running, and 64-sample computation can't start now.\n\nHowever, 32-sample results already exist for both models. Here are the results:\n\n**LLaMA-8B 30% Sparsity Mask Divergence (32 samples):**\n- Mean Jaccard Distance: 0.3939 (39.39%)\n- Min: 0.3528 (layer 14)\n- Max: 0.4818 (layer 0)\n- Std: 0.0314\n\n**Qwen-14B 30% Sparsity Mask Divergence (32 samples):**\n- Mean Jaccard Distance: 0.4016 (40.16%)\n- Min: 0.0627 (layer 4) — anomalously low\n- Max: 0.4460 (layer 11)\n- Std: 0.0756\n\n**Comparison with 50% reference (64 samples):**\n- 50%: Mean=0.6824 → 30% LLaMA: 0.3939, 30% Qwen: 0.4016\n- As expected, 30% is substantially lower than 50% (~42% relative drop)\n\n**Status of 64-sample run:** Cannot run now — both cuda:0 and cuda:1 are occupied by `benchmark_eval.py` jobs (qwen14b_kl30_s456_eval_v2 and qwen14b_kl30_s123_eval_v4, both running ~1hr). The script supports `--calib_samples 64` but needs a free GPU. The 32→64 sample increase would reduce variance but likely won't shift means significantly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-mask-divergence-30pct-64samples.md"
+}

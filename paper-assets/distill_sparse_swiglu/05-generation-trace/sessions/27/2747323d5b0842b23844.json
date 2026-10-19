@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2747323d5b0842b23844",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "viz lagrangian 50pct fix",
+  "task_key": "worker_viz_lagrangian_50pct_fix_20260517T051409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_lagrangian_50pct_fix_20260517T051409_result.json",
+    "occurrence": 1,
+    "bytes": 333,
+    "sha256": "62293bb21da3de19909eb4e2af096cbc0631543deba122c47c46e11df53a11be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器 westd-34887 当前无法连接（port 34887 on 36.103.198.204 全部超时）。可能原因：\n\n1. 服务器关机/休眠（按量计费实例常见）\n2. 网络/端口临时故障\n\n无法执行任何操作。需要等服务器恢复后重试。要我稍后再试，还是你先确认服务器状态？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-lagrangian-50pct-fix.md"
+}

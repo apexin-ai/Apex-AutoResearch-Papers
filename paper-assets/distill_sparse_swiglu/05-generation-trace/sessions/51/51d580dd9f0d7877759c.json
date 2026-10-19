@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51d580dd9f0d7877759c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diagnose cuda0 kill root cause",
+  "task_key": "worker_diagnose_cuda0_kill_root_cause_20260515T200619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cuda0_kill_root_cause_20260515T200619_result.json",
+    "occurrence": 1,
+    "bytes": 2043,
+    "sha256": "ac36fa41ed3e68368b24856f63cb6e1e24ecd2be20643bd4b74f36d1debe41e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完毕。\n\n## 根因判断：**外部终止（SIGHUP），不是 OOM**\n\n**EXIT_CODE=129 = 128 + 1 = SIGHUP**，不是 SIGKILL（那应该是 137）。\n\n### 排除项\n\n| 怀疑项 | 结论 | 证据 |\n|--------|------|------|\n| 系统 OOM | ❌ | 921 GiB RAM 可用，dmesg 无 OOM 记录 |\n| GPU OOM | ❌ | 进程稳定跑了 900 步（90.7/97.9GB），非 OOM crash |\n| cgroup 内存限制 | ❌ | 当前 71.5 GiB，限额 220 GiB |\n| 磁盘满 | ❌ | 根分区 47%，数据盘 3% |\n| Crontab/Watchdog | ❌ | 无 crontab，无 kill 相关进程 |\n\n### 实际原因\n\n**SIGHUP 是 tmux session 被销毁时发送的信号。** `kill_job` 工具先发 SIGTERM（日志中打印了 \"Terminated\"），然后销毁 session（产生 SIGHUP，exit code 129）。\n\n这 3 次 kill 都是 **agent-ml-research 框架或另一个 worker 显式终止了 tmux session**——很可能是为了释放 cuda:0 跑其他实验，或者 plan 被更新后重新提交。\n\n### 3 次 kill 时间线\n\n1. `bce_isocompute_s42.log` — 跑到 Step 500+，被 kill\n2. `bce_isocompute_s42_v2.log` — 跑到 Step 900/2700，\"Terminated\"，EXIT_CODE=129（20:01:16Z）\n3. 第三次可能在模型加载后很快被 kill（未留下足够日志）\n\n### 当前状态\n\n**第 4 次尝试（PID 129187）正在正常运行：**\n- tmux session: `bce_isocompute_v2_s42`\n- 已到 Step 250/1000，1.05s/step\n- cuda:0 占用 90.7/97.9GB，GPU 利用率 100%\n- 预计 ~13 分钟内完成\n\n### 建议\n\n不需要修 OOM/资源问题。要防止再被 kill：\n- 确认没有其他 worker 或 plan 会对 `bce_isocompute_v2_s42` session 调用 `kill_job`\n- 如果有多个实验要跑 cuda:0，做好排队，避免冲突\n\n---\n\n关于消息底部的 `submit_training_job` 请求：`plan_005_subsumption_s42` tmux session 已存在（04:20:20 创建），subsumption test 看起来已经被提交到 cuda:1 上了。我没有 `submit_training_job` 工具，如需手动执行该命令可以用 `ssh_execute` 代替。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cuda0-kill-root-cause.md"
+}

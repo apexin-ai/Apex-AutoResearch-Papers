@@ -1,0 +1,346 @@
+{
+  "schema_version": "1.0",
+  "session_id": "249bdaf92b911fd82f5c",
+  "rounds": [
+    {
+      "number": 101,
+      "messages": [
+        {
+          "source_line": 1621,
+          "timestamp": "2026-05-23T19:43:51.874617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9587:  qwen14b_teal30_uniform_hspiqa:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-001621"
+        },
+        {
+          "source_line": 1622,
+          "timestamp": "2026-05-23T19:43:54.684275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml",
+              "offset": "9587",
+              "limit": "40"
+            }
+          },
+          "id": "event-001622"
+        },
+        {
+          "source_line": 1623,
+          "timestamp": "2026-05-23T19:43:54.684780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9587\t  qwen14b_teal30_uniform_hspiqa:\n9588\t    status: DONE\n9589\t    retry_count: 1\n9590\t    created_at: '2026-05-19T13:19:22.790Z'\n9591\t    updated_at: '2026-05-20T02:10:00.000Z'\n9592\t    hypothesis: 14B TEAL 30% uniform HellaSwag+PIQA eval. 填 Table 5 Uniform TEAL 行的\n9593\t      HS/PIQA 两个 \"---\" 格。重跑（前次被 killed）。\n9594\t    parent: qwen14b_teal30_uniform_eval_4task\n9595\t    conclusion: success\n9596\t    completed_at: '2026-05-20T02:05:00.000Z'\n9597\t    metrics:\n9598\t      hellaswag_acc_norm: 0.6772\n9599\t      piqa_acc_norm: 0.747\n9600\t    checkpoint_path: results/benchmark/qwen14b_teal30_uniform_hspiqa/results.json\n9601\t    spec:\n9602\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n9603\t        base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1\n9604\t        TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py\n9605\t        --exp_id qwen14b_teal30_uniform_hspiqa --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/\n9606\t        --baseline_mode teal_vanilla --sparsity_target 0.3 --allocation uniform --tasks\n9607\t        hellaswag,piqa --seq_len 2048 --gpu 0\"\n9608\t      server: westd-34887\n9609\t      gpu:\n9610\t      - cuda:0\n9611\t      pid: '145310'\n9612\t      log_path: ~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_hspiqa.log\n9613\t      submitted_at: '2026-05-20T00:55:54.581Z'\n9614\t      submitted_via: submit_training_job\n9615\t      backend: tmux\n9616\t      account: root\n9617\t  qwen14b_kl30_s42_eval_uniform_v2:\n9618\t    status: DONE\n9619\t    retry_count: 0\n9620\t    created_at: '2026-05-19T13:23:44.297Z'\n9621\t    updated_at: '2026-05-19T14:16:22.737Z'\n9622\t    hypothesis: Qwen-14B KL 30% s42 eval under TEAL uniform allocation will produce\n9623\t      comparable downstream metrics to s123/s456 (also uniform), enabling valid 3-seed\n9624\t      comparison. Retry of v1 which failed due to missing HF offline env vars (network\n9625\t      unreachable). v2 adds HF_DAT\n…[truncated 105 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001623"
+        },
+        {
+          "source_line": 1624,
+          "timestamp": "2026-05-23T19:44:55.812957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: critical] 数据一致性验证 — 3 个问题独立核实结果\n\n---\n\n## 问题 1：Qwen-14B TEAL uniform HS/PIQA 两次 eval 不一致\n\n**结论：[severity: info] 已解释，论文使用正确版本**\n\n根因：**seq_len 参数缺失**\n\n| 实验 | 日期 | 服务器 | seq_len | HS | PIQA |\n|------|------|--------|---------|-----|------|\n| qwen14b_teal30_uniform_hspiqa (v1) | 5/20 | westd-34887 | **2048** (显式指定) | 67.72 | 74.70 |\n| qwen14b_teal30_uniform_hspiqa_v2 | 5/19 | westd-41718 | **未指定** (脚本默认值) | 67.56 | 74.27 |\n\nv2 的命令：`python -u src/benchmark_eval.py ... --tasks hellaswag,piqa --gpu 0`（无 `--seq_len`）\nv1 的命令：`python -u src/benchmark_eval.py ... --tasks hellaswag,piqa --seq_len 2048 --gpu 0`\n\n论文 §4.1 声明评估协议 seq_len=2048。**v1 匹配协议，论文使用 v1 值 ✅**。v2 使用了脚本默认 seq_len（可能更短），结果不可比。\n\n---\n\n## 问题 2：Figure 3 KL 50% PPL = 12.00 来源\n\n**结论：[severity: warning] 数据来源不精确**\n\nRegistry 中最接近 12.00 的实验：**kl50_global_s456_eval**（PPL = 12.01）。但该实验 conclusion=killed。\n\n其他 KL 50% global 实验：\n- s42: 11.79 (bench_kl50_global)\n- s123: 11.745 (kl50_s123_eval)\n- s456: 12.01 (kl50_global_s456_eval)\n- 3-seed mean: 11.85\n\n图中 12.00 最接近 s456 的 12.01（四舍五入），但：\n1. 其他 sparsity 点可能用的是 s42（如 30% 用 8.98 ≈ lm_eval_kl_30pct），seed 选择不一致\n2. 如果用 3-seed mean 应为 11.85，差距 0.15\n3. 如果用 s42 应为 11.79，差距 0.21\n\n**建议**：统一 Figure 3 所有数据点的 seed 策略——要么全部用 s42，要么全部用 3-seed mean。当前混用不同 seed 的数据点不规范。\n\n---\n\n## 问题 3：Figure 3 caption vs figure annotation 数字不一致\n\n**结论：[severity: critical] Caption 与 Figure 使用不同比较基准，必须修正**\n\n**Figure annotation（内嵌在图中）**：\n- 30%: (10.97 - 8.98) / 10.97 = **18%** → 基于 global allocation, TEAL global vs KL global\n- 50%: (23.31 - 12.00) / 23.31 = **48%** → 同上\n- 70%: (100.11 - 17.91) / 100.11 = **82%** → 同上\n\n**Caption 文本**：\n- \"14.5% at 30%\" → 这来自正文 §4.2 matched-actual-sparsity 比较: KL **uniform** 8.81 vs TEAL at **matched 28.5%** actual sparsity 10.30\n- \"50% at 50%\" → 近似于图的 48%（四舍五入差异）\n- \"82% at 70%\" → 一致 ✅\n\n**核心矛盾**：30% 处 caption 的 14.5% 基于 **uniform allocation matched sparsity** 比较，而 Figure 标注的 18% 基于 **global allocation** 比较。同一 Figure 的 caption 和 annotation 不应使用不同比较基准。\n\n**修正建议**：\n- 方案 A：Caption 改为与图一致 → \"18%, 48%, 82%\"（均基于 global）\n- 方案 B：图注改为与 caption 一致（需要重新生成图）\n- 方案 C（推荐）：Caption 写 \"KL's advantage grows with sparsity (Figure~3)\" 不列具体百分比数字，将精确数字留给图注。避免 caption 与图注数字冲突。\n\n**审稿人攻击面**：如果审稿人同时看到 caption 的 14.5% 和图中标注的 18%，会质疑数据可靠性。这是最需要立即修复的问题。",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-001624"
+        },
+        {
+          "source_line": 1625,
+          "timestamp": "2026-05-23T19:44:59.176631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3363
+          },
+          "id": "event-001625"
+        },
+        {
+          "source_line": 1626,
+          "timestamp": "2026-05-23T19:45:02.887592+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个问题的数据已收集完毕。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer"
+          },
+          "id": "event-001626"
+        }
+      ]
+    },
+    {
+      "number": 102,
+      "messages": [
+        {
+          "source_line": 1627,
+          "timestamp": "2026-05-23T19:49:24.436332+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n**[验证] Figure 3 修复后确认**\n\nAgent 已修复 Figure 3 两个问题：\n\n1. Caption 改为描述性文字：\"PPL scaling with sparsity (global allocation). KL's advantage over TEAL grows with sparsity.\" 删除了与图注冲突的 14.5%/50%/82%。\n\n2. KL 50% PPL 从 12.00 修正为 11.79（bench_kl50_global, s42），所有数据点统一为 s42 global allocation。50% advantage 从 48% 更新为 49%。\n\n请确认：\n1. 修改后 caption 与图注是否一致\n2. 49% 计算是否正确：(23.31-11.79)/23.31 = 49.4%\n3. experiments.tex 中是否还有残留的旧百分比引用（如正文其他位置引用了 \"50% at 50%\"）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "source": "system"
+          },
+          "id": "event-001627"
+        },
+        {
+          "source_line": 1628,
+          "timestamp": "2026-05-23T19:49:34.672171+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex",
+              "offset": "177",
+              "limit": "15"
+            }
+          },
+          "id": "event-001628"
+        },
+        {
+          "source_line": 1629,
+          "timestamp": "2026-05-23T19:49:35.675919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "177\t\\subsection{Sparsity Scaling and Regime Analysis}\n178\t\\label{sec:scaling}\n179\t\n180\t\\begin{figure}[t]\n181\t\\centering\n182\t\\includegraphics[width=\\columnwidth]{fig2_sparsity_sweep.pdf}\n183\t\\vspace{-8pt}\n184\t\\caption{PPL scaling with sparsity (global allocation). KL's advantage over TEAL grows with sparsity.}\n185\t\\label{fig:sparsity_sweep}\n186\t\\vspace{-8pt}\n187\t\\end{figure}\n188\t\n189\t\\paragraph{Allocation Behavior.}\n190\tTable~\\ref{tab:phase} (Appendix~\\ref{app:alloc_full}) reveals non-monotonic allocation preference: uniform is best at $\\leq$30\\% ($7.3\\times$ smaller MMLU $\\sigma$), global at 35--40\\%, both collapse at $\\geq$45\\%. % exp_id: kl30_3seed, regime_kl35_global, regime_kl35_uniform, multi_seed_kl50_global, multi_seed_kl50_uniform\n191\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 1003
+          },
+          "id": "event-001629"
+        },
+        {
+          "source_line": 1630,
+          "timestamp": "2026-05-23T19:49:36.545555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "50%.*reduction|50\\%.*at 50|48%|49%|82%.*at 70|18%.*at 30",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001630"
+        },
+        {
+          "source_line": 1631,
+          "timestamp": "2026-05-23T19:49:36.646444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-001631"
+        },
+        {
+          "source_line": 1632,
+          "timestamp": "2026-05-23T19:49:40.659344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "50.* reduction|82\\\\\\\\%|PPL advantage",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-001632"
+        },
+        {
+          "source_line": 1633,
+          "timestamp": "2026-05-23T19:49:40.710039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex:17:Cross-architecture evaluation on Mistral-7B-v0.3~\\cite{jiang2023mistral} (3-seed) confirms the PPL advantage ($-$17.3\\%) with directional commonsense gains but tied MMLU; preliminary evaluation on Qwen-2.5-14B~\\cite{qwen2024qwen25} shows consistent PPL improvement but reasoning decline (GSM8K $-$20.1pp, $\\sigma$=5.2pp; MMLU $-$2.8pp).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:39:At 50\\%, the PPL advantage widens (11.92 vs.\\ 23.90, 50\\% reduction) and generalizes to C4 (Appendix~\\ref{app:ood}), but all methods collapse to near-random on MMLU and GSM8K ($\\leq$2.7\\%); no allocation strategy recovers at this capacity limit. % exp_id: bench_kl50_global, kl50_global_s123_downstream_v2, kl50_global_s456_eval, d030_kl50_uniform, multi_seed_kl50_global\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:445:The KL PPL advantage ratio is consistent across architectures (within 8\\% at $\\leq$50\\% sparsity)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001633"
+        },
+        {
+          "source_line": 1634,
+          "timestamp": "2026-05-23T19:49:58.574184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] Figure 3 修复确认 — 三项全部通过\n\n**1. Caption 与图注一致性** ✅\nCaption 改为 \"PPL scaling with sparsity (global allocation). KL's advantage over TEAL grows with sparsity.\"，不再包含具体百分比数字，与图中标注无冲突。\n\n**2. 49% 计算** ✅\n(23.31 - 11.79) / 23.31 = 49.4% → 49% 正确。\n\n**3. 残留旧百分比** ✅ 无冲突\n唯一相关引用在 experiments.tex L39：\"At 50%, the PPL advantage widens (11.92 vs. 23.90, 50% reduction)\"。这是 **uniform allocation** 比较（Table 2 数据），与 Figure 3 的 **global allocation** 是不同比较基准，各自正确，不冲突。",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-001634"
+        },
+        {
+          "source_line": 1635,
+          "timestamp": "2026-05-23T19:50:02.038934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3464
+          },
+          "id": "event-001635"
+        }
+      ]
+    },
+    {
+      "number": 103,
+      "messages": [
+        {
+          "source_line": 1636,
+          "timestamp": "2026-05-23T19:50:05.682372+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001636"
+        },
+        {
+          "source_line": 1637,
+          "timestamp": "2026-05-23T19:50:49.946908+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 cuda:0, cuda:1（2× RTX PRO 6000 Blackwell 96GB）。westd-41718 已释放不可用。\n- qwen14b_kl30_s123_gsm8k 结果文件在 westd-41718 上，已无法访问验证。该数据完整性存疑（运行时间仅同类实验一半，conclusion=killed，无 sample_len）。如论文引用此数据需标注或改为 2-seed。\n- EMNLP 2026：主文 8 页硬限、abstract ≤200 words、Limitations 必须在正文（不在 appendix）、ethics 已移除。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887 (root)，代码根目录 `/root/distill_sparse_swiglu/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型：`/root/autodl-tmp/models/llama-3.1-8b`、`/root/autodl-tmp/models/qwen2.5-14b/`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/`\n- 活跃进程：无（所有实验已完成，GPU 全部空闲）\n- W&B：未配置（本项目不检查 W&B）\n\n### 3. 📊 当前状态\n刚完成 R28 提交前全量数据一致性审查 + Figure 3 修复验证。具体：\n- **数据审查**：80+ 数字交叉验证，发现 1 处精度错误（Table 3 s42 KL PPL 8.80→8.82）已由 Agent 修正 ✅\n- **Figure 3 修复**：Caption 百分比与图注冲突（14.5% vs 18%）→ Caption 改为描述性文字 ✅；KL 50% PPL 从 12.00 修正为 11.79（统一 s42）✅\n- **ROADMAP 审查**：方向合理，覆盖度充分，无阻塞问题 ✅\n- Registry：无 RUNNING/PREPARING 实验。成功 258 / 总 405。\n- 等待中：无 Worker/Cron 回调。下一步应是 Director 提交 R28 审稿。\n\n### 4. 📋 待办\n- R28 提交审稿请求到达 → 按 §5 审查模式 B 执行全文对抗审查（必须先 Read paper-quality-lessons.skill.md + reviewer-audit-checklist §7）\n- 如收到 paper_agent_request_review → 使用 §5.3 迭代评分模板返回维度评分\n- 如 Agent 修改论文数字 → 重新交叉验证修改处与 registry 一致性\n- Qwen s123 GSM8K 如果 Agent 决定补跑 → 验证新实验是否在 westd-34887 上且 GPU 在白名单内\n\n### 5. 🎯 战略上下文\n- **核心结论**：output-distribution KL 是 PPL 主导设计维度（signal type gap 25:1 vs coupling breadth）。C1 target-swap 确认 mask pattern 可迁移。Knowledge regression (MMLU/GSM8K) 是系统性限制。\n- **R27→R28 改进链**：D104→D107→D108。K-curve 从 single-seed 升级到 full 3-seed（K=1/2/4/8/16/32），C4 control 确认 regression 非数据问题，8 处 overclaiming 修复。\n- **易错点**：\n  1. 论文中存在两种 allocation 比较基准（uniform vs global），正文 14.5% 是 matched-actual-sparsity uniform 比较，Figure 3 是 global 比较——不要混淆。\n  2. TEAL 是确定性方法但不同 seq_len 产出不同结果——eval 必须带 `--seq_len 2048` 才匹配论文协议。\n  3. Registry 中 metric 命名不统一（有些叫 `arc_challenge`，有些叫 `arc_challenge_acc_norm`）——比较前必须确认指标含义。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer"
+          },
+          "id": "event-001637"
+        }
+      ]
+    }
+  ]
+}

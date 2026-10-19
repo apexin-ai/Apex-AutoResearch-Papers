@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06e5b3b34d49980d1eb5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl k2 s456 eval",
+  "task_key": "worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226_result.json",
+    "occurrence": 1,
+    "bytes": 637,
+    "sha256": "a1c14bc52cdab9ab74305b93cdf6586d7ac57b3d4c23d0755144e0c258d87bd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已包含全部数据。结果如下：\n\n## `perlayer_kl_k2_s456_eval` 结果\n\n**配置**: TEAL global, sparsity_target=0.3, uniform allocation, bottleneck_size=128\n\n| Metric | Value |\n|--------|-------|\n| **wikitext2_ppl** | **10.5826** |\n| arc_challenge_acc_norm | 0.3840 |\n| winogrande_acc | 0.6488 |\n| mmlu_acc | 0.3542 |\n| gsm8k_exact_match (flexible) | 0.0205 |\n| gsm8k_exact_match (strict) | 0.0190 |\n| hellaswag_acc_norm | 0.6590 |\n| piqa_acc_norm | 0.7280 |\n\nSparsity 信息未在日志中单独记录（grep 被 pipe 阻断），但 config 中 `sparsity_target=0.3`（即 30% sparsity）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-k2-s456-eval.md"
+}

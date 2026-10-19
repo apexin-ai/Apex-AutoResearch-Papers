@@ -1,0 +1,14 @@
+{
+  "exp_id": "kl30_s456_global_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:56:49.733Z",
+    "updated_at": "2026-05-17T12:56:49.733Z"
+  },
+  "timestamp": "2026-05-17T12:56:49.956899+00:00",
+  "trigger": "update_registry"
+}

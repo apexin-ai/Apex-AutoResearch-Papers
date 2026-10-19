@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05439fe0469e524ce82d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis ste baseline s42",
+  "task_key": "worker_analysis_ste_baseline_s42_20260515T195504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ste_baseline_s42_20260515T195504_result.json",
+    "occurrence": 1,
+    "bytes": 3315,
+    "sha256": "ce1c1895e2187ed9129f90615cddb62feb16c35bf31dcfeb71d0146901d8455e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验 `ste_baseline_s42` 分析报告\n\n### 1. 训练状态\n\n| 项目 | 值 |\n|------|-----|\n| 训练完成 | **是** — 跑满 1000/1000 步，EXIT_CODE=0 |\n| 完成标记 | 无 \"Training complete\" 字样，但 checkpoint 已保存 |\n| Relaxation | STE (Straight-Through Estimator) |\n| Loss type | KL normalized |\n| Trainable params | 75,960,320 / 8,030,261,248 (0.946%) |\n| Checkpoint | `/root/distill_sparse_swiglu/checkpoints/ste_baseline_s42/predictor_kl_normalized.pt` — **145M** |\n| Errors | **无**（仅有 HF token warning，无关紧要） |\n\n### 2. 最终训练指标 (Step 1000)\n\n| 指标 | 值 |\n|------|-----|\n| loss | 0.3262 |\n| kl_raw | 0.3262 |\n| kl_normalized | 0.3262 |\n| constraint_loss | 0.0 |\n| sparsity | **0.484** |\n| lambda | 1000.00 |\n| tau | 0.000 |\n| lr | 0.0 (cosine schedule 结束) |\n\n### 3. Eval 指标\n\n**日志中没有 evaluation 段。** grep ppl/perplexity/eval 全部无匹配。训练脚本在 step 1000 后直接保存 checkpoint + wandb summary，没有运行 PPL evaluation。\n\n**需要单独执行 eval 脚本才能获得 `predictor_hard_mask_ppl` 等指标。**\n\n### 4. Lambda (Lagrangian) 统计\n\n配置：`lambda=1.0, target=0.5, margin=0.02, growth=2.0x, decay=0.5x, cap=1000`\n\n**三阶段行为：**\n\n| 阶段 | Steps | Lambda 范围 | 行为 |\n|------|-------|-------------|------|\n| 探索期 | 1-80 | 0.01 → 81.92 | 指数增长，sparsity 初始偏高(0.539)后下冲到 0.449 |\n| 震荡期 | 80-130 | 81.92 → 1000 | 剧烈震荡，快速撞到 cap=1000 |\n| 饱和期 | 130-1000 | **1000**（偶降 500/250） | **lambda 长期钉死在 cap** |\n\nLambda 在 step ~130 后基本恒定在 1000（cap 值）。偶尔 sparsity 短暂超过 0.52 时回落到 500/250，但马上回到 1000。**这是 multiplicative update + low cap 的典型饱和现象——lambda 失去了调节能力。**\n\n### 5. Sparsity 训练曲线\n\n| Step | Sparsity | 备注 |\n|------|----------|------|\n| 1 | 0.539 | 初始偏高 |\n| 50 | 0.508 | |\n| 80 | 0.449 | 下冲 |\n| 100 | 0.514 | |\n| 200 | 0.480 | |\n| 300 | ~0.504 | |\n| 400 | 0.480 | |\n| 500 | 0.477 | |\n| 600 | ~0.496 | |\n| 700 | 0.480 | |\n| 800 | 0.484 | |\n| 900 | 0.492 | |\n| 1000 | **0.484** | |\n\n最终 sparsity 0.484，略低于目标 0.50 但在 margin(±0.02) 边界内（0.48-0.52）。后半程稳定在 0.480-0.496 区间。\n\n### 6. 结论判定\n\n**暂无法判定。** 缺少 `predictor_hard_mask_ppl`，无法与 Gumbel-sigmoid baseline (~9.19) 对比。\n\n### 7. 值得注意的现象\n\n1. **Lambda 饱和问题**：cap=1000 太低，lambda 在 step 130 后就钉死了。这意味着 Lagrangian 约束基本退化为固定权重，丧失了自适应能力。对比 Gumbel 实验的 lambda 行为可以判断这是 STE 特有的还是通用问题。\n\n2. **tau=0.000 全程**：STE 不使用 temperature annealing（符合预期），但注意 Gumbel-sigmoid 依赖 tau 做 soft→hard 过渡，这是两种方法的本质区别。\n\n3. **kl_raw ≡ kl_normalized 全程**：后半段两者完全相等（constraint=0），说明 sparsity 一直在合规范围内，normalization penalty 没有起作用。\n\n### 下一步\n\n需要对 checkpoint 跑 eval 获取 PPL 指标，才能完成 plan_002 的 conclusion。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ste-baseline-s42.md"
+}

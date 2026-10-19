@@ -1,0 +1,25 @@
+{
+  "exp_id": "kl_sparsity70_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:24:08.219Z",
+    "updated_at": "2026-05-15T20:27:02.693Z",
+    "spec": {
+      "hypothesis": "KL distillation @ 70% sparsity (aggressive pruning). Part of plan_008 3-level sparsity sweep (30/50/70%). Expect larger PPL increase than 50% but KL should maintain advantage over BCE. Paired with kl_sparsity30_s42.",
+      "command": "CUDA_VISIBLE_DEVICES=1 bash -c 'source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=offline python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.7 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42 --wandb_run_name kl_sparsity70_s42 --dataset wikitext-103'",
+      "server": "westd-34887",
+      "data_path": "wikitext-103",
+      "data_count": -1,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "plan_id": "plan_008"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T20:27:02.809101+00:00",
+  "trigger": "update_registry"
+}

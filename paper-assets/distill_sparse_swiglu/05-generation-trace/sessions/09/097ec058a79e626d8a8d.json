@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "097ec058a79e626d8a8d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "prep bench mistral kl50 s42",
+  "task_key": "worker_prep_bench_mistral_kl50_s42_20260516T050509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_bench_mistral_kl50_s42_20260516T050509_result.json",
+    "occurrence": 1,
+    "bytes": 1827,
+    "sha256": "956a466e37965a79a8f2f8e1e506fbe468259d1f4e9b48b1a41bad716e4c3a28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n## 汇总\n\n### 路径信息\n| 项目 | 路径 |\n|------|------|\n| 脚本 | `/root/distill_sparse_swiglu/src/benchmark_eval.py` |\n| Mistral 模型 | `/root/autodl-tmp/models/mistral-7b/` (已确认存在) |\n| Predictor checkpoint | `checkpoints/mistral_kl_s42/predictor_kl_normalized.pt` |\n| 输出目录 | `results/benchmark/bench_mistral_kl50_s42/` (已存在，为空) |\n\n### Few-shot 设置\n脚本内置 `LM_EVAL_DEFAULTS` 字典，**无需命令行传参**：\n- arc_challenge: 25-shot\n- winogrande: 5-shot\n- mmlu: 5-shot\n- gsm8k: 8-shot\n\n### Allocation\n`--allocation` 默认值即为 `global_topk`，不需要显式指定。\n\n### 提交命令\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id bench_mistral_kl50_s42 --model_name_or_path /root/autodl-tmp/models/mistral-7b --checkpoint checkpoints/mistral_kl_s42/predictor_kl_normalized.pt --sparsity_mode per_token --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\"\n```\n\n### 与 D029 旧命令的对比\n旧命令（`run_bench_cuda1.sh` 第 5 条）参数完全一致——差异在于脚本本身已更新内置了 few-shot 默认值，而 D029 当时跑的是 0-shot 版本的脚本。现在用当前版本的 `benchmark_eval.py` 重跑即可拿到统一 few-shot 结果。\n\n### 注意事项\n- GPU: `--gpu 0`，CUDA_VISIBLE_DEVICES 由框架注入\n- nohup 日志建议重定向到 `results/benchmark/bench_mistral_kl50_s42/bench.log`\n- `bench_mistral_kl50_s42` 输出目录已存在但为空，不会冲突"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-bench-mistral-kl50-s42.md"
+}

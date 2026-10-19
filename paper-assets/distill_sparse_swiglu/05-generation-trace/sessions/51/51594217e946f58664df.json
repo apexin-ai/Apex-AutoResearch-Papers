@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51594217e946f58664df",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis gsm8k gen compare",
+  "task_key": "worker_analysis_gsm8k_gen_compare_20260516T003648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gsm8k_gen_compare_20260516T003648_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "50be1480fcac4756398b4c22688a07d6f46b54aed8f97b47fb6d5c841d908859"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结论已写入 registry (exp_id: gsm8k_gen_compare, status: DONE)。\n\n---\n\n## 结论\n\n**退化模式：(A) 推理丧失 — degenerate repetition loops**\n\n10/10 个 GSM8K 样本中，KL sparse 50% 模型表现一致：\n- 开头 1-3 个短语看似合理，随后立刻陷入**句子级重复循环**\n- **从未产生任何算术运算或最终答案**\n- 偶见拼写退化 (crabs→crbs, skein→skeen)\n- Sample 7 最接近成功：正确算出 9×2=18，但无法完成 \"+3\" 这步\n\n对比 dense 模型（推理链完整，4/10 答对），50% sparsity 彻底摧毁了 autoregressive generation 能力。GSM8K exact_match 从 0.5004→0.0121 不是\"算错数\"，是\"完全无法推理\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gsm8k-gen-compare.md"
+}

@@ -1,0 +1,42 @@
+{
+  "exp_id": "mvp_bce_s456",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:51:08.412Z",
+    "updated_at": "2026-05-15T13:51:22.638Z",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_bce_s456 --wandb_run_name mvp_bce_s456 --dataset wikitext-103\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "61162",
+      "log_path": "~/runs/distill_sparse_swiglu/mvp_bce_s456.log",
+      "submitted_at": "2026-05-15T13:34:54.067Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 988.6,
+      "gpu_hours": 0.27
+    },
+    "server": "westd-34887",
+    "gpu": "cuda:1",
+    "account": "root",
+    "pid": "61162",
+    "log_path": "~/runs/distill_sparse_swiglu/mvp_bce_s456.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_bce_s456 --wandb_run_name mvp_bce_s456 --dataset wikitext-103\"",
+      "finished_at": "2026-05-15T13:51:22.018Z"
+    },
+    "notes": "训练被 kill（Director 指令: cuda:1 改为重新评估 BCE checkpoints）。稍后重新提交。",
+    "conclusion": "failed",
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-15T13:51:22.638Z"
+  },
+  "timestamp": "2026-05-15T13:51:22.660730+00:00",
+  "trigger": "update_registry"
+}

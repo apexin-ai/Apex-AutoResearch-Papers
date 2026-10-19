@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "084f215c41dcae86ddbc",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis paper data audit",
+  "task_key": "worker_analysis_paper_data_audit_20260525T194736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper_data_audit_20260525T194736_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "67dd432f6c24c6986643c2b649a43ad236b970e7f12bb3ccb08ee1d54e18729d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/data_audit_report.md`。\n\n**核心结论：~280 个数字中 96% 精确匹配 registry。** 主表 (Table 1)、C1 表 (Table 2)、Ablation 表 (Table 3) 全部通过。\n\n**3 个需要修复的问题：**\n\n1. **Qwen-14B KL uniform 行（附录 Table 7）**— ARC-c 差 1.03pp，GSM8K s123 差 1.68pp，HS/PIQA 的 std 也不对。根因是该行数据拼凑自不同版本实验（pre/post D075 sigmoid fix、不同服务器）。建议用统一代码版本重跑 s42+s123 并注册。\n\n2. **C1 PPL gap \"0.65pp\" 应为 \"0.63pp\"**— 出现在 abstract、conclusion、experiments footnote 三处。9.4463−8.8157=0.6306，四舍五入是 0.63 不是 0.65。\n\n3. **Lagrangian 50% actual sparsity**— 论文写 0.504，registry 里对应实验是 0.4979。final_λ=8 来自另一个实验。\n\n**4 个小问题：** MSE 30% std 1.68→1.67、\"≤29%\" MMLU 但 TEAL=29.26%、C4 30% PPL 16.03→16.04、conclusion \"14.5% across three architectures\" 措辞不准。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-data-audit.md"
+}

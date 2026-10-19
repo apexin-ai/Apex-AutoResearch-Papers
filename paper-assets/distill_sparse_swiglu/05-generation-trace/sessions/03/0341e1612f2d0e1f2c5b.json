@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0341e1612f2d0e1f2c5b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check 14b uniform results",
+  "task_key": "worker_ssh_check_14b_uniform_results_20260518T013405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_14b_uniform_results_20260518T013405_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "f1a4713ad05296d5e0ed7ee89f758ccba9c28d8797abdefdb6fe56013bb15442"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成。结果汇总：\n\n## 14B Uniform Allocation 4-Task Eval Results\n\n| Metric | KL-Predictor (ours) | TEAL Vanilla (baseline) | Delta |\n|--------|---------------------|------------------------|-------|\n| **WikiText2 PPL** | **7.63** | 8.01 | -0.37 (better) |\n| **MMLU** | 0.6449 | **0.6634** | -1.85pp (worse) |\n| ARC-C (acc_norm) | 0.5444 | **0.5529** | -0.85pp |\n| WinoGrande | **0.7245** | 0.6985 | +2.60pp (better) |\n\n**关键发现**: MMLU 64.49% vs baseline 66.34%，KL predictor 在 uniform allocation 下 MMLU 仍然落后 ~1.9pp。这与之前 learned allocation 的结果一致：KL 目标在 14B 上的 MMLU gap 是 intrinsic 的，不是 allocation 策略导致的。\n\nPPL 方面 KL predictor 更优 (7.63 vs 8.01)，WinoGrande 也更优，但 MMLU 和 ARC-C 均略低于 TEAL vanilla baseline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-14b-uniform-results.md"
+}

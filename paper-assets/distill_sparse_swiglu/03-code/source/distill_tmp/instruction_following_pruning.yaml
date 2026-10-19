@@ -1,0 +1,283 @@
+paper_key: "Instruction-Following Pruning for Large Language Models"
+title: "Instruction-Following Pruning for Large Language Models"
+authors: "Bairu Hou, Qibin Chen, Jianyu Wang, Guoli Yin, Chong Wang, Nan Du, Ruoming Pang, Shiyu Chang, Tao Lei"
+venue: "ICML 2025"
+arxiv_id: "2501.02086"
+full_text_available: true
+
+research:
+  baselines:
+    - "Dense 3B (trained 9T tokens)"
+    - "Pruning+Distill 3B (static structured pruning from 9B with distillation)"
+    - "Dense 9B"
+  metrics:
+    - {name: "IFEval-I (Instruction-level accuracy)", direction: "higher_better"}
+    - {name: "IFEval-P (Prompt-level accuracy)", direction: "higher_better"}
+    - {name: "AlpacaEval (LC win rate)", direction: "higher_better"}
+    - {name: "Arena Hard (win rate)", direction: "higher_better"}
+    - {name: "HumanEval (pass@1)", direction: "higher_better"}
+    - {name: "MultiPL-E (pass@1)", direction: "higher_better"}
+    - {name: "MBPP (pass@1)", direction: "higher_better"}
+    - {name: "GSM8K (accuracy)", direction: "higher_better"}
+    - {name: "MATH (accuracy)", direction: "higher_better"}
+    - {name: "ARC-C (accuracy)", direction: "higher_better"}
+    - {name: "ARC-E (accuracy)", direction: "higher_better"}
+    - {name: "HellaSwag (accuracy)", direction: "higher_better"}
+    - {name: "LAMBADA (accuracy)", direction: "higher_better"}
+    - {name: "PiQA (accuracy)", direction: "higher_better"}
+    - {name: "SciQ (accuracy)", direction: "higher_better"}
+    - {name: "WinoGrande (accuracy)", direction: "higher_better"}
+    - {name: "MMLU (accuracy)", direction: "higher_better"}
+    - {name: "BLEU (translation)", direction: "higher_better"}
+  datasets:
+    - {name: "Internal pretraining corpus", size: "5T tokens (9T for Dense-3B)"}
+    - {name: "Internal SFT dataset", size: "several million examples"}
+    - {name: "FLAN-V2 collection", size: "800K examples"}
+    - {name: "IFEval", size: "standard"}
+    - {name: "AlpacaEval", size: "standard"}
+    - {name: "Arena Hard", size: "standard"}
+    - {name: "HumanEval", size: "164 problems"}
+    - {name: "MultiPL-E", size: "standard"}
+    - {name: "MBPP", size: "standard"}
+    - {name: "GSM8K", size: "standard"}
+    - {name: "MATH", size: "standard"}
+    - {name: "ARC (Challenge + Easy)", size: "standard"}
+    - {name: "HellaSwag", size: "standard"}
+    - {name: "LAMBADA", size: "standard"}
+    - {name: "PiQA", size: "standard"}
+    - {name: "SciQ", size: "standard"}
+    - {name: "WinoGrande", size: "standard"}
+    - {name: "MMLU", size: "standard"}
+    - {name: "WMT translation (EN-DE/ES/FR/IT/PT/ZH)", size: "standard"}
+  ablation_dimensions:
+    - "Source model size (6B vs 9B vs 12B pruned to 3B)"
+    - "Per-input vs per-task mask generation"
+    - "Layer-wise sub-network overlap analysis (layer 1 vs 16 vs last)"
+    - "Domain-specific parameter specialization (math/coding/history/physics/etc.)"
+  training_recipe:
+    predictor_backbone: "302M LLM"
+    predictor_head: "two-layer MLP"
+    mask_mechanism: "SoftTopK (differentiable top-k selection)"
+    stage1_pretraining:
+      batch_size: 2048
+      tokens: "5T (9T for Dense-3B baseline)"
+      method: "continued pretraining with K consecutive chunks"
+    stage2_sft:
+      batch_size: 1024
+      steps: "60k"
+      data: "several million internal SFT + 800K FLAN-V2"
+    optimizer: "not explicitly stated (likely AdamW)"
+    lr: "not explicitly stated"
+    hardware: "not explicitly stated (Google internal infrastructure implied)"
+    pruning_target: "FFN rows/columns only (attention not pruned)"
+    sparsity: "prune to 3B activated parameters from 6B/9B/12B"
+  method_family: "dynamic structured pruning / input-dependent sparsity"
+
+positioning:
+  core_claim: "LLMs can learn to dynamically select task-appropriate FFN parameters at inference time via a lightweight sparsity predictor, achieving 5-8 point gains over dense models at the same activation budget without per-token parameter reloading costs."
+  key_results: >
+    IFPruning 9B->3B vs Dense 3B: HumanEval 42.4 vs 35.2 (+7.2),
+    MBPP 41.8 vs 28.8 (+13.0), MATH 36.7 vs 31.8 (+4.9),
+    GSM8K 72.0 vs 69.3 (+2.7), MMLU 65.5 vs 61.8 (+3.7),
+    AlpacaEval 31.3 vs 27.3 (+4.0).
+    IFPruning 12B->3B vs Dense 3B: HumanEval 43.3 (+8.1),
+    MBPP 42.8 (+14.0), MATH 37.1 (+5.3), MMLU 66.1 (+4.3).
+    Approaches Dense 9B on coding (43.3 vs 46.5 HumanEval) and
+    MATH (37.1 vs 37.3).
+  limitations:
+    - "Batch serving challenges: mixed-task batches require different sub-networks per request, complicating server-side deployment"
+    - "End-to-end optimization may not fully utilize training examples; contrastive learning could improve overlap consistency"
+    - "Only prunes FFN layers; attention head and dimension pruning unexplored"
+  relation_to_us: "complementary"
+  relation_detail: >
+    We distill sparse SwiGLU activation patterns (intrinsic sparsity);
+    IFPruning learns extrinsic input-dependent masks via a predictor.
+    Both exploit FFN sparsity but from different angles: ours discovers
+    natural activation patterns, theirs trains a predictor to select
+    task-appropriate subsets. Their finding that lower layers share
+    similar sub-networks while upper layers specialize is consistent
+    with observations in activation sparsity literature. Their per-task
+    mask finding (minimal degradation vs per-input) suggests stable
+    domain-level patterns exist, which our approach could leverage.
+
+narrative:
+  story_type: "突破局限型"
+  hook: >
+    Opens with the established practice of structured pruning, then
+    immediately challenges its static nature: "Structured pruning
+    techniques have become a widely adopted method for reducing the
+    inference cost of large language models." The tension is implicit:
+    why should one fixed mask serve all inputs?
+  tension: >
+    Static pruning masks discard parameters permanently regardless
+    of input. Contextual sparsity methods require per-token parameter
+    reloading (expensive). MoE requires architectural changes. The
+    gap: no method lets a standard LLM dynamically select parameters
+    per-instruction without reloading overhead.
+  key_insight: >
+    The core insight appears in paragraph 2 of the introduction as a
+    research question: "Can LLMs learn to select the most suited
+    parameters based on the task description?" This reframes pruning
+    from a compression problem to a routing/selection problem,
+    bridging static pruning and MoE without either's drawbacks.
+  argument_chain: >
+    Static pruning is lossy (one mask for all) -> contextual sparsity
+    is expensive (per-token reloading) -> MoE needs special architecture
+    -> propose instruction-level mask prediction (one mask per prompt,
+    no reloading) -> train predictor end-to-end with LLM -> show 5-8
+    point gains over dense 3B, approaching 9B -> interpret via overlap
+    analysis showing domain specialization emerges naturally.
+  contribution_framing: >
+    Two main contributions framed implicitly: (1) the dynamic pruning
+    paradigm shift ("we move beyond the traditional static pruning
+    approach"), (2) strong empirical results ("improves over the 3B
+    dense model by 5-8 points of absolute margin"). Not enumerated
+    as bullet points; woven into the introduction prose.
+  intro_structure: >
+    3 paragraphs: P1 establishes static pruning as status quo and
+    its limitation; P2 poses the key question and introduces the
+    dynamic pruning concept; P3 describes IFPruning architecture
+    and previews results. Compact and direct. Contributions are
+    stated inline rather than as a numbered list.
+  notable_technique: >
+    The research question framing ("Can LLMs learn to...?") is an
+    effective hook that transforms a technical contribution into an
+    intriguing scientific question. The interpretability analysis
+    (Figure 3 overlap heatmaps) serves double duty: validates the
+    method and provides scientific insight about parameter
+    specialization, making the paper feel like a discovery paper
+    rather than just an engineering contribution.
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "method_overview"
+    description: >
+      Three-panel figure: (Left) sparsity predictor taking a prompt
+      and outputting which FFN rows/columns to activate; (Middle)
+      the masked LLM performing inference with only selected FFN
+      parameters; (Right) bar chart showing IFPruning 9B->3B
+      significantly outperforming Dense 3B and approaching Dense 9B.
+    narrative_role: >
+      Serves as both method overview and teaser result in one figure.
+      The left+middle panels explain the mechanism while the right
+      panel immediately shows the payoff, front-loading the value
+      proposition before the reader reaches the method section.
+    design_elements:
+      - "Three-panel layout (mechanism + mechanism + result)"
+      - "Color-coded FFN rows showing which are activated/pruned"
+      - "Bar chart teaser on right showing the performance gap"
+      - "Clean architectural diagram with minimal notation"
+    visual_style: >
+      Left two panels use a schematic/architectural diagram style
+      with colored blocks for FFN matrices. Right panel is a simple
+      grouped bar chart. Clean whitespace separation between panels.
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: >
+        Scaling behavior: dense models vs IFPruning across different
+        total parameter counts (6B, 9B, 12B). Multiple benchmarks
+        shown as separate subplots or lines.
+      how_gain_highlighted: >
+        IFPruning lines consistently above dense model lines at the
+        same activated parameter count, with the gap widening on
+        math and coding tasks. Shows IFPruning 3B approaching the
+        dense 9B performance level.
+      design_note: >
+        Standard scaling law plot style (x=params, y=performance).
+        Effective for showing that IFPruning gets more out of
+        additional parameters than simply making the dense model
+        bigger. Multiple benchmarks on same or adjacent plots for
+        cross-task comparison.
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "heatmap"
+      dimensions_varied:
+        - "Layer depth (layer 1, layer 16, last layer)"
+        - "Domain pairs (math, coding, history, physics, etc.)"
+      design_note: >
+        Three side-by-side heatmaps showing sub-network overlap
+        rates. Diagonal is self-overlap (1.0). Color intensity
+        shows parameter sharing between domains. Key finding
+        visualized: lower layers have uniform high overlap (shared
+        parameters), upper layers show domain clustering (math/physics
+        cluster, coding separate). This is the interpretability
+        money shot that elevates the paper beyond a pure engineering
+        contribution.
+  figure_narrative_role: >
+    Figure 1 (method + teaser) -> Figure 2 (scaling validation) ->
+    Figure 3 (interpretability/insight). The progression is:
+    "here's what we do" -> "it works and scales" -> "here's why it
+    works (domains specialize)." Only 3 figures total, each doing
+    heavy lifting. No redundancy.
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "benchmarks grouped by category"
+    row_organization: "by_category"
+    col_organization: "grouped_by_task_category"
+    highlight_strategy: "bold_best (among activated 3B models)"
+    statistical_reporting: "single run numbers, no std reported"
+    num_baselines: 3
+    num_methods: 6
+    categories:
+      - "Instruction Following (IFEval-I, IFEval-P, AlpacaEval, Arena Hard)"
+      - "Coding (HumanEval, MultiPL-E, MBPP)"
+      - "Tool Use (Exec, Plan)"
+      - "Math (GSM8K, MATH)"
+      - "Core Text (ARC-C, ARC-E, HellaSwag, LAMBADA, PiQA, SciQ, WinoGrande)"
+      - "MMLU"
+    key_numbers:
+      ifpruning_9b_to_3b_vs_dense3b:
+        HumanEval: "+7.2 (42.4 vs 35.2)"
+        MBPP: "+13.0 (41.8 vs 28.8)"
+        MATH: "+4.9 (36.7 vs 31.8)"
+        GSM8K: "+2.7 (72.0 vs 69.3)"
+        MMLU: "+3.7 (65.5 vs 61.8)"
+        AlpacaEval: "+4.0 (31.3 vs 27.3)"
+      ifpruning_12b_to_3b_vs_dense9b:
+        HumanEval: "43.3 vs 46.5 (93% of 9B)"
+        MATH: "37.1 vs 37.3 (99.5% of 9B)"
+        MMLU: "66.1 vs 67.8 (97.5% of 9B)"
+    design_note: >
+      Wide table spanning full page width. 19 benchmarks across 6
+      categories. Methods ordered: Dense 3B -> static pruning ->
+      IFPruning variants (increasing source size) -> Dense 9B.
+      This ordering naturally shows the progression and positions
+      IFPruning between the two dense anchors. Category grouping
+      in columns makes cross-domain comparison easy.
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied:
+        - "Source model size (6B, 9B, 12B)"
+        - "Mask type (per-input vs per-task)"
+      variation_style: "full_numbers"
+      key_finding: >
+        Per-task masks perform comparably to per-input masks
+        (mostly <1% degradation, sometimes better). This suggests
+        stable domain-level parameter specialization rather than
+        fine-grained per-input variation.
+      design_note: >
+        Organized by task domains (coding, math, MMLU subfields,
+        translation). Shows both per-input and per-task for each
+        source model size, enabling direct comparison. Uses Dense
+        3B as anchor. No bold/underline, just raw numbers for the
+        reader to compare.
+    - table_id: "Table 3"
+      what_varied: ["Model architecture configurations"]
+      variation_style: "full_numbers"
+      design_note: >
+        Architecture specification table: model dim, FFN dim,
+        head dim, attention heads (query + KV), layers for 3B/6B/9B.
+        Compact reference table, not a results table.
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 4: task-specific prompts used for per-task masking"
+    reason: >
+      Prompts are implementation details needed for reproducibility
+      but not for understanding the method or results. Properly
+      placed in appendix to keep main text focused.

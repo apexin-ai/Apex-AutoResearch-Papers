@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5597deb6e1eb089d5556",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit bce isocompute v3",
+  "task_key": "worker_submit_bce_isocompute_v3_20260516T042835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_bce_isocompute_v3_20260516T042835_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "62f684334485772a28ff91404ec36fd120bf9f4228fba731ae782b26a5b1831a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:1 当前被占用，无法启动训练。**\n\n两个 benchmark_eval 进程正在 cuda:1 上运行：\n\n| PID | 启动时间 | 实验 |\n|-----|----------|------|\n| 201003 | 11:53:20 | bench_teal30 (baseline_mode teal_vanilla, sparsity 0.3) |\n| 202937 | 12:22:10 | bench_mistral_kl50_s42 (mistral-7b, sparsity 0.5) |\n\n总共占用 ~77.6 GB 显存。\n\n**选项：**\n1. 等两个 eval 跑完后再启动 v3（eval 一般 10-30 分钟完成，取决于 task 数量）\n2. 改用 cuda:0（当前空闲，0 MiB）启动 v3\n3. 手动 kill 其中一个或两个 eval 进程腾出 cuda:1\n\n怎么处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-bce-isocompute-v3.md"
+}

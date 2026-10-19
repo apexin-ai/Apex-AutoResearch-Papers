@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56bb828e631a69624a4b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check 14b uniform progress",
+  "task_key": "worker_ssh_check_14b_uniform_progress_20260518T013307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_14b_uniform_progress_20260518T013307_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "f505d8e7d65ff8599a85b00813f595089471bf3406f94e45aceb534807029502"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已完成。结果汇总：\n\n| Metric | KL Uniform (30%) | TEAL Uniform (30%) |\n|---|---|---|\n| WikiText-2 PPL | **7.63** | 8.01 |\n| ARC-c (acc_norm) | 54.4% | **55.3%** |\n| WinoGrande (acc) | **72.5%** | 69.9% |\n| MMLU (acc) | 64.5% | **66.3%** |\n\nKL uniform PPL 更优（7.63 vs 8.01），但下游任务 MMLU 仍落后 TEAL uniform 1.8 个百分点（64.5 vs 66.3），ARC-c 也略低。WinoGrande 上 KL 反而领先 2.6 个百分点。\n\n这与之前非 uniform 分配的趋势一致：KL 蒸馏在 PPL 上占优但 MMLU 存在 gap，说明这是 KL 目标本身的特性，不是分配策略导致的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-14b-uniform-progress.md"
+}

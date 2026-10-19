@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37fd8cde05fba7cbd703",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper table2 multiseed update",
+  "task_key": "worker_paper_table2-multiseed-update_20260518T034508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table2-multiseed-update_20260518T034508_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "6a5026203c4c80aaab147b4e1bcd307cd5465bdafee4d8b9e279327d2b5fdd4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX compiles without errors (14 pages, no warnings in the output).\n\n**Summary of changes:**\n\n**Task 1 - Table multi-seed updates:**\n- **Tab:main BCE row** (`experiments.tex:56`): All downstream metrics now show 3-seed mean±std: ARC-c 27.6±0.6, WG 51.8±0.6 (was 50.59), MMLU 26.1±0.5, GSM8K 2.1±0.2\n- **ARC-C bolding at 30%** (`experiments.tex:48-49`, `experiments.tex:165-166`): Moved bold from TEAL (42.32) to KL global (43.9±3.9) in both tab:main and tab:phase\n- **Section 5.2 text** (`experiments.tex:66-67`): BCE PPL updated to 28.13±0.20 (3-seed), ratio to 2.39×, percentage to 139%\n- **137% → 139%**: Updated in abstract (line 3), introduction (lines 15, 24), and experiments (line 67) to reflect multi-seed BCE mean\n\n**Task 2 - SNR extended data:**\n- **method.tex:151-152**: Replaced 80-step/5.76× initial measurement with extended 7-checkpoint measurement: 5.14× at step 300 ($5.88{\\times}10^{-3}$ vs $1.14{\\times}10^{-3}$), with 95% CI and non-monotonic trajectory description. The appendix (app:snr\\_extended) with full trajectory was already in place."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table2-multiseed-update.md"
+}

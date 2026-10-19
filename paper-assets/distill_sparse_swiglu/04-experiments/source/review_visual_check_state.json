@@ -1,0 +1,62 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:15:52.838333+00:00",
+  "completed_at": "2026-05-25T21:19:17.194140+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无 display item，Figure 1 在页 2 顶部。对于方法论文这是常见且可接受的布局，审稿人翻到页 2 即可锚定"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2 的两个子图较小（单栏宽度内并排），y 轴标签和 tick labels 在打印时可能偏小，但在 PDF 放大后可读"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 1（Taxonomy）结构清晰，使用 booktabs 风格，空单元格（unexplored combinations）标注合理"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Table 2（主结果表）全宽排版，booktabs + 粗体最优 + 下划线次优 + ↓ 方向标注齐全，格式专业"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "页面包含 3 个 display items（Table 3 + Figure 4 + Table 4），信息密度高但不拥挤，各有独立 message"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 5 和 Figure 6 在同一页，两图各占单栏，间距合理。Figure 6 的数据标注（PPL 数值）清晰"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "References 格式统一，未见 [?] 未解析引用或跳号"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 15",
+      "message": "Figure 8（KL vs magnitude importance scores）尺寸偏小，个别标签在打印时可能不够清晰，建议适当增大或移至全宽"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 16",
+      "message": "Figure 9（binary mask comparison）大幅面可视化，黑/白/灰区分度好，caption 充分解释了编码含义"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 11-18",
+      "message": "Appendix 包含 Tables 5-23 + Figures 7-9 共约 22 个 display items，密度高但组织清晰，每个 appendix section 标题明确"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 0,
+    "info": 10
+  }
+}

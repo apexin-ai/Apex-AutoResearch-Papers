@@ -1,0 +1,37 @@
+{
+  "exp_id": "bce_gumbel_no_penalty_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:54:15.611Z",
+    "updated_at": "2026-05-19T07:19:46.704Z",
+    "hypothesis": "BCE+Gumbel without adaptive penalty controller isolates the effect of Gumbel relaxation from Lagrangian sparsity control. If PPL degrades significantly vs bce_gumbel_lagrangian_isolation (38.02), penalty controller is necessary; if similar, Gumbel alone suffices.",
+    "parent": "bce_gumbel_lagrangian_isolation",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/train_bce_gumbel_no_penalty.py --lr 3e-3 --num_steps 1000 --sparsity_target 0.5 --seed 42 --output_dir checkpoints/bce_gumbel_no_penalty_s42 --gpu 0",
+      "server": "westd-34887",
+      "gpu": "cuda:1",
+      "model_name": "llama-3.1-8b",
+      "data_path": "wikitext-103",
+      "data_count": 1,
+      "seed": 42,
+      "checkpoint_path": "checkpoints/bce_gumbel_no_penalty_s42/predictor_bce_gumbel_no_penalty.pt",
+      "log_path": "~/runs/distill_sparse_swiglu/bce_gumbel_no_penalty_s42.log",
+      "checkpoint_source": "train from scratch (no penalty variant)",
+      "eval_data": "wikitext-103"
+    },
+    "pid": 87162,
+    "metrics": {
+      "training_bce_loss": 0.6307,
+      "training_sparsity": 0.383,
+      "wikitext2_ppl": 32.22,
+      "training_time_seconds": 977.6
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T07:19:47.256324+00:00",
+  "trigger": "update_registry"
+}

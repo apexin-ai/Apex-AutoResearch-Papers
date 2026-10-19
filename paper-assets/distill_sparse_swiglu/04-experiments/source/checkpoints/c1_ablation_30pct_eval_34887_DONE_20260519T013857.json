@@ -1,0 +1,35 @@
+{
+  "exp_id": "c1_ablation_30pct_eval_34887",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:27:54.967Z",
+    "updated_at": "2026-05-19T01:38:57.451Z",
+    "hypothesis": "C1@30% eval on 34887 where checkpoint exists. TEAL uniform 30%, PPL+ARC+WinoGrande+MMLU+GSM8K. Compare vs KL 30% uniform (PPL=8.82, ARC=50.3%, Wino=72.1%, MMLU=44.8%, GSM8K=14.3%).",
+    "parent": "c1_ablation_30pct_s42_v2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id c1_ablation_30pct_eval_34887 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/c1_ablation_30pct_s42/predictor_bce_kl_targets.pt --sparsity_mode teal_global --sparsity_target 0.30 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 2>&1\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "68680",
+      "log_path": "~/runs/distill_sparse_swiglu/c1_ablation_30pct_eval_34887.log",
+      "submitted_at": "2026-05-19T01:28:27.235Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "checkpoints/c1_ablation_30pct_s42/predictor_bce_kl_targets.pt",
+      "notes": "Duplicate of c1_ablation_30pct_s42_eval_v2 (same checkpoint, same params). Registry未及时更新导致Worker误判为未提交。",
+      "wall_clock_seconds": 630.2,
+      "gpu_hours": 0.18
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-19T01:38:57.451Z"
+  },
+  "timestamp": "2026-05-19T01:38:57.860586+00:00",
+  "trigger": "update_registry"
+}

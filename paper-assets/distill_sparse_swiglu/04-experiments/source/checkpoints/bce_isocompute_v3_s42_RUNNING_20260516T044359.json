@@ -1,0 +1,28 @@
+{
+  "exp_id": "bce_isocompute_v3_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:56:03.520Z",
+    "updated_at": "2026-05-16T04:43:58.956Z",
+    "hypothesis": "D031: BCE iso-compute 重跑（v1/v2 两次被 tmux 杀死）。2700 步匹配 KL 1000 步总 FLOPs (ratio≈2.71x)，50% sparsity。Reviewer Concern #2 defense: 验证 KL 优势来自 loss 函数本身而非计算量差异。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 nohup python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 2700 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir checkpoints/bce_isocompute_v3_s42 --wandb_run_name bce_isocompute_v3_s42 --dataset wikitext-103 --gradient_checkpointing --log_every 100",
+      "server": "westd-34887",
+      "gpu": "cuda:1",
+      "pid": 205598,
+      "log_path": "/root/distill_sparse_swiglu/logs/bce_isocompute_v3_s42.log",
+      "data_path": "wikitext-103",
+      "data_count": null,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "backend": "nohup",
+      "wrapper_pid": 205597
+    }
+  },
+  "timestamp": "2026-05-16T04:43:59.107798+00:00",
+  "trigger": "update_registry"
+}

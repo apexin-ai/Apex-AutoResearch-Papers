@@ -1,0 +1,1 @@
+50% sparsity global retention summary: early_avg=0.5312, middle_avg=0.5636, knowledge_avg=0.6059, late_avg=0.3417. Min: L28 (0.2656), Max: L18 (0.7366). Starved layers: [27, 28, 29, 30, 31]. Remote: /root/distill_sparse_swiglu/artifacts/global_50pct_retention_analysis.json

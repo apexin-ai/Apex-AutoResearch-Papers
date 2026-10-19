@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c24c267da108f61a6bb",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis bce v3 progress check",
+  "task_key": "worker_analysis_bce_v3_progress_check_20260516T051307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bce_v3_progress_check_20260516T051307_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "ea1e060e452ce18ab324e95ee308f65ddc0dcabf55ef3bfc7723fdd90c63dae1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态报告\n\n**进程**: 存活，PID 205598，CPU 100%，内存 2.6GB，已运行 34分56秒\n\n**进度**: Step 1900/2700 (70.4%)\n- Loss: 0.6371 (BCE: 0.6360, reg: 0.0011)\n- Sparsity: 0.511\n- 速度: 1.05 s/step，稳定\n\n**剩余时间**: 还剩 800 步 × 1.05s = ~840s ≈ **14 分钟**后完成\n\n**GPU 显存**:\n| GPU | 已用 | 总量 | 利用率 |\n|-----|------|------|--------|\n| 0 | 32 GB | 96 GB | 100% |\n| 1 | 91 GB | 96 GB | 100% |\n\n训练正常推进，预计约 14:52（服务器时间）完成。Loss 在 0.635-0.64 区间已收敛平稳，sparsity 稳定在 ~0.51。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bce-v3-progress-check.md"
+}

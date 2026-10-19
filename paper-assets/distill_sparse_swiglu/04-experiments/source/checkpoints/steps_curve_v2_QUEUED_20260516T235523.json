@@ -1,0 +1,38 @@
+{
+  "exp_id": "steps_curve_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T23:53:44.668Z",
+    "updated_at": "2026-05-16T23:55:23.514Z",
+    "spec": {
+      "command": "train.py --loss_type kl_normalized --num_steps 1000 --save_every 200",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "model_name": "llama-3.1-8b",
+      "data_path": "WikiText-103 train",
+      "data_count": 0,
+      "seed": 42,
+      "hypothesis": "KL predictor training converges within 600-800 steps, 1000 steps is sufficient and near-saturated",
+      "checkpoint_path": "checkpoints/steps_curve_s42/",
+      "log_path": "/root/runs/steps_curve_s42_v3.log"
+    },
+    "metrics": {
+      "step200_ppl": 15.158,
+      "step400_ppl": 12.538,
+      "step600_ppl": 12.046,
+      "step800_ppl": 11.907,
+      "step1000_ppl": 11.906,
+      "convergence_step": 800,
+      "ppl_800_vs_1000_delta": 0.001
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T23:55:23.683745+00:00",
+  "trigger": "update_registry"
+}

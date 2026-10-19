@@ -1,0 +1,51 @@
+{
+  "exp_id": "qwen14b_bce30_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:44:00.465Z",
+    "updated_at": "2026-05-17T16:03:13.913Z",
+    "hypothesis": "BCE objective on Qwen-2.5-14B at 30% sparsity produces significantly worse PPL than KL (mirroring LLaMA-8B where KL PPL=11.79 vs BCE PPL=22.51), confirming objective mismatch between per-neuron BCE training and global top-k inference generalizes across model scales",
+    "spec": {
+      "command": "cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type bce --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_bce30_s42 --wandb_run_name qwen14b_bce30_s42 --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "55026",
+      "log_path": "~/runs/distill_sparse_swiglu/qwen14b_bce30_s42.log",
+      "submitted_at": "2026-05-17T15:45:38.131Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-34887",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-34887",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T15:45:17.302Z",
+      "command": "cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type bce --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_bce30_s42 --wandb_run_name qwen14b_bce30_s42 --gpu 0",
+      "finished_at": "2026-05-17T15:54:32.863Z",
+      "training_hours": 0.15
+    },
+    "pid": "55026",
+    "log_path": "~/runs/distill_sparse_swiglu/qwen14b_bce30_s42.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T15:54:42.131414+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T16:03:14.165067+00:00",
+  "trigger": "update_registry"
+}

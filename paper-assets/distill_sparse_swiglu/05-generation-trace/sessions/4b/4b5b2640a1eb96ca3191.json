@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b5b2640a1eb96ca3191",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze bce isocompute v2 s42",
+  "task_key": "worker_analyze_bce_isocompute_v2_s42_20260515T201815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_bce_isocompute_v2_s42_20260515T201815_result.json",
+    "occurrence": 1,
+    "bytes": 157,
+    "sha256": "1ad2788cbdd4084f0cc50c52f8b10ff2d05e3a0fcf2bef6d36796293e0c155e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练在 step 100/1000，约 ~1.05s/step。预计 ~15 分钟后完成。已设置定时检查，训练完成后自动进行评估和分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-bce-isocompute-v2-s42.md"
+}

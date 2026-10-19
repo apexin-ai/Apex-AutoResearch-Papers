@@ -1,0 +1,14 @@
+{
+  "exp_id": "bce_isocompute_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:29:17.153Z",
+    "updated_at": "2026-05-15T19:29:17.153Z"
+  },
+  "timestamp": "2026-05-15T19:29:17.213658+00:00",
+  "trigger": "update_registry"
+}

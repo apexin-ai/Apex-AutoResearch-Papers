@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35dab60e30c4c1b15f31",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code db sweep prep",
+  "task_key": "worker_code_db-sweep-prep_20260516T200000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_db-sweep-prep_20260516T200000_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "cb0dd7ba1ab4c24080ac7ce16e1cee749d9afc633aaf7cc1bfd98a22d6f4323b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n| 项目 | 结果 |\n|------|------|\n| **当前默认 d_b** | 128（与约束 C003 一致） |\n| **代码修改** | `train.py` 新增 `--bottleneck_dim` 参数（default=128），第 656 行 `PredictorWrapper` 初始化改用 `args.bottleneck_dim` |\n| **sweep 脚本** | `/root/distill_sparse_swiglu/src/run_db_sweep.sh`（接受 `$1` 指定 GPU，默认 cuda:0） |\n| **Dry-run** | d_b=64（38.2M params）和 d_b=512（302.5M params）均跑通 2 steps，无报错 |\n| **benchmark_eval.py** | 已有 `--bottleneck_size` 参数，sweep 脚本中已正确传入 |\n\n### Predictor 参数量（32 层）\n\n| d_b | Params/layer | Total | % of LLM |\n|-----|-------------|-------|-----------|\n| 64 | ~1.19M | 38.2M | 0.48% |\n| 128 | ~2.37M | 75.9M | 0.95% |\n| 256 | ~4.72M | 151.0M | 1.88% |\n| 512 | ~9.45M | 302.5M | 3.77% |\n\n### 启动命令\n\n```bash\nnohup bash /root/distill_sparse_swiglu/src/run_db_sweep.sh 0 > /root/distill_sparse_swiglu/logs/db_sweep.log 2>&1 &\n```\n\n### 预估时间\n\n当前 1000 steps KL-normalized 在单 RTX PRO 6000 上约 50-60 min（基于之前实验）。4 组训练 + eval 顺序执行，总计约 **4-5 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-db-sweep-prep.md"
+}

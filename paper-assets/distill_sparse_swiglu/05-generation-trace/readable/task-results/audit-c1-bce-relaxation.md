@@ -1,0 +1,73 @@
+# audit c1 bce relaxation
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_audit_c1_bce_relaxation_20260522T084402_result.json`
+- **Structured JSON:** [`c745d24e3788e5b40e6e.json`](../../sessions/c7/c745d24e3788e5b40e6e.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+审计完成。
+
+---
+
+## 代码审计结果
+
+### BCE mask generation（`train.py:train_bce`, L415-508）
+- **训练时不使用 Gumbel-Sigmoid**
+- 走 dense forward → 捕获 intermediate activations → `BCESparsityLoss`（`losses.py:30-42`）通过 **top-k absolute magnitude** 生成二值 oracle targets
+- 梯度路径：`binary_cross_entropy_with_logits(pred_logits, magnitude_targets)` + STE（`hard_mask - soft_mask.detach() + soft_mask`）用于 sparsity regularization
+- 推理时：`GumbelSigmoidMask.forward()` 走 hard threshold `(logits > 0).float()`
+
+### KL mask generation（`train.py:train_kl`, L94-194）
+- **训练时使用 Gumbel-Sigmoid**，L120: `wrapper.gumbel_mask.tau = tau`
+- `predictor.py:GumbelSigmoidMask.forward()` L63: `torch.sigmoid((logits + gumbel_noise) / self.tau)` — 可微软 mask
+- 梯度通过 soft mask → 整个 sparse forward → KL loss on output distributions 回传
+- 推理时：同 BCE，hard threshold
+
+### C1 ablation mask generation（`train_bce_kl_targets.py:train_bce_kl_targets`, L71-198）
+- **训练时不使用 Gumbel-Sigmoid**
+- L121-122: `kl_logits = kl_predictors[layer_idx](inp)` → `oracle_target = (kl_logits > 0).float()` — **hard threshold at logits=0**
+- L125-126: `F.binary_cross_entropy_with_logits(new_logits, oracle_target)` — 标准 BCE
+- STE mask 仅用于 sparsity tracking（L130-131），Lagrangian constraint 控制稀疏度
+
+### 两者是否使用相同 relaxation：**否**
+
+| 配置 | 训练 relaxation | targets |
+|---|---|---|
+| Standard BCE | 无（直接 BCE + STE for reg） | magnitude top-k |
+| KL | Gumbel-Sigmoid (tau annealing) | output distribution |
+| C1 ablation | 无（直接 BCE + STE for reg） | KL predictor hard threshold |
+| BCE+Gumbel 消融 | Gumbel-Sigmoid (tau annealing) | magnitude top-k |
+
+### 论文描述是否一致
+
+**基本一致，有一处措辞不精确：**
+
+1. `experiments.tex:88` — "we train a standard BCE predictor on KL-derived oracle masks" — **准确**，C1 确实用标准 BCE（无 Gumbel）
+2. `experiments.tex:121` — "C1 also changes mask representation (hard vs. soft), but BCE+Gumbel yields PPL 32.22 vs. standard BCE 27.97" — **准确**，论文明确承认了 relaxation 差异并提供了控制实验
+3. **`appendix.tex:489` — "C1's oracle masks are extracted from a converged KL predictor and binarized via top-k" — 与代码不一致**。代码用 `(kl_logits > 0).float()`（threshold at 0，等价于 sigmoid > 0.5），不是 top-k。top-k 会按 magnitude 选 top-(1-sparsity) fraction，而 threshold at 0 是 KL predictor 训练时自然学到的阈值。
+
+### 结论：审稿人的担忧不成立（但有合理性）
+
+1. C1 和 KL 确实在训练时使用了不同的 relaxation（STE vs Gumbel）
+2. 但论文已通过 BCE+Gumbel iso-framework 消融（`train_bce_gumbel.py`）控制了这个变量：给 BCE 同样的 Gumbel 框架反而更差（32.22 vs 27.97），说明 Gumbel relaxation 不是 KL 优势的来源
+3. C1（STE + KL targets）几乎完全匹配 KL（Gumbel + KL loss）：50% 下 11.96 vs 11.79，Δ=0.17pp
+4. 因此 KL 的优势来自它发现的 mask patterns，不是 relaxation method
+
+**建议修复**：将 `appendix.tex:489` 的 "binarized via top-k" 改为 "binarized via hard threshold (logits > 0)" 以与代码一致。
+
+---

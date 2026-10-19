@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "id": "1c86bc655c891f9d7160",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "analysis paper data audit",
+  "task_key": "worker_analysis_paper_data_audit_20260525T194736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper_data_audit_20260525T194736.log",
+    "occurrence": 1,
+    "bytes": 1750476,
+    "sha256": "54d4f314ef240ef8992476e83f969035a494d72547cc2f19db66ed522d3adc0b"
+  },
+  "statistics": {
+    "messages": 1009,
+    "user_turns": 4,
+    "tool_calls": 336,
+    "roles": {
+      "log": 1,
+      "system": 310,
+      "record": 1,
+      "assistant": 20,
+      "tool_call": 336,
+      "tool_result": 336,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 30,
+      "chunks": [
+        {
+          "path": "1c86bc655c891f9d7160-part-0001.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "1c86bc655c891f9d7160-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 52,
+      "chunks": [
+        {
+          "path": "1c86bc655c891f9d7160-part-0001.json",
+          "message_count": 52
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 162,
+      "chunks": [
+        {
+          "path": "1c86bc655c891f9d7160-part-0001.json",
+          "message_count": 84
+        },
+        {
+          "path": "1c86bc655c891f9d7160-part-0002.json",
+          "message_count": 78
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 751,
+      "chunks": [
+        {
+          "path": "1c86bc655c891f9d7160-part-0002.json",
+          "message_count": 102
+        },
+        {
+          "path": "1c86bc655c891f9d7160-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1c86bc655c891f9d7160-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "1c86bc655c891f9d7160-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "1c86bc655c891f9d7160-part-0006.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-paper-data-audit.md"
+}

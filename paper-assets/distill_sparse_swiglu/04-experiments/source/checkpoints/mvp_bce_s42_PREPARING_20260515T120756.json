@@ -1,0 +1,37 @@
+{
+  "exp_id": "mvp_bce_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-15T11:51:05.131Z",
+    "updated_at": "2026-05-15T12:07:56.905Z",
+    "server": "westd-34887",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_bce_s42 --wandb_run_name mvp_bce_s42\"",
+      "finished_at": "2026-05-15T11:58:30.750Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-15T11:58:31.436Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T11:58:32.308080+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: DatasetNotFoundError — cerebras/SlimPajama-627B 在 HF Hub 上不存在或无法访问 (data_utils.py:36) | error_type: data | 已有成果: 模型加载成功 | 建议: 确认数据集路径或改用本地/streaming 方式"
+      }
+    },
+    "notes": "失败原因: DatasetNotFoundError — cerebras/SlimPajama-627B 在 HF Hub 上不存在或无法访问 (data_utils.py:36) | error_type: data | 已有成果: 模型加载成功 | 建议: 确认数据集路径或改用本地/streaming 方式"
+  },
+  "timestamp": "2026-05-15T12:07:56.915697+00:00",
+  "trigger": "update_registry"
+}

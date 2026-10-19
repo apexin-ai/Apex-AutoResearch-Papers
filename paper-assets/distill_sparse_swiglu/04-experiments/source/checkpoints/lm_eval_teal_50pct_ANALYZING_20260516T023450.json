@@ -1,0 +1,58 @@
+{
+  "exp_id": "lm_eval_teal_50pct",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:35:57.527Z",
+    "updated_at": "2026-05-16T02:34:50.141Z",
+    "hypothesis": "TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "190830",
+      "log_path": "~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log",
+      "submitted_at": "2026-05-16T01:58:07.000Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "TEAL 50% downstream 结果确认 collapse 是 universal：\n\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\n|------|----------|--------|-------|-----------|---------|\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\n\n关键发现：\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关",
+    "reproduce": {
+      "finished_at": "2026-05-16T02:32:09.806Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T02:32:11.809131+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "method": "vanilla_teal",
+      "sparsity": 0.5,
+      "actual_sparsity": 0.5,
+      "arc_challenge_acc_norm": 0.291,
+      "winogrande_acc": 0.5556,
+      "mmlu_acc": 0.2856,
+      "gsm8k_exact_match_flexible": 0.019,
+      "gsm8k_exact_match_strict": 0.0114,
+      "arc_challenge_drop_vs_dense": -0.5,
+      "winogrande_drop_vs_dense": -0.289,
+      "mmlu_drop_vs_dense": -0.563,
+      "gsm8k_drop_vs_dense": -0.962,
+      "model": "Qwen2.5-7B-Instruct",
+      "condition": "TEAL 50% training-free sparsity"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T02:34:50.255950+00:00",
+  "trigger": "update_registry"
+}

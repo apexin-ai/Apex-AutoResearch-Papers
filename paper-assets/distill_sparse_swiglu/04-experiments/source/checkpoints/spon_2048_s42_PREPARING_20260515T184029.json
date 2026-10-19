@@ -1,0 +1,26 @@
+{
+  "exp_id": "spon_2048_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:40:29.059Z",
+    "updated_at": "2026-05-15T18:40:29.059Z",
+    "spec": {
+      "hypothesis": "SPON seq_len=2048 验证: 排除 train/eval seq_len mismatch 作为 SPON negative 结果的混淆变量。如果仍然 negative → 确认 KL subsumes SPON",
+      "plan_id": "plan_004",
+      "parent": "spon_training",
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "loss_type": "kl_spon",
+      "data_path": "wikitext-103",
+      "sparsity": 0.5,
+      "seq_len": 2048,
+      "predictor_checkpoint": "/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt"
+    }
+  },
+  "timestamp": "2026-05-15T18:40:29.119254+00:00",
+  "trigger": "update_registry"
+}

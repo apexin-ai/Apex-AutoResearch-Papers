@@ -1,0 +1,34 @@
+{
+  "exp_id": "bce_30pct_s42_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:22:54.751Z",
+    "updated_at": "2026-05-18T18:06:51.227Z",
+    "hypothesis": "BCE predictor trained at 30% target (actual sparsity collapsed to 4.2%) evaluated with forced TEAL top-k at 30%. If downstream metrics approach KL 30% level, BCE's prediction quality is adequate when allocation is externally enforced; if not, KL's mask patterns are genuinely superior even with matched allocation.",
+    "spec": {
+      "command": "bash run_benchmark.sh --exp_id bce_30pct_s42_eval",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "89396",
+      "log_path": "~/runs/distill_sparse_swiglu/bce_30pct_s42_eval.log",
+      "submitted_at": "2026-05-18T17:12:44.182Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext2+arc_challenge+winogrande+mmlu+gsm8k",
+      "data_count": 0,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "bce_30pct_s42",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k"
+    }
+  },
+  "timestamp": "2026-05-18T18:06:51.594976+00:00",
+  "trigger": "update_registry"
+}

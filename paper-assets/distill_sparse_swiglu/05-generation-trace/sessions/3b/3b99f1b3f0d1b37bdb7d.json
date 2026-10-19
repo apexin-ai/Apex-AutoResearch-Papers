@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b99f1b3f0d1b37bdb7d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis mistral kl50 results",
+  "task_key": "worker_analysis_mistral_kl50_results_20260516T042015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mistral_kl50_results_20260516T042015_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "eacfb4646bb7714f81bd422665ed811ff259e82121f1b702e48c4b4cd71eb048"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕，cron 此前已不存在（可能已被自动清理）。\n\n**结果汇总：Mistral-7B KL 50% sparsity downstream eval → negative**\n\n| Benchmark | Sparse | Dense | Retention |\n|-----------|--------|-------|-----------|\n| ARC-c acc_norm | 0.3183 | 0.6024 | 52.8% |\n| WinoGrande | 0.6290 | 0.7869 | 79.9% |\n| MMLU | 0.2295 | 0.6244 | 36.8% |\n| GSM8K strict | 0.0045 | 0.3654 | 1.2% |\n\nMMLU 和 ARC-c 均未达到 70% retention 阈值（0.437 / 0.422），MMLU 接近随机水平，GSM8K 完全崩溃。崩溃模式与 Llama KL 50% 高度一致，确认 50% unstructured sparsity 对 SwiGLU FFN downstream 的破坏与模型架构无关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mistral-kl50-results.md"
+}

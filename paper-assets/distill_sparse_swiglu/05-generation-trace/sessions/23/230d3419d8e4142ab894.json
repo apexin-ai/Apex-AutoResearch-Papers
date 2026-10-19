@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "230d3419d8e4142ab894",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research snr data coverage deep",
+  "task_key": "worker_research_snr_data_coverage_deep_20260520T035611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_snr_data_coverage_deep_20260520T035611_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "abb6328338fe4af27baf742846b7e0ca9024a02082c60c4539f4dd01afc9ae69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部确认。汇总：\n\n```\nSNR 数据覆盖: 0-300 only\n  - snr_extended_results.json: steps [0, 50, 100, 150, 200, 250, 300]，各 7 个 snapshot\n  - gradient_snr_results.json: 单点（最终 step）的 per-layer SNR，无 trajectory\n  - gradient_snr_constrained_results.json: 同上\n\n现有训练 log 中 SNR 数据: 无\n  - kl_sparsity30_s42.log: 无 SNR/grad_norm 字段\n  - steps_curve_s42.log: 跑了 1000 步但只记录 loss/sparsity/lambda/tau，无 SNR\n  - wandb 是 offline 模式，未 log SNR metric\n\n建议: 需要重跑 SNR script 到 step 1000\n  - 修改 gradient_snr_extended.py:\n    - num_steps: 300 → 1000\n    - SNAPSHOT_STEPS: 扩展到 [0, 50, 100, 150, 200, 250, 300, 400, 500, 600, 700, 800, 900, 1000]\n  - 预估时间: 300 步 KL phase 用了 641s，线性外推 1000 步约 2137s (~36min)；BCE 类似 ~18min；总计约 55-60 分钟\n  - 资源: cuda:0 on westd-34887（服务器空闲）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-snr-data-coverage-deep.md"
+}

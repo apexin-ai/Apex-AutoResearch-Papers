@@ -1,0 +1,30 @@
+{
+  "exp_id": "c4_ood_kl50_s456",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T07:51:02.498Z",
+    "updated_at": "2026-05-18T08:13:04.252Z",
+    "hypothesis": "KL-distilled predictor at 50% sparsity (seed 456) generalizes to out-of-distribution C4 data with perplexity degradation under 0.5 points vs dense, matching the OOD robustness pattern seen in seed 42/123 checkpoints.",
+    "parent": "kl50_s456_train",
+    "spec": {
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/distill_sparse_swiglu && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id c4_ood_kl50_s456 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_50pct_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks c4 --gpu 0\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "9078",
+      "log_path": "~/runs/distill_sparse_swiglu/c4_ood_kl50_s456.log",
+      "submitted_at": "2026-05-18T07:51:16.839Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-18T08:13:04.554515+00:00",
+  "trigger": "update_registry"
+}

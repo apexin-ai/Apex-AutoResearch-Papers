@@ -1,0 +1,16 @@
+{
+  "exp_id": "sparsity_floor_extended",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:06:15.328Z",
+    "updated_at": "2026-05-17T05:06:24.453Z",
+    "hypothesis": "KL predictor's static sparsity floor scales with target sparsity but remains negligible (<1%) even at 70%, confirming the predictor learns contextual decisions not static patterns across all sparsity regimes",
+    "parent": "natural_sparsity_floor_30pct"
+  },
+  "timestamp": "2026-05-17T05:06:24.668305+00:00",
+  "trigger": "update_registry"
+}

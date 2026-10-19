@@ -1,0 +1,38 @@
+{
+  "exp_id": "mistral_teal30_downstream",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:15:45.662Z",
+    "updated_at": "2026-05-19T05:04:47.781Z",
+    "hypothesis": "Training-free TEAL 30% uniform allocation baseline on Mistral-7B for downstream tasks (PPL + ARC + WG + MMLU + GSM8K + HellaSwag + PIQA). Without this TEAL baseline, Mistral cross-architecture comparison cannot isolate KL predictor improvement from TEAL inherent capability. Required for W2 cross-architecture claim.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id mistral_teal30_downstream --model_name_or_path /root/autodl-tmp/models/mistral-7b --baseline_mode teal_vanilla --sparsity_target 0.30 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --gpu 0 2>&1\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "74835",
+      "log_path": "~/runs/distill_sparse_swiglu/mistral_teal30_downstream.log",
+      "submitted_at": "2026-05-19T03:16:09.014Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "wikitext2_ppl": 8.3807,
+      "arc_challenge_acc_norm": 0.4113,
+      "winogrande_acc": 0.6354,
+      "mmlu_acc": 0.4348,
+      "gsm8k_exact_match": 0.1592,
+      "hellaswag_acc_norm": 0.6011,
+      "piqa_acc_norm": 0.7214
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T05:04:48.223267+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d41de55d70f21c7d8cb",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval constraint protect late",
+  "task_key": "worker_eval_constraint_protect_late_20260522T133528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_constraint_protect_late_20260522T133528_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "cec88c38ab49bdc4554fe1e33422ae52ffd202449c49d9b627f4d104766e6a58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在运行中。当前状态：\n\n- **WikiText-2 PPL**: 9.2638（已完成）\n- **ARC-Challenge**: 已完成\n- **MMLU**: 正在运行（~25% 进度）\n- **GSM8K**: 待运行\n\nPer-layer sparsity cap 生效：L22-L28 全部 ≤ 0.301（cap 前 global top-k 会给这些层分配更高 sparsity）。Model-level sparsity = 0.300，符合目标。\n\n实验已提交且正在执行，无需重复提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-constraint-protect-late.md"
+}

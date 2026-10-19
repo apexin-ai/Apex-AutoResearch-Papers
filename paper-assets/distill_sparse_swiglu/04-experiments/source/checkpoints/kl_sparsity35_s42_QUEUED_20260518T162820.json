@@ -1,0 +1,28 @@
+{
+  "exp_id": "kl_sparsity35_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:54:27.364Z",
+    "updated_at": "2026-05-18T16:28:20.131Z",
+    "hypothesis": "KL predictor at 35% sparsity fills the gap between 30% (PPL 8.82) and 50% (PPL 11.79), expected PPL ~9.5-10.5 based on smooth degradation curve, extending regime analysis from 3 to 6 sparsity levels.",
+    "spec": {
+      "command": "bash -c \"export PATH=/root/miniconda3/bin:\\$PATH && eval \\\"\\$(conda shell.bash hook)\\\" && conda activate base && cd /root/distill_sparse_swiglu && PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True WANDB_MODE=offline python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.35 --gpu 0 --output_dir checkpoints/kl_sparsity35_s42 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "35729",
+      "log_path": "~/runs/distill_sparse_swiglu/kl_sparsity35_s42.log",
+      "submitted_at": "2026-05-18T16:14:13.803Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T16:28:20.441568+00:00",
+  "trigger": "update_registry"
+}

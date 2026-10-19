@@ -1,0 +1,33 @@
+{
+  "exp_id": "longbench_kl30_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:57:39.563Z",
+    "updated_at": "2026-05-16T13:02:35.412Z",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py --exp_id longbench_kl30_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "233187",
+      "log_path": "~/runs/distill_sparse_swiglu/longbench_kl30_uniform.log",
+      "submitted_at": "2026-05-16T13:01:44.138Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "llama-3.1-8b",
+      "data_path": "longbench",
+      "data_count": 0,
+      "seed": 42,
+      "checkpoint_source": "checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt",
+      "eval_data": "longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news"
+    }
+  },
+  "timestamp": "2026-05-16T13:02:35.557621+00:00",
+  "trigger": "update_registry"
+}

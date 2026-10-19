@@ -1,0 +1,22 @@
+\section{Conclusion}
+
+We have shown that training sparsity predictors with KL divergence eliminates the need for error compensation networks in activation sparsity for LLMs.
+The mechanism is structural: BCE's per-neuron gradient is independent of other neurons' mask states, creating a mismatch with global top-$k$ inference allocation that no amount of additional training resolves.
+KL divergence couples all neurons through the output distribution, aligning the training objective with the inference mechanism.
+The resulting predictor---a two-layer MLP with 2.37M parameters per layer (75.9M total, $<$1\% of the base model)---achieves PPL 11.79 at 50\% sparsity on LLaMA-3.1-8B under TEAL's global allocation, compared to 23.31 for vanilla TEAL and 27.97 for BCE.
+Our two-dimensional taxonomy (correction granularity $\times$ training signal coupling) situates this result within the broader landscape of activation sparsity methods and identifies the previously unexplored cell of per-token contextual prediction with coupled training signals.
+
+Several empirical findings deserve emphasis.
+The KL advantage scales super-linearly with sparsity---18\% relative improvement at 30\%, 49\% at 50\%, and 82\% at 70\%---indicating that distributional coupling becomes increasingly important as more neurons are pruned.
+The non-monotonic allocation preference reveals three distinct regimes: budget-surplus ($\leq$30\%), where uniform allocation suffices and even outperforms global allocation on MMLU; budget-constrained ($\sim$40\%), where global allocation provides measurable gains; and capacity-cliff ($\geq$50\%), where both strategies fail to preserve downstream reasoning.
+SPON's static bias correction achieves only cosine similarity 0.196 with the predictor's effect and recovers 2.4\% of residual error, confirming that the KL predictor subsumes static correction.
+Cross-architecture evaluation on Mistral-7B-v0.3 yields +63\% relative degradation from dense, compared to +93\% on LLaMA, demonstrating generalization across SwiGLU architectures with different attention configurations.
+
+\paragraph{Limitations.}
+Our primary evaluation uses WikiText-2 perplexity, and downstream benchmarks reveal that perplexity is a poor proxy for reasoning ability at moderate sparsity: 40\% sparsity achieves PPL 8.36 but MMLU already degrades, motivating 30\% as the recommended operating point for downstream fidelity.
+Training requires 1000 steps on WikiText-103 ($\sim$17 minutes on A6000), but a separate predictor must be trained for each sparsity target.
+All experiments use 7--8B parameter models (LLaMA-3.1-8B, Mistral-7B-v0.3); scaling behavior to 13B or 70B models remains untested.
+
+Future work should explore N:M structured sparsity patterns for hardware-native acceleration on modern GPUs, and scale the approach to 13B and 70B parameter models where the latency--quality tradeoff is more consequential.
+Precise characterization of the phase transition boundary between allocation-fixable and capacity-limited regimes---and whether it shifts with model scale---would enable principled sparsity budget selection.
+Training a single predictor that serves multiple sparsity targets simultaneously would amortize the per-target training cost and improve practical deployment.

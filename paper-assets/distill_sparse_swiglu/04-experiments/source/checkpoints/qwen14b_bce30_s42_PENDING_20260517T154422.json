@@ -1,0 +1,27 @@
+{
+  "exp_id": "qwen14b_bce30_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:44:00.465Z",
+    "updated_at": "2026-05-17T15:44:22.663Z",
+    "hypothesis": "BCE objective on Qwen-2.5-14B at 30% sparsity produces significantly worse PPL than KL (mirroring LLaMA-8B where KL PPL=11.79 vs BCE PPL=22.51), confirming objective mismatch between per-neuron BCE training and global top-k inference generalizes across model scales",
+    "spec": {
+      "command": "cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type bce --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_bce30_s42 --wandb_run_name qwen14b_bce30_s42 --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "account": "root",
+      "model_name": "qwen2.5-14b",
+      "data_path": "wikitext-103",
+      "data_count": 0,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-17T15:44:22.980468+00:00",
+  "trigger": "update_registry"
+}

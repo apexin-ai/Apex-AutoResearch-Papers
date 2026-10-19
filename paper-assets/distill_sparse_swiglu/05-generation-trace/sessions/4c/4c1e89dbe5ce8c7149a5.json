@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c1e89dbe5ce8c7149a5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval teal 30pct downstream",
+  "task_key": "worker_eval_teal_30pct_downstream_20260516T025452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_teal_30pct_downstream_20260516T025452_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "3aa874536062ecd06d40f175d1690f103af8d4ee9d17ad569d1e663c7ccec6d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并注册为 RUNNING。\n\n**总结：**\n- **实验**: `lm_eval_teal_30pct`，PID 194814，tmux session `teal30`\n- **服务器**: westd-34887, cuda:0\n- **模型**: Llama-3.1-8B（已验证 config.json，registry 中 TEAL 50% 标记 `model=\"Qwen2.5-7B-Instruct\"` 是 registry 错误）\n- **命令**: `python -u src/lm_eval_teal.py --sparsity_target 0.3 --tasks arc_challenge,winogrande,mmlu,gsm8k --gpu 0 --output_path results/lm_eval_teal_30pct`\n- **Few-shot**: 未指定 `--num_fewshot`，与 TEAL 50% 一致（使用 lm-eval 各 task 默认值：ARC 25-shot, WinoGrande 5-shot, MMLU 5-shot, GSM8K 5-shot）\n- **离线模式**: `HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1`\n- **日志**: `~/runs/distill_sparse_swiglu/lm_eval_teal_30pct.log`\n- **输出**: `results/lm_eval_teal_30pct/`\n- 预计运行 30-40 分钟（参考 50% 用了 ~37 分钟）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-teal-30pct-downstream.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a791419a6f42cc62463",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze longbench kl30 uniform v6",
+  "task_key": "worker_analyze_longbench_kl30_uniform_v6_20260516T184421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_longbench_kl30_uniform_v6_20260516T184421_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "a648de7e5f2dcb6db0172898ae79a971d4a2a1689a187e9fc8ed325f2efe7174"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No W&B run. Here are the results:\n\n```\nMETRICS:\n- longbench_narrativeqa: 4.12 (dense baseline: 7.3, Δ = -3.18)\n- longbench_qasper: 6.23 (dense baseline: 13.4, Δ = -7.17)\n- longbench_gov_report: 16.97 (dense baseline: 30.5, Δ = -13.53)\n- longbench_multi_news: 18.01 (dense baseline: 2.5, Δ = +15.51)\n\nWANDB_RUN_ID: N/A\nEXIT_STATUS: clean (EXIT_CODE=0, completed in 6156.6s)\nCONCLUSION: negative — sparse KL30 uniform 在 3/4 任务上显著低于 dense baseline\nANALYSIS: 30% uniform sparsity 在长文本生成任务上造成严重退化（narrativeqa -44%, qasper -54%, gov_report -44%），唯一例外是 multi_news 大幅超越 baseline（+620%），但 dense baseline 本身得分极低(2.5)，可能是评估噪声而非真实提升。整体看 uniform allocation 在 LongBench 上不如 dense，uniform 策略未能保护长上下文关键层。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-longbench-kl30-uniform-v6.md"
+}

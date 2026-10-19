@@ -1,0 +1,47 @@
+\section{Introduction}
+
+SwiGLU feed-forward networks~\cite{shazeer2020glu} in modern LLMs exhibit high contextual sparsity: at any given token, a large fraction of FFN neurons contribute negligibly to the output.
+Exploiting this sparsity can yield up to 2$\times$ inference speedup by pruning 50\% of FFN neurons per token---without modifying the pretrained weights.
+Yet the gap between potential and practice remains wide.
+Training-free methods such as TEAL~\cite{liu2025teal} select neurons by activation magnitude alone, degrading perplexity from 6.12 (dense) to 23.31 at 50\% sparsity on LLaMA-3.1-8B~\cite{grattafiori2024llama3}---a 281\% increase.
+Learned predictors~\cite{liu2023dejavu,gautam2026fastforward} close part of this gap by training small auxiliary networks to anticipate which neurons will be important, but they rely on error compensation modules (output rescaling networks or additive correction layers) that add latency and memory overhead at inference.
+The question is whether a predictor can be trained so that compensation becomes unnecessary.
+
+The answer depends on the training objective.
+Current learned predictors use binary cross-entropy (BCE) loss: each neuron is independently classified as ``keep'' or ``prune'' against an oracle mask derived from the dense model's activations.
+The gradient of BCE with respect to neuron $j$'s score is $\partial \mathcal{L}_{\text{BCE}} / \partial s_j = \sigma(s_j) - m_j^*$---a function of neuron $j$ alone, independent of every other neuron in the network.
+But at inference, no neuron is evaluated in isolation.
+TEAL's global top-$k$ mechanism~\cite{liu2025teal} ranks all neurons across all layers and retains only those above a model-wide threshold.
+Whether neuron $j$ survives depends not on its own score but on how that score compares to the scores of all $L \times d_{\text{ff}}$ neurons.
+This creates a structural mismatch: the training objective decomposes per neuron, while the inference allocation is a global combinatorial decision.
+BCE can achieve $>$90\% per-neuron classification accuracy against oracle masks yet still produce poor output quality under global allocation, because it optimizes a proxy misaligned with the true objective.
+
+KL divergence resolves this mismatch by coupling all neurons through the output distribution.
+Instead of classifying individual neurons, we minimize $D_{\text{KL}}(p_{\text{dense}} \| p_{\text{sparse}})$ between the dense and sparse model outputs, training the predictor to preserve the full next-token distribution under pruning.
+The gradient for neuron $j$ in layer $\ell$ factors as:
+\begin{equation*}
+\frac{\partial \mathcal{L}_{\text{KL}}}{\partial s_j^{(\ell)}} = \frac{\partial \mathcal{L}_{\text{KL}}}{\partial \mathbf{z}} \cdot \frac{\partial \mathbf{z}}{\partial \mathbf{h}^{(\ell)}} \cdot \frac{\partial \mathbf{h}^{(\ell)}}{\partial \tilde{m}_j^{(\ell)}} \cdot \frac{\partial \tilde{m}_j^{(\ell)}}{\partial s_j^{(\ell)}},
+\end{equation*}
+where the Jacobian $\partial \mathbf{z} / \partial \mathbf{h}^{(\ell)}$ propagates through all downstream layers, making each neuron's gradient dependent on every other neuron's mask state.
+Changing one neuron's mask affects all output logits; KL captures this because it measures distributional divergence over the entire vocabulary.
+A Gumbel-Sigmoid relaxation~\cite{jang2017gumbel} provides differentiable mask sampling during training, bridging the gap between soft training masks and hard inference decisions.
+The predictor itself is a lightweight two-layer MLP (Linear $4096 \to 128$, GELU, Linear $128 \to 14336$) with 2.37M parameters per layer and 75.9M total---under 1\% of the base model---and requires no compensation network at inference.
+
+Empirically, the structural argument is borne out across sparsity levels, training budgets, and architectures.
+At 50\% sparsity on LLaMA-3.1-8B, the KL-trained predictor achieves PPL 11.79 under TEAL's global allocation, compared to 23.31 for vanilla TEAL.
+BCE trained for 2700 steps (2.71$\times$ our compute budget) reaches only 27.97, and its training loss saturates with $\Delta = -0.006$ over the final 2200 steps---confirming that the failure is structural, not computational.
+The KL advantage scales super-linearly with sparsity: 18\% relative improvement at 30\%, 49\% at 50\%, and 82\% at 70\%.
+Cross-architecture evaluation on Mistral-7B-v0.3~\cite{jiang2023mistral} yields +63\% relative degradation from dense, compared to +93\% on LLaMA, confirming generalization to SwiGLU models with different attention configurations.
+We also analyze SPON's~\cite{xu2026spon} static bias correction and find it near-orthogonal to the predictor's effect (cosine similarity 0.196), recovering only 2.4\% of remaining error---the KL predictor already captures most of the recoverable signal.
+
+To situate these findings, we propose a two-dimensional taxonomy (Figure~\ref{fig:taxonomy}) that classifies sparsity prediction methods along \emph{correction granularity} (static, per-layer, per-token) and \emph{training signal coupling} (decomposed, intermediate, coupled).
+Prior methods occupy distinct cells: SPON~\cite{xu2026spon} combines static correction with coupled KL training; ShadowLLM~\cite{akhauri2024shadowllm} uses per-layer prediction with intermediate MSE; FastForward~\cite{gautam2026fastforward} and DejaVu~\cite{liu2023dejavu} achieve per-token granularity but with decomposed BCE objectives.
+No prior work has combined per-token contextual prediction with a coupled training signal.
+Our method fills this cell, unifying input-dependent mask generation with an objective that reflects global neuron interactions through the output distribution.
+
+Our contributions are:
+\begin{itemize}[nosep,leftmargin=*]
+\item We show that a KL-trained contextual predictor eliminates the need for error compensation networks in activation sparsity, and provide a formal gradient analysis explaining the structural mismatch between per-neuron BCE training and global top-$k$ inference allocation.
+\item We propose a 2D taxonomy (correction granularity $\times$ training signal coupling) that unifies existing activation sparsity methods (Figure~\ref{fig:taxonomy}) and identifies the previously unexplored cell our method occupies.
+\item We identify a phase transition in sparsity regimes---allocation-fixable ($\leq$30\%, where predictor and allocation choices recover downstream performance) vs.\ capacity-limited ($\geq$50\%, where no method recovers reasoning ability)---and confirm via SPON orthogonality analysis that static correction provides diminishing returns once a coupled predictor is present.
+\end{itemize}

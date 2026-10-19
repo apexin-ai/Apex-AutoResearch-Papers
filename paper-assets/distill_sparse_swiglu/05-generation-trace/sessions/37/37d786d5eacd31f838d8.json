@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37d786d5eacd31f838d8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code bce isocompute v3 s42 eval",
+  "task_key": "worker_code_bce_isocompute_v3_s42_eval_20260518T015710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bce_isocompute_v3_s42_eval_20260518T015710_result.json",
+    "occurrence": 1,
+    "bytes": 283,
+    "sha256": "a4e1f5bd0004ee77c2db3733ae96d483abc68d59c3d6d8531d096cf1df3332ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已成功提交。\n\n- **PID**: 91355\n- **GPU**: cuda:1 (westd-34887)\n- **exp_id**: bce_isocompute_v3_s42_eval\n- **状态**: 模型已加载完毕，正在执行 TEAL global mask eval\n- **日志**: `/root/distill_sparse_swiglu/logs/bce_isocompute_v3_s42_eval.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bce-isocompute-v3-s42-eval.md"
+}

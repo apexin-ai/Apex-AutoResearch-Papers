@@ -1,0 +1,34 @@
+{
+  "exp_id": "perlayer_kl_k4_50_s42_ppl",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:39:35.700Z",
+    "updated_at": "2026-05-22T18:40:26.028Z",
+    "hypothesis": "K=4 per-layer KL at 50% sparsity PPL eval. K=1 50% PPL=34.85, E2E KL 50% PPL=11.84. If K=4 PPL is close to E2E → mismatch dominates at 50% (same as 30%). If K=4 PPL remains high → genuine coupling increases with sparsity.",
+    "parent": "perlayer_kl_k4_50_s42",
+    "spec": {
+      "command": "bash -c \"cd /root/distill_sparse_swiglu && python -u src/benchmark_eval.py --exp_id perlayer_kl_k4_50_s42_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_k4_50_s42/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_k4_50_s42_ppl.log",
+      "submitted_at": "2026-05-22T18:40:10.654Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T18:40:22.784Z"
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T18:40:26.628380+00:00",
+  "trigger": "update_registry"
+}

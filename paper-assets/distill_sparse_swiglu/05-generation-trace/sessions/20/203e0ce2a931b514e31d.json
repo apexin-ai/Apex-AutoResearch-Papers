@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "203e0ce2a931b514e31d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops diagnose orphan cuda0",
+  "task_key": "worker_ops_diagnose_orphan_cuda0_20260516T052126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_orphan_cuda0_20260516T052126_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "1fa9cee79cbda9cb13c5073cfd0d96ca43ae829112265bb7db61cd176a6f7f8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 排查结果\n\n### PID 207957 (bench_mistral_kl50_s42)\n**已死亡**，无需 kill。进程不存在，cuda:0 上无残留。\n\n### GPU 状态\n\n| GPU | 显存 | 利用率 | 温度 | 功耗 | 进程 |\n|-----|------|--------|------|------|------|\n| cuda:0 | **0 MiB** / 97887 MiB | 100%* | 44°C | 99W | 无 |\n| cuda:1 | 90947 MiB / 97887 MiB | 100% | 65°C | 450W | PID 205598 (python train.py) |\n\n*cuda:0 显示 100% utilization 但 0 进程 0 显存，属于驱动计数器残留，不影响使用。**cuda:0 当前空闲可用。**\n\n### bce_isocompute_v3_s42 训练进度 (cuda:1)\n- **当前 step: 2400 / 2700**（88.9%）\n- 速度: 1.05s/step，**预计 ~5 分钟后完成**\n- 最新指标: loss=0.6359, bce=0.6349, reg=0.0011, sparsity=0.511\n- Loss 从 0.666 → 0.636 平稳下降，sparsity 稳定在 ~0.51\n- PID 205597 (bash) + 205598 (python) 均存活，运行 43 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-orphan-cuda0.md"
+}

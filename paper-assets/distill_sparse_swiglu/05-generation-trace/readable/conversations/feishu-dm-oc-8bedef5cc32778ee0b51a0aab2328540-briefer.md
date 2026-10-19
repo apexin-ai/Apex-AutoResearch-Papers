@@ -1,0 +1,832 @@
+# feishu dm oc 8bedef5cc32778ee0b51a0aab2328540 briefer
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 28
+- **Recorded user turns:** 5
+- **Tool calls:** 9
+- **Original source:** `logs/chats/feishu_dm_oc_8bedef5cc32778ee0b51a0aab2328540_briefer.jsonl`
+- **Structured JSON:** [`7a7d2703435d18885a0b.json`](../../sessions/7a/7a7d2703435d18885a0b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+8 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T10:30:04.878326+00:00_
+
+[飞书用户 曹晓玉 (ou_3336880608784c89d07a6204b6482e8e)]: 这项目初始idea是讲什么的，用大白话和我讲清楚
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "source": "feishu:oc_8bedef5cc32778ee0b51a0aab2328540"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T10:30:12.286855+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T10:30:13.099219+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 812
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T10:30:16.216620+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T10:30:16.775897+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\", \"content\": \"# Memory — distill_sparse_swiglu\\n\\n## 关键决策原因\\n\\n### Uniform Allocation 为何是论文推荐配置\\n- Global top-k 将 sparsity 集中在后层（Layer 26-31: 41-70%），导致 MMLU 崩溃至 25.3%\\n- Uniform per-layer allocation 强制每层同 sparsity，30% 时 MMLU 恢复至 40.6%\\n- 机制解释：后层承载知识检索，过度剪枝直接破坏 factual recall\\n\\n### Phase Transition 而非 Quadratic Scaling (D034)\\n- 原 Claim 3 用 \\\"quadratic scaling\\\" 描述 sparsity 增加时 downstream 退化\\n- 数据显示 30→40% 是 cliff（MMLU 40.6%→30.7%），不是连续退化\\n- Reframe 为 \\\"phase transition\\\"：存在临界点，跨过后不可修复\\n\\n### BCE Framing: \\\"Objective Mismatch\\\" (非 Anti-Learning)\\n- BCE 训练 per-neuron binary classification（每个神经元独立判断是否激活）\\n- 推理时用 global top-k 选择（全局排序取 top）\\n- 训练目标（独立 binary）和推理协议（全局 top-k）结构性不兼容\\n- \\\"Anti-learning\\\" 暗示模型学错了，实际是目标函数和推理协议的 mismatch\\n\\n### SPON Framing: \\\"Marginal Complement\\\" (非 KL Subsumes SPON)\\n- SPON 提供正交信号（结构先验），KL 无法 subsume 因为二者优化不同目标\\n- 正确描述：SPON 在 KL 基础上提供 marginal complement（边际补充）\\n\\n### KL 40% Global MMLU Anomaly (D041)\\n- PPL=10.12（比 uniform 8.36 差 21%）但 MMLU=38.1%（比 uniform 30.7% 好 +7.4pp）\\n- 与 30% 时模式相反（30% global MMLU=25.3% < uniform 40.6%）\\n- 可能解释：40% global 的 sparsity 分配恰好保护了知识层（需进一步验证）\\n- 论文中标注但不过度解释\\n\\n### Forward KL 优于 Reverse KL 和 JSD (2026-05-17)\\n- Reverse KL (mode-seeking): PPL=12.8, +8.6% worse than Forward KL\\n- JSD (symmetric): PPL=12.54, +6.4% worse than Forward KL\\n- 原因：Forward KL 的 mode-covering 特性更适合 sparsity prediction——需要覆盖所有重要神经元（recall > precision），而 Reverse KL 倾向集中在少量高置信神经元\\n- 论文中作为 loss ablation 支撑 Forward KL 选择\\n\\n### Per-Neuron F1 是错误的优化目标 (2026-05-17)\\n- BCE F1=0.613 > KL F1=0.540（BCE 在 mask accuracy 上确实更好）\\n- 但 KL PPL=11.79 远优于 BCE PPL=22.51（91% worse）\\n- 证明：per-neuron mask accuracy 和 output distribution quality 是不同目标\\n- KL 通过 output distribution fidelity 隐式学习 neuron importance 的相对关系，不需要逐个 neuron 做对\\n\\n## 约束\\n\\n### 服务器环境\
+…[truncated 2057 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 559
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-17T10:30:16.776306+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T10:30:16.826966+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md\", \"content\": \"# distill_sparse_swiglu — Research Dashboard\\n\\n> 最后更新: 2026-05-17 04:42 UTC | 更新原因: 同步：Round 1 issues 状态更新，新分析结果汇总，Paper Agent SNR patch dispatched\\n\\n## 核心方向\\nKL distillation 使 SwiGLU LLM 的 contextual sparsity prediction 不再需要 error compensation 和 static bias correction，实现最简推理管线。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research 完成 + 论文质量提升（EMNLP 2026 ARR May, DDL 2026-05-25，剩 8 天）\\n- **实验**: 94 registered, 47 success, 13 negative, 15 failed\\n- **论文评分**: Step 5 Round 5 = 7/10（文本收敛，无 critical）\\n- **Round 1 审稿**: 3.0/5, 4 critical + 7 warning → 全部 critical resolved, 2 warning in_progress (R1-W4 SNR patch, R1-W5 λ curve)\\n- **Claim 1 (KL >> baselines)**: ✅ Strong — PPL + downstream + iso-compute + gradient SNR 5.76×\\n- **Claim 2 (SPON orthogonal)**: ✅ Adequate — cos_sim=0.196, 2.4% relative improvement\\n- **Claim 3 (Three-regime phase transition)**: ✅ Strong — 30%/40%/50% × global/uniform 完整矩阵\\n- **Cross-arch**: ✅ Mistral-7B 30%/50%/70% 三点验证 + TEAL baselines\\n- **Ablations**: ✅ d_b/τ/steps/Lagrangian/component isolation 全覆盖\\n\\n## 新分析结果（待写入论文）\\n- **Gradient SNR** (success): KL/BCE = 5.76×, early layers 34-156×, late layers 2-4× → Paper Agent patching §3.5\\n- **TEAL-KL overlap** (success): Jaccard=0.396, middle layers L17-18 最低(0.19) → 待决定是否写入\\n- **Component ablation** (success): BCE+Gumbel+Lagrangian PPL=38.02 vs KL=11.79 → 已在 Table ablation\\n- **Natural sparsity floor**: 30% 仅 0.06% always-pruned → 扩展到 50%/70% 中\\n\\n## 近期任务\\n- [ ] Paper Agent: §3.5 SNR empirical verification paragraph (dispatched)\\n- [ ] Agent: 处理 worker-done 通知 + sparsity floor expansion (queued)\\n- [ ] 生成 λ/sparsity 时序曲线图 → Appendix C (R1-W5)\\n- [ ] SNR patch 完成后提交 Round 2 review (submit_paper_to_review)\\n- [ ] TEAL-KL overlap 修正 magnitude baseline (selection bias)\\n- [ ] 决定 overlap analysis 是否值得写入论文\\n\\n## G
+…[truncated 1555 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-17T10:30:37.782353+00:00_
+
+用大白话讲：
+
+**背景：** 大语言模型（比如 Llama-8B）运行时特别慢、特别费算力，核心原因之一是模型里有个叫 SwiGLU 的模块（负责"思考"的中间层），里面大量神经元其实在每次计算时是"没用的"——输出接近零，但你还是得算一遍。
+
+**核心思路：** 既然很多神经元每次都不干活，能不能提前预测哪些会"不干活"，直接跳过它们？这就是所谓的 **contextual sparsity**（上下文稀疏性）——根据当前输入，动态跳过不重要的神经元，省下 30%-50% 的计算量。
+
+**问题在哪：** 之前的方法（比如 TEAL）要么用简单规则预测哪些神经元跳过，效果一般；要么用 BCE（二元分类损失）训一个预测器，训练目标是"逐个神经元猜对不对"。但这种方式有个根本矛盾——训练时每个神经元独立判断，推理时却要全局排序选 top-k，训练和推理的逻辑对不上。
+
+**这个项目的 idea：** 用 **KL 散度蒸馏** 来训练预测器。不再逐个神经元猜对错，而是让稀疏后的模型输出分布尽量接近原始稠密模型的输出分布。简单说就是——"我不管你具体跳了哪些神经元，只要最终输出和原来差不多就行"。
+
+**结果：** KL 方法在 30% 稀疏度下，困惑度（PPL）比 BCE 好一大截（11.79 vs 22.51），而且不需要任何额外的误差补偿或偏置修正，推理管线极简。
+
+**论文还发现了一个有趣现象：** 稀疏度从 30% 涨到 40% 时，模型知识能力（MMLU）会断崖式下跌（40.6% → 30.7%），不是平滑退化，而是存在一个"临界点"——过了就救不回来。这个 PPL 和下游任务表现的"脱节"是论文的核心分析贡献。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+6 recorded events
+
+### User
+
+_source line 9 · 2026-05-17T10:56:59.813888+00:00_
+
+[飞书用户 曹晓玉 (ou_3336880608784c89d07a6204b6482e8e)]: 那现在实验做的怎么样，支持原来的idea吗
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "source": "feishu:oc_8bedef5cc32778ee0b51a0aab2328540"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T10:57:26.481875+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T10:57:27.025583+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 今日完成的分析任务（全部 success 或 negative，已写入 paper）\\n\\n| exp_id | 结论 | 关键发现 |\\n|--------|------|---------|\\n| kl_bce_f1_oracle | success | BCE F1=0.613 > KL F1=0.540，但 KL PPL=11.79 远优于 BCE PPL=22.51。证明 per-neuron mask accuracy 是错误优化目标 |\\n| global_30pct_retention | negative | 30% 全局 top-k 饿死 late layers (L27-31)，L31 仅 28.4% retention。原 hypothesis \\\"中层知识层挨饿\\\" 被推翻 |\\n| global_50pct_retention | success | 50% 下 late layers retention 降至 0.342，knowledge layers (L12-20) 保持 0.606，确认全局分配优先喂中层 |\\n| global_70pct_retention | success | 70% 下 starvation 扩散到 L10-L12（min=0.167），相变：全局分配无法同时保护中层和早期层 |\\n| reverse_kl_50pct_s42 | negative | PPL=12.8 vs Forward KL=11.79（+8.6%），Forward KL 仍最优 |\\n| jsd_50pct_s42 | negative | PPL=12.54 vs Forward KL=11.79（+6.4%），Forward KL 仍最优 |\\n| gradient_snr_constrained | success | 带 Lagrangian 约束下 KL SNR 仍 103.2× > BCE，直接回应 R1-W5 |\\n| lagrangian_dynamics_fix | success | 重新生成完整 1000-step Lagrangian 动态图（50% 数据修复） |\\n| teal_kl_overlap_corrected | success | 排列检验 z=7260，确认 TEAL-KL 重叠非随机（回应选择偏差） |\\n| natural_sparsity_floor_extended | success | 30/50/70% 三级自然稀疏下限分析完成 |\\n\\n## 产出物（已同步/待同步到本地）\\n- `figures/paper/lagrangian_dynamics.pdf` — 已同步\\n- `figures/paper/per_layer_retention_chart.pdf` — 同步中\\n- 论文已更新：§4.5 三级 starvation 数据 + Appendix per-layer retention figure\\n\\n## 趋势\\n成功 55 / 负向 16 / 失败 15 / 共 94\\n\\n## 下一步\\n- 等待 per_layer_retention_chart.pdf 同步完成 → 注册 artifact\\n- mag_preservation_reg 结果待收集（训练可能已完成但服务器重启后未确认）\\n- GPU 当前空闲，等待 Director 下一批指令\\n\\n## 资源状态\\nwestd-34887: cuda:0 空闲 / cuda:1 空闲 | Worker 1 (sync PDF)\\n\", \"total_chars\": 1574, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 543
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T10:57:27.025935+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "distill_sparse_swiglu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T10:57:27.586381+00:00_
+
+Error: result (75,501 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-briefer-236c9297/626d4c3b-810d-4f0e-a580-afd208c1c67e/tool-results/mcp-agent-ml-research-read_registry-1779015447185.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-briefer-236c9297/626d4c3b-810d-4f0e-a580-afd208c1c67e/tool-results/mcp-agent-ml-research-read_registry-1779015447185.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-briefer-236c9297/626d4c3b-810d-4f0e-a580-afd208c1c67e/tool-results/mcp-agent-ml-research-read_registry-1779015447185.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 560
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-17T10:57:51.129564+00:00_
+
+实验整体状态：94个实验完成，55个成功、16个负向结果、15个失败。**核心idea得到了强支持，但有边界。**
+
+**支持的部分：**
+
+1. **KL蒸馏碾压BCE** — KL的困惑度(PPL)=11.79，BCE=22.51，差了将近一倍。有趣的是BCE在逐个神经元的准确率上反而更高（F1=0.613 vs 0.540），但输出质量差远了。这恰好证明了核心洞察：不该追求"每个神经元猜对"，该追求"整体输出分布保真"。
+
+2. **KL也优于其他蒸馏目标** — Reverse KL差8.6%，JSD差6.4%，Forward KL仍是最优选择。
+
+3. **不需要误差补偿** — KL蒸馏训练出的预测器可以直接用，不需要TEAL那种额外的偏置修正，推理管线最简。
+
+**发现的边界（原idea没预料到的）：**
+
+1. **30%稀疏度可以，50%就崩了** — 30%跳过时模型质量还行，到50%时MMLU直接掉到接近随机猜（27.77%），无法挽救。存在一个"相变"临界点。
+
+2. **怎么分配稀疏度很关键** — 全局top-k分配会饿死后面的层（第27-31层），导致知识检索能力崩溃。必须用每层均匀分配才行。
+
+总结：**核心idea（KL蒸馏做稀疏预测）完全成立，但实用范围限制在30%左右的稀疏度，且必须用均匀分配策略。** 论文目前在投EMNLP 2026，截止日期5月25号，评分7/10。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+6 recorded events
+
+### User
+
+_source line 15 · 2026-05-17T11:28:56.525745+00:00_
+
+[飞书用户 曹晓玉 (ou_3336880608784c89d07a6204b6482e8e)]: 你觉得有没有从findings到main的希望
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "source": "feishu:oc_8bedef5cc32778ee0b51a0aab2328540"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T11:29:08.862537+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "paper_framing.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T11:29:09.415420+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper_framing.md\", \"content\": \"# Paper Framing — distill_sparse_swiglu\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 2026 cycle)\\n- Deadline: 2026-05-25 (ARR submission)\\n- Track: Efficient Methods for NLP\\n\\n## Core Claims\\n\\n1. **KL-trained sparsity predictors eliminate the need for error compensation networks**: At 50% model-level sparsity on SwiGLU LLMs, a KL-trained contextual predictor (no compensation) matches or exceeds BCE+compensation quality (FastForward-style), eliminating 67.2M compensation parameters (~256MB, 32 layers × bottleneck MLP) and per-layer GEMV overhead at inference. All quality comparisons must be presented alongside inference cost (params, FLOPs, latency) to prevent \\\"unfair comparison\\\" attacks. **Iso-compute evidence (eval_bce_v3_s42)**: with 2.71× more gradient updates, BCE TEAL PPL=27.97 vs KL=12.00 (2.33× gap persists), and BCE loss saturates (step 500→2700: Δ=-0.006). The advantage is structural: BCE optimizes per-neuron binary classification, but inference uses global top-k budget allocation — per-neuron scoring is suboptimal under global reallocation. KL directly optimizes output distribution, naturally compatible with any allocation strategy. (Headline claim)\\n\\n2. **SPON's static correction is orthogonal to KL and too weak to complement it**: Logit-space decomposition (plan_005) shows SPON's bias correction is near-orthogonal to KL's mask effect (cos_sim=0.196, per-layer ≤0) with only 15.8% relative magnitude. Cross-layer interaction is non-trivial (30.6%) but PPL recovery remains modest (7.3%, 0.23 PPL). Rather than KL \\\"subsuming\\\" SPON, the two target different error components—but SPON's component is too small to provide meaningful complementary benefit. Strengthens Claim 1: static correction is not just redundant but irrelevant to the dominant error mode that K
+…[truncated 7092 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T11:29:09.415860+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "decisions.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "decisions.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T11:29:09.416660+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/decisions.yaml\", \"content\": \"_next_id: 49\\ndecisions:\\n- id: D001\\n  date: 2026-05-15 10:07 UTC\\n  summary: 'MVP 设计: KL vs BCE predictor 在 50% sparsity 下的 perplexity 对比'\\n  rationale: '核心假设是 KL 训练通过端到端梯度捕获联合神经元交互，优于 BCE 的逐神经元独立目标。MVP 聚焦最基础的 A/B 对比（KL vs\\n    BCE），不涉及 SPON 组合或 compensation network，以最小成本验证核心假设是否成立。Pass criteria: KL ppl <\\n    BCE ppl 差距 ≥ 0.3。评审笔记中的 novelty ceiling 和 effect size 风险恰好需要 MVP 先确认效果量级。'\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-15 12:08 UTC\\n  summary: 校准数据从 SlimPajama-627B 改为 WikiText-103 train split\\n  rationale: SlimPajama-627B 在 AutoDL 代理环境下 HF datasets API 无法访问（DatasetNotFoundError）。WikiText-103\\n    (~100M tokens) 满足 MVP 1K steps 需求，KL/BCE 用同一数据保证公平性。偏离 IDEA_BRIEF 原始方案，full paper\\n    实验阶段可能需要切回更多样的校准数据。\\n  related_experiments:\\n  - exp_id: mvp_kl_s42\\n    role: affected\\n    result: FAILED due to SlimPajama access\\n  - exp_id: mvp_bce_s42\\n    role: affected\\n    result: FAILED due to SlimPajama access\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-15 13:16 UTC\\n  summary: KL 训练稀疏性坍塌至 0%，改用 Lagrangian multiplier 替代固定 reg_weight\\n  rationale: mvp_kl_s42 的 sparsity 从 0.328 单调降至 0.000。KL loss 天然在 0% sparsity 处最小，固定\\n    reg_weight=0.1 被 KL loss（66 倍量级差）完全压制。Lagrangian multiplier 通过 dual gradient ascent\\n    自动调整约束强度，是约束优化的标准方案。暂停 KL s123/s456 直到修复验证通过。\\n  related_experiments:\\n  - exp_id: mvp_kl_s42\\n    role: evidence\\n    result: sparsity collapsed to 0%, KL=3.3 vs reg=0.05\\n  depends_on:\\n  - D001\\n- id: D004\\n  date: 2026-05-15 13:34 UTC\\n  summary: KL 稀疏性坍塌修复：选方案 C（KL loss 归一化 + 激进 Lagrangian），保持纯 KL 端到端训练\\n  rationale: Lagrangian quicktest 确认 lambda 爬升追不上 KL loss 量级（KL~418 vs constraint~1.2）。根因是\\n    KL 用 sum reduction 导致绝对值过大。归一化到 per-token per-dim 后 KL 应降至 ~0.003，与 constraint\\n    可比。选 C 而非 A（BCE warm-start）因为 C
+…[truncated 10971 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-17T11:29:41.512685+00:00_
+
+根据目前的材料，坦率说一下判断：
+
+**有利因素：**
+- 核心实验效果很强：KL PPL=12.00 vs BCE=44.05，差距3.5倍，即使给BCE 2.71倍算力也追不上
+- 消融实验覆盖很全：94个实验，30%/40%/50% × global/uniform 完整矩阵，跨架构验证（Mistral-7B）
+- 三阶段相变发现有 insight：不是简单的"越稀疏越差"，而是存在质变临界点
+- 故事线清晰：KL蒸馏让补偿网络变得不必要，简化推理流程
+
+**不利因素：**
+- 项目自己在 paper_framing 里写了："novelty ceiling acknowledged: contribution is systematic composition + rigorous ablation, not new architecture"——这是最大软肋。没有提出新架构/新算法，而是把KL用到了一个新场景
+- 内部审稿 3.0/5，虽然4个 critical 已修，但起点不高
+- 论文自评 7/10
+- 只在 7B/8B 规模验证，没有 14B+ 的实验
+- 下游 benchmark 只有4个（ARC-c, WinoGrande, MMLU, GSM8K），覆盖有限
+
+**我的判断：**
+
+这篇更像一篇扎实的 **Findings** 论文。核心贡献是"填空"——在已有的 taxonomy（训练信号×预测粒度）里填了一个空格，并用充分实验证明这个组合确实更好。实验质量过关，但方法层面的新意不够撑 main。如果审稿人恰好重视 empirical rigor 和 practical impact，有机会擦边进 main；但如果遇到看重 algorithmic novelty 的审稿人，大概率 Findings。
+
+总结：**Findings 大概率，main 需要运气。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 4
+
+6 recorded events
+
+### User
+
+_source line 21 · 2026-05-20T05:38:58.895169+00:00_
+
+[飞书用户 曹晓玉 (ou_3336880608784c89d07a6204b6482e8e)]: 现在进度怎样
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "source": "feishu:oc_8bedef5cc32778ee0b51a0aab2328540"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-20T05:39:09.556233+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T05:39:10.173206+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- kl_sparsity40_s42_retrain_uniform（准备中）\\n- bench_kl30_uniform_gsm8k_d075（准备中）\\n- flashinfer_benchmark_llama8b_v2: Wall-clock inference speedup: gather-matmul sparse FFN (30%/50% sparsity) vs dense on LLaMA-3.1-8B. Full-sparse path: all 3 projections (gate/up/down) use gathered weights. Addresses reviewer W3.（准备中）\\n- kl_sparsity40_s42_eval_teal_uniform: KL predictor at 40% sparsity with TEAL uniform allocation fills the gap in the 6-point regime curve, providing protocol-consistent data alongside existing global_topk eval.（准备中）\\n- c4_download（准备中）\\n- kl50_s456_train_eval（准备中）\\n- mag_preservation_reg（准备中）\\n- longbench_dense_v5（准备中）\\n- kl_lagrangian_v2（准备中）\\n- kl_norm_v3_quicktest（准备中）\\n- …另有 5 项\\n\\n## 近期结论\\n- **mse30_s42_eval_7task** (success): MSE baseline 30% s42 full eval (PPL+ARC+WG+MMLU+GSM8K+HS+PIQA). Reviewer-requested intermediate baseline. If MSE significantly underperforms KL on downstream tasks while PPL is closer, validates distributional knowledge transfer > per-layer output matching. ← 基于 mse30_s42_train\\n- **mse50_s42_eval_7task** (success): MSE baseline 50% s42 full eval (PPL+ARC+WG+MMLU+GSM8K+HS+PIQA). Extends MSE comparison to 50% sparsity for Table 4. If MSE degrades proportionally more than KL at 50% vs 30%, demonstrates distributional advantage scales with sparsity. ← 基于 mse50_s42_train\\n- **snr_full_curve_1000steps** (success): Full 0-1000 step SNR trajectory for KL and BCE. Extends existing 0-300 data to complete training curve. N3 reviewer requires full trajectory. Key question: does KL maintain SNR advantage over BCE throughout training (step 300-1000), or does BCE catch up?\\n\\n## 趋势\\n成功 198 / 负向 21 / 失败 30 / 共 265\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nw
+…[truncated 2109 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 616
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-20T05:39:10.173556+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T05:39:10.173837+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md\", \"content\": \"# distill_sparse_swiglu — Research Dashboard\\n\\n> 最后更新: 2026-05-19 05:07 UTC | 更新原因: D071 Mistral cross-arch downstream 确认 KL 优势，进入最终整合阶段\\n\\n> 最后更新: 2026-05-19 05:10 UTC | 更新原因: D071 Mistral cross-arch 确认\\n\\n## 核心方向\\nKL distillation discovers fundamentally different neuron importance patterns for SwiGLU sparsity prediction (LLaMA-3.1-8B). C1 causal ablation provides evidence target quality drives KL advantage. Cross-arch (Mistral) downstream confirms KL > TEAL. 详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: 最终数据整合 → Round 11 review → ARR 提交\\n- **架构**: LLaMA-3.1-8B (主) + Mistral-7B (cross-arch, downstream confirmed) + Qwen-14B (cross-scale)\\n- **D071**: Mistral TEAL baseline 确认 KL downstream 优势 (ARC +9pp, WG +5.6pp)\\n- **C1 retrain**: max Δ=1.70pp with consistent checkpoints ✅\\n- **Paper P1-P9 text patches**: ✅\\n- **Paper consistency**: 0 critical / 0 warning ✅\\n\\n## 实验状态\\n\\n### 全部完成\\n- ✅ Mistral TEAL 30%: ARC=41.1%, WG=63.5%, MMLU=43.5% → KL wins (ARC +9, WG +5.6)\\n- ✅ Mistral TEAL 50%: MMLU=26.4%≈random → capacity cliff cross-arch\\n- ✅ C1 retrain s123/s456: max Δ=1.70pp, consistent with main table\\n- ✅ BCE 50% unified: PPL=27.97, MMLU=26.1%≈random\\n- ✅ C1@30% 3-seed: all Δ ≤ 1.70pp\\n\\n### 进行中\\n- 🔄 Mistral KL 30% HellaSwag/PIQA (~30min) — 补全 Mistral 对比表\\n\\n## 后续\\n- [ ] Paper Agent 整合 Mistral cross-arch + C1 retrain 数据\\n- [ ] Mistral KL HellaSwag/PIQA 到齐后补表\\n- [ ] Round 11 review (continue mode)\\n- [ ] 最终 ARR 提交\\n\\n## GPU 预算\\n本项目分配: westd-34887 (cuda:0,1) + westd-41718 (cuda:0,1) = 4 GPU\\n状态: 34887:0 Mistral KL HS/PIQA, 其余空闲\\n\\n## DDL\\nEMNLP 2026 ARR May cycle: **2026-05-25** (6 天)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D086 | 2026-05-20 | SNR §3.6 完整重写：从 \\\"KL gradient advantage\\\" 改为 \\\"target | snr_extended_1000step |\\n| D
+…[truncated 1259 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-20T05:39:27.808090+00:00_
+
+当前进度概要：
+
+**整体状态：最终冲刺阶段**，距 EMNLP 2026 ARR 提交还剩 **5 天**（DDL 5月25日）。
+
+**实验量**：共 265 个实验，198 成功 / 21 负向 / 30 失败。核心数据已全部到位。
+
+**已完成的关键里程碑：**
+- 三个模型架构验证完成：LLaMA-3.1-8B（主）、Mistral-7B（跨架构）、Qwen-14B（跨规模）
+- Mistral 跨架构验证确认 KL 优势（ARC +9pp, WG +5.6pp vs TEAL）
+- C1 因果消融 3-seed 完成，最大偏差仅 1.70pp，结论稳健
+- MSE baseline 补齐（30%/50% 七任务评估），作为 reviewer 要求的中间 baseline
+- SNR 完整 1000-step 曲线完成
+- 论文 consistency check 已通过：0 critical / 0 warning
+
+**当前状态：**
+- 无实验在跑，GPU 空闲
+- 还有约 15 个实验在排队（如 flashinfer 速度测试、C4 OOD 评估等），但大部分是锦上添花
+- 论文文本已打了 9 个 patch（P1-P9），正在进入 Round 11+ review 迭代
+- 下一步：整合 Mistral 数据 → 最终 review → 提交
+
+**关键决策（近两天）：**
+- D079：放弃 wall-clock speedup claim，论文定位为 prediction quality 而非推理加速
+- D085：Taxonomy 叙事锁定为 "coupling alignment"
+- D086：SNR 段落完整重写
+
+总结：**核心实验和数据全部就绪，现在是论文打磨+提交阶段**。进度在 DDL 前看起来是够的。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 5
+
+2 recorded events
+
+### User
+
+_source line 27 · 2026-05-20T05:40:53.424456+00:00_
+
+[飞书用户 曹晓玉 (ou_3336880608784c89d07a6204b6482e8e)]: method强嘛
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer",
+  "source": "feishu:oc_8bedef5cc32778ee0b51a0aab2328540"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-20T05:41:24.585616+00:00_
+
+基于已读到的资料，直说判断：
+
+**实验效果是强的：**
+- KL predictor 在 50% sparsity 下 PPL=12.00，BCE 给 2.71 倍算力仍然 PPL=27.97，差距是结构性的
+- 30% sparsity 下 PPL 比 TEAL 好 19.6%，知识密集任务（MMLU）好 2pp
+- 跨架构（Mistral-7B）验证 KL 也赢 TEAL（ARC +9pp, WG +5.6pp）
+- 跨规模（Qwen-14B）也做了
+- 消融很全：loss 类型（Forward KL > Reverse KL > JSD > BCE > MSE）、分配策略（uniform vs global）、训练步数、Lagrangian 动态都覆盖了
+
+**但方法本身不算"强"：**
+- 核心贡献是把训练 loss 从 BCE 换成 KL——这个改动本身很简单，不是新架构或新范式
+- 论文自己也承认 "novelty ceiling"：贡献在于系统性实验+严格消融，不在算法创新
+- D079 明确放弃了 wall-clock speedup claim，没有端到端加速的实测数据
+- Round 1 内部审稿打了 3.0/5，正好卡在 Findings 线上
+
+**总结**：实验做得扎实、故事讲得完整，但方法层面偏 incremental。拿 Findings 比较稳，冲 Main（需要 4.0）难度不小——除非 reviewer 特别看重实验的系统性和实用洞察（比如 phase transition 发现、allocation regime 分析）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_8bedef5cc32778ee0b51a0aab2328540:briefer"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,26 @@
+paper_key: "ProSparse: Introducing and Enhancing Intrinsic Activation Sparsity within Large Language Models"
+title: "ProSparse: Introducing and Enhancing Intrinsic Activation Sparsity within Large Language Models"
+venue: "COLING 2025"
+full_text_available: false
+
+research:
+  baselines: ["ReluLLaMA-7B", "ReluLLaMA-13B", "original Swish-activated LLaMA2"]
+  metrics:
+    - {name: "activation sparsity", direction: "higher_better"}
+    - {name: "inference speedup", direction: "higher_better"}
+    - {name: "downstream task performance", direction: "higher_better"}
+  datasets:
+    - {name: "standard LLM benchmarks", size: "not specified"}
+  ablation_dimensions: ["activation function substitution", "progressive sparsity regularization stages", "activation threshold shifting"]
+  training_recipe: {optimizer: "not specified", lr: "not specified", hardware: "not specified"}
+  method_family: "activation sparsity enhancement via ReLU substitution"
+
+positioning:
+  core_claim: "Progressive sparsity regularization with multi-stage sine curves pushes ReLU-substituted LLMs to 89% activation sparsity while maintaining comparable performance, far exceeding ReluLLaMA baselines."
+  key_results: "89.32% sparsity for LLaMA2-7B (vs 66.98% ReluLLaMA-7B), 88.80% for LLaMA2-13B (vs 71.56%), up to 4.52x inference speedup."
+  limitations: ["requires ReLU substitution and retraining", "sparsity gains depend on model architecture"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

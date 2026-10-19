@@ -1,0 +1,34 @@
+{
+  "exp_id": "natural_sparsity_floor_30pct",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:39:07.157Z",
+    "updated_at": "2026-05-17T04:39:42.442Z",
+    "hypothesis": "KL predictor at 30% sparsity has a significant static sparsity floor (always-pruned neurons), explaining why actual sparsity (28.5%) undershoots target; if floor is high, predictor relies heavily on static patterns rather than contextual decisions",
+    "spec": {
+      "command": "python /root/distill_sparse_swiglu/scripts/natural_sparsity_floor.py",
+      "server": "westd-34887",
+      "data_path": "C4 calibration",
+      "data_count": 100,
+      "model_name": "LLaMA-3.1-8B",
+      "seed": 42,
+      "checkpoint_path": "N/A (analysis)",
+      "log_path": "/root/distill_sparse_swiglu/artifacts/natural_sparsity_floor_analysis.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "always_pruned_ratio": 0.0006,
+      "always_pruned_count": 278,
+      "total_neurons": 458752,
+      "late_layer_max_ratio": 0.0051,
+      "threshold": 0.1
+    },
+    "completed_at": "2026-05-17T04:39:42.442Z"
+  },
+  "timestamp": "2026-05-17T04:39:42.659836+00:00",
+  "trigger": "update_registry"
+}

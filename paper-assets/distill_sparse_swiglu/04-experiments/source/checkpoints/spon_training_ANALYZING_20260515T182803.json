@@ -1,0 +1,51 @@
+{
+  "exp_id": "spon_training",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:27:18.117Z",
+    "updated_at": "2026-05-15T18:28:03.575Z",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train_spon.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --predictor_checkpoint /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --num_steps 1000 --batch_size 8 --seq_len 128 --lr 1e-5 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/spon_kl_s42 --warmup_steps 100 --log_every 100 --dataset wikitext-103 --gradient_checkpointing\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "100400",
+      "log_path": "~/runs/distill_sparse_swiglu/spon_training.log",
+      "submitted_at": "2026-05-15T18:02:21.626Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "Dry-run 5 steps PASS: bias 零初始化确认 (mean_bias_norm=0.0), 仅 458K/8B params 可训练 (0.0057%), cosine+warmup lr 正常 (5e-6→1e-5→0), loss 合理 (0.43→0.35). Gradient checkpointing 正常。待 cuda:1 释放后正式提交。",
+    "server": "westd-34887",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-34887",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T17:59:12.581Z",
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train_spon.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --predictor_checkpoint /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --num_steps 1000 --batch_size 8 --seq_len 128 --lr 1e-5 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/spon_kl_s42 --warmup_steps 100 --log_every 100 --dataset wikitext-103 --gradient_checkpointing\"",
+      "finished_at": "2026-05-15T18:11:02.835Z",
+      "training_hours": 0.2
+    },
+    "pid": "100400",
+    "log_path": "~/runs/distill_sparse_swiglu/spon_training.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T18:11:03.876129+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-15T18:28:03.650376+00:00",
+  "trigger": "update_registry"
+}

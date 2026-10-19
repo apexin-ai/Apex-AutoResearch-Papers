@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "207a46d37a18640bc33b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check s456 ckpt 34887",
+  "task_key": "worker_ops_check_s456_ckpt_34887_20260520T000510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_s456_ckpt_34887_20260520T000510_result.json",
+    "occurrence": 1,
+    "bytes": 388,
+    "sha256": "c8763e8a3bc2074d3f0e95dc2ba08c912e064cd5fcae08b715cbdf6955c7a970"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 checkpoint 都存在：\n\n| Checkpoint | 状态 | 大小 | 时间 |\n|---|---|---|---|\n| `kl_sparsity30_s456/predictor_kl_normalized.pt` | **FOUND** | 145 MB | May 18 21:54 |\n| `kl_sparsity30_s123/predictor_kl_normalized.pt` | **FOUND** | 145 MB | May 18 21:54 |\n\ns456 目录下只有 `predictor_kl_normalized.pt` 一个文件（无其他中间 checkpoint）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-s456-ckpt-34887.md"
+}

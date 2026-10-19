@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "179cbe096853e343f81c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval bce isocompute v3 s123 eval",
+  "task_key": "worker_eval_bce_isocompute_v3_s123_eval_20260517T213708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bce_isocompute_v3_s123_eval_20260517T213708_result.json",
+    "occurrence": 1,
+    "bytes": 306,
+    "sha256": "d02ade02e45c2eaad4aa53eafd421bd544ce41ec6bdb414424c76b5b2d875536"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval job 已提交并注册。\n\n- **PID**: 74858 (python 进程)\n- **服务器**: westd-34887 cuda:1\n- **日志**: `/root/distill_sparse_swiglu/logs/bce_isocompute_v3_s123_eval.log`\n- **Registry**: `bce_isocompute_v3_s123_eval` → RUNNING\n- **预估完成**: ~45min（约 06:22 UTC）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bce-isocompute-v3-s123-eval.md"
+}

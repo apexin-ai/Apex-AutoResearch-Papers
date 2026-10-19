@@ -1,0 +1,85 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{liu2023deja,song2024prosparse}
+\citation{liu2024teal}
+\citation{huang2024wina}
+\citation{wang2024fastforward}
+\citation{huang2024spon}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{liu2023deja}
+\citation{liu2024teal}
+\citation{huang2024wina}
+\citation{zhang2024rsparse}
+\citation{wang2024fastforward}
+\citation{song2024powerinfer}
+\citation{huang2024spon}
+\citation{he2024shadowllm}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training-free activation sparsity.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Learned sparsity predictors.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Static correction via distillation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}KL Distillation Loss}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Why KL Produces Different Masks}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:gradient_analysis}{{3.3}{3}{Why KL Produces Different Masks}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Comparison with BCE + Compensation}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Four-condition comparison at 50\% sparsity on Llama-3.1-8B. PPL is WikiText-2 perplexity (lower is better). Comp.\ Params indicates compensation network size. KL-only achieves the best PPL without any compensation parameters.}}{4}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{4}{Four-condition comparison at 50\% sparsity on Llama-3.1-8B. PPL is WikiText-2 perplexity (lower is better). Comp.\ Params indicates compensation network size. KL-only achieves the best PPL without any compensation parameters}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Downstream evaluation across conditions. PPL is WikiText-2. ARC-c, WG, MMLU, GSM8K are accuracy. Best sparse result per column in \textbf  {bold}. KL 30\% uniform is the recommended operating point.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:downstream}{{2}{4}{Downstream evaluation across conditions. PPL is WikiText-2. ARC-c, WG, MMLU, GSM8K are accuracy. Best sparse result per column in \textbf {bold}. KL 30\% uniform is the recommended operating point}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main_results}{{4.2}{4}{Main Results}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Downstream Benchmarks and Pareto Frontier}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces C1 Causal Ablation at 50\% sparsity (TEAL uniform protocol). BCE+KL-targets: BCE predictor trained on binary masks extracted from a trained KL predictor. Delta is the gap to the KL reference. Target quality accounts for $>$95\% of KL's advantage.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:c1}{{3}{5}{C1 Causal Ablation at 50\% sparsity (TEAL uniform protocol). BCE+KL-targets: BCE predictor trained on binary masks extracted from a trained KL predictor. Delta is the gap to the KL reference. Target quality accounts for $>$95\% of KL's advantage}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Latency.}{5}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}C1 Causal Ablation: What Drives KL's Advantage?}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:c1}{{4.4}{5}{C1 Causal Ablation: What Drives KL's Advantage?}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Sparsity Regime Analysis}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:regime}{{4.5}{5}{Sparsity Regime Analysis}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Six-point sparsity sweep (KL predictors, Llama-3.1-8B). $\Delta $ is the PPL increment per 5pp sparsity. The 35\% point has $\pm $0.2 noise across seeds. Acceleration at 45--50\% signals the onset of the capacity cliff.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:regime}{{4}{6}{Six-point sparsity sweep (KL predictors, Llama-3.1-8B). $\Delta $ is the PPL increment per 5pp sparsity. The 35\% point has $\pm $0.2 noise across seeds. Acceleration at 45--50\% signals the onset of the capacity cliff}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-architecture results on Mistral-7B-v0.3 (GQA + sliding window attention). KL/TEAL ratio is the relative PPL improvement of KL over TEAL.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:mistral}{{5}{6}{Cross-architecture results on Mistral-7B-v0.3 (GQA + sliding window attention). KL/TEAL ratio is the relative PPL improvement of KL over TEAL}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Architecture Validation}{6}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Latency profiling on a single A100 GPU. Without custom sparse kernels, no wall-clock speedup is achieved. Theoretical FLOPs reduction and predictor overhead are reported for transparency.}}{7}{table.caption.14}\protected@file@percent }
+\newlabel{tab:latency}{{6}{7}{Latency profiling on a single A100 GPU. Without custom sparse kernels, no wall-clock speedup is achieved. Theoretical FLOPs reduction and predictor overhead are reported for transparency}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces SPON analysis. Left: PPL recovery and dense degradation. Right: logit-space decomposition metrics (50 samples $\times $ 2048 tokens). SPON correction is near-orthogonal to KL's mask effect with only 15.8\% relative magnitude.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:spon}{{7}{7}{SPON analysis. Left: PPL recovery and dense degradation. Right: logit-space decomposition metrics (50 samples $\times $ 2048 tokens). SPON correction is near-orthogonal to KL's mask effect with only 15.8\% relative magnitude}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Efficiency Analysis}{7}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}SPON Is Orthogonal to KL and Too Weak to Complement It}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Relaxation method ablation: KL loss with STE vs.\ Gumbel-sigmoid. STE achieves slightly lower PPL but at 47\% sparsity (vs.\ target 50\%), due to weaker Lagrangian convergence. The gain comes from lower effective sparsity, not better mask quality.}}{8}{table.caption.16}\protected@file@percent }
+\newlabel{tab:ste}{{8}{8}{Relaxation method ablation: KL loss with STE vs.\ Gumbel-sigmoid. STE achieves slightly lower PPL but at 47\% sparsity (vs.\ target 50\%), due to weaker Lagrangian convergence. The gain comes from lower effective sparsity, not better mask quality}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces LongBench English subset (4K--32K tokens). KL advantage over TEAL is preserved in long-context settings, but absolute retention degrades with context length since the predictor was trained on 2048-token sequences.}}{8}{table.caption.17}\protected@file@percent }
+\newlabel{tab:longbench}{{9}{8}{LongBench English subset (4K--32K tokens). KL advantage over TEAL is preserved in long-context settings, but absolute retention degrades with context length since the predictor was trained on 2048-token sequences}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Iso-Compute Ablation}{8}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Relaxation Method Ablation}{8}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Additional Evaluations}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}LongBench}{8}{subsection.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces MT-Bench scores (GPT-4o judge, 80 multi-turn questions). KL 30\% retains 81\% of dense quality. Math and coding categories are most sensitive to sparsity.}}{9}{table.caption.18}\protected@file@percent }
+\newlabel{tab:mtbench}{{10}{9}{MT-Bench scores (GPT-4o judge, 80 multi-turn questions). KL 30\% retains 81\% of dense quality. Math and coding categories are most sensitive to sparsity}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces RULER accuracy on three synthetic task types at 4K and 16K context lengths. Multi-key and multi-value retrieval degrade disproportionately under sparsity.}}{9}{table.caption.19}\protected@file@percent }
+\newlabel{tab:ruler}{{11}{9}{RULER accuracy on three synthetic task types at 4K and 16K context lengths. Multi-key and multi-value retrieval degrade disproportionately under sparsity}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}MT-Bench}{9}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}RULER Synthetic Tasks}{9}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{9}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale.}{9}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Wall-clock speedup.}{9}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Long-context generalization.}{9}{section*.22}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{refs}
+\@writefile{toc}{\contentsline {paragraph}{Single-seed noise.}{10}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{10}{section.8}\protected@file@percent }
+\gdef \@abspage@last{10}

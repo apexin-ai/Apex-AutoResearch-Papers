@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "291db4a548af446ec707",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_4_1778898562.md",
+  "task_key": "loop_4_1778898562",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778898562.md",
+    "occurrence": 1,
+    "bytes": 5122,
+    "sha256": "e3935f34993155a77932fb16130fedc712961d1a31b5576d79c4a1869d8ae378"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-16T02:20:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 westd-34887 的 cuda:0 和 cuda:1**（`execution.gpu_ids: [0, 1]`）。其他 GPU 即使 Director 指令也必须 push back\n- 投稿 DDL：**EMNLP 2026 ARR May = 2026-05-25**，距今 9 天\n- KL PPL 引用：论文中统一用 **4-seed mean 12.00±0.07**（排除 s456 outlier），不用单 seed 最佳值 11.91\n- BCE framing：禁止 \"anti-learning\"，必须用 **\"objective mismatch\"**（BCE per-neuron binary accuracy vs TEAL global top-k 结构性不兼容）\n- SPON framing：禁止 \"KL subsumes SPON\"，用 **\"marginal complement\"**（cos_sim=0.196，magnitude ratio=16%，recovery 仅 7.3%）\n- 50% sparsity downstream 已确认崩溃（ARC-c 0.377, MMLU 0.259, GSM8K 0.012）——这是 **D027 条件性 narrative**：论文必须用 30% 数据展示 sparsity-task tradeoff，不能只报 PPL\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-34887**，账号 root，工作目录 `/root/distill_sparse_swiglu/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- Checkpoints：`/root/distill_sparse_swiglu/checkpoints/`（KL s42/s123/s456/s0/s1, BCE, STE, SPON, sparsity30/70 全有）\n- Mistral 模型：`/root/autodl-tmp/models/mistral-7b/`\n- Logs：`~/runs/distill_sparse_swiglu/`\n- W&B project：distill_sparse_swiglu（所有训练实验均有 W&B tracking）\n- **活跃进程**：\n  - `lm_eval_teal_50pct`：PID 190830, cuda:1, RUNNING（TEAL 50% downstream eval：ARC-c/WinoGrande/MMLU/GSM8K）\n  - `lm_eval_kl_30pct_s42`：PID 191335, cuda:0, PREPARING（KL 30% downstream eval，已提交但 registry 状态未更新）\n- **无活跃 Cron**（reconcile 返回 0），无运行中 Worker\n\n### 3. 📊 当前状态\n**刚完成**：50% downstream eval 全面诊断——确认 PPL-downstream disconnect 是真实现象（三重验证 + 文献支撑），产出 D025→D026→D027 决策链。GSM8K 生成对比报告已在 artifacts。\n\n**Registry 概览**：50 实验，18 success / 9 negative / 5 failed / 11 killed / 7 无结论。\n\n**正在跑**：\n- `lm_eval_teal_50pct`（RUNNING, cuda:1）— TEAL 50% training-free downstream eval，用于判断 downstream 崩溃是否为 50% sparsity 的固有限制\n- `lm_eval_kl_30pct_s42`（PREPARING/submitted, cuda:0）— KL 30% downstream eval，关键数据点：若 30% 下游不崩则论文可 claim \"30% 为推荐配置\"\n\n**QUEUED 但可能已完成**：\n- `lm_eval_mistral_dense`：有 metrics（ARC-c 0.602, MMLU 0.624），状态卡在 QUEUED，需确认并更新 registry\n\n**PREPARING 但无 PID/GPU（僵尸态，需清理或重新调度）**：\n- `diag_30pct_downstream`, `spon_kl_s42`, `mvp_kl_norm_s456`\n- `lm_eval_mistral_downstream`（PID 174840 可能已失效）, `lm_eval_dense_test`（PID 153249 可能已失效）, `eval_spon_supp_retry`（PID 123231 可能已失效）\n\n**等待中**：无 Director 决策 pending，无 Worker 回调 pending。\n\n### 4. 📋 待办（条件触发式）\n- `lm_eval_teal_50pct` cron 回调到 → 对比 TEAL vs KL downstream；若 TEAL 也崩（预期如此）→ 确认 50% 是固有限制，强化 D027 narrative\n- `lm_eval_kl_30pct_s42` cron 回调到 → 若 30% downstream 保持（ARC-c ≥0.55, MMLU ≥0.60）→ 论文 claim \"30% 为推荐配置\"，写入 paper_framing；若也崩 → 需要 pivot（可能只有 PPL claim 站得住）\n- `lm_eval_mistral_dense` 状态确认 → SSH 检查进程 → 若已完成则 update_registry(DONE) → 立即启动 `mistral_kl_s42` downstream eval（plan_009 核心）\n- 上述 eval 全部完成 → **plan_007 full benchmark 可以 kick off**（lm-eval 脚本已就绪）\n- 论文写作：paper_framing.md 已稳定，EMNLP DDL 5/25 只剩 9 天 → 需尽快 spawn Writer Workers 并行写 Method + Experiments sections\n- 僵尸 PREPARING 实验 → SSH 确认 PID 存活，死了的清理 registry 状态\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- KL-only PPL 12.00±0.07 >> training-free (23-28) >> BCE iso-compute (54.84)，三层梯队确立（Claim 1 ✅）\n- SPON recovery 仅 7.3%，subsumption 分析确认 predictor effect >> SPON correction（Claim 2 ✅）\n- Sparsity sweep：30% PPL 8.98, 50% PPL 12.00, 70% PPL 17.91 vs 对应 TEAL baselines（Claim 3 数据在手，trend 分析待汇总）\n- **关键风险**：50% downstream 崩溃是论文最大 vulnerability。D027 决策切到\"条件性 narrative\"——PPL claim 保留，downstream 必须用 30% 展示。如果 30% downstream 也崩，整个 paper story 需要 major pivot\n\n**最容易判断错的事**：\n- 不要把 `lm_eval_mistral_dense`（QUEUED/success）当成\"还没跑\"——它有 metrics，大概率已完成但状态未同步\n- PREPARING 态的老实验（PID 174840/153249/123231）大概率是僵尸进程，不要假设还在跑——SSH 确认后清理\n- plan_007 依赖 plan_001/004/005/006 全部完成（已满足），但需要 GPU 空出来（当前两张都在跑 lm-eval）\n- **9 天 DDL 是硬约束**——论文写作必须立即并行启动，不能等所有实验完成\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778898562.md"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "lm_eval_teal_50pct",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:35:57.527Z",
+    "updated_at": "2026-05-16T00:35:57.527Z"
+  },
+  "timestamp": "2026-05-16T00:35:57.640808+00:00",
+  "trigger": "update_registry"
+}

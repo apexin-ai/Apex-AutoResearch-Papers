@@ -1,0 +1,33 @@
+{
+  "exp_id": "kl_norm_v3_quicktest",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:16:56.462Z",
+    "updated_at": "2026-05-15T15:17:00.284Z",
+    "spec": {
+      "hypothesis": "修复 ÷vocab_size bug 后, KL 归一化仅 ÷seq_len, kl_raw 应下降且 sparsity 收敛",
+      "loss_type": "kl_normalized_v3",
+      "seed": 42,
+      "model": "Llama-3.1-8B",
+      "model_name": "llama-3.1-8b",
+      "sparsity": 0.5,
+      "steps": 200,
+      "batch_size": 4,
+      "seq_len": 2048,
+      "gpu": "cuda:0",
+      "server": "westd-34887",
+      "parent": "kl_normalized_quicktest",
+      "data_path": "wikitext-103 (HF cached)",
+      "command": "PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --loss_type kl_normalized --num_steps 200 --batch_size 4 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir checkpoints/kl_norm_v3_quicktest",
+      "kl_normalization": "÷seq_len only (fixed: removed ÷vocab_size from train.py)",
+      "lagrangian": "lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T15:17:00.337685+00:00",
+  "trigger": "update_registry"
+}

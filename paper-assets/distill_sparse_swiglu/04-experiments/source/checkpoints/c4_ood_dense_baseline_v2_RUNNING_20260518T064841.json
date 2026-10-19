@@ -1,0 +1,36 @@
+{
+  "exp_id": "c4_ood_dense_baseline_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:14:33.520Z",
+    "updated_at": "2026-05-18T06:48:40.889Z",
+    "hypothesis": "Dense baseline C4 PPL establishes the upper bound for OOD generalization comparison. This is the reference against which KL predictor sparsity degradation on C4 is measured.",
+    "parent": "c4_ood_dense_baseline",
+    "spec": {
+      "command": "bash -c \"cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id c4_ood_dense_baseline_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dense --tasks c4 --gpu 0\"",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "51568",
+      "log_path": "~/runs/distill_sparse_swiglu/c4_ood_dense_baseline_v2.log",
+      "submitted_at": "2026-05-18T06:18:22.513Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/c4_val",
+      "data_count": 364608,
+      "model_name": "llama-3.1-8b",
+      "seed": 0,
+      "checkpoint_source": "none",
+      "eval_data": "c4_validation"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T06:48:41.250856+00:00",
+  "trigger": "update_registry"
+}

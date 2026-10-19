@@ -1,0 +1,24 @@
+{
+  "exp_id": "kl_only_s0",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:19:35.138Z",
+    "updated_at": "2026-05-15T17:19:35.138Z",
+    "spec": {
+      "hypothesis": "KL-trained predictor at 50% sparsity - seed expansion for 5-seed headline (same config as mvp_kl_norm_v2)",
+      "parent": "mvp_kl_norm_v2_s42",
+      "model_name": "llama-3.1-8b",
+      "seed": 0,
+      "loss_type": "kl_normalized_v3",
+      "data_path": "wikitext-103 (HF cached)",
+      "kl_normalization": "÷seq_len only (v3 fix)",
+      "lagrangian": "lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]"
+    }
+  },
+  "timestamp": "2026-05-15T17:19:35.213034+00:00",
+  "trigger": "update_registry"
+}

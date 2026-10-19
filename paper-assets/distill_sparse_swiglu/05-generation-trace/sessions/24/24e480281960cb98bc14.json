@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24e480281960cb98bc14",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops db sweep monitor",
+  "task_key": "worker_ops_db-sweep-monitor_20260516T200717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_db-sweep-monitor_20260516T200717_result.json",
+    "occurrence": 1,
+    "bytes": 364,
+    "sha256": "e46d63f903e689419b18144084de2c919df0ff0555dfb1269834071901d5b6e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training is in early stages. I'll check back in ~4.5 minutes for meaningful progress. Current state:\n\n- **C4 OOD**: 200 samples (2048 tokens each), results already saved\n- **d_b=64**: Step 50/1000, sparsity converging toward 0.50, lambda capped at 1000 then decaying\n- **GPU 0**: d_b sweep (PID 262949), **GPU 1**: separate workload (PID 260849)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-db-sweep-monitor.md"
+}

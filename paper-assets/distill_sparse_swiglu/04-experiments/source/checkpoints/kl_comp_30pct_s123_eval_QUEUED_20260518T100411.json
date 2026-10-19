@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl_comp_30pct_s123_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:01:33.560Z",
+    "updated_at": "2026-05-18T10:04:10.911Z",
+    "hypothesis": "KL+compensation at 30% sparsity (s123) downstream benchmarks match s42, confirming compensation eval stability across seeds.",
+    "parent": "kl_comp_30pct_s123"
+  },
+  "timestamp": "2026-05-18T10:04:11.240054+00:00",
+  "trigger": "update_registry"
+}

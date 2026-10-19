@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06ba80cd9d0d9c5ff41c",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9.md",
+    "occurrence": 1,
+    "bytes": 3932,
+    "sha256": "392ea65a6095013c254d3edaed35860d9ebbedb0ef40241d99ef1110138aae10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_wall_time\nupdated: '2026-05-17T10:59:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 + cuda:1 only（westd-34887）\n- 30% sparsity 训练必须 `--lambda_max 5000`（不是默认 1000！M004/M005 两次教训）\n- KL PPL 引用必须用 4-seed mean 12.00±0.07，禁用单 seed 最佳 11.91\n- wikitext-103 必须走本地 fallback `/root/autodl-tmp/data/wikitext103/`（HF 网络不可达）\n- 22.51 是 BCE **per-token** PPL，27.97 是 BCE **global** PPL，论文中不可混用 eval mode 对比\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，工作目录 `/root/distill_sparse_swiglu/`\n- Python：`/root/miniconda3/bin/python`（conda base）\n- 模型：LLaMA-3.1-8B `/root/autodl-tmp/models/llama-3.1-8b/`，Mistral-7B `/root/autodl-tmp/models/mistral-7b/`\n- 数据：wikitext-103 本地 `/root/autodl-tmp/data/wikitext103/`，C4 `/root/autodl-tmp/data/c4/`，HF cache `/root/autodl-tmp/.hf_cache/`\n- WANDB_MODE=disabled（无 API key）\n- 活跃进程：\n  - cuda:0: KL 50% multiseed 串行脚本（PID 22258→子进程，日志 `logs/multiseed_kl50.log`，s123 train→eval→s456 train→eval）\n  - cuda:1: KL 30% multiseed 修正版（PID 23613→子进程，日志 `logs/multiseed_kl30_fixed.log`，lambda_max=5000，s123 train→eval→s456 train→eval）\n- Worker 在跑：`worker_check_multiseed_status_collect_20260517T105807`（检查训练进度）\n\n### 3. 📊 当前状态\n收到 Director Round 6 实验清单时正在等 multi-seed 训练完成。已派 Worker 检查进度但还没收到回调。\n\n**今日已完成的分析/实验**（全部 registry DONE）：\n- `kl_bce_f1_oracle` (success): BCE F1=0.613 > KL F1=0.540，但 KL PPL 远优\n- `global_30pct/50pct/70pct_retention` (success): 三级 progressive starvation pattern\n- `reverse_kl_50pct_s42` + `jsd_50pct_s42` (negative): Forward KL 仍最优（+8.6%/+6.4%）\n- JSD/Reverse KL C4 OOD eval: Forward KL OOD 优势放大（JSD +42.2%）\n- `pertoken_hard_50pct_db256` (success): PPL=8.59，三向退化分解完成\n- `gradient_snr_comparison` chart + `per_layer_retention_chart` chart: 已同步本地，artifact 已注册\n- `loss_ablation_ood_data.json`: 完整 loss ablation 数据整理完毕\n- data_utils.py wikitext-103 本地 fallback 修复\n- Registry 卫生清理（steps_curve 系列、kl_bce_f1_oracle 状态修正）\n\n**等待中**：multi-seed 训练完成回调\n\n### 4. 📋 待办（条件触发式）\n- `worker_check_multiseed_status_collect` 回调 → 读取结果，对已完成的 seed 注册 registry + 汇报 Director\n- 50% multiseed 全部完成（cuda:0 空闲）→ 立即启动 **Step 1: C3 Coupling vs Oracle 实验**（最高优先级新实验，bce_kl_oracle_s42）\n- 30% multiseed 全部完成（cuda:1 空闲）→ 立即启动 **Step 2: Mistral 50% PPL 溯源** 或 **Step 3: 30%/40% C4 OOD eval**\n- 双卡均空闲 → Step 2 + Step 3 并行\n- C3 实验完成 → 根据结果判断：接近 KL = oracle quality 是关键；远差于 KL = gradient coupling 是核心因素。汇报 Director\n\n### 5. 🎯 战略上下文\n- DDL: EMNLP 2026 ARR May, 2026-05-25（剩 8 天）\n- 论文 framing: A+C 混合，骨架 = PPL-Downstream Disconnect，血肉 = Sparsity Threshold\n- **C3 Coupling vs Oracle 是 Round 6 最高价值实验**：验证 KL 优势归因于 gradient coupling（因果机制）还是仅仅 oracle quality（更好的 target）。这直接影响论文 §4.3 的 claim 强度\n- d030 = Decision ID 前缀，不是 30% sparsity（已向 Director 澄清，回复审稿人时展示 checkpoint 来源）\n- §4.3 的 \"22.51 vs 11.79\" 混用了 per-token/global eval mode——Director 已知悉，需修正为同一 mode 对比\n- 50% uniform 已验证不可修复（MMLU≈random），不要再尝试\n- Forward KL 优于 Reverse KL 和 JSD 的原因：mode-covering 特性更适合 sparsity prediction（需要高 recall 覆盖所有重要 neuron）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-copy-2.md"
+}

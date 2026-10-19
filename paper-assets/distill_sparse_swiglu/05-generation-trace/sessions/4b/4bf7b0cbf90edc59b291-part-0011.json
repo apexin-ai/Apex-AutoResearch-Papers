@@ -1,0 +1,2048 @@
+{
+  "schema_version": "1.0",
+  "session_id": "4bf7b0cbf90edc59b291",
+  "rounds": [
+    {
+      "number": 52,
+      "messages": [
+        {
+          "source_line": 1801,
+          "timestamp": "2026-05-25T09:05:46.165942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/ethics.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-001801"
+        },
+        {
+          "source_line": 1802,
+          "timestamp": "2026-05-25T09:05:49.803448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex"
+            }
+          },
+          "id": "event-001802"
+        },
+        {
+          "source_line": 1803,
+          "timestamp": "2026-05-25T09:05:50.156725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tWe present an output-distribution KL framework for training contextual sparsity predictors in SwiGLU-based language models (Figure~\\ref{fig:overview}).\n5\tThe method replaces per-neuron binary classification (BCE) with an output-distribution alignment objective that couples all pruning decisions through the model's forward pass and achieves competitive performance without auxiliary error compensation networks at inference.\n6\t\n7\t\\subsection{Problem Formulation}\n8\t\\label{sec:method:formulation}\n9\t\n10\tConsider a pretrained transformer with $L$ layers, each containing a SwiGLU feed-forward network~\\cite{shazeer2020glu}.\n11\tFor layer $\\ell$, the FFN computes:\n12\t\\begin{align}\n13\t\\mathbf{y}^{(\\ell)} = \\bigl(\\sigma(\\mathbf{x}^{(\\ell)} \\mathbf{W}_g^{(\\ell)}) \\odot \\mathbf{x}^{(\\ell)} \\mathbf{W}_u^{(\\ell)}\\bigr) \\mathbf{W}_d^{(\\ell)},\n14\t\\label{eq:swiglu}\n15\t\\end{align}\n16\twhere $\\mathbf{x}^{(\\ell)} \\in \\mathbb{R}^{d}$ is the hidden state after attention ($d{=}4096$), $\\sigma$ denotes SiLU, $\\mathbf{W}_g^{(\\ell)}, \\mathbf{W}_u^{(\\ell)} \\in \\mathbb{R}^{d \\times d_{\\text{ff}}}$ and $\\mathbf{W}_d^{(\\ell)} \\in \\mathbb{R}^{d_{\\text{ff}} \\times d}$ are the gate, up-projection, and down-projection matrices, and $d_{\\text{ff}}{=}14{,}336$.\n17\t\n18\tDefine the gate activation $\\mathbf{g}^{(\\ell)} = \\sigma(\\mathbf{x}^{(\\ell)} \\mathbf{W}_g^{(\\ell)}) \\in \\mathbb{R}^{d_{\\text{ff}}}$.\n19\tEach element $g_j^{(\\ell)}$ determines the contribution of neuron $j$ to the output.\n20\tWe introduce a binary mask $\\mathbf{m}^{(\\ell)} \\in \\{0,1\\}^{d_{\\text{ff}}}$ that zeros out pruned neurons:\n21\t\\begin{align}\n22\t\\mathbf{y}_{\\text{sparse}}^{(\\ell)} = \\bigl(\\mathbf{m}^{(\\ell)} \\odot \\mathbf{g}^{(\\ell)} \\odot \\mathbf{x}^{(\\ell)} \\mathbf{W}_u^{(\\ell)}\\bigr) \\mathbf{W}_d^{(\\ell)}.\n23\t\\label{eq:sparse_ffn}\n24\t\\end{align}\n25\tOur goal is to learn a mask predictor $f_\\theta^{(\\ell)}(\\mathbf{x}^{(\\ell)}) \\to \\mathbf{s}^{(\\ell)} \\in (0,1)^{d_{\\text{ff}}}$ that produces p\n…[truncated 11115 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 353
+          },
+          "id": "event-001803"
+        },
+        {
+          "source_line": 1804,
+          "timestamp": "2026-05-25T09:05:50.207432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex"
+            }
+          },
+          "id": "event-001804"
+        },
+        {
+          "source_line": 1805,
+          "timestamp": "2026-05-25T09:05:50.512428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\n6\t\\paragraph{Model and Predictor.}\n7\tWe evaluate on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}, which uses SwiGLU FFN blocks~\\cite{shazeer2020glu} with $d_{\\text{model}}=4096$ and $d_{\\text{ff}}=14336$ across 32 layers.\n8\tThe sparsity predictor is a two-layer MLP with 2.37M parameters per layer (75.9M total), implemented as Linear($4096 \\to 128$) + GELU + Linear($128 \\to 14336$), trained to produce per-neuron importance scores that minimize output-distribution divergence under sparsity.\n9\t\n10\t\\paragraph{Training.}\n11\tAll predictors are trained for 1000 steps on WikiText-103 with sequence length 2048 and batch size 4 on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (96\\,GB), using AdamW~\\cite{loshchilov2019adamw} with learning rate $1 \\times 10^{-3}$, weight decay $1 \\times 10^{-2}$, and cosine decay.\n12\tThe KL predictor uses Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} with temperature $\\tau=1.0$ annealed to $0.1$ over training.\n13\t\n14\t\\paragraph{Evaluation.}\n15\tWe report perplexity on WikiText-2~\\cite{merity2017pointer} (seq\\_len=2048) and downstream accuracy on ARC-Challenge (25-shot), WinoGrande (5-shot), Massive Multitask Language Understanding (MMLU; 5-shot), Grade School Math 8K (GSM8K; 8-shot), HellaSwag (10-shot), and Physical Intuition QA (PIQA; 0-shot).\n16\t\n17\t\\paragraph{Inference Protocol.}\n18\tAt inference, the predictor produces per-neuron scores that are passed to TEAL's global top-$k$ allocation mechanism~\\cite{liu2025teal}, which distributes the sparsity budget across layers non-uniformly.\n19\tWe term this \\textit{predictor-TEAL}: the predictor replaces TEAL's magnitude-based scoring while retaining its allocation strategy.\n20\t\n21\t\\paragraph{Baselines.}\n22\tWe compare against: (1) \\textbf{Vanilla TEAL}~\\cite{liu2025teal}, which uses activation magnitudes directly\\footnote{TEAL is deterministic; single-run evaluation suffices. KL/BCE predictors require\n…[truncated 17528 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 304
+          },
+          "id": "event-001805"
+        },
+        {
+          "source_line": 1806,
+          "timestamp": "2026-05-25T09:05:50.512963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex"
+            }
+          },
+          "id": "event-001806"
+        },
+        {
+          "source_line": 1807,
+          "timestamp": "2026-05-25T09:05:50.564236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tLearned sparsity predictors accelerate large language model (LLM) inference by anticipating which neurons to skip, but a fundamental mismatch limits their effectiveness: predictors are trained per-neuron via binary cross-entropy while deployed under global top-$k$ allocation that ranks neurons jointly across all layers.\n2\tWe bridge this gap with output-distribution Kullback--Leibler (KL) divergence, which couples all pruning decisions end-to-end through the model's forward pass using Gumbel-Sigmoid relaxation.\n3\tOn LLaMA-3.1-8B, our predictor ($<$1\\% of base parameters) reduces perplexity by 14.5\\% over TEAL at 30\\% sparsity and renders post-hoc compensation networks redundant.\n4\tDiagnostic analysis reveals a surprising finding: KL-optimized masks diverge 68\\% from magnitude-based targets, yet a target-swap ablation shows these discovered patterns, not end-to-end coupling per se, carry most of the quality signal.\n5\tCross-architecture evaluation on Mistral-7B and Qwen-2.5-14B confirms perplexity generalization, though knowledge-intensive tasks exhibit systematic regression at larger scales.\n6\tWe release our code and data at\\footnote{\\url{https://github.com/anonymous-nlp-2026-2/distill_sparse_swiglu}}.\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-001807"
+        },
+        {
+          "source_line": 1808,
+          "timestamp": "2026-05-25T09:05:56.391781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex"
+            }
+          },
+          "id": "event-001808"
+        },
+        {
+          "source_line": 1809,
+          "timestamp": "2026-05-25T09:05:56.826675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\t\\begin{figure*}[t]\n4\t\\centering\n5\t\\includegraphics[width=0.82\\textwidth]{fig1_overview.pdf}\n6\t\\caption{Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks.}\n7\t\\label{fig:overview}\n8\t\\end{figure*}\n9\t\n10\tContextual activation sparsity, skipping neurons that contribute negligibly to each token, is an attractive approach to accelerating large language model (LLM) inference in SwiGLU architectures~\\cite{shazeer2020glu}.\n11\tLearned predictors~\\cite{liu2023dejavu,gautam2026fastforward} train small networks to anticipate which neurons matter, but they universally rely on binary cross-entropy (BCE), treating each neuron as an independent classification target.\n12\tAt inference, however, these per-neuron scores feed TEAL~\\cite{liu2025teal}, a global top-$k$ mechanism that ranks neurons \\emph{jointly} across all layers, retaining only those above a model-wide threshold.\n13\tThis creates a fundamental mismatch: predictors are optimized for local per-neuron accuracy but evaluated under global cross-layer allocation.\n14\tThe consequences of this misalignment for contextual sparsity prediction remain uninvestigated.\n15\t\n16\tWe close this gap by training sparsity predictors with output-distribution Kullback--Leibler (KL) divergence, which couples all masking decisions through the model's forward pass.\n17\tUnder BCE, the gradient for neuron $j$ depends only on $j$'s own activation magnitude; under KL, the chain rule introduces a downstream Jacobian that couples each neuron to every other retained neuron in subsequent layers (\\S\\ref{sec:method:gradient}).\n18\tThis allows the predictor to evaluate each neuron's importance in context, considering how pruning one neuron affects downstream computation when other neurons are simultaneously pruned.\n19\tUnlike MaskLLM~\\cite{fang2024maskllm}, which \n…[truncated 2148 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 434
+          },
+          "id": "event-001809"
+        },
+        {
+          "source_line": 1810,
+          "timestamp": "2026-05-25T09:05:56.919552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex"
+            }
+          },
+          "id": "event-001810"
+        },
+        {
+          "source_line": 1811,
+          "timestamp": "2026-05-25T09:05:57.369234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\n3\tOur findings are bounded by four limitations.\n4\t\\textbf{Sparsity sweet spot.} 30\\% is the lowest-degradation level; at 50\\%, all methods collapse on reasoning tasks, and a separate predictor must be retrained per target.\n5\t\\textbf{Knowledge-intensive regression.} KL consistently underperforms on MMLU and GSM8K across scales (8B: $-$5.2pp MMLU; 14B: $-$19.9pp GSM8K), suggesting output-distribution objectives systematically sacrifice reasoning-critical pathways.\n6\t\\textbf{Evaluation scope.} Open-ended generation (e.g., MT-Bench) and contexts beyond 2048 tokens remain untested.\n7\t\\textbf{Baseline coverage.} The 30\\% isocompute comparison lacks a BCE 2700-step baseline; WikiText-2 evaluation shares provenance with the training corpus (WikiText-103), partially mitigated by C4 out-of-distribution (OOD) results (Appendix~\\ref{app:ood}). MSE uses identical hyperparameters to KL; its gradient magnitude is ${\\sim}5\\times$ larger, and performance may improve with a dedicated learning rate.\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 449
+          },
+          "id": "event-001811"
+        },
+        {
+          "source_line": 1812,
+          "timestamp": "2026-05-25T09:05:57.369644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex"
+            }
+          },
+          "id": "event-001812"
+        },
+        {
+          "source_line": 1813,
+          "timestamp": "2026-05-25T09:05:57.757505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\section{Inference Efficiency}\n4\t\\label{app:latency}\n5\t\n6\tTable~\\ref{tab:latency} reports inference throughput on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (96\\,GB; batch size 1, sequence length 2048, fp16, averaged over 100 forward passes).\n7\t\n8\t\\begin{table}[h]\n9\t\\centering\n10\t\\caption{Inference latency on LLaMA-3.1-8B (RTX PRO 6000 Blackwell, batch=1, seq=2048, fp16, 100 forward passes). Overhead is relative to dense inference.}\n11\t\\label{tab:latency}\n12\t\\resizebox{\\columnwidth}{!}{\n13\t\\begin{tabular}{llcccc}\n14\t\\toprule\n15\tMethod & Sparsity & ms/fwd & tok/s & Overhead \\\\\n16\t\\midrule\n17\tDense & 0\\% & 119.11$\\pm$0.57 & 17{,}195 & --- \\\\\n18\t\\midrule\n19\tKL predictor-only & 30\\% & 126.64$\\pm$0.70 & 16{,}172 & +6.3\\% \\\\ % exp_id: latency_bench\n20\tKL predictor-only & 50\\% & 126.78$\\pm$0.31 & 16{,}154 & +6.4\\% \\\\ % exp_id: latency_bench\n21\t\\midrule\n22\tPredictor + compensation & 30\\% & 129.94$\\pm$0.75 & 15{,}761 & +9.1\\% \\\\ % exp_id: latency_bench\n23\tPredictor + compensation & 50\\% & 129.71$\\pm$0.53 & 15{,}789 & +8.9\\% \\\\ % exp_id: latency_bench\n24\t\\bottomrule\n25\t\\end{tabular}}\n26\t\\end{table}\n27\t\n28\tThe full KL-sparse pipeline adds 6.4\\% overhead to dense inference (126.78 vs.\\ 119.11\\,ms/forward), of which the predictor's 32-layer forward pass contributes 3.17\\,ms (2.7\\%); the remainder arises from mask application and sparse FFN indexing.\n29\tEliminating the compensation network saves an additional $\\sim$2.7\\% latency overhead and 67.2M parameters (the per-layer GEMV required for output rescaling); output-distribution KL thus provides both quality and efficiency advantages over BCE-based approaches.\n30\tThe overhead is near-identical at 30\\% and 50\\% sparsity because the predictor runs the same computation regardless of target sparsity; only the top-$k$ threshold changes.\n31\t\n32\tNote that the current implementation uses unstructured element-wise masks, which do not translate to wall-clock speedup without sparse kernel support.\n33\tThe pipe\n…[truncated 41292 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 387
+          },
+          "id": "event-001813"
+        },
+        {
+          "source_line": 1814,
+          "timestamp": "2026-05-25T09:09:11.210124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 审稿意见：方法严谨性 + 实验设计\n\n### 总体评分\n\n**Overall Assessment**: 3.0 — Findings（可被 Findings 接收）\n\n**一句话总结**: 论文提出了一个技术上有趣的发现（KL 训练发现的 mask pattern 可迁移至 BCE），但多个 baseline 公平性问题、统计可靠性不足、以及缺乏实际推理加速显著削弱了贡献的说服力。\n\n### 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3/5 | 核心 claim 有实验支撑但存在多处 confound（STE sparsity 不匹配、MSE 超参不公平、C1 binarization 信息损失）；梯度分析的因果推断过强 |\n| Excitement | 3/5 | \"KL 发现更优 mask pattern 可迁移至 BCE\" 是有趣发现，但缺乏实际加速、知识任务系统性退步限制了影响力 |\n| Reproducibility | 4/5 | 超参报告完整，匿名 GitHub 可用，单 GPU 可复现；但部分关键实验仅 1-2 seed |\n| Confidence | 4/5 | 对方法论和实验设计审查较为充分，熟悉 contextual sparsity 和 KD 领域 |\n\n---\n\n### Must-Fix 问题（影响接收决定）\n\n**N1** [critical] STE 对比存在严重 sparsity 不匹配，25.2% improvement claim 不可靠\n\n- 具体位置：§3.3, Table 4 脚注 ‡\n- 问题：Table 4 脚注标注 \"STE: 20.8% actual sparsity at 30% target\"，STE 在 30% target 下仅达到 20.8% 实际稀疏度。§3.3 引用的 25.2% improvement (PPL 15.77→11.79) 是 50% sparsity 结果，但 50% 下 STE 的实际稀疏度未报告。如果 STE 在 50% 下同样存在 sparsity 不匹配，Gumbel vs STE 的全部对比都不是 iso-sparsity 的。\n- 为什么影响接收：Gumbel-Sigmoid relaxation 是方法核心组件，如果优势数字不可靠，方法贡献被高估。\n- 建议：报告 STE 50% 实际稀疏度；匹配实际稀疏度下重新对比。\n\n**N2** [critical] MSE baseline 使用相同超参但梯度量级相差 5×，公平性不足\n\n- 具体位置：Appendix G, Limitations\n- 问题：Limitations 承认 \"MSE uses identical hyperparameters to KL; its gradient magnitude is ~5× larger, and performance may improve with a dedicated learning rate.\" 论文正文 per-layer decomposition（§4.5）大量依赖 MSE 作为 \"intermediate coupling\" 代表，用未经适当调参的 baseline 支撑 \"signal type gap (9.47 PPL) dominates coupling breadth range (2.08 PPL)\" 的核心结论（Contribution #2），存在方法论漏洞。\n- 建议：至少做一组 MSE lr sweep，或在正文将未调参问题作为 major caveat 显式讨论。\n\n**N3** [critical] 缺乏实际推理加速，与论文动机脱节\n\n- 具体位置：Abstract, §1, Appendix A (Table 5)\n- 问题：论文动机围绕 \"accelerate LLM inference\"，但 Appendix A 报告 +6.4% 延迟增加，承认 \"unstructured element-wise masks...do not translate to wall-clock speedup\"。不仅没有加速，还增加了延迟。\n- 建议：修改 framing 定位为 training objective study；或补充 block-sparse kernel 实验。\n\n---\n\n### Should-Fix 问题\n\n**W1** 3-seed 下高方差指标的结论可靠性（MMLU σ=9.5pp at 30% global，CI 完全覆盖 TEAL）\n**W2** C1 target-swap ablation 存在 binarization confound（soft→hard 丢弃 ranking 信息）\n**W3** WikiText-103 训练 + WikiText-2 评估数据同源性，C4 OOD 仅 2 seed\n**W4** Per-layer KL decomposition confound 未充分讨论（train-inference mismatch 系统性低估 per-layer KL）\n**W5** Cross-architecture 评估不足（Mistral 50%/70% 仅 seed 42；知识退步因果归因过强）\n**W6** BCE 30% isocompute 对比缺失\n\n---\n\n### 主要优势\n\n1. per-neuron BCE vs global top-k inference mismatch 的问题动机清晰有价值\n2. C1 target-swap ablation 设计巧妙，有效分离 mask pattern quality 和 training dynamics\n3. 全面的 ablation 体系（5 种 KL variant + K-curve + 14 个附录方面）\n4. 诚实的 Limitations 自我评估\n5. Compensation redundancy 发现有实际价值",
+              "reviewer_id": "1",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-001814"
+        },
+        {
+          "source_line": 1815,
+          "timestamp": "2026-05-25T09:09:15.126298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3916
+          },
+          "id": "event-001815"
+        },
+        {
+          "source_line": 1816,
+          "timestamp": "2026-05-25T09:09:22.818661+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿意见已提交给 Review Director。\n\n总结：给出 Overall 3.0 (Findings)，识别了 3 个 Must-Fix 问题（STE sparsity 不匹配使 25.2% claim 不可靠、MSE baseline 未调参影响核心 contribution #2、缺乏实际推理加速与动机矛盾），6 个 Should-Fix 问题（统计可靠性、C1 binarization confound、数据同源性、decomposition confound、cross-architecture 评估不足、BCE isocompute 缺失），以及多个小问题。同时肯定了论文的 5 个主要优势，尤其是 C1 target-swap ablation 的巧妙设计和全面的 ablation 体系。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1"
+          },
+          "id": "event-001816"
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "messages": [
+        {
+          "source_line": 1817,
+          "timestamp": "2026-05-25T09:16:31.197737+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## Step 2：交叉分享 — 请对 Reviewer 2 的审稿意见逐条回应\n\n以下是 Reviewer 2（侧重新颖性/完整性）的 Round 1 完整审稿意见。请逐条用 **[AGREE]** 或 **[REBUT]** 回应，并附简要理由。重点关注你们是否存在分歧。\n\n---\n\n**Reviewer 2 — Overall: 3.5 (Borderline Conference)**\n一句话总结：消融设计出色、分析视角有价值的实证研究，但核心方法是已知组件的组合（KL + Gumbel-Sigmoid + learned predictor），且 Contribution #2 的数值表述存在自相矛盾，Abstract 严重超长。\n\n### Must-Fix\n\n**N1** [critical] Abstract 严重超过 200-word 限制\n- Abstract 约 320+ words（含 3 段、5 个 inline citations），显著超过 ACL/ARR 200-word 限制，存在 desk reject 风险。\n\n**N2** [critical] Contribution #2 数值表述自相矛盾\n- Page 2 声称 \"signal type gap (0.47 PPL) dominates the coupling breadth range (2.08 PPL at 30% sparsity)\"。但 0.47 < 2.08，\"dominates\" 要求前者大于后者。Section 4.5 正文中写 \"2.08 PPL between per-layer KL and MSE\"——这是 signal type 之间的差异，不是 coupling breadth range。数值被错误归属给了错误的维度。\n\n### Should-Fix\n\n**W1** [warning] 与 MaskLLM 的新颖性区分不够 substantial\n- MaskLLM (NeurIPS 2024) 已使用 frozen weights + learnable masks + KL divergence + Gumbel relaxation。本文区别是 contextual per-token masks 和 Gumbel-Sigmoid，可能被视为 engineering adaptation 而非 methodological novelty。\n\n**W2** [warning] 知识任务系统性退化分析不足\n- MMLU 在 LLaMA-3.1-8B 30% sparsity 下降 ~5.2pp，GSM8K 下降 0.2，跨架构一致出现。Limitations 仅提供推测性解释，缺乏实证支持。\n\n**W3** [warning] 遗漏直接相关 2026 年并行工作\n- SVD Contextual Sparsity Predictors (Serbin et al., arXiv:2603.14110, March 2026)，training-free 方案，解决几乎相同问题，发表于提交截止日前两个月。\n\n**W4** [warning] 实验规模和训练数据限制\n- 仅在 8B/14B 模型上实验，未讨论 70B+ scalability。训练数据仅 WikiText-103 1000 steps，领域覆盖极窄。\n\n**W5** [warning] Table 1 分类体系不完整\n- 遗漏 training-free vs learned 维度，MaskLLM 缺失。Empty cells 未区分 unexplored vs not applicable。\n\n### 小问题\n- \"fundamental mismatch\" 在 Abstract 前两句出现两次\n- Abstract 含 5 个 inline citations，ACL abstract 一般避免引用\n- 术语不一致：\"output-distribution KL\"/\"forward KL\"/\"KL divergence\" 交替使用\n- Figure 2 热力图黑白打印可读性存疑\n- Appendix Y AI Assistants 披露建议补充验证流程说明\n\n### Missing References (Reviewer 2 提出)\n1. SVD Contextual Sparsity Predictors (Serbin et al., arXiv:2603.14110, March 2026)\n2. Rethinking KL Divergence in KD for LLMs (COLING 2025)\n3. LEAP: Learnable End-to-End Adaptive Pruning (arXiv:2605.17289, May 2026)\n4. Grasp (Shin et al., DAC 2025)\n\n---\n\n请对以上每个 Must-Fix、Should-Fix、小问题逐条回应 [AGREE] 或 [REBUT]，附简要理由。特别关注与你初审意见的重合或分歧之处。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-001817"
+        },
+        {
+          "source_line": 1818,
+          "timestamp": "2026-05-25T09:18:32.565877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex"
+            }
+          },
+          "id": "event-001818"
+        },
+        {
+          "source_line": 1819,
+          "timestamp": "2026-05-25T09:18:33.017758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tLearned sparsity predictors accelerate large language model (LLM) inference by anticipating which neurons to skip, but a fundamental mismatch limits their effectiveness: predictors are trained per-neuron via binary cross-entropy while deployed under global top-$k$ allocation that ranks neurons jointly across all layers.\n2\tWe bridge this gap with output-distribution Kullback--Leibler (KL) divergence, which couples all pruning decisions end-to-end through the model's forward pass using Gumbel-Sigmoid relaxation.\n3\tOn LLaMA-3.1-8B, our predictor ($<$1\\% of base parameters) reduces perplexity by 14.5\\% over TEAL at 30\\% sparsity and renders post-hoc compensation networks redundant.\n4\tDiagnostic analysis reveals a surprising finding: KL-optimized masks diverge 68\\% from magnitude-based targets, yet a target-swap ablation shows these discovered patterns, not end-to-end coupling per se, carry most of the quality signal.\n5\tCross-architecture evaluation on Mistral-7B and Qwen-2.5-14B confirms perplexity generalization, though knowledge-intensive tasks exhibit systematic regression at larger scales.\n6\tWe release our code and data at\\footnote{\\url{https://github.com/anonymous-nlp-2026-2/distill_sparse_swiglu}}.\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 451
+          },
+          "id": "event-001819"
+        },
+        {
+          "source_line": 1820,
+          "timestamp": "2026-05-25T09:18:33.018162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex",
+              "limit": "35"
+            }
+          },
+          "id": "event-001820"
+        },
+        {
+          "source_line": 1821,
+          "timestamp": "2026-05-25T09:18:33.469664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\t\\begin{figure*}[t]\n4\t\\centering\n5\t\\includegraphics[width=0.82\\textwidth]{fig1_overview.pdf}\n6\t\\caption{Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks.}\n7\t\\label{fig:overview}\n8\t\\end{figure*}\n9\t\n10\tContextual activation sparsity, skipping neurons that contribute negligibly to each token, is an attractive approach to accelerating large language model (LLM) inference in SwiGLU architectures~\\cite{shazeer2020glu}.\n11\tLearned predictors~\\cite{liu2023dejavu,gautam2026fastforward} train small networks to anticipate which neurons matter, but they universally rely on binary cross-entropy (BCE), treating each neuron as an independent classification target.\n12\tAt inference, however, these per-neuron scores feed TEAL~\\cite{liu2025teal}, a global top-$k$ mechanism that ranks neurons \\emph{jointly} across all layers, retaining only those above a model-wide threshold.\n13\tThis creates a fundamental mismatch: predictors are optimized for local per-neuron accuracy but evaluated under global cross-layer allocation.\n14\tThe consequences of this misalignment for contextual sparsity prediction remain uninvestigated.\n15\t\n16\tWe close this gap by training sparsity predictors with output-distribution Kullback--Leibler (KL) divergence, which couples all masking decisions through the model's forward pass.\n17\tUnder BCE, the gradient for neuron $j$ depends only on $j$'s own activation magnitude; under KL, the chain rule introduces a downstream Jacobian that couples each neuron to every other retained neuron in subsequent layers (\\S\\ref{sec:method:gradient}).\n18\tThis allows the predictor to evaluate each neuron's importance in context, considering how pruning one neuron affects downstream computation when other neurons are simultaneously pruned.\n19\tUnlike MaskLLM~\\cite{fang2024maskllm}, which \n…[truncated 2148 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 451
+          },
+          "id": "event-001821"
+        },
+        {
+          "source_line": 1822,
+          "timestamp": "2026-05-25T09:18:33.771206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex",
+              "offset": "160",
+              "limit": "10"
+            }
+          },
+          "id": "event-001822"
+        },
+        {
+          "source_line": 1823,
+          "timestamp": "2026-05-25T09:18:33.872627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "160\tAt 50\\%, Gumbel-Sigmoid outperforms STE~\\cite{bengio2013ste} by 25.2\\%; forward KL outperforms JSD (+6.0\\%) and reverse KL (+7.9\\%), consistent with mode-covering~\\cite{gu2024minillm}. % exp_id: ste_baseline_s42, jsd_ablation_s42, reverse_kl_ablation_s42\n161\tAt 30\\%, forward KL (8.81) and JSD (8.90) are near-identical, both outperforming reverse KL (9.26) and MSE (18.52$\\pm$1.68), suggesting the divergence measure matters less than optimizing through the output distribution (\\S\\ref{sec:perlayer}). % exp_id: kl30_ablation_s42, jsd30_ablation_s42, rkl30_ablation_s42, mse30_uniform_s42, mse30_3seed, bce30_uniform_s42, rkl30_downstream_3seed\n162\t\\paragraph{Per-Layer KL: Signal Type vs.\\ Coupling Scope.}\n163\t\\label{sec:perlayer}\n164\tTo isolate cross-layer coupling, we train per-layer KL predictors masking $K$ random layers per step, computing KL on the full output without cross-layer gradients.\n165\tThe $K$-curve (Figure~\\ref{fig:k_curve_ppl}) shows per-layer KL ($K{=}1$) achieves 9.05$\\pm$0.02, within 2.7\\% of E2E (8.81), while per-layer MSE degrades to 18.52$\\pm$1.68.\n166\tThe signal type gap\\footnote{``Signal type'' denotes the optimization target (output distribution vs.\\ intermediate activations), which also entails gradient flow and landscape differences not independently controlled.} (9.47 PPL) exceeds the coupling breadth range (2.08 PPL; full $K$-curve in Appendix~\\ref{app:k_curve}), suggesting output-distribution alignment contributes more than coupling scope, though confounded by train--inference mismatch (\\S\\ref{app:k4_downstream}).\n167\tA $K{=}4$ control partially deconfounds: PPL gaps close while commonsense gaps persist, suggesting task-dependent coupling (Appendices~\\ref{app:k4_downstream}--\\ref{app:perlayer_downstream}). % exp_id: perlayer_kl_30_3seed, perlayer_kl_downstream, mse30_downstream_decomp, perlayer_kl_k4_3seed, perlayer_kl_k4_50_s42, perlayer_kl_50_s42, bench_kl50_global, k_curve_k2_3seed, k_curve_k8_3seed, k_curve_k16_3seed\n168\t\n169\t\\begin{f\n…[truncated 9 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-001823"
+        },
+        {
+          "source_line": 1824,
+          "timestamp": "2026-05-25T09:20:11.809011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 对 Reviewer 2 的交叉回应\n\n### Must-Fix 回应\n\n**[REBUT] R2-N1 (Abstract 超长)**: R2 声称 Abstract \"320+ words, 3 段, 5 个 inline citations\"，三项均为事实错误。经逐词计数，abstract.tex 全文 ~145 words（6 句 1 段），零个 \\cite 命令。不存在 desk reject 风险。\n\n**[REBUT] R2-N2 (Contribution #2 数值矛盾)**: R2 将 \"9.47 PPL\" 误读为 \"0.47 PPL\"。原文 Introduction line 29 和 §4.5 line 166 均写 \"signal type gap (9.47 PPL) dominates/exceeds coupling breadth range (2.08 PPL)\"。9.47 > 2.08，数值逻辑无矛盾。R2 关于 \"2.08 PPL between per-layer KL and MSE\" 的引述也是误读——2.08 是 K-curve 内的 coupling breadth range，不是 signal type 差异。但须注意：9.47 的可信度受 MSE 未调参影响（我的 N2），实质问题存在但不是 R2 所指的 \"自相矛盾\"。\n\n### Should-Fix 回应\n\n**[AGREE] R2-W1 (MaskLLM 新颖性)**: MaskLLM 已用 KL+Gumbel+frozen weights，本文从 static→contextual 的扩展应更充分论证新贡献。我初审未单独提出，R2 补充了有价值视角。\n\n**[AGREE] R2-W2 (知识任务退化)**: 与我的 W5 一致，因果归因过强。\n\n**[AGREE] R2-W3 (并行工作遗漏)**: SVD Contextual Sparsity Predictors 如确实高度相关且在提交前发表，应讨论。\n\n**[AGREE] R2-W4 (规模限制)**: 部分同意，8B/14B 可接受但缺 scalability 讨论。\n\n**[部分 AGREE] R2-W5 (Table 1 不完整)**: MaskLLM 实际上已在 Table 1 中（Static × Coupled 格写了 \"SPON, MaskLLM\"），R2 此处有误。但 training-free 维度缺失和 empty cell 语义不清的问题有效。\n\n### 小问题回应\n\n**[REBUT]** \"fundamental mismatch\" 重复：仅 Abstract 1次 + Introduction 1次，非 Abstract 内重复。\n**[REBUT]** 5 个 inline citations：Abstract 内零 \\cite。\n**[AGREE]** 术语不一致、Figure 2 可读性、AI 披露。\n\n### 核心分歧\n\nR2 的两个 Must-Fix 均基于事实错误（Abstract 字数和数值误读），去掉这两个 \"critical\" 后 R2 的 3.5 分缺乏 must-fix 支撑。而 R2 遗漏了我认为影响接收决定的三个方法论问题：STE sparsity 不匹配（我的 N1）、MSE 超参不公平（我的 N2）、缺乏实际加速（我的 N3）。我维持 Overall 3.0 (Findings) 的判断。",
+              "reviewer_id": "1",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-001824"
+        },
+        {
+          "source_line": 1825,
+          "timestamp": "2026-05-25T09:20:15.826316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 4017
+          },
+          "id": "event-001825"
+        },
+        {
+          "source_line": 1826,
+          "timestamp": "2026-05-25T09:20:22.285674+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交给 Review Director。\n\n核心结论：R2 的两个 Must-Fix（N1 Abstract 超长、N2 数值矛盾）均基于事实错误——Abstract 实际约 145 words 而非 320+，signal type gap 是 9.47 而非 0.47。但 R2 在 MaskLLM 新颖性（W1）和并行工作遗漏（W3）上补充了我初审未覆盖的有价值视角。我维持 Overall 3.0 的判断，因为 R2 遗漏的三个方法论问题（STE sparsity 不匹配、MSE 超参不公平、无实际加速）仍然是影响接收的实质性问题。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1"
+          },
+          "id": "event-001826"
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "messages": [
+        {
+          "source_line": 1827,
+          "timestamp": "2026-05-25T21:16:09.219608+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n你是 Reviewer 1，负责 **方法严谨性 + 实验设计**。\n\n## Venue 信息\n- **目标会议**: EMNLP 2026 (Long Paper, ACL Rolling Review)\n- **ARR 提交截止**: 2026-05-25\n- **EMNLP commitment 截止**: 2026-08-02\n- **页数限制**: 正文 8 页，参考文献无限制，Limitations 必须但不计入页数\n- **模板**: ACL (`\\usepackage[review]{acl}`)\n- **匿名规则**: Double-blind\n\n## 论文路径\n- LaTeX: `projects/distill_sparse_swiglu/paper/main.tex`\n- PDF: `projects/distill_sparse_swiglu/artifacts/review_round_28/submitted.pdf`\n\n## 你的审查侧重\n\n### 1. 方法严谨性\n- Gumbel-Sigmoid 松弛的数学正确性和工程实现\n- 几何惩罚调度 (Lagrangian) 的收敛保证\n- 梯度分析 (BCE vs KL) 的严谨性：SNR 分析是否支持结论？\n- KL 方向选择 (forward vs reverse) 的理论动机是否充分\n\n### 2. 实验设计与统计可靠性\n- 主表 (Table 2) 对比公平性：sparsity mismatch (28.5% vs 30%)、compute budget 是否对齐\n- 3-seed 评估的统计充分性：哪些指标 CI 重叠严重？n=3 是否足够支撑 claim?\n- Baseline 公平性：MSE 是否用了最优超参？BCE 训练步数是否匹配？\n- C1 target-swap ablation 的因果推断有效性：soft→hard mask 信息损失是否影响结论？\n\n### 3. 消融完整性\n- 每个设计选择的消融是否充分隔离了变量\n- Per-layer KL 分解的 train-inference mismatch confound 是否充分讨论\n- 跨架构泛化 (Mistral-7B, Qwen-14B) 的实验是否支撑 claim\n\n### 4. 格式合规\n- 正文是否超过 8 页\n- 是否包含 Limitations section\n- 匿名性检查（是否有作者信息泄露）\n- Abstract 是否不超过 200 words\n\n请按以下结构输出审稿意见：\n1. Summary (2-3 句)\n2. Strengths (逐条)\n3. Weaknesses (逐条，标注 [Must-Fix] / [Should-Fix] / [Nice-to-have])\n4. Questions (需要作者回答的)\n5. Missing References (如有)\n6. Minor Issues (格式、笔误等)\n7. Overall Assessment (评分 1-5，参考 EMNLP 2026 ARR 评分标准)\n8. Confidence (1-5)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-001827"
+        },
+        {
+          "source_line": 1828,
+          "timestamp": "2026-05-25T21:16:19.404426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/skills/review-reviewer-session-start.skill.md"
+            }
+          },
+          "id": "event-001828"
+        },
+        {
+          "source_line": 1829,
+          "timestamp": "2026-05-25T21:16:20.309188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/review_reviewer_1_772f066c."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 904
+          },
+          "id": "event-001829"
+        },
+        {
+          "source_line": 1830,
+          "timestamp": "2026-05-25T21:16:20.410005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director,WebSearch,WebFetch",
+              "max_results": "4"
+            }
+          },
+          "id": "event-001830"
+        },
+        {
+          "source_line": 1831,
+          "timestamp": "2026-05-25T21:16:20.463598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 53
+          },
+          "id": "event-001831"
+        },
+        {
+          "source_line": 1832,
+          "timestamp": "2026-05-25T21:16:24.584491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL Rolling Review 2026 reviewer guidelines review form criteria"
+            }
+          },
+          "id": "event-001832"
+        },
+        {
+          "source_line": 1833,
+          "timestamp": "2026-05-25T21:16:25.843633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/submitted.pdf",
+              "pages": "1-5",
+              "project": "distill_sparse_swiglu",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001833"
+        },
+        {
+          "source_line": 1834,
+          "timestamp": "2026-05-25T21:16:31.558254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL Rolling Review 2026 reviewer guidelines review form criteria\"\n\nLinks: [{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"},{\"title\":\"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/incentives2026\"},{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewform\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"Authors Beware: Common Submission Problems – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authorchecklist\"},{\"title\":\"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewing\"}]\n\nBased on the search results, I found information about ACL Rolling Review (ARR) for 2026. Here are the key findings:\n\n## Reviewer Guidelines\n\nReviewers should read the paper and search for related work, and if they feel qualified to review only some aspects of the paper, they should state in the review which major parts they did not check. \n\nReviewers are provided with a checklist to flag problems that other people may have missed.\n\n## Review Form Criteria\n\nOutstanding papers should be either fascinating, con\n…[truncated 957 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "WebSearch",
+            "elapsed_ms": 6973
+          },
+          "id": "event-001834"
+        },
+        {
+          "source_line": 1835,
+          "timestamp": "2026-05-25T21:16:32.862609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 444.0}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 590.4}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 530.9}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 453.2}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 493.2}], \\\"total_pages\\\": 18, \\\"rendered_pages\\\": 5, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 7018
+          },
+          "id": "event-001835"
+        },
+        {
+          "source_line": 1836,
+          "timestamp": "2026-05-25T21:16:40.040627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the complete review form with all scoring dimensions, their scales (1-5 or whatever), and descriptions of each score level. I need the exact criteria for Overall Assessment, Soundness, Excitement/Novelty, Reproducibility, and any other scored dimensions."
+            }
+          },
+          "id": "event-001836"
+        },
+        {
+          "source_line": 1837,
+          "timestamp": "2026-05-25T21:16:41.050400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p1.png"
+            }
+          },
+          "id": "event-001837"
+        },
+        {
+          "source_line": 1838,
+          "timestamp": "2026-05-25T21:16:41.754646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p2.png"
+            }
+          },
+          "id": "event-001838"
+        },
+        {
+          "source_line": 1839,
+          "timestamp": "2026-05-25T21:16:41.958185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p3.png"
+            }
+          },
+          "id": "event-001839"
+        },
+        {
+          "source_line": 1840,
+          "timestamp": "2026-05-25T21:16:42.916827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1866
+          },
+          "id": "event-001840"
+        },
+        {
+          "source_line": 1841,
+          "timestamp": "2026-05-25T21:16:42.967470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p4.png"
+            }
+          },
+          "id": "event-001841"
+        },
+        {
+          "source_line": 1842,
+          "timestamp": "2026-05-25T21:16:43.271004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p5.png"
+            }
+          },
+          "id": "event-001842"
+        },
+        {
+          "source_line": 1843,
+          "timestamp": "2026-05-25T21:16:44.225262+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2470
+          },
+          "id": "event-001843"
+        },
+        {
+          "source_line": 1844,
+          "timestamp": "2026-05-25T21:16:44.627990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2669
+          },
+          "id": "event-001844"
+        },
+        {
+          "source_line": 1845,
+          "timestamp": "2026-05-25T21:16:45.232861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 2265
+          },
+          "id": "event-001845"
+        },
+        {
+          "source_line": 1846,
+          "timestamp": "2026-05-25T21:16:45.233656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1962
+          },
+          "id": "event-001846"
+        },
+        {
+          "source_line": 1847,
+          "timestamp": "2026-05-25T21:16:47.591466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Form - Scoring Dimensions\n\n## Overall Assessment\nScale: 1-5 (with .5 increments)\n- **5**: \"Consider for Award: I think this paper could be considered for an outstanding paper award\"\n- **4**: Conference acceptance recommended\n- **3**: Findings track acceptance recommended\n- **2**: \"Resubmit next cycle: I think this paper needs substantial revisions\"\n- **1**: Do not resubmit; not relevant to computational linguistics\n\n## Soundness\nScale: 1-5 (with .5 increments)\n- **5**: \"Excellent: This study is one of the most thorough I have seen\"\n- **4**: \"Strong: This study provides sufficient support for all of its claims\"\n- **3**: \"Acceptable: This study provides sufficient support for its main claims\"\n- **2**: \"Poor: Some of the main claims are not sufficiently supported\"\n- **1**: \"Major Issues: This study is not yet sufficiently thorough to warrant publication\"\n\n## Excitement\nScale: 1-5 (with .5 increments)\n- **5**: \"Highly Exciting: I would recommend this paper to others and/or attend its presentation\"\n- **4**: \"Exciting: I would mention this paper to others\"\n- **3**: \"Interesting: I might mention some points of this paper\"\n- **2**: \"Potentially Interesting: does not resonate with me, but might with others\"\n- **1**: \"Not Exciting: does not resonate with me, and I don't think it would with others\"\n\n## Reviewer Confidence\nScale: 1-5\n- **5**: \"Positive that my evaluation is correct\"\n- **4**: \"Quite sure\" but some details could be missed\n- **3**: \"Pretty sure, but there's a chance I missed something\"\n- **2**: \"Willing to defend my evaluation, but fairly likely that I missed details\"\n- **1**: \"Not my area, or paper is very hard to understand\"\n\n## Reproducibility\nScale: 1-5\n- **5**: \"They could easily reproduce the results\"\n- **4**: Results mostly reproducible with minor variations\n- **3**: \"They could reproduce the results with some difficulty\"\n- **2**: \"They would be hard pressed to reproduce the results\"\n- **1**: \"They would not be able to reproduce the res\n…[truncated 381 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "WebFetch",
+            "elapsed_ms": 7550
+          },
+          "id": "event-001847"
+        },
+        {
+          "source_line": 1848,
+          "timestamp": "2026-05-25T21:16:58.858321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/submitted.pdf",
+              "pages": "6-10",
+              "project": "distill_sparse_swiglu",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001848"
+        },
+        {
+          "source_line": 1849,
+          "timestamp": "2026-05-25T21:16:59.513686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 521.9}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 486.2}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 458.5}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 582.9}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p10.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 578.0}], \\\"total_pages\\\": 18, \\\"rendered_pages\\\": 5, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 655
+          },
+          "id": "event-001849"
+        },
+        {
+          "source_line": 1850,
+          "timestamp": "2026-05-25T21:17:03.378196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p6.png"
+            }
+          },
+          "id": "event-001850"
+        },
+        {
+          "source_line": 1851,
+          "timestamp": "2026-05-25T21:17:04.385037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1006
+          },
+          "id": "event-001851"
+        },
+        {
+          "source_line": 1852,
+          "timestamp": "2026-05-25T21:17:04.436186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p7.png"
+            }
+          },
+          "id": "event-001852"
+        },
+        {
+          "source_line": 1853,
+          "timestamp": "2026-05-25T21:17:04.746836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p8.png"
+            }
+          },
+          "id": "event-001853"
+        },
+        {
+          "source_line": 1854,
+          "timestamp": "2026-05-25T21:17:05.551205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p9.png"
+            }
+          },
+          "id": "event-001854"
+        },
+        {
+          "source_line": 1855,
+          "timestamp": "2026-05-25T21:17:06.054552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p10.png"
+            }
+          },
+          "id": "event-001855"
+        },
+        {
+          "source_line": 1856,
+          "timestamp": "2026-05-25T21:17:06.105874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1669
+          },
+          "id": "event-001856"
+        },
+        {
+          "source_line": 1857,
+          "timestamp": "2026-05-25T21:17:06.659843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1913
+          },
+          "id": "event-001857"
+        },
+        {
+          "source_line": 1858,
+          "timestamp": "2026-05-25T21:17:07.414448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1863
+          },
+          "id": "event-001858"
+        },
+        {
+          "source_line": 1859,
+          "timestamp": "2026-05-25T21:17:07.515723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1461
+          },
+          "id": "event-001859"
+        },
+        {
+          "source_line": 1860,
+          "timestamp": "2026-05-25T21:17:14.637699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/submitted.pdf",
+              "pages": "11-15",
+              "project": "distill_sparse_swiglu",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001860"
+        },
+        {
+          "source_line": 1861,
+          "timestamp": "2026-05-25T21:17:15.291826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 454.3}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 468.8}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 511.0}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 445.6}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 361.5}], \\\"total_pages\\\": 18, \\\"rendered_pages\\\": 5, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 654
+          },
+          "id": "event-001861"
+        },
+        {
+          "source_line": 1862,
+          "timestamp": "2026-05-25T21:17:18.317286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p11.png"
+            }
+          },
+          "id": "event-001862"
+        },
+        {
+          "source_line": 1863,
+          "timestamp": "2026-05-25T21:17:19.024973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 707
+          },
+          "id": "event-001863"
+        },
+        {
+          "source_line": 1864,
+          "timestamp": "2026-05-25T21:17:19.025446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p12.png"
+            }
+          },
+          "id": "event-001864"
+        },
+        {
+          "source_line": 1865,
+          "timestamp": "2026-05-25T21:17:19.578238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-001865"
+        },
+        {
+          "source_line": 1866,
+          "timestamp": "2026-05-25T21:17:19.980738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 955
+          },
+          "id": "event-001866"
+        },
+        {
+          "source_line": 1867,
+          "timestamp": "2026-05-25T21:17:19.981176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-001867"
+        },
+        {
+          "source_line": 1868,
+          "timestamp": "2026-05-25T21:17:20.436110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 857
+          },
+          "id": "event-001868"
+        },
+        {
+          "source_line": 1869,
+          "timestamp": "2026-05-25T21:17:20.436725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p15.png"
+            }
+          },
+          "id": "event-001869"
+        },
+        {
+          "source_line": 1870,
+          "timestamp": "2026-05-25T21:17:20.893522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 912
+          },
+          "id": "event-001870"
+        },
+        {
+          "source_line": 1871,
+          "timestamp": "2026-05-25T21:17:21.096614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 659
+          },
+          "id": "event-001871"
+        },
+        {
+          "source_line": 1872,
+          "timestamp": "2026-05-25T21:17:27.525167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/submitted.pdf",
+              "pages": "16-18",
+              "project": "distill_sparse_swiglu",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001872"
+        },
+        {
+          "source_line": 1873,
+          "timestamp": "2026-05-25T21:17:27.826655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 368.9}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 453.1}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 294.3}], \\\"total_pages\\\": 18, \\\"rendered_pages\\\": 3, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 301
+          },
+          "id": "event-001873"
+        },
+        {
+          "source_line": 1874,
+          "timestamp": "2026-05-25T21:17:30.326175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p16.png"
+            }
+          },
+          "id": "event-001874"
+        },
+        {
+          "source_line": 1875,
+          "timestamp": "2026-05-25T21:17:30.728437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p17.png"
+            }
+          },
+          "id": "event-001875"
+        },
+        {
+          "source_line": 1876,
+          "timestamp": "2026-05-25T21:17:31.333890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1007
+          },
+          "id": "event-001876"
+        },
+        {
+          "source_line": 1877,
+          "timestamp": "2026-05-25T21:17:31.334395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images/submitted_p18.png"
+            }
+          },
+          "id": "event-001877"
+        },
+        {
+          "source_line": 1878,
+          "timestamp": "2026-05-25T21:17:31.485773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 757
+          },
+          "id": "event-001878"
+        },
+        {
+          "source_line": 1879,
+          "timestamp": "2026-05-25T21:17:31.793280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 458
+          },
+          "id": "event-001879"
+        },
+        {
+          "source_line": 1880,
+          "timestamp": "2026-05-25T21:17:39.326664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.tex",
+              "limit": "100"
+            }
+          },
+          "id": "event-001880"
+        },
+        {
+          "source_line": 1881,
+          "timestamp": "2026-05-25T21:17:39.327178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t% \\usepackage{inconsolata} % not available on this system\n9\t\\usepackage{graphicx}\n10\t\\graphicspath{{../figures/paper/}}\n11\t\\usepackage{amsmath}\n12\t\\usepackage{amssymb}\n13\t\\usepackage{booktabs}\n14\t\\usepackage{multirow}\n15\t\\usepackage{enumitem}\n16\t% Use LaTeX defaults for float spacing (11pt: textfloatsep=20pt, floatsep=12pt)\n17\t\n18\t\\title{Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs}\n19\t\n20\t\\author{Anonymous}\n21\t\n22\t\\begin{document}\n23\t\\maketitle\n24\t\n25\t\\begin{abstract}\n26\t\\input{abstract}\n27\t\\end{abstract}\n28\t\n29\t\\input{introduction}\n30\t\\input{related_work}\n31\t\\input{method}\n32\t\\input{experiments}\n33\t\\input{conclusion}\n34\t\\input{limitations}\n35\t% \\input{ethics}  % removed per submission guidelines\n36\t\n37\t\\bibliography{references}\n38\t\n39\t\\input{appendix}\n40\t\n41\t\\end{document}\n42\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001881"
+        },
+        {
+          "source_line": 1882,
+          "timestamp": "2026-05-25T21:17:42.334960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex"
+            }
+          },
+          "id": "event-001882"
+        },
+        {
+          "source_line": 1883,
+          "timestamp": "2026-05-25T21:17:42.585963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tLearned sparsity predictors accelerate large language model (LLM) inference by anticipating which neurons to skip, but a fundamental mismatch limits their effectiveness: predictors are trained per-neuron via binary cross-entropy while deployed under global top-$k$ allocation that ranks neurons jointly across all layers.\n2\tWe bridge this gap with output-distribution Kullback--Leibler (KL) divergence, which couples all pruning decisions end-to-end through the model's forward pass using Gumbel-Sigmoid relaxation.\n3\tOn LLaMA-3.1-8B, our predictor ($<$1\\% of base parameters) reduces perplexity by 14.5\\% over TEAL at 30\\% sparsity and renders post-hoc compensation networks redundant.\n4\tDiagnostic analysis reveals a surprising finding: KL-optimized masks diverge 68\\% from magnitude-based targets, yet a target-swap ablation shows these discovered patterns, not end-to-end coupling per se, carry most of the quality signal.\n5\tCross-architecture evaluation on Mistral-7B and Qwen-2.5-14B confirms perplexity generalization, though knowledge-intensive tasks exhibit directional decline ($n{=}3$) at larger scales\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/distill_sparse_swiglu-A82B/}.}.\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 250
+          },
+          "id": "event-001883"
+        },
+        {
+          "source_line": 1884,
+          "timestamp": "2026-05-25T21:17:42.636536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex"
+            }
+          },
+          "id": "event-001884"
+        },
+        {
+          "source_line": 1885,
+          "timestamp": "2026-05-25T21:17:42.687178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tWe present an output-distribution KL framework for training contextual sparsity predictors in SwiGLU-based language models (Figure~\\ref{fig:overview}).\n5\tThe method replaces per-neuron binary classification (BCE) with an output-distribution alignment objective that couples all pruning decisions through the model's forward pass and achieves competitive performance without auxiliary error compensation networks at inference.\n6\t\n7\t\\subsection{Problem Formulation}\n8\t\\label{sec:method:formulation}\n9\t\n10\tConsider a pretrained transformer with $L$ layers, each containing a SwiGLU feed-forward network~\\cite{shazeer2020glu}.\n11\tFor layer $\\ell$, the FFN computes:\n12\t\\begin{align}\n13\t\\mathbf{y}^{(\\ell)} = \\bigl(\\sigma(\\mathbf{x}^{(\\ell)} \\mathbf{W}_g^{(\\ell)}) \\odot \\mathbf{x}^{(\\ell)} \\mathbf{W}_u^{(\\ell)}\\bigr) \\mathbf{W}_d^{(\\ell)},\n14\t\\label{eq:swiglu}\n15\t\\end{align}\n16\twhere $\\mathbf{x}^{(\\ell)} \\in \\mathbb{R}^{d}$ is the hidden state after attention ($d{=}4096$), $\\sigma$ denotes SiLU, $\\mathbf{W}_g^{(\\ell)}, \\mathbf{W}_u^{(\\ell)} \\in \\mathbb{R}^{d \\times d_{\\text{ff}}}$ and $\\mathbf{W}_d^{(\\ell)} \\in \\mathbb{R}^{d_{\\text{ff}} \\times d}$ are the gate, up-projection, and down-projection matrices, and $d_{\\text{ff}}{=}14{,}336$.\n17\t\n18\tDefine the gate activation $\\mathbf{g}^{(\\ell)} = \\sigma(\\mathbf{x}^{(\\ell)} \\mathbf{W}_g^{(\\ell)}) \\in \\mathbb{R}^{d_{\\text{ff}}}$.\n19\tEach element $g_j^{(\\ell)}$ determines the contribution of neuron $j$ to the output.\n20\tWe introduce a binary mask $\\mathbf{m}^{(\\ell)} \\in \\{0,1\\}^{d_{\\text{ff}}}$ that zeros out pruned neurons:\n21\t\\begin{align}\n22\t\\mathbf{y}_{\\text{sparse}}^{(\\ell)} = \\bigl(\\mathbf{m}^{(\\ell)} \\odot \\mathbf{g}^{(\\ell)} \\odot \\mathbf{x}^{(\\ell)} \\mathbf{W}_u^{(\\ell)}\\bigr) \\mathbf{W}_d^{(\\ell)}.\n23\t\\label{eq:sparse_ffn}\n24\t\\end{align}\n25\tOur goal is to learn a mask predictor $f_\\theta^{(\\ell)}(\\mathbf{x}^{(\\ell)}) \\to \\mathbf{s}^{(\\ell)} \\in (0,1)^{d_{\\text{ff}}}$ that produces p\n…[truncated 12141 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001885"
+        },
+        {
+          "source_line": 1886,
+          "timestamp": "2026-05-25T21:17:48.006655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex"
+            }
+          },
+          "id": "event-001886"
+        },
+        {
+          "source_line": 1887,
+          "timestamp": "2026-05-25T21:17:48.809860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\n6\t\\paragraph{Model and Predictor.}\n7\tWe evaluate on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}, which uses SwiGLU FFN blocks~\\cite{shazeer2020glu} with $d_{\\text{model}}=4096$ and $d_{\\text{ff}}=14336$ across 32 layers.\n8\tThe sparsity predictor is a two-layer MLP with 2.37M parameters per layer (75.9M total), implemented as Linear($4096 \\to 128$) + GELU + Linear($128 \\to 14336$), trained to produce per-neuron importance scores that minimize output-distribution divergence under sparsity.\n9\t\n10\t\\paragraph{Training.}\n11\tAll predictors are trained for 1000 steps on WikiText-103 with sequence length 2048 and batch size 4 on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (96\\,GB), using AdamW~\\cite{loshchilov2019adamw} with learning rate $1 \\times 10^{-3}$, weight decay $1 \\times 10^{-2}$, and cosine decay.\n12\tThe KL predictor uses Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} with temperature $\\tau=1.0$ annealed to $0.1$ over training.\n13\t\n14\t\\paragraph{Evaluation.}\n15\tWe report perplexity on WikiText-2~\\cite{merity2017pointer} (seq\\_len=2048) and downstream accuracy on ARC-Challenge (25-shot), WinoGrande (5-shot), Massive Multitask Language Understanding (MMLU; 5-shot), Grade School Math 8K (GSM8K; 8-shot), HellaSwag (10-shot), and Physical Intuition QA (PIQA; 0-shot).\n16\t\n17\t\\paragraph{Inference Protocol.}\n18\tAt inference, the predictor produces per-neuron scores that are passed to TEAL's global top-$k$ allocation mechanism~\\cite{liu2025teal}, which distributes the sparsity budget across layers non-uniformly.\n19\tWe term this \\textit{predictor-TEAL}: the predictor replaces TEAL's magnitude-based scoring while retaining its allocation strategy.\n20\t\n21\t\\paragraph{Baselines.}\n22\tWe compare against: (1) \\textbf{Vanilla TEAL}~\\cite{liu2025teal}, which uses activation magnitudes directly\\footnote{TEAL is deterministic; single-run evaluation suffices. KL/BCE predictors require\n…[truncated 17292 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 803
+          },
+          "id": "event-001887"
+        },
+        {
+          "source_line": 1888,
+          "timestamp": "2026-05-25T21:17:48.860459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex"
+            }
+          },
+          "id": "event-001888"
+        },
+        {
+          "source_line": 1889,
+          "timestamp": "2026-05-25T21:17:48.961362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\n3\t\\textbf{Sparsity regime.} We validate at 30\\% sparsity; at 50\\%, all methods collapse on reasoning tasks, limiting direct applicability to aggressive sparsity targets.\n4\t\\textbf{Knowledge-intensive tasks.} KL underperforms on MMLU and GSM8K across scales, suggesting output-distribution objectives underweight reasoning-critical pathways.\n5\t\\textbf{Evaluation scope.} Open-ended generation (e.g., MT-Bench) and contexts beyond 2048 tokens remain untested.\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001889"
+        },
+        {
+          "source_line": 1890,
+          "timestamp": "2026-05-25T21:17:48.961791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex"
+            }
+          },
+          "id": "event-001890"
+        },
+        {
+          "source_line": 1891,
+          "timestamp": "2026-05-25T21:17:48.962092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\\enlargethispage{\\baselineskip}\n4\tWe compared five training objectives for learned sparsity prediction in SwiGLU LLMs. Output-distribution KL divergence is the primary design axis ($1.7$--$19\\times$ worse PPL for per-neuron objectives); signal type matters more than coupling (9.47 vs.\\ 2.08 PPL gap), and KL masks transfer to BCE ($\\leq$0.63pp). The predictor ($<$1\\% parameters) achieves 14.5\\% over TEAL at 30\\% on LLaMA-8B, generalizing to Mistral-7B and Qwen-14B; layer starvation and kernel integration remain open.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001891"
+        },
+        {
+          "source_line": 1892,
+          "timestamp": "2026-05-25T21:17:59.991114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex"
+            }
+          },
+          "id": "event-001892"
+        },
+        {
+          "source_line": 1893,
+          "timestamp": "2026-05-25T21:18:00.242458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\t\\begin{figure*}[t]\n4\t\\centering\n5\t\\includegraphics[width=0.82\\textwidth]{fig1_overview.pdf}\n6\t\\caption{Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks.}\n7\t\\label{fig:overview}\n8\t\\end{figure*}\n9\t\n10\tContextual activation sparsity, skipping neurons that contribute negligibly to each token, is an attractive approach to accelerating large language model (LLM) inference in SwiGLU architectures~\\cite{shazeer2020glu}.\n11\tLearned predictors~\\cite{liu2023dejavu,gautam2026fastforward} train small networks to anticipate which neurons matter, but they universally rely on binary cross-entropy (BCE), treating each neuron as an independent classification target.\n12\tAt inference, however, these per-neuron scores feed TEAL~\\cite{liu2025teal}, a global top-$k$ mechanism that ranks neurons \\emph{jointly} across all layers, retaining only those above a model-wide threshold.\n13\tThis creates a fundamental mismatch: predictors are optimized for local per-neuron accuracy but evaluated under global cross-layer allocation.\n14\tThe consequences of this misalignment for contextual sparsity prediction remain uninvestigated.\n15\t\n16\tWe close this gap by training sparsity predictors with output-distribution Kullback--Leibler (KL) divergence, which couples all masking decisions through the model's forward pass.\n17\tUnder BCE, the gradient for neuron $j$ depends only on $j$'s own activation magnitude; under KL, the chain rule introduces a downstream Jacobian that couples each neuron to every other retained neuron in subsequent layers (\\S\\ref{sec:method:gradient}).\n18\tThis allows the predictor to evaluate each neuron's importance in context, considering how pruning one neuron affects downstream computation when other neurons are simultaneously pruned.\n19\tUnlike MaskLLM~\\cite{fang2024maskllm}, which \n…[truncated 2317 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-001893"
+        },
+        {
+          "source_line": 1894,
+          "timestamp": "2026-05-25T21:18:00.293175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex"
+            }
+          },
+          "id": "event-001894"
+        },
+        {
+          "source_line": 1895,
+          "timestamp": "2026-05-25T21:18:00.544905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\section{Inference Efficiency}\n4\t\\label{app:latency}\n5\t\n6\tTable~\\ref{tab:latency} reports inference throughput on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (96\\,GB; batch size 1, sequence length 2048, fp16, averaged over 100 forward passes).\n7\t\n8\t\\begin{table}[h]\n9\t\\centering\n10\t\\caption{Inference latency on LLaMA-3.1-8B (RTX PRO 6000 Blackwell, batch=1, seq=2048, fp16, 100 forward passes). Overhead is relative to dense inference.}\n11\t\\label{tab:latency}\n12\t\\resizebox{\\columnwidth}{!}{\n13\t\\begin{tabular}{llcccc}\n14\t\\toprule\n15\tMethod & Sparsity & ms/fwd & tok/s & Overhead \\\\\n16\t\\midrule\n17\tDense & 0\\% & 119.11$\\pm$0.57 & 17{,}195 & --- \\\\\n18\t\\midrule\n19\tKL predictor-only & 30\\% & 126.64$\\pm$0.70 & 16{,}172 & +6.3\\% \\\\ % exp_id: latency_bench\n20\tKL predictor-only & 50\\% & 126.78$\\pm$0.31 & 16{,}154 & +6.4\\% \\\\ % exp_id: latency_bench\n21\t\\midrule\n22\tPredictor + compensation & 30\\% & 129.94$\\pm$0.75 & 15{,}761 & +9.1\\% \\\\ % exp_id: latency_bench\n23\tPredictor + compensation & 50\\% & 129.71$\\pm$0.53 & 15{,}789 & +8.9\\% \\\\ % exp_id: latency_bench\n24\t\\bottomrule\n25\t\\end{tabular}}\n26\t\\end{table}\n27\t\n28\tThe full KL-sparse pipeline adds 6.4\\% overhead to dense inference (126.78 vs.\\ 119.11\\,ms/forward), of which the predictor's 32-layer forward pass contributes 3.17\\,ms (2.7\\%); the remainder arises from mask application and sparse FFN indexing.\n29\tEliminating the compensation network saves an additional $\\sim$2.7\\% latency overhead and 67.2M parameters (the per-layer GEMV required for output rescaling); output-distribution KL thus provides both quality and efficiency advantages over BCE-based approaches.\n30\tThe overhead is near-identical at 30\\% and 50\\% sparsity because the predictor runs the same computation regardless of target sparsity; only the top-$k$ threshold changes.\n31\t\n32\tNote that the current implementation uses unstructured element-wise masks, which do not translate to wall-clock speedup without sparse kernel support.\n33\tThe pipe\n…[truncated 40918 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-001895"
+        },
+        {
+          "source_line": 1896,
+          "timestamp": "2026-05-25T21:19:29.985196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewerguidelines",
+              "prompt": "Extract the complete reviewer guidelines, especially: what reviewers should focus on, how to evaluate soundness, novelty, significance, what makes a paper suitable for main conference vs Findings, how to handle limitations, and any specific instructions about experimental evaluation standards."
+            }
+          },
+          "id": "event-001896"
+        },
+        {
+          "source_line": 1897,
+          "timestamp": "2026-05-25T21:19:38.271734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ARR Reviewer Guidelines Summary\n\n## Core Evaluation Framework\n\nReviewers assess papers across three dimensions:\n\n**Soundness**: Technical correctness and methodological rigor. \"The _soundness_ scores must be justified by the text of the review.\" Low soundness marks require explicit, substantive justification in your review text.\n\n**Excitement**: Personal interest level, orthogonal to soundness. This captures subjective preferences without requiring detailed explanation.\n\n**Overall Recommendation**: Composite judgment reflecting soundness, excitement, novelty, and potential impact for either main conference or Findings tracks.\n\n## What Reviewers Should Focus On\n\n1. **Research Question & Scope**: Verify the contribution addresses a genuine knowledge gap and appropriately frames claims. Papers need not be SOTA—\"SOTA results are neither necessary nor sufficient for a _scientific_ contribution.\"\n\n2. **Methodological Appropriateness**: Assess whether the chosen approach fits the research question. Simpler solutions are preferable when they effectively answer the question.\n\n3. **Evidence Quality**: Examine experimental design, statistical rigor, and reproducibility. Check for \"p-hacking, presenting the _best_ results out of an unknown number of trials.\"\n\n4. **Novelty Standards**: Papers should demonstrate new knowledge, though \"highly similar work X and Y has been published\" requires proof via specific citations from 3+ months before submission.\n\n## Handling Limitations\n\nDo not conflate limitations with weaknesses. The guidelines explicitly state: \"Limitations != weaknesses. No paper is perfect...A good review should not just take the limitations and list them as weaknesses or reasons to reject.\"\n\n## Main Conference vs. Findings Distinction\n\nBoth tracks require sufficient soundness and reproducibility. Main conference papers merit acceptance if \"worthy of the main conference even if you personally are not excited about it,\" based on potential impact. Findings accommodate\n…[truncated 652 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "WebFetch",
+            "elapsed_ms": 8286
+          },
+          "id": "event-001897"
+        },
+        {
+          "source_line": 1898,
+          "timestamp": "2026-05-25T21:21:40.212272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 审稿意见：Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs\n\n---\n\n## 总体评分\n\n**Overall**: 3.5 (Borderline Conference)\n**一句话总结**: 核心思路清晰（用 KL 替代 BCE 训练 sparsity predictor），PPL 改进显著且实验覆盖全面，但缺乏实际推理加速验证、知识密集型任务持续退化、以及若干实验设计 confound 削弱了方法论贡献的说服力。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3.5/5 | 数学框架正确，ablation 全面，但核心 decomposition (signal type vs coupling) 受 MSE 超参不公平和 train-inference mismatch confound 影响；sparsity mismatch (28.5% vs 29.3%) 未充分控制 |\n| **Excitement** | 3.0/5 | 思路自然（end-to-end KL 替代 per-neuron BCE），PPL 改进扎实，但无实际 wall-clock speedup，实用价值待验证 |\n| **Reproducibility** | 4.0/5 | 超参详尽，匿名代码链接提供，3-seed 评估，训练仅 1000 步可复现。部分 seed 排除（Qwen GSM8K）略影响 |\n| **Confidence** | 4/5 | 方法和实验设计在我的专业领域内，细节逐一核实 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 无实际推理加速——核心动机与贡献脱节\n- 具体位置：Table 5 (Appendix A)，§1 (Introduction), §5 (Conclusion)\n- 问题：论文以 \"accelerate large language model inference\" 为动机（Abstract 第一句、§1 第一段），但 Table 5 显示实际推理延迟增加 6.4%（126.78 vs 119.11 ms/fwd），且 Appendix A 明确承认 \"Our contribution is prediction quality and inference simplification (removing the compensation network), not end-to-end latency reduction\"。论文没有集成任何 sparse kernel（Triton block-sparse、cuSPARSE 等），也没有展示任何 sparsity 带来的加速。\n- 为什么影响接收：一篇以推理加速为动机的论文，如果不能证明 sparsity 转化为实际加速，其实用贡献存疑。Reviewer guidelines 要求 \"evidence quality\" 与 claims 匹配。论文的实际贡献更准确描述为 \"predictor training objective 的实证比较\"，但叙事框架暗示了加速效果。\n- 建议修改方向：(a) 至少提供一组 sparse kernel 的 wall-clock 加速数据（即便是近似的），或 (b) 重新定位论文叙事为 \"sparsity prediction quality study\"，明确声明加速不在本文范围内，并调整 Abstract/Introduction 的 framing。\n\n**N2** [critical] 主表 sparsity mismatch 削弱核心比较公平性\n- 具体位置：Table 2 (§4.2)，脚注 ‡，Appendix C (Table 9)\n- 问题：KL predictor 在 30% target 下实际 sparsity 为 28.5%，而 TEAL 在同 target 下为 29.3%——KL 多保留了约 0.8pp 的神经元（约 115 个/层）。Appendix C 尝试用 \"TEAL at 28.5% gives PPL 10.30 vs 10.97 at 30%\" 来论证差异可忽略，但这是线性插值，PPL-sparsity 关系非线性（Figure 6 显示凸曲线）。此外，下游 task 对 sparsity 的敏感度可能更高（§4.6 显示 5pp sparsity 变化导致 MMLU 从 45.86 降至 30.4）。\n- 为什么影响接收：这是主结果表的基准比较。如果 KL 的 14.5% PPL 优势中有一部分来自多保留了 0.8% 的参数，核心 claim 的强度被削弱。\n- 建议修改方向：(a) 对 TEAL 在精确 28.5% sparsity 的 PPL 进行实测（而非插值），并报告对应下游 task 指标；或 (b) 调整 Lagrangian penalty 使 KL predictor 精确命中 30% 然后重新比较。\n\n**N3** [critical] \"Signal type > coupling scope\" 核心 claim 受 MSE 超参公平性影响\n- 具体位置：§4.5 (Per-Layer KL: Signal Type vs. Coupling Scope)，Contribution 第2条（§1），Appendix G (MSE Baseline Configuration)\n- 问题：论文最核心的 insight 之一是 \"signal type gap (9.47 PPL) substantially exceeds the coupling breadth range (2.08 PPL)\"（§4.5, §1 Contribution 2）。但 Appendix G 承认 MSE 使用了 λ_max=1000（vs KL 的 5000），且 2/3 seeds 在 50% sparsity 下 collapse 到 ~5% actual sparsity——说明 MSE 的超参未充分调优。§1 Contribution 2 加了括号注释 \"under shared hyperparameters; dedicated MSE tuning narrows but does not close this gap\"，但未报告 tuned MSE 的具体数值。如果 tuned MSE 能从 18.52 改善到（比如）12-13，则 signal type gap 从 9.47 缩小到 3-4，不再 \"substantially exceed\" coupling breadth range 2.08。\n- 为什么影响接收：这直接影响论文的主要理论贡献。一个核心 claim 不能建立在已知 unfair baseline 上。\n- 建议修改方向：(a) 报告 dedicated MSE tuning 的结果（包括 lr sweep、λ_max sweep 等），并用 tuned MSE 数值重新计算 signal type gap；或 (b) 削弱 claim 的措辞，承认 gap 的量化可能受 MSE 超参影响。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] 知识密集型任务系统性退化，跨架构一致\n- 具体位置：Table 2 (MMLU: TEAL 45.86 vs KL 40.7)，Table 13 (Qwen-14B: TEAL MMLU 71.83 vs KL 63.72)，Table 17 (Mistral: TEAL MMLU 43.5 vs KL 43.3 持平但 GSM8K 反转 15.9 vs 8.6)\n- 问题：KL 在三个模型上均在 MMLU/GSM8K 上落后于 TEAL。§4.2 承认这一现象并在 Appendix T 做了 constraint intervention 分析（Remove valley: MMLU +3.4pp），但这只说明 trade-off 的来源，未解决问题。对于实际部署，MMLU 5pp 的下降是显著的。\n- 建议：(a) 讨论是否可以通过多目标 loss（KL + 知识 task 相关项）缓解；(b) 在 Limitations 中更明确标注这一局限的实际影响范围。\n\n**W2** [warning] C1 target-swap ablation 的因果推断不完整\n- 具体位置：§4.4，Table 3\n- 问题：C1 ablation 试图分离 \"mask 质量\" vs \"gradient coupling\" 的贡献，结论是 \"discovered targets, not training dynamics, as the primary driver\"（§1 Contribution 3）。但 C1 将 KL 的 soft logits 通过 hard threshold (logits > 0) 二值化为 oracle masks，丢失了 ranking 信息。§4.4 承认 \"C1 binarizes soft logits, discarding ranking information that may matter for global top-k allocation\"。这意味着：如果 ranking 信息（而非仅二值 mask）对 global top-k 很重要，C1 的 ≤0.63pp gap 可能低估了 coupling 的真实贡献，因为 BCE 被迫在丢失信息的 targets 上训练。\n- 建议：设计一个不丢失 ranking 的 control——例如让 BCE 用 KL 的 soft scores 做 regression（而非 classification），然后在 TEAL top-k 下评估。\n\n**W3** [warning] n=3 seeds 统计力不足以支撑 task-type split claims\n- 具体位置：§4.2 (Task-Type Split), Table 2\n- 问题：论文声称 KL 在 commonsense 4/4 wins、knowledge 0/2 wins（§4.2），但 n=3 下的 95% CI 大量重叠——论文自己承认 \"95% CIs overlap for individual tasks\"。MMLU global σ=9.5pp 意味着 3 个 seed 中某个可能达到 45%+、另一个可能 26%。这不足以支撑 \"KL consistently improves commonsense but hurts knowledge tasks\" 这样的 pattern-level claim。\n- 建议：(a) 增加 seeds（≥5）或 bootstrap resampling 来量化 task-type split 的显著性；(b) 使用 paired difference（KL - TEAL）的 CI 而非各自的 CI 来判断优劣；(c) 削弱 task-type split 的 claim 措辞至 \"directional observation\"。\n\n**W4** [warning] Per-layer KL 实验存在 train-inference mismatch confound\n- 具体位置：§4.5，Appendix S (Table 19), Appendix R (Table 18)\n- 问题：Per-layer KL (K=1) 训练时只 mask 1/32 层，推理时 mask 所有 32 层，产生严重 distribution shift。K=4 control（Appendix S）显示 MMLU 42.7 > E2E KL 的 40.7，说明 K=4 的 \"near-uniform\" 学习到的 sparsity 分布反而更好——这不是 coupling scope 的效果，而是 allocation pattern 的效果。这使得 \"signal type vs coupling scope\" 的 decomposition 不干净。\n- 建议：承认 K-curve 实验无法完全分离 signal type 和 coupling scope，因为两者通过 allocation pattern 耦合。将 decomposition 定位为 \"suggestive\" 而非 \"conclusive\"。\n\n---\n\n## 小问题（不影响接收）\n\n1. **Abstract 用词**：\"renders post-hoc compensation networks redundant\" 只验证了 FastForward-style compensation（Appendix J），对其他类型（如 SliceGPT 式正交投影）未测试，建议改为 \"renders FastForward-style compensation redundant\"。\n\n2. **Conclusion `\\enlargethispage`**：使用了 `\\enlargethispage{\\baselineskip}` 来挤压排版，虽然不违规但暗示正文接近 8 页上限。\n\n3. **Table 2 BCE global 行**（30% sparsity）：无 ± 标注，似乎是 single seed，但 KL 和 BCE uniform 有 3-seed。建议统一或标注。\n\n4. **\"Output-distribution distillation\" 标题措辞**：传统 distillation 指 teacher-student 参数压缩，但本文的 base model 被冻结、predictor 是额外参数。用 \"Output-Distribution Alignment Training\" 可能更准确。这是措辞偏好，不影响技术正确性。\n\n5. **Figure 2 (page 4)**：Lagrangian dynamics 图的右轴 actual sparsity 收敛到 0.28（而非 0.30），与 N2 中指出的 sparsity mismatch 一致。建议在图注中明确注明。\n\n6. **Appendix 引用格式**：多处 appendix 子节使用 `\\subsection` 但编号风格不一致（如 B.1, B.2 vs 独立 section C, D...）。\n\n---\n\n## Questions（需要作者回答）\n\n**Q1**: §4.5 提到 \"dedicated MSE tuning narrows but does not close this gap\"——tuned MSE 的具体 PPL 是多少？用了哪些超参 sweep？这一信息对评估 Contribution 2 的强度至关重要。\n\n**Q2**: Lagrangian penalty 在 30% target 下 λ 达到 cap (5000) 且 actual sparsity 仍为 28.5%（Table 9）。是否尝试过更高的 λ_max 来精确命中 30%？如果 λ_max=10000 能命中 30%，KL 的 PPL 会如何变化？\n\n**Q3**: 为什么不在 TEAL 框架下直接用 KL predictor 的 soft scores（而非 hard threshold）作为 allocation 依据？当前 soft→hard 的转换（推理时 top-k thresholding）是否引入了不必要的信息损失？\n\n**Q4**: C4 control (Appendix V) 显示 C4-trained predictor PPL 大幅恶化（11.55 vs 8.82），但 MMLU 几乎不变（40.0 vs 40.6）。这是否暗示 PPL 和 downstream task 之间的相关性比预期弱？如果是，用 PPL 作为主要指标是否合适？\n\n**Q5**: 论文是否考虑过 mixed objective（如 KL + task-specific loss）来缓解知识密集型任务的退化？这是否会破坏 end-to-end coupling 的优势？\n\n---\n\n## Missing References\n\n1. **Wanda (Sun et al., 2024)** 在 §2 Related Work 被引用但仅作为 \"one-shot pruning\" 提及。该方法也涉及 magnitude-based neuron selection 与 output-aware pruning 的比较，与本文的 BCE vs KL 主题相关，建议在 discussion 中更深入比较。\n\n2. 缺少对 **PowerInfer (Song et al., 2024a)** 的 sparsity-aware GPU-CPU offloading 方案的讨论——这是 activation sparsity 最直接的部署方案，与本文的 \"无 sparse kernel 加速\" 局限高度相关。\n\n---\n\n## 主要优势\n\n1. **核心思路自然且 well-motivated**：per-neuron BCE 训练 + global top-k 推理之间的 mismatch 是一个真实且未被充分研究的问题，用 end-to-end KL 来弥合这个 gap 逻辑清晰。\n\n2. **PPL 改进显著且稳定**：14.5% at 30%（3-seed σ=0.02）、50% at 50%，跨 WikiText-2 和 C4 OOD 一致，不太可能是 noise。\n\n3. **Ablation 覆盖异常全面**：5 种 loss function × Gumbel/STE × 有无 penalty、K-curve coupling breadth sweep、C1 target-swap、compensation redundancy、predictor capacity sweep、temperature sensitivity——这是我见过的最全面的 ablation suite 之一。\n\n4. **Target-swap ablation (C1) 设计巧妙**：虽然存在 confound（W2），但这个实验设计本身提供了有价值的 insight——KL 的贡献更多是发现了更好的 mask targets 而非 gradient coupling 本身。\n\n5. **诚实的 limitation reporting**：论文坦诚报告了知识任务退化、sparsity mismatch、MSE 超参限制、无 speedup 等负面结果，这是好的科学实践。\n\n6. **跨架构验证**（LLaMA-8B, Mistral-7B, Qwen-14B）提供了一定的泛化证据，尽管深度有限。\n\n7. **可复现性好**：完整超参、匿名代码、3-seed 评估、训练仅需单卡 ~45 分钟。\n\n---\n\n## Overall Assessment 详细理由\n\n评分 3.5 (Borderline Conference)。\n\n**支持接收的因素**：核心思路清晰、PPL 改进显著且一致、ablation 极其全面、诚实的 negative results reporting。\n\n**阻碍接收的因素**：(1) 无实际推理加速是最大缺陷——推理加速是论文的 stated motivation，但最终只展示了 6.4% 的额外开销；(2) 知识密集型任务系统性退化限制了实用性；(3) \"signal type > coupling\" 的核心理论 claim 受 MSE baseline 公平性影响；(4) 主表 sparsity mismatch 需要更严格的控制。\n\n如果 N1（至少重新 frame 叙事）、N2（matched sparsity 比较）、N3（报告 tuned MSE 结果）能在 revision 中解决，我愿意将评分提升至 4.0。",
+              "reviewer_id": "1",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-001898"
+        },
+        {
+          "source_line": 1899,
+          "timestamp": "2026-05-25T21:21:43.826003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3613
+          },
+          "id": "event-001899"
+        },
+        {
+          "source_line": 1900,
+          "timestamp": "2026-05-25T21:21:53.165280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/review_round_28/_pdf_images"
+            }
+          },
+          "id": "event-001900"
+        },
+        {
+          "source_line": 1901,
+          "timestamp": "2026-05-25T21:21:53.165749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 0
+          },
+          "id": "event-001901"
+        },
+        {
+          "source_line": 1902,
+          "timestamp": "2026-05-25T21:22:01.879120+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿意见已提交给 Review Director。\n\n**评分总结**：Overall 3.5 (Borderline Conference)，Soundness 3.5，Excitement 3.0，Reproducibility 4.0，Confidence 4。\n\n**3 个 Must-Fix 问题**：\n1. 无实际推理加速（6.4% overhead），与 acceleration 叙事脱节\n2. 主表 sparsity mismatch（KL 28.5% vs TEAL 29.3%）未严格控制\n3. \"Signal type > coupling scope\" 核心 claim 依赖未充分调优的 MSE baseline\n\n**4 个 Should-Fix**：知识任务系统性退化、C1 ablation 因果推断 confound（二值化丢失 ranking）、n=3 统计力不足、K-curve decomposition 受 train-inference mismatch 污染。\n\n如果 N1-N3 在 revision 中解决，评分可提升至 4.0。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1"
+          },
+          "id": "event-001902"
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "messages": [
+        {
+          "source_line": 1903,
+          "timestamp": "2026-05-25T21:24:32.912204+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉分享：Reviewer 2 的审稿意见\n\n请逐条阅读 Reviewer 2 的意见，对每个 Weakness 和主要观点用 **[AGREE]** 或 **[REBUT]** 回应，并简要说明理由。重点关注与你自身评审有分歧或互补的部分。\n\n---\n\n**Reviewer 2 评分**: Overall 3.0 (Findings), Soundness 3.5, Excitement 2.5, Reproducibility 4.0, Confidence 4\n\n**核心立场**: 方法增量（KL+Gumbel-Sigmoid 是已有技术组合），论文在 method paper 和 empirical study 之间定位模糊，适合 Findings 而非 main conference。\n\n---\n\n### Reviewer 2 的 Weaknesses:\n\n**W1 [Must-Fix]** Contribution #4（task-type analysis, n=3）作为正式贡献严重不足。仅 3 个 task 类别无法构成有意义的 pattern claim。GSM8K 归入\"knowledge-intensive\"值得商榷。建议降级为 observation 而非 contribution。\n\n**W2 [Must-Fix]** 核心方法新颖性有限——KL distillation + Gumbel-Sigmoid + TEAL top-k 是三个已有技术的组合。论文在 method paper 和 empirical study 之间摇摆。target-swap 发现实际上削弱了方法论叙事（表明 end-to-end coupling 机制并非关键）。建议明确定位为 empirical investigation。\n\n**W3 [Should-Fix]** 与 MaskLLM 的区分论证不够深入。两者都用 frozen weights + learnable masks + KL divergence，区别在 static N:M vs contextual per-token，但未分析这一区别的方法论含义。\n\n**W4 [Should-Fix]** Table 1 taxonomy 的贡献性质模糊——只指出\"我们是第一个在这个格子里的方法\"，未从分类中推导出 non-obvious 的预测或设计原则。\n\n**W5 [Should-Fix]** Abstract 中 \"renders post-hoc compensation networks redundant\" 表述过强。Table 4 在 50% sparsity 下 compensation 仍有额外增益。\n\n**W6 [Should-Fix]** 模型规模覆盖 7B-14B 有限，Conclusion 用语暗示更广泛适用性。未验证 70B+ 模型。\n\n**W7 [Nice-to-have]** 训练数据单一（WikiText-103 only）。\n\n**W8 [Nice-to-have]** 术语不一致（predictor-TEAL / KL predictor / our predictor 混用）。\n\n---\n\n### Reviewer 2 的 Questions:\n\nQ1. Target-swap 是否意味着更简单的两阶段流程（先 KL 生成 target，再 BCE 训练）能达到相同效果？\nQ2. 梯度分析（KL 通过 Jacobian 耦合）与 target-swap 结果（coupling 非关键）如何调和？\nQ3. GSM8K 归入 \"knowledge-intensive\" 的分类依据？\nQ4. 50% sparsity 下所有方法 collapse，contextual sparsity prediction 在高稀疏度下是否本质不可行？\nQ5. Late-layer starvation 与 knowledge-intensive 任务退化是否有因果关系？\n\n---\n\n请逐条回应，特别关注：\n1. 你是否同意 W2 对 novelty 的判断？\n2. W1 与你提出的 N3（n=3 统计力不足）是否指向同一问题？\n3. R2 给出 Excitement 2.5，你给 3.0——你认为 target-swap finding 的 insight 价值是否足够支撑更高的 excitement？"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-001903"
+        },
+        {
+          "source_line": 1904,
+          "timestamp": "2026-05-25T21:26:14.999709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 对 Reviewer 2 意见的交叉回应\n\n---\n\n### Weaknesses 逐条回应\n\n**[AGREE] R2-W1**: Contribution #4（task-type analysis）作为正式 contribution 确实不足。\n- 我在自己的 W3 中也指出 n=3 seeds 下 95% CI 大量重叠，无法支撑 task-type split 的 pattern-level claim。R2 进一步指出 task 类别本身也有问题（GSM8K 归入 knowledge-intensive 值得商榷——GSM8K 更多是 multi-step reasoning 而非 factual knowledge retrieval），这一点我漏掉了，补充同意。\n- 两处指向同一核心问题：统计力不足 + 分类标准模糊，不应作为 numbered contribution。降级为 \"preliminary observation\" 是合理的。\n- **与我的 W3 的关系**：确实指向同一问题的不同侧面——我侧重 n=3 的统计力，R2 侧重 contribution framing 和分类合理性。两者互补。\n\n**[REBUT] R2-W2**: 核心方法新颖性有限——部分同意但不完全同意。\n- R2 认为 \"KL + Gumbel-Sigmoid + TEAL 是三个已有技术的组合\"，这在技术组件层面是事实。但我认为 R2 低估了两点：\n  1. **问题识别的价值**：per-neuron BCE 训练 vs global top-k 推理之间的 mismatch 此前未被明确提出和系统研究。ARR reviewer guidelines 明确指出 \"SOTA results are neither necessary nor sufficient for a scientific contribution\"——识别一个被忽视的问题本身有贡献。\n  2. **Target-swap finding 的 insight 价值**：R2 认为 target-swap \"削弱了方法论叙事\"，但我认为恰恰相反——发现 KL 的贡献主要在于 discovering better masks 而非 end-to-end coupling 本身，这是一个 non-obvious 且 actionable 的 insight（实际含义：可以 KL 生成 oracle + BCE 快速蒸馏，两阶段部署更实用）。\n- **但我同意 R2 的定位建议**：论文确实在 method paper 和 empirical study 之间摇摆。如果明确定位为 \"empirical investigation of training objectives for sparsity predictors\"，叙事会更诚实也更有力。当前以 \"method contribution\" 为主的 framing（§1 列了 4 条 contributions，前 3 条都是方法导向的）与论文的实际内容不完全匹配。\n- **结论**：novelty 不是零，但 R2 指出的 framing 问题是真实的。适当 reposition 后论文的贡献更清晰。\n\n**[AGREE] R2-W3**: 与 MaskLLM 的区分确实不够深入。\n- §1 仅用一句话区分（\"Unlike MaskLLM, which applies KL to static N:M weight masks, our predictors generate contextual masks that vary per token\"），但 static→contextual 的转变在 KL training 框架下有什么方法论含义？例如：contextual masks 的 Gumbel 探索空间比 static N:M 大得多，是否需要不同的 temperature schedule？KL landscape 是否有质的不同？这些都没有讨论。\n- 补充：MaskLLM 使用 Gumbel-Softmax（在 N:M pattern 上），本文使用 Gumbel-Sigmoid（在逐 neuron 上）。这一选择差异的理由也未讨论。\n\n**[AGREE] R2-W4**: Table 1 taxonomy 的贡献确实偏弱。\n- 论文将 taxonomy 放在 §3.7 占据约半页篇幅，但仅指出 \"我们占据 Per-token × Coupled 这个格子\"。一个有价值的 taxonomy 应产生可验证的预测——例如 \"Coupled > Intermediate > Decomposed 在任何 granularity 下都成立\" 或 \"Static × Coupled 是 diminishing returns\"。论文虽然在 §4.5 的 K-curve 实验中部分测试了 coupling axis，但没有系统地验证 taxonomy 的预测力。\n- 不过这是 should-fix 而非 must-fix，因为 taxonomy 不是论文的核心 claim。\n\n**[REBUT] R2-W5**: Abstract 中 \"renders compensation redundant\" 的评判我部分不同意。\n- R2 说 \"Table 4 在 50% sparsity 下 compensation 仍有额外增益\"。但我重新检查了 Table 4（Ablation table，§4.5）——该表展示的是 loss function 的 ablation（forward KL, JSD, reverse KL, STE, MSE, BCE variants），不包含 compensation 的 ablation。Compensation redundancy 在 §4.5 最后一段和 Appendix J 中讨论，Appendix J 明确报告 compensation \"provides no quality improvement over the KL predictor alone\"。\n- 但我在自己的 Minor Issue #1 中也指出了类似问题：Abstract 说 \"renders post-hoc compensation networks redundant\" 仅验证了 FastForward-style compensation，对其他类型未测试。所以 overclaiming 的方向是对的，但 R2 引用的证据（Table 4）不准确。\n\n**[AGREE] R2-W6**: 模型规模覆盖有限。\n- 7B-14B 确实无法支撑对更大规模的推断。Conclusion 用了 \"generalizing to Mistral-7B and Qwen-14B\"，这本身措辞还算克制，但论文没有讨论为什么不测试更大模型（计算资源限制？单卡 96GB 不够？）。在 70B+ 模型上，per-neuron sparsity pattern 可能有质的不同。\n- 不过 ARR guidelines 也提醒 \"demanding excessive additional experiments when claims don't require them\" 是常见 reviewer bias (H6)。论文没有声称适用于 70B+，这更多是 scope limitation 而非 flaw。\n\n**[AGREE] R2-W7**: 训练数据单一。\n- 同意是 nice-to-have。Appendix V 的 C4 control 表明换数据后 PPL 从 8.82 恶化到 11.55，这本身是一个 concern——说明 predictor 对训练数据有 non-trivial sensitivity。但论文已在 Limitations 和 Appendix 中讨论了这一点。\n\n**[AGREE] R2-W8**: 术语不一致。\n- 确认存在。predictor-TEAL / KL predictor / our predictor / \"Ours\" 在正文中混用。Minor issue，但影响可读性。\n\n---\n\n### Reviewer 2 的 Questions 回应\n\n**Q1** (两阶段流程是否等效): 这是 C1 target-swap ablation 的直接推论。论文在 §4.4 最后确实提出了这个实用含义（\"once KL-derived oracles are extracted, simpler BCE predictors can be distilled from them\"）。答案是 yes，≤0.63pp gap。但如我在 W2 中指出，二值化丢失 ranking info 可能使这个 gap 被低估。\n\n**Q2** (梯度分析 vs target-swap 的张力): 这是论文叙事中的一个真实 tension。§3.6 花了大量篇幅分析 KL 的 Jacobian coupling 如何产生优势，但 §4.4 的 C1 结果暗示 coupling 机制本身不是关键。论文在 §3.6 末尾加了 caveat（\"This analysis is suggestive; empirical evidence in §4.4 shows KL-discovered mask targets drive inference quality\"），但 §1 Contribution 2 仍然以 \"signal type matters more than coupling\" 作为核心 claim 之一。这两部分需要更好地调和叙事。\n\n**Q3** (GSM8K 分类): 同意 R2，GSM8K 更接近 multi-step reasoning 而非 knowledge retrieval。论文将其与 MMLU 一起归入 \"knowledge-intensive\" 不准确。\n\n**Q4** (高 sparsity 不可行): 论文数据支持这一观点——50% 时所有方法在 MMLU/GSM8K 上接近 random。但这可能是 contextual sparsity + TEAL allocation 的联合限制，而非 contextual sparsity prediction 本身的限制。需要与其他 allocation 策略（如 adaptive per-layer budgets）对比才能下结论。\n\n**Q5** (late-layer starvation vs knowledge task): Appendix T 的 constraint analysis（Protect late layers: MMLU 不变 40.7→40.7；Remove valley: MMLU +3.4pp）暗示 late-layer starvation 不是 MMLU 退化的主因——保护 late layers 并未改善 MMLU。相反，middle-layer valley 才是关键。这一分析论文已做，但散落在 appendix 中，值得在正文中强调。\n\n---\n\n### Director 提出的三个聚焦问题\n\n**1. 是否同意 R2 对 novelty 的判断？**\n\n部分同意。技术组件确实不新（KL、Gumbel-Sigmoid、TEAL 均为已有工具），但 **问题识别** 和 **target-swap insight** 有独立价值。我不认为这是一篇 \"零 novelty\" 的论文，但也不是一篇以方法创新为主的论文。R2 建议 reposition 为 empirical study 我认为是对的——这样论文的贡献（全面的 objective 比较、target-swap 发现、K-curve 分析）反而更突出。\n\n如果 reposition 为 empirical study，Excitement 可能略降（不是一个新方法），但 Soundness 的要求也相应调整（empirical study 的标准是比较是否公平、分析是否深入，而非方法是否 novel）。\n\n**2. R2-W1 与我的 W3 是否指向同一问题？**\n\n是的，但角度不同：\n- 我的 W3：n=3 seeds 下 CI 重叠，task-type split 的统计证据不足\n- R2-W1：task-type analysis 作为 numbered contribution 不够格，且 GSM8K 分类有误\n\n两者共同的建议是：将 Contribution #4 从 \"contribution\" 降级为 \"observation\"，并修正 task 分类。这在 revision 中容易解决。\n\n**3. Target-swap finding 是否支撑更高的 excitement？**\n\n这是我和 R2 评分差异（Excitement 3.0 vs 2.5）的核心分歧。我认为 target-swap finding 有 **moderate insight value**：\n- 它揭示了 KL training 的价值主要来自 mask discovery 而非 gradient coupling——这是 counter-intuitive 的（论文花了 §3.6 一整节论证 coupling 的重要性，结果 §4.4 表明 coupling 本身不是关键）\n- 它有直接实用含义（两阶段部署）\n- 它为未来工作提供了清晰方向（如何更高效地搜索好的 mask targets？）\n\n但 R2 的反驳也有道理：如果 target-swap 意味着 end-to-end coupling \"不重要\"，那论文的方法论叙事（§3.4 KL objective、§3.6 gradient analysis）的 motivation 就被削弱了。insight 本身有价值，但对论文自身的叙事产生了 self-undermining effect。\n\n**最终判断**：我维持 Excitement 3.0——target-swap finding + 全面的 objective comparison 足以支撑 \"Interesting: I might mention some points of this paper\"，但不足以达到 3.5+。R2 的 2.5 (\"Potentially Interesting\") 也可以理解，分歧在于对 empirical insight 的主观估值。\n\n---\n\n### 综合评估调整\n\n听取 R2 意见后，我对整体评分的看法：\n- 维持 **Overall 3.5 (Borderline Conference)**\n- 如果论文 reposition 为 empirical study 并解决 N1-N3，有潜力到 4.0\n- 如果不做 revision，R2 的 3.0 (Findings) 也是合理评分\n- 最可能的 consensus 区间：3.0-3.5，取决于 AC 对 empirical contribution 的认可度",
+              "reviewer_id": "1",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-001904"
+        },
+        {
+          "source_line": 1905,
+          "timestamp": "2026-05-25T21:26:18.613290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3613
+          },
+          "id": "event-001905"
+        },
+        {
+          "source_line": 1906,
+          "timestamp": "2026-05-25T21:26:30.302362+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交。主要判断：\n\n- **R2-W1 (task-type contribution 不足)**: AGREE，与我的 W3 互补，共同建议降级为 observation\n- **R2-W2 (novelty 有限)**: 部分 REBUT——技术组件不新，但问题识别和 target-swap insight 有独立价值；同意 reposition 为 empirical study 的建议\n- **R2-W3/W4 (MaskLLM 区分 / taxonomy)**: 均 AGREE\n- **R2-W5 (compensation overclaim)**: REBUT R2 引用的证据 (Table 4 不含 compensation ablation)，但同意 overclaiming 方向\n- **R2-W6/W7/W8**: 均 AGREE\n\nExcitement 分歧 (3.0 vs 2.5) 核心在于 target-swap insight 的估值——我认为它 counter-intuitive 且 actionable，但承认它对论文自身叙事有 self-undermining effect。维持 Overall 3.5，consensus 区间 3.0-3.5。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_ddde40053945c09c17d4aaa8ca8e5b93:reviewer_1"
+          },
+          "id": "event-001906"
+        }
+      ]
+    }
+  ]
+}

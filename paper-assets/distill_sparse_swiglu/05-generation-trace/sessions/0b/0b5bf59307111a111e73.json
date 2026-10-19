@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b5bf59307111a111e73",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops verify eval readiness 34887",
+  "task_key": "worker_ops_verify-eval-readiness-34887_20260518T173758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-eval-readiness-34887_20260518T173758_result.json",
+    "occurrence": 1,
+    "bytes": 3076,
+    "sha256": "32d96cb305dd25853880addd0a33cff50820303172890d51388150ac9e28d99c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here's the report:\n\n---\n\n## Eval 环境就绪状态 (westd-34887)\n\n### 1. Eval 环境: **就绪 (Y)**\n\n- **Eval 脚本**: 15+ eval 脚本存在于 `/root/distill_sparse_swiglu/src/`，当前正在使用 `benchmark_eval.py`\n- **HF_HUB_OFFLINE**: **不在源代码中**，而是在启动命令中通过环境变量设置 (`export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`)。当前运行的两个 eval 进程已正确设置\n- **HF Cache**: `/root/autodl-tmp/.hf_cache/hub/` 包含所有需要的模型和数据集:\n  - 模型: Llama-3.1-8B, Mistral-7B-v0.3, Qwen2.5-14B\n  - 数据集: wikitext, ai2_arc, winogrande, mmlu, gsm8k, c4, SlimPajama-6B\n- **本地模型副本**: `/root/autodl-tmp/models/` 有 llama-3.1-8b, mistral-7b, qwen2.5-14b\n\n### 2. GPU 状态: **两卡均在跑 eval**\n\n| GPU | 任务 | 内存 | 进度 |\n|-----|------|------|------|\n| cuda:0 | `kl_sparsity35_s42_eval_teal` | 55371/97887 MiB | GSM8K generate_until ~37% |\n| cuda:1 | `kl_sparsity45_s42_eval_teal` | 55371/97887 MiB | GSM8K generate_until ~39% |\n\n两卡正在跑 benchmark_eval (wikitext2, arc_challenge, winogrande, mmlu, gsm8k)，预计还需 ~20-30 分钟完成 GSM8K。\n\n### 3. Checkpoint 清单 (westd-34887)\n\n| Sparsity | Checkpoint | Seeds |\n|----------|-----------|-------|\n| 30% | `kl_sparsity30_s42_v3`, `kl_30pct_s123`, `kl_30pct_s456`, `kl_sparsity30_s123`, `kl_sparsity30_s456` | 42/123/456 |\n| 35% | `kl_sparsity35_s42` | 42 |\n| 45% | `kl_sparsity45_s42` | 42 |\n| 50% | `kl_50pct_s123`, `kl_50pct_s456`, `mvp_kl_norm_v2_s42/s123/s456` | 42/123/456 |\n| 70% | `kl_sparsity70_s42` | 42 |\n| BCE variants | `mvp_bce_s42/s123/s456`, `bce_isocompute_v2_s42`, `bce_isocompute_v3_s42/s123/s456` | multi |\n| Compensation | `kl_comp_30pct_s42`, `kl_comp_30pct_s123` | 42/123 |\n| Mistral | `mistral_kl_s42`, `mistral_kl30_s42`, `mistral_kl70_s42` | 42 |\n| Qwen-14B | `qwen14b_kl30_s42`, `qwen14b_bce30_s42` | 42 |\n| Ablation | `tau_ablation_fixed01`, `tau_ablation_fixed05`, `c3_coupling_oracle_s42`, `ste_baseline_s42` | 42 |\n\n**缺少 25% 和 40% sparsity 的 checkpoint。**\n\n### 4. c1_ablation_bce_kl_targets_s123: **实际已成功完成**\n\n- 在 **westd-41718** 上运行（非 34887）\n- Registry 标记为 `failed`，原因: `\"startup recovery: process dead, no active cron monitor\"` — 这是监控系统的误报\n- **实际训练完成**: 1000 步，876.8s\n- **Checkpoint 存在**: `westd-41718:/root/distill_sparse_swiglu/checkpoints/c1_ablation_bce_kl_targets_s123/predictor_bce_kl_targets.pt` (145MB)\n- **结果**: WikiText-2 PPL = **11.71** (sparsity 0.500)，KL reference PPL = 11.79，BCE reference PPL = 22.51\n- 结论: BCEwithKLtargets (11.71) ≈ KL (11.79)，成功复现 C1 causal ablation hypothesis\n\n### 5. 需要的修复\n\n- **无阻塞项**: eval 环境就绪，当前两个 eval 已在运行\n- **Registry 更正**: c1_s123 应从 `failed` 更新为 `succeeded`\n- **HF_HUB_OFFLINE 位置**: 未硬编码在脚本中，依赖启动命令传入。不影响功能但建议注意"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-eval-readiness-34887.md"
+}

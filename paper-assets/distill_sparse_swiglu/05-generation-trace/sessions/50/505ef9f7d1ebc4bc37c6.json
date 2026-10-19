@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "505ef9f7d1ebc4bc37c6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval lm eval teal 50pct",
+  "task_key": "worker_eval_lm_eval_teal_50pct_20260516T003709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_lm_eval_teal_50pct_20260516T003709_result.json",
+    "occurrence": 1,
+    "bytes": 249,
+    "sha256": "a2ff43da48b6b40091946ebc7a9b3009744d0dc5bccb691d06abd2d99f1bfaa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本 `/root/distill_sparse_swiglu/src/lm_eval_teal.py` 已就绪。两块 GPU 目前满载：\n- cuda:0: 57.8GB（mistral_dense eval）\n- cuda:1: 37.7GB（mistral_kl eval + KL sparse rerun）\n\n270 秒后自动检查 GPU 状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-lm-eval-teal-50pct.md"
+}

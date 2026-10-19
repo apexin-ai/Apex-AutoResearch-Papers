@@ -1,0 +1,16 @@
+{
+  "exp_id": "d030_kl40_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:18:45.733Z",
+    "updated_at": "2026-05-16T05:56:17.537Z",
+    "hypothesis": "D033: KL 40% sparsity with UNIFORM per-layer allocation — 定位 allocation 修复的精确 threshold。30% uniform MMLU=40.61%（修复有效），50% uniform MMLU=27.77%（修复失效）。40% 是 threshold 精确定位的关键数据点。",
+    "notes": "Director 确认方案 B：训练专用 40% predictor（非复用 30%/50% predictor eval）。流程：train.py --sparsity_target 0.4 (1000步, ~45min) → evaluate.py --sparsity_target 0.4 + lm_eval downstream with uniform allocation。排在 BCE v3 完成后用同一张卡（cuda:1）。与 30%/50% 保持一致，每个 sparsity level 用专用 predictor。"
+  },
+  "timestamp": "2026-05-16T05:56:17.704488+00:00",
+  "trigger": "update_registry"
+}

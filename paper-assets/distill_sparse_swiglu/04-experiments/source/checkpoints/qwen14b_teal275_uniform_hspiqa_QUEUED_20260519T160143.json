@@ -1,0 +1,18 @@
+{
+  "exp_id": "qwen14b_teal275_uniform_hspiqa",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:58:55.851Z",
+    "updated_at": "2026-05-19T16:01:42.823Z",
+    "spec": {
+      "hypothesis": "TEAL@27.5% uniform hellaswag+piqa supplement for Qwen-14B. Completing 6-task alignment for 14B comparison table.",
+      "parent": "qwen14b_teal275_uniform_eval_v3"
+    }
+  },
+  "timestamp": "2026-05-19T16:01:43.269951+00:00",
+  "trigger": "update_registry"
+}

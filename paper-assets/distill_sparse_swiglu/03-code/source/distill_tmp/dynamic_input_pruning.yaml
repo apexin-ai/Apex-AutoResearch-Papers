@@ -1,0 +1,26 @@
+paper_key: "Efficient LLM Inference using Dynamic Input Pruning and Cache-Aware Masking"
+title: "Efficient LLM Inference using Dynamic Input Pruning and Cache-Aware Masking"
+venue: "MLSys 2025"
+full_text_available: false
+
+research:
+  baselines: ["dense baseline (streaming from Flash)", "magnitude-based pruning"]
+  metrics:
+    - {name: "perplexity", direction: "lower_better"}
+    - {name: "memory reduction", direction: "higher_better"}
+    - {name: "throughput increase", direction: "higher_better"}
+  datasets:
+    - {name: "not specified in abstract", size: "N/A"}
+  ablation_dimensions: ["sparsity level", "cache-aware masking", "LoRA fine-tuning"]
+  training_recipe: {optimizer: "not specified", lr: "not specified", hardware: "mobile devices"}
+  method_family: "predictor-free dynamic sparsification"
+
+positioning:
+  core_claim: "Predictor-free magnitude-based dynamic input pruning with cache-aware masking achieves 46% memory reduction and 40% throughput increase on SwiGLU models with <0.1 PPL loss."
+  key_results: "On Phi-3-Medium: 46% memory reduction, 40% throughput increase, <0.1 perplexity loss vs dense baseline."
+  limitations: ["requires minimal fine-tuning with LoRA", "focused on mobile/edge deployment"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

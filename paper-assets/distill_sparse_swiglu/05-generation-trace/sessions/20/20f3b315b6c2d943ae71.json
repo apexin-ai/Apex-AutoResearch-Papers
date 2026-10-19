@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20f3b315b6c2d943ae71",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval kl only s0 rerun",
+  "task_key": "worker_eval_kl_only_s0_rerun_20260515T181141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl_only_s0_rerun_20260515T181141_result.json",
+    "occurrence": 1,
+    "bytes": 528,
+    "sha256": "1aacf7db87f22da314bcff0959fe655bce1324aafb4f117e9a1c566fc1fdfcc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。kl_only_s0 用 seq_len=2048 重跑结果：\n\n| 指标 | 值 | 验证 |\n|------|-----|------|\n| true_dense_ppl | 6.12 | ≈6.12 ✓ |\n| predictor_hard_mask_ppl | 9.19 | — |\n| teal_sparse_ppl | 12.03 | — |\n| model_level_sparsity | 0.499 | ≈0.498 ✓ |\n| ppl_increase_vs_true_dense_pct | 96.57% | — |\n\n结果与原 seq_len=1024 的 eval 一致（说明该 checkpoint 对 seq_len 不敏感）。Registry metrics 和 notes 已更新，标注了重跑原因（seq_len 1024→2048 修正）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kl-only-s0-rerun.md"
+}

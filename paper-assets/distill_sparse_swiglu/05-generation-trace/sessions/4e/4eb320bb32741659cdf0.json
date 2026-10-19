@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eb320bb32741659cdf0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "train multiseed kl50 cuda0",
+  "task_key": "worker_train_multiseed_kl50_cuda0_20260517T101855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_multiseed_kl50_cuda0_20260517T101855_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "681bff4478e634baacf3eb95f2a2e0d317a7f999edbda360f2eb02a45b91afc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交：\n- **脚本**: `/root/distill_sparse_swiglu/scripts/multiseed_kl50.sh`\n- **日志**: `/root/distill_sparse_swiglu/logs/multiseed_kl50.log`\n- **PID**: 22258 (bash) → 22260 (seed=123 训练中)\n- **GPU**: cuda:0 only (CUDA_VISIBLE_DEVICES=0)\n\n串行流程：train s123 → eval s123 → train s456 → eval s456。预计 ~1h 完成，20 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-multiseed-kl50-cuda0.md"
+}

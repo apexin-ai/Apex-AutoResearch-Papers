@@ -1,0 +1,695 @@
+# paper research
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/chats/worker_paper_research_20260516T091853.jsonl`
+- **Structured JSON:** [`bbd119f77a4d40402915.json`](../../sessions/bb/bbd119f77a4d40402915.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+21 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T09:20:45.025999+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/literature_map.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/literature_map.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T09:20:45.026799+00:00_
+
+1	# Literature Map: KL Distillation for Sparse SwiGLU Activation Prediction
+2	# Last updated: 2026-05-15
+3	# Survey scope: 2023-2026, 4 directions
+4	
+5	# =============================================================================
+6	# Direction 1: KL distillation for structured/activation sparsity
+7	# Finding: NO prior work uses KL to train an activation sparsity PREDICTOR.
+8	# Existing predictors use BCE (DejaVu, ShadowLLM). SPON uses KL but for
+9	# learnable bias correction, not predictor training. This is our novelty.
+10	# =============================================================================
+11	
+12	- title: "Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models"
+13	  authors: [Haotian Xu, Jiannan Yang, Tian Gao, Tsui-Wei Weng, Tengfei Ma]
+14	  venue: ICML 2026
+15	  year: 2026
+16	  arxiv_id: "2512.12744"
+17	  category: direct-competitor
+18	  role: "最接近的KL蒸馏用于稀疏性的工作——但SPON训练的是可学习bias项而非predictor"
+19	  key_finding: "SPON注入input-independent learnable activation vectors作为sparse computation的anchor，用KL散度(dense vs sparse logits)做distribution matching训练，训练后吸收进bias项，零推理开销"
+20	  relevance_to_us: "SPON证明KL divergence比BCE/MSE更适合sparsity场景的distribution matching。但SPON是全局bias correction而非per-token predictor——我们的predictor方案能实现input-dependent的sparsity pattern，比SPON更灵活。SPON在50-60% sparsity下测试，与我们目标一致"
+21	
+22	- title: "Compact Language Models via Pruning and Knowledge Distillation"
+23	  authors: [Saurav Muralidharan, Sharath Turuvekere Sreenivas, Raviraj Joshi, Marcin Chochowski, Mostofa Patwary, Mohammad Shoeybi, Bryan Catanzaro, Jan Kautz, Pavlo Molchanov]
+24	  venue: NeurIPS 2024
+25	  year: 2024
+26	  arxiv_id: "2407.14679"
+27	  category: method-component
+28	  role: "KL蒸馏用于结构化剪枝后恢复——验证logit-only KL优于intermediate matching"
+29	  key_finding: "Minitron用logit-only forward KL divergence做structured pruning后的distillation recovery，发现仅用KL loss（不用CE或intermediate matching）效果最好，学生模型继承了teacher的inter-token关系和confidence calibration"
+30	  relevance_to_
+…[truncated 14284 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T09:20:45.027084+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T09:20:45.027256+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T09:20:45.027410+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "logit distillation knowledge distillation LLM compression forward KL 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "logit distillation knowledge distillation LLM compression forward KL 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T09:20:45.027533+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "output distribution preservation sparse inference KL divergence 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "output distribution preservation sparse inference KL divergence 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T09:20:45.027650+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "forward KL reverse KL distillation neural network pruning comparison 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "forward KL reverse KL distillation neural network pruning comparison 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T09:20:45.027811+00:00_
+
+Web search results for query: "logit distillation knowledge distillation LLM compression forward KL 2024 2025"
+
+Links: [{"title":"Preprint. A Survey of On-Policy Distillation for Large Language Models","url":"https://arxiv.org/pdf/2604.00626"},{"title":"BiLD: Bi-directional Logits Difference Loss for Large ...","url":"https://aclanthology.org/2025.coling-main.78.pdf"},{"title":"Advancing Model Refinement: Muon-Optimized Distillation and Quantization for LLM Deployment","url":"https://arxiv.org/html/2601.09865v1"},{"title":"Knowledge distillation and dataset distillation of large language models: emerging trends, challenges, and future directions | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-025-11423-3"},{"title":"Distilling in the Dark - E↵ective Knowledge Distillation in LLMs Under","url":"https://lup.lub.lu.se/student-papers/record/9198982/file/9199017.pdf"},{"title":"AI model distillation evolution and strategic imperatives","url":"https://htec.com/insights/ai-model-distillation-evolution-and-strategic-imperatives-in-2025/"},{"title":"On-Policy Distillation - Thinking Machines Lab","url":"https://thinkingmachines.ai/blog/on-policy-distillation/"},{"title":"On LLM Knowledge Distillation - A Comparison between Forward KL and Reverse KL | ICLR Blogposts 2025","url":"https://d2jud02ci9yv69.cloudfront.net/2025-04-28-llm-knowledge-distil-157/blog/llm-knowledge-distil/"},{"title":"Tailored knowledge distillation with automated loss function learning - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12157245/"},{"title":"A Survey of On-Policy Distillation for Large Language Models","url":"https://arxiv.org/html/2604.00626v1"}]
+
+Based on the search results, here's what I found regarding logit distillation, knowledge distillation, LLM compression, and forward KL in 2024-2025:
+
+## Key Recent Developments
+
+**Logit Distillation Methods:**
+
+Logits distillation has gained popularity and the goal is to mini
+…[truncated 1538 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T09:20:45.028010+00:00_
+
+Web search results for query: "output distribution preservation sparse inference KL divergence 2024 2025"
+
+Links: [{"title":"Advancing Model Refinement: Muon-Optimized Distillation and Quantization for LLM Deployment","url":"https://arxiv.org/html/2601.09865v1"},{"title":"Institute of Computer Science Faculty of Mathematics and Computer Science","url":"https://elib.dlr.de/220552/1/Masterthesis%20Konstantin%20Witossek.pdf"},{"title":"Published as a conference paper at COLM 2025","url":"https://arxiv.org/pdf/2504.12522"},{"title":"Performance Engineering Model Optimizations","url":"https://mlsysbook.ai/book/contents/core/optimizations/optimizations.html"},{"title":"Frontiers | A survey of model compression techniques: past, present, and future","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1518965/full"},{"title":"Disentangled Visual Token Compression for Efficient Large ...","url":"https://mn.cs.tsinghua.edu.cn/xinwang/PDF/papers/2025_DiViCo%20Disentangled%20Visual%20Token%20Compression%20for%20Efficient%20Large%20Vision%20Language%20Model.pdf"},{"title":"Track: Poster Session 4","url":"https://icml.cc/virtual/2024/session/35594"},{"title":"Forward-KL Divergence","url":"https://www.emergentmind.com/topics/forward-kl-formulation"},{"title":"LK losses: Training speculative decoding draft models to directly maximize acceptance rate","url":"https://nebius.com/blog/posts/lk-losses"},{"title":"Kullback-Leibler Divergence Constrained Distributionally Robust Optimization – Optimization Online","url":"https://optimization-online.org/2012/11/3677/"}]
+
+Based on the web search results, here are the key findings related to output distribution preservation, sparse inference, and KL divergence in 2024-2025:
+
+## Knowledge Distillation with KL Divergence
+
+Recent work employs logit-based distillation, where the student output is aligned to the teacher output via KL divergence, with research exploring information transfer in KL-divergence disti
+…[truncated 1658 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T09:20:45.028228+00:00_
+
+Web search results for query: "forward KL reverse KL distillation neural network pruning comparison 2024 2025"
+
+Links: [{"title":"Rethinking Kullback-Leibler Divergence in Knowledge ...","url":"https://aclanthology.org/2025.coling-main.383.pdf"},{"title":"Knowledge Distillation | Meta Intelligence","url":"https://www.meta-intelligence.tech/en/insight-distillation"},{"title":"On LLM Knowledge Distillation - A Comparison between Forward KL and Reverse KL | ICLR Blogposts 2025","url":"https://iclr-blogposts.github.io/2025/blog/llm-knowledge-distil/"},{"title":"Published as a conference paper at ICLR 2025 MEDIUM-DIFFICULTY SAMPLES","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/85c0735854c2df1cdf6884a9ea53d45f-Paper-Conference.pdf"},{"title":"NeurIPS Poster Compact Language Models via Pruning and Knowledge Distillation","url":"https://neurips.cc/virtual/2024/poster/96308"},{"title":"A survey of model compression techniques: past, present, and future - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11965593/"},{"title":"ICLR Poster On LLM Knowledge Distillation - A Comparison between Forward KL and Reverse KL","url":"https://iclr.cc/virtual/2025/poster/31335"},{"title":"A Reverse KL-Divergence Knowledge Distillation ...","url":"https://aclanthology.org/2025.naacl-long.60.pdf"},{"title":"Imperial College of Science, Technology and Medicine","url":"https://roymiles.github.io/assets/pdf/thesis.pdf"},{"title":"Prune-Quantize-Distill: An Ordered Pipeline for Efficient Neural Network Compression","url":"https://arxiv.org/html/2604.04988v1"}]
+
+Based on the search results, here's a comprehensive overview of recent research on forward KL vs. reverse KL divergence in knowledge distillation, neural network pruning, and related compression techniques from 2024-2025:
+
+## Key Findings on Forward KL vs. Reverse KL Divergence
+
+Traditional forward KL divergence causes the student to "over-distribute" attention across regions where the teacher assigns low probability
+…[truncated 1861 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T09:20:45.028407+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "MiniLLM reverse KL divergence knowledge distillation language models ICLR 2024 arxiv Gu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "MiniLLM reverse KL divergence knowledge distillation language models ICLR 2024 arxiv Gu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T09:20:45.028534+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "DistiLLM skewed KL divergence knowledge distillation LLM compression Ko 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "DistiLLM skewed KL divergence knowledge distillation LLM compression Ko 2024 arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T09:20:45.028654+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Rethinking Kullback-Leibler Divergence in Knowledge Distillation\" 2025 COLING arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Rethinking Kullback-Leibler Divergence in Knowledge Distillation\" 2025 COLING arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T09:20:45.028793+00:00_
+
+Web search results for query: "MiniLLM reverse KL divergence knowledge distillation language models ICLR 2024 arxiv Gu"
+
+Links: [{"title":"[2306.08543] MiniLLM: On-Policy Distillation of Large Language Models","url":"https://arxiv.org/abs/2306.08543"},{"title":"MINILLM: KNOWLEDGE DISTILLATION OF LARGE ...","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/8ac015d409635f196f9e3e9dcfb9a94e-Paper-Conference.pdf"},{"title":"MiniLLM: Knowledge Distillation of Large Language Models | OpenReview","url":"https://openreview.net/forum?id=5h0qf7IBZZ"},{"title":"MiniLLM: Knowledge Distillation of Large Language Models","url":"https://t1101675.github.io/_pages/minillm_en.pdf"},{"title":"Knowledge Distillation of Large Language Models","url":"https://arxiv.org/html/2306.08543v1"},{"title":"Preprint. A Survey of On-Policy Distillation for Large Language Models","url":"https://arxiv.org/pdf/2604.00626"},{"title":"MiniLLM: Knowledge Distillation of Large Language Models","url":"https://arxiv.org/html/2306.08543v3"},{"title":"On-Policy Distillation of Language Models","url":"https://arxiv.org/pdf/2306.13649"},{"title":"A Survey of On-Policy Distillation for Large Language Models","url":"https://arxiv.org/html/2604.00626v1"},{"title":"[2306.08543v2] MiniLLM: Knowledge Distillation of Large Language Models","url":"https://arxiv.org/abs/2306.08543v2"}]
+
+Based on the web search results, I found comprehensive information about the MiniLLM paper you're looking for. Here are the key findings:
+
+## Overview
+
+MiniLLM proposes a knowledge distillation method for Large Language Models with minimizing the reverse KL divergence as the objective. This work by Gu et al. was published in Proceedings of ICLR 2024.
+
+## Key Technical Contribution
+
+The approach replaces the forward Kullback-Leibler divergence (KLD) objective in standard KD approaches with reverse KLD, which is more suitable for KD on generative language models, to prevent the student model from overestimating the low-probabi
+…[truncated 861 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T09:20:45.029099+00:00_
+
+Web search results for query: ""Rethinking Kullback-Leibler Divergence in Knowledge Distillation" 2025 COLING arxiv"
+
+Links: [{"title":"Rethinking Kullback-Leibler Divergence in Knowledge Distillation for Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.coling-main.383/"},{"title":"[2404.02657] Rethinking Kullback-Leibler Divergence in Knowledge Distillation for Large Language Models","url":"https://arxiv.org/abs/2404.02657"},{"title":"Rethinking Kullback-Leibler Divergence in Knowledge ...","url":"https://aclanthology.org/2025.coling-main.383.pdf"},{"title":"Rethinking Kullback-Leibler Divergence in Knowledge Distillation for Large Language Models","url":"https://arxiv.org/html/2404.02657v1"},{"title":"Rethinking Kullback-Leibler Divergence in Knowledge Distillation for Large Language Models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/rethinking-kullback-leibler-divergence-knowledge-distillation-large"},{"title":"MiniLLM: Knowledge Distillation of Large Language Models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/minillm-knowledge-distillation-large-language-models"},{"title":"Rethinking Kullback-Leibler Divergence in Knowledge Distillation for Large Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240402657W/abstract"},{"title":"Wasserstein Distance Rivals Kullback-Leibler Divergence for Knowledge Distillation","url":"https://arxiv.org/html/2412.08139v1"},{"title":"Diversity-Aware Reverse Kullback-Leibler Divergence for Large Language Model Distillation","url":"https://arxiv.org/html/2604.00223v1"},{"title":"[PDF] Rethinking Kullback-Leibler Divergence in Knowledge Distillation for Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Rethinking-Kullback-Leibler-Divergence-in-Knowledge-Wu-Tao/59756f4e786d3212f793b8b709a3d37ebbc16d94"}]
+
+I found the paper! Here are the key details:
+
+## Paper Information
+
+**Title:** Rethinkin
+…[truncated 1366 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T09:20:45.029311+00:00_
+
+Web search results for query: "DistiLLM skewed KL divergence knowledge distillation LLM compression Ko 2024 arxiv"
+
+Links: [{"title":"Preprint. A Survey of On-Policy Distillation for Large Language Models","url":"https://arxiv.org/pdf/2604.00626"},{"title":"Rethinking Kullback-Leibler Divergence in Knowledge Distillation for Large Language Models","url":"https://arxiv.org/html/2404.02657v1"},{"title":"DistiLLM: Towards Streamlined Distillation for Large Language Models","url":"https://arxiv.org/html/2402.03898v2"},{"title":"SpecKD: Speculative Decoding for Effective Knowledge Distillation of LLMs","url":"https://arxiv.org/html/2510.24021v1/"},{"title":"DistiLLM-2: A Contrastive Approach Boosts the Distillation of LLMs","url":"https://arxiv.org/html/2503.07067v1"},{"title":"Exploring the Limits of Model Compression in LLMs: A Knowledge Distillation Study on QA Tasks","url":"https://arxiv.org/html/2507.07630"},{"title":"[2402.03898] DistiLLM: Towards Streamlined Distillation for Large Language Models","url":"https://ar5iv.labs.arxiv.org/html/2402.03898"},{"title":"A Survey of On-Policy Distillation for Large Language Models","url":"https://arxiv.org/html/2604.00626v1"},{"title":"A Contrastive Approach Boosts the Distillation of LLMs","url":"https://arxiv.org/pdf/2503.07067"},{"title":"Reinforcement-aware Knowledge Distillation for LLM Reasoning","url":"https://arxiv.org/html/2602.22495v2"}]
+
+I found comprehensive information about DistiLLM and its use of skewed KL divergence for knowledge distillation. Here's what I found:
+
+## DistiLLM Overview
+
+DistiLLM features a novel skew KLD loss and an adaptive off-policy approach, focusing on both distillation effectiveness and training efficiency.
+
+## Skewed KL Divergence Mechanism
+
+DistiLLM (Ko et al., 2024) proposed skewed KL objectives that stabilize optimization by mixing student and teacher distributions. More specifically, the primary objective uses Skewed Forward KL: it defines a skewed mixture p̃ = αpT + (1−α)pθ and mi
+…[truncated 907 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T09:20:45.029498+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "DistiLLM \"Towards Streamlined Distillation\" Ko Jang-Hyun ICML 2024 venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "DistiLLM \"Towards Streamlined Distillation\" Ko Jang-Hyun ICML 2024 venue"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T09:20:45.029730+00:00_
+
+Web search results for query: "DistiLLM "Towards Streamlined Distillation" Ko Jang-Hyun ICML 2024 venue"
+
+Links: [{"title":"GitHub - jongwooko/distillm: Official PyTorch implementation of DistiLLM: Towards Streamlined Distillation for Large Language Models (ICML 2024)","url":"https://github.com/jongwooko/distillm"},{"title":"[2402.03898] DistiLLM: Towards Streamlined Distillation for Large Language Models","url":"https://arxiv.org/abs/2402.03898"},{"title":"DISTILLM: Towards Streamlined Distillation for Large Language Models - Korea Advanced Institute of Science and Technology","url":"https://pure.kaist.ac.kr/en/publications/distillm-towards-streamlined-distillation-for-large-language-mode"},{"title":"DistiLLM: Towards Streamlined Distillation for Large Language Models - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/distillm-towards-streamlined-distillation-for-large-language-models/"},{"title":"DistiLLM: Towards Streamlined Distillation for Large Language Models","url":"https://proceedings.mlr.press/v235/ko24c.html"},{"title":"DistiLLM: Towards Streamlined Distillation for Large Language Models Jongwoo Ko","url":"https://icml.cc/media/icml-2024/Slides/33197.pdf"},{"title":"[PDF] DistiLLM: Towards Streamlined Distillation for Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DistiLLM:-Towards-Streamlined-Distillation-for-Ko-Kim/49b7baceecd32f81a08aa8e84e2fe71c2b879ee6"},{"title":"DSpace at KOASAS: DistiLLM: Towards Streamlined Distillation for Large Language Models","url":"https://koasas.kaist.ac.kr/handle/10203/320261"},{"title":"DISTILLM: Towards Streamlined Distillation for Large Language Models","url":"https://arxiv.org/pdf/2402.03898"},{"title":"[2402.03898v1] DistiLLM: Towards Streamlined Distillation for Large Language Models","url":"https://arxiv.org/abs/2402.03898v1"}]
+
+Based on the search results, I found comprehensive information about this paper:
+
+## DistiLLM: Towards Streamlined Dist
+…[truncated 1255 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T09:20:45.029954+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/literature_map.yaml",
+  "old_string": "# =============================================================================\n# 竞争格局总结\n# =============================================================================",
+  "new_string": "# =============================================================================\n# Cluster 2 补充: KL distillation for model compression\n# =============================================================================\n\n- title: \"MiniLLM: Knowledge Distillation of Large Language Models\"\n  authors: [Yuxian Gu, Li Dong, Furu Wei, Minlie Huang]\n  venue: ICLR 2024\n  year: 2024\n  arxiv_id: \"2306.08543\"\n  category: method-component\n  role: \"Reverse KL divergence用于LLM知识蒸馏——防止student过估计teacher低概率区域\"\n  key_finding: \"用reverse KL替代standard forward KL做LLM蒸馏，配合on-policy optimization。Student生成更精确的响应，calibration更好，长文本生成质量更高。从120M到13B规模均有效\"\n  relevance_to_us: \"直接支持我们的核心假设：KL divergence比逐元素loss更适合distribution matching。MiniLLM证明KL能保留output distribution的关键特性（calibration、长尾行为），我们将此insight从model-level蒸馏迁移到predictor训练\"\n\n- title: \"DistiLLM: Towards Streamlined Distillation for Large Language Models\"\n  authors: [Jongwoo Ko, Sungnyun Kim, Tianyi Chen, Se-Young Yun]\n  venue: ICML 2024\n  year: 2024\n  arxiv_id: \"2402.03898\"\n  category: method-component\n  role: \"Skewed KL divergence解决标准KL梯度不稳定——师生分布差异大时的工程方案\"\n  key_finding: \"提出skewed KL loss：混合师生分布p̃=αpT+(1-α)pθ避免pθ(y)≈0时的梯度爆炸。结合skewed forward KL（teacher输出）和skewed reverse KL（student输出），训练效率和蒸馏质量同时提升\"\n  relevance_to_us: \"我们的predictor训练中dense teacher和sparse student的output distribution差异可能很大（尤其训练早期），DistiLLM的skewed mixture技术可直接借鉴防止KL loss的梯度不稳定\"\n\n- title: \"Rethinking Kullback-Leibler Divergence in Knowledge Distillation for Large Language Models\"\n  authors: [Taiqiang Wu, Chaofan Tao, Jiahao Wang, Runming Yang, Zhe Zhao, Ngai Wong]\n  venue: COLING 2025\n  year: 2025\n  arxiv_id: \"2404.02657\"\n  category: background\n  role: \"系统分析forward/reverse KL在LLM蒸馏中的行为差异——为KL方向选择提供理论依据\"\n  key_finding: \"实证和理论证明FKL和RKL在LLM KD中共享相同优化目标、充分训练后收敛一致，但训练初期行为不同：FKL关注分布头部（高概率token），RKL关注尾部。提出Adaptive KL (AKL)自适应加权组合两者\"\n  relevance_to_us: \"为我们选择forward KL提供理论支撑：FKL在训练初期优先拟合高概率token，更适合保留top prediction的准确性——这正是activation sparsity场景需要的（保证最重要neuron的预测正确）\"\n\n# =============================================================================\n# 竞争格局总结\n# ============================================================================="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/literature_map.yaml",
+    "old_string": "# =============================================================================\n# 竞争格局总结\n# =============================================================================",
+    "new_string": "# =============================================================================\n# Cluster 2 补充: KL distillation for model compression\n# =============================================================================\n\n- title: \"MiniLLM: Knowledge Distillation of Large Language Models\"\n  authors: [Yuxian Gu, Li Dong, Furu Wei, Minlie Huang]\n  venue: ICLR 2024\n  year: 2024\n  arxiv_id: \"2306.08543\"\n  category: method-component\n  role: \"Reverse KL divergence用于LLM知识蒸馏——防止student过估计teacher低概率区域\"\n  key_finding: \"用reverse KL替代standard forward KL做LLM蒸馏，配合on-policy optimization。Student生成更精确的响应，calibration更好，长文本生成质量更高。从120M到13B规模均有效\"\n  relevance_to_us: \"直接支持我们的核心假设：KL divergence比逐元素loss更适合distribution matching。MiniLLM证明KL能保留output distribution的关键特性（calibration、长尾行为），我们将此insight从model-level蒸馏迁移到predictor训练\"\n\n- title: \"DistiLLM: Towards Streamlined Distillation for Large Language Models\"\n  authors: [Jongwoo Ko, Sungnyun Kim, Tianyi Chen, Se-Young Yun]\n  venue: ICML 2024\n  year: 2024\n  arxiv_id: \"2402.03898\"\n  category: method-component\n  role: \"Skewed KL divergence解决标准KL梯度不稳定——师生分布差异大时的工程方案\"\n  key_finding: \"提出skewed KL loss：混合师生分布p̃=αpT+(1-α)pθ避免pθ(y)≈0时的梯度爆炸。结合skewed forward KL（teacher输出）和skewed reverse KL（student输出），训练效率和蒸馏质量同时提升\"\n  relevance_to_us: \"我们的predictor训练中dense teacher和sparse student的output distribution差异可能很大（尤其训练早期），DistiLLM的skewed mixture技术可直接借鉴防止KL loss的梯度不稳定\"\n\n- title: \"Rethinking Kullback-Leibler Divergence in Knowledge Distillation for Large Language Models\"\n  authors: [Taiqiang Wu, Chaofan Tao, Jiahao Wang, Runming Yang, Zhe Zhao, Ngai Wong]\n  venue: COLING 2025\n  year: 2025\n  arxiv_id: \"2404.02657\"\n  category: background\n  role: \"系统分析forward/reverse KL在LLM蒸馏中的行为差异——为KL方向选择提供理论依据\"\n  key_finding: \"实证和理论证明FKL和RKL在LLM KD中共享相同优化目标、充分训练后收敛一致，但训练初期行为不同：FKL关注分布头部（高概率token），RKL关注尾部。提出Adaptive KL (AKL)自适应加权组合两者\"\n  relevance_to_us: \"为我们选择forward KL提供理论支撑：FKL在训练初期优先拟合高概率token，更适合保留top prediction的准确性——这正是activation sparsity场景需要的（保证最重要neuron的预测正确）\"\n\n# =============================================================================\n# 竞争格局总结\n# ============================================================================="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T09:20:45.030250+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/literature_map.yaml has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260516T091853",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-16T09:20:45.030430+00:00_
+
+已追加 3 篇论文到 `literature_map.yaml` 的 Cluster 2 补充区：
+
+1. **MiniLLM** (Gu et al., ICLR 2024) — reverse KL 用于 LLM 蒸馏，防止 student 过估计低概率区域
+2. **DistiLLM** (Ko et al., ICML 2024) — skewed KL 解决师生分布差异大时的梯度不稳定
+3. **Rethinking KL Divergence** (Wu et al., COLING 2025) — FKL vs RKL 系统分析，FKL 优先拟合高概率 token
+
+三篇分别覆盖了搜索方向 1（KL 用于 LLM 压缩）、方向 2（分布保持的工程方案）、方向 3（KL 方向选择的理论分析），与已有条目无重复。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_research_20260516T091853"
+}
+```
+
+</details>
+
+---

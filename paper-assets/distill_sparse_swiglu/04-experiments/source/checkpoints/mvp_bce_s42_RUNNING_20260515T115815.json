@@ -1,0 +1,35 @@
+{
+  "exp_id": "mvp_bce_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:51:05.131Z",
+    "updated_at": "2026-05-15T11:58:15.518Z",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_bce_s42 --wandb_run_name mvp_bce_s42\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "45761",
+      "log_path": "~/runs/distill_sparse_swiglu/mvp_bce_s42.log",
+      "submitted_at": "2026-05-15T11:58:15.473Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-34887",
+    "gpu": "cuda:1",
+    "account": "root",
+    "pid": "45761",
+    "log_path": "~/runs/distill_sparse_swiglu/mvp_bce_s42.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_bce_s42 --wandb_run_name mvp_bce_s42\""
+    }
+  },
+  "timestamp": "2026-05-15T11:58:15.528414+00:00",
+  "trigger": "update_registry"
+}

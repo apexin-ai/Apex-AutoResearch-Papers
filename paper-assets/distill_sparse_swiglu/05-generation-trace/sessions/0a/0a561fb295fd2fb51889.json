@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0a561fb295fd2fb51889",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "code r28 data fixes",
+  "task_key": "worker_code_r28_data_fixes_20260524T021109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r28_data_fixes_20260524T021109.log",
+    "occurrence": 1,
+    "bytes": 1189226,
+    "sha256": "d6fb73326984d1ac263ceb442aab5d128ccdee8adc769e5ae38910012fc00b73"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 212,
+      "chunks": [
+        {
+          "path": "0a561fb295fd2fb51889-part-0001.json",
+          "message_count": 40
+        },
+        {
+          "path": "0a561fb295fd2fb51889-part-0002.json",
+          "message_count": 172
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-r28-data-fixes.md"
+}

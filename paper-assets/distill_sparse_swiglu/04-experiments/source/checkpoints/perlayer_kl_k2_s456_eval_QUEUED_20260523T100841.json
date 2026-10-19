@@ -1,0 +1,16 @@
+{
+  "exp_id": "perlayer_kl_k2_s456_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:08:28.324Z",
+    "updated_at": "2026-05-23T10:08:40.843Z",
+    "hypothesis": "K=2 s456 eval at 30% TEAL uniform: 7-task downstream for 3-seed K-curve. s456 sparsity=0.289.",
+    "parent": "perlayer_kl_k2_s456"
+  },
+  "timestamp": "2026-05-23T10:08:41.470352+00:00",
+  "trigger": "update_registry"
+}

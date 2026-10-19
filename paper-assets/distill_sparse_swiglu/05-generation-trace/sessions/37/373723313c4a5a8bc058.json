@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "373723313c4a5a8bc058",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze perlayer kl k8 s123 eval",
+  "task_key": "worker_analyze_perlayer_kl_k8_s123_eval_20260523T122132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_perlayer_kl_k8_s123_eval_20260523T122132_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "e5f49eb9ef83d1fe185d105a59c227e8ae9a568bb5573c11ae018748260dd4aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总如下：\n\n## perlayer_kl_k8_s123_eval 结果\n\n| 指标 | K=8 s123 | K=8 s42 | Δ |\n|------|----------|---------|---|\n| WikiText-2 PPL | **9.0648** | 8.9704 | +0.094 |\n| Sparsity | 0.298 | — | — |\n| ARC-Challenge (norm) | 0.4155 | 0.4104 | +0.005 |\n| WinoGrande | **0.6993** | 0.674 | **+0.025** |\n| MMLU | 0.4042 | 0.398 | +0.006 |\n| GSM8K | 0.0682 | 0.0561 | +0.012 |\n| HellaSwag (norm) | **0.6997** | 0.6919 | +0.008 |\n| PIQA (norm) | 0.7508 | 0.7612 | -0.010 |\n\n- **无错误**，EXIT_CODE=0，耗时 3865s\n- **无 W&B run ID**\n- Checkpoint: `/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k8_s123/predictor_perlayer_kl_k4.pt`\n- 结果 JSON: `/root/distill_sparse_swiglu/results/benchmark/perlayer_kl_k8_s123_eval/results.json`\n\n两个 seed 间差异很小（PPL 差 ~0.1，downstream 各项波动 ≤2.5pp），s123 在 WinoGrande/GSM8K/HellaSwag 上略优于 s42，PIQA 略低。整体一致性好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-perlayer-kl-k8-s123-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2acec1dcdd8782b7f246",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis c4 kl30 s42 eval",
+  "task_key": "worker_analysis_c4_kl30_s42_eval_20260523T030806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c4_kl30_s42_eval_20260523T030806_result.json",
+    "occurrence": 1,
+    "bytes": 1191,
+    "sha256": "0af14d78709113eddecd6c4fbaaf8617ffaf63153248b6b6245ceac78eb40ba1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常完成，EXIT_CODE=0，无报错。\n\n## C4 KL30 S42 Eval 结果 vs 基线\n\n| Task | Metric | C4 KL30 | Baseline (WT103) | Δ |\n|------|--------|---------|-------------------|---|\n| WikiText-2 | PPL ↓ | **11.554** | 8.81 | +2.74 (worse) |\n| ARC-Challenge | acc_norm | **43.09%** | 43.7% | −0.61pp |\n| WinoGrande | acc | **68.67%** | 68.9% | −0.23pp |\n| MMLU | acc | **39.95%** | 40.7% | −0.75pp |\n| GSM8K | exact_match | **4.09%** | 7.5% | −3.41pp |\n| HellaSwag | acc_norm | **69.24%** | — | — |\n| PIQA | acc | **75.03%** | — | — |\n\n模型级稀疏率：29.5%（TEAL uniform allocation）。\n\n## 总结\n\nC4 训练数据**未能改善** MMLU 和 GSM8K，反而全面退步：\n\n- **PPL 大幅恶化** (+2.74)，说明 C4 训练的 predictor 在 WikiText-2 上泛化更差\n- **GSM8K 跌幅最大** (−3.41pp)，从 7.5% 降到 4.09%\n- **MMLU 也下降** (−0.75pp)，与预期的\"多样数据改善下游\"相反\n- ARC-c 和 WinoGrande 基本持平，略微下降\n\n结论：WikiText-103 训练的 predictor 在所有可比指标上优于 C4 训练版本。C4 数据的多样性未能转化为更好的稀疏掩码质量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c4-kl30-s42-eval.md"
+}

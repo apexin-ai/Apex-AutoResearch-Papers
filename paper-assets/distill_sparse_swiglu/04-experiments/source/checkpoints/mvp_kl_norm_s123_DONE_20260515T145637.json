@@ -1,0 +1,36 @@
+{
+  "exp_id": "mvp_kl_norm_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:30:10.779Z",
+    "updated_at": "2026-05-15T14:56:37.217Z",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_s123 --wandb_run_name mvp_kl_norm_s123 --dataset wikitext-103\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "69608",
+      "log_path": "~/runs/distill_sparse_swiglu/mvp_kl_norm_s123.log",
+      "submitted_at": "2026-05-15T14:30:49.142Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103 (HF cached)",
+      "data_count": null,
+      "model_name": "llama-3.1-8b",
+      "seed": 123,
+      "wall_clock_seconds": 1548.1,
+      "gpu_hours": 0.43
+    },
+    "conclusion": "failed",
+    "failure_reason": "KL normalization bug: train.py:228 ÷vocab_size + losses.py ÷seq_len = double normalization, kl_norm≈0.00007, gradient signal ~10^-5",
+    "completed_at": "2026-05-15T14:56:37.217Z"
+  },
+  "timestamp": "2026-05-15T14:56:37.246853+00:00",
+  "trigger": "update_registry"
+}

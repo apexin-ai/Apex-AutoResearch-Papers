@@ -1,0 +1,82 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Activation sparsity in SwiGLU LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training-free methods.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Static learned corrections.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contextual learned predictors.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Two-dimensional taxonomy.}{2}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Taxonomy of sparsity prediction methods. Our work fills the previously empty per-token contextual + coupled KL cell.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:taxonomy}{{1}{3}{Taxonomy of sparsity prediction methods. Our work fills the previously empty per-token contextual + coupled KL cell}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Training Signal: KL Divergence}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gradient coupling.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Gumbel-Sigmoid Relaxation}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Composition with Static Correction}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Training-free baselines at 50\% model-level sparsity (Llama 3.1 8B).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:baselines}{{2}{4}{Training-free baselines at 50\% model-level sparsity (Llama 3.1 8B)}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Four-condition ablation at 50\% model-level sparsity (Llama 3.1 8B). KL-only achieves better quality than BCE+compensation while requiring zero compensation parameters.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:four_cond}{{3}{4}{Four-condition ablation at 50\% model-level sparsity (Llama 3.1 8B). KL-only achieves better quality than BCE+compensation while requiring zero compensation parameters}{table.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Training-Free Baselines}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:baselines}{{4.1}{4}{Training-Free Baselines}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Four-Condition Ablation: Loss $\times $ Compensation}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:ablation}{{4.2}{4}{Four-Condition Ablation: Loss $\times $ Compensation}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Loss function vs.\ relaxation method ablation. KL contributes 72\% of the total gain over BCE-only; Gumbel-sigmoid contributes 28\%.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:ste}{{4}{5}{Loss function vs.\ relaxation method ablation. KL contributes 72\% of the total gain over BCE-only; Gumbel-sigmoid contributes 28\%}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Iso-compute comparison. Even with equivalent total compute, BCE trails KL by ${\sim }$14 PPL.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:isocompute}{{5}{5}{Iso-compute comparison. Even with equivalent total compute, BCE trails KL by ${\sim }$14 PPL}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Isolating Loss vs.\ Relaxation: STE Baseline}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:ste}{{4.3}{5}{Isolating Loss vs.\ Relaxation: STE Baseline}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Iso-Compute Comparison}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:isocompute}{{4.4}{5}{Iso-Compute Comparison}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}SPON Reproduction and Composition}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:composition}{{4.5}{5}{SPON Reproduction and Composition}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{SPON reproduction.}{5}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces SPON reproduction on Llama 3.1 8B---QA benchmark comparison at 50\% sparsity.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:spon_repro}{{6}{6}{SPON reproduction on Llama 3.1 8B---QA benchmark comparison at 50\% sparsity}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Composition additivity analysis. SPON and KL corrections compose with partial additivity; the 22\% interaction residual reflects overlap in what each mechanism corrects.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:composition}{{7}{6}{Composition additivity analysis. SPON and KL corrections compose with partial additivity; the 22\% interaction residual reflects overlap in what each mechanism corrects}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Composition analysis.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Full Benchmark Evaluation}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:full_eval}{{4.6}{6}{Full Benchmark Evaluation}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Inference efficiency.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Cross-Model Generalization}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:mistral}{{4.7}{6}{Cross-Model Generalization}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Full benchmark comparison (Llama 3.1 8B, 50\% sparsity).}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:full_bench}{{8}{7}{Full benchmark comparison (Llama 3.1 8B, 50\% sparsity)}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Inference efficiency (A100 GPU).}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:efficiency}{{9}{7}{Inference efficiency (A100 GPU)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Long-Context Evaluation}{7}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:longcontext}{{4.8}{7}{Long-Context Evaluation}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Instruction-Following Quality}{7}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:mtbench}{{4.9}{7}{Instruction-Following Quality}{subsection.4.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Sparsity Scaling Analysis}{7}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:scaling}{{4.10}{7}{Sparsity Scaling Analysis}{subsection.4.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Cross-model validation at 50\% sparsity. KL advantage direction is consistent; magnitude varies by architecture.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:cross_model}{{10}{8}{Cross-model validation at 50\% sparsity. KL advantage direction is consistent; magnitude varies by architecture}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces LongBench performance (English subset). KL-only maintains lower degradation than BCE+compensation, with SPON+KL achieving the smallest average drop.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:longbench}{{11}{8}{LongBench performance (English subset). KL-only maintains lower degradation than BCE+compensation, with SPON+KL achieving the smallest average drop}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does KL eliminate compensation?}{8}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{8}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces RULER evaluation at 4K and 16K context lengths.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:ruler}{{12}{9}{RULER evaluation at 4K and 16K context lengths}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces MT-Bench scores by category (GPT-4o judge).}}{9}{table.13}\protected@file@percent }
+\newlabel{tab:mtbench}{{13}{9}{MT-Bench scores by category (GPT-4o judge)}{table.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Sparsity Scaling: Detailed Fit Analysis}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:scaling}{{A}{9}{Sparsity Scaling: Detailed Fit Analysis}{appendix.A}{}}
+\bibstyle{plainnat}
+\bibdata{references}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Sparsity sweep: KL vs.\ BCE PPL across sparsity levels (1 seed per level; 50\% reuses 5-seed data).}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:scaling}{{14}{10}{Sparsity sweep: KL vs.\ BCE PPL across sparsity levels (1 seed per level; 50\% reuses 5-seed data)}{table.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}SPON Reproduction Details}{10}{appendix.B}\protected@file@percent }
+\newlabel{app:spon}{{B}{10}{SPON Reproduction Details}{appendix.B}{}}
+\gdef \@abspage@last{10}

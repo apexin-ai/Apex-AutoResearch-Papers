@@ -1,0 +1,15 @@
+{
+  "exp_id": "bce_isocompute_hellaswag_piqa",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:34:52.111Z",
+    "updated_at": "2026-05-19T00:35:05.370Z",
+    "hypothesis": "BCE iso-compute predictor evaluated on HellaSwag+PIQA with TEAL uniform 30% completes the BCE row in the 6-task downstream table. Expected to show larger degradation than KL 30% (which had hellaswag=70.85%, piqa=74.81%)."
+  },
+  "timestamp": "2026-05-19T00:35:05.802366+00:00",
+  "trigger": "update_registry"
+}

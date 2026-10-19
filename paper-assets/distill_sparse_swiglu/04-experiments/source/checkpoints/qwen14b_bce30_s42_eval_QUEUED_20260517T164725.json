@@ -1,0 +1,19 @@
+{
+  "exp_id": "qwen14b_bce30_s42_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:47:04.947Z",
+    "updated_at": "2026-05-17T16:47:25.442Z",
+    "hypothesis": "Qwen-14B BCE predictor at 30% sparsity shows worse downstream performance (MMLU, ARC, WinoGrande, GSM8K) than KL predictor, confirming objective mismatch penalty persists in downstream tasks beyond PPL (KL TEAL PPL=7.62 vs BCE TEAL PPL=8.76)",
+    "parent": "qwen14b_bce30_s42",
+    "server": "westd-34887",
+    "gpu": "cuda:0",
+    "account": "root"
+  },
+  "timestamp": "2026-05-17T16:47:25.661807+00:00",
+  "trigger": "update_registry"
+}

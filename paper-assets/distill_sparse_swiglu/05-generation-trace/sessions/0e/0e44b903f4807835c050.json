@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e44b903f4807835c050",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops quick status mse and 34887",
+  "task_key": "worker_ops_quick_status_mse_and_34887_20260520T035434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_quick_status_mse_and_34887_20260520T035434_result.json",
+    "occurrence": 1,
+    "bytes": 265,
+    "sha256": "395a32f3e5fde04d846c43730ddf3dc2ee5bcf6cab0b13dc31ab0107391ad75b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nMSE 50% eval (41718:1): ALIVE — arc_challenge 34% (1581/4687 loglikelihood), PPL=229.26 已完成\nMSE 30% eval (41718:0): ALIVE — MMLU subtasks tokenizing (moral_scenarios/philosophy/prehistory 等)\n34887: cuda:0=空闲, cuda:1=空闲\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-quick-status-mse-and-34887.md"
+}

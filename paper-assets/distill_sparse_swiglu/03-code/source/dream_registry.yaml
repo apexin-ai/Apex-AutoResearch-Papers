@@ -1,0 +1,407 @@
+dreams:
+  dream_20260515T164925:
+    dream_id: dream_20260515T164925
+    project: distill_sparse_swiglu
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'MVP showed massive KL vs BCE gap (12.52 vs 44.05 PPL). Key uncertainty:
+      will BCE+compensation close this gap? If yes, headline shifts to "KL eliminates
+      compensation overhead" rather than "KL is categorically better". Also: seed
+      s456 is outlier (13.58 vs 12.08/11.91), variance needs attention.'
+    what_if: []
+    pid: 354802
+    chat_id: oc_dbbf8d2c695f1e79e11713aebc107790
+    card_message_id: om_x100b6f40a74d44a4c49f9c6d892beee
+    started_at: '2026-05-15T16:49:25+00:00'
+    updated_at: '2026-05-15T17:59:08+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: ec2055088a1f6e1a084a8ffba1dafd9a91e8e05f7c0b47ac018bcb0460ac10b0
+  dream_20260518T160251:
+    dream_id: dream_20260518T160251
+    project: distill_sparse_swiglu
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 测试论文 reframe 为 'mask pattern discovery' 叙事的接收度。核心变化：Contribution 1 从 gradient
+      coupling 转为 optimization target quality / mask pattern divergence。§3.6 gradient
+      analysis 降为 suggestive motivation。C1 ablation 变成 paper 核心实验。53% mask divergence
+      作为新发现。目标 4.0 Main Conference accept。
+    what_if:
+    - name: c1_ablation_bce_kl_targets
+      claim: 'Claim 1 reframe: optimization target quality > gradient coupling'
+      description: BCE trained on KL-derived oracle masks achieves comparable-or-better
+        PPL than KL distillation at matched sparsity. 53% mask divergence from magnitude
+        oracles. Core narrative shifts from 'gradient coupling explains KL advantage'
+        to 'KL discovers fundamentally different and superior mask patterns that magnitude-based
+        oracles miss'.
+      estimated_gpu_hours: 0.0
+    - name: dense_sparsity_sweep_6pt
+      claim: 'Claim 3: regime analysis with 6 data points'
+      description: KL predictors trained at 25%/30%/35%/40%/45%/50% sparsity with
+        2 seeds each. Regime boundaries precisely mapped. Non-monotonic allocation
+        preference confirmed with denser sampling.
+      estimated_gpu_hours: 0.0
+    - name: bce_30pct_forced_topk
+      claim: 'Claim 1: BCE baseline at recommended operating point'
+      description: BCE predictor evaluated at 30% via forced TEAL top-k. Fills Table
+        2 gap at recommended operating point. BCE PPL expected significantly worse
+        than KL, strengthening KL advantage at practical deployment sparsity.
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_dbbf8d2c695f1e79e11713aebc107790
+    card_message_id: om_x100b6f87cc0c34a4c427d7306eddb27
+    started_at: '2026-05-18T16:02:51+00:00'
+    updated_at: '2026-05-18T16:26:01+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: ba09da8a0f32be7365d6b8d1f8bfc3465256d397d91c14139e8381a0c7051ce6
+  dream_20260518T162617:
+    dream_id: dream_20260518T162617
+    project: distill_sparse_swiglu
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 测试论文 reframe 为 'mask pattern discovery' 叙事的接收度。核心变化：Contribution 1 从 gradient
+      coupling 转为 optimization target quality / mask pattern divergence。§3.6 gradient
+      analysis 降为 suggestive motivation。C1 ablation 变成 paper 核心实验。53% mask divergence
+      作为新发现。目标 4.0 Main Conference accept。
+    what_if:
+    - name: c1_ablation_bce_kl_targets
+      claim: 'Claim 1 reframe: optimization target quality > gradient coupling'
+      description: BCE trained on KL-derived oracle masks achieves comparable-or-better
+        PPL than KL distillation at matched sparsity. 53% mask divergence from magnitude
+        oracles. Core narrative shifts from 'gradient coupling explains KL advantage'
+        to 'KL discovers fundamentally different and superior mask patterns that magnitude-based
+        oracles miss'.
+      estimated_gpu_hours: 0.0
+    - name: dense_sparsity_sweep_6pt
+      claim: 'Claim 3: regime analysis with 6 data points'
+      description: KL predictors trained at 25%/30%/35%/40%/45%/50% sparsity with
+        2 seeds each. Regime boundaries precisely mapped. Non-monotonic allocation
+        preference confirmed with denser sampling.
+      estimated_gpu_hours: 0.0
+    - name: bce_30pct_forced_topk
+      claim: 'Claim 1: BCE baseline at recommended operating point'
+      description: BCE predictor evaluated at 30% via forced TEAL top-k. Fills Table
+        2 gap at recommended operating point. BCE PPL expected significantly worse
+        than KL, strengthening KL advantage at practical deployment sparsity.
+      estimated_gpu_hours: 0.0
+    pid: 935461
+    chat_id: oc_dbbf8d2c695f1e79e11713aebc107790
+    card_message_id: om_x100b6f87945598a0c491d6b42725ef3
+    started_at: '2026-05-18T16:26:17+00:00'
+    updated_at: '2026-05-18T18:55:00+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process stuck in imagining for 2+ hours, manually
+      killed'
+    context_hash: 055d97e29c054096c519ff90da5bf711660827e70b9283be8b3b8755e81efc7a
+  dream_20260518T165411:
+    dream_id: dream_20260518T165411
+    project: distill_sparse_swiglu
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: '测试 ''mask pattern discovery'' 叙事的审稿接收度。核心 reframe: C1 causal ablation
+      证明 target quality（不是 gradient coupling）是 KL 优势的唯一驱动力。BCE+KL-targets PPL = 11.9638
+      = KL PPL 11.9638（exact match at 50% sparsity, TEAL uniform）。53% mask divergence
+      作为新发现。包含 6-point sparsity regime analysis。目标 4.0 Main Conference。'
+    what_if:
+    - name: c1_ablation_bce_kl_targets
+      claim: 'Claim 1: mask pattern discovery'
+      description: BCE trained on KL-derived oracle masks achieves PPL 11.9638 = KL
+        PPL 11.9638 at 50% sparsity under identical TEAL protocol. 53% mask divergence
+        from magnitude oracles. Target quality is sole driver of KL advantage.
+      estimated_gpu_hours: 0.0
+    - name: dense_sparsity_sweep_6pt
+      claim: 'Claim 3: regime analysis with 6 data points'
+      description: KL predictors at 25%/30%/35%/40%/45%/50% with regime boundaries
+        precisely mapped.
+      estimated_gpu_hours: 0.0
+    - name: bce_30pct_forced_topk
+      claim: 'Claim 1: BCE baseline at recommended operating point'
+      description: BCE predictor evaluated at 30% via forced TEAL top-k. Fills Table
+        2 gap.
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_dbbf8d2c695f1e79e11713aebc107790
+    card_message_id: om_x100b6f800df1aca4c2da5d666dcbe8a
+    started_at: '2026-05-18T16:54:11+00:00'
+    updated_at: '2026-05-18T17:23:19+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 0779eea2ec8d4cb240889a96970e4cdce631c42a6aa03fa2a1cb67d3e626aa8d
+  dream_20260518T172341:
+    dream_id: dream_20260518T172341
+    project: distill_sparse_swiglu
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: '测试 ''mask pattern discovery'' 叙事的审稿接收度。核心 reframe: C1 causal ablation
+      证明 target quality（不是 gradient coupling）是 KL 优势的唯一驱动力。BCE+KL-targets PPL = 11.9638
+      = KL PPL 11.9638（exact match at 50% sparsity, TEAL uniform）。53% mask divergence
+      作为新发现。包含 6-point sparsity regime analysis。目标 4.0 Main Conference。'
+    what_if:
+    - name: c1_ablation_bce_kl_targets
+      claim: 'Claim 1: mask pattern discovery'
+      description: BCE trained on KL-derived oracle masks achieves PPL 11.9638 = KL
+        PPL 11.9638 at 50% sparsity under identical TEAL protocol. 53% mask divergence
+        from magnitude oracles. Target quality is sole driver of KL advantage.
+      estimated_gpu_hours: 0.0
+    - name: dense_sparsity_sweep_6pt
+      claim: 'Claim 3: regime analysis with 6 data points'
+      description: KL predictors at 25%/30%/35%/40%/45%/50% with regime boundaries
+        precisely mapped.
+      estimated_gpu_hours: 0.0
+    - name: bce_30pct_forced_topk
+      claim: 'Claim 1: BCE baseline at recommended operating point'
+      description: BCE predictor evaluated at 30% via forced TEAL top-k. Fills Table
+        2 gap.
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_dbbf8d2c695f1e79e11713aebc107790
+    card_message_id: om_x100b6f80ff139ca0c21ac09837d962a
+    started_at: '2026-05-18T17:23:41+00:00'
+    updated_at: '2026-05-18T17:25:07+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: de074f689988a47d800d6e4d7beb2dfc86df47164f051e4612ff1aefc0321a05
+  dream_20260518T172524:
+    dream_id: dream_20260518T172524
+    project: distill_sparse_swiglu
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: '测试 ''mask pattern discovery'' 叙事的审稿接收度。核心 reframe: C1 causal ablation
+      证明 target quality（不是 gradient coupling）是 KL 优势的唯一驱动力。BCE+KL-targets PPL = 11.9638
+      = KL PPL 11.9638（exact match at 50% sparsity, TEAL uniform）。53% mask divergence
+      作为新发现。包含 6-point sparsity regime analysis。目标 4.0 Main Conference。'
+    what_if:
+    - name: c1_ablation_bce_kl_targets
+      claim: 'Claim 1: mask pattern discovery'
+      description: BCE trained on KL-derived oracle masks achieves PPL 11.9638 = KL
+        PPL 11.9638 at 50% sparsity under identical TEAL protocol. 53% mask divergence
+        from magnitude oracles. Target quality is sole driver of KL advantage.
+      estimated_gpu_hours: 0.0
+    - name: dense_sparsity_sweep_6pt
+      claim: 'Claim 3: regime analysis with 6 data points'
+      description: KL predictors at 25%/30%/35%/40%/45%/50% with regime boundaries
+        precisely mapped.
+      estimated_gpu_hours: 0.0
+    - name: bce_30pct_forced_topk
+      claim: 'Claim 1: BCE baseline at recommended operating point'
+      description: BCE predictor evaluated at 30% via forced TEAL top-k. Fills Table
+        2 gap.
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_dbbf8d2c695f1e79e11713aebc107790
+    card_message_id: om_x100b6f80f68758a4c3aba04b3853bf2
+    started_at: '2026-05-18T17:25:24+00:00'
+    updated_at: '2026-05-18T17:25:34+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: de074f689988a47d800d6e4d7beb2dfc86df47164f051e4612ff1aefc0321a05
+  dream_20260518T172551:
+    dream_id: dream_20260518T172551
+    project: distill_sparse_swiglu
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: '测试 ''mask pattern discovery'' 叙事的审稿接收度。核心 reframe: C1 causal ablation
+      证明 target quality（不是 gradient coupling）是 KL 优势的唯一驱动力。BCE+KL-targets PPL = 11.9638
+      = KL PPL 11.9638（exact match at 50% sparsity, TEAL uniform）。53% mask divergence
+      作为新发现。包含 6-point sparsity regime analysis。目标 4.0 Main Conference。'
+    what_if:
+    - name: c1_ablation_bce_kl_targets
+      claim: 'Claim 1: mask pattern discovery'
+      description: BCE trained on KL-derived oracle masks achieves PPL 11.9638 = KL
+        PPL 11.9638 at 50% sparsity under identical TEAL protocol. 53% mask divergence
+        from magnitude oracles. Target quality is sole driver of KL advantage.
+      estimated_gpu_hours: 0.0
+    - name: dense_sparsity_sweep_6pt
+      claim: 'Claim 3: regime analysis with 6 data points'
+      description: KL predictors at 25%/30%/35%/40%/45%/50% with regime boundaries
+        precisely mapped.
+      estimated_gpu_hours: 0.0
+    - name: bce_30pct_forced_topk
+      claim: 'Claim 1: BCE baseline at recommended operating point'
+      description: BCE predictor evaluated at 30% via forced TEAL top-k. Fills Table
+        2 gap.
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_dbbf8d2c695f1e79e11713aebc107790
+    card_message_id: om_x100b6f80f4cca534c3b3a5f6f7427b0
+    started_at: '2026-05-18T17:25:51+00:00'
+    updated_at: '2026-05-18T17:28:06+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: de074f689988a47d800d6e4d7beb2dfc86df47164f051e4612ff1aefc0321a05
+  dream_20260518T172822:
+    dream_id: dream_20260518T172822
+    project: distill_sparse_swiglu
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: '测试 ''mask pattern discovery'' 叙事的审稿接收度。核心 reframe: C1 causal ablation
+      证明 target quality（不是 gradient coupling）是 KL 优势的唯一驱动力。BCE+KL-targets PPL = 11.9638
+      = KL PPL 11.9638（exact match at 50% sparsity, TEAL uniform）。53% mask divergence
+      作为新发现。包含 6-point sparsity regime analysis。目标 4.0 Main Conference。'
+    what_if:
+    - name: c1_ablation_bce_kl_targets
+      claim: 'Claim 1: mask pattern discovery'
+      description: BCE trained on KL-derived oracle masks achieves PPL 11.9638 = KL
+        PPL 11.9638 at 50% sparsity under identical TEAL protocol. 53% mask divergence
+        from magnitude oracles. Target quality is sole driver of KL advantage.
+      estimated_gpu_hours: 0.0
+    - name: dense_sparsity_sweep_6pt
+      claim: 'Claim 3: regime analysis with 6 data points'
+      description: KL predictors at 25%/30%/35%/40%/45%/50% with regime boundaries
+        precisely mapped.
+      estimated_gpu_hours: 0.0
+    - name: bce_30pct_forced_topk
+      claim: 'Claim 1: BCE baseline at recommended operating point'
+      description: BCE predictor evaluated at 30% via forced TEAL top-k. Fills Table
+        2 gap.
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_dbbf8d2c695f1e79e11713aebc107790
+    card_message_id: om_x100b6f808dbc9ca0c4c755c3259d624
+    started_at: '2026-05-18T17:28:22+00:00'
+    updated_at: '2026-05-18T17:31:04+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: de074f689988a47d800d6e4d7beb2dfc86df47164f051e4612ff1aefc0321a05
+  dream_20260518T173120:
+    dream_id: dream_20260518T173120
+    project: distill_sparse_swiglu
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: '测试 ''mask pattern discovery'' 叙事的审稿接收度。核心 reframe: C1 causal ablation
+      证明 target quality（不是 gradient coupling）是 KL 优势的唯一驱动力。BCE+KL-targets PPL = 11.9638
+      = KL PPL 11.9638（exact match at 50% sparsity, TEAL uniform）。53% mask divergence
+      作为新发现。包含 6-point sparsity regime analysis。目标 4.0 Main Conference。'
+    what_if:
+    - name: c1_ablation_bce_kl_targets
+      claim: 'Claim 1: mask pattern discovery'
+      description: BCE trained on KL-derived oracle masks achieves PPL 11.9638 = KL
+        PPL 11.9638 at 50% sparsity under identical TEAL protocol. 53% mask divergence
+        from magnitude oracles. Target quality is sole driver of KL advantage.
+      estimated_gpu_hours: 0.0
+    - name: dense_sparsity_sweep_6pt
+      claim: 'Claim 3: regime analysis with 6 data points'
+      description: KL predictors at 25%/30%/35%/40%/45%/50% with regime boundaries
+        precisely mapped.
+      estimated_gpu_hours: 0.0
+    - name: bce_30pct_forced_topk
+      claim: 'Claim 1: BCE baseline at recommended operating point'
+      description: BCE predictor evaluated at 30% via forced TEAL top-k. Fills Table
+        2 gap.
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_dbbf8d2c695f1e79e11713aebc107790
+    card_message_id: om_x100b6f80804a3d38c1004f359830595
+    started_at: '2026-05-18T17:31:20+00:00'
+    updated_at: '2026-05-18T17:34:02+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: de074f689988a47d800d6e4d7beb2dfc86df47164f051e4612ff1aefc0321a05
+  dream_20260518T173417:
+    dream_id: dream_20260518T173417
+    project: distill_sparse_swiglu
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: '测试 ''mask pattern discovery'' 叙事的审稿接收度。核心 reframe: C1 causal ablation
+      证明 target quality（不是 gradient coupling）是 KL 优势的唯一驱动力。BCE+KL-targets PPL = 11.9638
+      = KL PPL 11.9638（exact match at 50% sparsity, TEAL uniform）。53% mask divergence
+      作为新发现。包含 6-point sparsity regime analysis。目标 4.0 Main Conference。'
+    what_if:
+    - name: c1_ablation_bce_kl_targets
+      claim: 'Claim 1: mask pattern discovery'
+      description: BCE trained on KL-derived oracle masks achieves PPL 11.9638 = KL
+        PPL 11.9638 at 50% sparsity under identical TEAL protocol. 53% mask divergence
+        from magnitude oracles. Target quality is sole driver of KL advantage.
+      estimated_gpu_hours: 0.0
+    - name: dense_sparsity_sweep_6pt
+      claim: 'Claim 3: regime analysis with 6 data points'
+      description: KL predictors at 25%/30%/35%/40%/45%/50% with regime boundaries
+        precisely mapped.
+      estimated_gpu_hours: 0.0
+    - name: bce_30pct_forced_topk
+      claim: 'Claim 1: BCE baseline at recommended operating point'
+      description: BCE predictor evaluated at 30% via forced TEAL top-k. Fills Table
+        2 gap.
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_dbbf8d2c695f1e79e11713aebc107790
+    card_message_id: om_x100b6f809750cca0c3528e9589bf6df
+    started_at: '2026-05-18T17:34:17+00:00'
+    updated_at: '2026-05-18T17:35:03+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: de074f689988a47d800d6e4d7beb2dfc86df47164f051e4612ff1aefc0321a05
+  dream_20260518T173518:
+    dream_id: dream_20260518T173518
+    project: distill_sparse_swiglu
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: '测试 ''mask pattern discovery'' 叙事的审稿接收度。核心 reframe: C1 causal ablation
+      证明 target quality（不是 gradient coupling）是 KL 优势的唯一驱动力。BCE+KL-targets PPL = 11.9638
+      = KL PPL 11.9638（exact match at 50% sparsity, TEAL uniform）。53% mask divergence
+      作为新发现。包含 6-point sparsity regime analysis。目标 4.0 Main Conference。'
+    what_if:
+    - name: c1_ablation_bce_kl_targets
+      claim: 'Claim 1: mask pattern discovery'
+      description: BCE trained on KL-derived oracle masks achieves PPL 11.9638 = KL
+        PPL 11.9638 at 50% sparsity under identical TEAL protocol. 53% mask divergence
+        from magnitude oracles. Target quality is sole driver of KL advantage.
+      estimated_gpu_hours: 0.0
+    - name: dense_sparsity_sweep_6pt
+      claim: 'Claim 3: regime analysis with 6 data points'
+      description: KL predictors at 25%/30%/35%/40%/45%/50% with regime boundaries
+        precisely mapped.
+      estimated_gpu_hours: 0.0
+    - name: bce_30pct_forced_topk
+      claim: 'Claim 1: BCE baseline at recommended operating point'
+      description: BCE predictor evaluated at 30% via forced TEAL top-k. Fills Table
+        2 gap.
+      estimated_gpu_hours: 0.0
+    pid: 957023
+    chat_id: oc_dbbf8d2c695f1e79e11713aebc107790
+    card_message_id: om_x100b6f8093b934a0c3d125f20b83afc
+    started_at: '2026-05-18T17:35:18+00:00'
+    updated_at: '2026-05-18T18:43:27+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: de074f689988a47d800d6e4d7beb2dfc86df47164f051e4612ff1aefc0321a05

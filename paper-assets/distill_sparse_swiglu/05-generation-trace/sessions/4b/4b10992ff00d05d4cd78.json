@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b10992ff00d05d4cd78",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze perlayer kl 30 s42 v6",
+  "task_key": "worker_analyze_perlayer_kl_30_s42_v6_20260521T190755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_perlayer_kl_30_s42_v6_20260521T190755_result.json",
+    "occurrence": 1,
+    "bytes": 1624,
+    "sha256": "6aabe34e8ae15a50d203e7026fb63df9593e5f82c62b866d21613c9b7f21107f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结果\n\n### 训练状态：成功完成\n\n| 指标 | 值 |\n|------|-----|\n| Steps | 10000/10000 ✓ |\n| Final avg_kl | 0.0113 |\n| Final tau | 0.100 |\n| 总训练时间 | ~18568s (~5.2h) |\n| EXIT_CODE | 0 |\n\n### Per-Layer Sparsity Summary\n\n所有 32 层的平均 sparsity 都非常接近 target 0.3（范围 0.293–0.311）。各层 KL 差异明显：\n\n- **最难层（高 KL）**：Layer 0 (0.019), Layer 1 (0.022), Layer 31 (0.015) — 首尾层\n- **最易层（低 KL）**：Layer 7–12 (0.007–0.009) — 中间层\n- **Lambda 分布**：20/32 层命中 lambda_max=5000，说明大部分层需要很强的 sparsity 压力\n\n### Checkpoints\n\n```\ncheckpoints/perlayer_kl_30_s42/\n├── predictor_perlayer_kl.pt          (152MB, final predictor weights)\n├── predictor_perlayer_kl_step_10000.pt (456MB, full checkpoint)\n├── predictor_perlayer_kl_step_2000.pt\n├── predictor_perlayer_kl_step_4000.pt\n├── predictor_perlayer_kl_step_6000.pt\n└── predictor_perlayer_kl_step_8000.pt\n```\n\n### 缺失项\n\n- **Eval PPL 未计算**：训练脚本只打印了 \"Eval mode: all layers masked simultaneously\" 但没有实际跑 eval。需要单独用 `src/evaluate.py --checkpoint checkpoints/perlayer_kl_30_s42/predictor_perlayer_kl.pt --sparsity_target 0.3` 来获取 PPL。\n- **W&B**：list_wandb_runs 工具有内部错误，无法查询。\n\n### 下一步\n\n需要运行 eval 获取 PPL 才能与 baseline 对比：\n- End-to-end KL: **8.81**\n- Per-layer KL s456: **9.0282** (sparsity=0.297)\n\n要现在在 westd-41718 上跑 eval 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-perlayer-kl-30-s42-v6.md"
+}

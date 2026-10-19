@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ec60bd7523de82d7e90",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops sync figures to local",
+  "task_key": "worker_ops_sync-figures-to-local_20260518T185303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-figures-to-local_20260518T185303_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "18a93de62938461835475302390837caa0e91ac734a45accfdc37aab570b9a86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 本地 figures/ 文件\n\n| 文件 | 大小 |\n|------|------|\n| `mask_divergence_heatmap.pdf` | 18,285 B |\n| `mask_divergence_heatmap.png` | 45,409 B |\n| `neuron_scatter_layer16.pdf` | 61,204 B |\n| `neuron_scatter_layer16.png` | 141,172 B |\n| `mask_comparison.pdf` | 16,394 B |\n| `mask_comparison.png` | 31,216 B |\n\n路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/figures/`\n\n### Eval 进度\n\n**kl_sparsity45_s42_eval_teal_uniform** — **已完成** (EXIT_CODE=0, 耗时 2366.6s)\n- arc_challenge: acc=0.3387, acc_norm=0.3763\n- winogrande: acc=0.6361\n- mmlu: acc=0.3063\n- gsm8k: exact_match=0.0273\n- 结果已保存至 `results/benchmark/kl_sparsity45_s42_eval_teal_uniform/results.json`\n\n**kl_sparsity35_s42_eval_teal_uniform** — **运行中** (pid 47633)\n- 已完成 tokenizing（wikitext2/arc_challenge/winogrande/mmlu）\n- 当前正在 MMLU loglikelihood 阶段，进度约 1%（737/58702），速度 ~30 it/s\n- 预计 MMLU 部分还需约 30 分钟，之后还有 gsm8k generate_until"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-figures-to-local.md"
+}

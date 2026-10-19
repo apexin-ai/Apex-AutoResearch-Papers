@@ -1,0 +1,7 @@
+Remote paths: /root/distill_sparse_swiglu/figures/lambda_sparsity_curve.pdf (19KB vector), /root/distill_sparse_swiglu/figures/lambda_sparsity_curve.png (164KB, 1755x1205px @300dpi). Server: westd-34887.
+
+Key observations:
+- 30% target: λ U-curve (0.50→0.01→cap 5000 at step ~260), final sparsity 0.285
+- 50% target: λ saturates to cap 1000 within 10 steps, final sparsity 0.488
+- 70% target: λ saturates to cap 1000 within 10 steps, final sparsity 0.688
+- All targets show systematic undershoot (1.2-1.5pp) due to Lagrangian cap

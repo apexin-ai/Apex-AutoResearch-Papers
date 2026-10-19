@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl_comp_30pct_s456",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:01:38.795Z",
+    "updated_at": "2026-05-18T10:04:13.820Z",
+    "hypothesis": "KL+compensation at 30% sparsity (s456) produces similar quality recovery as s42 and s123, providing third seed for multi-seed compensation results.",
+    "parent": "kl30_8b_s456_train"
+  },
+  "timestamp": "2026-05-18T10:04:14.138977+00:00",
+  "trigger": "update_registry"
+}

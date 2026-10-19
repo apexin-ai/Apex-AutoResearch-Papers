@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "224cca74f17e31a2aa9f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops urgent collect all results",
+  "task_key": "worker_ops_urgent_collect_all_results_20260520T052441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_collect_all_results_20260520T052441_result.json",
+    "occurrence": 1,
+    "bytes": 1611,
+    "sha256": "f9bd886e5bbbaa89bad5488c9f5761b86a75bf748a940fbe2213a0c4adcd2bad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有实验均已完成。汇总如下：\n\n---\n\n## 实验结果汇总\n\n### 1. MSE 30% Eval (westd-41718 cuda:0) — 已完成 ✓\n\n| Task | Metric | Value |\n|------|--------|-------|\n| WikiText-2 | PPL | **20.43** |\n| ARC-Challenge | acc_norm | **0.3123** |\n| WinoGrande | acc | **0.6038** |\n| MMLU | acc | **0.3179** |\n| GSM8K | exact_match | **0.0197** |\n| HellaSwag | acc_norm | **0.5248** |\n| PIQA | acc_norm | **0.6937** |\n\n### 2. MSE 50% Eval (westd-41718 cuda:1) — 已完成 ✓\n\n| Task | Metric | Value |\n|------|--------|-------|\n| WikiText-2 | PPL | **229.26** |\n| ARC-Challenge | acc_norm | **0.2500** |\n| WinoGrande | acc | **0.5059** |\n| MMLU | acc | **0.2379** |\n| GSM8K | exact_match | **0.0159** |\n| HellaSwag | acc_norm | **0.2722** |\n| PIQA | acc_norm | **0.5577** |\n\n### 3. SNR Full Curve 1000 Steps (westd-34887 cuda:0) — 已完成 ✓\n\n| Step | KL SNR (mean) | BCE SNR (mean) | KL/BCE Ratio |\n|------|--------------|----------------|-------------|\n| 0 | 0.0000130 | 0.0000699 | — |\n| 50 | 0.0002534 | 0.0000082 | — |\n| 100 | 0.0006114 | 0.0017290 | — |\n| 200 | 0.0002357 | 0.0030785 | — |\n| 300 | 0.0003465 | 0.0017422 | — |\n| 500 | 0.0003501 | 0.0016771 | — |\n| 700 | 0.0002145 | 0.0014132 | — |\n| 1000 | 0.0008777 | 0.0020263 | **0.4332x** |\n\nBCE loss curve 稳定在 ~0.636, sparsity 收敛到 ~0.300。\n\n### 4. GPU 状态\n\n| Server | GPU 0 | GPU 1 |\n|--------|-------|-------|\n| westd-41718 | 0 MiB, 0% | 0 MiB, 0% |\n| westd-34887 | 0 MiB, 0% | 0 MiB, 0% |\n\n所有任务完成，四卡均已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-collect-all-results.md"
+}

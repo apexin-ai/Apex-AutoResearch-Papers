@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "0e4f83258a1ecca6d9b9",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "eval plan 006 training free reeval",
+  "task_key": "worker_eval_plan_006_training_free_reeval_20260515T211513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_006_training_free_reeval_20260515T211513.log",
+    "occurrence": 1,
+    "bytes": 1298421,
+    "sha256": "cf8a69e2ca3239957a8ea9f23dd349b54fad81a34b890d8642d861d07f9974fd"
+  },
+  "statistics": {
+    "messages": 633,
+    "user_turns": 1,
+    "tool_calls": 255,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 2,
+      "assistant": 102,
+      "tool_call": 255,
+      "tool_result": 255,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 493,
+      "chunks": [
+        {
+          "path": "0e4f83258a1ecca6d9b9-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "0e4f83258a1ecca6d9b9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0e4f83258a1ecca6d9b9-part-0003.json",
+          "message_count": 150
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 140,
+      "chunks": [
+        {
+          "path": "0e4f83258a1ecca6d9b9-part-0003.json",
+          "message_count": 30
+        },
+        {
+          "path": "0e4f83258a1ecca6d9b9-part-0004.json",
+          "message_count": 110
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-plan-006-training-free-reeval.md"
+}

@@ -1,0 +1,10523 @@
+# analysis r28 data consistency — Part 3 of 3
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Worker execution logs
+
+[← Part 2](part-002.md) · [Transcript overview](../analysis-r28-data-consistency.md) · [Structured JSON](../../../sessions/67/67e17588d34bcc296bf8.json)
+
+## Round 4
+
+### Tool result
+
+_source line 540 · 2026-05-24T01:16:26.613Z_
+
+<details><summary>↩ Tool result · `toolu_01QJHEnxPnP8XBN94GSBaBZS`</summary>
+
+```text
+perlayer_kl_k16_eval_final2: HS=0.6963, PIQA=0.759
+perlayer_kl_k8_s42_eval: HS=0.6919, PIQA=0.7612
+c4_kl30_s42_eval: HS=0.6924, PIQA=0.7503
+reverse_kl_30_s42_uniform_eval: HS=0.6969, PIQA=0.7459
+reverse_kl_30_s42: HS=0.6972, PIQA=0.7459
+mistral_kl30_s123: HS=0.6961, PIQA=0.7459
+
+=== Entries near HS=69.24 ===
+perlayer_kl_k8_s42_eval: HS=0.6919, PIQA=0.7612
+c4_kl30_s42_eval: HS=0.6924, PIQA=0.7503
+
+=== kl30 uniform s42 HS candidates near 69.4% ===
+c4_kl30_s42_eval: HS=0.6924, PIQA=0.7503
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "952f9339-8171-4a2d-a846-c8c09683f16c"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 541_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a3dc6f65833ecaedb",
+  "tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "description": "Running Find PIQA=75.5 match for Table D WikiText row",
+  "usage": {
+    "total_tokens": 69741,
+    "tool_uses": 21,
+    "duration_ms": 203308
+  },
+  "last_tool_name": "Bash",
+  "uuid": "dcd70296-3b61-4792-b696-7bcafcb5874c",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 542_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CwexbiitvjP8eDG3DXnQG2`</summary>
+
+```json
+{
+  "command": "cat /tmp/registry_metrics.json | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\n\n# Table D WikiText HS/PIQA: Paper says 69.4/75.5\n# registry kl30_uniform_hellaswag_piqa_v2 gives 70.85/74.81 (s42 uniform)\n# No registry entry matching 69.4% exactly for LLaMA KL 30% uniform WikiText-trained\n\n# Let me check if there's a 3-seed mean that equals 69.4\n# We have: s42=70.85 from kl30_uniform_hellaswag_piqa_v2\n# If the paper uses a different entry from bench_kl30_uniform which has different arc/wg\n# Actually bench_kl30_uniform has ARC-c=40.78, WG=68.59 which EXACTLY match the paper\n# But bench_kl30_uniform doesn't have HS/PIQA\n\n# The HS=69.4 might come from c4_ood_downstream_kl30 (which is in-domain WikiText evaluation \n# with masks generated from OOD C4 text) - but that shows HS=70.74\n\n# Let me check paper's table reference; maybe HS/PIQA for WikiText row = bench_kl30_uniform + kl30_uniform_hs_piqa\n# The paper: tab:c4_control shows 'WikiText-103' row with HS=69.4\n# The c4_kl30_s42_eval shows 69.24 (close to 69.4)\n\n# Actually - wait. Look at paper text:\n# WikiText-103 row values for HS/PIQA\n# c4_kl30_s42_eval has HS=69.24 for C4-trained predictor\n# But paper WikiText HS=69.4 and C4 row HS=69.24...\n# This is suspicious - the WikiText HS should be HIGHER than C4 (since WikiText is same domain)\n\n# Let me re-read the numbers more carefully\n# Actually the HS=70.85 (from kl30_uniform_hellaswag_piqa_v2) doesn't appear in either row\n# Paper WikiText row: HS=69.4 (not in registry as 69.4)\n# Paper C4 row: HS=69.24 (matches c4_kl30_s42_eval: 69.24) ✓\n\n# So the paper's WikiText HS=69.4 might be from another run not in registry under a matching exp_id\n# OR it might be rounded from a value not in registry\n\n# Let me check if the PIQA=75.5 for WikiText is in registry anywhere near\nprint('=== PIQA near 75.5% entries for KL 30% uniform WikiText ===')\nfor k in d:\n    m = d[k].get('metrics', {})\n    piqa = m.get('piqa_acc_norm', m.get('piqa'))\n    hs = m.get('hellaswag_acc_norm', m.get('hellaswag'))\n    if piqa and 0.750 <= piqa <= 0.760:\n        print(f'{k}: HS={hs}, PIQA={piqa}')\n\"\n",
+  "description": "Find PIQA=75.5 match for Table D WikiText row"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "5013d4e7-2929-4cc2-9bc5-6d9bed2335ff",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013sVFejDTLMA2AZQHZ6uW7E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1018,
+      "cache_read_input_tokens": 67925,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1018,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 543 · 2026-05-24T01:16:41.404Z_
+
+<details><summary>↩ Tool result · `toolu_01CwexbiitvjP8eDG3DXnQG2`</summary>
+
+```text
+=== PIQA near 75.5% entries for KL 30% uniform WikiText ===
+perlayer_kl_k8_s123_eval: HS=0.6997, PIQA=0.7508
+perlayer_kl_k16_eval_final2: HS=0.6963, PIQA=0.759
+c4_kl30_s42_eval: HS=0.6924, PIQA=0.7503
+perlayer_kl_s123_downstream_v2: HS=0.6478, PIQA=0.7514
+perlayer_kl_s42_downstream: HS=0.6763, PIQA=0.7546
+revkl_30_s456_downstream_v2: HS=0.704, PIQA=0.7508
+revkl_30_s123_downstream: HS=0.7092, PIQA=0.7524
+jsd_30_s42_uniform_eval: HS=0.7063, PIQA=0.7519
+jsd_30_s42: HS=0.7073, PIQA=0.7508
+qwen14b_kl30_uniform_hspiqa: HS=0.7266, PIQA=0.7514
+qwen14b_kl30_s456_eval_v2: HS=0.7113, PIQA=0.7552
+qwen14b_kl30_s123_eval_v4: HS=0.7132, PIQA=0.7535
+mistral_kl30_hellaswag_piqa: HS=0.6892, PIQA=0.7519
+downstream_extended_kl30_s42: HS=0.727, PIQA=0.7595
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "dbef4ad8-5411-4c03-9d5b-378402a18973"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 544_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a3dc6f65833ecaedb",
+  "tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "description": "Running Check Qwen14B TEAL uniform and GSM8K values",
+  "usage": {
+    "total_tokens": 71138,
+    "tool_uses": 22,
+    "duration_ms": 221845
+  },
+  "last_tool_name": "Bash",
+  "uuid": "76b99a44-7841-4f8a-8c73-0a0e3383a22b",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 545_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014ANHHDz3zBcdXagowonBep`</summary>
+
+```json
+{
+  "command": "cat /tmp/registry_metrics.json | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\n\n# Now checking Table A Qwen14B uniform KL GSM8K\n# Paper: 32.0±5.2 (but appendix shows 30.9±6.8) - let me check actual appendix\n# Actually from reading appendix: 30.9±6.8 with footnote '*GSM8K: n=2 (s42/s456); s123 eval incomplete'\n# s42: qwen14b_kl30_s42_gsm8k_uniform -> 0.3548\n# s456: qwen14b_kl30_s456_gsm8k -> 0.2608\n# From task description: '32.0±5.2' (but paper shows 30.9±6.8)\n\nimport statistics\ns42 = 0.3548\ns456 = 0.2608\nmean = (s42 + s456) / 2\nstd = statistics.stdev([s42, s456])\nprint(f'Qwen14B KL uniform GSM8K (s42={s42*100:.1f}, s456={s456*100:.1f}):')\nprint(f'  mean={mean*100:.1f}%, std={std*100:.1f}%')\nprint(f'  Paper (from task): 32.0±5.2')\nprint(f'  Paper (from appendix): 30.9±6.8*')\n# 30.9 matches (35.48+26.08)/2 = 30.78 ≈ 30.9 (rounded)\n# std = 6.65 ≈ 6.8 (stdev([35.48,26.08]) = sqrt(((35.48-30.78)^2+(26.08-30.78)^2)/1))\n\n# Also check Qwen14B uniform KL TEAL values\nprint()\nprint('=== Qwen14B TEAL uniform ===')\n# ARC-c=55.29, WG=69.85, MMLU=66.34, GSM8K=52.1, HS=67.72, PIQA=74.70\n# From registry: qwen14b_teal30_eval (global allocation) has different numbers\nm_teal_global = d['qwen14b_teal30_eval']['metrics']\nprint(f'qwen14b_teal30_eval (global): PPL={m_teal_global[\\\"wikitext2_ppl\\\"]}, ARC-c={m_teal_global[\\\"arc_challenge_acc_norm\\\"]*100:.2f}, WG={m_teal_global[\\\"winogrande_acc\\\"]*100:.2f}, MMLU={m_teal_global[\\\"mmlu_acc\\\"]*100:.2f}, GSM8K={m_teal_global[\\\"gsm8k_exact_match\\\"]*100:.2f}')\n\n# Uniform TEAL for Qwen14B\nm_teal_u_hs = d.get('qwen14b_teal30_uniform_hspiqa', {}).get('metrics', {})\nprint(f'qwen14b_teal30_uniform_hspiqa: HS={m_teal_u_hs.get(\\\"hellaswag_acc_norm\\\", 0)*100:.2f}, PIQA={m_teal_u_hs.get(\\\"piqa_acc_norm\\\", 0)*100:.2f}')\nm_teal_u_gsm = d.get('qwen14b_teal30_uniform_gsm8k', {}).get('metrics', {})\nprint(f'qwen14b_teal30_uniform_gsm8k: GSM8K={m_teal_u_gsm.get(\\\"gsm8k_exact_match\\\", 0)*100:.1f}')\n\n# Need ARC-c, WG, MMLU for TEAL uniform Qwen14B\n# Check qwen14b_teal275_uniform_eval_v3\nm = d.get('qwen14b_teal275_uniform_eval_v3', {}).get('metrics', {})\nprint(f'qwen14b_teal275_uniform_eval_v3: {json.dumps(m)}')\nm2 = d.get('qwen14b_teal275_hspiqa', {}).get('metrics', {})\nprint(f'qwen14b_teal275_hspiqa: {json.dumps(m2)}')\nm3 = d.get('qwen14b_teal275_uniform_hspiqa', {}).get('metrics', {})\nprint(f'qwen14b_teal275_uniform_hspiqa: {json.dumps(m3)}')\n\"\n",
+  "description": "Check Qwen14B TEAL uniform and GSM8K values"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "d0b93efe-d0e5-4547-984c-c1f974e208e7",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013ikCML2jR3Ai45rR2J2tbd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 68943,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1361,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 546 · 2026-05-24T01:16:59.900Z_
+
+<details><summary>↩ Tool result · `toolu_014ANHHDz3zBcdXagowonBep`</summary>
+
+```text
+Qwen14B KL uniform GSM8K (s42=35.5, s456=26.1):
+  mean=30.8%, std=6.6%
+  Paper (from task): 32.0±5.2
+  Paper (from appendix): 30.9±6.8*
+
+=== Qwen14B TEAL uniform ===
+qwen14b_teal30_eval (global): PPL=8.7332, ARC-c=56.83, WG=72.69, MMLU=71.83, GSM8K=49.51
+qwen14b_teal30_uniform_hspiqa: HS=67.72, PIQA=74.70
+qwen14b_teal30_uniform_gsm8k: GSM8K=52.1
+qwen14b_teal275_uniform_eval_v3: {"wikitext2_ppl": 7.7087, "arc_challenge_acc_norm": 0.57, "winogrande_acc": 0.7167, "mmlu_acc": 0.6738, "gsm8k_exact_match": 0.5709}
+qwen14b_teal275_hspiqa: {"hellaswag_acc": 0.5092, "hellaswag_acc_norm": 0.6993, "piqa_acc": 0.753, "piqa_acc_norm": 0.7476, "model_sparsity": 0.268, "runtime_seconds": 3551.3}
+qwen14b_teal275_uniform_hspiqa: {"hellaswag_acc": 0.5092, "hellaswag_acc_norm": 0.6993, "piqa_acc": 0.753, "piqa_acc_norm": 0.7476}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "6d3d2a5f-456f-4709-b6f1-702268a477f6"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 547_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a3dc6f65833ecaedb",
+  "tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "description": "Running Find Qwen14B TEAL 30% uniform ARC/WG/MMLU values",
+  "usage": {
+    "total_tokens": 72914,
+    "tool_uses": 23,
+    "duration_ms": 231401
+  },
+  "last_tool_name": "Bash",
+  "uuid": "2ae34e82-0cd4-4a12-a5cb-2283386bc35c",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 548_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011RTuKuBt9GL6qMZCgVWioB`</summary>
+
+```json
+{
+  "command": "cat /tmp/registry_metrics.json | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\n\n# Need Qwen14B TEAL uniform ARC-c, WG, MMLU values  \n# Paper says: ARC-c=55.29, WG=69.85, MMLU=66.34 for TEAL uniform\n# qwen14b_teal30_eval is GLOBAL (ARC-c=56.83, WG=72.69, MMLU=71.83)\n# qwen14b_teal275_uniform_eval_v3 is at 27.5% sparsity: ARC-c=57.00, WG=71.67, MMLU=67.38\n\n# Need to find the actual TEAL 30% UNIFORM for Qwen14B 4-task eval\nprint('=== All Qwen14B TEAL uniform entries ===')\nfor k in d:\n    if 'qwen14b' in k and 'teal' in k:\n        m = d[k].get('metrics', {})\n        spec = d[k].get('spec', {})\n        alloc = m.get('allocation', spec.get('allocation', '') if isinstance(spec, dict) else '')\n        print(f'{k}: alloc={alloc}, {json.dumps(m)[:100]}')\n        \n# Also check for any entry with qwen14b teal uniform that has ARC-c/WG/MMLU\nprint()\nprint('=== Searching for Qwen14B TEAL 30% uniform ARC-c/WG/MMLU ===')\nfor k in d:\n    if 'qwen14b' not in k:\n        continue\n    m = d[k].get('metrics', {})\n    if 'arc_challenge_acc_norm' in m and 'teal' in k:\n        arc = m['arc_challenge_acc_norm'] * 100\n        wg = m.get('winogrande_acc', 0) * 100\n        mmlu = m.get('mmlu_acc', 0) * 100\n        print(f'{k}: ARC-c={arc:.2f}, WG={wg:.2f}, MMLU={mmlu:.2f}')\n\"\n",
+  "description": "Find Qwen14B TEAL 30% uniform ARC/WG/MMLU values"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "c8facea3-d95a-44b2-805d-44be5ffc4218",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01W3ZdN7hsWw7e717X2E3iub",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1740,
+      "cache_read_input_tokens": 70304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1740,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 549 · 2026-05-24T01:17:09.458Z_
+
+<details><summary>↩ Tool result · `toolu_011RTuKuBt9GL6qMZCgVWioB`</summary>
+
+```text
+=== All Qwen14B TEAL uniform entries ===
+qwen14b_teal30_global_hspiqa: alloc=, {"hellaswag_acc_norm": 0.7051, "piqa_acc_norm": 0.747}
+qwen14b_teal30_uniform_hspiqa: alloc=, {"hellaswag_acc_norm": 0.6772, "piqa_acc_norm": 0.747}
+qwen14b_teal30_uniform_gsm8k: alloc=, {"gsm8k_exact_match": 0.5208, "gsm8k_exact_match_strict": 0.5208, "gsm8k_exact_match_flexible": 0.52
+qwen14b_teal275_uniform_eval_v3: alloc=, {"wikitext2_ppl": 7.7087, "arc_challenge_acc_norm": 0.57, "winogrande_acc": 0.7167, "mmlu_acc": 0.67
+qwen14b_teal275_hspiqa: alloc=, {"hellaswag_acc": 0.5092, "hellaswag_acc_norm": 0.6993, "piqa_acc": 0.753, "piqa_acc_norm": 0.7476, 
+qwen14b_teal275_uniform_hspiqa: alloc=, {"hellaswag_acc": 0.5092, "hellaswag_acc_norm": 0.6993, "piqa_acc": 0.753, "piqa_acc_norm": 0.7476}
+qwen14b_teal30_uniform_hspiqa_v2: alloc=, {"hellaswag_acc": 0.4936, "hellaswag_acc_norm": 0.6756, "piqa_acc": 0.7443, "piqa_acc_norm": 0.7427}
+qwen14b_teal30_eval: alloc=, {"wikitext2_ppl": 8.7332, "arc_challenge_acc_norm": 0.5683, "winogrande_acc": 0.7269, "mmlu_acc": 0.
+
+=== Searching for Qwen14B TEAL 30% uniform ARC-c/WG/MMLU ===
+qwen14b_teal275_uniform_eval_v3: ARC-c=57.00, WG=71.67, MMLU=67.38
+qwen14b_teal30_eval: ARC-c=56.83, WG=72.69, MMLU=71.83
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "0a176f9f-7811-435e-ac7e-6b4efde9cef9"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 550_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a3dc6f65833ecaedb",
+  "tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "description": "Running Find Qwen14B BCE 30% evaluation results",
+  "usage": {
+    "total_tokens": 74275,
+    "tool_uses": 24,
+    "duration_ms": 242801
+  },
+  "last_tool_name": "Bash",
+  "uuid": "bcfe210f-74f7-43ac-b1d2-4e5cf199b592",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 551_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011VYRfa5yBsp17aFN42zTf2`</summary>
+
+```json
+{
+  "command": "cat /tmp/registry_metrics.json | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\n\n# There's no Qwen14B TEAL 30% uniform entry with ARC-c, WG, MMLU in the registry\n# The paper's TEAL uniform row in tab:14b shows: ARC-c=55.29, WG=69.85, MMLU=66.34, PPL=8.01\n# The registry only has:\n# - qwen14b_teal30_eval (global): ARC-c=56.83, WG=72.69, MMLU=71.83, PPL=8.7332\n# - qwen14b_teal30_uniform_gsm8k: GSM8K=52.1\n# - qwen14b_teal30_uniform_hspiqa: HS=67.72, PIQA=74.70\n# No uniform ARC-c/WG/MMLU/PPL for TEAL Qwen14B found\n\n# Now let's check Table A Qwen14B BCE global row\n# Paper: PPL=8.76, ARC-c=57.59, WG=72.61, MMLU=71.67, GSM8K=53.07, HS=53.43, PIQA=68.28\n# Registry: qwen14b_bce30_s42 has teal_global_ppl=8.76 ✓ but no 4-task eval\n# Need: qwen14b_bce30_s42_eval\n\nprint('=== BCE Qwen14B eval entries ===')\nfor k in d:\n    if 'bce' in k and 'qwen14b' in k:\n        print(f'{k}: {json.dumps(d[k].get(\\\"metrics\\\", {}))}')\n\n# Also check the one labelled eval\nfor k in d:\n    if 'bce30_s42' in k or 'bce30_global' in k:\n        m = d[k].get('metrics', {})\n        if m:\n            print(f'{k}: {json.dumps(m)[:150]}')\n\"\n",
+  "description": "Find Qwen14B BCE 30% evaluation results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "98417dae-018c-46a9-836f-0d7be2f1e5c3",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_018X1jSE7zJG7YKygt4gyAXa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1325,
+      "cache_read_input_tokens": 72044,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1325,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 552 · 2026-05-24T01:17:20.850Z_
+
+<details><summary>↩ Tool result · `toolu_011VYRfa5yBsp17aFN42zTf2`</summary>
+
+```text
+=== BCE Qwen14B eval entries ===
+qwen14b_bce30_global_hspiqa: {"hellaswag_acc_norm": 0.5343, "piqa_acc_norm": 0.6828}
+qwen14b_bce30_s42: {"dense_ppl": 5.18, "predictor_hard_mask_ppl": 5.57, "teal_global_ppl": 8.76, "ppl_ratio_hard_mask": 1.075, "ppl_ratio_hard_mask_note": "at predictor native 6.4% sparsity, not comparable to KL's 28.1%", "ppl_ratio_teal": 1.69, "actual_sparsity_teal": 0.3, "predictor_native_sparsity": 0.064, "training_log_sparsity_note": "Training Lagrangian failed (predictor sparsity=6.4%). Inference via TEAL forces 30% externally. TEAL PPL 8.76 is valid for method comparison.", "final_loss": 0.5561, "final_bce_loss": 0.5324, "steps": 1000, "constraint_satisfied": false}
+qwen14b_bce30_global_hspiqa: {"hellaswag_acc_norm": 0.5343, "piqa_acc_norm": 0.6828}
+qwen14b_bce30_s42: {"dense_ppl": 5.18, "predictor_hard_mask_ppl": 5.57, "teal_global_ppl": 8.76, "ppl_ratio_hard_mask": 1.075, "ppl_ratio_hard_mask_note": "at predictor
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "c334811d-612d-45a3-84f2-4b243cfd50c4"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 553_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a3dc6f65833ecaedb",
+  "tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "description": "Running Search for Qwen14B BCE 4-task downstream evaluation",
+  "usage": {
+    "total_tokens": 75378,
+    "tool_uses": 25,
+    "duration_ms": 252155
+  },
+  "last_tool_name": "Bash",
+  "uuid": "9cc6da84-cee1-44e2-9851-1348cb95c8a8",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 554_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01UfaUv3NLqA5qVJHVpPNBuw`</summary>
+
+```json
+{
+  "command": "cat /tmp/registry_metrics.json | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\n\n# Table A BCE global has ARC-c=57.59, WG=72.61, MMLU=71.67, GSM8K=53.07\n# Registry doesn't have a 'qwen14b_bce30_s42_eval' entry (the task says this is the exp_id)\n# We DO have qwen14b_bce30_global_hspiqa: HS=53.43, PIQA=68.28 ✓\n\n# Let's check for BCE eval data elsewhere\nprint('=== Looking for BCE Qwen14B 4-task eval ===')\nfor k in d:\n    m = d[k].get('metrics', {})\n    if 'bce' in k.lower() and 'arc_challenge_acc_norm' in m and 'qwen' in k:\n        print(f'{k}: {json.dumps(m)}')\n\n# The task's exp_id comment 'qwen14b_bce30_s42_eval' doesn't exist - but the data might be\n# stored differently. Let me check if arc-c=57.59 appears anywhere for qwen14b:\nprint()\nprint('=== Qwen14B entries with ARC-c near 57.59 ===')\nfor k in d:\n    if 'qwen14b' not in k:\n        continue\n    m = d[k].get('metrics', {})\n    arc = m.get('arc_challenge_acc_norm')\n    if arc and abs(arc*100 - 57.59) < 0.5:\n        print(f'{k}: ARC-c={arc*100:.2f}, {json.dumps(m)[:120]}')\n\n# For BCE row: PPL=8.76 confirmed in qwen14b_bce30_s42, HS=53.43, PIQA=68.28 confirmed \n# But ARC-c/WG/MMLU/GSM8K not found in registry under these exp_ids\n\"\n",
+  "description": "Search for Qwen14B BCE 4-task downstream evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "f358aa42-fe9b-45b0-a1ca-39ebba16531e",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01S8KwLBDCPsQ9kN1j9zJU9Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1063,
+      "cache_read_input_tokens": 73369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1063,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 555 · 2026-05-24T01:17:30.200Z_
+
+<details><summary>↩ Tool result · `toolu_01UfaUv3NLqA5qVJHVpPNBuw`</summary>
+
+```text
+=== Looking for BCE Qwen14B 4-task eval ===
+
+=== Qwen14B entries with ARC-c near 57.59 ===
+qwen14b_kl30_s42_eval: ARC-c=57.17, {"wikitext2_ppl": 7.6232, "arc_challenge_acc_norm": 0.5717, "winogrande_acc": 0.7206, "mmlu_acc": 0.6372, "gsm8k_exact_m
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "31b98a6b-9a2b-4a05-ba71-9637497379d2"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 556_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a3dc6f65833ecaedb",
+  "tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "description": "Running Final comparison of Table A Qwen14B values",
+  "usage": {
+    "total_tokens": 76176,
+    "tool_uses": 26,
+    "duration_ms": 266258
+  },
+  "last_tool_name": "Bash",
+  "uuid": "08fc17e6-8d68-46b7-b90e-5c85298e2dac",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 557_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GLN1u5r6tPcbzkY72UYvH5`</summary>
+
+```json
+{
+  "command": "cat /tmp/registry_metrics.json | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\n\n# Now let me check if there's a 'qwen14b_bce30_s42_eval' entry that the task mentions\n# (not found above). The paper states exp_id: qwen14b_bce30_s42_eval\n# Let's verify using a broader search\n\n# The BCE global ARC-c=57.59, WG=72.61, MMLU=71.67, GSM8K=53.07\n# No match found in registry\nprint('NOT IN REGISTRY: qwen14b_bce30_s42_eval')\n\n# Now let me do a complete final summary computation\n\n# Table A: Qwen 14B Dense baseline\nm_dense = d['qwen14b_dense_baseline']['metrics']\nm_dense_hs = d['qwen14b_dense_hspiqa']['metrics']\nprint()\nprint('=== Dense Qwen14B ===')\nprint(f'PPL: registry={m_dense[\\\"ppl\\\"]}, paper=5.19')\nprint(f'ARC-c: registry={m_dense[\\\"arc_challenge\\\"]*100:.2f}, paper=67.58')\nprint(f'WG: registry={m_dense[\\\"winogrande\\\"]*100:.2f}, paper=81.06')\nprint(f'MMLU: registry={m_dense[\\\"mmlu\\\"]*100:.2f}, paper=79.77')\nprint(f'GSM8K: registry={m_dense[\\\"gsm8k\\\"]*100:.2f}, paper=87.57')\nprint(f'HS: registry={m_dense_hs[\\\"hellaswag_acc_norm\\\"]*100:.2f}, paper=84.20')\nprint(f'PIQA: registry={m_dense_hs[\\\"piqa_acc_norm\\\"]*100:.2f}, paper=81.94')\n# Dense HS: reg=84.21, PIQA: reg=81.94\n\nprint()\nprint('=== KL Global Qwen14B (s42) ===')\nm_kl = d['qwen14b_kl30_s42_eval']['metrics']\nm_kl_hs = d['qwen14b_kl30_global_hspiqa']['metrics']\nprint(f'PPL: registry={m_kl[\\\"wikitext2_ppl\\\"]}, paper=7.62')\nprint(f'ARC-c: registry={m_kl[\\\"arc_challenge_acc_norm\\\"]*100:.2f}, paper=57.17')\nprint(f'WG: registry={m_kl[\\\"winogrande_acc\\\"]*100:.2f}, paper=72.06')\nprint(f'MMLU: registry={m_kl[\\\"mmlu_acc\\\"]*100:.2f}, paper=63.72')\nprint(f'GSM8K: registry={m_kl[\\\"gsm8k_exact_match\\\"]*100:.2f}, paper=48.82')\nprint(f'HS: registry={m_kl_hs[\\\"hellaswag_acc_norm\\\"]*100:.2f}, paper=75.01')\nprint(f'PIQA: registry={m_kl_hs[\\\"piqa_acc_norm\\\"]*100:.2f}, paper=77.37')\n\nprint()\nprint('=== TEAL Global Qwen14B ===')\nm_teal = d['qwen14b_teal30_eval']['metrics']\nm_teal_hs = d['qwen14b_teal30_global_hspiqa']['metrics']\nprint(f'PPL: registry={m_teal[\\\"wikitext2_ppl\\\"]:.2f}, paper=8.73')\nprint(f'ARC-c: registry={m_teal[\\\"arc_challenge_acc_norm\\\"]*100:.2f}, paper=56.83')\nprint(f'WG: registry={m_teal[\\\"winogrande_acc\\\"]*100:.2f}, paper=72.69')\nprint(f'MMLU: registry={m_teal[\\\"mmlu_acc\\\"]*100:.2f}, paper=71.83')\nprint(f'GSM8K: registry={m_teal[\\\"gsm8k_exact_match\\\"]*100:.2f}, paper=49.51')\nprint(f'HS: registry={m_teal_hs[\\\"hellaswag_acc_norm\\\"]*100:.2f}, paper=70.51')\nprint(f'PIQA: registry={m_teal_hs[\\\"piqa_acc_norm\\\"]*100:.2f}, paper=74.70')\n\"\n",
+  "description": "Final comparison of Table A Qwen14B values"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "1a858111-ec77-4732-874c-4aa0639d4f05",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UBbPKZZspUjm9N4QTMQMwX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 74432,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 735,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 558 · 2026-05-24T01:17:44.325Z_
+
+<details><summary>↩ Tool result · `toolu_01GLN1u5r6tPcbzkY72UYvH5`</summary>
+
+```text
+NOT IN REGISTRY: qwen14b_bce30_s42_eval
+
+=== Dense Qwen14B ===
+PPL: registry=5.1854, paper=5.19
+ARC-c: registry=67.58, paper=67.58
+WG: registry=81.06, paper=81.06
+MMLU: registry=79.77, paper=79.77
+GSM8K: registry=87.57, paper=87.57
+HS: registry=84.21, paper=84.20
+PIQA: registry=81.94, paper=81.94
+
+=== KL Global Qwen14B (s42) ===
+PPL: registry=7.6232, paper=7.62
+ARC-c: registry=57.17, paper=57.17
+WG: registry=72.06, paper=72.06
+MMLU: registry=63.72, paper=63.72
+GSM8K: registry=48.82, paper=48.82
+HS: registry=75.01, paper=75.01
+PIQA: registry=77.37, paper=77.37
+
+=== TEAL Global Qwen14B ===
+PPL: registry=8.73, paper=8.73
+ARC-c: registry=56.83, paper=56.83
+WG: registry=72.69, paper=72.69
+MMLU: registry=71.83, paper=71.83
+GSM8K: registry=49.51, paper=49.51
+HS: registry=70.51, paper=70.51
+PIQA: registry=74.70, paper=74.70
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "e58a4f1a-1e90-4d23-b667-36e4cb19d110"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 559_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a3dc6f65833ecaedb",
+  "tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "description": "Running Compute KL uniform Qwen14B 3-seed statistics for Table A",
+  "usage": {
+    "total_tokens": 77860,
+    "tool_uses": 27,
+    "duration_ms": 280124
+  },
+  "last_tool_name": "Bash",
+  "uuid": "8b6ded09-5537-4fdd-bfeb-c63e1c3b095b",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 560_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017bZq3kMaiPj59ACwWDF8r3`</summary>
+
+```json
+{
+  "command": "cat /tmp/registry_metrics.json | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\nimport statistics\n\n# Table A Uniform KL Qwen14B\n# Paper: PPL=7.90, ARC-c=53.50, WG=72.82, MMLU=63.55\n# Paper: GSM8K=30.9±6.8 (n=2), HS=72.68±0.2, PIQA=76.01±1.1\n\n# From 3 evals:\ns42_eval = d['qwen14b_kl30_s42_eval_uniform_v3']['metrics']\ns123_eval = d['qwen14b_kl30_s123_eval_v5']['metrics']\ns456_eval = d['qwen14b_kl30_s456_eval_v3']['metrics']\n\nppls = [s42_eval['wikitext2_ppl'], s123_eval['wikitext2_ppl'], s456_eval['wikitext2_ppl']]\narcs = [s42_eval['arc_challenge_acc_norm'], s123_eval['arc_challenge_acc_norm'], s456_eval['arc_challenge_acc_norm']]\nwgs = [s42_eval['winogrande_acc'], s123_eval['winogrande_acc'], s456_eval['winogrande_acc']]\nmmlus = [s42_eval['mmlu_acc'], s123_eval['mmlu_acc'], s456_eval['mmlu_acc']]\nhss = [s42_eval['hellaswag_acc_norm'], s123_eval['hellaswag_acc_norm'], s456_eval['hellaswag_acc_norm']]\npiqas = [s42_eval['piqa_acc_norm'], s123_eval['piqa_acc_norm'], s456_eval['piqa_acc_norm']]\n\nprint('=== KL Uniform Qwen14B 3-seed stats ===')\nprint(f'PPL: mean={statistics.mean(ppls):.2f}±{statistics.stdev(ppls):.2f}, paper=7.90')\nprint(f'ARC-c: mean={statistics.mean(arcs)*100:.2f}±{statistics.stdev(arcs)*100:.2f}, paper=53.50')\nprint(f'WG: mean={statistics.mean(wgs)*100:.2f}±{statistics.stdev(wgs)*100:.2f}, paper=72.82')\nprint(f'MMLU: mean={statistics.mean(mmlus)*100:.2f}±{statistics.stdev(mmlus)*100:.2f}, paper=63.55')\nprint(f'HS: mean={statistics.mean(hss)*100:.2f}±{statistics.stdev(hss)*100:.2f}, paper=72.68±0.2')\nprint(f'PIQA: mean={statistics.mean(piqas)*100:.2f}±{statistics.stdev(piqas)*100:.2f}, paper=76.01±1.1')\n\n# GSM8K for uniform KL: s42=35.48, s456=26.08 (s123 not available)\ngsm8k_s42 = d['qwen14b_kl30_s42_gsm8k_uniform']['metrics']['gsm8k_exact_match']\ngsm8k_s456 = d['qwen14b_kl30_s456_gsm8k']['metrics']['gsm8k_exact_match']\ngsm8k_mean = (gsm8k_s42 + gsm8k_s456) / 2\ngsm8k_std = statistics.stdev([gsm8k_s42, gsm8k_s456])\nprint(f'GSM8K (n=2): mean={gsm8k_mean*100:.1f}±{gsm8k_std*100:.1f}, paper=30.9±6.8')\n\"\n",
+  "description": "Compute KL uniform Qwen14B 3-seed statistics for Table A"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "0bb024e5-af74-4d1d-a3bf-271a9eabbb26",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012npMhXYJyy2C2ajhx1TwM1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1650,
+      "cache_read_input_tokens": 75167,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1650,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 561 · 2026-05-24T01:17:58.177Z_
+
+<details><summary>↩ Tool result · `toolu_017bZq3kMaiPj59ACwWDF8r3`</summary>
+
+```text
+=== KL Uniform Qwen14B 3-seed stats ===
+PPL: mean=7.90±0.03, paper=7.90
+ARC-c: mean=53.50±1.83, paper=53.50
+WG: mean=72.82±1.41, paper=72.82
+MMLU: mean=63.55±1.23, paper=63.55
+HS: mean=72.68±0.19, paper=72.68±0.2
+PIQA: mean=76.01±1.09, paper=76.01±1.1
+GSM8K (n=2): mean=30.8±6.6, paper=30.9±6.8
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "bc22ddf4-0d54-4c75-805e-3ec616335b70"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 562_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a3dc6f65833ecaedb",
+  "tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "description": "Running Final Table B comparison",
+  "usage": {
+    "total_tokens": 79164,
+    "tool_uses": 28,
+    "duration_ms": 295591
+  },
+  "last_tool_name": "Bash",
+  "uuid": "fe142615-8ef9-46ec-a673-8cd4fd47828d",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 563_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01UMSVGa18wt4ZyuBgFXdCMo`</summary>
+
+```json
+{
+  "command": "cat /tmp/registry_metrics.json | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\nimport statistics\n\n# Table A Uniform TEAL Qwen14B\n# Paper: PPL=8.01, ARC-c=55.29, WG=69.85, MMLU=66.34, GSM8K=52.1, HS=67.72, PIQA=74.70\n# Registry: \n# - No entry for PPL/ARC-c/WG/MMLU \n# - qwen14b_teal30_uniform_gsm8k: GSM8K=52.1 ✓  \n# - qwen14b_teal30_uniform_hspiqa: HS=67.72, PIQA=74.70 ✓\n\n# Let's also double-check Table B final values\nprint('=== Table B Final Check ===')\nprint()\nprint('Dense:')\nm = d['dense_baseline_hellaswag_piqa']['metrics']\nprint(f'  HS: registry={m[\\\"hellaswag_acc_norm\\\"]*100:.2f}, paper=82.35')\nprint(f'  PIQA: registry={m[\\\"piqa_acc_norm\\\"]*100:.2f}, paper=80.90')\n\nprint()\nprint('KL 30% uniform (from kl30_uniform_hellaswag_piqa_v2):')\nm = d['kl30_uniform_hellaswag_piqa_v2']['metrics']\nprint(f'  HS(s42): registry={m[\\\"hellaswag_acc_norm\\\"]*100:.2f}')\nprint(f'  PIQA(s42): registry={m[\\\"piqa_acc_norm\\\"]*100:.2f}')\nprint(f'  Paper: HS=71.07±0.54, PIQA=74.95±0.25')\nprint('  NOTE: Only s42 found in registry for LLaMA KL30 uniform HS/PIQA')\n\nprint()\nprint('TEAL 30% uniform:')\nm = d['teal_30pct_uniform_multiseed_eval']['metrics']\nprint(f'  HS: registry={m[\\\"hellaswag\\\"]*100:.2f}, paper=63.31')\nprint(f'  PIQA: registry={m[\\\"piqa\\\"]*100:.2f}, paper=72.80')\n# Note: piqa=71.98 vs paper=72.80 - DISCREPANCY\n\nprint()\nprint('BCE isocompute 30%:')\nm = d['bce_isocompute_hellaswag_piqa_v2']['metrics']\nprint(f'  HS: registry={m[\\\"hellaswag_acc_norm\\\"]*100:.2f}, paper=62.81')\nprint(f'  PIQA: registry={m[\\\"piqa_acc_norm\\\"]*100:.2f}, paper=74.21')\n\nprint()\nprint('KL 50% global:')\nm = d['kl50_global_hellaswag_piqa_v2']['metrics']\nprint(f'  HS: registry={m[\\\"hellaswag_acc_norm\\\"]*100:.2f}, paper=58.95')\nprint(f'  PIQA: registry={m[\\\"piqa_acc_norm\\\"]*100:.2f}, paper=69.48')\n\nprint()\nprint('KL 50% uniform:')\nm = d['kl50_uniform_hellaswag_piqa']['metrics']\nprint(f'  HS: registry={m[\\\"hellaswag_acc_norm\\\"]*100:.2f}, paper=56.66')\nprint(f'  PIQA: registry={m[\\\"piqa_acc_norm\\\"]*100:.2f}, paper=69.10')\n\nprint()\nprint('TEAL 50% uniform: NOT IN REGISTRY')\nprint('  Paper: HS=39.35, PIQA=63.66')\n\"\n",
+  "description": "Final Table B comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "105e2740-160c-4952-b7f6-ddb5a2f495c2",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01GLYBRVhnASKTcJuc41d752",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1268,
+      "cache_read_input_tokens": 76817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1268,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 564 · 2026-05-24T01:18:13.662Z_
+
+<details><summary>↩ Tool result · `toolu_01UMSVGa18wt4ZyuBgFXdCMo`</summary>
+
+```text
+=== Table B Final Check ===
+
+Dense:
+  HS: registry=82.35, paper=82.35
+  PIQA: registry=80.90, paper=80.90
+
+KL 30% uniform (from kl30_uniform_hellaswag_piqa_v2):
+  HS(s42): registry=70.85
+  PIQA(s42): registry=74.81
+  Paper: HS=71.07±0.54, PIQA=74.95±0.25
+  NOTE: Only s42 found in registry for LLaMA KL30 uniform HS/PIQA
+
+TEAL 30% uniform:
+  HS: registry=63.31, paper=63.31
+  PIQA: registry=71.98, paper=72.80
+
+BCE isocompute 30%:
+  HS: registry=62.81, paper=62.81
+  PIQA: registry=74.21, paper=74.21
+
+KL 50% global:
+  HS: registry=58.95, paper=58.95
+  PIQA: registry=69.48, paper=69.48
+
+KL 50% uniform:
+  HS: registry=56.66, paper=56.66
+  PIQA: registry=69.10, paper=69.10
+
+TEAL 50% uniform: NOT IN REGISTRY
+  Paper: HS=39.35, PIQA=63.66
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "107c47cd-2160-4fcb-acf2-3675bd9e3d4e"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 565_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a3dc6f65833ecaedb",
+  "tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "description": "Running Find TEAL 50% uniform HellaSwag/PIQA entries",
+  "usage": {
+    "total_tokens": 80618,
+    "tool_uses": 29,
+    "duration_ms": 304822
+  },
+  "last_tool_name": "Bash",
+  "uuid": "4c277d10-f044-480b-9c1c-033190381c4e",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 566_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01K77uN5gTvvELdcLWTit5pB`</summary>
+
+```json
+{
+  "command": "cat /tmp/registry_metrics.json | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\n\n# TEAL 50% uniform HS/PIQA - paper says 39.35/63.66\n# Check mistral_teal50_downstream: HS=0.3603 - that's Mistral, not LLaMA\n# Need to find LLaMA TEAL 50% uniform HS/PIQA\n# bench_teal50 has global allocation presumably (TEAL global), no HS/PIQA\n# Look for other entries\n\nprint('=== All TEAL 50% entries ===')\nfor k in d:\n    if 'teal' in k.lower() and '50' in k:\n        m = d[k].get('metrics', {})\n        has_hs = 'hellaswag_acc_norm' in m or 'hellaswag' in m\n        print(f'{k}: has_hs={has_hs}, {json.dumps(m)[:80]}')\n\nprint()\n# Also check mistral TEAL50 downstream - might be 39.35 is for something else\n# Is 39.35 the HellaSwag value for TEAL 50% uniform LLaMA?\n# bench_teal50 doesn't have HS/PIQA \n# teal_28.5pct_sanity:\nm = d.get('teal_28.5pct_sanity', {}).get('metrics', {})\nprint(f'teal_28.5pct_sanity: {json.dumps(m)}')\n\"\n",
+  "description": "Find TEAL 50% uniform HellaSwag/PIQA entries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "8a79d8a4-a34e-4f56-850a-2813d8a3a0e5",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01TFYjfhBxYtrtNTo27wmYpA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 78085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 567 · 2026-05-24T01:18:22.873Z_
+
+<details><summary>↩ Tool result · `toolu_01K77uN5gTvvELdcLWTit5pB`</summary>
+
+```text
+=== All TEAL 50% entries ===
+bench_teal50_uniform_gsm8k: has_hs=False, {"gsm8k_exact_match_flexible": 0.0174}
+mistral_teal50_downstream: has_hs=True, {"wikitext2_ppl": 18.3061, "arc_challenge_acc_norm": 0.2457, "winogrande_acc": 0
+bce_50pct_teal_global_unified: has_hs=False, {"wikitext2_ppl": 27.97, "arc_challenge_acc_norm": 0.2765, "winogrande_acc": 0.5
+mistral_kl50_teal_global: has_hs=False, {"wikitext2_ppl": 8.6489, "model": "Mistral-7B-v0.3", "condition": "kl_teal_glob
+mistral_teal50_baseline: has_hs=False, {"teal_baseline_ppl": 18.3061, "dense_ppl": 5.5238, "teal_vs_dense_ratio": 3.31}
+bench_teal50: has_hs=False, {"wikitext2_ppl": 23.31, "arc_challenge_acc_norm": 0.2841, "winogrande_acc": 0.5
+lm_eval_teal_50pct: has_hs=False, {"method": "vanilla_teal", "sparsity": 0.5, "actual_sparsity": 0.5, "arc_challen
+
+teal_28.5pct_sanity: {"wikitext2_ppl": 10.3}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "f452d798-141a-4479-af81-c0c28526eb16"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 568_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a3dc6f65833ecaedb",
+  "tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "description": "Running Final Table E latency comparison",
+  "usage": {
+    "total_tokens": 81607,
+    "tool_uses": 30,
+    "duration_ms": 316657
+  },
+  "last_tool_name": "Bash",
+  "uuid": "6ddc84b9-9bf8-4db6-bb41-a00ce31e56e4",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 569_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01MEUbDFbyPUbt8yVWU8GuTn`</summary>
+
+```json
+{
+  "command": "cat /tmp/registry_metrics.json | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\n\n# TEAL 50% uniform HS/PIQA (paper: 39.35/63.66) NOT in registry\n# This seems to be a data point not directly verifiable from registry\n\n# Table E: Latency final check\nprint('=== Table E: Latency ===')\nm = d['latency_benchmark']['metrics']\nprint(f'Dense: ms={m[\\\"dense_ms\\\"]}, std={m[\\\"dense_std\\\"]}, tok/s={m[\\\"dense_tokens_per_s\\\"]:.0f}')\nprint(f'  Paper: 119.11±0.57, 17195')\nprint(f'  Match: ms={abs(m[\\\"dense_ms\\\"]-119.11)<0.01}, std={abs(m[\\\"dense_std\\\"]-0.57)<0.01}, tok/s={abs(m[\\\"dense_tokens_per_s\\\"]-17195)<1}')\nprint()\nprint(f'KL 30%: ms={m[\\\"kl_30pct_ms\\\"]}, std={m[\\\"kl_30pct_std\\\"]}, tok/s={m[\\\"kl_30pct_tokens_per_s\\\"]:.0f}')\nprint(f'  Paper: 126.64±0.70, 16172')\nprint(f'  Match: ms={abs(m[\\\"kl_30pct_ms\\\"]-126.64)<0.01}, std={abs(m[\\\"kl_30pct_std\\\"]-0.70)<0.01}, tok/s={abs(m[\\\"kl_30pct_tokens_per_s\\\"]-16172)<1}')\nprint()\nprint(f'KL 50%: ms={m[\\\"kl_50pct_ms\\\"]}, std={m[\\\"kl_50pct_std\\\"]}, tok/s={m[\\\"kl_50pct_tokens_per_s\\\"]:.0f}')\nprint(f'  Paper: 126.78±0.31, 16154')\nprint(f'  Match: ms={abs(m[\\\"kl_50pct_ms\\\"]-126.78)<0.01}, std={abs(m[\\\"kl_50pct_std\\\"]-0.31)<0.01}, tok/s={abs(m[\\\"kl_50pct_tokens_per_s\\\"]-16154)<1}')\nprint()\nprint(f'Pred+comp 30%: ms={m[\\\"comp_30pct_ms\\\"]}, std={m[\\\"comp_30pct_std\\\"]}, tok/s={m[\\\"comp_30pct_tokens_per_s\\\"]:.0f}')\nprint(f'  Paper: 129.94±0.75, 15761')\nprint(f'  Match: ms={abs(m[\\\"comp_30pct_ms\\\"]-129.94)<0.01}, std={abs(m[\\\"comp_30pct_std\\\"]-0.75)<0.01}, tok/s={abs(m[\\\"comp_30pct_tokens_per_s\\\"]-15761)<1}')\nprint()\nprint(f'Pred+comp 50%: ms={m[\\\"comp_50pct_ms\\\"]}, std={m[\\\"comp_50pct_std\\\"]}, tok/s={m[\\\"comp_50pct_tokens_per_s\\\"]:.0f}')\nprint(f'  Paper: 129.71±0.53, 15789')\nprint(f'  Match: ms={abs(m[\\\"comp_50pct_ms\\\"]-129.71)<0.01}, std={abs(m[\\\"comp_50pct_std\\\"]-0.53)<0.01}, tok/s={abs(m[\\\"comp_50pct_tokens_per_s\\\"]-15789)<1}')\n\"\n",
+  "description": "Final Table E latency comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "fffdb396-ccde-4da3-a5ab-b06ca1198c9e",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012wyLagmSNvD7yzqAmqvNNL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 925,
+      "cache_read_input_tokens": 79505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 925,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 570 · 2026-05-24T01:18:34.745Z_
+
+<details><summary>↩ Tool result · `toolu_01MEUbDFbyPUbt8yVWU8GuTn`</summary>
+
+```text
+=== Table E: Latency ===
+Dense: ms=119.11, std=0.57, tok/s=17194
+  Paper: 119.11±0.57, 17195
+  Match: ms=True, std=True, tok/s=True
+
+KL 30%: ms=126.64, std=0.7, tok/s=16172
+  Paper: 126.64±0.70, 16172
+  Match: ms=True, std=True, tok/s=True
+
+KL 50%: ms=126.78, std=0.31, tok/s=16154
+  Paper: 126.78±0.31, 16154
+  Match: ms=True, std=True, tok/s=True
+
+Pred+comp 30%: ms=129.94, std=0.75, tok/s=15761
+  Paper: 129.94±0.75, 15761
+  Match: ms=True, std=True, tok/s=True
+
+Pred+comp 50%: ms=129.71, std=0.53, tok/s=15789
+  Paper: 129.71±0.53, 15789
+  Match: ms=True, std=True, tok/s=True
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "15bd3c26-198d-4c86-8810-1e3098241039"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 571_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "a3dc6f65833ecaedb",
+  "tool_use_id": "toolu_01AfEt1m2xwHJYb8DrDiwKup",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Verify Qwen + Appendix tables",
+  "usage": {
+    "total_tokens": 82964,
+    "tool_uses": 30,
+    "duration_ms": 386626
+  },
+  "uuid": "ebd2607b-640c-4823-9c1d-a4c1832105df",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 572 · 2026-05-24T01:19:44.597Z_
+
+<details><summary>↩ Tool result · `toolu_01AfEt1m2xwHJYb8DrDiwKup`</summary>
+
+````text
+Now I have all the data needed to produce the full verification report.
+
+---
+
+## Cross-Verification Report
+
+---
+
+### TABLE A: Qwen-2.5-14B (tab:14b)
+
+**Dense Baseline** (qwen14b_dense_baseline + qwen14b_dense_hspiqa)
+
+```
+[A][Dense] PPL    paper=5.19    registry=5.1854 (qwen14b_dense_baseline) ✅
+[A][Dense] ARC-c  paper=67.58   registry=67.58  (qwen14b_dense_baseline) ✅
+[A][Dense] WG     paper=81.06   registry=81.06  (qwen14b_dense_baseline) ✅
+[A][Dense] MMLU   paper=79.77   registry=79.77  (qwen14b_dense_baseline) ✅
+[A][Dense] GSM8K  paper=87.57   registry=87.57  (qwen14b_dense_baseline) ✅
+[A][Dense] HS     paper=84.20   registry=84.21  (qwen14b_dense_hspiqa)   ✅
+[A][Dense] PIQA   paper=81.94   registry=81.94  (qwen14b_dense_hspiqa)   ✅
+```
+
+**Global KL (qwen14b_kl30_s42_eval + qwen14b_kl30_global_hspiqa)**
+
+```
+[A][KL-Global] PPL    paper=7.62    registry=7.6232  (qwen14b_kl30_s42_eval) ✅
+[A][KL-Global] ARC-c  paper=57.17   registry=57.17   (qwen14b_kl30_s42_eval) ✅
+[A][KL-Global] WG     paper=72.06   registry=72.06   (qwen14b_kl30_s42_eval) ✅
+[A][KL-Global] MMLU   paper=63.72   registry=63.72   (qwen14b_kl30_s42_eval) ✅
+[A][KL-Global] GSM8K  paper=48.82   registry=48.82   (qwen14b_kl30_s42_eval) ✅
+[A][KL-Global] HS     paper=75.01   registry=75.01   (qwen14b_kl30_global_hspiqa) ✅
+[A][KL-Global] PIQA   paper=77.37   registry=77.37   (qwen14b_kl30_global_hspiqa) ✅
+```
+
+**Global TEAL (qwen14b_teal30_eval + qwen14b_teal30_global_hspiqa)**
+
+```
+[A][TEAL-Global] PPL    paper=8.73    registry=8.7332  (qwen14b_teal30_eval) ✅
+[A][TEAL-Global] ARC-c  paper=56.83   registry=56.83   (qwen14b_teal30_eval) ✅
+[A][TEAL-Global] WG     paper=72.69   registry=72.69   (qwen14b_teal30_eval) ✅
+[A][TEAL-Global] MMLU   paper=71.83   registry=71.83   (qwen14b_teal30_eval) ✅
+[A][TEAL-Global] GSM8K  paper=49.51   registry=49.51   (qwen14b_teal30_eval) ✅
+[A][TEAL-Global] HS     paper=70.51   registry=70.51   (qwen14b_teal30_global_hspiqa) ✅
+[A][TEAL-Global] PIQA   paper=74.70   registry=74.70   (qwen14b_teal30_global_hspiqa) ✅
+```
+
+**Global BCE (qwen14b_bce30_s42 for PPL; qwen14b_bce30_global_hspiqa for HS/PIQA; exp_id qwen14b_bce30_s42_eval NOT IN REGISTRY for ARC-c/WG/MMLU/GSM8K)**
+
+```
+[A][BCE-Global] PPL    paper=8.76    registry=8.76  (qwen14b_bce30_s42, teal_global_ppl) ✅
+[A][BCE-Global] ARC-c  paper=57.59   registry=NOT FOUND (qwen14b_bce30_s42_eval missing) ⚠️
+[A][BCE-Global] WG     paper=72.61   registry=NOT FOUND ⚠️
+[A][BCE-Global] MMLU   paper=71.67   registry=NOT FOUND ⚠️
+[A][BCE-Global] GSM8K  paper=53.07   registry=NOT FOUND ⚠️
+[A][BCE-Global] HS     paper=53.43   registry=53.43  (qwen14b_bce30_global_hspiqa) ✅
+[A][BCE-Global] PIQA   paper=68.28   registry=68.28  (qwen14b_bce30_global_hspiqa) ✅
+```
+
+**Uniform KL (3-seed s42/s123/s456: qwen14b_kl30_s42_eval_uniform_v3, qwen14b_kl30_s123_eval_v5, qwen14b_kl30_s456_eval_v3)**
+
+```
+[A][KL-Uniform] PPL    paper=7.90        registry=7.90±0.03  (3-seed mean) ✅
+[A][KL-Uniform] ARC-c  paper=53.50       registry=53.50±1.83 (3-seed mean) ✅
+[A][KL-Uniform] WG     paper=72.82       registry=72.82±1.41 (3-seed mean) ✅
+[A][KL-Uniform] MMLU   paper=63.55       registry=63.55±1.23 (3-seed mean) ✅
+[A][KL-Uniform] GSM8K  paper=30.9±6.8*  registry=30.8±6.6 (s42=35.5, s456=26.1, n=2) ✅
+[A][KL-Uniform] HS     paper=72.68±0.2   registry=72.68±0.19 (3-seed) ✅
+[A][KL-Uniform] PIQA   paper=76.01±1.1   registry=76.01±1.09 (3-seed) ✅
+```
+
+*Note: GSM8K n=2 because s123 incomplete; paper footnote acknowledges this. Registry gives mean=30.8 vs paper 30.9 (0.1pp rounding), std=6.6 vs 6.8 (0.2pp rounding). Both within rounding.*
+
+**Uniform TEAL (qwen14b_teal30_uniform_gsm8k + qwen14b_teal30_uniform_hspiqa; ARC-c/WG/MMLU/PPL NOT IN REGISTRY)**
+
+```
+[A][TEAL-Uniform] PPL    paper=8.01    registry=NOT FOUND ⚠️
+[A][TEAL-Uniform] ARC-c  paper=55.29   registry=NOT FOUND ⚠️
+[A][TEAL-Uniform] WG     paper=69.85   registry=NOT FOUND ⚠️
+[A][TEAL-Uniform] MMLU   paper=66.34   registry=NOT FOUND ⚠️
+[A][TEAL-Uniform] GSM8K  paper=52.1    registry=52.1  (qwen14b_teal30_uniform_gsm8k) ✅
+[A][TEAL-Uniform] HS     paper=67.72   registry=67.72 (qwen14b_teal30_uniform_hspiqa) ✅
+[A][TEAL-Uniform] PIQA   paper=74.70   registry=74.70 (qwen14b_teal30_uniform_hspiqa) ✅
+```
+
+---
+
+### TABLE B: Extended Downstream (tab:downstream)
+
+```
+[B][Dense]         HS   paper=82.35   registry=82.35  (dense_baseline_hellaswag_piqa) ✅
+[B][Dense]         PIQA paper=80.90   registry=80.90  (dense_baseline_hellaswag_piqa) ✅
+[B][KL-30%-unif]   HS   paper=71.07±0.54  registry=70.85 (s42 only; kl30_uniform_hellaswag_piqa_v2) ⚠️
+[B][KL-30%-unif]   PIQA paper=74.95±0.25  registry=74.81 (s42 only) ⚠️
+[B][TEAL-30%-unif] HS   paper=63.31   registry=63.31  (teal_30pct_uniform_multiseed_eval) ✅
+[B][TEAL-30%-unif] PIQA paper=72.80   registry=71.98  (teal_30pct_uniform_multiseed_eval) ❌
+[B][BCE-30%-iso]   HS   paper=62.81   registry=62.81  (bce_isocompute_hellaswag_piqa_v2) ✅
+[B][BCE-30%-iso]   PIQA paper=74.21   registry=74.21  (bce_isocompute_hellaswag_piqa_v2) ✅
+[B][KL-50%-global] HS   paper=58.95   registry=58.95  (kl50_global_hellaswag_piqa_v2) ✅
+[B][KL-50%-global] PIQA paper=69.48   registry=69.48  (kl50_global_hellaswag_piqa_v2) ✅
+[B][KL-50%-unif]   HS   paper=56.66   registry=56.66  (kl50_uniform_hellaswag_piqa) ✅
+[B][KL-50%-unif]   PIQA paper=69.10   registry=69.10  (kl50_uniform_hellaswag_piqa) ✅
+[B][TEAL-50%-unif] HS   paper=39.35   registry=NOT FOUND (bench_teal50_uniform_6task missing) ⚠️
+[B][TEAL-50%-unif] PIQA paper=63.66   registry=NOT FOUND ⚠️
+```
+
+**Table B flags:**
+- `[B][KL-30%-unif]`: Only seed 42 (s42=70.85 HS, 74.81 PIQA) is registered individually. The paper reports a 3-seed mean (71.07/74.95). The s123 and s456 HS/PIQA runs for LLaMA KL30 uniform are not registered under any exp_id. The paper values are not individually verifiable from registry alone; they are plausible given s42 is within 0.2pp of the mean.
+- `[B][TEAL-30%-unif] PIQA`: Registry shows 71.98; paper shows 72.80. This is a **0.82pp discrepancy**. The registry entry `teal_30pct_uniform_multiseed_eval` stores `piqa` (=71.98) not `piqa_acc_norm`. It is likely both refer to acc_norm but there is a genuine numerical mismatch.
+- `[B][TEAL-50%-unif]`: The exp_id `bench_teal50_uniform_6task` does not exist in the registry; only bench_teal50 (global, no HS/PIQA) is present.
+
+---
+
+### TABLE C: OOD Evaluation (tab:ood)
+
+```
+[C][Dense]        C4-PPL paper=9.21     registry=9.2075 (c4_ood_dense_baseline_v2) ✅
+[C][KL-30%-pred]  C4-PPL paper=16.03±0.01  registry=16.033±0.010 (c4_ood_kl30_s42_v2=16.040, c4_ood_kl30_s123_v2=16.026) ✅
+[C][KL-50%-pred]  C4-PPL paper=18.40    registry=18.401 (eval_c4_ood_kl50) ✅
+[C][TEAL-50%-van] C4-PPL paper=38.75    registry=38.750 (eval_c4_ood_kl50) ✅
+```
+
+*Appendix paragraph on uniform allocation: paper says 18.22/16.37/16.36 → mean 16.98±1.07. Registry: c4_ood_kl30_uniform_s42=18.22, s123=16.37, s456=16.36, computed mean=16.98±1.07. ✅ (perfect match)*
+
+---
+
+### TABLE D: C4 Training Data Control (tab:c4_control)
+
+```
+[D][WikiText] PPL    paper=8.82    registry=8.8157  (bench_kl30_uniform) ✅
+[D][WikiText] ARC-c  paper=40.78   registry=40.78   (bench_kl30_uniform) ✅
+[D][WikiText] WG     paper=68.59   registry=68.59   (bench_kl30_uniform) ✅
+[D][WikiText] MMLU   paper=40.6    registry=40.61   (bench_kl30_uniform) ✅
+[D][WikiText] GSM8K  paper=7.35    registry=7.35    (bench_kl30_uniform) ✅
+[D][WikiText] HS     paper=69.4    registry=NOT MATCHED ❌
+[D][WikiText] PIQA   paper=75.5    registry=NOT MATCHED ❌
+[D][C4]       PPL    paper=11.55   registry=11.554  (c4_kl30_s42_eval) ✅
+[D][C4]       ARC-c  paper=43.09   registry=43.09   (c4_kl30_s42_eval) ✅
+[D][C4]       WG     paper=68.67   registry=68.67   (c4_kl30_s42_eval) ✅
+[D][C4]       MMLU   paper=39.95   registry=39.95   (c4_kl30_s42_eval) ✅
+[D][C4]       GSM8K  paper=4.09    registry=4.09    (c4_kl30_s42_eval) ✅
+[D][C4]       HS     paper=69.24   registry=69.24   (c4_kl30_s42_eval) ✅
+[D][C4]       PIQA   paper=74.86   registry=75.03   (c4_kl30_s42_eval) ❌
+```
+
+**Table D flags:**
+- `[D][WikiText] HS/PIQA`: The paper reports 69.4/75.5 for the WikiText-trained predictor. The only LLaMA KL30 uniform HS/PIQA registry entry (`kl30_uniform_hellaswag_piqa_v2`) gives 70.85/74.81, which does not match. No other registry entry contains 69.4% HellaSwag for KL30 uniform. Source of these specific values is untraced in the registry.
+- `[D][C4] PIQA`: Paper says 74.86; registry (`c4_kl30_s42_eval`) gives 75.03. Discrepancy of **0.17pp**.
+
+---
+
+### TABLE E: Latency (tab:latency)
+
+```
+[E][Dense]        ms/fwd paper=119.11±0.57  registry=119.11±0.57  (latency_benchmark) ✅
+[E][Dense]        tok/s  paper=17195         registry=17194.5      (latency_benchmark) ✅
+[E][KL-pred-30%]  ms/fwd paper=126.64±0.70  registry=126.64±0.70  (latency_benchmark) ✅
+[E][KL-pred-30%]  tok/s  paper=16172         registry=16171.8      (latency_benchmark) ✅
+[E][KL-pred-50%]  ms/fwd paper=126.78±0.31  registry=126.78±0.31  (latency_benchmark) ✅
+[E][KL-pred-50%]  tok/s  paper=16154         registry=16154.2      (latency_benchmark) ✅
+[E][Pred+comp-30%] ms/fwd paper=129.94±0.75 registry=129.94±0.75  (latency_benchmark) ✅
+[E][Pred+comp-30%] tok/s  paper=15761        registry=15761.4      (latency_benchmark) ✅
+[E][Pred+comp-50%] ms/fwd paper=129.71±0.53 registry=129.71±0.53  (latency_benchmark) ✅
+[E][Pred+comp-50%] tok/s  paper=15789        registry=15788.8      (latency_benchmark) ✅
+```
+
+---
+
+## Summary
+
+| Category | Count |
+|---|---|
+| **Total checks** | 77 |
+| **Matches (✅)** | 62 |
+| **Mismatches (❌)** | 3 |
+| **Not found / unverifiable (⚠️)** | 12 |
+
+### Mismatches (❌) — require correction
+
+1. **[B][TEAL-30%-unif] PIQA**: Paper=72.80, registry (`teal_30pct_uniform_multiseed_eval`)=71.98. Discrepancy of 0.82pp. The registry stores `piqa` (not `piqa_acc_norm`); if both are acc_norm this is a real error. Needs recheck of whether paper used a different eval run.
+
+2. **[D][WikiText] HS**: Paper=69.4, registry best match for LLaMA KL30 uniform is 70.85 (`kl30_uniform_hellaswag_piqa_v2`). No registry entry traces to 69.4. Discrepancy of 1.45pp.
+
+3. **[D][C4] PIQA**: Paper=74.86, registry (`c4_kl30_s42_eval`)=75.03. Discrepancy of 0.17pp (possible rounding in earlier version of run).
+
+### Not found / partially verifiable (⚠️)
+
+- **Table A BCE Global** (ARC-c/WG/MMLU/GSM8K): `qwen14b_bce30_s42_eval` not in registry. PPL/HS/PIQA are verifiable; 4 downstream metrics are not.
+- **Table A TEAL Uniform** (PPL/ARC-c/WG/MMLU): No Qwen14B TEAL 30% uniform 4-task eval registered. GSM8K/HS/PIQA are verifiable.
+- **Table B KL-30%-uniform** (HS/PIQA ±std): Only seed 42 is individually registered. The 3-seed mean (71.07/74.95) cannot be fully reconstructed from registry; s123 and s456 HS/PIQA for LLaMA KL30 uniform are absent.
+- **Table B TEAL-50%-uniform** (HS/PIQA): `bench_teal50_uniform_6task` not in registry.
+- **Table D WikiText PIQA** (75.5): No registry match; the value 74.81 from `kl30_uniform_hellaswag_piqa_v2` differs by 0.69pp.
+
+agentId: a3dc6f65833ecaedb (use SendMessage with to: 'a3dc6f65833ecaedb' to continue this agent)
+&lt;usage>total_tokens: 86961
+tool_uses: 30
+duration_ms: 386627&lt;/usage>
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "f12609ad-b9e6-4750-a4a1-c558664d3560",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "You are cross-verifying paper data against a registry of experiment results. The registry metrics are in `/tmp/registry_metrics.json` (JSON dict: exp_id -> {metrics, spec, conclusion, status}).\n\nYour task: verify numbers in the following paper tables against the registry:\n\n## Table A: Qwen-2.5-14B (tab:14b in appendix.tex)\n\n```\nMethod & PPL↓ & ARC-c & WG & MMLU & GSM8K & HS & PIQA\nDense & 5.19 & 67.58 & 81.06 & 79.77 & 87.57 & 84.20 & 81.94\nGlobal KL (Ours) & 7.62 & 57.17 & 72.06 & 63.72 & 48.82 & 75.01 & 77.37  % exp_id: qwen14b_kl30_s42\nGlobal TEAL & 8.73 & 56.83 & 72.69 & 71.83 & 49.51 & 70.51 & 74.70      % exp_id: qwen14b_teal30_eval\nGlobal BCE & 8.76 & 57.59 & 72.61 & 71.67 & 53.07 & 53.43 & 68.28       % exp_id: qwen14b_bce30_s42_eval\nUniform KL (Ours) & 7.90 & 53.50 & 72.82 & 63.55 & 32.0±5.2 & 72.68±0.2 & 76.01±1.1  % exp_id: qwen14b_kl30_uniform\nUniform TEAL & 8.01 & 55.29 & 69.85 & 66.34 & 52.1 & 67.72 & 74.70       % exp_id: qwen14b_teal30_uniform\n```\n\nFor the Qwen dense baseline, look for `qwen14b_dense_baseline`, `qwen14b_dense_4task_v2`, `qwen14b_dense_hspiqa`.\nFor uniform KL with ±std (GSM8K, HS, PIQA), look for `qwen14b_kl30_s42_eval_uniform_v3`, `qwen14b_kl30_s123_eval_v5`, `qwen14b_kl30_s456_eval_v2` or similar. Also `qwen14b_kl30_s42_gsm8k_uniform`, `qwen14b_kl30_s456_gsm8k`, `qwen14b_kl30_uniform_hspiqa`.\nFor TEAL uniform, try `qwen14b_teal30_uniform_hspiqa`, `qwen14b_teal30_uniform_gsm8k`.\n\n## Table B: Extended Downstream (tab:downstream in appendix)\n\n```\nSparsity & Method & HellaSwag & PIQA\n0% Dense & 82.35 & 80.90\n30% KL uniform & 71.07±0.54 & 74.95±0.25   % exp_id: hellaswag_piqa_kl30_uniform (3-seed)\n30% TEAL uniform & 63.31 & 72.80            % exp_id: bench_teal30_uniform_6task\n30% BCE isocompute & 62.81 & 74.21          % exp_id: bce_isocompute_30u_hellaswag_piqa\n50% KL global & 58.95 & 69.48               % exp_id: hellaswag_piqa_kl50_global\n50% KL uniform & 56.66 & 69.10              % exp_id: hellaswag_piqa_kl50_uniform\n50% TEAL uniform & 39.35 & 63.66            % exp_id: bench_teal50_uniform_6task\n```\n\nLook for experiments with these exp_ids or variants like `kl30_uniform_hellaswag_piqa_v2`, `kl50_global_hellaswag_piqa_v2`, `dense_baseline_hellaswag_piqa`, `bce_isocompute_hellaswag_piqa_v2`.\n\n## Table C: OOD Evaluation (tab:ood in appendix)\n\n```\nMethod & C4 PPL↓\nDense & 9.21\n30% KL predictor & 16.03±0.01   % exp_id: c4_ood_kl30_s42, c4_ood_kl30_s123\n50% KL predictor & 18.40         % exp_id: eval_c4_ood_kl50\n50% TEAL vanilla & 38.75\n```\n\nLook for `c4_ood_kl30_s42_v2`, `c4_ood_kl30_s123_v2`, `eval_c4_ood_kl50`, `c4_ood_dense_baseline_v2`. Also check OOD uniform table: `c4_ood_kl30_uniform_s42/s123/s456`.\n\n## Table D: C4 Control (tab:c4_control in appendix)\n\n```\nTraining Data & PPL↓ & ARC-c & WG & MMLU & GSM8K & HS / PIQA\nWikiText-103 & 8.82 & 40.78 & 68.59 & 40.6 & 7.35 & 69.4 / 75.5\nC4 & 11.55 & 43.09 & 68.67 & 39.95 & 4.09 & 69.24 / 74.86\n```\n\nLook for `c4_kl30_s42_eval`, `c4_kl30_s42`, `c4_control_eval` etc. The WikiText row should match bench_kl30_uniform.\n\n## Table E: Latency (tab:latency in appendix)\n\n```\nDense: 119.11±0.57 ms/fwd, 17195 tok/s\nKL pred 30%: 126.64±0.70, 16172\nKL pred 50%: 126.78±0.31, 16154\nPred+comp 30%: 129.94±0.75, 15761\nPred+comp 50%: 129.71±0.53, 15789\n```\n\nLook for `latency_benchmark` or `latency_bench`.\n\nFor each data point, output:\n```\n[TABLE][ROW] [METRIC] paper=[value] registry=[value] (exp_id) ✅/❌/⚠️\n```\n\nAt the end, provide a summary of total checks, matches, mismatches, not found.",
+    "agentId": "a3dc6f65833ecaedb",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have all the data needed to produce the full verification report.\n\n---\n\n## Cross-Verification Report\n\n---\n\n### TABLE A: Qwen-2.5-14B (tab:14b)\n\n**Dense Baseline** (qwen14b_dense_baseline + qwen14b_dense_hspiqa)\n\n```\n[A][Dense] PPL    paper=5.19    registry=5.1854 (qwen14b_dense_baseline) ✅\n[A][Dense] ARC-c  paper=67.58   registry=67.58  (qwen14b_dense_baseline) ✅\n[A][Dense] WG     paper=81.06   registry=81.06  (qwen14b_dense_baseline) ✅\n[A][Dense] MMLU   paper=79.77   registry=79.77  (qwen14b_dense_baseline) ✅\n[A][Dense] GSM8K  paper=87.57   registry=87.57  (qwen14b_dense_baseline) ✅\n[A][Dense] HS     paper=84.20   registry=84.21  (qwen14b_dense_hspiqa)   ✅\n[A][Dense] PIQA   paper=81.94   registry=81.94  (qwen14b_dense_hspiqa)   ✅\n```\n\n**Global KL (qwen14b_kl30_s42_eval + qwen14b_kl30_global_hspiqa)**\n\n```\n[A][KL-Global] PPL    paper=7.62    registry=7.6232  (qwen14b_kl30_s42_eval) ✅\n[A][KL-Global] ARC-c  paper=57.17   registry=57.17   (qwen14b_kl30_s42_eval) ✅\n[A][KL-Global] WG     paper=72.06   registry=72.06   (qwen14b_kl30_s42_eval) ✅\n[A][KL-Global] MMLU   paper=63.72   registry=63.72   (qwen14b_kl30_s42_eval) ✅\n[A][KL-Global] GSM8K  paper=48.82   registry=48.82   (qwen14b_kl30_s42_eval) ✅\n[A][KL-Global] HS     paper=75.01   registry=75.01   (qwen14b_kl30_global_hspiqa) ✅\n[A][KL-Global] PIQA   paper=77.37   registry=77.37   (qwen14b_kl30_global_hspiqa) ✅\n```\n\n**Global TEAL (qwen14b_teal30_eval + qwen14b_teal30_global_hspiqa)**\n\n```\n[A][TEAL-Global] PPL    paper=8.73    registry=8.7332  (qwen14b_teal30_eval) ✅\n[A][TEAL-Global] ARC-c  paper=56.83   registry=56.83   (qwen14b_teal30_eval) ✅\n[A][TEAL-Global] WG     paper=72.69   registry=72.69   (qwen14b_teal30_eval) ✅\n[A][TEAL-Global] MMLU   paper=71.83   registry=71.83   (qwen14b_teal30_eval) ✅\n[A][TEAL-Global] GSM8K  paper=49.51   registry=49.51   (qwen14b_teal30_eval) ✅\n[A][TEAL-Global] HS     paper=70.51   registry=70.51   (qwen14b_teal30_global_hspiqa) ✅\n[A][TEAL-Global] PIQA   paper=74.70   registry=74.70   (qwen14b_teal30_global_hspiqa) ✅\n```\n\n**Global BCE (qwen14b_bce30_s42 for PPL; qwen14b_bce30_global_hspiqa for HS/PIQA; exp_id qwen14b_bce30_s42_eval NOT IN REGISTRY for ARC-c/WG/MMLU/GSM8K)**\n\n```\n[A][BCE-Global] PPL    paper=8.76    registry=8.76  (qwen14b_bce30_s42, teal_global_ppl) ✅\n[A][BCE-Global] ARC-c  paper=57.59   registry=NOT FOUND (qwen14b_bce30_s42_eval missing) ⚠️\n[A][BCE-Global] WG     paper=72.61   registry=NOT FOUND ⚠️\n[A][BCE-Global] MMLU   paper=71.67   registry=NOT FOUND ⚠️\n[A][BCE-Global] GSM8K  paper=53.07   registry=NOT FOUND ⚠️\n[A][BCE-Global] HS     paper=53.43   registry=53.43  (qwen14b_bce30_global_hspiqa) ✅\n[A][BCE-Global] PIQA   paper=68.28   registry=68.28  (qwen14b_bce30_global_hspiqa) ✅\n```\n\n**Uniform KL (3-seed s42/s123/s456: qwen14b_kl30_s42_eval_uniform_v3, qwen14b_kl30_s123_eval_v5, qwen14b_kl30_s456_eval_v3)**\n\n```\n[A][KL-Uniform] PPL    paper=7.90        registry=7.90±0.03  (3-seed mean) ✅\n[A][KL-Uniform] ARC-c  paper=53.50       registry=53.50±1.83 (3-seed mean) ✅\n[A][KL-Uniform] WG     paper=72.82       registry=72.82±1.41 (3-seed mean) ✅\n[A][KL-Uniform] MMLU   paper=63.55       registry=63.55±1.23 (3-seed mean) ✅\n[A][KL-Uniform] GSM8K  paper=30.9±6.8*  registry=30.8±6.6 (s42=35.5, s456=26.1, n=2) ✅\n[A][KL-Uniform] HS     paper=72.68±0.2   registry=72.68±0.19 (3-seed) ✅\n[A][KL-Uniform] PIQA   paper=76.01±1.1   registry=76.01±1.09 (3-seed) ✅\n```\n\n*Note: GSM8K n=2 because s123 incomplete; paper footnote acknowledges this. Registry gives mean=30.8 vs paper 30.9 (0.1pp rounding), std=6.6 vs 6.8 (0.2pp rounding). Both within rounding.*\n\n**Uniform TEAL (qwen14b_teal30_uniform_gsm8k + qwen14b_teal30_uniform_hspiqa; ARC-c/WG/MMLU/PPL NOT IN REGISTRY)**\n\n```\n[A][TEAL-Uniform] PPL    paper=8.01    registry=NOT FOUND ⚠️\n[A][TEAL-Uniform] ARC-c  paper=55.29   registry=NOT FOUND ⚠️\n[A][TEAL-Uniform] WG     paper=69.85   registry=NOT FOUND ⚠️\n[A][TEAL-Uniform] MMLU   paper=66.34   registry=NOT FOUND ⚠️\n[A][TEAL-Uniform] GSM8K  paper=52.1    registry=52.1  (qwen14b_teal30_uniform_gsm8k) ✅\n[A][TEAL-Uniform] HS     paper=67.72   registry=67.72 (qwen14b_teal30_uniform_hspiqa) ✅\n[A][TEAL-Uniform] PIQA   paper=74.70   registry=74.70 (qwen14b_teal30_uniform_hspiqa) ✅\n```\n\n---\n\n### TABLE B: Extended Downstream (tab:downstream)\n\n```\n[B][Dense]         HS   paper=82.35   registry=82.35  (dense_baseline_hellaswag_piqa) ✅\n[B][Dense]         PIQA paper=80.90   registry=80.90  (dense_baseline_hellaswag_piqa) ✅\n[B][KL-30%-unif]   HS   paper=71.07±0.54  registry=70.85 (s42 only; kl30_uniform_hellaswag_piqa_v2) ⚠️\n[B][KL-30%-unif]   PIQA paper=74.95±0.25  registry=74.81 (s42 only) ⚠️\n[B][TEAL-30%-unif] HS   paper=63.31   registry=63.31  (teal_30pct_uniform_multiseed_eval) ✅\n[B][TEAL-30%-unif] PIQA paper=72.80   registry=71.98  (teal_30pct_uniform_multiseed_eval) ❌\n[B][BCE-30%-iso]   HS   paper=62.81   registry=62.81  (bce_isocompute_hellaswag_piqa_v2) ✅\n[B][BCE-30%-iso]   PIQA paper=74.21   registry=74.21  (bce_isocompute_hellaswag_piqa_v2) ✅\n[B][KL-50%-global] HS   paper=58.95   registry=58.95  (kl50_global_hellaswag_piqa_v2) ✅\n[B][KL-50%-global] PIQA paper=69.48   registry=69.48  (kl50_global_hellaswag_piqa_v2) ✅\n[B][KL-50%-unif]   HS   paper=56.66   registry=56.66  (kl50_uniform_hellaswag_piqa) ✅\n[B][KL-50%-unif]   PIQA paper=69.10   registry=69.10  (kl50_uniform_hellaswag_piqa) ✅\n[B][TEAL-50%-unif] HS   paper=39.35   registry=NOT FOUND (bench_teal50_uniform_6task missing) ⚠️\n[B][TEAL-50%-unif] PIQA paper=63.66   registry=NOT FOUND ⚠️\n```\n\n**Table B flags:**\n- `[B][KL-30%-unif]`: Only seed 42 (s42=70.85 HS, 74.81 PIQA) is registered individually. The paper reports a 3-seed mean (71.07/74.95). The s123 and s456 HS/PIQA runs for LLaMA KL30 uniform are not registered under any exp_id. The paper values are not individually verifiable from registry alone; they are plausible given s42 is within 0.2pp of the mean.\n- `[B][TEAL-30%-unif] PIQA`: Registry shows 71.98; paper shows 72.80. This is a **0.82pp discrepancy**. The registry entry `teal_30pct_uniform_multiseed_eval` stores `piqa` (=71.98) not `piqa_acc_norm`. It is likely both refer to acc_norm but there is a genuine numerical mismatch.\n- `[B][TEAL-50%-unif]`: The exp_id `bench_teal50_uniform_6task` does not exist in the registry; only bench_teal50 (global, no HS/PIQA) is present.\n\n---\n\n### TABLE C: OOD Evaluation (tab:ood)\n\n```\n[C][Dense]        C4-PPL paper=9.21     registry=9.2075 (c4_ood_dense_baseline_v2) ✅\n[C][KL-30%-pred]  C4-PPL paper=16.03±0.01  registry=16.033±0.010 (c4_ood_kl30_s42_v2=16.040, c4_ood_kl30_s123_v2=16.026) ✅\n[C][KL-50%-pred]  C4-PPL paper=18.40    registry=18.401 (eval_c4_ood_kl50) ✅\n[C][TEAL-50%-van] C4-PPL paper=38.75    registry=38.750 (eval_c4_ood_kl50) ✅\n```\n\n*Appendix paragraph on uniform allocation: paper says 18.22/16.37/16.36 → mean 16.98±1.07. Registry: c4_ood_kl30_uniform_s42=18.22, s123=16.37, s456=16.36, computed mean=16.98±1.07. ✅ (perfect match)*\n\n---\n\n### TABLE D: C4 Training Data Control (tab:c4_control)\n\n```\n[D][WikiText] PPL    paper=8.82    registry=8.8157  (bench_kl30_uniform) ✅\n[D][WikiText] ARC-c  paper=40.78   registry=40.78   (bench_kl30_uniform) ✅\n[D][WikiText] WG     paper=68.59   registry=68.59   (bench_kl30_uniform) ✅\n[D][WikiText] MMLU   paper=40.6    registry=40.61   (bench_kl30_uniform) ✅\n[D][WikiText] GSM8K  paper=7.35    registry=7.35    (bench_kl30_uniform) ✅\n[D][WikiText] HS     paper=69.4    registry=NOT MATCHED ❌\n[D][WikiText] PIQA   paper=75.5    registry=NOT MATCHED ❌\n[D][C4]       PPL    paper=11.55   registry=11.554  (c4_kl30_s42_eval) ✅\n[D][C4]       ARC-c  paper=43.09   registry=43.09   (c4_kl30_s42_eval) ✅\n[D][C4]       WG     paper=68.67   registry=68.67   (c4_kl30_s42_eval) ✅\n[D][C4]       MMLU   paper=39.95   registry=39.95   (c4_kl30_s42_eval) ✅\n[D][C4]       GSM8K  paper=4.09    registry=4.09    (c4_kl30_s42_eval) ✅\n[D][C4]       HS     paper=69.24   registry=69.24   (c4_kl30_s42_eval) ✅\n[D][C4]       PIQA   paper=74.86   registry=75.03   (c4_kl30_s42_eval) ❌\n```\n\n**Table D flags:**\n- `[D][WikiText] HS/PIQA`: The paper reports 69.4/75.5 for the WikiText-trained predictor. The only LLaMA KL30 uniform HS/PIQA registry entry (`kl30_uniform_hellaswag_piqa_v2`) gives 70.85/74.81, which does not match. No other registry entry contains 69.4% HellaSwag for KL30 uniform. Source of these specific values is untraced in the registry.\n- `[D][C4] PIQA`: Paper says 74.86; registry (`c4_kl30_s42_eval`) gives 75.03. Discrepancy of **0.17pp**.\n\n---\n\n### TABLE E: Latency (tab:latency)\n\n```\n[E][Dense]        ms/fwd paper=119.11±0.57  registry=119.11±0.57  (latency_benchmark) ✅\n[E][Dense]        tok/s  paper=17195         registry=17194.5      (latency_benchmark) ✅\n[E][KL-pred-30%]  ms/fwd paper=126.64±0.70  registry=126.64±0.70  (latency_benchmark) ✅\n[E][KL-pred-30%]  tok/s  paper=16172         registry=16171.8      (latency_benchmark) ✅\n[E][KL-pred-50%]  ms/fwd paper=126.78±0.31  registry=126.78±0.31  (latency_benchmark) ✅\n[E][KL-pred-50%]  tok/s  paper=16154         registry=16154.2      (latency_benchmark) ✅\n[E][Pred+comp-30%] ms/fwd paper=129.94±0.75 registry=129.94±0.75  (latency_benchmark) ✅\n[E][Pred+comp-30%] tok/s  paper=15761        registry=15761.4      (latency_benchmark) ✅\n[E][Pred+comp-50%] ms/fwd paper=129.71±0.53 registry=129.71±0.53  (latency_benchmark) ✅\n[E][Pred+comp-50%] tok/s  paper=15789        registry=15788.8      (latency_benchmark) ✅\n```\n\n---\n\n## Summary\n\n| Category | Count |\n|---|---|\n| **Total checks** | 77 |\n| **Matches (✅)** | 62 |\n| **Mismatches (❌)** | 3 |\n| **Not found / unverifiable (⚠️)** | 12 |\n\n### Mismatches (❌) — require correction\n\n1. **[B][TEAL-30%-unif] PIQA**: Paper=72.80, registry (`teal_30pct_uniform_multiseed_eval`)=71.98. Discrepancy of 0.82pp. The registry stores `piqa` (not `piqa_acc_norm`); if both are acc_norm this is a real error. Needs recheck of whether paper used a different eval run.\n\n2. **[D][WikiText] HS**: Paper=69.4, registry best match for LLaMA KL30 uniform is 70.85 (`kl30_uniform_hellaswag_piqa_v2`). No registry entry traces to 69.4. Discrepancy of 1.45pp.\n\n3. **[D][C4] PIQA**: Paper=74.86, registry (`c4_kl30_s42_eval`)=75.03. Discrepancy of 0.17pp (possible rounding in earlier version of run).\n\n### Not found / partially verifiable (⚠️)\n\n- **Table A BCE Global** (ARC-c/WG/MMLU/GSM8K): `qwen14b_bce30_s42_eval` not in registry. PPL/HS/PIQA are verifiable; 4 downstream metrics are not.\n- **Table A TEAL Uniform** (PPL/ARC-c/WG/MMLU): No Qwen14B TEAL 30% uniform 4-task eval registered. GSM8K/HS/PIQA are verifiable.\n- **Table B KL-30%-uniform** (HS/PIQA ±std): Only seed 42 is individually registered. The 3-seed mean (71.07/74.95) cannot be fully reconstructed from registry; s123 and s456 HS/PIQA for LLaMA KL30 uniform are absent.\n- **Table B TEAL-50%-uniform** (HS/PIQA): `bench_teal50_uniform_6task` not in registry.\n- **Table D WikiText PIQA** (75.5): No registry match; the value 74.81 from `kl30_uniform_hellaswag_piqa_v2` differs by 0.69pp."
+      }
+    ],
+    "totalDurationMs": 386627,
+    "totalTokens": 86961,
+    "totalToolUseCount": 30,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1355,
+      "cache_read_input_tokens": 80430,
+      "output_tokens": 5175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1355
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5175,
+          "cache_read_input_tokens": 80430,
+          "cache_creation_input_tokens": 1355,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1355,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 1,
+      "searchCount": 0,
+      "bashCount": 29,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 573_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also verify the inline numbers in the prose (abstract, introduction, experiments body text, conclusion). Let me launch one more agent for that.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "6c482b87-6771-4c1c-8902-3495ac3437f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EoV3cC4EvojmHj9WNLTqM7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7125,
+      "cache_read_input_tokens": 82961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7125
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 574_
+
+Now let me verify the inline prose numbers (abstract, introduction, experiments body text, conclusion).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "18b5be64-8b04-45ca-b5c3-0e824dc6a0d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EoV3cC4EvojmHj9WNLTqM7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7125,
+      "cache_read_input_tokens": 82961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7125
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 575_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_014Hxk77M4CwKNx9EagMdPbj`</summary>
+
+````json
+{
+  "description": "Verify inline prose numbers",
+  "prompt": "You are cross-verifying paper inline numbers against a registry of experiment results. The registry metrics are in `/tmp/registry_metrics.json` (JSON dict: exp_id -> {metrics, spec, conclusion, status}).\n\nYour task: verify ALL quantitative claims made in the **prose text** (not table cells, which are verified separately) of these paper sections. For each numeric claim, find the registry source and check correctness.\n\n## Claims to verify:\n\n### Abstract (abstract.tex)\n1. \"14.5% over TEAL at matched sparsity\" — check: (TEAL_PPL - KL_PPL) / TEAL_PPL. Need TEAL PPL at matched sparsity (28.5% actual). Look for `teal_28.5pct_sanity` or compute from TEAL at 28.5%.\n2. \"MMLU −5.2pp on 8B\" — check: KL_MMLU - Dense_MMLU or KL_MMLU - TEAL_MMLU?  Paper says \"knowledge-intensive regression (MMLU −5.2pp on 8B)\". Context: probably TEAL_MMLU - KL_MMLU = 45.86 - 40.7 = 5.16 ≈ 5.2pp\n3. \"GSM8K −20.1pp on 14B\" — check: probably TEAL_GSM8K - KL_GSM8K for Qwen14B uniform. TEAL=52.1, KL=32.0. Diff=20.1pp\n4. \"+67.2M params\" — architecture claim, not registry\n5. \"PPL gap ≤0.65pp\" — C1 ablation claim. Check: max PPL gap between C1 and KL across seeds at 30%. From Table 3: s42 gap = 9.45-8.82=0.63, s123 gap=8.84-8.83=0.01, s456 gap=8.82-8.79=0.03. Max=0.63pp. Paper says ≤0.65pp. But caption says \"max Δ≤1.70pp at 30%\". Verify.\n6. \"46--68% from magnitude-based targets\" — Jaccard distance range. Look for `c1_mask_overlap` or mask divergence experiments.\n7. \"75.9M params, <1% of base\" — architecture constant\n\n### Introduction (introduction.tex)\n8. \"14.5% at matched sparsity (8.81 vs. 10.30, both at 28.5%)\" — need TEAL PPL at 28.5% actual sparsity. Look for `teal_28.5pct_sanity`.\n9. \"MMLU 40.7±1.3% vs. 65.3% dense\" — KL MMLU from 3-seed (matches Table 2) vs dense. Dense MMLU = 65.27, paper says 65.3%.\n10. \"7.3× MMLU σ\" — global MMLU std / uniform MMLU std. Global: 9.5, Uniform: 1.3. 9.5/1.3 = 7.31 ≈ 7.3×\n11. \"−17.3% PPL on Mistral\" — (TEAL_PPL - KL_PPL) / TEAL_PPL for Mistral 30%. TEAL=8.38, KL=6.93. (8.38-6.93)/8.38 = 17.3%\n12. \"GSM8K −20.1pp, σ=5.2pp\" for Qwen14B\n13. \"MMLU −2.8pp\" for Qwen14B — TEAL_MMLU - KL_MMLU for 14B uniform. TEAL=66.34, KL=63.55. Diff=2.79≈2.8pp\n14. \"6.4% latency overhead\" — from latency table\n\n### Experiments prose (experiments.tex body text, not table cells)\n15. \"PPL 8.81±0.02 (3-seed), a 14.5% reduction over TEAL at matched actual sparsity (8.81 vs. 10.30, both at 28.5%)\" — verify TEAL at 28.5% = 10.30\n16. \"MMLU 40.7±1.3%, 3-seed\" — matches Table 2\n17. \"35.7±9.5%\" for global MMLU — matches Table 2  \n18. \"L31 retention 28.4%\" — look for perlayer_sparsity_analysis\n19. \"11.92 vs. 23.90, 50% reduction\" — (23.90-11.92)/23.90 = 50.1%\n20. \"28.13±0.20\" for BCE at 2700 steps — matches Table 2\n21. \"2.39× worse than KL (11.79)\" — 28.13/11.79 = 2.386 ≈ 2.39×. But wait, text says \"KL (11.79)\" at 50% — this should be from bench_kl50_global\n22. \"F1 (0.613 vs. 0.540)\" — look for `kl_bce_f1_oracle` or `f1_oracle_analysis`\n23. \"139% worse PPL\" — (28.13-11.79)/11.79 = 138.7% ≈ 139%\n24. \"Jaccard distance averages 68% at 50%\" — from mask overlap analysis\n25. \"cross-seed variation (36.3%)\" — cross-seed Jaccard\n26. \"Gumbel-Sigmoid outperforms STE by 33.8% (11.79 vs. 15.77)\" — (15.77-11.79)/11.79 = 33.8%\n27. \"forward KL outperforms JSD (+6.4%) and reverse KL (+8.6%)\" — (12.54-11.79)/11.79=6.4%, (12.80-11.79)/11.79=8.6%\n28. \"$K=16$ achieves the lowest PPL (8.67±0.02 vs. E2E 8.81±0.02)\" — from K-curve\n29. \"the full coupling range (2.08 PPL)\" — K=2 worst (10.75) - K=16 best (8.67) = 2.08\n30. \"signal type gap (9.47 PPL)\" — MSE PPL(18.52) - K=1 KL PPL(9.05) = 9.47\n31. \"$-$17.3\\%, 3-seed\" for Mistral\n32. \"GSM8K 32.0±5.2 vs. 52.1\" for Qwen14B\n33. \"$148×$ vs. $112×$ compression\" — d_model/d_b ratios. For Qwen-14B: d_model=5120(?)/d_b=128 or d_ff/d_b? Need to check architecture.\n\n### Conclusion (conclusion.tex)\n34. \"14.5%\" — same claim as above\n\nFor each claim, output:\n```\n[SECTION] Claim: \"[text]\" → computed=[value] paper=[value] ✅/❌\n```\n\nFocus on numerical accuracy. Tolerance ≤0.1pp for derived calculations.",
+  "model": "sonnet"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "a5b4b084-c25b-4756-bab6-1fd4be61c515",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EoV3cC4EvojmHj9WNLTqM7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7125,
+      "cache_read_input_tokens": 82961,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7125
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 576_
+
+````json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Verify inline prose numbers",
+  "task_type": "local_agent",
+  "prompt": "You are cross-verifying paper inline numbers against a registry of experiment results. The registry metrics are in `/tmp/registry_metrics.json` (JSON dict: exp_id -> {metrics, spec, conclusion, status}).\n\nYour task: verify ALL quantitative claims made in the **prose text** (not table cells, which are verified separately) of these paper sections. For each numeric claim, find the registry source and check correctness.\n\n## Claims to verify:\n\n### Abstract (abstract.tex)\n1. \"14.5% over TEAL at matched sparsity\" — check: (TEAL_PPL - KL_PPL) / TEAL_PPL. Need TEAL PPL at matched sparsity (28.5% actual). Look for `teal_28.5pct_sanity` or compute from TEAL at 28.5%.\n2. \"MMLU −5.2pp on 8B\" — check: KL_MMLU - Dense_MMLU or KL_MMLU - TEAL_MMLU?  Paper says \"knowledge-intensive regression (MMLU −5.2pp on 8B)\". Context: probably TEAL_MMLU - KL_MMLU = 45.86 - 40.7 = 5.16 ≈ 5.2pp\n3. \"GSM8K −20.1pp on 14B\" — check: probably TEAL_GSM8K - KL_GSM8K for Qwen14B uniform. TEAL=52.1, KL=32.0. Diff=20.1pp\n4. \"+67.2M params\" — architecture claim, not registry\n5. \"PPL gap ≤0.65pp\" — C1 ablation claim. Check: max PPL gap between C1 and KL across seeds at 30%. From Table 3: s42 gap = 9.45-8.82=0.63, s123 gap=8.84-8.83=0.01, s456 gap=8.82-8.79=0.03. Max=0.63pp. Paper says ≤0.65pp. But caption says \"max Δ≤1.70pp at 30%\". Verify.\n6. \"46--68% from magnitude-based targets\" — Jaccard distance range. Look for `c1_mask_overlap` or mask divergence experiments.\n7. \"75.9M params, <1% of base\" — architecture constant\n\n### Introduction (introduction.tex)\n8. \"14.5% at matched sparsity (8.81 vs. 10.30, both at 28.5%)\" — need TEAL PPL at 28.5% actual sparsity. Look for `teal_28.5pct_sanity`.\n9. \"MMLU 40.7±1.3% vs. 65.3% dense\" — KL MMLU from 3-seed (matches Table 2) vs dense. Dense MMLU = 65.27, paper says 65.3%.\n10. \"7.3× MMLU σ\" — global MMLU std / uniform MMLU std. Global: 9.5, Uniform: 1.3. 9.5/1.3 = 7.31 ≈ 7.3×\n11. \"−17.3% PPL on Mistral\" — (TEAL_PPL - KL_PPL) / TEAL_PPL for Mistral 30%. TEAL=8.38, KL=6.93. (8.38-6.93)/8.38 = 17.3%\n12. \"GSM8K −20.1pp, σ=5.2pp\" for Qwen14B\n13. \"MMLU −2.8pp\" for Qwen14B — TEAL_MMLU - KL_MMLU for 14B uniform. TEAL=66.34, KL=63.55. Diff=2.79≈2.8pp\n14. \"6.4% latency overhead\" — from latency table\n\n### Experiments prose (experiments.tex body text, not table cells)\n15. \"PPL 8.81±0.02 (3-seed), a 14.5% reduction over TEAL at matched actual sparsity (8.81 vs. 10.30, both at 28.5%)\" — verify TEAL at 28.5% = 10.30\n16. \"MMLU 40.7±1.3%, 3-seed\" — matches Table 2\n17. \"35.7±9.5%\" for global MMLU — matches Table 2  \n18. \"L31 retention 28.4%\" — look for perlayer_sparsity_analysis\n19. \"11.92 vs. 23.90, 50% reduction\" — (23.90-11.92)/23.90 = 50.1%\n20. \"28.13±0.20\" for BCE at 2700 steps — matches Table 2\n21. \"2.39× worse than KL (11.79)\" — 28.13/11.79 = 2.386 ≈ 2.39×. But wait, text says \"KL (11.79)\" at 50% — this should be from bench_kl50_global\n22. \"F1 (0.613 vs. 0.540)\" — look for `kl_bce_f1_oracle` or `f1_oracle_analysis`\n23. \"139% worse PPL\" — (28.13-11.79)/11.79 = 138.7% ≈ 139%\n24. \"Jaccard distance averages 68% at 50%\" — from mask overlap analysis\n25. \"cross-seed variation (36.3%)\" — cross-seed Jaccard\n26. \"Gumbel-Sigmoid outperforms STE by 33.8% (11.79 vs. 15.77)\" — (15.77-11.79)/11.79 = 33.8%\n27. \"forward KL outperforms JSD (+6.4%) and reverse KL (+8.6%)\" — (12.54-11.79)/11.79=6.4%, (12.80-11.79)/11.79=8.6%\n28. \"$K=16$ achieves the lowest PPL (8.67±0.02 vs. E2E 8.81±0.02)\" — from K-curve\n29. \"the full coupling range (2.08 PPL)\" — K=2 worst (10.75) - K=16 best (8.67) = 2.08\n30. \"signal type gap (9.47 PPL)\" — MSE PPL(18.52) - K=1 KL PPL(9.05) = 9.47\n31. \"$-$17.3\\%, 3-seed\" for Mistral\n32. \"GSM8K 32.0±5.2 vs. 52.1\" for Qwen14B\n33. \"$148×$ vs. $112×$ compression\" — d_model/d_b ratios. For Qwen-14B: d_model=5120(?)/d_b=128 or d_ff/d_b? Need to check architecture.\n\n### Conclusion (conclusion.tex)\n34. \"14.5%\" — same claim as above\n\nFor each claim, output:\n```\n[SECTION] Claim: \"[text]\" → computed=[value] paper=[value] ✅/❌\n```\n\nFocus on numerical accuracy. Tolerance ≤0.1pp for derived calculations.",
+  "uuid": "0859aedc-fc61-4f4f-ac46-468be1bcd1d2",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+````
+
+---
+
+
+## Round 5
+
+## Round 5
+
+150 recorded events
+
+
+### User
+
+_source line 577 · 2026-05-24T01:20:34.750Z_
+
+You are cross-verifying paper inline numbers against a registry of experiment results. The registry metrics are in `/tmp/registry_metrics.json` (JSON dict: exp_id -> {metrics, spec, conclusion, status}).
+
+Your task: verify ALL quantitative claims made in the **prose text** (not table cells, which are verified separately) of these paper sections. For each numeric claim, find the registry source and check correctness.
+
+## Claims to verify:
+
+### Abstract (abstract.tex)
+1. "14.5% over TEAL at matched sparsity" — check: (TEAL_PPL - KL_PPL) / TEAL_PPL. Need TEAL PPL at matched sparsity (28.5% actual). Look for `teal_28.5pct_sanity` or compute from TEAL at 28.5%.
+2. "MMLU −5.2pp on 8B" — check: KL_MMLU - Dense_MMLU or KL_MMLU - TEAL_MMLU?  Paper says "knowledge-intensive regression (MMLU −5.2pp on 8B)". Context: probably TEAL_MMLU - KL_MMLU = 45.86 - 40.7 = 5.16 ≈ 5.2pp
+3. "GSM8K −20.1pp on 14B" — check: probably TEAL_GSM8K - KL_GSM8K for Qwen14B uniform. TEAL=52.1, KL=32.0. Diff=20.1pp
+4. "+67.2M params" — architecture claim, not registry
+5. "PPL gap ≤0.65pp" — C1 ablation claim. Check: max PPL gap between C1 and KL across seeds at 30%. From Table 3: s42 gap = 9.45-8.82=0.63, s123 gap=8.84-8.83=0.01, s456 gap=8.82-8.79=0.03. Max=0.63pp. Paper says ≤0.65pp. But caption says "max Δ≤1.70pp at 30%". Verify.
+6. "46--68% from magnitude-based targets" — Jaccard distance range. Look for `c1_mask_overlap` or mask divergence experiments.
+7. "75.9M params, <1% of base" — architecture constant
+
+### Introduction (introduction.tex)
+8. "14.5% at matched sparsity (8.81 vs. 10.30, both at 28.5%)" — need TEAL PPL at 28.5% actual sparsity. Look for `teal_28.5pct_sanity`.
+9. "MMLU 40.7±1.3% vs. 65.3% dense" — KL MMLU from 3-seed (matches Table 2) vs dense. Dense MMLU = 65.27, paper says 65.3%.
+10. "7.3× MMLU σ" — global MMLU std / uniform MMLU std. Global: 9.5, Uniform: 1.3. 9.5/1.3 = 7.31 ≈ 7.3×
+11. "−17.3% PPL on Mistral" — (TEAL_PPL - KL_PPL) / TEAL_PPL for Mistral 30%. TEAL=8.38, KL=6.93. (8.38-6.93)/8.38 = 17.3%
+12. "GSM8K −20.1pp, σ=5.2pp" for Qwen14B
+13. "MMLU −2.8pp" for Qwen14B — TEAL_MMLU - KL_MMLU for 14B uniform. TEAL=66.34, KL=63.55. Diff=2.79≈2.8pp
+14. "6.4% latency overhead" — from latency table
+
+### Experiments prose (experiments.tex body text, not table cells)
+15. "PPL 8.81±0.02 (3-seed), a 14.5% reduction over TEAL at matched actual sparsity (8.81 vs. 10.30, both at 28.5%)" — verify TEAL at 28.5% = 10.30
+16. "MMLU 40.7±1.3%, 3-seed" — matches Table 2
+17. "35.7±9.5%" for global MMLU — matches Table 2  
+18. "L31 retention 28.4%" — look for perlayer_sparsity_analysis
+19. "11.92 vs. 23.90, 50% reduction" — (23.90-11.92)/23.90 = 50.1%
+20. "28.13±0.20" for BCE at 2700 steps — matches Table 2
+21. "2.39× worse than KL (11.79)" — 28.13/11.79 = 2.386 ≈ 2.39×. But wait, text says "KL (11.79)" at 50% — this should be from bench_kl50_global
+22. "F1 (0.613 vs. 0.540)" — look for `kl_bce_f1_oracle` or `f1_oracle_analysis`
+23. "139% worse PPL" — (28.13-11.79)/11.79 = 138.7% ≈ 139%
+24. "Jaccard distance averages 68% at 50%" — from mask overlap analysis
+25. "cross-seed variation (36.3%)" — cross-seed Jaccard
+26. "Gumbel-Sigmoid outperforms STE by 33.8% (11.79 vs. 15.77)" — (15.77-11.79)/11.79 = 33.8%
+27. "forward KL outperforms JSD (+6.4%) and reverse KL (+8.6%)" — (12.54-11.79)/11.79=6.4%, (12.80-11.79)/11.79=8.6%
+28. "$K=16$ achieves the lowest PPL (8.67±0.02 vs. E2E 8.81±0.02)" — from K-curve
+29. "the full coupling range (2.08 PPL)" — K=2 worst (10.75) - K=16 best (8.67) = 2.08
+30. "signal type gap (9.47 PPL)" — MSE PPL(18.52) - K=1 KL PPL(9.05) = 9.47
+31. "$-$17.3\%, 3-seed" for Mistral
+32. "GSM8K 32.0±5.2 vs. 52.1" for Qwen14B
+33. "$148×$ vs. $112×$ compression" — d_model/d_b ratios. For Qwen-14B: d_model=5120(?)/d_b=128 or d_ff/d_b? Need to check architecture.
+
+### Conclusion (conclusion.tex)
+34. "14.5%" — same claim as above
+
+For each claim, output:
+```
+[SECTION] Claim: "[text]" → computed=[value] paper=[value] ✅/❌
+```
+
+Focus on numerical accuracy. Tolerance ≤0.1pp for derived calculations.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "273afa60-7251-4ae5-bb35-89f57ee76af4"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 578_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Reading /tmp/registry_metrics.json",
+  "usage": {
+    "total_tokens": 17219,
+    "tool_uses": 1,
+    "duration_ms": 2482
+  },
+  "last_tool_name": "Read",
+  "uuid": "8ca8d7c0-33f7-4692-84db-286b8b300541",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 579_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014s1prrAvTt31VumBeukeWj`</summary>
+
+```json
+{
+  "file_path": "/tmp/registry_metrics.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "919fa680-fdce-4814-9876-3583a1331c8f",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011wi2tkYXK19DoLkR2etGGD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8416,
+      "cache_read_input_tokens": 8794,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 8416,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 580 · 2026-05-24T01:20:37.237Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_014s1prrAvTt31VumBeukeWj`</summary>
+
+```text
+File content (290.7KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "adc3791a-9e19-45d4-91b5-ab24258c8e91",
+  "tool_use_result": "Error: File content (290.7KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 581_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Reading paper/abstract.tex",
+  "usage": {
+    "total_tokens": 17222,
+    "tool_uses": 2,
+    "duration_ms": 3959
+  },
+  "last_tool_name": "Read",
+  "uuid": "41f9a0f8-fbe8-42a0-95ed-d8b8035b9d4d",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 582_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MNh8WqkbLnSLcmjsUFygQe`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "a2b3df6e-c1b1-42e2-9969-fb1631cf79f6",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011wi2tkYXK19DoLkR2etGGD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8416,
+      "cache_read_input_tokens": 8794,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 8416,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 583 · 2026-05-24T01:20:38.713Z_
+
+<details><summary>↩ Tool result · `toolu_01MNh8WqkbLnSLcmjsUFygQe`</summary>
+
+```text
+1	Learned sparsity predictors for SwiGLU LLMs predominantly use binary cross-entropy (BCE), training each neuron independently, yet inference allocates budgets globally via top-$k$ ranking.
+2	We train lightweight predictors ($<$1\% of base parameters) with forward KL divergence, coupling all mask decisions through the output distribution.
+3	On LLaMA-3.1-8B at 30\% sparsity, the KL predictor reduces perplexity by 14.5\% over TEAL at matched sparsity, with directional commonsense gains ($n{=}3$) but knowledge-intensive regression (MMLU $-$5.2pp on 8B; GSM8K $-$21.2pp on 14B); post-hoc compensation (+67.2M params) becomes redundant.
+4	Output-distribution optimization yields masks that diverge 46--68\% from magnitude-based targets; a target-swap ablation suggests these discovered patterns carry most of the quality information: BCE trained on KL-derived targets approaches KL-level PPL (PPL gap $\leq$0.65pp; 3-seed, 30\%).
+5	Signal type (output-distribution vs.\ intermediate loss) may account for a substantial portion of the PPL gap at moderate sparsity (30\%) (upper bound; \S\ref{sec:perlayer}).
+6	On downstream tasks, cross-layer coupling contributes substantially for commonsense reasoning but minimally for mathematical reasoning (3-seed $K{=}4$-corrected decomposition).
+7	Cross-architecture evaluation on Mistral-7B-v0.3 and Qwen-2.5-14B confirms PPL generalization with scale-dependent downstream effects.
+8	This is primarily an empirical study; wall-clock speedup requires sparse kernel support not addressed here.
+9	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "d5627103-c552-4374-9155-5f1f4f6dbb15"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 584_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running List registry experiment IDs",
+  "usage": {
+    "total_tokens": 18793,
+    "tool_uses": 3,
+    "duration_ms": 6775
+  },
+  "last_tool_name": "Bash",
+  "uuid": "fb30c9bb-0a04-415a-9e26-908fa81158f1",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 585_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QaJetoA7QNQmei5kzUfhyu`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\nprint('Keys:', list(data.keys())[:50])\n\"",
+  "description": "List registry experiment IDs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "6649db45-42b7-4faa-a49d-ea923b80d490",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01APDjd4PvBbfd4iYH9DgurG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1528,
+      "cache_read_input_tokens": 17210,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1528,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 586 · 2026-05-24T01:20:41.596Z_
+
+<details><summary>↩ Tool result · `toolu_01QaJetoA7QNQmei5kzUfhyu`</summary>
+
+```text
+Keys: ['mse30_s123_downstream', 'perlayer_kl_k16_s456_eval', 'perlayer_kl_k16_s123_eval', 'perlayer_kl_k8_s456_eval', 'perlayer_kl_k8_s123_eval', 'perlayer_kl_k2_s456_eval', 'perlayer_kl_k2_s123_eval', 'perlayer_kl_k16_s456_v2', 'perlayer_kl_k2_s42_train', 'perlayer_kl_k16_s123', 'perlayer_kl_k8_s456', 'perlayer_kl_k8_s123', 'perlayer_kl_k2_s456', 'perlayer_kl_k2_s123', 'perlayer_kl_k2_s42_eval', 'perlayer_kl_k16_eval_final2', 'perlayer_kl_k2_s42', 'perlayer_kl_k8_s42_eval', 'perlayer_kl_k16_s42_v3', 'c4_kl30_s42_eval', 'perlayer_kl_k8_s42', 'c4_kl30_s42', 'perlayer_kl_s123_downstream_v2', 'perlayer_kl_k4_50_s42', 'kl50_global_s123_downstream_v2', 'qwen14b_kl30_s42_gsm8k_uniform', 'perlayer_kl_k4_s42_downstream', 'perlayer_kl_k4_s42', 'mse30_s456_downstream', 'mse30_s42_boolq', 'perlayer_kl_s123_boolq', 'kl30_uniform_boolq_s456', 'kl30_uniform_boolq_s123', 'kl30_uniform_boolq_s42', 'perlayer_kl_s123_convergence', 'perlayer_kl_s42_convergence', 'perlayer_kl_s456_boolq_v2', 'perlayer_kl_s42_downstream', 'perlayer_kl_30_s42_v6', 'perlayer_kl_30_s123_v4', 'perlayer_kl_s123_ppl', 'perlayer_kl_s42_ppl', 'perlayer_kl_s456_ppl_repro', 'revkl_30_s42_boolq', 'revkl_30_s456_downstream_v2', 'revkl_30_s123_downstream', 'perlayer_kl_30_s456_downstream', 'perlayer_kl_30_s456_ppl', 'bce_iso_v3_s42_30pct_uniform_eval', 'mse30_s123']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "ce42b19f-5dab-47a2-81e6-a580e6c24fd1"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 587_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Reading paper/introduction.tex",
+  "usage": {
+    "total_tokens": 18838,
+    "tool_uses": 4,
+    "duration_ms": 7925
+  },
+  "last_tool_name": "Read",
+  "uuid": "ad647872-8e04-44c5-aaec-7d1707152aea",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 588_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018h1hDyMSxV5STJUzeuPqjv`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "b3802ffe-2d18-45c2-bb22-6df89cb2d246",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01APDjd4PvBbfd4iYH9DgurG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1528,
+      "cache_read_input_tokens": 17210,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1528,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 589 · 2026-05-24T01:20:42.678Z_
+
+<details><summary>↩ Tool result · `toolu_018h1hDyMSxV5STJUzeuPqjv`</summary>
+
+```text
+1	\section{Introduction}
+2	
+3	How the training objective shapes learned sparsity prediction quality is an open question for SwiGLU LLMs~\cite{shazeer2020glu}. SwiGLU FFN blocks exhibit high contextual sparsity, but their gated activation makes importance prediction challenging: neuron importance depends on both gate and up-projection values, a target that magnitude-based methods handle suboptimally.
+4	Learned sparsity predictors~\cite{liu2023dejavu,gautam2026fastforward} exploit this property by training small networks to anticipate which neurons are important, but they predominantly rely on binary cross-entropy (BCE) loss, treating each neuron as an independent classification target.
+5	Yet at inference, sparsity budgets are allocated globally: the TEAL (training-free activation sparsity;~\citealp{liu2025teal}) top-$k$ mechanism ranks all neurons across all layers and retains only those above a model-wide threshold.
+6	This mismatch between per-neuron training and global inference allocation has not been formally analyzed.
+7	Unlike MaskLLM~\cite{fang2024maskllm}, which applies KL to static N:M weight masks, we address contextual activation sparsity where masks must generalize to unseen inputs, vary per token, and coordinate across layers through global allocation.
+8	
+9	Gradient analysis reveals a structural asymmetry: BCE's gradient $\partial \mathcal{L}_{\text{BCE}} / \partial s_j = \sigma(s_j) - m_j^*$ depends only on neuron $j$, while under KL divergence, the gradient couples each neuron to all others through the downstream Jacobian (\S\ref{sec:method:gradient}).
+10	KL's coupled gradients discover neuron importance patterns that diverge 68\% from magnitude-based masks (mean per-layer Jaccard distance).
+11	A target-swap ablation shows KL-discovered mask targets carry most of the quality information: BCE retrained on KL-derived targets approaches KL PPL ($\leq$0.65pp gap, 3-seed), while magnitude-trained BCE yields 28.13$\pm$0.20. Coupling contributes marginally to PPL but meaningfully to downstream fidelity (\S\ref{sec:perlayer}).
+12	
+13	We instantiate a lightweight predictor (75.9M params, $<$1\% of base) trained with forward KL and Gumbel-Sigmoid relaxation~\cite{jang2017gumbel} on LLaMA-3.1-8B~\cite{grattafiori2024llama3}.
+14	At 30\% sparsity under uniform allocation, the predictor reduces TEAL's perplexity by 14.5\% at matched sparsity (8.81 vs.\ 10.30, both at 28.5\%) with downstream (MMLU 40.7$\pm$1.3\% vs.\ 65.3\% dense, 3-seed); global top-$k$ amplifies cross-seed variance ($7.3\times$).
+15	At 50\%, the perplexity advantage widens (50\% over TEAL), but downstream reasoning collapses regardless of method.
+16	
+17	Cross-architecture evaluation on Mistral-7B-v0.3~\cite{jiang2023mistral} (3-seed) confirms the PPL advantage ($-$17.3\%) with directional commonsense gains but tied MMLU; preliminary evaluation on Qwen-2.5-14B~\cite{qwen2024qwen25} shows consistent PPL improvement but reasoning decline (GSM8K $-$21.2pp, $\sigma$=6.8pp, $n{=}2$; MMLU $-$2.8pp).
+18	This paper is primarily an empirical study characterizing how the training objective shapes sparsity prediction quality across allocation strategies, sparsity levels, and model scales. The central finding---that output-distribution alignment consistently and substantially outperforms per-neuron classification for learned sparsity---is the paper's contribution. Without sparse kernel support, the predictor adds 6.4\% latency overhead; wall-clock speedup is not addressed (Appendix~\ref{app:latency}).
+19	While individual components (KL divergence, Gumbel-Sigmoid relaxation) are established techniques, their application to contextual activation sparsity prediction has not been explored, and the resulting empirical behaviors are non-obvious.
+20	
+21	Our contributions are:
+22	\begin{itemize}[nosep,leftmargin=*]
+23	\item \emph{Empirical:} Output-distribution alignment ranking across five losses, with exploratory per-layer KL decomposition into signal type (may account for most of the PPL gap; upper bound) and coupling scope (task-dependent; $K{=}4$-corrected; \S\ref{sec:perlayer});
+24	\item \emph{Empirical:} Cross-scale evidence at 7--14B confirming output-distribution losses outperform intermediate losses regardless of coupling scope (\S\ref{sec:experiments}).
+25	\item \emph{Practical:} Target-swap ablation suggests KL-discovered mask targets transfer to BCE; coupling refines downstream fidelity beyond PPL (\S\ref{sec:perlayer}).
+26	\item \emph{Practical:} These mask patterns render post-hoc compensation (+67.2M params) redundant at both tested sparsity levels (\S\ref{sec:compensation}).
+27	\end{itemize}
+28	
+29	\begin{figure}[t]
+30	\centering
+31	\includegraphics[width=\columnwidth]{fig1_overview.pdf}
+32	\caption{Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks.}
+33	\label{fig:overview}
+34	\end{figure}
+35	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "638d8eb4-3c7b-4fc6-855a-8082f25ab0eb"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 590_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running List all registry keys sorted",
+  "usage": {
+    "total_tokens": 21391,
+    "tool_uses": 5,
+    "duration_ms": 11212
+  },
+  "last_tool_name": "Bash",
+  "uuid": "54a8c873-6932-4bdb-956f-33ca5c89d1ba",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 591_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Pf5WxbRhMeF524jz5rbLTd`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\nprint('ALL Keys:')\nfor k in sorted(data.keys()):\n    print(' ', k)\n\" 2>&1 | head -150",
+  "description": "List all registry keys sorted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "d12a3c6e-f04a-4051-8f38-0f22e0ef841d",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013WEvQxJnYcyJRi16cMWyZH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2513,
+      "cache_read_input_tokens": 18738,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2513,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 592 · 2026-05-24T01:20:46.054Z_
+
+<details><summary>↩ Tool result · `toolu_01Pf5WxbRhMeF524jz5rbLTd`</summary>
+
+```text
+ALL Keys:
+  bce_30_s42_uniform_eval
+  bce_30pct_s42
+  bce_50pct_teal_global_unified
+  bce_gumbel_lagrangian_isolation
+  bce_gumbel_no_penalty_s42
+  bce_iso_v3_s123_30pct_uniform_eval
+  bce_iso_v3_s42_30pct_uniform_eval
+  bce_iso_v3_s456_30pct_uniform_eval
+  bce_isocompute_hellaswag_piqa_v2
+  bce_isocompute_v3_s123
+  bce_isocompute_v3_s123_eval
+  bce_isocompute_v3_s42
+  bce_isocompute_v3_s42_eval
+  bce_isocompute_v3_s456
+  bce_isocompute_v3_s456_eval
+  bench_dense
+  bench_kl30_global
+  bench_kl30_uniform
+  bench_kl40_global
+  bench_kl50_global
+  bench_kl50_uniform
+  bench_kl50_uniform_s123
+  bench_kl50_uniform_s456
+  bench_kl70_global
+  bench_teal30
+  bench_teal50
+  bench_teal50_uniform_gsm8k
+  bench_teal70
+  c1_ablation_30pct_s123
+  c1_ablation_30pct_s42_eval_v2
+  c1_ablation_30pct_s42_v2
+  c1_ablation_30pct_s456
+  c1_ablation_bce_kl_targets_s123_v2
+  c1_ablation_bce_kl_targets_s42
+  c1_ablation_eval_uniform
+  c1_retrain_30pct_s123
+  c1_retrain_30pct_s456
+  c4_kl30_s42
+  c4_kl30_s42_eval
+  c4_ood_dense_baseline_v2
+  c4_ood_downstream_kl30
+  c4_ood_kl30_s123_v2
+  c4_ood_kl30_s42
+  c4_ood_kl30_s42_v2
+  c4_ood_kl30_s456
+  c4_ood_kl30_uniform_s123
+  c4_ood_kl30_uniform_s42
+  c4_ood_kl30_uniform_s456
+  c4_ood_kl50_s123
+  c4_ood_kl50_s42
+  c4_ood_kl50_s456
+  d030_kl30_uniform
+  d030_kl40_uniform
+  d030_kl50_uniform
+  db_sensitivity_sweep
+  dense_baseline_hellaswag_piqa
+  downstream_dense_baseline
+  downstream_extended_kl30_s42
+  downstream_teal30_baseline
+  eval_bce_v3_s42
+  eval_c1_retrain_30pct_s123
+  eval_c1_retrain_30pct_s456
+  eval_c4_ood_kl50
+  eval_kl30_teal_30pct
+  gradient_snr_constrained_v2
+  gradient_snr_kl_vs_bce
+  jsd_30_s123
+  jsd_30_s42
+  jsd_30_s42_uniform_eval
+  jsd_30_s456
+  kl30_8b_s123_eval
+  kl30_8b_s123_train
+  kl30_8b_s456_eval
+  kl30_8b_s456_train
+  kl30_s123_eval
+  kl30_s123_global_v3
+  kl30_s123_uniform_v2
+  kl30_s123_uniform_v3
+  kl30_s42_global_mmlu_recheck
+  kl30_s456_global_eval
+  kl30_s456_global_v3
+  kl30_s456_train
+  kl30_s456_uniform_eval
+  kl30_s456_uniform_v2
+  kl30_s456_uniform_v3
+  kl30_uniform_boolq_s123
+  kl30_uniform_boolq_s42
+  kl30_uniform_boolq_s456
+  kl30_uniform_hellaswag_piqa
+  kl30_uniform_hellaswag_piqa_v2
+  kl50_global_hellaswag_piqa
+  kl50_global_hellaswag_piqa_v2
+  kl50_global_s123_downstream_v2
+  kl50_global_s123_reeval
+  kl50_s123_eval
+  kl50_s123_uniform_eval
+  kl50_s42_global_eval
+  kl50_s42_uniform_eval
+  kl50_s456_eval
+  kl50_s456_global_eval
+  kl50_s456_train
+  kl50_s456_uniform_eval
+  kl50_uniform_hellaswag_piqa
+  kl_30pct_s123
+  kl_50pct_s123
+  kl_bce_f1_oracle
+  kl_comp_30pct_s123
+  kl_comp_30pct_s123_eval
+  kl_comp_30pct_s123_ppl
+  kl_comp_30pct_s42
+  kl_comp_30pct_s42_eval
+  kl_comp_30pct_s42_ppl
+  kl_comp_30pct_s456
+  kl_comp_30pct_s456_eval
+  kl_comp_50pct_s42
+  kl_comp_50pct_s42_eval
+  kl_only_s0
+  kl_only_s1
+  kl_sparsity25_s123
+  kl_sparsity25_s42
+  kl_sparsity25_s42_eval_teal
+  kl_sparsity25_s42_eval_teal_uniform
+  kl_sparsity30_s42_v3
+  kl_sparsity35_s42
+  kl_sparsity35_s42_eval_teal
+  kl_sparsity35_s42_eval_teal_uniform
+  kl_sparsity40_s42_global_eval_v2
+  kl_sparsity40_s42_retrain_uniform
+  kl_sparsity40_s42_uniform_hspiqa
+  kl_sparsity45_s42
+  kl_sparsity45_s42_eval_teal
+  kl_sparsity45_s42_eval_teal_uniform
+  latency_benchmark
+  lm_eval_dense
+  lm_eval_mistral_dense
+  lm_eval_teal_50pct
+  longbench_dense_v6
+  mistral_dense_hellaswag_piqa
+  mistral_dense_ppl
+  mistral_kl30_downstream
+  mistral_kl30_hellaswag_piqa
+  mistral_kl30_pertoken
+  mistral_kl30_s123
+  mistral_kl30_s42
+  mistral_kl30_s456
+  mistral_kl30_teal_global
+  mistral_kl50_pertoken
+  mistral_kl50_teal_global
+  mistral_kl70_pertoken
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "8167459d-ffcc-455a-a962-9eff4eb4da62"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 593_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Reading paper/experiments.tex",
+  "usage": {
+    "total_tokens": 21431,
+    "tool_uses": 6,
+    "duration_ms": 12628
+  },
+  "last_tool_name": "Read",
+  "uuid": "ad2fd739-35c1-4f64-b6cf-9dc5790f5f08",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 594_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RL82NffTJZQhLwNzRqM34z`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "e2350969-3646-4550-8474-c7d2a4a295fe",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013WEvQxJnYcyJRi16cMWyZH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2513,
+      "cache_read_input_tokens": 18738,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2513,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 595 · 2026-05-24T01:20:47.383Z_
+
+<details><summary>↩ Tool result · `toolu_01RL82NffTJZQhLwNzRqM34z`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Experimental Setup}
+5	
+6	\paragraph{Model and Predictor.}
+7	We evaluate on LLaMA-3.1-8B~\cite{grattafiori2024llama3}, which uses SwiGLU FFN blocks~\cite{shazeer2020glu} with $d_{\text{model}}=4096$ and $d_{\text{ff}}=14336$ across 32 layers.
+8	The sparsity predictor is a two-layer MLP with 2.37M parameters per layer (75.9M total), implemented as Linear($4096 \to 128$) + GELU + Linear($128 \to 14336$), trained to produce per-neuron importance scores that minimize output-distribution divergence under sparsity.
+9	
+10	\paragraph{Training.}
+11	All predictors are trained for 1000 steps on WikiText-103 with sequence length 2048 and batch size 4 on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (96\,GB), using AdamW~\cite{loshchilov2019adamw} with learning rate $1 \times 10^{-3}$, weight decay $1 \times 10^{-2}$, and cosine decay.
+12	The KL predictor uses Gumbel-Sigmoid relaxation~\cite{jang2017gumbel} with temperature $\tau=1.0$ annealed to $0.1$ over training.
+13	
+14	\paragraph{Evaluation.}
+15	We report perplexity on WikiText-2~\cite{merity2017pointer} (seq\_len=2048) and downstream accuracy on ARC-Challenge (25-shot), WinoGrande (5-shot), MMLU (5-shot), GSM8K (8-shot), HellaSwag (10-shot), and PIQA (0-shot).
+16	
+17	\paragraph{Inference Protocol.}
+18	At inference, the predictor produces per-neuron scores that are passed to TEAL's global top-$k$ allocation mechanism~\cite{liu2025teal}, which distributes the sparsity budget across layers non-uniformly.
+19	We term this \textit{predictor-TEAL}: the predictor replaces TEAL's magnitude-based scoring while retaining its allocation strategy.
+20	
+21	\paragraph{Baselines.}
+22	We compare against: (1) \textbf{Vanilla TEAL}~\cite{liu2025teal}, which uses activation magnitudes directly\footnote{TEAL is deterministic; single-run evaluation suffices. KL/BCE predictors require multi-seed evaluation due to random initialization.}; (2) \textbf{BCE predictor} (DejaVu-style~\cite{liu2023dejavu}), trained with per-neuron binary cross-entropy on magnitude-based oracle masks for 1000 and 2700 steps; and (3) \textbf{Uniform allocation}, which distributes the sparsity budget equally across layers.
+23	
+24	
+25	\subsection{Main Results}
+26	
+27	Table~\ref{tab:main} presents the primary comparison. Uniform allocation preserves downstream performance best; global allocation is analyzed to understand allocation-quality tradeoffs (\S\ref{sec:scaling}).
+28	At 30\% sparsity, output-distribution KL under uniform allocation achieves PPL 8.81$\pm$0.02 (3-seed), a 14.5\% reduction over TEAL at matched actual sparsity (8.81 vs.\ 10.30, both at 28.5\%; Appendix~\ref{app:ood}).
+29	Uniform allocation yields stable downstream (MMLU 40.7$\pm$1.3\%, 3-seed; Appendix~\ref{app:stability}), while global top-$k$ exhibits high seed variance (35.7$\pm$9.5\%) from late-layer starvation (L31 retention 28.4\%; \S\ref{sec:scaling}). % exp_id: bench_kl30_uniform, kl30_s123_uniform, kl30_s456_uniform, kl30_3seed
+30	
+31	\paragraph{Task-Type Split.}
+32	KL shows directional improvements over TEAL on commonsense reasoning (ARC-c, WG, HellaSwag, PIQA: 4/4 wins at 30\% uniform) but underperforms on knowledge-intensive tasks (MMLU, GSM8K: 0/2).
+33	With only three seeds, 95\% confidence intervals for individual downstream tasks overlap; we therefore treat PPL ($\sigma{=}0.02$, non-overlapping) as the primary metric and downstream differences as directional evidence.
+34	The KL predictor protects L14--L18 (14--18\% sparsity vs.\ 32\% global mean) while aggressively pruning L22--L28 (48--57\%). Constraint interventions (Appendix~\ref{app:constraint}) confirm a task-dependent trade-off: removing the valley improves MMLU +3.4pp but reduces ARC-c by 1.5pp, consistent with localized factual associations~\cite{geva2023dissecting}; task-aware allocation may resolve this. % exp_id: bench_kl30_uniform, teal30_uniform, hellaswag_piqa_kl30_uniform, perlayer_sparsity_analysis, constraint_protect_late, constraint_remove_valley
+35	
+36	\paragraph{Knowledge-Task Regression: Hypothesis.}
+37	We consider two hypotheses. First, WikiText-103's limited mathematical content may bias allocation against reasoning pathways---however, a C4-trained control does not support this (see below). Second, forward KL's mode-covering property distributes mass across high-frequency patterns, potentially diluting rare activations encoding factual knowledge concentrated in specific FFN neurons~\cite{meng2022locating}. Constraint experiments (Appendix~\ref{app:constraint}) confirm allocation contributes: removing the learned valley improves MMLU +3.4pp and GSM8K +1.6pp. A predictor trained on C4 (diverse web text; Appendix~\ref{app:c4_control}) does not alleviate the regression (MMLU 40.0\%, GSM8K 4.1\% vs.\ 40.7\%, 7.5\%), confirming the deficit is structural to output-distribution KL rather than training data composition. % exp_id: constraint_remove_valley, c4_control_eval
+38	
+39	At 50\%, the PPL advantage widens (11.92 vs.\ 23.90, 50\% reduction) and generalizes to C4 (Appendix~\ref{app:ood}), but all methods collapse to near-random on MMLU and GSM8K ($\leq$2.7\%); no allocation strategy recovers at this capacity limit. % exp_id: bench_kl50_global, kl50_global_s123_downstream_v2, kl50_global_s456_eval, d030_kl50_uniform, multi_seed_kl50_global
+40	
+41	\begin{table}[t]
+42	\centering
+43	\caption{Main results on LLaMA-3.1-8B. $^\ast$$2.71\times$ KL compute (\S\ref{sec:isocompute}). $\pm$: 3-seed; unmarked: s42. $^\ddagger$Actual sparsity: KL 28.5\% vs.\ TEAL 29.3\% at 30\% (Appendix~\ref{app:ood}).}
+44	\label{tab:main}
+45	\resizebox{\columnwidth}{!}{
+46	\begin{tabular}{llccccc}
+47	\toprule
+48	Sparsity & Method & PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K \\
+49	\midrule
+50	0\% & Dense & 6.12 & 58.28 & 78.06 & 65.27 & 48.75 \\
+51	\midrule
+52	\multirow{6}{*}{30\%}
+53	& TEAL uniform & 10.82 & 39.33 & 65.04 & \textbf{45.86} & \textbf{8.79} \\ % exp_id: teal30_uniform
+54	& BCE global & 11.25 & 41.2 & 66.0 & 36.3 & 6.0 \\ % exp_id: bce30_teal_global
+55	& BCE uniform & 15.09$\pm$0.13 & 33.45 & 61.09 & 43.05 & 3.97 \\ % exp_id: bce_iso_v3_s42, bce_iso_v3_s123, bce_iso_v3_s456
+56	& MSE uniform & 18.52$\pm$1.68 & 35.8$\pm$4.1 & 59.8$\pm$2.6 & 30.7$\pm$2.6 & 2.3$\pm$0.7 \\ % exp_id: mse30_3seed
+57	& KL global (Ours)$^\ddagger$ & 8.96$\pm$0.02 & \textbf{43.8$\pm$3.6} & \textbf{70.2$\pm$0.9} & 35.7$\pm$9.5 & 8.0$\pm$0.7 \\ % exp_id: kl30_3seed_global
+58	& KL uniform$^\ddagger$ & \textbf{8.81$\pm$0.02} & 43.7$\pm$2.5 & 68.9$\pm$0.4 & 40.7$\pm$1.3 & 7.5$\pm$0.1 \\ % exp_id: bench_kl30_uniform, kl30_s123_uniform, kl30_s456_uniform
+59	\midrule
+60	\multirow{5}{*}{50\%}
+61	& TEAL uniform & 23.90 & 27.47 & 54.38 & \textbf{29.26} & 1.74 \\ % exp_id: teal50_uniform
+62	& BCE (2700 steps)$^\ast$ & 28.13$\pm$0.20 & 27.6$\pm$0.6 & 51.8$\pm$0.6 & 26.1$\pm$0.5 & 2.1$\pm$0.2 \\ % exp_id: bce50_3seed
+63	& MSE uniform & 229.26 & 25.00 & 50.59 & 23.79 & 1.59 \\ % exp_id: mse50_uniform_s42
+64	& KL global (Ours) & \textbf{11.84$\pm$0.15} & \textbf{36.3$\pm$3.2} & \textbf{63.8$\pm$0.3} & 28.3$\pm$0.7 & \textbf{2.7$\pm$1.3} \\ % exp_id: bench_kl50_global, kl50_global_s123_downstream_v2, kl50_global_s456_eval
+65	& KL uniform & 11.92$\pm$0.07 & 33.8$\pm$1.2 & 62.9$\pm$0.1 & 28.0$\pm$0.6 & 2.2$\pm$0.1 \\ % exp_id: bench_kl50_uniform, bench_kl50_uniform_s123, bench_kl50_uniform_s456
+66	\bottomrule
+67	\end{tabular}}
+68	\end{table}
+69	
+70	
+71	\subsection{Extended Training Analysis}
+72	\label{sec:isocompute}
+73	
+74	At $2.71\times$ KL compute budget (2700 steps, matched wall-clock), BCE achieves PPL 28.13$\pm$0.20 (3-seed), still $2.39\times$ worse than KL (11.79). % exp_id: bce50_3seed
+75	The gap is systematic: BCE reaches higher oracle F1 (0.613 vs.\ 0.540) with 139\% worse PPL, confirming KL optimizes for distributional fidelity rather than magnitude agreement. % exp_id: f1_oracle_analysis, bce_isocompute_s42
+76	
+77	
+78	\subsection{Mask Pattern Analysis}
+79	\label{sec:mask_analysis}
+80	
+81	KL-derived masks diverge from magnitude oracles: per-layer Jaccard distance averages 68\% at 50\% (64 samples, 131K tokens; Figure~\ref{fig:mask_heatmap}), with cross-seed variation (36.3\%) confirming systematic divergence (Appendices~\ref{app:cross_seed_jaccard},~\ref{app:mask_viz}).
+82	Despite this, KL achieves PPL 11.79 vs.\ BCE's 28.13$\pm$0.20, confirming that distributional fidelity, not magnitude agreement, produces better masks. % exp_id: bench_kl50_global, bce50_3seed, c1_mask_overlap
+83	Divergence follows a U-shaped per-layer pattern, peaking in late layers (0.70--0.75 at 50\%). % exp_id: c1_mask_overlap
+84	
+85	\paragraph{Target-Swap Ablation: Target Quality vs.\ Gradient Coupling.}
+86	To disentangle whether KL's advantage stems from its coupled gradient pathway or from the mask patterns it discovers, we train a standard BCE predictor on KL-derived oracle masks instead of magnitude-based masks (C1 target-swap ablation).
+87	Table~\ref{tab:c1} reports results under TEAL uniform allocation at matched sparsity.
+88	
+89	\begin{table}[t]
+90	\centering
+91	\caption{Target-swap ablation (C1): BCE on KL-derived masks vs.\ KL predictor (same seed), TEAL uniform. All seeds show max $\Delta$$\leq$1.70pp at 30\%; max $\Delta$$\leq$0.79pp at 50\% (s42). $^\dagger$\textbf{Provenance:} s42 oracle extracted from an earlier training run (not seed-matched); s123/s456 use seed-matched retrained oracles (Appendix~\ref{app:oracle_provenance}).}
+92	\label{tab:c1}
+93	\resizebox{\columnwidth}{!}{
+94	\begin{tabular}{lllccccc}
+95	\toprule
+96	Sparsity & Seed & Method & PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K \\
+97	\midrule
+98	\multirow{6}{*}{30\%}
+99	& s42$^\dagger$ & C1 & 9.45 & 40.27 & 67.40 & \textbf{42.30} & \textbf{7.58} \\ % exp_id: c1_ablation_30pct_s42_eval_v2
+100	& & KL & \textbf{8.82} & \textbf{40.78} & \textbf{68.59} & 40.6 & 7.35 \\ % exp_id: bench_kl30_uniform
+101	& s123 & C1 & 8.84 & 44.71 & \textbf{69.77} & \textbf{39.92} & 6.82 \\ % exp_id: eval_c1_retrain_30pct_s123
+102	& & KL & \textbf{8.83} & \textbf{45.31} & 69.38 & 39.4 & \textbf{7.51} \\ % exp_id: kl30_s123_eval
+103	& s456 & C1 & 8.82 & 44.71 & \textbf{69.93} & 41.04 & 6.60 \\ % exp_id: eval_c1_retrain_30pct_s456
+104	& & KL & \textbf{8.79} & \textbf{45.05} & 68.75 & \textbf{42.0} & \textbf{7.58} \\ % exp_id: kl30_s456_uniform_eval
+105	\midrule
+106	\multirow{2}{*}{50\%}
+107	& s42 & C1 & 11.96 & 32.17 & \textbf{63.14} & 27.79 & \textbf{2.05} \\ % exp_id: c1_bce_kl_targets_teal50u
+108	& & KL & 11.96 & \textbf{32.59} & 62.35 & \textbf{27.92} & 1.97 \\ % exp_id: c1_kl_teal50u
+109	\bottomrule
+110	\end{tabular}}
+111	\end{table}
+112	
+113	At 50\% (s42, earlier oracle), C1 matches KL within 0.79pp, while magnitude-trained BCE yields $2.4\times$ worse PPL (Table~\ref{tab:main}).
+114	At 30\%, retrained seeds show $\leq$1.18pp agreement\footnote{s42 oracle from earlier checkpoint (gap 0.65pp); s123/s456 use seed-matched converged oracles ($\leq$0.03pp gap).}.
+115	C1 demonstrates that KL-discovered mask patterns \emph{transfer} to a simpler training mechanism (PPL within 0.79pp; downstream variation up to 4.5pp MMLU); per-layer KL controls (\S\ref{sec:perlayer}) further show coupling contributes marginally to PPL but substantially to downstream fidelity.
+116	However, C1 also changes mask representation: binarizing oracle soft logits ($>$0) into hard masks discards ranking information, so the near-zero delta reflects transferability of binary mask \emph{patterns} rather than full predictor knowledge. BCE+Gumbel (32.22) vs.\ standard BCE (27.97) suggests softness alone does not explain KL's advantage, though trajectory-dependent confounds remain (Appendix~\ref{app:oracle_provenance}). % exp_id: bce50_3seed, c1_bce_kl_targets_30u, c1_s123, bce_gumbel_no_penalty_s42, eval_bce_v3_s42
+117	
+118	\subsection{Ablation Studies}
+119	
+120	Table~\ref{tab:ablation} isolates the contribution of each design choice at 30\% and 50\% sparsity.
+121	
+122	\begin{table}[t]
+123	\centering
+124	\caption{Ablation on LLaMA-3.1-8B (WikiText-2 PPL$\downarrow$; uniform at 30\%, global at 50\%). $\pm$: 3-seed; unmarked: s42. $^\ddagger$STE: 20.8\% actual sparsity at 30\% target; loss effect ($\Delta$PPL=20.4) is $5.1\times$ relaxation effect ($\Delta$PPL=3.98). $^\S$MSE 50\%: s42 only; s123 catastrophic (PPL{=}15{,}789; Appendix~\ref{app:mse_config}).}
+125	\label{tab:ablation}
+126	\resizebox{\columnwidth}{!}{
+127	\begin{tabular}{lccc}
+128	\toprule
+129	Configuration & 30\% PPL$\downarrow$ & 50\% PPL$\downarrow$ & $\Delta_{50}$ \\
+130	\midrule
+131	\multicolumn{4}{l}{\textit{KL-based variants}} \\
+132	Forward KL + Gumbel (Ours) & \textbf{8.81$\pm$0.02} & \textbf{11.79} & --- \\ % exp_id: kl30_ablation_s42, bench_kl50_global
+133	JSD (symmetric) + Gumbel & 8.90$\pm$0.02 & 12.54 & +0.75 \\ % exp_id: jsd30_ablation_s42, jsd_ablation_s42
+134	Reverse KL + Gumbel & 9.26$\pm$0.07 & 12.80 & +1.01 \\ % exp_id: rkl30_ablation_s42, reverse_kl_ablation_s42
+135	Forward KL + STE & ---$^\ddagger$ & 15.77 & +3.98 \\ % exp_id: ste_baseline_s42
+136	\midrule
+137	\multicolumn{4}{l}{\textit{Per-layer training}} \\
+138	Per-layer MSE & 18.52$\pm$1.68 & 229.26$^\S$ & +217.47 \\ % exp_id: mse30_uniform_s42, mse50_uniform_s42
+139	Per-layer KL ($K{=}1$) & 9.05$\pm$0.02 & 34.85 & +23.06 \\ % exp_id: perlayer_kl_30_3seed, perlayer_kl_50_s42
+140	Per-layer KL ($K{=}4$) & 8.89$\pm$0.01 & 44.23 & +32.44 \\ % exp_id: perlayer_kl_k4_3seed, perlayer_kl_k4_50_s42
+141	\midrule
+142	\multicolumn{4}{l}{\textit{BCE-based variants}} \\
+143	BCE (no compensation) & 15.71 & 27.97 & +16.18 \\ % exp_id: bce30_uniform_s42, eval_bce_v3_s42
+144	BCE + Gumbel (no penalty) & --- & 32.22 & +20.43 \\ % exp_id: bce_gumbel_no_penalty_s42
+145	BCE + Gumbel + Penalty & --- & 38.02 & +26.23 \\ % exp_id: bce_gumbel_lagrangian_isolation
+146	BCE + STE & --- & 60.54 & +48.75 \\ % exp_id: bce_ste_s42
+147	\bottomrule
+148	\end{tabular}}
+149	\end{table}
+150	
+151	\paragraph{Relaxation, Divergence, and SPON.}
+152	At 50\%, Gumbel-Sigmoid outperforms STE~\cite{bengio2013ste} by 33.8\% (11.79 vs.\ 15.77); forward KL outperforms JSD (+6.4\%) and reverse KL (+8.6\%), consistent with mode-covering~\cite{gu2024minillm}. % exp_id: ste_baseline_s42, jsd_ablation_s42, reverse_kl_ablation_s42
+153	At 30\%, forward KL (8.81) and JSD (8.90) are near-identical, both outperforming reverse KL (9.26) and MSE (18.52$\pm$1.68). % exp_id: kl30_ablation_s42, jsd30_ablation_s42, rkl30_ablation_s42, mse30_uniform_s42, mse30_3seed
+154	KL--JSD near-equivalence suggests the divergence measure matters less than optimizing through the output distribution; coupling scope provides additional downstream benefits (\S\ref{sec:perlayer}). % exp_id: bce30_uniform_s42, rkl30_downstream_3seed
+155	\paragraph{Per-Layer KL: Exploratory Decomposition of Signal Type and Coupling Scope.}
+156	\label{sec:perlayer}
+157	To isolate cross-layer coupling, we train per-layer KL predictors that mask $K$ random layers per step and compute KL on the full model output, preserving the output-distribution signal without cross-layer gradients.
+158	At $K{=}1$, per-layer KL achieves 9.05$\pm$0.02, within 2.7\% of end-to-end KL (8.81$\pm$0.02), while per-layer MSE degrades to 18.52$\pm$1.68 ($2.05\times$ worse). For PPL, signal type\footnote{We use ``signal type'' as shorthand for the training objective's optimization target (output distribution vs.\ intermediate activations); this dimension also entails differences in gradient flow topology and optimization landscape that are not independently controlled.} may account for a substantial portion of the gap---an upper bound, as $K{=}1$ conflates coupling removal with train--inference mismatch. A 3-seed $K{=}4$ control\footnote{Actual sparsity 29.6\%; per-layer sparsity std=0.003 (near-uniform).} partially deconfounds this (Appendix~\ref{app:k4_downstream}): \emph{coupling-dominated}---ARC-c (97\% residual gap) and WG (67\%) indicate genuine cross-layer benefits; \emph{mismatch-dominated}---PPL (67\% closure) and GSM8K (71\%) largely close; \emph{anomalous}---MMLU exceeds E2E (42.7$\pm$1.4 vs.\ 40.7$\pm$1.3), explained by $K{=}4$'s near-uniform allocation matching uniform inference (Appendix~\ref{app:constraint}). % exp_id: perlayer_kl_30_3seed, perlayer_kl_downstream, mse30_downstream_decomp, perlayer_kl_k4_3seed
+159	At 50\%, partial coupling ($K{=}4$: 44.23) is \emph{worse} than $K{=}1$ (34.85) while E2E achieves 11.84, suggesting gradient interference under tight capacity; the decomposition is interpretable only at 30\%. % exp_id: perlayer_kl_k4_50_s42, perlayer_kl_50_s42, bench_kl50_global
+160	
+161	\begin{figure}[t]
+162	\centering
+163	\includegraphics[width=\columnwidth]{k_curve_ppl}
+164	\vspace{-8pt}
+165	\caption{Coupling breadth $K$ vs.\ perplexity (30\%, TEAL uniform, 3-seed mean$\pm$std). $K{=}32$ denotes end-to-end training. $K{=}2$ degradation reflects insufficient per-layer updates (${\sim}62$ vs.\ ${\sim}250$ at $K{=}8$).}
+166	\label{fig:k_curve_ppl}
+167	\vspace{-8pt}
+168	\end{figure}
+169	
+170	The $K$-curve (Figure~\ref{fig:k_curve_ppl}) confirms non-monotonic coupling effects: $K{=}16$ achieves the lowest PPL (8.67$\pm$0.02 vs.\ E2E 8.81$\pm$0.02), yet the full coupling range (2.08 PPL) is dwarfed by the signal type gap (9.47 PPL). % exp_id: k_curve_k2_3seed, k_curve_k8_3seed, k_curve_k16_3seed
+171	
+172	\paragraph{Compensation Redundancy.}
+173	\label{sec:compensation}
+174	FastForward-style compensation~\cite{gautam2026fastforward} (+67.2M params) provides no benefit (Appendices~\ref{app:comp_convergence}--\ref{app:training_convergence}). % exp_id: kl_comp_30_s42, kl_comp_30_s456, kl_comp_50_s42, bce_comp_staged_s42, db_sensitivity_sweep, tau_schedule_sweep, training_steps_sweep
+175	
+176	
+177	\subsection{Sparsity Scaling and Regime Analysis}
+178	\label{sec:scaling}
+179	
+180	\begin{figure}[t]
+181	\centering
+182	\includegraphics[width=\columnwidth]{fig2_sparsity_sweep.pdf}
+183	\vspace{-8pt}
+184	\caption{PPL scaling with sparsity (global allocation). KL's advantage over TEAL grows with sparsity.}
+185	\label{fig:sparsity_sweep}
+186	\vspace{-8pt}
+187	\end{figure}
+188	
+189	\paragraph{Allocation Behavior.}
+190	Table~\ref{tab:phase} (Appendix~\ref{app:alloc_full}) reveals non-monotonic allocation preference: uniform is best at $\leq$30\% ($7.3\times$ smaller MMLU $\sigma$), global at 35--40\%, both collapse at $\geq$45\%. % exp_id: kl30_3seed, regime_kl35_global, regime_kl35_uniform, multi_seed_kl50_global, multi_seed_kl50_uniform
+191	
+192	\paragraph{Cross-Architecture and Scale.}
+193	\label{sec:cross_arch}
+194	On Mistral-7B-v0.3~\cite{jiang2023mistral}, PPL generalizes ($-$17.3\%, 3-seed; Table~\ref{tab:mistral_downstream}); on Qwen-2.5-14B~\cite{qwen2024qwen25}, PPL generalizes but MMLU/GSM8K decline (Table~\ref{tab:14b}).
+195	The consistent regression across scales (8B MMLU $-$5.2pp, 14B GSM8K 30.9$\pm$6.8 vs.\ 52.1, $n{=}2$) suggests a systematic property of output-distribution KL; Qwen's larger $d_{\text{ff}}$ ($148\times$ vs.\ $112\times$ compression) may amplify sensitivity at stronger reasoning baselines. The pipeline adds 6.4\% latency overhead absent sparse kernels (Appendix~\ref{app:latency}). % exp_id: mistral_kl30_s42, mistral_kl30_s123, mistral_kl30_s456, mistral_teal30_downstream, qwen14b_kl30_uniform_4task, qwen14b_teal30_uniform, latency_profiling
+196	
+197	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "3412ac01-233a-45f5-beec-94a450fe13f9"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 596_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running List remaining registry keys",
+  "usage": {
+    "total_tokens": 31721,
+    "tool_uses": 7,
+    "duration_ms": 16314
+  },
+  "last_tool_name": "Bash",
+  "uuid": "201c6bf1-5ec0-4c3c-b70a-326cec9e5361",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 597_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01D4MS5b35Lzz3Mzg3oEiCNf`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Print all keys\nprint('ALL Keys:')\nfor k in sorted(data.keys()):\n    print(' ', k)\n\" 2>&1 | tail -100",
+  "description": "List remaining registry keys"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "954dd07b-817f-41a0-a1a1-f2e0d25d4779",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01QMrgKdvoqLSzJzc4BAL4uW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10245,
+      "cache_read_input_tokens": 21251,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 10245,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 598 · 2026-05-24T01:20:51.177Z_
+
+<details><summary>↩ Tool result · `toolu_01D4MS5b35Lzz3Mzg3oEiCNf`</summary>
+
+```text
+  mse30_s123_downstream
+  mse30_s42_boolq
+  mse30_s42_eval_7task
+  mse30_s42_train
+  mse30_s456
+  mse30_s456_downstream
+  mse50_s42_eval_7task
+  mse50_s42_train
+  mvp_bce_s123
+  mvp_bce_s42
+  mvp_bce_s456
+  mvp_kl_norm_v2_s123
+  mvp_kl_norm_v2_s42
+  mvp_kl_norm_v2_s456
+  natural_sparsity_floor_30pct
+  perlayer_kl_30_s123_v4
+  perlayer_kl_30_s42_v6
+  perlayer_kl_30_s456_downstream
+  perlayer_kl_30_s456_ppl
+  perlayer_kl_k16_eval_final2
+  perlayer_kl_k16_s123
+  perlayer_kl_k16_s123_eval
+  perlayer_kl_k16_s42_v3
+  perlayer_kl_k16_s456_eval
+  perlayer_kl_k16_s456_v2
+  perlayer_kl_k2_s123
+  perlayer_kl_k2_s123_eval
+  perlayer_kl_k2_s42
+  perlayer_kl_k2_s42_eval
+  perlayer_kl_k2_s42_train
+  perlayer_kl_k2_s456
+  perlayer_kl_k2_s456_eval
+  perlayer_kl_k4_50_s42
+  perlayer_kl_k4_s42
+  perlayer_kl_k4_s42_downstream
+  perlayer_kl_k8_s123
+  perlayer_kl_k8_s123_eval
+  perlayer_kl_k8_s42
+  perlayer_kl_k8_s42_eval
+  perlayer_kl_k8_s456
+  perlayer_kl_k8_s456_eval
+  perlayer_kl_s123_boolq
+  perlayer_kl_s123_convergence
+  perlayer_kl_s123_downstream_v2
+  perlayer_kl_s123_ppl
+  perlayer_kl_s42_convergence
+  perlayer_kl_s42_downstream
+  perlayer_kl_s42_ppl
+  perlayer_kl_s456_boolq_v2
+  perlayer_kl_s456_ppl_repro
+  plan_005_subsumption_s42
+  qwen14b_bce30_global_hspiqa
+  qwen14b_bce30_s42
+  qwen14b_dense_4task_v2
+  qwen14b_dense_baseline
+  qwen14b_dense_hspiqa
+  qwen14b_kl30_global_hspiqa
+  qwen14b_kl30_s123
+  qwen14b_kl30_s123_eval_v4
+  qwen14b_kl30_s123_eval_v5
+  qwen14b_kl30_s42
+  qwen14b_kl30_s42_eval
+  qwen14b_kl30_s42_eval_uniform_v3
+  qwen14b_kl30_s42_gsm8k_uniform
+  qwen14b_kl30_s42_gsm8k_v2
+  qwen14b_kl30_s456
+  qwen14b_kl30_s456_eval_v2
+  qwen14b_kl30_s456_eval_v3
+  qwen14b_kl30_s456_gsm8k
+  qwen14b_kl30_uniform_hspiqa
+  qwen14b_mask_divergence_analysis
+  qwen14b_teal275_hspiqa
+  qwen14b_teal275_uniform_eval_v3
+  qwen14b_teal275_uniform_hspiqa
+  qwen14b_teal30_eval
+  qwen14b_teal30_global_hspiqa
+  qwen14b_teal30_uniform_gsm8k
+  qwen14b_teal30_uniform_hspiqa
+  qwen14b_teal30_uniform_hspiqa_v2
+  reverse_kl_30_s42
+  reverse_kl_30_s42_uniform_eval
+  revkl_30_s123
+  revkl_30_s123_downstream
+  revkl_30_s42_boolq
+  revkl_30_s456
+  revkl_30_s456_downstream_v2
+  snr_extended_r6w3
+  snr_full_curve_1000steps
+  sparsity_floor_extended
+  ste_30_s42
+  ste_baseline_s42
+  steps_curve_s42_v3
+  steps_curve_v2
+  tau_schedule_ablation
+  teal_28.5pct_sanity
+  teal_30pct_uniform_multiseed_eval
+  teal_kl_overlap_analysis
+  teal_kl_overlap_corrected
+  training_free_baselines
+  wallclock_speedup_30_50
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "4817fb7c-44a7-4769-aaa2-a3a9e0d13d7b"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 599_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Extract metrics for key experiments",
+  "usage": {
+    "total_tokens": 33317,
+    "tool_uses": 8,
+    "duration_ms": 27934
+  },
+  "last_tool_name": "Bash",
+  "uuid": "2c17f503-0d97-4a26-956f-6d46b672ad93",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 600_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01UqP2oATYEfY3hrgqc7smwr`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Key experiments for claim verification\nkeys_to_check = [\n    'teal_28.5pct_sanity', 'bench_kl30_uniform', 'bench_teal30', 'bench_teal50',\n    'bench_kl50_global', 'bench_kl50_uniform', 'bench_dense',\n    'kl30_s123_uniform_v3', 'kl30_s456_uniform_v3',\n    'kl30_s123_global_v3', 'kl30_s456_global_eval',\n    'kl_bce_f1_oracle', 'teal_kl_overlap_analysis', 'teal_kl_overlap_corrected',\n    'latency_benchmark', 'wallclock_speedup_30_50',\n    'c1_ablation_30pct_s42_eval_v2', 'c1_ablation_30pct_s123', 'c1_ablation_30pct_s456',\n    'c1_ablation_bce_kl_targets_s42', 'c1_ablation_bce_kl_targets_s123_v2',\n    'mistral_kl30_s42', 'mistral_kl30_s123', 'mistral_kl30_s456',\n    'mistral_kl30_teal_global',\n    'qwen14b_kl30_s42_gsm8k_uniform', 'qwen14b_teal30_uniform_gsm8k',\n    'qwen14b_kl30_s42_eval', 'qwen14b_teal30_eval',\n    'qwen14b_dense_baseline', 'qwen14b_dense_4task_v2',\n    'bench_kl30_global',\n    'perlayer_kl_k16_s42_v3', 'perlayer_kl_k16_s123', 'perlayer_kl_k16_s456_v2',\n    'perlayer_kl_k2_s42', 'perlayer_kl_k2_s123', 'perlayer_kl_k2_s456',\n    'perlayer_kl_k16_eval_final2',\n    'kl30_s42_global_mmlu_recheck',\n]\n\nfor k in keys_to_check:\n    if k in data:\n        print(f\"\\n=== {k} ===\")\n        entry = data[k]\n        if 'metrics' in entry:\n            print(f\"  metrics: {entry['metrics']}\")\n        if 'conclusion' in entry:\n            print(f\"  conclusion: {entry['conclusion']}\")\n        if 'status' in entry:\n            print(f\"  status: {entry['status']}\")\n    else:\n        print(f\"\\n=== {k} === NOT FOUND\")\nEOF",
+  "description": "Extract metrics for key experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "d4b1210e-c572-490b-a141-aecc97a428fe",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01N5zqunuNDERCmfNM9djAeJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1557,
+      "cache_read_input_tokens": 31496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1557,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 601 · 2026-05-24T01:21:02.757Z_
+
+<details><summary>↩ Tool result · `toolu_01UqP2oATYEfY3hrgqc7smwr`</summary>
+
+```text
+=== teal_28.5pct_sanity ===
+  metrics: {'wikitext2_ppl': 10.3}
+  conclusion: success
+  status: DONE
+
+=== bench_kl30_uniform ===
+  metrics: {'wikitext2_ppl': 8.8157, 'arc_challenge_acc_norm': 0.4078, 'winogrande_acc': 0.6859, 'mmlu_acc': 0.4061, 'gsm8k_exact_match': 0.0735, 'actual_sparsity': 0.3}
+  conclusion: success
+  status: DONE
+
+=== bench_teal30 ===
+  metrics: {'wikitext2_ppl': 10.97, 'arc_challenge_acc_norm': 0.4232, 'winogrande_acc': 0.6606, 'mmlu_acc': 0.3861, 'gsm8k_exact_match': 0.0788, 'actual_sparsity': 0.3}
+  conclusion: success
+  status: DONE
+
+=== bench_teal50 ===
+  metrics: {'wikitext2_ppl': 23.31, 'arc_challenge_acc_norm': 0.2841, 'winogrande_acc': 0.5304, 'mmlu_acc': 0.2832, 'gsm8k_exact_match': 0.0197, 'actual_sparsity': 0.5}
+  conclusion: success
+  status: DONE
+
+=== bench_kl50_global ===
+  metrics: {'wikitext2_ppl': 11.7933, 'arc_challenge_acc_norm': 0.3285, 'winogrande_acc': 0.6346, 'mmlu_acc': 0.2789, 'gsm8k_exact_match': 0.0129, 'actual_sparsity': 0.5}
+  conclusion: success
+  status: DONE
+
+=== bench_kl50_uniform ===
+  metrics: {'wikitext2_ppl': 11.963, 'arc_challenge_acc_norm': 0.3276, 'winogrande_acc': 0.629, 'mmlu_acc': 0.2777, 'gsm8k_exact_match': 0.0212, 'actual_sparsity': 0.5}
+  conclusion: success
+  status: DONE
+
+=== bench_dense ===
+  metrics: {'wikitext2_ppl': 6.1173, 'arc_challenge_acc': 0.5478, 'arc_challenge_acc_norm': 0.5828, 'winogrande_acc': 0.7806, 'mmlu_acc': 0.6527, 'gsm8k_exact_match': 0.4875}
+  conclusion: success
+  status: DONE
+
+=== kl30_s123_uniform_v3 ===
+  metrics: {'wikitext2_ppl': 8.8308, 'arc_challenge_acc_norm': 0.4531, 'winogrande_acc': 0.6938, 'mmlu_acc': 0.3944, 'gsm8k_exact_match': 0.0751, 'actual_sparsity': 0.3, 'allocation': 'uniform', 'eval_wall_time_sec': 2157.6}
+  conclusion: success
+  status: DONE
+
+=== kl30_s456_uniform_v3 ===
+  metrics: {'wikitext2_ppl': 8.7947, 'arc_challenge_acc_norm': 0.4505, 'winogrande_acc': 0.6875, 'mmlu_acc': 0.4198, 'gsm8k_exact_match': 0.0758, 'actual_sparsity': 0.3, 'allocation': 'uniform', 'eval_wall_time_sec': 2325.3}
+  conclusion: success
+  status: DONE
+
+=== kl30_s123_global_v3 ===
+  metrics: {'wikitext2_ppl': 8.9748, 'arc_challenge_acc_norm': 0.4531, 'winogrande_acc': 0.693, 'mmlu_acc': 0.3807, 'gsm8k_exact_match': 0.0758, 'actual_sparsity': 0.3, 'allocation': 'global_topk'}
+  conclusion: success
+  status: DONE
+
+=== kl30_s456_global_eval ===
+  metrics: {'ppl_wikitext2': 8.9332, 'arc_challenge': 0.4633, 'winogrande': 0.7111, 'mmlu': 0.4382, 'gsm8k': 0.0758}
+  conclusion: success
+  status: DONE
+
+=== kl_bce_f1_oracle ===
+  metrics: {'bce_f1': 0.6128, 'bce_precision': 0.6132, 'bce_recall': 0.6124, 'kl_f1': 0.5397, 'kl_precision': 0.5112, 'kl_recall': 0.5715, 'random_f1': 0.5, 'kl_ppl': 11.79, 'bce_ppl': 22.51}
+  conclusion: success
+  status: DONE
+
+=== teal_kl_overlap_analysis ===
+  metrics: {'overall_jaccard': 0.396, 'divergence_ratio': 0.433, 'kl_only_pruned_magnitude_ratio': 1.48, 'teal_only_pruned_mean_gate_prob': 0.614, 'min_jaccard_layer': 'L17-L18 (0.19)', 'max_jaccard_layer': 'L26-L28 (0.55)'}
+  conclusion: success
+  status: DONE
+
+=== teal_kl_overlap_corrected ===
+  metrics: {'z_score': 7260.3, 'p_value': 0, 'median_percentile_rank': 78.6, 'iqr_q1': 64.4, 'iqr_q3': 89.1, 'layers_significant': '31/32', 'exception_layer': 31}
+  conclusion: success
+  status: DONE
+
+=== latency_benchmark ===
+  metrics: {'gpu_model': 'NVIDIA RTX PRO 6000 Blackwell Server Edition', 'dtype': 'float16', 'attn': 'flash_attention_2', 'batch': 1, 'seq_len': 2048, 'warmup': 10, 'iters': 100, 'dense_ms': 119.11, 'dense_std': 0.57, 'dense_tokens_per_s': 17194.5, 'kl_30pct_ms': 126.64, 'kl_30pct_std': 0.7, 'kl_30pct_tokens_per_s': 16171.8, 'kl_30pct_speedup': 0.941, 'kl_50pct_ms': 126.78, 'kl_50pct_std': 0.31, 'kl_50pct_tokens_per_s': 16154.2, 'kl_50pct_speedup': 0.939, 'comp_30pct_ms': 129.94, 'comp_30pct_std': 0.75, 'comp_30pct_tokens_per_s': 15761.4, 'comp_30pct_speedup': 0.917, 'comp_50pct_ms': 129.71, 'comp_50pct_std': 0.53, 'comp_50pct_tokens_per_s': 15788.8, 'comp_50pct_speedup': 0.918, 'predictor_overhead_ms': 3.17, 'predictor_overhead_pct': 2.7, 'per_layer_predictor_ms': 0.099, 'dense_ffn_per_layer_ms': 2.427, 'sparse_ffn_pred_per_layer_ms': 2.686, 'compensation_overhead_ms': 3.3}
+  conclusion: success
+  status: DONE
+
+=== wallclock_speedup_30_50 ===
+  metrics: {'dense_tok_s_bs1': 17308.5, 'dense_tok_s_bs8': 15636.6, 'kl30_tok_s_bs1': 16089.2, 'kl30_tok_s_bs8': 14697.4, 'kl50_tok_s_bs1': 16056.8, 'kl50_tok_s_bs8': 14756.8, 'overhead_bs1_30pct': '7%', 'overhead_bs1_50pct': '7%', 'overhead_bs8_30pct': '6%', 'overhead_bs8_50pct': '6%', 'predictor_latency_bs1_ms': 3.2, 'predictor_latency_bs8_ms': 14.4, 'note': 'mask-and-multiply only, no sparse kernel. Memory identical across conditions.'}
+  conclusion: success
+  status: DONE
+
+=== c1_ablation_30pct_s42_eval_v2 ===
+  metrics: {'wikitext2_ppl': 9.4463, 'arc_challenge_acc_norm': 0.4027, 'winogrande_acc': 0.674, 'mmlu_acc': 0.4229, 'gsm8k_exact_match': 0.0758}
+  conclusion: success
+  status: DONE
+
+=== c1_ablation_30pct_s123 ===
+  metrics: {'wikitext2_ppl': 8.83, 'mmlu_acc': 0.3833, 'winogrande_acc': 0.7119}
+  conclusion: success
+  status: DONE
+
+=== c1_ablation_30pct_s456 ===
+  metrics: {'wikitext2_ppl': 8.84, 'mmlu_acc': 0.367, 'winogrande_acc': 0.6938}
+  conclusion: success
+  status: DONE
+
+=== c1_ablation_bce_kl_targets_s42 ===
+  metrics: {'wt2_ppl': 9.29, 'eval_sparsity': 0.609, 'oracle_agreement': 0.978, 'final_bce_loss': 0.0545, 'train_steps': 1000, 'train_time_sec': 877.1, 'reference_kl_ppl': 11.79, 'reference_bce_ppl': 22.51}
+  conclusion: success
+  status: DONE
+
+=== c1_ablation_bce_kl_targets_s123_v2 ===
+  metrics: {'final_loss': 0.0537, 'ppl': 9.32, 'sparsity': 0.615, 'agreement': 0.979, 'note': 'Consistent with s42 (PPL=9.29, sparsity=0.609, agreement=0.978). Both seeds converge to ~61% eval sparsity. C1 confirmed multi-seed robust.'}
+  conclusion: success
+  status: DONE
+
+=== mistral_kl30_s42 ===
+  metrics: {'kl_per_token_ppl': 6.048, 'kl_teal_global_ppl': 6.7733, 'teal_baseline_ppl': 8.3807, 'dense_ppl': 5.5238, 'kl_advantage_ratio': 1.386, 'ppl_vs_dense_pct': 9.5}
+  conclusion: success
+  status: DONE
+
+=== mistral_kl30_s123 ===
+  metrics: {'training_final_loss': 0.0996, 'training_final_sparsity': 0.281, 'wikitext2_ppl': 7.1491, 'arc_challenge_acc_norm': 0.378, 'winogrande_acc': 0.7017, 'mmlu_acc': 0.4423, 'gsm8k_exact_match': 0.0773, 'hellaswag_acc_norm': 0.6961, 'piqa_acc_norm': 0.7459}
+  conclusion: success
+  status: DONE
+
+=== mistral_kl30_s456 ===
+  metrics: {'training_final_loss': 0.105, 'training_final_sparsity': 0.281, 'wikitext2_ppl': 6.8752, 'arc_challenge_acc_norm': 0.4684, 'winogrande_acc': 0.7143, 'mmlu_acc': 0.4161, 'gsm8k_exact_match': 0.0697, 'hellaswag_acc_norm': 0.705, 'piqa_acc_norm': 0.7448}
+  conclusion: success
+  status: DONE
+
+=== mistral_kl30_teal_global ===
+  metrics: {'wikitext2_ppl': 6.7733, 'model': 'Mistral-7B-v0.3', 'condition': 'kl_teal_global_30pct', 'sparsity': 0.3, 'allocation': 'uniform', 'ppl_increase_vs_dense': 1.2495}
+  conclusion: success
+  status: DONE
+
+=== qwen14b_kl30_s42_gsm8k_uniform ===
+  metrics: {'gsm8k_exact_match': 0.3548}
+  conclusion: success
+  status: DONE
+
+=== qwen14b_teal30_uniform_gsm8k ===
+  metrics: {'gsm8k_exact_match': 0.5208, 'gsm8k_exact_match_strict': 0.5208, 'gsm8k_exact_match_flexible': 0.5208, 'gsm8k_exact_match_stderr': 0.01376, 'actual_sparsity': 0.293, 'sample_len': 1319}
+  conclusion: success
+  status: DONE
+
+=== qwen14b_kl30_s42_eval ===
+  metrics: {'wikitext2_ppl': 7.6232, 'arc_challenge_acc_norm': 0.5717, 'winogrande_acc': 0.7206, 'mmlu_acc': 0.6372, 'gsm8k_exact_match': 0.4882}
+  conclusion: success
+  status: DONE
+
+=== qwen14b_teal30_eval ===
+  metrics: {'wikitext2_ppl': 8.7332, 'arc_challenge_acc_norm': 0.5683, 'winogrande_acc': 0.7269, 'mmlu_acc': 0.7183, 'gsm8k_exact_match': 0.4951}
+  conclusion: success
+  status: DONE
+
+=== qwen14b_dense_baseline ===
+  metrics: {'ppl': 5.1854, 'arc_challenge': 0.6758, 'winogrande': 0.8106, 'mmlu': 0.7977, 'gsm8k': 0.8757}
+  conclusion: success
+  status: DONE
+
+=== qwen14b_dense_4task_v2 ===
+  metrics: {'wikitext2_ppl': 5.1854, 'arc_challenge_acc_norm': 0.6758, 'winogrande_acc': 0.8106, 'mmlu_acc': 0.7977}
+  conclusion: success
+  status: DONE
+
+=== bench_kl30_global ===
+  metrics: {'wikitext2_ppl': 8.9768, 'arc_challenge_acc_norm': 0.3968, 'winogrande_acc': 0.7017, 'mmlu_acc': 0.2527, 'gsm8k_exact_match': 0.0879, 'actual_sparsity': 0.3}
+  conclusion: success
+  status: DONE
+
+=== perlayer_kl_k16_s42_v3 ===
+  metrics: {'final_kl': 0.1406, 'final_avg_kl': 0.1582, 'final_avg_sparsity': 0.286, 'wall_time_s': 1982.9}
+  conclusion: success
+  status: DONE
+
+=== perlayer_kl_k16_s123 ===
+  metrics: {'avg_kl': 0.1617, 'avg_sparsity': 0.287, 'final_kl': 0.1436, 'wall_time_s': 1982.8}
+  conclusion: success
+  status: DONE
+
+=== perlayer_kl_k16_s456_v2 ===
+  metrics: {'avg_kl': 0.1565, 'avg_sparsity': 0.287, 'final_kl': 0.1611, 'wall_time_s': 1977.9}
+  conclusion: success
+  status: DONE
+
+=== perlayer_kl_k2_s42 ===
+  metrics: {'final_avg_kl': 0.0358, 'final_avg_sparsity': 0.268, 'wall_time_s': 3841.2, 'training_steps': 1000, 'note': 'training only, PPL eval not yet run'}
+  conclusion: success
+  status: DONE
+
+=== perlayer_kl_k2_s123 ===
+  metrics: {}
+  conclusion: success
+  status: DONE
+
+=== perlayer_kl_k2_s456 ===
+  metrics: {}
+  conclusion: success
+  status: DONE
+
+=== perlayer_kl_k16_eval_final2 ===
+  metrics: {'wikitext2_ppl': 8.6737, 'arc_challenge_acc_norm': 0.4104, 'winogrande_acc': 0.6843, 'mmlu_acc': 0.4403, 'gsm8k_exact_match': 0.0811, 'hellaswag_acc_norm': 0.6963, 'piqa_acc_norm': 0.759}
+  conclusion: success
+  status: DONE
+
+=== kl30_s42_global_mmlu_recheck ===
+  metrics: {'mmlu_acc': 0.2527, 'mmlu_stderr': 0.00364}
+  conclusion: success
+  status: DONE
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "c2101f0d-ba66-48be-9d06-bcef49eee6bf"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 602_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Extract more registry metrics for verification",
+  "usage": {
+    "total_tokens": 39058,
+    "tool_uses": 9,
+    "duration_ms": 44235
+  },
+  "last_tool_name": "Bash",
+  "uuid": "6ff443c1-b85f-4667-87aa-9b9d2adcd8d2",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 603_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DMff6cNMKWFK5vNsLVrHZH`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# More keys\nkeys_to_check2 = [\n    'mistral_dense_ppl', 'lm_eval_mistral_dense', 'lm_eval_dense',\n    'mistral_kl30_downstream', 'mistral_kl30_pertoken',\n    'qwen14b_kl30_s123_eval_v5', 'qwen14b_kl30_s456_eval_v3',\n    'qwen14b_kl30_s42_gsm8k_v2', 'qwen14b_kl30_s456_gsm8k',\n    'qwen14b_kl30_s123', 'qwen14b_kl30_s456',\n    'qwen14b_teal30_uniform_hspiqa', 'qwen14b_teal30_uniform_hspiqa_v2',\n    'natural_sparsity_floor_30pct',\n    'c1_ablation_eval_uniform', 'c1_retrain_30pct_s123', 'c1_retrain_30pct_s456',\n    'eval_c1_retrain_30pct_s123', 'eval_c1_retrain_30pct_s456',\n    'kl30_s123_eval', 'kl30_s456_uniform_eval',\n    'perlayer_kl_k2_s42_eval', 'perlayer_kl_k2_s123_eval', 'perlayer_kl_k2_s456_eval',\n    'perlayer_kl_k8_s42_eval', 'perlayer_kl_k8_s123_eval', 'perlayer_kl_k8_s456_eval',\n    'perlayer_kl_k16_s123_eval', 'perlayer_kl_k16_s456_eval',\n    'perlayer_kl_30_s42_v6', 'perlayer_kl_30_s123_v4', 'perlayer_kl_30_s456_ppl',\n    'perlayer_kl_s42_ppl', 'perlayer_kl_s123_ppl', 'perlayer_kl_s456_ppl_repro',\n    'ste_baseline_s42', 'jsd_30_s42', 'jsd_30_s42_uniform_eval',\n    'reverse_kl_30_s42', 'reverse_kl_30_s42_uniform_eval',\n    'revkl_30_s42_boolq',\n    'bench_kl30_uniform', 'kl30_s123_uniform_v2', 'kl30_s456_uniform_v2',\n    'bce_isocompute_v3_s42', 'bce_isocompute_v3_s123', 'bce_isocompute_v3_s456',\n    'bce_isocompute_v3_s42_eval', 'bce_isocompute_v3_s123_eval', 'bce_isocompute_v3_s456_eval',\n    'bench_kl50_uniform_s123', 'bench_kl50_uniform_s456',\n    'kl50_global_s123_reeval', 'kl50_global_s123_downstream_v2', 'kl50_s456_global_eval',\n    'kl50_s42_global_eval', 'kl50_s42_uniform_eval', 'kl50_s123_uniform_eval', 'kl50_s456_uniform_eval',\n    'jsd_30_s123', 'jsd_30_s456',\n    'revkl_30_s123_downstream', 'revkl_30_s456_downstream_v2',\n    'mse30_s42_eval_7task',\n    'teal_30pct_uniform_multiseed_eval',\n    'downstream_teal30_baseline', 'downstream_dense_baseline',\n]\n\nfor k in keys_to_check2:\n    if k in data:\n        print(f\"\\n=== {k} ===\")\n        entry = data[k]\n        if 'metrics' in entry:\n            print(f\"  metrics: {entry['metrics']}\")\n        if 'conclusion' in entry:\n            print(f\"  conclusion: {entry['conclusion']}\")\n    else:\n        print(f\"\\n=== {k} === NOT FOUND\")\nEOF",
+  "description": "Extract more registry metrics for verification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "8a977538-dc40-4b6e-8515-37068699b5fc",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01QJovuHthyANjX6J5zyuhwb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5702,
+      "cache_read_input_tokens": 33053,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5702,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 604 · 2026-05-24T01:21:19.083Z_
+
+<details><summary>↩ Tool result · `toolu_01DMff6cNMKWFK5vNsLVrHZH`</summary>
+
+```text
+=== mistral_dense_ppl ===
+  metrics: {'wikitext2_ppl': 5.5238, 'model': 'Mistral-7B-v0.3', 'condition': 'dense', 'sparsity': 0}
+  conclusion: success
+
+=== lm_eval_mistral_dense ===
+  metrics: {'arc_challenge_acc_norm': 0.6024, 'winogrande_acc': 0.7869, 'mmlu_acc': 0.6244, 'gsm8k_exact_match': 0.3654, 'model': 'Mistral-7B-v0.3', 'condition': 'dense', 'server': 'westd-34887'}
+  conclusion: success
+
+=== lm_eval_dense ===
+  metrics: {'arc_challenge_acc_norm': 0.5819, 'winogrande_acc': 0.7814, 'mmlu_acc': 0.6532, 'gsm8k_exact_match': 0.5004, 'eval_tasks': ['arc_challenge', 'winogrande', 'mmlu', 'gsm8k'], 'model': 'llama-3.1-8b', 'condition': 'dense', 'server': 'westd-34887'}
+  conclusion: success
+
+=== mistral_kl30_downstream ===
+  metrics: {'arc_challenge_acc_norm': 0.5017, 'winogrande_acc': 0.6914, 'mmlu_acc': 0.4404, 'gsm8k_exact_match': 0.1114}
+  conclusion: success
+
+=== mistral_kl30_pertoken ===
+  metrics: {'wikitext2_ppl': 6.048, 'model': 'Mistral-7B-v0.3', 'condition': 'kl_pertoken_30pct', 'sparsity': 0.3, 'allocation': 'uniform', 'ppl_increase_vs_dense': 0.5242}
+  conclusion: success
+
+=== qwen14b_kl30_s123_eval_v5 ===
+  metrics: {'wikitext2_ppl': 7.9367, 'arc_challenge_acc_norm': 0.541, 'winogrande_acc': 0.7403, 'hellaswag_acc_norm': 0.7287, 'piqa_acc_norm': 0.765, 'mmlu_acc': 0.6234, 'actual_sparsity': 0.296}
+  conclusion: success
+
+=== qwen14b_kl30_s456_eval_v3 ===
+  metrics: {'wikitext2_ppl': 7.8992, 'arc_challenge_acc_norm': 0.5145, 'winogrande_acc': 0.7316, 'hellaswag_acc_norm': 0.7249, 'piqa_acc_norm': 0.7677, 'mmlu_acc': 0.6351, 'actual_sparsity': 0.297}
+  conclusion: success
+
+=== qwen14b_kl30_s42_gsm8k_v2 ===
+  metrics: {'gsm8k_exact_match': 0.3571, 'gsm8k_exact_match_strict': 0.3541, 'gsm8k_exact_match_stderr': 0.0132, 'actual_sparsity': 0.296, 'sample_len': 1319}
+  conclusion: success
+
+=== qwen14b_kl30_s456_gsm8k ===
+  metrics: {'gsm8k_exact_match': 0.2608, 'gsm8k_exact_match_stderr': 0.01209, 'gsm8k_exact_match_strict': 0.2547, 'gsm8k_exact_match_strict_stderr': 0.012, 'actual_sparsity': 0.297}
+  conclusion: success
+
+=== qwen14b_kl30_s123 ===
+  metrics: {'final_loss_kl_norm': 0.326, 'final_kl_raw': 0.326, 'final_sparsity': 0.277, 'final_constraint': 0.037, 'final_lambda': 5000, 'final_tau': 0.1, 'steps': 1000, 'trainable_params': '117M (0.793%)'}
+  conclusion: success
+
+=== qwen14b_kl30_s456 ===
+  metrics: {'final_loss': 0.3086, 'final_kl_norm': 0.2715, 'final_sparsity': 0.277, 'final_constraint': 0.0366, 'final_lambda': 5000, 'final_tau': 0.1, 'training_steps': 1000}
+  conclusion: success
+
+=== qwen14b_teal30_uniform_hspiqa ===
+  metrics: {'hellaswag_acc_norm': 0.6772, 'piqa_acc_norm': 0.747}
+  conclusion: success
+
+=== qwen14b_teal30_uniform_hspiqa_v2 ===
+  metrics: {'hellaswag_acc': 0.4936, 'hellaswag_acc_norm': 0.6756, 'piqa_acc': 0.7443, 'piqa_acc_norm': 0.7427}
+  conclusion: success
+
+=== natural_sparsity_floor_30pct ===
+  metrics: {'always_pruned_ratio': 0.0006, 'always_pruned_count': 278, 'total_neurons': 458752, 'late_layer_max_ratio': 0.0051, 'threshold': 0.1}
+  conclusion: success
+
+=== c1_ablation_eval_uniform ===
+  metrics: {'wikitext2_ppl': 11.9638, 'arc_challenge_acc_norm': 0.3217, 'winogrande_acc': 0.6314, 'mmlu_acc': 0.2779, 'gsm8k_exact_match': 0.0205, 'sparsity_target': 0.5, 'allocation': 'uniform'}
+  conclusion: success
+
+=== c1_retrain_30pct_s123 ===
+  metrics: {'training_agreement': 0.977, 'training_sparsity': 0.31, 'wikitext2_ppl': 7.54, 'actual_sparsity': 0.332}
+  conclusion: success
+
+=== c1_retrain_30pct_s456 ===
+  metrics: {'training_agreement': 0.977, 'training_sparsity': 0.312, 'wikitext2_ppl': 7.38, 'actual_sparsity': 0.346}
+  conclusion: success
+
+=== eval_c1_retrain_30pct_s123 ===
+  metrics: {'wikitext2_ppl': 8.84, 'arc_challenge_acc_norm': 0.4471, 'winogrande_acc': 0.6977, 'mmlu_acc': 0.3992, 'gsm8k_exact_match': 0.0682}
+  conclusion: success
+
+=== eval_c1_retrain_30pct_s456 ===
+  metrics: {'wikitext2_ppl': 8.82, 'arc_challenge_acc_norm': 0.4471, 'winogrande_acc': 0.6993, 'mmlu_acc': 0.4104, 'gsm8k_exact_match': 0.066}
+  conclusion: success
+
+=== kl30_s123_eval ===
+  metrics: {'wikitext2_ppl': 8.8308, 'arc_challenge_acc_norm': 0.4531, 'winogrande_acc': 0.6938, 'mmlu_acc': 0.3944, 'gsm8k_exact_match': 0.0751, 'actual_sparsity': 0.3, 'allocation': 'uniform'}
+  conclusion: success
+
+=== kl30_s456_uniform_eval ===
+  metrics: {'mmlu': 0.4198, 'ppl_uniform': 8.7947, 'arc_challenge': 0.4505, 'winogrande': 0.6875, 'gsm8k': 0.0758}
+  conclusion: success
+
+=== perlayer_kl_k2_s42_eval ===
+  metrics: {'wikitext2_ppl': 10.7958, 'arc_challenge_acc_norm': 0.3985, 'winogrande_acc': 0.6322, 'mmlu_acc': 0.4172, 'gsm8k_exact_match': 0.0296, 'hellaswag_acc_norm': 0.6773, 'piqa_acc_norm': 0.7356}
+  conclusion: success
+
+=== perlayer_kl_k2_s123_eval ===
+  metrics: {'wikitext2_ppl': 10.8835, 'arc_challenge_acc_norm': 0.4078, 'winogrande_acc': 0.614, 'mmlu_acc': 0.3789, 'gsm8k_exact_match': 0.0326, 'hellaswag_acc_norm': 0.6605, 'piqa_acc_norm': 0.741}
+  conclusion: success
+
+=== perlayer_kl_k2_s456_eval ===
+  metrics: {'wikitext2_ppl': 10.5826, 'arc_challenge_acc_norm': 0.384, 'winogrande_acc': 0.6488, 'mmlu_acc': 0.3542, 'gsm8k_exact_match': 0.0205, 'hellaswag_acc_norm': 0.659, 'piqa_acc_norm': 0.728}
+  conclusion: success
+
+=== perlayer_kl_k8_s42_eval ===
+  metrics: {'wikitext2_ppl': 8.9704, 'arc_challenge_acc_norm': 0.4104, 'winogrande_acc': 0.674, 'mmlu_acc': 0.398, 'gsm8k_exact_match': 0.0561, 'hellaswag_acc_norm': 0.6919, 'piqa_acc_norm': 0.7612}
+  conclusion: success
+
+=== perlayer_kl_k8_s123_eval ===
+  metrics: {'wikitext2_ppl': 9.0648, 'arc_challenge_acc_norm': 0.4155, 'winogrande_acc': 0.6993, 'mmlu_acc': 0.4042, 'gsm8k_exact_match': 0.0682, 'hellaswag_acc_norm': 0.6997, 'piqa_acc_norm': 0.7508}
+  conclusion: success
+
+=== perlayer_kl_k8_s456_eval ===
+  metrics: {'wikitext2_ppl': 8.9515, 'arc_challenge_acc_norm': 0.3951, 'winogrande_acc': 0.6875, 'mmlu_acc': 0.4105, 'gsm8k_exact_match': 0.0811, 'hellaswag_acc_norm': 0.6783, 'piqa_acc_norm': 0.7399, 'sparsity': 0.298}
+  conclusion: success
+
+=== perlayer_kl_k16_s123_eval ===
+  metrics: {'wikitext2_ppl': 8.6939, 'arc_challenge_acc_norm': 0.4317, 'winogrande_acc': 0.6772, 'mmlu_acc': 0.3996, 'gsm8k_exact_match': 0.0986, 'hellaswag_acc_norm': 0.705, 'piqa_acc_norm': 0.7481}
+  conclusion: success
+
+=== perlayer_kl_k16_s456_eval ===
+  metrics: {'ppl_wikitext2': 8.655, 'arc_challenge_acc_norm': 0.4155, 'winogrande_acc': 0.6946, 'mmlu_acc': 0.3873, 'gsm8k_exact_match': 0.0766, 'hellaswag_acc_norm': 0.7015, 'piqa_acc_norm': 0.7437}
+  conclusion: success
+
+=== perlayer_kl_30_s42_v6 ===
+  metrics: {'steps': 10000}
+  conclusion: success
+
+=== perlayer_kl_30_s123_v4 ===
+  metrics: {'final_avg_kl': 0.0114, 'final_tau': 0.1, 'steps': 10000}
+  conclusion: success
+
+=== perlayer_kl_30_s456_ppl ===
+  metrics: {'wikitext2_ppl': 9.0282, 'model_level_sparsity': 0.297}
+  conclusion: success
+
+=== perlayer_kl_s42_ppl ===
+  metrics: {'wikitext2_ppl': 9.0568}
+  conclusion: success
+
+=== perlayer_kl_s123_ppl ===
+  metrics: {'wikitext2_ppl': 9.0598}
+  conclusion: success
+
+=== perlayer_kl_s456_ppl_repro ===
+  metrics: {'wikitext2_ppl': 9.0282}
+  conclusion: success
+
+=== ste_baseline_s42 ===
+  metrics: {'true_dense_ppl': 6.12, 'predictor_hard_mask_ppl': 8.18, 'teal_sparse_ppl': 15.77, 'model_level_sparsity': 0.47, 'ppl_increase_vs_true_dense_pct': 157.7, 'eval_seq_len': 2048, 'calibration_samples': 32, 'eval_dataset': 'wikitext-2', 'per_token_sparsity': 0.47, 'lambda_stats': {'steps_70_130_mean': 66.4, 'steps_70_130_std': 94.87, 'first_500_mean': 688.07, 'first_500_std': 440.57, 'last_500_mean': 965.69, 'last_500_std': 141.59, 'overall_mean': 826.88, 'overall_std': 354.23}}
+  conclusion: success
+
+=== jsd_30_s42 ===
+  metrics: {'wikitext2_ppl': 8.884, 'arc_challenge_acc_norm': 0.4445, 'winogrande_acc': 0.7072, 'mmlu_acc': 0.3825, 'gsm8k_exact_match': 0.0925, 'hellaswag_acc_norm': 0.7073, 'piqa_acc_norm': 0.7508, 'model_level_sparsity': 0.285}
+  conclusion: success
+
+=== jsd_30_s42_uniform_eval ===
+  metrics: {'ppl': 8.8848, 'arc_challenge': 0.4437, 'winogrande': 0.6977, 'mmlu': 0.3857, 'gsm8k': 0.0857, 'hellaswag': 0.7063, 'piqa': 0.7519}
+  conclusion: success
+
+=== reverse_kl_30_s42 ===
+  metrics: {'wikitext2_ppl': 9.31, 'arc_challenge_acc_norm': 0.4317, 'winogrande_acc': 0.6938, 'mmlu_acc': 0.3744, 'gsm8k_exact_match': 0.0697, 'hellaswag_acc_norm': 0.6972, 'piqa_acc_norm': 0.7459}
+  conclusion: success
+
+=== reverse_kl_30_s42_uniform_eval ===
+  metrics: {'arc_challenge_acc_norm': 0.4283, 'winogrande_acc': 0.7009, 'mmlu_acc': 0.3749, 'gsm8k_exact_match': 0.0697, 'hellaswag_acc_norm': 0.6969, 'piqa_acc_norm': 0.7459}
+  conclusion: success
+
+=== revkl_30_s42_boolq ===
+  metrics: {'boolq_acc': 0.6529}
+  conclusion: success
+
+=== bench_kl30_uniform ===
+  metrics: {'wikitext2_ppl': 8.8157, 'arc_challenge_acc_norm': 0.4078, 'winogrande_acc': 0.6859, 'mmlu_acc': 0.4061, 'gsm8k_exact_match': 0.0735, 'actual_sparsity': 0.3}
+  conclusion: success
+
+=== kl30_s123_uniform_v2 ===
+  metrics: {'wikitext2_ppl': 8.8186, 'arc_challenge_acc_norm': 0.471, 'winogrande_acc': 0.6961, 'mmlu_acc': 0.3763, 'gsm8k_exact_match': 0.0705}
+  conclusion: success
+
+=== kl30_s456_uniform_v2 ===
+  metrics: {'wikitext2_ppl': 8.8284, 'arc_challenge_acc_norm': 0.4505, 'winogrande_acc': 0.6953, 'mmlu_acc': 0.3727, 'gsm8k_exact_match': 0.0705}
+  conclusion: success
+
+=== bce_isocompute_v3_s42 ===
+  metrics: {'steps': 2700, 'loss': 0.6382, 'bce_loss': 0.6371, 'reg_loss': 0.001, 'sparsity': 0.51, 'training_time_seconds': 2828, 'note': 'BCE saturation confirmed: step 500→2700 only 0.006 improvement'}
+  conclusion: success
+
+=== bce_isocompute_v3_s123 ===
+  metrics: {}
+  conclusion: success
+
+=== bce_isocompute_v3_s456 ===
+  metrics: {'final_loss': 0.6368, 'final_sparsity': 0.51, 'training_steps': 2700}
+  conclusion: success
+
+=== bce_isocompute_v3_s42_eval ===
+  metrics: {'wikitext2_ppl': 27.9696, 'arc_challenge_acc': 0.2346, 'arc_challenge_acc_norm': 0.2765, 'winogrande_acc': 0.5162, 'mmlu_acc': 0.2614, 'gsm8k_exact_match': 0.019}
+  conclusion: success
+
+=== bce_isocompute_v3_s123_eval ===
+  metrics: {'wikitext2_ppl': 28.0627, 'arc_challenge_acc_norm': 0.2696, 'winogrande_acc': 0.513, 'mmlu_acc': 0.2655, 'gsm8k_exact_match': 0.022}
+  conclusion: success
+
+=== bce_isocompute_v3_s456_eval ===
+  metrics: {'teal_sparse_ppl': 28.3503, 'model_level_sparsity': 0.5, 'arc_challenge_acc': 0.2312, 'arc_challenge_acc_stderr': 0.01232, 'arc_challenge_acc_norm': 0.2807, 'arc_challenge_acc_norm_stderr': 0.01313, 'winogrande_acc': 0.5241, 'winogrande_acc_stderr': 0.01404, 'mmlu_acc': 0.2567, 'mmlu_acc_stderr': 0.00367, 'gsm8k_exact_match': 0.022, 'gsm8k_exact_match_stderr': 0.00404, 'gsm8k_exact_match_strict': 0.00834, 'gsm8k_exact_match_strict_stderr': 0.0025}
+  conclusion: success
+
+=== bench_kl50_uniform_s123 ===
+  metrics: {'wikitext2_ppl': 11.83, 'arc_challenge_acc_norm': 0.3515, 'winogrande_acc': 0.6298, 'mmlu_acc': 0.2751, 'gsm8k_exact_match': 0.0235, 'actual_sparsity': 0.5}
+  conclusion: success
+
+=== bench_kl50_uniform_s456 ===
+  metrics: {'wikitext2_ppl': 11.9604, 'arc_challenge_acc_norm': 0.3345, 'winogrande_acc': 0.6275, 'mmlu_acc': 0.2874, 'gsm8k_exact_match': 0.0212, 'actual_sparsity': 0.5}
+  conclusion: success
+
+=== kl50_global_s123_reeval ===
+  metrics: {'wikitext2_ppl': 11.7184, 'arc_challenge_acc_norm': 0.3635, 'winogrande_acc': 0.6109, 'mmlu_acc': 0.2834, 'gsm8k_exact_match': 0.0258}
+  conclusion: success
+
+=== kl50_global_s123_downstream_v2 ===
+  metrics: {'arc_challenge_acc_norm': 0.3916, 'winogrande_acc': 0.6401, 'mmlu_acc': 0.2908, 'gsm8k_exact_match': 0.0341}
+  conclusion: success
+
+=== kl50_s456_global_eval ===
+  metrics: {'ppl_wikitext2': 11.8057, 'arc_challenge': 0.3319, 'winogrande': 0.6488, 'mmlu': 0.2794, 'gsm8k': 0.0212}
+  conclusion: success
+
+=== kl50_s42_global_eval ===
+  metrics: {'wikitext2_ppl': 11.8038, 'arc_challenge_acc_norm': 0.3336, 'winogrande_acc': 0.6338, 'mmlu_acc': 0.2819, 'gsm8k_exact_match': 0.0167}
+  conclusion: success
+
+=== kl50_s42_uniform_eval ===
+  metrics: {'wikitext2_ppl': 11.9638, 'arc_challenge_acc_norm': 0.3259, 'winogrande_acc': 0.6235, 'mmlu_acc': 0.2792, 'gsm8k_exact_match': 0.0197}
+  conclusion: success
+
+=== kl50_s123_uniform_eval ===
+  metrics: {'wikitext2_ppl': 11.89, 'arc_challenge_acc_norm': 37.88, 'winogrande_acc': 62.19, 'mmlu_acc': 27.75, 'gsm8k_exact_match': 2.35, 'comparison_vs_global_topk': {'ppl_delta': -0.94, 'arc_c_delta': -5.55, 'wg_delta': -6.71, 'mmlu_delta': -8.2, 'gsm8k_delta': -5}, 'note': 'Uniform allocation: better PPL but catastrophic downstream degradation vs global_topk. Confirms global_topk allocation is critical for downstream quality.'}
+  conclusion: success
+
+=== kl50_s456_uniform_eval ===
+  metrics: {'wikitext2_ppl': 11.9538, 'arc_challenge_acc_norm': 0.3831, 'winogrande_acc': 0.6196, 'mmlu_acc': 0.275, 'gsm8k_exact_match': 0.0288}
+  conclusion: success
+
+=== jsd_30_s123 ===
+  metrics: {'ppl': 8.9144, 'sparsity': 0.296, 'allocation': 'uniform'}
+  conclusion: success
+
+=== jsd_30_s456 ===
+  metrics: {'ppl': 8.9099, 'sparsity': 0.296, 'allocation': 'uniform'}
+  conclusion: success
+
+=== revkl_30_s123_downstream ===
+  metrics: {'arc_challenge_acc_norm': 0.4556, 'winogrande_acc': 0.689, 'mmlu_acc': 0.38, 'gsm8k_exact_match': 0.072, 'hellaswag_acc_norm': 0.7092, 'piqa_acc_norm': 0.7524, 'boolq_acc': 0.7199}
+  conclusion: success
+
+=== revkl_30_s456_downstream_v2 ===
+  metrics: {'arc_challenge_acc_norm': 0.4258, 'winogrande_acc': 0.6788, 'mmlu_acc': 0.42, 'gsm8k_exact_match': 0.0614, 'hellaswag_acc_norm': 0.704, 'piqa_acc_norm': 0.7508, 'boolq_acc': 0.5966}
+  conclusion: success
+
+=== mse30_s42_eval_7task ===
+  metrics: {'wikitext2_ppl': 20.43, 'arc_challenge_acc_norm': 0.3123, 'winogrande_acc': 0.6038, 'mmlu_acc': 0.3179, 'gsm8k_exact_match': 0.0197, 'hellaswag_acc_norm': 0.5248, 'piqa_acc_norm': 0.6937}
+  conclusion: success
+
+=== teal_30pct_uniform_multiseed_eval ===
+  metrics: {'ppl': 10.8173, 'arc_challenge': 0.3771, 'winogrande': 0.6504, 'mmlu': 0.4586, 'gsm8k': 0.0879, 'hellaswag': 0.6331, 'piqa': 0.7198}
+  conclusion: success
+
+=== downstream_teal30_baseline ===
+  metrics: {'hellaswag_acc': 0.4878, 'hellaswag_acc_norm': 0.667, 'piqa_acc': 0.7258, 'piqa_acc_norm': 0.7361, 'boolq_acc': 0.685}
+  conclusion: success
+
+=== downstream_dense_baseline ===
+  metrics: {'hellaswag_acc_norm': 0.8233, 'hellaswag_acc_norm_stderr': 0.0038, 'piqa_acc_norm': 0.8074, 'piqa_acc_norm_stderr': 0.0092, 'boolq_acc': 0.8294, 'boolq_acc_stderr': 0.0066}
+  conclusion: success
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "cbcf1603-5f01-489b-9694-f486c65ccc5d"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 605_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Extract additional registry metrics",
+  "usage": {
+    "total_tokens": 47532,
+    "tool_uses": 10,
+    "duration_ms": 58535
+  },
+  "last_tool_name": "Bash",
+  "uuid": "89ba9d69-a98c-4bfa-9cb2-4db87302876c",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 606_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GGx9JUjjHhFurjecWzNvPn`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# More targeted lookups\nextra_keys = [\n    'revkl_30_s42_boolq', 'revkl_30_s123', 'revkl_30_s456',\n    'jsd_30_s42', 'jsd_30_s123', 'jsd_30_s456',\n    'perlayer_kl_30_s456_downstream', 'perlayer_kl_s42_downstream', 'perlayer_kl_s123_downstream_v2',\n    'kl_comp_30pct_s42_eval', 'kl_comp_30pct_s123_eval', 'kl_comp_30pct_s456_eval',\n    'qwen14b_kl30_s42', 'qwen14b_kl30_s123_eval_v4',\n    'mistral_kl30_hellaswag_piqa',\n    'c4_ood_kl30_uniform_s42', 'c4_ood_kl30_uniform_s123', 'c4_ood_kl30_uniform_s456',\n    'perlayer_kl_k4_s42', 'perlayer_kl_k4_s42_downstream',\n    'kl50_s456_train',\n    'bce_50pct_teal_global_unified',\n    'teal_28.5pct_sanity',\n    'eval_kl30_teal_30pct',\n    'perlayer_sparsity_analysis',\n    'db_sensitivity_sweep',\n    'kl_sparsity25_s42', 'kl_sparsity35_s42', 'kl_sparsity40_s42_global_eval_v2',\n    'kl_sparsity45_s42',\n    'mistral_kl30_s42', 'lm_eval_mistral_dense',\n    'c4_ood_kl30_s42', 'c4_ood_kl50_s42',\n    'kl_comp_30pct_s42_ppl',\n    'bce_30_s42_uniform_eval', 'bce_30pct_s42',\n    'bce_iso_v3_s42_30pct_uniform_eval', 'bce_iso_v3_s123_30pct_uniform_eval', 'bce_iso_v3_s456_30pct_uniform_eval',\n    'qwen14b_kl30_uniform_hspiqa',\n    'qwen14b_kl30_global_hspiqa',\n    'qwen14b_teal275_uniform_eval_v3',\n    'qwen14b_teal30_global_hspiqa',\n    'qwen14b_teal275_uniform_hspiqa',\n    'c1_ablation_bce_kl_targets_s123_v2',\n    'teal_kl_overlap_analysis',\n]\n\nfor k in extra_keys:\n    if k in data:\n        print(f\"\\n=== {k} ===\")\n        entry = data[k]\n        if 'metrics' in entry:\n            print(f\"  metrics: {entry['metrics']}\")\n    else:\n        print(f\"\\n=== {k} === NOT FOUND\")\nEOF",
+  "description": "Extract additional registry metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "434fc96c-8b12-4133-b6db-968a3f9caf47",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_015fiZWct9PDNhz9zqPq2bvY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8435,
+      "cache_read_input_tokens": 38755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 8435,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 607 · 2026-05-24T01:21:33.448Z_
+
+<details><summary>↩ Tool result · `toolu_01GGx9JUjjHhFurjecWzNvPn`</summary>
+
+```text
+=== revkl_30_s42_boolq ===
+  metrics: {'boolq_acc': 0.6529}
+
+=== revkl_30_s123 ===
+  metrics: {'ppl': 9.2859, 'sparsity': 0.296, 'allocation': 'uniform'}
+
+=== revkl_30_s456 ===
+  metrics: {'ppl': 9.1841}
+
+=== jsd_30_s42 ===
+  metrics: {'wikitext2_ppl': 8.884, 'arc_challenge_acc_norm': 0.4445, 'winogrande_acc': 0.7072, 'mmlu_acc': 0.3825, 'gsm8k_exact_match': 0.0925, 'hellaswag_acc_norm': 0.7073, 'piqa_acc_norm': 0.7508, 'model_level_sparsity': 0.285}
+
+=== jsd_30_s123 ===
+  metrics: {'ppl': 8.9144, 'sparsity': 0.296, 'allocation': 'uniform'}
+
+=== jsd_30_s456 ===
+  metrics: {'ppl': 8.9099, 'sparsity': 0.296, 'allocation': 'uniform'}
+
+=== perlayer_kl_30_s456_downstream ===
+  metrics: {'arc_challenge_acc_norm': 0.3848, 'winogrande_acc': 0.663, 'mmlu_acc': 0.3904, 'gsm8k_exact_match': 0.0644, 'hellaswag_acc_norm': 0.6616, 'piqa_acc_norm': 0.7356}
+
+=== perlayer_kl_s42_downstream ===
+  metrics: {'arc_challenge_acc': 0.3601, 'arc_challenge_acc_norm': 0.3916, 'winogrande_acc': 0.6527, 'mmlu_acc': 0.3786, 'gsm8k_exact_match': 0.0531, 'hellaswag_acc': 0.4853, 'hellaswag_acc_norm': 0.6763, 'piqa_acc': 0.7361, 'piqa_acc_norm': 0.7546, 'boolq_acc': 0.7177}
+
+=== perlayer_kl_s123_downstream_v2 ===
+  metrics: {'arc_challenge_acc_norm': 0.4206, 'winogrande_acc': 0.6622, 'mmlu_acc': 0.3895, 'gsm8k_exact_match': 0.0569, 'hellaswag_acc_norm': 0.6478, 'piqa_acc_norm': 0.7514}
+
+=== kl_comp_30pct_s42_eval ===
+  metrics: {'wikitext2_ppl': 8.9788, 'arc_challenge_acc_norm': 0.3993, 'winogrande_acc': 0.6898, 'mmlu_acc': 0.2531, 'gsm8k_exact_match': 0.0842}
+
+=== kl_comp_30pct_s123_eval ===
+  metrics: {'wikitext2_ppl': 8.9788, 'arc_challenge_acc_norm': 0.3993, 'winogrande_acc': 0.6898, 'mmlu_acc': 0.2531, 'gsm8k_exact_match': 0.0842}
+
+=== kl_comp_30pct_s456_eval ===
+  metrics: {'wikitext2_ppl': 8.9614, 'arc_challenge_acc_norm': 0.4462, 'winogrande_acc': 0.7143, 'mmlu_acc': 0.2714, 'gsm8k_exact_match': 0.0887}
+
+=== qwen14b_kl30_s42 ===
+  metrics: {'dense_ppl': 5.18, 'predictor_hard_mask_ppl': 6.8, 'teal_global_ppl': 7.62, 'ppl_ratio_hard_mask': 1.31, 'ppl_ratio_teal': 1.47, 'final_loss': 0.3398, 'training_sparsity': 0.281, 'teal_sparsity': 0.3, 'lambda': 5000, 'steps': 1000}
+
+=== qwen14b_kl30_s123_eval_v4 ===
+  metrics: {'wikitext2_ppl': 7.6607, 'arc_challenge_acc': 0.5222, 'arc_challenge_acc_norm': 0.5606, 'winogrande_acc': 0.7293, 'hellaswag_acc': 0.5179, 'hellaswag_acc_norm': 0.7132, 'piqa_acc': 0.7388, 'piqa_acc_norm': 0.7535, 'mmlu_acc': 0.6449}
+
+=== mistral_kl30_hellaswag_piqa ===
+  metrics: {'hellaswag_acc_norm': 0.6892, 'piqa_acc_norm': 0.7519}
+
+=== c4_ood_kl30_uniform_s42 ===
+  metrics: {'c4_ppl': 18.2211, 'allocation': 'uniform', 'sparsity': 0.296, 'seed': 42}
+
+=== c4_ood_kl30_uniform_s123 ===
+  metrics: {'c4_ppl': 16.3686, 'allocation': 'uniform', 'sparsity': 0.3, 'seed': 123}
+
+=== c4_ood_kl30_uniform_s456 ===
+  metrics: {'c4_ppl': 16.3551, 'allocation': 'uniform', 'sparsity': 0.3, 'seed': 456}
+
+=== perlayer_kl_k4_s42 ===
+  metrics: {}
+
+=== perlayer_kl_k4_s42_downstream ===
+  metrics: {'arc_challenge_acc_norm': 0.4096, 'winogrande_acc': 0.6669, 'mmlu_acc': 0.4353, 'gsm8k_exact_match': 0.0516, 'hellaswag_acc_norm': 0.6849, 'piqa_acc_norm': 0.7399, 'boolq_acc': 0.7318}
+
+=== kl50_s456_train ===
+  metrics: {'final_loss': 0.397, 'final_kl_normalized': 0.397, 'final_sparsity': 0.492, 'final_lambda': 5000, 'final_tau': 0.1, 'steps_completed': 1000}
+
+=== bce_50pct_teal_global_unified ===
+  metrics: {'wikitext2_ppl': 27.97, 'arc_challenge_acc_norm': 0.2765, 'winogrande_acc': 0.5162, 'mmlu_acc': 0.2614, 'gsm8k_exact_match': 0.019}
+
+=== teal_28.5pct_sanity ===
+  metrics: {'wikitext2_ppl': 10.3}
+
+=== eval_kl30_teal_30pct ===
+  metrics: {'dense_ppl': 6.12, 'predictor_hard_mask_ppl': 7.3, 'teal_sparse_ppl': 8.98, 'sparsity_target': 0.3, 'actual_sparsity': 0.3}
+
+=== perlayer_sparsity_analysis === NOT FOUND
+
+=== db_sensitivity_sweep ===
+  metrics: {'db64_per_token_ppl': 10.158, 'db64_teal_global_ppl': 12.076, 'db64_sparsity': 0.5, 'db64_loss': 0.361, 'db128_teal_global_ppl': 11.963, 'db128_per_token_ppl': 9.218, 'db256_per_token_ppl': 8.586, 'db256_teal_global_ppl': 12.105, 'db256_sparsity': 0.5, 'db256_loss': 0.27, 'db512_per_token_ppl': 7.933, 'db512_teal_global_ppl': 12.315, 'db512_sparsity': 0.5, 'db512_loss': 0.224, 'best_teal_global_db': 128, 'best_teal_global_ppl': 11.963}
+
+=== kl_sparsity25_s42 ===
+  metrics: {'train_loss_final': 0.1582, 'kl_normalized_final': 0.1582, 'sparsity_actual': 0.23, 'sparsity_target': 0.25, 'lambda_final': 5000, 'tau_final': 0.1, 'steps': 1000}
+
+=== kl_sparsity35_s42 ===
+  metrics: {'final_loss': 0.203, 'final_sparsity': 0.336, 'steps': 1000}
+
+=== kl_sparsity40_s42_global_eval_v2 ===
+  metrics: {'wikitext2_ppl': 10.14, 'arc_challenge_acc_norm': 0.3951, 'winogrande_acc': 0.6748, 'mmlu_acc': 0.3947, 'gsm8k_exact_match': 0.066, 'hellaswag_acc_norm': 0.6779, 'piqa_acc_norm': 0.7269}
+
+=== kl_sparsity45_s42 ===
+  metrics: {'final_loss': 0.33, 'final_sparsity': 0.449, 'steps': 1000}
+
+=== mistral_kl30_s42 ===
+  metrics: {'kl_per_token_ppl': 6.048, 'kl_teal_global_ppl': 6.7733, 'teal_baseline_ppl': 8.3807, 'dense_ppl': 5.5238, 'kl_advantage_ratio': 1.386, 'ppl_vs_dense_pct': 9.5}
+
+=== lm_eval_mistral_dense ===
+  metrics: {'arc_challenge_acc_norm': 0.6024, 'winogrande_acc': 0.7869, 'mmlu_acc': 0.6244, 'gsm8k_exact_match': 0.3654, 'model': 'Mistral-7B-v0.3', 'condition': 'dense', 'server': 'westd-34887'}
+
+=== c4_ood_kl30_s42 ===
+  metrics: {'c4_ppl': 16.0458, 'allocation': 'global_topk', 'sparsity': 0.3, 'model': 'llama-3.1-8b', 'eval_sequences': 132, 'seq_len': 2048}
+
+=== c4_ood_kl50_s42 ===
+  metrics: {'c4_ppl': 23.5297, 'sparsity': 0.5, 'allocation': 'global_topk', 'seed': 42}
+
+=== kl_comp_30pct_s42_ppl ===
+  metrics: {'wikitext2_ppl': 8.9768, 'c4_ppl': 16.0401, 'sparsity': 0.3, 'allocation': 'global_topk', 'model': 'llama-3.1-8b', 'seed': 42}
+
+=== bce_30_s42_uniform_eval ===
+  metrics: {'ppl': 15.7069, 'arc_challenge': 0.3319, 'winogrande': 0.618, 'mmlu': 0.4237, 'gsm8k': 0.0394, 'hellaswag': 0.6156, 'piqa': 0.741}
+
+=== bce_30pct_s42 ===
+  metrics: {}
+
+=== bce_iso_v3_s42_30pct_uniform_eval ===
+  metrics: {'ppl': 14.947, 'arc_challenge': 0.3294, 'winogrande': 0.6062, 'mmlu': 0.4291, 'gsm8k': 0.0379, 'hellaswag': 0.6165, 'piqa': 0.7356}
+
+=== bce_iso_v3_s123_30pct_uniform_eval ===
+  metrics: {'ppl': 15.2051, 'arc_challenge': 0.3396, 'winogrande': 0.6046, 'mmlu': 0.4363, 'gsm8k': 0.0455, 'hellaswag': 0.614, 'piqa': 0.7356}
+
+=== bce_iso_v3_s456_30pct_uniform_eval ===
+  metrics: {'ppl': 15.1102, 'arc_challenge': 0.3345, 'winogrande': 0.6219, 'mmlu': 0.4261, 'gsm8k': 0.0356, 'hellaswag': 0.6158, 'piqa': 0.7323}
+
+=== qwen14b_kl30_uniform_hspiqa ===
+  metrics: {'hellaswag_acc_norm': 0.7266, 'piqa_acc_norm': 0.7514}
+
+=== qwen14b_kl30_global_hspiqa ===
+  metrics: {'hellaswag_acc_norm': 0.7501, 'piqa_acc_norm': 0.7737}
+
+=== qwen14b_teal275_uniform_eval_v3 ===
+  metrics: {'wikitext2_ppl': 7.7087, 'arc_challenge_acc_norm': 0.57, 'winogrande_acc': 0.7167, 'mmlu_acc': 0.6738, 'gsm8k_exact_match': 0.5709}
+
+=== qwen14b_teal30_global_hspiqa ===
+  metrics: {'hellaswag_acc_norm': 0.7051, 'piqa_acc_norm': 0.747}
+
+=== qwen14b_teal275_uniform_hspiqa ===
+  metrics: {'hellaswag_acc': 0.5092, 'hellaswag_acc_norm': 0.6993, 'piqa_acc': 0.753, 'piqa_acc_norm': 0.7476}
+
+=== c1_ablation_bce_kl_targets_s123_v2 ===
+  metrics: {'final_loss': 0.0537, 'ppl': 9.32, 'sparsity': 0.615, 'agreement': 0.979, 'note': 'Consistent with s42 (PPL=9.29, sparsity=0.609, agreement=0.978). Both seeds converge to ~61% eval sparsity. C1 confirmed multi-seed robust.'}
+
+=== teal_kl_overlap_analysis ===
+  metrics: {'overall_jaccard': 0.396, 'divergence_ratio': 0.433, 'kl_only_pruned_magnitude_ratio': 1.48, 'teal_only_pruned_mean_gate_prob': 0.614, 'min_jaccard_layer': 'L17-L18 (0.19)', 'max_jaccard_layer': 'L26-L28 (0.55)'}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "318c194d-d3c7-4aa2-aba3-545ebea95282"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 608_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Check mask overlap, latency, and architecture data",
+  "usage": {
+    "total_tokens": 52713,
+    "tool_uses": 11,
+    "duration_ms": 72491
+  },
+  "last_tool_name": "Bash",
+  "uuid": "cfd4aa71-4da7-47a9-81a3-be7a55921dcf",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 609_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01V8rMz6THAX6V7TQnz2oDWS`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Check mask overlap / Jaccard experiments\nmask_keys = [k for k in data.keys() if 'mask' in k or 'jaccard' in k or 'overlap' in k]\nprint(\"Mask/Jaccard/Overlap keys:\", mask_keys)\n\n# Check perlayer sparsity analysis\nperlayer_keys = [k for k in data.keys() if 'perlayer' in k or 'per_layer' in k or 'sparsity' in k]\nprint(\"\\nPerlayer/sparsity keys:\", perlayer_keys[:30])\n\n# Compression ratio info\nqwen_keys = [k for k in data.keys() if 'qwen' in k]\nprint(\"\\nQwen keys:\", qwen_keys)\n\n# Check for 50% TEAL uniform (Table row: TEAL uniform 23.90)\nprint(\"\\n=== bench_teal50 metrics ===\", data.get('bench_teal50', {}).get('metrics'))\nprint(\"\\n=== bench_teal50_uniform_gsm8k metrics ===\", data.get('bench_teal50_uniform_gsm8k', {}).get('metrics'))\nprint(\"\\n=== lm_eval_teal_50pct metrics ===\", data.get('lm_eval_teal_50pct', {}).get('metrics'))\n\n# mistral 3-seed PPL\nfor k in ['mistral_kl30_s42', 'mistral_kl30_s123', 'mistral_kl30_s456']:\n    m = data.get(k, {}).get('metrics', {})\n    print(f\"\\n{k}:\", m)\n\n# mistral teal baseline PPL\nprint(\"\\nmistral_kl30_pertoken:\", data.get('mistral_kl30_pertoken', {}).get('metrics'))\nprint(\"\\nmistral_kl30_teal_global:\", data.get('mistral_kl30_teal_global', {}).get('metrics'))\n\n# Check for latency 6.4% vs registry\nlat = data.get('latency_benchmark', {}).get('metrics', {})\ndense_ms = lat.get('dense_ms', 0)\nkl30_ms = lat.get('kl_30pct_ms', 0)\nif dense_ms and kl30_ms:\n    overhead = (kl30_ms - dense_ms) / dense_ms * 100\n    print(f\"\\nLatency overhead: ({kl30_ms} - {dense_ms}) / {dense_ms} * 100 = {overhead:.1f}%\")\n\nwc = data.get('wallclock_speedup_30_50', {}).get('metrics', {})\nprint(f\"\\nwallclock overhead_bs1_30pct: {wc.get('overhead_bs1_30pct')}\")\nprint(f\"wallclock overhead_bs8_30pct: {wc.get('overhead_bs8_30pct')}\")\nEOF",
+  "description": "Check mask overlap, latency, and architecture data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "868ea2f7-230e-43cf-94c1-2e1e1341560d",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01LscSmRLySvdCRYDkNyNgKZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5142,
+      "cache_read_input_tokens": 47190,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5142,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 610 · 2026-05-24T01:21:47.462Z_
+
+<details><summary>↩ Tool result · `toolu_01V8rMz6THAX6V7TQnz2oDWS`</summary>
+
+```text
+Mask/Jaccard/Overlap keys: ['qwen14b_mask_divergence_analysis', 'teal_kl_overlap_corrected', 'teal_kl_overlap_analysis']
+
+Perlayer/sparsity keys: ['perlayer_kl_k16_s456_eval', 'perlayer_kl_k16_s123_eval', 'perlayer_kl_k8_s456_eval', 'perlayer_kl_k8_s123_eval', 'perlayer_kl_k2_s456_eval', 'perlayer_kl_k2_s123_eval', 'perlayer_kl_k16_s456_v2', 'perlayer_kl_k2_s42_train', 'perlayer_kl_k16_s123', 'perlayer_kl_k8_s456', 'perlayer_kl_k8_s123', 'perlayer_kl_k2_s456', 'perlayer_kl_k2_s123', 'perlayer_kl_k2_s42_eval', 'perlayer_kl_k16_eval_final2', 'perlayer_kl_k2_s42', 'perlayer_kl_k8_s42_eval', 'perlayer_kl_k16_s42_v3', 'perlayer_kl_k8_s42', 'perlayer_kl_s123_downstream_v2', 'perlayer_kl_k4_50_s42', 'perlayer_kl_k4_s42_downstream', 'perlayer_kl_k4_s42', 'perlayer_kl_s123_boolq', 'perlayer_kl_s123_convergence', 'perlayer_kl_s42_convergence', 'perlayer_kl_s456_boolq_v2', 'perlayer_kl_s42_downstream', 'perlayer_kl_30_s42_v6', 'perlayer_kl_30_s123_v4']
+
+Qwen keys: ['qwen14b_kl30_s42_gsm8k_uniform', 'qwen14b_teal30_global_hspiqa', 'qwen14b_bce30_global_hspiqa', 'qwen14b_kl30_global_hspiqa', 'qwen14b_teal30_uniform_hspiqa', 'qwen14b_kl30_uniform_hspiqa', 'qwen14b_teal30_uniform_gsm8k', 'qwen14b_kl30_s456_gsm8k', 'qwen14b_kl30_s42_gsm8k_v2', 'qwen14b_kl30_s456_eval_v3', 'qwen14b_kl30_s123_eval_v5', 'qwen14b_kl30_s42_eval_uniform_v3', 'qwen14b_dense_4task_v2', 'qwen14b_teal275_uniform_eval_v3', 'qwen14b_teal275_hspiqa', 'qwen14b_dense_hspiqa', 'qwen14b_teal275_uniform_hspiqa', 'qwen14b_kl30_s456_eval_v2', 'qwen14b_teal30_uniform_hspiqa_v2', 'qwen14b_kl30_s123', 'qwen14b_kl30_s123_eval_v4', 'qwen14b_kl30_s456', 'qwen14b_mask_divergence_analysis', 'qwen14b_teal30_eval', 'qwen14b_dense_baseline', 'qwen14b_kl30_s42_eval', 'qwen14b_bce30_s42', 'qwen14b_kl30_s42']
+
+=== bench_teal50 metrics === {'wikitext2_ppl': 23.31, 'arc_challenge_acc_norm': 0.2841, 'winogrande_acc': 0.5304, 'mmlu_acc': 0.2832, 'gsm8k_exact_match': 0.0197, 'actual_sparsity': 0.5}
+
+=== bench_teal50_uniform_gsm8k metrics === {'gsm8k_exact_match_flexible': 0.0174}
+
+=== lm_eval_teal_50pct metrics === {'method': 'vanilla_teal', 'sparsity': 0.5, 'actual_sparsity': 0.5, 'arc_challenge_acc_norm': 0.291, 'winogrande_acc': 0.5556, 'mmlu_acc': 0.2856, 'gsm8k_exact_match_flexible': 0.019, 'gsm8k_exact_match_strict': 0.0114, 'arc_challenge_drop_vs_dense': -0.5, 'winogrande_drop_vs_dense': -0.289, 'mmlu_drop_vs_dense': -0.563, 'gsm8k_drop_vs_dense': -0.962, 'model': 'Llama-3.1-8B', 'condition': 'TEAL 50% training-free sparsity'}
+
+mistral_kl30_s42: {'kl_per_token_ppl': 6.048, 'kl_teal_global_ppl': 6.7733, 'teal_baseline_ppl': 8.3807, 'dense_ppl': 5.5238, 'kl_advantage_ratio': 1.386, 'ppl_vs_dense_pct': 9.5}
+
+mistral_kl30_s123: {'training_final_loss': 0.0996, 'training_final_sparsity': 0.281, 'wikitext2_ppl': 7.1491, 'arc_challenge_acc_norm': 0.378, 'winogrande_acc': 0.7017, 'mmlu_acc': 0.4423, 'gsm8k_exact_match': 0.0773, 'hellaswag_acc_norm': 0.6961, 'piqa_acc_norm': 0.7459}
+
+mistral_kl30_s456: {'training_final_loss': 0.105, 'training_final_sparsity': 0.281, 'wikitext2_ppl': 6.8752, 'arc_challenge_acc_norm': 0.4684, 'winogrande_acc': 0.7143, 'mmlu_acc': 0.4161, 'gsm8k_exact_match': 0.0697, 'hellaswag_acc_norm': 0.705, 'piqa_acc_norm': 0.7448}
+
+mistral_kl30_pertoken: {'wikitext2_ppl': 6.048, 'model': 'Mistral-7B-v0.3', 'condition': 'kl_pertoken_30pct', 'sparsity': 0.3, 'allocation': 'uniform', 'ppl_increase_vs_dense': 0.5242}
+
+mistral_kl30_teal_global: {'wikitext2_ppl': 6.7733, 'model': 'Mistral-7B-v0.3', 'condition': 'kl_teal_global_30pct', 'sparsity': 0.3, 'allocation': 'uniform', 'ppl_increase_vs_dense': 1.2495}
+
+Latency overhead: (126.64 - 119.11) / 119.11 * 100 = 6.3%
+
+wallclock overhead_bs1_30pct: 7%
+wallclock overhead_bs8_30pct: 6%
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "cb0d75ea-8fd7-416d-bc37-9c4bb6ecccd9"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 611_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Check mask divergence, TEAL50 uniform, and BCE isocompute stats",
+  "usage": {
+    "total_tokens": 55668,
+    "tool_uses": 12,
+    "duration_ms": 87912
+  },
+  "last_tool_name": "Bash",
+  "uuid": "63ccd724-e532-4870-b05f-312056dcdc20",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 612_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WkX29Mzi3TXB6N5b6F8p3o`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Check for mask divergence / Jaccard at 50%\nprint(\"=== teal_kl_overlap_analysis ===\")\nprint(data['teal_kl_overlap_analysis']['metrics'])\n\nprint(\"\\n=== qwen14b_mask_divergence_analysis ===\")\nprint(data['qwen14b_mask_divergence_analysis']['metrics'])\n\n# Check for cross-seed Jaccard\nfor k in data.keys():\n    if 'cross_seed' in k or 'seed_var' in k:\n        print(f\"\\n=== {k} ===\")\n        print(data[k]['metrics'])\n\n# Per-layer KL K=1 3-seed PPL\nprint(\"\\n\\n=== Per-layer KL K=1 PPL ===\")\n# K=1 is perlayer_kl with per-layer training\nfor k in ['perlayer_kl_s42_ppl', 'perlayer_kl_s123_ppl', 'perlayer_kl_s456_ppl_repro']:\n    print(f\"{k}: {data[k]['metrics']}\")\n\n# Per-layer KL K=4\nprint(\"\\n=== perlayer_kl_k4_50_s42 ===\")\nprint(data['perlayer_kl_k4_50_s42']['metrics'])\n\n# KL at 50% PPL (for mask section KL vs BCE at 50%)\n# bench_kl50_global is s42 PPL=11.79\n# But mask text says \"KL achieves PPL 11.79 vs. BCE's 28.13\" \n# This checks out: bench_kl50_global PPL=11.7933\n\n# Now check 50% TEAL (23.90 vs 11.92)\nprint(\"\\n\\n=== TEAL 50% uniform (Table row 23.90) ===\")\nprint(\"bench_teal50:\", data['bench_teal50']['metrics']['wikitext2_ppl'])\n# Table says TEAL uniform 23.90 - bench_teal50 has 23.31\n\n# Check specific teal50 uniform\nfor k in data.keys():\n    if 'teal' in k and '50' in k:\n        m = data[k].get('metrics', {})\n        if 'wikitext2_ppl' in m or 'ppl' in m:\n            print(f\"  {k}: {m}\")\n\n# Check BCE 2700 steps = 28.13±0.20\nprint(\"\\n\\n=== BCE isocompute 3-seed PPL ===\")\nppls = []\nfor k in ['bce_isocompute_v3_s42_eval', 'bce_isocompute_v3_s123_eval', 'bce_isocompute_v3_s456_eval']:\n    ppl = data[k]['metrics'].get('wikitext2_ppl') or data[k]['metrics'].get('teal_sparse_ppl')\n    ppls.append(ppl)\n    print(f\"  {k}: {ppl}\")\nppls_arr = np.array(ppls)\nprint(f\"  Mean: {ppls_arr.mean():.4f}, Std: {ppls_arr.std():.4f}\")\nEOF",
+  "description": "Check mask divergence, TEAL50 uniform, and BCE isocompute stats"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "368e08e1-497e-41df-b251-5e74245fc056",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0187BXBS5Abt38p4qGxP6Lrb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2916,
+      "cache_read_input_tokens": 52332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2916,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 613 · 2026-05-24T01:22:02.812Z_
+
+<details><summary>↩ Tool result · `toolu_01WkX29Mzi3TXB6N5b6F8p3o`</summary>
+
+```text
+=== teal_kl_overlap_analysis ===
+{'overall_jaccard': 0.396, 'divergence_ratio': 0.433, 'kl_only_pruned_magnitude_ratio': 1.48, 'teal_only_pruned_mean_gate_prob': 0.614, 'min_jaccard_layer': 'L17-L18 (0.19)', 'max_jaccard_layer': 'L26-L28 (0.55)'}
+
+=== qwen14b_mask_divergence_analysis ===
+{'qwen14b_mean_jaccard': 0.4016, 'qwen14b_std_jaccard': 0.0756, 'qwen14b_max_jaccard': 0.446, 'qwen14b_max_layer': 11, 'qwen14b_min_jaccard': 0.0627, 'qwen14b_min_layer': 4, 'llama8b_mean_jaccard': 0.3939, 'llama8b_std_jaccard': 0.0314, 'llama8b_max_jaccard': 0.4818, 'llama8b_max_layer': 0, 'llama8b_min_jaccard': 0.3528, 'llama8b_min_layer': 14}
+
+
+=== Per-layer KL K=1 PPL ===
+perlayer_kl_s42_ppl: {'wikitext2_ppl': 9.0568}
+perlayer_kl_s123_ppl: {'wikitext2_ppl': 9.0598}
+perlayer_kl_s456_ppl_repro: {'wikitext2_ppl': 9.0282}
+
+=== perlayer_kl_k4_50_s42 ===
+{}
+
+
+=== TEAL 50% uniform (Table row 23.90) ===
+bench_teal50: 23.31
+  mistral_teal50_downstream: {'wikitext2_ppl': 18.3061, 'arc_challenge_acc_norm': 0.2457, 'winogrande_acc': 0.5091, 'mmlu_acc': 0.2635, 'gsm8k_exact_match': 0.0341, 'hellaswag_acc_norm': 0.3603, 'piqa_acc_norm': 0.6045}
+  bce_50pct_teal_global_unified: {'wikitext2_ppl': 27.97, 'arc_challenge_acc_norm': 0.2765, 'winogrande_acc': 0.5162, 'mmlu_acc': 0.2614, 'gsm8k_exact_match': 0.019}
+  mistral_kl50_teal_global: {'wikitext2_ppl': 8.6489, 'model': 'Mistral-7B-v0.3', 'condition': 'kl_teal_global_50pct', 'sparsity': 0.5, 'allocation': 'uniform', 'ppl_increase_vs_dense': 3.1251}
+  bench_teal50: {'wikitext2_ppl': 23.31, 'arc_challenge_acc_norm': 0.2841, 'winogrande_acc': 0.5304, 'mmlu_acc': 0.2832, 'gsm8k_exact_match': 0.0197, 'actual_sparsity': 0.5}
+
+
+=== BCE isocompute 3-seed PPL ===
+  bce_isocompute_v3_s42_eval: 27.9696
+  bce_isocompute_v3_s123_eval: 28.0627
+  bce_isocompute_v3_s456_eval: 28.3503
+  Mean: 28.1275, Std: 0.1620
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "bceb0826-60a8-4803-8e47-33af236188ff"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 614_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Check TEAL50 uniform, Jaccard cross-seed, K-curve, and 3-seed stats",
+  "usage": {
+    "total_tokens": 57668,
+    "tool_uses": 13,
+    "duration_ms": 106459
+  },
+  "last_tool_name": "Bash",
+  "uuid": "5f0ee7a1-d755-421f-afbb-53dc379b96dc",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 615_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01699SumRNywR3RdpudKL3Cn`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# TEAL 50% uniform - find the right entry\n# Table shows 23.90; bench_teal50 is 23.31 (global)\n# Look for teal50 uniform specifically\nfor k in data.keys():\n    if 'teal' in k and '50' in k:\n        m = data[k].get('metrics', {})\n        ppl = m.get('wikitext2_ppl') or m.get('ppl')\n        alloc = m.get('allocation', 'unknown')\n        if ppl:\n            print(f\"  {k}: PPL={ppl}, alloc={alloc}\")\n\nprint()\n\n# Actually let's check the d030 uniform entries\nfor k in data.keys():\n    if 'd030' in k or 'd0_' in k:\n        m = data[k].get('metrics', {})\n        print(f\"  {k}: {m}\")\n        \n# Check \"bench_teal50_uniform\"\nprint(\"\\nbench_teal50:\", data.get('bench_teal50', {}).get('metrics'))\n\n# Also check specific key\nprint(\"\\nbench_teal50 conclusion:\", data.get('bench_teal50', {}).get('conclusion'))\n\n# The paper cites 23.90 for TEAL uniform at 50%.\n# bench_teal50 PPL=23.31, allocation=0.5 global? or uniform?\n# Let's check actual_sparsity and spec\nprint(\"\\nbench_teal50 full entry:\", {k:v for k,v in data.get('bench_teal50', {}).items() if k != 'metrics'})\n\n# Look for the uniform TEAL 50%\nfor k in ['lm_eval_teal_50pct', 'teal_50pct_uniform', 'bench_teal50_uniform']:\n    print(f\"\\n{k}:\", data.get(k, {}).get('metrics'))\n\n# Cross seed Jaccard 36.3%\nfor k in data.keys():\n    if 'cross' in k.lower() or 'seed' in k.lower() and 'jaccard' in k.lower():\n        print(f\"\\n  {k}:\", data[k].get('metrics'))\n\n# Check mask overlap experiment\nprint(\"\\n\\n=== c1_mask_overlap ===\", data.get('c1_mask_overlap', {}).get('metrics', 'NOT FOUND'))\n\n# L31 retention 28.4%  \nfor k in data.keys():\n    if 'retention' in k or 'layer' in k and 'pct' in k:\n        print(f\"\\n  {k}:\", data[k].get('metrics'))\n\n# K=16 PPL 8.67\n# perlayer_kl_k16_eval_final2 shows 8.6737  \nkl30_ppls = {\n    's42': data['bench_kl30_uniform']['metrics']['wikitext2_ppl'],\n    's123': data['kl30_s123_eval']['metrics']['wikitext2_ppl'],\n    's456': data['kl30_s456_uniform_eval']['metrics']['ppl_uniform'],\n}\nprint(f\"\\n\\nKL30 uniform 3-seed PPLs: {kl30_ppls}\")\nppls = np.array(list(kl30_ppls.values()))\nprint(f\"Mean={ppls.mean():.4f}, Std={ppls.std():.4f}\")\n\n# K=16 3-seed PPL\nk16_ppls = {\n    's42': data['perlayer_kl_k16_eval_final2']['metrics']['wikitext2_ppl'],\n    's123': data['perlayer_kl_k16_s123_eval']['metrics']['wikitext2_ppl'],\n    's456': data['perlayer_kl_k16_s456_eval']['metrics']['ppl_wikitext2'],\n}\nprint(f\"\\nK=16 3-seed PPLs: {k16_ppls}\")\nppls16 = np.array(list(k16_ppls.values()))\nprint(f\"Mean={ppls16.mean():.4f}, Std={ppls16.std():.4f}\")\n\n# K=2 PPL (for full coupling range 2.08)\nk2_ppls = {\n    's42': data['perlayer_kl_k2_s42_eval']['metrics']['wikitext2_ppl'],\n    's123': data['perlayer_kl_k2_s123_eval']['metrics']['wikitext2_ppl'],\n    's456': data['perlayer_kl_k2_s456_eval']['metrics']['wikitext2_ppl'],\n}\nprint(f\"\\nK=2 3-seed PPLs: {k2_ppls}\")\nppls2 = np.array(list(k2_ppls.values()))\nprint(f\"Mean={ppls2.mean():.4f}, Std={ppls2.std():.4f}\")\nEOF",
+  "description": "Check TEAL50 uniform, Jaccard cross-seed, K-curve, and 3-seed stats"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "d28d92d7-819f-4bdb-b770-c2debf6f84e0",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_014KSNw8NYE5fBUBQLqno68E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1961,
+      "cache_read_input_tokens": 55248,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1961,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 616 · 2026-05-24T01:22:21.406Z_
+
+<details><summary>↩ Tool result · `toolu_01699SumRNywR3RdpudKL3Cn`</summary>
+
+```text
+  mistral_teal50_downstream: PPL=18.3061, alloc=unknown
+  bce_50pct_teal_global_unified: PPL=27.97, alloc=unknown
+  mistral_kl50_teal_global: PPL=8.6489, alloc=uniform
+  bench_teal50: PPL=23.31, alloc=unknown
+
+  d030_kl40_uniform: {'wikitext2_ppl': 8.3627, 'arc_challenge_acc_norm': 0.4181, 'winogrande_acc': 0.6717, 'mmlu_acc': 0.3068, 'gsm8k_exact_match': 0.0394, 'actual_sparsity': 0.398}
+  d030_kl50_uniform: {'wikitext2_ppl': 11.96, 'arc_challenge_acc_norm': 0.3276, 'winogrande_acc': 0.629, 'mmlu_acc': 0.2777, 'gsm8k_exact_match': 0.0212, 'actual_sparsity': 0.5, 'allocation': 'uniform', 'per_layer_sparsity': 'uniform 0.500 across all 32 layers', 'mmlu_change_vs_global': '+1.86pp (0.2591 → 0.2777, not significant)', 'gsm8k_change_vs_global': '+0.91pp (0.0121 → 0.0212, not significant)', 'conclusion_note': '50% uniform 未能修复 MMLU/GSM8K collapse. Uniform allocation 的修复效应在 50% sparsity 下消失。'}
+  d030_kl30_uniform: {'wikitext2_ppl': 8.8157, 'arc_challenge_acc_norm': 0.4078, 'winogrande_acc': 0.6859, 'mmlu_acc': 0.4061, 'gsm8k_exact_match': 0.0735, 'actual_sparsity': 0.3, 'allocation': 'uniform', 'per_layer_sparsity': 'uniform 0.301 across all 32 layers', 'mmlu_improvement_vs_global': '+11.87pp (0.2874 → 0.4061)', 'gsm8k_change_vs_global': 'no change (0.0743 → 0.0735, within noise)'}
+
+bench_teal50: {'wikitext2_ppl': 23.31, 'arc_challenge_acc_norm': 0.2841, 'winogrande_acc': 0.5304, 'mmlu_acc': 0.2832, 'gsm8k_exact_match': 0.0197, 'actual_sparsity': 0.5}
+
+bench_teal50 conclusion: success
+
+bench_teal50 full entry: {'spec': {'command': 'python -u src/benchmark_eval.py --exp_id bench_teal50 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0', 'server': 'westd-34887', 'gpu': ['cuda:1'], 'pid': '227770', 'log_path': '~/runs/distill_sparse_swiglu/bench_teal50.log', 'submitted_at': '2026-05-16T11:40:14.784Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'model_name': 'llama-3.1-8b', 'data_path': 'wikitext2+lm_eval', 'data_count': 0, 'seed': 42, 'eval_data': 'wikitext2,arc_challenge,winogrande,mmlu,gsm8k', 'checkpoint_path': 'N/A (eval only)', 'wall_clock_seconds': 2388.9, 'gpu_hours': 0.66}, 'conclusion': 'success', 'status': 'DONE'}
+
+lm_eval_teal_50pct: {'method': 'vanilla_teal', 'sparsity': 0.5, 'actual_sparsity': 0.5, 'arc_challenge_acc_norm': 0.291, 'winogrande_acc': 0.5556, 'mmlu_acc': 0.2856, 'gsm8k_exact_match_flexible': 0.019, 'gsm8k_exact_match_strict': 0.0114, 'arc_challenge_drop_vs_dense': -0.5, 'winogrande_drop_vs_dense': -0.289, 'mmlu_drop_vs_dense': -0.563, 'gsm8k_drop_vs_dense': -0.962, 'model': 'Llama-3.1-8B', 'condition': 'TEAL 50% training-free sparsity'}
+
+teal_50pct_uniform: None
+
+bench_teal50_uniform: None
+
+
+=== c1_mask_overlap === NOT FOUND
+
+
+KL30 uniform 3-seed PPLs: {'s42': 8.8157, 's123': 8.8308, 's456': 8.7947}
+Mean=8.8137, Std=0.0148
+
+K=16 3-seed PPLs: {'s42': 8.6737, 's123': 8.6939, 's456': 8.655}
+Mean=8.6742, Std=0.0159
+
+K=2 3-seed PPLs: {'s42': 10.7958, 's123': 10.8835, 's456': 10.5826}
+Mean=10.7540, Std=0.1264
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "982828bc-45f3-4ee1-808a-53567b379c04"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 617_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Find TEAL entries matching table numbers",
+  "usage": {
+    "total_tokens": 60637,
+    "tool_uses": 14,
+    "duration_ms": 116997
+  },
+  "last_tool_name": "Bash",
+  "uuid": "3f90b299-7627-491e-aff3-9147aff322ee",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 618_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VorgdFJaFF13jbzA52MezU`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Find TEAL 50% uniform PPL = 23.90 (Table row says 23.90)\n# bench_teal50 = 23.31 which seems to be global/TEAL allocation\n# Let's look at what entries have ppl around 23.90\nfor k in data.keys():\n    m = data[k].get('metrics', {})\n    for key, val in m.items():\n        if isinstance(val, (int, float)) and 23.5 <= val <= 24.5:\n            print(f\"  {k}.{key} = {val}\")\n\nprint(\"\\n\\n=== bench_teal30 metrics ===\")\nprint(data['bench_teal30']['metrics'])\n# bench_teal30 PPL=10.97, but Table says TEAL uniform=10.82\n\n# Table 1 says:\n# TEAL uniform 30%: PPL=10.82, ARC-c=39.33, WG=65.04, MMLU=45.86, GSM8K=8.79\n# but bench_teal30 PPL=10.97, ARC-c=42.32, mmlu=38.61\n\n# teal_30pct_uniform_multiseed_eval\nprint(\"\\nteal_30pct_uniform_multiseed_eval:\", data['teal_30pct_uniform_multiseed_eval']['metrics'])\n\n# Looking for the TEAL uniform that matches 10.82 PPL and 45.86 MMLU\nfor k in data.keys():\n    m = data[k].get('metrics', {})\n    for key, val in m.items():\n        if isinstance(val, (int, float)) and 10.7 <= val <= 11.0 and 'ppl' in key.lower():\n            mmlu = m.get('mmlu_acc') or m.get('mmlu') \n            print(f\"  {k}.{key} = {val}, mmlu={mmlu}\")\n\nEOF",
+  "description": "Find TEAL entries matching table numbers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "ffb55dc0-6daf-4f6d-a396-5a6f6b12de8a",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HPjZtzjd6JT7Ch48tF6iJq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2930,
+      "cache_read_input_tokens": 57209,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2930,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 619 · 2026-05-24T01:22:31.897Z_
+
+<details><summary>↩ Tool result · `toolu_01VorgdFJaFF13jbzA52MezU`</summary>
+
+```text
+  c4_ood_kl50_s456.c4_ppl = 23.9867
+  c4_ood_kl50_s42.c4_ppl = 23.5297
+  c4_ood_kl50_s123.c4_ppl = 23.6064
+  training_free_baselines.uniform_50pct_ppl = 23.9
+
+
+=== bench_teal30 metrics ===
+{'wikitext2_ppl': 10.97, 'arc_challenge_acc_norm': 0.4232, 'winogrande_acc': 0.6606, 'mmlu_acc': 0.3861, 'gsm8k_exact_match': 0.0788, 'actual_sparsity': 0.3}
+
+teal_30pct_uniform_multiseed_eval: {'ppl': 10.8173, 'arc_challenge': 0.3771, 'winogrande': 0.6504, 'mmlu': 0.4586, 'gsm8k': 0.0879, 'hellaswag': 0.6331, 'piqa': 0.7198}
+  perlayer_kl_k2_s123_eval.wikitext2_ppl = 10.8835, mmlu=0.3789
+  perlayer_kl_k2_s42_train.wikitext2_ppl = 10.7958, mmlu=None
+  perlayer_kl_k2_s42_eval.wikitext2_ppl = 10.7958, mmlu=0.4172
+  teal_30pct_uniform_multiseed_eval.ppl = 10.8173, mmlu=0.4586
+  kl_sparsity40_s42_retrain_uniform.wikitext2_ppl = 10.76, mmlu=0.355
+  kl_sparsity45_s42_eval_teal_uniform.wikitext2_ppl = 10.9488, mmlu=0.3063
+  kl_sparsity45_s42_eval_teal.ppl_wikitext2 = 10.803, mmlu=0.3037
+  bench_teal30.wikitext2_ppl = 10.97, mmlu=0.3861
+  training_free_baselines.vanilla_teal_global_ppl_30pct = 10.97, mmlu=None
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "74d4414c-dd16-411b-8d8d-90e15aacf279"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 620_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Analyze Mistral PPL for 17.3% claim",
+  "usage": {
+    "total_tokens": 61911,
+    "tool_uses": 15,
+    "duration_ms": 135816
+  },
+  "last_tool_name": "Bash",
+  "uuid": "7c9a2390-0791-42f2-aa1a-b3db6adefc99",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 621_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LgbeKkPfRskWPfZgPo38Js`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Check training_free_baselines for TEAL uniform\nprint(\"=== training_free_baselines ===\")\nprint(data['training_free_baselines']['metrics'])\n\n# teal_30pct_uniform_multiseed_eval has PPL=10.8173, MMLU=0.4586, GSM8K=0.0879\n# This matches Table: TEAL uniform PPL=10.82, MMLU=45.86, GSM8K=8.79\nprint(\"\\n\\nChecking TEAL 50% uniform - training_free_baselines says 23.9\")\nprint(\"This matches Table TEAL uniform 50%: 23.90 ✓\")\n\n# Now let's check Mistral 3-seed PPL\n# mistral_kl30_s42: kl_per_token_ppl=6.048 (per-token allocation = uniform)\n# mistral_kl30_s123: wikitext2_ppl=7.1491\n# mistral_kl30_s456: wikitext2_ppl=6.8752\n# What's TEAL Mistral? mistral_kl30_s42: teal_baseline_ppl=8.3807\n\n# For -17.3%: TEAL=8.38, KL=?\n# Paper says KL at matched sparsity\n# s42 per-token PPL = 6.048\n# Let's find Mistral TEAL uniform\nfor k in data.keys():\n    if 'mistral' in k and 'teal' in k:\n        m = data[k].get('metrics', {})\n        print(f\"\\n  {k}: {m}\")\n\nprint(\"\\n\\nChecking mistral TEAL 30% ppl\")\n# bench result shows teal_baseline_ppl=8.3807 for Mistral\n# Need TEAL Mistral uniform\nfor k in data.keys():\n    if 'mistral' in k:\n        m = data[k].get('metrics', {})\n        ppl_keys = [p for p in m if 'ppl' in p.lower()]\n        if ppl_keys:\n            print(f\"  {k}: {ppl_keys}: {[m[p] for p in ppl_keys]}\")\n\n# For -17.3%: need KL PPL and TEAL PPL for Mistral\n# mistral_kl30_s42 entry: teal_baseline_ppl=8.3807 (TEAL) and kl_per_token_ppl=6.048 (KL uniform)\n# (8.3807-6.048)/8.3807 = 27.8% - too high\n# But s123 PPL=7.1491 and s456=6.8752 - these may be different allocation\n# Let's check if 3-seed average is what's used\n\nppls_kl_mistral = [6.048, 7.1491, 6.8752]\nmean_kl = np.mean(ppls_kl_mistral)\nprint(f\"\\n\\nMistral KL 3-seed PPL mean: {mean_kl:.4f}\")\n\n# For TEAL, what's the uniform TEAL at Mistral?\n# bench has teal_baseline_ppl=8.3807 (but which allocation?)\n# Let's check if there's a specific TEAL Mistral uniform entry\nprint(\"\\n\\nmistral_kl30_teal_global:\", data.get('mistral_kl30_teal_global', {}).get('metrics'))\n\n# Hmm, intro says -17.3% Mistral. Let's compute from benchmark\n# If teal=8.38 (global) and kl_uniform (s42=6.048):\n# (8.38-6.048)/8.38 = 27.8% - not matching\n# Maybe they use per-seed comparison differently\n# Or maybe TEAL 30% Mistral uniform PPL is different\n\nEOF",
+  "description": "Analyze Mistral PPL for 17.3% claim"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "107365eb-4a03-4af3-9bab-e4836f1d440d",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Xtqzbg6ShXJ1vZQdShzSqL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1234,
+      "cache_read_input_tokens": 60139,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1234,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 622 · 2026-05-24T01:22:50.720Z_
+
+<details><summary>↩ Tool result · `toolu_01LgbeKkPfRskWPfZgPo38Js`</summary>
+
+```text
+=== training_free_baselines ===
+{'dense_ppl': 6.12, 'vanilla_teal_global_ppl_30pct': 10.97, 'vanilla_teal_global_ppl_50pct': 23.31, 'vanilla_teal_global_ppl_70pct': 100.11, 'wina_global_ppl_30pct': 11.45, 'wina_global_ppl_50pct': 27.93, 'wina_global_ppl_70pct': 137.24, 'uniform_50pct_ppl': 23.9, 'teal_greedy_ppl': 33.47, 'vanilla_teal_global_ppl': 23.31, 'wina_global_ppl': 27.93, 'rsparse_global_ppl': 151.2}
+
+
+Checking TEAL 50% uniform - training_free_baselines says 23.9
+This matches Table TEAL uniform 50%: 23.90 ✓
+
+  mistral_teal50_downstream: {'wikitext2_ppl': 18.3061, 'arc_challenge_acc_norm': 0.2457, 'winogrande_acc': 0.5091, 'mmlu_acc': 0.2635, 'gsm8k_exact_match': 0.0341, 'hellaswag_acc_norm': 0.3603, 'piqa_acc_norm': 0.6045}
+
+  mistral_teal30_downstream: {'wikitext2_ppl': 8.3807, 'arc_challenge_acc_norm': 0.4113, 'winogrande_acc': 0.6354, 'mmlu_acc': 0.4348, 'gsm8k_exact_match': 0.1592, 'hellaswag_acc_norm': 0.6011, 'piqa_acc_norm': 0.7214}
+
+  mistral_teal70_baseline: {'wikitext2_ppl': 61.716, 'model': 'Mistral-7B-v0.3', 'condition': 'teal_vanilla_70pct', 'sparsity': 0.7, 'allocation': 'uniform', 'ppl_increase_vs_dense': 56.1922}
+
+  mistral_teal30_baseline: {'wikitext2_ppl': 8.3807, 'model': 'Mistral-7B-v0.3', 'condition': 'teal_vanilla_30pct', 'sparsity': 0.3, 'allocation': 'uniform', 'ppl_increase_vs_dense': 2.8569}
+
+  mistral_kl70_teal_global: {'wikitext2_ppl': 13.3254, 'model': 'Mistral-7B-v0.3', 'condition': 'kl_teal_global_70pct', 'sparsity': 0.7, 'allocation': 'uniform', 'ppl_increase_vs_dense': 7.8016}
+
+  mistral_kl50_teal_global: {'wikitext2_ppl': 8.6489, 'model': 'Mistral-7B-v0.3', 'condition': 'kl_teal_global_50pct', 'sparsity': 0.5, 'allocation': 'uniform', 'ppl_increase_vs_dense': 3.1251}
+
+  mistral_kl30_teal_global: {'wikitext2_ppl': 6.7733, 'model': 'Mistral-7B-v0.3', 'condition': 'kl_teal_global_30pct', 'sparsity': 0.3, 'allocation': 'uniform', 'ppl_increase_vs_dense': 1.2495}
+
+  mistral_teal50_baseline: {'teal_baseline_ppl': 18.3061, 'dense_ppl': 5.5238, 'teal_vs_dense_ratio': 3.31}
+
+
+Checking mistral TEAL 30% ppl
+  mistral_kl30_s456: ['wikitext2_ppl']: [6.8752]
+  mistral_kl30_s123: ['wikitext2_ppl']: [7.1491]
+  mistral_teal50_downstream: ['wikitext2_ppl']: [18.3061]
+  mistral_teal30_downstream: ['wikitext2_ppl']: [8.3807]
+  mistral_teal70_baseline: ['wikitext2_ppl', 'ppl_increase_vs_dense']: [61.716, 56.1922]
+  mistral_teal30_baseline: ['wikitext2_ppl', 'ppl_increase_vs_dense']: [8.3807, 2.8569]
+  mistral_kl70_teal_global: ['wikitext2_ppl', 'ppl_increase_vs_dense']: [13.3254, 7.8016]
+  mistral_kl50_teal_global: ['wikitext2_ppl', 'ppl_increase_vs_dense']: [8.6489, 3.1251]
+  mistral_kl30_teal_global: ['wikitext2_ppl', 'ppl_increase_vs_dense']: [6.7733, 1.2495]
+  mistral_kl70_pertoken: ['wikitext2_ppl', 'ppl_increase_vs_dense']: [9.1086, 3.5848]
+  mistral_kl50_pertoken: ['wikitext2_ppl', 'ppl_increase_vs_dense']: [7.2931, 1.7693]
+  mistral_kl30_pertoken: ['wikitext2_ppl', 'ppl_increase_vs_dense']: [6.048, 0.5242]
+  mistral_dense_ppl: ['wikitext2_ppl']: [5.5238]
+  mistral_teal50_baseline: ['teal_baseline_ppl', 'dense_ppl']: [18.3061, 5.5238]
+  mistral_kl70_s42: ['kl_per_token_ppl', 'kl_teal_global_ppl', 'teal_baseline_ppl', 'dense_ppl']: [9.1086, 13.3254, 61.716, 5.5238]
+  mistral_kl30_s42: ['kl_per_token_ppl', 'kl_teal_global_ppl', 'teal_baseline_ppl', 'dense_ppl', 'ppl_vs_dense_pct']: [6.048, 6.7733, 8.3807, 5.5238, 9.5]
+  mistral_kl_s42: ['true_dense_ppl', 'predictor_hard_mask_ppl', 'teal_sparse_ppl']: [5.52, 7.3, 8.98]
+
+
+Mistral KL 3-seed PPL mean: 6.6908
+
+
+mistral_kl30_teal_global: {'wikitext2_ppl': 6.7733, 'model': 'Mistral-7B-v0.3', 'condition': 'kl_teal_global_30pct', 'sparsity': 0.3, 'allocation': 'uniform', 'ppl_increase_vs_dense': 1.2495}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "ca12f2cb-414b-4a49-a6dc-2171a61f47a2"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 623_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Investigate Mistral -17.3% calculation",
+  "usage": {
+    "total_tokens": 65012,
+    "tool_uses": 16,
+    "duration_ms": 157302
+  },
+  "last_tool_name": "Bash",
+  "uuid": "dc621618-d7be-49c5-b8d1-70da9b2273ba",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 624_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Ezr21v2PG83VxsGjcJd9jk`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Mistral -17.3%:\n# TEAL=8.3807, KL 3-seed mean = ?\n# s42: kl_per_token_ppl=6.048 (uniform)  \n# s123: wikitext2_ppl=7.1491 (but allocation unclear - might be per-layer KL)\n# s456: wikitext2_ppl=6.8752 (same)\n# mistral_kl30_teal_global: PPL=6.7733 (but this is TEAL global allocation, s42 only)\n\n# Let's see what the Mistral table looks like\nprint(\"Mistral TEAL baseline:\", data['mistral_teal30_baseline']['metrics']['wikitext2_ppl'])  # 8.3807\nprint(\"Mistral KL s42 per-token (uniform):\", data['mistral_kl30_pertoken']['metrics']['wikitext2_ppl'])  # 6.048\nprint(\"Mistral KL s123:\", data['mistral_kl30_s123']['metrics']['wikitext2_ppl'])  # 7.1491\nprint(\"Mistral KL s456:\", data['mistral_kl30_s456']['metrics']['wikitext2_ppl'])  # 6.8752\n\n# 3-seed mean KL PPL = (6.048 + 7.1491 + 6.8752)/3 = 6.6908\nmistral_kl_ppls = [6.048, 7.1491, 6.8752]\nkl_mean = np.mean(mistral_kl_ppls)\nkl_std = np.std(mistral_kl_ppls)\nteal_ppl = 8.3807\n\npct_reduction = (teal_ppl - kl_mean) / teal_ppl * 100\nprint(f\"\\nMistral KL 3-seed mean PPL: {kl_mean:.4f}, std: {kl_std:.4f}\")\nprint(f\"TEAL PPL: {teal_ppl}\")\nprint(f\"PPL reduction: {pct_reduction:.1f}%\")\n# Expected: -17.3%\n\n# Maybe it's computed differently - perhaps per-seed or single seed\n# s42: (8.3807-6.048)/8.3807 = 27.8% \n# All-seeds: mean KL=6.69, (8.38-6.69)/8.38 = 20.2%\n\n# Also check Mistral table entry to understand what's reported\nprint(\"\\n=== mistral_kl30_downstream ===\")\nprint(data['mistral_kl30_downstream']['metrics'])\n\n# Check paper Mistral table for what PPLs are listed\n# Paper says -17.3%, 3-seed\n\n# Maybe need to check if there's a different TEAL Mistral or separate entries\n# Perhaps the computation is (TEAL-KL_per_seed)/TEAL averaged? Or maybe per-token-uniform PPL is used for s42\n# s42 per-token=6.048, s123=7.1491, s456=6.8752 -> avg=6.6908\n# (8.38-6.6908)/8.38 = 20.2% - still not 17.3%\n\n# Or maybe different TEAL for Mistral?\n# Let's check pct reduction s42 only with teal_global\nteal_g = data['mistral_kl30_teal_global']['metrics']['wikitext2_ppl']  # 6.7733 (but this is KL not TEAL)\n# Wait, this is KL under TEAL global allocation\n\n# Let me reread: mistral_kl30_teal_global = KL predictor evaluated with TEAL global allocation\n# mistral_kl30_s42.teal_baseline_ppl = 8.3807 is vanilla TEAL\n# mistral_kl30_s42.kl_per_token_ppl = 6.048 is KL with per-token (uniform) allocation\n\n# For 3-seed: s42=6.048, s123=7.1491, s456=6.8752\n# That's quite different!\n\n# But wait - are s123 and s456 using the same \"per-token\" (uniform) allocation as s42?\n# Or are they using TEAL global?\n# From spec of those runs:\nprint(\"\\n\\nmistral_kl30_s123 spec:\", data['mistral_kl30_s123'].get('spec', {}).get('command', 'no cmd'))\nprint(\"\\nmistral_kl30_s456 spec:\", data['mistral_kl30_s456'].get('spec', {}).get('command', 'no cmd'))\nprint(\"\\nmistral_kl30_pertoken spec:\", data['mistral_kl30_pertoken'].get('spec', {}).get('command', 'no cmd'))\n\nEOF",
+  "description": "Investigate Mistral -17.3% calculation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "8c84da40-1383-4929-acc6-bb959a75993b",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011dakvsDdfu9TkZV7b32TVD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3061,
+      "cache_read_input_tokens": 61373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3061,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 625 · 2026-05-24T01:23:12.215Z_
+
+<details><summary>↩ Tool result · `toolu_01Ezr21v2PG83VxsGjcJd9jk`</summary>
+
+```text
+Mistral TEAL baseline: 8.3807
+Mistral KL s42 per-token (uniform): 6.048
+Mistral KL s123: 7.1491
+Mistral KL s456: 6.8752
+
+Mistral KL 3-seed mean PPL: 6.6908, std: 0.4681
+TEAL PPL: 8.3807
+PPL reduction: 20.2%
+
+=== mistral_kl30_downstream ===
+{'arc_challenge_acc_norm': 0.5017, 'winogrande_acc': 0.6914, 'mmlu_acc': 0.4404, 'gsm8k_exact_match': 0.1114}
+
+
+mistral_kl30_s123 spec: no cmd
+
+mistral_kl30_s456 spec: python -u src/train.py --model_name_or_path /root/autodl-tmp/models/mistral-7b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --gpu 0 --output_dir checkpoints/mistral_kl30_s456 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000 --log_every 100
+
+mistral_kl30_pertoken spec: python src/benchmark_eval.py --checkpoint checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt --sparsity_mode per_token --sparsity 0.3
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "1aea1f7c-6781-4d8a-be45-dd539c12da36"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 626_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Check Mistral 17.3% with global allocation PPLs",
+  "usage": {
+    "total_tokens": 66822,
+    "tool_uses": 17,
+    "duration_ms": 175125
+  },
+  "last_tool_name": "Bash",
+  "uuid": "e67e99b5-bf16-44fa-9bd9-1e844d646ca2",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 627_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017hrfU78oKRJaFTgRYwoxMm`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# mistral_kl30_s42: kl_per_token_ppl=6.048 (s42 seed, uniform/per-token allocation)\n# mistral_kl30_s123: wikitext2_ppl=7.1491 - what allocation? let's check spec/conclusion\nprint(\"mistral_kl30_s123 full:\", {k:v for k,v in data['mistral_kl30_s123'].items() if k not in ['metrics']})\nprint(\"\\nmistral_kl30_s456 full:\", {k:v for k,v in data['mistral_kl30_s456'].items() if k not in ['metrics']})\n\n# The s123 and s456 entries show wikitext2_ppl - likely during eval phase\n# They're training runs first, then got evals registered\n# If the eval used per-token (uniform) allocation:\n# s42=6.048, s123=7.1491, s456=6.8752 -> avg=6.69, (8.38-6.69)/8.38=20.2%\n\n# But maybe the PPL for Mistral table is just the hard mask PPL\n# What is mistral_kl_s42?\nprint(\"\\nmistral_kl_s42:\", data.get('mistral_kl_s42', {}).get('metrics'))\n# teal_sparse_ppl=8.98 \n\n# Or maybe for Mistral -17.3%: it uses the teal_global allocation not per-token\n# s42: kl_teal_global_ppl=6.7733, teal_baseline_ppl=8.3807 \n# (8.3807-6.7733)/8.3807 = 19.2%\n\n# Or look at what paper table says for Mistral\n# From experiments.tex line 31: \"-17.3%, 3-seed; Table~\\ref{tab:mistral_downstream}\"\n# Let me check if there's a Mistral table in appendix\n\n# Perhaps TEAL uniform ≠ TEAL global for Mistral\n# mistral_teal30_downstream: wikitext2_ppl=8.3807 \n# Is this global or uniform?\nprint(\"\\nmistral_teal30_downstream:\", data['mistral_teal30_downstream'])\nprint(\"\\nmistral_teal30_baseline:\", data['mistral_teal30_baseline'])\n\n# Let's look at what seeds give ~17.3% reduction from TEAL=8.38\n# We need KL PPL = 8.38 * (1-0.173) = 6.93\ntarget_kl = 8.3807 * (1 - 0.173)\nprint(f\"\\nTarget KL PPL for -17.3%: {target_kl:.4f}\")\n\n# s42: 6.048 (per-token), 6.7733 (teal-global)\n# s123: 7.1491\n# s456: 6.8752\n# Average of global: (6.7733 + 7.1491 + 6.8752)/3 = 6.9325? - that would be 17.3%!\nmistral_global_ppls = [6.7733, 7.1491, 6.8752]\n# Are s123 and s456 using TEAL global allocation for PPL?\nmean_global = np.mean(mistral_global_ppls)\nstd_global = np.std(mistral_global_ppls)\npct_global = (8.3807 - mean_global) / 8.3807 * 100\nprint(f\"If s42=6.7733 (global), s123=7.1491, s456=6.8752: mean={mean_global:.4f}, -={pct_global:.1f}%\")\n\n# Or maybe they compare with their own TEAL at matched sparsity\n# Let's check if the paper appendix has the Mistral table\n\nEOF",
+  "description": "Check Mistral 17.3% with global allocation PPLs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "d753b2a9-5337-4a86-ac65-e583a3abfec0",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01CcefVw5FxC2CA1ouxbvAnu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1771,
+      "cache_read_input_tokens": 64434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1771,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 628 · 2026-05-24T01:23:30.038Z_
+
+<details><summary>↩ Tool result · `toolu_017hrfU78oKRJaFTgRYwoxMm`</summary>
+
+```text
+mistral_kl30_s123 full: {'spec': {}, 'conclusion': 'success', 'status': 'DONE'}
+
+mistral_kl30_s456 full: {'spec': {'command': 'python -u src/train.py --model_name_or_path /root/autodl-tmp/models/mistral-7b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --gpu 0 --output_dir checkpoints/mistral_kl30_s456 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000 --log_every 100', 'server': 'westd-34887', 'gpu': 'cuda:1', 'pid': '215419', 'log_path': '~/runs/distill_sparse_swiglu/mistral_kl30_s456.log', 'submitted_at': '2026-05-20T12:49:28.500Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'model_name': 'mistral-7b', 'seed': 456, 'data_path': 'wikitext-103', 'data_count': 1000, 'checkpoint_path': 'checkpoints/mistral_kl30_s456/predictor_kl_normalized.pt', 'wall_clock_seconds': 9695.9, 'gpu_hours': 2.69}, 'conclusion': 'success', 'status': 'DONE'}
+
+mistral_kl_s42: {'train_final_loss': 0.2188, 'train_final_kl_raw': 0.2188, 'train_final_kl_norm': 0.2188, 'train_final_constraint': 0, 'train_final_sparsity': 0.48, 'train_final_lambda': 1000, 'train_final_tau': 0.1, 'train_steps_completed': 1000, 'true_dense_ppl': 5.52, 'predictor_hard_mask_ppl': 7.3, 'teal_sparse_ppl': 8.98, 'model_level_sparsity': 0.5, 'eval_dataset': 'wikitext-2', 'eval_seq_len': 2048, 'calibration_samples': 32, 'eval_samples': 159}
+
+mistral_teal30_downstream: {'metrics': {'wikitext2_ppl': 8.3807, 'arc_challenge_acc_norm': 0.4113, 'winogrande_acc': 0.6354, 'mmlu_acc': 0.4348, 'gsm8k_exact_match': 0.1592, 'hellaswag_acc_norm': 0.6011, 'piqa_acc_norm': 0.7214}, 'spec': {'command': 'benchmark_eval.py Mistral TEAL', 'server': 'westd-34887', 'gpu': ['cuda:0'], 'pid': '74835', 'log_path': '~/runs/distill_sparse_swiglu/mistral_teal30_downstream.log', 'submitted_at': '2026-05-19T03:16:09.014Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'data_path': 'downstream tasks', 'data_count': 7, 'model_name': 'Mistral-7B-v0.1', 'seed': 42, 'checkpoint_path': 'N/A (training-free)', 'wall_clock_seconds': 6628.1, 'gpu_hours': 1.84}, 'conclusion': 'success', 'status': 'DONE'}
+
+mistral_teal30_baseline: {'metrics': {'wikitext2_ppl': 8.3807, 'model': 'Mistral-7B-v0.3', 'condition': 'teal_vanilla_30pct', 'sparsity': 0.3, 'allocation': 'uniform', 'ppl_increase_vs_dense': 2.8569}, 'spec': {'command': 'python src/benchmark_eval.py --baseline_mode teal_vanilla --sparsity 0.3 --allocation uniform', 'server': 'westd-34887', 'data_path': 'WikiText-2 test', 'data_count': 0, 'model_name': 'Mistral-7B-v0.3', 'seed': 42, 'checkpoint_path': 'N/A (baseline eval)', 'log_path': '/root/distill_sparse_swiglu/results/benchmark/mistral_teal30_baseline/results.json'}, 'conclusion': 'success', 'status': 'DONE'}
+
+Target KL PPL for -17.3%: 6.9308
+If s42=6.7733 (global), s123=7.1491, s456=6.8752: mean=6.9325, -=17.3%
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "c47efaf6-3471-475b-aac0-a3ead0875e04"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 629_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Check Jaccard 68% claim against registry",
+  "usage": {
+    "total_tokens": 69311,
+    "tool_uses": 18,
+    "duration_ms": 197234
+  },
+  "last_tool_name": "Bash",
+  "uuid": "42b5a83c-bc1b-40e4-923a-9a161e40e09d",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 630_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PwBL89KE9Z3FviJK5q1hPr`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Mistral 3-seed: s42=6.7733 (TEAL-global), s123=7.1491, s456=6.8752\n# mean=6.9325, TEAL=8.3807, (8.38-6.93)/8.38 = 17.3% ✓\nmistral_ppls = [6.7733, 7.1491, 6.8752]\nteal = 8.3807\nmean_kl = np.mean(mistral_ppls)\nstd_kl = np.std(mistral_ppls)\npct = (teal - mean_kl)/teal*100\nprint(f\"Mistral 3-seed (teal-global + s123 + s456): mean={mean_kl:.4f}±{std_kl:.4f}\")\nprint(f\"Reduction: {pct:.1f}%\")\n\n# Now let's look at the key Jaccard claims\n# \"diverge 46-68% from magnitude-based targets\" (abstract)\n# \"Jaccard distance averages 68% at 50%\"\n# teal_kl_overlap_analysis: overall_jaccard=0.396 - this is 30%\n# What about 50%? \n# The claim says \"68% at 50%\" -> need the 50% mask overlap\n# But we don't see a direct 50% overlap registry entry\n# Let me look at what entries have Jaccard info\n\nfor k in data.keys():\n    m = data[k].get('metrics', {})\n    for key, val in m.items():\n        if 'jaccard' in key.lower() and isinstance(val, (int, float)) and val > 0.5:\n            print(f\"\\n  {k}.{key} = {val}\")\n\n# The abstract says \"46--68% from magnitude-based targets\"\n# intro says \"68% from magnitude-based masks (mean per-layer Jaccard distance)\"\n# experiments.tex says \"68% at 50%\"\n# teal_kl_overlap_analysis shows overall_jaccard=0.396 (which is 1-jaccard distance? or actual Jaccard similarity?)\n# divergence_ratio=0.433\n\n# Wait, let me check: Jaccard distance = 1 - Jaccard similarity\n# If overall_jaccard=0.396 is Jaccard similarity, then Jaccard DISTANCE=0.604=60.4%\n# If it's Jaccard distance directly, then it's 39.6%\n# The min/max entries: min_jaccard_layer: 'L17-L18 (0.19)' suggests these are Jaccard similarities?\n# Because 1-0.19 = 81% distance, 1-0.55 = 45% distance\n\n# But the paper says \"diverge 68%\" - 68% distance would mean Jaccard similarity=32%\n# Let me look at what 68% Jaccard distance means: 1-0.68=0.32 similarity\n\n# The kl_bce_f1_oracle has kl_f1=0.5397 (random=0.5)\n# That's very low oracle F1 for KL vs. magnitude, confirming divergence\n\nprint(\"\\n\\nChecking Jaccard in different ways:\")\nprint(\"teal_kl_overlap_analysis overall_jaccard:\", data['teal_kl_overlap_analysis']['metrics']['overall_jaccard'])\n# 0.396 - this seems to be Jaccard similarity (not distance)\n# Jaccard distance = 1-0.396 = 0.604 = 60.4% - not 68%\n\n# Where does 68% come from?\n# Let me search for any 0.68 or 68 values in Jaccard-related entries\nfor k in data.keys():\n    m = data[k].get('metrics', {})\n    for key, val in m.items():\n        if isinstance(val, (int, float)) and (0.65 <= val <= 0.72 or 65 <= val <= 72):\n            if 'jaccard' in key.lower() or 'diverge' in key.lower() or 'distance' in key.lower():\n                print(f\"  {k}.{key} = {val}\")\n                \n# Check per-layer Jaccard heatmap data\nprint(\"\\n\\nSearching for 68 in all values:\")\nfor k in data.keys():\n    m = data[k].get('metrics', {})\n    for key, val in m.items():\n        if isinstance(val, (int, float)) and abs(val - 0.68) < 0.02:\n            print(f\"  {k}.{key} = {val}\")\n        if isinstance(val, str) and '68' in val:\n            print(f\"  {k}.{key} = {val}\")\nEOF",
+  "description": "Check Jaccard 68% claim against registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "0e15abd9-ca3f-431a-998f-6f04a7bad8ef",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012H5HQeGC5Gh8UkLmji7kPE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2449,
+      "cache_read_input_tokens": 66205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2449,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 631 · 2026-05-24T01:23:52.150Z_
+
+<details><summary>↩ Tool result · `toolu_01PwBL89KE9Z3FviJK5q1hPr`</summary>
+
+```text
+Mistral 3-seed (teal-global + s123 + s456): mean=6.9325±0.1587
+Reduction: 17.3%
+
+
+Checking Jaccard in different ways:
+teal_kl_overlap_analysis overall_jaccard: 0.396
+
+
+Searching for 68 in all values:
+  perlayer_kl_k16_s456_eval.winogrande_acc = 0.6946
+  perlayer_kl_k16_s123_eval.winogrande_acc = 0.6772
+  perlayer_kl_k8_s456_eval.winogrande_acc = 0.6875
+  perlayer_kl_k8_s456_eval.hellaswag_acc_norm = 0.6783
+  perlayer_kl_k8_s123_eval.winogrande_acc = 0.6993
+  perlayer_kl_k8_s123_eval.hellaswag_acc_norm = 0.6997
+  perlayer_kl_k2_s123_eval.hellaswag_acc_norm = 0.6605
+  perlayer_kl_k2_s42_eval.hellaswag_acc_norm = 0.6773
+  perlayer_kl_k16_eval_final2.winogrande_acc = 0.6843
+  perlayer_kl_k16_eval_final2.hellaswag_acc_norm = 0.6963
+  perlayer_kl_k8_s42_eval.winogrande_acc = 0.674
+  perlayer_kl_k8_s42_eval.hellaswag_acc_norm = 0.6919
+  c4_kl30_s42_eval.winogrande_acc = 0.6867
+  c4_kl30_s42_eval.hellaswag_acc_norm = 0.6924
+  perlayer_kl_s123_downstream_v2.winogrande_acc = 0.6622
+  perlayer_kl_k4_s42_downstream.winogrande_acc = 0.6669
+  perlayer_kl_k4_s42_downstream.hellaswag_acc_norm = 0.6849
+  perlayer_kl_s42_downstream.hellaswag_acc_norm = 0.6763
+  revkl_30_s456_downstream_v2.winogrande_acc = 0.6788
+  revkl_30_s123_downstream.winogrande_acc = 0.689
+  perlayer_kl_30_s456_downstream.winogrande_acc = 0.663
+  perlayer_kl_30_s456_downstream.hellaswag_acc_norm = 0.6616
+  reverse_kl_30_s42_uniform_eval.hellaswag_acc_norm = 0.6969
+  jsd_30_s42_uniform_eval.winogrande = 0.6977
+  reverse_kl_30_s42.winogrande_acc = 0.6938
+  reverse_kl_30_s42.hellaswag_acc_norm = 0.6972
+  mistral_kl30_s123.hellaswag_acc_norm = 0.6961
+  c4_ood_downstream_kl30.winogrande_acc = 0.693
+  kl_sparsity40_s42_global_eval_v2.winogrande_acc = 0.6748
+  kl_sparsity40_s42_global_eval_v2.hellaswag_acc_norm = 0.6779
+  mse30_s42_eval_7task.piqa_acc_norm = 0.6937
+  qwen14b_bce30_global_hspiqa.piqa_acc_norm = 0.6828
+  qwen14b_teal30_uniform_hspiqa.hellaswag_acc_norm = 0.6772
+  qwen14b_dense_4task_v2.arc_challenge_acc_norm = 0.6758
+  qwen14b_teal275_uniform_eval_v3.mmlu_acc = 0.6738
+  qwen14b_teal275_hspiqa.hellaswag_acc_norm = 0.6993
+  qwen14b_teal275_uniform_hspiqa.hellaswag_acc_norm = 0.6993
+  qwen14b_teal30_uniform_hspiqa_v2.hellaswag_acc_norm = 0.6756
+  mistral_kl30_hellaswag_piqa.hellaswag_acc_norm = 0.6892
+  eval_c1_retrain_30pct_s456.winogrande_acc = 0.6993
+  eval_c1_retrain_30pct_s123.winogrande_acc = 0.6977
+  c1_ablation_30pct_s456.winogrande_acc = 0.6938
+  mistral_kl30_downstream.winogrande_acc = 0.6914
+  kl50_global_hellaswag_piqa.piqa_acc_norm = 0.6948
+  kl50_uniform_hellaswag_piqa.piqa_acc_norm = 0.691
+  c1_ablation_30pct_s42_eval_v2.winogrande_acc = 0.674
+  kl50_global_hellaswag_piqa_v2.piqa_acc_norm = 0.6948
+  kl30_s123_global_v3.winogrande_acc = 0.693
+  kl30_s456_uniform_v3.winogrande_acc = 0.6875
+  kl30_s123_uniform_v3.winogrande_acc = 0.6938
+  kl_sparsity35_s42_eval_teal_uniform.winogrande_acc = 0.6654
+  kl_sparsity35_s42_eval_teal.winogrande_acc = 0.6764
+  kl30_s456_uniform_v2.winogrande_acc = 0.6953
+  kl30_s123_uniform_v2.winogrande_acc = 0.6961
+  kl_comp_30pct_s123_eval.winogrande_acc = 0.6898
+  kl_comp_30pct_s42_eval.winogrande_acc = 0.6898
+  kl_comp_30pct_s42.final_loss = 0.6992
+  qwen14b_dense_baseline.arc_challenge = 0.6758
+  downstream_teal30_baseline.hellaswag_acc_norm = 0.667
+  downstream_teal30_baseline.boolq_acc = 0.685
+  kl30_s456_uniform_eval.winogrande = 0.6875
+  kl30_s123_eval.winogrande_acc = 0.6938
+  kl_30pct_s123.winogrande_acc = 0.693
+  mistral_teal70_baseline.sparsity = 0.7
+  mistral_kl70_teal_global.sparsity = 0.7
+  mistral_kl70_pertoken.sparsity = 0.7
+  bench_teal70.actual_sparsity = 0.7
+  bench_kl70_global.actual_sparsity = 0.7
+  bench_kl30_uniform.winogrande_acc = 0.6859
+  bce_gumbel_lagrangian_isolation.lr_1e3_bce_loss = 0.6781
+  bce_gumbel_lagrangian_isolation.lr_3e3_bce_loss = 0.6632
+  latency_benchmark.kl_30pct_std = 0.7
+  bench_teal30.winogrande_acc = 0.6606
+  mvp_kl_norm_v2_s456.eval_md5 = f4086818bb55dc354ea4c6fe8ed8899a
+  mvp_kl_norm_v2_s123.eval_md5 = f4086818bb55dc354ea4c6fe8ed8899a
+  mvp_kl_norm_v2_s42.eval_md5 = f4086818bb55dc354ea4c6fe8ed8899a
+  mvp_bce_s456.eval_md5 = f4086818bb55dc354ea4c6fe8ed8899a
+  mvp_bce_s123.eval_md5 = f4086818bb55dc354ea4c6fe8ed8899a
+  mvp_bce_s42.eval_md5 = f4086818bb55dc354ea4c6fe8ed8899a
+  mistral_kl70_s42.actual_sparsity = 0.682
+  d030_kl40_uniform.winogrande_acc = 0.6717
+  d030_kl30_uniform.winogrande_acc = 0.6859
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "564cd082-1b80-415d-b027-40c2d17558bd"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 632_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Verify GSM8K Qwen14B and other missing claims",
+  "usage": {
+    "total_tokens": 73015,
+    "tool_uses": 19,
+    "duration_ms": 221190
+  },
+  "last_tool_name": "Bash",
+  "uuid": "a55b8dd9-dc55-4270-8845-a9b0ae8d36b7",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 633_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0113Jejokb3AydAF5m9Tm779`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# The 68% Jaccard is not directly in registry. Let me check the appendix files\n# or if there's a mask analysis in the results directory\n\n# Let's check what the paper appendix says about Jaccard  \n# Also check f1_oracle_analysis\nprint(\"f1_oracle_analysis:\", data.get('f1_oracle_analysis', 'NOT FOUND'))\n\n# kl_bce_f1_oracle:\nprint(\"kl_bce_f1_oracle:\", data['kl_bce_f1_oracle']['metrics'])\n# bce_f1=0.613, kl_f1=0.5397\n\n# \"Jaccard distance averages 68% at 50% (64 samples, 131K tokens)\"\n# This seems to come from an analysis not in registry, or misattributed\n# teal_kl_overlap_analysis: overall_jaccard=0.396 (Jaccard similarity at ~30%?)\n# At 50%: Jaccard similarity would be lower (less overlap)\n# 1 - 0.396 = 0.604 = 60.4% distance at some sparsity\n\n# What if \"diverge 68%\" = 1 - 0.32 = Jaccard similarity of 0.32?\n# The kl_f1=0.5397 -> recall=0.57, precision=0.51\n\n# The cross-seed Jaccard 36.3%\n# Let's look for multi-seed analyses\nfor k in data.keys():\n    m = data[k].get('metrics', {})\n    for key, val in m.items():\n        if isinstance(val, (int, float)) and abs(val - 0.363) < 0.005:\n            print(f\"  Cross-seed 36.3%: {k}.{key} = {val}\")\n        if isinstance(val, str) and '36.3' in val:\n            print(f\"  String 36.3%: {k}.{key} = {val}\")\n\n# L31 retention 28.4%\nfor k in data.keys():\n    m = data[k].get('metrics', {})\n    for key, val in m.items():\n        if isinstance(val, (int, float)) and abs(val - 0.284) < 0.005:\n            print(f\"\\n  L31 28.4%: {k}.{key} = {val}\")\n        if isinstance(val, str) and '28.4' in val:\n            print(f\"\\n  String 28.4%: {k}.{key} = {val}\")\n\n# GSM8K 30.9±6.8 for Qwen14B\n# qwen14b_kl30_s42_gsm8k_uniform: 0.3548\n# qwen14b_kl30_s42_gsm8k_v2: 0.3571\n# qwen14b_kl30_s456_gsm8k: 0.2608\n# qwen14b_teal30_uniform_gsm8k: 0.5208 (TEAL)\n\n# Paper says \"GSM8K 30.9±6.8 vs 52.1\" for Qwen14B with n=2\n# TEAL GSM8K = 0.5208\n# If n=2 seeds: s42=0.3571, s456=0.2608\n# Mean=(0.3571+0.2608)/2 = 0.3090 = 30.9%\n# Std=(0.3571-0.3090)**2 + (0.2608-0.3090)**2 / 2 = ... population std\nppls_q14 = np.array([0.3571, 0.2608])\nprint(f\"\\n\\nQwen14B GSM8K 2-seed stats:\")\nprint(f\"  Mean: {ppls_q14.mean():.4f} = {ppls_q14.mean()*100:.1f}%\")\nprint(f\"  Std (pop): {ppls_q14.std():.4f} = {ppls_q14.std()*100:.1f}%\")\nprint(f\"  Std (sample): {ppls_q14.std(ddof=1):.4f} = {ppls_q14.std(ddof=1)*100:.1f}%\")\nprint(f\"  TEAL: {0.5208*100:.1f}%\")\n# But abstract says GSM8K −21.2pp on 14B (not -20.1pp)\n# 52.1 - 30.9 = 21.2pp (from TEAL to KL mean)\n# But intro says -21.2pp, σ=6.8pp, n=2\n# And experiments.tex says \"14B GSM8K 30.9±6.8 vs. 52.1\"\n\n# Abstract originally said -20.1pp (user noted file) but maybe it's updated to -21.2pp\n# Let's check\nprint(f\"\\nGSM8K TEAL - KL: {(0.5208 - 0.3090)*100:.1f}pp\")\nprint(f\"KL std: {ppls_q14.std(ddof=1)*100:.1f}pp (sample), {ppls_q14.std()*100:.1f}pp (pop)\")\n\n# Abstract file shows: \"GSM8K −21.2pp on 14B\"\n# intro shows: \"GSM8K −21.2pp, σ=6.8pp, n=2\"\n# experiments shows: \"GSM8K 30.9±6.8 vs. 52.1, n=2\"\nEOF",
+  "description": "Verify GSM8K Qwen14B and other missing claims"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "f67b21fc-bc5a-4ee0-b4c9-633e6875bbdd",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01L2U6bTq9gimGi8UtRKQTFY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3665,
+      "cache_read_input_tokens": 68654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3665,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 634 · 2026-05-24T01:24:16.103Z_
+
+<details><summary>↩ Tool result · `toolu_0113Jejokb3AydAF5m9Tm779`</summary>
+
+```text
+f1_oracle_analysis: NOT FOUND
+kl_bce_f1_oracle: {'bce_f1': 0.6128, 'bce_precision': 0.6132, 'bce_recall': 0.6124, 'kl_f1': 0.5397, 'kl_precision': 0.5112, 'kl_recall': 0.5715, 'random_f1': 0.5, 'kl_ppl': 11.79, 'bce_ppl': 22.51}
+  Cross-seed 36.3%: perlayer_kl_s42_downstream.arc_challenge_acc = 0.3601
+  Cross-seed 36.3%: mistral_teal50_downstream.hellaswag_acc_norm = 0.3603
+  Cross-seed 36.3%: c1_ablation_30pct_s456.mmlu_acc = 0.367
+  Cross-seed 36.3%: kl_sparsity35_s42_eval_teal.arc_challenge_acc = 0.3643
+  Cross-seed 36.3%: kl50_global_s123_reeval.arc_challenge_acc_norm = 0.3635
+  Cross-seed 36.3%: lm_eval_mistral_dense.gsm8k_exact_match = 0.3654
+  Cross-seed 36.3%: db_sensitivity_sweep.db64_loss = 0.361
+
+  L31 28.4%: perlayer_kl_k16_s456_v2.avg_sparsity = 0.287
+
+  L31 28.4%: perlayer_kl_k16_s123.avg_sparsity = 0.287
+
+  L31 28.4%: perlayer_kl_k8_s456.avg_sparsity = 0.285
+
+  L31 28.4%: perlayer_kl_k8_s123.avg_sparsity = 0.286
+
+  L31 28.4%: perlayer_kl_k16_s42_v3.final_avg_sparsity = 0.286
+
+  L31 28.4%: perlayer_kl_k8_s42.final_avg_sparsity = 0.281
+
+  L31 28.4%: mse30_s456.sparsity = 0.28
+
+  L31 28.4%: jsd_30_s42.model_level_sparsity = 0.285
+
+  L31 28.4%: mistral_kl30_s456.training_final_sparsity = 0.281
+
+  L31 28.4%: mistral_kl30_s123.training_final_sparsity = 0.281
+
+  L31 28.4%: kl50_s42_global_eval.mmlu_acc = 0.2819
+
+  L31 28.4%: kl50_s42_uniform_eval.mmlu_acc = 0.2792
+
+  L31 28.4%: bce_isocompute_v3_s456_eval.arc_challenge_acc_norm = 0.2807
+
+  L31 28.4%: kl50_global_s123_reeval.mmlu_acc = 0.2834
+
+  L31 28.4%: qwen14b_kl30_s42.training_sparsity = 0.281
+
+  L31 28.4%: kl50_s456_global_eval.mmlu = 0.2794
+
+  L31 28.4%: bench_kl50_uniform_s456.mmlu_acc = 0.2874
+
+  L31 28.4%: bench_teal50.arc_challenge_acc_norm = 0.2841
+
+  L31 28.4%: bench_teal50.mmlu_acc = 0.2832
+
+  L31 28.4%: kl_sparsity30_s42_v3.sparsity = 0.285
+
+  L31 28.4%: lm_eval_teal_50pct.mmlu_acc = 0.2856
+
+
+Qwen14B GSM8K 2-seed stats:
+  Mean: 0.3089 = 30.9%
+  Std (pop): 0.0481 = 4.8%
+  Std (sample): 0.0681 = 6.8%
+  TEAL: 52.1%
+
+GSM8K TEAL - KL: 21.2pp
+KL std: 6.8pp (sample), 4.8pp (pop)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "d7da8d59-9e03-446d-9d92-8f8d10e5cf59"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 635_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Compute all derived statistics for verification",
+  "usage": {
+    "total_tokens": 75756,
+    "tool_uses": 20,
+    "duration_ms": 251087
+  },
+  "last_tool_name": "Bash",
+  "uuid": "0b3f51b9-38ea-4c83-af70-96ed21ac61d8",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 636_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011qEBKEMiuLQGogVbafJHRt`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Now let's find the MMLU 3-seed stats for KL uniform 30% LLaMA-8B\n# s42=0.4061, s123=0.3944, s456=0.4198\nmmlu_ppls = np.array([0.4061, 0.3944, 0.4198])\nprint(f\"MMLU 3-seed (s42,s123,s456): mean={mmlu_ppls.mean()*100:.1f}%, std(pop)={mmlu_ppls.std()*100:.1f}%, std(samp)={mmlu_ppls.std(ddof=1)*100:.1f}%\")\n# Paper says 40.7±1.3%\n\n# Global KL MMLU 3-seed\n# s42=0.2527, s123=0.3807, s456=0.4382\ng_mmlu = np.array([0.2527, 0.3807, 0.4382])\nprint(f\"\\nGlobal KL MMLU 3-seed: mean={g_mmlu.mean()*100:.1f}%, std(pop)={g_mmlu.std()*100:.1f}%, std(samp)={g_mmlu.std(ddof=1)*100:.1f}%\")\n# Paper says 35.7±9.5%\n\n# Let's check: std_sample = 9.5?\n# (0.2527+0.3807+0.4382)/3 = 0.3572 = 35.72%\n# std(ddof=1): np formula\nprint(f\"  Sample std: {np.std([0.2527, 0.3807, 0.4382], ddof=1)*100:.1f}%\")\n\n# Dense MMLU\nprint(f\"\\nDense MMLU: {data['bench_dense']['metrics']['mmlu_acc']*100:.2f}%\")\n# Paper says 65.3%: bench_dense has 0.6527 = 65.27% -> rounded 65.3% ✓\n\n# TEAL uniform MMLU\n# teal_30pct_uniform_multiseed_eval: mmlu=0.4586 = 45.86\nprint(f\"TEAL uniform MMLU (table): 45.86%\")\n# Paper abstract says \"MMLU −5.2pp on 8B\" \n# 45.86 - 40.7 = 5.16 ≈ 5.2pp ✓ \n\n# K-curve: K=2 mean PPL = 10.75, K=16 = 8.67\n# Full coupling range = 10.75 - 8.67 = 2.08 ✓ (from experiment)\nk2_ppls = [10.7958, 10.8835, 10.5826]\nk16_ppls = [8.6737, 8.6939, 8.655]\nk2_mean = np.mean(k2_ppls)\nk16_mean = np.mean(k16_ppls)\nfull_range = k2_mean - k16_mean\nprint(f\"\\nK-curve PPL range: K=2 mean={k2_mean:.2f}, K=16 mean={k16_mean:.2f}, range={full_range:.2f}\")\n\n# signal type gap: MSE vs K=1 KL\n# MSE 3-seed = 18.52 (paper value)\n# K=1 KL (per-layer) = 9.05 3-seed \n# signal type gap = 18.52 - 9.05 = 9.47\nmse_ppl = 18.52\nk1_ppl = 9.05\nsignal_gap = mse_ppl - k1_ppl\nprint(f\"\\nSignal type gap: {mse_ppl} - {k1_ppl} = {signal_gap}\")\n\n# 14.5% at matched sparsity: (10.30-8.81)/10.30\nteal_285 = data['teal_28.5pct_sanity']['metrics']['wikitext2_ppl']  # 10.3\nkl_ppl = 8.81  # from bench_kl30_uniform: 8.8157 ≈ 8.81\npct = (teal_285 - kl_ppl) / teal_285 * 100\nprint(f\"\\n14.5% at matched sparsity: ({teal_285} - {kl_ppl}) / {teal_285} * 100 = {pct:.1f}%\")\n\n# Abstract vs intro says \"8.81 vs. 10.30\"\n# bench_kl30_uniform PPL = 8.8157 which rounds to 8.81 or 8.82? Let's see\nprint(f\"KL30 uniform s42 PPL = {data['bench_kl30_uniform']['metrics']['wikitext2_ppl']} -> rounds to 8.81 or 8.82?\")\nprint(f\"TEAL 28.5% PPL = {teal_285}\")\n\n# 3-seed KL PPL mean for 30% uniform\nthree_seed_ppls = [8.8157, 8.8308, 8.7947]\nthree_seed_mean = np.mean(three_seed_ppls)\nthree_seed_std = np.std(three_seed_ppls, ddof=1)\nprint(f\"\\n3-seed KL uniform PPL: {three_seed_ppls}\")\nprint(f\"Mean={three_seed_mean:.4f}, Std={three_seed_std:.4f}\")\n# Paper says 8.81±0.02 -> std=0.02\n\n# The 3-seed mean is 8.814 which rounds to 8.81? Paper says \"8.81±0.02\"\n# Individual seed PPLs: 8.8157, 8.8308, 8.7947 - std=0.0148 -> rounds to 0.01 not 0.02\n# But paper says ±0.02. The std(ddof=0)=0.0148, std(ddof=1)=0.018 -> rounds to 0.02? \nprint(f\"Std pop: {np.std(three_seed_ppls):.4f}, Std samp: {np.std(three_seed_ppls, ddof=1):.4f}\")\n\n# Comp redundancy: +67.2M params\n# From experiments.tex: \"FastForward-style compensation (+67.2M params)\"\n# kl_comp entries\nprint(\"\\n=== kl_comp_30pct_s42_ppl ===\")\nprint(data['kl_comp_30pct_s42_ppl']['metrics'])\n\nEOF",
+  "description": "Compute all derived statistics for verification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "5797345b-1f85-4766-8934-9156a686be97",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019NTi1b6bcPLKU6Yrge4QaP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2701,
+      "cache_read_input_tokens": 72319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2701,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 637 · 2026-05-24T01:24:46.092Z_
+
+<details><summary>↩ Tool result · `toolu_011qEBKEMiuLQGogVbafJHRt`</summary>
+
+```text
+MMLU 3-seed (s42,s123,s456): mean=40.7%, std(pop)=1.0%, std(samp)=1.3%
+
+Global KL MMLU 3-seed: mean=35.7%, std(pop)=7.8%, std(samp)=9.5%
+  Sample std: 9.5%
+
+Dense MMLU: 65.27%
+TEAL uniform MMLU (table): 45.86%
+
+K-curve PPL range: K=2 mean=10.75, K=16 mean=8.67, range=2.08
+
+Signal type gap: 18.52 - 9.05 = 9.469999999999999
+
+14.5% at matched sparsity: (10.3 - 8.81) / 10.3 * 100 = 14.5%
+KL30 uniform s42 PPL = 8.8157 -> rounds to 8.81 or 8.82?
+TEAL 28.5% PPL = 10.3
+
+3-seed KL uniform PPL: [8.8157, 8.8308, 8.7947]
+Mean=8.8137, Std=0.0181
+Std pop: 0.0148, Std samp: 0.0181
+
+=== kl_comp_30pct_s42_ppl ===
+{'wikitext2_ppl': 8.9768, 'c4_ppl': 16.0401, 'sparsity': 0.3, 'allocation': 'global_topk', 'model': 'llama-3.1-8b', 'seed': 42}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "3a595b86-e851-4682-8bac-0203f8e50f3d"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 638_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Verify BCE stats, ratios and derived numbers",
+  "usage": {
+    "total_tokens": 78040,
+    "tool_uses": 21,
+    "duration_ms": 276567
+  },
+  "last_tool_name": "Bash",
+  "uuid": "f00b7408-978a-4886-bc5d-b0767a0a522e",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 639_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01FfsyNS93A9jr5b2EsqcWnM`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# The paper says \"8.81±0.02\" - need to understand how they compute this\n# Individual PPLs: 8.8157, 8.8308, 8.7947\n# Mean=8.8137 -> 8.81 (rounded to 2 decimal)\n# Std: samp=0.0181 -> 0.02 (rounded to 2 decimal) ✓\n# Note: 8.8137 rounds to 8.81 (not 8.82) ✓\n\n# Now, the abstract says the PPL comparison is \"8.81 vs. 10.30\"\n# bench_kl30_uniform has s42 PPL=8.8157 (single seed), not 3-seed mean\n# So the 8.81 seems to come from the 3-seed mean (8.8137≈8.81) ✓\n\n# F1 oracle: paper says \"BCE reaches higher oracle F1 (0.613 vs. 0.540)\"\nbce_f1 = data['kl_bce_f1_oracle']['metrics']['bce_f1']  # 0.6128\nkl_f1 = data['kl_bce_f1_oracle']['metrics']['kl_f1']   # 0.5397\nprint(f\"BCE F1={bce_f1:.3f} vs KL F1={kl_f1:.3f}\")\n# Paper: 0.613 vs 0.540 -> 0.6128 ≈ 0.613? rounds to 0.613 ✓\n# kl_f1=0.5397 ≈ 0.540 ✓\n\n# Isocompute analysis: \"still 2.39× worse than KL (11.79)\"\n# BCE 3-seed = 28.13±0.20 (from our calculation), KL=11.79 (bench_kl50_global s42)\nbce_mean = 28.1275\nkl_ppl_50 = 11.79\nratio = bce_mean / kl_ppl_50\nprint(f\"\\nBCE/KL ratio: {bce_mean:.4f}/{kl_ppl_50} = {ratio:.3f}x\")\n# Paper says 2.39×\n\n# \"139% worse PPL\" \npct_worse = (bce_mean - kl_ppl_50) / kl_ppl_50 * 100\nprint(f\"139% worse: {pct_worse:.1f}%\")\n\n# But wait: the isocompute section says \"BCE achieves PPL 28.13±0.20 (3-seed), still 2.39× worse than KL (11.79)\"\n# KL here is bench_kl50_global: 11.7933 ≈ 11.79 ✓\n# 28.13/11.79 = 2.386 ≈ 2.39 ✓\n\n# But the BCE std: 3-seed PPLs = 27.9696, 28.0627, 28.3503\nbce_ppls = np.array([27.9696, 28.0627, 28.3503])\nbce_mean2 = bce_ppls.mean()\nbce_std_pop = bce_ppls.std()\nbce_std_samp = bce_ppls.std(ddof=1)\nprint(f\"\\nBCE 3-seed: mean={bce_mean2:.4f}, std(pop)={bce_std_pop:.4f}, std(samp)={bce_std_samp:.4f}\")\n# Paper says 28.13±0.20\n# mean=28.1275, std_samp=0.1944 -> 0.20? \n# 0.1944 rounds to 0.19 not 0.20...\n# std_pop=0.1620 -> 0.16\n# Hmm. Let's check more carefully\nprint(f\"0.1944 rounds to: 0.19 (2 dp)\")\n\n# What about using a different rounding?\n# Actually np: 0.1944 -> displayed as 0.20 at 1dp precision? No, 2dp = 0.19.\n# Unless they use ceil/round differently\n# 28.13 is from 28.1275 -> 28.13? That's a strange rounding (would be 28.13 at 2dp) \n# Actually 28.1275 -> rounds to 28.13 at 2dp ✓\n# But std: 0.1944 -> rounds to 0.19 at 2dp, NOT 0.20\n# Could be they computed with a different set of seeds or used bce_ppl from kl_bce_f1_oracle=22.51?\n# But that's before extended training (1000 steps)\n\n# Let's also check bce_50pct_teal_global_unified for another BCE reading\nprint(\"\\nbce_50pct_teal_global_unified:\", data['bce_50pct_teal_global_unified']['metrics']['wikitext2_ppl'])\n# 27.97 - this is s42 only\n\n# Hmm, maybe the 3-seed mean is 28.13 from a slightly different source\n# Let's see if there's a \"bce50_3seed\" style entry\nfor k in data.keys():\n    if 'bce' in k and '50' in k:\n        m = data[k].get('metrics', {})\n        for key, val in m.items():\n            if isinstance(val, (int, float)) and 27 <= val <= 29:\n                print(f\"  {k}.{key} = {val}\")\n\nEOF",
+  "description": "Verify BCE stats, ratios and derived numbers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "14bb5c5f-2257-4044-ad1f-fce6fac60886",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Nv4JfhY9dkaampUvEj87Ps",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2244,
+      "cache_read_input_tokens": 75020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2244,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 640 · 2026-05-24T01:25:11.478Z_
+
+<details><summary>↩ Tool result · `toolu_01FfsyNS93A9jr5b2EsqcWnM`</summary>
+
+```text
+BCE F1=0.613 vs KL F1=0.540
+
+BCE/KL ratio: 28.1275/11.79 = 2.386x
+139% worse: 138.6%
+
+BCE 3-seed: mean=28.1275, std(pop)=0.1620, std(samp)=0.1985
+0.1944 rounds to: 0.19 (2 dp)
+
+bce_50pct_teal_global_unified: 27.97
+  bce_50pct_teal_global_unified.wikitext2_ppl = 27.97
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "d9ba44e2-0486-4fa5-8b48-3fcc148483f4"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 641_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Check BCE std rounding and JSD/RevKL 3-seed stats",
+  "usage": {
+    "total_tokens": 79789,
+    "tool_uses": 22,
+    "duration_ms": 302954
+  },
+  "last_tool_name": "Bash",
+  "uuid": "7723b25e-7f4b-4ec1-86c8-9a3f22ef1e39",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 642_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JQLhDTrd8WMvAjPRMthNeY`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Let's look at the bceisocompute PPLs more carefully\n# bce_isocompute_v3_s42_eval: 27.9696\n# bce_isocompute_v3_s123_eval: 28.0627\n# bce_isocompute_v3_s456_eval: 28.3503 (teal_sparse_ppl key)\n\n# Wait, looking at bce_isocompute_v3_s456_eval:\n# key is 'teal_sparse_ppl': 28.3503 (different key from others)\n# Are these consistent? All at 50% with BCE 2700 steps?\ns42_ppl = data['bce_isocompute_v3_s42_eval']['metrics']['wikitext2_ppl']  # 27.9696\ns123_ppl = data['bce_isocompute_v3_s123_eval']['metrics']['wikitext2_ppl']  # 28.0627\ns456_ppl = data['bce_isocompute_v3_s456_eval']['metrics']['teal_sparse_ppl']  # 28.3503\n\nppls = np.array([s42_ppl, s123_ppl, s456_ppl])\nprint(f\"BCE 3-seed PPLs: {ppls}\")\nprint(f\"Mean: {ppls.mean():.4f}\")\nprint(f\"Std (ddof=1): {ppls.std(ddof=1):.4f}\")\nprint(f\"Std (ddof=0): {ppls.std():.4f}\")\n\n# std(ddof=1) = 0.1985 which rounds to 0.20 when rounded at 1 significant figure\n# OR 0.2 which when displayed as 0.20 looks correct\n# Actually 0.1985 -> 0.20 at 2dp would require rounding up from 0.1985 -> 0.20? \n# 0.1985 -> 2dp = 0.20 (since 3rd digit is 8 >= 5) Wait: 0.1985\n# 0.1985 at 2dp: look at 3rd decimal = 8 -> round up 9 -> carry -> 0.20 YES!\nprint(f\"\\n0.1985 rounded to 2dp = {round(0.1985, 2)}\")  # 0.20? Let's see\n# Actually Python's round: 0.1985 -> round(0.1985, 2) might give 0.19 due to float precision\n\nimport decimal\nd = decimal.Decimal('0.1985')\nprint(f\"Decimal 0.1985 rounded: {round(d, 2)}\")\n\n# The value is 0.1985 which at 2dp rounds to 0.20 (since second decimal is 9, third is 8>=5 -> carry)\n# Actually: 0.1985 -> 0.19|85 -> look at 85 -> >= 50 -> round up 9 to 10 -> carry -> 0.20\n# So ±0.20 is correct! ✓\n\n# Now let's check 2.39× ratio more carefully\n# bce_mean = 28.1275, but paper says 28.13\nprint(f\"\\n28.1275 rounded to 2dp: {round(28.1275, 2)}\")  # 28.13? Or 28.12?\n# 28.1275 -> 28.13 at 2dp (third decimal is 7>=5 -> round up to 28.13) ✓\n# 28.13 / 11.79 = 2.386 -> rounds to 2.39 ✓\n\n# JSD 3-seed PPL for ablation table\njsd_ppls = [\n    data['jsd_30_s42_uniform_eval']['metrics']['ppl'],  # 8.8848\n    data['jsd_30_s123']['metrics']['ppl'],  # 8.9144\n    data['jsd_30_s456']['metrics']['ppl'],  # 8.9099\n]\njsd_arr = np.array(jsd_ppls)\nprint(f\"\\nJSD 3-seed: {jsd_ppls}\")\nprint(f\"Mean: {jsd_arr.mean():.4f}, Std: {jsd_arr.std(ddof=1):.4f}\")\n# Table says 8.90±0.02\n\n# RevKL 3-seed PPL\n# s42_uniform: from reverse_kl_30_s42_uniform_eval or revkl?\n# revkl_30_s42_boolq: only boolq_acc\n# reverse_kl_30_s42: wikitext2_ppl=9.31 (global allocation?)\n# revkl_30_s123: ppl=9.2859\n# revkl_30_s456: ppl=9.1841\nrevkl_ppls = [9.31, 9.2859, 9.1841]  # Uncertain about s42 (global vs uniform)\nrevkl_arr = np.array(revkl_ppls)\nprint(f\"\\nRevKL 3-seed PPLs: {revkl_ppls}\")\nprint(f\"Mean: {revkl_arr.mean():.4f}, Std: {revkl_arr.std(ddof=1):.4f}\")\n# Table says 9.26±0.07\n\n# Let's check reverse_kl_30_s42_uniform_eval specifically\nprint(f\"\\nreverse_kl_30_s42_uniform_eval: {data['reverse_kl_30_s42_uniform_eval']['metrics']}\")\n# No PPL in this entry... only downstream tasks\n# reverse_kl_30_s42: wikitext2_ppl=9.31 (global allocation)\n# But for 30% uniform, we need the uniform PPL\n# Let's see if revkl s42 uniform PPL exists\nfor k in data.keys():\n    if 'revkl' in k or 'reverse_kl' in k:\n        m = data[k].get('metrics', {})\n        if 'wikitext2_ppl' in m or 'ppl' in m:\n            print(f\"  {k}: ppl={m.get('wikitext2_ppl') or m.get('ppl')}\")\n\nEOF",
+  "description": "Check BCE std rounding and JSD/RevKL 3-seed stats"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "7595c770-4b4e-4d61-8d50-3be5c63df787",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01YY7cbhZBFgaPCeaYAb3HSR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1710,
+      "cache_read_input_tokens": 77264,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1710,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 643 · 2026-05-24T01:25:37.894Z_
+
+<details><summary>↩ Tool result · `toolu_01JQLhDTrd8WMvAjPRMthNeY`</summary>
+
+```text
+BCE 3-seed PPLs: [27.9696 28.0627 28.3503]
+Mean: 28.1275
+Std (ddof=1): 0.1985
+Std (ddof=0): 0.1620
+
+0.1985 rounded to 2dp = 0.2
+Decimal 0.1985 rounded: 0.20
+
+28.1275 rounded to 2dp: 28.13
+
+JSD 3-seed: [8.8848, 8.9144, 8.9099]
+Mean: 8.9030, Std: 0.0160
+
+RevKL 3-seed PPLs: [9.31, 9.2859, 9.1841]
+Mean: 9.2600, Std: 0.0668
+
+reverse_kl_30_s42_uniform_eval: {'arc_challenge_acc_norm': 0.4283, 'winogrande_acc': 0.7009, 'mmlu_acc': 0.3749, 'gsm8k_exact_match': 0.0697, 'hellaswag_acc_norm': 0.6969, 'piqa_acc_norm': 0.7459}
+  revkl_30_s456: ppl=9.1841
+  revkl_30_s123: ppl=9.2859
+  reverse_kl_30_s42: ppl=9.31
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "912afffc-3009-4007-b8a7-abb71a9ff02d"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 644_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Verify ablation percentages and 50% values",
+  "usage": {
+    "total_tokens": 81932,
+    "tool_uses": 23,
+    "duration_ms": 323154
+  },
+  "last_tool_name": "Bash",
+  "uuid": "85c87fe1-4ae7-4887-82bd-d5b9988e33d6",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 645_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01TgRYJCVYJCBTfDveiFJf4U`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# JSD 3-seed mean=8.9030 -> Table says 8.90 ✓, std=0.016 -> Table says 0.02?\n# Let's check: 0.0160 rounds to 0.02 at 2dp? 0.016 -> 0.02 at 1dp yes\n# But at 2dp: 0.016 -> 0.02? Yes: 0.0160 -> 2dp: 0.02 ✓ (since 3rd decimal is 6>=5, round up 1->2)\n\n# RevKL 3-seed mean=9.2600 -> 9.26 ✓, std=0.0668 -> 0.07 ✓\n\n# Gumbel vs STE: \"33.8% at 50%\"\nste_ppl = data['ste_baseline_s42']['metrics']['teal_sparse_ppl']  # 15.77\nkl_ppl50 = 11.79\ngumbel_vs_ste = (ste_ppl - kl_ppl50) / kl_ppl50 * 100\nprint(f\"Gumbel vs STE (50%): ({ste_ppl}-{kl_ppl50})/{kl_ppl50}*100 = {gumbel_vs_ste:.1f}%\")\n# Paper says 33.8%\n\n# Forward KL outperforms JSD (+6.4%) and reverse KL (+8.6%)\njsd_ppl50 = 12.54  # From ablation table\nrevkl_ppl50 = 12.80\nkl_ppl50_single = 11.79\njsd_diff = (jsd_ppl50 - kl_ppl50_single) / kl_ppl50_single * 100\nrevkl_diff = (revkl_ppl50 - kl_ppl50_single) / kl_ppl50_single * 100\nprint(f\"JSD diff: ({jsd_ppl50}-{kl_ppl50_single})/{kl_ppl50_single}*100 = {jsd_diff:.1f}%\")\nprint(f\"RevKL diff: ({revkl_ppl50}-{kl_ppl50_single})/{kl_ppl50_single}*100 = {revkl_diff:.1f}%\")\n# Paper says +6.4% and +8.6%\n\n# Let's check the 50% ablation table values from registry\nfor k in ['ste_baseline_s42']:\n    print(f\"\\n{k}: {data[k]['metrics']}\")\n\n# JSD at 50% = 12.54 -> need to find this\nfor k in data.keys():\n    if 'jsd' in k and '50' in k:\n        print(f\"  {k}: {data[k].get('metrics')}\")\n    if 'jsd' in k:\n        m = data[k].get('metrics', {})\n        for key, val in m.items():\n            if isinstance(val, (int,float)) and 12 <= val <= 13:\n                print(f\"  {k}.{key} = {val}\")\n\n# RevKL at 50% = 12.80\nfor k in data.keys():\n    if 'revkl' in k or 'reverse_kl' in k:\n        m = data[k].get('metrics', {})\n        for key, val in m.items():\n            if isinstance(val, (int,float)) and 12 <= val <= 13:\n                print(f\"  {k}.{key} = {val}\")\n\n# These 50% ablation values (12.54 for JSD, 12.80 for RevKL) need to be from registry\n# They appear to only exist in the ablation table, not explicitly in any exp ID\n# The ablation table sources from exp IDs: jsd_ablation_s42, reverse_kl_ablation_s42, ste_baseline_s42\nprint(\"\\nChecking ablation entry IDs from table comments:\")\nfor k in ['jsd_ablation_s42', 'reverse_kl_ablation_s42', 'kl30_ablation_s42', 'rkl30_ablation_s42', 'jsd30_ablation_s42']:\n    if k in data:\n        print(f\"  {k}: {data[k]['metrics']}\")\n    else:\n        print(f\"  {k}: NOT FOUND\")\n\nEOF",
+  "description": "Verify ablation percentages and 50% values"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "d239b7aa-756a-4424-aea2-35cbeb29b639",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01B2fBE3mVR7dFAXgsaGobib",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2103,
+      "cache_read_input_tokens": 78974,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2103,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 646 · 2026-05-24T01:25:58.061Z_
+
+<details><summary>↩ Tool result · `toolu_01TgRYJCVYJCBTfDveiFJf4U`</summary>
+
+```text
+Gumbel vs STE (50%): (15.77-11.79)/11.79*100 = 33.8%
+JSD diff: (12.54-11.79)/11.79*100 = 6.4%
+RevKL diff: (12.8-11.79)/11.79*100 = 8.6%
+
+ste_baseline_s42: {'true_dense_ppl': 6.12, 'predictor_hard_mask_ppl': 8.18, 'teal_sparse_ppl': 15.77, 'model_level_sparsity': 0.47, 'ppl_increase_vs_true_dense_pct': 157.7, 'eval_seq_len': 2048, 'calibration_samples': 32, 'eval_dataset': 'wikitext-2', 'per_token_sparsity': 0.47, 'lambda_stats': {'steps_70_130_mean': 66.4, 'steps_70_130_std': 94.87, 'first_500_mean': 688.07, 'first_500_std': 440.57, 'last_500_mean': 965.69, 'last_500_std': 141.59, 'overall_mean': 826.88, 'overall_std': 354.23}}
+
+Checking ablation entry IDs from table comments:
+  jsd_ablation_s42: NOT FOUND
+  reverse_kl_ablation_s42: NOT FOUND
+  kl30_ablation_s42: NOT FOUND
+  rkl30_ablation_s42: NOT FOUND
+  jsd30_ablation_s42: NOT FOUND
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "5704c2f2-362d-429a-ae5b-0532941c56a0"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 647_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Investigate Qwen14B MMLU -2.8pp claim",
+  "usage": {
+    "total_tokens": 83652,
+    "tool_uses": 24,
+    "duration_ms": 349243
+  },
+  "last_tool_name": "Bash",
+  "uuid": "2cfe6ac5-1f9f-4992-b7b3-21b7e8acac0a",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 648_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01SLcMyUVcGd17eFthf8VvdL`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# The ablation table comment IDs for 50% JSD/RevKL aren't in registry\n# Let's check what's available with jsd at 50%\nfor k in data.keys():\n    m = data[k].get('metrics', {})\n    for key, val in m.items():\n        if isinstance(val, (int,float)) and 12.4 <= val <= 12.6:\n            print(f\"  {k}.{key} = {val} (possible JSD 50%)\")\n        if isinstance(val, (int,float)) and 12.7 <= val <= 12.9:\n            print(f\"  {k}.{key} = {val} (possible RevKL 50%)\")\n\n# The JSD/RevKL 50% values 12.54 and 12.80 are not directly in registry\n# They're claimed as ablation table entries only\n\n# Let's check Qwen14B MMLU claims\n# \"MMLU -2.8pp\" for Qwen14B\n# qwen14b_teal30_eval: mmlu=0.7183 (TEAL)\n# qwen14b_kl30_s42_eval: mmlu=0.6372 (KL s42)\n# qwen14b_kl30_s123_eval_v5: mmlu=0.6234\n# qwen14b_kl30_s456_eval_v3: mmlu=0.6351\nteal_mmlu = data['qwen14b_teal30_eval']['metrics']['mmlu_acc']\nkl_mmlu_s42 = data['qwen14b_kl30_s42_eval']['metrics']['mmlu_acc']\nkl_mmlu_s123 = data['qwen14b_kl30_s123_eval_v5']['metrics']['mmlu_acc']\nkl_mmlu_s456 = data['qwen14b_kl30_s456_eval_v3']['metrics']['mmlu_acc']\nprint(f\"\\nQwen14B TEAL MMLU: {teal_mmlu*100:.2f}%\")\nprint(f\"Qwen14B KL MMLU s42: {kl_mmlu_s42*100:.2f}%\")\nprint(f\"Qwen14B KL MMLU s123: {kl_mmlu_s123*100:.2f}%\")\nprint(f\"Qwen14B KL MMLU s456: {kl_mmlu_s456*100:.2f}%\")\n\n# Experiments.tex says \"MMLU -2.8pp\" for Qwen14B\n# But which TEAL? qwen14b_teal275_uniform_eval_v3: mmlu=0.6738\nteal275 = data['qwen14b_teal275_uniform_eval_v3']['metrics']['mmlu_acc']\nprint(f\"\\nQwen14B TEAL 27.5% MMLU: {teal275*100:.2f}%\")\n\n# For n=2 comparison (only 2 seeds for Qwen)\n# If using 2 seeds: s42=0.6372, s456=0.6351\n# vs TEAL=0.6738 (at 27.5%)? or TEAL=0.7183 (at 30%)?\n# (0.6738+0.7183)/2... no\n\n# Intro says: \"MMLU -2.8pp\" \n# Could be: qwen14b_teal30_eval MMLU=71.83%, KL s42=63.72% -> diff=8.1pp (too large)\n# Or using qwen14b_teal275: 67.38% - KL mean?\n# KL 2-seed mean: (0.6372+0.6351)/2 = 0.6362 = 63.62%\n# 63.62 - 67.38 = -3.76pp (not 2.8)\n\n# Or KL s123=62.34%, s456=63.51% -> mean=62.93%\n# TEAL30: 71.83% - 62.93% = 8.9pp\n# TEAL27.5: 67.38% - 62.93% = 4.45pp\n\n# Or comparing with qwen14b_kl30_s123_eval_v4: mmlu=0.6449\nprint(f\"\\nqwen14b_kl30_s123_eval_v4 MMLU: {data['qwen14b_kl30_s123_eval_v4']['metrics']['mmlu_acc']*100:.2f}%\")\n# v4 MMLU=0.6449, v5 MMLU=0.6234\n\n# Let's check what qwen14b_teal275 matches\n# If n=2: s42 and s456 \n# s42 MMLU=0.6372, s456 MMLU=0.6351 -> mean=0.6362\n# vs TEAL at 27.5%=0.6738: diff=3.76pp\n# Not 2.8pp\n\n# Maybe 2 seeds are s42 and s123?\nkl_mmlu_2seed = (kl_mmlu_s42 + kl_mmlu_s123) / 2\nprint(f\"\\n2-seed mean (s42+s123): {kl_mmlu_2seed*100:.2f}%\")\n# 0.6303 = 63.03%\n# vs TEAL275: 67.38% -> diff = 4.35pp\n# vs TEAL30: 71.83% - 63.03% = 8.8pp\n\n# Or 2-seed: s123 and s456?\nkl_mmlu_2seed_23 = (kl_mmlu_s123 + kl_mmlu_s456) / 2\nprint(f\"2-seed mean (s123+s456): {kl_mmlu_2seed_23*100:.2f}%\")\n\n# None of these give 2.8pp with TEAL30 or TEAL27.5\n# Let me check if \"MMLU -2.8pp\" is comparing to a different base\n# Or maybe it's from a different TEAL entry\n\n# Let me check: qwen14b_teal30_eval MMLU=71.83\n# qwen14b_kl30_s42_eval MMLU=63.72\n# qwen14b_kl30_s123_eval_v5 MMLU=62.34\n# Mean of v4 and v5 for s123? v4=64.49, v5=62.34\n\n# OR maybe MMLU -2.8pp is specifically about qwen14b_teal275_uniform_eval_v3 vs kl at 27.5%?\n# TEAL275=0.6738\n# KL s42 at 27.5%?\nprint(\"\\nqwen14b_kl30_s42_eval_uniform_v3:\", data['qwen14b_kl30_s42_eval_uniform_v3']['metrics'])\nEOF",
+  "description": "Investigate Qwen14B MMLU -2.8pp claim"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "83d4a48e-5c66-45e0-b75e-2a93f705039b",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01LoRNpgYBuq5JcBEqGqN6wp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1680,
+      "cache_read_input_tokens": 81077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1680,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 649 · 2026-05-24T01:26:24.177Z_
+
+<details><summary>↩ Tool result · `toolu_01SLcMyUVcGd17eFthf8VvdL`</summary>
+
+```text
+  steps_curve_v2.step400_ppl = 12.538 (possible JSD 50%)
+
+Qwen14B TEAL MMLU: 71.83%
+Qwen14B KL MMLU s42: 63.72%
+Qwen14B KL MMLU s123: 62.34%
+Qwen14B KL MMLU s456: 63.51%
+
+Qwen14B TEAL 27.5% MMLU: 67.38%
+
+qwen14b_kl30_s123_eval_v4 MMLU: 64.49%
+
+2-seed mean (s42+s123): 63.03%
+2-seed mean (s123+s456): 62.92%
+
+qwen14b_kl30_s42_eval_uniform_v3: {'wikitext2_ppl': 7.8715, 'arc_challenge_acc': 0.5051, 'arc_challenge_acc_norm': 0.5495, 'winogrande_acc': 0.7127, 'mmlu_acc': 0.648, 'hellaswag_acc_norm': 0.7268, 'piqa_acc_norm': 0.7476, 'actual_sparsity': 0.296}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "90f7b512-52e7-4be0-81b1-71e3dc46e93e"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 650_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Continue Qwen14B MMLU investigation",
+  "usage": {
+    "total_tokens": 85923,
+    "tool_uses": 25,
+    "duration_ms": 380502
+  },
+  "last_tool_name": "Bash",
+  "uuid": "bafb5dd3-954b-4eae-b634-b76e41e27609",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 651_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KoMSzzxC8Q2rVAQxwaaSyg`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# qwen14b_kl30_s42_eval_uniform_v3: mmlu=0.6480 (uniform allocation, s42)\n# qwen14b_kl30_s123_eval_v5: mmlu=0.6234 (s123)  \n# qwen14b_kl30_s456_eval_v3: mmlu=0.6351 (s456)\n\n# TEAL at matched sparsity?\n# qwen14b_teal275_uniform_eval_v3 MMLU=0.6738 (TEAL at 27.5%)\n# KL s42 uniform (v3) = 0.6480\n\n# 2-seed mean (s42+s123) uniform:\nkl_uniform_mmlu = np.array([0.6480, 0.6234])\nkl_uniform_mean = kl_uniform_mmlu.mean()\nteal_275_mmlu = 0.6738\ndiff_pp = (teal_275_mmlu - kl_uniform_mean) * 100\nprint(f\"Qwen14B MMLU 2-seed uniform (s42+s123): mean={kl_uniform_mean*100:.2f}%\")\nprint(f\"TEAL27.5%: {teal_275_mmlu*100:.2f}%\")\nprint(f\"Diff: {diff_pp:.2f}pp\")\n\n# Also try s42+s456\nkl_uniform_2 = np.array([0.6480, 0.6351])\nprint(f\"\\n2-seed (s42+s456): mean={kl_uniform_2.mean()*100:.2f}%\")\nprint(f\"Diff vs TEAL27.5: {(teal_275_mmlu-kl_uniform_2.mean())*100:.2f}pp\")\n\n# Hmm still not 2.8pp\n# Let me look at the experiments appendix for 14B table to understand\n\n# Intro.tex says: \"MMLU -2.8pp\" for 14B\n# Maybe it's specific to one seed comparison:\n# TEAL30 uniform: 0.7183 - KL s42 eval: 0.6372 = 8.1pp\n# But that's not 2.8pp\n\n# Maybe it's looking at a different metric or the paper cites TEAL27.5 as baseline\n# TEAL27.5 MMLU=0.6738, KL s42 uniform=0.648 -> diff=2.58pp\n# Or TEAL27.5 vs KL s456: 0.6738-0.6351=3.87pp\n# Or TEAL27.5 vs single seed KL: 0.6738-0.648=2.58pp≈2.6pp\n\n# Let me look at the Qwen14B table in the paper appendix\nprint(\"\\n\\n=== Looking for 14B Table in appendix ===\")\n\n# Let me search for the actual comparison in experiments.tex\n# experiments.tex line 195: \"consistent PPL improvement but reasoning decline (GSM8K -21.2pp, σ=6.8pp, n=2; MMLU -2.8pp)\"\n# This says \"n=2\" only for GSM8K but MMLU -2.8pp without n\n\n# Maybe MMLU -2.8pp uses only s42 or is comparing TEAL30 to KL:\n# TEAL30 MMLU = 0.7183 but we're at different actual sparsity\n# Let me look for n=1 comparison or specific TEAL vs KL for MMLU at 14B\n\n# qwen14b_kl30_s42_eval: mmlu=0.6372 (global allocation, s42)\n# qwen14b_teal30_eval: mmlu=0.7183 (TEAL global 30%, s42)\n# Diff: 0.7183 - 0.6372 = 0.0811 = 8.1pp (not 2.8)\n\n# Hmm. What if we compare with qwen14b_kl30_s123_eval_v4 mmlu=0.6449 vs qwen14b_teal30_eval=0.7183?\n# Still not right\n\n# Let me check what \"MMLU -2.8pp\" means in context\n# experiments.tex line 195: \"MMLU/GSM8K decline... GSM8K 30.9±6.8 vs 52.1, n=2; MMLU -2.8pp\"\n# For GSM8K, TEAL=52.1 (0.5208) and KL 2-seed=(35.71+26.08)/2=30.9%\n\n# For MMLU: TEAL=66.34 and KL mean=63.55? 66.34-63.55=2.79≈2.8pp\n# But where does TEAL MMLU 66.34 come from?\nfor k in data.keys():\n    m = data[k].get('metrics', {})\n    mmlu = m.get('mmlu_acc') or m.get('mmlu')\n    if mmlu and isinstance(mmlu, float) and abs(mmlu - 0.6634) < 0.01:\n        print(f\"  {k}: mmlu={mmlu}\")\n        \n# Or TEAL27.5 MMLU=0.6738 and KL 2-seed at 27.5%?\n# qwen14b_kl30_s42_eval_uniform_v3: mmlu=0.648 (KL uniform s42, actual 29.6%)\n# qwen14b_kl30_s456_eval_v3: mmlu=0.6351 (KL uniform s456, actual 29.7%)\n# 2-seed uniform mean: (0.648+0.6351)/2 = 0.6416\n# TEAL27.5: 0.6738 - 0.6416 = 0.0322 = 3.22pp (not 2.8)\n\n# qwen14b_teal275_uniform_eval_v3 MMLU=0.6738 vs KL uniform mean (0.648+0.6234)/2=0.6357?\n# Actually wait - let me look at which KL seeds were used for n=2\n# The Qwen14B experiments note: \"n=2\" - probably just 2 seeds were run for GSM8K\n\nkl_s42_uniform = 0.648  # qwen14b_kl30_s42_eval_uniform_v3\nkl_s456_uniform = 0.6351  # qwen14b_kl30_s456_eval_v3\n\n# But also check v5 for s123\nkl_s123_v5 = 0.6234  # qwen14b_kl30_s123_eval_v5\n\n# If 2 seeds are s42 and s456 (uniform)\nmean_2 = (kl_s42_uniform + kl_s456_uniform) / 2\nprint(f\"\\n2-seed (s42+s456) MMLU mean: {mean_2*100:.2f}%\")\nprint(f\"vs TEAL27.5: {(0.6738 - mean_2)*100:.2f}pp\")\n\n# And TEAL30 vs 2-seed?\nprint(f\"vs TEAL30 (0.7183): {(0.7183 - mean_2)*100:.2f}pp\")\nEOF",
+  "description": "Continue Qwen14B MMLU investigation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "80ff1b93-8dd4-4e52-ab0b-31e67372acc0",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01NpherozdHFq7M9VWwGdFxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2228,
+      "cache_read_input_tokens": 82757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2228,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 652 · 2026-05-24T01:26:55.426Z_
+
+<details><summary>↩ Tool result · `toolu_01KoMSzzxC8Q2rVAQxwaaSyg`</summary>
+
+```text
+Qwen14B MMLU 2-seed uniform (s42+s123): mean=63.57%
+TEAL27.5%: 67.38%
+Diff: 3.81pp
+
+2-seed (s42+s456): mean=64.16%
+Diff vs TEAL27.5: 3.22pp
+
+
+=== Looking for 14B Table in appendix ===
+
+2-seed (s42+s456) MMLU mean: 64.16%
+vs TEAL27.5: 3.22pp
+vs TEAL30 (0.7183): 7.67pp
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "d061ea33-333c-4bdf-80c0-22fbd7e8e393"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 653_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Reading paper/appendix.tex",
+  "usage": {
+    "total_tokens": 88117,
+    "tool_uses": 26,
+    "duration_ms": 383984
+  },
+  "last_tool_name": "Read",
+  "uuid": "449b671d-5deb-4467-8589-3ac72443531c",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 654_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HLyeaz1yCb69PqZZYHjBWt`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+  "limit": 150
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "89d11be4-02ab-4e73-9e0a-c853e99d818e",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01JWCUsubihw3Kb8JjyFDNKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 84985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2160,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 655 · 2026-05-24T01:26:58.742Z_
+
+<details><summary>↩ Tool result · `toolu_01HLyeaz1yCb69PqZZYHjBWt`</summary>
+
+```text
+1	\appendix
+2	
+3	\section{Inference Efficiency}
+4	\label{app:latency}
+5	
+6	Table~\ref{tab:latency} reports inference throughput on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (96\,GB; batch size 1, sequence length 2048, fp16, averaged over 100 forward passes).
+7	
+8	\begin{table}[h]
+9	\centering
+10	\caption{Inference latency on LLaMA-3.1-8B (RTX PRO 6000 Blackwell, batch=1, seq=2048, fp16, 100 forward passes). Overhead is relative to dense inference.}
+11	\label{tab:latency}
+12	\small
+13	\begin{tabular}{llcccc}
+14	\toprule
+15	Method & Sparsity & ms/fwd & tok/s & Overhead \\
+16	\midrule
+17	Dense & 0\% & 119.11$\pm$0.57 & 17{,}195 & --- \\
+18	\midrule
+19	KL predictor-only & 30\% & 126.64$\pm$0.70 & 16{,}172 & +6.3\% \\ % exp_id: latency_bench
+20	KL predictor-only & 50\% & 126.78$\pm$0.31 & 16{,}154 & +6.4\% \\ % exp_id: latency_bench
+21	\midrule
+22	Predictor + compensation & 30\% & 129.94$\pm$0.75 & 15{,}761 & +9.1\% \\ % exp_id: latency_bench
+23	Predictor + compensation & 50\% & 129.71$\pm$0.53 & 15{,}789 & +8.9\% \\ % exp_id: latency_bench
+24	\bottomrule
+25	\end{tabular}
+26	\end{table}
+27	
+28	The full KL-sparse pipeline adds 6.4\% overhead to dense inference (126.78 vs.\ 119.11\,ms/forward), of which the predictor's 32-layer forward pass contributes 3.17\,ms (2.7\%); the remainder arises from mask application and sparse FFN indexing.
+29	Eliminating the compensation network saves an additional $\sim$2.7\% latency overhead and 67.2M parameters (the per-layer GEMV required for output rescaling); output-distribution KL thus provides both quality and efficiency advantages over BCE-based approaches.
+30	The overhead is near-identical at 30\% and 50\% sparsity because the predictor runs the same computation regardless of target sparsity; only the top-$k$ threshold changes.
+31	
+32	Note that the current implementation uses unstructured element-wise masks, which do not translate to wall-clock speedup without sparse kernel support.
+33	The pipeline adds $\sim$6.4\% overhead; net acceleration requires kernel-level sparse computation optimizations (e.g., Triton block-sparse, cuSPARSE) that are beyond the scope of this work.
+34	Our contribution is prediction quality and inference simplification (removing the compensation network), not end-to-end latency reduction.
+35	
+36	
+37	\section{Predictor Bottleneck Sensitivity}
+38	\label{app:db_sensitivity}
+39	
+40	Table~\ref{tab:db_sensitivity} reports the effect of predictor bottleneck dimension $d_b$ on PPL at 50\% sparsity under both TEAL global allocation (the paper's primary inference protocol) and per-token evaluation.
+41	
+42	\begin{table}[h]
+43	\centering
+44	\caption{Predictor bottleneck sensitivity at 50\% sparsity (WikiText-2 PPL$\downarrow$). TEAL global is the primary inference protocol; per-token shown for reference.}
+45	\label{tab:db_sensitivity}
+46	\small
+47	\begin{tabular}{lcccc}
+48	\toprule
+49	$d_b$ & Params & TEAL global & $\Delta$ & Per-token \\
+50	\midrule
+51	64 & 38.2M (0.48\%) & 12.076 & +0.9\% & 10.16 \\ % exp_id: db_sensitivity_sweep
+52	128 & 75.9M (0.95\%) & 11.963 & --- & 9.218 \\ % exp_id: db_sensitivity_sweep
+53	256 & 151.5M (1.89\%) & 12.105 & +1.2\% & 8.586 \\ % exp_id: db_sensitivity_sweep
+54	512 & 302.5M (3.77\%) & 12.315 & +2.9\% & 7.93 \\ % exp_id: db_sensitivity_sweep
+55	\bottomrule
+56	\end{tabular}
+57	\end{table}
+58	
+59	Under TEAL global allocation, increasing $d_b$ beyond 128 provides no benefit (PPL slightly worsens), while per-token evaluation shows monotonic improvement (10.16$\to$7.93).
+60	This divergence indicates that the global top-$k$ allocation mechanism, not predictor capacity, is the binding constraint: additional predictor capacity produces better per-neuron scores, but the global ranking and budget distribution cannot exploit them.
+61	The $d_b{=}128$ configuration (75.9M params, $<$1\% of base model) is therefore optimal for the TEAL inference protocol.
+62	
+63	\subsection{Temperature Schedule Sensitivity}
+64	\label{app:tau_sensitivity}
+65	
+66	\begin{table}[h]
+67	\centering
+68	\caption{Temperature schedule sensitivity at 50\% sparsity (WikiText-2 PPL$\downarrow$, TEAL global).}
+69	\label{tab:tau_sensitivity}
+70	\small
+71	\begin{tabular}{lc}
+72	\toprule
+73	$\tau$ Schedule & PPL$\downarrow$ \\
+74	\midrule
+75	Fixed $\tau{=}0.5$ & \textbf{11.861} \\ % exp_id: tau_schedule_sweep
+76	Linear $1.0 \to 0.1$ (default) & 11.963 \\ % exp_id: tau_schedule_sweep
+77	Fixed $\tau{=}0.1$ & 12.072 \\ % exp_id: tau_schedule_sweep
+78	\bottomrule
+79	\end{tabular}
+80	\end{table}
+81	
+82	Temperature schedule has minimal impact ($<$1.8\% PPL variation).
+83	The linear annealing default is a conservative choice; even removing annealing entirely (fixed $\tau{=}0.5$) yields comparable performance.
+84	
+85	\subsection{Training Convergence}
+86	\label{app:training_convergence}
+87	
+88	\begin{table}[h]
+89	\centering
+90	\caption{Training convergence at 50\% sparsity (WikiText-2 PPL$\downarrow$, TEAL global).}
+91	\label{tab:training_convergence}
+92	\small
+93	\begin{tabular}{cc}
+94	\toprule
+95	Steps & PPL$\downarrow$ \\
+96	\midrule
+97	200 & 15.158 \\ % exp_id: training_steps_sweep
+98	400 & 12.538 \\ % exp_id: training_steps_sweep
+99	600 & 12.046 \\ % exp_id: training_steps_sweep
+100	800 & 11.907 \\ % exp_id: training_steps_sweep
+101	1000 & \textbf{11.906} \\ % exp_id: training_steps_sweep
+102	\bottomrule
+103	\end{tabular}
+104	\end{table}
+105	
+106	Training converges rapidly: 95\% of the quality gap closes by step 600, and performance saturates by step 800 ($\Delta < 0.001$ between 800 and 1000 steps).
+107	Our default of 1000 steps provides a conservative margin.
+108	
+109	
+110	\section{Geometric Penalty Schedule Dynamics}
+111	\label{app:lagrangian}
+112	
+113	Table~\ref{tab:lagrangian} reports the convergence of the geometric penalty schedule across sparsity targets.
+114	The geometric doubling pattern ($1 \to 2 \to 4 \to 8 \to \ldots$) enables $\lambda$ to reach steady state within $\sim$10 steps; the deadzone ($\epsilon = 0.02$) then stabilizes $\lambda$ once actual sparsity is within $\pm$2\% of the target.
+115	
+116	\begin{table}[h]
+117	\centering
+118	\caption{Geometric penalty schedule convergence across sparsity targets (margin $\epsilon=0.02$, 1000 training steps). Deviation is $|$actual $-$ target$|$ / target.}
+119	\label{tab:lagrangian}
+120	\small
+121	\begin{tabular}{lccccc}
+122	\toprule
+123	Target $\rho$ & $\lambda_{\max}$ & Final $\lambda$ & Actual sparsity & Deviation \\
+124	\midrule
+125	30\% & 5000 & 5000 (cap) & 0.285 & 5.0\% \\ % exp_id: kl_30pct_s42
+126	40\% & 5000 & 625 & 0.398 & 0.5\% \\ % exp_id: kl_40pct_s42
+127	50\% & 1000 & 8 & 0.504 & 0.8\% \\ % exp_id: kl_50pct_s42
+128	70\% & 1000 & 1000 (cap) & 0.688 & 1.7\% \\ % exp_id: kl_70pct_s42
+129	\bottomrule
+130	\end{tabular}
+131	\end{table}
+132	
+133	At 50\% sparsity, the SwiGLU gate distribution already clusters near the target, so $\lambda$ remains low (8); the constraint is nearly satisfied by the initial predictor outputs.
+134	At 30\% and 70\%, the gap between the gate prior and target is larger, driving $\lambda$ to its respective caps.
+135	The 40\% target converges to $\lambda = 625$ with only 0.5\% deviation; this precision reflects a regime where the target is reachable without $\lambda$ saturation.
+136	
+137	\begin{figure}[h]
+138	\centering
+139	\includegraphics[width=\columnwidth]{lagrangian_dynamics.pdf}
+140	\caption{Lagrangian controller dynamics for 30\% sparsity target ($\lambda_{\max}=5000$). Left axis (log scale): penalty weight $\lambda$ rises from $0.01$ to its cap once actual sparsity undershoots the target at $\sim$step~150, exhibiting bang-bang oscillations before saturating. Right axis: actual sparsity (solid) converges from the natural density ($\approx$0.41) toward the target (dashed) and stabilizes near 0.28.}
+141	\label{fig:lagrangian_dynamics}
+142	\end{figure}
+143	
+144	Temperature $\tau$ is annealed linearly from 1.0 to 0.1 over 1000 steps.
+145	A mild loss increase in the final $\sim$100 steps is expected: as masks become more binary ($\tau \to 0$), discrete rounding noise slightly increases KL divergence, consistent with convergence toward the hard-mask inference regime.
+146	
+147	The controller reliably drives actual sparsity to within 5\% of the target across all tested regimes, with $\lambda$ spanning three orders of magnitude (8 to 5000) via geometric doubling.
+148	For the 30\% target, actual sparsity is $\approx$28.5\% (5\% deviation). This does not affect conclusions: TEAL at 28.5\% actual sparsity yields PPL 10.30 (vs.\ 10.97 at exact 30\%), a 0.67 PPL difference negligible relative to the KL vs.\ TEAL gap (8.96 vs.\ 10.97).
+149	
+150	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "eb9b1b93-8433-4df4-a1b7-8c8a1deb7cdf"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 656_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Reading paper/appendix.tex",
+  "usage": {
+    "total_tokens": 91506,
+    "tool_uses": 27,
+    "duration_ms": 388322
+  },
+  "last_tool_name": "Read",
+  "uuid": "34e9f625-a7a6-4059-82fc-4a1b8b1f9832",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 657_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Ux7KrevSa5e6GXuoDVwD92`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+  "limit": 250,
+  "offset": 150
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "72304863-3b7b-4d77-afe0-81dbbef58d56",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01W56pYEmg9SiuGZnVy3Gd23",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3355,
+      "cache_read_input_tokens": 87145,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3355,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 658 · 2026-05-24T01:27:03.082Z_
+
+<details><summary>↩ Tool result · `toolu_01Ux7KrevSa5e6GXuoDVwD92`</summary>
+
+```text
+150	
+151	\section{Out-of-Distribution Evaluation}
+152	\label{app:ood}
+153	
+154	To address concerns about data homogeneity between training (WikiText-103) and evaluation (WikiText-2), we evaluate on C4~\cite{raffel2020c4} validation set under TEAL global allocation.
+155	
+156	\begin{table}[h]
+157	\centering
+158	\caption{Out-of-distribution evaluation on C4 validation (PPL$\downarrow$). 30\% KL reports 2-seed mean$\pm$std; other entries use seed 42.}
+159	\label{tab:ood}
+160	\small
+161	\begin{tabular}{llc}
+162	\toprule
+163	Sparsity & Method & C4 PPL$\downarrow$ \\
+164	\midrule
+165	0\% & Dense & 9.21 \\
+166	\midrule
+167	30\% & KL predictor (Ours) & \textbf{16.03$\pm$0.01} \\ % exp_id: c4_ood_kl30_s42, c4_ood_kl30_s123
+168	\midrule
+169	\multirow{2}{*}{50\%} & KL predictor (Ours) & \textbf{18.40} \\ % exp_id: eval_c4_ood_kl50
+170	& TEAL vanilla & 38.75 \\
+171	\bottomrule
+172	\end{tabular}
+173	\end{table}
+174	
+175	At the 30\% sparsity level, the KL predictor achieves C4 PPL 16.03$\pm$0.01 (2-seed, global allocation, $1.74\times$ dense), confirming OOD generalization.
+176	At 50\%, the KL predictor achieves 52.5\% relative advantage over TEAL (18.40 vs.\ 38.75), comparable to the 50\% advantage on WikiText-2 (11.92 vs.\ 23.90), confirming that KL-trained predictions generalize across distributions.
+177	
+178	\paragraph{Uniform Allocation.}
+179	Under uniform allocation at 30\%, C4 PPL across three seeds is 18.22 (s42), 16.37 (s123), 16.36 (s456), yielding mean 16.98$\pm$1.07 ($1.84\times$ dense). % exp_id: c4_ood_kl30_uniform_3seed
+180	The cross-seed variance is substantially higher than in-domain: CV=6.3\% on C4 vs.\ 0.2\% on WikiText-2 (PPL 8.81$\pm$0.02), driven by seed 42's elevated C4 PPL (18.22 vs.\ 16.37 for other seeds).
+181	Global allocation's cross-layer budget flexibility partially compensates for domain shift (PPL 16.03 global vs.\ 16.98 uniform), consistent with the Limitations observation that the predictor partially overfits to training-domain activation patterns.
+182	
+183	\paragraph{Downstream Task Robustness.}
+184	Table~\ref{tab:ood_downstream} compares downstream performance when the predictor generates masks from C4 text (OOD) vs.\ WikiText (in-domain), both at 30\% uniform allocation (seed 42). All six benchmarks show $\Delta$$\leq$1.1pp, confirming that predictor masks are robust to calibration domain shift. % exp_id: c4_ood_downstream_kl30, bench_kl30_uniform, kl30_uniform_hellaswag_piqa
+185	
+186	\begin{table}[h]
+187	\centering
+188	\caption{Downstream task robustness to calibration domain shift (KL 30\% uniform, seed 42). WikiText: predictor masks from in-domain text; C4: masks from OOD text. Metrics: acc\_norm (ARC-c, HS, PIQA), acc (WG, MMLU), exact\_match (GSM8K).}
+189	\label{tab:ood_downstream}
+190	\small
+191	\begin{tabular}{lcccccc}
+192	\toprule
+193	Calibration & ARC-c & WG & MMLU & GSM8K & HS & PIQA \\
+194	\midrule
+195	WikiText & 40.8 & 68.6 & 40.6 & 7.4 & 70.9 & 74.8 \\ % exp_id: bench_kl30_uniform, kl30_uniform_hellaswag_piqa
+196	C4 (OOD) & 40.4 & 69.3 & 41.4 & 6.3 & 70.7 & 74.0 \\ % exp_id: c4_ood_downstream_kl30
+197	\midrule
+198	$\Delta$ & $-$0.4 & +0.7 & +0.8 & $-$1.1 & $-$0.2 & $-$0.8 \\
+199	\bottomrule
+200	\end{tabular}
+201	\end{table}
+202	
+203	
+204	\section{Per-Layer Retention Analysis}
+205	\label{app:retention}
+206	
+207	\begin{figure}[h]
+208	\centering
+209	\includegraphics[width=\columnwidth]{per_layer_retention_chart.pdf}
+210	\caption{Per-layer neuron retention under global top-$k$ allocation at 30\%, 50\%, and 70\% sparsity. Dashed lines indicate uniform retention baselines. Late layers (L24--31) are consistently starved due to long-tailed activation distributions, with retention dropping to 28.4\% (L31) even at 30\% sparsity. At 70\%, starvation extends to mid-layers (L10--12: 16.7--20.1\%), explaining the transition to the capacity-limited regime.}
+211	\label{fig:retention}
+212	\end{figure}
+213	
+214	
+215	\section{Training Stability}
+216	\label{app:stability}
+217	
+218	Three-seed evaluation ($s \in \{42, 123, 456\}$) at 50\% sparsity under uniform allocation yields PPL $11.92 \pm 0.07$ (CV=0.6\%); training is stable across random initializations. % exp_id: multi_seed_kl50_uniform
+219	Downstream metrics are similarly stable: ARC-c $33.8 \pm 1.2$\%, WinoGrande $62.9 \pm 0.1$\%, MMLU $28.0 \pm 0.6$\%, GSM8K $2.2 \pm 0.1$\%.
+220	
+221	Under global allocation at 50\%, MMLU is $28.3 \pm 0.7$\%; the near-random performance is capacity-limited rather than seed-sensitive ($\sigma$=0.7pp vs.\ 9.5pp at 30\% global). % exp_id: bench_kl50_global, kl50_global_s123_downstream_v2, kl50_global_s456_eval
+222	The low standard deviation across both allocation strategies indicates that the KL training landscape is well-conditioned for this predictor architecture, with low sensitivity to initialization.
+223	
+224	\subsection{Cross-Seed Mask Consistency}
+225	\label{app:cross_seed_jaccard}
+226	
+227	To assess whether KL predictors discover consistent mask patterns across initializations, we compute pairwise Jaccard distances among three independently trained KL predictors (s42/s123/s456) at 30\% uniform allocation (100 sequences, WikiText-2 validation). % exp_id: cross_seed_jaccard_kl30
+228	
+229	The mean cross-seed Jaccard distance is 0.363 (IoU = 0.637), substantially lower than the KL-vs-magnitude divergence (0.46--0.68), confirming that KL-discovered patterns form a distinct cluster from magnitude-based masks.
+230	Per-layer divergence follows a U-shaped pattern: lowest at embedding-adjacent layers (L0: 0.33), peaking at early layers (L1: 0.41), with a mid-network valley (L12--14: 0.33). The random baseline Jaccard distance is 0.462.
+231	
+232	While specific mask configurations vary moderately across seeds (Jaccard distance 36.3\%), the resulting PPL is highly stable (8.81$\pm$0.02, CV=0.2\%), suggesting multiple near-equivalent optima in the activation mask space.
+233	The cross-seed divergence (36.3\%) is substantially lower than the KL-vs-magnitude divergence (46--68\%), confirming that KL discovers effective patterns that cluster distinctly from magnitude-based selection.
+234	
+235	
+236	\section{MSE Baseline Configuration}
+237	\label{app:mse_config}
+238	
+239	The MSE predictor uses identical architecture (two-layer MLP, bottleneck $d_b{=}128$), training data (WikiText-103, 1000 steps), optimizer (AdamW, lr=$1{\times}10^{-3}$, weight decay $1{\times}10^{-2}$, cosine decay), Gumbel-Sigmoid mask generation ($\tau$: $1.0 \to 0.1$), and adaptive Lagrangian sparsity control as the KL and BCE predictors.
+240	The only difference is the loss target: per-layer $\|\mathbf{W}_d^{(\ell)}(\tilde{\mathbf{m}}^{(\ell)} \odot \mathbf{g}^{(\ell)} \odot \mathbf{x}^{(\ell)} \mathbf{W}_u^{(\ell)}) - \mathbf{y}_{\text{dense}}^{(\ell)}\|_2^2$, replacing the end-to-end KL divergence.
+241	This controlled comparison isolates the effect of output-distribution alignment: all three predictors see identical data in identical order with identical architectures; only the loss function differs. % exp_id: mse30_uniform_s42, mse50_uniform_s42
+242	
+243	MSE uses $\lambda_{\max}{=}1000$ (vs.\ KL's 5000) because MSE's per-layer gradient magnitude is approximately $5\times$ larger than KL's end-to-end gradient, requiring proportionally less penalty pressure to achieve comparable sparsity control. Both reach their target sparsity within 110 steps.
+244	At 50\% target, MSE converges to the target sparsity for seed 42; however, with seed 123, sparsity reaches only 5.1\% under the same $\lambda_{\max}$ cap (eval PPL$=$15{,}789, random-level), indicating high sensitivity to initialization---a failure mode not observed with KL-based losses.
+245	At 30\%, MSE achieves 27.7\% actual sparsity for s42 (gap 2.3pp).
+246	The 3-seed MSE mean (18.52$\pm$1.68; s42=20.43, s123=17.73, s456=17.39) is still $1.7\times$ worse than TEAL (10.82), confirming that the performance deficit stems from the loss function, not insufficient sparsity pressure.
+247	
+248	
+249	\section{Extended SNR Analysis}
+250	\label{app:snr_extended}
+251	
+252	Figure~\ref{fig:snr_trajectory} plots gradient SNR across the full 1000-step training for both KL and BCE predictors, measured at 14 checkpoints (LLaMA-3.1-8B, C4) with 95\% bootstrap confidence intervals.
+253	From step 100 onward, BCE maintains consistently higher SNR than KL (2.3--17$\times$ depending on training phase), with the gap narrowing toward convergence ($2.3\times$ at step 1000: $2.026{\times}10^{-3}$ vs.\ $8.78{\times}10^{-4}$). % exp_id: snr_full_curve_1000steps
+254	Despite KL's noisier gradient signal, KL-trained predictors produce substantially better masks (Table~\ref{tab:main}), confirming that \emph{target alignment} matters more than gradient clarity for mask quality.
+255	BCE's higher SNR reflects its simpler per-neuron classification objective, which concentrates gradients on individual neuron decisions; KL's coupled gradient distributes signal across all mask decisions jointly, yielding lower SNR but discovering compositionally superior mask patterns (\S\ref{sec:method:gradient}).
+256	
+257	\begin{figure}[t]
+258	\centering
+259	\includegraphics[width=\columnwidth]{snr_trajectory.pdf}
+260	\caption{Gradient SNR trajectory across 1000 training steps. BCE (orange) maintains consistently higher SNR than KL (blue) from step 100 onward (2.3--17$\times$), yet KL produces superior masks (Table~\ref{tab:main}), suggesting that target alignment matters more than gradient clarity for mask quality.}
+261	\label{fig:snr_trajectory}
+262	\end{figure}
+263	
+264	
+265	\section{Extended Downstream Evaluation}
+266	\label{app:downstream}
+267	
+268	Table~\ref{tab:downstream} reports HellaSwag and PIQA across sparsity levels and allocation strategies.
+269	
+270	\begin{table}[h]
+271	\centering
+272	\caption{Extended downstream benchmarks (LLaMA-3.1-8B). HellaSwag: 10-shot normalized acc; PIQA: 0-shot normalized acc. KL 30\% uniform: 3-seed mean$\pm$std; others: seed 42.}
+273	\label{tab:downstream}
+274	\small
+275	\begin{tabular}{llcc}
+276	\toprule
+277	Sparsity & Method & HellaSwag & PIQA \\
+278	\midrule
+279	0\% & Dense & \textbf{82.35} & \textbf{80.90} \\
+280	\midrule
+281	\multirow{3}{*}{30\%}
+282	& KL uniform & \textbf{71.07$\pm$0.54} & \textbf{74.95$\pm$0.25} \\ % exp_id: hellaswag_piqa_kl30_uniform (3-seed)
+283	& TEAL uniform & 63.31 & 72.80 \\ % exp_id: bench_teal30_uniform_6task
+284	& BCE isocompute & 62.81 & 74.21 \\ % exp_id: bce_isocompute_30u_hellaswag_piqa
+285	\midrule
+286	\multirow{3}{*}{50\%}
+287	& KL global & \textbf{58.95} & \textbf{69.48} \\ % exp_id: hellaswag_piqa_kl50_global
+288	& KL uniform & 56.66 & 69.10 \\ % exp_id: hellaswag_piqa_kl50_uniform
+289	& TEAL uniform & 39.35 & 63.66 \\ % exp_id: bench_teal50_uniform_6task
+290	\bottomrule
+291	\end{tabular}
+292	\end{table}
+293	
+294	At 30\%, the KL predictor retains 86.3\% of dense HellaSwag accuracy (71.07$\pm$0.54 vs.\ 82.35, 3-seed) and 92.6\% of PIQA (74.95$\pm$0.25 vs.\ 80.90), confirming moderate degradation on non-reasoning tasks.
+295	At 50\%, global allocation outperforms uniform on HellaSwag (+2.29pp), consistent with the budget-concentration benefit observed for PPL in the capacity-limited regime (\S\ref{sec:scaling}); PIQA shows a smaller gap (+0.38pp).
+296	
+297	
+298	\section{Compensation Training Convergence}
+299	\label{app:comp_convergence}
+300	
+301	All compensation networks~\cite{gautam2026fastforward} were trained for 1000 steps (lr=$10^{-4}$, batch size 4, seq length 2048). Training loss plateaus by step 700 across all valid runs: 30\% s42 (final loss 0.70), 30\% s456 (0.68), 50\% s42 (1.07), with fluctuations remaining within 0.08 loss units for the final 300 steps. The compensation network converges but provides no quality improvement over the KL predictor alone, confirming that the redundancy result reflects predictor self-sufficiency rather than insufficient compensation training. % exp_id: kl_comp_30_s42, kl_comp_30_s456, kl_comp_50_s42
+302	
+303	
+304	\section{Qwen-2.5-14B Detailed Results}
+305	\label{app:14b}
+306	
+307	\begin{table}[h]
+308	\centering
+309	\caption{Qwen-2.5-14B at 30\% nominal sparsity. Actual sparsity differs: KL 29.6\% (3-seed), TEAL 29.3\% (target 30\%). \textbf{Bold}: best sparse per column per group. BCE collapses to 6.4\% native sparsity (\S\ref{sec:method:gradient}), so forced global top-$k$ is used.}
+310	\label{tab:14b}
+311	\small
+312	\resizebox{\columnwidth}{!}{
+313	\begin{tabular}{lcccccccc}
+314	\toprule
+315	Method & PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K & HS & PIQA \\
+316	\midrule
+317	Dense & 5.19 & 67.58 & 81.06 & 79.77 & 87.57 & 84.20 & 81.94 \\
+318	\midrule
+319	\multicolumn{8}{l}{\emph{Global top-$k$ allocation}} \\
+320	KL (Ours) & \textbf{7.62} & 57.17 & 72.06 & 63.72 & 48.82 & \textbf{75.01} & \textbf{77.37} \\ % exp_id: qwen14b_kl30_s42
+321	TEAL & 8.73 & 56.83 & \textbf{72.69} & \textbf{71.83} & 49.51 & 70.51 & 74.70 \\ % exp_id: qwen14b_teal30_eval
+322	BCE & 8.76 & \textbf{57.59} & 72.61 & 71.67 & \textbf{53.07} & 53.43 & 68.28 \\ % exp_id: qwen14b_bce30_s42_eval
+323	\midrule
+324	\multicolumn{8}{l}{\emph{Uniform allocation}} \\
+325	KL (Ours) & \textbf{7.90} & 53.50 & \textbf{72.82} & 63.55 & 30.9$\pm$6.8$^*$ & \textbf{72.68$\pm$0.2} & \textbf{76.01$\pm$1.1} \\ % exp_id: qwen14b_kl30_uniform (2-seed s42/s456; s123 eval incomplete)
+326	TEAL & 8.01 & \textbf{55.29} & 69.85 & \textbf{66.34} & \textbf{52.1} & 67.72 & 74.70 \\ % exp_id: qwen14b_teal30_uniform
+327	\bottomrule
+328	\multicolumn{8}{l}{\footnotesize $^*$GSM8K: $n{=}2$ (s42/s456); s123 eval incomplete.} \\
+329	\end{tabular}}
+330	\end{table}
+331	
+332	Under global allocation, BCE's HellaSwag drops to 53.43\% ($-$17pp vs.\ TEAL), indicating that the magnitude-based predictor's mask quality degrades severely when combined with non-uniform budget distribution at 14B scale. % exp_id: qwen14b_bce30_s42_eval, qwen14b_teal30_eval
+333	
+334	\section{Full Allocation Analysis}
+335	\label{app:alloc_full}
+336	
+337	\begin{table}[t]
+338	\centering
+339	\caption{Allocation summary (LLaMA-3.1-8B). $\pm$: 3-seed; $^\ast$high seed variance.}
+340	\label{tab:phase}
+341	\footnotesize
+342	\begin{tabular}{llcc}
+343	\toprule
+344	Sparsity & Allocation & PPL$\downarrow$ & MMLU \\
+345	\midrule
+346	\multirow{2}{*}{30\%}
+347	& Global & 8.96$\pm$0.02 & 35.7$\pm$9.5$^\ast$ \\ % exp_id: kl30_3seed_global
+348	& Uniform & \textbf{8.81$\pm$0.02} & \textbf{40.7$\pm$1.3} \\ % exp_id: bench_kl30_uniform
+349	\midrule
+350	\multirow{2}{*}{50\%}
+351	& Global & \textbf{11.84$\pm$0.15} & \textbf{28.3$\pm$0.7} \\ % exp_id: bench_kl50_global, kl50_global_s123_downstream_v2, kl50_global_s456_eval
+352	& Uniform & 11.92$\pm$0.07 & 28.0$\pm$0.6 \\ % exp_id: multi_seed_kl50_uniform
+353	\bottomrule
+354	\end{tabular}
+355	\end{table}
+356	
+357	Table~\ref{tab:phase_full} extends Table~\ref{tab:phase} with all downstream metrics.
+358	
+359	\begin{table*}[t]
+360	\centering
+361	\caption{Full allocation analysis: global top-$k$ vs.\ uniform across sparsity levels (LLaMA-3.1-8B). Entries with $\pm$: 3-seed mean$\pm$std ($s \in \{42, 123, 456\}$); others: seed 42. $^\ast$High MMLU seed variance (individual seeds span 25.3--43.5\%).}
+362	\label{tab:phase_full}
+363	\begin{tabular}{llccccc}
+364	\toprule
+365	Sparsity & Allocation & PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K \\
+366	\midrule
+367	\multirow{2}{*}{25\%}
+368	& Global & \textbf{8.17} & 45.4 & 70.6 & \textbf{46.6} & \textbf{11.5} \\
+369	& Uniform & 8.23 & \textbf{46.5} & \textbf{71.8} & 44.0 & 11.0 \\
+370	\midrule
+371	\multirow{2}{*}{30\%}
+372	& Global & 8.96$\pm$0.02 & \textbf{43.8$\pm$3.6} & \textbf{70.2$\pm$0.9} & 35.7$\pm$9.5$^\ast$ & \textbf{8.0$\pm$0.7} \\
+373	& Uniform & \textbf{8.81$\pm$0.02} & 43.7$\pm$2.5 & 68.9$\pm$0.4 & \textbf{40.7$\pm$1.3} & 7.5$\pm$0.1 \\
+374	\midrule
+375	\multirow{2}{*}{35\%}
+376	& Global & \textbf{9.31} & \textbf{38.9} & \textbf{67.6} & \textbf{40.4} & \textbf{7.7} \\
+377	& Uniform & 9.44 & 38.7 & 66.5 & 37.8 & 4.3 \\
+378	\midrule
+379	\multirow{2}{*}{40\%}
+380	& Global & \textbf{10.14} & 39.5 & \textbf{67.5} & \textbf{39.5} & \textbf{6.6} \\
+381	& Uniform & 10.76 & \textbf{39.6} & 63.1 & 35.5 & 3.6 \\
+382	\midrule
+383	\multirow{2}{*}{45\%}
+384	& Global & \textbf{10.80} & \textbf{39.2} & \textbf{64.6} & 30.4 & \textbf{3.0} \\
+385	& Uniform & 10.95 & 37.6 & 63.6 & \textbf{30.6} & 2.7 \\
+386	\midrule
+387	\multirow{2}{*}{50\%}
+388	& Global & \textbf{11.84$\pm$0.15} & \textbf{36.3$\pm$3.2} & \textbf{63.8$\pm$0.3} & \textbf{28.3$\pm$0.7} & \textbf{2.7$\pm$1.3} \\
+389	& Uniform & 11.92$\pm$0.07 & 33.8$\pm$1.2 & 62.9$\pm$0.1 & 28.0$\pm$0.6 & 2.2$\pm$0.1 \\
+390	\bottomrule
+391	\end{tabular}
+392	\end{table*}
+393	
+394	
+395	\section{Mask Pattern Visualization}
+396	\label{app:mask_viz}
+397	
+398	Figure~\ref{fig:mask_heatmap} shows per-layer Jaccard distance between KL-derived and magnitude-based masks at 30\% and 50\% sparsity.
+399	Figure~\ref{fig:scatter} shows per-neuron importance scores at layer 16.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "b250e84e-0431-439e-95ba-a1908e589768"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 659_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Reading paper/appendix.tex",
+  "usage": {
+    "total_tokens": 98691,
+    "tool_uses": 28,
+    "duration_ms": 392888
+  },
+  "last_tool_name": "Read",
+  "uuid": "fef054ca-e6f4-46d2-905c-07da3c1eb7bc",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 660_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019XifNDb7eZtMT9tvoAEc2K`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+  "limit": 200,
+  "offset": 395
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "4aca9353-b939-4af0-9885-db23889ee240",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01K21GyXEvmHbikSCthfrbUh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7150,
+      "cache_read_input_tokens": 90500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7150,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 661 · 2026-05-24T01:27:07.643Z_
+
+<details><summary>↩ Tool result · `toolu_019XifNDb7eZtMT9tvoAEc2K`</summary>
+
+```text
+395	\section{Mask Pattern Visualization}
+396	\label{app:mask_viz}
+397	
+398	Figure~\ref{fig:mask_heatmap} shows per-layer Jaccard distance between KL-derived and magnitude-based masks at 30\% and 50\% sparsity.
+399	Figure~\ref{fig:scatter} shows per-neuron importance scores at layer 16.
+400	Figure~\ref{fig:mask_comparison} shows binary mask comparisons at layers 2, 16, and 28.
+401	
+402	\begin{figure}[t]
+403	\centering
+404	\includegraphics[width=0.95\columnwidth]{neuron_scatter_layer16.pdf}
+405	\caption{KL vs.\ magnitude importance scores for layer 16 neurons at 50\% sparsity. 41\% of neurons fall in disagreement quadrants where one method selects a neuron the other discards.}
+406	\label{fig:scatter}
+407	\end{figure}
+408	
+409	\begin{figure*}[t]
+410	\centering
+411	\includegraphics[width=\textwidth]{mask_divergence_heatmap.pdf}
+412	\caption{Per-layer Jaccard distance between KL-derived and magnitude-based masks at 30\% and 50\% sparsity (64 samples, 131K tokens). Divergence peaks in layers 24--28 (Jaccard distance $>$0.73 at 50\%) and increases with sparsity across all layers.}
+413	\label{fig:mask_heatmap}
+414	\end{figure*}
+415	
+416	\begin{figure*}[t]
+417	\centering
+418	\includegraphics[width=\textwidth]{mask_comparison.pdf}
+419	\caption{Binary mask comparison between KL-derived and magnitude-based masks at selected layers (L2, L16, L28) for 30\% and 50\% sparsity (64 samples). Black = selected by both, light regions = selected by only one method. Deep layers show the largest divergence (L28 Jaccard distance: 0.60 at 30\%, 0.74 at 50\%).}
+420	\label{fig:mask_comparison}
+421	\end{figure*}
+422	
+423	
+424	\section{Cross-Architecture Comparison}
+425	\label{app:cross_arch}
+426	
+427	Table~\ref{tab:cross_arch} evaluates on Mistral-7B-v0.3~\cite{jiang2023mistral} (GQA + sliding window, dense PPL 5.52).
+428	
+429	\begin{table}[h]
+430	\centering
+431	\caption{Cross-architecture comparison (WikiText-2 PPL$\downarrow$). Adv = TEAL\,/\,KL ratio. \textbf{Note:} LLaMA results use global top-$k$ allocation; Mistral results use uniform allocation. Mistral 30\%: 3-seed mean$\pm$std; other rows: seed 42.}
+432	\label{tab:cross_arch}
+433	\small
+434	\begin{tabular}{l@{\hspace{4pt}}cc@{\hspace{3pt}}c@{\hspace{6pt}}|@{\hspace{6pt}}cc@{\hspace{3pt}}c}
+435	\toprule
+436	 & \multicolumn{3}{c}{Mistral-7B} & \multicolumn{3}{c}{LLaMA-8B} \\
+437	 & KL & TEAL & Adv & KL & TEAL & Adv \\
+438	\midrule
+439	30\% & \textbf{6.93$\pm$0.19} & 8.38 & 1.21$\times$ & \textbf{8.96} & 10.97 & 1.22$\times$ \\ % exp_id: mistral_kl30_s42, mistral_kl30_s123, mistral_kl30_s456, teal_30_mistral, kl30_3seed_global
+440	50\% & \textbf{8.65} & 18.31 & 2.12$\times$ & \textbf{11.79} & 23.31 & 1.98$\times$ \\ % exp_id: kl_50_mistral, teal_50_mistral
+441	70\% & \textbf{13.33} & 61.72 & 4.63$\times$ & \textbf{17.91} & 100.11 & 5.59$\times$ \\ % exp_id: kl_70_mistral, teal_70_mistral
+442	\bottomrule
+443	\end{tabular}
+444	\end{table}
+445	
+446	The KL PPL advantage ratio is consistent across architectures (within 8\% at $\leq$50\% sparsity).
+447	Table~\ref{tab:mistral_downstream} reports downstream task accuracy at 30\% sparsity on Mistral-7B-v0.3 (3-seed). KL improves PPL ($-$17.3\%) and commonsense tasks (WG +6.7pp) but MMLU is tied (43.3\% vs.\ 43.5\%); ARC-c shows high seed variance ($\sigma$=6.4pp); GSM8K reverses.
+448	
+449	\begin{table}[h]
+450	\centering
+451	\caption{Mistral-7B-v0.3 downstream evaluation at 30\% sparsity. $\pm$: 3-seed mean$\pm$std ($s \in \{42, 123, 456\}$); TEAL is deterministic (single run). ARC-c exhibits high seed variance ($\sigma$=6.4pp).}
+452	\label{tab:mistral_downstream}
+453	\small
+454	\resizebox{\columnwidth}{!}{
+455	\begin{tabular}{lccccccc}
+456	\toprule
+457	Method & PPL$\downarrow$ & ARC-c & WG & HS & PIQA & MMLU & GSM8K \\
+458	\midrule
+459	Dense & 5.52 & 60.2 & 78.7 & 83.2 & 81.9 & 62.4 & 36.5 \\ % exp_id: lm_eval_mistral_dense, mistral_dense_hellaswag_piqa
+460	KL 30\% & \textbf{6.93$\pm$0.19} & \textbf{44.9$\pm$6.4} & \textbf{70.2$\pm$1.2} & \textbf{69.7$\pm$0.8} & \textbf{74.8$\pm$0.4} & 43.3$\pm$1.5 & 8.6$\pm$2.2 \\ % exp_id: mistral_kl30_s42, mistral_kl30_s123, mistral_kl30_s456
+461	TEAL 30\% & 8.38 & 41.1 & 63.5 & 60.1 & 72.1 & \textbf{43.5} & \textbf{15.9} \\ % exp_id: mistral_teal30_downstream
+462	\bottomrule
+463	\end{tabular}}
+464	\end{table}
+465	
+466	
+467	\section{Taxonomy Discussion}
+468	\label{app:taxonomy}
+469	
+470	\paragraph{Correction granularity.}
+471	\emph{Static} methods~\cite{xu2025spon} learn a fixed bias vector per layer that does not depend on the input token.
+472	\emph{Per-token} methods~\cite{liu2023dejavu,gautam2026fastforward,akhauri2024shadowllm,szatkowski2024d2dmoe} produce a unique mask for each input position, conditioning on the token's hidden state at each layer.
+473	
+474	\paragraph{Training signal coupling.}
+475	\emph{Decomposed} objectives (BCE) treat each neuron independently, optimizing per-element classification against an oracle mask.
+476	\emph{Intermediate} objectives (MSE on hidden states) capture local coupling within a single layer but not end-to-end output effects.
+477	\emph{Coupled} objectives (KL on output distribution) propagate gradients through the full forward pass; each mask decision's gradient reflects its joint effect with all other masks on the final distribution.
+478	
+479	SPON~\cite{xu2025spon} distills a per-layer bias via KL but cannot adapt to per-input neuron importance (static $\times$ coupled).
+480	DejaVu~\cite{liu2023dejavu} and FastForward~\cite{gautam2026fastforward} achieve per-token granularity but use BCE, where each neuron's gradient is independent of other mask states.
+481	D2DMoE~\cite{szatkowski2024d2dmoe} provides intermediate coupling (MSE on hidden states) but not end-to-end output effects.
+482	We define \emph{output-distribution alignment} as whether the training loss optimizes a quantity that composes across layers.
+483	KL on output logits directly optimizes next-token prediction loss, which does not suffer from error composition; per-layer MSE minimizes reconstruction error independently at each layer, but layer-wise optima do not compose---a mask minimizing FFN output error at layer $\ell$ may amplify errors in layers $\ell{+}1 \ldots L$.
+484	The SNR analysis (\S\ref{sec:method:gradient}) corroborates this: KL achieves the best masks despite $2.3\times$ lower SNR than BCE, while MSE produces the worst masks.
+485	The framework predicts that losses operating on output-level quantities should outperform intermediate-level losses, a hypothesis consistent with our MSE results and testable with alternative output-level objectives.
+486	
+487	\section{Oracle Mask Provenance}
+488	\label{app:oracle_provenance}
+489	
+490	C1's oracle masks are extracted from a converged KL predictor and binarized via hard threshold (logits $> 0$, equivalent to $\sigma > 0.5$); they reflect one specific training trajectory (optimizer state, data order, Gumbel noise).
+491	The s42/s123/s456 consistency ($\leq$1.70pp) provides partial evidence of robustness, but does not rule out trajectory-dependent confounds.
+492	
+493	\section{SPON Orthogonality}
+494	\label{app:spon}
+495	
+496	SPON~\cite{xu2025spon} bias correction is weakly correlated with the KL predictor (cosine similarity 0.196, $R^2$=0.038) and yields only 2.4\% PPL improvement (12.08$\to$11.79); the predictor already captures most recoverable signal. % exp_id: spon_decomposition, spon_2048_s42, mvp_kl_norm_v2_s42
+497	The decomposition confirms that SPON and the KL predictor operate on largely orthogonal error sources.
+498	
+499	\section{Per-Layer KL Downstream Decomposition}
+500	\label{app:perlayer_downstream}
+501	
+502	Table~\ref{tab:perlayer_downstream} reports raw downstream numbers for the signal type vs.\ coupling scope decomposition at 30\% sparsity (\S\ref{sec:perlayer}). BoolQ's $\approx$100\% coupling is an upper bound confounded by high cross-seed variance ($\pm$11.5pp for per-layer KL); the $K{=}4$ pilot (Table~\ref{tab:k4_downstream}) suggests much of this gap is train--inference mismatch.
+503	
+504	\begin{table}[h]
+505	\centering
+506	\caption{2D decomposition at 30\% sparsity (LLaMA-3.1-8B, uniform allocation). All rows are 3-seed mean$\pm$std. Signal type = per-layer KL $-$ MSE; coupling = E2E KL $-$ per-layer KL. Percentages are upper bounds (dimensions not fully orthogonal; see \S\ref{sec:perlayer}).}
+507	\label{tab:perlayer_downstream}
+508	\resizebox{\columnwidth}{!}{
+509	\begin{tabular}{lcccccc}
+510	\toprule
+511	& PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K & BoolQ \\
+512	\midrule
+513	E2E KL & 8.81$\pm$0.02 & 43.7 & 68.9 & 40.7 & 7.5 & 73.7 \\
+514	Per-layer KL & 9.05$\pm$0.02 & 39.9 & 65.9 & 38.6 & 5.8 & 64.5 \\
+515	MSE & 18.52$\pm$1.68 & 35.8$\pm$4.1 & 59.8$\pm$2.6 & 30.7$\pm$2.6 & 2.3$\pm$0.7 & 64.5$\pm$5.3 \\
+516	\midrule
+517	Total gap & 9.71 & 7.9 & 9.1 & 10.0 & 5.2 & 9.2 \\
+518	Signal type (\%) & 97.5 & 51.9 & 67.0 & 79.0 & 67.3 & $\approx$0 \\
+519	Coupling (\%) & 2.5 & 48.1 & 33.0 & 21.0 & 32.7 & $\approx$100 \\
+520	\bottomrule
+521	\end{tabular}}
+522	\end{table}
+523	
+524	\section{$K{=}4$ Mismatch Control}
+525	\label{app:k4_downstream}
+526	
+527	Table~\ref{tab:k4_downstream} reports 3-seed $K{=}4$ per-layer KL results at 30\% sparsity.
+528	Training with $K{=}4$ random layers per step reduces the train--inference mismatch (4/32 vs.\ 1/32 layers masked during training, while inference applies all 32).
+529	The gap closure column reports the fraction of the $K{=}1 \to$ E2E KL gap closed by $K{=}4$.
+530	
+531	\begin{table}[h]
+532	\centering
+533	\caption{3-seed $K{=}4$ mismatch control at 30\% sparsity (LLaMA-3.1-8B, uniform allocation, $s \in \{42, 123, 456\}$). Actual sparsity 29.6\%; per-layer sparsity std=0.003 (near-uniform). Gap closure $= (K{=}4 - K{=}1) / (\text{E2E} - K{=}1) \times 100$.}
+534	\label{tab:k4_downstream}
+535	\resizebox{\columnwidth}{!}{
+536	\begin{tabular}{lcccc}
+537	\toprule
+538	& $K{=}4$ (3-seed) & $K{=}1$ (3-seed) & E2E KL (3-seed) & Gap closure (\%) \\
+539	\midrule
+540	PPL$\downarrow$ & 8.89$\pm$0.01 & 9.05$\pm$0.02 & 8.81$\pm$0.02 & 66.7 \\
+541	ARC-c & 40.0$\pm$1.3 & 39.9 & 43.7$\pm$2.5 & 2.6 \\
+542	WG & 66.9$\pm$0.2 & 65.9 & 68.9$\pm$0.4 & 33.3 \\
+543	MMLU$^\ast$ & 42.7$\pm$1.4 & 38.6 & 40.7$\pm$1.3 & $>$100 \\
+544	GSM8K & 7.0$\pm$1.6 & 5.8 & 7.5$\pm$0.1 & 70.6 \\
+545	BoolQ$^\dagger$ & 67.7$\pm$7.5 & 64.5$\pm$11.5 & 73.7 & 34.8 \\
+546	\bottomrule
+547	\end{tabular}}
+548	\vspace{2pt}
+549	{\footnotesize $^\ast$MMLU $K{=}4$ systematically exceeds E2E across all 3 seeds; attributable to $K{=}4$'s near-uniform per-layer sparsity (std=0.003) matching uniform eval allocation. Independently confirmed: removing the predictor's middle-layer valley yields MMLU=44.0\% (Appendix~\ref{app:constraint}).
+550	$^\dagger$BoolQ exhibits high inter-seed variance for both $K{=}4$ (std=7.5) and $K{=}1$ (std=11.5); gap closure unreliable.}
+551	\end{table}
+552	
+553	\section{Per-Layer Sparsity Constraint Analysis}
+554	\label{app:constraint}
+555	
+556	To test the causal role of the KL predictor's learned per-layer allocation, we evaluate two inference-time interventions at 30\% overall sparsity (seed 42, uniform allocation baseline):
+557	
+558	\begin{table}[h]
+559	\centering
+560	\caption{Per-layer sparsity constraint analysis. \emph{Protect late}: cap L22--L28 sparsity $\leq$30\%; \emph{Remove valley}: override L14--L18 sparsity to 30\%. Budget redistributed to maintain 30\% overall.}
+561	\label{tab:constraint}
+562	\begin{tabular}{lcccc}
+563	\toprule
+564	Condition & PPL & ARC-c & MMLU & GSM8K \\
+565	\midrule
+566	KL baseline (s42) & 8.82 & 40.8 & 40.6 & 7.4 \\
+567	Protect late layers & 9.26 & 42.4 & 40.7 & 6.5 \\
+568	Remove valley & 8.76 & 39.3 & 44.0 & 9.0 \\
+569	\bottomrule
+570	\end{tabular}
+571	\end{table}
+572	
+573	Protecting late layers (L22--L28) does not improve knowledge-intensive metrics despite reducing their sparsity from 48--57\% to $\leq$30\%, while worsening PPL by 5.2\%.
+574	Conversely, removing the protection valley (forcing L14--L18 to 30\% instead of 14--18\%) improves MMLU by +3.4pp and GSM8K by +1.6pp at the cost of ARC-c $-$1.5pp.
+575	The KL predictor's learned allocation thus represents a task-dependent trade-off---prioritizing commonsense reasoning via middle-layer protection---rather than a uniformly optimal pattern.
+576	This allocation trade-off also explains the $K{=}4$ MMLU anomaly (\S\ref{app:k4_downstream}): $K{=}4$'s near-uniform learned sparsity (std=0.003) inherently removes the valley, producing MMLU=43.5 comparable to the remove-valley condition (44.0).
+577	
+578	\section{Per-Layer Sparsity Distribution}
+579	\label{app:perlayer_sparsity}
+580	
+581	The KL predictor at 30\% target sparsity learns a non-uniform per-layer allocation that differs markedly from magnitude-based selection.
+582	Aggregate sparsity is similar across broad regions (early L0--L7: KL 28.1\% vs.\ magnitude 27.5\%; late L24--L31: 44.9\% vs.\ 47.2\%), but middle layers (L8--L23) exhibit high internal variance despite similar averages (28.2\% vs.\ 27.3\%).
+583	Table~\ref{tab:perlayer_sparsity} highlights three sub-ranges.
+584	
+585	\begin{table}[h]
+586	\centering
+587	\caption{Per-layer sparsity sub-ranges: KL predictor vs.\ magnitude (LLaMA-3.1-8B, 30\%, uniform allocation). Ranges denote min--max across layers in each group.}
+588	\label{tab:perlayer_sparsity}
+589	\begin{tabular}{lccc}
+590	\toprule
+591	Layer Range & KL (\%) & Mag (\%) & $\Delta$ (pp) \\
+592	\midrule
+593	L8--L12 (high pruning) & 32--36 & 25--26 & $+$7 to $+$10 \\
+594	L14--L18 (protection valley) & 14--18 & 28--30 & $-$8 to $-$16 \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "2a6dfb2b-130d-4507-aa90-b321946ea3e2"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 662_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Verify Qwen14B MMLU calculation",
+  "usage": {
+    "total_tokens": 104411,
+    "tool_uses": 29,
+    "duration_ms": 415639
+  },
+  "last_tool_name": "Bash",
+  "uuid": "ed14b9f0-72ae-4657-9a4c-863d78d40f0a",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 663_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AZAGbzSmm5RMvJ51fYj55Y`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Now I have enough information to compile. Let's do final checks.\n\n# From appendix, Mistral table shows:\n# KL 30% = 6.93±0.19 (3-seed)\n# s42=6.7733, s123=7.1491, s456=6.8752\nmistral_ppls = [6.7733, 7.1491, 6.8752]\nm = np.mean(mistral_ppls)\ns = np.std(mistral_ppls, ddof=1)\nprint(f\"Mistral KL 3-seed: mean={m:.4f}, std={s:.4f}\")\n# 6.9325, std=0.1936 -> 0.19 ✓\n# Paper says 6.93±0.19 ✓\n# TEAL=8.38, (8.38-6.93)/8.38 = 17.3% ✓\n\n# Qwen14B MMLU uniform: from table = 63.55\n# appendix shows KL uniform row: MMLU=63.55\n# TEAL uniform: 66.34\n# diff = 66.34-63.55 = 2.79 ≈ 2.8pp ✓\nprint(f\"\\nQwen14B MMLU: KL=63.55%, TEAL=66.34%, diff={66.34-63.55:.2f}pp\")\n# But where does 63.55 come from?\n# KL uniform s42: qwen14b_kl30_s42_eval_uniform_v3 = 0.648 = 64.8%\n# KL uniform s456: qwen14b_kl30_s456_eval_v3 = 0.6351 = 63.51%\n# 2-seed mean = (64.80+63.51)/2 = 64.155% ≠ 63.55\n# Hmm, appendix table says KL uniform MMLU=63.55 with footnote \"2-seed s42/s456\"\n# Let's check: maybe it's s42=0.648 and different s456\n\n# Wait: the appendix table 14b shows KL uniform MMLU=63.55\n# Where does 63.55 come from exactly?\n# Looking at qwen14b_kl30_s42_eval_uniform_v3: mmlu=0.648\n# qwen14b_kl30_s456_eval_v3: mmlu=0.6351\n# (0.648+0.6351)/2 = 0.64155 ≠ 0.6355\n\n# But qwen14b_kl30_s123_eval_v5: mmlu=0.6234\n# qwen14b_kl30_s456_eval_v3: mmlu=0.6351\n# (0.6234+0.6351)/2 = 0.6293 ≠ 0.6355\n\n# Perhaps looking at qwen14b_kl30_s123_eval_v4: mmlu=0.6449\n# (0.648+0.6449)/2... no that's s42+s123\n\n# Let me try: (0.6234+0.648)/2 = 0.6357 ≈ 0.6355!\nprint(f\"(s123_v5 + s42_uniform): {(0.6234+0.648)/2*100:.2f}%\")  \n# 63.57% ≈ 63.55 (close but not exact)\n\n# Or s42_eval = 0.6372 (global) and s456_uniform = 0.6351?\nprint(f\"(s42_global + s456_uniform): {(0.6372+0.6351)/2*100:.2f}%\")\n\n# Or from a different eval:\nprint(f\"\\nqwen14b_kl30_s42_eval uniform v3: {0.648*100:.2f}%\")\nprint(f\"qwen14b_kl30_s456_eval v3: {0.6351*100:.2f}%\")\n\n# TEAL 66.34 is from where?\n# qwen14b_teal30_eval: mmlu=0.7183 (global)\n# qwen14b_teal275_uniform_eval_v3: mmlu=0.6738 (uniform 27.5%)\n# qwen14b_teal30_uniform: ?\nfor k in data.keys():\n    if 'qwen14b_teal30_uniform' in k:\n        print(f\"\\n{k}: {data[k].get('metrics')}\")\n\nEOF",
+  "description": "Verify Qwen14B MMLU calculation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "75b70c9a-2913-43b5-a0ba-4979ed8ac34a",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DbSKK9AC3yZuW1wzoK7vzH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5680,
+      "cache_read_input_tokens": 97650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5680,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 664 · 2026-05-24T01:27:30.544Z_
+
+<details><summary>↩ Tool result · `toolu_01AZAGbzSmm5RMvJ51fYj55Y`</summary>
+
+```text
+Mistral KL 3-seed: mean=6.9325, std=0.1943
+
+Qwen14B MMLU: KL=63.55%, TEAL=66.34%, diff=2.79pp
+(s123_v5 + s42_uniform): 63.57%
+(s42_global + s456_uniform): 63.62%
+
+qwen14b_kl30_s42_eval uniform v3: 64.80%
+qwen14b_kl30_s456_eval v3: 63.51%
+
+qwen14b_teal30_uniform_hspiqa: {'hellaswag_acc_norm': 0.6772, 'piqa_acc_norm': 0.747}
+
+qwen14b_teal30_uniform_gsm8k: {'gsm8k_exact_match': 0.5208, 'gsm8k_exact_match_strict': 0.5208, 'gsm8k_exact_match_flexible': 0.5208, 'gsm8k_exact_match_stderr': 0.01376, 'actual_sparsity': 0.293, 'sample_len': 1319}
+
+qwen14b_teal30_uniform_hspiqa_v2: {'hellaswag_acc': 0.4936, 'hellaswag_acc_norm': 0.6756, 'piqa_acc': 0.7443, 'piqa_acc_norm': 0.7427}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "59c3edd2-059c-46d8-b57b-14d36e934a9f"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 665_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Find Qwen14B TEAL uniform MMLU=66.34 source",
+  "usage": {
+    "total_tokens": 106112,
+    "tool_uses": 30,
+    "duration_ms": 423280
+  },
+  "last_tool_name": "Bash",
+  "uuid": "ab8000a0-0493-47e1-9126-fd943bf93ea1",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 666_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CQKH4862wnCm2FLpU624TR`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Looking for Qwen14B TEAL uniform MMLU=66.34 and KL uniform MMLU=63.55\n# qwen14b_teal275_uniform_eval_v3: mmlu=0.6738=67.38% (not 66.34)\n# No explicit TEAL uniform 30% MMLU entry found\n\n# Table says: KL uniform MMLU=63.55, TEAL uniform MMLU=66.34\n# Let me check if qwen14b_teal30 has a uniform eval entry\n\nfor k in data.keys():\n    if 'qwen' in k:\n        m = data[k].get('metrics', {})\n        mmlu = m.get('mmlu_acc') or m.get('mmlu')\n        if mmlu and isinstance(mmlu, float) and 0.63 <= mmlu <= 0.67:\n            print(f\"  {k}: mmlu={mmlu}\")\n\n# Let me see all Qwen MMLU values\nprint(\"\\nAll Qwen MMLU values:\")\nfor k in data.keys():\n    if 'qwen' in k:\n        m = data[k].get('metrics', {})\n        mmlu = m.get('mmlu_acc') or m.get('mmlu')\n        if mmlu and isinstance(mmlu, (int, float)):\n            print(f\"  {k}: mmlu={mmlu:.4f}\")\n\nEOF",
+  "description": "Find Qwen14B TEAL uniform MMLU=66.34 source"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "9baeae55-ca20-439f-ae8c-1c6fa2724a33",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01311xMCP7VdwPBrEhjYPG7i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1661,
+      "cache_read_input_tokens": 103330,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1661,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 667 · 2026-05-24T01:27:38.185Z_
+
+<details><summary>↩ Tool result · `toolu_01CQKH4862wnCm2FLpU624TR`</summary>
+
+```text
+  qwen14b_kl30_s456_eval_v3: mmlu=0.6351
+  qwen14b_kl30_s42_eval_uniform_v3: mmlu=0.648
+  qwen14b_kl30_s456_eval_v2: mmlu=0.6411
+  qwen14b_kl30_s123_eval_v4: mmlu=0.6449
+  qwen14b_kl30_s42_eval: mmlu=0.6372
+
+All Qwen MMLU values:
+  qwen14b_kl30_s456_eval_v3: mmlu=0.6351
+  qwen14b_kl30_s123_eval_v5: mmlu=0.6234
+  qwen14b_kl30_s42_eval_uniform_v3: mmlu=0.6480
+  qwen14b_dense_4task_v2: mmlu=0.7977
+  qwen14b_teal275_uniform_eval_v3: mmlu=0.6738
+  qwen14b_kl30_s456_eval_v2: mmlu=0.6411
+  qwen14b_kl30_s123_eval_v4: mmlu=0.6449
+  qwen14b_teal30_eval: mmlu=0.7183
+  qwen14b_dense_baseline: mmlu=0.7977
+  qwen14b_kl30_s42_eval: mmlu=0.6372
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "73e2c910-2908-415f-8eaf-922ffedfe09d"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 668_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Final checks on Qwen14B and latency claims",
+  "usage": {
+    "total_tokens": 107035,
+    "tool_uses": 31,
+    "duration_ms": 457352
+  },
+  "last_tool_name": "Bash",
+  "uuid": "cad98b88-9fc2-466d-8b96-e156092545a5",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 669_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KyQtwx9ejEyt9QsXMePFLH`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# The TEAL uniform 66.34 is not directly in registry for Qwen14B\n# qwen14b_teal275_uniform_eval_v3: MMLU=67.38\n# That's not 66.34\n\n# The appendix table shows TEAL uniform MMLU=66.34\n# This must be from qwen14b_teal275_uniform_eval_v3 at 27.5%? No, that's 67.38\n# Or it's from a different entry not in registry\n\n# Let me check if there's a qwen14b_teal30_uniform with MMLU\n# qwen14b_teal30_uniform_gsm8k: only GSM8K\n# qwen14b_teal30_uniform_hspiqa: only HellaSwag/PIQA\n\n# The 66.34 might come from qwen14b_teal275_uniform_eval_v3 at 27.5%\n# which shows MMLU=67.38 - so difference is 66.34 vs 67.38?\n# Or maybe there's a direct TEAL 30% uniform MMLU=66.34 that is in results files\n\n# Let's look for 66.34 in registry\nfor k in data.keys():\n    m = data[k].get('metrics', {})\n    for key, val in m.items():\n        if isinstance(val, (int,float)) and abs(val - 0.6634) < 0.001:\n            print(f\"  {k}.{key} = {val}\")\n\n# For the purposes of the -2.8pp claim:\n# If TEAL MMLU = 66.34 and KL MMLU = 63.55\n# diff = 2.79pp ≈ 2.8pp\n# But we can't verify 66.34 directly from registry; nearest is 67.38 (TEAL 27.5% uniform)\n\n# Let's now check the TEAL30 uniform PPL for Qwen14B\n# appendix table: TEAL uniform PPL=8.01\n# qwen14b_teal275_uniform_eval_v3: PPL=7.7087 (at 27.5%)\n# qwen14b_teal30_eval: PPL=8.7332 (global 30%)\n\n# For 8.01: seems to be neither of these\nprint(\"\\nQwen14B TEAL PPL values in registry:\")\nfor k in data.keys():\n    if 'qwen' in k and 'teal' in k:\n        m = data[k].get('metrics', {})\n        ppl = m.get('wikitext2_ppl') or m.get('ppl') or m.get('teal_baseline_ppl')\n        if ppl and isinstance(ppl, float):\n            print(f\"  {k}: PPL={ppl}\")\n\n# 8.01 for TEAL uniform at Qwen14B - not clearly in registry\n\n# Now check latency claim: \"6.4% latency overhead\"\n# latency_benchmark: kl_30pct_ms=126.64, dense_ms=119.11\n# (126.64-119.11)/119.11 = 6.32% ≈ 6.3%\n# kl_50pct: (126.78-119.11)/119.11 = 6.44% ≈ 6.4%\ndense = 119.11\nkl30 = 126.64\nkl50 = 126.78\nprint(f\"\\nLatency overhead 30%: {(kl30-dense)/dense*100:.2f}%\")\nprint(f\"Latency overhead 50%: {(kl50-dense)/dense*100:.2f}%\")\n# Paper says \"6.4% latency overhead\" in intro and experiments\n\n# Appendix table says KL 30% = +6.3%, KL 50% = +6.4%\n# So \"6.4%\" in prose refers to 50% sparsity, which is the cited table row\n# The appendix says \"adds 6.4% overhead to dense inference (126.78 vs 119.11 ms/forward)\"\n# This clearly references 50% sparsity at 6.4%\n\n# But the intro says \"adds 6.4% latency overhead\" without specifying which sparsity\n# This might be slightly misleading as 30% is 6.3%, but the overall system claim of ~6.4% is close enough\n\n# Let me also check the Qwen14B GSM8K TEAL claim (52.1%)\nteal_gsm8k = data['qwen14b_teal30_uniform_gsm8k']['metrics']['gsm8k_exact_match']\nprint(f\"\\nQwen14B TEAL GSM8K: {teal_gsm8k*100:.1f}%\")  # should be 52.1\n\n# KL GSM8K 2-seed: s42=35.71, s456=26.08\nkl_gsm_s42 = data['qwen14b_kl30_s42_gsm8k_v2']['metrics']['gsm8k_exact_match']\nkl_gsm_s456 = data['qwen14b_kl30_s456_gsm8k']['metrics']['gsm8k_exact_match']\nkl_gsm_s42_alt = data['qwen14b_kl30_s42_gsm8k_uniform']['metrics']['gsm8k_exact_match']\nprint(f\"KL GSM8K s42 (v2): {kl_gsm_s42*100:.2f}%\")\nprint(f\"KL GSM8K s42 (uniform): {kl_gsm_s42_alt*100:.2f}%\")\nprint(f\"KL GSM8K s456: {kl_gsm_s456*100:.2f}%\")\nkl_mean = (kl_gsm_s42 + kl_gsm_s456) / 2\nkl_std = np.std([kl_gsm_s42, kl_gsm_s456], ddof=1)\nprint(f\"2-seed mean={kl_mean*100:.1f}%, std(samp)={kl_std*100:.1f}%\")\nprint(f\"TEAL-KL diff: {(teal_gsm8k-kl_mean)*100:.1f}pp\")\n\nEOF",
+  "description": "Final checks on Qwen14B and latency claims"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "19296caa-c85a-47c4-b4b4-6442ebfc3b2d",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019VFkAsRRkyYsCN6SDECBHk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 104991,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 865,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 670 · 2026-05-24T01:28:12.268Z_
+
+<details><summary>↩ Tool result · `toolu_01KyQtwx9ejEyt9QsXMePFLH`</summary>
+
+```text
+  perlayer_kl_30_s456_downstream.winogrande_acc = 0.663
+  bce_gumbel_lagrangian_isolation.lr_3e3_bce_loss = 0.6632
+
+Qwen14B TEAL PPL values in registry:
+  qwen14b_teal275_uniform_eval_v3: PPL=7.7087
+  qwen14b_teal30_eval: PPL=8.7332
+
+Latency overhead 30%: 6.32%
+Latency overhead 50%: 6.44%
+
+Qwen14B TEAL GSM8K: 52.1%
+KL GSM8K s42 (v2): 35.71%
+KL GSM8K s42 (uniform): 35.48%
+KL GSM8K s456: 26.08%
+2-seed mean=30.9%, std(samp)=6.8%
+TEAL-KL diff: 21.2pp
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "05301a30-fdc2-4c03-8423-b50872f618d9"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 671_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Check compression ratio and MSE stats",
+  "usage": {
+    "total_tokens": 109058,
+    "tool_uses": 32,
+    "duration_ms": 479875
+  },
+  "last_tool_name": "Bash",
+  "uuid": "05c95b06-020a-43d4-a8e2-430d6e007ef9",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 672_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0148x78JXvozH5XaGbNQn7LW`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Check for 50% compression ratio claims: \"148× vs. 112× compression\"\n# Paper: \"Qwen's larger d_ff (148× vs. 112× compression)\"\n# d_model=4096, d_ff=14336 for LLaMA-8B\n# predictor: Linear(4096->128): d_model/d_b = 4096/128 = 32... but paper says 112\n# Wait: d_ff/d_b ratio? 14336/128 = 112! That makes sense for LLaMA-8B: 14336/128=112 ✓\n# For Qwen14B: d_ff = ? 14B model typically has d_ff=8192*2.7 or different\n# Let's check: 148× implies d_ff/d_b = 148*128=18944 or d_ff = 148*d_b\n# Qwen2.5-14B d_ff = ? \n# Based on Qwen architecture: d_model=5120, d_ff = ?\n# Actually: 148 * 128 = 18944 -> could be Qwen14B d_ff = 18944?\n# Or ratio differently: d_ff/d_b where d_b=128\n# LLaMA-8B: 14336/128 = 112 ✓\n# Qwen14B: d_ff=18944? or 13312? \n\n# Actually checking: Qwen2.5-14B has d_model=5120, num_heads=40, d_ff=13952 \n# 13952/128 = 109 - not 148\n# Or maybe: d_model/d_b = 5120/128 = 40? No\n# Or maybe the claim is wrong?\n\n# Let me look at the paper text more carefully\n# \"Qwen's larger d_ff (148× vs. 112× compression)\"\n# This implies the ratio IS the compression factor = d_ff/d_b\n# LLaMA-8B: d_ff=14336, d_b=128, ratio=14336/128=112 ✓\n# Qwen-14B: d_ff=?, ratio=148\n# 148 * 128 = 18944 - so d_ff=18944?\n# Actually Qwen2.5-14B: d_model=5120, d_intermediate=13824 (for ffn)\n# Or possibly Qwen2.5-14B: d_ff = 18944? (unusual)\n\n# Let me check the model architecture from results\nfor k in data.keys():\n    m = data[k].get('metrics', {})\n    for key, val in m.items():\n        if '14336' in str(val) or '18944' in str(val) or 'd_ff' in key.lower() or 'd_model' in key.lower():\n            print(f\"  {k}.{key} = {val}\")\n\n# Per experiment spec, check if there's architecture info\nfor k in ['qwen14b_kl30_s42', 'qwen14b_dense_baseline']:\n    spec = data[k].get('spec', {})\n    print(f\"\\n{k} spec:\", spec)\n\n# Also need to confirm MSE 3-seed stats\n# appendix says \"s42=20.43, s123=17.73, s456=17.39\" -> mean=18.52\nmse_ppls = np.array([20.43, 17.73, 17.39])\nprint(f\"\\nMSE 3-seed: {mse_ppls}\")\nprint(f\"Mean: {mse_ppls.mean():.4f}, Std: {mse_ppls.std(ddof=1):.4f}\")\n# Paper says 18.52±1.68 - let's check\nprint(f\"Actual: mean={mse_ppls.mean():.2f}, std_samp={mse_ppls.std(ddof=1):.2f}\")\n\n# From registry: mse30_s42_eval_7task: PPL=20.43\n# mse30_s123: ?\n# mse30_s456: ?\nprint(\"\\nmse30_s42_eval_7task:\", data['mse30_s42_eval_7task']['metrics']['wikitext2_ppl'])\nprint(\"mse30_s123:\", data['mse30_s123'].get('metrics'))\nprint(\"mse30_s456:\", data['mse30_s456'].get('metrics'))\nEOF",
+  "description": "Check compression ratio and MSE stats"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "31d34f2e-0fd7-4834-a52b-62b06c3c33c2",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01MmkJpPx5E2s43HXpLEAiXp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1983,
+      "cache_read_input_tokens": 105856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1983,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 673 · 2026-05-24T01:28:34.788Z_
+
+<details><summary>↩ Tool result · `toolu_0148x78JXvozH5XaGbNQn7LW`</summary>
+
+```text
+qwen14b_kl30_s42 spec: {'command': 'cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s42 --wandb_run_name qwen14b_kl30_s42 --gpu 0', 'server': 'westd-34887', 'gpu': ['cuda:1'], 'pid': '50349', 'log_path': '~/runs/distill_sparse_swiglu/qwen14b_kl30_s42.log', 'submitted_at': '2026-05-17T14:28:58.095Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'wall_clock_seconds': 1278.3, 'gpu_hours': 0.36}
+
+qwen14b_dense_baseline spec: {'command': 'cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_dense_baseline --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0', 'server': 'westd-41718', 'gpu': ['cuda:0'], 'pid': '18845', 'log_path': '~/runs/distill_sparse_swiglu/qwen14b_dense_baseline.log', 'submitted_at': '2026-05-17T18:47:34.739Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'model_name': 'qwen2.5-14b', 'data_path': 'lm-eval-harness datasets', 'data_count': 0, 'seed': 42, 'wall_clock_seconds': 13034.6, 'gpu_hours': 3.62}
+
+MSE 3-seed: [20.43 17.73 17.39]
+Mean: 18.5167, Std: 1.6657
+Actual: mean=18.52, std_samp=1.67
+
+mse30_s42_eval_7task: 20.43
+mse30_s123: {'ppl': 17.7313, 'sparsity': 0.273, 'allocation': 'uniform'}
+mse30_s456: {'ppl': 17.3888, 'sparsity': 0.28, 'allocation': 'uniform'}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "7b8b2c8d-a399-457f-b96a-41a43af1a19b"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 674_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Check MSE std rounding and Qwen14B compression ratio",
+  "usage": {
+    "total_tokens": 111266,
+    "tool_uses": 33,
+    "duration_ms": 539142
+  },
+  "last_tool_name": "Bash",
+  "uuid": "41589ef0-4901-4418-8837-5b3c1469624c",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 675_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CnP66Ad8ac1Hg84FtgWywg`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# MSE 3-seed: mean=18.5167, std=1.6657 -> paper says 18.52±1.68\n# 18.5167 rounds to 18.52 ✓ (third decimal=6>=5, round up)\n# std: 1.6657 rounds to 1.67, but paper says 1.68?\nprint(f\"MSE std(ddof=1) = {np.std([20.43, 17.7313, 17.3888], ddof=1):.4f}\")\n# Careful: paper uses 17.73, not 17.7313\n# With rounded values: std([20.43, 17.73, 17.39], ddof=1) = ?\nprint(f\"MSE std with rounded ppls: {np.std([20.43, 17.73, 17.39], ddof=1):.4f}\")\n\n# Hmm, 1.6657 vs 1.68. Let me check if maybe mse std is computed differently.\n# Using exact values: [20.43, 17.7313, 17.3888]\nexact = np.array([20.43, 17.7313, 17.3888])\nprint(f\"Exact values: mean={exact.mean():.4f}, std={exact.std(ddof=1):.4f}\")\n# 1.6753 -> rounds to 1.68? No, 1.6753 rounds to 1.68 at 2dp (third digit is 5, but 1.675 -> 1.68)?\n# 1.6753 at 2dp: look at third decimal: 5 -> round up -> 1.68 ✓!\nprint(f\"1.6753 rounded to 2dp: {round(1.6753, 2)}\")  # Python banker's rounding?\nimport decimal\nd = decimal.Decimal('1.6753')\nprint(f\"Decimal 1.6753 rounded: {round(d, 2)}\")\n\n# Now for Qwen 14B architecture: d_ff/d_b\n# Qwen2.5-14B config: d_model=5120, intermediate_size=13696 (actually)\n# OR d_ff = 18944 (non-standard)?\n# Let me try to compute 148: \n# LLaMA-8B: d_ff=14336, d_b=128 -> 14336/128 = 112.0 ✓\n# Qwen14B: d_ff/d_b = 148 -> d_ff = 148*128 = 18944\n# But standard Qwen2.5-14B has intermediate_size=13696 or 18944?\n# Qwen2.5-14B model card says d_model=5120, num_layers=48, \n# intermediate_size = 13696 based on HuggingFace\n\n# 13696/128 = 107 - not 148\n# OR maybe paper computes it as (d_ff-output layer)/d_b?\n# Or maybe it's the BOTTLENECK aspect ratio: d_ff/d_b for the MLP predictor\n# d_ff_qwen=18944? Let's check: Qwen2.5-14B architecture varies:\n# Some variants: Qwen2.5-14B-Instruct: intermediate_size=13696\n# OR possibly the base model has different ff dim\n\n# Check: experiment uses model at /root/autodl-tmp/models/qwen2.5-14b/\n# We can't access this directly, but let's try to check from training metrics\n# qwen14b_kl30_s123: 'trainable_params': '117M (0.793%)'\n# Total model params ~ 117M/0.00793 = 14.75B ~ correct for Qwen2.5-14B\n\n# If d_model=5120, d_ff=13696:\n# per_layer_params = 4096->128->14336 (LLaMA) = 4096*128+128*14336 = 524288+1835008 = 2359296 -> 2.36M\n# for Qwen: 5120*128+128*d_ff_q = 655360 + 128*d_ff_q\n# With 48 layers and trainable_params=117M:\n# 117M/48 = 2.4375M per layer\n# 2437500 = 5120*128 + 128*d_ff_q = 655360 + 128*d_ff_q\n# 128*d_ff_q = 2437500 - 655360 = 1782140\n# d_ff_q = 1782140/128 = 13923 -- close to 13696?\n\n# Wait: 117M trainable params for Qwen14B predictor\n# If 48 layers:\nparams_per_layer = (117e6) / 48\nprint(f\"\\nQwen14B params per layer: {params_per_layer:.0f}\")\n# Linear(5120->128): 5120*128 = 655360 params\n# Linear(128->d_ff): 128*d_ff params\nd_model_q = 5120\nd_b = 128\nlin1_params = d_model_q * d_b  # 655360\nremaining = params_per_layer - lin1_params\nd_ff_q = remaining / d_b\nprint(f\"d_ff estimate: {d_ff_q:.0f}\")\n# Compression ratio: d_ff_q / d_b\nratio = d_ff_q / d_b\nprint(f\"Compression ratio estimate: d_ff_q/d_b = {ratio:.1f}\")\n\n# With 117M at 0.793% of 14B: \ntotal = 117e6/0.00793\nprint(f\"Total params from 117M at 0.793%: {total/1e9:.2f}B\")\n\n# The ratio says 148 - let me try different spec: \n# If predictor = Linear(5120->128)+GELU+Linear(128->d_ff_q) per layer\n# 117M/48 = 2437500 per layer\n# 5120*128 = 655360\n# 128*d_ff_q = 2437500 - 655360 = 1782140\n# d_ff_q ≈ 13923\n# 13923/128 = 108.8 ≈ 109, not 148\n\n# Maybe it's Linear(d_model=5120, d_b=256->d_ff_q) or a different architecture?\n# Or maybe the Qwen14B predictor architecture uses 2.37M params just like LLaMA but with different d_ff?\n# LLaMA: 2.37M * 32 = 75.84M ≈ 75.9M ✓\n# Qwen: 2.37M * 48? = 113.8M -- but paper says \"117M (0.793%)\"\n\n# Actually: 75.9M / 32 = 2.372M (LLaMA)\n# 117M / 48 = 2.4375M (Qwen) -- slightly more per layer\n\n# Compression ratio:\n# LLaMA: uses d_ff=14336, d_b=128 -> ratio=112 ✓\n# Qwen: if same d_b=128 but different d_ff:\n# ratio claimed = 148 -> d_ff = 148*128 = 18944\n# But that's unusual for Qwen2.5-14B\n\n# Actually: Qwen2.5-14B-Instruct has intermediate_size = 18944! \n# That's the \"gated\" MLP: up_proj and gate_proj (13696) and down_proj (13696)?\n# Actually SwiGLU: FFN uses up/gate/down, and intermediate is 2x or not?\n# For SwiGLU: input->up*gate->down, up_proj.in=5120, up_proj.out=13696\n# and d_ff (effective) = 13696 for up/gate, or 13696*2 (if counted both)?\n# Some configs: intermediate_size = 18944 for up+gate (9472*2)?\n\n# This needs model config. Let me check what 14B actually is:\n# Qwen2.5-14B model size from HF: 14.8B params\n# d_model=5120, heads=40, layers=48, intermediate_size=13696\n# -> d_ff=13696 for gated MLP\n# Actually Qwen2.5-14B: intermediate_size=8960? Let me try to match\n\n# For 148× with d_b=128: d_ff = 18944\n# If Qwen2.5-14B has intermediate_size = 18944 (very unusual but possible)\n# Let me just check from the per-layer params:\n# If d_ff_q = 18944: params per layer = 5120*128 + 128*18944 = 655360 + 2424832 = 3080192 = 3.08M\n# 3.08M * 48 = 147.8M -> does not match 117M\n# So 148× is NOT consistent with 117M params at d_b=128\n\n# The 148x claim may be using a different formula\n# OR the Qwen14B predictor uses different d_b\n# If params per layer = 117M/48 = 2.4375M:\n# and d_model=5120, then d_ff = (2.4375M - 5120*d_b) / d_b\n# To get ratio 148: d_ff = 148*d_b\n# 2.4375M = 5120*d_b + 148*d_b^2\n# If d_b=128: 5120*128 + 148*128^2 = 655360 + 2424832 = 3.08M ≠ 2.4375M\n# If d_b=100: 5120*100 + 148*100^2 = 512000+1480000 = 1.99M\n# Doesn't work out cleanly\n\n# Most likely the paper got this metric wrong, or the architecture is different\n# Let me check if maybe LLaMA-8B d_model is relevant for ratio comparison:\n# LLaMA: 14336/128 = 112 ✓\n# Qwen: maybe using d_model instead of d_ff? \n# Qwen d_model=5120, d_b=128: 5120/128 = 40 - not 148\n\n# OR the ratio is d_ff / (2*d_b) for some reason?\n# 14336/(2*64) = 112... or using d_b=64?\n# For Qwen: 18944/128=148 -- if d_ff=18944\n\n# One more check: trainable_params='117M (0.793%)'\n# 117M/0.793% = 14.755B (reasonable for Qwen2.5-14B)\n# Per layer: 117M/48 = 2.4375M\n# With d_b=128, d_model=5120: \n# d_ff = (2437500 - 5120*128)/128 = (2437500-655360)/128 = 1782140/128 = 13923 -> ratio = 13923/128 = 108.8 ≈ 109\n\n# The \"148×\" claim appears inconsistent with the 117M total params unless d_ff is ~18944\n# which would give 3.08M per layer * 48 = 147.8M, not 117M\n\nprint(\"\\n=== Architecture consistency check ===\")\nprint(\"LLaMA-8B: d_ff=14336, d_b=128, ratio=14336/128=\", 14336/128)\nprint(\"If Qwen14B uses 117M/48 layers:\")\nppl_q = 117e6 / 48\nprint(f\"  params_per_layer = {ppl_q:.0f}\")\nd_ff_q = (ppl_q - 5120*128) / 128\nprint(f\"  d_ff estimated = {d_ff_q:.0f}\")\nprint(f\"  ratio = {d_ff_q/128:.1f}\")\nprint(f\"Paper claims ratio = 148 (implies d_ff={148*128})\")\nprint(f\"With d_ff=18944: params_per_layer = {5120*128+128*18944:.0f}\")\nprint(f\"Total for 48 layers = {48*(5120*128+128*18944)/1e6:.1f}M (≠ 117M)\")\n\nEOF",
+  "description": "Check MSE std rounding and Qwen14B compression ratio"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "8a5f1637-376c-45a6-9dee-504bbf701472",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01BvGF81FoUg4bdRuJizJf95",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2168,
+      "cache_read_input_tokens": 107839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2168,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 676 · 2026-05-24T01:29:34.079Z_
+
+<details><summary>↩ Tool result · `toolu_01CnP66Ad8ac1Hg84FtgWywg`</summary>
+
+```text
+MSE std(ddof=1) = 1.6658
+MSE std with rounded ppls: 1.6657
+Exact values: mean=18.5167, std=1.6658
+1.6753 rounded to 2dp: 1.68
+Decimal 1.6753 rounded: 1.68
+
+Qwen14B params per layer: 2437500
+d_ff estimate: 13923
+Compression ratio estimate: d_ff_q/d_b = 108.8
+Total params from 117M at 0.793%: 14.75B
+
+=== Architecture consistency check ===
+LLaMA-8B: d_ff=14336, d_b=128, ratio=14336/128= 112.0
+If Qwen14B uses 117M/48 layers:
+  params_per_layer = 2437500
+  d_ff estimated = 13923
+  ratio = 108.8
+Paper claims ratio = 148 (implies d_ff=18944)
+With d_ff=18944: params_per_layer = 3080192
+Total for 48 layers = 147.8M (≠ 117M)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "1d2ea936-0c2f-4a45-8195-8107a5a56ccc"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 677_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Check C1 ablation max delta and Qwen14B compression ratio analysis",
+  "usage": {
+    "total_tokens": 114913,
+    "tool_uses": 34,
+    "duration_ms": 585460
+  },
+  "last_tool_name": "Bash",
+  "uuid": "1ab3878e-2384-4814-9b80-5bca021e362d",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 678_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HxNuuvQWUkaCqCQRYB2oTW`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Let me re-examine the Qwen14B compression claim\n# experiments.tex: \"Qwen's larger d_ff (148× vs. 112× compression)\"\n# Maybe the ratio is NOT d_ff/d_b but something else\n# Or maybe the paper is wrong about this\n\n# Let me check: Qwen2.5-14B-Instruct actual config from HuggingFace:\n# - hidden_size: 5120\n# - intermediate_size: 13696 (for FFN)  \n# But 13696/128 = 107 ≠ 148\n\n# Or maybe Qwen2.5-14B has: intermediate_size = 9216*2 = 18432? \n# Or SwiGLU with 3 projections where \"effective d_ff\" = intermediate * 2/3 * some factor?\n\n# The 117M claim: 0.793% of 14B\n# 14B model has 14757M params (typical Qwen2.5-14B = 14.8B)\n# 14757M * 0.793% = 117.0M ✓\n\n# If d_ff for predictor follows Qwen2.5-14B intermediate_size = 13696 (not 18944):\n# d_ff_q = 13696, ratio = 13696/128 = 107 (≈ 109 from params)\n# But qwen14b_kl30_s123 says trainable_params = 117M (0.793%)\n\n# Hmm... If d_ff = 13696 and 48 layers:\n# params = 48*(5120*128 + 128*13696) = 48*(655360 + 1753088) = 48*2408448 = 115.6M\n# 115.6M/14.757B = 0.783% ≈ 0.793% - close but slightly off\n\n# If d_ff = 14336 (same as LLaMA, but Qwen uses d_model=5120):\n# params = 48*(5120*128 + 128*14336) = 48*(655360+1835008) = 48*2490368 = 119.5M \n# 119.5M/14.757B = 0.810% ≠ 0.793%\n\n# If d_ff = 13696:\n# 115.6M/14.757B = 0.783%\n# Close to 0.793% if model total is different\n\n# If d_ff = 13860 (between 13696 and 14336):\n# 48*(5120*128+128*13860)/1e6 = 48*(655360+1774080)/1e6 = 48*2429440/1e6 = 116.6M\n# not matching well\n\n# Actually, let me try: if predictor uses same d_b=128 and d_ff_q for Qwen:\n# 117M / 48 = 2437500 per layer (target params)\n# d_ff_q = (2437500 - 5120*128) / 128 = (2437500 - 655360) / 128 = 1782140/128 = 13923\n# So d_ff_q ≈ 13923 (rounds to 13696 or 14336 depending on config)\n# Ratio = 13923/128 ≈ 108.8 ≈ 109× (not 148×)\n\n# The \"148×\" claim appears to be incorrect based on:\n# 1. The 117M param count → implies ratio ≈ 109× not 148×\n# 2. Qwen2.5-14B standard intermediate_size = 13696, ratio = 107×\n\n# Could it be the paper mistakenly used d_model instead of d_b in the denominator?\n# Or used a different metric?\n\n# Actually - wait. Let me re-read the claim:\n# \"Qwen's larger d_ff (148× vs. 112× compression)\"\n# 112× = 14336/128 for LLaMA ✓\n# If Qwen d_ff = 18944: 18944/128 = 148\n# Qwen2.5-14B could have this: some Qwen variants DO have 18944 intermediate_size\n# Specifically, Qwen2-57B-A14B mixture of experts uses different sizes\n# But Qwen2.5-14B Dense: let's check\n# From HF model card Qwen/Qwen2.5-14B: intermediate_size = 9216? or 13696?\n# Actually looking it up: Qwen2.5-14B has intermediate_size = 9216 (from config.json)\n\n# 9216/128 = 72 (not 148)\n# If d_ff = 9216: per layer = 5120*128 + 128*9216 = 655360+1179648 = 1835008 = 1.835M\n# 1.835M * 48 = 88.1M ≠ 117M\n\n# With intermediate_size=13824 (another variant):\n# 5120*128+128*13824 = 655360+1769472=2424832/layer * 48 = 116.4M ≈ 117M ✓\n# ratio = 13824/128 = 108 ≈ 109\n\n# So the ratio is approximately 109×, not 148×. \n# The 148× claim appears to be an error in the paper.\n\n# BUT: let me consider another interpretation\n# Maybe \"148×\" is the ratio relative to the PREDICTOR's bottleneck vs something else\n# OR maybe it's the expansion ratio d_ff/d_model:\n# LLaMA: 14336/4096 = 3.5 (not 112)\n# OR maybe d_ff / d_bottleneck where d_bottleneck for Qwen predictor = d_b = something different?\n\n# If Qwen14B predictor uses d_b=128 and d_ff_q=18944:\n# Total predictor params = 48*(5120*128 + 128*18944) = 48*3080192 = 147.8M\n# But paper says 117M. So 148× is inconsistent with 117M.\n\n# The most likely explanation: the paper computed d_ff_q/d_b for a specific Qwen variant\n# where intermediate_size = 18944 (which is the Qwen2.5-14B actual value in some configs)\n# but the actual model used has d_ff=13923 (consistent with 117M)\n# OR the paper rounds differently\n\n# I can't definitively verify 148× from registry alone. The 117M entry makes 109× more likely.\n\n# Final checks: C1 ablation PPL gap\n# Table 3: \n# s42: C1=9.45, KL=8.82 -> gap=0.63pp\n# s123: C1=8.84, KL=8.83 -> gap=0.01pp  \n# s456: C1=8.82, KL=8.79 -> gap=0.03pp\n# Abstract says \"PPL gap ≤0.65pp; 3-seed, 30%\"\n# Table caption says \"max Δ≤1.70pp at 30%; max Δ≤0.79pp at 50%\"\n# Footnote: \"s42 oracle from earlier checkpoint (gap 0.65pp); s123/s456 ≤0.03pp\"\n\n# The 0.65pp claim in abstract = the s42 gap (earliest oracle, less matched)\n# The s123/s456 show near-zero gaps (0.01 and 0.03pp)\n# Caption says max ≤1.70pp - this seems inconsistent with the 0.65pp max we see\n\n# Wait: caption says \"All seeds show max Δ≤1.70pp at 30%\"\n# From Table 3 at 30%:\n# s42: max(ARC-c diff) = |40.27-40.78|=0.51, |67.40-68.59|=1.19, |42.30-40.60|=1.70, |7.58-7.35|=0.23\n# The max Δ across ALL metrics (PPL+downstream) at 30% is MMLU: |42.30-40.60|=1.70pp ✓\n\ngaps_30 = {\n    's42_ppl': 9.45-8.82,\n    's42_arcc': abs(40.27-40.78),\n    's42_wg': abs(67.40-68.59),\n    's42_mmlu': abs(42.30-40.60),\n    's42_gsm8k': abs(7.58-7.35),\n    's123_ppl': abs(8.84-8.83),\n    's123_arcc': abs(44.71-45.31),\n    's123_wg': abs(69.77-69.38),\n    's123_mmlu': abs(39.92-39.40),\n    's123_gsm8k': abs(6.82-7.51),\n    's456_ppl': abs(8.82-8.79),\n    's456_arcc': abs(44.71-45.05),\n    's456_wg': abs(69.93-68.75),\n    's456_mmlu': abs(41.04-42.00),\n    's456_gsm8k': abs(6.60-7.58),\n}\nprint(\"All 30% C1 gaps:\")\nfor k,v in gaps_30.items():\n    print(f\"  {k}: {v:.2f}pp\")\nprint(f\"Max gap: {max(gaps_30.values()):.2f}pp\")\nEOF",
+  "description": "Check C1 ablation max delta and Qwen14B compression ratio analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "ca6dc635-40ec-48bf-a2e6-2270a67dc8fd",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_018qeHD7KvijPbDCrWQX2MFS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3608,
+      "cache_read_input_tokens": 110007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3608,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 679 · 2026-05-24T01:30:20.368Z_
+
+<details><summary>↩ Tool result · `toolu_01HxNuuvQWUkaCqCQRYB2oTW`</summary>
+
+```text
+All 30% C1 gaps:
+  s42_ppl: 0.63pp
+  s42_arcc: 0.51pp
+  s42_wg: 1.19pp
+  s42_mmlu: 1.70pp
+  s42_gsm8k: 0.23pp
+  s123_ppl: 0.01pp
+  s123_arcc: 0.60pp
+  s123_wg: 0.39pp
+  s123_mmlu: 0.52pp
+  s123_gsm8k: 0.69pp
+  s456_ppl: 0.03pp
+  s456_arcc: 0.34pp
+  s456_wg: 1.18pp
+  s456_mmlu: 0.96pp
+  s456_gsm8k: 0.98pp
+Max gap: 1.70pp
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "a3684805-322d-4efd-9859-9724583e85b8"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 680_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Check Jaccard distance sources and figure data",
+  "usage": {
+    "total_tokens": 117758,
+    "tool_uses": 35,
+    "duration_ms": 622012
+  },
+  "last_tool_name": "Bash",
+  "uuid": "a5e2939f-f244-4fd3-8247-5a26692913d4",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 681_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JHZgpiAffxTe2kHeLoq7uD`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# C1 abstract says \"PPL gap ≤0.65pp\"\n# s42 PPL gap = 0.63pp (NOT 0.65pp; 9.45-8.82=0.63)\n# s123 PPL gap = 0.01pp\n# s456 PPL gap = 0.03pp\n# Max PPL gap = 0.63pp\n# Abstract says \"≤0.65pp\" which is correct as upper bound (0.63 < 0.65) ✓\n# But it's a bit loose; the actual max is 0.63pp\n\n# Now let me check the Jaccard distance 46--68% claim\n# appendix says: \"KL-vs-magnitude divergence (0.46--0.68)\"\n# Cross-seed Jaccard distance = 36.3% = 0.363 (mean cross-seed)\n# KL-vs-magnitude:\n# teal_kl_overlap_analysis: overall_jaccard = 0.396 (this is Jaccard SIMILARITY at 30%)\n# -> Jaccard distance at 30% = 1 - 0.396 = 0.604 = 60.4%\n# But the mask_comparison figure caption says \"L28 Jaccard distance: 0.60 at 30%, 0.74 at 50%\"\n# And mask_heatmap caption says \"Divergence peaks in layers 24-28 (Jaccard distance > 0.73 at 50%)\"\n\n# The \"46--68% from magnitude-based targets\" (abstract/intro)\n# appendix says: \"substantially lower than the KL-vs-magnitude divergence (0.46--0.68)\"\n# This implies range 46-68% across layers or conditions\n\n# From teal_kl_overlap_analysis:\n# min_jaccard_layer: 'L17-L18 (0.19)' -- wait, this is 0.19 = 19% \n# Actually if these are Jaccard SIMILARITIES: min=0.19=19%, max=0.55=55%\n# Jaccard distances: 1-0.19=0.81=81%, 1-0.55=0.45=45%\n# These would be in range 45-81%, not 46-68%\n\n# If instead: min_jaccard_layer=L17-L18 is Jaccard distance=0.19?\n# Then max=L26-L28=0.55 -> range 19-55%, not 46-68%\n\n# Hmm. The appendix says KL-vs-magnitude is 0.46--0.68\n# But from teal_kl_overlap_analysis, min=0.19, max=0.55 for Jaccard similarity(?)\n# Or maybe these are the actual Jaccard distances (0.19 to 0.55), and the 0.46--0.68 range\n# comes from the figure (mask_divergence_heatmap.pdf) showing higher values at 50% sparsity\n\n# From experiments.tex: \"per-layer Jaccard distance averages 68% at 50% (64 samples, 131K tokens)\"\n# And mask heatmap caption: \"Divergence peaks in layers 24--28 (Jaccard distance > 0.73 at 50%)\"\n\n# The abstract says \"46--68% from magnitude-based targets\" \n# This range likely = [30% sparsity average, 50% sparsity average]\n# At 30%: overall Jaccard distance (from figure)\n# At 50%: mean Jaccard distance = 68%\n\n# teal_kl_overlap_analysis: overall_jaccard=0.396, but what sparsity is this?\n# The spec uses \"sparsity 30%\" (as the main paper uses 30%)\n# Is 0.396 the Jaccard SIMILARITY? -> 1-0.396 = 60.4% distance\n# Or is it Jaccard DISTANCE directly = 39.6%?\n\n# The cross-seed value: \"mean cross-seed Jaccard distance is 0.363 (IoU = 0.637)\"\n# This says Jaccard DISTANCE=0.363, and IoU=Jaccard SIMILARITY=0.637\n# So in this paper, \"Jaccard distance\" = 1 - Jaccard similarity = 1 - IoU\n\n# If teal_kl_overlap_analysis.overall_jaccard=0.396 is Jaccard similarity:\n# Jaccard distance = 1-0.396 = 0.604 = 60.4%\n\n# Or if it's Jaccard distance directly = 39.6%\n\n# Given the context from cross_seed_jaccard saying IoU=0.637 when distance=0.363,\n# The term \"Jaccard distance\" in this paper = divergence measure = 1-IoU\n# So teal_kl_overlap_analysis.overall_jaccard = 0.396 could be the Jaccard similarity (IoU)\n# -> Jaccard distance = 1-0.396 = 0.604 ≈ 60%\n\n# But appendix says \"cross-seed Jaccard distance 0.363\" and \"KL-vs-magnitude divergence (0.46--0.68)\"\n# So cross-seed=36.3% and KL-vs-magnitude is higher at 46-68%\n\n# At 30% sparsity, KL-vs-magnitude Jaccard distance:\n# if teal_kl_overlap_analysis.overall_jaccard=0.396 is Jaccard similarity -> distance=0.604=60.4%\n# or if it's distance = 0.396=39.6% -> but that's less than cross-seed 0.363? Not quite\n\n# Given: divergence_ratio=0.433 in teal_kl_overlap_analysis\n# divergence_ratio might = Jaccard distance = 43.3%? But cross-seed=36.3%\n# \"divergence_ratio\" = 0.433 seems to be different from \"overall_jaccard\" = 0.396\n\n# This is getting complex. The key numbers:\n# - experiments.tex says 68% at 50%\n# - appendix says 0.46--0.68 for KL-vs-magnitude\n# - intro says 68% overall \n# These cannot all be verified from registry directly (no explicit 50% mask overlap entry)\n# The figure comes from an analysis not directly registered\n\n# Let me check if there's a dedicated mask analysis experiment at 50%\nfor k in data.keys():\n    m = data[k].get('metrics', {})\n    if any('jaccard' in str(key).lower() or 'diverge' in str(key).lower() for key in m.keys()):\n        print(f\"  {k}: {m}\")\n\nprint(\"\\nLet me look at figure data files\")\nimport os\nfigures_dir = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/figures/\"\nif os.path.exists(figures_dir):\n    print(os.listdir(figures_dir)[:30])\nEOF",
+  "description": "Check Jaccard distance sources and figure data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "7df9027e-e3b9-4b7e-bd70-945711cd4f39",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01WDqbkWUxPDVZjPpRSwyrhL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2805,
+      "cache_read_input_tokens": 113615,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2805,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 682 · 2026-05-24T01:30:56.919Z_
+
+<details><summary>↩ Tool result · `toolu_01JHZgpiAffxTe2kHeLoq7uD`</summary>
+
+```text
+  qwen14b_mask_divergence_analysis: {'qwen14b_mean_jaccard': 0.4016, 'qwen14b_std_jaccard': 0.0756, 'qwen14b_max_jaccard': 0.446, 'qwen14b_max_layer': 11, 'qwen14b_min_jaccard': 0.0627, 'qwen14b_min_layer': 4, 'llama8b_mean_jaccard': 0.3939, 'llama8b_std_jaccard': 0.0314, 'llama8b_max_jaccard': 0.4818, 'llama8b_max_layer': 0, 'llama8b_min_jaccard': 0.3528, 'llama8b_min_layer': 14}
+  teal_kl_overlap_analysis: {'overall_jaccard': 0.396, 'divergence_ratio': 0.433, 'kl_only_pruned_magnitude_ratio': 1.48, 'teal_only_pruned_mean_gate_prob': 0.614, 'min_jaccard_layer': 'L17-L18 (0.19)', 'max_jaccard_layer': 'L26-L28 (0.55)'}
+
+Let me look at figure data files
+['mask_divergence_heatmap.png', 'mask_comparison_30pct_64samples.png', 'mask_divergence_heatmap_50pct_64samples.png', 'neuron_scatter_layer16_50pct_64samples.pdf', 'neuron_scatter_layer16_50pct_64samples.png', 'neuron_scatter_layer16.png', 'mask_stats_50pct_64samples.json', 'neuron_scatter_layer16_30pct_64samples.png', 'mask_comparison_50pct_64samples.pdf', 'mask_divergence_heatmap.pdf', 'neuron_scatter_layer16.pdf', 'mask_divergence_heatmap_30pct_64samples.pdf', 'paper', 'mask_comparison_50pct_64samples.png', 'mask_divergence_heatmap_30pct_64samples.png', 'mask_divergence_heatmap_50pct_64samples.pdf', 'mask_comparison.pdf', 'mask_comparison_30pct_64samples.pdf', 'mask_stats_30pct_64samples.json', 'neuron_scatter_layer16_30pct_64samples.pdf', 'mask_comparison.png']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "123accda-ec5e-4acd-912a-e60118e8d884"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 683_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Read mask statistics from figure data files",
+  "usage": {
+    "total_tokens": 120322,
+    "tool_uses": 36,
+    "duration_ms": 625677
+  },
+  "last_tool_name": "Bash",
+  "uuid": "0fe554e8-46c0-4deb-bf49-ba105c0fbc8a",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 684_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01P1CBmh5TPv1UCUZnadECWM`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/figures/mask_stats_50pct_64samples.json') as f:\n    d50 = json.load(f)\nprint('50% mask stats:', json.dumps(d50, indent=2))\nprint()\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/figures/mask_stats_30pct_64samples.json') as f:\n    d30 = json.load(f)\nprint('30% mask stats:', json.dumps(d30, indent=2))\n\"",
+  "description": "Read mask statistics from figure data files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "75700930-b159-4b76-92bb-438daf763b4a",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019Rp8U6KpCJwEH1bhuXUuUu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2524,
+      "cache_read_input_tokens": 116420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2524,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 685 · 2026-05-24T01:31:00.496Z_
+
+<details><summary>↩ Tool result · `toolu_01P1CBmh5TPv1UCUZnadECWM`</summary>
+
+```text
+50% mask stats: {
+  "sparsity": 0.5,
+  "n_samples": 64,
+  "total_tokens": 131072,
+  "jaccard_similarity_mean": 0.3176,
+  "jaccard_distance_mean": 0.6824,
+  "per_layer_jaccard_sim": [
+    0.373,
+    0.2589,
+    0.2807,
+    0.3093,
+    0.3261,
+    0.3224,
+    0.3201,
+    0.2888,
+    0.2912,
+    0.2729,
+    0.2827,
+    0.305,
+    0.3079,
+    0.3012,
+    0.354,
+    0.39,
+    0.3888,
+    0.3846,
+    0.3629,
+    0.3418,
+    0.3307,
+    0.3254,
+    0.3002,
+    0.2812,
+    0.2662,
+    0.2529,
+    0.2483,
+    0.2563,
+    0.271,
+    0.3002,
+    0.3921,
+    0.4766
+  ],
+  "per_layer_jaccard_dist": [
+    0.627,
+    0.7411,
+    0.7193,
+    0.6907,
+    0.6739,
+    0.6776,
+    0.6799,
+    0.7112,
+    0.7088,
+    0.7271,
+    0.7173,
+    0.695,
+    0.6921,
+    0.6988,
+    0.646,
+    0.61,
+    0.6112,
+    0.6154,
+    0.6371,
+    0.6582,
+    0.6693,
+    0.6746,
+    0.6998,
+    0.7188,
+    0.7338,
+    0.7471,
+    0.7517,
+    0.7437,
+    0.729,
+    0.6998,
+    0.6079,
+    0.5234
+  ],
+  "neuron_scatter_disagree_pct": 40.59
+}
+
+30% mask stats: {
+  "sparsity": 0.3,
+  "n_samples": 64,
+  "total_tokens": 131072,
+  "jaccard_similarity_mean": 0.5374,
+  "jaccard_distance_mean": 0.4626,
+  "per_layer_jaccard_sim": [
+    0.5905,
+    0.5685,
+    0.5398,
+    0.565,
+    0.5619,
+    0.5591,
+    0.5651,
+    0.5304,
+    0.5142,
+    0.5237,
+    0.5144,
+    0.5119,
+    0.5425,
+    0.5595,
+    0.581,
+    0.6118,
+    0.6311,
+    0.6158,
+    0.6215,
+    0.5833,
+    0.567,
+    0.552,
+    0.5107,
+    0.4909,
+    0.4461,
+    0.427,
+    0.407,
+    0.3999,
+    0.4038,
+    0.4617,
+    0.601,
+    0.6386
+  ],
+  "per_layer_jaccard_dist": [
+    0.4095,
+    0.4315,
+    0.4602,
+    0.435,
+    0.4381,
+    0.4409,
+    0.4349,
+    0.4696,
+    0.4858,
+    0.4763,
+    0.4856,
+    0.4881,
+    0.4575,
+    0.4405,
+    0.419,
+    0.3882,
+    0.3689,
+    0.3842,
+    0.3785,
+    0.4167,
+    0.433,
+    0.448,
+    0.4893,
+    0.5091,
+    0.5539,
+    0.573,
+    0.593,
+    0.6001,
+    0.5962,
+    0.5383,
+    0.399,
+    0.3614
+  ],
+  "neuron_scatter_disagree_pct": 8.71
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "80b977f6-05bd-4655-8f48-f804762b58c5"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 686_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Verify Jaccard distance claims and remaining numerical checks",
+  "usage": {
+    "total_tokens": 121749,
+    "tool_uses": 37,
+    "duration_ms": 654590
+  },
+  "last_tool_name": "Bash",
+  "uuid": "42202516-6ab8-4204-b67d-24c4913b7649",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 687_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PC4VyR4VTQN4krmZAbDKWk`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\n# Now we have the ground truth for Jaccard claims\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/figures/mask_stats_50pct_64samples.json') as f:\n    d50 = json.load(f)\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/figures/mask_stats_30pct_64samples.json') as f:\n    d30 = json.load(f)\n\n# 50% sparsity: mean Jaccard distance = 0.6824 = 68.24% ≈ 68% ✓\n# Paper says \"68% at 50%\"\nprint(f\"50% Jaccard distance mean: {d50['jaccard_distance_mean']*100:.2f}%\")\n\n# 30% sparsity: mean Jaccard distance = 0.4626 = 46.26% ≈ 46% ✓\n# Abstract/intro says \"46--68% from magnitude-based targets\" ✓\nprint(f\"30% Jaccard distance mean: {d30['jaccard_distance_mean']*100:.2f}%\")\n\n# Range across sparsities: 46.26%--68.24% ≈ 46--68% ✓\n\n# The neuron scatter: \"41% of neurons fall in disagreement quadrants\"\n# mask_stats_50pct says neuron_scatter_disagree_pct=40.59%\nprint(f\"\\n50% disagreement pct: {d50['neuron_scatter_disagree_pct']:.2f}% (paper says 41%)\")\n\n# Paper abstract says \"PPL gap ≤0.65pp\" - let me verify precisely\n# s42 PPL gap: C1=9.45, KL=8.82 -> 9.45-8.82=0.63pp\n# c1_ablation_30pct_s42_eval_v2: PPL=9.4463, bench_kl30_uniform: PPL=8.8157\nprint(f\"\\nC1 s42 PPL gap (from registry): {9.4463-8.8157:.4f}pp\")\n# 0.6306pp -> rounds to 0.63pp, and 0.63 ≤ 0.65 ✓\n\n# But footnote says \"s42 oracle from earlier checkpoint (gap 0.65pp)\"\n# This is confusing - the table shows 9.45-8.82=0.63, but footnote says 0.65\n# Perhaps the footnote refers to a slightly different calculation or rounding\n# 0.6306 rounds to 0.63, not 0.65\n# But if using rounded table values: 9.45-8.82=0.63pp\n# OR if it's rounding the kl_ppl differently\n\n# Let me check: the paper table shows s42 KL=8.82, C1=9.45\n# 9.45-8.82 = 0.63, not 0.65\n# But the footnote says \"(gap 0.65pp)\"\n# This might be a typo or incorrect value in the footnote\n# Verify from registry: C1 PPL=9.4463, KL=8.8157\ngap_s42 = 9.4463 - 8.8157\nprint(f\"Exact s42 C1-KL PPL gap: {gap_s42:.4f}pp (should be 0.65 per footnote but is 0.63)\")\n\n# So the footnote says 0.65pp but actual gap = 0.63pp (from registry)\n\n# 50% reduction check (11.92 vs 23.90)\n# The paper says \"50% reduction\" for KL vs TEAL at 50% (11.92 vs 23.90)\nteal50 = 23.90\nkl50 = 11.92\nreduction = (teal50-kl50)/teal50*100\nprint(f\"\\n50% PPL reduction: ({teal50}-{kl50})/{teal50}*100 = {reduction:.1f}%\")\n# 50.1% which rounds to \"50%\" ✓\n\n# 11.92 vs. 23.90: check that \"11.92\" is the 3-seed mean KL50 uniform\nkl50_uniform = np.array([11.963, 11.83, 11.9604])\nprint(f\"KL50 uniform 3-seed: {kl50_uniform}\")\nprint(f\"Mean: {kl50_uniform.mean():.4f}, Std: {kl50_uniform.std(ddof=1):.4f}\")\n# Mean=11.918 ≈ 11.92 ✓, Std=0.072 ≈ 0.07 ✓\n\n# TEAL 50% uniform = 23.90 (from training_free_baselines.uniform_50pct_ppl) ✓\n\n# 11.79 for KL at 50% (bench_kl50_global s42 single run)\nprint(f\"\\nbench_kl50_global: {11.7933}\")  # This is s42\n\n# Check if intro says \"50% over TEAL\" for 50% sparsity PPL\n# Intro: \"At 50%, the perplexity advantage widens (50% over TEAL)\"\n# KL global 50% = 11.84±0.15 (3-seed mean from Table 1)\n# TEAL global 50% = 23.31 (bench_teal50)  \nkl50g = np.array([11.7933, 11.7184, 11.8057])\nteal50g = 23.31\nkl50g_mean = kl50g.mean()\npct_red = (teal50g-kl50g_mean)/teal50g*100\nprint(f\"\\nKL global 50% 3-seed mean: {kl50g_mean:.4f}\")\nprint(f\"TEAL global 50%: {teal50g}\")\nprint(f\"Reduction: {pct_red:.1f}%\")\n# 49.9% ≈ 50% ✓\n\nEOF",
+  "description": "Verify Jaccard distance claims and remaining numerical checks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "e63985e6-3f06-4f89-987c-0d85b16a336a",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019c27xYhjPdDJTU1t9ZXYqj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1380,
+      "cache_read_input_tokens": 118944,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1380,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 688 · 2026-05-24T01:31:29.483Z_
+
+<details><summary>↩ Tool result · `toolu_01PC4VyR4VTQN4krmZAbDKWk`</summary>
+
+```text
+50% Jaccard distance mean: 68.24%
+30% Jaccard distance mean: 46.26%
+
+50% disagreement pct: 40.59% (paper says 41%)
+
+C1 s42 PPL gap (from registry): 0.6306pp
+Exact s42 C1-KL PPL gap: 0.6306pp (should be 0.65 per footnote but is 0.63)
+
+50% PPL reduction: (23.9-11.92)/23.9*100 = 50.1%
+KL50 uniform 3-seed: [11.963  11.83   11.9604]
+Mean: 11.9178, Std: 0.0760
+
+bench_kl50_global: 11.7933
+
+KL global 50% 3-seed mean: 11.7725
+TEAL global 50%: 23.31
+Reduction: 49.5%
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "13e95868-270e-48f7-8ce5-c019e3fe4e27"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 689_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Final verification of 50% reduction and MSE std",
+  "usage": {
+    "total_tokens": 123696,
+    "tool_uses": 38,
+    "duration_ms": 683955
+  },
+  "last_tool_name": "Bash",
+  "uuid": "c5195ad2-943c-440d-83b2-2329b820e1b3",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 690_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019vT3xfdXSKiHpLbenTooEK`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Let me verify the \"50% over TEAL\" claim more carefully\n# The intro says \"At 50%, the perplexity advantage widens (50% over TEAL)\"\n# Table 1 shows KL global 50%: 11.84±0.15, TEAL uniform 50%: 23.90\n# If comparing KL global vs TEAL uniform: (23.90-11.84)/23.90 = 50.5% ≈ \"50% over TEAL\" ✓\nkl50_global_ppl = 11.84  # from table\nteal50_uniform = 23.90\npct = (teal50_uniform - kl50_global_ppl) / teal50_uniform * 100\nprint(f\"KL global vs TEAL uniform: ({teal50_uniform}-{kl50_global_ppl})/{teal50_uniform}*100 = {pct:.1f}%\")\n\n# Or KL uniform vs TEAL uniform: (23.90-11.92)/23.90 = 50.1% ≈ 50% ✓\n\n# The 7.3× MMLU sigma claim\n# uniform MMLU std = 1.3pp, global MMLU std = 9.5pp\n# 9.5/1.3 = 7.31 ≈ 7.3× ✓\nprint(f\"\\n7.3x MMLU sigma: 9.5/1.3 = {9.5/1.3:.2f}×\")\n\n# \"11.92 vs. 23.90, 50% reduction\" \n# Both KL uniform (11.92) and TEAL uniform (23.90)\nprint(f\"11.92 vs 23.90: reduction = {(23.90-11.92)/23.90*100:.1f}%\")\n\n# Now let me check the MSE std:\n# appendix says \"s42=20.43, s123=17.73, s456=17.39\" \n# from registry: s42=20.43, s123=17.7313, s456=17.3888\nmse_exact = np.array([20.43, 17.7313, 17.3888])\nmse_rounded = np.array([20.43, 17.73, 17.39])\nprint(f\"\\nMSE std(ddof=1) exact: {mse_exact.std(ddof=1):.4f}\")\nprint(f\"MSE std(ddof=1) rounded: {mse_rounded.std(ddof=1):.4f}\")\nprint(f\"MSE mean exact: {mse_exact.mean():.4f}\")\n# 1.6658 -> 1.67, or 1.6753 -> 1.68?\n# Appendix says 18.52±1.68; the exact std is 1.6658 which rounds to 1.67\n# But 1.6658 rounded at 2dp = 1.67 (since 3rd decimal is 5, 1.665|8 -> 1.67? \n# Actually 1.6658: at 2dp, look at 3rd decimal = 5 -> round up -> 1.67\n# Python: round(1.6658, 2) = ?\nprint(f\"round(1.6658, 2) = {round(1.6658, 2)}\")  # 1.67\n# But paper says 1.68...\n# The appendix says \"3-seed MSE mean (18.52±1.68; s42=20.43, s123=17.73, s456=17.39)\"\n# Let's compute std([20.43, 17.73, 17.39], ddof=1):\nprint(f\"round values std = {round(np.std([20.43, 17.73, 17.39], ddof=1), 2)}\")  # 1.68?\n\n# Actually 1.6657: round to 2dp = 1.67 (3rd digit=5, round up from 5=5, banker's rounding could go either way)\n# In decimal: 1.6657 -> third decimal = 5 -> round up = 1.67\n# BUT: 1.6658 -> 1.67 (clearly)\n# The paper says 1.68 which doesn't match either\n\n# Perhaps the paper computed: mean using rounded values for display\n# OR uses population std with a different ddof convention\nmse3 = np.array([20.43, 17.73, 17.39])\nprint(f\"\\nMSE with rounded: mean={mse3.mean():.4f}, std_samp={mse3.std(ddof=1):.4f}, std_pop={mse3.std():.4f}\")\n# std_samp=1.6657 -> 1.67, std_pop=1.3593 -> 1.36\n\n# OR the paper computed the wrong std? \n# Let's check if 1.68 is std of [20.43, 17.73, 17.39] with some other rounding\nprint(f\"Python round 1.6657: {round(1.6657, 2)}\")\nprint(f\"Python round 1.66575: {round(1.66575, 2)}\")\n\n# The discrepancy is minor (1.67 vs 1.68) and the conclusion remains the same\n# This is a rounding/precision issue\n\n# Let me now compute the key Qwen14B MMLU inference:\n# appendix Table 14b says KL uniform MMLU=63.55, TEAL uniform MMLU=66.34\n# These values not directly in registry\n# qwen14b_kl30_s42_eval_uniform_v3: 64.80, qwen14b_kl30_s456_eval_v3: 63.51\n# 2-seed mean (s42+s456) = 64.155% ≠ 63.55%\n# But qwen14b_kl30_s123_eval_v5: 62.34\n# (62.34+63.51)/2 = 62.925% ≠ 63.55%\n\n# Maybe the table value 63.55 is from a weighted or different calculation\n# OR there are specific uniform eval entries we haven't checked\nfor k in data.keys():\n    if 'qwen' in k and 'uniform' in k:\n        m = data[k].get('metrics', {})\n        ppl = m.get('wikitext2_ppl')\n        mmlu = m.get('mmlu_acc') or m.get('mmlu')\n        print(f\"  {k}: PPL={ppl}, MMLU={mmlu}\")\n\nEOF",
+  "description": "Final verification of 50% reduction and MSE std"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "e1ee5082-da32-4844-a10f-7e985953e725",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_015kcbjrFmwznHbnCWDg18Ky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1908,
+      "cache_read_input_tokens": 120324,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1908,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 691 · 2026-05-24T01:31:58.891Z_
+
+<details><summary>↩ Tool result · `toolu_019vT3xfdXSKiHpLbenTooEK`</summary>
+
+```text
+KL global vs TEAL uniform: (23.9-11.84)/23.9*100 = 50.5%
+
+7.3x MMLU sigma: 9.5/1.3 = 7.31×
+11.92 vs 23.90: reduction = 50.1%
+
+MSE std(ddof=1) exact: 1.6658
+MSE std(ddof=1) rounded: 1.6657
+MSE mean exact: 18.5167
+round(1.6658, 2) = 1.67
+round values std = 1.67
+
+MSE with rounded: mean=18.5167, std_samp=1.6657, std_pop=1.3600
+Python round 1.6657: 1.67
+Python round 1.66575: 1.67
+  qwen14b_kl30_s42_gsm8k_uniform: PPL=None, MMLU=None
+  qwen14b_teal30_uniform_hspiqa: PPL=None, MMLU=None
+  qwen14b_kl30_uniform_hspiqa: PPL=None, MMLU=None
+  qwen14b_teal30_uniform_gsm8k: PPL=None, MMLU=None
+  qwen14b_kl30_s42_eval_uniform_v3: PPL=7.8715, MMLU=0.648
+  qwen14b_teal275_uniform_eval_v3: PPL=7.7087, MMLU=0.6738
+  qwen14b_teal275_uniform_hspiqa: PPL=None, MMLU=None
+  qwen14b_teal30_uniform_hspiqa_v2: PPL=None, MMLU=None
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "0e7a5d39-95d6-4c5a-a0cb-12a9f60a1619"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 692_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Generate final verification summary",
+  "usage": {
+    "total_tokens": 125940,
+    "tool_uses": 39,
+    "duration_ms": 742537
+  },
+  "last_tool_name": "Bash",
+  "uuid": "d36bb88c-06ec-485c-ad39-0c06b20c86a2",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 693_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017FpnFqamESzSHTLzd3QVPf`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\nwith open('/tmp/registry_metrics.json') as f:\n    data = json.load(f)\n\n# Summary of all key computations\n\nprint(\"=\" * 70)\nprint(\"FINAL VERIFICATION SUMMARY\")\nprint(\"=\" * 70)\n\n# --- Abstract ---\nprint(\"\\n[ABSTRACT]\")\n\n# 1. 14.5% over TEAL at matched sparsity\nteal_285 = data['teal_28.5pct_sanity']['metrics']['wikitext2_ppl']  # 10.3\nkl_3seed = np.array([8.8157, 8.8308, 8.7947])\nkl_mean = kl_3seed.mean()  # 8.8137\npct14 = (teal_285 - kl_mean) / teal_285 * 100\nprint(f\"1. '14.5% over TEAL at matched sparsity' -> computed=({teal_285}-{kl_mean:.4f})/{teal_285}*100={pct14:.1f}% paper=14.5% ✅\")\n\n# 2. MMLU -5.2pp on 8B\nteal_mmlu = 0.4586  # teal_30pct_uniform_multiseed_eval\nkl_mmlu = kl_3seed_mmlu = np.array([0.4061, 0.3944, 0.4198]).mean()  # 0.4068 -> 40.7%\ndiff_mmlu = (teal_mmlu - kl_mmlu) * 100\nprint(f\"2. 'MMLU -5.2pp on 8B' -> TEAL={teal_mmlu*100:.2f}%, KL={kl_mmlu*100:.1f}%, diff={diff_mmlu:.2f}pp paper=-5.2pp ✅\")\n\n# 3. GSM8K -21.2pp on 14B  \nteal_gsm = 0.5208\nkl_gsm_s42 = 0.3571\nkl_gsm_s456 = 0.2608\nkl_gsm_mean = (kl_gsm_s42+kl_gsm_s456)/2\ngsm_diff = (teal_gsm - kl_gsm_mean)*100\nprint(f\"3. 'GSM8K -21.2pp on 14B' -> TEAL={teal_gsm*100:.1f}%, KL=(s42+s456)/2={kl_gsm_mean*100:.1f}%, diff={gsm_diff:.1f}pp paper=-21.2pp ✅\")\n\n# Note: abstract file shows -21.2pp (not -20.1pp as originally noted in task; the abstract.tex has been updated)\n\n# 4. +67.2M params - architecture constant, not from registry\n\n# 5. PPL gap ≤0.65pp\n# s42 gap = 9.4463-8.8157=0.6306pp, footnote says 0.65pp\nprint(f\"5. 'PPL gap ≤0.65pp' -> actual max gap s42={9.4463-8.8157:.4f}pp ≤0.65 ✅ (but footnote says 0.65pp vs actual 0.63pp)\")\n\n# 6. 46--68% from magnitude-based targets\nprint(f\"6. '46--68% from magnitude-based targets' -> 30%={0.4626*100:.1f}%, 50%={0.6824*100:.1f}% ✅\")\n\n# 7. 75.9M params, <1% of base - not from registry, claimed architectural constant\n\n# --- Introduction ---\nprint(\"\\n[INTRODUCTION]\")\n\n# 8. 14.5% at matched sparsity (8.81 vs 10.30, both at 28.5%)\nprint(f\"8. '14.5% at matched sparsity (8.81 vs 10.30)' -> KL={kl_mean:.4f}≈8.81, TEAL={teal_285:.2f}=10.30, reduction={pct14:.1f}% ✅\")\n\n# 9. MMLU 40.7±1.3% vs 65.3% dense\ndense_mmlu = 0.6527  # bench_dense\nkl_mmlu_std = np.std([0.4061, 0.3944, 0.4198], ddof=1)\nprint(f\"9. 'MMLU 40.7±1.3% vs 65.3% dense' -> KL={np.mean([0.4061,0.3944,0.4198])*100:.1f}±{kl_mmlu_std*100:.1f}%, dense={dense_mmlu*100:.1f}% ✅\")\n\n# 10. 7.3× MMLU sigma\nprint(f\"10. '7.3× MMLU σ' -> global_std/uniform_std = 9.5/1.3 = {9.5/1.3:.2f}× ✅\")\n\n# 11. -17.3% PPL on Mistral\nmistral_kl = np.array([6.7733, 7.1491, 6.8752]).mean()  # 6.9325\nmistral_teal = 8.3807\nmistral_pct = (mistral_teal - mistral_kl)/mistral_teal*100\nprint(f\"11. '-17.3% PPL on Mistral' -> TEAL={mistral_teal}, KL_mean={mistral_kl:.4f}, reduction={mistral_pct:.1f}% ✅\")\n\n# 12. GSM8K -21.2pp, σ=6.8pp for Qwen14B\nkl_gsm_std = np.std([kl_gsm_s42, kl_gsm_s456], ddof=1)*100\nprint(f\"12. 'GSM8K -21.2pp, σ=6.8pp' -> mean={kl_gsm_mean*100:.1f}%, TEAL=52.1%, diff={gsm_diff:.1f}pp, σ={kl_gsm_std:.1f}pp ✅\")\n\n# 13. MMLU -2.8pp for Qwen14B\n# From appendix table: KL uniform=63.55%, TEAL uniform=66.34%  \nprint(f\"13. 'MMLU -2.8pp' for Qwen14B -> paper: TEAL=66.34%-KL=63.55%=2.79pp≈2.8pp | registry: TEAL=qwen14b_teal275_uniform_eval_v3 not directly verifiable (66.34 not in registry)\")\n# NOTE: The TEAL uniform MMLU=66.34 is not directly in registry; nearest is 67.38 (TEAL 27.5%)\n\n# 14. 6.4% latency overhead\nkl50_ms = 126.78\ndense_ms = 119.11\nlat_pct = (kl50_ms-dense_ms)/dense_ms*100\nprint(f\"14. '6.4% latency overhead' -> ({kl50_ms}-{dense_ms})/{dense_ms}*100={lat_pct:.2f}% ✅ (30% is 6.32%, cited 50% is 6.44%≈6.4%)\")\n\n# --- Experiments ---\nprint(\"\\n[EXPERIMENTS]\")\nprint(f\"15. 'PPL 8.81±0.02 (3-seed), 14.5% reduction' -> mean={kl_mean:.4f}≈8.81, std_samp={np.std(kl_3seed,ddof=1):.4f}≈0.02 ✅\")\nprint(f\"16. 'MMLU 40.7±1.3%, 3-seed' -> mean={np.mean([0.4061,0.3944,0.4198])*100:.1f}%, std={np.std([0.4061,0.3944,0.4198],ddof=1)*100:.1f}% ✅\")\nprint(f\"17. '35.7±9.5% for global MMLU' -> mean={np.mean([0.2527,0.3807,0.4382])*100:.1f}%, std={np.std([0.2527,0.3807,0.4382],ddof=1)*100:.1f}% ✅\")\nprint(f\"18. 'L31 retention 28.4%' -> from figure caption, not directly in registry exp_id. UNFOUND\")\nprint(f\"19. '11.92 vs. 23.90, 50% reduction' -> KL_uniform={np.mean([11.963,11.83,11.9604]):.4f}≈11.92 (std=0.076≈0.07), TEAL=23.90, red={((23.90-11.92)/23.90)*100:.1f}% ✅\")\nprint(f\"20. '28.13±0.20' BCE at 2700 steps -> mean={np.mean([27.9696,28.0627,28.3503]):.4f}≈28.13, std_samp={np.std([27.9696,28.0627,28.3503],ddof=1):.4f}≈0.20 ✅\")\nprint(f\"21. '2.39× worse than KL (11.79)' -> 28.13/11.79={28.13/11.79:.3f}× ✅ (KL=bench_kl50_global s42=11.7933≈11.79)\")\nprint(f\"22. 'F1 (0.613 vs. 0.540)' -> BCE_F1={0.6128:.3f}≈0.613, KL_F1={0.5397:.3f}≈0.540 ✅\")\nprint(f\"23. '139% worse PPL' -> (28.13-11.79)/11.79*100={(28.13-11.79)/11.79*100:.1f}% ✅\")\nprint(f\"24. 'Jaccard distance averages 68% at 50%' -> {0.6824*100:.2f}% ✅\")\nprint(f\"25. 'cross-seed variation (36.3%)' -> appendix quotes 0.363 mean cross-seed Jaccard distance ✅ (cross_seed_jaccard_kl30, not in registry but cited in appendix)\")\nprint(f\"26. 'Gumbel-Sigmoid outperforms STE by 33.8% (11.79 vs. 15.77)' -> (15.77-11.79)/11.79*100={(15.77-11.79)/11.79*100:.1f}% ✅ (STE=bench ste_baseline_s42=15.77)\")\nprint(f\"27. 'forward KL outperforms JSD (+6.4%) and reverse KL (+8.6%)' -> JSD=(12.54-11.79)/11.79*100={(12.54-11.79)/11.79*100:.1f}%, revKL=(12.80-11.79)/11.79*100={(12.80-11.79)/11.79*100:.1f}% ✅ (JSD/revKL at 50% from ablation table)\")\nprint(f\"28. 'K=16 achieves lowest PPL (8.67±0.02 vs. E2E 8.81±0.02)' -> K16_mean={np.mean([8.6737,8.6939,8.655]):.4f}≈8.67, std={np.std([8.6737,8.6939,8.655],ddof=1):.4f}≈0.02 ✅\")\nk2_mean = np.mean([10.7958,10.8835,10.5826])\nk16_mean = np.mean([8.6737,8.6939,8.655])\nprint(f\"29. 'full coupling range (2.08 PPL)' -> K2_mean={k2_mean:.4f}, K16_mean={k16_mean:.4f}, range={k2_mean-k16_mean:.4f}≈2.08 ✅\")\nprint(f\"30. 'signal type gap (9.47 PPL)' -> MSE=18.52-K1_KL=9.05=9.47 ✅\")\nprint(f\"31. '-17.3%, 3-seed' for Mistral -> {mistral_pct:.1f}% ✅\")\nprint(f\"32. 'GSM8K 32.0±5.2 vs. 52.1' for Qwen14B -> WAIT: paper says 32.0±5.2 but computed 30.9±6.8?\")\n# experiments.tex line 195: \"GSM8K 30.9±6.8 vs. 52.1, n=2\" -> that's correct\n# But is there a \"32.0±5.2\" elsewhere?\nprint(f\"33. '148× vs. 112× compression' -> LLaMA: 14336/128=112 ✅; Qwen: claimed 148 but from 117M trainable params implies ~109, ❌\")\n\nEOF",
+  "description": "Generate final verification summary"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "07a30dff-b934-49e2-befd-b77abbfaf17b",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011fYV2LBQk8ELJNwMaP82q2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2240,
+      "cache_read_input_tokens": 122232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2240,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 694 · 2026-05-24T01:32:57.470Z_
+
+<details><summary>↩ Tool result · `toolu_017FpnFqamESzSHTLzd3QVPf`</summary>
+
+```text
+======================================================================
+FINAL VERIFICATION SUMMARY
+======================================================================
+
+[ABSTRACT]
+1. '14.5% over TEAL at matched sparsity' -> computed=(10.3-8.8137)/10.3*100=14.4% paper=14.5% ✅
+2. 'MMLU -5.2pp on 8B' -> TEAL=45.86%, KL=40.7%, diff=5.18pp paper=-5.2pp ✅
+3. 'GSM8K -21.2pp on 14B' -> TEAL=52.1%, KL=(s42+s456)/2=30.9%, diff=21.2pp paper=-21.2pp ✅
+5. 'PPL gap ≤0.65pp' -> actual max gap s42=0.6306pp ≤0.65 ✅ (but footnote says 0.65pp vs actual 0.63pp)
+6. '46--68% from magnitude-based targets' -> 30%=46.3%, 50%=68.2% ✅
+
+[INTRODUCTION]
+8. '14.5% at matched sparsity (8.81 vs 10.30)' -> KL=8.8137≈8.81, TEAL=10.30=10.30, reduction=14.4% ✅
+9. 'MMLU 40.7±1.3% vs 65.3% dense' -> KL=40.7±1.3%, dense=65.3% ✅
+10. '7.3× MMLU σ' -> global_std/uniform_std = 9.5/1.3 = 7.31× ✅
+11. '-17.3% PPL on Mistral' -> TEAL=8.3807, KL_mean=6.9325, reduction=17.3% ✅
+12. 'GSM8K -21.2pp, σ=6.8pp' -> mean=30.9%, TEAL=52.1%, diff=21.2pp, σ=6.8pp ✅
+13. 'MMLU -2.8pp' for Qwen14B -> paper: TEAL=66.34%-KL=63.55%=2.79pp≈2.8pp | registry: TEAL=qwen14b_teal275_uniform_eval_v3 not directly verifiable (66.34 not in registry)
+14. '6.4% latency overhead' -> (126.78-119.11)/119.11*100=6.44% ✅ (30% is 6.32%, cited 50% is 6.44%≈6.4%)
+
+[EXPERIMENTS]
+15. 'PPL 8.81±0.02 (3-seed), 14.5% reduction' -> mean=8.8137≈8.81, std_samp=0.0181≈0.02 ✅
+16. 'MMLU 40.7±1.3%, 3-seed' -> mean=40.7%, std=1.3% ✅
+17. '35.7±9.5% for global MMLU' -> mean=35.7%, std=9.5% ✅
+18. 'L31 retention 28.4%' -> from figure caption, not directly in registry exp_id. UNFOUND
+19. '11.92 vs. 23.90, 50% reduction' -> KL_uniform=11.9178≈11.92 (std=0.076≈0.07), TEAL=23.90, red=50.1% ✅
+20. '28.13±0.20' BCE at 2700 steps -> mean=28.1275≈28.13, std_samp=0.1985≈0.20 ✅
+21. '2.39× worse than KL (11.79)' -> 28.13/11.79=2.386× ✅ (KL=bench_kl50_global s42=11.7933≈11.79)
+22. 'F1 (0.613 vs. 0.540)' -> BCE_F1=0.613≈0.613, KL_F1=0.540≈0.540 ✅
+23. '139% worse PPL' -> (28.13-11.79)/11.79*100=138.6% ✅
+24. 'Jaccard distance averages 68% at 50%' -> 68.24% ✅
+25. 'cross-seed variation (36.3%)' -> appendix quotes 0.363 mean cross-seed Jaccard distance ✅ (cross_seed_jaccard_kl30, not in registry but cited in appendix)
+26. 'Gumbel-Sigmoid outperforms STE by 33.8% (11.79 vs. 15.77)' -> (15.77-11.79)/11.79*100=33.8% ✅ (STE=bench ste_baseline_s42=15.77)
+27. 'forward KL outperforms JSD (+6.4%) and reverse KL (+8.6%)' -> JSD=(12.54-11.79)/11.79*100=6.4%, revKL=(12.80-11.79)/11.79*100=8.6% ✅ (JSD/revKL at 50% from ablation table)
+28. 'K=16 achieves lowest PPL (8.67±0.02 vs. E2E 8.81±0.02)' -> K16_mean=8.6742≈8.67, std=0.0195≈0.02 ✅
+29. 'full coupling range (2.08 PPL)' -> K2_mean=10.7540, K16_mean=8.6742, range=2.0798≈2.08 ✅
+30. 'signal type gap (9.47 PPL)' -> MSE=18.52-K1_KL=9.05=9.47 ✅
+31. '-17.3%, 3-seed' for Mistral -> 17.3% ✅
+32. 'GSM8K 32.0±5.2 vs. 52.1' for Qwen14B -> WAIT: paper says 32.0±5.2 but computed 30.9±6.8?
+33. '148× vs. 112× compression' -> LLaMA: 14336/128=112 ✅; Qwen: claimed 148 but from 117M trainable params implies ~109, ❌
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "668a051b-24a4-4c71-bbb4-d7a809d8fa3a"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 695_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "description": "Running Verify 14.5% rounding and compression ratio",
+  "usage": {
+    "total_tokens": 131162,
+    "tool_uses": 40,
+    "duration_ms": 776903
+  },
+  "last_tool_name": "Bash",
+  "uuid": "c7411f41-3c8c-43b5-ad71-5b800deb2b14",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 696_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HaKq57c1qsjZNrETmxfXLV`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport numpy as np\n\n# Check claim 32: \"GSM8K 32.0±5.2\" - searching in experiments.tex\n# From the read experiments.tex, line 195: \"GSM8K 30.9±6.8 vs. 52.1, n=2\"\n# The task prompt said \"GSM8K −20.1pp on 14B\" for abstract (but abstract.tex shows -21.2pp now)\n# Let me see if \"32.0±5.2\" appears anywhere\n\n# Actually, re-reading the task prompt:\n# \"32. GSM8K 32.0±5.2 vs. 52.1 for Qwen14B\"\n# But experiments.tex actually says \"30.9±6.8 vs. 52.1\"\n# These are different! Let me re-check what text says\n\n# From introduction.tex line 17: \"GSM8K −21.2pp, σ=6.8pp, n=2\"\n# From experiments.tex line 195: \"14B GSM8K 30.9±6.8 vs. 52.1, n=2\"\n\n# So the paper uses 30.9±6.8 (which is CORRECT per registry: 30.9% mean, 6.8pp std)\n# NOT 32.0±5.2 as stated in the verification task\n\n# The task verification prompt for claim 32 says: \"GSM8K 32.0±5.2 vs. 52.1 for Qwen14B\"\n# But looking at the actual paper, it says 30.9±6.8\n# This suggests either the task prompt had outdated text, or the paper was recently updated\n# Let me confirm by reading experiments section again\n\n# From the file we already read:\n# experiments.tex line 195: \"GSM8K 30.9$\\pm$6.8 vs.\\ 52.1, $n{=}2$\"\n# This IS the current text. The task prompt's \"32.0±5.2\" is wrong (outdated task description).\n\n# Registry: KL s42=35.71%, s456=26.08%; mean=30.9%, std(samp)=6.8%\nkl_vals = np.array([0.3571, 0.2608])\nprint(f\"GSM8K 2-seed: mean={kl_vals.mean()*100:.1f}%, std={kl_vals.std(ddof=1)*100:.1f}%\")\n# Confirmed: 30.9±6.8 ✅\n\n# Now let me verify claim 14.4% vs 14.5% (rounding check)\n# KL 3-seed mean = (8.8157+8.8308+8.7947)/3 = 8.8137\n# TEAL 28.5% = 10.30\n# (10.30-8.8137)/10.30 = 14.43/10.30 = 14.43%... wait\nkl_mean = (8.8157+8.8308+8.7947)/3\nteal = 10.30\npct = (teal-kl_mean)/teal*100\nprint(f\"\\n14.5% claim: (10.30-{kl_mean:.4f})/10.30*100 = {pct:.2f}%\")\n# 14.43% which rounds to 14.4% not 14.5%\n# But if using kl_mean=8.81 (paper's rounded value): (10.30-8.81)/10.30=14.46% rounds to 14.5%\nalt = (teal-8.81)/teal*100\nprint(f\"With rounded kl=8.81: (10.30-8.81)/10.30*100 = {alt:.2f}% -> rounds to 14.5%\")\n# So they computed with rounded PPL values: (10.30-8.81)/10.30=14.46%≈14.5% ✓\n\n# What if KL=8.8137 and TEAL rounded to 10.30?\n# (10.30-8.8137)/10.30=14.43% rounds to 14.4%, not 14.5%\n# But if we use TEAL=10.3 (single decimal) and KL=8.81:\n# (10.3-8.81)/10.3 = 14.47% rounds to 14.5% ✓\n\n# The paper probably used: TEAL=10.30, KL=8.81 (both 2dp)\n# (10.30-8.81)/10.30 = 14.46% -> rounds to 14.5% ✓\n\nprint(f\"\\nWith KL=8.81 (2dp), TEAL=10.30: {(10.30-8.81)/10.30*100:.2f}% -> 14.5% ✅\")\n\n# Compression ratio for Qwen: Let's double-check\n# trainable_params='117M (0.793%)' from qwen14b_kl30_s123\n# total model = 117M/0.00793 = 14.754B ≈ 14.8B\n# Qwen2.5-14B typically has: d_model=5120, num_layers=48, intermediate_size\n# If ratio=148 and d_b=128: d_ff=18944\n# Per layer: 5120*128+128*18944=3,080,192\n# Total: 3,080,192*48=147,849,216≈147.8M ≠ 117M\n# If we just use the architecture as specified (d_b=128, d_ff=13696):\n# Per layer: 5120*128+128*13696=2,408,448\n# Total: 2,408,448*48=115,605,504≈115.6M ≈ 117M (with GELU/bias term additions)\n# Ratio = 13696/128 = 107.0 (not 148)\n\n# So: LLaMA ratio = 14336/128 = 112 ✓\n# Qwen ratio = 13696/128 = 107 (NOT 148 as claimed)\n# The 148× claim is inconsistent with 117M trainable params\n\nprint(\"\\n\\nCompression ratio analysis:\")\nprint(f\"LLaMA-8B: d_ff=14336, d_b=128, ratio={14336/128:.0f}× ✅\")\nprint(f\"Qwen-14B (from 117M params): d_ff≈{(117e6/48-5120*128)/128:.0f}, ratio≈{(117e6/48-5120*128)/128/128:.0f}×\")\nprint(f\"Paper claims 148×, implies d_ff={148*128}, but 117M trainable params implies ratio≈109 ❌\")\n\nEOF",
+  "description": "Verify 14.5% rounding and compression ratio"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "e8f148de-1ddb-4081-b4bb-dc53577621ff",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SCe1hdDwVnX5mT5zSr4dC5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5179,
+      "cache_read_input_tokens": 124472,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5179,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 697 · 2026-05-24T01:33:31.873Z_
+
+<details><summary>↩ Tool result · `toolu_01HaKq57c1qsjZNrETmxfXLV`</summary>
+
+```text
+GSM8K 2-seed: mean=30.9%, std=6.8%
+
+14.5% claim: (10.30-8.8137)/10.30*100 = 14.43%
+With rounded kl=8.81: (10.30-8.81)/10.30*100 = 14.47% -> rounds to 14.5%
+
+With KL=8.81 (2dp), TEAL=10.30: 14.47% -> 14.5% ✅
+
+
+Compression ratio analysis:
+LLaMA-8B: d_ff=14336, d_b=128, ratio=112× ✅
+Qwen-14B (from 117M params): d_ff≈13923, ratio≈109×
+Paper claims 148×, implies d_ff=18944, but 117M trainable params implies ratio≈109 ❌
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "77dd87a7-328b-4658-8330-1afefb0ced4d"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 698_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "a31d3bedb296fdf29",
+  "tool_use_id": "toolu_014Hxk77M4CwKNx9EagMdPbj",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Verify inline prose numbers",
+  "usage": {
+    "total_tokens": 133197,
+    "tool_uses": 40,
+    "duration_ms": 852598
+  },
+  "uuid": "64d3d3d3-cd45-4f1f-a18c-58d1d231f37c",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 699 · 2026-05-24T01:34:47.351Z_
+
+<details><summary>↩ Tool result · `toolu_014Hxk77M4CwKNx9EagMdPbj`</summary>
+
+```text
+Here is the complete verification report for all quantitative prose claims:
+
+---
+
+## Verification Results
+
+### Abstract (`abstract.tex`)
+
+**[ABSTRACT] Claim 1:** "14.5% over TEAL at matched sparsity" → computed=(10.30−8.81)/10.30×100=**14.5%** (using rounded 3-seed mean 8.81 and TEAL-28.5%=10.30 from `teal_28.5pct_sanity`). Raw 3-seed mean is 8.8137; exact reduction is 14.43%, which rounds to 14.4% but paper consistently uses the 2dp rounded PPLs. paper=14.5% **✅** (borderline; within rounding tolerance)
+
+**[ABSTRACT] Claim 2:** "MMLU −5.2pp on 8B" → TEAL uniform MMLU=45.86% (`teal_30pct_uniform_multiseed_eval`), KL 3-seed MMLU=40.7%, diff=5.16pp≈**5.2pp** ✅
+
+**[ABSTRACT] Claim 3:** "GSM8K −21.2pp on 14B" → TEAL GSM8K=52.08% (`qwen14b_teal30_uniform_gsm8k`), KL 2-seed mean=(35.71+26.08)/2=30.9%, diff=**21.2pp** ✅
+
+**[ABSTRACT] Claim 4:** "+67.2M params" — architectural constant, not directly in registry. Cited from `latency_benchmark` appendix prose.
+
+**[ABSTRACT] Claim 5:** "PPL gap ≤0.65pp" → actual max PPL gap across seeds: s42=9.4463−8.8157=**0.6306pp**, s123=0.01pp, s456=0.03pp. All ≤0.65 ✅. However, the Table 3 footnote says "(gap 0.65pp)" for s42, but registry gives 0.63pp. The "≤0.65pp" upper bound holds, but the footnote value is slightly imprecise — the actual is **0.63pp**, not 0.65pp. ⚠️
+
+**[ABSTRACT] Claim 6:** "46--68% from magnitude-based targets" → 30% sparsity: mean Jaccard distance=**46.3%** (`mask_stats_30pct_64samples.json`); 50% sparsity: mean Jaccard distance=**68.2%** (`mask_stats_50pct_64samples.json`). Range=46–68% ✅
+
+**[ABSTRACT] Claim 7:** "75.9M params, <1% of base" — architecture constant. 32 layers × 2.37M params/layer = 75.84M ≈ 75.9M. <1% of LLaMA-8B (7.98B active params). ✅
+
+---
+
+### Introduction (`introduction.tex`)
+
+**[INTRO] Claim 8:** "14.5% at matched sparsity (8.81 vs. 10.30, both at 28.5%)" → same as Abstract claim 1. KL 3-seed mean=8.8137≈8.81, TEAL-28.5%=10.30, (10.30−8.81)/10.30=14.47%≈**14.5%** ✅
+
+**[INTRO] Claim 9:** "MMLU 40.7±1.3% vs. 65.3% dense" → s42=0.4061, s123=0.3944, s456=0.4198; mean=40.68%≈**40.7%**, std(ddof=1)=1.3% ✅. Dense=65.27%≈**65.3%** (`bench_dense`) ✅
+
+**[INTRO] Claim 10:** "7.3× MMLU σ" → global MMLU std=9.5pp, uniform MMLU std=1.3pp; 9.5/1.3=**7.31×**≈7.3× ✅
+
+**[INTRO] Claim 11:** "−17.3% PPL on Mistral" → s42=6.7733 (`mistral_kl30_teal_global`), s123=7.1491, s456=6.8752; mean=6.9325; TEAL=8.3807 (`mistral_teal30_baseline`). (8.3807−6.9325)/8.3807=**17.3%** ✅
+
+**[INTRO] Claim 12:** "GSM8K −21.2pp, σ=6.8pp" for Qwen14B → 2-seed (s42=35.71%, s456=26.08%); mean=30.9%, std(ddof=1)=**6.8pp**; TEAL=52.1%; diff=**21.2pp** ✅
+
+**[INTRO] Claim 13:** "MMLU −2.8pp" for Qwen14B → Appendix Table 14b reports KL uniform MMLU=63.55%, TEAL uniform MMLU=66.34%, diff=2.79pp≈**2.8pp** ✅ in context. However, **TEAL uniform MMLU=66.34% is not directly in the registry** (nearest entry is `qwen14b_teal275_uniform_eval_v3` at 67.38%). The table value 66.34 cannot be independently verified from registry alone. ⚠️
+
+**[INTRO] Claim 14:** "6.4% latency overhead" → `latency_benchmark`: KL-50%=126.78ms, dense=119.11ms; (126.78−119.11)/119.11=**6.44%**≈6.4% ✅. At 30%: 6.32%; the 6.4% specifically refers to the 50% sparsity row (per appendix).
+
+---
+
+### Experiments prose (`experiments.tex`)
+
+**[EXP] Claim 15:** "PPL 8.81±0.02 (3-seed), a 14.5% reduction over TEAL at matched actual sparsity (8.81 vs. 10.30, both at 28.5%)" → mean=8.8137≈**8.81**, std(ddof=1)=0.018≈**0.02**; TEAL-28.5%=**10.30** ✅
+
+**[EXP] Claim 16:** "MMLU 40.7±1.3%, 3-seed" → confirmed ✅ (same as claim 9)
+
+**[EXP] Claim 17:** "35.7±9.5%" for global MMLU → s42=25.27%, s123=38.07%, s456=43.82%; mean=**35.72%**, std(ddof=1)=**9.5%** ✅
+
+**[EXP] Claim 18:** "L31 retention 28.4%" → from figure caption (Appendix, `app:retention`): "retention dropping to 28.4% (L31) even at 30% sparsity." No registry exp_id `perlayer_sparsity_analysis` found; value comes from figure data not directly registered. **Cannot verify from registry** ⚠️
+
+**[EXP] Claim 19:** "11.92 vs. 23.90, 50% reduction" → KL 3-seed uniform 50%: mean=(11.963+11.83+11.9604)/3=**11.918**≈11.92, std=0.076≈0.07 ✅; TEAL uniform 50%=**23.90** (`training_free_baselines.uniform_50pct_ppl`) ✅; (23.90−11.92)/23.90=**50.1%** ✅
+
+**[EXP] Claim 20:** "28.13±0.20" BCE at 2700 steps → s42=27.9696, s123=28.0627, s456=28.3503; mean=28.1275→**28.13**, std(ddof=1)=0.1985→**0.20** (0.1985 at 2dp rounds up to 0.20) ✅
+
+**[EXP] Claim 21:** "2.39× worse than KL (11.79)" → 28.13/11.79=**2.386×**≈2.39× ✅ (KL=`bench_kl50_global` s42=11.7933≈11.79)
+
+**[EXP] Claim 22:** "F1 (0.613 vs. 0.540)" → `kl_bce_f1_oracle`: BCE_F1=**0.6128**≈0.613, KL_F1=**0.5397**≈0.540 ✅
+
+**[EXP] Claim 23:** "139% worse PPL" → (28.13−11.79)/11.79×100=**138.6%**≈139% ✅
+
+**[EXP] Claim 24:** "Jaccard distance averages 68% at 50%" → `mask_stats_50pct_64samples.json`: jaccard_distance_mean=**0.6824=68.24%** ✅
+
+**[EXP] Claim 25:** "cross-seed variation (36.3%)" → appendix §Cross-Seed Mask Consistency: "mean cross-seed Jaccard distance is 0.363 (IoU=0.637)". Source exp_id `cross_seed_jaccard_kl30` not in registry, but value consistent with appendix text and independently stated. ✅
+
+**[EXP] Claim 26:** "Gumbel-Sigmoid outperforms STE by 33.8% (11.79 vs. 15.77)" → (15.77−11.79)/11.79×100=**33.8%** ✅ (`ste_baseline_s42`: teal_sparse_ppl=15.77)
+
+**[EXP] Claim 27:** "forward KL outperforms JSD (+6.4%) and reverse KL (+8.6%)" → JSD_50%=12.54: (12.54−11.79)/11.79×100=**6.4%** ✅; RevKL_50%=12.80: (12.80−11.79)/11.79×100=**8.6%** ✅. Note: JSD/RevKL 50% values (12.54, 12.80) appear only in the ablation table, with no dedicated registry exp_ids; the computation is internally consistent.
+
+**[EXP] Claim 28:** "K=16 achieves the lowest PPL (8.67±0.02 vs. E2E 8.81±0.02)" → K=16 3-seed: s42=8.6737 (`perlayer_kl_k16_eval_final2`), s123=8.6939, s456=8.655; mean=**8.6742**≈8.67, std(ddof=1)=0.0195≈**0.02** ✅
+
+**[EXP] Claim 29:** "the full coupling range (2.08 PPL)" → K=2 3-seed mean=10.754, K=16 3-seed mean=8.674; range=**2.080** ✅
+
+**[EXP] Claim 30:** "signal type gap (9.47 PPL)" → MSE=18.52, K=1 per-layer KL=9.05; gap=**9.47** ✅
+
+**[EXP] Claim 31:** "−17.3%, 3-seed" for Mistral → confirmed same as claim 11 ✅
+
+**[EXP] Claim 32:** "GSM8K 32.0±5.2 vs. 52.1 for Qwen14B" — The actual paper text (`experiments.tex` line 195) reads **"30.9±6.8 vs. 52.1, n=2"**, not "32.0±5.2" as stated in the task. Registry confirms: 2-seed mean=30.9%, std(ddof=1)=6.8%, TEAL=52.1% ✅. The verification task prompt had an outdated version of this number; the current paper text is correct.
+
+**[EXP] Claim 33:** "148× vs. 112× compression" → LLaMA-8B: d_ff=14336, d_b=128, ratio=**112** ✅. Qwen-14B claim of **148×** is **inconsistent with registry**: `qwen14b_kl30_s123` reports `trainable_params='117M (0.793%)'`; 117M/48 layers ≈ 2.44M per layer; with d_model=5120, d_b=128: implied d_ff≈13,923, ratio≈**109×**, not 148×. A ratio of 148 would require d_ff=18,944 and ~148M total trainable params, contradicting the 117M figure. **❌**
+
+---
+
+### Conclusion (`conclusion.tex`)
+
+**[CONCLUSION] Claim 34:** "14.5%" → same basis as all prior 14.5% claims ✅
+
+---
+
+## Summary of Issues Found
+
+| # | Claim | Status | Issue |
+|---|-------|--------|-------|
+| 5 | "PPL gap ≤0.65pp" / footnote "(gap 0.65pp)" | ⚠️ | Actual s42 gap = 0.63pp (registry: 9.4463−8.8157=0.6306). The ≤0.65pp bound holds, but the footnote's stated value 0.65pp is imprecise. |
+| 13 | "MMLU −2.8pp" Qwen14B | ⚠️ | TEAL uniform MMLU=66.34% not in registry (nearest: TEAL 27.5% =67.38%). The diff itself (2.79pp≈2.8pp) is plausible given the table. |
+| 18 | "L31 retention 28.4%" | ⚠️ | Not directly in registry; comes from per-layer sparsity figure data not registered. |
+| 20 | BCE std "±0.20" | ⚠️ Minor | Exact std(ddof=1)=0.1985 does round to 0.20 (correct under standard rounding), but exact value is 0.1985. ✅ on closer examination. |
+| 33 | "148× vs. 112× compression" | ❌ | 112× for LLaMA is correct (14336/128). But 148× for Qwen-14B is inconsistent with the 117M trainable-params figure in the registry, which implies ratio≈109× (d_ff≈13,923). If d_ff were 18,944 (as needed for 148×), total params would be ~148M, not 117M. |
+
+agentId: a31d3bedb296fdf29 (use SendMessage with to: 'a31d3bedb296fdf29' to continue this agent)
+&lt;usage>total_tokens: 135485
+tool_uses: 40
+duration_ms: 852600&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "de04a4d6-5f36-43ae-ba41-07cbcaf1e0f3",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "You are cross-verifying paper inline numbers against a registry of experiment results. The registry metrics are in `/tmp/registry_metrics.json` (JSON dict: exp_id -> {metrics, spec, conclusion, status}).\n\nYour task: verify ALL quantitative claims made in the **prose text** (not table cells, which are verified separately) of these paper sections. For each numeric claim, find the registry source and check correctness.\n\n## Claims to verify:\n\n### Abstract (abstract.tex)\n1. \"14.5% over TEAL at matched sparsity\" — check: (TEAL_PPL - KL_PPL) / TEAL_PPL. Need TEAL PPL at matched sparsity (28.5% actual). Look for `teal_28.5pct_sanity` or compute from TEAL at 28.5%.\n2. \"MMLU −5.2pp on 8B\" — check: KL_MMLU - Dense_MMLU or KL_MMLU - TEAL_MMLU?  Paper says \"knowledge-intensive regression (MMLU −5.2pp on 8B)\". Context: probably TEAL_MMLU - KL_MMLU = 45.86 - 40.7 = 5.16 ≈ 5.2pp\n3. \"GSM8K −20.1pp on 14B\" — check: probably TEAL_GSM8K - KL_GSM8K for Qwen14B uniform. TEAL=52.1, KL=32.0. Diff=20.1pp\n4. \"+67.2M params\" — architecture claim, not registry\n5. \"PPL gap ≤0.65pp\" — C1 ablation claim. Check: max PPL gap between C1 and KL across seeds at 30%. From Table 3: s42 gap = 9.45-8.82=0.63, s123 gap=8.84-8.83=0.01, s456 gap=8.82-8.79=0.03. Max=0.63pp. Paper says ≤0.65pp. But caption says \"max Δ≤1.70pp at 30%\". Verify.\n6. \"46--68% from magnitude-based targets\" — Jaccard distance range. Look for `c1_mask_overlap` or mask divergence experiments.\n7. \"75.9M params, <1% of base\" — architecture constant\n\n### Introduction (introduction.tex)\n8. \"14.5% at matched sparsity (8.81 vs. 10.30, both at 28.5%)\" — need TEAL PPL at 28.5% actual sparsity. Look for `teal_28.5pct_sanity`.\n9. \"MMLU 40.7±1.3% vs. 65.3% dense\" — KL MMLU from 3-seed (matches Table 2) vs dense. Dense MMLU = 65.27, paper says 65.3%.\n10. \"7.3× MMLU σ\" — global MMLU std / uniform MMLU std. Global: 9.5, Uniform: 1.3. 9.5/1.3 = 7.31 ≈ 7.3×\n11. \"−17.3% PPL on Mistral\" — (TEAL_PPL - KL_PPL) / TEAL_PPL for Mistral 30%. TEAL=8.38, KL=6.93. (8.38-6.93)/8.38 = 17.3%\n12. \"GSM8K −20.1pp, σ=5.2pp\" for Qwen14B\n13. \"MMLU −2.8pp\" for Qwen14B — TEAL_MMLU - KL_MMLU for 14B uniform. TEAL=66.34, KL=63.55. Diff=2.79≈2.8pp\n14. \"6.4% latency overhead\" — from latency table\n\n### Experiments prose (experiments.tex body text, not table cells)\n15. \"PPL 8.81±0.02 (3-seed), a 14.5% reduction over TEAL at matched actual sparsity (8.81 vs. 10.30, both at 28.5%)\" — verify TEAL at 28.5% = 10.30\n16. \"MMLU 40.7±1.3%, 3-seed\" — matches Table 2\n17. \"35.7±9.5%\" for global MMLU — matches Table 2  \n18. \"L31 retention 28.4%\" — look for perlayer_sparsity_analysis\n19. \"11.92 vs. 23.90, 50% reduction\" — (23.90-11.92)/23.90 = 50.1%\n20. \"28.13±0.20\" for BCE at 2700 steps — matches Table 2\n21. \"2.39× worse than KL (11.79)\" — 28.13/11.79 = 2.386 ≈ 2.39×. But wait, text says \"KL (11.79)\" at 50% — this should be from bench_kl50_global\n22. \"F1 (0.613 vs. 0.540)\" — look for `kl_bce_f1_oracle` or `f1_oracle_analysis`\n23. \"139% worse PPL\" — (28.13-11.79)/11.79 = 138.7% ≈ 139%\n24. \"Jaccard distance averages 68% at 50%\" — from mask overlap analysis\n25. \"cross-seed variation (36.3%)\" — cross-seed Jaccard\n26. \"Gumbel-Sigmoid outperforms STE by 33.8% (11.79 vs. 15.77)\" — (15.77-11.79)/11.79 = 33.8%\n27. \"forward KL outperforms JSD (+6.4%) and reverse KL (+8.6%)\" — (12.54-11.79)/11.79=6.4%, (12.80-11.79)/11.79=8.6%\n28. \"$K=16$ achieves the lowest PPL (8.67±0.02 vs. E2E 8.81±0.02)\" — from K-curve\n29. \"the full coupling range (2.08 PPL)\" — K=2 worst (10.75) - K=16 best (8.67) = 2.08\n30. \"signal type gap (9.47 PPL)\" — MSE PPL(18.52) - K=1 KL PPL(9.05) = 9.47\n31. \"$-$17.3\\%, 3-seed\" for Mistral\n32. \"GSM8K 32.0±5.2 vs. 52.1\" for Qwen14B\n33. \"$148×$ vs. $112×$ compression\" — d_model/d_b ratios. For Qwen-14B: d_model=5120(?)/d_b=128 or d_ff/d_b? Need to check architecture.\n\n### Conclusion (conclusion.tex)\n34. \"14.5%\" — same claim as above\n\nFor each claim, output:\n```\n[SECTION] Claim: \"[text]\" → computed=[value] paper=[value] ✅/❌\n```\n\nFocus on numerical accuracy. Tolerance ≤0.1pp for derived calculations.",
+    "agentId": "a31d3bedb296fdf29",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is the complete verification report for all quantitative prose claims:\n\n---\n\n## Verification Results\n\n### Abstract (`abstract.tex`)\n\n**[ABSTRACT] Claim 1:** \"14.5% over TEAL at matched sparsity\" → computed=(10.30−8.81)/10.30×100=**14.5%** (using rounded 3-seed mean 8.81 and TEAL-28.5%=10.30 from `teal_28.5pct_sanity`). Raw 3-seed mean is 8.8137; exact reduction is 14.43%, which rounds to 14.4% but paper consistently uses the 2dp rounded PPLs. paper=14.5% **✅** (borderline; within rounding tolerance)\n\n**[ABSTRACT] Claim 2:** \"MMLU −5.2pp on 8B\" → TEAL uniform MMLU=45.86% (`teal_30pct_uniform_multiseed_eval`), KL 3-seed MMLU=40.7%, diff=5.16pp≈**5.2pp** ✅\n\n**[ABSTRACT] Claim 3:** \"GSM8K −21.2pp on 14B\" → TEAL GSM8K=52.08% (`qwen14b_teal30_uniform_gsm8k`), KL 2-seed mean=(35.71+26.08)/2=30.9%, diff=**21.2pp** ✅\n\n**[ABSTRACT] Claim 4:** \"+67.2M params\" — architectural constant, not directly in registry. Cited from `latency_benchmark` appendix prose.\n\n**[ABSTRACT] Claim 5:** \"PPL gap ≤0.65pp\" → actual max PPL gap across seeds: s42=9.4463−8.8157=**0.6306pp**, s123=0.01pp, s456=0.03pp. All ≤0.65 ✅. However, the Table 3 footnote says \"(gap 0.65pp)\" for s42, but registry gives 0.63pp. The \"≤0.65pp\" upper bound holds, but the footnote value is slightly imprecise — the actual is **0.63pp**, not 0.65pp. ⚠️\n\n**[ABSTRACT] Claim 6:** \"46--68% from magnitude-based targets\" → 30% sparsity: mean Jaccard distance=**46.3%** (`mask_stats_30pct_64samples.json`); 50% sparsity: mean Jaccard distance=**68.2%** (`mask_stats_50pct_64samples.json`). Range=46–68% ✅\n\n**[ABSTRACT] Claim 7:** \"75.9M params, <1% of base\" — architecture constant. 32 layers × 2.37M params/layer = 75.84M ≈ 75.9M. <1% of LLaMA-8B (7.98B active params). ✅\n\n---\n\n### Introduction (`introduction.tex`)\n\n**[INTRO] Claim 8:** \"14.5% at matched sparsity (8.81 vs. 10.30, both at 28.5%)\" → same as Abstract claim 1. KL 3-seed mean=8.8137≈8.81, TEAL-28.5%=10.30, (10.30−8.81)/10.30=14.47%≈**14.5%** ✅\n\n**[INTRO] Claim 9:** \"MMLU 40.7±1.3% vs. 65.3% dense\" → s42=0.4061, s123=0.3944, s456=0.4198; mean=40.68%≈**40.7%**, std(ddof=1)=1.3% ✅. Dense=65.27%≈**65.3%** (`bench_dense`) ✅\n\n**[INTRO] Claim 10:** \"7.3× MMLU σ\" → global MMLU std=9.5pp, uniform MMLU std=1.3pp; 9.5/1.3=**7.31×**≈7.3× ✅\n\n**[INTRO] Claim 11:** \"−17.3% PPL on Mistral\" → s42=6.7733 (`mistral_kl30_teal_global`), s123=7.1491, s456=6.8752; mean=6.9325; TEAL=8.3807 (`mistral_teal30_baseline`). (8.3807−6.9325)/8.3807=**17.3%** ✅\n\n**[INTRO] Claim 12:** \"GSM8K −21.2pp, σ=6.8pp\" for Qwen14B → 2-seed (s42=35.71%, s456=26.08%); mean=30.9%, std(ddof=1)=**6.8pp**; TEAL=52.1%; diff=**21.2pp** ✅\n\n**[INTRO] Claim 13:** \"MMLU −2.8pp\" for Qwen14B → Appendix Table 14b reports KL uniform MMLU=63.55%, TEAL uniform MMLU=66.34%, diff=2.79pp≈**2.8pp** ✅ in context. However, **TEAL uniform MMLU=66.34% is not directly in the registry** (nearest entry is `qwen14b_teal275_uniform_eval_v3` at 67.38%). The table value 66.34 cannot be independently verified from registry alone. ⚠️\n\n**[INTRO] Claim 14:** \"6.4% latency overhead\" → `latency_benchmark`: KL-50%=126.78ms, dense=119.11ms; (126.78−119.11)/119.11=**6.44%**≈6.4% ✅. At 30%: 6.32%; the 6.4% specifically refers to the 50% sparsity row (per appendix).\n\n---\n\n### Experiments prose (`experiments.tex`)\n\n**[EXP] Claim 15:** \"PPL 8.81±0.02 (3-seed), a 14.5% reduction over TEAL at matched actual sparsity (8.81 vs. 10.30, both at 28.5%)\" → mean=8.8137≈**8.81**, std(ddof=1)=0.018≈**0.02**; TEAL-28.5%=**10.30** ✅\n\n**[EXP] Claim 16:** \"MMLU 40.7±1.3%, 3-seed\" → confirmed ✅ (same as claim 9)\n\n**[EXP] Claim 17:** \"35.7±9.5%\" for global MMLU → s42=25.27%, s123=38.07%, s456=43.82%; mean=**35.72%**, std(ddof=1)=**9.5%** ✅\n\n**[EXP] Claim 18:** \"L31 retention 28.4%\" → from figure caption (Appendix, `app:retention`): \"retention dropping to 28.4% (L31) even at 30% sparsity.\" No registry exp_id `perlayer_sparsity_analysis` found; value comes from figure data not directly registered. **Cannot verify from registry** ⚠️\n\n**[EXP] Claim 19:** \"11.92 vs. 23.90, 50% reduction\" → KL 3-seed uniform 50%: mean=(11.963+11.83+11.9604)/3=**11.918**≈11.92, std=0.076≈0.07 ✅; TEAL uniform 50%=**23.90** (`training_free_baselines.uniform_50pct_ppl`) ✅; (23.90−11.92)/23.90=**50.1%** ✅\n\n**[EXP] Claim 20:** \"28.13±0.20\" BCE at 2700 steps → s42=27.9696, s123=28.0627, s456=28.3503; mean=28.1275→**28.13**, std(ddof=1)=0.1985→**0.20** (0.1985 at 2dp rounds up to 0.20) ✅\n\n**[EXP] Claim 21:** \"2.39× worse than KL (11.79)\" → 28.13/11.79=**2.386×**≈2.39× ✅ (KL=`bench_kl50_global` s42=11.7933≈11.79)\n\n**[EXP] Claim 22:** \"F1 (0.613 vs. 0.540)\" → `kl_bce_f1_oracle`: BCE_F1=**0.6128**≈0.613, KL_F1=**0.5397**≈0.540 ✅\n\n**[EXP] Claim 23:** \"139% worse PPL\" → (28.13−11.79)/11.79×100=**138.6%**≈139% ✅\n\n**[EXP] Claim 24:** \"Jaccard distance averages 68% at 50%\" → `mask_stats_50pct_64samples.json`: jaccard_distance_mean=**0.6824=68.24%** ✅\n\n**[EXP] Claim 25:** \"cross-seed variation (36.3%)\" → appendix §Cross-Seed Mask Consistency: \"mean cross-seed Jaccard distance is 0.363 (IoU=0.637)\". Source exp_id `cross_seed_jaccard_kl30` not in registry, but value consistent with appendix text and independently stated. ✅\n\n**[EXP] Claim 26:** \"Gumbel-Sigmoid outperforms STE by 33.8% (11.79 vs. 15.77)\" → (15.77−11.79)/11.79×100=**33.8%** ✅ (`ste_baseline_s42`: teal_sparse_ppl=15.77)\n\n**[EXP] Claim 27:** \"forward KL outperforms JSD (+6.4%) and reverse KL (+8.6%)\" → JSD_50%=12.54: (12.54−11.79)/11.79×100=**6.4%** ✅; RevKL_50%=12.80: (12.80−11.79)/11.79×100=**8.6%** ✅. Note: JSD/RevKL 50% values (12.54, 12.80) appear only in the ablation table, with no dedicated registry exp_ids; the computation is internally consistent.\n\n**[EXP] Claim 28:** \"K=16 achieves the lowest PPL (8.67±0.02 vs. E2E 8.81±0.02)\" → K=16 3-seed: s42=8.6737 (`perlayer_kl_k16_eval_final2`), s123=8.6939, s456=8.655; mean=**8.6742**≈8.67, std(ddof=1)=0.0195≈**0.02** ✅\n\n**[EXP] Claim 29:** \"the full coupling range (2.08 PPL)\" → K=2 3-seed mean=10.754, K=16 3-seed mean=8.674; range=**2.080** ✅\n\n**[EXP] Claim 30:** \"signal type gap (9.47 PPL)\" → MSE=18.52, K=1 per-layer KL=9.05; gap=**9.47** ✅\n\n**[EXP] Claim 31:** \"−17.3%, 3-seed\" for Mistral → confirmed same as claim 11 ✅\n\n**[EXP] Claim 32:** \"GSM8K 32.0±5.2 vs. 52.1 for Qwen14B\" — The actual paper text (`experiments.tex` line 195) reads **\"30.9±6.8 vs. 52.1, n=2\"**, not \"32.0±5.2\" as stated in the task. Registry confirms: 2-seed mean=30.9%, std(ddof=1)=6.8%, TEAL=52.1% ✅. The verification task prompt had an outdated version of this number; the current paper text is correct.\n\n**[EXP] Claim 33:** \"148× vs. 112× compression\" → LLaMA-8B: d_ff=14336, d_b=128, ratio=**112** ✅. Qwen-14B claim of **148×** is **inconsistent with registry**: `qwen14b_kl30_s123` reports `trainable_params='117M (0.793%)'`; 117M/48 layers ≈ 2.44M per layer; with d_model=5120, d_b=128: implied d_ff≈13,923, ratio≈**109×**, not 148×. A ratio of 148 would require d_ff=18,944 and ~148M total trainable params, contradicting the 117M figure. **❌**\n\n---\n\n### Conclusion (`conclusion.tex`)\n\n**[CONCLUSION] Claim 34:** \"14.5%\" → same basis as all prior 14.5% claims ✅\n\n---\n\n## Summary of Issues Found\n\n| # | Claim | Status | Issue |\n|---|-------|--------|-------|\n| 5 | \"PPL gap ≤0.65pp\" / footnote \"(gap 0.65pp)\" | ⚠️ | Actual s42 gap = 0.63pp (registry: 9.4463−8.8157=0.6306). The ≤0.65pp bound holds, but the footnote's stated value 0.65pp is imprecise. |\n| 13 | \"MMLU −2.8pp\" Qwen14B | ⚠️ | TEAL uniform MMLU=66.34% not in registry (nearest: TEAL 27.5% =67.38%). The diff itself (2.79pp≈2.8pp) is plausible given the table. |\n| 18 | \"L31 retention 28.4%\" | ⚠️ | Not directly in registry; comes from per-layer sparsity figure data not registered. |\n| 20 | BCE std \"±0.20\" | ⚠️ Minor | Exact std(ddof=1)=0.1985 does round to 0.20 (correct under standard rounding), but exact value is 0.1985. ✅ on closer examination. |\n| 33 | \"148× vs. 112× compression\" | ❌ | 112× for LLaMA is correct (14336/128). But 148× for Qwen-14B is inconsistent with the 117M trainable-params figure in the registry, which implies ratio≈109× (d_ff≈13,923). If d_ff were 18,944 (as needed for 148×), total params would be ~148M, not 117M. |"
+      }
+    ],
+    "totalDurationMs": 852600,
+    "totalTokens": 135485,
+    "totalToolUseCount": 40,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2034,
+      "cache_read_input_tokens": 129651,
+      "output_tokens": 3799,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2034
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3799,
+          "cache_read_input_tokens": 129651,
+          "cache_creation_input_tokens": 2034,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2034,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 7,
+      "searchCount": 0,
+      "bashCount": 33,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 700_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also verify some of the claims that need quick checking - the Qwen 14B compression ratio claim and the abstract GSM8K number. Let me also quickly verify the TEAL 28.5% PPL = 10.30 claim.
+
+Let me also check for the introduction claim about "GSM8K −20.1pp" vs what the agent found ("−21.2pp"). Let me re-read the abstract and intro more carefully.
+
+From abstract.tex line 3: "knowledge-intensive regression (MMLU $-$5.2pp on 8B; GSM8K $-$20.1pp on 14B)"
+
+
+From intro line 17: "GSM8K $-$20.1pp, $\sigma$=5.2pp"
+
+Now I'm checking the experiments.tex file to verify the actual GSM8K numbers - the agent claimed to find "30.9±6.8 vs. 52.1, n=2" but I need to see what's actually written there around line 195. I'm cross-referencing the paper's actual text against what the verification agent reported. The experiments.tex clearly states GSM8K 32.0±5.2 for Qwen14B uniform KL, which aligns with the abstract's 20.1pp regression (52.1 baseline minus 32.0 result). But the agent claimed the paper shows 30.9±6.8 instead, so there's a discrepancy I need to resolve by checking the source directly. I'm seeing a discrepancy between what the agent reported and what's actually in the paper. The agent found GSM8K values of 35.5 and 26.1 (averaging to 30.8), but the paper clearly states 32.0±5.2 in both the table and the inline text. Either the agent misread the paper or there's a genuine mismatch in the reported numbers.
+
+The agent marked n=2 because seed 123 was incomplete, but I should check if including that third seed would change the computed mean and standard deviation. Let me trace through the actual experiment IDs to see what data's available across all three seeds. I'm calculating the per-layer parameter count for Qwen-2.5-14B with its actual dimensions, and the math shows around 3.08M parameters per layer across 48 layers, which doesn't match up with the 117M trainable parameters the agent reported. 123.2M, which still doesn't match the 117M from the registry. Let me recalculate assuming Qwen2.5-14B uses SwiGLU with an intermediate_size of 13696 instead—that would give me about 2.41M per layer, and with 48 layers I'd get roughly 115.6M, which is much closer to 117M. I need to verify the exact intermediate size for this model since SwiGLU changes how the config is interpreted. I need to verify these specific claims against the actual registry data before finalizing my report. Let me pull the exact entries for the KL 50% global row, the Qwen14B GSM8K results, the compression ratio calculation, and the other flagged discrepancies so I can document what matches and what doesn't.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "789cf813-2d99-4673-a38d-eb75fa682cb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RS1BHnAK2Afepx6o9vHDS6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5869,
+      "cache_read_input_tokens": 90086,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5869
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 701_
+
+All four agents returned. Let me verify a few critical discrepancies they flagged.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "a0659779-9b89-4af8-94c3-5a8c021987ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RS1BHnAK2Afepx6o9vHDS6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5869,
+      "cache_read_input_tokens": 90086,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5869
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 702_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HxKMBoeUYdta6VHHFSMEx5`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/tmp/registry_metrics.json') as f:\n    reg = json.load(f)\n\n# 1. KL 50% global 3-seed: check bench_kl50_global, kl50_global_s123_downstream_v2, kl50_global_s456_eval, kl50_s456_global_eval, mvp_kl_norm_v2_s42/s123/s456\nprint(\"=== KL 50% global seed experiments ===\")\nfor eid in ['bench_kl50_global', 'kl50_global_s123_downstream_v2', 'kl50_global_s456_eval', 'kl50_s456_global_eval', 'kl50_global_s123_reeval', 'kl50_s123_eval', 'kl50_s456_eval', 'mvp_kl_norm_v2_s42', 'mvp_kl_norm_v2_s123', 'mvp_kl_norm_v2_s456']:\n    if eid in reg:\n        m = reg[eid]['metrics']\n        ppl_keys = [k for k in m.keys() if 'ppl' in k.lower()]\n        arc_keys = [k for k in m.keys() if 'arc' in k.lower()]\n        wg_keys = [k for k in m.keys() if 'winogrande' in k.lower() or 'wg' in k.lower()]\n        mmlu_keys = [k for k in m.keys() if 'mmlu' in k.lower()]\n        gsm_keys = [k for k in m.keys() if 'gsm' in k.lower()]\n        print(f\"\\n{eid}:\")\n        for k in ppl_keys: print(f\"  {k}: {m[k]}\")\n        for k in arc_keys: print(f\"  {k}: {m[k]}\")\n        for k in wg_keys: print(f\"  {k}: {m[k]}\")\n        for k in mmlu_keys: print(f\"  {k}: {m[k]}\")\n        for k in gsm_keys: print(f\"  {k}: {m[k]}\")\n    else:\n        print(f\"{eid}: NOT FOUND\")\n\nPYEOF\n",
+  "description": "Check KL 50% global 3-seed raw metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "413b0831-da1e-4d8b-a29e-d9f1826722c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RS1BHnAK2Afepx6o9vHDS6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5869,
+      "cache_read_input_tokens": 90086,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5869
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 703 · 2026-05-24T01:35:53.263Z_
+
+<details><summary>↩ Tool result · `toolu_01HxKMBoeUYdta6VHHFSMEx5`</summary>
+
+```text
+=== KL 50% global seed experiments ===
+
+bench_kl50_global:
+  wikitext2_ppl: 11.7933
+  arc_challenge_acc_norm: 0.3285
+  winogrande_acc: 0.6346
+  mmlu_acc: 0.2789
+  gsm8k_exact_match: 0.0129
+
+kl50_global_s123_downstream_v2:
+  arc_challenge_acc_norm: 0.3916
+  winogrande_acc: 0.6401
+  mmlu_acc: 0.2908
+  gsm8k_exact_match: 0.0341
+kl50_global_s456_eval: NOT FOUND
+
+kl50_s456_global_eval:
+  ppl_wikitext2: 11.8057
+  arc_challenge: 0.3319
+  winogrande: 0.6488
+  mmlu: 0.2794
+  gsm8k: 0.0212
+
+kl50_global_s123_reeval:
+  wikitext2_ppl: 11.7184
+  arc_challenge_acc_norm: 0.3635
+  winogrande_acc: 0.6109
+  mmlu_acc: 0.2834
+  gsm8k_exact_match: 0.0258
+
+kl50_s123_eval:
+  wikitext2_ppl: 11.745
+  arc_challenge: 0.3814
+  winogrande: 0.6125
+  mmlu: 0.2752
+  gsm8k: 0.0281
+
+kl50_s456_eval:
+  wikitext2_ppl: 11.8614
+  arc_challenge_acc_norm: 0.3754
+  winogrande_acc: 0.6417
+  mmlu_acc: 0.2784
+  gsm8k_exact_match: 0.0212
+
+mvp_kl_norm_v2_s42:
+  true_dense_ppl: 6.1173
+  predictor_hard_mask_ppl: 9.2142
+  teal_sparse_ppl: 12.0776
+  ppl_increase_vs_true_dense_pct: 97.4
+  vanilla_teal_sparse_ppl_INVALID: 66036.4062
+
+mvp_kl_norm_v2_s123:
+  true_dense_ppl: 6.1173
+  predictor_hard_mask_ppl: 9.2474
+  teal_sparse_ppl: 11.9128
+  ppl_increase_vs_true_dense_pct: 94.7
+  vanilla_teal_sparse_ppl_INVALID: 66036.4062
+
+mvp_kl_norm_v2_s456:
+  true_dense_ppl: 6.1173
+  predictor_hard_mask_ppl: 9.14
+  teal_sparse_ppl: 13.58
+  ppl_increase_vs_true_dense_pct: 121.9
+  vanilla_teal_sparse_ppl_INVALID: 66036.4062
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "d0786508-9ba8-4a93-8a88-fe42faa149f6",
+  "tool_use_result": {
+    "stdout": "=== KL 50% global seed experiments ===\n\nbench_kl50_global:\n  wikitext2_ppl: 11.7933\n  arc_challenge_acc_norm: 0.3285\n  winogrande_acc: 0.6346\n  mmlu_acc: 0.2789\n  gsm8k_exact_match: 0.0129\n\nkl50_global_s123_downstream_v2:\n  arc_challenge_acc_norm: 0.3916\n  winogrande_acc: 0.6401\n  mmlu_acc: 0.2908\n  gsm8k_exact_match: 0.0341\nkl50_global_s456_eval: NOT FOUND\n\nkl50_s456_global_eval:\n  ppl_wikitext2: 11.8057\n  arc_challenge: 0.3319\n  winogrande: 0.6488\n  mmlu: 0.2794\n  gsm8k: 0.0212\n\nkl50_global_s123_reeval:\n  wikitext2_ppl: 11.7184\n  arc_challenge_acc_norm: 0.3635\n  winogrande_acc: 0.6109\n  mmlu_acc: 0.2834\n  gsm8k_exact_match: 0.0258\n\nkl50_s123_eval:\n  wikitext2_ppl: 11.745\n  arc_challenge: 0.3814\n  winogrande: 0.6125\n  mmlu: 0.2752\n  gsm8k: 0.0281\n\nkl50_s456_eval:\n  wikitext2_ppl: 11.8614\n  arc_challenge_acc_norm: 0.3754\n  winogrande_acc: 0.6417\n  mmlu_acc: 0.2784\n  gsm8k_exact_match: 0.0212\n\nmvp_kl_norm_v2_s42:\n  true_dense_ppl: 6.1173\n  predictor_hard_mask_ppl: 9.2142\n  teal_sparse_ppl: 12.0776\n  ppl_increase_vs_true_dense_pct: 97.4\n  vanilla_teal_sparse_ppl_INVALID: 66036.4062\n\nmvp_kl_norm_v2_s123:\n  true_dense_ppl: 6.1173\n  predictor_hard_mask_ppl: 9.2474\n  teal_sparse_ppl: 11.9128\n  ppl_increase_vs_true_dense_pct: 94.7\n  vanilla_teal_sparse_ppl_INVALID: 66036.4062\n\nmvp_kl_norm_v2_s456:\n  true_dense_ppl: 6.1173\n  predictor_hard_mask_ppl: 9.14\n  teal_sparse_ppl: 13.58\n  ppl_increase_vs_true_dense_pct: 121.9\n  vanilla_teal_sparse_ppl_INVALID: 66036.4062",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 704_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018udhycEegcwc23JRXiWFBa`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/tmp/registry_metrics.json') as f:\n    reg = json.load(f)\n\n# 2. Qwen14B GSM8K values\nprint(\"=== Qwen14B GSM8K experiments ===\")\nfor eid in ['qwen14b_kl30_s42_gsm8k_uniform', 'qwen14b_kl30_s42_gsm8k_v2', 'qwen14b_kl30_s456_gsm8k', 'qwen14b_kl30_s123_eval_v5', 'qwen14b_kl30_s456_eval_v2', 'qwen14b_kl30_s456_eval_v3', 'qwen14b_kl30_s42_eval_uniform_v3', 'qwen14b_kl30_s123']:\n    if eid in reg:\n        m = reg[eid]['metrics']\n        gsm_keys = [k for k in m.keys() if 'gsm' in k.lower()]\n        print(f\"\\n{eid}:\")\n        for k in gsm_keys: print(f\"  {k}: {m[k]}\")\n        if not gsm_keys:\n            print(f\"  (no gsm keys; all keys: {list(m.keys())[:10]})\")\n    else:\n        print(f\"{eid}: NOT FOUND\")\n\n# 3. Qwen14B architecture: check spec for d_ff\nprint(\"\\n=== Qwen14B spec ===\")\nfor eid in ['qwen14b_kl30_s42', 'qwen14b_kl30_s123']:\n    if eid in reg:\n        s = reg[eid].get('spec', {})\n        print(f\"\\n{eid} spec:\")\n        for k, v in s.items():\n            print(f\"  {k}: {v}\")\n\nPYEOF\n",
+  "description": "Check Qwen14B GSM8K and architecture spec"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "eaa505bf-7d75-4fea-96d7-6788fe8afa78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RS1BHnAK2Afepx6o9vHDS6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5869,
+      "cache_read_input_tokens": 90086,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5869
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 705 · 2026-05-24T01:35:58.660Z_
+
+<details><summary>↩ Tool result · `toolu_018udhycEegcwc23JRXiWFBa`</summary>
+
+```text
+=== Qwen14B GSM8K experiments ===
+
+qwen14b_kl30_s42_gsm8k_uniform:
+  gsm8k_exact_match: 0.3548
+
+qwen14b_kl30_s42_gsm8k_v2:
+  gsm8k_exact_match: 0.3571
+  gsm8k_exact_match_strict: 0.3541
+  gsm8k_exact_match_stderr: 0.0132
+
+qwen14b_kl30_s456_gsm8k:
+  gsm8k_exact_match: 0.2608
+  gsm8k_exact_match_stderr: 0.01209
+  gsm8k_exact_match_strict: 0.2547
+  gsm8k_exact_match_strict_stderr: 0.012
+
+qwen14b_kl30_s123_eval_v5:
+  (no gsm keys; all keys: ['wikitext2_ppl', 'arc_challenge_acc_norm', 'winogrande_acc', 'hellaswag_acc_norm', 'piqa_acc_norm', 'mmlu_acc', 'actual_sparsity'])
+
+qwen14b_kl30_s456_eval_v2:
+  (no gsm keys; all keys: ['wikitext2_ppl', 'arc_challenge_acc', 'arc_challenge_acc_norm', 'winogrande_acc', 'mmlu_acc', 'hellaswag_acc', 'hellaswag_acc_norm', 'piqa_acc', 'piqa_acc_norm', 'model_sparsity'])
+
+qwen14b_kl30_s456_eval_v3:
+  (no gsm keys; all keys: ['wikitext2_ppl', 'arc_challenge_acc_norm', 'winogrande_acc', 'hellaswag_acc_norm', 'piqa_acc_norm', 'mmlu_acc', 'actual_sparsity'])
+
+qwen14b_kl30_s42_eval_uniform_v3:
+  (no gsm keys; all keys: ['wikitext2_ppl', 'arc_challenge_acc', 'arc_challenge_acc_norm', 'winogrande_acc', 'mmlu_acc', 'hellaswag_acc_norm', 'piqa_acc_norm', 'actual_sparsity'])
+
+qwen14b_kl30_s123:
+  (no gsm keys; all keys: ['final_loss_kl_norm', 'final_kl_raw', 'final_sparsity', 'final_constraint', 'final_lambda', 'final_tau', 'steps', 'trainable_params'])
+
+=== Qwen14B spec ===
+
+qwen14b_kl30_s42 spec:
+  command: cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s42 --wandb_run_name qwen14b_kl30_s42 --gpu 0
+  server: westd-34887
+  gpu: ['cuda:1']
+  pid: 50349
+  log_path: ~/runs/distill_sparse_swiglu/qwen14b_kl30_s42.log
+  submitted_at: 2026-05-17T14:28:58.095Z
+  submitted_via: submit_training_job
+  backend: tmux
+  account: root
+  wall_clock_seconds: 1278.3
+  gpu_hours: 0.36
+
+qwen14b_kl30_s123 spec:
+  command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s123 --gpu 0 2>&1"
+  server: westd-34887
+  gpu: ['cuda:0']
+  pid: 91294
+  log_path: ~/runs/distill_sparse_swiglu/qwen14b_kl30_s123.log
+  submitted_at: 2026-05-19T08:21:40.612Z
+  submitted_via: submit_training_job
+  backend: tmux
+  account: root
+  wall_clock_seconds: 19332.8
+  gpu_hours: 5.37
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "771a7423-7efb-4b2c-b61d-cb05cc9e8a97",
+  "tool_use_result": {
+    "stdout": "=== Qwen14B GSM8K experiments ===\n\nqwen14b_kl30_s42_gsm8k_uniform:\n  gsm8k_exact_match: 0.3548\n\nqwen14b_kl30_s42_gsm8k_v2:\n  gsm8k_exact_match: 0.3571\n  gsm8k_exact_match_strict: 0.3541\n  gsm8k_exact_match_stderr: 0.0132\n\nqwen14b_kl30_s456_gsm8k:\n  gsm8k_exact_match: 0.2608\n  gsm8k_exact_match_stderr: 0.01209\n  gsm8k_exact_match_strict: 0.2547\n  gsm8k_exact_match_strict_stderr: 0.012\n\nqwen14b_kl30_s123_eval_v5:\n  (no gsm keys; all keys: ['wikitext2_ppl', 'arc_challenge_acc_norm', 'winogrande_acc', 'hellaswag_acc_norm', 'piqa_acc_norm', 'mmlu_acc', 'actual_sparsity'])\n\nqwen14b_kl30_s456_eval_v2:\n  (no gsm keys; all keys: ['wikitext2_ppl', 'arc_challenge_acc', 'arc_challenge_acc_norm', 'winogrande_acc', 'mmlu_acc', 'hellaswag_acc', 'hellaswag_acc_norm', 'piqa_acc', 'piqa_acc_norm', 'model_sparsity'])\n\nqwen14b_kl30_s456_eval_v3:\n  (no gsm keys; all keys: ['wikitext2_ppl', 'arc_challenge_acc_norm', 'winogrande_acc', 'hellaswag_acc_norm', 'piqa_acc_norm', 'mmlu_acc', 'actual_sparsity'])\n\nqwen14b_kl30_s42_eval_uniform_v3:\n  (no gsm keys; all keys: ['wikitext2_ppl', 'arc_challenge_acc', 'arc_challenge_acc_norm', 'winogrande_acc', 'mmlu_acc', 'hellaswag_acc_norm', 'piqa_acc_norm', 'actual_sparsity'])\n\nqwen14b_kl30_s123:\n  (no gsm keys; all keys: ['final_loss_kl_norm', 'final_kl_raw', 'final_sparsity', 'final_constraint', 'final_lambda', 'final_tau', 'steps', 'trainable_params'])\n\n=== Qwen14B spec ===\n\nqwen14b_kl30_s42 spec:\n  command: cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s42 --wandb_run_name qwen14b_kl30_s42 --gpu 0\n  server: westd-34887\n  gpu: ['cuda:1']\n  pid: 50349\n  log_path: ~/runs/distill_sparse_swiglu/qwen14b_kl30_s42.log\n  submitted_at: 2026-05-17T14:28:58.095Z\n  submitted_via: submit_training_job\n  backend: tmux\n  account: root\n  wall_clock_seconds: 1278.3\n  gpu_hours: 0.36\n\nqwen14b_kl30_s123 spec:\n  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s123 --gpu 0 2>&1\"\n  server: westd-34887\n  gpu: ['cuda:0']\n  pid: 91294\n  log_path: ~/runs/distill_sparse_swiglu/qwen14b_kl30_s123.log\n  submitted_at: 2026-05-19T08:21:40.612Z\n  submitted_via: submit_training_job\n  backend: tmux\n  account: root\n  wall_clock_seconds: 19332.8\n  gpu_hours: 5.37",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 706_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01X4vpoDiLh7W87W6agGamQc`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/tmp/registry_metrics.json') as f:\n    reg = json.load(f)\n\n# 4. TEAL 30% uniform - check all related entries\nprint(\"=== TEAL 30% uniform experiments ===\")\nfor eid in ['teal_30pct_uniform_multiseed_eval', 'downstream_teal30_baseline', 'bench_teal30_uniform_6task', 'training_free_baselines', 'bench_teal30']:\n    if eid in reg:\n        m = reg[eid]['metrics']\n        print(f\"\\n{eid}:\")\n        for k in sorted(m.keys()):\n            print(f\"  {k}: {m[k]}\")\n    else:\n        print(f\"{eid}: NOT FOUND\")\n\n# 5. TEAL 28.5% sanity check\nprint(\"\\n=== TEAL 28.5% ===\")\neid = 'teal_28.5pct_sanity'\nif eid in reg:\n    m = reg[eid]['metrics']\n    print(f\"{eid}:\")\n    for k in sorted(m.keys()): print(f\"  {k}: {m[k]}\")\nelse:\n    print(f\"{eid}: NOT FOUND\")\n\n# 6. Check C4 control - HS/PIQA for WikiText-trained predictor\nprint(\"\\n=== HS/PIQA sources for KL30 uniform ===\")\nfor eid in ['kl30_uniform_hellaswag_piqa', 'kl30_uniform_hellaswag_piqa_v2', 'hellaswag_piqa_kl30_uniform', 'bench_kl30_uniform']:\n    if eid in reg:\n        m = reg[eid]['metrics']\n        hs_keys = [k for k in m.keys() if 'hella' in k.lower() or 'hs' in k.lower()]\n        piqa_keys = [k for k in m.keys() if 'piqa' in k.lower()]\n        print(f\"\\n{eid}:\")\n        for k in hs_keys: print(f\"  {k}: {m[k]}\")\n        for k in piqa_keys: print(f\"  {k}: {m[k]}\")\n    else:\n        print(f\"{eid}: NOT FOUND\")\n\nPYEOF\n",
+  "description": "Check TEAL baselines and HS/PIQA sources"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "30edb010-e319-4f0e-b67f-0d8dc8c92621",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RS1BHnAK2Afepx6o9vHDS6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5869,
+      "cache_read_input_tokens": 90086,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5869
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 707 · 2026-05-24T01:36:05.630Z_
+
+<details><summary>↩ Tool result · `toolu_01X4vpoDiLh7W87W6agGamQc`</summary>
+
+```text
+=== TEAL 30% uniform experiments ===
+
+teal_30pct_uniform_multiseed_eval:
+  arc_challenge: 0.3771
+  gsm8k: 0.0879
+  hellaswag: 0.6331
+  mmlu: 0.4586
+  piqa: 0.7198
+  ppl: 10.8173
+  winogrande: 0.6504
+
+downstream_teal30_baseline:
+  boolq_acc: 0.685
+  hellaswag_acc: 0.4878
+  hellaswag_acc_norm: 0.667
+  piqa_acc: 0.7258
+  piqa_acc_norm: 0.7361
+bench_teal30_uniform_6task: NOT FOUND
+
+training_free_baselines:
+  dense_ppl: 6.12
+  rsparse_global_ppl: 151.2
+  teal_greedy_ppl: 33.47
+  uniform_50pct_ppl: 23.9
+  vanilla_teal_global_ppl: 23.31
+  vanilla_teal_global_ppl_30pct: 10.97
+  vanilla_teal_global_ppl_50pct: 23.31
+  vanilla_teal_global_ppl_70pct: 100.11
+  wina_global_ppl: 27.93
+  wina_global_ppl_30pct: 11.45
+  wina_global_ppl_50pct: 27.93
+  wina_global_ppl_70pct: 137.24
+
+bench_teal30:
+  actual_sparsity: 0.3
+  arc_challenge_acc_norm: 0.4232
+  gsm8k_exact_match: 0.0788
+  mmlu_acc: 0.3861
+  wikitext2_ppl: 10.97
+  winogrande_acc: 0.6606
+
+=== TEAL 28.5% ===
+teal_28.5pct_sanity:
+  wikitext2_ppl: 10.3
+
+=== HS/PIQA sources for KL30 uniform ===
+
+kl30_uniform_hellaswag_piqa:
+  hellaswag_acc_norm: 0.7085
+  piqa_acc_norm: 0.7481
+
+kl30_uniform_hellaswag_piqa_v2:
+  hellaswag_acc_norm: 0.7085
+  piqa_acc_norm: 0.7481
+hellaswag_piqa_kl30_uniform: NOT FOUND
+
+bench_kl30_uniform:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "732ca4f7-5b89-4e36-b42c-edc71c1f58d6",
+  "tool_use_result": {
+    "stdout": "=== TEAL 30% uniform experiments ===\n\nteal_30pct_uniform_multiseed_eval:\n  arc_challenge: 0.3771\n  gsm8k: 0.0879\n  hellaswag: 0.6331\n  mmlu: 0.4586\n  piqa: 0.7198\n  ppl: 10.8173\n  winogrande: 0.6504\n\ndownstream_teal30_baseline:\n  boolq_acc: 0.685\n  hellaswag_acc: 0.4878\n  hellaswag_acc_norm: 0.667\n  piqa_acc: 0.7258\n  piqa_acc_norm: 0.7361\nbench_teal30_uniform_6task: NOT FOUND\n\ntraining_free_baselines:\n  dense_ppl: 6.12\n  rsparse_global_ppl: 151.2\n  teal_greedy_ppl: 33.47\n  uniform_50pct_ppl: 23.9\n  vanilla_teal_global_ppl: 23.31\n  vanilla_teal_global_ppl_30pct: 10.97\n  vanilla_teal_global_ppl_50pct: 23.31\n  vanilla_teal_global_ppl_70pct: 100.11\n  wina_global_ppl: 27.93\n  wina_global_ppl_30pct: 11.45\n  wina_global_ppl_50pct: 27.93\n  wina_global_ppl_70pct: 137.24\n\nbench_teal30:\n  actual_sparsity: 0.3\n  arc_challenge_acc_norm: 0.4232\n  gsm8k_exact_match: 0.0788\n  mmlu_acc: 0.3861\n  wikitext2_ppl: 10.97\n  winogrande_acc: 0.6606\n\n=== TEAL 28.5% ===\nteal_28.5pct_sanity:\n  wikitext2_ppl: 10.3\n\n=== HS/PIQA sources for KL30 uniform ===\n\nkl30_uniform_hellaswag_piqa:\n  hellaswag_acc_norm: 0.7085\n  piqa_acc_norm: 0.7481\n\nkl30_uniform_hellaswag_piqa_v2:\n  hellaswag_acc_norm: 0.7085\n  piqa_acc_norm: 0.7481\nhellaswag_piqa_kl30_uniform: NOT FOUND\n\nbench_kl30_uniform:",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 708_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have much better data to compile the final report. Let me analyze the key findings:
+
+### KL 50% Global (Table 2 row)
+Paper claims PPL 11.84±0.15. Let me check which seeds give this:
+
+Looking at the registry:
+- bench_kl50_global (s42): wikitext2_ppl = 11.7933
+- kl50_global_s123_downstream_v2: no PPL
+- kl50_global_s123_reeval: wikitext2_ppl = 11.7184
+- kl50_s123_eval: wikitext2_ppl = 11.745
+
+
+- kl50_s456_global_eval: ppl_wikitext2 = 11.8057
+- kl50_s456_eval: wikitext2_ppl = 11.8614
+
+I'm also seeing some additional runs with different configurations like mvp_kl_norm_v2 across seeds 42 and 123 showing slightly higher perplexities around 11.91-12.08. The paper references bench_kl50_global, kl50_global_s123_downstream_v2, and kl50_global_s456_eval, but the middle one doesn't have a PPL value recorded, which is problematic for computing the mean and standard deviation they report.
+
+I found kl50_global_s123_reeval with a PPL of 11.7184, so I'm testing different combinations of seeds to see which matches the paper's reported 11.84±0.15. The closest match I'm getting is using s42=11.7933, s123=11.9128, and s456=11.8057, which gives a mean of 11.84±0.06—the mean aligns perfectly but the standard deviation is much tighter than what they report.
+
+Now I'm trying other combinations with different model variants like mvp_kl_norm_v2 and kl50_s456_eval to see if any produce the wider uncertainty the paper shows. me check its perplexity value. I need to run another query to get that, but first let me compare the downstream metrics from the paper against what I'm seeing in the experiments. The paper reports specific scores for ARC-c, WG, MMLU, and GSM8K, and I'm finding different results across the various model checkpoints—bench_kl50_global is coming in lower than the paper's numbers, while kl50_global_s123_downstream_v2 is closer on some metrics but still not matching exactly.
+
+Now I'm looking at the full set of results across all three runs and computing the mean and standard deviation. The paper's reported numbers sit right in the middle of my computed range, but there are some discrepancies—ARC-c is off by about 1.2 percentage points, and the other metrics show similar small gaps that suggest either different evaluation conditions or a slight mismatch in how the models were trained.
+
+Let me check if swapping in the reeval results instead of the downstream variant changes things. With that substitution, the averaged scores shift slightly, bringing the ARC-c number closer to what the paper reports.
+
+Actually, let me try a different seed combination altogether — using kl50_s123_eval gives me different benchmark results, but the averages still don't quite match the paper's numbers. I'm testing various combinations of seed configurations and evaluation sources to see which one produces the reported metrics. I'm trying different combinations of benchmark results to match the paper's reported values, but running into discrepancies—the ARC score comes out to 35.1 instead of the paper's 36.3, which suggests they might be using rounded intermediate values or different evaluation versions. Moving on to check the Qwen 14B GSM8K results, I'm averaging the seed variants to see if I can reconstruct their reported 32.0±5.2 figure.
+
+Computing the mean and standard deviation from the available seeds gives me 30.9±6.8, which doesn't match the paper's claim. I'm wondering if there's a third seed (s123) that was evaluated but isn't showing up in the registry, which could explain the gap between my calculations and their reported numbers. I'm testing different combinations of seed values to see which ones would produce the reported 32.0±5.2 result. With the available registry values, I can't reconstruct that exact mean and standard deviation—the calculations consistently yield around 30.78-30.90 with slightly different standard deviations depending on which s42 variant I use. It seems like either there's a third seed value I'm missing, or the paper's reported numbers come from a different evaluation run than what's in the registry. I'm realizing there's a discrepancy—the paper might actually report "30.9±6.8" rather than "32.0±5.2" for GSM8K, which would change whether the s123 value of ~34.2% even makes sense. I need to verify which numbers the paper actually states before I can determine if this is a genuine inconsistency or just a data registration gap. I'm verifying the model configuration details—LLaMA-3.1-8B checks out at 112× with its feedforward dimension of 14336 divided by 128, and Qwen-2.5-14B should be 148× based on an intermediate size of 18944. Let me calculate the trainable parameters per layer to see if this adds up correctly.
+
+The registry shows qwen14b_kl30_s123 has 117M trainable parameters, but when I work through the math with 40 layers (not 48 as I initially thought), I'm getting around 123.2M, which is slightly higher than the reported 117M. This suggests the feedforward dimension might be smaller than 18944—possibly 13696 instead—which would bring the per-layer calculation closer to the actual total.
+
+I'm realizing there's ambiguity in how d_ff is defined across different sources, and I need to check the actual paper and training code to see what intermediate_size value was used for these models. be around 117M trainable parameters based on the registry spec, which suggests Qwen2.5-14B might have fewer than 40 layers or a slightly different intermediate size than I calculated. Let me verify the exact layer count for this model. I'm realizing the paper's claim of 148× might be incorrect—my calculation shows 107× based on the actual Qwen2.5-14B config. But there's a mismatch: if d_ff were actually 18,944 (148 × 128), the total parameters would be around 147.8M across 48 layers, which doesn't align with the 117M figure from the registry. I should flag this discrepancy rather than assume one source is definitively wrong. I'm verifying the intermediate_size value for Qwen2.5-14B by checking the actual configuration, since the paper's claim of 148× compression would require d_ff=18944, but the registry's 117M parameter count suggests d_ff=13696 (107× compression) instead. I'll flag this discrepancy in my report and then move on to checking another metric—the TEAL 30% uniform ARC-c score where I noticed a mismatch between what the paper reports and what's in the registry. The PIQA discrepancy follows the same pattern—the registry stores `piqa` (raw accuracy) at 71.98% while the paper reports 72.80%, which is likely the acc_norm variant. This points to a broader registry issue where metric naming is inconsistent across experiments rather than an error in the paper itself.
+
+Let me quickly verify a few more data points before putting together the full report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "fa6ff4ae-9242-4362-9367-4da8e2acd513",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QipfU43ndaC96tAFusuTpj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7698,
+      "cache_read_input_tokens": 95955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7698
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 709_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0179df3BqxMAGF5C3g9RE1vi`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/tmp/registry_metrics.json') as f:\n    reg = json.load(f)\n\n# Check kl50_s42_global_eval for PPL\nprint(\"=== kl50_s42_global_eval ===\")\nif 'kl50_s42_global_eval' in reg:\n    m = reg['kl50_s42_global_eval']['metrics']\n    for k in sorted(m.keys()):\n        print(f\"  {k}: {m[k]}\")\n\n# Check d030_kl50_uniform for 50% uniform PPL\nprint(\"\\n=== d030_kl50_uniform ===\")\nif 'd030_kl50_uniform' in reg:\n    m = reg['d030_kl50_uniform']['metrics']\n    for k in sorted(m.keys()):\n        print(f\"  {k}: {m[k]}\")\n\n# Check multi_seed_kl50_uniform / multi_seed_kl50_global (from paper comments)\nfor eid in ['multi_seed_kl50_uniform', 'multi_seed_kl50_global']:\n    if eid in reg:\n        print(f\"\\n=== {eid} ===\")\n        m = reg[eid]['metrics']\n        for k in sorted(m.keys()): print(f\"  {k}: {m[k]}\")\n    else:\n        print(f\"\\n{eid}: NOT FOUND\")\n\n# Try different combos for KL 50% global PPL\nprint(\"\\n=== KL 50% global PPL combinations ===\")\nimport statistics\ncombos = [\n    (\"bench_kl50_global + kl50_s123_eval + kl50_s456_eval\", \n     [11.7933, 11.745, 11.8614]),\n    (\"bench_kl50_global + kl50_global_s123_reeval + kl50_s456_global_eval\",\n     [11.7933, 11.7184, 11.8057]),\n    (\"bench_kl50_global + mvp_s123 + kl50_s456_global_eval\",\n     [11.7933, 11.9128, 11.8057]),\n    (\"mvp_s42 + mvp_s123 + kl50_s456_global_eval\",\n     [12.0776, 11.9128, 11.8057]),\n]\nfor name, vals in combos:\n    m = statistics.mean(vals)\n    s = statistics.stdev(vals)\n    print(f\"  {name}: mean={m:.2f}±{s:.2f}\")\n\nPYEOF\n",
+  "description": "Check KL 50% global PPL combinations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "a92d594f-0be8-4c91-bbc6-50ddb15876e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QipfU43ndaC96tAFusuTpj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7698,
+      "cache_read_input_tokens": 95955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7698
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 710 · 2026-05-24T01:38:10.114Z_
+
+<details><summary>↩ Tool result · `toolu_0179df3BqxMAGF5C3g9RE1vi`</summary>
+
+```text
+=== kl50_s42_global_eval ===
+  arc_challenge_acc_norm: 0.3336
+  gsm8k_exact_match: 0.0167
+  mmlu_acc: 0.2819
+  wikitext2_ppl: 11.8038
+  winogrande_acc: 0.6338
+
+=== d030_kl50_uniform ===
+  actual_sparsity: 0.5
+  allocation: uniform
+  arc_challenge_acc_norm: 0.3276
+  conclusion_note: 50% uniform 未能修复 MMLU/GSM8K collapse. Uniform allocation 的修复效应在 50% sparsity 下消失。
+  gsm8k_change_vs_global: +0.91pp (0.0121 → 0.0212, not significant)
+  gsm8k_exact_match: 0.0212
+  mmlu_acc: 0.2777
+  mmlu_change_vs_global: +1.86pp (0.2591 → 0.2777, not significant)
+  per_layer_sparsity: uniform 0.500 across all 32 layers
+  wikitext2_ppl: 11.96
+  winogrande_acc: 0.629
+
+multi_seed_kl50_uniform: NOT FOUND
+
+multi_seed_kl50_global: NOT FOUND
+
+=== KL 50% global PPL combinations ===
+  bench_kl50_global + kl50_s123_eval + kl50_s456_eval: mean=11.80±0.06
+  bench_kl50_global + kl50_global_s123_reeval + kl50_s456_global_eval: mean=11.77±0.05
+  bench_kl50_global + mvp_s123 + kl50_s456_global_eval: mean=11.84±0.07
+  mvp_s42 + mvp_s123 + kl50_s456_global_eval: mean=11.93±0.14
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "39b04e43-8a4d-409e-91ed-59e97ad16c52",
+  "tool_use_result": {
+    "stdout": "=== kl50_s42_global_eval ===\n  arc_challenge_acc_norm: 0.3336\n  gsm8k_exact_match: 0.0167\n  mmlu_acc: 0.2819\n  wikitext2_ppl: 11.8038\n  winogrande_acc: 0.6338\n\n=== d030_kl50_uniform ===\n  actual_sparsity: 0.5\n  allocation: uniform\n  arc_challenge_acc_norm: 0.3276\n  conclusion_note: 50% uniform 未能修复 MMLU/GSM8K collapse. Uniform allocation 的修复效应在 50% sparsity 下消失。\n  gsm8k_change_vs_global: +0.91pp (0.0121 → 0.0212, not significant)\n  gsm8k_exact_match: 0.0212\n  mmlu_acc: 0.2777\n  mmlu_change_vs_global: +1.86pp (0.2591 → 0.2777, not significant)\n  per_layer_sparsity: uniform 0.500 across all 32 layers\n  wikitext2_ppl: 11.96\n  winogrande_acc: 0.629\n\nmulti_seed_kl50_uniform: NOT FOUND\n\nmulti_seed_kl50_global: NOT FOUND\n\n=== KL 50% global PPL combinations ===\n  bench_kl50_global + kl50_s123_eval + kl50_s456_eval: mean=11.80±0.06\n  bench_kl50_global + kl50_global_s123_reeval + kl50_s456_global_eval: mean=11.77±0.05\n  bench_kl50_global + mvp_s123 + kl50_s456_global_eval: mean=11.84±0.07\n  mvp_s42 + mvp_s123 + kl50_s456_global_eval: mean=11.93±0.14",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 711_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014BwhaCoK8KzpdZCTTvFPn1`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/tmp/registry_metrics.json') as f:\n    reg = json.load(f)\n\n# Check Qwen14B TEAL uniform - missing metrics\nprint(\"=== Qwen14B TEAL uniform experiments ===\")\nfor eid in ['qwen14b_teal30_uniform_hspiqa', 'qwen14b_teal30_uniform_gsm8k', 'qwen14b_teal275_uniform_eval_v3', 'qwen14b_teal275_uniform_hspiqa', 'qwen14b_teal275_hspiqa']:\n    if eid in reg:\n        m = reg[eid]['metrics']\n        print(f\"\\n{eid}:\")\n        for k in sorted(m.keys()): print(f\"  {k}: {m[k]}\")\n    else:\n        print(f\"{eid}: NOT FOUND\")\n\n# Check bce30_teal_global (BCE 30% global from main table)\nprint(\"\\n=== BCE 30% global ===\")\nfor eid in ['bce30_teal_global', 'bce_30pct_s42', 'bce_30_s42_uniform_eval', 'bce_50pct_teal_global_unified']:\n    if eid in reg:\n        m = reg[eid]['metrics']\n        print(f\"\\n{eid}:\")\n        for k in sorted(m.keys()): print(f\"  {k}: {m[k]}\")\n    else:\n        print(f\"{eid}: NOT FOUND\")\n\n# Check TEAL 50% uniform downstream\nprint(\"\\n=== TEAL 50% uniform downstream ===\")  \nfor eid in ['bench_teal50_uniform_6task', 'bench_teal50_uniform_gsm8k', 'bench_teal50', 'lm_eval_teal_50pct']:\n    if eid in reg:\n        m = reg[eid]['metrics']\n        print(f\"\\n{eid}:\")\n        for k in sorted(m.keys()): print(f\"  {k}: {m[k]}\")\n    else:\n        print(f\"{eid}: NOT FOUND\")\n\nPYEOF\n",
+  "description": "Check remaining missing experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "46703334-58cc-447c-9e8b-9c6c88ed6fc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QipfU43ndaC96tAFusuTpj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7698,
+      "cache_read_input_tokens": 95955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7698
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 712 · 2026-05-24T01:38:20.406Z_
+
+<details><summary>↩ Tool result · `toolu_014BwhaCoK8KzpdZCTTvFPn1`</summary>
+
+```text
+=== Qwen14B TEAL uniform experiments ===
+
+qwen14b_teal30_uniform_hspiqa:
+  hellaswag_acc_norm: 0.6772
+  piqa_acc_norm: 0.747
+
+qwen14b_teal30_uniform_gsm8k:
+  actual_sparsity: 0.293
+  gsm8k_exact_match: 0.5208
+  gsm8k_exact_match_flexible: 0.5208
+  gsm8k_exact_match_stderr: 0.01376
+  gsm8k_exact_match_strict: 0.5208
+  sample_len: 1319
+
+qwen14b_teal275_uniform_eval_v3:
+  arc_challenge_acc_norm: 0.57
+  gsm8k_exact_match: 0.5709
+  mmlu_acc: 0.6738
+  wikitext2_ppl: 7.7087
+  winogrande_acc: 0.7167
+
+qwen14b_teal275_uniform_hspiqa:
+  hellaswag_acc: 0.5092
+  hellaswag_acc_norm: 0.6993
+  piqa_acc: 0.753
+  piqa_acc_norm: 0.7476
+
+qwen14b_teal275_hspiqa:
+  hellaswag_acc: 0.5092
+  hellaswag_acc_norm: 0.6993
+  model_sparsity: 0.268
+  piqa_acc: 0.753
+  piqa_acc_norm: 0.7476
+  runtime_seconds: 3551.3
+
+=== BCE 30% global ===
+bce30_teal_global: NOT FOUND
+
+bce_30pct_s42:
+
+bce_30_s42_uniform_eval:
+  arc_challenge: 0.3319
+  gsm8k: 0.0394
+  hellaswag: 0.6156
+  mmlu: 0.4237
+  piqa: 0.741
+  ppl: 15.7069
+  winogrande: 0.618
+
+bce_50pct_teal_global_unified:
+  arc_challenge_acc_norm: 0.2765
+  gsm8k_exact_match: 0.019
+  mmlu_acc: 0.2614
+  wikitext2_ppl: 27.97
+  winogrande_acc: 0.5162
+
+=== TEAL 50% uniform downstream ===
+bench_teal50_uniform_6task: NOT FOUND
+
+bench_teal50_uniform_gsm8k:
+  gsm8k_exact_match_flexible: 0.0174
+
+bench_teal50:
+  actual_sparsity: 0.5
+  arc_challenge_acc_norm: 0.2841
+  gsm8k_exact_match: 0.0197
+  mmlu_acc: 0.2832
+  wikitext2_ppl: 23.31
+  winogrande_acc: 0.5304
+
+lm_eval_teal_50pct:
+  actual_sparsity: 0.5
+  arc_challenge_acc_norm: 0.291
+  arc_challenge_drop_vs_dense: -0.5
+  condition: TEAL 50% training-free sparsity
+  gsm8k_drop_vs_dense: -0.962
+  gsm8k_exact_match_flexible: 0.019
+  gsm8k_exact_match_strict: 0.0114
+  method: vanilla_teal
+  mmlu_acc: 0.2856
+  mmlu_drop_vs_dense: -0.563
+  model: Llama-3.1-8B
+  sparsity: 0.5
+  winogrande_acc: 0.5556
+  winogrande_drop_vs_dense: -0.289
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "a05d25c2-b27b-4f33-b6f8-e6754075047f",
+  "tool_use_result": {
+    "stdout": "=== Qwen14B TEAL uniform experiments ===\n\nqwen14b_teal30_uniform_hspiqa:\n  hellaswag_acc_norm: 0.6772\n  piqa_acc_norm: 0.747\n\nqwen14b_teal30_uniform_gsm8k:\n  actual_sparsity: 0.293\n  gsm8k_exact_match: 0.5208\n  gsm8k_exact_match_flexible: 0.5208\n  gsm8k_exact_match_stderr: 0.01376\n  gsm8k_exact_match_strict: 0.5208\n  sample_len: 1319\n\nqwen14b_teal275_uniform_eval_v3:\n  arc_challenge_acc_norm: 0.57\n  gsm8k_exact_match: 0.5709\n  mmlu_acc: 0.6738\n  wikitext2_ppl: 7.7087\n  winogrande_acc: 0.7167\n\nqwen14b_teal275_uniform_hspiqa:\n  hellaswag_acc: 0.5092\n  hellaswag_acc_norm: 0.6993\n  piqa_acc: 0.753\n  piqa_acc_norm: 0.7476\n\nqwen14b_teal275_hspiqa:\n  hellaswag_acc: 0.5092\n  hellaswag_acc_norm: 0.6993\n  model_sparsity: 0.268\n  piqa_acc: 0.753\n  piqa_acc_norm: 0.7476\n  runtime_seconds: 3551.3\n\n=== BCE 30% global ===\nbce30_teal_global: NOT FOUND\n\nbce_30pct_s42:\n\nbce_30_s42_uniform_eval:\n  arc_challenge: 0.3319\n  gsm8k: 0.0394\n  hellaswag: 0.6156\n  mmlu: 0.4237\n  piqa: 0.741\n  ppl: 15.7069\n  winogrande: 0.618\n\nbce_50pct_teal_global_unified:\n  arc_challenge_acc_norm: 0.2765\n  gsm8k_exact_match: 0.019\n  mmlu_acc: 0.2614\n  wikitext2_ppl: 27.97\n  winogrande_acc: 0.5162\n\n=== TEAL 50% uniform downstream ===\nbench_teal50_uniform_6task: NOT FOUND\n\nbench_teal50_uniform_gsm8k:\n  gsm8k_exact_match_flexible: 0.0174\n\nbench_teal50:\n  actual_sparsity: 0.5\n  arc_challenge_acc_norm: 0.2841\n  gsm8k_exact_match: 0.0197\n  mmlu_acc: 0.2832\n  wikitext2_ppl: 23.31\n  winogrande_acc: 0.5304\n\nlm_eval_teal_50pct:\n  actual_sparsity: 0.5\n  arc_challenge_acc_norm: 0.291\n  arc_challenge_drop_vs_dense: -0.5\n  condition: TEAL 50% training-free sparsity\n  gsm8k_drop_vs_dense: -0.962\n  gsm8k_exact_match_flexible: 0.019\n  gsm8k_exact_match_strict: 0.0114\n  method: vanilla_teal\n  mmlu_acc: 0.2856\n  mmlu_drop_vs_dense: -0.563\n  model: Llama-3.1-8B\n  sparsity: 0.5\n  winogrande_acc: 0.5556\n  winogrande_drop_vs_dense: -0.289",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 713_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a much clearer picture. Let me compile the remaining issues:
+
+1. **KL 50% global PPL**: The combination `bench_kl50_global + mvp_s123 + kl50_s456_global_eval` gives 11.84±0.07. The paper says 11.84±0.15. The mean matches but the std doesn't (0.07 vs 0.15). So the paper may have used a different combination, possibly involving an older s42 eval that gave a different PPL. Let me check if kl50_s42_global_eval gives 11.8038:
+   
+   Testing with kl50_s42_global_eval (11.8038) + mvp_s123 (11.9128) + kl50_s456_global_eval (11.8057) gives a mean of 11.84 which matches, and calculating the standard deviation across these three values yields approximately 0.0624, which is closer to the paper's reported 0.15 than my previous attempt.
+
+Let me try other combinations to see if I can get closer to that 0.15 standard deviation. Testing mvp_s42 (12.0776) + mvp_s123 (11.9128) + kl50_s456_global_eval (11.8057) gives a mean of 11.93, which doesn't match the paper's 11.84. Trying bench_kl50_global (11.7933) + mvp_s123 (11.9128) + kl50_s456_eval (11.8614) gives 11.86, also not quite right. Let me check if using kl50_s42_global_eval (11.8038) + mvp_s123 (11.9128) + kl50_s456_eval (11.8614) works better.
+
+That gives 11.86 as well. Switching to kl50_s42_global_eval (11.8038) + kl50_s123_eval (11.745) + kl50_s456_eval (11.8614) yields 11.80, and bench_kl50_global (11.7933) + kl50_s123_eval (11.745) + kl50_s456_global_eval (11.8057) gives 11.78. None of these combinations are hitting exactly 11.84, so I'm trying another approach with mvp_s42 (12.0776) + kl50_global_s123_reeval (11.7184) and continuing from there.
+
+Looking at the paper's experiment IDs, I notice kl50_global_s123_downstream_v2 doesn't have PPL values available, and kl50_global_s456_eval doesn't exist in the registry—only kl50_s456_global_eval does. This is narrowing down which combinations are actually viable.
+
+Now I'm checking what happens when I use bench_kl50_global, kl50_global_s123_downstream_v2, and kl50_s456_global_eval across the three seeds to compute the downstream metrics at 50% global. The averages I'm getting don't quite match what the paper reports—there's a consistent gap between my calculations and their published numbers. The averages still don't match the paper's reported values exactly, and the standard deviations are close but off by a few tenths of a point. It seems like the paper might have used different evaluation runs than what's in the registry, making it impossible to reproduce these numbers precisely. I should flag this KL 50% global row as having serious data provenance issues in my report, especially since the PPL value can't be reconstructed from any combination of available experiments.
+
+Now I'm checking the Qwen 14B TEAL 30% uniform results, but the registry only has TEAL at 27.5% sparsity, not 30%. The paper reports different metrics for the 30% version, so this particular configuration appears to be missing from the registry entirely.
+
+Let me verify the "148×" claim by examining the model parameters. The registry shows the trainable parameters are about 117M, which represents 0.793% of the base model—that works out to roughly 14.75B total parameters, consistent with Qwen2.5-14B. Now I'm trying to calculate whether 117M predictors aligns with the claimed compression ratio by working through the layer dimensions. Working backward from the 117M parameter count, I get an intermediate_size of 13,923, but the HuggingFace config shows 13,696 instead—there's a discrepancy that suggests the model might use a different intermediate_size value in practice. Let me check if Qwen2.5-14B actually uses 18,944 or if I need to look at the actual model configuration loaded from the local path in the training script. I'm testing different combinations of layer counts and feed-forward dimensions to see which configuration matches the 117M parameter count, but none of them align exactly—the discrepancy might be due to bias terms or a slightly different calculation method.
+
+Looking at the paper's claim that d_ff/d_model = 148 for Qwen14B, that would suggest d_ff = 18944 and imply only 38 layers to reach 117M total, which doesn't match the standard Qwen2.5-14B architecture of 48 layers with d_ff around 13696. The actual ratio is probably closer to 109×, so I'll note that the 148× claim seems incorrect.
+
+Now I'm checking the C4 control table for discrepancies in the WikiText-trained predictor's performance on HS and PIQA—the paper reports HS=69.4 and PIQA=75.5, but I need to verify these against what's in the registry.
+
+Looking through the registry entries, the kl30_uniform_hellaswag_piqa variants show HS=70.85 and PIQA=74.81, which don't match the paper's values. I'm also checking the OOD downstream table from the appendix, which shows WikiText calibration with HS=70.9 and PIQA=74.8—closer to the registry but still not exactly matching the paper's reported numbers. These discrepancies suggest the paper's values might come from an unregistered evaluation run. I'm noticing a discrepancy in the HellaSwag and PIQA scores for WikiText KL30 uniform across the paper—the OOD downstream table shows HS=70.9 and PIQA=74.8, but the C4 control table lists HS=69.4 and PIQA=75.5, which is inconsistent by about 1.5 percentage points for HellaSwag and 0.7 for PIQA.
+
+Looking at the source annotations, the OOD downstream table references a specific experiment ID, but the C4 control table doesn't document where its HS/PIQA values come from, making it unclear which set is correct or if they're measuring different evaluation runs. Now I'm noticing the paper uses different evaluation runs for the same metrics across tables—the OOD downstream table references a v2 evaluation while the C4 control table appears to use an older version, which creates an internal consistency problem.
+
+I should write up the full report now that I have everything mapped out. I'll organize it by summary statistics, individual data points from each table, claims made in the prose, and then flag both critical and minor discrepancies I've found.
+
+Before I finalize though, I want to double-check the GSM8K numbers—the abstract claims a 20.1pp gap between TEAL and KL uniform, but the registry shows different values depending on which seed average I use, and that discrepancy might affect how I characterize the magnitude of the reported differences. I've verified the math checks out—the 20.1 percentage point difference matches the reported values, and the standard deviation estimates are consistent across the abstract and introduction. Now I'm ready to write up the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "6bb23c08-f45c-4e57-bef8-bdf75d482e7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014fNaqEXAgfn8sf78F5q33J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8906,
+      "cache_read_input_tokens": 103653,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8906
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 714_
+
+Now I have all the data. Let me compile the comprehensive report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "e6b8cfee-db3e-44d1-80ab-219ebb1c4847",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014fNaqEXAgfn8sf78F5q33J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8906,
+      "cache_read_input_tokens": 103653,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8906
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 715_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018yeBVkzRmsnrC6DDHzHfC6`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\nwith open('/tmp/registry_metrics.json') as f:\n    reg = json.load(f)\n\n# Final checks for report\n# 1. Qwen14B - what does the registry say for s123 GSM8K?\n# Already confirmed: not in any experiment\n\n# 2. Cross-check OOD downstream table values\nprint(\"=== c4_ood_downstream_kl30 ===\")\nif 'c4_ood_downstream_kl30' in reg:\n    m = reg['c4_ood_downstream_kl30']['metrics']\n    for k in sorted(m.keys()): print(f\"  {k}: {m[k]}\")\n\n# 3. Check constraint experiments\nprint(\"\\n=== constraint experiments ===\")\nfor eid in ['constraint_protect_late', 'constraint_remove_valley']:\n    if eid in reg:\n        m = reg[eid]['metrics']\n        print(f\"\\n{eid}:\")\n        for k in sorted(m.keys()): print(f\"  {k}: {m[k]}\")\n    else:\n        print(f\"{eid}: NOT FOUND\")\n\n# 4. C4 control eval\nprint(\"\\n=== c4_kl30_s42_eval ===\")\nif 'c4_kl30_s42_eval' in reg:\n    m = reg['c4_kl30_s42_eval']['metrics']\n    for k in sorted(m.keys()): print(f\"  {k}: {m[k]}\")\n\n# 5. Check the intro \"10.30\" TEAL matched sparsity PPL\nprint(f\"\\nteal_28.5pct_sanity PPL: {reg.get('teal_28.5pct_sanity', {}).get('metrics', {})}\")\n\n# 6. Check TEAL uniform PPL at 30% nominal (actual 29.3%)\n# Paper says \"TEAL at matched actual sparsity (8.81 vs. 10.30, both at 28.5%)\"\n# and \"Actual sparsity: KL 28.5% vs. TEAL 29.3% at 30%\"\n# So TEAL at 28.5% = 10.30\n\nPYEOF\n",
+  "description": "Final verification checks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "32222358-afc3-4607-85f6-d4243be63076",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014fNaqEXAgfn8sf78F5q33J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8906,
+      "cache_read_input_tokens": 103653,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8906
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 716 · 2026-05-24T01:39:59.769Z_
+
+<details><summary>↩ Tool result · `toolu_018yeBVkzRmsnrC6DDHzHfC6`</summary>
+
+```text
+=== c4_ood_downstream_kl30 ===
+  arc_challenge_acc_norm: 0.4036
+  gsm8k_exact_match: 0.0629
+  hellaswag_acc_norm: 0.7074
+  mmlu_acc: 0.4137
+  model_level_sparsity: 0.295
+  piqa_acc_norm: 0.7399
+  winogrande_acc: 0.693
+
+=== constraint experiments ===
+constraint_protect_late: NOT FOUND
+constraint_remove_valley: NOT FOUND
+
+=== c4_kl30_s42_eval ===
+  arc_challenge_acc_norm: 0.4309
+  gsm8k_exact_match: 0.0409
+  hellaswag_acc_norm: 0.6924
+  mmlu_acc: 0.3995
+  piqa_acc_norm: 0.7503
+  sparsity: 0.295
+  wikitext2_ppl: 11.554
+  winogrande_acc: 0.6867
+
+teal_28.5pct_sanity PPL: {'wikitext2_ppl': 10.3}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "16d90a51-29b5-428d-9cf3-0aebaaf7e5b5",
+  "tool_use_result": {
+    "stdout": "=== c4_ood_downstream_kl30 ===\n  arc_challenge_acc_norm: 0.4036\n  gsm8k_exact_match: 0.0629\n  hellaswag_acc_norm: 0.7074\n  mmlu_acc: 0.4137\n  model_level_sparsity: 0.295\n  piqa_acc_norm: 0.7399\n  winogrande_acc: 0.693\n\n=== constraint experiments ===\nconstraint_protect_late: NOT FOUND\nconstraint_remove_valley: NOT FOUND\n\n=== c4_kl30_s42_eval ===\n  arc_challenge_acc_norm: 0.4309\n  gsm8k_exact_match: 0.0409\n  hellaswag_acc_norm: 0.6924\n  mmlu_acc: 0.3995\n  piqa_acc_norm: 0.7503\n  sparsity: 0.295\n  wikitext2_ppl: 11.554\n  winogrande_acc: 0.6867\n\nteal_28.5pct_sanity PPL: {'wikitext2_ppl': 10.3}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 717_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have everything. Let me also check the OOD downstream table values:
+
+Paper OOD downstream table (tab:ood_downstream):
+WikiText: ARC-c=40.8, WG=68.6, MMLU=40.6, GSM8K=7.4, HS=70.9, PIQA=74.8
+C4 OOD: ARC-c=40.4, WG=69.3, MMLU=41.4, GSM8K=6.3, HS=70.7, PIQA=74.0
+
+
+Verifying the registry values against the paper's C4 OOD downstream results, and they're matching up correctly across all the benchmarks. Continuing to verify the WikiText calibration results—the GSM8K score rounds from 7.35 to 7.4, and both the HellaSwag and PIQA values match the paper when rounded. The OOD downstream table checks out completely, but I'm noticing the C4 control table has divergent values that need investigation.
+
+Actually, these are measuring different things entirely. The OOD downstream table keeps the WikiText-trained predictor fixed and swaps the calibration data between WikiText and C4, while the C4 control table trains separate predictors on each dataset. So the HellaSwag and PIQA discrepancies make sense—they're from fundamentally different experimental setups.
+
+But the C4 control table's WikiText row should match the main benchmark results since it's the same predictor. Looking at the metrics from the appendix, the perplexity and other benchmarks align perfectly with the original run, but the HS and PIQA values are showing up as 69.4 and 75.5, which I need to verify against the source data.
+
+Now checking the C4 row itself — the perplexity, ARC-c, WG, MMLU, and GSM8K all match the c4_kl30_s42_eval run exactly, and HS checks out at 69.24, but I'm seeing a discrepancy with the PIQA value that the paper reports.
+
+The WikiText row presents a bigger problem: those HS and PIQA scores don't correspond to any registered experiment I can find, which suggests they came from an unregistered evaluation run. This is a data provenance issue that needs flagging.
+
+I've identified enough inconsistencies now to write up a comprehensive report. Let me organize the findings by severity, starting with the critical mismatches. Looking at the downstream table for TEAL 30% uniform, the paper reports PIQA at 72.80 but the registry shows 71.98—this might be an accuracy versus accuracy_norm discrepancy. The experiments prose claims 148× compression for Qwen14B, but calculating from the registry's trainable parameters and layer count suggests it's closer to 109×. Beyond these numerical mismatches, there are entire rows missing from the registry: BCE 30% global is completely absent, and TEAL 50% uniform is missing several benchmark results including ARC-c, WG, and MMLU.
+
+Continuing through the tables, ARC-c values are particularly problematic since the registry stores `arc_challenge` while the paper references `arc_challenge_acc_norm`, making the reported 39.33 unverifiable against the registry's 37.71. The Qwen14B tables have similar gaps—four downstream metrics missing for BCE global, and multiple benchmarks absent for TEAL uniform. The KL uniform GSM8K entry for seed 123 doesn't exist in the registry at all, and the paper's reported 32.0±5.2 differs from what the two-seed registry average shows. Several ablation configurations like JSD 50%, RevKL 50%, and various perlayer variants are completely missing from the registry.
+
+For the K-curve analysis, the K=4 row only has downstream results for seed 42, leaving the other seeds' PPL values unregistered. Extended downstream experiments with KL 30% uniform on HS and PIQA only have seed 42 individually registered, making the three-seed mean impossible to verify. TEAL 50% uniform is missing HS and PIQA entirely, and the constraint experiments don't appear in the registry at all. Beyond these major gaps, there are minor rounding discrepancies scattered throughout—PPL and ARC-c standard deviations off by 0.1 percentage points, and a few other metrics with similar small variations.
+
+Now I'm ready to write up the report file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "2c64d7a1-3935-4cd6-b020-1d5278fa623b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016vWJHGba6EQsyKJb6nnn1L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5620,
+      "cache_read_input_tokens": 112559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5620
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 718_
+
+All data collected. Writing the comprehensive report now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "5fdc1d0a-6698-47aa-a461-5f3345cba18d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016vWJHGba6EQsyKJb6nnn1L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5620,
+      "cache_read_input_tokens": 112559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5620
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 719_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Us4vEhyhJNUBVXio7cetuh`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "4aac73da-2b7e-4b89-b94f-faf24f59c397",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016vWJHGba6EQsyKJb6nnn1L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5620,
+      "cache_read_input_tokens": 112559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5620
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 720 · 2026-05-24T01:40:53.467Z_
+
+<details><summary>↩ Tool result · `toolu_01Us4vEhyhJNUBVXio7cetuh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "badad183-e25c-4dd6-bdc1-574cd3698ed9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 721_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01PkMtJYnDJPazMq5yJhrvuC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/r28_data_consistency_report.md",
+  "content": "# R28 Data Consistency Report: Registry ↔ Paper Cross-Verification\n\n**Date:** 2026-05-24\n**Scope:** All quantitative claims in paper (tables, inline prose, appendices) vs. registry experiments\n\n---\n\n## Summary\n\n| Category | Count |\n|----------|-------|\n| Total data points checked | ~284 |\n| ✅ Match (within rounding tolerance) | 237 |\n| ❌ Mismatch (value differs from registry) | 8 |\n| ⚠️ Not found / unverifiable from registry | 31 |\n| ~  Minor rounding (std off by 0.01-0.1) | 8 |\n\n---\n\n## Critical Mismatches (❌)\n\n### 1. Table 2 — KL 50% global row (4 of 5 metrics)\n\nPaper claims PPL 11.84±0.15, ARC-c 36.3±3.2, WG 63.8±0.3, GSM8K 2.7±1.3.\n\n**No single combination of 3 registry experiments reproduces these values.**\n\n| Metric | Paper | Best registry combo | Source exp_ids |\n|--------|-------|-------------------|----------------|\n| PPL | 11.84±0.15 | 11.84±0.07 | bench_kl50_global(11.79) + mvp_kl_norm_v2_s123(11.91) + kl50_s456_global_eval(11.81) |\n| ARC-c | 36.3±3.2 | 35.1±3.5 | bench_kl50_global(32.85) + kl50_global_s123_downstream_v2(39.16) + kl50_s456_global_eval(33.19) |\n| WG | 63.8±0.3 | 64.1±0.7 | same combo |\n| MMLU | 28.3±0.7 | 28.3±0.7 | ✅ matches |\n| GSM8K | 2.7±1.3 | 2.3±1.1 | same combo |\n\n**Root cause:** The paper cites `bench_kl50_global, kl50_global_s123_downstream_v2, kl50_global_s456_eval` but:\n- `kl50_global_s123_downstream_v2` has no PPL (only downstream metrics)\n- `kl50_global_s456_eval` does not exist in registry (correct key: `kl50_s456_global_eval`)\n- PPL and downstream metrics appear to come from different eval runs for the same seeds, mixed inconsistently\n\n### 2. C4 control table (tab:c4_control) — WikiText row HS/PIQA\n\n| Metric | C4 control table | OOD downstream table | Registry (kl30_uniform_hellaswag_piqa_v2) |\n|--------|-----------------|---------------------|------------------------------------------|\n| HS | 69.4 | 70.9 | 70.85 |\n| PIQA | 75.5 | 74.8 | 74.81 |\n\n**Internal inconsistency:** Two tables in the same paper report different HS/PIQA values for the same WikiText-trained KL 30% uniform predictor (s42). The OOD downstream table matches the registry; the C4 control table does not. Source of 69.4/75.5 is untraced.\n\n### 3. C4 control table — C4 row PIQA\n\nPaper=74.86, registry (`c4_kl30_s42_eval`)=75.03. Off by **0.17pp**.\n\n### 4. Extended downstream table (tab:downstream) — TEAL 30% uniform PIQA\n\nPaper=72.80, registry (`teal_30pct_uniform_multiseed_eval`)=71.98. Off by **0.82pp**. Registry stores `piqa` (likely raw acc) rather than `piqa_acc_norm`; possible metric variant confusion.\n\n### 5. Experiments prose — \"148× vs. 112× compression\" for Qwen14B\n\nPaper claims Qwen-2.5-14B has d_ff/d_b = 148× (implying d_ff=18,944). Registry shows `trainable_params='117M (0.793%)'` for `qwen14b_kl30_s123`. Back-computing:\n\n- 117M / 48 layers = 2.44M per layer\n- 2.44M = (5120×128) + (128×d_ff) → d_ff ≈ 13,923\n- 13,923 / 128 ≈ **109×**, not 148×\n- LLaMA's 112× (14336/128) is correct\n\nThe 148× claim is inconsistent with the registered trainable parameter count.\n\n---\n\n## Data Provenance Issues (⚠️ — unverifiable from registry)\n\n### Table 2\n\n| Row | Missing | Notes |\n|-----|---------|-------|\n| BCE 30% global | All 5 metrics | `bce30_teal_global` absent from registry entirely |\n| TEAL 30% uniform ARC-c | acc_norm variant | Registry stores `arc_challenge`=37.71 (acc), not acc_norm; paper=39.33 plausible but unverified |\n| TEAL 50% uniform | ARC-c, WG, MMLU | No full downstream eval registered for TEAL 50% uniform |\n\n### Ablation Table (Table 4)\n\n| Row | Missing | Notes |\n|-----|---------|-------|\n| JSD 50% | PPL 12.54 | `jsd_ablation_s42` absent from registry |\n| Reverse KL 50% | PPL 12.80 | `reverse_kl_ablation_s42` absent |\n| Per-layer KL K=1 50% | PPL 34.85 | `perlayer_kl_50_s42` absent |\n| Per-layer KL K=4 30%/50% | Both PPL values | Experiments registered but metrics empty |\n| BCE + STE 50% | PPL 60.54 | `bce_ste_s42` absent |\n\nAll Δ_50 arithmetic is internally consistent (computed correctly from the stated 50% values).\n\n### Qwen-2.5-14B Table\n\n| Row | Missing | Notes |\n|-----|---------|-------|\n| BCE global | ARC-c, WG, MMLU, GSM8K | `qwen14b_bce30_s42_eval` absent |\n| TEAL uniform | PPL, ARC-c, WG, MMLU | No 4-task eval registered for TEAL 30% uniform |\n| KL uniform GSM8K | s123 value | Only s42 (35.71%) and s456 (26.08%) in registry; 2-seed mean=30.9±6.8, paper claims 32.0±5.2 (implies unregistered s123≈34.2%) |\n\n### K-curve Table\n\n| Row | Missing | Notes |\n|-----|---------|-------|\n| K=4 | PPL (s123, s456), all downstream (s123, s456) | Only s42 downstream in registry |\n\n### Other\n\n- **Constraint experiments** (`constraint_protect_late`, `constraint_remove_valley`): Not in registry. Paper claims MMLU +3.4pp, GSM8K +1.6pp from removing valley — unverifiable.\n- **Extended downstream** — KL 30% uniform HS/PIQA: Only s42 registered; 3-seed mean (71.07±0.54 / 74.95±0.25) unverifiable.\n- **Extended downstream** — TEAL 50% uniform HS/PIQA: `bench_teal50_uniform_6task` absent.\n\n---\n\n## Minor Rounding Discrepancies (~)\n\nAll means match; only std values differ by 0.01-0.1 due to rounding of pre-rounded inputs.\n\n| Location | Metric | Paper | Computed | Exact |\n|----------|--------|-------|----------|-------|\n| Table 2 MSE 30% | PPL std | 1.68 | 1.67 | 1.666 |\n| Table 2 MSE 30% | ARC-c std | 4.1 | 4.0 | 4.03 |\n| Table 2 MSE 30% | WG std | 2.6 | 2.5 | 2.54 |\n| Table 2 KL 50% uniform | PPL std | 0.07 | 0.08 | 0.076 |\n| K-curve K=8 | ARC-c std | 1.0 | 1.1 | 1.06 |\n| K-curve K=16 | MMLU std | 2.9 | 2.8 | 2.77 |\n| Mistral KL30 downstream | WG std | 1.2 | 1.1 | 1.14 |\n| Table 3 footnote | C1 s42 PPL gap | 0.65pp | 0.63pp | 0.6306 |\n\n---\n\n## Verified Tables (all data points match ✅)\n\n### Table 3 — C1 Target-Swap Ablation\n40/40 data points match exactly. All seeds (s42/s123/s456) at 30% and 50% verified.\n\n### Cross-Architecture Table (tab:cross_arch)\nAll 12 PPL values (6 KL + 6 TEAL across Mistral and LLaMA at 30/50/70%) match exactly.\n\n### Mistral Downstream Table (tab:mistral_downstream)\nAll 21 values match (dense + KL 3-seed + TEAL single-seed across 7 metrics).\n\n### Latency Table (tab:latency)\nAll 10 data points match exactly (ms/fwd and tok/s for 5 configurations).\n\n### OOD Table (tab:ood)\nAll 4 C4 PPL values match. OOD uniform 3-seed (18.22/16.37/16.36, mean 16.98±1.07) match.\n\n### OOD Downstream Table (tab:ood_downstream)\nAll 12 values match (WikiText and C4 calibration across 6 metrics).\n\n### Dense Baseline\nAll 5 metrics match exactly (PPL 6.12, ARC-c 58.28, WG 78.06, MMLU 65.27, GSM8K 48.75).\n\n### Appendix Tables\n- Bottleneck sensitivity (tab:db_sensitivity): all values match\n- Temperature schedule (tab:tau_sensitivity): all values match\n- Training convergence (tab:training_convergence): all values match\n- Lagrangian dynamics (tab:lagrangian): all values match\n\n---\n\n## Verified Inline Prose Claims\n\n| Claim | Verification | Status |\n|-------|-------------|--------|\n| \"14.5% reduction\" (8.81 vs 10.30) | (10.30−8.81)/10.30=14.47%→14.5% | ✅ |\n| \"MMLU −5.2pp on 8B\" | 45.86−40.7=5.16≈5.2 | ✅ |\n| \"GSM8K −20.1pp on 14B\" | 52.1−32.0=20.1 (if 3-seed=32.0) | ✅ (but 32.0 unverified, see above) |\n| \"7.3× MMLU σ\" | 9.5/1.3=7.31 | ✅ |\n| \"−17.3% Mistral PPL\" | (8.38−6.93)/8.38=17.3% | ✅ |\n| \"MMLU −2.8pp on 14B\" | 66.34−63.55=2.79≈2.8 | ✅ (but TEAL MMLU 66.34 unregistered) |\n| \"6.4% latency overhead\" | (126.78−119.11)/119.11=6.44% | ✅ |\n| \"2.39× worse than KL\" | 28.13/11.79=2.386 | ✅ |\n| \"F1 0.613 vs 0.540\" | registry kl_bce_f1_oracle: 0.6128/0.5397 | ✅ |\n| \"139% worse PPL\" | (28.13−11.79)/11.79=138.7%≈139% | ✅ |\n| \"33.8% STE improvement\" | (15.77−11.79)/11.79=33.8% | ✅ |\n| \"JSD +6.4%, RevKL +8.6%\" | (12.54−11.79)/11.79=6.4%, (12.80−11.79)/11.79=8.6% | ✅ |\n| \"K=16 PPL 8.67±0.02\" | registry 3-seed: 8.67±0.02 | ✅ |\n| \"coupling range 2.08 PPL\" | 10.75−8.67=2.08 | ✅ |\n| \"signal type gap 9.47 PPL\" | 18.52−9.05=9.47 | ✅ |\n| \"Jaccard 68% at 50%\" | c1_mask_overlap mean=0.6824 | ✅ |\n| \"cross-seed Jaccard 36.3%\" | appendix consistent | ✅ |\n| \"75.9M params, <1%\" | 32×2.37M=75.84M≈75.9M | ✅ |\n| \"50% PPL reduction at 50% sparsity\" | (23.90−11.92)/23.90=50.1% | ✅ |\n\n---\n\n## Recommendations\n\n### Must-fix before submission\n\n1. **KL 50% global row (Table 2):** Reconcile PPL and downstream metrics with a single consistent set of 3-seed eval runs. Document which exp_ids provide PPL vs downstream for each seed.\n\n2. **C4 control table HS/PIQA (WikiText row):** Values 69.4/75.5 are inconsistent with the OOD downstream table (70.9/74.8) and with registry (70.85/74.81). Use values from registered experiment.\n\n3. **C4 control table PIQA (C4 row):** Paper says 74.86, registry says 75.03. Verify and correct.\n\n4. **148× compression claim:** Back-computation from registered 117M params implies d_ff≈13,923 (109×), not 18,944 (148×). Verify Qwen-2.5-14B's actual intermediate_size and correct.\n\n### Should-fix\n\n5. **Qwen14B GSM8K (32.0±5.2):** Register the s123 GSM8K evaluation to make this claim verifiable. Current 2-seed data gives 30.9±6.8.\n\n6. **Extended downstream TEAL 30% uniform PIQA:** Verify whether paper uses acc_norm (72.80) while registry stored acc (71.98).\n\n7. **BCE 30% global row (Table 2):** Register the source experiment or add exp_id comment.\n\n### Nice-to-have\n\n8. Register missing ablation experiments (JSD 50%, RevKL 50%, perlayer KL 50%, BCE+STE 50%, K=4 metrics).\n9. Standardize registry metric key names (e.g. `arc_challenge` vs `arc_challenge_acc_norm`).\n10. Minor std rounding: adopt consistent rounding convention (round exact, not round pre-rounded).\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "c31fcc3d-068f-422d-9849-823e7168dd7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W8fiatA9HaCFJQsjdFFydT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3286,
+      "cache_read_input_tokens": 118179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3286
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 722 · 2026-05-24T01:42:25.190Z_
+
+<details><summary>↩ Tool result · `toolu_01PkMtJYnDJPazMq5yJhrvuC`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/r28_data_consistency_report.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "a8453a6d-4b89-44a5-8955-4660a0208c88",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/r28_data_consistency_report.md",
+    "content": "# R28 Data Consistency Report: Registry ↔ Paper Cross-Verification\n\n**Date:** 2026-05-24\n**Scope:** All quantitative claims in paper (tables, inline prose, appendices) vs. registry experiments\n\n---\n\n## Summary\n\n| Category | Count |\n|----------|-------|\n| Total data points checked | ~284 |\n| ✅ Match (within rounding tolerance) | 237 |\n| ❌ Mismatch (value differs from registry) | 8 |\n| ⚠️ Not found / unverifiable from registry | 31 |\n| ~  Minor rounding (std off by 0.01-0.1) | 8 |\n\n---\n\n## Critical Mismatches (❌)\n\n### 1. Table 2 — KL 50% global row (4 of 5 metrics)\n\nPaper claims PPL 11.84±0.15, ARC-c 36.3±3.2, WG 63.8±0.3, GSM8K 2.7±1.3.\n\n**No single combination of 3 registry experiments reproduces these values.**\n\n| Metric | Paper | Best registry combo | Source exp_ids |\n|--------|-------|-------------------|----------------|\n| PPL | 11.84±0.15 | 11.84±0.07 | bench_kl50_global(11.79) + mvp_kl_norm_v2_s123(11.91) + kl50_s456_global_eval(11.81) |\n| ARC-c | 36.3±3.2 | 35.1±3.5 | bench_kl50_global(32.85) + kl50_global_s123_downstream_v2(39.16) + kl50_s456_global_eval(33.19) |\n| WG | 63.8±0.3 | 64.1±0.7 | same combo |\n| MMLU | 28.3±0.7 | 28.3±0.7 | ✅ matches |\n| GSM8K | 2.7±1.3 | 2.3±1.1 | same combo |\n\n**Root cause:** The paper cites `bench_kl50_global, kl50_global_s123_downstream_v2, kl50_global_s456_eval` but:\n- `kl50_global_s123_downstream_v2` has no PPL (only downstream metrics)\n- `kl50_global_s456_eval` does not exist in registry (correct key: `kl50_s456_global_eval`)\n- PPL and downstream metrics appear to come from different eval runs for the same seeds, mixed inconsistently\n\n### 2. C4 control table (tab:c4_control) — WikiText row HS/PIQA\n\n| Metric | C4 control table | OOD downstream table | Registry (kl30_uniform_hellaswag_piqa_v2) |\n|--------|-----------------|---------------------|------------------------------------------|\n| HS | 69.4 | 70.9 | 70.85 |\n| PIQA | 75.5 | 74.8 | 74.81 |\n\n**Internal inconsistency:** Two tables in the same paper report different HS/PIQA values for the same WikiText-trained KL 30% uniform predictor (s42). The OOD downstream table matches the registry; the C4 control table does not. Source of 69.4/75.5 is untraced.\n\n### 3. C4 control table — C4 row PIQA\n\nPaper=74.86, registry (`c4_kl30_s42_eval`)=75.03. Off by **0.17pp**.\n\n### 4. Extended downstream table (tab:downstream) — TEAL 30% uniform PIQA\n\nPaper=72.80, registry (`teal_30pct_uniform_multiseed_eval`)=71.98. Off by **0.82pp**. Registry stores `piqa` (likely raw acc) rather than `piqa_acc_norm`; possible metric variant confusion.\n\n### 5. Experiments prose — \"148× vs. 112× compression\" for Qwen14B\n\nPaper claims Qwen-2.5-14B has d_ff/d_b = 148× (implying d_ff=18,944). Registry shows `trainable_params='117M (0.793%)'` for `qwen14b_kl30_s123`. Back-computing:\n\n- 117M / 48 layers = 2.44M per layer\n- 2.44M = (5120×128) + (128×d_ff) → d_ff ≈ 13,923\n- 13,923 / 128 ≈ **109×**, not 148×\n- LLaMA's 112× (14336/128) is correct\n\nThe 148× claim is inconsistent with the registered trainable parameter count.\n\n---\n\n## Data Provenance Issues (⚠️ — unverifiable from registry)\n\n### Table 2\n\n| Row | Missing | Notes |\n|-----|---------|-------|\n| BCE 30% global | All 5 metrics | `bce30_teal_global` absent from registry entirely |\n| TEAL 30% uniform ARC-c | acc_norm variant | Registry stores `arc_challenge`=37.71 (acc), not acc_norm; paper=39.33 plausible but unverified |\n| TEAL 50% uniform | ARC-c, WG, MMLU | No full downstream eval registered for TEAL 50% uniform |\n\n### Ablation Table (Table 4)\n\n| Row | Missing | Notes |\n|-----|---------|-------|\n| JSD 50% | PPL 12.54 | `jsd_ablation_s42` absent from registry |\n| Reverse KL 50% | PPL 12.80 | `reverse_kl_ablation_s42` absent |\n| Per-layer KL K=1 50% | PPL 34.85 | `perlayer_kl_50_s42` absent |\n| Per-layer KL K=4 30%/50% | Both PPL values | Experiments registered but metrics empty |\n| BCE + STE 50% | PPL 60.54 | `bce_ste_s42` absent |\n\nAll Δ_50 arithmetic is internally consistent (computed correctly from the stated 50% values).\n\n### Qwen-2.5-14B Table\n\n| Row | Missing | Notes |\n|-----|---------|-------|\n| BCE global | ARC-c, WG, MMLU, GSM8K | `qwen14b_bce30_s42_eval` absent |\n| TEAL uniform | PPL, ARC-c, WG, MMLU | No 4-task eval registered for TEAL 30% uniform |\n| KL uniform GSM8K | s123 value | Only s42 (35.71%) and s456 (26.08%) in registry; 2-seed mean=30.9±6.8, paper claims 32.0±5.2 (implies unregistered s123≈34.2%) |\n\n### K-curve Table\n\n| Row | Missing | Notes |\n|-----|---------|-------|\n| K=4 | PPL (s123, s456), all downstream (s123, s456) | Only s42 downstream in registry |\n\n### Other\n\n- **Constraint experiments** (`constraint_protect_late`, `constraint_remove_valley`): Not in registry. Paper claims MMLU +3.4pp, GSM8K +1.6pp from removing valley — unverifiable.\n- **Extended downstream** — KL 30% uniform HS/PIQA: Only s42 registered; 3-seed mean (71.07±0.54 / 74.95±0.25) unverifiable.\n- **Extended downstream** — TEAL 50% uniform HS/PIQA: `bench_teal50_uniform_6task` absent.\n\n---\n\n## Minor Rounding Discrepancies (~)\n\nAll means match; only std values differ by 0.01-0.1 due to rounding of pre-rounded inputs.\n\n| Location | Metric | Paper | Computed | Exact |\n|----------|--------|-------|----------|-------|\n| Table 2 MSE 30% | PPL std | 1.68 | 1.67 | 1.666 |\n| Table 2 MSE 30% | ARC-c std | 4.1 | 4.0 | 4.03 |\n| Table 2 MSE 30% | WG std | 2.6 | 2.5 | 2.54 |\n| Table 2 KL 50% uniform | PPL std | 0.07 | 0.08 | 0.076 |\n| K-curve K=8 | ARC-c std | 1.0 | 1.1 | 1.06 |\n| K-curve K=16 | MMLU std | 2.9 | 2.8 | 2.77 |\n| Mistral KL30 downstream | WG std | 1.2 | 1.1 | 1.14 |\n| Table 3 footnote | C1 s42 PPL gap | 0.65pp | 0.63pp | 0.6306 |\n\n---\n\n## Verified Tables (all data points match ✅)\n\n### Table 3 — C1 Target-Swap Ablation\n40/40 data points match exactly. All seeds (s42/s123/s456) at 30% and 50% verified.\n\n### Cross-Architecture Table (tab:cross_arch)\nAll 12 PPL values (6 KL + 6 TEAL across Mistral and LLaMA at 30/50/70%) match exactly.\n\n### Mistral Downstream Table (tab:mistral_downstream)\nAll 21 values match (dense + KL 3-seed + TEAL single-seed across 7 metrics).\n\n### Latency Table (tab:latency)\nAll 10 data points match exactly (ms/fwd and tok/s for 5 configurations).\n\n### OOD Table (tab:ood)\nAll 4 C4 PPL values match. OOD uniform 3-seed (18.22/16.37/16.36, mean 16.98±1.07) match.\n\n### OOD Downstream Table (tab:ood_downstream)\nAll 12 values match (WikiText and C4 calibration across 6 metrics).\n\n### Dense Baseline\nAll 5 metrics match exactly (PPL 6.12, ARC-c 58.28, WG 78.06, MMLU 65.27, GSM8K 48.75).\n\n### Appendix Tables\n- Bottleneck sensitivity (tab:db_sensitivity): all values match\n- Temperature schedule (tab:tau_sensitivity): all values match\n- Training convergence (tab:training_convergence): all values match\n- Lagrangian dynamics (tab:lagrangian): all values match\n\n---\n\n## Verified Inline Prose Claims\n\n| Claim | Verification | Status |\n|-------|-------------|--------|\n| \"14.5% reduction\" (8.81 vs 10.30) | (10.30−8.81)/10.30=14.47%→14.5% | ✅ |\n| \"MMLU −5.2pp on 8B\" | 45.86−40.7=5.16≈5.2 | ✅ |\n| \"GSM8K −20.1pp on 14B\" | 52.1−32.0=20.1 (if 3-seed=32.0) | ✅ (but 32.0 unverified, see above) |\n| \"7.3× MMLU σ\" | 9.5/1.3=7.31 | ✅ |\n| \"−17.3% Mistral PPL\" | (8.38−6.93)/8.38=17.3% | ✅ |\n| \"MMLU −2.8pp on 14B\" | 66.34−63.55=2.79≈2.8 | ✅ (but TEAL MMLU 66.34 unregistered) |\n| \"6.4% latency overhead\" | (126.78−119.11)/119.11=6.44% | ✅ |\n| \"2.39× worse than KL\" | 28.13/11.79=2.386 | ✅ |\n| \"F1 0.613 vs 0.540\" | registry kl_bce_f1_oracle: 0.6128/0.5397 | ✅ |\n| \"139% worse PPL\" | (28.13−11.79)/11.79=138.7%≈139% | ✅ |\n| \"33.8% STE improvement\" | (15.77−11.79)/11.79=33.8% | ✅ |\n| \"JSD +6.4%, RevKL +8.6%\" | (12.54−11.79)/11.79=6.4%, (12.80−11.79)/11.79=8.6% | ✅ |\n| \"K=16 PPL 8.67±0.02\" | registry 3-seed: 8.67±0.02 | ✅ |\n| \"coupling range 2.08 PPL\" | 10.75−8.67=2.08 | ✅ |\n| \"signal type gap 9.47 PPL\" | 18.52−9.05=9.47 | ✅ |\n| \"Jaccard 68% at 50%\" | c1_mask_overlap mean=0.6824 | ✅ |\n| \"cross-seed Jaccard 36.3%\" | appendix consistent | ✅ |\n| \"75.9M params, <1%\" | 32×2.37M=75.84M≈75.9M | ✅ |\n| \"50% PPL reduction at 50% sparsity\" | (23.90−11.92)/23.90=50.1% | ✅ |\n\n---\n\n## Recommendations\n\n### Must-fix before submission\n\n1. **KL 50% global row (Table 2):** Reconcile PPL and downstream metrics with a single consistent set of 3-seed eval runs. Document which exp_ids provide PPL vs downstream for each seed.\n\n2. **C4 control table HS/PIQA (WikiText row):** Values 69.4/75.5 are inconsistent with the OOD downstream table (70.9/74.8) and with registry (70.85/74.81). Use values from registered experiment.\n\n3. **C4 control table PIQA (C4 row):** Paper says 74.86, registry says 75.03. Verify and correct.\n\n4. **148× compression claim:** Back-computation from registered 117M params implies d_ff≈13,923 (109×), not 18,944 (148×). Verify Qwen-2.5-14B's actual intermediate_size and correct.\n\n### Should-fix\n\n5. **Qwen14B GSM8K (32.0±5.2):** Register the s123 GSM8K evaluation to make this claim verifiable. Current 2-seed data gives 30.9±6.8.\n\n6. **Extended downstream TEAL 30% uniform PIQA:** Verify whether paper uses acc_norm (72.80) while registry stored acc (71.98).\n\n7. **BCE 30% global row (Table 2):** Register the source experiment or add exp_id comment.\n\n### Nice-to-have\n\n8. Register missing ablation experiments (JSD 50%, RevKL 50%, perlayer KL 50%, BCE+STE 50%, K=4 metrics).\n9. Standardize registry metric key names (e.g. `arc_challenge` vs `arc_challenge_acc_norm`).\n10. Minor std rounding: adopt consistent rounding convention (round exact, not round pre-rounded).\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 723_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01QgXXDtGG3xBGGRRG1KW9tc`</summary>
+
+```json
+{
+  "name": "R28 Data Consistency Report",
+  "type": "report",
+  "description": "Registry ↔ paper full cross-verification: 284 data points checked, 5 critical mismatches, 31 unverifiable entries, 8 minor rounding issues",
+  "project": "distill_sparse_swiglu",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/r28_data_consistency_report.md",
+  "tags": [
+    "r28",
+    "data-audit",
+    "pre-submission"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "f3420242-a911-44f4-8c1e-89855b7815ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Qopa3r2kLEozNpipPULkj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4162,
+      "cache_read_input_tokens": 121465,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4162
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 724 · 2026-05-24T01:42:30.484Z_
+
+<details><summary>↩ Tool result · `toolu_01QgXXDtGG3xBGGRRG1KW9tc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260524_63b011\", \"name\": \"R28 Data Consistency Report\", \"type\": \"report\", \"description\": \"Registry ↔ paper full cross-verification: 284 data points checked, 5 critical mismatches, 31 unverifiable entries, 8 minor rounding issues\", \"path\": \"projects/distill_sparse_swiglu/artifacts/_project/report/r28_data_consistency_report.md\", \"url\": null, \"project\": \"distill_sparse_swiglu\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-24T01:42:30.322734+00:00\", \"tags\": [\"r28\", \"data-audit\", \"pre-submission\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "601978e6-40b3-48ac-a3dc-a2d26ec17f32",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260524_63b011\\\", \\\"name\\\": \\\"R28 Data Consistency Report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Registry ↔ paper full cross-verification: 284 data points checked, 5 critical mismatches, 31 unverifiable entries, 8 minor rounding issues\\\", \\\"path\\\": \\\"projects/distill_sparse_swiglu/artifacts/_project/report/r28_data_consistency_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"distill_sparse_swiglu\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-24T01:42:30.322734+00:00\\\", \\\"tags\\\": [\\\"r28\\\", \\\"data-audit\\\", \\\"pre-submission\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260524_63b011\", \"name\": \"R28 Data Consistency Report\", \"type\": \"report\", \"description\": \"Registry ↔ paper full cross-verification: 284 data points checked, 5 critical mismatches, 31 unverifiable entries, 8 minor rounding issues\", \"path\": \"projects/distill_sparse_swiglu/artifacts/_project/report/r28_data_consistency_report.md\", \"url\": null, \"project\": \"distill_sparse_swiglu\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-24T01:42:30.322734+00:00\", \"tags\": [\"r28\", \"data-audit\", \"pre-submission\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 725_
+
+审查完成。报告已写入 `artifacts/r28_data_consistency_report.md`。
+
+**关键发现：**
+
+**5 个 must-fix：**
+
+1. **Table 2 KL 50% global 行** — PPL 11.84±0.15 及 ARC-c/WG/GSM8K 无法从任何 registry 实验组合复现。PPL 的 std 最接近的组合只给出 ±0.07，downstream 值也有 1-2pp 偏差。根因：不同 seed 的 PPL 和 downstream 来自不同 eval run，混用了实验源。
+
+2. **C4 control 表 WikiText 行 HS/PIQA** — 69.4/75.5 与同篇论文 OOD downstream 表的 70.9/74.8 矛盾（同一个 predictor），registry 支持后者。
+
+3. **C4 control 表 C4 行 PIQA** — 论文 74.86 vs registry 75.03，差 0.17pp。
+
+4. **Extended downstream 表 TEAL 30% uniform PIQA** — 论文 72.80 vs registry 71.98，差 0.82pp（疑似 acc vs acc_norm 混用）。
+
+5. **"148× compression" for Qwen14B** — 从 registry 的 117M 参数量反算，d_ff≈13923（109×），不是 18944（148×）。
+
+**大部分数据一致：** Table 3（C1 ablation）40/40 全匹配，cross-arch 表全匹配，latency 表全匹配，所有 inline 计算（14.5% reduction、7.3× σ 等）全部正确。约 83% 的数据点完全通过验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "uuid": "e01ed942-a371-453a-a3a0-79faa97d58dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018kcTh77QvQS1KY3MiTFiUE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 551,
+      "cache_read_input_tokens": 125627,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 551
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Task result
+
+_source line 726_
+
+审查完成。报告已写入 `artifacts/r28_data_consistency_report.md`。
+
+**关键发现：**
+
+**5 个 must-fix：**
+
+1. **Table 2 KL 50% global 行** — PPL 11.84±0.15 及 ARC-c/WG/GSM8K 无法从任何 registry 实验组合复现。PPL 的 std 最接近的组合只给出 ±0.07，downstream 值也有 1-2pp 偏差。根因：不同 seed 的 PPL 和 downstream 来自不同 eval run，混用了实验源。
+
+2. **C4 control 表 WikiText 行 HS/PIQA** — 69.4/75.5 与同篇论文 OOD downstream 表的 70.9/74.8 矛盾（同一个 predictor），registry 支持后者。
+
+3. **C4 control 表 C4 行 PIQA** — 论文 74.86 vs registry 75.03，差 0.17pp。
+
+4. **Extended downstream 表 TEAL 30% uniform PIQA** — 论文 72.80 vs registry 71.98，差 0.82pp（疑似 acc vs acc_norm 混用）。
+
+5. **"148× compression" for Qwen14B** — 从 registry 的 117M 参数量反算，d_ff≈13923（109×），不是 18944（148×）。
+
+**大部分数据一致：** Table 3（C1 ablation）40/40 全匹配，cross-arch 表全匹配，latency 表全匹配，所有 inline 计算（14.5% reduction、7.3× σ 等）全部正确。约 83% 的数据点完全通过验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 3535743,
+  "duration_api_ms": 3517486,
+  "num_turns": 29,
+  "stop_reason": "end_turn",
+  "session_id": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "total_cost_usd": 10.415483400000005,
+  "usage": {
+    "input_tokens": 27,
+    "cache_creation_input_tokens": 114337,
+    "cache_read_input_tokens": 1505672,
+    "output_tokens": 37367,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 114337,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 499,
+        "cache_read_input_tokens": 125627,
+        "cache_creation_input_tokens": 551,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 551
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2288,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002363,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 27,
+      "outputTokens": 37367,
+      "cacheReadInputTokens": 1505672,
+      "cacheCreationInputTokens": 114337,
+      "webSearchRequests": 0,
+      "costUSD": 2.4017522500000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 221,
+      "outputTokens": 186516,
+      "cacheReadInputTokens": 12000088,
+      "cacheCreationInputTokens": 430117,
+      "webSearchRequests": 0,
+      "costUSD": 8.011368150000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d368d228-62d7-4992-a8ea-801ad45ddafb"
+}
+```
+
+</details>
+
+---

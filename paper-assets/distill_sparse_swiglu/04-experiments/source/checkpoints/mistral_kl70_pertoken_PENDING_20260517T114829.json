@@ -1,0 +1,24 @@
+{
+  "exp_id": "mistral_kl70_pertoken",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:46:00.698Z",
+    "updated_at": "2026-05-17T11:48:29.608Z",
+    "hypothesis": "KL-distilled predictor with per-token pruning at 70% sparsity on Mistral achieves lower PPL than TEAL vanilla baseline by learning importance-aware neuron selection",
+    "metrics": {
+      "wikitext2_ppl": 9.1086,
+      "model": "Mistral-7B-v0.3",
+      "condition": "kl_pertoken_70pct",
+      "sparsity": 0.7,
+      "allocation": "uniform",
+      "ppl_increase_vs_dense": 3.5848
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T11:48:29.826074+00:00",
+  "trigger": "update_registry"
+}

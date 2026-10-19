@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "38ed730aae0691648757",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "check qwen14b eval results 34887",
+  "task_key": "worker_check_qwen14b_eval_results_34887_20260522T035759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_check_qwen14b_eval_results_34887_20260522T035759.jsonl",
+    "occurrence": 1,
+    "bytes": 360,
+    "sha256": "e34aa45e15cbf9dbcd6b9d441586726476835d0f173479f5ba64621ec8c0218a"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T03:58:09.694770+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_qwen14b_eval_results_34887_20260522T035759"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T03:58:17.463456+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_qwen14b_eval_results_34887_20260522T035759"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/check-qwen14b-eval-results-34887.md"
+}

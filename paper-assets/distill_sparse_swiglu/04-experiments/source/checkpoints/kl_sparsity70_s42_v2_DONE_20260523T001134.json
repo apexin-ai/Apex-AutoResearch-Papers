@@ -1,0 +1,68 @@
+{
+  "exp_id": "kl_sparsity70_s42_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:34:18.823Z",
+    "updated_at": "2026-05-23T00:11:33.762Z",
+    "spec": {
+      "command": "bash -c 'source setup_env.sh && python src/train.py --loss_type kl_normalized --sparsity_target 0.7 --num_steps 1000 --gradient_checkpointing'",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "132988",
+      "log_path": "~/runs/distill_sparse_swiglu/kl_sparsity70_s42_v2.log",
+      "submitted_at": "2026-05-15T20:34:18.724Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103",
+      "data_count": 1000,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "wall_clock_seconds": 2456.7,
+      "gpu_hours": 0.68
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T21:11:35.632Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T21:11:36.854658+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "true_dense_ppl": 6.12,
+      "predictor_hard_mask_ppl": 13.84,
+      "predictor_teal_sparse_ppl": 17.91,
+      "vanilla_teal_sparse_ppl": 100.11,
+      "teal_sparse_ppl": 17.91,
+      "teal_sparse_ppl_static_baseline": 17.91,
+      "model_level_sparsity": 0.7,
+      "teal_sparse_note": "17.91 = predictor-based TEAL (teal_global_masks: predictor-gated magnitude scoring + global topk @70%). vanilla TEAL @70% = 100.11. 代码来源: quick_sp70.py L10 imports teal_global_masks, L60 调用. plan_007_all_ppl_fixed.json 的 mode=static_mask_70pct metadata 有误导性.",
+      "eval_dataset": "wikitext-2",
+      "eval_seq_len": 2048,
+      "calibration_samples": 32,
+      "per_layer_sparsity_range": [
+        0.508,
+        0.876
+      ]
+    },
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt",
+    "conclusion": "killed",
+    "notes": "## Training Analysis (2026-05-16)\n\n### Training Summary\n- 1000/1000 steps completed, EXIT_CODE=0\n- Sparsity converged to ~0.688 (target 0.70, within 0.65-0.75 success range)\n- Lambda hit cap 1000 by step 10, tau annealed 0.999 → 0.100\n- KL loss: 1.18 → 0.61\n\n### PPL Evaluation Results\n- true_dense_ppl: 6.12\n- predictor_hard_mask_ppl: **13.84** (per-token adaptive mask)\n- teal_sparse_ppl: **17.91** (static global topk, FIXED via D017)\n- model_level_sparsity: 0.699\n\n### D017 Bug Fix (2026-05-15)\nOriginal teal_sparse_ppl=136,069 was caused by using raw sigmoid scores for global topk mask selection. Sigmoid probabilities lack magnitude information and are poor proxies for static neuron importance. Fix: score neurons by mean(|intermediate| * predictor_hard_mask) — activation magnitude weighted by predictor decisions. Also added per-layer mean normalization (from _global_topk_masks). Result: 136K → 17.91.",
+    "completed_at": "2026-05-15T21:15:15.421Z",
+    "teal_sparse_ppl": 17.91,
+    "hypothesis": "KL distillation 在 70% 极端稀疏度 (beyond-critical regime) 下仍能收敛且保持相对于 TEAL 的 PPL 优势——验证方法在高稀疏度下 advantage ratio 是否放大"
+  },
+  "timestamp": "2026-05-23T00:11:34.394771+00:00",
+  "trigger": "update_registry"
+}

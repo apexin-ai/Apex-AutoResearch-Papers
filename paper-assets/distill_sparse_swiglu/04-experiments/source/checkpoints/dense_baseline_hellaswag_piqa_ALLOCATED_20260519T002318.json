@@ -1,0 +1,19 @@
+{
+  "exp_id": "dense_baseline_hellaswag_piqa",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:04:50.389Z",
+    "updated_at": "2026-05-19T00:23:17.964Z",
+    "hypothesis": "Dense LLaMA-3.1-8B baseline on HellaSwag and PIQA establishes reference performance for the 6-task downstream evaluation suite. Required to compute degradation percentages for sparse predictors on these two new tasks.",
+    "spec": {
+      "server": "westd-41718",
+      "gpu": "cuda:1"
+    }
+  },
+  "timestamp": "2026-05-19T00:23:18.344926+00:00",
+  "trigger": "update_registry"
+}

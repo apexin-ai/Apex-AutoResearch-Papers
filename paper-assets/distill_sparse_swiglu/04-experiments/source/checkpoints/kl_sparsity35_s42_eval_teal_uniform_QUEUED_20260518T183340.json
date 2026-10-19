@@ -1,0 +1,29 @@
+{
+  "exp_id": "kl_sparsity35_s42_eval_teal_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:13:24.518Z",
+    "updated_at": "2026-05-18T18:33:40.097Z",
+    "hypothesis": "KL 35% uniform allocation eval completes the dual-column (global + uniform) data for the regime curve.",
+    "parent": "kl_sparsity35_s42",
+    "spec": {
+      "command": "bash -c \"source /root/.bashrc && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl_sparsity35_s42_eval_teal_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.35 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "43262",
+      "log_path": "~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal_uniform.log",
+      "submitted_at": "2026-05-18T18:05:15.379Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T18:33:40.427450+00:00",
+  "trigger": "update_registry"
+}

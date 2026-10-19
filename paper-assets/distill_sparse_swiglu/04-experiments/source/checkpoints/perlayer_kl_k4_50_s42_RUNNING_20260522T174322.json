@@ -1,0 +1,26 @@
+{
+  "exp_id": "perlayer_kl_k4_50_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T17:42:05.816Z",
+    "updated_at": "2026-05-22T17:43:21.926Z",
+    "hypothesis": "K=4 per-layer KL at 50% sparsity: tests mismatch explanation rate at high sparsity. K=1 50% PPL=34.85, E2E KL 50% PPL=11.84. If K=4 closes large gap → mismatch dominates even more at high sparsity.",
+    "parent": "perlayer_kl_50_s42",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/train_perlayer_kl_k4.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dataset wikitext-103 --seq_len 2048 --num_steps 1000 --lr 1e-3 --seed 42 --sparsity_target 0.5 --num_masked_layers 4 --output_dir checkpoints/perlayer_kl_k4_50_s42 --gpu 0 --gradient_checkpointing --save_every 500 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000",
+      "server": "westd-34887",
+      "data_path": "wikitext-103",
+      "data_count": 1000,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "fresh_train_from_pretrained_predictor_wrapper",
+      "eval_data": "training_run_not_eval_K4_distill_at_50pct_sparsity"
+    }
+  },
+  "timestamp": "2026-05-22T17:43:22.517532+00:00",
+  "trigger": "update_registry"
+}

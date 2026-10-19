@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43eb17164888f12cfde1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp c4 kl30 s42 pilot",
+  "task_key": "worker_exp_c4_kl30_s42_pilot_20260523T010107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_c4_kl30_s42_pilot_20260523T010107_result.json",
+    "occurrence": 1,
+    "bytes": 181,
+    "sha256": "7c49bfd559de81f5859e8276765e50163298fbe2df790217cf2f185f6b90e73a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已用 nohup 在 westd-34887 cuda:0 启动（PID 94893）。参数与 WikiText-103 KL 30% 实验一致，仅 `--dataset c4`。4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-c4-kl30-s42-pilot.md"
+}

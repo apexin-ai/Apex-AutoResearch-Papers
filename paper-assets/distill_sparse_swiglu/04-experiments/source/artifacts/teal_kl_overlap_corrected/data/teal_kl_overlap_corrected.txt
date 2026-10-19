@@ -1,0 +1,24 @@
+TEAL-KL Overlap Magnitude Correction (Permutation Test + Percentile Rank)
+
+Null Baseline (1000 permutations):
+- KL-only-pruned mean |act|: 0.0596
+- Random subset (null) mean: 0.0366
+- Z-score: 7260.3
+- P-value: ~0 (highly significant)
+
+Percentile Rank:
+- Median: 78.6th percentile (IQR: 64.4-89.1%)
+- KL-only-pruned neurons are systematically high-magnitude
+
+Per-Layer:
+- 31/32 layers significant at p<0.001
+- Exception: Layer 31 (last layer) - KL-only neurons have LOWER magnitude (z=-186.5)
+- Percentile rank range: 69.5%-87.5%
+
+Conclusion: The 1.48x magnitude ratio is NOT a selection bias artifact.
+KL distillation systematically prunes high-magnitude neurons (which TEAL preserves).
+Layer 31 exception may reflect last-layer dynamics where magnitude is less
+predictive of importance.
+
+Script: /root/distill_sparse_swiglu/scripts/teal_kl_overlap_corrected.py
+JSON: /root/distill_sparse_swiglu/artifacts/teal_kl_overlap_corrected.json

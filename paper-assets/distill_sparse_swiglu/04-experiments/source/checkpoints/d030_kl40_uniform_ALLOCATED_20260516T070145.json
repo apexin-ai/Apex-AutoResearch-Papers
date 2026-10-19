@@ -1,0 +1,30 @@
+{
+  "exp_id": "d030_kl40_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:18:45.733Z",
+    "updated_at": "2026-05-16T07:01:45.106Z",
+    "hypothesis": "D033: KL 40% sparsity with UNIFORM per-layer allocation — 定位 allocation 修复的精确 threshold。30% uniform MMLU=40.61%（修复有效），50% uniform MMLU=27.77%（修复失效）。40% 是 threshold 精确定位的关键数据点。",
+    "notes": "Director 确认方案 B：训练专用 40% predictor（非复用 30%/50% predictor eval）。流程：train.py --sparsity_target 0.4 (1000步, ~45min) → evaluate.py --sparsity_target 0.4 + lm_eval downstream with uniform allocation。排在 BCE v3 完成后用同一张卡（cuda:1）。与 30%/50% 保持一致，每个 sparsity level 用专用 predictor。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export PYTHONUNBUFFERED=1 && echo '=== Phase 1: Train 40% KL predictor (1000 steps) ===' && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.4 --gpu 0 --output_dir checkpoints/kl_sparsity40_s42 --wandb_run_name d030_kl40_uniform --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000 --log_every 100 2>&1 && echo '=== Phase 2: Evaluate with uniform allocation ===' && python -u src/benchmark_eval.py --exp_id d030_kl40_uniform --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt --sparsity_mode per_token --sparsity_target 0.4 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 2>&1\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "213368",
+      "log_path": "~/runs/distill_sparse_swiglu/d030_kl40_uniform.log",
+      "submitted_at": "2026-05-16T06:16:52.840Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "retry_reason": "v1 failed: wandb API key not configured, adding WANDB_MODE=offline"
+    }
+  },
+  "timestamp": "2026-05-16T07:01:45.262416+00:00",
+  "trigger": "update_registry"
+}

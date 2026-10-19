@@ -1,0 +1,16 @@
+{
+  "exp_id": "perlayer_kl_k4_50_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T17:42:05.816Z",
+    "updated_at": "2026-05-22T17:43:00.323Z",
+    "hypothesis": "K=4 per-layer KL at 50% sparsity: tests mismatch explanation rate at high sparsity. K=1 50% PPL=34.85, E2E KL 50% PPL=11.84. If K=4 closes large gap → mismatch dominates even more at high sparsity.",
+    "parent": "perlayer_kl_50_s42"
+  },
+  "timestamp": "2026-05-22T17:43:00.987906+00:00",
+  "trigger": "update_registry"
+}

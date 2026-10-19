@@ -1,0 +1,44 @@
+{
+  "exp_id": "bce_gumbel_lagrangian_isolation",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:58:31.768Z",
+    "updated_at": "2026-05-16T20:58:43.170Z",
+    "spec": {
+      "command": "train_bce_gumbel.py --lr {1e-4,1e-3,3e-3} --num_steps 1000 --sparsity_target 0.5",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "model_name": "llama-3.1-8b",
+      "data_path": "WikiText-103 train",
+      "data_count": null,
+      "seed": 42,
+      "hypothesis": "BCE loss with identical framework (Gumbel+Lagrangian) still fails vs KL, proving loss function is the key factor",
+      "checkpoint_path": "checkpoints/bce_framework_lr{1e4,1e3,3e3}/predictor_bce_gumbel.pt",
+      "log_path": "/root/runs/bce_iso_framework.log"
+    },
+    "metrics": {
+      "lr_1e4_ppl": 42.99,
+      "lr_1e3_ppl": 48.4,
+      "lr_3e3_ppl": 38.02,
+      "lr_1e4_bce_loss": 0.7158,
+      "lr_1e3_bce_loss": 0.6781,
+      "lr_3e3_bce_loss": 0.6632,
+      "lr_1e4_sparsity": 0.514,
+      "lr_1e3_sparsity": 0.506,
+      "lr_3e3_sparsity": 0.504,
+      "best_ppl": 38.02,
+      "best_lr": "3e-3",
+      "kl_baseline_ppl": 11.79,
+      "gap_vs_kl": 26.23
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T20:58:43.323737+00:00",
+  "trigger": "update_registry"
+}

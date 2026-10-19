@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40ea4f3c475302f4c4ff",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "monitor kl v2 progress check",
+  "task_key": "worker_monitor_kl_v2_progress_check_20260515T153211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_kl_v2_progress_check_20260515T153211_result.json",
+    "occurrence": 1,
+    "bytes": 1252,
+    "sha256": "3595cbff4ad81d9df4b6cee409485ce808b6df71e91e6f8a2933f0ed227f95b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## KL v2 训练状态摘要\n\n### 进程状态\n两个进程均存活，已运行约 13 分 26 秒。\n\n### GPU 使用\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| cuda:0 (s42) | 100% | 67,569 / 97,887 MiB |\n| cuda:1 (s123) | 100% | 67,569 / 97,887 MiB |\n\n### 训练进度\n\n| 指标 | s42 (seed=42) | s123 (seed=123) |\n|------|---------------|-----------------|\n| **当前步数** | 360 / 1000 (36%) | 360 / 1000 (36%) |\n| **KL loss** | 0.2988 | 0.2910 |\n| **KL loss 趋势** | 0.365→0.266 (下降中) | 0.334→0.260 (下降中) |\n| **Sparsity** | 0.484 | 0.488 |\n| **Lambda** | 1000.00 (已到 cap) | 1000.00 (已到 cap) |\n| **Tau** | 0.676 | 0.676 |\n| **Constraint** | 基本为 0（偶尔 0.012） | 基本为 0（偶尔 0.012） |\n\n### 预估完成时间\n13.4 分钟跑了 360 步 → 约 2.23 秒/步 → 剩余 640 步约需 **24 分钟**。\n\n### 异常检查\n- 无 NaN、无 OOM、无 warning\n- KL loss 稳步下降，两个 seed 趋势一致\n- Sparsity 在 0.477–0.506 范围波动，接近 0.5 目标，constraint penalty 几乎为 0，说明约束满足良好\n- Lambda 已到 1000 cap，符合预期\n\n**结论：两个实验运行正常，预计约 24 分钟后完成。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-kl-v2-progress-check.md"
+}

@@ -1,0 +1,43 @@
+{
+  "exp_id": "c1_retrain_30pct_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:22:33.404Z",
+    "updated_at": "2026-05-19T05:06:41.273Z",
+    "spec": {
+      "command": "train_bce_kl_targets.py C1 retrain",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "120745",
+      "log_path": "~/runs/distill_sparse_swiglu/c1_retrain_30pct_s123.log",
+      "submitted_at": "2026-05-19T03:22:32.813Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103",
+      "data_count": 1,
+      "model_name": "llama-3.1-8b",
+      "seed": 123,
+      "checkpoint_path": "checkpoints/c1_retrain_30pct_s123/predictor_bce_kl_targets.pt",
+      "wall_clock_seconds": 6248.5,
+      "gpu_hours": 1.74
+    },
+    "metrics": {
+      "training_agreement": 0.977,
+      "training_sparsity": 0.31,
+      "wikitext2_ppl": 7.54,
+      "actual_sparsity": 0.332
+    },
+    "hypothesis": "C1 retrain training s123: Train BCE predictor using kl_30pct_s123 oracle masks (consistent with main table), replacing kl_sparsity30_s123. Eliminates reviewer attack surface on oracle inconsistency.",
+    "conclusion": "success",
+    "completed_at": "2026-05-19T05:06:41.273Z"
+  },
+  "timestamp": "2026-05-19T05:06:41.733421+00:00",
+  "trigger": "update_registry"
+}

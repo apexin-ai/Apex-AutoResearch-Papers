@@ -1,0 +1,20 @@
+_next_id: 5
+constraints:
+- id: C002
+  added: 2026-05-16 03:08 UTC
+  summary: 所有 GPU 长时间实验必须用 nohup 启动并重定向日志，禁止裸 tmux session
+  scope: worker
+  reason: 'bce_isocompute_s42 和 v2 两次因 tmux session 被挤掉而死，导致 Reviewer Concern #2 完全无防御数据'
+- id: C003
+  added: 2026-05-16 12:32 UTC
+  summary: 论文中所有超参/架构数字必须有代码来源验证，禁止从记忆或猜测填写。Predictor 正确参数：GELU, d_b=128, 2.37M/layer,
+    75.9M total。
+  scope: all
+  reason: Reviewer 发现 experiments.tex + methodology.tex 共 7 处超参事实错误（ReLU/GELU、d_b=256/128、batch_size=32/4
+    等），根因是 Paper Agent worker 未读源代码靠猜测填写。
+- id: C004
+  added: 2026-05-17 15:15 UTC
+  summary: GPU 白名单：仅允许使用 westd-34887 cuda:0/cuda:1 和 westd-41718 cuda:0/cuda:1，禁止使用其他
+    GPU
+  scope: all
+  reason: 项目分配资源边界。westd-34887 为原始分配，westd-41718 为 Manager 批准的扩容（2026-05-17）。

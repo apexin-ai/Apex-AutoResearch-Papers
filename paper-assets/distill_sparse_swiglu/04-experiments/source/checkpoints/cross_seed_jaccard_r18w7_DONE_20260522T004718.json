@@ -1,0 +1,56 @@
+{
+  "exp_id": "cross_seed_jaccard_r18w7",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:54:11.633Z",
+    "updated_at": "2026-05-22T00:47:17.998Z",
+    "hypothesis": "Cross-seed mask Jaccard distance for KL-trained predictors should be significantly lower than KL-vs-magnitude divergence (46-68%), proving that the divergence is caused by loss function design rather than seed noise. If cross-seed Jaccard is comparable to 46-68%, then the KL-vs-magnitude divergence claim lacks discriminative power (R18-W7).",
+    "spec": {
+      "command": "python -u src/cross_seed_jaccard_r18w7.py --gpu 0 --num_seqs 64 --sparsity 0.30",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "355995",
+      "log_path": "~/runs/distill_sparse_swiglu/cross_seed_jaccard_r18w7.log",
+      "submitted_at": "2026-05-22T00:18:39.093Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-2 validation",
+      "data_count": "64 sequences",
+      "model_name": "llama-3.1-8b",
+      "seed": "42,123,456",
+      "checkpoint_source": "kl_sparsity30_s42_v3, kl_sparsity30_s123, kl_sparsity30_s456",
+      "eval_data": "wikitext-2 validation (mask Jaccard analysis)",
+      "checkpoint_path": "N/A (analysis only)",
+      "wall_clock_seconds": 1718.9,
+      "gpu_hours": 0.48
+    },
+    "metrics": {
+      "cross_seed_jaccard_mean": 0.3633,
+      "cross_seed_s42_s123": 0.364,
+      "cross_seed_s42_s456": 0.3617,
+      "cross_seed_s123_s456": 0.3642,
+      "kl_vs_mag_jaccard_mean": 0.4276,
+      "kl_vs_mag_s42": 0.4276,
+      "kl_vs_mag_s123": 0.4274,
+      "kl_vs_mag_s456": 0.4278,
+      "ratio": 1.2,
+      "early_cross_seed": 0.361,
+      "early_kl_vs_mag": 0.4378,
+      "middle_cross_seed": 0.3521,
+      "middle_kl_vs_mag": 0.4153,
+      "late_cross_seed": 0.377,
+      "late_kl_vs_mag": 0.4294
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-22T00:47:17.998Z"
+  },
+  "timestamp": "2026-05-22T00:47:18.624275+00:00",
+  "trigger": "update_registry"
+}

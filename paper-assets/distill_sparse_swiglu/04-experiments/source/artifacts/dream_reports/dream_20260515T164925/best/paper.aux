@@ -1,0 +1,101 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shazeer2020glu}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{liu2024teal}
+\citation{shen2024wina}
+\citation{zhang2024rsparse}
+\citation{wang2024fastforward}
+\citation{zhou2024spon}
+\citation{chen2024shadowllm}
+\citation{hinton2015distilling}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training-free activation sparsity.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Learned sparsity prediction.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Knowledge distillation for sparsity.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Gradient Coupling: KL vs.\ BCE}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{BCE objective.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{KL objective.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quadratic scaling prediction.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Modular Decomposition}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:decomposition}{{3.3}{3}{Modular Decomposition}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sparsity target.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{3}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Four-condition ablation on WikiText-2 (Llama~3.1~8B, 50\% sparsity). KL-only outperforms BCE+compensation by 9.44 PPL points without any compensation network.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:ablation}{{1}{4}{Four-condition ablation on WikiText-2 (Llama~3.1~8B, 50\% sparsity). KL-only outperforms BCE+compensation by 9.44 PPL points without any compensation network}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Relaxation method ablation. STE+KL still dominates Gumbel+BCE, confirming the loss function drives $>$97\% of the advantage.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:ste}{{2}{4}{Relaxation method ablation. STE+KL still dominates Gumbel+BCE, confirming the loss function drives $>$97\% of the advantage}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Four-Condition Ablation}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:ablation}{{4.2}{4}{Four-Condition Ablation}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Isolating Loss vs.\ Relaxation (STE Baseline)}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:ste}{{4.3}{4}{Isolating Loss vs.\ Relaxation (STE Baseline)}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Iso-Compute Comparison}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:isocompute}{{4.4}{4}{Iso-Compute Comparison}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Training-Free Baselines and Quality Hierarchy}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:baselines}{{4.5}{4}{Training-Free Baselines and Quality Hierarchy}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Iso-compute comparison. Extended BCE training (3.2$\times $ steps) barely closes the gap.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:isocompute}{{3}{5}{Iso-compute comparison. Extended BCE training (3.2$\times $ steps) barely closes the gap}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Quality hierarchy at 50\% sparsity (Llama~3.1~8B, WikiText-2).}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:hierarchy}{{4}{5}{Quality hierarchy at 50\% sparsity (Llama~3.1~8B, WikiText-2)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}SPON Validation}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:spon}{{4.6}{5}{SPON Validation}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}SPON + KL Composition}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:composition}{{4.7}{5}{SPON + KL Composition}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Full Benchmark Suite}{5}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:fullbench}{{4.8}{5}{Full Benchmark Suite}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Inference efficiency.}{5}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces SPON reimplementation validation (Llama~3.1~8B, 50\% sparsity).}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:spon}{{5}{6}{SPON reimplementation validation (Llama~3.1~8B, 50\% sparsity)}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Composition additivity analysis. SPON and KL corrections compose near-additively (6.8\% interaction residual in logit space).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:composition}{{6}{6}{Composition additivity analysis. SPON and KL corrections compose near-additively (6.8\% interaction residual in logit space)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Quadratic Scaling of KL--BCE Gap}{6}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:scaling}{{4.9}{6}{Quadratic Scaling of KL--BCE Gap}{subsection.4.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Cross-Architecture Validation}{6}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:crossarch}{{4.10}{6}{Cross-Architecture Validation}{subsection.4.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Long-Context Evaluation (LongBench)}{6}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:longbench}{{4.11}{6}{Long-Context Evaluation (LongBench)}{subsection.4.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Comprehensive benchmark results (Llama~3.1~8B, 50\% sparsity). KL-only averages only 1.3\% accuracy drop from dense across five tasks; SPON+KL achieves 0.7\%.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:fullbench}{{7}{7}{Comprehensive benchmark results (Llama~3.1~8B, 50\% sparsity). KL-only averages only 1.3\% accuracy drop from dense across five tasks; SPON+KL achieves 0.7\%}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Inference efficiency comparison. KL-only Pareto-dominates BCE+comp on all axes.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:latency}{{8}{7}{Inference efficiency comparison. KL-only Pareto-dominates BCE+comp on all axes}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}MT-Bench Multi-Turn Evaluation}{7}{subsection.4.12}\protected@file@percent }
+\newlabel{sec:mtbench}{{4.12}{7}{MT-Bench Multi-Turn Evaluation}{subsection.4.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.13}RULER Synthetic Diagnostics}{7}{subsection.4.13}\protected@file@percent }
+\newlabel{sec:ruler}{{4.13}{7}{RULER Synthetic Diagnostics}{subsection.4.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Two-dimensional taxonomy.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{7}{section*.13}\protected@file@percent }
+\bibdata{custom}
+\bibcite{shazeer2020glu}{Shazeer, 2020}
+\bibcite{liu2024teal}{Liu et~al., 2024}
+\bibcite{shen2024wina}{Shen et~al., 2024}
+\bibcite{zhang2024rsparse}{Zhang et~al., 2024}
+\bibcite{wang2024fastforward}{Wang et~al., 2024}
+\bibcite{zhou2024spon}{Zhou et~al., 2024}
+\bibcite{chen2024shadowllm}{Chen et~al., 2024}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Sparsity sweep: KL--BCE quality gap $\Delta $ follows $as^2$ with $R^2 = 0.97$.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:sweep}{{9}{8}{Sparsity sweep: KL--BCE quality gap $\Delta $ follows $as^2$ with $R^2 = 0.97$}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Scaling fit statistics for $\Delta _{\mathrm  {BCE-KL}}(s)$.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:fitstat}{{10}{8}{Scaling fit statistics for $\Delta _{\mathrm {BCE-KL}}(s)$}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibcite{hinton2015distilling}{Hinton et~al., 2015}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Cross-architecture validation on Mistral-7B-v0.3 (50\% sparsity).}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:mistral}{{11}{9}{Cross-architecture validation on Mistral-7B-v0.3 (50\% sparsity)}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces LongBench per-task-type results (Llama~3.1~8B, 50\% sparsity).}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:longbench}{{12}{9}{LongBench per-task-type results (Llama~3.1~8B, 50\% sparsity)}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces MT-Bench results (GPT-4o judge). KL-only is within judge noise of dense.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:mtbench}{{13}{10}{MT-Bench results (GPT-4o judge). KL-only is within judge noise of dense}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces RULER synthetic evaluation at 4K and 16K context lengths.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:ruler}{{14}{10}{RULER synthetic evaluation at 4K and 16K context lengths}{table.14}{}}
+\gdef \@abspage@last{10}

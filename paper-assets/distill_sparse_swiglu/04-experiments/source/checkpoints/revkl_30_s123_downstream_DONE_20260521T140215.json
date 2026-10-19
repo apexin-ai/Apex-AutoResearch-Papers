@@ -1,0 +1,49 @@
+{
+  "exp_id": "revkl_30_s123_downstream",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:59:47.275Z",
+    "updated_at": "2026-05-21T14:02:15.372Z",
+    "spec": {
+      "command": "benchmark_eval.py --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "301738",
+      "log_path": "~/runs/distill_sparse_swiglu/revkl_30_s123_downstream.log",
+      "submitted_at": "2026-05-21T02:59:46.479Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "lm-eval-harness built-in",
+      "data_count": "7 tasks",
+      "model_name": "llama-3.1-8b",
+      "seed": "123",
+      "checkpoint_source": "revkl_30_s123",
+      "eval_data": "arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq",
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 39748.9,
+      "gpu_hours": 11.04
+    },
+    "hypothesis": "RevKL 30% s123 downstream 7-task eval (arc_challenge, winogrande, mmlu, gsm8k, hellaswag, piqa, boolq) to supplement Table 4 with downstream metrics for coupling hierarchy comparison.",
+    "parent": "revkl_30_s123",
+    "metrics": {
+      "arc_challenge_acc_norm": 0.4556,
+      "winogrande_acc": 0.689,
+      "mmlu_acc": 0.38,
+      "gsm8k_exact_match": 0.072,
+      "hellaswag_acc_norm": 0.7092,
+      "piqa_acc_norm": 0.7524,
+      "boolq_acc": 0.7199
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T14:02:15.372Z"
+  },
+  "timestamp": "2026-05-21T14:02:15.915502+00:00",
+  "trigger": "update_registry"
+}

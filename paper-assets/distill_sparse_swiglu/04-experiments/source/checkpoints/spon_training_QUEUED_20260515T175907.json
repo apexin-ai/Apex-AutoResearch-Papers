@@ -1,0 +1,26 @@
+{
+  "exp_id": "spon_training",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:27:18.117Z",
+    "updated_at": "2026-05-15T17:59:07.674Z",
+    "spec": {
+      "hypothesis": "SPON learnable bias vectors + KL loss 在 Llama 3.1 8B 上复现论文结果，作为 composition 实验的前置验证",
+      "model_name": "llama-3.1-8b",
+      "server": "westd-34887",
+      "parent": null,
+      "loss_type": "kl (SPON-style)",
+      "params": "458K (bias vectors)",
+      "seed": 42,
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train_spon.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --predictor_checkpoint /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --num_steps 1000 --batch_size 8 --seq_len 128 --lr 1e-5 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/spon_kl_s42 --warmup_steps 100 --log_every 100 --dataset wikitext-103 --gradient_checkpointing\"",
+      "data_path": "wikitext-103 (HF cached)"
+    },
+    "notes": "Dry-run 5 steps PASS: bias 零初始化确认 (mean_bias_norm=0.0), 仅 458K/8B params 可训练 (0.0057%), cosine+warmup lr 正常 (5e-6→1e-5→0), loss 合理 (0.43→0.35). Gradient checkpointing 正常。待 cuda:1 释放后正式提交。"
+  },
+  "timestamp": "2026-05-15T17:59:07.718849+00:00",
+  "trigger": "update_registry"
+}

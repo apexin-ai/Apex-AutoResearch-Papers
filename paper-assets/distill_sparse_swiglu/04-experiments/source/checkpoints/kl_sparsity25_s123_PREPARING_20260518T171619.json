@@ -1,0 +1,29 @@
+{
+  "exp_id": "kl_sparsity25_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:31:55.829Z",
+    "updated_at": "2026-05-18T17:16:19.566Z",
+    "hypothesis": "KL predictor at 25% sparsity seed 123 for multi-seed robustness, expected to match s42 (sparsity 0.230, loss 0.158) confirming consistent convergence at the mild-sparsity regime.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True WANDB_MODE=offline python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 123 --sparsity_target 0.25 --gpu 0 --output_dir checkpoints/kl_sparsity25_s123 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000\"",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "86331",
+      "log_path": "~/runs/distill_sparse_swiglu/kl_sparsity25_s123.log",
+      "submitted_at": "2026-05-18T16:32:10.065Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T17:16:19.913085+00:00",
+  "trigger": "update_registry"
+}

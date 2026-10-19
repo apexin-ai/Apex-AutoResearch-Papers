@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12ce70be3e870fc06bcb",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diag perlayer kl k16 eval v2",
+  "task_key": "worker_diag_perlayer_kl_k16_eval_v2_20260523T051305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_perlayer_kl_k16_eval_v2_20260523T051305_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "dfafed6d4c1149218eaa07efbddb866f8bd373d32e01c7b9ece26e6d06eae093"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：`nohup` 不 source `.bashrc`，导致 `HF_HOME=/root/autodl-tmp/.hf_cache` 未设置。lm-eval 的 `datasets.load_dataset` 去默认路径 `/root/.cache/huggingface/datasets/` 找缓存——该目录不存在。数据集实际缓存在 `/root/autodl-tmp/.hf_cache/datasets/`，但 eval 进程不知道。\n\n两次失败是同一根因的不同表现：\n- Parent：缺 HF_HOME → 找不到缓存 → 联网 → 网络不可达\n- v2：加了 `HF_DATASETS_OFFLINE=1` → 缺 HF_HOME → 找不到缓存 → \"离线模式无缓存\"\n\n**修复**：在 nohup 命令里显式加 `HF_HOME=/root/autodl-tmp/.hf_cache`。报告已写入 `artifacts/diag_k16_eval_v2.md`，含完整重试命令。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-perlayer-kl-k16-eval-v2.md"
+}

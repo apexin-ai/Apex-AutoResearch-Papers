@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2570d15551044a7dcb87",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh director cleanup 41718",
+  "task_key": "worker_ssh_director_cleanup_41718_20260520T210513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_director_cleanup_41718_20260520T210513_result.json",
+    "occurrence": 1,
+    "bytes": 64,
+    "sha256": "e45c118cd6f9d486bbef353741865f9183cb42b306612317769b53003cd1b673"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 6pm (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-director-cleanup-41718.md"
+}

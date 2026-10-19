@@ -1,0 +1,16 @@
+{
+  "exp_id": "wallclock_speedup_30_50",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:28:09.668Z",
+    "updated_at": "2026-05-17T15:40:28.642Z",
+    "hypothesis": "Sparse activation at 30% and 50% sparsity produces measurable wall-clock inference speedup over dense baseline when using sparse kernels, with 50% showing greater speedup than 30% proportional to compute reduction",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T15:40:28.928045+00:00",
+  "trigger": "update_registry"
+}

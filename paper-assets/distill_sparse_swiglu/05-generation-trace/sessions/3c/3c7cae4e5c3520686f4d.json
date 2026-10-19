@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c7cae4e5c3520686f4d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh mse50 s123 train",
+  "task_key": "worker_ssh_mse50_s123_train_20260520T185500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mse50_s123_train_20260520T185500_result.json",
+    "occurrence": 1,
+    "bytes": 688,
+    "sha256": "9273cbc598a84ecbf91d8eeb38ef945aec05114b3900d084ad802616cbefdf9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动：\n\n- **exp_id**: `mse50_s123`\n- **server/GPU**: westd-34887 / cuda:0 (PID 235945, tmux session `mse50_s123`)\n- **log**: `~/runs/distill_sparse_swiglu/mse50_s123.log`(已确认进入 \"Loading model\" 阶段)\n- **Registry**: RUNNING, parent=`mse50_s42_eval_7task`, hypothesis 已填\n\n关键修正（与 prompt 原命令偏离）：\n- MSE 用独立脚本 `src/train_perlayer_mse.py`，不接受 `--loss_type`/`--dataset`/`--lambda_max`/`--gradient_checkpointing`/`--log_every`。命令已与 `mse50_s42_train`（registry 中）逐参数对齐，仅改 seed 42→123。\n- checkpoint 文件名确认为 `predictor_mse.pt`（与 mse30_test 目录一致）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mse50-s123-train.md"
+}

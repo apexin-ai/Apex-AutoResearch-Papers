@@ -1,0 +1,35 @@
+{
+  "exp_id": "mistral_kl30_teal_global",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:46:02.883Z",
+    "updated_at": "2026-05-17T11:48:51.844Z",
+    "hypothesis": "KL-distilled predictor with TEAL global-threshold allocation at 30% sparsity on Mistral achieves lower PPL than TEAL vanilla by leveraging learned importance scores for threshold selection",
+    "metrics": {
+      "wikitext2_ppl": 6.7733,
+      "model": "Mistral-7B-v0.3",
+      "condition": "kl_teal_global_30pct",
+      "sparsity": 0.3,
+      "allocation": "uniform",
+      "ppl_increase_vs_dense": 1.2495
+    },
+    "conclusion": "success",
+    "spec": {
+      "command": "python src/benchmark_eval.py --checkpoint checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity 0.3",
+      "server": "westd-34887",
+      "data_path": "WikiText-2 test",
+      "data_count": 0,
+      "model_name": "Mistral-7B-v0.3",
+      "seed": 42,
+      "checkpoint_path": "checkpoints/mistral_kl30_s42/predictor_kl_normalized.pt",
+      "log_path": "/root/distill_sparse_swiglu/results/benchmark/mistral_kl30_teal_global/results.json"
+    },
+    "completed_at": "2026-05-17T11:48:51.844Z"
+  },
+  "timestamp": "2026-05-17T11:48:52.046271+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,61 @@
+{
+  "exp_id": "bce_isocompute_v3_s456",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T17:41:59.821Z",
+    "updated_at": "2026-05-17T20:02:41.221Z",
+    "hypothesis": "BCE iso-compute 2700 steps with seed 456 at 50% sparsity produces comparable results to s42 (PPL and downstream), providing multi-seed validation for Table 2 BCE row",
+    "parent": "bce_isocompute_v3_s42",
+    "server": "westd-34887",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 2700 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.5 --gpu 0 --output_dir checkpoints/bce_isocompute_v3_s456 --wandb_run_name bce_isocompute_v3_s456 --dataset wikitext-103 --gradient_checkpointing --log_every 100",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "67029",
+      "log_path": "~/runs/distill_sparse_swiglu/bce_isocompute_v3_s456.log",
+      "submitted_at": "2026-05-17T19:13:30.954Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "llama-3.1-8b",
+      "data_path": "wikitext-103",
+      "data_count": 0,
+      "seed": 456,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "wikitext-103 (training data)",
+      "checkpoint_path": "checkpoints/bce_isocompute_v3_s456/predictor_bce.pt"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T20:01:09.845Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T20:01:13.768692+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "steps": 2700,
+      "loss": 0.6368,
+      "bce_loss": 0.6357,
+      "reg_loss": 0.001,
+      "sparsity": 0.51,
+      "training_time_seconds": 2823,
+      "note": "Multi-seed validation: s456 vs s42 loss diff=0.0014, sparsity identical at 0.51"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T20:02:41.458928+00:00",
+  "trigger": "update_registry"
+}

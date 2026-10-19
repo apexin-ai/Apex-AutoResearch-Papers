@@ -1,0 +1,47 @@
+{
+  "exp_id": "qwen14b_dense_baseline",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:47:04.949Z",
+    "updated_at": "2026-05-17T22:24:44.611Z",
+    "spec": {
+      "command": "cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_dense_baseline --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "18845",
+      "log_path": "~/runs/distill_sparse_swiglu/qwen14b_dense_baseline.log",
+      "submitted_at": "2026-05-17T18:47:34.739Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "qwen2.5-14b",
+      "data_path": "lm-eval-harness datasets",
+      "data_count": 0,
+      "seed": 42
+    },
+    "hypothesis": "Qwen-2.5-14B dense baseline downstream metrics (PPL, ARC-c, WinoGrande, MMLU, GSM8K) provide reference for computing degradation ratio of KL/BCE/TEAL sparse predictors at 14B scale, enabling cross-scale comparison with LLaMA-8B results",
+    "reproduce": {
+      "finished_at": "2026-05-17T22:24:15.654Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T22:24:20.978994+00:00"
+        }
+      ]
+    },
+    "log_path": "logs/downstream_dense_baseline.log",
+    "checkpoint_path": "N/A (dense baseline)",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T22:24:44.967481+00:00",
+  "trigger": "update_registry"
+}

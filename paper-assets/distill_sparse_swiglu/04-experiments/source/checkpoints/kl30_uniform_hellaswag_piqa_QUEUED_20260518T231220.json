@@ -1,0 +1,15 @@
+{
+  "exp_id": "kl30_uniform_hellaswag_piqa",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:12:05.345Z",
+    "updated_at": "2026-05-18T23:12:20.244Z",
+    "hypothesis": "Extend KL 30% uniform (recommended operating point) eval with HellaSwag and PIQA to broaden downstream task coverage. Expect performance consistent with other downstream metrics showing graceful degradation from dense baseline."
+  },
+  "timestamp": "2026-05-18T23:12:20.596673+00:00",
+  "trigger": "update_registry"
+}

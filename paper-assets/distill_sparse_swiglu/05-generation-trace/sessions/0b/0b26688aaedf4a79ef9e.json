@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b26688aaedf4a79ef9e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis teal ppl source investigation",
+  "task_key": "worker_analysis_teal_ppl_source_investigation_20260516T000027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_teal_ppl_source_investigation_20260516T000027_result.json",
+    "occurrence": 1,
+    "bytes": 1653,
+    "sha256": "c2a682d8d7a63f852f5b33116f3acc3803f3d02a9700f84c5c4ff3515f364aa2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**`kl_sparsity70_s42_v2` 的 `teal_sparse_ppl=17.91` 调用的是 `teal_global_masks`（predictor-based），不是 `vanilla_teal_global_masks`。**\n\n### 代码证据\n\n`/root/distill_sparse_swiglu/src/quick_sp70.py` 是产生 17.913 的脚本：\n\n- **L10**: `from evaluate import teal_global_masks` — 导入 predictor-based 版本\n- **L53-54**: 加载 `kl_sparsity70_s42/predictor_kl_normalized.pt` 到 `PredictorWrapper`\n- **L60**: `sp70_masks = teal_global_masks(wrapper, calib_ids, 0.7)` — 用 predictor 生成 mask\n- **L85/L115**: 结果写入 `plan_007_sparsity70.json`\n\n`teal_global_masks`（evaluate.py L64-95）的逻辑：\n- 对每个 neuron，score = `mean(|act(gate(x))*up(x)| * (predictor_logit > 0))`\n- 即用 predictor 做门控，只对 predictor 保留的 neuron 计算 magnitude score\n- 然后 `_global_topk_masks` 做跨层 global topk，保留 top 30%\n\n### 判定\n\n| 指标 | 方法 | 值 |\n|------|------|-----|\n| `teal_sparse_ppl` (kl_sparsity70_s42_v2) | Predictor TEAL: predictor-gated magnitude + global topk @70% | 17.91 |\n| vanilla TEAL 70% (re-run) | Vanilla TEAL: pure activation magnitude + global topk @70% | 100.11 |\n\n**两者是不同方法，5.6x 差距合理。** Predictor 显著改善了 neuron importance scoring，即使最终都用 static mask 做 inference。\n\n### 注意\n\n`plan_007_all_ppl_fixed.json` 中标注 `\"mode\": \"static_mask_70pct\"` 是误导性 metadata — 实际 eval 代码用了 predictor-based scoring（非 vanilla）。两个数字可作为 ablation 对比：predictor guidance 在 70% sparsity 下将 PPL 从 100.11 降到 17.91。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-teal-ppl-source-investigation.md"
+}

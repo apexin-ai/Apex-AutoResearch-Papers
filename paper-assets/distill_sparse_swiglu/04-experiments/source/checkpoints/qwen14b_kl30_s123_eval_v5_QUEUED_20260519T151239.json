@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen14b_kl30_s123_eval_v5",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:12:25.174Z",
+    "updated_at": "2026-05-19T15:12:38.707Z",
+    "hypothesis": "Qwen-14B KL 30% s123 eval rerun with D075 sigmoid fix (teal_global_masks: sigmoid(logits) replaces degenerate mag*hard_mask) + uniform allocation on westd-41718 cuda:1. Completing multi-seed comparison table. v4 was pre-D075 on westd-34887.",
+    "parent": "qwen14b_kl30_s123_eval_v4"
+  },
+  "timestamp": "2026-05-19T15:12:39.218833+00:00",
+  "trigger": "update_registry"
+}

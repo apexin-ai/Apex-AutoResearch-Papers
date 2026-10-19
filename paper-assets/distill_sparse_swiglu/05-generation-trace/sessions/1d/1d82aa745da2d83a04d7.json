@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "1d82aa745da2d83a04d7",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "ssh fix blockers",
+  "task_key": "worker_ssh_fix-blockers_20260515T113045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-blockers_20260515T113045.log",
+    "occurrence": 1,
+    "bytes": 699795,
+    "sha256": "e15a87f16c0a6a58a1152f75b96c3217f43cb45b8a0d2520bdbd538ac16eb945"
+  },
+  "statistics": {
+    "messages": 453,
+    "user_turns": 0,
+    "tool_calls": 141,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 167,
+      "tool_call": 141,
+      "tool_result": 141,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 453,
+      "chunks": [
+        {
+          "path": "1d82aa745da2d83a04d7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1d82aa745da2d83a04d7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1d82aa745da2d83a04d7-part-0003.json",
+          "message_count": 93
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-fix-blockers.md"
+}

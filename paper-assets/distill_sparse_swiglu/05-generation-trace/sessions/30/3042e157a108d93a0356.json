@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3042e157a108d93a0356",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval kl sparsity40 global check v3",
+  "task_key": "worker_eval_kl_sparsity40_global_check_v3_20260520T092245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl_sparsity40_global_check_v3_20260520T092245_result.json",
+    "occurrence": 1,
+    "bytes": 1517,
+    "sha256": "554b7f39c4b4d9bc5373c6c8e78c915f090e74956f063be356190acf27e3ff52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n**PID 195152**: 已不存在（进程结束或服务器重启后消失）\n\n**PID 197972**: **仍在运行**（已 ~1h4m），无错误\n\n### 已有结果\n\n**WikiText-2 PPL = 12.8894**（已完成）\n\n### Per-layer sparsity（global_topk 分配）\n\n| Layer | Sparsity | Layer | Sparsity |\n|-------|----------|-------|----------|\n| 0 | 0.410 | 16 | 0.410 |\n| 1 | 0.434 | 17 | 0.430 |\n| 2 | 0.496 | 18 | 0.418 |\n| 3 | 0.457 | 19 | 0.473 |\n| 4 | 0.430 | 20 | 0.488 |\n| 5 | 0.430 | 21 | 0.504 |\n| 6 | 0.453 | 22 | 0.545 |\n| 7 | 0.453 | 23 | 0.549 |\n| 8 | 0.449 | 24 | 0.613 |\n| 9 | 0.457 | 25 | 0.670 |\n| 10 | 0.461 | 26 | 0.705 |\n| 11 | 0.461 | 27 | 0.707 |\n| 12 | 0.465 | 28 | 0.713 |\n| 13 | 0.461 | 29 | 0.674 |\n| 14 | 0.449 | 30 | 0.484 |\n| 15 | 0.418 | 31 | 0.426 |\n| **Model-level** | **0.500** | | |\n\n### Downstream tasks\n\n进度：81%（32617/40168 loglikelihood requests），速率 ~24 it/s，剩余 ~7500 requests ≈ **~5 分钟后完成**。\n\n正在跑 arc_challenge, winogrande, mmlu, gsm8k, hellaswag, piqa 的联合 eval。结果会在全部完成后一次性输出到日志和 results 目录。\n\n### 注意\n\nModel-level sparsity 是 **0.500**（50%），不是 40%。global_topk 分配下后层（L24-L29）sparsity 高达 0.67-0.71，前层则 ~0.41-0.43。这说明 predictor 在 global 分配下自动将更多 budget 给了前层。\n\n需要等 ~5 分钟后再查一次获取完整的 6 项下游指标。要我稍后再查吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kl-sparsity40-global-check-v3.md"
+}

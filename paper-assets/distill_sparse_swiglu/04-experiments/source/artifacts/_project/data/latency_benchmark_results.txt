@@ -1,0 +1,35 @@
+Config: batch=1, seq_len=2048, warmup=10, iters=100
+Device: NVIDIA RTX PRO 6000 Blackwell Server Edition
+dtype: float16, attn: flash_attention_2
+
+--- Mode Results ---
+Mode 1 (Dense):                 120.34 ± 0.48 ms
+Mode 2 (KL predictor-only 30%):  127.44 ± 0.73 ms
+Mode 3 (KL predictor-only 50%):  127.50 ± 0.27 ms
+Mode 4 (Predictor+comp 30%):     130.60 ± 0.48 ms
+Mode 5 (Predictor+comp 50%):     130.19 ± 0.48 ms
+
+================================================================================
+| Method                    | Sparsity | tokens/s   | ms/token   | speedup vs dense   |
+|---------------------------|----------|------------|------------|--------------------|
+| Dense                     | 0%       | 17018.0    | 0.0588     | 1.000x             |
+| KL predictor-only         | 30%      | 16069.9    | 0.0622     | 0.944x             |
+| KL predictor-only         | 50%      | 16062.3    | 0.0623     | 0.944x             |
+| Predictor+compensation    | 30%      | 15681.4    | 0.0638     | 0.921x             |
+| Predictor+compensation    | 50%      | 15731.4    | 0.0636     | 0.924x             |
+================================================================================
+
+--- Breakdown ---
+Predictor overhead (32 layers):   3.16 ± 0.01 ms (2.6% of dense forward)
+Per-layer predictor:              0.099 ms
+Dense FFN per layer:              2.424 ± 0.035 ms
+Sparse FFN+pred per layer:        2.686 ± 0.009 ms
+Compensation overhead:            3.16 ms
+
+--- Notes ---
+- Checkpoints: kl_sparsity30_s42_v3 (30%), bce_comp_staged_s42 (50% + comp)
+- 30% comp uses dummy (random init) CompensationNetwork with same architecture
+- Sparsity is applied via element-wise masking (no structured sparse kernels)
+- 30% and 50% sparsity show near-identical latency because dense matmul is unchanged
+- Predictor overhead: ~5.9% of dense forward time
+- Comp adds another ~2.6% on top of predictor-only

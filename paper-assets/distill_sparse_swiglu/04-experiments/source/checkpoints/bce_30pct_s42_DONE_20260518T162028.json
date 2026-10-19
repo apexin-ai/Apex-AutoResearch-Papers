@@ -1,0 +1,27 @@
+{
+  "exp_id": "bce_30pct_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:49:11.624Z",
+    "updated_at": "2026-05-18T16:20:28.191Z",
+    "hypothesis": "BCE predictor at 30% sparsity baseline for Table 2 recommended configuration, establishing BCE quality floor at the mild sparsity regime to quantify KL advantage across sparsity levels.",
+    "spec": {
+      "command": "WANDB_MODE=offline PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --gpu 0 --output_dir checkpoints/bce_30pct_s42 --wandb_run_name bce_30pct_s42 --dataset wikitext-103 --gradient_checkpointing",
+      "server": "westd-41718",
+      "data_path": "wikitext-103",
+      "data_count": 1000,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_path": "checkpoints/bce_30pct_s42/predictor_bce.pt",
+      "log_path": "logs/bce_30pct_s42.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T16:20:28.191Z"
+  },
+  "timestamp": "2026-05-18T16:20:28.539692+00:00",
+  "trigger": "update_registry"
+}

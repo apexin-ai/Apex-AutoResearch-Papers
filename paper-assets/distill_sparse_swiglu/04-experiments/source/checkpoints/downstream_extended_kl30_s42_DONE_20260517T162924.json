@@ -1,0 +1,39 @@
+{
+  "exp_id": "downstream_extended_kl30_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:28:07.772Z",
+    "updated_at": "2026-05-17T16:29:24.438Z",
+    "hypothesis": "KL-distilled 30% sparsity predictor (s42, global) maintains strong performance on extended downstream benchmarks (HellaSwag, PIQA, TriviaQA, HumanEval) beyond the core evaluation suite, demonstrating broad capability retention at 30% activation sparsity",
+    "spec": {
+      "command": "cd /root/distill_sparse_swiglu && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_extended_kl30_s42 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:0"
+      ],
+      "account": "root",
+      "model_name": "llama-3.1-8b",
+      "data_path": "lm-eval-harness datasets",
+      "data_count": 0,
+      "seed": 42,
+      "checkpoint_source": "kl_sparsity30_s42_v3"
+    },
+    "metrics": {
+      "hellaswag_acc_norm": 0.727,
+      "hellaswag_acc": 0.527,
+      "piqa_acc_norm": 0.7595,
+      "piqa_acc": 0.747,
+      "boolq_acc": 0.7685
+    },
+    "conclusion": "success",
+    "checkpoint_path": "checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt",
+    "log_path": "/root/distill_sparse_swiglu/results/benchmark/downstream_extended_kl30_s42/",
+    "completed_at": "2026-05-17T16:29:24.438Z"
+  },
+  "timestamp": "2026-05-17T16:29:24.658114+00:00",
+  "trigger": "update_registry"
+}

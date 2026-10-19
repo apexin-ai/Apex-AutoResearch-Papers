@@ -1,0 +1,27 @@
+{
+  "exp_id": "perlayer_kl_30_s456_ppl",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:36:38.887Z",
+    "updated_at": "2026-05-21T09:20:40.952Z",
+    "spec": {
+      "command": "bash -c \"echo 'Waiting for PID 299670 (perlayer_kl s456 training) to finish...' && while kill -0 299670 2>/dev/null; do sleep 60; done && echo 's456 training done' && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id perlayer_kl_30_s456_ppl --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2 --seq_len 2048 --gpu 0 2>&1\"",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "313701",
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_30_s456_ppl.log",
+      "submitted_at": "2026-05-21T07:36:38.022Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T09:20:41.547636+00:00",
+  "trigger": "update_registry"
+}

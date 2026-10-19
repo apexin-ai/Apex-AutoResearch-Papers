@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2268d2271b5ee533177f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check longbench v4 status",
+  "task_key": "worker_ops_check-longbench-v4-status_20260516T134320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-longbench-v4-status_20260516T134320_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "39020d3ff29e16016ccef243d452c168a015b30d8137fbf6333912c718c01e0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**longbench_dense_v4 已失败，进程未在运行。**\n\n| 项目 | 状态 |\n|------|------|\n| tmux session | 不存在（no server running） |\n| 进程 PID | 无 longbench 相关进程 |\n| 退出码 | EXIT_CODE=1 |\n\n**失败原因：CUDA OOM**\n\n日志显示在 `LlamaMLP.forward` 中触发 `torch.OutOfMemoryError`：\n- 尝试分配 13.98 GiB，但 GPU 0 仅剩 13.48 GiB 可用\n- PyTorch 已占用 62.87 GiB allocated + 17.98 GiB reserved（共 ~81 GiB / 95 GiB）\n- 在 `generate_until` 的第 0/800 个请求时就崩了（刚开始推理即 OOM）\n- 建议日志中提到可尝试 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` 减少碎片"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-longbench-v4-status.md"
+}

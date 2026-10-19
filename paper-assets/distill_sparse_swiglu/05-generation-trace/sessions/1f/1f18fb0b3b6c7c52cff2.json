@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f18fb0b3b6c7c52cff2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code plan 007 benchmark prep",
+  "task_key": "worker_code_plan_007_benchmark_prep_20260516T022847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_007_benchmark_prep_20260516T022847_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "9415c72493cb281b2047d2319e0b7d9165280620d281bfff245ab8eec165e398"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已注册。\n\n总结：\n- 4 个 checkpoint 全部就位\n- **核心风险**：运行中的 KL 30% 和 TEAL 50% 用的是旧脚本（0-shot），与已有 Dense/KL 50% 结果（标准 few-shot）不可比，完成后需用 benchmark_eval.py 重跑\n- 6 个条件的 benchmark_eval.py 命令已就绪，双 GPU 并行 3 批约 135 分钟可完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-007-benchmark-prep.md"
+}

@@ -1,0 +1,24 @@
+{
+  "exp_id": "longbench_kl30_uniform_v3",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T13:32:56.949Z",
+    "updated_at": "2026-05-16T13:32:56.949Z",
+    "spec": {
+      "hypothesis": "KL 30% uniform on LongBench (v3, flash-attn + GPU isolation fix)",
+      "type": "eval",
+      "model_name": "llama-3.1-8b",
+      "sparsity_target": 0.3,
+      "allocation": "uniform",
+      "parent": "longbench_kl30_uniform_v2",
+      "checkpoint_source": "checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt",
+      "eval_data": "longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news"
+    }
+  },
+  "timestamp": "2026-05-16T13:32:57.086503+00:00",
+  "trigger": "update_registry"
+}

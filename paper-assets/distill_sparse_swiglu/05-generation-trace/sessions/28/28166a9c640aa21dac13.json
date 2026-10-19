@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28166a9c640aa21dac13",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260516T125328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_20260516T125328_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "d5ffe0ad8a331c0a33edc0a6f5d3371eaad8faade125512ed8b1b566256ea31f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction written to `paper/introduction.tex`. ~1050 words, 5 paragraphs following the specified story arc:\n\n1. **Hook** — SwiGLU sparsity potential vs. training-free degradation (TEAL 23.31 PPL) and learned predictor overhead\n2. **Structural mismatch** — BCE gradient is per-neuron factorized, but inference uses global top-k; formal gradient equation showing independence\n3. **KL mechanism** — gradient chain rule through full Jacobian couples all neurons; Gumbel-Sigmoid relaxation; predictor architecture (2.37M/layer, 75.9M total)\n4. **Results** — KL 11.79 vs TEAL 23.31 vs BCE 27.97; scaling 18%/49%/82%; Mistral +63%; SPON cos_sim 0.196, 2.4% recovery\n5. **Contributions** — 3 bulleted items: KL eliminates compensation + gradient analysis, 2D taxonomy, phase transition + SPON orthogonality\n\nAll required citation keys, numbers, and the Figure 1 reference are included. No banned phrases used."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-copy-4.md"
+}

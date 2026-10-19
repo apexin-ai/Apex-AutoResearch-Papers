@@ -1,0 +1,28 @@
+paper_key: "MiniLLM: Knowledge Distillation of Large Language Models"
+title: "MiniLLM: Knowledge Distillation of Large Language Models"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines: ["standard KD (forward KLD)", "SeqKD", "ImitKD", "GKD"]
+  metrics:
+    - {name: "Rouge-L", direction: "higher_better"}
+    - {name: "GPT-4 evaluation", direction: "higher_better"}
+    - {name: "exposure bias", direction: "lower_better"}
+    - {name: "calibration", direction: "lower_better"}
+  datasets:
+    - {name: "Dolly (instruction-following)", size: "not specified"}
+    - {name: "Self-Instruct", size: "not specified"}
+  ablation_dimensions: ["KL direction (forward vs reverse)", "on-policy vs off-policy", "model scale"]
+  training_recipe: {optimizer: "not specified", lr: "not specified", hardware: "not specified"}
+  method_family: "knowledge distillation for LLMs"
+
+positioning:
+  core_claim: "Reverse KLD with on-policy optimization prevents student from overestimating low-probability regions, yielding higher-quality generation than forward KLD baselines."
+  key_results: "Scalable from 120M to 13B parameters; better calibration, lower exposure bias, higher long-text generation quality than baselines."
+  limitations: ["requires white-box teacher access", "on-policy generation increases training cost"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3920e08c5a7ed9711170",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code fix kl norm v2",
+  "task_key": "worker_code_fix-kl-norm-v2_20260515T143706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-kl-norm-v2_20260515T143706_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "00dff5862d444c917e1d3e9d572f8bb5fb2faf9e4c5fd1775b4891003aa47006"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Two old training runs (the buggy version with `/ vocab_size`) are using both GPUs. These are runs `mvp_kl_norm_s42` and `mvp_kl_norm_s123` — both using the broken code. They need to be killed to free GPU memory for the fixed quicktest.\n\nShould I kill these two processes? They're running the buggy (double-normalized) code, so their results would be invalid anyway."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-kl-norm-v2.md"
+}

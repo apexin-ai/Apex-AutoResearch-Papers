@@ -1,0 +1,21 @@
+{
+  "exp_id": "longbench_dense_v3",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T13:32:58.232Z",
+    "updated_at": "2026-05-16T13:32:58.232Z",
+    "spec": {
+      "hypothesis": "Dense baseline on LongBench (v3, flash-attn + GPU isolation fix)",
+      "type": "eval",
+      "model_name": "llama-3.1-8b",
+      "parent": "longbench_dense_v2",
+      "eval_data": "longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news"
+    }
+  },
+  "timestamp": "2026-05-16T13:32:58.377620+00:00",
+  "trigger": "update_registry"
+}

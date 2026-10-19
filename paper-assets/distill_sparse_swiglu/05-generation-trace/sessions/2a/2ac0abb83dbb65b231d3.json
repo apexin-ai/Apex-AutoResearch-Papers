@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ac0abb83dbb65b231d3",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze mvp kl norm v2 s42",
+  "task_key": "worker_analyze_mvp_kl_norm_v2_s42_20260515T155645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_mvp_kl_norm_v2_s42_20260515T155645_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "0e3dc655520bb5d3b05ff89d79c3a60e0a2fb7c796f98ece51537a9d30ea2308"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 汇总\n\n| 指标 | KL norm v2 (s42) | BCE baseline (mean) |\n|------|------------------|---------------------|\n| Dense PPL | 9.21 | 28.16* |\n| Sparse PPL | 12.08 | 44.05* |\n| Δ | **+31.2%** | +56.4% |\n| Model sparsity | 0.498 | ~0.5 |\n\n**Conclusion: success** — KL 蒸馏损失的相对 PPL 增幅 (+31.2%) 显著优于 BCE (+56.4%)。\n\n*注意：dense PPL 差异 (9.21 vs 28.16) 说明 BCE baseline 的\"统一 eval\"可能使用了不同的 WikiText 版本或评估参数。需要用相同 evaluate.py 重新评估 BCE baseline 做严格对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-mvp-kl-norm-v2-s42.md"
+}

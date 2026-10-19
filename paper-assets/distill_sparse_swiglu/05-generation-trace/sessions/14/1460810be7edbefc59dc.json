@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1460810be7edbefc59dc",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis bce 3seed summary",
+  "task_key": "worker_analysis_bce_3seed_summary_20260515T140445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bce_3seed_summary_20260515T140445_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "8a590a476b7b740212f5cb7ef5e9ec01a8e188dfad6067e9f1b486f50158ce08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析文件已生成并注册 (`art_20260515_adad23`)。\n\n核心结论：\n- **BCE 训练高度稳定**：loss CV=0.08%，training sparsity 三个 seed 完全相同 (0.551)，model-level sparsity 均为 0.498\n- **评估 PPL**：dense 28.16±0.21，sparse 43.86±1.18，增幅 55.7%±3.9%\n- **逐层稀疏性**：32 层 max std=0.003，浅层 ~46%、深层 ~58-66%，与 TEAL 一致\n- **s456 PPL 增幅偏低 (51.2% vs ~58%)**：sparse PPL 较低 (42.54 vs ~44.5)，来自 predictor 权重的随机差异，非系统性偏差\n- **KL 对比**：稀疏性坍塌到 0%，sparse PPL=455.93，确认 BCE 是当前唯一可行路径\n\n两个 LaTeX 表格可直接粘贴到论文中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bce-3seed-summary.md"
+}

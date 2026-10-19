@@ -1,0 +1,1449 @@
+# diag kl50 global s123 downstream v2
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/chats/worker_diag_kl50_global_s123_downstream_v2_20260522T183123.jsonl`
+- **Structured JSON:** [`89db80a43842f3b7d5de.json`](../../sessions/89/89db80a43842f3b7d5de.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+45 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T18:35:01.390996+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T18:35:01.391337+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T18:35:01.391516+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -200 ~/runs/distill_sparse_swiglu/kl50_global_s123_downstream_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "tail -200 ~/runs/distill_sparse_swiglu/kl50_global_s123_downstream_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T18:35:01.391665+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/runs/distill_sparse_swiglu/kl50_global_s123_downstream_v2.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T18:35:01.391798+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -200 ~/runs/distill_sparse_swiglu/kl50_global_s123_reeval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "tail -200 ~/runs/distill_sparse_swiglu/kl50_global_s123_reeval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-22T18:35:01.391924+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "ls -la ~/runs/distill_sparse_swiglu/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "ls -la ~/runs/distill_sparse_swiglu/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T18:35:01.392394+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/runs/distill_sparse_swiglu/kl50_global_s123_reeval.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T18:35:01.392633+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 36776\\ndrwxr-xr-x 2 root root    8192 May 22 21:40 .\\ndrwxr-xr-x 3 root root      43 May 18 12:24 ..\\n-rw-r--r-- 1 root root    3135 May 21 05:47 bce_30_s42_uniform_eval.log\\n-rw-r--r-- 1 root root  424743 May 19 10:50 bce_50pct_teal_global_unified.log\\n-rw-r--r-- 1 root root    5142 May 19 15:00 bce_gumbel_no_penalty_s42.log\\n-rw-r--r-- 1 root root    2523 May 19 15:18 bce_gumbel_no_penalty_s42_eval.log\\n-rw-r--r-- 1 root root   12005 May 19 15:17 bce_gumbel_no_penalty_s42_v2.log\\n-rw-r--r-- 1 root root 1018656 May 21 08:02 bce_iso_v3_s123_30pct_uniform_eval.log\\n-rw-r--r-- 1 root root 1019510 May 21 09:20 bce_iso_v3_s42_30pct_uniform_eval.log\\n-rw-r--r-- 1 root root 1019787 May 21 08:02 bce_iso_v3_s456_30pct_uniform_eval.log\\n-rw-r--r-- 1 root root  592162 May 19 10:11 bce_isocompute_hellaswag_piqa_v2.log\\n-rw-r--r-- 1 root root  423798 May 19 10:06 c1_ablation_30pct_eval_34887.log\\n-rw-r--r-- 1 root root     131 May 19 07:26 c1_ablation_30pct_s42.log\\n-rw-r--r-- 1 root root  424750 May 19 09:08 c1_ablation_30pct_s42_eval_34887.log\\n-rw-r--r-- 1 root root    4691 May 19 08:26 c1_ablation_30pct_s42_v2.log\\n-rw-r--r-- 1 root root    2979 May 18 14:51 c4_ood_kl50_s123.log\\n-rw-r--r-- 1 root root    2899 May 18 16:46 c4_ood_kl50_s42.log\\n-rw-r--r-- 1 root root    2895 May 18 16:46 c4_ood_kl50_s456.log\\n-rw-r--r-- 1 root root     269 May 21 06:48 debug_check_bce_iso_ckpts.log\\n-rw-r--r-- 1 root root     893 May 21 06:00 debug_find_bce_ckpt_34887.log\\n-rw-r--r-- 1 root root    2623 May 21 06:45 debug_list_ckpts_34887.log\\n-rw-r--r-- 1 root root  595009 May 19 08:57 dense_baseline_hellaswag_piqa.log\\n-rw-r--r-- 1 root root   11616 May 21 22:03 diag_34887_processes.log\\n-rw-r--r-- 1 root root     949 May 21 22:40 diag_ckpt_34887.log\\n-rw-r--r-- 1 root root    1034 May 21 23:26 diag_eval_env_34887.log\\n-rw-r--r-- 1 root root    1161 May 21 23:17 diag_status_34887.log\\n-rw-r--r-- 1 root
+…[truncated 6217 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T18:35:01.392840+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "find ~/runs/distill_sparse_swiglu/ -name \"*kl50*global*s123*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "find ~/runs/distill_sparse_swiglu/ -name \"*kl50*global*s123*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T18:35:01.392982+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T18:35:01.393156+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "tmux ls",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T18:35:01.393289+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T18:35:01.393414+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "find /tmp -name \"*kl50*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "find /tmp -name \"*kl50*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T18:35:01.393536+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -30 ~/runs/distill_sparse_swiglu/diag_34887_processes.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "tail -30 ~/runs/distill_sparse_swiglu/diag_34887_processes.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T18:35:01.393667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/agent-ml-exit/kl50_s456_eval.exit\\n/tmp/agent-ml-exit/kl50_s42_global_eval.exit\\n/tmp/agent-ml-exit/d030_kl50_uniform.exit\\n/tmp/agent-ml-exit/bench_kl50_global.exit\\n/tmp/agent-ml-exit/bench_kl50_uniform.exit\\n/tmp/agent-ml-exit/bench_kl50_uniform_s123.exit\\n/tmp/agent-ml-exit/bench_kl50_uniform_s456.exit\\n/tmp/agent-ml-exit/kl50_s456_train_eval.exit\\n/tmp/agent-ml-exit/kl50_s123_eval.exit\\n/tmp/agent-ml-exit/kl50_s456_train.exit\\n/tmp/agent-ml-exit/kl50_s456_global_eval.exit\\n/tmp/agent-ml-exit/c4_ood_kl50_s123.exit\\n/tmp/agent-ml-exit/c4_ood_kl50_s456.exit\\n/tmp/agent-ml-exit/kl50_s456_uniform_eval.exit\\n/tmp/agent-ml-exit/kl50_global_hellaswag_piqa.exit\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T18:35:01.393874+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"284767       09:19 bash -c rm -f /tmp/agent-ml-exit/perlayer_kl_30_s123_v4.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/distill_sparse_swiglu/perlayer_kl_30_s123_v4.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/perlayer_kl_30_s123_v4.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/distill_sparse_swiglu/ && export CUDA_VISIBLE_DEVICES=0 && timeout 43200 env bash -c 'bash -c \\\"echo H4sICHEDD2oAA3RyYWluX3BlcmxheWVyX2tsLnB5AJUba28jt/G7fwW7QdCVT1pLvksRqNkASZsEQXzpIXdBPjjGgtJS0sb76i7XtiII6I/oL+wv6Qzf3IfPZ+DOEjkzHA7nTfoz8o41i5weWUN+uiG8oVmZlfs1YXR7IC1nNSloe9+SqsyPZEUaWqZVQQTCnFT8wJoWwOiRpKxsWXTxGfknK6qyBUqctYSV6YJXC/hFtlVX50CbPNC8Y+R///mvWU7Sa0lWpqwGWFZyWO2hJX9UGX5Esh8ODEiUu6oDWqHAJC3g5myhuMnKHeyC5rkcmJEMKXIgllUlzddAJNuR2uz33bsbBCk62Olj1bSM8AMtXZZ/ugGqnNRN9QB72TZV2ypcs5mCcg6sA4dA/sey7viakF1T/clKcpPTgpKiSllOXpEtzbMNSAWYISnllISP2X3G2RNfrJavZ4D+r44L/LphabblVZMAs2K95D6Pak7ClhaM7KoGViW0Bf6uvv3Hd2R7YNv7GkXV4iTZsHJ7KGhznzCQdVQfZ4K7X1u6ZygFQuojPwAbQor+IkeyWJRdkeDRt2S1hB8YaWvatBk/Jpw2e8bJMnqNo4yl5M01fNrXHVleXGRFXTXAWbNHeKa/y1+w+6jjWa5HYQ8H/blq9SepYPpbezQTPCuYWQFksz14X6KyjHZduZVnjcL5Xs8/AsnNBZxJgRsuW5Sf0DY5/U3Hq7d4Rt9XzT9o19L85u1cjH6o7lmZ/cmaiwtgJKqB4SgDLW94uATlVyNp1pRwLKH+Tjct/g6TZJflLElms5lcHA89QQmYpUGUiaMWSV7RFDUZx6Ug1JAkkIP+MYP8080/sxao5TcwLAGM4miYd3rgt4bWNW7kImVgA3g6CRxTG87WFwQVgsTm2KJvmn1XgNm8w29NKADwJ2XttslqZDUOXug3fJcRCFozuWRE0xSZEGuFwWIhLCVBYSao+yDEYE74sWYxuJO5YcP9gd3QLudxcNVUFb+icGppvuBFfSWItVc52uDidbRafLkJphY2Cq/XA1OaG9rCCKZQN5RvD0kLWjKK+2YKr2X/TnJWjiJdL998OYWXNxplB6rhcskWr6cXY+k4e9eTKL7FTywKfmCKALiE0SUnJVkJ75eAOX3qqafSDpJW6nX7mO3z7srxipMHL1xDAv79D7bl7rJ2iVHiHyHYdKVQ41GKP1clm0LntANFpM2UvFfRpPgQFWLW5EGtplluiq5+Xv8ntbHaQ4xhzfFTETsQpfJw6BYBnW6lX2nBW7GENx1Ib/TwDyyv4+BXCNfKs3B00xjqYQs0JdWONAxCgIyxGA/T5riAI5lNnhqCtmxCAdwoPcHS9lBlW9bGtz1gEmzfBHeTFtLQNIPPCd1uu6LLZQx45hwmfVDFOfgSUHewnmIc
+…[truncated 6294 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T18:35:01.394085+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "kl50_global_s123_downstream_v2",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "kl50_global_s123_downstream_v2",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T18:35:01.394231+00:00_
+
+Found 19 files
+logs/workers/worker_diag_kl50_global_s123_downstream_v2_20260522T183123.log
+logs/chats/cron_hook_kl50_global_s123_downstream_v2.jsonl
+registry.yaml
+logs/chats/feishu_group_oc_9377f94f5f31e719154474b70f5c3d18_reviewer.jsonl
+report.md
+checkpoints/kl50_global_s123_downstream_v2_DONE_20260522T182908.json
+checkpoints/kl50_global_s123_downstream_v2_DONE_20260522T182906.json
+checkpoints/kl50_global_s123_downstream_v2_DONE_20260522T182858.json
+checkpoints/kl50_global_s123_downstream_v2_RUNNING_20260522T182856.json
+logs/chats/feishu_group_oc_dbbf8d2c695f1e79e11713aebc107790_director.jsonl
+logs/workers/worker_ssh_check_two_experiments_status_20260522T182246_result.json
+logs/chats/worker_ssh_check_two_experiments_status_20260522T182246.jsonl
+logs/workers/worker_ssh_check_two_experiments_status_20260522T182246.log
+logs/chats/feishu_group_oc_9377f94f5f31e719154474b70f5c3d18.jsonl
+logs/workers/worker_train_perlayer_kl_k4_50_s42_20260522T174053_retry2.log
+logs/workers/worker_eval_kl50_global_s123_downstream_20260522T174110_retry2.log
+logs/workers/worker_eval_kl50_global_s123_downstream_20260522T174110_retry1.log
+checkpoints/kl50_global_s123_downstream_v2_RUNNING_20260522T174402.json
+checkpoints/kl50_global_s123_downstream_v2_QUEUED_20260522T174343.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T18:35:01.394372+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "kl50_global_s123_reeval",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "kl50_global_s123_reeval",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T18:35:01.394565+00:00_
+
+Found 174 files
+logs/workers/worker_diag_kl50_global_s123_downstream_v2_20260522T183123.log
+logs/chats/cron_hook_kl50_global_s123_downstream_v2.jsonl
+registry.yaml
+logs/chats/feishu_group_oc_9377f94f5f31e719154474b70f5c3d18_reviewer.jsonl
+report.md
+logs/ralph_loop_timeline.jsonl
+checkpoints/kl50_global_s123_downstream_v2_DONE_20260522T182908.json
+checkpoints/kl50_global_s123_downstream_v2_DONE_20260522T182906.json
+checkpoints/kl50_global_s123_downstream_v2_DONE_20260522T182858.json
+checkpoints/kl50_global_s123_downstream_v2_RUNNING_20260522T182856.json
+logs/chats/feishu_group_oc_dbbf8d2c695f1e79e11713aebc107790_director.jsonl
+logs/chats/feishu_group_oc_9377f94f5f31e719154474b70f5c3d18.jsonl
+logs/chats/feishu_group_oc_9377f94f5f31e719154474b70f5c3d18_paper_agent.jsonl
+logs/workers/worker_eval_kl50_global_s123_downstream_20260522T174110_retry2.log
+logs/workers/worker_eval_kl50_global_s123_downstream_20260522T174110_retry1.log
+checkpoints/kl50_global_s123_downstream_v2_RUNNING_20260522T174402.json
+checkpoints/kl50_global_s123_downstream_v2_QUEUED_20260522T174343.json
+decisions.yaml
+mistakes.yaml
+logs/workers/worker_research_bce_compensation_data_20260522T133603_retry1.log
+logs/chats/worker_eval_mse30_s123_downstream_20260522T092556.jsonl
+logs/workers/worker_eval_mse30_s123_downstream_20260522T092556_retry1.log
+logs/workers/worker_analyze_perlayer_kl_50_s42_downstream_20260522T080709_retry1.log
+logs/chats/worker_eval_revkl_30_s42_boolq_uniform_20260522T025359.jsonl
+logs/workers/worker_eval_revkl_30_s42_boolq_uniform_20260522T025359_retry1_retry2.log
+logs/workers/worker_diagnose_perlayer_kl_50_s42_20260522T021138_retry1_retry2.log
+logs/chats/archive/feishu_group_oc_dbbf8d2c695f1e79e11713aebc107790_director_20260521T235143_087664.jsonl
+logs/workers/worker_analysis_perlayer_kl_30_s42_v6_20260521T190751_retry1_retry2.log
+logs/chats/archive/feishu_group_oc_9377f94f5f31e719154474b70f5c3d18_20260521T172356_299998.jsonl
+logs/chats/archive/feishu_group_oc_9377f94f5f31e719154474b
+…[truncated 9944 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T18:35:01.394744+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/logs/workers/worker_diag_kl50_global_s123_downstream_v2_20260522T183123.log",
+  "limit": "200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/logs/workers/worker_diag_kl50_global_s123_downstream_v2_20260522T183123.log",
+    "limit": "200"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T18:35:01.394873+00:00_
+
+File content (57769 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T18:35:01.394991+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/checkpoints/kl50_global_s123_downstream_v2_DONE_20260522T182908.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/checkpoints/kl50_global_s123_downstream_v2_DONE_20260522T182908.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T18:35:01.395169+00:00_
+
+1	{
+2	  "exp_id": "kl50_global_s123_downstream_v2",
+3	  "project": "distill_sparse_swiglu",
+4	  "state": "DONE",
+5	  "previous_state": "DONE",
+6	  "experiment_data": {
+7	    "status": "DONE",
+8	    "retry_count": 0,
+9	    "created_at": "2026-05-22T17:42:51.552Z",
+10	    "updated_at": "2026-05-22T18:29:08.200Z",
+11	    "hypothesis": "Re-eval KL 50% global s123 downstream (ARC-c, WG, MMLU, GSM8K) to complete 3-seed data for Table 2. Previous attempt (kl50_global_s123_reeval) failed with EXIT_CODE=1.",
+12	    "parent": "kl50_global_s123_reeval",
+13	    "spec": {
+14	      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/benchmark_eval.py --exp_id kl50_global_s123_downstream_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --seq_len 2048 --gpu 0",
+15	      "server": "westd-34887",
+16	      "data_path": "/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt",
+17	      "data_count": 0,
+18	      "model_name": "llama-3.1-8b",
+19	      "seed": 123,
+20	      "checkpoint_source": "mvp_kl_norm_v2_s123/predictor_kl_normalized.pt",
+21	      "eval_data": "arc_challenge,winogrande,mmlu,gsm8k",
+22	      "log_path": "/root/distill_sparse_swiglu/logs/kl50_global_s123_downstream_v2.log",
+23	      "pid": "77882"
+24	    },
+25	    "reproduce": {
+26	      "finished_at": "2026-05-22T18:29:01.131Z"
+27	    },
+28	    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+29	    "conclusion": "failed",
+30	    "completed_at": "2026-05-22T18:28:57.597Z"
+31	  },
+32	  "timestamp": "2026-05-22T18:29:08.947115+00:00",
+33	  "trigger": "update_registry"
+34	}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T18:35:01.395324+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/logs/workers/worker_eval_kl50_global_s123_downstream_20260522T174110_retry2.log",
+  "limit": "200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/logs/workers/worker_eval_kl50_global_s123_downstream_20260522T174110_retry2.log",
+    "limit": "200"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T18:35:01.395447+00:00_
+
+File content (45773 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T18:35:01.395600+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -100 /root/distill_sparse_swiglu/logs/kl50_global_s123_downstream_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "tail -100 /root/distill_sparse_swiglu/logs/kl50_global_s123_downstream_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T18:35:01.395808+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Overwriting default num_fewshot of mmlu_econometrics from None to 5\\nOverwriting default num_fewshot of mmlu_high_school_geography from None to 5\\nOverwriting default num_fewshot of mmlu_high_school_government_and_politics from None to 5\\nOverwriting default num_fewshot of mmlu_high_school_macroeconomics from None to 5\\nOverwriting default num_fewshot of mmlu_high_school_microeconomics from None to 5\\nOverwriting default num_fewshot of mmlu_high_school_psychology from None to 5\\nOverwriting default num_fewshot of mmlu_human_sexuality from None to 5\\nOverwriting default num_fewshot of mmlu_professional_psychology from None to 5\\nOverwriting default num_fewshot of mmlu_public_relations from None to 5\\nOverwriting default num_fewshot of mmlu_security_studies from None to 5\\nOverwriting default num_fewshot of mmlu_sociology from None to 5\\nOverwriting default num_fewshot of mmlu_us_foreign_policy from None to 5\\nOverwriting default num_fewshot of mmlu_formal_logic from None to 5\\nOverwriting default num_fewshot of mmlu_high_school_european_history from None to 5\\nOverwriting default num_fewshot of mmlu_high_school_us_history from None to 5\\nOverwriting default num_fewshot of mmlu_high_school_world_history from None to 5\\nOverwriting default num_fewshot of mmlu_international_law from None to 5\\nOverwriting default num_fewshot of mmlu_jurisprudence from None to 5\\nOverwriting default num_fewshot of mmlu_logical_fallacies from None to 5\\nOverwriting default num_fewshot of mmlu_moral_disputes from None to 5\\nOverwriting default num_fewshot of mmlu_moral_scenarios from None to 5\\nOverwriting default num_fewshot of mmlu_philosophy from None to 5\\nOverwriting default num_fewshot of mmlu_prehistory from None to 5\\nOverwriting default num_fewshot of mmlu_professional_law from None to 5\\nOverwriting default num_fewshot of mmlu_world_religions from None to 5\\n\\r  0%|          | 0/1267 [00:00<?, ?it/s
+…[truncated 6459 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-22T18:35:01.395987+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "ls -la /root/distill_sparse_swiglu/logs/kl50_global_s123*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "ls -la /root/distill_sparse_swiglu/logs/kl50_global_s123*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T18:35:01.396141+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 423970 May 23 02:20 /root/distill_sparse_swiglu/logs/kl50_global_s123_downstream_v2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T18:35:01.396266+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/logs/workers/worker_diag_kl50_global_s123_downstream_v2_20260522T183123.log",
+  "offset": "1",
+  "limit": "100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/logs/workers/worker_diag_kl50_global_s123_downstream_v2_20260522T183123.log",
+    "offset": "1",
+    "limit": "100"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T18:35:01.396398+00:00_
+
+File content (76640 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T18:35:01.396559+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/distill_sparse_swiglu/results/benchmark/kl50_global_s123_downstream_v2/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34887",
+    "command": "cat /root/distill_sparse_swiglu/results/benchmark/kl50_global_s123_downstream_v2/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T18:35:01.396758+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_id\\\": \\\"kl50_global_s123_downstream_v2\\\",\\n  \\\"config\\\": {\\n    \\\"model_name_or_path\\\": \\\"/root/autodl-tmp/models/llama-3.1-8b\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt\\\",\\n    \\\"tasks\\\": \\\"arc_challenge,winogrande,mmlu,gsm8k\\\",\\n    \\\"sparsity_mode\\\": \\\"teal_global\\\",\\n    \\\"baseline_mode\\\": null,\\n    \\\"dense\\\": false,\\n    \\\"exp_id\\\": \\\"kl50_global_s123_downstream_v2\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\",\\n    \\\"gpu\\\": 0,\\n    \\\"multi_gpu\\\": false,\\n    \\\"seq_len\\\": 2048,\\n    \\\"calibration_samples\\\": 32,\\n    \\\"batch_size\\\": 8,\\n    \\\"bottleneck_size\\\": 128,\\n    \\\"svd_rank\\\": 256,\\n    \\\"max_eval_samples\\\": null\\n  },\\n  \\\"mode\\\": {\\n    \\\"mode\\\": \\\"teal_global\\\",\\n    \\\"checkpoint\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt\\\",\\n    \\\"sparsity_target\\\": 0.5,\\n    \\\"allocation\\\": \\\"global_topk\\\"\\n  },\\n  \\\"metrics\\\": {\\n    \\\"lm_eval\\\": {\\n      \\\"arc_challenge\\\": {\\n        \\\"sample_len\\\": 1172,\\n        \\\"acc\\\": 0.3567,\\n        \\\"acc_stderr\\\": 0.013998056902620168,\\n        \\\"acc_norm\\\": 0.3916,\\n        \\\"acc_norm_stderr\\\": 0.014264122124938267\\n      },\\n      \\\"winogrande\\\": {\\n        \\\"sample_len\\\": 1267,\\n        \\\"acc\\\": 0.6401,\\n        \\\"acc_stderr\\\": 0.013489609590266754\\n      },\\n      \\\"mmlu\\\": {\\n        \\\"sample_len\\\": 14042,\\n        \\\"acc\\\": 0.2908,\\n        \\\"acc_stderr\\\": 0.0038016805623094195\\n      },\\n      \\\"gsm8k\\\": {\\n        \\\"sample_len\\\": 1319,\\n        \\\"exact_match\\\": 0.0341,\\n        \\\"exact_match_stderr\\\": 0.005000212600773255\\n      }\\n    },\\n    \\\"lm_eval_raw\\\": {\\n    
+…[truncated 1604 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T18:35:01.396917+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/checkpoints/kl50_global_s123_reeval_DONE_20260517T183410.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/checkpoints/kl50_global_s123_reeval_DONE_20260517T183410.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T18:35:01.397109+00:00_
+
+1	{
+2	  "exp_id": "kl50_global_s123_reeval",
+3	  "project": "distill_sparse_swiglu",
+4	  "state": "DONE",
+5	  "previous_state": null,
+6	  "experiment_data": {
+7	    "status": "DONE",
+8	    "retry_count": 1,
+9	    "created_at": "2026-05-17T17:41:56.673Z",
+10	    "updated_at": "2026-05-17T18:34:10.326Z",
+11	    "hypothesis": "Re-eval 50% KL global s123 with correct checkpoint (mvp_kl_norm_v2_s123) to fix data consistency issue in Table 2 Row 6, where previous eval used kl_50pct_s123 checkpoint instead",
+12	    "parent": "kl_50pct_s123_global",
+13	    "server": "westd-41718",
+14	    "gpu": "cuda:0",
+15	    "account": "root",
+16	    "reproduce": {
+17	      "command": "cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl50_global_s123_reeval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0",
+18	      "finished_at": "2026-05-17T18:28:54.207Z"
+19	    },
+20	    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+21	    "completed_at": "2026-05-17T17:48:21.031Z",
+22	    "extra": {
+23	      "hook_events": [
+24	        {
+25	          "event": "on_failed",
+26	          "action": "agent",
+27	          "ts": "2026-05-17T17:48:24.990388+00:00"
+28	        },
+29	        {
+30	          "event": "on_failed",
+31	          "action": "agent",
+32	          "ts": "2026-05-17T18:28:59.489303+00:00"
+33	        }
+34	      ],
+35	      "previous_failure": {
+36	        "conclusion": "failed"
+37	      }
+38	    },
+39	    "spec": {
+40	      "pid": "14578",
+41	      "server": "westd-41718",
+42	      "gpu": [
+43	        "cuda:0"
+44	      ],
+45	      "account": "root",
+46	      "log_path": "logs/kl50_gl
+…[truncated 1003 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-22T18:35:01.397315+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T18:35:01.397448+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T18:35:01.397568+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T18:35:01.397687+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T18:35:01.397804+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T18:35:01.397981+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\", \"content\": \"# Memory — distill_sparse_swiglu\\n\\n## Per-layer KL 实验关键发现 (2026-05-21)\\n\\n### Per-layer KL vs E2E KL downstream gap 分析\\n- 平均 downstream gap = −2.61pp（6 task mean, excl BoolQ）\\n- Commonsense (ARC-c/WG/HS) 平均 −3.89pp，HS 最大 drop (−4.88pp)\\n- Reasoning (MMLU/GSM8K) 平均 −1.87pp\\n- PIQA 几乎无差异 (−0.23pp)\\n- PPL gap: +0.24 (9.05 vs 8.81)\\n- **结论**: per-layer 独立优化丢失跨层 coupling 导致 downstream 一致性下降，commonsense 比 reasoning 更敏感\\n\\n### BoolQ 3-seed 完整对比 (uniform allocation)\\n- **E2E KL BoolQ**: s42=75.60%, s123=70.06%, s456=75.54% → Mean=73.73±3.18%\\n- **Per-layer KL BoolQ**: s42=71.77%, s123=70.46%, s456=51.25% → Mean=64.49±11.49%\\n- **Gap**: −9.24pp (E2E KL 优势明显)\\n- **方差对比**: Per-layer KL 方差 3.6× 大于 E2E KL (11.49 vs 3.18 std)\\n- **结论**: BoolQ 对跨层 coupling 高度敏感，per-layer 独立优化在 NLI 类 task 上不稳定\\n\\n### Convergence 特征\\n- 2-seed 均在 ~6000 步收敛（后续改善 <0.1 PPL）\\n- s123 在 step 8000 出现轻微回弹 (9.16 vs step 6000 的 9.11)，但 step 10000 回到 9.06\\n- 最终 PPL 跨 seed 高度一致 (9.06 vs 9.06)\\n\\n### 数据缓存问题\\n- westd-34887 BoolQ 缓存已通过 embed download 方式部署成功（2026-05-21）\\n- westd-41718 有完整的 super_glue/boolq 缓存\\n- **解决方案**: 在 submit_training_job 命令中嵌入 download 步骤（先联网下载,再切 offline 模式 eval）\\n\\n## Cross-seed Jaccard 分析 (2026-05-22, R18-W7)\\n\\n### 方法学关键区分\\n- 论文 46-68% 使用 **per-token activation magnitudes**（per-token abs(dense_act) top-k），不是 weight norms\\n- 代码确认于 `generate_kl_oracle_masks.py:94-100`：`dense_act.abs().topk(k, dim=-1)`\\n- 论文明确标注 \\\"computed per-token\\\"（experiments.tex:80）\\n\\n### 正确参照系（三层对比，非简单 ratio）\\n- Cross-seed KL Jaccard = 36.3% — **低于 random baseline 10pp** → KL seeds 收敛\\n- Random baseline (30% sparsity) = 46.2%（计算: 1 - (0.7²)/(2×0.7-0.7²) = 0.462）\\n- KL-vs-magnitude (30%) = 46% ≈ random → KL 和 magnitude **本质不相关**\\n- KL-vs-magnitude (50%) = 68% > random 66.7% → 高稀疏度下更强\\n\\n### 教训\\n- 用 weight L2 norms
+…[truncated 2755 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T18:35:01.398205+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "memory.md",
+  "content": "# Memory — distill_sparse_swiglu\n\n## Per-layer KL 实验关键发现 (2026-05-21)\n\n### Per-layer KL vs E2E KL downstream gap 分析\n- 平均 downstream gap = −2.61pp（6 task mean, excl BoolQ）\n- Commonsense (ARC-c/WG/HS) 平均 −3.89pp，HS 最大 drop (−4.88pp)\n- Reasoning (MMLU/GSM8K) 平均 −1.87pp\n- PIQA 几乎无差异 (−0.23pp)\n- PPL gap: +0.24 (9.05 vs 8.81)\n- **结论**: per-layer 独立优化丢失跨层 coupling 导致 downstream 一致性下降，commonsense 比 reasoning 更敏感\n\n### BoolQ 3-seed 完整对比 (uniform allocation)\n- **E2E KL BoolQ**: s42=75.60%, s123=70.06%, s456=75.54% → Mean=73.73±3.18%\n- **Per-layer KL BoolQ**: s42=71.77%, s123=70.46%, s456=51.25% → Mean=64.49±11.49%\n- **Gap**: −9.24pp (E2E KL 优势明显)\n- **方差对比**: Per-layer KL 方差 3.6× 大于 E2E KL (11.49 vs 3.18 std)\n- **结论**: BoolQ 对跨层 coupling 高度敏感，per-layer 独立优化在 NLI 类 task 上不稳定\n\n### Convergence 特征\n- 2-seed 均在 ~6000 步收敛（后续改善 <0.1 PPL）\n- s123 在 step 8000 出现轻微回弹 (9.16 vs step 6000 的 9.11)，但 step 10000 回到 9.06\n- 最终 PPL 跨 seed 高度一致 (9.06 vs 9.06)\n\n### 数据缓存问题\n- westd-34887 BoolQ 缓存已通过 embed download 方式部署成功（2026-05-21）\n- westd-41718 有完整的 super_glue/boolq 缓存\n- **解决方案**: 在 submit_training_job 命令中嵌入 download 步骤（先联网下载,再切 offline 模式 eval）\n\n## Cross-seed Jaccard 分析 (2026-05-22, R18-W7)\n\n### 方法学关键区分\n- 论文 46-68% 使用 **per-token activation magnitudes**（per-token abs(dense_act) top-k），不是 weight norms\n- 代码确认于 `generate_kl_oracle_masks.py:94-100`：`dense_act.abs().topk(k, dim=-1)`\n- 论文明确标注 \"computed per-token\"（experiments.tex:80）\n\n### 正确参照系（三层对比，非简单 ratio）\n- Cross-seed KL Jaccard = 36.3% — **低于 random baseline 10pp** → KL seeds 收敛\n- Random baseline (30% sparsity) = 46.2%（计算: 1 - (0.7²)/(2×0.7-0.7²) = 0.462）\n- KL-vs-magnitude (30%) = 46% ≈ random → KL 和 magnitude **本质不相关**\n- KL-vs-magnitude (50%) = 68% > random 66.7% → 高稀疏度下更强\n\n### 教训\n- 用 weight L2 norms 做 magnitude mask（42.8%）与论文用 activation magnitudes（46%）**方法不同**，结果偏低\n- Appendix §Cross-Seed Mask Consistency 已含完整数据（cross-seed=0.363, random=0.462），无需重跑\n- R18-W7 回应应用 random baseline 做 anchor，而非简单 cross-seed vs KL-vs-mag 的 ratio\n\n## BCE Compensation Data (2026-05-22)\n\n### 50% Sparsity\n- **BCE + comp**: PPL = 25.44, exp_id = `bce_comp_staged_s42` (field: `predictor_hard_mask_ppl`)\n- **BCE no comp**: PPL = 27.96, exp_id = `bce_comp_staged_s42` (field: `predictor_hard_mask_ppl_no_comp`, same-run ablation: 关闭 comp 路径再 eval)\n- **Δ (no_comp − comp) = +2.52 PP** (comp 提升 ~9% per-token PPL)\n- **独立验证**: exp_id = `bce_isocompute_v3_s42_eval`, `wikitext2_ppl = 27.97`（独立 BCE-no-comp 50% run，与同 run ablation 一致）\n- ⚠️ **稀疏度差异**: BCE+comp model_level_sparsity = 0.558 vs KL baseline 0.498（comp 训练得到稍高 sparsity，对比时需标注）\n- 配置: staged training (200 步 BCE warmup + 800 步 joint)，eval_seq_len=2048，wikitext-2\n\n### 30% Sparsity\n- **BCE + comp**: ⚠️ **数据不存在** — registry 中所有 30% BCE 实验均为 no-comp（hypothesis 字段明示 \"no compensation\"）\n- **BCE no comp (uniform allocation)**:\n  - exp_id = `bce_30_s42_uniform_eval`, PPL = 15.7069 (allocation=uniform)\n  - exp_id = `bce_iso_v3_s42_30pct_uniform_eval`, PPL = 14.947\n  - exp_id = `bce_iso_v3_s123_30pct_uniform_eval`, PPL = 15.2051\n  - exp_id = `bce_iso_v3_s456_30pct_uniform_eval`, PPL = 15.1102\n- **BCE no comp (global_topk allocation)**:\n  - exp_id = `bce_30pct_s42_eval`, wikitext2_ppl = 11.2445（training_sparsity_native=0.042，Lagrangian 失败，TEAL 外部强制 30%）\n- **Δ at 30%**: 不可计算（缺 BCE+comp 30% 实验）\n\n### 对比 KL+comp（同样 staged，30% sparsity）— 仅作参考非任务要求\n- `kl_comp_30pct_s42_ppl`: wikitext2_ppl = 8.9768\n- `kl_comp_30pct_s123_ppl`: wikitext2_ppl = 8.9768\n- 提示: 若要补 30% BCE+comp 数据，可对照 KL+comp 30% 同 spec 复跑\n\n### 来源注释\n所有数字来自 `registry.yaml`，每个数字附 exp_id 追溯：\n- 50% comp 提升: `bce_comp_staged_s42` (metrics.predictor_hard_mask_ppl / .._no_comp)\n- 50% 独立 no-comp 验证: `bce_isocompute_v3_s42_eval` (metrics.wikitext2_ppl)\n- 30% no-comp uniform: `bce_30_s42_uniform_eval`, `bce_iso_v3_s{42,123,456}_30pct_uniform_eval`\n- 30% no-comp global_topk: `bce_30pct_s42_eval`\n\n## kl50_global_s123_downstream_v2 诊断 (2026-05-22)\n\n### 结论：Cron 误报，实验实际已成功完成\n\n**错误报告**: \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"\n\n**实际状态**: 实验正常完成，结果已保存至 `/root/distill_sparse_swiglu/results/benchmark/kl50_global_s123_downstream_v2/results.json`\n\n**结果**:\n- ARC-c: acc=0.3567, acc_norm=0.3916\n- WinoGrande: acc=0.6401\n- MMLU: acc=0.2908\n- GSM8K: exact_match=0.0341\n\n**误报原因**: 实验以 `WANDB_MODE=disabled` 运行，cron 监控依赖 W&B metrics 或 PID 存活检测。进程正常退出后 PID 消失，cron 连续 5 次检测到 \"process dead\" 且无 W&B 数据可回退验证，自动判定失败。\n\n**前序实验 `kl50_global_s123_reeval`**: 最初在 westd-41718 上因 CLI 参数不匹配失败（`--predictor_path` vs `--checkpoint`，`--allocation global` vs `--sparsity_mode teal_global`），retry 后成功。结果: PPL=11.72, ARC-c=0.3635, WG=0.6109, MMLU=0.2834, GSM8K=0.0258。\n\n**建议**: Registry 中 `kl50_global_s123_downstream_v2` 状态需从 `conclusion: failed` 更新为 `conclusion: success`，metrics 已在 results.json 中。\n\n## 竞品实验参考\n（见 literature_map.yaml）\n\n## 经验教训\n- Registry 状态机不允许跳级转换，必须依次走 PREPARING→PENDING→QUEUED→ALLOCATED→RUNNING→ANALYZING→DONE\n- submit_training_job 命令必须用 bash -c \"...\" 包裹（tmux 用 sh 不支持 source）\n- 离线模式下 eval 前必须确认目标服务器上的 HF datasets 缓存齐全\n- GPU 编号从 0 开始（框架自动映射 CUDA_VISIBLE_DEVICES）\n- 状态机走完需要在 RUNNING 步提供完整 spec，hypothesis 需 ≥20 chars 且 mechanistic\n- BoolQ 缓存缺失时，可将 download 步骤嵌入 eval 命令\n- Magnitude mask 有两种：weight norms（静态）vs activation magnitudes（per-token dynamic）。论文用后者。\n- WANDB_MODE=disabled 的实验会导致 cron PID/W&B 监控误报失败——需在日志中写 sentinel 文件或检查 results.json 是否存在\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "distill_sparse_swiglu",
+    "file": "memory.md",
+    "content": "# Memory — distill_sparse_swiglu\n\n## Per-layer KL 实验关键发现 (2026-05-21)\n\n### Per-layer KL vs E2E KL downstream gap 分析\n- 平均 downstream gap = −2.61pp（6 task mean, excl BoolQ）\n- Commonsense (ARC-c/WG/HS) 平均 −3.89pp，HS 最大 drop (−4.88pp)\n- Reasoning (MMLU/GSM8K) 平均 −1.87pp\n- PIQA 几乎无差异 (−0.23pp)\n- PPL gap: +0.24 (9.05 vs 8.81)\n- **结论**: per-layer 独立优化丢失跨层 coupling 导致 downstream 一致性下降，commonsense 比 reasoning 更敏感\n\n### BoolQ 3-seed 完整对比 (uniform allocation)\n- **E2E KL BoolQ**: s42=75.60%, s123=70.06%, s456=75.54% → Mean=73.73±3.18%\n- **Per-layer KL BoolQ**: s42=71.77%, s123=70.46%, s456=51.25% → Mean=64.49±11.49%\n- **Gap**: −9.24pp (E2E KL 优势明显)\n- **方差对比**: Per-layer KL 方差 3.6× 大于 E2E KL (11.49 vs 3.18 std)\n- **结论**: BoolQ 对跨层 coupling 高度敏感，per-layer 独立优化在 NLI 类 task 上不稳定\n\n### Convergence 特征\n- 2-seed 均在 ~6000 步收敛（后续改善 <0.1 PPL）\n- s123 在 step 8000 出现轻微回弹 (9.16 vs step 6000 的 9.11)，但 step 10000 回到 9.06\n- 最终 PPL 跨 seed 高度一致 (9.06 vs 9.06)\n\n### 数据缓存问题\n- westd-34887 BoolQ 缓存已通过 embed download 方式部署成功（2026-05-21）\n- westd-41718 有完整的 super_glue/boolq 缓存\n- **解决方案**: 在 submit_training_job 命令中嵌入 download 步骤（先联网下载,再切 offline 模式 eval）\n\n## Cross-seed Jaccard 分析 (2026-05-22, R18-W7)\n\n### 方法学关键区分\n- 论文 46-68% 使用 **per-token activation magnitudes**（per-token abs(dense_act) top-k），不是 weight norms\n- 代码确认于 `generate_kl_oracle_masks.py:94-100`：`dense_act.abs().topk(k, dim=-1)`\n- 论文明确标注 \"computed per-token\"（experiments.tex:80）\n\n### 正确参照系（三层对比，非简单 ratio）\n- Cross-seed KL Jaccard = 36.3% — **低于 random baseline 10pp** → KL seeds 收敛\n- Random baseline (30% sparsity) = 46.2%（计算: 1 - (0.7²)/(2×0.7-0.7²) = 0.462）\n- KL-vs-magnitude (30%) = 46% ≈ random → KL 和 magnitude **本质不相关**\n- KL-vs-magnitude (50%) = 68% > random 66.7% → 高稀疏度下更强\n\n### 教训\n- 用 weight L2 norms 做 magnitude mask（42.8%）与论文用 activation magnitudes（46%）**方法不同**，结果偏低\n- Appendix §Cross-Seed Mask Consistency 已含完整数据（cross-seed=0.363, random=0.462），无需重跑\n- R18-W7 回应应用 random baseline 做 anchor，而非简单 cross-seed vs KL-vs-mag 的 ratio\n\n## BCE Compensation Data (2026-05-22)\n\n### 50% Sparsity\n- **BCE + comp**: PPL = 25.44, exp_id = `bce_comp_staged_s42` (field: `predictor_hard_mask_ppl`)\n- **BCE no comp**: PPL = 27.96, exp_id = `bce_comp_staged_s42` (field: `predictor_hard_mask_ppl_no_comp`, same-run ablation: 关闭 comp 路径再 eval)\n- **Δ (no_comp − comp) = +2.52 PP** (comp 提升 ~9% per-token PPL)\n- **独立验证**: exp_id = `bce_isocompute_v3_s42_eval`, `wikitext2_ppl = 27.97`（独立 BCE-no-comp 50% run，与同 run ablation 一致）\n- ⚠️ **稀疏度差异**: BCE+comp model_level_sparsity = 0.558 vs KL baseline 0.498（comp 训练得到稍高 sparsity，对比时需标注）\n- 配置: staged training (200 步 BCE warmup + 800 步 joint)，eval_seq_len=2048，wikitext-2\n\n### 30% Sparsity\n- **BCE + comp**: ⚠️ **数据不存在** — registry 中所有 30% BCE 实验均为 no-comp（hypothesis 字段明示 \"no compensation\"）\n- **BCE no comp (uniform allocation)**:\n  - exp_id = `bce_30_s42_uniform_eval`, PPL = 15.7069 (allocation=uniform)\n  - exp_id = `bce_iso_v3_s42_30pct_uniform_eval`, PPL = 14.947\n  - exp_id = `bce_iso_v3_s123_30pct_uniform_eval`, PPL = 15.2051\n  - exp_id = `bce_iso_v3_s456_30pct_uniform_eval`, PPL = 15.1102\n- **BCE no comp (global_topk allocation)**:\n  - exp_id = `bce_30pct_s42_eval`, wikitext2_ppl = 11.2445（training_sparsity_native=0.042，Lagrangian 失败，TEAL 外部强制 30%）\n- **Δ at 30%**: 不可计算（缺 BCE+comp 30% 实验）\n\n### 对比 KL+comp（同样 staged，30% sparsity）— 仅作参考非任务要求\n- `kl_comp_30pct_s42_ppl`: wikitext2_ppl = 8.9768\n- `kl_comp_30pct_s123_ppl`: wikitext2_ppl = 8.9768\n- 提示: 若要补 30% BCE+comp 数据，可对照 KL+comp 30% 同 spec 复跑\n\n### 来源注释\n所有数字来自 `registry.yaml`，每个数字附 exp_id 追溯：\n- 50% comp 提升: `bce_comp_staged_s42` (metrics.predictor_hard_mask_ppl / .._no_comp)\n- 50% 独立 no-comp 验证: `bce_isocompute_v3_s42_eval` (metrics.wikitext2_ppl)\n- 30% no-comp uniform: `bce_30_s42_uniform_eval`, `bce_iso_v3_s{42,123,456}_30pct_uniform_eval`\n- 30% no-comp global_topk: `bce_30pct_s42_eval`\n\n## kl50_global_s123_downstream_v2 诊断 (2026-05-22)\n\n### 结论：Cron 误报，实验实际已成功完成\n\n**错误报告**: \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"\n\n**实际状态**: 实验正常完成，结果已保存至 `/root/distill_sparse_swiglu/results/benchmark/kl50_global_s123_downstream_v2/results.json`\n\n**结果**:\n- ARC-c: acc=0.3567, acc_norm=0.3916\n- WinoGrande: acc=0.6401\n- MMLU: acc=0.2908\n- GSM8K: exact_match=0.0341\n\n**误报原因**: 实验以 `WANDB_MODE=disabled` 运行，cron 监控依赖 W&B metrics 或 PID 存活检测。进程正常退出后 PID 消失，cron 连续 5 次检测到 \"process dead\" 且无 W&B 数据可回退验证，自动判定失败。\n\n**前序实验 `kl50_global_s123_reeval`**: 最初在 westd-41718 上因 CLI 参数不匹配失败（`--predictor_path` vs `--checkpoint`，`--allocation global` vs `--sparsity_mode teal_global`），retry 后成功。结果: PPL=11.72, ARC-c=0.3635, WG=0.6109, MMLU=0.2834, GSM8K=0.0258。\n\n**建议**: Registry 中 `kl50_global_s123_downstream_v2` 状态需从 `conclusion: failed` 更新为 `conclusion: success`，metrics 已在 results.json 中。\n\n## 竞品实验参考\n（见 literature_map.yaml）\n\n## 经验教训\n- Registry 状态机不允许跳级转换，必须依次走 PREPARING→PENDING→QUEUED→ALLOCATED→RUNNING→ANALYZING→DONE\n- submit_training_job 命令必须用 bash -c \"...\" 包裹（tmux 用 sh 不支持 source）\n- 离线模式下 eval 前必须确认目标服务器上的 HF datasets 缓存齐全\n- GPU 编号从 0 开始（框架自动映射 CUDA_VISIBLE_DEVICES）\n- 状态机走完需要在 RUNNING 步提供完整 spec，hypothesis 需 ≥20 chars 且 mechanistic\n- BoolQ 缓存缺失时，可将 download 步骤嵌入 eval 命令\n- Magnitude mask 有两种：weight norms（静态）vs activation magnitudes（per-token dynamic）。论文用后者。\n- WANDB_MODE=disabled 的实验会导致 cron PID/W&B 监控误报失败——需在日志中写 sentinel 文件或检查 results.json 是否存在\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T18:35:01.398405+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-22T18:35:01.398580+00:00_
+
+## 诊断结论
+
+**`kl50_global_s123_downstream_v2` 是 cron 监控误报，实验实际已成功完成。**
+
+### 根因
+实验以 `WANDB_MODE=disabled` 运行。Cron 健康检查依赖 W&B metrics 或 PID 存活检测——进程正常退出后 PID 消失，且无 W&B 数据可回退验证，连续 5 次检测 "process dead" 后自动判定失败。
+
+### 实际结果（已保存到 results.json）
+| Task | Metric | Value |
+|------|--------|-------|
+| ARC-c | acc_norm | 0.3916 |
+| WinoGrande | acc | 0.6401 |
+| MMLU | acc | 0.2908 |
+| GSM8K | exact_match | 0.0341 |
+
+### 前序实验 `kl50_global_s123_reeval`
+最初在 westd-41718 因 CLI 参数不匹配失败（`--predictor_path` vs `--checkpoint`），retry 后成功。结果: ARC-c=0.3635, WG=0.6109, MMLU=0.2834, GSM8K=0.0258。
+
+### 需要的操作
+1. Registry 中 `kl50_global_s123_downstream_v2` 的 `conclusion` 需从 `failed` 更新为 `success`，补充 metrics
+2. 日志路径在 `/root/distill_sparse_swiglu/logs/`（非 `~/runs/`）——任务描述中的路径有误
+3. 长期建议：`WANDB_MODE=disabled` 的实验应在完成时写 sentinel 文件，避免 cron 误报
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diag_kl50_global_s123_downstream_v2_20260522T183123"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,15 @@
+{
+  "exp_id": "c4_ood_dense_baseline",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:04:08.095Z",
+    "updated_at": "2026-05-18T05:04:32.274Z",
+    "hypothesis": "Dense baseline C4 PPL establishes the upper bound for OOD generalization comparison. This is the reference against which KL predictor sparsity degradation on C4 is measured."
+  },
+  "timestamp": "2026-05-18T05:04:32.619150+00:00",
+  "trigger": "update_registry"
+}

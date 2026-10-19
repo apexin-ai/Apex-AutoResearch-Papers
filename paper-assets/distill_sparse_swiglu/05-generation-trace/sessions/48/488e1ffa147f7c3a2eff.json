@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "488e1ffa147f7c3a2eff",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_8_1779015557.md",
+  "task_key": "loop_8_1779015557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1779015557.md",
+    "occurrence": 1,
+    "bytes": 4290,
+    "sha256": "e22be63a2cf699b79f13d3c6889619aa8097d17648ccaab53f8231d212d7963f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-16T21:03:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 westd-34887 的 **cuda:0 + cuda:1**，绝不能用其他卡\n- 所有训练命令必须带 `WANDB_MODE=offline`（服务器无 wandb API key，不加直接崩）\n- KL PPL 论文引用统一用 **4-seed mean 12.00±0.07**，禁用单 seed 最佳值 11.91\n- BCE framing 禁止用 \"anti-learning\"，必须用 **\"objective mismatch\"**\n- SPON framing 禁止 \"KL subsumes SPON\"，用 **\"marginal complement\"**\n- D032 TEAL 30% PPL = **8.98** 是正确值，13.63 是 50% target 错误修正已撤回\n- submit_training_job 必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Mistral registry 数据疑似污染（D032），暂不引用\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-34887，工作目录 `/root/distill_sparse_swiglu/`\n- **Python**: `/root/miniconda3/bin/python`（conda base，不是 venv）\n- **模型**: Llama-3.1-8B at `/root/autodl-tmp/models/llama-3.1-8b/`，Mistral-7B at `/root/autodl-tmp/models/mistral-7b/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **Checkpoints**: KL30%=`checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt`，KL40%=`checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt`，KL50%=`checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`，BCE v3=`checkpoints/bce_isocompute_v3_s42/`\n- **活跃进程**: 无。两块 GPU 均空闲\n- **Cron**: 无活跃 cron（reconcile 返回 0）\n- **累计 GPU·h**: ~95h / 预算 ~196h\n- **Latency benchmark 已完成**: dense=119.11ms, kl_30%=126.64ms (+6.3%), predictor overhead=3.17ms (2.7%)\n\n### 3. 📊 当前状态\n刚完成 session-start 初始化 + Director 汇报。**Table 1 全部 10 格已填完**（最后两格 bench_kl40_global + bench_kl50_uniform 在本轮之前已完成）。longbench_dense_v6 也成功。所有 plan_001-009 DONE。\n\n- **RUNNING**: 0（两块 GPU 空闲！）\n- **PREPARING**: 8 个，全部 conclusion=killed（历史遗留，已废弃）\n- **QUEUED**: 4 个 LongBench，全部 failed（OOM，Director 已决策放弃 LongBench）\n- **等待**: Director 回复下一步优先级（论文写作 vs 补充实验）\n\n### 4. 📋 待办\n- Director 回复\"转论文写作\" → spawn 多 Worker 并行写 Introduction/Method/Results/Discussion，GPU 同时跑补充实验（如 KL 30% multi-seed 或 latency 精细化）\n- Director 回复\"补充实验 X\" → 立即从 PREPARING 中恢复或创建新实验提交\n- Director 回复\"LongBench sparse 对比\" → 基于 v6 成功经验（multi_gpu + expandable_segments）提交 sparse 版\n- 任何情况 → GPU 不能空着，至少跑低优先级任务填满（multi-seed / latency profiling）\n\n### 5. 🎯 战略上下文\n**完整 Table 1**:\n| 条件 | PPL | ARC | WG | MMLU | GSM8K |\n|------|-----|-----|-----|------|-------|\n| Dense | 6.12 | 58.3 | 78.1 | 65.3 | 48.8 |\n| TEAL 30% | 10.97 | 42.3 | 66.1 | 38.6 | 7.9 |\n| TEAL 50% | 23.31 | 28.4 | 53.0 | 28.3 | 2.0 |\n| KL 30% global | 8.98 | 39.7 | 70.2 | 25.3 | 8.8 |\n| KL 30% uniform | 8.82 | 40.8 | 68.6 | 40.6 | 7.4 |\n| KL 40% global | 10.12 | 41.0 | 65.4 | 38.1 | 5.0 |\n| KL 40% uniform | 8.36 | 41.8 | 67.2 | 30.7 | 3.9 |\n| KL 50% global | 11.79 | 32.9 | 63.5 | 27.9 | 1.3 |\n| KL 50% uniform | 11.96 | 32.8 | 62.9 | 27.8 | 2.1 |\n| BCE 50% | 22.51 | 24.0 | 50.6 | 30.0 | 4.9 |\n\n**核心结论链**: KL>>TEAL on PPL → uniform 修复 MMLU at 30% → 40% phase transition → 50% 不可修复\n\n**易踩坑**:\n1. KL 40% global MMLU=38.1% > uniform 30.7%（反直觉 anomaly，与 30% 模式相反）——论文标注但不过度解释\n2. global top-k 和 uniform allocation 结果不能混在一起比——它们是不同推理协议\n3. 50% 不要再试任何 allocation 方法——三种方法全部崩溃已验证\n4. DDL 2026-05-25（剩 9 天），Table 1 完成后主要任务是论文写作\n5. LongBench Director 已决策放弃（5 次 OOM），但 v6 用 multi_gpu + expandable_segments 成功了——如果 Director 改主意可以做\n6. Latency benchmark 显示 predictor 有 overhead（+6.3%），论文需要 frame 为 \"pipeline-level\" 而非 \"predictor-level\" latency\n7. 论文 narrative = PPL-Downstream Disconnect + Sparsity Threshold（A+C 混合 framing）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1779015557.md"
+}

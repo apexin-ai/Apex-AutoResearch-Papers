@@ -1,0 +1,30 @@
+{
+  "exp_id": "kl_sparsity40_s42_global_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:03:30.397Z",
+    "updated_at": "2026-05-20T09:28:06.643Z",
+    "hypothesis": "New 40% KL checkpoint (retrained with seed 42) produces consistent global-allocation PPL with the uniform eval, ensuring tab:phase_full 40% row uses same predictor for both allocation modes",
+    "parent": "kl_sparsity40_s42_retrain_uniform",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id kl_sparsity40_s42_global_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity40_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --allocation global_topk --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "197972",
+      "log_path": "~/runs/distill_sparse_swiglu/kl_sparsity40_s42_global_eval.log",
+      "submitted_at": "2026-05-20T08:19:22.993Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T09:28:07.202909+00:00",
+  "trigger": "update_registry"
+}

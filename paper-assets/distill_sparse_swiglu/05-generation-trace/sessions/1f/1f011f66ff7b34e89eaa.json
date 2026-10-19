@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f011f66ff7b34e89eaa",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp perlayer kl k16 s42",
+  "task_key": "worker_exp_perlayer_kl_k16_s42_20260523T030956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_perlayer_kl_k16_s42_20260523T030956_result.json",
+    "occurrence": 1,
+    "bytes": 203,
+    "sha256": "e513178d410fc62f2ebaf035bcc6b4dd98edd70dd51dc368bac42a06c6fee887"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PID**: 102357（westd-34887 cuda:0）\n- **日志**: `/root/distill_sparse_swiglu/logs/perlayer_kl_k16_s42.log`\n- **Registry**: `perlayer_kl_k16_s42` 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-perlayer-kl-k16-s42.md"
+}

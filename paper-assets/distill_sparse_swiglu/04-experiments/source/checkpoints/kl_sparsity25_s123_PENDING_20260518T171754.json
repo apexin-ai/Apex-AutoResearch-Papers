@@ -1,0 +1,25 @@
+{
+  "exp_id": "kl_sparsity25_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:31:55.829Z",
+    "updated_at": "2026-05-18T17:17:54.389Z",
+    "hypothesis": "KL predictor at 25% sparsity seed 123 for multi-seed robustness, expected to match s42 (sparsity 0.230, loss 0.158) confirming consistent convergence at the mild-sparsity regime.",
+    "spec": {
+      "checkpoint_path": "checkpoints/kl_sparsity25_s123/predictor_kl_normalized.pt",
+      "log_path": "~/runs/distill_sparse_swiglu/kl_sparsity25_s123.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_loss": 0.153,
+      "final_sparsity": 0.23,
+      "steps": 1000
+    }
+  },
+  "timestamp": "2026-05-18T17:17:54.830287+00:00",
+  "trigger": "update_registry"
+}

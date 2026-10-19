@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2834acc483809bf3e90e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis bench kl50 uniform s123",
+  "task_key": "worker_analysis_bench_kl50_uniform_s123_20260516T153059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bench_kl50_uniform_s123_20260516T153059_result.json",
+    "occurrence": 1,
+    "bytes": 1115,
+    "sha256": "95a2959745efddace0370138c1ce92558b9539eb6534974aea4035f199a9ee97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n- wikitext2_ppl: **11.83**\n- arc_challenge_acc: **0.3515** (acc_norm)\n- winogrande_acc: **0.6298**\n- mmlu_acc: **0.2751**\n- gsm8k_acc: **0.0235**\n- wandb_run_id: 无（日志中无 wandb 记录）\n- 是否正常完成: 是（EXIT_CODE=0）\n- 异常/警告: `fatal: not a git repository` (无影响)\n\n## 分析\n\n**Uniform allocation 未解决 downstream 崩溃问题。** 50% sparsity 下 uniform 分配的表现：\n\n| 指标 | Dense baseline | KL50 uniform (本次) | 问题 |\n|------|---------------|-------------------|------|\n| WikiText-2 PPL | 6.13 | 11.83 | +93% 劣化 |\n| ARC-Challenge | ~0.53 | 0.3515 | 严重下降 |\n| WinoGrande | ~0.74 | 0.6298 | 明显下降 |\n| MMLU | ~0.65 | 0.2751 | ≈随机（崩溃） |\n| GSM8K | ~0.46 | 0.0235 | 崩溃（2.4%） |\n\nMMLU 和 GSM8K 仍然崩溃到随机水平，与之前全局 top-k 的问题一致。说明 50% sparsity 对 LLaMA-3.1-8B 来说过于激进——不论是 global 还是 uniform 分配策略都无法保住 downstream 能力。PPL 从 6.13 涨到 11.83 进一步印证模型容量被严重削减。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bench-kl50-uniform-s123.md"
+}

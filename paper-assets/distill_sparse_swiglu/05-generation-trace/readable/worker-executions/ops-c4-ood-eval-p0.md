@@ -1,0 +1,4149 @@
+# ops c4 ood eval p0
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 90
+- **Recorded user turns:** 0
+- **Tool calls:** 27
+- **Original source:** `logs/workers/worker_ops_c4-ood-eval-p0_20260516T191201.log`
+- **Structured JSON:** [`8d513fbc4e87f395b87b.json`](../../sessions/8d/8d513fbc4e87f395b87b.json)
+
+## Before a recorded user message
+
+90 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d182280c-8ee7-443b-970d-d0c486f39227",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778976600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "294583ac-70ed-4c26-997f-0601c85ebc94",
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the existing code on the server to understand the PPL evaluation logic and TEAL implementation before writing the C4 OOD evaluation script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "1cd99e6a-d19d-4453-8186-49964f0fdeb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cBEioTPvoThwxPDiY3R7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13470,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13470
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先检查服务器上现有的评估代码和项目结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "8f432e6e-df0a-4a34-988e-d43b7175287e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cBEioTPvoThwxPDiY3R7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13470,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13470
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011BJDTLdErkJZ2FwFvsb27e`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "efc5b297-c87e-4208-ac43-005c0e122ad6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cBEioTPvoThwxPDiY3R7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13470,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13470
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T19:12:14.444Z_
+
+<details><summary>↩ Tool result · `toolu_011BJDTLdErkJZ2FwFvsb27e`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "9c912b20-792d-4f3d-98be-0f77f2ea670d",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 24
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the existing evaluation code on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "9234fc81-e20e-4d7e-b0c9-32a9a12278e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TdFFnSisnUnDyEGfNV1Xx3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 25311,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 943
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Rx4WYR36A5nwEew2FSc3mm`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "find /root/distill_sparse_swiglu/src -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "a9c1ec55-aa26-4eee-bc29-c09ac4a101c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TdFFnSisnUnDyEGfNV1Xx3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 25311,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 943
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MvADp9XFhvMbEnvREEWZQA`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "head -150 /root/distill_sparse_swiglu/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "daf42786-8ff3-4015-af1b-d6fc62adff1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TdFFnSisnUnDyEGfNV1Xx3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 25311,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 943
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T19:12:19.909Z_
+
+<details><summary>↩ Tool result · `toolu_01Rx4WYR36A5nwEew2FSc3mm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/distill_sparse_swiglu/src/predictor.py\\n/root/distill_sparse_swiglu/src/data_utils.py\\n/root/distill_sparse_swiglu/src/losses.py\\n/root/distill_sparse_swiglu/src/train.py\\n/root/distill_sparse_swiglu/src/evaluate.py\\n/root/distill_sparse_swiglu/src/batch_eval.py\\n/root/distill_sparse_swiglu/src/compensation.py\\n/root/distill_sparse_swiglu/src/patch_vanilla_teal.py\\n/root/distill_sparse_swiglu/src/spon.py\\n/root/distill_sparse_swiglu/src/train_spon.py\\n/root/distill_sparse_swiglu/src/baselines.py\\n/root/distill_sparse_swiglu/src/test_greedy_dryrun.py\\n/root/distill_sparse_swiglu/src/train_compensation.py\\n/root/distill_sparse_swiglu/src/train_bce_comp.py\\n/root/distill_sparse_swiglu/src/eval_spon.py\\n/root/distill_sparse_swiglu/src/eval_bce_comp.py\\n/root/distill_sparse_swiglu/src/eval_spon_supplementary.py\\n/root/distill_sparse_swiglu/src/subsumption_test.py\\n/root/distill_sparse_swiglu/src/benchmark_eval.py\\n/root/distill_sparse_swiglu/src/eval_benchmark.py\\n/root/distill_sparse_swiglu/src/quick_eval.py\\n/root/distill_sparse_swiglu/src/quick_eval2.py\\n/root/distill_sparse_swiglu/src/quick_sp70.py\\n/root/distill_sparse_swiglu/src/run_baselines_sweep.py\\n/root/distill_sparse_swiglu/src/lm_eval_sparse.py\\n/root/distill_sparse_swiglu/src/diag_mask.py\\n/root/distill_sparse_swiglu/src/diag_mmlu.py\\n/root/distill_sparse_swiglu/src/diag_hflm.py\\n/root/distill_sparse_swiglu/src/diag_hflm_direct.py\\n/root/distill_sparse_swiglu/src/debug_mask_verify.py\\n/root/distill_sparse_swiglu/src/debug_mask_v2.py\\n/root/distill_sparse_swiglu/src/gsm8k_gen_compare.py\\n/root/distill_sparse_swiglu/src/lm_eval_teal.py\\n/root/distill_sparse_swiglu/src/analyze_perlayer_sparsity.py\\n/root/distill_sparse_swiglu/src/lm_eval_sparse_uniform.py\\n/root/distill_sparse_swiglu/src/latency_benchmark.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "523cd8cd-9578-4cd2-ad74-c3e91aa7b420",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/distill_sparse_swiglu/src/predictor.py\\\\n/root/distill_sparse_swiglu/src/data_utils.py\\\\n/root/distill_sparse_swiglu/src/losses.py\\\\n/root/distill_sparse_swiglu/src/train.py\\\\n/root/distill_sparse_swiglu/src/evaluate.py\\\\n/root/distill_sparse_swiglu/src/batch_eval.py\\\\n/root/distill_sparse_swiglu/src/compensation.py\\\\n/root/distill_sparse_swiglu/src/patch_vanilla_teal.py\\\\n/root/distill_sparse_swiglu/src/spon.py\\\\n/root/distill_sparse_swiglu/src/train_spon.py\\\\n/root/distill_sparse_swiglu/src/baselines.py\\\\n/root/distill_sparse_swiglu/src/test_greedy_dryrun.py\\\\n/root/distill_sparse_swiglu/src/train_compensation.py\\\\n/root/distill_sparse_swiglu/src/train_bce_comp.py\\\\n/root/distill_sparse_swiglu/src/eval_spon.py\\\\n/root/distill_sparse_swiglu/src/eval_bce_comp.py\\\\n/root/distill_sparse_swiglu/src/eval_spon_supplementary.py\\\\n/root/distill_sparse_swiglu/src/subsumption_test.py\\\\n/root/distill_sparse_swiglu/src/benchmark_eval.py\\\\n/root/distill_sparse_swiglu/src/eval_benchmark.py\\\\n/root/distill_sparse_swiglu/src/quick_eval.py\\\\n/root/distill_sparse_swiglu/src/quick_eval2.py\\\\n/root/distill_sparse_swiglu/src/quick_sp70.py\\\\n/root/distill_sparse_swiglu/src/run_baselines_sweep.py\\\\n/root/distill_sparse_swiglu/src/lm_eval_sparse.py\\\\n/root/distill_sparse_swiglu/src/diag_mask.py\\\\n/root/distill_sparse_swiglu/src/diag_mmlu.py\\\\n/root/distill_sparse_swiglu/src/diag_hflm.py\\\\n/root/distill_sparse_swiglu/src/diag_hflm_direct.py\\\\n/root/distill_sparse_swiglu/src/debug_mask_verify.py\\\\n/root/distill_sparse_swiglu/src/debug_mask_v2.py\\\\n/root/distill_sparse_swiglu/src/gsm8k_gen_compare.py\\\\n/root/distill_sparse_swiglu/src/lm_eval_teal.py\\\\n/root/distill_sparse_swiglu/src/analyze_perlayer_sparsity.py\\\\n/root/distill_sparse_swiglu/src/lm_eval_sparse_uniform.py\\\\n/root/distill_sparse_swiglu/src/latency_benchmark.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/distill_sparse_swiglu/src/predictor.py\\n/root/distill_sparse_swiglu/src/data_utils.py\\n/root/distill_sparse_swiglu/src/losses.py\\n/root/distill_sparse_swiglu/src/train.py\\n/root/distill_sparse_swiglu/src/evaluate.py\\n/root/distill_sparse_swiglu/src/batch_eval.py\\n/root/distill_sparse_swiglu/src/compensation.py\\n/root/distill_sparse_swiglu/src/patch_vanilla_teal.py\\n/root/distill_sparse_swiglu/src/spon.py\\n/root/distill_sparse_swiglu/src/train_spon.py\\n/root/distill_sparse_swiglu/src/baselines.py\\n/root/distill_sparse_swiglu/src/test_greedy_dryrun.py\\n/root/distill_sparse_swiglu/src/train_compensation.py\\n/root/distill_sparse_swiglu/src/train_bce_comp.py\\n/root/distill_sparse_swiglu/src/eval_spon.py\\n/root/distill_sparse_swiglu/src/eval_bce_comp.py\\n/root/distill_sparse_swiglu/src/eval_spon_supplementary.py\\n/root/distill_sparse_swiglu/src/subsumption_test.py\\n/root/distill_sparse_swiglu/src/benchmark_eval.py\\n/root/distill_sparse_swiglu/src/eval_benchmark.py\\n/root/distill_sparse_swiglu/src/quick_eval.py\\n/root/distill_sparse_swiglu/src/quick_eval2.py\\n/root/distill_sparse_swiglu/src/quick_sp70.py\\n/root/distill_sparse_swiglu/src/run_baselines_sweep.py\\n/root/distill_sparse_swiglu/src/lm_eval_sparse.py\\n/root/distill_sparse_swiglu/src/diag_mask.py\\n/root/distill_sparse_swiglu/src/diag_mmlu.py\\n/root/distill_sparse_swiglu/src/diag_hflm.py\\n/root/distill_sparse_swiglu/src/diag_hflm_direct.py\\n/root/distill_sparse_swiglu/src/debug_mask_verify.py\\n/root/distill_sparse_swiglu/src/debug_mask_v2.py\\n/root/distill_sparse_swiglu/src/gsm8k_gen_compare.py\\n/root/distill_sparse_swiglu/src/lm_eval_teal.py\\n/root/distill_sparse_swiglu/src/analyze_perlayer_sparsity.py\\n/root/distill_sparse_swiglu/src/lm_eval_sparse_uniform.py\\n/root/distill_sparse_swiglu/src/latency_benchmark.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T19:12:20.432Z_
+
+<details><summary>↩ Tool result · `toolu_01MvADp9XFhvMbEnvREEWZQA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import argparse\\nimport importlib.util\\nimport os\\nimport sys\\n\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom data_utils import get_eval_dataset\\nfrom predictor import PredictorWrapper\\nfrom baselines import wina_greedy_allocation_masks\\n\\n\\ndef _best_attn_impl():\\n    if importlib.util.find_spec(\\\"flash_attn\\\"):\\n        return \\\"flash_attention_2\\\"\\n    return \\\"sdpa\\\"\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Evaluate sparsity predictor and baselines\\\")\\n    p.add_argument(\\\"--model_name_or_path\\\", type=str,\\n                    default=\\\"/root/autodl-tmp/models/llama-3.1-8b\\\")\\n    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n                    help=\\\"Path to predictor .pt checkpoint (required for predictor eval)\\\")\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--seq_len\\\", type=int, default=2048)\\n    p.add_argument(\\\"--sparsity_target\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--use_random_data\\\", action=\\\"store_true\\\",\\n                    help=\\\"Use random data for dry-run eval\\\")\\n    p.add_argument(\\\"--max_eval_samples\\\", type=int, default=200)\\n    p.add_argument(\\\"--calibration_samples\\\", type=int, default=32,\\n                    help=\\\"Number of calibration sequences for masks\\\")\\n    p.add_argument(\\\"--skip_c4\\\", action=\\\"store_true\\\",\\n                    help=\\\"Skip C4 evaluation\\\")\\n    p.add_argument(\\\"--baseline_mode\\\", type=str, default=None,\\n                    help=\\\"Comma-separated baselines: teal_vanilla,teal_greedy,wina,wina_greedy,rsparse\\\")\\n    p.add_argument(\\\"--svd_rank\\\", type=int, default=256,\\n                    help=\\\"SVD rank for R-Sparse scoring\\\")\\n    return p.parse_args()\\n\\n\\ndef _make_original_fwd(mlp):\\n    \\\"\\\"\\\"Reconstruct original LlamaMLP forward without any mask.\\\"\\\"\\\"\\n    gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\n    def fwd(x):\\n        return dp(af(gp(x)) * up(x))\\n    return fwd\\n\\n\\ndef collect_layer_inputs(wrapper, input_ids):\\n    wrapper.forward_dense(input_ids, capture_intermediates=True)\\n    return wrapper.get_layer_inputs()\\n\\n\\ndef teal_global_masks(wrapper, input_ids, sparsity_target, calib_batch_size=4, allocation=\\\"global_topk\\\"):\\n    \\\"\\\"\\\"Predictor-based TEAL: score neurons by activation magnitude under predictor mask.\\n\\n    Raw sigmoid scores are poor proxies for static neuron importance because they\\n    lack magnitude information. Instead, score each neuron by its mean activation\\n    magnitude when the predictor keeps it: mean(|act(gate(x))*up(x)| * (logit > 0)).\\n    \\\"\\\"\\\"\\n    accum_scores = {}\\n    n_batches = 0\\n\\n    for start in range(0, input_ids.size(0), calib_batch_size):\\n        batch = input_ids[start:start + calib_batch_size]\\n        wrapper.forward_dense(batch, capture_intermediates=True)\\n        intermediates = wrapper.get_intermediates()\\n        layer_inputs = wrapper.get_layer_inputs()\\n        with torch.no_grad():\\n            for layer_idx in range(len(wrapper.predictors)):\\n                if layer_idx not in layer_inputs or layer_idx not in intermediates:\\n                    continue\\n                pred = wrapper.predictors[layer_idx]\\n                pred_device = next(pred.parameters()).device\\n                logits = pred(layer_inputs[layer_idx].to(pred_device))\\n                hard_mask = (logits > 0).float()\\n                mag = intermediates[layer_idx].abs().float().to(pred_device)\\n                scores = (mag * hard_mask).mean(dim=(0, 1))\\n                if layer_idx not in accum_scores:\\n                    accum_scores[layer_idx] = scores\\n                else:\\n                    accum_scores[layer_idx] = accum_scores[layer_idx] + scores\\n        n_batches += 1\\n\\n    layer_scores = {li: accum_scores[li] / n_batches for li in sorted(accum_scores)}\\n    return _dispatch_masks(layer_scores, sparsity_target, allocation)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Training-free baseline infrastructure\\n# ---------------------------------------------------------------------------\\n\\n@torch.no_grad()\\ndef _collect_swiglu_magnitudes(model, input_ids, calib_batch_size=4):\\n    \\\"\\\"\\\"Per-neuron mean |act(gate(x)) * up(x)| across calibration data.\\n\\n    Shared calibration pass for vanilla TEAL, WINA, and R-Sparse.\\n    \\\"\\\"\\\"\\n    accum = {}\\n    n_batches = 0\\n    saved = {}\\n\\n    for li, layer in enumerate(model.model.layers):\\n        saved[li] = layer.mlp.forward\\n        mlp = layer.mlp\\n        gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\n\\n        def _make(idx, _gp, _up, _dp, _af):\\n            def fwd(x):\\n                h = _af(_gp(x)) * _up(x)\\n                mag = h.abs().mean(dim=(0, 1))\\n                if idx in accum:\\n                    accum[idx] = accum[idx] + mag\\n                else:\\n                    accum[idx] = mag\\n                return _dp(h)\\n            return fwd\\n\\n        layer.mlp.forward = _make(li, gp, up, dp, af)\\n\\n    for start in range(0, input_ids.size(0), calib_batch_size):\\n        model(input_ids[start:start + calib_batch_size])\\n        n_batches += 1\\n\\n    for li, fwd in saved.items():\\n        model.model.layers[li].mlp.forward = fwd\\n\\n    return {li: accum[li] / n_batches for li in sorted(accum)}\\n\\n\\ndef _global_topk_masks(layer_scores, sparsity_target):\\n    \\\"\\\"\\\"Global top-K mask allocation with per-layer mean normalization.\\\"\\\"\\\"\\n    items = sorted(layer_scores.items())\\n    normalized = []\\n    for li, s in items:\\n        s_f = s.float()\\n        mu = s_f.mean()\\n        normalized.append((li, s_f / mu if mu > 1e-12 else s_f))\\n    all_s = torch.cat([s for _, s in normalized])\\n    num_keep = int(len(all_s) * (1.0 - sparsity_target))\\n    thr = torch.topk(all_s, num_keep).values[-1]\\n    return {li: (s >= thr).to(torch.bfloat16) for li, s in normalized}\\n\\n\\n\\ndef _uniform_topk_masks(layer_scores, sparsity_target):\\n    \\\"\\\"\\\"Uniform per-layer allocation: each layer independently keeps top-(1-sparsity) neurons.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "b4b00530-d354-4b5f-a8c7-64646fb3a08f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import argparse\\\\nimport importlib.util\\\\nimport os\\\\nimport sys\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom data_utils import get_eval_dataset\\\\nfrom predictor import PredictorWrapper\\\\nfrom baselines import wina_greedy_allocation_masks\\\\n\\\\n\\\\ndef _best_attn_impl():\\\\n    if importlib.util.find_spec(\\\\\\\"flash_attn\\\\\\\"):\\\\n        return \\\\\\\"flash_attention_2\\\\\\\"\\\\n    return \\\\\\\"sdpa\\\\\\\"\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Evaluate sparsity predictor and baselines\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_name_or_path\\\\\\\", type=str,\\\\n                    default=\\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n                    help=\\\\\\\"Path to predictor .pt checkpoint (required for predictor eval)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--seq_len\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--sparsity_target\\\\\\\", type=float, default=0.5)\\\\n    p.add_argument(\\\\\\\"--use_random_data\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                    help=\\\\\\\"Use random data for dry-run eval\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max_eval_samples\\\\\\\", type=int, default=200)\\\\n    p.add_argument(\\\\\\\"--calibration_samples\\\\\\\", type=int, default=32,\\\\n                    help=\\\\\\\"Number of calibration sequences for masks\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--skip_c4\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                    help=\\\\\\\"Skip C4 evaluation\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--baseline_mode\\\\\\\", type=str, default=None,\\\\n                    help=\\\\\\\"Comma-separated baselines: teal_vanilla,teal_greedy,wina,wina_greedy,rsparse\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--svd_rank\\\\\\\", type=int, default=256,\\\\n                    help=\\\\\\\"SVD rank for R-Sparse scoring\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef _make_original_fwd(mlp):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Reconstruct original LlamaMLP forward without any mask.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\\\n    def fwd(x):\\\\n        return dp(af(gp(x)) * up(x))\\\\n    return fwd\\\\n\\\\n\\\\ndef collect_layer_inputs(wrapper, input_ids):\\\\n    wrapper.forward_dense(input_ids, capture_intermediates=True)\\\\n    return wrapper.get_layer_inputs()\\\\n\\\\n\\\\ndef teal_global_masks(wrapper, input_ids, sparsity_target, calib_batch_size=4, allocation=\\\\\\\"global_topk\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Predictor-based TEAL: score neurons by activation magnitude under predictor mask.\\\\n\\\\n    Raw sigmoid scores are poor proxies for static neuron importance because they\\\\n    lack magnitude information. Instead, score each neuron by its mean activation\\\\n    magnitude when the predictor keeps it: mean(|act(gate(x))*up(x)| * (logit > 0)).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    accum_scores = {}\\\\n    n_batches = 0\\\\n\\\\n    for start in range(0, input_ids.size(0), calib_batch_size):\\\\n        batch = input_ids[start:start + calib_batch_size]\\\\n        wrapper.forward_dense(batch, capture_intermediates=True)\\\\n        intermediates = wrapper.get_intermediates()\\\\n        layer_inputs = wrapper.get_layer_inputs()\\\\n        with torch.no_grad():\\\\n            for layer_idx in range(len(wrapper.predictors)):\\\\n                if layer_idx not in layer_inputs or layer_idx not in intermediates:\\\\n                    continue\\\\n                pred = wrapper.predictors[layer_idx]\\\\n                pred_device = next(pred.parameters()).device\\\\n                logits = pred(layer_inputs[layer_idx].to(pred_device))\\\\n                hard_mask = (logits > 0).float()\\\\n                mag = intermediates[layer_idx].abs().float().to(pred_device)\\\\n                scores = (mag * hard_mask).mean(dim=(0, 1))\\\\n                if layer_idx not in accum_scores:\\\\n                    accum_scores[layer_idx] = scores\\\\n                else:\\\\n                    accum_scores[layer_idx] = accum_scores[layer_idx] + scores\\\\n        n_batches += 1\\\\n\\\\n    layer_scores = {li: accum_scores[li] / n_batches for li in sorted(accum_scores)}\\\\n    return _dispatch_masks(layer_scores, sparsity_target, allocation)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Training-free baseline infrastructure\\\\n# ---------------------------------------------------------------------------\\\\n\\\\n@torch.no_grad()\\\\ndef _collect_swiglu_magnitudes(model, input_ids, calib_batch_size=4):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Per-neuron mean |act(gate(x)) * up(x)| across calibration data.\\\\n\\\\n    Shared calibration pass for vanilla TEAL, WINA, and R-Sparse.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    accum = {}\\\\n    n_batches = 0\\\\n    saved = {}\\\\n\\\\n    for li, layer in enumerate(model.model.layers):\\\\n        saved[li] = layer.mlp.forward\\\\n        mlp = layer.mlp\\\\n        gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\\\n\\\\n        def _make(idx, _gp, _up, _dp, _af):\\\\n            def fwd(x):\\\\n                h = _af(_gp(x)) * _up(x)\\\\n                mag = h.abs().mean(dim=(0, 1))\\\\n                if idx in accum:\\\\n                    accum[idx] = accum[idx] + mag\\\\n                else:\\\\n                    accum[idx] = mag\\\\n                return _dp(h)\\\\n            return fwd\\\\n\\\\n        layer.mlp.forward = _make(li, gp, up, dp, af)\\\\n\\\\n    for start in range(0, input_ids.size(0), calib_batch_size):\\\\n        model(input_ids[start:start + calib_batch_size])\\\\n        n_batches += 1\\\\n\\\\n    for li, fwd in saved.items():\\\\n        model.model.layers[li].mlp.forward = fwd\\\\n\\\\n    return {li: accum[li] / n_batches for li in sorted(accum)}\\\\n\\\\n\\\\ndef _global_topk_masks(layer_scores, sparsity_target):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Global top-K mask allocation with per-layer mean normalization.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    items = sorted(layer_scores.items())\\\\n    normalized = []\\\\n    for li, s in items:\\\\n        s_f = s.float()\\\\n        mu = s_f.mean()\\\\n        normalized.append((li, s_f / mu if mu > 1e-12 else s_f))\\\\n    all_s = torch.cat([s for _, s in normalized])\\\\n    num_keep = int(len(all_s) * (1.0 - sparsity_target))\\\\n    thr = torch.topk(all_s, num_keep).values[-1]\\\\n    return {li: (s >= thr).to(torch.bfloat16) for li, s in normalized}\\\\n\\\\n\\\\n\\\\ndef _uniform_topk_masks(layer_scores, sparsity_target):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Uniform per-layer allocation: each layer independently keeps top-(1-sparsity) neurons.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import argparse\\nimport importlib.util\\nimport os\\nimport sys\\n\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom data_utils import get_eval_dataset\\nfrom predictor import PredictorWrapper\\nfrom baselines import wina_greedy_allocation_masks\\n\\n\\ndef _best_attn_impl():\\n    if importlib.util.find_spec(\\\"flash_attn\\\"):\\n        return \\\"flash_attention_2\\\"\\n    return \\\"sdpa\\\"\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Evaluate sparsity predictor and baselines\\\")\\n    p.add_argument(\\\"--model_name_or_path\\\", type=str,\\n                    default=\\\"/root/autodl-tmp/models/llama-3.1-8b\\\")\\n    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n                    help=\\\"Path to predictor .pt checkpoint (required for predictor eval)\\\")\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--seq_len\\\", type=int, default=2048)\\n    p.add_argument(\\\"--sparsity_target\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--use_random_data\\\", action=\\\"store_true\\\",\\n                    help=\\\"Use random data for dry-run eval\\\")\\n    p.add_argument(\\\"--max_eval_samples\\\", type=int, default=200)\\n    p.add_argument(\\\"--calibration_samples\\\", type=int, default=32,\\n                    help=\\\"Number of calibration sequences for masks\\\")\\n    p.add_argument(\\\"--skip_c4\\\", action=\\\"store_true\\\",\\n                    help=\\\"Skip C4 evaluation\\\")\\n    p.add_argument(\\\"--baseline_mode\\\", type=str, default=None,\\n                    help=\\\"Comma-separated baselines: teal_vanilla,teal_greedy,wina,wina_greedy,rsparse\\\")\\n    p.add_argument(\\\"--svd_rank\\\", type=int, default=256,\\n                    help=\\\"SVD rank for R-Sparse scoring\\\")\\n    return p.parse_args()\\n\\n\\ndef _make_original_fwd(mlp):\\n    \\\"\\\"\\\"Reconstruct original LlamaMLP forward without any mask.\\\"\\\"\\\"\\n    gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\n    def fwd(x):\\n        return dp(af(gp(x)) * up(x))\\n    return fwd\\n\\n\\ndef collect_layer_inputs(wrapper, input_ids):\\n    wrapper.forward_dense(input_ids, capture_intermediates=True)\\n    return wrapper.get_layer_inputs()\\n\\n\\ndef teal_global_masks(wrapper, input_ids, sparsity_target, calib_batch_size=4, allocation=\\\"global_topk\\\"):\\n    \\\"\\\"\\\"Predictor-based TEAL: score neurons by activation magnitude under predictor mask.\\n\\n    Raw sigmoid scores are poor proxies for static neuron importance because they\\n    lack magnitude information. Instead, score each neuron by its mean activation\\n    magnitude when the predictor keeps it: mean(|act(gate(x))*up(x)| * (logit > 0)).\\n    \\\"\\\"\\\"\\n    accum_scores = {}\\n    n_batches = 0\\n\\n    for start in range(0, input_ids.size(0), calib_batch_size):\\n        batch = input_ids[start:start + calib_batch_size]\\n        wrapper.forward_dense(batch, capture_intermediates=True)\\n        intermediates = wrapper.get_intermediates()\\n        layer_inputs = wrapper.get_layer_inputs()\\n        with torch.no_grad():\\n            for layer_idx in range(len(wrapper.predictors)):\\n                if layer_idx not in layer_inputs or layer_idx not in intermediates:\\n                    continue\\n                pred = wrapper.predictors[layer_idx]\\n                pred_device = next(pred.parameters()).device\\n                logits = pred(layer_inputs[layer_idx].to(pred_device))\\n                hard_mask = (logits > 0).float()\\n                mag = intermediates[layer_idx].abs().float().to(pred_device)\\n                scores = (mag * hard_mask).mean(dim=(0, 1))\\n                if layer_idx not in accum_scores:\\n                    accum_scores[layer_idx] = scores\\n                else:\\n                    accum_scores[layer_idx] = accum_scores[layer_idx] + scores\\n        n_batches += 1\\n\\n    layer_scores = {li: accum_scores[li] / n_batches for li in sorted(accum_scores)}\\n    return _dispatch_masks(layer_scores, sparsity_target, allocation)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Training-free baseline infrastructure\\n# ---------------------------------------------------------------------------\\n\\n@torch.no_grad()\\ndef _collect_swiglu_magnitudes(model, input_ids, calib_batch_size=4):\\n    \\\"\\\"\\\"Per-neuron mean |act(gate(x)) * up(x)| across calibration data.\\n\\n    Shared calibration pass for vanilla TEAL, WINA, and R-Sparse.\\n    \\\"\\\"\\\"\\n    accum = {}\\n    n_batches = 0\\n    saved = {}\\n\\n    for li, layer in enumerate(model.model.layers):\\n        saved[li] = layer.mlp.forward\\n        mlp = layer.mlp\\n        gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\n\\n        def _make(idx, _gp, _up, _dp, _af):\\n            def fwd(x):\\n                h = _af(_gp(x)) * _up(x)\\n                mag = h.abs().mean(dim=(0, 1))\\n                if idx in accum:\\n                    accum[idx] = accum[idx] + mag\\n                else:\\n                    accum[idx] = mag\\n                return _dp(h)\\n            return fwd\\n\\n        layer.mlp.forward = _make(li, gp, up, dp, af)\\n\\n    for start in range(0, input_ids.size(0), calib_batch_size):\\n        model(input_ids[start:start + calib_batch_size])\\n        n_batches += 1\\n\\n    for li, fwd in saved.items():\\n        model.model.layers[li].mlp.forward = fwd\\n\\n    return {li: accum[li] / n_batches for li in sorted(accum)}\\n\\n\\ndef _global_topk_masks(layer_scores, sparsity_target):\\n    \\\"\\\"\\\"Global top-K mask allocation with per-layer mean normalization.\\\"\\\"\\\"\\n    items = sorted(layer_scores.items())\\n    normalized = []\\n    for li, s in items:\\n        s_f = s.float()\\n        mu = s_f.mean()\\n        normalized.append((li, s_f / mu if mu > 1e-12 else s_f))\\n    all_s = torch.cat([s for _, s in normalized])\\n    num_keep = int(len(all_s) * (1.0 - sparsity_target))\\n    thr = torch.topk(all_s, num_keep).values[-1]\\n    return {li: (s >= thr).to(torch.bfloat16) for li, s in normalized}\\n\\n\\n\\ndef _uniform_topk_masks(layer_scores, sparsity_target):\\n    \\\"\\\"\\\"Uniform per-layer allocation: each layer independently keeps top-(1-sparsity) neurons.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I can see the existing `evaluate.py` has a lot of infrastructure I can reuse. Let me look at more of it to understand the PPL computation and how TEAL/predictor modes work. Let me also check the `data_utils.py` for dataset loading and look at how PPL is computed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "48d76623-9333-41c2-a758-d234b9803009",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FaTvZREQS4R6KWtqwdHZuN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3486,
+      "cache_read_input_tokens": 26254,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+Good - the existing `evaluate.py` already has infrastructure for TEAL and predictor evaluation. Let me check the PPL computation logic and data utilities.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "a331f09f-b475-4558-a8f8-12aca9c37be0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FaTvZREQS4R6KWtqwdHZuN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3486,
+      "cache_read_input_tokens": 26254,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013mSeaVrw83ECvcrys6X2Y4`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -n \"ppl\\|perplexity\\|cross_entropy\\|nll\" /root/distill_sparse_swiglu/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "e6f2a2d7-0ddd-4b70-8f72-e7172020bb36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FaTvZREQS4R6KWtqwdHZuN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3486,
+      "cache_read_input_tokens": 26254,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T19:12:26.798Z_
+
+<details><summary>↩ Tool result · `toolu_013mSeaVrw83ECvcrys6X2Y4`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "6220851c-949c-4346-bb7e-5b49431f096b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Bpr51NpTNUFMzRu2gRj9SY`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/distill_sparse_swiglu/src/data_utils.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "ba899c31-e46d-498e-a5df-c9c18348343d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FaTvZREQS4R6KWtqwdHZuN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3486,
+      "cache_read_input_tokens": 26254,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T19:12:27.467Z_
+
+<details><summary>↩ Tool result · `toolu_01Bpr51NpTNUFMzRu2gRj9SY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import os\\n# Data loading: WikiText-103 (local cache) for training, WikiText-2/C4 for evaluation.\\n# All loaders tokenize and pack text into fixed-length sequences.\\n\\nimport torch\\nfrom torch.utils.data import IterableDataset, DataLoader\\nfrom datasets import load_dataset\\n\\n\\nclass PackedTokenDataset(IterableDataset):\\n    \\\"\\\"\\\"Streams text, tokenizes, and packs into fixed-length (seq_len) chunks.\\\"\\\"\\\"\\n\\n    def __init__(self, hf_dataset, tokenizer, seq_len: int, seed: int = 42):\\n        self.dataset = hf_dataset\\n        self.tokenizer = tokenizer\\n        self.seq_len = seq_len\\n        self.seed = seed\\n\\n    def __iter__(self):\\n        buffer = []\\n        for example in self.dataset:\\n            text = example.get(\\\"text\\\", \\\"\\\")\\n            if not text.strip():\\n                continue\\n            tokens = self.tokenizer(text, add_special_tokens=False)[\\\"input_ids\\\"]\\n            buffer.extend(tokens)\\n            while len(buffer) >= self.seq_len + 1:\\n                chunk = buffer[: self.seq_len + 1]\\n                buffer = buffer[self.seq_len + 1 :]\\n                input_ids = torch.tensor(chunk[:-1], dtype=torch.long)\\n                labels = torch.tensor(chunk[1:], dtype=torch.long)\\n                yield {\\\"input_ids\\\": input_ids, \\\"labels\\\": labels}\\n\\n\\ndef get_calibration_loader(tokenizer, batch_size: int, seq_len: int, seed: int = 42,\\n                          dataset_name: str = \\\"wikitext-103\\\"):\\n    if dataset_name == \\\"wikitext-103\\\":\\n        ds = load_dataset(\\\"wikitext\\\", \\\"wikitext-103-raw-v1\\\", split=\\\"train\\\")\\n        ds = ds.shuffle(seed=seed)\\n    elif dataset_name == \\\"c4\\\":\\n        _c4_local = \\\"/root/autodl-tmp/data/c4_val\\\"\\n        if os.path.isdir(_c4_local):\\n            from datasets import load_from_disk\\n            ds = load_from_disk(_c4_local)\\n            ds = ds.shuffle(seed=seed)\\n        else:\\n            ds = load_dataset(\\\"allenai/c4\\\", \\\"en\\\", split=\\\"train\\\", streaming=True)\\n            ds = ds.shuffle(seed=seed, buffer_size=10000)\\n    else:\\n        raise ValueError(f\\\"Unknown dataset: {dataset_name}\\\")\\n    packed = PackedTokenDataset(ds, tokenizer, seq_len, seed)\\n    return DataLoader(packed, batch_size=batch_size, num_workers=0)\\n\\n\\n\\nclass RandomTokenDataset(IterableDataset):\\n    \\\"\\\"\\\"Random token data for dry-run testing.\\\"\\\"\\\"\\n\\n    def __init__(self, vocab_size: int, seq_len: int, seed: int = 42):\\n        self.vocab_size = vocab_size\\n        self.seq_len = seq_len\\n        self.rng = torch.Generator().manual_seed(seed)\\n\\n    def __iter__(self):\\n        while True:\\n            tokens = torch.randint(0, self.vocab_size, (self.seq_len + 1,), generator=self.rng)\\n            yield {\\\"input_ids\\\": tokens[:-1], \\\"labels\\\": tokens[1:]}\\n\\n\\ndef get_random_loader(vocab_size: int, batch_size: int, seq_len: int, seed: int = 42):\\n    \\\"\\\"\\\"Random DataLoader for dry-run testing without network access.\\\"\\\"\\\"\\n    ds = RandomTokenDataset(vocab_size, seq_len, seed)\\n    return DataLoader(ds, batch_size=batch_size, num_workers=0)\\n\\n\\ndef get_eval_dataset(name: str, tokenizer, seq_len: int, max_samples: int = None):\\n    \\\"\\\"\\\"Load and pack an evaluation dataset.\\n\\n    Args:\\n        name: \\\"wikitext2\\\" or \\\"c4\\\"\\n        tokenizer: HF tokenizer\\n        seq_len: target sequence length\\n        max_samples: cap on number of packed sequences returned\\n\\n    Returns:\\n        list of dicts with \\\"input_ids\\\" and \\\"labels\\\" tensors (each shape [seq_len])\\n    \\\"\\\"\\\"\\n    if name == \\\"wikitext2\\\":\\n        ds = load_dataset(\\\"wikitext\\\", \\\"wikitext-2-raw-v1\\\", split=\\\"test\\\")\\n        texts = [ex[\\\"text\\\"] for ex in ds if ex[\\\"text\\\"].strip()]\\n    elif name == \\\"c4\\\":\\n        _c4_local = \\\"/root/autodl-tmp/data/c4_val\\\"\\n        if os.path.isdir(_c4_local):\\n            from datasets import load_from_disk\\n            ds = load_from_disk(_c4_local)\\n        else:\\n            ds = load_dataset(\\\"allenai/c4\\\", \\\"en\\\", split=\\\"validation\\\", streaming=True)\\n        texts = []\\n        limit = (max_samples or 200) * 3\\n        for i, ex in enumerate(ds):\\n            if i >= limit:\\n                break\\n            if ex[\\\"text\\\"].strip():\\n                texts.append(ex[\\\"text\\\"])\\n    else:\\n        raise ValueError(f\\\"Unknown dataset: {name}\\\")\\n\\n    all_tokens = []\\n    for text in texts:\\n        all_tokens.extend(tokenizer(text, add_special_tokens=False)[\\\"input_ids\\\"])\\n\\n    examples = []\\n    for i in range(0, len(all_tokens) - seq_len, seq_len):\\n        chunk = all_tokens[i : i + seq_len + 1]\\n        if len(chunk) < seq_len + 1:\\n            break\\n        examples.append(\\n            {\\n                \\\"input_ids\\\": torch.tensor(chunk[:-1], dtype=torch.long),\\n                \\\"labels\\\": torch.tensor(chunk[1:], dtype=torch.long),\\n            }\\n        )\\n        if max_samples and len(examples) >= max_samples:\\n            break\\n\\n    return examples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "2efb9690-0fe4-4e1e-9614-edaa808a55b4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import os\\\\n# Data loading: WikiText-103 (local cache) for training, WikiText-2/C4 for evaluation.\\\\n# All loaders tokenize and pack text into fixed-length sequences.\\\\n\\\\nimport torch\\\\nfrom torch.utils.data import IterableDataset, DataLoader\\\\nfrom datasets import load_dataset\\\\n\\\\n\\\\nclass PackedTokenDataset(IterableDataset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Streams text, tokenizes, and packs into fixed-length (seq_len) chunks.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, hf_dataset, tokenizer, seq_len: int, seed: int = 42):\\\\n        self.dataset = hf_dataset\\\\n        self.tokenizer = tokenizer\\\\n        self.seq_len = seq_len\\\\n        self.seed = seed\\\\n\\\\n    def __iter__(self):\\\\n        buffer = []\\\\n        for example in self.dataset:\\\\n            text = example.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            if not text.strip():\\\\n                continue\\\\n            tokens = self.tokenizer(text, add_special_tokens=False)[\\\\\\\"input_ids\\\\\\\"]\\\\n            buffer.extend(tokens)\\\\n            while len(buffer) >= self.seq_len + 1:\\\\n                chunk = buffer[: self.seq_len + 1]\\\\n                buffer = buffer[self.seq_len + 1 :]\\\\n                input_ids = torch.tensor(chunk[:-1], dtype=torch.long)\\\\n                labels = torch.tensor(chunk[1:], dtype=torch.long)\\\\n                yield {\\\\\\\"input_ids\\\\\\\": input_ids, \\\\\\\"labels\\\\\\\": labels}\\\\n\\\\n\\\\ndef get_calibration_loader(tokenizer, batch_size: int, seq_len: int, seed: int = 42,\\\\n                          dataset_name: str = \\\\\\\"wikitext-103\\\\\\\"):\\\\n    if dataset_name == \\\\\\\"wikitext-103\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"wikitext\\\\\\\", \\\\\\\"wikitext-103-raw-v1\\\\\\\", split=\\\\\\\"train\\\\\\\")\\\\n        ds = ds.shuffle(seed=seed)\\\\n    elif dataset_name == \\\\\\\"c4\\\\\\\":\\\\n        _c4_local = \\\\\\\"/root/autodl-tmp/data/c4_val\\\\\\\"\\\\n        if os.path.isdir(_c4_local):\\\\n            from datasets import load_from_disk\\\\n            ds = load_from_disk(_c4_local)\\\\n            ds = ds.shuffle(seed=seed)\\\\n        else:\\\\n            ds = load_dataset(\\\\\\\"allenai/c4\\\\\\\", \\\\\\\"en\\\\\\\", split=\\\\\\\"train\\\\\\\", streaming=True)\\\\n            ds = ds.shuffle(seed=seed, buffer_size=10000)\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown dataset: {dataset_name}\\\\\\\")\\\\n    packed = PackedTokenDataset(ds, tokenizer, seq_len, seed)\\\\n    return DataLoader(packed, batch_size=batch_size, num_workers=0)\\\\n\\\\n\\\\n\\\\nclass RandomTokenDataset(IterableDataset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Random token data for dry-run testing.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, vocab_size: int, seq_len: int, seed: int = 42):\\\\n        self.vocab_size = vocab_size\\\\n        self.seq_len = seq_len\\\\n        self.rng = torch.Generator().manual_seed(seed)\\\\n\\\\n    def __iter__(self):\\\\n        while True:\\\\n            tokens = torch.randint(0, self.vocab_size, (self.seq_len + 1,), generator=self.rng)\\\\n            yield {\\\\\\\"input_ids\\\\\\\": tokens[:-1], \\\\\\\"labels\\\\\\\": tokens[1:]}\\\\n\\\\n\\\\ndef get_random_loader(vocab_size: int, batch_size: int, seq_len: int, seed: int = 42):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Random DataLoader for dry-run testing without network access.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ds = RandomTokenDataset(vocab_size, seq_len, seed)\\\\n    return DataLoader(ds, batch_size=batch_size, num_workers=0)\\\\n\\\\n\\\\ndef get_eval_dataset(name: str, tokenizer, seq_len: int, max_samples: int = None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and pack an evaluation dataset.\\\\n\\\\n    Args:\\\\n        name: \\\\\\\"wikitext2\\\\\\\" or \\\\\\\"c4\\\\\\\"\\\\n        tokenizer: HF tokenizer\\\\n        seq_len: target sequence length\\\\n        max_samples: cap on number of packed sequences returned\\\\n\\\\n    Returns:\\\\n        list of dicts with \\\\\\\"input_ids\\\\\\\" and \\\\\\\"labels\\\\\\\" tensors (each shape [seq_len])\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if name == \\\\\\\"wikitext2\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"wikitext\\\\\\\", \\\\\\\"wikitext-2-raw-v1\\\\\\\", split=\\\\\\\"test\\\\\\\")\\\\n        texts = [ex[\\\\\\\"text\\\\\\\"] for ex in ds if ex[\\\\\\\"text\\\\\\\"].strip()]\\\\n    elif name == \\\\\\\"c4\\\\\\\":\\\\n        _c4_local = \\\\\\\"/root/autodl-tmp/data/c4_val\\\\\\\"\\\\n        if os.path.isdir(_c4_local):\\\\n            from datasets import load_from_disk\\\\n            ds = load_from_disk(_c4_local)\\\\n        else:\\\\n            ds = load_dataset(\\\\\\\"allenai/c4\\\\\\\", \\\\\\\"en\\\\\\\", split=\\\\\\\"validation\\\\\\\", streaming=True)\\\\n        texts = []\\\\n        limit = (max_samples or 200) * 3\\\\n        for i, ex in enumerate(ds):\\\\n            if i >= limit:\\\\n                break\\\\n            if ex[\\\\\\\"text\\\\\\\"].strip():\\\\n                texts.append(ex[\\\\\\\"text\\\\\\\"])\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown dataset: {name}\\\\\\\")\\\\n\\\\n    all_tokens = []\\\\n    for text in texts:\\\\n        all_tokens.extend(tokenizer(text, add_special_tokens=False)[\\\\\\\"input_ids\\\\\\\"])\\\\n\\\\n    examples = []\\\\n    for i in range(0, len(all_tokens) - seq_len, seq_len):\\\\n        chunk = all_tokens[i : i + seq_len + 1]\\\\n        if len(chunk) < seq_len + 1:\\\\n            break\\\\n        examples.append(\\\\n            {\\\\n                \\\\\\\"input_ids\\\\\\\": torch.tensor(chunk[:-1], dtype=torch.long),\\\\n                \\\\\\\"labels\\\\\\\": torch.tensor(chunk[1:], dtype=torch.long),\\\\n            }\\\\n        )\\\\n        if max_samples and len(examples) >= max_samples:\\\\n            break\\\\n\\\\n    return examples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import os\\n# Data loading: WikiText-103 (local cache) for training, WikiText-2/C4 for evaluation.\\n# All loaders tokenize and pack text into fixed-length sequences.\\n\\nimport torch\\nfrom torch.utils.data import IterableDataset, DataLoader\\nfrom datasets import load_dataset\\n\\n\\nclass PackedTokenDataset(IterableDataset):\\n    \\\"\\\"\\\"Streams text, tokenizes, and packs into fixed-length (seq_len) chunks.\\\"\\\"\\\"\\n\\n    def __init__(self, hf_dataset, tokenizer, seq_len: int, seed: int = 42):\\n        self.dataset = hf_dataset\\n        self.tokenizer = tokenizer\\n        self.seq_len = seq_len\\n        self.seed = seed\\n\\n    def __iter__(self):\\n        buffer = []\\n        for example in self.dataset:\\n            text = example.get(\\\"text\\\", \\\"\\\")\\n            if not text.strip():\\n                continue\\n            tokens = self.tokenizer(text, add_special_tokens=False)[\\\"input_ids\\\"]\\n            buffer.extend(tokens)\\n            while len(buffer) >= self.seq_len + 1:\\n                chunk = buffer[: self.seq_len + 1]\\n                buffer = buffer[self.seq_len + 1 :]\\n                input_ids = torch.tensor(chunk[:-1], dtype=torch.long)\\n                labels = torch.tensor(chunk[1:], dtype=torch.long)\\n                yield {\\\"input_ids\\\": input_ids, \\\"labels\\\": labels}\\n\\n\\ndef get_calibration_loader(tokenizer, batch_size: int, seq_len: int, seed: int = 42,\\n                          dataset_name: str = \\\"wikitext-103\\\"):\\n    if dataset_name == \\\"wikitext-103\\\":\\n        ds = load_dataset(\\\"wikitext\\\", \\\"wikitext-103-raw-v1\\\", split=\\\"train\\\")\\n        ds = ds.shuffle(seed=seed)\\n    elif dataset_name == \\\"c4\\\":\\n        _c4_local = \\\"/root/autodl-tmp/data/c4_val\\\"\\n        if os.path.isdir(_c4_local):\\n            from datasets import load_from_disk\\n            ds = load_from_disk(_c4_local)\\n            ds = ds.shuffle(seed=seed)\\n        else:\\n            ds = load_dataset(\\\"allenai/c4\\\", \\\"en\\\", split=\\\"train\\\", streaming=True)\\n            ds = ds.shuffle(seed=seed, buffer_size=10000)\\n    else:\\n        raise ValueError(f\\\"Unknown dataset: {dataset_name}\\\")\\n    packed = PackedTokenDataset(ds, tokenizer, seq_len, seed)\\n    return DataLoader(packed, batch_size=batch_size, num_workers=0)\\n\\n\\n\\nclass RandomTokenDataset(IterableDataset):\\n    \\\"\\\"\\\"Random token data for dry-run testing.\\\"\\\"\\\"\\n\\n    def __init__(self, vocab_size: int, seq_len: int, seed: int = 42):\\n        self.vocab_size = vocab_size\\n        self.seq_len = seq_len\\n        self.rng = torch.Generator().manual_seed(seed)\\n\\n    def __iter__(self):\\n        while True:\\n            tokens = torch.randint(0, self.vocab_size, (self.seq_len + 1,), generator=self.rng)\\n            yield {\\\"input_ids\\\": tokens[:-1], \\\"labels\\\": tokens[1:]}\\n\\n\\ndef get_random_loader(vocab_size: int, batch_size: int, seq_len: int, seed: int = 42):\\n    \\\"\\\"\\\"Random DataLoader for dry-run testing without network access.\\\"\\\"\\\"\\n    ds = RandomTokenDataset(vocab_size, seq_len, seed)\\n    return DataLoader(ds, batch_size=batch_size, num_workers=0)\\n\\n\\ndef get_eval_dataset(name: str, tokenizer, seq_len: int, max_samples: int = None):\\n    \\\"\\\"\\\"Load and pack an evaluation dataset.\\n\\n    Args:\\n        name: \\\"wikitext2\\\" or \\\"c4\\\"\\n        tokenizer: HF tokenizer\\n        seq_len: target sequence length\\n        max_samples: cap on number of packed sequences returned\\n\\n    Returns:\\n        list of dicts with \\\"input_ids\\\" and \\\"labels\\\" tensors (each shape [seq_len])\\n    \\\"\\\"\\\"\\n    if name == \\\"wikitext2\\\":\\n        ds = load_dataset(\\\"wikitext\\\", \\\"wikitext-2-raw-v1\\\", split=\\\"test\\\")\\n        texts = [ex[\\\"text\\\"] for ex in ds if ex[\\\"text\\\"].strip()]\\n    elif name == \\\"c4\\\":\\n        _c4_local = \\\"/root/autodl-tmp/data/c4_val\\\"\\n        if os.path.isdir(_c4_local):\\n            from datasets import load_from_disk\\n            ds = load_from_disk(_c4_local)\\n        else:\\n            ds = load_dataset(\\\"allenai/c4\\\", \\\"en\\\", split=\\\"validation\\\", streaming=True)\\n        texts = []\\n        limit = (max_samples or 200) * 3\\n        for i, ex in enumerate(ds):\\n            if i >= limit:\\n                break\\n            if ex[\\\"text\\\"].strip():\\n                texts.append(ex[\\\"text\\\"])\\n    else:\\n        raise ValueError(f\\\"Unknown dataset: {name}\\\")\\n\\n    all_tokens = []\\n    for text in texts:\\n        all_tokens.extend(tokenizer(text, add_special_tokens=False)[\\\"input_ids\\\"])\\n\\n    examples = []\\n    for i in range(0, len(all_tokens) - seq_len, seq_len):\\n        chunk = all_tokens[i : i + seq_len + 1]\\n        if len(chunk) < seq_len + 1:\\n            break\\n        examples.append(\\n            {\\n                \\\"input_ids\\\": torch.tensor(chunk[:-1], dtype=torch.long),\\n                \\\"labels\\\": torch.tensor(chunk[1:], dtype=torch.long),\\n            }\\n        )\\n        if max_samples and len(examples) >= max_samples:\\n            break\\n\\n    return examples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, `data_utils.py` already has `get_eval_dataset` that supports C4. Now let me look at more of evaluate.py to see the PPL computation, and check the `quick_eval.py` or `batch_eval.py` which might have cleaner PPL evaluation code.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "adce7274-5a1d-4af1-91c1-3863abc9bb9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUqUfT4HtCNnsw6LLmLGvL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2369,
+      "cache_read_input_tokens": 29740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2369
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+`data_utils.py` already supports C4 loading. Let me check how PPL is computed in the evaluate scripts and how the predictor/TEAL forward passes work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "25c93f74-e0dd-46dd-afc8-0c56d5615b71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUqUfT4HtCNnsw6LLmLGvL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2369,
+      "cache_read_input_tokens": 29740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2369
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HEA2iU6AxjHACbY1W5KUUi`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -n \"ppl\\|perplexity\\|cross_entropy\\|nll\" /root/distill_sparse_swiglu/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "9d893244-87a0-4af8-bef7-afa0463afa85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUqUfT4HtCNnsw6LLmLGvL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2369,
+      "cache_read_input_tokens": 29740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2369
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T19:12:32.872Z_
+
+<details><summary>↩ Tool result · `toolu_01HEA2iU6AxjHACbY1W5KUUi`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "c23fa17c-fc38-44f6-a42f-67175845ce83",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Aqhb5fxwUHEBqLjnjtZcmo`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/distill_sparse_swiglu/src/quick_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "13e0314b-f207-445e-a498-4b93f4ad1b21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUqUfT4HtCNnsw6LLmLGvL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2369,
+      "cache_read_input_tokens": 29740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2369
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T19:12:33.612Z_
+
+<details><summary>↩ Tool result · `toolu_01Aqhb5fxwUHEBqLjnjtZcmo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Quick eval for remaining conditions: teal_vanilla, wina, rsparse, uniform_50, plus sparsity70 TEAL.\\\"\\\"\\\"\\nimport os, sys, json, time, torch, torch.nn.functional as F\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom data_utils import get_eval_dataset\\nfrom evaluate import (vanilla_teal_global_masks, wina_global_masks,\\n                      rsparse_global_masks, _collect_swiglu_magnitudes,\\n                      teal_global_masks, _global_topk_masks)\\nfrom predictor import PredictorWrapper\\n\\nimport importlib.util\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\ndef _best_attn():\\n    if importlib.util.find_spec(\\\"flash_attn\\\"):\\n        return \\\"flash_attention_2\\\"\\n    return \\\"sdpa\\\"\\n\\n@torch.no_grad()\\ndef compute_ppl(model, dataset, device):\\n    total_loss = 0.0\\n    total_tokens = 0\\n    for sample in dataset:\\n        ids = sample[\\\"input_ids\\\"].unsqueeze(0).to(device)\\n        labels = sample[\\\"labels\\\"].unsqueeze(0).to(device)\\n        logits = model(input_ids=ids).logits\\n        loss = F.cross_entropy(logits.view(-1, logits.size(-1)), labels.view(-1), reduction=\\\"sum\\\")\\n        total_loss += loss.item()\\n        total_tokens += labels.numel()\\n    return torch.exp(torch.tensor(total_loss / total_tokens)).item()\\n\\ndevice = torch.device(\\\"cuda:0\\\")\\nMODEL_PATH = \\\"/root/autodl-tmp/models/llama-3.1-8b\\\"\\n\\nprint(\\\"Loading model...\\\", flush=True)\\ntokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\\nif tokenizer.pad_token is None:\\n    tokenizer.pad_token = tokenizer.eos_token\\nmodel = AutoModelForCausalLM.from_pretrained(\\n    MODEL_PATH, torch_dtype=torch.bfloat16, device_map={\\\"\\\": device},\\n    attn_implementation=_best_attn())\\nmodel.eval()\\nfor p in model.parameters():\\n    p.requires_grad = False\\n\\nprint(\\\"Loading WikiText-2...\\\", flush=True)\\nwt2 = get_eval_dataset(\\\"wikitext2\\\", tokenizer, 2048, 0)\\nprint(f\\\"  {len(wt2)} sequences\\\", flush=True)\\n\\ncalib_ids = torch.stack([s[\\\"input_ids\\\"] for s in wt2[:32]]).to(device)\\n\\nresults = {}\\n\\n# Collect calibration magnitudes\\nprint(\\\"Collecting calibration magnitudes...\\\", flush=True)\\navg_mag = _collect_swiglu_magnitudes(model, calib_ids)\\n\\n# Helper: patch static masks\\ndef patch_and_eval(name, masks):\\n    originals = {}\\n    for idx, layer in enumerate(model.model.layers):\\n        if idx not in masks:\\n            continue\\n        originals[idx] = layer.mlp.forward\\n        mask = masks[idx].to(device=device, dtype=torch.bfloat16).unsqueeze(0).unsqueeze(0)\\n        mlp = layer.mlp\\n        gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\n        def fwd(x, _gp=gp, _up=up, _dp=dp, _af=af, _m=mask):\\n            return _dp(_af(_gp(x)) * _up(x) * _m)\\n        mlp.forward = fwd\\n    t0 = time.time()\\n    ppl = compute_ppl(model, wt2, device)\\n    elapsed = time.time() - t0\\n    for idx, f in originals.items():\\n        model.model.layers[idx].mlp.forward = f\\n    results[name] = {\\\"ppl\\\": round(ppl, 4), \\\"elapsed_s\\\": round(elapsed, 1)}\\n    print(f\\\"  {name}: {ppl:.4f} ({elapsed:.0f}s)\\\", flush=True)\\n    return ppl\\n\\n# 1. Vanilla TEAL\\nprint(\\\"\\\\n[1/5] Vanilla TEAL...\\\", flush=True)\\nmasks = vanilla_teal_global_masks(model, calib_ids, 0.5, avg_mag=avg_mag)\\npatch_and_eval(\\\"teal_vanilla\\\", masks)\\n\\n# 2. WINA\\nprint(\\\"[2/5] WINA...\\\", flush=True)\\nmasks = wina_global_masks(model, calib_ids, 0.5, avg_mag=avg_mag)\\npatch_and_eval(\\\"wina\\\", masks)\\n\\n# 3. R-Sparse\\nprint(\\\"[3/5] R-Sparse...\\\", flush=True)\\nmasks = rsparse_global_masks(model, calib_ids, 0.5, avg_mag=avg_mag)\\npatch_and_eval(\\\"rsparse\\\", masks)\\n\\n# 4. Uniform 50%\\nprint(\\\"[4/5] Uniform 50%...\\\", flush=True)\\nn_layers = len(model.model.layers)\\ninter_dim = model.model.layers[0].mlp.gate_proj.out_features\\nuniform_masks = {}\\nfor li in range(n_layers):\\n    mag = avg_mag[li].float()\\n    nk = max(int(inter_dim * 0.5), 1)\\n    thr = torch.topk(mag, nk).values[-1]\\n    uniform_masks[li] = (mag >= thr).to(torch.bfloat16)\\npatch_and_eval(\\\"uniform_50\\\", uniform_masks)\\n\\n# 5. Sparsity70 TEAL (Part F)\\nprint(\\\"[5/5] Sparsity70 TEAL re-eval...\\\", flush=True)\\nsp70_ckpt = \\\"/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt\\\"\\nif os.path.exists(sp70_ckpt):\\n    wrapper = PredictorWrapper(model.config, model.model.layers)\\n    ckpt = torch.load(sp70_ckpt, map_location=device, weights_only=True)\\n    wrapper.predictors.load_state_dict(ckpt[\\\"predictors\\\"])\\n    wrapper.predictors.to(device=device, dtype=torch.bfloat16)\\n    wrapper.predictors.eval()\\n    wrapper.gumbel_mask.hard = True\\n    sp70_masks = teal_global_masks(wrapper, calib_ids, 0.7)\\n    patch_and_eval(\\\"sparsity70_teal\\\", sp70_masks)\\nelse:\\n    print(\\\"  SKIP: checkpoint not found\\\", flush=True)\\n\\n# Save\\nout_path = \\\"/root/distill_sparse_swiglu/results/plan_007_fixed_baselines.json\\\"\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(results, f, indent=2)\\nprint(f\\\"\\\\nAll results saved to {out_path}\\\", flush=True)\\nprint(json.dumps(results, indent=2), flush=True)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "429d8ccc-0dfd-4cb6-ac80-1ffd69a184a2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Quick eval for remaining conditions: teal_vanilla, wina, rsparse, uniform_50, plus sparsity70 TEAL.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os, sys, json, time, torch, torch.nn.functional as F\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom data_utils import get_eval_dataset\\\\nfrom evaluate import (vanilla_teal_global_masks, wina_global_masks,\\\\n                      rsparse_global_masks, _collect_swiglu_magnitudes,\\\\n                      teal_global_masks, _global_topk_masks)\\\\nfrom predictor import PredictorWrapper\\\\n\\\\nimport importlib.util\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\ndef _best_attn():\\\\n    if importlib.util.find_spec(\\\\\\\"flash_attn\\\\\\\"):\\\\n        return \\\\\\\"flash_attention_2\\\\\\\"\\\\n    return \\\\\\\"sdpa\\\\\\\"\\\\n\\\\n@torch.no_grad()\\\\ndef compute_ppl(model, dataset, device):\\\\n    total_loss = 0.0\\\\n    total_tokens = 0\\\\n    for sample in dataset:\\\\n        ids = sample[\\\\\\\"input_ids\\\\\\\"].unsqueeze(0).to(device)\\\\n        labels = sample[\\\\\\\"labels\\\\\\\"].unsqueeze(0).to(device)\\\\n        logits = model(input_ids=ids).logits\\\\n        loss = F.cross_entropy(logits.view(-1, logits.size(-1)), labels.view(-1), reduction=\\\\\\\"sum\\\\\\\")\\\\n        total_loss += loss.item()\\\\n        total_tokens += labels.numel()\\\\n    return torch.exp(torch.tensor(total_loss / total_tokens)).item()\\\\n\\\\ndevice = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\"\\\\n\\\\nprint(\\\\\\\"Loading model...\\\\\\\", flush=True)\\\\ntokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\\\\nif tokenizer.pad_token is None:\\\\n    tokenizer.pad_token = tokenizer.eos_token\\\\nmodel = AutoModelForCausalLM.from_pretrained(\\\\n    MODEL_PATH, torch_dtype=torch.bfloat16, device_map={\\\\\\\"\\\\\\\": device},\\\\n    attn_implementation=_best_attn())\\\\nmodel.eval()\\\\nfor p in model.parameters():\\\\n    p.requires_grad = False\\\\n\\\\nprint(\\\\\\\"Loading WikiText-2...\\\\\\\", flush=True)\\\\nwt2 = get_eval_dataset(\\\\\\\"wikitext2\\\\\\\", tokenizer, 2048, 0)\\\\nprint(f\\\\\\\"  {len(wt2)} sequences\\\\\\\", flush=True)\\\\n\\\\ncalib_ids = torch.stack([s[\\\\\\\"input_ids\\\\\\\"] for s in wt2[:32]]).to(device)\\\\n\\\\nresults = {}\\\\n\\\\n# Collect calibration magnitudes\\\\nprint(\\\\\\\"Collecting calibration magnitudes...\\\\\\\", flush=True)\\\\navg_mag = _collect_swiglu_magnitudes(model, calib_ids)\\\\n\\\\n# Helper: patch static masks\\\\ndef patch_and_eval(name, masks):\\\\n    originals = {}\\\\n    for idx, layer in enumerate(model.model.layers):\\\\n        if idx not in masks:\\\\n            continue\\\\n        originals[idx] = layer.mlp.forward\\\\n        mask = masks[idx].to(device=device, dtype=torch.bfloat16).unsqueeze(0).unsqueeze(0)\\\\n        mlp = layer.mlp\\\\n        gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\\\n        def fwd(x, _gp=gp, _up=up, _dp=dp, _af=af, _m=mask):\\\\n            return _dp(_af(_gp(x)) * _up(x) * _m)\\\\n        mlp.forward = fwd\\\\n    t0 = time.time()\\\\n    ppl = compute_ppl(model, wt2, device)\\\\n    elapsed = time.time() - t0\\\\n    for idx, f in originals.items():\\\\n        model.model.layers[idx].mlp.forward = f\\\\n    results[name] = {\\\\\\\"ppl\\\\\\\": round(ppl, 4), \\\\\\\"elapsed_s\\\\\\\": round(elapsed, 1)}\\\\n    print(f\\\\\\\"  {name}: {ppl:.4f} ({elapsed:.0f}s)\\\\\\\", flush=True)\\\\n    return ppl\\\\n\\\\n# 1. Vanilla TEAL\\\\nprint(\\\\\\\"\\\\\\\\n[1/5] Vanilla TEAL...\\\\\\\", flush=True)\\\\nmasks = vanilla_teal_global_masks(model, calib_ids, 0.5, avg_mag=avg_mag)\\\\npatch_and_eval(\\\\\\\"teal_vanilla\\\\\\\", masks)\\\\n\\\\n# 2. WINA\\\\nprint(\\\\\\\"[2/5] WINA...\\\\\\\", flush=True)\\\\nmasks = wina_global_masks(model, calib_ids, 0.5, avg_mag=avg_mag)\\\\npatch_and_eval(\\\\\\\"wina\\\\\\\", masks)\\\\n\\\\n# 3. R-Sparse\\\\nprint(\\\\\\\"[3/5] R-Sparse...\\\\\\\", flush=True)\\\\nmasks = rsparse_global_masks(model, calib_ids, 0.5, avg_mag=avg_mag)\\\\npatch_and_eval(\\\\\\\"rsparse\\\\\\\", masks)\\\\n\\\\n# 4. Uniform 50%\\\\nprint(\\\\\\\"[4/5] Uniform 50%...\\\\\\\", flush=True)\\\\nn_layers = len(model.model.layers)\\\\ninter_dim = model.model.layers[0].mlp.gate_proj.out_features\\\\nuniform_masks = {}\\\\nfor li in range(n_layers):\\\\n    mag = avg_mag[li].float()\\\\n    nk = max(int(inter_dim * 0.5), 1)\\\\n    thr = torch.topk(mag, nk).values[-1]\\\\n    uniform_masks[li] = (mag >= thr).to(torch.bfloat16)\\\\npatch_and_eval(\\\\\\\"uniform_50\\\\\\\", uniform_masks)\\\\n\\\\n# 5. Sparsity70 TEAL (Part F)\\\\nprint(\\\\\\\"[5/5] Sparsity70 TEAL re-eval...\\\\\\\", flush=True)\\\\nsp70_ckpt = \\\\\\\"/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt\\\\\\\"\\\\nif os.path.exists(sp70_ckpt):\\\\n    wrapper = PredictorWrapper(model.config, model.model.layers)\\\\n    ckpt = torch.load(sp70_ckpt, map_location=device, weights_only=True)\\\\n    wrapper.predictors.load_state_dict(ckpt[\\\\\\\"predictors\\\\\\\"])\\\\n    wrapper.predictors.to(device=device, dtype=torch.bfloat16)\\\\n    wrapper.predictors.eval()\\\\n    wrapper.gumbel_mask.hard = True\\\\n    sp70_masks = teal_global_masks(wrapper, calib_ids, 0.7)\\\\n    patch_and_eval(\\\\\\\"sparsity70_teal\\\\\\\", sp70_masks)\\\\nelse:\\\\n    print(\\\\\\\"  SKIP: checkpoint not found\\\\\\\", flush=True)\\\\n\\\\n# Save\\\\nout_path = \\\\\\\"/root/distill_sparse_swiglu/results/plan_007_fixed_baselines.json\\\\\\\"\\\\nwith open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\nprint(f\\\\\\\"\\\\\\\\nAll results saved to {out_path}\\\\\\\", flush=True)\\\\nprint(json.dumps(results, indent=2), flush=True)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Quick eval for remaining conditions: teal_vanilla, wina, rsparse, uniform_50, plus sparsity70 TEAL.\\\"\\\"\\\"\\nimport os, sys, json, time, torch, torch.nn.functional as F\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom data_utils import get_eval_dataset\\nfrom evaluate import (vanilla_teal_global_masks, wina_global_masks,\\n                      rsparse_global_masks, _collect_swiglu_magnitudes,\\n                      teal_global_masks, _global_topk_masks)\\nfrom predictor import PredictorWrapper\\n\\nimport importlib.util\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\ndef _best_attn():\\n    if importlib.util.find_spec(\\\"flash_attn\\\"):\\n        return \\\"flash_attention_2\\\"\\n    return \\\"sdpa\\\"\\n\\n@torch.no_grad()\\ndef compute_ppl(model, dataset, device):\\n    total_loss = 0.0\\n    total_tokens = 0\\n    for sample in dataset:\\n        ids = sample[\\\"input_ids\\\"].unsqueeze(0).to(device)\\n        labels = sample[\\\"labels\\\"].unsqueeze(0).to(device)\\n        logits = model(input_ids=ids).logits\\n        loss = F.cross_entropy(logits.view(-1, logits.size(-1)), labels.view(-1), reduction=\\\"sum\\\")\\n        total_loss += loss.item()\\n        total_tokens += labels.numel()\\n    return torch.exp(torch.tensor(total_loss / total_tokens)).item()\\n\\ndevice = torch.device(\\\"cuda:0\\\")\\nMODEL_PATH = \\\"/root/autodl-tmp/models/llama-3.1-8b\\\"\\n\\nprint(\\\"Loading model...\\\", flush=True)\\ntokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\\nif tokenizer.pad_token is None:\\n    tokenizer.pad_token = tokenizer.eos_token\\nmodel = AutoModelForCausalLM.from_pretrained(\\n    MODEL_PATH, torch_dtype=torch.bfloat16, device_map={\\\"\\\": device},\\n    attn_implementation=_best_attn())\\nmodel.eval()\\nfor p in model.parameters():\\n    p.requires_grad = False\\n\\nprint(\\\"Loading WikiText-2...\\\", flush=True)\\nwt2 = get_eval_dataset(\\\"wikitext2\\\", tokenizer, 2048, 0)\\nprint(f\\\"  {len(wt2)} sequences\\\", flush=True)\\n\\ncalib_ids = torch.stack([s[\\\"input_ids\\\"] for s in wt2[:32]]).to(device)\\n\\nresults = {}\\n\\n# Collect calibration magnitudes\\nprint(\\\"Collecting calibration magnitudes...\\\", flush=True)\\navg_mag = _collect_swiglu_magnitudes(model, calib_ids)\\n\\n# Helper: patch static masks\\ndef patch_and_eval(name, masks):\\n    originals = {}\\n    for idx, layer in enumerate(model.model.layers):\\n        if idx not in masks:\\n            continue\\n        originals[idx] = layer.mlp.forward\\n        mask = masks[idx].to(device=device, dtype=torch.bfloat16).unsqueeze(0).unsqueeze(0)\\n        mlp = layer.mlp\\n        gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\n        def fwd(x, _gp=gp, _up=up, _dp=dp, _af=af, _m=mask):\\n            return _dp(_af(_gp(x)) * _up(x) * _m)\\n        mlp.forward = fwd\\n    t0 = time.time()\\n    ppl = compute_ppl(model, wt2, device)\\n    elapsed = time.time() - t0\\n    for idx, f in originals.items():\\n        model.model.layers[idx].mlp.forward = f\\n    results[name] = {\\\"ppl\\\": round(ppl, 4), \\\"elapsed_s\\\": round(elapsed, 1)}\\n    print(f\\\"  {name}: {ppl:.4f} ({elapsed:.0f}s)\\\", flush=True)\\n    return ppl\\n\\n# 1. Vanilla TEAL\\nprint(\\\"\\\\n[1/5] Vanilla TEAL...\\\", flush=True)\\nmasks = vanilla_teal_global_masks(model, calib_ids, 0.5, avg_mag=avg_mag)\\npatch_and_eval(\\\"teal_vanilla\\\", masks)\\n\\n# 2. WINA\\nprint(\\\"[2/5] WINA...\\\", flush=True)\\nmasks = wina_global_masks(model, calib_ids, 0.5, avg_mag=avg_mag)\\npatch_and_eval(\\\"wina\\\", masks)\\n\\n# 3. R-Sparse\\nprint(\\\"[3/5] R-Sparse...\\\", flush=True)\\nmasks = rsparse_global_masks(model, calib_ids, 0.5, avg_mag=avg_mag)\\npatch_and_eval(\\\"rsparse\\\", masks)\\n\\n# 4. Uniform 50%\\nprint(\\\"[4/5] Uniform 50%...\\\", flush=True)\\nn_layers = len(model.model.layers)\\ninter_dim = model.model.layers[0].mlp.gate_proj.out_features\\nuniform_masks = {}\\nfor li in range(n_layers):\\n    mag = avg_mag[li].float()\\n    nk = max(int(inter_dim * 0.5), 1)\\n    thr = torch.topk(mag, nk).values[-1]\\n    uniform_masks[li] = (mag >= thr).to(torch.bfloat16)\\npatch_and_eval(\\\"uniform_50\\\", uniform_masks)\\n\\n# 5. Sparsity70 TEAL (Part F)\\nprint(\\\"[5/5] Sparsity70 TEAL re-eval...\\\", flush=True)\\nsp70_ckpt = \\\"/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt\\\"\\nif os.path.exists(sp70_ckpt):\\n    wrapper = PredictorWrapper(model.config, model.model.layers)\\n    ckpt = torch.load(sp70_ckpt, map_location=device, weights_only=True)\\n    wrapper.predictors.load_state_dict(ckpt[\\\"predictors\\\"])\\n    wrapper.predictors.to(device=device, dtype=torch.bfloat16)\\n    wrapper.predictors.eval()\\n    wrapper.gumbel_mask.hard = True\\n    sp70_masks = teal_global_masks(wrapper, calib_ids, 0.7)\\n    patch_and_eval(\\\"sparsity70_teal\\\", sp70_masks)\\nelse:\\n    print(\\\"  SKIP: checkpoint not found\\\", flush=True)\\n\\n# Save\\nout_path = \\\"/root/distill_sparse_swiglu/results/plan_007_fixed_baselines.json\\\"\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(results, f, indent=2)\\nprint(f\\\"\\\\nAll results saved to {out_path}\\\", flush=True)\\nprint(json.dumps(results, indent=2), flush=True)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the `compute_ppl` function from `quick_eval.py` and the data loading from `data_utils.py`. I also see how vanilla TEAL is implemented and how the predictor masks are generated. Now let me check:
+1. The `predictor.py` to understand the PredictorWrapper
+2. The evaluate.py for the `vanilla_teal_global_masks` function
+3. The checkpoint that exists
+
+Let me also look at the evaluate.py around the `vanilla_teal_global_masks` function, and the predictor forward pass logic.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "e7107b49-30c9-48c9-b5b0-f4802e3eab44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JNwBtJY7zYGfUPm1HXN4D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2884,
+      "cache_read_input_tokens": 32109,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2884
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Now let me check the predictor forward and the `vanilla_teal_global_masks` implementation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "743b917d-4379-43c4-b1d8-ba553211083d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JNwBtJY7zYGfUPm1HXN4D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2884,
+      "cache_read_input_tokens": 32109,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2884
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012z46ZWGZLMKPXQszD4AeQz`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -n \"vanilla_teal_global_masks\\|def forward_sparse\\|def forward_kl\" /root/distill_sparse_swiglu/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "a892412f-999b-437b-950d-b6b610f00a50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JNwBtJY7zYGfUPm1HXN4D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2884,
+      "cache_read_input_tokens": 32109,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2884
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T19:12:39.888Z_
+
+<details><summary>↩ Tool result · `toolu_012z46ZWGZLMKPXQszD4AeQz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "28be004a-d498-4502-950e-02a4a5462ac9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RVgC6FziPBbVUJ3NtSL8Cg`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "head -100 /root/distill_sparse_swiglu/src/predictor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "25bdedd3-cc14-40f0-84aa-24534a29586f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JNwBtJY7zYGfUPm1HXN4D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2884,
+      "cache_read_input_tokens": 32109,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2884
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T19:12:40.838Z_
+
+<details><summary>↩ Tool result · `toolu_01RVgC6FziPBbVUJ3NtSL8Cg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Sparsity predictor architecture: bottleneck MLP + Gumbel-sigmoid/STE mask + model wrapper.\\n# Compensation network: per-layer MLP correcting sparse MLP output errors (FastForward-style).\\n# Input: hidden_states (batch, seq, hidden_size) -> Output: mask logits (batch, seq, intermediate_size)\\n\\nimport torch\\nimport torch.nn as nn\\n\\n\\nclass SparsityPredictor(nn.Module):\\n    \\\"\\\"\\\"Rank-bottleneck MLP predicting SwiGLU sparsity masks.\\\"\\\"\\\"\\n\\n    def __init__(self, hidden_size: int, intermediate_size: int, bottleneck_size: int = 128):\\n        super().__init__()\\n        self.down = nn.Linear(hidden_size, bottleneck_size)\\n        self.act = nn.GELU()\\n        self.up = nn.Linear(bottleneck_size, intermediate_size)\\n\\n    def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:\\n        return self.up(self.act(self.down(hidden_states)))\\n\\n\\nclass CompensationHead(nn.Module):\\n    \\\"\\\"\\\"Per-layer MLP predicting the output error introduced by sparsification.\\n\\n    Takes MLP input hidden state, outputs correction added to sparse MLP output.\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, hidden_size: int, bottleneck_size: int = 256):\\n        super().__init__()\\n        self.net = nn.Sequential(\\n            nn.Linear(hidden_size, bottleneck_size),\\n            nn.GELU(),\\n            nn.Linear(bottleneck_size, hidden_size),\\n        )\\n\\n    def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:\\n        return self.net(hidden_states)\\n\\n\\nclass CompensationNetwork(nn.Module):\\n    \\\"\\\"\\\"Per-layer compensation heads correcting sparse MLP output errors.\\\"\\\"\\\"\\n\\n    def __init__(self, num_layers: int, hidden_size: int, bottleneck_size: int = 256):\\n        super().__init__()\\n        self.heads = nn.ModuleList([\\n            CompensationHead(hidden_size, bottleneck_size)\\n            for _ in range(num_layers)\\n        ])\\n\\n    def forward_layer(self, layer_idx: int, hidden_states: torch.Tensor) -> torch.Tensor:\\n        return self.heads[layer_idx](hidden_states)\\n\\n\\nclass GumbelSigmoidMask(nn.Module):\\n    \\\"\\\"\\\"Differentiable binary mask via Gumbel-sigmoid relaxation.\\n\\n    Training: soft mask with Gumbel noise and temperature annealing.\\n    Inference: hard threshold (sigmoid(logits) > 0.5 <=> logits > 0).\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, tau: float = 1.0, hard: bool = False):\\n        super().__init__()\\n        self.tau = tau\\n        self.hard = hard\\n\\n    def forward(self, logits: torch.Tensor) -> torch.Tensor:\\n        if self.training and not self.hard:\\n            u = torch.rand_like(logits).clamp(1e-6, 1 - 1e-6)\\n            gumbel_noise = -torch.log(-torch.log(u))\\n            y_soft = torch.sigmoid((logits + gumbel_noise) / self.tau)\\n            return y_soft\\n        else:\\n            return (logits > 0).to(logits.dtype)\\n\\n\\n\\nclass STEMask(nn.Module):\\n    \\\"\\\"\\\"Straight-Through Estimator binary mask.\\n\\n    Forward: hard threshold (sigmoid > 0.5).\\n    Backward: gradient flows through sigmoid (vanilla STE).\\n    \\\"\\\"\\\"\\n\\n    def forward(self, logits: torch.Tensor) -> torch.Tensor:\\n        if self.training:\\n            sigmoid_out = torch.sigmoid(logits)\\n            hard = (sigmoid_out > 0.5).to(logits.dtype)\\n            return hard - sigmoid_out.detach() + sigmoid_out\\n        else:\\n            return (logits > 0).to(logits.dtype)\\n\\n\\n\\nclass PredictorWrapper(nn.Module):\\n    \\\"\\\"\\\"Wraps a frozen LlamaForCausalLM with per-layer sparsity predictors.\\n\\n    Monkey-patches each MLP to optionally apply a predicted mask on the\\n    SwiGLU intermediate activation (act(gate_proj(x)) * up_proj(x)) before down_proj.\\n\\n    Modes:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "dd497394-e32f-4cfe-8225-47bdbb6c3d58",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Sparsity predictor architecture: bottleneck MLP + Gumbel-sigmoid/STE mask + model wrapper.\\\\n# Compensation network: per-layer MLP correcting sparse MLP output errors (FastForward-style).\\\\n# Input: hidden_states (batch, seq, hidden_size) -> Output: mask logits (batch, seq, intermediate_size)\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\n\\\\n\\\\nclass SparsityPredictor(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Rank-bottleneck MLP predicting SwiGLU sparsity masks.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, hidden_size: int, intermediate_size: int, bottleneck_size: int = 128):\\\\n        super().__init__()\\\\n        self.down = nn.Linear(hidden_size, bottleneck_size)\\\\n        self.act = nn.GELU()\\\\n        self.up = nn.Linear(bottleneck_size, intermediate_size)\\\\n\\\\n    def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:\\\\n        return self.up(self.act(self.down(hidden_states)))\\\\n\\\\n\\\\nclass CompensationHead(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Per-layer MLP predicting the output error introduced by sparsification.\\\\n\\\\n    Takes MLP input hidden state, outputs correction added to sparse MLP output.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, hidden_size: int, bottleneck_size: int = 256):\\\\n        super().__init__()\\\\n        self.net = nn.Sequential(\\\\n            nn.Linear(hidden_size, bottleneck_size),\\\\n            nn.GELU(),\\\\n            nn.Linear(bottleneck_size, hidden_size),\\\\n        )\\\\n\\\\n    def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:\\\\n        return self.net(hidden_states)\\\\n\\\\n\\\\nclass CompensationNetwork(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Per-layer compensation heads correcting sparse MLP output errors.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, num_layers: int, hidden_size: int, bottleneck_size: int = 256):\\\\n        super().__init__()\\\\n        self.heads = nn.ModuleList([\\\\n            CompensationHead(hidden_size, bottleneck_size)\\\\n            for _ in range(num_layers)\\\\n        ])\\\\n\\\\n    def forward_layer(self, layer_idx: int, hidden_states: torch.Tensor) -> torch.Tensor:\\\\n        return self.heads[layer_idx](hidden_states)\\\\n\\\\n\\\\nclass GumbelSigmoidMask(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Differentiable binary mask via Gumbel-sigmoid relaxation.\\\\n\\\\n    Training: soft mask with Gumbel noise and temperature annealing.\\\\n    Inference: hard threshold (sigmoid(logits) > 0.5 <=> logits > 0).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, tau: float = 1.0, hard: bool = False):\\\\n        super().__init__()\\\\n        self.tau = tau\\\\n        self.hard = hard\\\\n\\\\n    def forward(self, logits: torch.Tensor) -> torch.Tensor:\\\\n        if self.training and not self.hard:\\\\n            u = torch.rand_like(logits).clamp(1e-6, 1 - 1e-6)\\\\n            gumbel_noise = -torch.log(-torch.log(u))\\\\n            y_soft = torch.sigmoid((logits + gumbel_noise) / self.tau)\\\\n            return y_soft\\\\n        else:\\\\n            return (logits > 0).to(logits.dtype)\\\\n\\\\n\\\\n\\\\nclass STEMask(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Straight-Through Estimator binary mask.\\\\n\\\\n    Forward: hard threshold (sigmoid > 0.5).\\\\n    Backward: gradient flows through sigmoid (vanilla STE).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def forward(self, logits: torch.Tensor) -> torch.Tensor:\\\\n        if self.training:\\\\n            sigmoid_out = torch.sigmoid(logits)\\\\n            hard = (sigmoid_out > 0.5).to(logits.dtype)\\\\n            return hard - sigmoid_out.detach() + sigmoid_out\\\\n        else:\\\\n            return (logits > 0).to(logits.dtype)\\\\n\\\\n\\\\n\\\\nclass PredictorWrapper(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Wraps a frozen LlamaForCausalLM with per-layer sparsity predictors.\\\\n\\\\n    Monkey-patches each MLP to optionally apply a predicted mask on the\\\\n    SwiGLU intermediate activation (act(gate_proj(x)) * up_proj(x)) before down_proj.\\\\n\\\\n    Modes:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# Sparsity predictor architecture: bottleneck MLP + Gumbel-sigmoid/STE mask + model wrapper.\\n# Compensation network: per-layer MLP correcting sparse MLP output errors (FastForward-style).\\n# Input: hidden_states (batch, seq, hidden_size) -> Output: mask logits (batch, seq, intermediate_size)\\n\\nimport torch\\nimport torch.nn as nn\\n\\n\\nclass SparsityPredictor(nn.Module):\\n    \\\"\\\"\\\"Rank-bottleneck MLP predicting SwiGLU sparsity masks.\\\"\\\"\\\"\\n\\n    def __init__(self, hidden_size: int, intermediate_size: int, bottleneck_size: int = 128):\\n        super().__init__()\\n        self.down = nn.Linear(hidden_size, bottleneck_size)\\n        self.act = nn.GELU()\\n        self.up = nn.Linear(bottleneck_size, intermediate_size)\\n\\n    def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:\\n        return self.up(self.act(self.down(hidden_states)))\\n\\n\\nclass CompensationHead(nn.Module):\\n    \\\"\\\"\\\"Per-layer MLP predicting the output error introduced by sparsification.\\n\\n    Takes MLP input hidden state, outputs correction added to sparse MLP output.\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, hidden_size: int, bottleneck_size: int = 256):\\n        super().__init__()\\n        self.net = nn.Sequential(\\n            nn.Linear(hidden_size, bottleneck_size),\\n            nn.GELU(),\\n            nn.Linear(bottleneck_size, hidden_size),\\n        )\\n\\n    def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:\\n        return self.net(hidden_states)\\n\\n\\nclass CompensationNetwork(nn.Module):\\n    \\\"\\\"\\\"Per-layer compensation heads correcting sparse MLP output errors.\\\"\\\"\\\"\\n\\n    def __init__(self, num_layers: int, hidden_size: int, bottleneck_size: int = 256):\\n        super().__init__()\\n        self.heads = nn.ModuleList([\\n            CompensationHead(hidden_size, bottleneck_size)\\n            for _ in range(num_layers)\\n        ])\\n\\n    def forward_layer(self, layer_idx: int, hidden_states: torch.Tensor) -> torch.Tensor:\\n        return self.heads[layer_idx](hidden_states)\\n\\n\\nclass GumbelSigmoidMask(nn.Module):\\n    \\\"\\\"\\\"Differentiable binary mask via Gumbel-sigmoid relaxation.\\n\\n    Training: soft mask with Gumbel noise and temperature annealing.\\n    Inference: hard threshold (sigmoid(logits) > 0.5 <=> logits > 0).\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, tau: float = 1.0, hard: bool = False):\\n        super().__init__()\\n        self.tau = tau\\n        self.hard = hard\\n\\n    def forward(self, logits: torch.Tensor) -> torch.Tensor:\\n        if self.training and not self.hard:\\n            u = torch.rand_like(logits).clamp(1e-6, 1 - 1e-6)\\n            gumbel_noise = -torch.log(-torch.log(u))\\n            y_soft = torch.sigmoid((logits + gumbel_noise) / self.tau)\\n            return y_soft\\n        else:\\n            return (logits > 0).to(logits.dtype)\\n\\n\\n\\nclass STEMask(nn.Module):\\n    \\\"\\\"\\\"Straight-Through Estimator binary mask.\\n\\n    Forward: hard threshold (sigmoid > 0.5).\\n    Backward: gradient flows through sigmoid (vanilla STE).\\n    \\\"\\\"\\\"\\n\\n    def forward(self, logits: torch.Tensor) -> torch.Tensor:\\n        if self.training:\\n            sigmoid_out = torch.sigmoid(logits)\\n            hard = (sigmoid_out > 0.5).to(logits.dtype)\\n            return hard - sigmoid_out.detach() + sigmoid_out\\n        else:\\n            return (logits > 0).to(logits.dtype)\\n\\n\\n\\nclass PredictorWrapper(nn.Module):\\n    \\\"\\\"\\\"Wraps a frozen LlamaForCausalLM with per-layer sparsity predictors.\\n\\n    Monkey-patches each MLP to optionally apply a predicted mask on the\\n    SwiGLU intermediate activation (act(gate_proj(x)) * up_proj(x)) before down_proj.\\n\\n    Modes:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CXTVKqZZUmmCWANXZQyy9q`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -n +100 /root/distill_sparse_swiglu/src/predictor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "a3a0aa0c-22fc-4cfc-9296-30a926c5698c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0162dnSx6TXmqDXK9Vd6P7uU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1928,
+      "cache_read_input_tokens": 34993,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1928
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T19:12:44.803Z_
+
+<details><summary>↩ Tool result · `toolu_01CXTVKqZZUmmCWANXZQyy9q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    Modes:\\n        sparse_mode=True:  apply Gumbel-sigmoid mask (training/eval)\\n        sparse_mode=False: passthrough; optionally capture intermediates for BCE\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, model, bottleneck_size: int = 128):\\n        super().__init__()\\n        self.model = model\\n        for p in model.parameters():\\n            p.requires_grad = False\\n\\n        config = model.config\\n        num_layers = config.num_hidden_layers\\n        hidden_size = config.hidden_size\\n        intermediate_size = config.intermediate_size\\n\\n        self.predictors = nn.ModuleList([\\n            SparsityPredictor(hidden_size, intermediate_size, bottleneck_size)\\n            for _ in range(num_layers)\\n        ])\\n        self.gumbel_mask = GumbelSigmoidMask()\\n\\n        self.sparse_mode = True\\n        self.capture_intermediates = False\\n        self._layer_masks = {}\\n        self._layer_intermediates = {}\\n        self._layer_inputs = {}\\n\\n        # Compensation network (set externally, None by default)\\n        self.comp_network = None\\n        self.use_compensation = False\\n\\n        self._patch_mlps()\\n\\n    def _patch_mlps(self):\\n        for layer_idx, layer in enumerate(self.model.model.layers):\\n            self._patch_single_mlp(layer_idx, layer.mlp)\\n\\n    def _patch_single_mlp(self, layer_idx, mlp):\\n        gate_proj = mlp.gate_proj\\n        up_proj = mlp.up_proj\\n        down_proj = mlp.down_proj\\n        act_fn = mlp.act_fn\\n        wrapper = self\\n        predictor = self.predictors[layer_idx]\\n\\n        def patched_forward(x):\\n            gate = act_fn(gate_proj(x))\\n            up = up_proj(x)\\n            intermediate = gate * up\\n\\n            if wrapper.sparse_mode:\\n                logits = predictor(x)\\n                mask = wrapper.gumbel_mask(logits)\\n                wrapper._layer_masks[layer_idx] = mask\\n                result = down_proj(intermediate * mask)\\n                if wrapper.use_compensation and wrapper.comp_network is not None:\\n                    result = result + wrapper.comp_network.forward_layer(layer_idx, x)\\n                return result\\n            elif wrapper.capture_intermediates:\\n                wrapper._layer_intermediates[layer_idx] = intermediate.detach()\\n                wrapper._layer_inputs[layer_idx] = x.detach()\\n\\n            return down_proj(intermediate)\\n\\n        mlp.forward = patched_forward\\n\\n    def forward(self, input_ids, attention_mask=None, labels=None):\\n        self._layer_masks.clear()\\n        return self.model(\\n            input_ids=input_ids,\\n            attention_mask=attention_mask,\\n            labels=labels,\\n        )\\n\\n    def forward_dense(self, input_ids, attention_mask=None, capture_intermediates=False):\\n        \\\"\\\"\\\"Forward without masks. Optionally captures per-layer intermediates & inputs.\\\"\\\"\\\"\\n        self.sparse_mode = False\\n        self.capture_intermediates = capture_intermediates\\n        self._layer_intermediates.clear()\\n        self._layer_inputs.clear()\\n        with torch.no_grad():\\n            outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)\\n        self.sparse_mode = True\\n        self.capture_intermediates = False\\n        return outputs\\n\\n    def forward_sparse(self, input_ids, attention_mask=None, labels=None):\\n        \\\"\\\"\\\"Forward with predicted sparsity masks.\\\"\\\"\\\"\\n        self.sparse_mode = True\\n        return self.forward(input_ids, attention_mask, labels)\\n\\n    def get_masks(self):\\n        return dict(self._layer_masks)\\n\\n    def get_intermediates(self):\\n        return dict(self._layer_intermediates)\\n\\n    def get_layer_inputs(self):\\n        return dict(self._layer_inputs)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "5c6cdc7d-c9b7-457c-b406-b3f01218cef1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    Modes:\\\\n        sparse_mode=True:  apply Gumbel-sigmoid mask (training/eval)\\\\n        sparse_mode=False: passthrough; optionally capture intermediates for BCE\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, model, bottleneck_size: int = 128):\\\\n        super().__init__()\\\\n        self.model = model\\\\n        for p in model.parameters():\\\\n            p.requires_grad = False\\\\n\\\\n        config = model.config\\\\n        num_layers = config.num_hidden_layers\\\\n        hidden_size = config.hidden_size\\\\n        intermediate_size = config.intermediate_size\\\\n\\\\n        self.predictors = nn.ModuleList([\\\\n            SparsityPredictor(hidden_size, intermediate_size, bottleneck_size)\\\\n            for _ in range(num_layers)\\\\n        ])\\\\n        self.gumbel_mask = GumbelSigmoidMask()\\\\n\\\\n        self.sparse_mode = True\\\\n        self.capture_intermediates = False\\\\n        self._layer_masks = {}\\\\n        self._layer_intermediates = {}\\\\n        self._layer_inputs = {}\\\\n\\\\n        # Compensation network (set externally, None by default)\\\\n        self.comp_network = None\\\\n        self.use_compensation = False\\\\n\\\\n        self._patch_mlps()\\\\n\\\\n    def _patch_mlps(self):\\\\n        for layer_idx, layer in enumerate(self.model.model.layers):\\\\n            self._patch_single_mlp(layer_idx, layer.mlp)\\\\n\\\\n    def _patch_single_mlp(self, layer_idx, mlp):\\\\n        gate_proj = mlp.gate_proj\\\\n        up_proj = mlp.up_proj\\\\n        down_proj = mlp.down_proj\\\\n        act_fn = mlp.act_fn\\\\n        wrapper = self\\\\n        predictor = self.predictors[layer_idx]\\\\n\\\\n        def patched_forward(x):\\\\n            gate = act_fn(gate_proj(x))\\\\n            up = up_proj(x)\\\\n            intermediate = gate * up\\\\n\\\\n            if wrapper.sparse_mode:\\\\n                logits = predictor(x)\\\\n                mask = wrapper.gumbel_mask(logits)\\\\n                wrapper._layer_masks[layer_idx] = mask\\\\n                result = down_proj(intermediate * mask)\\\\n                if wrapper.use_compensation and wrapper.comp_network is not None:\\\\n                    result = result + wrapper.comp_network.forward_layer(layer_idx, x)\\\\n                return result\\\\n            elif wrapper.capture_intermediates:\\\\n                wrapper._layer_intermediates[layer_idx] = intermediate.detach()\\\\n                wrapper._layer_inputs[layer_idx] = x.detach()\\\\n\\\\n            return down_proj(intermediate)\\\\n\\\\n        mlp.forward = patched_forward\\\\n\\\\n    def forward(self, input_ids, attention_mask=None, labels=None):\\\\n        self._layer_masks.clear()\\\\n        return self.model(\\\\n            input_ids=input_ids,\\\\n            attention_mask=attention_mask,\\\\n            labels=labels,\\\\n        )\\\\n\\\\n    def forward_dense(self, input_ids, attention_mask=None, capture_intermediates=False):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Forward without masks. Optionally captures per-layer intermediates & inputs.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        self.sparse_mode = False\\\\n        self.capture_intermediates = capture_intermediates\\\\n        self._layer_intermediates.clear()\\\\n        self._layer_inputs.clear()\\\\n        with torch.no_grad():\\\\n            outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)\\\\n        self.sparse_mode = True\\\\n        self.capture_intermediates = False\\\\n        return outputs\\\\n\\\\n    def forward_sparse(self, input_ids, attention_mask=None, labels=None):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Forward with predicted sparsity masks.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        self.sparse_mode = True\\\\n        return self.forward(input_ids, attention_mask, labels)\\\\n\\\\n    def get_masks(self):\\\\n        return dict(self._layer_masks)\\\\n\\\\n    def get_intermediates(self):\\\\n        return dict(self._layer_intermediates)\\\\n\\\\n    def get_layer_inputs(self):\\\\n        return dict(self._layer_inputs)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    Modes:\\n        sparse_mode=True:  apply Gumbel-sigmoid mask (training/eval)\\n        sparse_mode=False: passthrough; optionally capture intermediates for BCE\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, model, bottleneck_size: int = 128):\\n        super().__init__()\\n        self.model = model\\n        for p in model.parameters():\\n            p.requires_grad = False\\n\\n        config = model.config\\n        num_layers = config.num_hidden_layers\\n        hidden_size = config.hidden_size\\n        intermediate_size = config.intermediate_size\\n\\n        self.predictors = nn.ModuleList([\\n            SparsityPredictor(hidden_size, intermediate_size, bottleneck_size)\\n            for _ in range(num_layers)\\n        ])\\n        self.gumbel_mask = GumbelSigmoidMask()\\n\\n        self.sparse_mode = True\\n        self.capture_intermediates = False\\n        self._layer_masks = {}\\n        self._layer_intermediates = {}\\n        self._layer_inputs = {}\\n\\n        # Compensation network (set externally, None by default)\\n        self.comp_network = None\\n        self.use_compensation = False\\n\\n        self._patch_mlps()\\n\\n    def _patch_mlps(self):\\n        for layer_idx, layer in enumerate(self.model.model.layers):\\n            self._patch_single_mlp(layer_idx, layer.mlp)\\n\\n    def _patch_single_mlp(self, layer_idx, mlp):\\n        gate_proj = mlp.gate_proj\\n        up_proj = mlp.up_proj\\n        down_proj = mlp.down_proj\\n        act_fn = mlp.act_fn\\n        wrapper = self\\n        predictor = self.predictors[layer_idx]\\n\\n        def patched_forward(x):\\n            gate = act_fn(gate_proj(x))\\n            up = up_proj(x)\\n            intermediate = gate * up\\n\\n            if wrapper.sparse_mode:\\n                logits = predictor(x)\\n                mask = wrapper.gumbel_mask(logits)\\n                wrapper._layer_masks[layer_idx] = mask\\n                result = down_proj(intermediate * mask)\\n                if wrapper.use_compensation and wrapper.comp_network is not None:\\n                    result = result + wrapper.comp_network.forward_layer(layer_idx, x)\\n                return result\\n            elif wrapper.capture_intermediates:\\n                wrapper._layer_intermediates[layer_idx] = intermediate.detach()\\n                wrapper._layer_inputs[layer_idx] = x.detach()\\n\\n            return down_proj(intermediate)\\n\\n        mlp.forward = patched_forward\\n\\n    def forward(self, input_ids, attention_mask=None, labels=None):\\n        self._layer_masks.clear()\\n        return self.model(\\n            input_ids=input_ids,\\n            attention_mask=attention_mask,\\n            labels=labels,\\n        )\\n\\n    def forward_dense(self, input_ids, attention_mask=None, capture_intermediates=False):\\n        \\\"\\\"\\\"Forward without masks. Optionally captures per-layer intermediates & inputs.\\\"\\\"\\\"\\n        self.sparse_mode = False\\n        self.capture_intermediates = capture_intermediates\\n        self._layer_intermediates.clear()\\n        self._layer_inputs.clear()\\n        with torch.no_grad():\\n            outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)\\n        self.sparse_mode = True\\n        self.capture_intermediates = False\\n        return outputs\\n\\n    def forward_sparse(self, input_ids, attention_mask=None, labels=None):\\n        \\\"\\\"\\\"Forward with predicted sparsity masks.\\\"\\\"\\\"\\n        self.sparse_mode = True\\n        return self.forward(input_ids, attention_mask, labels)\\n\\n    def get_masks(self):\\n        return dict(self._layer_masks)\\n\\n    def get_intermediates(self):\\n        return dict(self._layer_intermediates)\\n\\n    def get_layer_inputs(self):\\n        return dict(self._layer_inputs)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EV8BxFtt9Vrbk1RJrp5uEG`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -n \"def vanilla_teal\" /root/distill_sparse_swiglu/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "a903b3c9-a326-4476-937c-a328922a827a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0162dnSx6TXmqDXK9Vd6P7uU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1928,
+      "cache_read_input_tokens": 34993,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1928
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T19:12:45.332Z_
+
+<details><summary>↩ Tool result · `toolu_01EV8BxFtt9Vrbk1RJrp5uEG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"195:def vanilla_teal_global_masks(model, input_ids, sparsity_target, calib_batch_size=4,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "5b3723fa-5724-4c78-8772-67213067e9e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"195:def vanilla_teal_global_masks(model, input_ids, sparsity_target, calib_batch_size=4,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"195:def vanilla_teal_global_masks(model, input_ids, sparsity_target, calib_batch_size=4,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013s9dDWzraUi3FQcsQgdTBG`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -n +195 /root/distill_sparse_swiglu/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "3f0c5897-edb2-413f-9ba8-c0bc91b26f7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MW8Y4yf1wRzqPYjxBpNUho",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1610,
+      "cache_read_input_tokens": 36921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1610
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T19:12:48.807Z_
+
+<details><summary>↩ Tool result · `toolu_013s9dDWzraUi3FQcsQgdTBG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def vanilla_teal_global_masks(model, input_ids, sparsity_target, calib_batch_size=4,\\n                               avg_mag=None, allocation=\\\"global_topk\\\"):\\n    \\\"\\\"\\\"Vanilla TEAL: score_j = mean(|act(gate(x))_j * up(x)_j|).\\n\\n    Global greedy allocation by activation magnitude only (no predictor).\\n    Reference: TEAL (Liu et al., ICLR 2025, arxiv 2408.14690)\\n    \\\"\\\"\\\"\\n    if avg_mag is None:\\n        avg_mag = _collect_swiglu_magnitudes(model, input_ids, calib_batch_size)\\n    return _dispatch_masks(avg_mag, sparsity_target, allocation)\\n\\n\\n@torch.no_grad()\\ndef teal_activation_magnitude_masks(model, input_ids, sparsity_target=0.5,\\n                                     step_size=0.05, calib_batch_size=4):\\n    \\\"\\\"\\\"Activation-magnitude scoring with greedy per-layer sparsity allocation.\\n\\n    Scores neurons by mean |SiLU(gate(x)) * up(x)| on calibration data.\\n    Allocates per-layer sparsity by greedily increasing sparsity for the layer\\n    with lowest marginal reconstruction error until the target is reached.\\n\\n    Args:\\n        model: HuggingFace CausalLM with SwiGLU MLP layers.\\n        input_ids: Calibration token IDs, shape (num_seqs, seq_len).\\n        sparsity_target: Target average sparsity across layers (0-1).\\n        step_size: Sparsity granularity for error curve (default 0.05).\\n        calib_batch_size: Batch size for calibration forward passes.\\n\\n    Returns:\\n        dict[int, Tensor]: layer_idx -> 1-D binary mask (intermediate_size,).\\n    \\\"\\\"\\\"\\n    n_layers = len(model.model.layers)\\n    inter_dim = model.model.layers[0].mlp.gate_proj.out_features\\n    device = next(model.parameters()).device\\n\\n    # Collect MLP inputs via hooks\\n    bufs = {i: [] for i in range(n_layers)}\\n    hooks = []\\n    for idx, layer in enumerate(model.model.layers):\\n        def _hook(idx_):\\n            def fn(module, inp, out):\\n                bufs[idx_].append(inp[0].detach().cpu())\\n            return fn\\n        hooks.append(layer.mlp.register_forward_hook(_hook(idx)))\\n\\n    for s in range(0, input_ids.size(0), calib_batch_size):\\n        model(input_ids[s:s + calib_batch_size])\\n\\n    for h in hooks:\\n        h.remove()\\n\\n    mlp_inputs = {i: torch.cat(bufs[i], dim=0) for i in range(n_layers)}\\n    del bufs\\n\\n    # Per-layer: compute mean magnitude and reconstruction error curves\\n    max_sp = 0.90\\n    levels = [round(i * step_size, 4) for i in range(int(max_sp / step_size) + 1)]\\n    if levels[0] != 0.0:\\n        levels.insert(0, 0.0)\\n    error_table = {}\\n    mean_mags = {}\\n    chunk = 4\\n\\n    for li in range(n_layers):\\n        mlp = model.model.layers[li].mlp\\n        gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\n\\n        accum_mag = torch.zeros(inter_dim, dtype=torch.float32)\\n        inter_chunks, dense_chunks = [], []\\n        total_tokens = 0\\n\\n        for s in range(0, mlp_inputs[li].size(0), chunk):\\n            x = mlp_inputs[li][s:s + chunk].to(device)\\n            inter = af(gp(x)) * up(x)\\n            y_dense = dp(inter)\\n            accum_mag += inter.abs().float().sum(dim=(0, 1)).cpu()\\n            total_tokens += x.size(0) * x.size(1)\\n            inter_chunks.append(inter.cpu())\\n            dense_chunks.append(y_dense.cpu())\\n            del x, inter, y_dense\\n\\n        mean_mag = accum_mag / total_tokens\\n        mean_mags[li] = mean_mag\\n        all_inter = torch.cat(inter_chunks, dim=0)\\n        all_dense = torch.cat(dense_chunks, dim=0)\\n        del inter_chunks, dense_chunks\\n\\n        dense_mse = all_dense.float().pow(2).mean().item()\\n        errors = []\\n        for sp in levels:\\n            if sp <= 0.0:\\n                errors.append(0.0)\\n                continue\\n            nk = max(int(inter_dim * (1.0 - sp)), 1)\\n            thr = torch.topk(mean_mag, nk).values[-1]\\n            mask_1d = mean_mag >= thr\\n\\n            total_err = 0.0\\n            total_elem = 0\\n            for s in range(0, all_inter.size(0), chunk):\\n                ic = all_inter[s:s + chunk].to(device)\\n                dc = all_dense[s:s + chunk].to(device)\\n                m = m\\n\\n... [截断: 输出过长，省略 7778 字符] ...\\n\\nghts_only=True)\\n        wrapper.predictors.load_state_dict(ckpt[\\\"predictors\\\"])\\n        wrapper.predictors.to(device=device, dtype=torch.bfloat16)\\n        wrapper.predictors.eval()\\n        wrapper.gumbel_mask.hard = True\\n\\n        print(\\\"Computing TEAL global masks ...\\\")\\n        global_masks = teal_global_masks(wrapper, calib_ids, args.sparsity_target)\\n        _print_mask_stats(\\\"TEAL-predictor\\\", global_masks)\\n\\n        print(\\\"\\\\n[Pred 1/3] True Dense (WikiText-2) ...\\\")\\n        results[\\\"true_dense\\\"] = evaluate_true_dense(model, wt2, device)\\n        print(f\\\"  Perplexity: {results['true_dense']:.2f}\\\")\\n\\n        print(\\\"[Pred 2/3] Predictor Hard Mask (WikiText-2) ...\\\")\\n        results[\\\"predictor\\\"] = evaluate_perplexity(model, wt2, device)\\n        print(f\\\"  Perplexity: {results['predictor']:.2f}\\\")\\n\\n        print(\\\"[Pred 3/3] TEAL Sparse (WikiText-2) ...\\\")\\n        results[\\\"teal_predictor\\\"] = evaluate_perplexity(model, wt2, device, global_masks)\\n        print(f\\\"  Perplexity: {results['teal_predictor']:.2f}\\\")\\n\\n    # ---- Training-free baselines ----\\n    if baselines:\\n        if \\\"true_dense\\\" not in results:\\n            print(\\\"\\\\n[Dense] True Dense (WikiText-2) ...\\\")\\n            results[\\\"true_dense\\\"] = evaluate_true_dense(model, wt2, device)\\n            print(f\\\"  Perplexity: {results['true_dense']:.2f}\\\")\\n\\n        print(\\\"\\\\nCollecting calibration activation magnitudes ...\\\")\\n        avg_mag = _collect_swiglu_magnitudes(model, calib_ids)\\n\\n        for bl in baselines:\\n            if bl == \\\"teal_vanilla\\\":\\n                print(f\\\"\\\\n[Baseline] Vanilla TEAL ...\\\")\\n                masks = vanilla_teal_global_masks(\\n                    model, calib_ids, args.sparsity_target, avg_mag=avg_mag)\\n                _print_mask_stats(\\\"Vanilla-TEAL\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"vanilla_teal\\\"] = ppl\\n\\n            elif bl == \\\"wina\\\":\\n                print(f\\\"\\\\n[Baseline] WINA ...\\\")\\n                masks = wina_global_masks(\\n                    model, calib_ids, args.sparsity_target, avg_mag=avg_mag)\\n                _print_mask_stats(\\\"WINA\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"wina\\\"] = ppl\\n\\n            elif bl == \\\"rsparse\\\":\\n                print(f\\\"\\\\n[Baseline] R-Sparse (svd_rank={args.svd_rank}) ...\\\")\\n                masks = rsparse_global_masks(\\n                    model, calib_ids, args.sparsity_target,\\n                    svd_rank=args.svd_rank, avg_mag=avg_mag)\\n                _print_mask_stats(\\\"R-Sparse\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"rsparse\\\"] = ppl\\n\\n            elif bl == \\\"teal_greedy\\\":\\n                print(f\\\"\\\\n[Baseline] TEAL Greedy Per-Layer ...\\\")\\n                masks = teal_activation_magnitude_masks(\\n                    model, calib_ids, args.sparsity_target)\\n                _print_mask_stats(\\\"TEAL-greedy\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"teal_greedy\\\"] = ppl\\n\\n            elif bl == \\\"wina_greedy\\\":\\n                print(f\\\"\\\\n[Baseline] WINA Greedy Per-Layer ...\\\")\\n                masks = wina_greedy_allocation_masks(\\n                    model, calib_ids, args.sparsity_target, device=device)\\n                _print_mask_stats(\\\"WINA-greedy\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"wina_greedy\\\"] = ppl\\n\\n            else:\\n                print(f\\\"  Unknown baseline: {bl}, skipping\\\")\\n\\n    # ---- Summary ----\\n    print(f\\\"\\\\n=== Summary (sparsity_target={args.sparsity_target*100:.0f}%) ===\\\")\\n    for k, v in results.items():\\n        print(f\\\"  {k}: {v:.2f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "c7f25fde-c32a-4870-ba9d-ec05f2409a40",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def vanilla_teal_global_masks(model, input_ids, sparsity_target, calib_batch_size=4,\\\\n                               avg_mag=None, allocation=\\\\\\\"global_topk\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Vanilla TEAL: score_j = mean(|act(gate(x))_j * up(x)_j|).\\\\n\\\\n    Global greedy allocation by activation magnitude only (no predictor).\\\\n    Reference: TEAL (Liu et al., ICLR 2025, arxiv 2408.14690)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if avg_mag is None:\\\\n        avg_mag = _collect_swiglu_magnitudes(model, input_ids, calib_batch_size)\\\\n    return _dispatch_masks(avg_mag, sparsity_target, allocation)\\\\n\\\\n\\\\n@torch.no_grad()\\\\ndef teal_activation_magnitude_masks(model, input_ids, sparsity_target=0.5,\\\\n                                     step_size=0.05, calib_batch_size=4):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Activation-magnitude scoring with greedy per-layer sparsity allocation.\\\\n\\\\n    Scores neurons by mean |SiLU(gate(x)) * up(x)| on calibration data.\\\\n    Allocates per-layer sparsity by greedily increasing sparsity for the layer\\\\n    with lowest marginal reconstruction error until the target is reached.\\\\n\\\\n    Args:\\\\n        model: HuggingFace CausalLM with SwiGLU MLP layers.\\\\n        input_ids: Calibration token IDs, shape (num_seqs, seq_len).\\\\n        sparsity_target: Target average sparsity across layers (0-1).\\\\n        step_size: Sparsity granularity for error curve (default 0.05).\\\\n        calib_batch_size: Batch size for calibration forward passes.\\\\n\\\\n    Returns:\\\\n        dict[int, Tensor]: layer_idx -> 1-D binary mask (intermediate_size,).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_layers = len(model.model.layers)\\\\n    inter_dim = model.model.layers[0].mlp.gate_proj.out_features\\\\n    device = next(model.parameters()).device\\\\n\\\\n    # Collect MLP inputs via hooks\\\\n    bufs = {i: [] for i in range(n_layers)}\\\\n    hooks = []\\\\n    for idx, layer in enumerate(model.model.layers):\\\\n        def _hook(idx_):\\\\n            def fn(module, inp, out):\\\\n                bufs[idx_].append(inp[0].detach().cpu())\\\\n            return fn\\\\n        hooks.append(layer.mlp.register_forward_hook(_hook(idx)))\\\\n\\\\n    for s in range(0, input_ids.size(0), calib_batch_size):\\\\n        model(input_ids[s:s + calib_batch_size])\\\\n\\\\n    for h in hooks:\\\\n        h.remove()\\\\n\\\\n    mlp_inputs = {i: torch.cat(bufs[i], dim=0) for i in range(n_layers)}\\\\n    del bufs\\\\n\\\\n    # Per-layer: compute mean magnitude and reconstruction error curves\\\\n    max_sp = 0.90\\\\n    levels = [round(i * step_size, 4) for i in range(int(max_sp / step_size) + 1)]\\\\n    if levels[0] != 0.0:\\\\n        levels.insert(0, 0.0)\\\\n    error_table = {}\\\\n    mean_mags = {}\\\\n    chunk = 4\\\\n\\\\n    for li in range(n_layers):\\\\n        mlp = model.model.layers[li].mlp\\\\n        gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\\\n\\\\n        accum_mag = torch.zeros(inter_dim, dtype=torch.float32)\\\\n        inter_chunks, dense_chunks = [], []\\\\n        total_tokens = 0\\\\n\\\\n        for s in range(0, mlp_inputs[li].size(0), chunk):\\\\n            x = mlp_inputs[li][s:s + chunk].to(device)\\\\n            inter = af(gp(x)) * up(x)\\\\n            y_dense = dp(inter)\\\\n            accum_mag += inter.abs().float().sum(dim=(0, 1)).cpu()\\\\n            total_tokens += x.size(0) * x.size(1)\\\\n            inter_chunks.append(inter.cpu())\\\\n            dense_chunks.append(y_dense.cpu())\\\\n            del x, inter, y_dense\\\\n\\\\n        mean_mag = accum_mag / total_tokens\\\\n        mean_mags[li] = mean_mag\\\\n        all_inter = torch.cat(inter_chunks, dim=0)\\\\n        all_dense = torch.cat(dense_chunks, dim=0)\\\\n        del inter_chunks, dense_chunks\\\\n\\\\n        dense_mse = all_dense.float().pow(2).mean().item()\\\\n        errors = []\\\\n        for sp in levels:\\\\n            if sp <= 0.0:\\\\n                errors.append(0.0)\\\\n                continue\\\\n            nk = max(int(inter_dim * (1.0 - sp)), 1)\\\\n            thr = torch.topk(mean_mag, nk).values[-1]\\\\n            mask_1d = mean_mag >= thr\\\\n\\\\n            total_err = 0.0\\\\n            total_elem = 0\\\\n            for s in range(0, all_inter.size(0), chunk):\\\\n                ic = all_inter[s:s + chunk].to(device)\\\\n                dc = all_dense[s:s + chunk].to(device)\\\\n                m = m\\\\n\\\\n... [截断: 输出过长，省略 7778 字符] ...\\\\n\\\\nghts_only=True)\\\\n        wrapper.predictors.load_state_dict(ckpt[\\\\\\\"predictors\\\\\\\"])\\\\n        wrapper.predictors.to(device=device, dtype=torch.bfloat16)\\\\n        wrapper.predictors.eval()\\\\n        wrapper.gumbel_mask.hard = True\\\\n\\\\n        print(\\\\\\\"Computing TEAL global masks ...\\\\\\\")\\\\n        global_masks = teal_global_masks(wrapper, calib_ids, args.sparsity_target)\\\\n        _print_mask_stats(\\\\\\\"TEAL-predictor\\\\\\\", global_masks)\\\\n\\\\n        print(\\\\\\\"\\\\\\\\n[Pred 1/3] True Dense (WikiText-2) ...\\\\\\\")\\\\n        results[\\\\\\\"true_dense\\\\\\\"] = evaluate_true_dense(model, wt2, device)\\\\n        print(f\\\\\\\"  Perplexity: {results['true_dense']:.2f}\\\\\\\")\\\\n\\\\n        print(\\\\\\\"[Pred 2/3] Predictor Hard Mask (WikiText-2) ...\\\\\\\")\\\\n        results[\\\\\\\"predictor\\\\\\\"] = evaluate_perplexity(model, wt2, device)\\\\n        print(f\\\\\\\"  Perplexity: {results['predictor']:.2f}\\\\\\\")\\\\n\\\\n        print(\\\\\\\"[Pred 3/3] TEAL Sparse (WikiText-2) ...\\\\\\\")\\\\n        results[\\\\\\\"teal_predictor\\\\\\\"] = evaluate_perplexity(model, wt2, device, global_masks)\\\\n        print(f\\\\\\\"  Perplexity: {results['teal_predictor']:.2f}\\\\\\\")\\\\n\\\\n    # ---- Training-free baselines ----\\\\n    if baselines:\\\\n        if \\\\\\\"true_dense\\\\\\\" not in results:\\\\n            print(\\\\\\\"\\\\\\\\n[Dense] True Dense (WikiText-2) ...\\\\\\\")\\\\n            results[\\\\\\\"true_dense\\\\\\\"] = evaluate_true_dense(model, wt2, device)\\\\n            print(f\\\\\\\"  Perplexity: {results['true_dense']:.2f}\\\\\\\")\\\\n\\\\n        print(\\\\\\\"\\\\\\\\nCollecting calibration activation magnitudes ...\\\\\\\")\\\\n        avg_mag = _collect_swiglu_magnitudes(model, calib_ids)\\\\n\\\\n        for bl in baselines:\\\\n            if bl == \\\\\\\"teal_vanilla\\\\\\\":\\\\n                print(f\\\\\\\"\\\\\\\\n[Baseline] Vanilla TEAL ...\\\\\\\")\\\\n                masks = vanilla_teal_global_masks(\\\\n                    model, calib_ids, args.sparsity_target, avg_mag=avg_mag)\\\\n                _print_mask_stats(\\\\\\\"Vanilla-TEAL\\\\\\\", masks)\\\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\\\n                print(f\\\\\\\"  Perplexity: {ppl:.2f}\\\\\\\")\\\\n                results[\\\\\\\"vanilla_teal\\\\\\\"] = ppl\\\\n\\\\n            elif bl == \\\\\\\"wina\\\\\\\":\\\\n                print(f\\\\\\\"\\\\\\\\n[Baseline] WINA ...\\\\\\\")\\\\n                masks = wina_global_masks(\\\\n                    model, calib_ids, args.sparsity_target, avg_mag=avg_mag)\\\\n                _print_mask_stats(\\\\\\\"WINA\\\\\\\", masks)\\\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\\\n                print(f\\\\\\\"  Perplexity: {ppl:.2f}\\\\\\\")\\\\n                results[\\\\\\\"wina\\\\\\\"] = ppl\\\\n\\\\n            elif bl == \\\\\\\"rsparse\\\\\\\":\\\\n                print(f\\\\\\\"\\\\\\\\n[Baseline] R-Sparse (svd_rank={args.svd_rank}) ...\\\\\\\")\\\\n                masks = rsparse_global_masks(\\\\n                    model, calib_ids, args.sparsity_target,\\\\n                    svd_rank=args.svd_rank, avg_mag=avg_mag)\\\\n                _print_mask_stats(\\\\\\\"R-Sparse\\\\\\\", masks)\\\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\\\n                print(f\\\\\\\"  Perplexity: {ppl:.2f}\\\\\\\")\\\\n                results[\\\\\\\"rsparse\\\\\\\"] = ppl\\\\n\\\\n            elif bl == \\\\\\\"teal_greedy\\\\\\\":\\\\n                print(f\\\\\\\"\\\\\\\\n[Baseline] TEAL Greedy Per-Layer ...\\\\\\\")\\\\n                masks = teal_activation_magnitude_masks(\\\\n                    model, calib_ids, args.sparsity_target)\\\\n                _print_mask_stats(\\\\\\\"TEAL-greedy\\\\\\\", masks)\\\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\\\n                print(f\\\\\\\"  Perplexity: {ppl:.2f}\\\\\\\")\\\\n                results[\\\\\\\"teal_greedy\\\\\\\"] = ppl\\\\n\\\\n            elif bl == \\\\\\\"wina_greedy\\\\\\\":\\\\n                print(f\\\\\\\"\\\\\\\\n[Baseline] WINA Greedy Per-Layer ...\\\\\\\")\\\\n                masks = wina_greedy_allocation_masks(\\\\n                    model, calib_ids, args.sparsity_target, device=device)\\\\n                _print_mask_stats(\\\\\\\"WINA-greedy\\\\\\\", masks)\\\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\\\n                print(f\\\\\\\"  Perplexity: {ppl:.2f}\\\\\\\")\\\\n                results[\\\\\\\"wina_greedy\\\\\\\"] = ppl\\\\n\\\\n            else:\\\\n                print(f\\\\\\\"  Unknown baseline: {bl}, skipping\\\\\\\")\\\\n\\\\n    # ---- Summary ----\\\\n    print(f\\\\\\\"\\\\\\\\n=== Summary (sparsity_target={args.sparsity_target*100:.0f}%) ===\\\\\\\")\\\\n    for k, v in results.items():\\\\n        print(f\\\\\\\"  {k}: {v:.2f}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def vanilla_teal_global_masks(model, input_ids, sparsity_target, calib_batch_size=4,\\n                               avg_mag=None, allocation=\\\"global_topk\\\"):\\n    \\\"\\\"\\\"Vanilla TEAL: score_j = mean(|act(gate(x))_j * up(x)_j|).\\n\\n    Global greedy allocation by activation magnitude only (no predictor).\\n    Reference: TEAL (Liu et al., ICLR 2025, arxiv 2408.14690)\\n    \\\"\\\"\\\"\\n    if avg_mag is None:\\n        avg_mag = _collect_swiglu_magnitudes(model, input_ids, calib_batch_size)\\n    return _dispatch_masks(avg_mag, sparsity_target, allocation)\\n\\n\\n@torch.no_grad()\\ndef teal_activation_magnitude_masks(model, input_ids, sparsity_target=0.5,\\n                                     step_size=0.05, calib_batch_size=4):\\n    \\\"\\\"\\\"Activation-magnitude scoring with greedy per-layer sparsity allocation.\\n\\n    Scores neurons by mean |SiLU(gate(x)) * up(x)| on calibration data.\\n    Allocates per-layer sparsity by greedily increasing sparsity for the layer\\n    with lowest marginal reconstruction error until the target is reached.\\n\\n    Args:\\n        model: HuggingFace CausalLM with SwiGLU MLP layers.\\n        input_ids: Calibration token IDs, shape (num_seqs, seq_len).\\n        sparsity_target: Target average sparsity across layers (0-1).\\n        step_size: Sparsity granularity for error curve (default 0.05).\\n        calib_batch_size: Batch size for calibration forward passes.\\n\\n    Returns:\\n        dict[int, Tensor]: layer_idx -> 1-D binary mask (intermediate_size,).\\n    \\\"\\\"\\\"\\n    n_layers = len(model.model.layers)\\n    inter_dim = model.model.layers[0].mlp.gate_proj.out_features\\n    device = next(model.parameters()).device\\n\\n    # Collect MLP inputs via hooks\\n    bufs = {i: [] for i in range(n_layers)}\\n    hooks = []\\n    for idx, layer in enumerate(model.model.layers):\\n        def _hook(idx_):\\n            def fn(module, inp, out):\\n                bufs[idx_].append(inp[0].detach().cpu())\\n            return fn\\n        hooks.append(layer.mlp.register_forward_hook(_hook(idx)))\\n\\n    for s in range(0, input_ids.size(0), calib_batch_size):\\n        model(input_ids[s:s + calib_batch_size])\\n\\n    for h in hooks:\\n        h.remove()\\n\\n    mlp_inputs = {i: torch.cat(bufs[i], dim=0) for i in range(n_layers)}\\n    del bufs\\n\\n    # Per-layer: compute mean magnitude and reconstruction error curves\\n    max_sp = 0.90\\n    levels = [round(i * step_size, 4) for i in range(int(max_sp / step_size) + 1)]\\n    if levels[0] != 0.0:\\n        levels.insert(0, 0.0)\\n    error_table = {}\\n    mean_mags = {}\\n    chunk = 4\\n\\n    for li in range(n_layers):\\n        mlp = model.model.layers[li].mlp\\n        gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\n\\n        accum_mag = torch.zeros(inter_dim, dtype=torch.float32)\\n        inter_chunks, dense_chunks = [], []\\n        total_tokens = 0\\n\\n        for s in range(0, mlp_inputs[li].size(0), chunk):\\n            x = mlp_inputs[li][s:s + chunk].to(device)\\n            inter = af(gp(x)) * up(x)\\n            y_dense = dp(inter)\\n            accum_mag += inter.abs().float().sum(dim=(0, 1)).cpu()\\n            total_tokens += x.size(0) * x.size(1)\\n            inter_chunks.append(inter.cpu())\\n            dense_chunks.append(y_dense.cpu())\\n            del x, inter, y_dense\\n\\n        mean_mag = accum_mag / total_tokens\\n        mean_mags[li] = mean_mag\\n        all_inter = torch.cat(inter_chunks, dim=0)\\n        all_dense = torch.cat(dense_chunks, dim=0)\\n        del inter_chunks, dense_chunks\\n\\n        dense_mse = all_dense.float().pow(2).mean().item()\\n        errors = []\\n        for sp in levels:\\n            if sp <= 0.0:\\n                errors.append(0.0)\\n                continue\\n            nk = max(int(inter_dim * (1.0 - sp)), 1)\\n            thr = torch.topk(mean_mag, nk).values[-1]\\n            mask_1d = mean_mag >= thr\\n\\n            total_err = 0.0\\n            total_elem = 0\\n            for s in range(0, all_inter.size(0), chunk):\\n                ic = all_inter[s:s + chunk].to(device)\\n                dc = all_dense[s:s + chunk].to(device)\\n                m = m\\n\\n... [截断: 输出过长，省略 7778 字符] ...\\n\\nghts_only=True)\\n        wrapper.predictors.load_state_dict(ckpt[\\\"predictors\\\"])\\n        wrapper.predictors.to(device=device, dtype=torch.bfloat16)\\n        wrapper.predictors.eval()\\n        wrapper.gumbel_mask.hard = True\\n\\n        print(\\\"Computing TEAL global masks ...\\\")\\n        global_masks = teal_global_masks(wrapper, calib_ids, args.sparsity_target)\\n        _print_mask_stats(\\\"TEAL-predictor\\\", global_masks)\\n\\n        print(\\\"\\\\n[Pred 1/3] True Dense (WikiText-2) ...\\\")\\n        results[\\\"true_dense\\\"] = evaluate_true_dense(model, wt2, device)\\n        print(f\\\"  Perplexity: {results['true_dense']:.2f}\\\")\\n\\n        print(\\\"[Pred 2/3] Predictor Hard Mask (WikiText-2) ...\\\")\\n        results[\\\"predictor\\\"] = evaluate_perplexity(model, wt2, device)\\n        print(f\\\"  Perplexity: {results['predictor']:.2f}\\\")\\n\\n        print(\\\"[Pred 3/3] TEAL Sparse (WikiText-2) ...\\\")\\n        results[\\\"teal_predictor\\\"] = evaluate_perplexity(model, wt2, device, global_masks)\\n        print(f\\\"  Perplexity: {results['teal_predictor']:.2f}\\\")\\n\\n    # ---- Training-free baselines ----\\n    if baselines:\\n        if \\\"true_dense\\\" not in results:\\n            print(\\\"\\\\n[Dense] True Dense (WikiText-2) ...\\\")\\n            results[\\\"true_dense\\\"] = evaluate_true_dense(model, wt2, device)\\n            print(f\\\"  Perplexity: {results['true_dense']:.2f}\\\")\\n\\n        print(\\\"\\\\nCollecting calibration activation magnitudes ...\\\")\\n        avg_mag = _collect_swiglu_magnitudes(model, calib_ids)\\n\\n        for bl in baselines:\\n            if bl == \\\"teal_vanilla\\\":\\n                print(f\\\"\\\\n[Baseline] Vanilla TEAL ...\\\")\\n                masks = vanilla_teal_global_masks(\\n                    model, calib_ids, args.sparsity_target, avg_mag=avg_mag)\\n                _print_mask_stats(\\\"Vanilla-TEAL\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"vanilla_teal\\\"] = ppl\\n\\n            elif bl == \\\"wina\\\":\\n                print(f\\\"\\\\n[Baseline] WINA ...\\\")\\n                masks = wina_global_masks(\\n                    model, calib_ids, args.sparsity_target, avg_mag=avg_mag)\\n                _print_mask_stats(\\\"WINA\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"wina\\\"] = ppl\\n\\n            elif bl == \\\"rsparse\\\":\\n                print(f\\\"\\\\n[Baseline] R-Sparse (svd_rank={args.svd_rank}) ...\\\")\\n                masks = rsparse_global_masks(\\n                    model, calib_ids, args.sparsity_target,\\n                    svd_rank=args.svd_rank, avg_mag=avg_mag)\\n                _print_mask_stats(\\\"R-Sparse\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"rsparse\\\"] = ppl\\n\\n            elif bl == \\\"teal_greedy\\\":\\n                print(f\\\"\\\\n[Baseline] TEAL Greedy Per-Layer ...\\\")\\n                masks = teal_activation_magnitude_masks(\\n                    model, calib_ids, args.sparsity_target)\\n                _print_mask_stats(\\\"TEAL-greedy\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"teal_greedy\\\"] = ppl\\n\\n            elif bl == \\\"wina_greedy\\\":\\n                print(f\\\"\\\\n[Baseline] WINA Greedy Per-Layer ...\\\")\\n                masks = wina_greedy_allocation_masks(\\n                    model, calib_ids, args.sparsity_target, device=device)\\n                _print_mask_stats(\\\"WINA-greedy\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"wina_greedy\\\"] = ppl\\n\\n            else:\\n                print(f\\\"  Unknown baseline: {bl}, skipping\\\")\\n\\n    # ---- Summary ----\\n    print(f\\\"\\\\n=== Summary (sparsity_target={args.sparsity_target*100:.0f}%) ===\\\")\\n    for k, v in results.items():\\n        print(f\\\"  {k}: {v:.2f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the existing code. Let me also check the `evaluate_perplexity` function from evaluate.py:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "12323b01-c173-438e-8fe5-c034ef980618",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkZwZLyhacmUGZVPyVZBe5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3302,
+      "cache_read_input_tokens": 38531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3302
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+Let me check the `evaluate_perplexity` function from evaluate.py.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "0609509c-ed88-4de8-960b-4f4362403e9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkZwZLyhacmUGZVPyVZBe5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3302,
+      "cache_read_input_tokens": 38531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3302
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FACp8ZvESZDDse6Jdwm2xb`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -n \"def evaluate_perplexity\\|def evaluate_true_dense\" /root/distill_sparse_swiglu/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "b7a775c5-c752-4804-83ae-689ca971ac5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkZwZLyhacmUGZVPyVZBe5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3302,
+      "cache_read_input_tokens": 38531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3302
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T19:12:52.659Z_
+
+<details><summary>↩ Tool result · `toolu_01FACp8ZvESZDDse6Jdwm2xb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "18964ed0-88c8-4720-a797-57fca63a5bc0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016yy14p5MVB4aD3CZBk4izj`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -n \"def evaluate_perplexity\" /root/distill_sparse_swiglu/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "f4106b24-fdac-4af2-ae19-762a322da089",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HjREVNGPXb2Qg7LvDwT561",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 295,
+      "cache_read_input_tokens": 41833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 295
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T19:12:56.146Z_
+
+<details><summary>↩ Tool result · `toolu_016yy14p5MVB4aD3CZBk4izj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"393:def evaluate_perplexity(model, examples, device, global_masks=None):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "53190e3b-2bc3-41da-9b0a-acc848e6382d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"393:def evaluate_perplexity(model, examples, device, global_masks=None):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"393:def evaluate_perplexity(model, examples, device, global_masks=None):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q1E8C11YGPrN3Mqm7eAvWH`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -n +393 /root/distill_sparse_swiglu/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "a891fdc3-1ab3-4274-9b46-5db1ca11678f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018J45pgceJhoxTKfehs3Beu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 227,
+      "cache_read_input_tokens": 42128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 227
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T19:12:59.643Z_
+
+<details><summary>↩ Tool result · `toolu_01Q1E8C11YGPrN3Mqm7eAvWH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def evaluate_perplexity(model, examples, device, global_masks=None):\\n    \\\"\\\"\\\"Compute perplexity with optional fixed masks on SwiGLU intermediates.\\\"\\\"\\\"\\n    original_forwards = {}\\n\\n    if global_masks is not None:\\n        for layer_idx, layer in enumerate(model.model.layers):\\n            if layer_idx not in global_masks:\\n                continue\\n            original_forwards[layer_idx] = layer.mlp.forward\\n            mask = global_masks[layer_idx].to(device=device,\\n                                               dtype=layer.mlp.gate_proj.weight.dtype)\\n            mlp = layer.mlp\\n\\n            def make_masked_fwd(gp, up, dp, af, m):\\n                def fwd(x):\\n                    intermediate = af(gp(x)) * up(x)\\n                    return dp(intermediate * m.unsqueeze(0).unsqueeze(0))\\n                return fwd\\n\\n            layer.mlp.forward = make_masked_fwd(\\n                mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn, mask\\n            )\\n\\n    total_loss = 0.0\\n    total_tokens = 0\\n    for ex in examples:\\n        ids = ex[\\\"input_ids\\\"].unsqueeze(0).to(device)\\n        labels = ex[\\\"labels\\\"].unsqueeze(0).to(device)\\n        logits = model(input_ids=ids).logits\\n        loss = F.cross_entropy(\\n            logits.view(-1, logits.size(-1)), labels.view(-1), reduction=\\\"sum\\\"\\n        )\\n        total_loss += loss.item()\\n        total_tokens += labels.numel()\\n\\n    for layer_idx, fwd in original_forwards.items():\\n        model.model.layers[layer_idx].mlp.forward = fwd\\n\\n    return torch.exp(torch.tensor(total_loss / total_tokens)).item()\\n\\n\\n@torch.no_grad()\\ndef evaluate_true_dense(model, examples, device):\\n    \\\"\\\"\\\"Evaluate with original MLP forwards — no predictor, no mask.\\\"\\\"\\\"\\n    patched_forwards = {}\\n    for idx, layer in enumerate(model.model.layers):\\n        patched_forwards[idx] = layer.mlp.forward\\n        layer.mlp.forward = _make_original_fwd(layer.mlp)\\n\\n    ppl = evaluate_perplexity(model, examples, device)\\n\\n    for idx, fwd in patched_forwards.items():\\n        model.model.layers[idx].mlp.forward = fwd\\n\\n    return ppl\\n\\n\\ndef main():\\n    args = parse_args()\\n    device = torch.device(f\\\"cuda:{args.gpu}\\\")\\n\\n    baselines = []\\n    if args.baseline_mode:\\n        baselines = [b.strip() for b in args.baseline_mode.split(\\\",\\\")]\\n\\n    if not args.checkpoint and not baselines:\\n        print(\\\"Error: specify --checkpoint for predictor eval and/or --baseline_mode\\\")\\n        sys.exit(1)\\n\\n    print(f\\\"Loading model from {args.model_name_or_path} ...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    model = AutoModelForCausalLM.from_pretrained(\\n        args.model_name_or_path,\\n        dtype=torch.bfloat16,\\n        device_map={\\\"\\\": device},\\n        attn_implementation=_best_attn_impl(),\\n    )\\n    model.eval()\\n\\n    if args.use_random_data:\\n        import random\\n        vocab_size = tokenizer.vocab_size\\n        n_samples = min(args.max_eval_samples, 10)\\n        def _rand_examples(n, sl, vs):\\n            exs = []\\n            for _ in range(n):\\n                t = [random.randint(0, vs - 1) for _ in range(sl + 1)]\\n                exs.append({\\\"input_ids\\\": torch.tensor(t[:-1], dtype=torch.long),\\n                            \\\"labels\\\": torch.tensor(t[1:], dtype=torch.long)})\\n            return exs\\n        wt2 = _rand_examples(n_samples, args.seq_len, vocab_size)\\n        print(f\\\"Using random eval data: {n_samples} sequences\\\")\\n    else:\\n        print(\\\"Loading WikiText-2 ...\\\")\\n        wt2 = get_eval_dataset(\\\"wikitext2\\\", tokenizer, args.seq_len)\\n        print(f\\\"  {len(wt2)} sequences\\\")\\n\\n    calib_ids = torch.stack(\\n        [wt2[i][\\\"input_ids\\\"] for i in range(min(args.calibration_samples, len(wt2)))]\\n    ).to(device)\\n\\n    results = {}\\n\\n    # ---- Predictor-based evaluation ----\\n    if args.checkpoint:\\n        wrapper = PredictorWrapper(model, bottleneck_size=128)\\n        print(f\\\"Loading predictor from {args.checkpoint} ...\\\")\\n        ckpt = torch.load(args.check\\n\\n... [截断: 输出过长，省略 31 字符] ...\\n\\nghts_only=True)\\n        wrapper.predictors.load_state_dict(ckpt[\\\"predictors\\\"])\\n        wrapper.predictors.to(device=device, dtype=torch.bfloat16)\\n        wrapper.predictors.eval()\\n        wrapper.gumbel_mask.hard = True\\n\\n        print(\\\"Computing TEAL global masks ...\\\")\\n        global_masks = teal_global_masks(wrapper, calib_ids, args.sparsity_target)\\n        _print_mask_stats(\\\"TEAL-predictor\\\", global_masks)\\n\\n        print(\\\"\\\\n[Pred 1/3] True Dense (WikiText-2) ...\\\")\\n        results[\\\"true_dense\\\"] = evaluate_true_dense(model, wt2, device)\\n        print(f\\\"  Perplexity: {results['true_dense']:.2f}\\\")\\n\\n        print(\\\"[Pred 2/3] Predictor Hard Mask (WikiText-2) ...\\\")\\n        results[\\\"predictor\\\"] = evaluate_perplexity(model, wt2, device)\\n        print(f\\\"  Perplexity: {results['predictor']:.2f}\\\")\\n\\n        print(\\\"[Pred 3/3] TEAL Sparse (WikiText-2) ...\\\")\\n        results[\\\"teal_predictor\\\"] = evaluate_perplexity(model, wt2, device, global_masks)\\n        print(f\\\"  Perplexity: {results['teal_predictor']:.2f}\\\")\\n\\n    # ---- Training-free baselines ----\\n    if baselines:\\n        if \\\"true_dense\\\" not in results:\\n            print(\\\"\\\\n[Dense] True Dense (WikiText-2) ...\\\")\\n            results[\\\"true_dense\\\"] = evaluate_true_dense(model, wt2, device)\\n            print(f\\\"  Perplexity: {results['true_dense']:.2f}\\\")\\n\\n        print(\\\"\\\\nCollecting calibration activation magnitudes ...\\\")\\n        avg_mag = _collect_swiglu_magnitudes(model, calib_ids)\\n\\n        for bl in baselines:\\n            if bl == \\\"teal_vanilla\\\":\\n                print(f\\\"\\\\n[Baseline] Vanilla TEAL ...\\\")\\n                masks = vanilla_teal_global_masks(\\n                    model, calib_ids, args.sparsity_target, avg_mag=avg_mag)\\n                _print_mask_stats(\\\"Vanilla-TEAL\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"vanilla_teal\\\"] = ppl\\n\\n            elif bl == \\\"wina\\\":\\n                print(f\\\"\\\\n[Baseline] WINA ...\\\")\\n                masks = wina_global_masks(\\n                    model, calib_ids, args.sparsity_target, avg_mag=avg_mag)\\n                _print_mask_stats(\\\"WINA\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"wina\\\"] = ppl\\n\\n            elif bl == \\\"rsparse\\\":\\n                print(f\\\"\\\\n[Baseline] R-Sparse (svd_rank={args.svd_rank}) ...\\\")\\n                masks = rsparse_global_masks(\\n                    model, calib_ids, args.sparsity_target,\\n                    svd_rank=args.svd_rank, avg_mag=avg_mag)\\n                _print_mask_stats(\\\"R-Sparse\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"rsparse\\\"] = ppl\\n\\n            elif bl == \\\"teal_greedy\\\":\\n                print(f\\\"\\\\n[Baseline] TEAL Greedy Per-Layer ...\\\")\\n                masks = teal_activation_magnitude_masks(\\n                    model, calib_ids, args.sparsity_target)\\n                _print_mask_stats(\\\"TEAL-greedy\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"teal_greedy\\\"] = ppl\\n\\n            elif bl == \\\"wina_greedy\\\":\\n                print(f\\\"\\\\n[Baseline] WINA Greedy Per-Layer ...\\\")\\n                masks = wina_greedy_allocation_masks(\\n                    model, calib_ids, args.sparsity_target, device=device)\\n                _print_mask_stats(\\\"WINA-greedy\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"wina_greedy\\\"] = ppl\\n\\n            else:\\n                print(f\\\"  Unknown baseline: {bl}, skipping\\\")\\n\\n    # ---- Summary ----\\n    print(f\\\"\\\\n=== Summary (sparsity_target={args.sparsity_target*100:.0f}%) ===\\\")\\n    for k, v in results.items():\\n        print(f\\\"  {k}: {v:.2f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "e15ce776-9806-49bf-8911-f489127a695e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def evaluate_perplexity(model, examples, device, global_masks=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute perplexity with optional fixed masks on SwiGLU intermediates.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    original_forwards = {}\\\\n\\\\n    if global_masks is not None:\\\\n        for layer_idx, layer in enumerate(model.model.layers):\\\\n            if layer_idx not in global_masks:\\\\n                continue\\\\n            original_forwards[layer_idx] = layer.mlp.forward\\\\n            mask = global_masks[layer_idx].to(device=device,\\\\n                                               dtype=layer.mlp.gate_proj.weight.dtype)\\\\n            mlp = layer.mlp\\\\n\\\\n            def make_masked_fwd(gp, up, dp, af, m):\\\\n                def fwd(x):\\\\n                    intermediate = af(gp(x)) * up(x)\\\\n                    return dp(intermediate * m.unsqueeze(0).unsqueeze(0))\\\\n                return fwd\\\\n\\\\n            layer.mlp.forward = make_masked_fwd(\\\\n                mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn, mask\\\\n            )\\\\n\\\\n    total_loss = 0.0\\\\n    total_tokens = 0\\\\n    for ex in examples:\\\\n        ids = ex[\\\\\\\"input_ids\\\\\\\"].unsqueeze(0).to(device)\\\\n        labels = ex[\\\\\\\"labels\\\\\\\"].unsqueeze(0).to(device)\\\\n        logits = model(input_ids=ids).logits\\\\n        loss = F.cross_entropy(\\\\n            logits.view(-1, logits.size(-1)), labels.view(-1), reduction=\\\\\\\"sum\\\\\\\"\\\\n        )\\\\n        total_loss += loss.item()\\\\n        total_tokens += labels.numel()\\\\n\\\\n    for layer_idx, fwd in original_forwards.items():\\\\n        model.model.layers[layer_idx].mlp.forward = fwd\\\\n\\\\n    return torch.exp(torch.tensor(total_loss / total_tokens)).item()\\\\n\\\\n\\\\n@torch.no_grad()\\\\ndef evaluate_true_dense(model, examples, device):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Evaluate with original MLP forwards — no predictor, no mask.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    patched_forwards = {}\\\\n    for idx, layer in enumerate(model.model.layers):\\\\n        patched_forwards[idx] = layer.mlp.forward\\\\n        layer.mlp.forward = _make_original_fwd(layer.mlp)\\\\n\\\\n    ppl = evaluate_perplexity(model, examples, device)\\\\n\\\\n    for idx, fwd in patched_forwards.items():\\\\n        model.model.layers[idx].mlp.forward = fwd\\\\n\\\\n    return ppl\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    device = torch.device(f\\\\\\\"cuda:{args.gpu}\\\\\\\")\\\\n\\\\n    baselines = []\\\\n    if args.baseline_mode:\\\\n        baselines = [b.strip() for b in args.baseline_mode.split(\\\\\\\",\\\\\\\")]\\\\n\\\\n    if not args.checkpoint and not baselines:\\\\n        print(\\\\\\\"Error: specify --checkpoint for predictor eval and/or --baseline_mode\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    print(f\\\\\\\"Loading model from {args.model_name_or_path} ...\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        args.model_name_or_path,\\\\n        dtype=torch.bfloat16,\\\\n        device_map={\\\\\\\"\\\\\\\": device},\\\\n        attn_implementation=_best_attn_impl(),\\\\n    )\\\\n    model.eval()\\\\n\\\\n    if args.use_random_data:\\\\n        import random\\\\n        vocab_size = tokenizer.vocab_size\\\\n        n_samples = min(args.max_eval_samples, 10)\\\\n        def _rand_examples(n, sl, vs):\\\\n            exs = []\\\\n            for _ in range(n):\\\\n                t = [random.randint(0, vs - 1) for _ in range(sl + 1)]\\\\n                exs.append({\\\\\\\"input_ids\\\\\\\": torch.tensor(t[:-1], dtype=torch.long),\\\\n                            \\\\\\\"labels\\\\\\\": torch.tensor(t[1:], dtype=torch.long)})\\\\n            return exs\\\\n        wt2 = _rand_examples(n_samples, args.seq_len, vocab_size)\\\\n        print(f\\\\\\\"Using random eval data: {n_samples} sequences\\\\\\\")\\\\n    else:\\\\n        print(\\\\\\\"Loading WikiText-2 ...\\\\\\\")\\\\n        wt2 = get_eval_dataset(\\\\\\\"wikitext2\\\\\\\", tokenizer, args.seq_len)\\\\n        print(f\\\\\\\"  {len(wt2)} sequences\\\\\\\")\\\\n\\\\n    calib_ids = torch.stack(\\\\n        [wt2[i][\\\\\\\"input_ids\\\\\\\"] for i in range(min(args.calibration_samples, len(wt2)))]\\\\n    ).to(device)\\\\n\\\\n    results = {}\\\\n\\\\n    # ---- Predictor-based evaluation ----\\\\n    if args.checkpoint:\\\\n        wrapper = PredictorWrapper(model, bottleneck_size=128)\\\\n        print(f\\\\\\\"Loading predictor from {args.checkpoint} ...\\\\\\\")\\\\n        ckpt = torch.load(args.check\\\\n\\\\n... [截断: 输出过长，省略 31 字符] ...\\\\n\\\\nghts_only=True)\\\\n        wrapper.predictors.load_state_dict(ckpt[\\\\\\\"predictors\\\\\\\"])\\\\n        wrapper.predictors.to(device=device, dtype=torch.bfloat16)\\\\n        wrapper.predictors.eval()\\\\n        wrapper.gumbel_mask.hard = True\\\\n\\\\n        print(\\\\\\\"Computing TEAL global masks ...\\\\\\\")\\\\n        global_masks = teal_global_masks(wrapper, calib_ids, args.sparsity_target)\\\\n        _print_mask_stats(\\\\\\\"TEAL-predictor\\\\\\\", global_masks)\\\\n\\\\n        print(\\\\\\\"\\\\\\\\n[Pred 1/3] True Dense (WikiText-2) ...\\\\\\\")\\\\n        results[\\\\\\\"true_dense\\\\\\\"] = evaluate_true_dense(model, wt2, device)\\\\n        print(f\\\\\\\"  Perplexity: {results['true_dense']:.2f}\\\\\\\")\\\\n\\\\n        print(\\\\\\\"[Pred 2/3] Predictor Hard Mask (WikiText-2) ...\\\\\\\")\\\\n        results[\\\\\\\"predictor\\\\\\\"] = evaluate_perplexity(model, wt2, device)\\\\n        print(f\\\\\\\"  Perplexity: {results['predictor']:.2f}\\\\\\\")\\\\n\\\\n        print(\\\\\\\"[Pred 3/3] TEAL Sparse (WikiText-2) ...\\\\\\\")\\\\n        results[\\\\\\\"teal_predictor\\\\\\\"] = evaluate_perplexity(model, wt2, device, global_masks)\\\\n        print(f\\\\\\\"  Perplexity: {results['teal_predictor']:.2f}\\\\\\\")\\\\n\\\\n    # ---- Training-free baselines ----\\\\n    if baselines:\\\\n        if \\\\\\\"true_dense\\\\\\\" not in results:\\\\n            print(\\\\\\\"\\\\\\\\n[Dense] True Dense (WikiText-2) ...\\\\\\\")\\\\n            results[\\\\\\\"true_dense\\\\\\\"] = evaluate_true_dense(model, wt2, device)\\\\n            print(f\\\\\\\"  Perplexity: {results['true_dense']:.2f}\\\\\\\")\\\\n\\\\n        print(\\\\\\\"\\\\\\\\nCollecting calibration activation magnitudes ...\\\\\\\")\\\\n        avg_mag = _collect_swiglu_magnitudes(model, calib_ids)\\\\n\\\\n        for bl in baselines:\\\\n            if bl == \\\\\\\"teal_vanilla\\\\\\\":\\\\n                print(f\\\\\\\"\\\\\\\\n[Baseline] Vanilla TEAL ...\\\\\\\")\\\\n                masks = vanilla_teal_global_masks(\\\\n                    model, calib_ids, args.sparsity_target, avg_mag=avg_mag)\\\\n                _print_mask_stats(\\\\\\\"Vanilla-TEAL\\\\\\\", masks)\\\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\\\n                print(f\\\\\\\"  Perplexity: {ppl:.2f}\\\\\\\")\\\\n                results[\\\\\\\"vanilla_teal\\\\\\\"] = ppl\\\\n\\\\n            elif bl == \\\\\\\"wina\\\\\\\":\\\\n                print(f\\\\\\\"\\\\\\\\n[Baseline] WINA ...\\\\\\\")\\\\n                masks = wina_global_masks(\\\\n                    model, calib_ids, args.sparsity_target, avg_mag=avg_mag)\\\\n                _print_mask_stats(\\\\\\\"WINA\\\\\\\", masks)\\\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\\\n                print(f\\\\\\\"  Perplexity: {ppl:.2f}\\\\\\\")\\\\n                results[\\\\\\\"wina\\\\\\\"] = ppl\\\\n\\\\n            elif bl == \\\\\\\"rsparse\\\\\\\":\\\\n                print(f\\\\\\\"\\\\\\\\n[Baseline] R-Sparse (svd_rank={args.svd_rank}) ...\\\\\\\")\\\\n                masks = rsparse_global_masks(\\\\n                    model, calib_ids, args.sparsity_target,\\\\n                    svd_rank=args.svd_rank, avg_mag=avg_mag)\\\\n                _print_mask_stats(\\\\\\\"R-Sparse\\\\\\\", masks)\\\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\\\n                print(f\\\\\\\"  Perplexity: {ppl:.2f}\\\\\\\")\\\\n                results[\\\\\\\"rsparse\\\\\\\"] = ppl\\\\n\\\\n            elif bl == \\\\\\\"teal_greedy\\\\\\\":\\\\n                print(f\\\\\\\"\\\\\\\\n[Baseline] TEAL Greedy Per-Layer ...\\\\\\\")\\\\n                masks = teal_activation_magnitude_masks(\\\\n                    model, calib_ids, args.sparsity_target)\\\\n                _print_mask_stats(\\\\\\\"TEAL-greedy\\\\\\\", masks)\\\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\\\n                print(f\\\\\\\"  Perplexity: {ppl:.2f}\\\\\\\")\\\\n                results[\\\\\\\"teal_greedy\\\\\\\"] = ppl\\\\n\\\\n            elif bl == \\\\\\\"wina_greedy\\\\\\\":\\\\n                print(f\\\\\\\"\\\\\\\\n[Baseline] WINA Greedy Per-Layer ...\\\\\\\")\\\\n                masks = wina_greedy_allocation_masks(\\\\n                    model, calib_ids, args.sparsity_target, device=device)\\\\n                _print_mask_stats(\\\\\\\"WINA-greedy\\\\\\\", masks)\\\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\\\n                print(f\\\\\\\"  Perplexity: {ppl:.2f}\\\\\\\")\\\\n                results[\\\\\\\"wina_greedy\\\\\\\"] = ppl\\\\n\\\\n            else:\\\\n                print(f\\\\\\\"  Unknown baseline: {bl}, skipping\\\\\\\")\\\\n\\\\n    # ---- Summary ----\\\\n    print(f\\\\\\\"\\\\\\\\n=== Summary (sparsity_target={args.sparsity_target*100:.0f}%) ===\\\\\\\")\\\\n    for k, v in results.items():\\\\n        print(f\\\\\\\"  {k}: {v:.2f}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def evaluate_perplexity(model, examples, device, global_masks=None):\\n    \\\"\\\"\\\"Compute perplexity with optional fixed masks on SwiGLU intermediates.\\\"\\\"\\\"\\n    original_forwards = {}\\n\\n    if global_masks is not None:\\n        for layer_idx, layer in enumerate(model.model.layers):\\n            if layer_idx not in global_masks:\\n                continue\\n            original_forwards[layer_idx] = layer.mlp.forward\\n            mask = global_masks[layer_idx].to(device=device,\\n                                               dtype=layer.mlp.gate_proj.weight.dtype)\\n            mlp = layer.mlp\\n\\n            def make_masked_fwd(gp, up, dp, af, m):\\n                def fwd(x):\\n                    intermediate = af(gp(x)) * up(x)\\n                    return dp(intermediate * m.unsqueeze(0).unsqueeze(0))\\n                return fwd\\n\\n            layer.mlp.forward = make_masked_fwd(\\n                mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn, mask\\n            )\\n\\n    total_loss = 0.0\\n    total_tokens = 0\\n    for ex in examples:\\n        ids = ex[\\\"input_ids\\\"].unsqueeze(0).to(device)\\n        labels = ex[\\\"labels\\\"].unsqueeze(0).to(device)\\n        logits = model(input_ids=ids).logits\\n        loss = F.cross_entropy(\\n            logits.view(-1, logits.size(-1)), labels.view(-1), reduction=\\\"sum\\\"\\n        )\\n        total_loss += loss.item()\\n        total_tokens += labels.numel()\\n\\n    for layer_idx, fwd in original_forwards.items():\\n        model.model.layers[layer_idx].mlp.forward = fwd\\n\\n    return torch.exp(torch.tensor(total_loss / total_tokens)).item()\\n\\n\\n@torch.no_grad()\\ndef evaluate_true_dense(model, examples, device):\\n    \\\"\\\"\\\"Evaluate with original MLP forwards — no predictor, no mask.\\\"\\\"\\\"\\n    patched_forwards = {}\\n    for idx, layer in enumerate(model.model.layers):\\n        patched_forwards[idx] = layer.mlp.forward\\n        layer.mlp.forward = _make_original_fwd(layer.mlp)\\n\\n    ppl = evaluate_perplexity(model, examples, device)\\n\\n    for idx, fwd in patched_forwards.items():\\n        model.model.layers[idx].mlp.forward = fwd\\n\\n    return ppl\\n\\n\\ndef main():\\n    args = parse_args()\\n    device = torch.device(f\\\"cuda:{args.gpu}\\\")\\n\\n    baselines = []\\n    if args.baseline_mode:\\n        baselines = [b.strip() for b in args.baseline_mode.split(\\\",\\\")]\\n\\n    if not args.checkpoint and not baselines:\\n        print(\\\"Error: specify --checkpoint for predictor eval and/or --baseline_mode\\\")\\n        sys.exit(1)\\n\\n    print(f\\\"Loading model from {args.model_name_or_path} ...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    model = AutoModelForCausalLM.from_pretrained(\\n        args.model_name_or_path,\\n        dtype=torch.bfloat16,\\n        device_map={\\\"\\\": device},\\n        attn_implementation=_best_attn_impl(),\\n    )\\n    model.eval()\\n\\n    if args.use_random_data:\\n        import random\\n        vocab_size = tokenizer.vocab_size\\n        n_samples = min(args.max_eval_samples, 10)\\n        def _rand_examples(n, sl, vs):\\n            exs = []\\n            for _ in range(n):\\n                t = [random.randint(0, vs - 1) for _ in range(sl + 1)]\\n                exs.append({\\\"input_ids\\\": torch.tensor(t[:-1], dtype=torch.long),\\n                            \\\"labels\\\": torch.tensor(t[1:], dtype=torch.long)})\\n            return exs\\n        wt2 = _rand_examples(n_samples, args.seq_len, vocab_size)\\n        print(f\\\"Using random eval data: {n_samples} sequences\\\")\\n    else:\\n        print(\\\"Loading WikiText-2 ...\\\")\\n        wt2 = get_eval_dataset(\\\"wikitext2\\\", tokenizer, args.seq_len)\\n        print(f\\\"  {len(wt2)} sequences\\\")\\n\\n    calib_ids = torch.stack(\\n        [wt2[i][\\\"input_ids\\\"] for i in range(min(args.calibration_samples, len(wt2)))]\\n    ).to(device)\\n\\n    results = {}\\n\\n    # ---- Predictor-based evaluation ----\\n    if args.checkpoint:\\n        wrapper = PredictorWrapper(model, bottleneck_size=128)\\n        print(f\\\"Loading predictor from {args.checkpoint} ...\\\")\\n        ckpt = torch.load(args.check\\n\\n... [截断: 输出过长，省略 31 字符] ...\\n\\nghts_only=True)\\n        wrapper.predictors.load_state_dict(ckpt[\\\"predictors\\\"])\\n        wrapper.predictors.to(device=device, dtype=torch.bfloat16)\\n        wrapper.predictors.eval()\\n        wrapper.gumbel_mask.hard = True\\n\\n        print(\\\"Computing TEAL global masks ...\\\")\\n        global_masks = teal_global_masks(wrapper, calib_ids, args.sparsity_target)\\n        _print_mask_stats(\\\"TEAL-predictor\\\", global_masks)\\n\\n        print(\\\"\\\\n[Pred 1/3] True Dense (WikiText-2) ...\\\")\\n        results[\\\"true_dense\\\"] = evaluate_true_dense(model, wt2, device)\\n        print(f\\\"  Perplexity: {results['true_dense']:.2f}\\\")\\n\\n        print(\\\"[Pred 2/3] Predictor Hard Mask (WikiText-2) ...\\\")\\n        results[\\\"predictor\\\"] = evaluate_perplexity(model, wt2, device)\\n        print(f\\\"  Perplexity: {results['predictor']:.2f}\\\")\\n\\n        print(\\\"[Pred 3/3] TEAL Sparse (WikiText-2) ...\\\")\\n        results[\\\"teal_predictor\\\"] = evaluate_perplexity(model, wt2, device, global_masks)\\n        print(f\\\"  Perplexity: {results['teal_predictor']:.2f}\\\")\\n\\n    # ---- Training-free baselines ----\\n    if baselines:\\n        if \\\"true_dense\\\" not in results:\\n            print(\\\"\\\\n[Dense] True Dense (WikiText-2) ...\\\")\\n            results[\\\"true_dense\\\"] = evaluate_true_dense(model, wt2, device)\\n            print(f\\\"  Perplexity: {results['true_dense']:.2f}\\\")\\n\\n        print(\\\"\\\\nCollecting calibration activation magnitudes ...\\\")\\n        avg_mag = _collect_swiglu_magnitudes(model, calib_ids)\\n\\n        for bl in baselines:\\n            if bl == \\\"teal_vanilla\\\":\\n                print(f\\\"\\\\n[Baseline] Vanilla TEAL ...\\\")\\n                masks = vanilla_teal_global_masks(\\n                    model, calib_ids, args.sparsity_target, avg_mag=avg_mag)\\n                _print_mask_stats(\\\"Vanilla-TEAL\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"vanilla_teal\\\"] = ppl\\n\\n            elif bl == \\\"wina\\\":\\n                print(f\\\"\\\\n[Baseline] WINA ...\\\")\\n                masks = wina_global_masks(\\n                    model, calib_ids, args.sparsity_target, avg_mag=avg_mag)\\n                _print_mask_stats(\\\"WINA\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"wina\\\"] = ppl\\n\\n            elif bl == \\\"rsparse\\\":\\n                print(f\\\"\\\\n[Baseline] R-Sparse (svd_rank={args.svd_rank}) ...\\\")\\n                masks = rsparse_global_masks(\\n                    model, calib_ids, args.sparsity_target,\\n                    svd_rank=args.svd_rank, avg_mag=avg_mag)\\n                _print_mask_stats(\\\"R-Sparse\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"rsparse\\\"] = ppl\\n\\n            elif bl == \\\"teal_greedy\\\":\\n                print(f\\\"\\\\n[Baseline] TEAL Greedy Per-Layer ...\\\")\\n                masks = teal_activation_magnitude_masks(\\n                    model, calib_ids, args.sparsity_target)\\n                _print_mask_stats(\\\"TEAL-greedy\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"teal_greedy\\\"] = ppl\\n\\n            elif bl == \\\"wina_greedy\\\":\\n                print(f\\\"\\\\n[Baseline] WINA Greedy Per-Layer ...\\\")\\n                masks = wina_greedy_allocation_masks(\\n                    model, calib_ids, args.sparsity_target, device=device)\\n                _print_mask_stats(\\\"WINA-greedy\\\", masks)\\n                ppl = evaluate_perplexity(model, wt2, device, masks)\\n                print(f\\\"  Perplexity: {ppl:.2f}\\\")\\n                results[\\\"wina_greedy\\\"] = ppl\\n\\n            else:\\n                print(f\\\"  Unknown baseline: {bl}, skipping\\\")\\n\\n    # ---- Summary ----\\n    print(f\\\"\\\\n=== Summary (sparsity_target={args.sparsity_target*100:.0f}%) ===\\\")\\n    for k, v in results.items():\\n        print(f\\\"  {k}: {v:.2f}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have a comprehensive understanding of the existing code. Let me also check if there's a local C4 validation set available and confirm the checkpoint exists.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "93881bae-1cdd-4712-9778-03a90e654d0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0144zDfPpGE75uQFWD1RwRuf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3386,
+      "cache_read_input_tokens": 42355,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3386
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+Let me verify the checkpoint exists and check for local C4 data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "822ad7fd-68cb-4f0d-9eb0-be4100ee98d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0144zDfPpGE75uQFWD1RwRuf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3386,
+      "cache_read_input_tokens": 42355,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3386
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LPiHS1d8qubtK6i4V9ZUp4`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "ls -la /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "f0d58bac-1967-4675-a620-9da6a19e4636",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0144zDfPpGE75uQFWD1RwRuf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3386,
+      "cache_read_input_tokens": 42355,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3386
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T19:13:05.163Z_
+
+<details><summary>↩ Tool result · `toolu_01LPiHS1d8qubtK6i4V9ZUp4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 151966495 May 15 23:55 /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "8c61becc-a2e7-4aa0-9d24-ce8575979b27",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 151966495 May 15 23:55 /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 151966495 May 15 23:55 /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B3bfDeTBnAsXihWeq2RNvs`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "ls -la /root/autodl-tmp/data/c4_val",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "f5d71c5a-153b-4e2f-a3a5-6555e41088a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0144zDfPpGE75uQFWD1RwRuf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3386,
+      "cache_read_input_tokens": 42355,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3386
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T19:13:05.755Z_
+
+<details><summary>↩ Tool result · `toolu_01B3bfDeTBnAsXihWeq2RNvs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 800836\\ndrwxr-xr-x 2 root root       135 May 16 06:51 .\\ndrwxr-xr-x 4 root root        61 May 16 06:51 ..\\n-rw-r--r-- 1 root root 410034488 May 16 06:51 data-00000-of-00002.arrow\\n-rw-r--r-- 1 root root 410007888 May 16 06:51 data-00001-of-00002.arrow\\n-rw-r--r-- 1 root root       795 May 16 06:51 dataset_info.json\\n-rw-r--r-- 1 root root       309 May 16 06:51 state.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "59268d8f-d3d3-4ef4-b993-93feb0203794",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 800836\\\\ndrwxr-xr-x 2 root root       135 May 16 06:51 .\\\\ndrwxr-xr-x 4 root root        61 May 16 06:51 ..\\\\n-rw-r--r-- 1 root root 410034488 May 16 06:51 data-00000-of-00002.arrow\\\\n-rw-r--r-- 1 root root 410007888 May 16 06:51 data-00001-of-00002.arrow\\\\n-rw-r--r-- 1 root root       795 May 16 06:51 dataset_info.json\\\\n-rw-r--r-- 1 root root       309 May 16 06:51 state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 800836\\ndrwxr-xr-x 2 root root       135 May 16 06:51 .\\ndrwxr-xr-x 4 root root        61 May 16 06:51 ..\\n-rw-r--r-- 1 root root 410034488 May 16 06:51 data-00000-of-00002.arrow\\n-rw-r--r-- 1 root root 410007888 May 16 06:51 data-00001-of-00002.arrow\\n-rw-r--r-- 1 root root       795 May 16 06:51 dataset_info.json\\n-rw-r--r-- 1 root root       309 May 16 06:51 state.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+C4 validation data is already downloaded locally at `/root/autodl-tmp/data/c4_val`. The checkpoint exists too. Now I have everything I need to write the evaluation script.
+
+The script needs to:
+1. Load LLaMA-3.1-8B
+2. Load C4 validation (from local disk)
+3. Compute dense PPL
+4. Load predictor, compute KL sparse 50% PPL (predictor dynamic mask)
+5. Compute TEAL vanilla 50% PPL (static calibration-based mask)
+
+Key difference from existing code: the predictor eval in evaluate.py uses `teal_global_masks()` which generates static masks from predictor's calibration signals. 
+
+For a fair comparison though, I need the dynamic predictor mask that operates per-token at inference time—where the predictor applies `logits > 0` masking on each token individually through `PredictorWrapper.forward_sparse`. The `compute_ppl` function in quick_eval.py handles dense evaluation simply, so for the predictor I'll leverage the patched MLP that already applies dynamic masking, while TEAL uses the static masks from `vanilla_teal_global_masks`.
+
+Now I'm writing the evaluation script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "83cde28d-0626-4fdd-a0eb-c57691f58b28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uf1rczw9UQFiALTT6nGB53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 779,
+      "cache_read_input_tokens": 45741,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 779
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+All prerequisites confirmed: checkpoint exists, C4 data is already local. Now I'll write and deploy the evaluation script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "f3d8bcf1-071e-4fce-aa4c-470e2cb2b47f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uf1rczw9UQFiALTT6nGB53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 779,
+      "cache_read_input_tokens": 45741,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 779
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UEeitLqwbuP4zBjW5PpP9b`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat > /root/distill_sparse_swiglu/src/eval_c4_ood.py << 'SCRIPT'\n\"\"\"C4 OOD PPL evaluation: dense vs KL-predictor-sparse vs vanilla-TEAL at 50% sparsity.\"\"\"\nimport os, sys, time, json\nimport torch\nimport torch.nn.functional as F\n\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\nos.environ[\"WANDB_MODE\"] = \"offline\"\n\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\nfrom data_utils import get_eval_dataset\nfrom predictor import PredictorWrapper\nfrom evaluate import vanilla_teal_global_masks, _collect_swiglu_magnitudes, evaluate_perplexity, evaluate_true_dense\n\nimport importlib.util\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\n\ndef _best_attn():\n    if importlib.util.find_spec(\"flash_attn\"):\n        return \"flash_attention_2\"\n    return \"sdpa\"\n\n\n@torch.no_grad()\ndef compute_ppl_predictor_dynamic(wrapper, dataset, device):\n    \"\"\"PPL with per-token dynamic predictor masks (actual inference mode).\"\"\"\n    wrapper.sparse_mode = True\n    wrapper.gumbel_mask.hard = True\n    total_loss = 0.0\n    total_tokens = 0\n    for sample in dataset:\n        ids = sample[\"input_ids\"].unsqueeze(0).to(device)\n        labels = sample[\"labels\"].unsqueeze(0).to(device)\n        out = wrapper.forward_sparse(ids)\n        logits = out.logits\n        loss = F.cross_entropy(logits.view(-1, logits.size(-1)), labels.view(-1), reduction=\"sum\")\n        total_loss += loss.item()\n        total_tokens += labels.numel()\n    return torch.exp(torch.tensor(total_loss / total_tokens)).item()\n\n\ndef main():\n    device = torch.device(\"cuda:0\")\n    MODEL_PATH = \"/root/autodl-tmp/models/llama-3.1-8b\"\n    CKPT_PATH = \"/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\"\n    SPARSITY = 0.5\n    MAX_SAMPLES = 200\n\n    print(\"=\" * 60)\n    print(\"C4 OOD PPL Evaluation\")\n    print(\"=\" * 60)\n\n    print(\"\\n[1/6] Loading model...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.bfloat16, device_map={\"\": device},\n        attn_implementation=_best_attn())\n    model.eval()\n    for p in model.parameters():\n        p.requires_grad = False\n\n    print(\"[2/6] Loading C4 validation (local)...\", flush=True)\n    c4_data = get_eval_dataset(\"c4\", tokenizer, 2048, max_samples=MAX_SAMPLES)\n    print(f\"  {len(c4_data)} sequences loaded\", flush=True)\n\n    # Calibration data from C4 (OOD calibration - fair comparison)\n    calib_ids = torch.stack([s[\"input_ids\"] for s in c4_data[:32]]).to(device)\n\n    results = {}\n\n    # --- Dense ---\n    print(\"\\n[3/6] Dense PPL on C4...\", flush=True)\n    t0 = time.time()\n    ppl_dense = evaluate_true_dense(model, c4_data, device)\n    results[\"dense\"] = {\"ppl\": round(ppl_dense, 4), \"time_s\": round(time.time() - t0, 1)}\n    print(f\"  Dense PPL: {ppl_dense:.4f} ({results['dense']['time_s']}s)\", flush=True)\n\n    # --- KL Predictor Dynamic 50% ---\n    print(\"\\n[4/6] KL Predictor 50% (dynamic per-token mask) on C4...\", flush=True)\n    wrapper = PredictorWrapper(model, bottleneck_size=128)\n    ckpt = torch.load(CKPT_PATH, map_location=device, weights_only=True)\n    wrapper.predictors.load_state_dict(ckpt[\"predictors\"])\n    wrapper.predictors.to(device=device, dtype=torch.bfloat16)\n    wrapper.predictors.eval()\n    wrapper.gumbel_mask.hard = True\n\n    t0 = time.time()\n    ppl_kl = compute_ppl_predictor_dynamic(wrapper, c4_data, device)\n    results[\"kl_predictor_50\"] = {\"ppl\": round(ppl_kl, 4), \"time_s\": round(time.time() - t0, 1)}\n    print(f\"  KL Predictor PPL: {ppl_kl:.4f} ({results['kl_predictor_50']['time_s']}s)\", flush=True)\n\n    # Restore original MLPs for TEAL eval\n    for idx, layer in enumerate(model.model.layers):\n        mlp = layer.mlp\n        gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\n        def _make_orig(g, u, d, a):\n            def fwd(x):\n                return d(a(g(x)) * u(x))\n            return fwd\n        mlp.forward = _make_orig(gp, up, dp, af)\n\n    # --- Vanilla TEAL 50% ---\n    print(\"\\n[5/6] Vanilla TEAL 50% (static magnitude mask) on C4...\", flush=True)\n    print(\"  Collecting calibration magnitudes...\", flush=True)\n    avg_mag = _collect_swiglu_magnitudes(model, calib_ids)\n    teal_masks = vanilla_teal_global_masks(model, calib_ids, SPARSITY, avg_mag=avg_mag)\n\n    t0 = time.time()\n    ppl_teal = evaluate_perplexity(model, c4_data, device, teal_masks)\n    results[\"teal_vanilla_50\"] = {\"ppl\": round(ppl_teal, 4), \"time_s\": round(time.time() - t0, 1)}\n    print(f\"  TEAL Vanilla PPL: {ppl_teal:.4f} ({results['teal_vanilla_50']['time_s']}s)\", flush=True)\n\n    # --- Summary ---\n    print(\"\\n\" + \"=\" * 60)\n    print(\"[6/6] RESULTS SUMMARY\")\n    print(\"=\" * 60)\n    print(f\"\\n{'Condition':<25} {'C4 PPL':>10} {'Δ vs Dense':>12}\")\n    print(\"-\" * 50)\n    print(f\"{'Dense':<25} {ppl_dense:>10.4f} {'baseline':>12}\")\n    delta_kl = (ppl_kl - ppl_dense) / ppl_dense * 100\n    print(f\"{'KL Predictor 50%':<25} {ppl_kl:>10.4f} {f'+{delta_kl:.2f}%':>12}\")\n    delta_teal = (ppl_teal - ppl_dense) / ppl_dense * 100\n    print(f\"{'TEAL Vanilla 50%':<25} {ppl_teal:>10.4f} {f'+{delta_teal:.2f}%':>12}\")\n    print(\"-\" * 50)\n    kl_advantage = (ppl_teal - ppl_kl) / ppl_teal * 100\n    print(f\"\\nKL advantage over TEAL: {kl_advantage:.2f}% lower PPL\")\n    print(f\"KL generalizes to OOD: {'YES' if ppl_kl < ppl_teal else 'NO'}\")\n\n    # Save results\n    os.makedirs(\"/root/distill_sparse_swiglu/results\", exist_ok=True)\n    out_path = \"/root/distill_sparse_swiglu/results/c4_ood_ppl.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT\necho \"Script written successfully\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "1bd3df56-3c5f-4f6c-8b69-b1bb4249d9c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uf1rczw9UQFiALTT6nGB53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 779,
+      "cache_read_input_tokens": 45741,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 779
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T19:13:47.503Z_
+
+<details><summary>↩ Tool result · `toolu_01UEeitLqwbuP4zBjW5PpP9b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "8d1faee4-b647-4742-acd3-bbfb9ca61fba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+Script deployed. Now launching it with nohup on cuda:0.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "7c379e21-6bf4-4990-9e77-6053e5de4f74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019D4ZXNbQF59mkcef74fYXu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 46520,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2799
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FCLhc53V5cRCQ82cc7nSZn`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/runs && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python src/eval_c4_ood.py' > /root/runs/eval_c4_ood.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "22bf9e9a-e744-4464-9e95-b5237511425f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019D4ZXNbQF59mkcef74fYXu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 46520,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2799
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T19:14:22.712Z_
+
+<details><summary>↩ Tool result · `toolu_01FCLhc53V5cRCQ82cc7nSZn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/runs && nohup bash -c \\\\'CUDA_VISIBLE_DEVICES=0 python src/eval_c4_ood.py\\\\' > /root/runs/eval_c4_ood.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=255904\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "bb9aec76-c02e-46ec-9abb-7328de0b07f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/runs && nohup bash -c \\\\\\\\'CUDA_VISIBLE_DEVICES=0 python src/eval_c4_ood.py\\\\\\\\' > /root/runs/eval_c4_ood.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=255904\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/runs && nohup bash -c \\\\'CUDA_VISIBLE_DEVICES=0 python src/eval_c4_ood.py\\\\' > /root/runs/eval_c4_ood.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=255904\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script is running in background with PID 255904. Let me poll for its status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "45ffb81a-313b-4b0d-b8ff-87236e286d1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kw1YcsByy1P2FMkXXHpPRw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 429,
+      "cache_read_input_tokens": 49319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 429
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+Running in background (PID 255904). Let me check progress.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "8986c9ea-0324-429f-a076-81fde0b95129",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kw1YcsByy1P2FMkXXHpPRw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 429,
+      "cache_read_input_tokens": 49319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 429
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EFB9UyZVzU32ypxwi4wBKk`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -20 /root/runs/eval_c4_ood.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "17013f6c-3a32-43fd-ab41-9b0b4d59e13e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kw1YcsByy1P2FMkXXHpPRw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 429,
+      "cache_read_input_tokens": 49319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 429
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-16T19:14:27.368Z_
+
+<details><summary>↩ Tool result · `toolu_01EFB9UyZVzU32ypxwi4wBKk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nC4 OOD PPL Evaluation\\n============================================================\\n\\n[1/6] Loading model...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<00:34,  8.39it/s]\\rLoading weights:   1%|          | 2/291 [00:00<00:36,  7.98it/s]\\rLoading weights:   5%|▍         | 14/291 [00:00<00:07, 35.57it/s]\\rLoading weights:  14%|█▍        | 42/291 [00:00<00:02, 95.30it/s]\\rLoading weights:  23%|██▎       | 68/291 [00:00<00:01, 135.10it/s]\\rLoading weights:  29%|██▉       | 85/291 [00:00<00:01, 141.69it/s]\\rLoading weights:  35%|███▍      | 101/291 [00:00<00:01, 145.36it/s]\\rLoading weights:  40%|████      | 117/291 [00:01<00:01, 140.83it/s]\\rLoading weights:  45%|████▌     | 132/291 [00:01<00:01, 136.40it/s]\\rLoading weights:  52%|█████▏    | 150/291 [00:01<00:01, 139.08it/s]\\rLoading weights:  57%|█████▋    | 167/291 [00:01<00:00, 142.30it/s]\\rLoading weights:  63%|██████▎   | 184/291 [00:01<00:00, 143.03it/s]\\rLoading weights:  68%|██████▊   | 199/291 [00:01<00:00, 130.50it/s]\\rLoading weights:  73%|███████▎  | 213/291 [00:01<00:00, 109.13it/s]\\rLoading weights:  80%|████████  | 233/291 [00:01<00:00, 127.13it/s]\\rLoading weights:  85%|████████▍ | 247/291 [00:02<00:00, 130.10it/s]\\rLoading weights:  90%|████████▉ | 261/291 [00:02<00:00, 123.66it/s]\\rLoading weights:  95%|█████████▍| 275/291 [00:02<00:00, 124.72it/s]\\rLoading weights:  99%|█████████▉| 288/291 [00:02<00:00, 124.83it/s]\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 121.28it/s]\\n[2/6] Loading C4 validation (local)...\\n  132 sequences loaded\\n\\n[3/6] Dense PPL on C4...\\n  Dense PPL: 9.2075 (14.6s)\\n\\n[4/6] KL Predictor 50% (dynamic per-token mask) on C4...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "2c3cb96a-d25c-4d50-894d-e9437fb5eb61",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nC4 OOD PPL Evaluation\\\\n============================================================\\\\n\\\\n[1/6] Loading model...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:34,  8.39it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:36,  7.98it/s]\\\\rLoading weights:   5%|▍         | 14/291 [00:00<00:07, 35.57it/s]\\\\rLoading weights:  14%|█▍        | 42/291 [00:00<00:02, 95.30it/s]\\\\rLoading weights:  23%|██▎       | 68/291 [00:00<00:01, 135.10it/s]\\\\rLoading weights:  29%|██▉       | 85/291 [00:00<00:01, 141.69it/s]\\\\rLoading weights:  35%|███▍      | 101/291 [00:00<00:01, 145.36it/s]\\\\rLoading weights:  40%|████      | 117/291 [00:01<00:01, 140.83it/s]\\\\rLoading weights:  45%|████▌     | 132/291 [00:01<00:01, 136.40it/s]\\\\rLoading weights:  52%|█████▏    | 150/291 [00:01<00:01, 139.08it/s]\\\\rLoading weights:  57%|█████▋    | 167/291 [00:01<00:00, 142.30it/s]\\\\rLoading weights:  63%|██████▎   | 184/291 [00:01<00:00, 143.03it/s]\\\\rLoading weights:  68%|██████▊   | 199/291 [00:01<00:00, 130.50it/s]\\\\rLoading weights:  73%|███████▎  | 213/291 [00:01<00:00, 109.13it/s]\\\\rLoading weights:  80%|████████  | 233/291 [00:01<00:00, 127.13it/s]\\\\rLoading weights:  85%|████████▍ | 247/291 [00:02<00:00, 130.10it/s]\\\\rLoading weights:  90%|████████▉ | 261/291 [00:02<00:00, 123.66it/s]\\\\rLoading weights:  95%|█████████▍| 275/291 [00:02<00:00, 124.72it/s]\\\\rLoading weights:  99%|█████████▉| 288/291 [00:02<00:00, 124.83it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 121.28it/s]\\\\n[2/6] Loading C4 validation (local)...\\\\n  132 sequences loaded\\\\n\\\\n[3/6] Dense PPL on C4...\\\\n  Dense PPL: 9.2075 (14.6s)\\\\n\\\\n[4/6] KL Predictor 50% (dynamic per-token mask) on C4...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nC4 OOD PPL Evaluation\\n============================================================\\n\\n[1/6] Loading model...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<00:34,  8.39it/s]\\rLoading weights:   1%|          | 2/291 [00:00<00:36,  7.98it/s]\\rLoading weights:   5%|▍         | 14/291 [00:00<00:07, 35.57it/s]\\rLoading weights:  14%|█▍        | 42/291 [00:00<00:02, 95.30it/s]\\rLoading weights:  23%|██▎       | 68/291 [00:00<00:01, 135.10it/s]\\rLoading weights:  29%|██▉       | 85/291 [00:00<00:01, 141.69it/s]\\rLoading weights:  35%|███▍      | 101/291 [00:00<00:01, 145.36it/s]\\rLoading weights:  40%|████      | 117/291 [00:01<00:01, 140.83it/s]\\rLoading weights:  45%|████▌     | 132/291 [00:01<00:01, 136.40it/s]\\rLoading weights:  52%|█████▏    | 150/291 [00:01<00:01, 139.08it/s]\\rLoading weights:  57%|█████▋    | 167/291 [00:01<00:00, 142.30it/s]\\rLoading weights:  63%|██████▎   | 184/291 [00:01<00:00, 143.03it/s]\\rLoading weights:  68%|██████▊   | 199/291 [00:01<00:00, 130.50it/s]\\rLoading weights:  73%|███████▎  | 213/291 [00:01<00:00, 109.13it/s]\\rLoading weights:  80%|████████  | 233/291 [00:01<00:00, 127.13it/s]\\rLoading weights:  85%|████████▍ | 247/291 [00:02<00:00, 130.10it/s]\\rLoading weights:  90%|████████▉ | 261/291 [00:02<00:00, 123.66it/s]\\rLoading weights:  95%|█████████▍| 275/291 [00:02<00:00, 124.72it/s]\\rLoading weights:  99%|█████████▉| 288/291 [00:02<00:00, 124.83it/s]\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 121.28it/s]\\n[2/6] Loading C4 validation (local)...\\n  132 sequences loaded\\n\\n[3/6] Dense PPL on C4...\\n  Dense PPL: 9.2075 (14.6s)\\n\\n[4/6] KL Predictor 50% (dynamic per-token mask) on C4...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The model is loaded, C4 data is loaded (132 sequences), and Dense PPL (9.2075) is computed. It's now running the KL predictor evaluation. Let me wait a bit and check again.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "3344cbdf-aa31-4877-bc73-af8603154ca7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WQsknY8dEDxcD6ZPhyhiqD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1149,
+      "cache_read_input_tokens": 49748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1149
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+Dense PPL done (9.2075). KL predictor eval running. Let me wait ~60s and check again.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "a6040afe-7f8b-4591-8a52-9e769562dc8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WQsknY8dEDxcD6ZPhyhiqD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1149,
+      "cache_read_input_tokens": 49748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1149
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RL7Uk3DYZDYMptmDQT4qYc`</summary>
+
+```json
+{
+  "command": "sleep 60 && echo \"done\"",
+  "description": "Wait 60s for eval to progress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "12da85e2-ebb1-456a-a8ca-46ccaa80392a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WQsknY8dEDxcD6ZPhyhiqD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1149,
+      "cache_read_input_tokens": 49748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1149
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-16T19:14:31.816Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01RL7Uk3DYZDYMptmDQT4qYc`</summary>
+
+```text
+&lt;tool_use_error>Blocked: sleep 60 followed by: echo "done". To wait for a condition, use Monitor with an until-loop (e.g. `until &lt;check>; do sleep 2; done`). To wait for a command you started, use run_in_background: true. Do not chain shorter sleeps to work around this block.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "88a5347e-7912-4351-9fa1-4440441cd252",
+  "tool_use_result": "Error: Blocked: sleep 60 followed by: echo \"done\". To wait for a condition, use Monitor with an until-loop (e.g. `until &lt;check>; do sleep 2; done`). To wait for a command you started, use run_in_background: true. Do not chain shorter sleeps to work around this block."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017ntMSd8XEqu6oGHaxbgHKM`</summary>
+
+```json
+{
+  "command": "until ssh connect.westd.seetacloud.com \"grep -q 'RESULTS SUMMARY' /root/runs/eval_c4_ood.log 2>/dev/null\"; do sleep 10; done && echo \"EVAL COMPLETE\"",
+  "description": "Poll until C4 OOD eval finishes",
+  "timeout": 600000,
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "a657f3d8-652f-431e-8934-5d97cc407929",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VD5hYtJGGamoTbdphU7jML",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 386,
+      "cache_read_input_tokens": 50897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 386
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 67_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bqoglmts0",
+  "tool_use_id": "toolu_017ntMSd8XEqu6oGHaxbgHKM",
+  "description": "Poll until C4 OOD eval finishes",
+  "task_type": "local_bash",
+  "uuid": "01a5fcc6-fb06-4e30-b242-816def4102e3",
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99"
+}
+```
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T19:14:36.673Z_
+
+<details><summary>↩ Tool result · `toolu_017ntMSd8XEqu6oGHaxbgHKM`</summary>
+
+```text
+Command running in background with ID: bqoglmts0. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99/tasks/bqoglmts0.output
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "c1fde496-042c-479c-a7e6-cebedcbf9c7e",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false,
+    "backgroundTaskId": "bqoglmts0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MSgrxpfbx8G2kK9pW9jswj`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -10 /root/runs/eval_c4_ood.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "1e03811d-0359-4f74-879e-1d4db689ebc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V3Tf864Sp4de3YaYWZLWFg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 286,
+      "cache_read_input_tokens": 51283,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 286
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T19:14:40.293Z_
+
+<details><summary>↩ Tool result · `toolu_01MSgrxpfbx8G2kK9pW9jswj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  132 sequences loaded\\n\\n[3/6] Dense PPL on C4...\\n  Dense PPL: 9.2075 (14.6s)\\n\\n[4/6] KL Predictor 50% (dynamic per-token mask) on C4...\\n  KL Predictor PPL: 18.4010 (15.4s)\\n\\n[5/6] Vanilla TEAL 50% (static magnitude mask) on C4...\\n  Collecting calibration magnitudes...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "e28e568d-0012-49c3-9ac0-ba7f4e94a57e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  132 sequences loaded\\\\n\\\\n[3/6] Dense PPL on C4...\\\\n  Dense PPL: 9.2075 (14.6s)\\\\n\\\\n[4/6] KL Predictor 50% (dynamic per-token mask) on C4...\\\\n  KL Predictor PPL: 18.4010 (15.4s)\\\\n\\\\n[5/6] Vanilla TEAL 50% (static magnitude mask) on C4...\\\\n  Collecting calibration magnitudes...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  132 sequences loaded\\n\\n[3/6] Dense PPL on C4...\\n  Dense PPL: 9.2075 (14.6s)\\n\\n[4/6] KL Predictor 50% (dynamic per-token mask) on C4...\\n  KL Predictor PPL: 18.4010 (15.4s)\\n\\n[5/6] Vanilla TEAL 50% (static magnitude mask) on C4...\\n  Collecting calibration magnitudes...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+KL Predictor PPL is 18.4010. It's now collecting magnitudes for TEAL. The eval is almost done. Let me wait a bit more.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "bf65d57e-1306-4023-8534-aed6f7e2bfe9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014uqdJdQUWVAMMcK8uHryjv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 321,
+      "cache_read_input_tokens": 51569,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 321
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+KL predictor done (18.40). TEAL calibration running. Let me check once more shortly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "29f9587e-ca8d-430c-a1c7-a2582c7ff8bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014uqdJdQUWVAMMcK8uHryjv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 321,
+      "cache_read_input_tokens": 51569,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 321
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014mEBX4U8yNwACNus9iDGz8`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -20 /root/runs/eval_c4_ood.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "dd2eaeb0-20dd-4541-9039-b6ed0544e030",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014uqdJdQUWVAMMcK8uHryjv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 321,
+      "cache_read_input_tokens": 51569,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 321
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T19:14:45.205Z_
+
+<details><summary>↩ Tool result · `toolu_014mEBX4U8yNwACNus9iDGz8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nC4 OOD PPL Evaluation\\n============================================================\\n\\n[1/6] Loading model...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<00:34,  8.39it/s]\\rLoading weights:   1%|          | 2/291 [00:00<00:36,  7.98it/s]\\rLoading weights:   5%|▍         | 14/291 [00:00<00:07, 35.57it/s]\\rLoading weights:  14%|█▍        | 42/291 [00:00<00:02, 95.30it/s]\\rLoading weights:  23%|██▎       | 68/291 [00:00<00:01, 135.10it/s]\\rLoading weights:  29%|██▉       | 85/291 [00:00<00:01, 141.69it/s]\\rLoading weights:  35%|███▍      | 101/291 [00:00<00:01, 145.36it/s]\\rLoading weights:  40%|████      | 117/291 [00:01<00:01, 140.83it/s]\\rLoading weights:  45%|████▌     | 132/291 [00:01<00:01, 136.40it/s]\\rLoading weights:  52%|█████▏    | 150/291 [00:01<00:01, 139.08it/s]\\rLoading weights:  57%|█████▋    | 167/291 [00:01<00:00, 142.30it/s]\\rLoading weights:  63%|██████▎   | 184/291 [00:01<00:00, 143.03it/s]\\rLoading weights:  68%|██████▊   | 199/291 [00:01<00:00, 130.50it/s]\\rLoading weights:  73%|███████▎  | 213/291 [00:01<00:00, 109.13it/s]\\rLoading weights:  80%|████████  | 233/291 [00:01<00:00, 127.13it/s]\\rLoading weights:  85%|████████▍ | 247/291 [00:02<00:00, 130.10it/s]\\rLoading weights:  90%|████████▉ | 261/291 [00:02<00:00, 123.66it/s]\\rLoading weights:  95%|█████████▍| 275/291 [00:02<00:00, 124.72it/s]\\rLoading weights:  99%|█████████▉| 288/291 [00:02<00:00, 124.83it/s]\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 121.28it/s]\\n[2/6] Loading C4 validation (local)...\\n  132 sequences loaded\\n\\n[3/6] Dense PPL on C4...\\n  Dense PPL: 9.2075 (14.6s)\\n\\n[4/6] KL Predictor 50% (dynamic per-token mask) on C4...\\n  KL Predictor PPL: 18.4010 (15.4s)\\n\\n[5/6] Vanilla TEAL 50% (static magnitude mask) on C4...\\n  Collecting calibration magnitudes...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "daaa6ec5-4fd8-4de2-a0ba-6f099ec994dd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nC4 OOD PPL Evaluation\\\\n============================================================\\\\n\\\\n[1/6] Loading model...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:34,  8.39it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:36,  7.98it/s]\\\\rLoading weights:   5%|▍         | 14/291 [00:00<00:07, 35.57it/s]\\\\rLoading weights:  14%|█▍        | 42/291 [00:00<00:02, 95.30it/s]\\\\rLoading weights:  23%|██▎       | 68/291 [00:00<00:01, 135.10it/s]\\\\rLoading weights:  29%|██▉       | 85/291 [00:00<00:01, 141.69it/s]\\\\rLoading weights:  35%|███▍      | 101/291 [00:00<00:01, 145.36it/s]\\\\rLoading weights:  40%|████      | 117/291 [00:01<00:01, 140.83it/s]\\\\rLoading weights:  45%|████▌     | 132/291 [00:01<00:01, 136.40it/s]\\\\rLoading weights:  52%|█████▏    | 150/291 [00:01<00:01, 139.08it/s]\\\\rLoading weights:  57%|█████▋    | 167/291 [00:01<00:00, 142.30it/s]\\\\rLoading weights:  63%|██████▎   | 184/291 [00:01<00:00, 143.03it/s]\\\\rLoading weights:  68%|██████▊   | 199/291 [00:01<00:00, 130.50it/s]\\\\rLoading weights:  73%|███████▎  | 213/291 [00:01<00:00, 109.13it/s]\\\\rLoading weights:  80%|████████  | 233/291 [00:01<00:00, 127.13it/s]\\\\rLoading weights:  85%|████████▍ | 247/291 [00:02<00:00, 130.10it/s]\\\\rLoading weights:  90%|████████▉ | 261/291 [00:02<00:00, 123.66it/s]\\\\rLoading weights:  95%|█████████▍| 275/291 [00:02<00:00, 124.72it/s]\\\\rLoading weights:  99%|█████████▉| 288/291 [00:02<00:00, 124.83it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 121.28it/s]\\\\n[2/6] Loading C4 validation (local)...\\\\n  132 sequences loaded\\\\n\\\\n[3/6] Dense PPL on C4...\\\\n  Dense PPL: 9.2075 (14.6s)\\\\n\\\\n[4/6] KL Predictor 50% (dynamic per-token mask) on C4...\\\\n  KL Predictor PPL: 18.4010 (15.4s)\\\\n\\\\n[5/6] Vanilla TEAL 50% (static magnitude mask) on C4...\\\\n  Collecting calibration magnitudes...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nC4 OOD PPL Evaluation\\n============================================================\\n\\n[1/6] Loading model...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<00:34,  8.39it/s]\\rLoading weights:   1%|          | 2/291 [00:00<00:36,  7.98it/s]\\rLoading weights:   5%|▍         | 14/291 [00:00<00:07, 35.57it/s]\\rLoading weights:  14%|█▍        | 42/291 [00:00<00:02, 95.30it/s]\\rLoading weights:  23%|██▎       | 68/291 [00:00<00:01, 135.10it/s]\\rLoading weights:  29%|██▉       | 85/291 [00:00<00:01, 141.69it/s]\\rLoading weights:  35%|███▍      | 101/291 [00:00<00:01, 145.36it/s]\\rLoading weights:  40%|████      | 117/291 [00:01<00:01, 140.83it/s]\\rLoading weights:  45%|████▌     | 132/291 [00:01<00:01, 136.40it/s]\\rLoading weights:  52%|█████▏    | 150/291 [00:01<00:01, 139.08it/s]\\rLoading weights:  57%|█████▋    | 167/291 [00:01<00:00, 142.30it/s]\\rLoading weights:  63%|██████▎   | 184/291 [00:01<00:00, 143.03it/s]\\rLoading weights:  68%|██████▊   | 199/291 [00:01<00:00, 130.50it/s]\\rLoading weights:  73%|███████▎  | 213/291 [00:01<00:00, 109.13it/s]\\rLoading weights:  80%|████████  | 233/291 [00:01<00:00, 127.13it/s]\\rLoading weights:  85%|████████▍ | 247/291 [00:02<00:00, 130.10it/s]\\rLoading weights:  90%|████████▉ | 261/291 [00:02<00:00, 123.66it/s]\\rLoading weights:  95%|█████████▍| 275/291 [00:02<00:00, 124.72it/s]\\rLoading weights:  99%|█████████▉| 288/291 [00:02<00:00, 124.83it/s]\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 121.28it/s]\\n[2/6] Loading C4 validation (local)...\\n  132 sequences loaded\\n\\n[3/6] Dense PPL on C4...\\n  Dense PPL: 9.2075 (14.6s)\\n\\n[4/6] KL Predictor 50% (dynamic per-token mask) on C4...\\n  KL Predictor PPL: 18.4010 (15.4s)\\n\\n[5/6] Vanilla TEAL 50% (static magnitude mask) on C4...\\n  Collecting calibration magnitudes...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Still collecting calibration magnitudes. Let me wait a bit and check again. The calibration pass takes around 30-60 seconds.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "494d0eec-6e4c-4a2f-8455-cea688221dd0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UPbyYzMtAuZnt65rnRjGYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1235,
+      "cache_read_input_tokens": 51890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1235
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CU6Xku8pKb4793phjVEWQ9`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -5 /root/runs/eval_c4_ood.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "abfdbe95-7359-439e-b5bf-7eb78484a288",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UPbyYzMtAuZnt65rnRjGYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1235,
+      "cache_read_input_tokens": 51890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1235
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-16T19:14:59.480Z_
+
+<details><summary>↩ Tool result · `toolu_01CU6Xku8pKb4793phjVEWQ9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nKL advantage over TEAL: 52.51% lower PPL\\nKL generalizes to OOD: YES\\n\\nResults saved to /root/distill_sparse_swiglu/results/c4_ood_ppl.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "2eb83386-f4eb-428f-8696-d79691b66c96",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nKL advantage over TEAL: 52.51% lower PPL\\\\nKL generalizes to OOD: YES\\\\n\\\\nResults saved to /root/distill_sparse_swiglu/results/c4_ood_ppl.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\nKL advantage over TEAL: 52.51% lower PPL\\nKL generalizes to OOD: YES\\n\\nResults saved to /root/distill_sparse_swiglu/results/c4_ood_ppl.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The evaluation is complete. Let me get the full results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "d0ba7f80-79c9-44a1-aaed-89f3c9a50577",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017BR78STrAm2odTvGgpj9ht",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 299,
+      "cache_read_input_tokens": 53125,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+Evaluation complete. Let me get the full results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "7cd213f5-4490-47df-974b-38f03703a031",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017BR78STrAm2odTvGgpj9ht",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 299,
+      "cache_read_input_tokens": 53125,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RJLom5ZAS88nYxJGf3zorA`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/distill_sparse_swiglu/results/c4_ood_ppl.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "cdb4e385-9a13-467d-aeed-66cfbdd3fe58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017BR78STrAm2odTvGgpj9ht",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 299,
+      "cache_read_input_tokens": 53125,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-16T19:15:03.801Z_
+
+<details><summary>↩ Tool result · `toolu_01RJLom5ZAS88nYxJGf3zorA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dense\\\": {\\n    \\\"ppl\\\": 9.2075,\\n    \\\"time_s\\\": 14.6\\n  },\\n  \\\"kl_predictor_50\\\": {\\n    \\\"ppl\\\": 18.401,\\n    \\\"time_s\\\": 15.4\\n  },\\n  \\\"teal_vanilla_50\\\": {\\n    \\\"ppl\\\": 38.7503,\\n    \\\"time_s\\\": 14.5\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "14886bbf-1be2-455b-9d60-234d6f8b5803",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dense\\\\\\\": {\\\\n    \\\\\\\"ppl\\\\\\\": 9.2075,\\\\n    \\\\\\\"time_s\\\\\\\": 14.6\\\\n  },\\\\n  \\\\\\\"kl_predictor_50\\\\\\\": {\\\\n    \\\\\\\"ppl\\\\\\\": 18.401,\\\\n    \\\\\\\"time_s\\\\\\\": 15.4\\\\n  },\\\\n  \\\\\\\"teal_vanilla_50\\\\\\\": {\\\\n    \\\\\\\"ppl\\\\\\\": 38.7503,\\\\n    \\\\\\\"time_s\\\\\\\": 14.5\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dense\\\": {\\n    \\\"ppl\\\": 9.2075,\\n    \\\"time_s\\\": 14.6\\n  },\\n  \\\"kl_predictor_50\\\": {\\n    \\\"ppl\\\": 18.401,\\n    \\\"time_s\\\": 15.4\\n  },\\n  \\\"teal_vanilla_50\\\": {\\n    \\\"ppl\\\": 38.7503,\\n    \\\"time_s\\\": 14.5\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D44c4hBca2UKrs3PqyWQyy`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "grep -A 20 \"RESULTS SUMMARY\" /root/runs/eval_c4_ood.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "6f4acb66-c9d1-4d26-9dda-677f70d2d2f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017BR78STrAm2odTvGgpj9ht",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 299,
+      "cache_read_input_tokens": 53125,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-16T19:15:04.315Z_
+
+<details><summary>↩ Tool result · `toolu_01D44c4hBca2UKrs3PqyWQyy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6/6] RESULTS SUMMARY\\n============================================================\\n\\nCondition                     C4 PPL   Δ vs Dense\\n--------------------------------------------------\\nDense                         9.2075     baseline\\nKL Predictor 50%             18.4010      +99.85%\\nTEAL Vanilla 50%             38.7503     +320.85%\\n--------------------------------------------------\\n\\nKL advantage over TEAL: 52.51% lower PPL\\nKL generalizes to OOD: YES\\n\\nResults saved to /root/distill_sparse_swiglu/results/c4_ood_ppl.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "f2e84ffa-7abd-46b4-ae9e-b270354f87cd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[6/6] RESULTS SUMMARY\\\\n============================================================\\\\n\\\\nCondition                     C4 PPL   Δ vs Dense\\\\n--------------------------------------------------\\\\nDense                         9.2075     baseline\\\\nKL Predictor 50%             18.4010      +99.85%\\\\nTEAL Vanilla 50%             38.7503     +320.85%\\\\n--------------------------------------------------\\\\n\\\\nKL advantage over TEAL: 52.51% lower PPL\\\\nKL generalizes to OOD: YES\\\\n\\\\nResults saved to /root/distill_sparse_swiglu/results/c4_ood_ppl.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[6/6] RESULTS SUMMARY\\n============================================================\\n\\nCondition                     C4 PPL   Δ vs Dense\\n--------------------------------------------------\\nDense                         9.2075     baseline\\nKL Predictor 50%             18.4010      +99.85%\\nTEAL Vanilla 50%             38.7503     +320.85%\\n--------------------------------------------------\\n\\nKL advantage over TEAL: 52.51% lower PPL\\nKL generalizes to OOD: YES\\n\\nResults saved to /root/distill_sparse_swiglu/results/c4_ood_ppl.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! The results are clear and very compelling:
+
+| Condition | C4 PPL | WikiText-2 PPL (ref) | Δ PPL vs Dense |
+|-----------|--------|---------------------|----------------|
+| Dense     | 9.21   | 6.12                | baseline       |
+| KL Predictor 50% | 18.40 | 12.08 (from task) | +99.85% |
+| TEAL Vanilla 50% | 38.75 | (vanilla TEAL)  | +320.85% |
+
+
+The KL predictor maintains a substantial 52.5% advantage over vanilla TEAL on out-of-distribution C4 data, showing strong generalization beyond the WikiText training domain. Both methods degrade more on C4 than WikiText as expected, but the KL approach preserves its superiority with a smaller relative gap to the dense baseline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "8a46f207-ca7b-4d61-8abd-57fe42d4a867",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vsn3H3bQJWB6gRSxFutKGM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 799,
+      "cache_read_input_tokens": 53424,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 799
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+## C4 OOD PPL 评估完成
+
+| Condition | C4 PPL | WikiText-2 PPL (ref) | Δ vs Dense |
+|-----------|--------|---------------------|------------|
+| Dense | 9.21 | 6.12 | baseline |
+| KL Predictor 50% | 18.40 | 12.08 | +99.85% |
+| TEAL Vanilla 50% | 38.75 | — | +320.85% |
+
+**关键发现：**
+- KL predictor 在 OOD (C4 web text) 上的 PPL 比 TEAL 低 52.5%（18.40 vs 38.75）
+- 相对优势在 OOD 上甚至更大：WikiText 上 KL 约 2× dense，TEAL 约 2.5×；C4 上 KL 约 2× dense，TEAL 约 4.2×
+- **结论：KL predictor 的泛化能力显著优于静态 TEAL，domain overlap 不是 improvement 的主因**
+
+产出文件：
+- 脚本：`/root/distill_sparse_swiglu/src/eval_c4_ood.py`
+- 结果：`/root/distill_sparse_swiglu/results/c4_ood_ppl.json`
+- 日志：`/root/runs/eval_c4_ood.log`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "9211c16c-665e-4274-bd9d-fb577b87d936",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vsn3H3bQJWB6gRSxFutKGM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 799,
+      "cache_read_input_tokens": 53424,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 799
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 86_
+
+## C4 OOD PPL 评估完成
+
+| Condition | C4 PPL | WikiText-2 PPL (ref) | Δ vs Dense |
+|-----------|--------|---------------------|------------|
+| Dense | 9.21 | 6.12 | baseline |
+| KL Predictor 50% | 18.40 | 12.08 | +99.85% |
+| TEAL Vanilla 50% | 38.75 | — | +320.85% |
+
+**关键发现：**
+- KL predictor 在 OOD (C4 web text) 上的 PPL 比 TEAL 低 52.5%（18.40 vs 38.75）
+- 相对优势在 OOD 上甚至更大：WikiText 上 KL 约 2× dense，TEAL 约 2.5×；C4 上 KL 约 2× dense，TEAL 约 4.2×
+- **结论：KL predictor 的泛化能力显著优于静态 TEAL，domain overlap 不是 improvement 的主因**
+
+产出文件：
+- 脚本：`/root/distill_sparse_swiglu/src/eval_c4_ood.py`
+- 结果：`/root/distill_sparse_swiglu/results/c4_ood_ppl.json`
+- 日志：`/root/runs/eval_c4_ood.log`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 188995,
+  "duration_api_ms": 152889,
+  "num_turns": 28,
+  "stop_reason": "end_turn",
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "total_cost_usd": 0.8916525,
+  "usage": {
+    "input_tokens": 25,
+    "cache_creation_input_tokens": 42382,
+    "cache_read_input_tokens": 865532,
+    "output_tokens": 7642,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 42382,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 715,
+        "cache_read_input_tokens": 53424,
+        "cache_creation_input_tokens": 799,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 799
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2714,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0028239999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 25,
+      "outputTokens": 7642,
+      "cacheReadInputTokens": 865532,
+      "cacheCreationInputTokens": 42382,
+      "webSearchRequests": 0,
+      "costUSD": 0.8888285,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "66167c43-01ff-4c57-852a-3f545aeb4f3b"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 87_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bqoglmts0",
+  "tool_use_id": "toolu_017ntMSd8XEqu6oGHaxbgHKM",
+  "status": "stopped",
+  "output_file": "",
+  "summary": "Poll until C4 OOD eval finishes",
+  "uuid": "ac441d08-cce9-4054-a701-6b1092228f4a",
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99"
+}
+```
+
+---
+
+### System
+
+_source line 88_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_updated",
+  "task_id": "bqoglmts0",
+  "patch": {
+    "status": "killed",
+    "end_time": 1778961634299
+  },
+  "uuid": "4bb26412-177a-41ff-bf40-b759fe43179b",
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99"
+}
+```
+
+---
+
+### System
+
+_source line 89_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bqoglmts0",
+  "tool_use_id": "toolu_017ntMSd8XEqu6oGHaxbgHKM",
+  "status": "stopped",
+  "output_file": "/tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99/tasks/bqoglmts0.output",
+  "summary": "Background command \"Poll until C4 OOD eval finishes\" was stopped",
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "uuid": "c6f01638-a52b-4e7e-81ef-d17d011dda3f"
+}
+```
+
+---
+
+### System
+
+_source line 90_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+  "session_id": "e3d1846e-b7a8-4d5a-bdb4-93b2ddc4fe99",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a2dc0359-5b2c-44a5-9d36-4b6ed92da692",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---

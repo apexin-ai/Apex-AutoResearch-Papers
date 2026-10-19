@@ -1,0 +1,15 @@
+{
+  "exp_id": "global_30pct_retention",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:35:45.803Z",
+    "updated_at": "2026-05-17T07:36:12.778Z",
+    "hypothesis": "30% global top-k allocation starves middle knowledge layers (L12-20), explaining MMLU degradation; global allocation distributes budget away from layers with uniformly moderate activation scores"
+  },
+  "timestamp": "2026-05-17T07:36:13.037776+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d95518c31df4f7d318a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops prepare spon submission",
+  "task_key": "worker_ops_prepare_spon_submission_20260515T172731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare_spon_submission_20260515T172731_result.json",
+    "occurrence": 1,
+    "bytes": 1599,
+    "sha256": "7da8e5990685e14d0c8825c8055e92d31e05d9ead8adf71c4d51a6f349b87b76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已确认。以下是完整的 `submit_training_job` 命令：\n\n```\nbash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train_spon.py \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n  --predictor_checkpoint /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt \\\n  --num_steps 1000 \\\n  --batch_size 8 \\\n  --seq_len 128 \\\n  --lr 1e-5 \\\n  --seed 42 \\\n  --sparsity_target 0.5 \\\n  --gpu 0 \\\n  --output_dir /root/distill_sparse_swiglu/checkpoints/spon_kl_s42 \\\n  --warmup_steps 100 \\\n  --log_every 100 \\\n  --dataset wikitext-103 \\\n  --gradient_checkpointing\"\n```\n\n**参数说明：**\n\n| 参数 | 值 | 来源 |\n|------|-----|------|\n| `--model_name_or_path` | `/root/autodl-tmp/models/llama-3.1-8b` | 脚本默认值 |\n| `--predictor_checkpoint` | `.../mvp_kl_norm_v2_s42/predictor_kl_normalized.pt` | 已确认存在（145MB） |\n| `--num_steps` | 1000 | 脚本默认值 |\n| `--batch_size` | 8 | 脚本默认值 |\n| `--lr` | 1e-5 | 脚本默认值 |\n| `--sparsity_target` | 0.5 | 脚本默认值 |\n| `--gpu` | 0 | 约束 C001，使用 cuda:0 |\n| `--output_dir` | `.../checkpoints/spon_kl_s42` | 按命名规范 |\n| `--gradient_checkpointing` | 开启 | 8B 模型省显存 |\n| `WANDB_MODE=disabled` | - | 按要求禁用 wandb |\n\n没有找到之前 SPON dry-run 的日志（runs 目录里只有 predictor 训练记录），所有参数均取脚本默认值 + 任务要求的覆盖值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-spon-submission.md"
+}

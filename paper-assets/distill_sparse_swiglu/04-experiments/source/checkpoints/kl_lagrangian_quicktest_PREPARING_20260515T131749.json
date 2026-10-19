@@ -1,0 +1,27 @@
+{
+  "exp_id": "kl_lagrangian_quicktest",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:17:49.894Z",
+    "updated_at": "2026-05-15T13:17:49.894Z",
+    "spec": {
+      "hypothesis": "Lagrangian multiplier 自适应约束替代固定 reg_weight，防止 KL 训练稀疏性坍塌",
+      "loss_type": "kl_lagrangian",
+      "seed": 42,
+      "model": "Llama-3.1-8B",
+      "sparsity": 0.5,
+      "steps": 200,
+      "batch_size": 4,
+      "seq_len": 2048,
+      "gpu": "cuda:0",
+      "server": "westd-34887",
+      "parent": "mvp_kl_s42"
+    }
+  },
+  "timestamp": "2026-05-15T13:17:49.909520+00:00",
+  "trigger": "update_registry"
+}

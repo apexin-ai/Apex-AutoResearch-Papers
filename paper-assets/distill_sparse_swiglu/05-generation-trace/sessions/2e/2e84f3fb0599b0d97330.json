@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e84f3fb0599b0d97330",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code bce gumbel no penalty s42",
+  "task_key": "worker_code_bce-gumbel-no-penalty-s42_20260519T065131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bce-gumbel-no-penalty-s42_20260519T065131_result.json",
+    "occurrence": 1,
+    "bytes": 1479,
+    "sha256": "6aff77c7a4f0fb1549dcceb9a26dbf357eec1b9a2511300d8f6a78f54959cf51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 代码修改\n`train_bce_gumbel_no_penalty.py` = `train_bce_gumbel.py` 去掉以下三部分：\n1. `lambda_sparse` 初始化和自适应更新（每 25 步 double/halve）\n2. `constraint_loss = lambda_sparse * clamp(target - actual, min=0)` \n3. `--lambda_max` 参数\n\n保留：BCE loss、Gumbel-sigmoid relaxation、tau annealing (1.0→0.1)、cosine LR schedule。\n\n### 训练 Metrics\n| Metric | No Penalty | With Lagrangian |\n|---|---|---|\n| Final BCE loss | 0.6307 | 0.6632 |\n| Training sparsity | **0.383** | 0.504 |\n| Training time | 977.6s | ~same |\n\n### Benchmark PPL (TEAL 50% uniform)\n| Variant | WikiText-2 PPL |\n|---|---|\n| BCE+Gumbel **no penalty** | **32.22** |\n| BCE+Gumbel+Lagrangian | 38.02 |\n| KL baseline | 11.79 |\n\n### 分析\n\n结果出乎意料：去掉 penalty controller 反而 PPL 从 38.02 改善到 32.22（-15.3%）。原因：\n- 无 penalty 时，训练 sparsity 自然漂移到 0.383（低于目标 0.5），predictor 可以专注优化 BCE loss 而不被 constraint 梯度干扰\n- 但 eval 统一在 50% sparsity 下，说明 predictor 学到了更好的 neuron 重要性排序\n- Lagrangian penalty 在 BCE 训练中实际是负面的——它强迫训练 sparsity 向 0.5 收敛，但这个额外梯度信号反而劣化了 predictor 的判别能力\n\n两个版本的 PPL 都远差于 KL（11.79），所以 **loss function 仍然是主要因素，Gumbel 和 Lagrangian 都是次要的**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bce-gumbel-no-penalty-s42.md"
+}

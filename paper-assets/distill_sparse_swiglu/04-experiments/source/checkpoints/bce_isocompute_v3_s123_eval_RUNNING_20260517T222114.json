@@ -1,0 +1,28 @@
+{
+  "exp_id": "bce_isocompute_v3_s123_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:38:39.052Z",
+    "updated_at": "2026-05-17T22:21:14.573Z",
+    "hypothesis": "BCE predictor seed 123 at 50% sparsity eval metrics (PPL, MMLU, ARC, WG, GSM8K) align with seeds 42/456, completing 3-seed mean±std for Table 2 BCE row",
+    "parent": "bce_isocompute_v3_s123",
+    "spec": {
+      "command": "cd /root/distill_sparse_swiglu && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id bce_isocompute_v3_s123 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/bce_isocompute_v3_s123/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0",
+      "server": "westd-34887",
+      "gpu": "cuda:1",
+      "data_path": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "data_count": 5,
+      "model_name": "llama-3.1-8b",
+      "seed": 123,
+      "checkpoint_source": "bce_isocompute_v3_s123",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T22:21:14.979648+00:00",
+  "trigger": "update_registry"
+}

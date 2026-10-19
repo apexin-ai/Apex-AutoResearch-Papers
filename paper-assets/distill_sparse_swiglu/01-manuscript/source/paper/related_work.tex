@@ -1,0 +1,20 @@
+\section{Related Work}
+
+\paragraph{Activation Sparsity.}
+Training-free methods exploit activation statistics directly: TEAL~\cite{liu2025teal} applies global top-$k$ by magnitude; CATS~\cite{lee2024cats} adapts per-layer thresholds for SwiGLU; R-Sparse~\cite{zhang2025rsparse} uses SVD projections; DIP~\cite{federici2025dip} combines dynamic input pruning with cache-aware masking; LaRoSA~\cite{liu2025larosa} applies layerwise rotations for structured sparsity with wall-clock speedup.
+Dhar et al.~\cite{dhar2024activation} show SwiGLU exhibits lower natural sparsity than ReLU.
+Predictor-based methods learn input-dependent masks: DejaVu~\cite{liu2023dejavu} trains per-neuron BCE classifiers; ShadowLLM~\cite{akhauri2024shadowllm} uses per-layer mean squared error (MSE) for intermediate coupling; FastForward~\cite{gautam2026fastforward} adds a 67.2M-parameter compensation network; PowerInfer~\cite{song2024powerinfer} exploits power-law activation frequencies for heterogeneous scheduling.
+MaskLLM~\cite{fang2024maskllm} shares our recipe (frozen weights + learnable masks + KL), but targets static N:M weight sparsity via Gumbel-Softmax; our predictor generates \emph{per-token} masks under global allocation that must generalize to unseen inputs.
+Concurrently, Serbin et al.~\cite{serbin2026svdcsp} construct training-free contextual predictors via gate-matrix SVD at 90\% sparsity with wall-clock speedup; our focus is on comparing \emph{trained} objectives at moderate sparsity levels.
+No prior work systematically compares loss functions for contextual activation sparsity prediction.
+
+\paragraph{Compensation and Architecture.}
+SPON~\cite{xu2025spon} learns input-independent bias vectors via closed-form per-layer KL, absorbed into weights at deployment---a static per-layer correction weakly correlated with our contextual predictions (cosine 0.196; Appendix~\ref{app:spon}).
+ReLU Strikes Back~\cite{mirzadeh2024relu} replaces SiLU with ReLU for $>$90\% natural sparsity; TurboSparse~\cite{song2024turbosparse} and ProSparse~\cite{song2025prosparse} engineer extreme sparsity through activation modifications; Haziza et al.~\cite{haziza2025accelerating} demonstrate 2:4 semi-structured sparsity with hardware-native acceleration.
+MoC~\cite{wu2025moc} selectively activates top-$K$ FFN channels using SwiGLU's native gating during pretraining.
+All require retraining or architecture modification; our predictor operates on \emph{unmodified} SwiGLU models.
+
+\paragraph{Pruning, Distillation, and Routing.}
+Wanda~\cite{sun2024wanda} and SparseGPT~\cite{frantar2023sparsegpt} produce static weight masks via one-shot pruning; SliceGPT~\cite{ashkboos2024slicegpt} removes entire rows via orthogonal projection.
+KL-based distillation~\cite{kim2016sequencekd,sanh2019distilbert,gu2024minillm,agarwal2024gkd} trains compact students; we apply this principle to train a mask predictor using Gumbel-Sigmoid~\cite{maddison2017concrete,louizos2018l0} for differentiable discrete optimization.
+Expert Choice routing~\cite{zhou2022expertchoice} parallels TEAL's global allocation; D2D-MoE~\cite{szatkowski2024d2dmoe} converts dense SwiGLU layers into dynamic-$k$ MoE, restructuring the network rather than predicting masks on the original architecture.

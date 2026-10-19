@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "574c1654181702ee5154",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis kl sparsity45 s42 eval teal",
+  "task_key": "worker_analysis_kl_sparsity45_s42_eval_teal_20260518T175635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kl_sparsity45_s42_eval_teal_20260518T175635_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "095b0fba1c9fe706a24cceb77b6454c19f001765d3c8926602a132c58361219d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## kl_sparsity45_s42_eval_teal 实验报告\n\n### Metrics\n\n| 指标 | 数值 | 预期范围 | 状态 |\n|------|------|---------|------|\n| wikitext2_ppl | **10.803** | 10.5-11.5 | 正常 |\n| arc_challenge_acc_norm | **0.3916** | ~0.397 | 正常 |\n| winogrande_acc | **0.6464** | ~0.702 | 偏低 |\n| mmlu_acc | **0.3037** | ~0.253 | 高于参考 |\n| gsm8k_exact_match | **0.0296** | ~0.088 | 偏低 |\n| actual_sparsity | **0.449** | 0.45 | 正常 |\n\n### Per-layer Sparsity 分布\n- 最低: Layer 0/18 (~0.29), 最高: Layer 29 (0.693)\n- 模型级: 0.449, 符合 45% 目标\n\n### 异常检查\n- 5 个任务全部完成 (wikitext2 + 4 downstream)\n- EXIT_CODE=0, 无 OOM/NaN\n- 总耗时 ~2347s (~39min)\n\n### 附加检查\n- **kl_sparsity25_s42 checkpoint**: westd-34887 上 **不存在** (`/root/distill_sparse_swiglu/checkpoints/kl_sparsity25_s42/` 目录缺失)\n\n### Registry\n已更新为 DONE (success), metrics 和 checkpoint_path 已录入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kl-sparsity45-s42-eval-teal.md"
+}

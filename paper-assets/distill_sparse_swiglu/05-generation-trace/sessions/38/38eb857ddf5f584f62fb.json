@@ -1,0 +1,1377 @@
+{
+  "schema_version": "1.0",
+  "id": "38eb857ddf5f584f62fb",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "eval resubmit 30pct v2",
+  "task_key": "worker_eval_resubmit_30pct_v2_20260516T015649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_resubmit_30pct_v2_20260516T015649.jsonl",
+    "occurrence": 1,
+    "bytes": 45585,
+    "sha256": "b9044996081854f8577701f78f453a4d788e0d4a8fd671bfb48a7071c3676488"
+  },
+  "statistics": {
+    "messages": 67,
+    "user_turns": 0,
+    "tool_calls": 33,
+    "roles": {
+      "tool_call": 33,
+      "tool_result": 33,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T01:59:17.200466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T01:59:17.201210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T01:59:17.201628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "ls -d /root/autodl-tmp/.hf_cache/models--meta-llama--Llama-3.1-8B 2>/dev/null"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T01:59:17.201964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T01:59:17.204483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "ls -d /root/.cache/huggingface/hub/models--meta-llama--Llama-3.1-8B 2>/dev/null"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T01:59:17.204872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T01:59:17.205220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "ls -d /root/.cache/huggingface/datasets/allenai___ai2_arc* 2>/dev/null"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T01:59:17.205521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T01:59:17.205807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "ls -d /root/.cache/huggingface/datasets/winogrande* 2>/dev/null"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T01:59:17.206013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T01:59:17.208468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "ls -la /root/distill_sparse_swiglu/results/lm_eval_kl_30pct/ 2>/dev/null"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T01:59:17.208764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T01:59:17.209049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "ls -la /root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt 2>/dev/null"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T01:59:17.209297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T01:59:17.209571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "find /root -maxdepth 4 -path \"*Llama-3.1-8B*\" -type d"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T01:59:17.209800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "find /root/.cache/huggingface/datasets -maxdepth 1 -type d -name \"allenai*\""
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T01:59:17.212070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/hub/models--meta-llama--Llama-3.1-8B\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T01:59:17.212473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "find /root/.cache/huggingface/datasets -maxdepth 1 -type d -name \"winogrande*\""
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T01:59:17.212739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T01:59:17.212998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "ls -la /root/distill_sparse_swiglu/results/lm_eval_kl_30pct/"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T01:59:17.213257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T01:59:17.213498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/distill_sparse_swiglu/results/lm_eval_kl_30pct/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T01:59:17.213723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "ls -la /root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T01:59:17.213951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 151966751 May 16 05:48 /root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T01:59:17.216426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "find /root/.cache -maxdepth 3 -type d -name \"lm_eval*\""
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T01:59:17.216741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T01:59:17.217090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "find /root -maxdepth 4 -type d -name \"lm_eval\""
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T01:59:17.217377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "head -80 /root/distill_sparse_swiglu/src/lm_eval_sparse.py"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T01:59:17.217658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/distill_sparse_swiglu/results/lm_eval\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T01:59:17.217987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# lm-evaluation-harness integration for KL-distilled sparse Llama-3.1-8B (TEAL 50%).\\\\n# Loads base model + predictor checkpoint, computes TEAL static masks with per-layer\\\\n# mean normalization, patches MLP forwards, then runs lm-eval benchmarks.\\\\n# Input: predictor checkpoint, model path, task list\\\\n# Output: lm-eval results JSON in --output_path\\\\n# Dependencies: lm-eval >= 0.4, transformers, torch, datasets\\\\n\\\\nimport argparse\\\\nimport importlib.util\\\\nimport json\\\\nimport os\\\\nimport sys\\\\n\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom data_utils import get_eval_dataset\\\\nfrom predictor import PredictorWrapper\\\\n\\\\n\\\\ndef _best_attn_impl():\\\\n    if importlib.util.find_spec(\\\\\\\"flash_attn\\\\\\\"):\\\\n        return \\\\\\\"flash_attention_2\\\\\\\"\\\\n    return \\\\\\\"sdpa\\\\\\\"\\\\n\\\\n\\\\ndef _global_topk_masks(layer_scores, sparsity_target):\\\\n    items = sorted(layer_scores.items())\\\\n    normalized = []\\\\n    for li, s in items:\\\\n        s_f = s.float()\\\\n        mu = s_f.mean()\\\\n        normalized.append((li, s_f / mu if mu > 1e-12 else s_f))\\\\n    all_s = torch.cat([s for _, s in normalized])\\\\n    num_keep = int(len(all_s) * (1.0 - sparsity_target))\\\\n    thr = torch.topk(all_s, num_keep).values[-1]\\\\n    return {li: (s >= thr).to(torch.bfloat16) for li, s in normalized}\\\\n\\\\n\\\\ndef teal_global_masks(wrapper, input_ids, sparsity_target, calib_batch_size=4):\\\\n    accum_scores = {}\\\\n    n_batches = 0\\\\n\\\\n    for start in range(0, input_ids.size(0), calib_batch_size):\\\\n        batch = input_ids[start:start + calib_batch_size]\\\\n        wrapper.forward_dense(batch, capture_intermediates=True)\\\\n        intermediates = wrapper.get_intermediates()\\\\n        layer_inputs = wrapper.get_layer_inputs()\\\\n        with torch.no_grad():\\\\n            for layer_idx in range(len(wrapper.predictors)):\\\\n                i\n…[truncated 1396 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T01:59:17.220590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "find /root/.cache/huggingface/datasets -maxdepth 1 -type d"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T01:59:17.220996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/.cache/huggingface/datasets\\\\n/root/.cache/huggingface/datasets/json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T01:59:17.221426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "tail -80 /root/distill_sparse_swiglu/src/lm_eval_sparse.py"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T01:59:17.221815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    actual_sp = print_mask_stats(\\\\\\\"TEAL-predictor\\\\\\\", global_masks)\\\\n\\\\n    # --- Apply static masks permanently ---\\\\n    # First restore original forwards (PredictorWrapper patched them)\\\\n    for layer_idx, layer in enumerate(model.model.layers):\\\\n        mlp = layer.mlp\\\\n        gp, up, dp, af = mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn\\\\n        def _make_orig(g, u, d, a):\\\\n            def fwd(x):\\\\n                return d(a(g(x)) * u(x))\\\\n            return fwd\\\\n        layer.mlp.forward = _make_orig(gp, up, dp, af)\\\\n\\\\n    apply_static_masks(model, global_masks, device)\\\\n    print(\\\\\\\"Static masks applied to model.\\\\\\\")\\\\n\\\\n    # Free predictor memory\\\\n    del wrapper, ckpt, calib_ids, calib_data\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    # --- Run lm-eval ---\\\\n    import lm_eval\\\\n    from lm_eval.models.huggingface import HFLM\\\\n\\\\n    task_list = [t.strip() for t in args.tasks.split(\\\\\\\",\\\\\\\")]\\\\n    print(f\\\\\\\"\\\\\\\\nlm-eval tasks: {task_list}\\\\\\\")\\\\n\\\\n    lm = HFLM(\\\\n        pretrained=model,\\\\n        tokenizer=tokenizer,\\\\n        batch_size=args.batch_size,\\\\n    )\\\\n\\\\n    eval_kwargs = dict(\\\\n        model=lm,\\\\n        tasks=task_list,\\\\n        batch_size=args.batch_size,\\\\n    )\\\\n    if args.num_fewshot is not None:\\\\n        eval_kwargs[\\\\\\\"num_fewshot\\\\\\\"] = args.num_fewshot\\\\n    if args.limit is not None:\\\\n        eval_kwargs[\\\\\\\"limit\\\\\\\"] = args.limit\\\\n\\\\n    results = lm_eval.simple_evaluate(**eval_kwargs)\\\\n\\\\n    # --- Print and save results ---\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"TEAL Sparse Llama-3.1-8B (sparsity={args.sparsity_target})\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    if \\\\\\\"results\\\\\\\" in results:\\\\n        for task_name, task_res in results[\\\\\\\"results\\\\\\\"].items():\\\\n            print(f\\\\\\\"\\\\\\\\n  {task_name}:\\\\\\\")\\\\n            for metric, val in task_res.items():\\\\n                if isinstance(val, (int, float)):\\\\n      \n…[truncated 1165 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T01:59:17.224310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "cat /root/runs/distill_sparse_swiglu/lm_eval_kl_30pct_s42.log"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T01:59:17.224761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "find /root/runs/distill_sparse_swiglu -name \"*lm_eval*\" -type f"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T01:59:17.225250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model from /root/distill_sparse_swiglu/models/llama-3.1-8b ...\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:35,  8.23it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:37,  7.66it/s]\\\\rLoading weights:   2%|▏         | 7/291 [00:00<00:11, 24.09it/s]\\\\rLoading weights:   8%|▊         | 23/291 [00:00<00:04, 62.41it/s]\\\\rLoading weights:  13%|█▎        | 37/291 [00:00<00:03, 84.10it/s]\\\\rLoading weights:  17%|█▋        | 50/291 [00:00<00:02, 94.71it/s]\\\\rLoading weights:  23%|██▎       | 68/291 [00:00<00:02, 110.64it/s]\\\\rLoading weights:  30%|██▉       | 86/291 [00:00<00:01, 121.74it/s]\\\\rLoading weights:  38%|███▊      | 112/291 [00:01<00:01, 152.80it/s]\\\\rLoading weights:  44%|████▍     | 128/291 [00:01<00:01, 148.32it/s]\\\\rLoading weights:  49%|████▉     | 143/291 [00:01<00:01, 139.32it/s]\\\\rLoading weights:  54%|█████▍    | 158/291 [00:01<00:01, 124.37it/s]\\\\rLoading weights:  62%|██████▏   | 181/291 [00:01<00:00, 149.00it/s]\\\\rLoading weights:  68%|██████▊   | 197/291 [00:01<00:00, 138.54it/s]\\\\rLoading weights:  73%|███████▎  | 212/291 [00:01<00:00, 130.01it/s]\\\\rLoading weights:  78%|███████▊  | 226/291 [00:01<00:00, 129.81it/s]\\\\rLoading weights:  82%|████████▏ | 240/291 [00:02<00:00, 123.22it/s]\\\\rLoading weights:  87%|████████▋ | 254/291 [00:02<00:00, 127.16it/s]\\\\rLoading weights:  92%|█████████▏| 267/291 [00:02<00:00, 116.78it/s]\\\\rLoading weights:  98%|█████████▊| 284/291 [00:02<00:00, 129.39it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 117.45it/s]\\\\nLoading predictor from checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt ...\\\\nLoading calibration data (WikiText-2) ...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikitext/resolve/main/README.md\\\\nRetrying in 1s [Retry 1/5].\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/distill\n…[truncated 4226 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T01:59:17.225622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/distill_sparse_swiglu/lm_eval_dense_test.log\\\\n/root/runs/distill_sparse_swiglu/lm_eval_kl_s42.log\\\\n/root/runs/distill_sparse_swiglu/lm_eval_dense.log\\\\n/root/runs/distill_sparse_swiglu/lm_eval_mistral_downstream.log\\\\n/root/runs/distill_sparse_swiglu/lm_eval_mistral_dense.log\\\\n/root/runs/distill_sparse_swiglu/lm_eval_kl_30pct_s42.log\\\\n/root/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T01:59:17.225886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "head -30 /root/runs/distill_sparse_swiglu/lm_eval_kl_s42.log"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T01:59:17.227278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nLoading model from /root/distill_sparse_swiglu/models/llama-3.1-8b ...\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:33,  8.70it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:36,  7.99it/s]\\\\rLoading weights:   5%|▍         | 14/291 [00:00<00:05, 50.97it/s]\\\\rLoading weights:   9%|▉         | 26/291 [00:00<00:03, 68.53it/s]\\\\rLoading weights:  16%|█▋        | 48/291 [00:00<00:02, 115.53it/s]\\\\rLoading weights:  21%|██        | 61/291 [00:00<00:02, 111.75it/s]\\\\rLoading weights:  26%|██▋       | 77/291 [00:00<00:01, 125.28it/s]\\\\rLoading weights:  31%|███▏      | 91/291 [00:00<00:01, 129.42it/s]\\\\rLoading weights:  36%|███▌      | 105/291 [00:01<00:01, 125.93it/s]\\\\rLoading weights:  42%|████▏     | 121/291 [00:01<00:01, 134.72it/s]\\\\rLoading weights:  46%|████▋     | 135/291 [00:01<00:01, 133.10it/s]\\\\rLoading weights:  51%|█████     | 149/291 [00:01<00:01, 134.44it/s]\\\\rLoading weights:  56%|█████▌    | 163/291 [00:01<00:01, 126.59it/s]\\\\rLoading weights:  60%|██████    | 176/291 [00:01<00:01, 110.25it/s]\\\\rLoading weights:  69%|██████▉   | 201/291 [00:01<00:00, 145.48it/s]\\\\rLoading weights:  75%|███████▍  | 217/291 [00:01<00:00, 130.38it/s]\\\\rLoading weights:  79%|███████▉  | 231/291 [00:02<00:00, 119.98it/s]\\\\rLoading weights:  85%|████████▍ | 247/291 [00:02<00:00, 123.56it/s]\\\\rLoading weights:  89%|████████▉ | 260/291 [00:02<00:00, 103.37it/s]\\\\rLoading weights:  97%|█████████▋| 283/291 [00:02<00:00, 131.24it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 116.98it/s]\\\\nLoading predictor from /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt ...\\\\nLoading calibration data (WikiText-2) ...\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n  \n…[truncated 608 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T01:59:17.227613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "find /root/.cache/huggingface -maxdepth 3 -type d -name \"*wikitext*\""
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T01:59:17.227863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T01:59:17.228111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "find /root/autodl-tmp -maxdepth 3 -type d -name \"*wikitext*\""
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T01:59:17.228346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/hub/datasets--wikitext\\\\n/root/autodl-tmp/.hf_cache/datasets/wikitext\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T01:59:17.228565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "ls /root/.cache/huggingface/datasets/json/"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T01:59:17.228780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"default-e3777626955ea657\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T01:59:17.231133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "find /root/autodl-tmp/.hf_cache/datasets -maxdepth 1 -type d"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T01:59:17.231523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/datasets\\\\n/root/autodl-tmp/.hf_cache/datasets/wikitext\\\\n/root/autodl-tmp/.hf_cache/datasets/allenai___ai2_arc\\\\n/root/autodl-tmp/.hf_cache/datasets/allenai___winogrande\\\\n/root/autodl-tmp/.hf_cache/datasets/openai___gsm8k\\\\n/root/autodl-tmp/.hf_cache/datasets/cais___mmlu\\\\n/root/autodl-tmp/.hf_cache/datasets/hails___mmlu_no_train\\\\n/root/autodl-tmp/.hf_cache/datasets/json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T01:59:17.231784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "find /root/autodl-tmp/.hf_cache/hub -maxdepth 1 -type d -name \"datasets*\""
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T01:59:17.232058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/hub/datasets--wikitext\\\\n/root/autodl-tmp/.hf_cache/hub/datasets--allenai--c4\\\\n/root/autodl-tmp/.hf_cache/hub/datasets--DKYoon--SlimPajama-6B\\\\n/root/autodl-tmp/.hf_cache/hub/datasets--allenai--ai2_arc\\\\n/root/autodl-tmp/.hf_cache/hub/datasets--allenai--winogrande\\\\n/root/autodl-tmp/.hf_cache/hub/datasets--openai--gsm8k\\\\n/root/autodl-tmp/.hf_cache/hub/datasets--hails--mmlu_no_train\\\\n/root/autodl-tmp/.hf_cache/hub/datasets--cais--mmlu\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T01:59:17.232264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "grep -n \"model_name\\|model_path\\|HF_HOME\\|pretrained\" /root/distill_sparse_swiglu/src/lm_eval_sparse.py"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T01:59:17.233537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T01:59:17.233793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "cat /root/distill_sparse_swiglu/src/lm_eval_sparse.py"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T01:59:17.235253+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# lm-evaluation-harness integration for KL-distilled sparse Llama-3.1-8B (TEAL 50%).\\\\n# Loads base model + predictor checkpoint, computes TEAL static masks with per-layer\\\\n# mean normalization, patches MLP forwards, then runs lm-eval benchmarks.\\\\n# Input: predictor checkpoint, model path, task list\\\\n# Output: lm-eval results JSON in --output_path\\\\n# Dependencies: lm-eval >= 0.4, transformers, torch, datasets\\\\n\\\\nimport argparse\\\\nimport importlib.util\\\\nimport json\\\\nimport os\\\\nimport sys\\\\n\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom data_utils import get_eval_dataset\\\\nfrom predictor import PredictorWrapper\\\\n\\\\n\\\\ndef _best_attn_impl():\\\\n    if importlib.util.find_spec(\\\\\\\"flash_attn\\\\\\\"):\\\\n        return \\\\\\\"flash_attention_2\\\\\\\"\\\\n    return \\\\\\\"sdpa\\\\\\\"\\\\n\\\\n\\\\ndef _global_topk_masks(layer_scores, sparsity_target):\\\\n    items = sorted(layer_scores.items())\\\\n    normalized = []\\\\n    for li, s in items:\\\\n        s_f = s.float()\\\\n        mu = s_f.mean()\\\\n        normalized.append((li, s_f / mu if mu > 1e-12 else s_f))\\\\n    all_s = torch.cat([s for _, s in normalized])\\\\n    num_keep = int(len(all_s) * (1.0 - sparsity_target))\\\\n    thr = torch.topk(all_s, num_keep).values[-1]\\\\n    return {li: (s >= thr).to(torch.bfloat16) for li, s in normalized}\\\\n\\\\n\\\\ndef teal_global_masks(wrapper, input_ids, sparsity_target, calib_batch_size=4):\\\\n    accum_scores = {}\\\\n    n_batches = 0\\\\n\\\\n    for start in range(0, input_ids.size(0), calib_batch_size):\\\\n        batch = input_ids[start:start + calib_batch_size]\\\\n        wrapper.forward_dense(batch, capture_intermediates=True)\\\\n        intermediates = wrapper.get_intermediates()\\\\n        layer_inputs = wrapper.get_layer_inputs()\\\\n        with torch.no_grad():\\\\n            for layer_idx in range(len(wrapper.predictors)):\\\\n                i\n…[truncated 6898 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T01:59:17.236370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "tmux kill-session -t lm_eval_kl_30pct_s42 2>/dev/null; echo \"cleaned\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T01:59:17.236666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cleaned\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T01:59:17.236956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "gpu_ids": "['cuda:0']",
+              "exp_id": "lm_eval_kl_30pct_s42",
+              "project": "distill_sparse_swiglu",
+              "command": "bash -c \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache/hub && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && python -u src/lm_eval_sparse.py --tasks arc_challenge,winogrande,mmlu,gsm8k --sparsity_target 0.3 --predictor_path checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --output_path results/lm_eval_kl_30pct\"",
+              "timeout_hours": "6"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T01:59:17.238281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"191335\\\", \\\"log_file\\\": \\\"~/runs/distill_sparse_swiglu/lm_eval_kl_30pct_s42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-34887\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"lm_eval_kl_30pct_s42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 1
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T01:59:17.238511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "tail -30 /root/runs/distill_sparse_swiglu/lm_eval_kl_30pct_s42.log"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T01:59:17.238716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nLoading model from /root/distill_sparse_swiglu/models/llama-3.1-8b ...\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:34,  8.52it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:36,  7.94it/s]\\\\rLoading weights:   5%|▌         | 15/291 [00:00<00:05, 53.29it/s]\\\\rLoading weights:  11%|█         | 32/291 [00:00<00:02, 93.59it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T01:59:17.239042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "tail -30 /root/runs/distill_sparse_swiglu/lm_eval_kl_30pct_s42.log"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T01:59:17.239290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nLoading model from /root/distill_sparse_swiglu/models/llama-3.1-8b ...\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:34,  8.52it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:36,  7.94it/s]\\\\rLoading weights:   5%|▌         | 15/291 [00:00<00:05, 53.29it/s]\\\\rLoading weights:  11%|█         | 32/291 [00:00<00:02, 93.59it/s]\\\\rLoading weights:  15%|█▌        | 45/291 [00:00<00:02, 103.26it/s]\\\\rLoading weights:  21%|██        | 60/291 [00:00<00:01, 116.82it/s]\\\\rLoading weights:  25%|██▌       | 73/291 [00:00<00:01, 114.40it/s]\\\\rLoading weights:  33%|███▎      | 95/291 [00:00<00:01, 143.55it/s]\\\\rLoading weights:  38%|███▊      | 112/291 [00:01<00:01, 148.99it/s]\\\\rLoading weights:  44%|████▍     | 128/291 [00:01<00:01, 141.73it/s]\\\\rLoading weights:  51%|█████     | 148/291 [00:01<00:00, 154.23it/s]\\\\rLoading weights:  56%|█████▋    | 164/291 [00:01<00:00, 153.13it/s]\\\\rLoading weights:  62%|██████▏   | 180/291 [00:01<00:00, 145.16it/s]\\\\rLoading weights:  67%|██████▋   | 195/291 [00:01<00:00, 131.89it/s]\\\\rLoading weights:  73%|███████▎  | 211/291 [00:01<00:00, 135.42it/s]\\\\rLoading weights:  77%|███████▋  | 225/291 [00:01<00:00, 110.47it/s]\\\\rLoading weights:  83%|████████▎ | 242/291 [00:02<00:00, 116.99it/s]\\\\rLoading weights:  90%|█████████ | 263/291 [00:02<00:00, 125.99it/s]\\\\rLoading weights:  98%|█████████▊| 284/291 [00:02<00:00, 142.97it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 125.24it/s]\\\\nLoading predictor from checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt ...\\\\nLoading calibration data (WikiText-2) ...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T01:59:17.239597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "tail -20 /root/runs/distill_sparse_swiglu/lm_eval_kl_30pct_s42.log"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T01:59:17.239924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nLoading model from /root/distill_sparse_swiglu/models/llama-3.1-8b ...\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:34,  8.52it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:36,  7.94it/s]\\\\rLoading weights:   5%|▌         | 15/291 [00:00<00:05, 53.29it/s]\\\\rLoading weights:  11%|█         | 32/291 [00:00<00:02, 93.59it/s]\\\\rLoading weights:  15%|█▌        | 45/291 [00:00<00:02, 103.26it/s]\\\\rLoading weights:  21%|██        | 60/291 [00:00<00:01, 116.82it/s]\\\\rLoading weights:  25%|██▌       | 73/291 [00:00<00:01, 114.40it/s]\\\\rLoading weights:  33%|███▎      | 95/291 [00:00<00:01, 143.55it/s]\\\\rLoading weights:  38%|███▊      | 112/291 [00:01<00:01, 148.99it/s]\\\\rLoading weights:  44%|████▍     | 128/291 [00:01<00:01, 141.73it/s]\\\\rLoading weights:  51%|█████     | 148/291 [00:01<00:00, 154.23it/s]\\\\rLoading weights:  56%|█████▋    | 164/291 [00:01<00:00, 153.13it/s]\\\\rLoading weights:  62%|██████▏   | 180/291 [00:01<00:00, 145.16it/s]\\\\rLoading weights:  67%|██████▋   | 195/291 [00:01<00:00, 131.89it/s]\\\\rLoading weights:  73%|███████▎  | 211/291 [00:01<00:00, 135.42it/s]\\\\rLoading weights:  77%|███████▋  | 225/291 [00:01<00:00, 110.47it/s]\\\\rLoading weights:  83%|████████▎ | 242/291 [00:02<00:00, 116.99it/s]\\\\rLoading weights:  90%|█████████ | 263/291 [00:02<00:00, 125.99it/s]\\\\rLoading weights:  98%|█████████▊| 284/291 [00:02<00:00, 142.97it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 125.24it/s]\\\\nLoading predictor from checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt ...\\\\nLoading calibration data (WikiText-2) ...\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.\n…[truncated 6 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T01:59:17.242414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "account": "root",
+              "command": "tail -15 /root/runs/distill_sparse_swiglu/lm_eval_kl_30pct_s42.log"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T01:59:17.242835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nLoading model from /root/distill_sparse_swiglu/models/llama-3.1-8b ...\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:34,  8.52it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:36,  7.94it/s]\\\\rLoading weights:   5%|▌         | 15/291 [00:00<00:05, 53.29it/s]\\\\rLoading weights:  11%|█         | 32/291 [00:00<00:02, 93.59it/s]\\\\rLoading weights:  15%|█▌        | 45/291 [00:00<00:02, 103.26it/s]\\\\rLoading weights:  21%|██        | 60/291 [00:00<00:01, 116.82it/s]\\\\rLoading weights:  25%|██▌       | 73/291 [00:00<00:01, 114.40it/s]\\\\rLoading weights:  33%|███▎      | 95/291 [00:00<00:01, 143.55it/s]\\\\rLoading weights:  38%|███▊      | 112/291 [00:01<00:01, 148.99it/s]\\\\rLoading weights:  44%|████▍     | 128/291 [00:01<00:01, 141.73it/s]\\\\rLoading weights:  51%|█████     | 148/291 [00:01<00:00, 154.23it/s]\\\\rLoading weights:  56%|█████▋    | 164/291 [00:01<00:00, 153.13it/s]\\\\rLoading weights:  62%|██████▏   | 180/291 [00:01<00:00, 145.16it/s]\\\\rLoading weights:  67%|██████▋   | 195/291 [00:01<00:00, 131.89it/s]\\\\rLoading weights:  73%|███████▎  | 211/291 [00:01<00:00, 135.42it/s]\\\\rLoading weights:  77%|███████▋  | 225/291 [00:01<00:00, 110.47it/s]\\\\rLoading weights:  83%|████████▎ | 242/291 [00:02<00:00, 116.99it/s]\\\\rLoading weights:  90%|█████████ | 263/291 [00:02<00:00, 125.99it/s]\\\\rLoading weights:  98%|█████████▊| 284/291 [00:02<00:00, 142.97it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 125.24it/s]\\\\nLoading predictor from checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt ...\\\\nLoading calibration data (WikiText-2) ...\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n  Using 32 calibration sequences\\\\nComputing TEAL global masks (sparsity=0.3) ...\\\\n\\\", \\\"stderr\\\"\n…[truncated 90 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T01:59:17.243257+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已通过上次失败点。状态：\n\n- **PID**: 191335\n- **GPU**: cuda:0\n- **tmux session**: lm_eval_kl_30pct_s42\n- **日志**: `~/runs/distill_sparse_swiglu/lm_eval_kl_30pct_s42.log`\n\n模型加载成功，WikiText-2 calibration data 加载成功（32 sequences），正在计算 TEAL global masks (sparsity=0.3)。上次失败根因是缺少 `source /etc/network_turbo`，本次已修复，同时配置了 `HF_HOME=/root/autodl-tmp/.hf_cache` 指向缓存目录。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_resubmit_30pct_v2_20260516T015649"
+          },
+          "id": "event-000067"
+        }
+      ],
+      "message_count": 67
+    }
+  ],
+  "readable_path": "readable/conversations/eval-resubmit-30pct-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55bb6e58e6bca9cfc500",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval resubmit teal 50pct v2",
+  "task_key": "worker_eval_resubmit_teal_50pct_v2_20260516T015655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_resubmit_teal_50pct_v2_20260516T015655_result.json",
+    "occurrence": 1,
+    "bytes": 331,
+    "sha256": "8740614e91742de56c728698861e0719a15d29d5d3bd3bdab67374ce9b42d270"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常。\n\n- **PID**: 190830, **GPU**: cuda:1, **tmux**: `lm_eval_teal_50pct`\n- 模型 llama-3.1-8b 加载完成，50% sparsity masks 已应用（Model-level: 0.500）\n- lm-eval 已启动，正在评估 arc_challenge, winogrande, mmlu, gsm8k\n- 日志: `~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-resubmit-teal-50pct-v2.md"
+}

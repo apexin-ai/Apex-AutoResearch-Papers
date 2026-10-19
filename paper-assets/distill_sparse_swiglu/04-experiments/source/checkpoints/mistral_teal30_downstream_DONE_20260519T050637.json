@@ -1,0 +1,46 @@
+{
+  "exp_id": "mistral_teal30_downstream",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:15:45.662Z",
+    "updated_at": "2026-05-19T05:06:37.120Z",
+    "hypothesis": "Training-free TEAL 30% uniform allocation baseline on Mistral-7B for downstream tasks (PPL + ARC + WG + MMLU + GSM8K + HellaSwag + PIQA). Without this TEAL baseline, Mistral cross-architecture comparison cannot isolate KL predictor improvement from TEAL inherent capability. Required for W2 cross-architecture claim.",
+    "spec": {
+      "command": "benchmark_eval.py Mistral TEAL",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "74835",
+      "log_path": "~/runs/distill_sparse_swiglu/mistral_teal30_downstream.log",
+      "submitted_at": "2026-05-19T03:16:09.014Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "downstream tasks",
+      "data_count": 7,
+      "model_name": "Mistral-7B-v0.1",
+      "seed": 42,
+      "checkpoint_path": "N/A (training-free)",
+      "wall_clock_seconds": 6628.1,
+      "gpu_hours": 1.84
+    },
+    "metrics": {
+      "wikitext2_ppl": 8.3807,
+      "arc_challenge_acc_norm": 0.4113,
+      "winogrande_acc": 0.6354,
+      "mmlu_acc": 0.4348,
+      "gsm8k_exact_match": 0.1592,
+      "hellaswag_acc_norm": 0.6011,
+      "piqa_acc_norm": 0.7214
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T05:06:37.120Z"
+  },
+  "timestamp": "2026-05-19T05:06:37.560161+00:00",
+  "trigger": "update_registry"
+}

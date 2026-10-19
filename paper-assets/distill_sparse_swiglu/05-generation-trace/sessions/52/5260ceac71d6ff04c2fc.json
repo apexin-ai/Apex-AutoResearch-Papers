@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5260ceac71d6ff04c2fc",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code uniform perlayer allocation",
+  "task_key": "worker_code_uniform_perlayer_allocation_20260516T030803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_uniform_perlayer_allocation_20260516T030803_result.json",
+    "occurrence": 1,
+    "bytes": 1393,
+    "sha256": "2b2df7296ab4ad38342937f708b362a833ff889a98cbe7d8648bdd4b70187b1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两块 GPU 均有活跃进程（cuda:0: 1 进程 ~20GB, cuda:1: 2 进程 ~62GB），不启动分析。\n\n---\n\n**产出汇总：**\n\n1. **`src/analyze_perlayer_sparsity.py`** — 分析脚本\n   - 加载 predictor + base model，对 calibration data 运行推理\n   - 计算 global top-k masks，统计每层实际 sparsity\n   - 输出：每层 sparsity + 统计摘要（mean/std/min/max/前半后半对比），保存 JSON\n   - 参数：`--model_path`, `--predictor_path`, `--sparsity_target`, `--output_path`, `--device`\n\n2. **`src/lm_eval_sparse_uniform.py`** — 带 uniform allocation 的 eval 脚本\n   - 基于 `lm_eval_sparse.py`，新增 `--allocation` 参数（`global` | `uniform`，默认 `uniform`）\n   - `_uniform_topk_masks()`: 每层独立做 top-k，确保每层 sparsity 严格等于 `sparsity_target`\n   - `_global_topk_masks()`: 保留原始行为供对比\n   - 新增 `--device` 参数（原版硬编码 cuda:0）\n\n3. **Dry-run 验证**：两个脚本 `--help` 均正常通过\n\n4. **50% 分析未运行**：两块 GPU 均有活跃进程，跳过。空闲时运行命令：\n   ```bash\n   CUDA_VISIBLE_DEVICES=0 python src/analyze_perlayer_sparsity.py \\\n       --model_path /root/autodl-tmp/models/llama-3.1-8b \\\n       --predictor_path checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt \\\n       --sparsity_target 0.5\n   ```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-uniform-perlayer-allocation.md"
+}

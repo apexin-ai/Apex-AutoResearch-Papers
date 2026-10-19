@@ -1,0 +1,265 @@
+paper_key: "Training-Free Activation Sparsity in Large Language Models"
+title: "Training-Free Activation Sparsity in Large Language Models"
+authors: "James Liu, Pragaash Ponnusamy, Tianle Cai, Han Guo, Yoon Kim, Ben Athiwaratkun"
+venue: "ICLR 2025 Spotlight"
+arxiv: "2408.14690"
+full_text_available: true
+
+research:
+  baselines:
+    - "Dense baseline (0% sparsity)"
+    - "CATS (Context-Aware Thresholding for Sparsity)"
+    - "ReLUfication (SiLU->ReLU replacement without retraining)"
+    - "DejaVu (ReLU-based activation sparsity with predictor)"
+  metrics:
+    - {name: "WikiText perplexity", direction: "lower_better"}
+    - {name: "MMLU (5-shot)", direction: "higher_better"}
+    - {name: "ARC-Challenge (25-shot)", direction: "higher_better"}
+    - {name: "HellaSwag (10-shot)", direction: "higher_better"}
+    - {name: "GSM8K (5-shot)", direction: "higher_better"}
+    - {name: "PiQA (0-shot)", direction: "higher_better"}
+    - {name: "Winogrande (0-shot)", direction: "higher_better"}
+    - {name: "Downstream average (6 tasks)", direction: "higher_better"}
+    - {name: "Tokens/second (end-to-end decoding)", direction: "higher_better"}
+    - {name: "Speedup ratio vs dense baseline", direction: "higher_better"}
+    - {name: "Layer-level L2 activation error", direction: "lower_better"}
+  datasets:
+    - {name: "WikiText", size: "perplexity evaluation", role: "primary quality metric"}
+    - {name: "MMLU", size: "57 tasks", role: "downstream knowledge"}
+    - {name: "ARC-Challenge", size: "standard split", role: "downstream reasoning"}
+    - {name: "HellaSwag", size: "standard split", role: "downstream commonsense"}
+    - {name: "GSM8K", size: "standard split", role: "downstream math"}
+    - {name: "PiQA", size: "standard split", role: "downstream physical intuition"}
+    - {name: "Winogrande", size: "standard split", role: "downstream coreference"}
+    - {name: "Generic text (unspecified)", size: "M=10 samples, length 2048", role: "calibration for thresholds"}
+  models_evaluated:
+    - "Llama-2-7B"
+    - "Llama-2-13B"
+    - "Llama-2-70B"
+    - "Llama-3-8B"
+    - "Llama-3-70B"
+    - "Mistral-7B"
+  ablation_dimensions:
+    - "Uniform vs block-wise greedy sparsity allocation"
+    - "Input sparsity (TEAL) vs output sparsity (CATS) for W_up"
+    - "Sparsity level sweep (0%, 25%, 40%, 50%, 65%)"
+    - "Layer-wise sparsifiability (W_down > W_gate > W_up)"
+    - "Quantization bitwidth interaction (FP16, 8-bit RTN, 4-bit AWQ, 2/3-bit QuIP#)"
+    - "Prefill sparsification proportion"
+    - "Batch size effect on activation error"
+    - "Hardware comparison (A6000 vs A100)"
+  training_recipe:
+    optimizer: "N/A (training-free)"
+    lr: "N/A"
+    hardware: "NVIDIA A100 (500W), NVIDIA A6000 (300W)"
+    calibration_cost: "~1 GPU-hour on A100 for Llama-3-8B (~9800 forward passes)"
+    greedy_step_size: "alpha=0.05"
+    calibration_samples: "M=10 samples, length 2048"
+    inference_setup: "single-batch decoding, CUDA graphs, torch.compile"
+  method_family: "training-free activation sparsity via magnitude thresholding"
+  sparsity_type: "unstructured element-level magnitude pruning, but with channel-wise loading for hardware efficiency"
+  key_technique: "Block-wise greedy sparsity allocation (Algorithm 1) minimizing per-layer L2 activation error"
+
+positioning:
+  core_claim: "Magnitude-based activation sparsity can be applied training-free across ALL linear layers in modern SwiGLU LLMs, achieving 40-50% model-wide sparsity with real wall-clock speedups, without any continued pretraining or architecture changes."
+  key_results: |
+    WikiText PPL (Llama-3-8B): 5.87 baseline -> 6.21 at 40% sparsity (+5.8%), 6.67 at 50% (+13.6%)
+    WikiText PPL (Llama-2-7B): 5.07 baseline -> 5.22 at 40% (+3.0%), 5.43 at 50% (+7.1%)
+    Downstream avg (Llama-3-8B): 68.07 baseline -> 66.21 at 40% (-1.86pp), 63.42 at 50% (-4.65pp)
+    Speedup A6000 (Llama-2-7B): 1.53x at 40%, 1.78x at 50%
+    Speedup A6000 (Llama-3-8B): 1.42x at 40%, 1.63x at 50%
+    Speedup A100 (Llama-2-7B): 1.31x at 40%, 1.40x at 50%
+    CATS collapses at 40%: PPL explodes to 7.6e4 (Llama-3-8B) vs TEAL 6.21
+    ReLUfication without retraining: PPL 1.5e5 (Llama-3-8B) — completely fails
+  limitations:
+    - "Does not scale to higher batch sizes (>1) — speedups diminish as inference becomes compute-bound"
+    - "Prefill sparsification degrades performance due to attention sinks in initial tokens"
+    - "Greedy calibration requires ~1 GPU-hour per model (modest but nonzero cost)"
+    - "At 65% sparsity, quality degrades substantially (Llama-3-8B PPL 9.06, downstream 52.59)"
+    - "Lower speedup gains on A100 vs A6000 due to stronger torch.compile baselines"
+  relation_to_us: "competitor"
+  relation_detail: |
+    TEAL is a direct competitor: we distill sparse activation patterns via training to learn which neurons to keep,
+    while TEAL argues training is unnecessary — simple magnitude thresholding suffices.
+    Key tension: TEAL shows 40-50% sparsity is achievable training-free, which sets a strong baseline
+    that any training-based method (like ours) must substantially beat to justify training cost.
+    Our advantage: training-based distillation can potentially achieve higher sparsity (>50%) with
+    less quality loss, or same sparsity with better quality, because learned masks capture
+    input-dependent patterns beyond magnitude.
+
+narrative:
+  story_type: "化繁为简型"
+  hook: |
+    Opens with the scaling-inference tension: LLMs gain capabilities through scale, but
+    inference cost grows proportionally. Memory-boundedness of autoregressive decoding is
+    identified as the core bottleneck — framing the problem as a memory wall, not compute wall.
+  tension: |
+    Prior activation sparsity methods (DejaVu) exploited natural ReLU sparsity (~95%), but modern
+    LLMs abandoned ReLU for SwiGLU/GELU, eliminating natural zeros. ReLUfication requires
+    "hundreds of billions of tokens" of continued pretraining — prohibitively expensive.
+    CATS only achieves ~25% model-wide sparsity (only sparsifies MLP outputs).
+    The gap: no practical, training-free method for modern non-ReLU LLMs.
+  key_insight: |
+    Hidden state activations in modern LLMs, even without ReLU, exhibit exploitable distributional
+    structure: Gaussian-like before blocks, Laplacian-like within blocks. The Laplacian concentration
+    around zero means magnitude-based thresholding naturally finds ~40-50% entries to prune.
+    This is revealed through Figure 2's distributional analysis — the paper's most novel observation.
+  argument_chain: |
+    Problem (memory-bound decoding) -> Prior work limitation (ReLU sparsity gone, ReLUfication expensive)
+    -> Distributional observation (hidden states have prunable structure even without ReLU)
+    -> Method (magnitude thresholding + greedy per-layer allocation + efficient kernels)
+    -> Validation (perplexity + 6 downstream tasks + wall-clock speedups across 6 models)
+    -> Complementarity (works with weight quantization for further gains)
+  contribution_framing: |
+    Four contributions listed implicitly:
+    (1) Training-free magnitude-based activation sparsity for all linear layers
+    (2) Block-wise greedy sparsity allocation algorithm
+    (3) Improved sparse CUDA kernels (Triton-based, outperforming DejaVu)
+    (4) Demonstrated compatibility with weight quantization
+    Framing is practical/systems-oriented: "simple" and "training-free" repeated as selling points.
+  intro_structure: |
+    4 paragraphs:
+    P1: Context (LLM scaling + inference bottleneck, memory-bound nature)
+    P2: Prior approaches (weight quantization, weight pruning, activation sparsity background)
+    P3: Activation sparsity opportunity (DejaVu success on ReLU models, modern SwiGLU gap)
+    P4: TEAL contribution (training-free magnitude sparsity, results summary, quantization compat)
+  notable_technique: |
+    The distributional analysis (Figure 2) is the paper's strongest narrative move — it transforms
+    "why would magnitude pruning work on non-ReLU models?" from a weakness into a strength by
+    showing Laplacian distributions naturally concentrate mass near zero. This provides intuitive
+    justification before the method section, making the simple approach feel principled rather than naive.
+
+figures:
+  figure_count: 9
+  figure1:
+    type: "method_overview"
+    description: |
+      Overview diagram of TEAL. Shows the decoding pipeline where low-magnitude activation entries
+      are thresholded to zero, which allows skipping the loading of associated weight columns,
+      leading to wall-clock speedups. Visual shows activation vector -> threshold -> sparse multiply.
+    narrative_role: "Establishes the method at a glance — the reader immediately understands the mechanism before diving into details."
+    design_elements:
+      - "Simple pipeline visualization (input -> threshold -> sparse matmul)"
+      - "Highlights the memory-saving mechanism (skipped weight columns)"
+      - "Clean, minimal design appropriate for a simple method"
+    visual_style: "Schematic diagram with colored blocks representing activations and weights, arrows showing data flow, crossed-out elements showing pruned channels."
+
+  figure2:
+    type: "motivation"
+    figure_id: "Figure 2"
+    description: |
+      Activation distributions of Llama-3-8B's four hidden states (x_attn, x_mlp, x_up, x_down)
+      at Blocks 8, 16, and 24. Shows Gaussian-like shapes before Attention/MLP blocks and
+      Laplacian-like shapes within blocks. Best-fit distributions overlaid in blue.
+    narrative_role: "The key motivating evidence — proves magnitude pruning is principled for non-ReLU models by showing Laplacian concentration near zero."
+    design_elements:
+      - "3x4 grid of histograms (blocks x hidden states)"
+      - "Blue overlay showing fitted Gaussian/Laplace distributions"
+      - "Clear visual contrast between Gaussian (before blocks) and Laplacian (within blocks)"
+    visual_style: "Small multiples histogram grid, gray bars for empirical distribution, blue curves for fitted parametric distributions."
+
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Latency vs sparsity for TEAL vs DejaVu sparse kernels in matrix-vector multiplication"
+      how_gain_highlighted: "TEAL kernel shows consistently lower latency across all sparsity levels"
+      design_note: "Microbenchmark plot isolates kernel improvement from method improvement — clean separation of concerns."
+
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Perplexity vs sparsity for Llama-2-7B at various quantization bitwidths (FP16, 8-bit, 4-bit AWQ, 2/3-bit QuIP#)"
+      how_gain_highlighted: "Two panels: left shows absolute PPL, right normalizes by bitwidth to show complementary nature of sparsity + quantization"
+      design_note: "Dual-panel design separates 'does it work' from 'is it complementary' — smart for making quantization compat argument."
+
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Perplexity of uniform vs block-wise greedy sparsity configurations on Llama-3-8B"
+      how_gain_highlighted: "Greedy consistently below uniform across all sparsity levels"
+      design_note: "Direct ablation visualization for the greedy algorithm contribution."
+
+    - figure_id: "Figure 7"
+      viz_type: "bar_chart"
+      what_compared: "Per-layer greedy sparsity allocations for Llama-3-70B at 50% target, split attention vs MLP"
+      how_gain_highlighted: "Shows non-uniform distribution — some layers get much higher sparsity than others"
+      design_note: "Dual panel (attention left, MLP right) reveals the heterogeneity that justifies greedy over uniform."
+
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "bar_chart"
+      dimensions_varied: ["input sparsity (TEAL) vs output sparsity (CATS) for W_up"]
+      design_note: "Layer-level error comparison directly visualizes why TEAL's input-side sparsification outperforms CATS's output-side approach at Block 16 of Llama-3-8B."
+
+    - figure_id: "Figure 8"
+      viz_type: "line_plot"
+      dimensions_varied: ["batch size effect on layer-level activation error"]
+      design_note: "Shows error increases with batch size, honestly illustrating the method's scalability limitation."
+
+    - figure_id: "Figure 9"
+      viz_type: "line_plot"
+      dimensions_varied: ["proportion of prefill tokens sparsified"]
+      design_note: "Demonstrates attention sink phenomenon — sparsifying early prefill tokens hurts disproportionately."
+
+  figure_narrative_role: |
+    Figure 1 (method overview) -> Figure 2 (distributional motivation: why it works) ->
+    Figure 3 (kernel speedup) -> Figure 4 (quantization compat) -> Figure 5 (input vs output sparsity) ->
+    Figure 6 (greedy vs uniform) -> Figure 7 (learned sparsity distribution) ->
+    Figure 8 (batch size limitation) -> Figure 9 (prefill limitation).
+    Flow: overview -> motivation -> speed -> compatibility -> design choices -> ablations -> honest limitations.
+    Notable: limitations get dedicated figures (8, 9), showing transparency.
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    title: "WikiText Perplexity"
+    row_axis: "methods"
+    col_axis: "models"
+    row_organization: "by_category"
+    col_organization: "grouped_by_model_family"
+    highlight_strategy: "comparison across methods at same sparsity level; ReLUfication shown to catastrophically fail"
+    statistical_reporting: "single-run perplexity (no std)"
+    num_baselines: 3
+    key_data:
+      - "Llama-3-8B: dense 5.87 | TEAL-25% 5.94 | TEAL-40% 6.21 | TEAL-50% 6.67 | TEAL-65% 9.06"
+      - "Llama-3-70B: dense 2.93 | TEAL-25% 3.02 | TEAL-40% 3.52 | TEAL-50% 4.30 | TEAL-65% 6.29"
+      - "CATS-40% completely collapses: 7.6e4 (Llama-3-8B), 96.97 (Llama-3-70B)"
+      - "ReLUfication without retraining: all models PPL > 1e4"
+    design_note: "Including catastrophically failing baselines (ReLUfication, CATS-40%) makes TEAL look dramatically better by contrast. Smart competitive framing."
+
+  secondary_table:
+    table_id: "Table 2"
+    title: "Downstream Task Average (6 tasks)"
+    row_axis: "methods"
+    col_axis: "models"
+    row_organization: "by_category"
+    col_organization: "grouped_by_model_family"
+    highlight_strategy: "average over 6 tasks; shows graceful degradation"
+    statistical_reporting: "single-run averages (no std)"
+    num_baselines: 2
+    key_data:
+      - "Llama-3-8B: dense 68.07 | TEAL-25% 67.73 | TEAL-40% 66.21 | TEAL-50% 63.42"
+      - "At 40%, most models lose <2pp on average"
+      - "CATS-25% already worse than TEAL-40% on some models"
+    design_note: "Reporting average over 6 tasks compresses information but hides per-task variance. Individual task breakdowns would be more informative but take more space."
+
+  speed_table:
+    table_id: "Table 3"
+    title: "End-to-End Single-Batch Decoding Speed"
+    row_axis: "models"
+    col_axis: "sparsity levels x hardware (A6000, A100)"
+    row_organization: "by_model_size"
+    col_organization: "grouped_by_hardware"
+    highlight_strategy: "speedup ratios in parentheses; absolute tokens/sec also shown"
+    statistical_reporting: "tokens/second with speedup multiplier"
+    key_data:
+      - "Best speedup A6000: 1.80x (Llama-2-13B at 50%)"
+      - "Best speedup A100: 1.45x (Llama-2-13B at 50%)"
+      - "A100 baseline stronger due to torch.compile -> lower relative gains"
+      - "Overhead at 0% sparsity: ~1-2% on A6000, ~7-9% on A100"
+    design_note: "Dual-hardware presentation shows generality but also honestly reveals that A100 gains are lower. Including 0% sparsity row shows kernel overhead is minimal."
+
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "No separate appendix tables mentioned — all results in main body"
+    reason: "Paper keeps all results in main text, consistent with the 'simplicity' narrative"

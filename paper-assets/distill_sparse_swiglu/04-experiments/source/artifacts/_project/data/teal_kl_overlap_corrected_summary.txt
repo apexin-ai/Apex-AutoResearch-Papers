@@ -1,0 +1,1 @@
+See remote: /root/distill_sparse_swiglu/artifacts/teal_kl_overlap_corrected.json on westd-34887. Key results: z=7260.33, p≈0, median percentile rank=78.6% (IQR 64.4-89.1%), 31/32 layers empirically significant at p<0.001. Conclusion: 1.48x magnitude ratio is not selection bias.

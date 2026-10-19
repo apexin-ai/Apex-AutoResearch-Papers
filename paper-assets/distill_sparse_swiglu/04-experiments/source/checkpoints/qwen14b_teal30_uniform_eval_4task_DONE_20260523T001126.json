@@ -1,0 +1,57 @@
+{
+  "exp_id": "qwen14b_teal30_uniform_eval_4task",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T00:31:54.286Z",
+    "updated_at": "2026-05-23T00:11:25.546Z",
+    "hypothesis": "TEAL vanilla 14B uniform allocation 4-task control. Baseline for comparing allocation effect on TEAL vs KL downstream metrics.",
+    "spec": {
+      "command": "bash -c \"cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu --exp_id qwen14b_teal30_uniform_4task --gpu 0\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "87283",
+      "log_path": "~/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_eval_4task.log",
+      "submitted_at": "2026-05-18T00:53:02.718Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "qwen2.5-14b",
+      "data_path": "wikitext2,arc_challenge,winogrande,mmlu",
+      "data_count": 0,
+      "seed": 42,
+      "checkpoint_source": "N/A (TEAL vanilla)",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu",
+      "wall_clock_seconds": 3912.8,
+      "gpu_hours": 1.09
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T01:21:48.903Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T01:21:54.917321+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "wikitext2_ppl": 8.01,
+      "mmlu_acc": 0.6634,
+      "arc_challenge_acc_norm": 0.5529,
+      "winogrande_acc": 0.6985
+    },
+    "conclusion": "killed",
+    "checkpoint_path": "N/A (eval-only experiment)",
+    "completed_at": "2026-05-18T01:58:15.536Z"
+  },
+  "timestamp": "2026-05-23T00:11:26.184363+00:00",
+  "trigger": "update_registry"
+}

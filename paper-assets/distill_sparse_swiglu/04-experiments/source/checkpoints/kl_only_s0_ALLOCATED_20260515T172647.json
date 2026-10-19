@@ -1,0 +1,24 @@
+{
+  "exp_id": "kl_only_s0",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:19:35.138Z",
+    "updated_at": "2026-05-15T17:26:47.109Z",
+    "spec": {
+      "hypothesis": "KL normalized v3 seed robustness: seed=0 应与 s42/s123/s456 一致，扩展到 5-seed headline",
+      "loss_type": "kl_normalized_v3",
+      "kl_normalization": "÷seq_len only (v3 fix)",
+      "lagrangian": "lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]",
+      "model_name": "llama-3.1-8b",
+      "seed": 0,
+      "data_path": "wikitext-103 (HF cached)",
+      "parent": "mvp_kl_norm_v2_s42"
+    }
+  },
+  "timestamp": "2026-05-15T17:26:47.155928+00:00",
+  "trigger": "update_registry"
+}

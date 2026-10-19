@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "0a33d1e0e3a4c322c472",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp mag preservation reg",
+  "task_key": "worker_exp_mag_preservation_reg_20260517T040258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mag_preservation_reg_20260517T040258_result.json",
+    "occurrence": 1,
+    "bytes": 2400549,
+    "sha256": "86beac1bd633a7239400676a34948b758e7bdbde2ead012b9448dc257b61efb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "0a33d1e0e3a4c322c472-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mag-preservation-reg.md"
+}

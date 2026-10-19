@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a09e41ab76715bd2077",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit bce v3 critical retry",
+  "task_key": "worker_submit_bce_v3_critical_retry_20260516T044236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_bce_v3_critical_retry_20260516T044236_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "d975275ebf3fd476d88d026a9aa1768d6f4589a8609619da293d081622b8310d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## 最终报告\n\n**实验 bce_isocompute_v3_s42 正在正常运行，无需任何干预。**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | RUNNING |\n| Python PID | 205598 |\n| Wrapper PID | 205597 |\n| GPU | cuda:1, 90938 MiB 已用 |\n| 进度 | Step 200/2700 |\n| 速度 | 1.05s/step |\n| 日志 | `/root/distill_sparse_swiglu/logs/bce_isocompute_v3_s42.log` |\n| 预计完成 | ~13:25 UTC (约 43 分钟后) |\n| 训练指标 | loss=0.6538, bce=0.6519, sparsity=0.518 |\n\n**根因：之前的 Worker 声称\"进程死了\"是因为检查了错误的日志路径 `/root/runs/distill_sparse_swiglu/`（不存在），实际日志在 `/root/distill_sparse_swiglu/logs/`。** 进程实际上通过 nohup 正确启动并一直在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-bce-v3-critical-retry.md"
+}

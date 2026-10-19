@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "514d0ecfa4b63927f42b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops fix eval hf offline resubmit",
+  "task_key": "worker_ops_fix-eval-hf-offline-resubmit_20260518T171139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-eval-hf-offline-resubmit_20260518T171139_result.json",
+    "occurrence": 1,
+    "bytes": 101,
+    "sha256": "5b10f823d177e0c27159fba287ce61481ce4f9cb2aed895a8972f0272121ea4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待已完成，日志已在之前验证过，3 个 eval 均正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-eval-hf-offline-resubmit.md"
+}

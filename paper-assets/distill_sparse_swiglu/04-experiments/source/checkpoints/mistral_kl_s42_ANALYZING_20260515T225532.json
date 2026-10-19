@@ -1,0 +1,65 @@
+{
+  "exp_id": "mistral_kl_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:12:33.050Z",
+    "updated_at": "2026-05-15T22:55:32.103Z",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 WANDB_MODE=offline python src/train.py --model_name_or_path /root/autodl-tmp/models/mistral-7b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mistral_kl_s42 --wandb_run_name mistral_kl_s42 --dataset wikitext-103 --gradient_checkpointing --log_every 100 2>&1 | tee ~/runs/distill_sparse_swiglu/mistral_kl_s42.log\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "147627",
+      "log_path": "~/runs/distill_sparse_swiglu/mistral_kl_s42.log",
+      "submitted_at": "2026-05-15T22:12:32.930Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103",
+      "data_count": null,
+      "model_name": "Mistral-7B-v0.3",
+      "seed": 42,
+      "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/mistral_kl_s42/predictor_kl_normalized.pt"
+    },
+    "hypothesis": "Mistral-7B-v0.3 跨架构验证：KL normalized loss @ 50% sparsity。验证 KL distillation 方法在非 Llama 架构上也有效。Plan_009 第一个实验。",
+    "reproduce": {
+      "finished_at": "2026-05-15T22:49:21.591Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T22:49:26.713271+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "train_final_loss": 0.2188,
+      "train_final_kl_raw": 0.2188,
+      "train_final_kl_norm": 0.2188,
+      "train_final_constraint": 0,
+      "train_final_sparsity": 0.48,
+      "train_final_lambda": 1000,
+      "train_final_tau": 0.1,
+      "train_steps_completed": 1000,
+      "true_dense_ppl": 5.52,
+      "predictor_hard_mask_ppl": 7.3,
+      "teal_sparse_ppl": 8.98,
+      "model_level_sparsity": 0.5,
+      "eval_dataset": "wikitext-2",
+      "eval_seq_len": 2048,
+      "calibration_samples": 32,
+      "eval_samples": 159
+    },
+    "notes": "Mistral-7B-v0.3 跨架构验证完成。训练 1000 步 KL normalized loss @ 50% sparsity，收敛正常（final loss=0.2188, sparsity=0.480）。WikiText-2 eval: dense_ppl=5.52, predictor_hard_mask_ppl=7.30 (1.32x), teal_sparse_ppl=8.98 (1.63x)。对比 Llama-3.1-8B KL 50% 4-seed mean: dense=6.12, teal=12.00±0.07 (1.96x)。Mistral 绝对 PPL 更低，降级比例也更小（1.63x vs 1.96x），跨架构泛化成立。Per-layer sparsity 分布合理：前几层和最后几层稀疏度高（~0.6），中间层低（~0.36-0.47），符合预期。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T22:55:32.201852+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+{
+  "exp_id": "kl30_8b_s456_train",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T00:21:15.119Z",
+    "updated_at": "2026-05-18T01:54:12.111Z",
+    "hypothesis": "KL 30% predictor multi-seed replication (seed=456) for Table 2 statistical robustness. Third seed for mean±std reporting. Expect consistent convergence to ~0.285 sparsity and comparable downstream metrics.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --gpu 0 --output_dir checkpoints/kl_sparsity30_s456 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000\"",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "35045",
+      "log_path": "~/runs/distill_sparse_swiglu/kl30_8b_s456_train.log",
+      "submitted_at": "2026-05-18T00:21:33.744Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103",
+      "data_count": 1000,
+      "model_name": "llama-3.1-8b",
+      "seed": 456,
+      "wall_clock_seconds": 2825.2,
+      "gpu_hours": 0.78
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T01:08:35.312Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "success",
+    "completed_at": "2026-05-18T01:08:38.931Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T01:08:45.544169+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-18T01:54:12.424278+00:00",
+  "trigger": "update_registry"
+}

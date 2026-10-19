@@ -1,0 +1,14 @@
+{
+  "exp_id": "kl30_s42_global_mmlu_recheck",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:25:44.731Z",
+    "updated_at": "2026-05-18T23:25:44.731Z"
+  },
+  "timestamp": "2026-05-18T23:25:45.072404+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eabd71ff336e147642b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops longbench v5 submit",
+  "task_key": "worker_ops_longbench-v5-submit_20260516T134519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_longbench-v5-submit_20260516T134519_result.json",
+    "occurrence": 1,
+    "bytes": 115,
+    "sha256": "e30512612217a986a9a6c15d09ba8993cd4126fe80f587d2c989886e1078dbfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待已完成，实验验证已在上一步完成——longbench_dense_v5 正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-longbench-v5-submit.md"
+}

@@ -1,0 +1,16 @@
+{
+  "kl30_s123_uniform_v2": {
+    "wikitext2_ppl": 8.8186,
+    "arc_challenge_acc_norm": 0.471,
+    "winogrande_acc": 0.6961,
+    "mmlu_acc": 0.3763,
+    "gsm8k_exact_match": 0.0705
+  },
+  "kl30_s456_uniform_v2": {
+    "wikitext2_ppl": 8.8284,
+    "arc_challenge_acc_norm": 0.4505,
+    "winogrande_acc": 0.6953,
+    "mmlu_acc": 0.3727,
+    "gsm8k_exact_match": 0.0705
+  }
+}

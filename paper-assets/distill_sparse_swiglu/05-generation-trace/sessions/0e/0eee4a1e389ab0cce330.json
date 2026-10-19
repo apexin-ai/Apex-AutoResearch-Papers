@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0eee4a1e389ab0cce330",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect all 4 evals",
+  "task_key": "worker_ops_collect-all-4-evals_20260518T115002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-all-4-evals_20260518T115002_result.json",
+    "occurrence": 1,
+    "bytes": 1737,
+    "sha256": "e7d7f2589d77924495306c1d786d7281a789ab94eac0bdddf658f00df5528fbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完成。\n\n## 收集结果\n\n### kl_comp_30pct_s123_eval (34887, cuda:0)\n- wikitext2_ppl: 8.9788\n- arc_challenge_acc_norm: 0.3993\n- winogrande_acc: 0.6898\n- mmlu_acc: 0.2531\n- gsm8k_exact_match: 0.0842\n- vs s42 comp: ARC Δ=0.0000, WG Δ=0.0000, MMLU Δ=0.0000, GSM8K Δ=0.0000\n- **s123 与 s42 完全一致**，seed 间极度稳定\n\n### kl50_s456_uniform_eval (34887, cuda:1)\n- wikitext2_ppl: 11.9538\n- arc_challenge_acc_norm: 0.3831\n- winogrande_acc: 0.6196\n- mmlu_acc: 0.2750\n- gsm8k_exact_match: 0.0288\n- vs s42 uniform: ARC Δ=+0.0572, WG Δ=-0.0039, MMLU Δ=-0.0042, GSM8K Δ=+0.0091\n\n### kl_comp_30pct_s456_eval (41718, cuda:0)\n- wikitext2_ppl: 8.9614\n- arc_challenge_acc_norm: 0.4462\n- winogrande_acc: 0.7143\n- mmlu_acc: 0.2714\n- gsm8k_exact_match: 0.0887\n- vs s42 comp: ARC Δ=+0.0469, WG Δ=+0.0245, MMLU Δ=+0.0183, GSM8K Δ=+0.0045\n- **s456 全面优于 s42/s123**，这个 seed 表现异常好\n\n### kl_comp_50pct_s42_eval (41718, cuda:1) — 关键实验\n- wikitext2_ppl: 11.7933\n- arc_challenge_acc_norm: 0.3285\n- winogrande_acc: 0.6346\n- mmlu_acc: 0.2789\n- gsm8k_exact_match: 0.0129\n\n## 四卡状态\n\n| 服务器 | GPU | 实验 | 状态 |\n|--------|-----|------|------|\n| westd-34887 | cuda:0 | kl_comp_30pct_s123_eval | DONE ✓ → **空闲** |\n| westd-34887 | cuda:1 | kl50_s456_uniform_eval | DONE ✓ → **空闲** |\n| westd-41718 | cuda:0 | kl_comp_30pct_s456_eval | DONE ✓ → **空闲** |\n| westd-41718 | cuda:1 | kl_comp_50pct_s42_eval | DONE ✓ → **空闲** |\n\n所有 41718 eval 都成功拿到完整 downstream，无需转移重跑。4 张卡全部空闲，可安排优先级 2 任务（wall-clock speedup / C4 OOD 等）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-all-4-evals.md"
+}

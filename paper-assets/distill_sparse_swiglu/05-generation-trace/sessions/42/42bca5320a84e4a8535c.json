@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42bca5320a84e4a8535c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b teal275 hspiqa",
+  "task_key": "worker_analysis_qwen14b_teal275_hspiqa_20260519T185240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_teal275_hspiqa_20260519T185240_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "0032e82a1a2faa92e85d263efc656ce998ad74d56b0ffee8125d95e00d481e50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**总结：**\n- `qwen14b_teal275_hspiqa` 正常完成，耗时 3551s（~1.06 GPU-hours）\n- 4 项指标与已有 `qwen14b_teal275_uniform_hspiqa` 完全一致（确定性评估的预期行为）\n- 无 W&B run\n- 无异常，结果可直接用于补全 Qwen-14B 6-task TEAL baseline 表格"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-teal275-hspiqa.md"
+}

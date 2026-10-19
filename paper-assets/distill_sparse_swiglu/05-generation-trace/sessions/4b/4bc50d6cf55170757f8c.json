@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bc50d6cf55170757f8c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code ste baseline",
+  "task_key": "worker_code_ste_baseline_20260515T183635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ste_baseline_20260515T183635_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "5421bd17e93ceb020562d5f55f224b5f660ef2a8a1dbdbb3faa15518184bd264"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 dry-run 都通过了。\n\n### 结果对比\n\n| | STE (`--relaxation ste`) | Gumbel (`--relaxation gumbel`) |\n|---|---|---|\n| mask 类型 | `STEMask` (hard threshold + STE gradient) | `GumbelSigmoidMask` (soft mask + noise) |\n| tau | `0.000` (无 annealing) | `0.820` (正常 annealing) |\n| kl_raw step 1 | 4.531 | 0.773 |\n| sparsity step 1 | 0.541 | 0.398 |\n| lambda | 正常工作 | 正常工作 |\n\nKL 差异符合预期：STE 用 hard mask 直接零化神经元，信息损失更大；Gumbel 用 soft mask 保留了梯度信息。\n\n### 修改文件总结\n\n**`src/predictor.py`**:\n- 新增 `STEMask(nn.Module)` 类（line 77），forward 用 `hard - sigmoid.detach() + sigmoid` 实现 STE trick\n\n**`src/train.py`**（6 处修改）:\n- 新增 `--relaxation` 参数（choices: `gumbel`/`ste`，默认 `gumbel`）\n- import 添加 `STEMask`\n- `main()`: 当 `--relaxation ste` 时替换 `wrapper.gumbel_mask` 为 `STEMask()`\n- `train_kl()`: STE 模式下跳过 tau annealing\n- `train_kl_normalized()`: 同上"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ste-baseline.md"
+}

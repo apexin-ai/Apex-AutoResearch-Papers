@@ -1,0 +1,284 @@
+{
+  "schema_version": "1.0",
+  "id": "3870e5b6778d457eb199",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "code find predictor wrapper",
+  "task_key": "worker_code_find_predictor_wrapper_20260521T020004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_find_predictor_wrapper_20260521T020004.jsonl",
+    "occurrence": 1,
+    "bytes": 10556,
+    "sha256": "134f8000ce0d4eaa8f4362feb5851b294329d2e02f368ed033ee7108ad93a141"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "assistant": 3,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T02:00:14.799615+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T02:00:22.695542+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004"
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T02:01:21.018766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T02:01:21.019156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T02:01:21.019414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "ls /root/distill_sparse_swiglu/src/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T02:01:21.019610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "grep -rln \"class PredictorWrapper\" /root/distill_sparse_swiglu/",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T02:01:21.019783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nanalyze_mask_divergence.py\\\\nanalyze_natural_sparsity.py\\\\nanalyze_perlayer_sparsity.py\\\\nbaselines.py\\\\nbatch_eval.py\\\\nbenchmark_eval.py\\\\nbenchmark_flashinfer.py\\\\nbenchmark_latency.py\\\\ncompensation.py\\\\ndata_utils.py\\\\ndebug_mask_v2.py\\\\ndebug_mask_verify.py\\\\ndiag_hflm.py\\\\ndiag_hflm_direct.py\\\\ndiag_mask.py\\\\ndiag_mmlu.py\\\\neval_bce_comp.py\\\\neval_benchmark.py\\\\neval_c4_ood.py\\\\neval_c4_predictor.py\\\\neval_spon.py\\\\neval_spon_supplementary.py\\\\nevaluate.py\\\\nevaluate.py.bak\\\\nevaluate.py.v2_bak\\\\ngsm8k_gen_compare.py\\\\nlatency_benchmark.py\\\\nlm_eval_sparse.py\\\\nlm_eval_sparse_uniform.py\\\\nlm_eval_teal.py\\\\nlosses.py\\\\nlosses.py.bak\\\\npatch_vanilla_teal.py\\\\npredictor.py\\\\npredictor.py.bak\\\\nquick_eval.py\\\\nquick_eval2.py\\\\nquick_sp70.py\\\\nrun_baselines_sweep.py\\\\nrun_db_sweep.sh\\\\nspon.py\\\\nsubsumption_test.py\\\\ntest_greedy_dryrun.py\\\\ntrain.py\\\\ntrain.py.bak\\\\ntrain.py.v1_bak\\\\ntrain.py.v2_bak\\\\ntrain_bce_comp.py\\\\ntrain_bce_gumbel.py\\\\ntrain_bce_gumbel_no_penalty.py\\\\ntrain_bce_kl_targets.py\\\\ntrain_compensation.py\\\\ntrain_perlayer_kl.py\\\\ntrain_perlayer_mse.py\\\\ntrain_spon.py\\\\nvisualize_mask_patterns.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T02:01:21.019927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/distill_sparse_swiglu/src/predictor.py\\\\n/root/distill_sparse_swiglu/src/predictor.py.bak\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T02:01:21.020091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "wc -l /root/distill_sparse_swiglu/src/predictor.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T02:01:21.020613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"199 /root/distill_sparse_swiglu/src/predictor.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T02:01:21.020806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "cat /root/distill_sparse_swiglu/src/predictor.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T02:01:21.021115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Sparsity predictor architecture: bottleneck MLP + Gumbel-sigmoid/STE mask + model wrapper.\\\\n# Compensation network: per-layer MLP correcting sparse MLP output errors (FastForward-style).\\\\n# Input: hidden_states (batch, seq, hidden_size) -> Output: mask logits (batch, seq, intermediate_size)\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\n\\\\n\\\\nclass SparsityPredictor(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Rank-bottleneck MLP predicting SwiGLU sparsity masks.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, hidden_size: int, intermediate_size: int, bottleneck_size: int = 128):\\\\n        super().__init__()\\\\n        self.down = nn.Linear(hidden_size, bottleneck_size)\\\\n        self.act = nn.GELU()\\\\n        self.up = nn.Linear(bottleneck_size, intermediate_size)\\\\n\\\\n    def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:\\\\n        return self.up(self.act(self.down(hidden_states)))\\\\n\\\\n\\\\nclass CompensationHead(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Per-layer MLP predicting the output error introduced by sparsification.\\\\n\\\\n    Takes MLP input hidden state, outputs correction added to sparse MLP output.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, hidden_size: int, bottleneck_size: int = 256):\\\\n        super().__init__()\\\\n        self.net = nn.Sequential(\\\\n            nn.Linear(hidden_size, bottleneck_size),\\\\n            nn.GELU(),\\\\n            nn.Linear(bottleneck_size, hidden_size),\\\\n        )\\\\n\\\\n    def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:\\\\n        return self.net(hidden_states)\\\\n\\\\n\\\\nclass CompensationNetwork(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Per-layer compensation heads correcting sparse MLP output errors.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, num_layers: int, hidden_size: int, bottleneck_size: int = 256):\\\\n        super().__init__()\\\\n        self.heads = nn.ModuleList([\\\\n            CompensationHead(hidden_size, bottleneck_size)\\\\n            for _ in range(num_layers)\\\\n        ])\\\\\n…[truncated 5774 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T02:01:21.021379+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件路径：`/root/distill_sparse_swiglu/src/predictor.py`（199 行）\n\n## 完整源代码（关键部分）\n\n### `PredictorWrapper` 类（line 94-199）\n\n**初始化**：\n- 接受 `model` + `bottleneck_size=128`（默认）\n- 冻结 base model 所有参数\n- 创建 `num_layers` 个 `SparsityPredictor`（每层独立）\n- 共享一个 `GumbelSigmoidMask`（无可学习参数）\n- 默认 `sparse_mode=True`\n- `comp_network=None`, `use_compensation=False`\n\n**Monkey-patch 机制（`_patch_single_mlp`）**：每层 MLP 的 `forward` 被替换为 `patched_forward`。\n\n### `forward_sparse` 实现细节\n\n```python\ndef patched_forward(x):\n    gate = act_fn(gate_proj(x))      # SwiGLU gate\n    up = up_proj(x)\n    intermediate = gate * up         # SwiGLU intermediate\n\n    if wrapper.sparse_mode:\n        logits = predictor(x)                              # per-layer predictor: hidden -> intermediate\n        mask = wrapper.gumbel_mask(logits)                 # Gumbel-sigmoid (train) / hard threshold (eval)\n        wrapper._layer_masks[layer_idx] = mask             # 缓存 mask\n        result = down_proj(intermediate * mask)            # 应用 mask 后 down_proj\n        if wrapper.use_compensation and wrapper.comp_network is not None:\n            result = result + wrapper.comp_network.forward_layer(layer_idx, x)  # 补偿\n        return result\n    elif wrapper.capture_intermediates:\n        wrapper._layer_intermediates[layer_idx] = intermediate.detach()\n        wrapper._layer_inputs[layer_idx] = x.detach()\n\n    return down_proj(intermediate)   # dense path\n```\n\n`forward_sparse(input_ids, ...)`（line 184-187）：设置 `sparse_mode=True` → 调 `self.forward` → 走 patched MLP 路径，每层都用 `predictor[layer_idx]` 产生 logits → `gumbel_mask` 二值化 → mask 乘到 intermediate。\n\n### `forward_dense`（line 172-182）\n\n设置 `sparse_mode=False`，在 `torch.no_grad()` 下跑 base model；`capture_intermediates=True` 时缓存每层 `intermediate`（gate*up）和 `x`（MLP 输入）；返回后复位 `sparse_mode=True`。\n\n### `get_masks`（line 189-190）\n\n`return dict(self._layer_masks)` — 返回上一次 forward 各层缓存的 mask 字典 `{layer_idx: mask_tensor}`。Mask 是在 `patched_forward` 里写入的，没有\"批量收集\"步骤。\n\n### `GumbelSigmoidMask` 的 per-layer 工作方式（line 54-72）\n\n**不是 per-layer**：`PredictorWrapper` 只持有**一个共享** `self.gumbel_mask`（无参数）。Per-layer 差异来自 **`predictors[layer_idx]`** 产生的不同 logits，`gumbel_mask` 只是把 logits 二值化：\n- **训练 (`self.training and not self.hard`)**: 加 Gumbel 噪声，sigmoid + 温度 `tau=1.0`（默认），返回 soft mask（梯度可传）\n- **推理或 `hard=True`**: `(logits > 0).to(dtype)` 硬阈值\n\n### 关键超参（与 C003 对照）\n- `SparsityPredictor`: GELU 激活 ✓, `bottleneck_size=128` ✓, structure = `Linear(hidden, 128) → GELU → Linear(128, intermediate)`\n- `CompensationHead`: GELU, `bottleneck_size=256`（默认，与 predictor 不同）\n- `GumbelSigmoidMask`: `tau=1.0`, `hard=False` (默认)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_find_predictor_wrapper_20260521T020004"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/code-find-predictor-wrapper.md"
+}

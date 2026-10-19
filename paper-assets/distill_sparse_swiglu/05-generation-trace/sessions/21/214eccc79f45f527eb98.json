@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "214eccc79f45f527eb98",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit westd 41718 cuda1 comp s123",
+  "task_key": "worker_submit_westd-41718-cuda1-comp-s123_20260518T083753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_westd-41718-cuda1-comp-s123_20260518T083753_result.json",
+    "occurrence": 1,
+    "bytes": 390,
+    "sha256": "3f8fe78368e8d1c3c481230f0869cc7e3f132d8d5ff1bad367b6c11de0f7fe46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，模型加载中。\n\nwestd-41718 cuda:1 上 `kl_comp_30pct_s123` 已成功提交并开始运行：\n- 命令与 seed 42 完全一致，仅改 `--seed 123` 和 `--output_dir checkpoints/kl_comp_30pct_s123`\n- WANDB_MODE=offline 已设置\n- 日志：`~/runs/distill_sparse_swiglu/kl_comp_30pct_s123.log`\n- 预计 1000 steps，参照 s42 进度约 20 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-westd-41718-cuda1-comp-s123.md"
+}

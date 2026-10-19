@@ -1,0 +1,14 @@
+{
+  "exp_id": "mse30_s42_eval_7task",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:27:04.190Z",
+    "updated_at": "2026-05-20T03:27:04.190Z"
+  },
+  "timestamp": "2026-05-20T03:27:04.716473+00:00",
+  "trigger": "update_registry"
+}

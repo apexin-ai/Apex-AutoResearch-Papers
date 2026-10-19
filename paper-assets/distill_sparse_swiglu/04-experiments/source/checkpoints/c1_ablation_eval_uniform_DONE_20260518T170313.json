@@ -1,0 +1,30 @@
+{
+  "exp_id": "c1_ablation_eval_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:54:28.779Z",
+    "updated_at": "2026-05-18T17:03:13.481Z",
+    "hypothesis": "Controlled eval of C1 ablation checkpoint at exactly 50% sparsity with uniform allocation using benchmark_eval.py, resolving the sparsity mismatch confound (training eval was 60.9% not 50%). If PPL remains close to or below KL (11.96), target quality conclusion holds under controlled conditions.",
+    "spec": {
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "N/A (stdout)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "wikitext2_ppl": 11.9638,
+      "arc_challenge_acc_norm": 0.3217,
+      "winogrande_acc": 0.6314,
+      "mmlu_acc": 0.2779,
+      "gsm8k_exact_match": 0.0205,
+      "sparsity_target": 0.5,
+      "allocation": "uniform"
+    },
+    "completed_at": "2026-05-18T17:03:13.481Z"
+  },
+  "timestamp": "2026-05-18T17:03:13.807846+00:00",
+  "trigger": "update_registry"
+}

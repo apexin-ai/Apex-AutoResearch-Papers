@@ -1,0 +1,30 @@
+Script: /root/distill_sparse_swiglu/src/eval_benchmark.py (640 lines)
+Shell:  /root/distill_sparse_swiglu/scripts/run_plan007_benchmark.sh
+
+Usage:
+  python src/eval_benchmark.py --condition all --tasks ppl --gpu 0
+  python src/eval_benchmark.py --condition kl_s42 --tasks arc_challenge --gpu 1
+  bash scripts/run_plan007_benchmark.sh [GPU_ID]
+
+Conditions: dense, kl_s42, bce_s42, bce_comp_s42, ste_s42, spon_s42, teal_vanilla, wina, rsparse
+Tasks: wikitext2, c4 (PPL), arc_challenge, winogrande, mmlu, gsm8k (lm-eval)
+
+Validated WikiText-2 PPL results (all 9 conditions):
+  Dense       6.48
+  KL-Distill  9.65
+  STE         8.18
+  SPON        9.41
+  BCE        28.37
+  BCE+Comp   25.34
+  TEAL       48715 (greedy per-layer)
+  WINA        2126 (WINA-weighted greedy)
+  R-Sparse   151.2 (global top-k)
+
+Pending: C4 PPL + downstream tasks require dataset pre-caching (server has no network).
+
+Datasets needing pre-cache:
+  1. allenai/c4 (en, validation split) - for C4 PPL
+  2. allenai/ai2_arc - for ARC-Challenge
+  3. allenai/winogrande - for WinoGrande
+  4. hails/mmlu_no_train or cais/mmlu - for MMLU
+  5. openai/gsm8k - for GSM8K

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5037768643a0ac4ade92",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops westd 41718 diagnose fix c4",
+  "task_key": "worker_ops_westd-41718-diagnose-fix-c4_20260518T064715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-41718-diagnose-fix-c4_20260518T064715_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "ecde1876ec5ea921040986fbeabccd47b06f60c63fc8c279fd1b7e4376c3d37e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 诊断结果：无需重新提交\n\nv2 实验**已在之前成功运行完毕**，只是 registry 状态卡在 RUNNING 未更新。\n\n### C4 OOD 结果汇总\n\n| 实验 | C4 PPL | 状态 |\n|------|--------|------|\n| dense baseline (v2) | **9.2075** | DONE |\n| KL30 s123 (v2) | **16.0259** | DONE |\n| KL30 s42 (已有) | **16.0458** | DONE |\n\nPPL 退化：30% sparsity → C4 PPL 从 9.21 升至 ~16.03（+74%）。两个 seed 高度一致（16.03 vs 16.05）。\n\n### 已完成修复\n1. **Registry 更新**: `c4_ood_kl30_s123_v2` 和 `c4_ood_dense_baseline_v2` 状态从 RUNNING → DONE(success)，metrics 已录入\n2. **HF_HUB_OFFLINE 永久写入**: `/root/.bashrc` 已追加 `HF_HUB_OFFLINE=1` 和 `HF_DATASETS_OFFLINE=1`，防止未来再因网络下载失败"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-41718-diagnose-fix-c4.md"
+}

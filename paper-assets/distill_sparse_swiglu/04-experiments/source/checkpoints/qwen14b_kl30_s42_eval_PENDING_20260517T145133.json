@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen14b_kl30_s42_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:50:41.706Z",
+    "updated_at": "2026-05-17T14:51:32.779Z",
+    "hypothesis": "Qwen-2.5-14B with distilled 30% sparsity predictor maintains strong downstream performance (MMLU, ARC, WinoGrande) at 30% activation sparsity, with PPL degradation ratio consistent with training-time measurement (1.47x TEAL global)",
+    "parent": "qwen14b_kl30_s42"
+  },
+  "timestamp": "2026-05-17T14:51:33.046877+00:00",
+  "trigger": "update_registry"
+}

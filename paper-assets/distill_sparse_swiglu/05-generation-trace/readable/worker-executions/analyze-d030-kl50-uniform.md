@@ -1,0 +1,1126 @@
+# analyze d030 kl50 uniform
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 22
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_analyze_d030_kl50_uniform_20260516T050557.log`
+- **Structured JSON:** [`8ea6732e89043d82b3e9.json`](../../sessions/8e/8ea6732e89043d82b3e9.json)
+
+## Before a recorded user message
+
+22 recorded events
+
+### Runtime record
+
+_source line 1_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778921400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a75b12f2-f9e0-4169-b96d-44cbde8b77a7",
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7"
+}
+```
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "pending"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a93be151-b111-4b80-9ab8-80aac1a7bd8e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to analyze the results of experiment d030_kl50_uniform. Let me break down the tasks:
+
+1. Read the log file from the server
+2. Compare with baselines from the registry
+3. Update the registry with metrics
+4. Determine conclusion
+5. Update registry with conclusion and status
+6. Output structured analysis
+
+Let me start by reading the registry entries for the baseline experiments and the current experiment, and also read the log file from the server.
+
+First, I need to find the tools available. The user seems to be using some custom tools like `read_registry`, `update_registry`, `ssh_read_only`, `ssh_execute`, etc. 
+
+Now I'm looking for what tools I have access to.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "a20325c4-3ad0-4a72-883f-1b7c069216ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UbpBz8S38jzAjT1b8a6uss",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11575,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11575
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01D3UHswbtNYW4FnoTgyfkeR`</summary>
+
+```json
+{
+  "query": "select:read_registry,update_registry,ssh_read_only,ssh_execute",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "38c26751-86c6-4d8d-825e-b88785ba4fd6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UbpBz8S38jzAjT1b8a6uss",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11575,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11575
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T05:08:04.426Z_
+
+<details><summary>↩ Tool result · `toolu_01D3UHswbtNYW4FnoTgyfkeR`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "5f9a37d3-45d1-4674-a2eb-0a93795aebd5",
+  "tool_use_result": {
+    "matches": [],
+    "query": "select:read_registry,update_registry,ssh_read_only,ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019iX84HjCyQ5bwfZUp6jY9H`</summary>
+
+```json
+{
+  "query": "registry ssh",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "e8f494c2-be68-4a18-88fd-cd46b888710f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FrMNDa3PCZuUu3aCSvPcxQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 279,
+      "cache_read_input_tokens": 23416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 279
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T05:08:07.014Z_
+
+<details><summary>↩ Tool result · `toolu_019iX84HjCyQ5bwfZUp6jY9H`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "1d8356f5-fc4a-4597-83b4-725d19c7dfb9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job"
+    ],
+    "query": "registry ssh",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+读取日志文件和 registry baseline 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "aedee489-90f3-480d-885c-4f7ab4fa1cc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HqLUstW4mBwJNV5RHjwnJU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1958,
+      "cache_read_input_tokens": 23695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1958
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011PiDJRvywQr9KzB21FG7uU`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/runs/distill_sparse_swiglu/d030_kl50_uniform.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "c10cfa4a-00b1-461c-ad17-d09534757ab0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HqLUstW4mBwJNV5RHjwnJU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1958,
+      "cache_read_input_tokens": 23695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1958
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01DdvwpBC8xcfSxLZLdPW1oP`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "filters": {
+    "exp_id": "d030_kl50_uniform"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "2d9c9c32-6cae-408d-b053-39e573ec8006",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HqLUstW4mBwJNV5RHjwnJU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1958,
+      "cache_read_input_tokens": 23695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1958
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_012GGYTvJBZR1q3JNyhYpPZj`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "filters": {
+    "exp_id": "d030_kl30_uniform"
+  },
+  "fields": [
+    "exp_id",
+    "metrics",
+    "conclusion",
+    "status"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "9c1db3b7-c7e0-4735-9b0c-fe7602491504",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HqLUstW4mBwJNV5RHjwnJU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1958,
+      "cache_read_input_tokens": 23695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1958
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T05:08:12.860Z_
+
+<details><summary>↩ Tool result · `toolu_011PiDJRvywQr9KzB21FG7uU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model: /root/autodl-tmp/models/llama-3.1-8b\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<00:33,  8.69it/s]\\rLoading weights:   1%|          | 2/291 [00:00<00:37,  7.79it/s]\\rLoading weights:   5%|▍         | 14/291 [00:00<00:06, 41.12it/s]\\rLoading weights:  11%|█         | 32/291 [00:00<00:03, 80.42it/s]\\rLoading weights:  18%|█▊        | 53/291 [00:00<00:02, 105.98it/s]\\rLoading weights:  26%|██▋       | 77/291 [00:00<00:01, 139.03it/s]\\rLoading weights:  32%|███▏      | 94/291 [00:00<00:01, 143.89it/s]\\rLoading weights:  37%|███▋      | 109/291 [00:01<00:01, 142.17it/s]\\rLoading weights:  43%|████▎     | 124/291 [00:01<00:01, 135.29it/s]\\rLoading weights:  48%|████▊     | 141/291 [00:01<00:01, 139.97it/s]\\rLoading weights:  54%|█████▍    | 158/291 [00:01<00:00, 145.23it/s]\\rLoading weights:  60%|██████    | 175/291 [00:01<00:00, 148.88it/s]\\rLoading weights:  66%|██████▌   | 191/291 [00:01<00:00, 107.00it/s]\\rLoading weights:  76%|███████▌  | 221/291 [00:01<00:00, 121.58it/s]\\rLoading weights:  82%|████████▏ | 239/291 [00:02<00:00, 120.98it/s]\\rLoading weights:  89%|████████▉ | 260/291 [00:02<00:00, 104.65it/s]\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 125.23it/s]\\nMode: TEAL global mask from predictor (allocation=uniform)\\n  checkpoint: /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Fri May 15 18:41:41 2026).\\nComputing TEAL global masks from predictor ...\\n\\nPer-layer sparsity (TEAL-predictor):\\n  Layer  0: 0.500\\n  Layer  1: 0.500\\n  Layer  2: 0.500\\n  Layer  3: 0.500\\n  Layer  4: 0.500\\n  Layer  5: 0.500\\n  Layer  6: 0.500\\n  Layer  7: 0.500\\n  Layer  8: 0.500\\n  Layer  9: 0.500\\n  Layer 10: 0.500\\n  Layer 11: 0.500\\n  Layer 12: 0.500\\n  Layer 13: 0.500\\n  Layer 14: 0.500\\n  Layer 15: 0.500\\n  Layer 16: 0.500\\n  Layer 17: 0.500\\n  Layer 18: 0.500\\n  Layer 19: 0.500\\n  Layer 20: 0.500\\n  Layer 21: 0.500\\n  Layer 22: 0.500\\n  Layer 23: 0.500\\n  Layer 24: 0.500\\n  Layer 25: 0.500\\n  Layer 26: 0.500\\n  Layer 27: 0.500\\n  Layer 28: 0.500\\n  Layer 29: 0.500\\n  Layer 30: 0.500\\n  Layer 31: 0.500\\n  Model-level: 0.500\\n\\n--- WikiText-2 PPL ---\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Fri May 15 18:41:41 2026).\\n  WikiText-2: 141 sequences, seq_len=2048\\n  PPL = 11.9631  (15.5s)\\n\\n--- lm-eval: ['arc_challenge', 'winogrande', 'mmlu', 'gsm8k'] ---\\n`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.\\nPassed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration\\n  Running ['arc_challenge'] (num_fewshot=25) ...\\nUsing the latest cached version of the dataset since allenai/ai2_arc couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'ARC-Challenge' at /root/autodl-tmp/.hf_cache/datasets/allenai___ai2_arc/ARC-Challenge/0.0.0/210d026faf9955653af8916fad021475a3f00453 (last modified on Sat May 16 06:10:24 2026).\\nOverwriting default num_fewshot of arc_challenge from None to 25\\n\\r  0%|          | 0/1172 [00:00<?, ?it/s]\\r  0%|          | 5/1172 [00:00<00:24, 47.44it/s]\\r  1%|          | 10/1172 [00:00<00:24, 47.77it/s]\\r  1%|▏         | 15/1172 [00:\\n\\n... [截断: 输出过长，省略 365239 字符] ...\\n\\n███▍  | 985/1319 [11:58<03:15,  1.71it/s]\\rRunning generate_until requests:  75%|███████▌  | 993/1319 [12:01<02:54,  1.87it/s]\\rRunning generate_until requests:  76%|███████▌  | 1001/1319 [12:04<02:37,  2.02it/s]\\rRunning generate_until requests:  76%|███████▋  | 1009/1319 [12:07<02:14,  2.30it/s]\\rRunning generate_until requests:  77%|███████▋  | 1017/1319 [12:11<02:15,  2.22it/s]\\rRunning generate_until requests:  78%|███████▊  | 1025/1319 [12:15<02:26,  2.01it/s]\\rRunning generate_until requests:  78%|█████���█▊  | 1033/1319 [12:19<02:21,  2.02it/s]\\rRunning generate_until requests:  79%|███████▉  | 1041/1319 [12:22<02:04,  2.23it/s]\\rRunning generate_until requests:  80%|███████▉  | 1049/1319 [12:30<02:44,  1.65it/s]\\rRunning generate_until requests:  80%|████████  | 1057/1319 [12:38<03:08,  1.39it/s]\\rRunning generate_until requests:  81%|████████  | 1065/1319 [12:43<03:00,  1.40it/s]\\rRunning generate_until requests:  81%|████████▏ | 1073/1319 [12:51<03:14,  1.26it/s]\\rRunning generate_until requests:  82%|████████▏ | 1081/1319 [12:59<03:21,  1.18it/s]\\rRunning generate_until requests:  83%|████████▎ | 1089/1319 [13:07<03:23,  1.13it/s]\\rRunning generate_until requests:  83%|████████▎ | 1097/1319 [13:09<02:35,  1.43it/s]\\rRunning generate_until requests:  84%|████████▍ | 1105/1319 [13:17<02:47,  1.28it/s]\\rRunning generate_until requests:  84%|████████▍ | 1113/1319 [13:20<02:20,  1.47it/s]\\rRunning generate_until requests:  85%|████████▍ | 1121/1319 [13:23<01:53,  1.74it/s]\\rRunning generate_until requests:  86%|████████▌ | 1129/1319 [13:31<02:11,  1.45it/s]\\rRunning generate_until requests:  86%|████████▌ | 1137/1319 [13:33<01:43,  1.76it/s]\\rRunning generate_until requests:  87%|████████▋ | 1145/1319 [13:35<01:24,  2.07it/s]\\rRunning generate_until requests:  87%|████████▋ | 1153/1319 [13:38<01:17,  2.15it/s]\\rRunning generate_until requests:  88%|████████▊ | 1161/1319 [13:41<01:03,  2.48it/s]\\rRunning generate_until requests:  89%|████████▊ | 1169/1319 [13:48<01:25,  1.75it/s]\\rRunning generate_until requests:  89%|████████▉ | 1177/1319 [13:51<01:10,  2.00it/s]\\rRunning generate_until requests:  90%|████████▉ | 1185/1319 [13:53<00:57,  2.34it/s]\\rRunning generate_until requests:  90%|█████████ | 1193/1319 [13:57<00:55,  2.29it/s]\\rRunning generate_until requests:  91%|█████████ | 1201/1319 [13:59<00:45,  2.60it/s]\\rRunning generate_until requests:  92%|█████████▏| 1209/1319 [14:01<00:40,  2.71it/s]\\rRunning generate_until requests:  92%|█████████▏| 1217/1319 [14:05<00:41,  2.48it/s]\\rRunning generate_until requests:  93%|█████████▎| 1225/1319 [14:07<00:34,  2.74it/s]\\rRunning generate_until requests:  93%|█████████▎| 1233/1319 [14:15<00:46,  1.86it/s]\\rRunning generate_until requests:  94%|█████████▍| 1241/1319 [14:18<00:38,  2.04it/s]\\rRunning generate_until requests:  95%|█████████▍| 1249/1319 [14:21<00:31,  2.24it/s]\\rRunning generate_until requests:  95%|█████████▌| 1257/1319 [14:24<00:27,  2.24it/s]\\rRunning generate_until requests:  96%|████████���▌| 1265/1319 [14:26<00:21,  2.55it/s]\\rRunning generate_until requests:  97%|█████████▋| 1273/1319 [14:30<00:17,  2.56it/s]\\rRunning generate_until requests:  97%|█████████▋| 1281/1319 [14:37<00:20,  1.82it/s]\\rRunning generate_until requests:  98%|█████████▊| 1289/1319 [14:39<00:13,  2.17it/s]\\rRunning generate_until requests:  98%|█████████▊| 1297/1319 [14:41<00:09,  2.44it/s]\\rRunning generate_until requests:  99%|█████████▉| 1305/1319 [14:49<00:07,  1.79it/s]\\rRunning generate_until requests: 100%|█████████▉| 1313/1319 [14:56<00:03,  1.54it/s]\\rRunning generate_until requests: 100%|██████████| 1319/1319 [14:56<00:00,  1.47it/s]\\nfatal: not a git repository (or any of the parent directories): .git\\n  Completed in 1870.7s\\n  arc_challenge: sample_len=1172, acc=0.2833, acc_norm=0.3276\\n  winogrande: sample_len=1267, acc=0.6290\\n  mmlu: sample_len=14042, acc=0.2777\\n  gsm8k: sample_len=1319, exact_match=0.0212\\n\\nResults saved to /root/distill_sparse_swiglu/results/benchmark/d030_kl50_uniform/results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "5a31ee22-c934-4d3a-a079-26ccb001605c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/llama-3.1-8b\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:33,  8.69it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:37,  7.79it/s]\\\\rLoading weights:   5%|▍         | 14/291 [00:00<00:06, 41.12it/s]\\\\rLoading weights:  11%|█         | 32/291 [00:00<00:03, 80.42it/s]\\\\rLoading weights:  18%|█▊        | 53/291 [00:00<00:02, 105.98it/s]\\\\rLoading weights:  26%|██▋       | 77/291 [00:00<00:01, 139.03it/s]\\\\rLoading weights:  32%|███▏      | 94/291 [00:00<00:01, 143.89it/s]\\\\rLoading weights:  37%|███▋      | 109/291 [00:01<00:01, 142.17it/s]\\\\rLoading weights:  43%|████▎     | 124/291 [00:01<00:01, 135.29it/s]\\\\rLoading weights:  48%|████▊     | 141/291 [00:01<00:01, 139.97it/s]\\\\rLoading weights:  54%|█████▍    | 158/291 [00:01<00:00, 145.23it/s]\\\\rLoading weights:  60%|██████    | 175/291 [00:01<00:00, 148.88it/s]\\\\rLoading weights:  66%|██████▌   | 191/291 [00:01<00:00, 107.00it/s]\\\\rLoading weights:  76%|███████▌  | 221/291 [00:01<00:00, 121.58it/s]\\\\rLoading weights:  82%|████████▏ | 239/291 [00:02<00:00, 120.98it/s]\\\\rLoading weights:  89%|████████▉ | 260/291 [00:02<00:00, 104.65it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 125.23it/s]\\\\nMode: TEAL global mask from predictor (allocation=uniform)\\\\n  checkpoint: /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\\\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Fri May 15 18:41:41 2026).\\\\nComputing TEAL global masks from predictor ...\\\\n\\\\nPer-layer sparsity (TEAL-predictor):\\\\n  Layer  0: 0.500\\\\n  Layer  1: 0.500\\\\n  Layer  2: 0.500\\\\n  Layer  3: 0.500\\\\n  Layer  4: 0.500\\\\n  Layer  5: 0.500\\\\n  Layer  6: 0.500\\\\n  Layer  7: 0.500\\\\n  Layer  8: 0.500\\\\n  Layer  9: 0.500\\\\n  Layer 10: 0.500\\\\n  Layer 11: 0.500\\\\n  Layer 12: 0.500\\\\n  Layer 13: 0.500\\\\n  Layer 14: 0.500\\\\n  Layer 15: 0.500\\\\n  Layer 16: 0.500\\\\n  Layer 17: 0.500\\\\n  Layer 18: 0.500\\\\n  Layer 19: 0.500\\\\n  Layer 20: 0.500\\\\n  Layer 21: 0.500\\\\n  Layer 22: 0.500\\\\n  Layer 23: 0.500\\\\n  Layer 24: 0.500\\\\n  Layer 25: 0.500\\\\n  Layer 26: 0.500\\\\n  Layer 27: 0.500\\\\n  Layer 28: 0.500\\\\n  Layer 29: 0.500\\\\n  Layer 30: 0.500\\\\n  Layer 31: 0.500\\\\n  Model-level: 0.500\\\\n\\\\n--- WikiText-2 PPL ---\\\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Fri May 15 18:41:41 2026).\\\\n  WikiText-2: 141 sequences, seq_len=2048\\\\n  PPL = 11.9631  (15.5s)\\\\n\\\\n--- lm-eval: ['arc_challenge', 'winogrande', 'mmlu', 'gsm8k'] ---\\\\n`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.\\\\nPassed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration\\\\n  Running ['arc_challenge'] (num_fewshot=25) ...\\\\nUsing the latest cached version of the dataset since allenai/ai2_arc couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'ARC-Challenge' at /root/autodl-tmp/.hf_cache/datasets/allenai___ai2_arc/ARC-Challenge/0.0.0/210d026faf9955653af8916fad021475a3f00453 (last modified on Sat May 16 06:10:24 2026).\\\\nOverwriting default num_fewshot of arc_challenge from None to 25\\\\n\\\\r  0%|          | 0/1172 [00:00<?, ?it/s]\\\\r  0%|          | 5/1172 [00:00<00:24, 47.44it/s]\\\\r  1%|          | 10/1172 [00:00<00:24, 47.77it/s]\\\\r  1%|▏         | 15/1172 [00:\\\\n\\\\n... [截断: 输出过长，省略 365239 字符] ...\\\\n\\\\n███▍  | 985/1319 [11:58<03:15,  1.71it/s]\\\\rRunning generate_until requests:  75%|███████▌  | 993/1319 [12:01<02:54,  1.87it/s]\\\\rRunning generate_until requests:  76%|███████▌  | 1001/1319 [12:04<02:37,  2.02it/s]\\\\rRunning generate_until requests:  76%|███████▋  | 1009/1319 [12:07<02:14,  2.30it/s]\\\\rRunning generate_until requests:  77%|███████▋  | 1017/1319 [12:11<02:15,  2.22it/s]\\\\rRunning generate_until requests:  78%|███████▊  | 1025/1319 [12:15<02:26,  2.01it/s]\\\\rRunning generate_until requests:  78%|█████���█▊  | 1033/1319 [12:19<02:21,  2.02it/s]\\\\rRunning generate_until requests:  79%|███████▉  | 1041/1319 [12:22<02:04,  2.23it/s]\\\\rRunning generate_until requests:  80%|███████▉  | 1049/1319 [12:30<02:44,  1.65it/s]\\\\rRunning generate_until requests:  80%|████████  | 1057/1319 [12:38<03:08,  1.39it/s]\\\\rRunning generate_until requests:  81%|████████  | 1065/1319 [12:43<03:00,  1.40it/s]\\\\rRunning generate_until requests:  81%|████████▏ | 1073/1319 [12:51<03:14,  1.26it/s]\\\\rRunning generate_until requests:  82%|████████▏ | 1081/1319 [12:59<03:21,  1.18it/s]\\\\rRunning generate_until requests:  83%|████████▎ | 1089/1319 [13:07<03:23,  1.13it/s]\\\\rRunning generate_until requests:  83%|████████▎ | 1097/1319 [13:09<02:35,  1.43it/s]\\\\rRunning generate_until requests:  84%|████████▍ | 1105/1319 [13:17<02:47,  1.28it/s]\\\\rRunning generate_until requests:  84%|████████▍ | 1113/1319 [13:20<02:20,  1.47it/s]\\\\rRunning generate_until requests:  85%|████████▍ | 1121/1319 [13:23<01:53,  1.74it/s]\\\\rRunning generate_until requests:  86%|████████▌ | 1129/1319 [13:31<02:11,  1.45it/s]\\\\rRunning generate_until requests:  86%|████████▌ | 1137/1319 [13:33<01:43,  1.76it/s]\\\\rRunning generate_until requests:  87%|████████▋ | 1145/1319 [13:35<01:24,  2.07it/s]\\\\rRunning generate_until requests:  87%|████████▋ | 1153/1319 [13:38<01:17,  2.15it/s]\\\\rRunning generate_until requests:  88%|████████▊ | 1161/1319 [13:41<01:03,  2.48it/s]\\\\rRunning generate_until requests:  89%|████████▊ | 1169/1319 [13:48<01:25,  1.75it/s]\\\\rRunning generate_until requests:  89%|████████▉ | 1177/1319 [13:51<01:10,  2.00it/s]\\\\rRunning generate_until requests:  90%|████████▉ | 1185/1319 [13:53<00:57,  2.34it/s]\\\\rRunning generate_until requests:  90%|█████████ | 1193/1319 [13:57<00:55,  2.29it/s]\\\\rRunning generate_until requests:  91%|█████████ | 1201/1319 [13:59<00:45,  2.60it/s]\\\\rRunning generate_until requests:  92%|█████████▏| 1209/1319 [14:01<00:40,  2.71it/s]\\\\rRunning generate_until requests:  92%|█████████▏| 1217/1319 [14:05<00:41,  2.48it/s]\\\\rRunning generate_until requests:  93%|█████████▎| 1225/1319 [14:07<00:34,  2.74it/s]\\\\rRunning generate_until requests:  93%|█████████▎| 1233/1319 [14:15<00:46,  1.86it/s]\\\\rRunning generate_until requests:  94%|█████████▍| 1241/1319 [14:18<00:38,  2.04it/s]\\\\rRunning generate_until requests:  95%|█████████▍| 1249/1319 [14:21<00:31,  2.24it/s]\\\\rRunning generate_until requests:  95%|█████████▌| 1257/1319 [14:24<00:27,  2.24it/s]\\\\rRunning generate_until requests:  96%|████████���▌| 1265/1319 [14:26<00:21,  2.55it/s]\\\\rRunning generate_until requests:  97%|█████████▋| 1273/1319 [14:30<00:17,  2.56it/s]\\\\rRunning generate_until requests:  97%|█████████▋| 1281/1319 [14:37<00:20,  1.82it/s]\\\\rRunning generate_until requests:  98%|█████████▊| 1289/1319 [14:39<00:13,  2.17it/s]\\\\rRunning generate_until requests:  98%|█████████▊| 1297/1319 [14:41<00:09,  2.44it/s]\\\\rRunning generate_until requests:  99%|█████████▉| 1305/1319 [14:49<00:07,  1.79it/s]\\\\rRunning generate_until requests: 100%|█████████▉| 1313/1319 [14:56<00:03,  1.54it/s]\\\\rRunning generate_until requests: 100%|██████████| 1319/1319 [14:56<00:00,  1.47it/s]\\\\nfatal: not a git repository (or any of the parent directories): .git\\\\n  Completed in 1870.7s\\\\n  arc_challenge: sample_len=1172, acc=0.2833, acc_norm=0.3276\\\\n  winogrande: sample_len=1267, acc=0.6290\\\\n  mmlu: sample_len=14042, acc=0.2777\\\\n  gsm8k: sample_len=1319, exact_match=0.0212\\\\n\\\\nResults saved to /root/distill_sparse_swiglu/results/benchmark/d030_kl50_uniform/results.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading model: /root/autodl-tmp/models/llama-3.1-8b\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<00:33,  8.69it/s]\\rLoading weights:   1%|          | 2/291 [00:00<00:37,  7.79it/s]\\rLoading weights:   5%|▍         | 14/291 [00:00<00:06, 41.12it/s]\\rLoading weights:  11%|█         | 32/291 [00:00<00:03, 80.42it/s]\\rLoading weights:  18%|█▊        | 53/291 [00:00<00:02, 105.98it/s]\\rLoading weights:  26%|██▋       | 77/291 [00:00<00:01, 139.03it/s]\\rLoading weights:  32%|███▏      | 94/291 [00:00<00:01, 143.89it/s]\\rLoading weights:  37%|███▋      | 109/291 [00:01<00:01, 142.17it/s]\\rLoading weights:  43%|████▎     | 124/291 [00:01<00:01, 135.29it/s]\\rLoading weights:  48%|████▊     | 141/291 [00:01<00:01, 139.97it/s]\\rLoading weights:  54%|█████▍    | 158/291 [00:01<00:00, 145.23it/s]\\rLoading weights:  60%|██████    | 175/291 [00:01<00:00, 148.88it/s]\\rLoading weights:  66%|██████▌   | 191/291 [00:01<00:00, 107.00it/s]\\rLoading weights:  76%|███████▌  | 221/291 [00:01<00:00, 121.58it/s]\\rLoading weights:  82%|████████▏ | 239/291 [00:02<00:00, 120.98it/s]\\rLoading weights:  89%|████████▉ | 260/291 [00:02<00:00, 104.65it/s]\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 125.23it/s]\\nMode: TEAL global mask from predictor (allocation=uniform)\\n  checkpoint: /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Fri May 15 18:41:41 2026).\\nComputing TEAL global masks from predictor ...\\n\\nPer-layer sparsity (TEAL-predictor):\\n  Layer  0: 0.500\\n  Layer  1: 0.500\\n  Layer  2: 0.500\\n  Layer  3: 0.500\\n  Layer  4: 0.500\\n  Layer  5: 0.500\\n  Layer  6: 0.500\\n  Layer  7: 0.500\\n  Layer  8: 0.500\\n  Layer  9: 0.500\\n  Layer 10: 0.500\\n  Layer 11: 0.500\\n  Layer 12: 0.500\\n  Layer 13: 0.500\\n  Layer 14: 0.500\\n  Layer 15: 0.500\\n  Layer 16: 0.500\\n  Layer 17: 0.500\\n  Layer 18: 0.500\\n  Layer 19: 0.500\\n  Layer 20: 0.500\\n  Layer 21: 0.500\\n  Layer 22: 0.500\\n  Layer 23: 0.500\\n  Layer 24: 0.500\\n  Layer 25: 0.500\\n  Layer 26: 0.500\\n  Layer 27: 0.500\\n  Layer 28: 0.500\\n  Layer 29: 0.500\\n  Layer 30: 0.500\\n  Layer 31: 0.500\\n  Model-level: 0.500\\n\\n--- WikiText-2 PPL ---\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Fri May 15 18:41:41 2026).\\n  WikiText-2: 141 sequences, seq_len=2048\\n  PPL = 11.9631  (15.5s)\\n\\n--- lm-eval: ['arc_challenge', 'winogrande', 'mmlu', 'gsm8k'] ---\\n`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.\\nPassed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration\\n  Running ['arc_challenge'] (num_fewshot=25) ...\\nUsing the latest cached version of the dataset since allenai/ai2_arc couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'ARC-Challenge' at /root/autodl-tmp/.hf_cache/datasets/allenai___ai2_arc/ARC-Challenge/0.0.0/210d026faf9955653af8916fad021475a3f00453 (last modified on Sat May 16 06:10:24 2026).\\nOverwriting default num_fewshot of arc_challenge from None to 25\\n\\r  0%|          | 0/1172 [00:00<?, ?it/s]\\r  0%|          | 5/1172 [00:00<00:24, 47.44it/s]\\r  1%|          | 10/1172 [00:00<00:24, 47.77it/s]\\r  1%|▏         | 15/1172 [00:\\n\\n... [截断: 输出过长，省略 365239 字符] ...\\n\\n███▍  | 985/1319 [11:58<03:15,  1.71it/s]\\rRunning generate_until requests:  75%|███████▌  | 993/1319 [12:01<02:54,  1.87it/s]\\rRunning generate_until requests:  76%|███████▌  | 1001/1319 [12:04<02:37,  2.02it/s]\\rRunning generate_until requests:  76%|███████▋  | 1009/1319 [12:07<02:14,  2.30it/s]\\rRunning generate_until requests:  77%|███████▋  | 1017/1319 [12:11<02:15,  2.22it/s]\\rRunning generate_until requests:  78%|███████▊  | 1025/1319 [12:15<02:26,  2.01it/s]\\rRunning generate_until requests:  78%|█████���█▊  | 1033/1319 [12:19<02:21,  2.02it/s]\\rRunning generate_until requests:  79%|███████▉  | 1041/1319 [12:22<02:04,  2.23it/s]\\rRunning generate_until requests:  80%|███████▉  | 1049/1319 [12:30<02:44,  1.65it/s]\\rRunning generate_until requests:  80%|████████  | 1057/1319 [12:38<03:08,  1.39it/s]\\rRunning generate_until requests:  81%|████████  | 1065/1319 [12:43<03:00,  1.40it/s]\\rRunning generate_until requests:  81%|████████▏ | 1073/1319 [12:51<03:14,  1.26it/s]\\rRunning generate_until requests:  82%|████████▏ | 1081/1319 [12:59<03:21,  1.18it/s]\\rRunning generate_until requests:  83%|████████▎ | 1089/1319 [13:07<03:23,  1.13it/s]\\rRunning generate_until requests:  83%|████████▎ | 1097/1319 [13:09<02:35,  1.43it/s]\\rRunning generate_until requests:  84%|████████▍ | 1105/1319 [13:17<02:47,  1.28it/s]\\rRunning generate_until requests:  84%|████████▍ | 1113/1319 [13:20<02:20,  1.47it/s]\\rRunning generate_until requests:  85%|████████▍ | 1121/1319 [13:23<01:53,  1.74it/s]\\rRunning generate_until requests:  86%|████████▌ | 1129/1319 [13:31<02:11,  1.45it/s]\\rRunning generate_until requests:  86%|████████▌ | 1137/1319 [13:33<01:43,  1.76it/s]\\rRunning generate_until requests:  87%|████████▋ | 1145/1319 [13:35<01:24,  2.07it/s]\\rRunning generate_until requests:  87%|████████▋ | 1153/1319 [13:38<01:17,  2.15it/s]\\rRunning generate_until requests:  88%|████████▊ | 1161/1319 [13:41<01:03,  2.48it/s]\\rRunning generate_until requests:  89%|████████▊ | 1169/1319 [13:48<01:25,  1.75it/s]\\rRunning generate_until requests:  89%|████████▉ | 1177/1319 [13:51<01:10,  2.00it/s]\\rRunning generate_until requests:  90%|████████▉ | 1185/1319 [13:53<00:57,  2.34it/s]\\rRunning generate_until requests:  90%|█████████ | 1193/1319 [13:57<00:55,  2.29it/s]\\rRunning generate_until requests:  91%|█████████ | 1201/1319 [13:59<00:45,  2.60it/s]\\rRunning generate_until requests:  92%|█████████▏| 1209/1319 [14:01<00:40,  2.71it/s]\\rRunning generate_until requests:  92%|█████████▏| 1217/1319 [14:05<00:41,  2.48it/s]\\rRunning generate_until requests:  93%|█████████▎| 1225/1319 [14:07<00:34,  2.74it/s]\\rRunning generate_until requests:  93%|█████████▎| 1233/1319 [14:15<00:46,  1.86it/s]\\rRunning generate_until requests:  94%|█████████▍| 1241/1319 [14:18<00:38,  2.04it/s]\\rRunning generate_until requests:  95%|█████████▍| 1249/1319 [14:21<00:31,  2.24it/s]\\rRunning generate_until requests:  95%|█████████▌| 1257/1319 [14:24<00:27,  2.24it/s]\\rRunning generate_until requests:  96%|████████���▌| 1265/1319 [14:26<00:21,  2.55it/s]\\rRunning generate_until requests:  97%|█████████▋| 1273/1319 [14:30<00:17,  2.56it/s]\\rRunning generate_until requests:  97%|█████████▋| 1281/1319 [14:37<00:20,  1.82it/s]\\rRunning generate_until requests:  98%|█████████▊| 1289/1319 [14:39<00:13,  2.17it/s]\\rRunning generate_until requests:  98%|█████████▊| 1297/1319 [14:41<00:09,  2.44it/s]\\rRunning generate_until requests:  99%|█████████▉| 1305/1319 [14:49<00:07,  1.79it/s]\\rRunning generate_until requests: 100%|█████████▉| 1313/1319 [14:56<00:03,  1.54it/s]\\rRunning generate_until requests: 100%|██████████| 1319/1319 [14:56<00:00,  1.47it/s]\\nfatal: not a git repository (or any of the parent directories): .git\\n  Completed in 1870.7s\\n  arc_challenge: sample_len=1172, acc=0.2833, acc_norm=0.3276\\n  winogrande: sample_len=1267, acc=0.6290\\n  mmlu: sample_len=14042, acc=0.2777\\n  gsm8k: sample_len=1319, exact_match=0.0212\\n\\nResults saved to /root/distill_sparse_swiglu/results/benchmark/d030_kl50_uniform/results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T05:08:13.101Z_
+
+<details><summary>↩ Tool result · `toolu_01DdvwpBC8xcfSxLZLdPW1oP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.229}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "da4226f2-5489-4c9a-a9d8-5d8968b94e34",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.229}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.229}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T05:08:13.343Z_
+
+<details><summary>↩ Tool result · `toolu_012GGYTvJBZR1q3JNyhYpPZj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2307}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "33801f90-4008-4f70-b106-0e5b1a587a84",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2307}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2307}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01JNx12JDQMdmNWjTuKyXSJB`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "filters": {
+    "exp_id": "kl_sparsity30_s42_v3"
+  },
+  "fields": [
+    "exp_id",
+    "metrics",
+    "conclusion",
+    "status"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "a6a7a50a-aa76-427e-8540-12488a69c403",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HqLUstW4mBwJNV5RHjwnJU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1958,
+      "cache_read_input_tokens": 23695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1958
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T05:08:14.003Z_
+
+<details><summary>↩ Tool result · `toolu_01JNx12JDQMdmNWjTuKyXSJB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2137}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "f357e928-9fd0-46e6-bbdf-2effe46f1bdc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2137}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2137}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01NgEqBNe3zsoQHScXawNVf3`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "filters": {
+    "exp_id": "lm_eval_kl_s42"
+  },
+  "fields": [
+    "exp_id",
+    "metrics",
+    "conclusion",
+    "status"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "68899c56-61c8-4ea3-9dd3-cd253c668600",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HqLUstW4mBwJNV5RHjwnJU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1958,
+      "cache_read_input_tokens": 23695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1958
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T05:08:14.708Z_
+
+<details><summary>↩ Tool result · `toolu_01NgEqBNe3zsoQHScXawNVf3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2114}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "0591294f-03d1-475e-bc5b-fd540517a708",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2114}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2114}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log file has been read successfully. Let me extract the key metrics:
+
+From the log:
+- WikiText-2 PPL = 11.9631
+- ARC-Challenge: acc=0.2833, acc_norm=0.3276
+- WinoGrande: acc=0.6290
+- MMLU: acc=0.2777
+- GSM8K: exact_match=0.0212
+
+The registry queries returned empty - let me try different exp_id formats or list all experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "93c7275f-4d9e-425e-81bd-0f411064445b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8HfuXvDTHBgfHrg2yaYu7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4967,
+      "cache_read_input_tokens": 25653,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+Registry 查询为空，列出所有实验找 baseline。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "73f30e45-084d-407e-bb9b-921a92b7d147",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8HfuXvDTHBgfHrg2yaYu7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4967,
+      "cache_read_input_tokens": 25653,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014RBPneYsvFvR4Nb94TXZWB`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "limit": 0,
+  "fields": [
+    "exp_id",
+    "metrics",
+    "conclusion",
+    "status"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "acef3db2-d765-448f-9cde-4ab19a9895c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8HfuXvDTHBgfHrg2yaYu7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4967,
+      "cache_read_input_tokens": 25653,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T05:08:20.865Z_
+
+<details><summary>↩ Tool result · `toolu_014RBPneYsvFvR4Nb94TXZWB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"kl_sparsity30_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"loss\": 0.165, \"kl_normalized\": 0.165, \"kl_raw\": 0.165, \"sparsity\": 0.285, \"lambda_sparse\": 5000, \"tau\": 0.1, \"constraint_loss\": 0, \"steps\": 1000, \"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 7.3, \"teal_sparse_ppl\": 13.63, \"teal_sparse_ppl_old_wrong\": 8.98, \"teal_sparse_ppl_fix_note\": \"D032: 原值 8.98 是 Mistral 数据误拷，正确值 13.63 来自 eval_kl_sparsity30_s42_v3.log\", \"model_level_sparsity\": 0.3, \"eval_dataset\": \"wikitext-2\", \"eval_seq_len\": 2048}, \"conclusion\": \"success\"}, \"d030_kl50_uniform\": {\"status\": \"ANALYZING\"}, \"lm_eval_teal_50pct\": {\"status\": \"DONE\", \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Llama-3.1-8B\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\"}, \"bce_isocompute_v3_s42\": {\"status\": \"RUNNING\"}, \"d030_kl30_uniform\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.8157, \"arc_challenge_acc_norm\": 0.4078, \"winogrande_acc\": 0.6859, \"mmlu_acc\": 0.4061, \"gsm8k_exact_match\": 0.0735, \"actual_sparsity\": 0.3, \"allocation\": \"uniform\", \"per_layer_sparsity\": \"uniform 0.301 across all 32 layers\", \"mmlu_improvement_vs_global\": \"+11.87pp (0.2874 → 0.4061)\", \"gsm8k_change_vs_global\": \"no change (0.0743 → 0.0735, within noise)\"}, \"conclusion\": \"success\"}, \"bench_mistral_kl50_s42\": {\"status\": \"PENDING\", \"conclusion\": \"killed\"}, \"mistral_kl_s42\": {\"status\": \"DONE\", \"metrics\": {\"train_final_loss\": 0.2188, \"train_final_kl_raw\": 0.2188, \"train_final_kl_norm\": 0.2188, \"train_final_constraint\": 0, \"train_final_sparsity\": 0.48, \"train_final_lambda\": 1000, \"train_final_tau\": 0.1, \"train_steps_completed\": 1000, \"true_dense_ppl\": 5.52, \"predictor_hard_mask_ppl\": 7.3, \"teal_sparse_ppl\": 8.98, \"model_level_sparsity\": 0.5, \"eval_dataset\": \"wikitext-2\", \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"eval_samples\": 159}, \"conclusion\": \"success\"}, \"lm_eval_mistral_kl_50pct\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"arc_challenge_acc\": 0.2927, \"arc_challenge_acc_norm\": 0.3183, \"arc_challenge_acc_norm_stderr\": 0.0136, \"winogrande_acc\": 0.629, \"winogrande_acc_stderr\": 0.0136, \"mmlu_acc\": 0.2295, \"mmlu_acc_stderr\": 0.0035, \"mmlu_stem_acc\": 0.2125, \"mmlu_humanities_acc\": 0.2421, \"mmlu_social_sciences_acc\": 0.2171, \"mmlu_other_acc\": 0.2398, \"gsm8k_exact_match_strict\": 0.0045, \"gsm8k_exact_match_flexible\": 0.0212, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_distill_50pct_sparsity_s42\", \"arc_challenge_retention_vs_dense\": 0.528, \"winogrande_retention_vs_dense\": 0.799, \"mmlu_retention_vs_dense\": 0.368, \"gsm8k_retention_vs_dense\": 0.012}}, \"lm_eval_teal_30pct\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge\": {\"acc\": 0.3933, \"acc_norm\": 0.4155, \"acc_stderr\": 0.0143, \"acc_norm_stderr\": 0.0144}, \"winogrande\": {\"acc\": 0.6559, \"acc_stderr\": 0.0134}, \"mmlu\": {\"acc\": 0.3598, \"acc_stderr\": 0.004}, \"mmlu_stem\": {\"acc\": 0.313}, \"mmlu_humanities\": {\"acc\": 0.3305}, \"mmlu_social_sciences\": {\"acc\": 0.4108}, \"mmlu_other\": {\"acc\": 0.401}, \"gsm8k\": {\"exact_match_strict\": 0.0849, \"exact_match_flexible\": 0.0925, \"strict_stderr\": 0.0077, \"flexible_stderr\": 0.008}, \"actual_sparsity\": 0.3}, \"conclusion\": \"negative\"}, \"kl_lagrangian_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"kl_norm_v3_quicktest\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\", \"metrics\": {\"step1_kl_raw\": 1.1797, \"step1_kl_norm\": 1.1797, \"step1_sparsity\": 0.406, \"step1_lambda\": 2, \"step50_kl_raw\": 0.7344, \"step50_kl_norm\": 0.7344, \"step50_sparsity\": 0.514, \"step50_lambda\": 1.95, \"step100_kl_raw\": 0.625, \"step100_kl_norm\": 0.625, \"step100_sparsity\": 0.496, \"step100_lambda\": 1000, \"step150_kl_raw\": 0.5703, \"step150_kl_norm\": 0.5703, \"step150_sparsity\": 0.48, \"step150_lambda\": 1000, \"step200_kl_raw\": 0.6836, \"step200_kl_norm\": 0.6836, \"step200_sparsity\": 0.477, \"step200_lambda\": 1000, \"step200_constraint\": 0.01178, \"kl_trend\": \"decreasing (1.18→0.57 min, uptick to 0.68 at end)\", \"sparsity_range\": \"0.477-0.514 after step 50\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/kl_norm_v3_quicktest/predictor_kl_normalized.pt\"}}, \"mvp_kl_norm_s456\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"spon_kl_s42\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"diag_30pct_downstream\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"diag_gsm8k_gencomp\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"diag_teal_downstream\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"lm_eval_kl_30pct_s42\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge_acc\": 0.3575, \"arc_challenge_acc_norm\": 0.3737, \"winogrande_acc\": 0.6756, \"mmlu_acc\": 0.2874, \"gsm8k_exact_match_strict\": 0.0743, \"gsm8k_exact_match_flexible\": 0.0781, \"actual_sparsity\": 0.3, \"model\": \"llama-3.1-8b\", \"condition\": \"kl_distill_30pct_sparsity_s42\", \"mmlu_stem_acc\": 0.2499, \"mmlu_social_sciences_acc\": 0.2896, \"mmlu_humanities_acc\": 0.2786, \"mmlu_other_acc\": 0.3363}, \"conclusion\": \"negative\"}, \"bce_isocompute_s42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_spon_supp_retry\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"lm_eval_dense_test\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"lm_eval_mistral_downstream\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_kl_s123\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_kl_s456\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"lm_eval_mistral_dense\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"arc_challenge_acc_norm\": 0.6024, \"winogrande_acc\": 0.7869, \"mmlu_acc\": 0.6244, \"gsm8k_exact_match\": 0.3654, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"dense\", \"server\": \"westd-34887\"}}, \"lm_eval_kl_s42\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge_acc_norm\": 0.3771, \"winogrande_acc\": 0.6156, \"mmlu_acc\": 0.2591, \"gsm8k_exact_match\": 0.0121, \"eval_tasks\": [\"arc_challenge\", \"winogrande\", \"mmlu\", \"gsm8k\"], \"model\": \"llama-3.1-8b\", \"condition\": \"kl_sparse_50pct\", \"server\": \"westd-34887\", \"exit_code\": 129, \"wall_time_sec\": 3010, \"flag\": \"SUSPECT — gsm8k 0.50→0.01 catastrophic drop; PID 179918 rerunning with lm_eval_sparse.py\"}, \"conclusion\": \"negative\"}, \"gsm8k_gen_compare\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"kl_sparsity70_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 13.84, \"predictor_teal_sparse_ppl\": 17.91, \"vanilla_teal_sparse_ppl\": 100.11, \"teal_sparse_ppl\": 17.91, \"teal_sparse_ppl_static_baseline\": 17.91, \"model_level_sparsity\": 0.7, \"teal_sparse_note\": \"17.91 = predictor-based TEAL (teal_global_masks: predictor-gated magnitude scoring + global topk @70%). vanilla TEAL @70% = 100.11. 代码来源: quick_sp70.py L10 imports teal_global_masks, L60 调用. plan_007_all_ppl_fixed.json 的 mode=static_mask_70pct metadata 有误导性.\", \"eval_dataset\": \"wikitext-2\", \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"per_layer_sparsity_range\": [0.508, 0.876]}, \"conclusion\": \"success\"}, \"training_free_baselines\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"dense_ppl\": 6.12, \"vanilla_teal_global_ppl_30pct\": 10.97, \"vanilla_teal_global_ppl_50pct\": 23.31, \"vanilla_teal_global_ppl_70pct\": 100.11, \"wina_global_ppl_30pct\": 11.45, \"wina_global_ppl_50pct\": 27.93, \"wina_global_ppl_70pct\": 137.24, \"uniform_50pct_ppl\": 23.9, \"teal_greedy_ppl\": 33.47, \"vanilla_teal_global_ppl\": 23.31, \"wina_global_ppl\": 27.93, \"rsparse_global_ppl\": 151.2}}, \"lm_eval_dense\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge_acc_norm\": 0.5819, \"winogrande_acc\": 0.7814, \"mmlu_acc\": 0.6532, \"gsm8k_exact_match\": 0.5004, \"eval_tasks\": [\"arc_challenge\", \"winogrande\", \"mmlu\", \"gsm8k\"], \"model\": \"llama-3.1-8b\", \"condition\": \"dense\", \"server\": \"westd-34887\"}, \"conclusion\": \"success\"}, \"kl_sparsity30_s42_v2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"final_loss\": 0.1465, \"kl_normalized\": 0.1465, \"kl_raw\": 0.1465, \"model_level_sparsity\": 0.281, \"sparsity_target\": 0.3, \"lambda_sparse_final\": 1000, \"lambda_max_cap\": 1000, \"tau_final\": 0.1, \"constraint_loss_final\": 0, \"training_steps\": 1000, \"wall_clock_seconds\": 2662.6, \"gpu_hours\": 0.74, \"note\": \"No PPL evaluation in training script. Sparsity stuck at 0.281 (same as v1). Lambda hit cap=1000 by step 220 and could not push sparsity further. W&B run was offline (not synced).\"}}, \"bce_isocompute_v2_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.6637, \"final_bce_loss\": 0.6586, \"final_reg_loss\": 0.0051, \"final_sparsity\": 0.502, \"training_steps\": 1000, \"training_time_sec\": 1047.8, \"reg_weight\": 2, \"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 26.76, \"teal_sparse_ppl\": 54.84, \"eval_seq_len\": 2048, \"eval_dataset\": \"wikitext-2\"}}, \"kl_sparsity70_s42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"kl_sparsity30_s42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_005_subsumption_s42\": {\"status\": \"DONE\", \"metrics\": {\"linearity_ratio\": 0.2644, \"linearity_ratio_std\": 0.0073, \"magnitude_ratio\": 0.1578, \"magnitude_ratio_std\": 0.0088, \"cosine_similarity\": 0.1962, \"cosine_similarity_std\": 0.0268, \"predictor_effect_norm\": 482.65, \"spon_correction_norm\": 76.2, \"interaction_norm\": 147.74, \"num_samples\": 50, \"seq_len\": 2048, \"conclusion_type\": \"weak_subsumption\"}, \"conclusion\": \"success\"}, \"ste_baseline_s42\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 8.18, \"teal_sparse_ppl\": 15.77, \"model_level_sparsity\": 0.47, \"ppl_increase_vs_true_dense_pct\": 157.7, \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"eval_dataset\": \"wikitext-2\", \"per_token_sparsity\": 0.47, \"lambda_stats\": {\"steps_70_130_mean\": 66.4, \"steps_70_130_std\": 94.87, \"first_500_mean\": 688.07, \"first_500_std\": 440.57, \"last_500_mean\": 965.69, \"last_500_std\": 141.59, \"overall_mean\": 826.88, \"overall_std\": 354.23}}, \"conclusion\": \"success\"}, \"spon_supp_eval_retry\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"spon_2048_s42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.2165, \"spon_sparse_ppl\": 8.991, \"spon_recovery_pct\": 7.3, \"ppl_improvement_from_spon\": 0.2255, \"mean_bias_norm\": 0.05312, \"max_bias_norm\": 0.065918, \"model_level_sparsity\": 0.498, \"eval_seq_len\": 2048, \"training_seq_len\": 2048, \"eval_samples\": 141, \"trainable_params\": 458752, \"trainable_pct\": 0.0057, \"training_steps\": 1000, \"final_loss\": 0.377, \"dense_with_spon_ppl\": 6.1823, \"dense_ppl_degradation\": 0.0651, \"teal_sparse_no_spon_ppl\": 12.0776, \"teal_sparse_with_spon_ppl\": 11.7907, \"spon_recovery_teal_pct\": 4.8, \"teal_sparsity\": 0.4979}}, \"bce_isocompute_s42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_kl_norm_v2_s456\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.14, \"teal_sparse_ppl\": 13.58, \"model_level_sparsity\": 0.498, \"ppl_increase_vs_true_dense_pct\": 121.9, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"spon_training\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"true_dense_ppl\": 6.1193, \"predictor_hard_mask_ppl\": 9.2165, \"spon_sparse_ppl\": 9.0977, \"spon_recovery_pct\": 3.8, \"ppl_improvement_from_spon\": 0.1188, \"ppl_increase_vs_true_dense_pct\": 48.7, \"ppl_increase_no_spon_vs_true_dense_pct\": 50.6, \"mean_bias_norm\": 0.040596, \"max_bias_norm\": 0.054199, \"teal_sparse_ppl\": 12.08, \"teal_with_spon_ppl\": 11.93, \"spon_dense_ppl_degradation\": 6.19, \"model_level_sparsity\": 0.5, \"eval_seq_len\": 2048, \"eval_samples\": 141, \"trainable_params\": 458752, \"trainable_pct\": 0.0057}}, \"training_free_wina_greedy\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"wina_greedy_ppl\": 2126.03, \"dense_ppl\": 6.12, \"model_level_sparsity\": 0.5, \"eval_dataset\": \"WikiText-2\", \"eval_seq_len\": 2048, \"greedy_allocation_summary\": \"layers 0-11: 0.90, layer 12: 0.85, layer 13: 0.80, layer 14: 0.70, layers 15-16: 0.50-0.55, layers 17-20: 0.30-0.35, layers 21-24: 0.05-0.15, layers 25-31: 0.00\"}}, \"ste_kl_s42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"bce_comp_staged_s42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 25.44, \"predictor_hard_mask_ppl_no_comp\": 27.96, \"teal_sparse_ppl\": 44.54, \"model_level_sparsity\": 0.558, \"ppl_increase_vs_true_dense_pct\": 315.7, \"comp_loss_final\": 0.0033, \"bce_loss_final\": 0.6379, \"eval_seq_len\": 2048, \"calibration_samples\": 32}}, \"spon_training_seq2048\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"kl_only_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 9.19, \"teal_sparse_ppl\": 12.03, \"model_level_sparsity\": 0.499, \"ppl_increase_vs_true_dense_pct\": 96.57, \"eval_seq_len\": 2048, \"calibration_samples\": 32}}, \"kl_only_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 9.15, \"teal_sparse_ppl\": 11.99, \"model_level_sparsity\": 0.498, \"ppl_increase_vs_true_dense_pct\": 96}}, \"mvp_bce_s456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 28.1437, \"teal_sparse_ppl\": 43.033, \"model_level_sparsity\": 0.4957, \"ppl_increase_vs_true_dense_pct\": 603.3, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}}, \"mvp_bce_s123\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 28.3817, \"teal_sparse_ppl\": 44.5864, \"model_level_sparsity\": 0.4957, \"ppl_increase_vs_true_dense_pct\": 629, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"mvp_bce_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 27.9603, \"teal_sparse_ppl\": 44.537, \"model_level_sparsity\": 0.4957, \"ppl_increase_vs_true_dense_pct\": 628, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}}, \"mvp_kl_norm_v2_s123\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.2474, \"teal_sparse_ppl\": 11.9128, \"model_level_sparsity\": 0.4979, \"ppl_increase_vs_true_dense_pct\": 94.7, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"mvp_kl_norm_v2_s42\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.2142, \"teal_sparse_ppl\": 12.0776, \"model_level_sparsity\": 0.4979, \"ppl_increase_vs_true_dense_pct\": 97.4, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"mvp_kl_norm_s123\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_kl_norm_s42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"kl_normalized_quicktest\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"step1_kl\": 1.18, \"step200_kl\": 0.641, \"step200_sparsity\": 0.504, \"final_lambda\": 8, \"sparsity_converged_step\": 80, \"sparsity_trajectory\": [0.406, 0.398, 0.398, 0.457, 0.52, 0.506, 0.504, 0.504], \"lambda_trajectory\": [1, 2, 4, 8, 8, 8, 8, 8]}}, \"kl_lagrangian_quicktest\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"final_kl_loss\": 418, \"final_constraint_loss\": 1.211, \"final_sparsity\": 0.141, \"final_lambda\": 5.06, \"steps\": 200, \"sparsity_trajectory\": [0.406, 0.387, 0.289, 0.168, 0.141]}}, \"mvp_kl_s42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"final_total_loss\": 3.3438, \"final_kl_loss\": 3.2969, \"final_reg_loss\": 0.05, \"final_sparsity\": 0, \"steps\": 1000, \"tau_final\": 0.1, \"wikitext2_ppl_dense\": 6.12, \"wikitext2_ppl_sparse\": 455.93, \"wikitext2_ppl_increase_pct\": 7349, \"model_level_sparsity\": 0.372, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/mvp_kl_s42/predictor_kl.pt\"}}}, \"count\": 56, \"total\": 56, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2172}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dc03d9a3-47a8-4dd3-a5da-5071e1f802d7",
+  "uuid": "de96a3a3-eca4-4004-a922-b8259b94b5d3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"kl_sparsity30_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"loss\\\": 0.165, \\\"kl_normalized\\\": 0.165, \\\"kl_raw\\\": 0.165, \\\"sparsity\\\": 0.285, \\\"lambda_sparse\\\": 5000, \\\"tau\\\": 0.1, \\\"constraint_loss\\\": 0, \\\"steps\\\": 1000, \\\"true_dense_ppl\\\": 6.12, \\\"predictor_hard_mask_ppl\\\": 7.3, \\\"teal_sparse_ppl\\\": 13.63, \\\"teal_sparse_ppl_old_wrong\\\": 8.98, \\\"teal_sparse_ppl_fix_note\\\": \\\"D032: 原值 8.98 是 Mistral 数据误拷，正确值 13.63 来自 eval_kl_sparsity30_s42_v3.log\\\", \\\"model_level_sparsity\\\": 0.3, \\\"eval_dataset\\\": \\\"wikitext-2\\\", \\\"eval_seq_len\\\": 2048}, \\\"conclusion\\\": \\\"success\\\"}, \\\"d030_kl50_uniform\\\": {\\\"status\\\": \\\"ANALYZING\\\"}, \\\"lm_eval_teal_50pct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"method\\\": \\\"vanilla_teal\\\", \\\"sparsity\\\": 0.5, \\\"actual_sparsity\\\": 0.5, \\\"arc_challenge_acc_norm\\\": 0.291, \\\"winogrande_acc\\\": 0.5556, \\\"mmlu_acc\\\": 0.2856, \\\"gsm8k_exact_match_flexible\\\": 0.019, \\\"gsm8k_exact_match_strict\\\": 0.0114, \\\"arc_challenge_drop_vs_dense\\\": -0.5, \\\"winogrande_drop_vs_dense\\\": -0.289, \\\"mmlu_drop_vs_dense\\\": -0.563, \\\"gsm8k_drop_vs_dense\\\": -0.962, \\\"model\\\": \\\"Llama-3.1-8B\\\", \\\"condition\\\": \\\"TEAL 50% training-free sparsity\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"bce_isocompute_v3_s42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"d030_kl30_uniform\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"wikitext2_ppl\\\": 8.8157, \\\"arc_challenge_acc_norm\\\": 0.4078, \\\"winogrande_acc\\\": 0.6859, \\\"mmlu_acc\\\": 0.4061, \\\"gsm8k_exact_match\\\": 0.0735, \\\"actual_sparsity\\\": 0.3, \\\"allocation\\\": \\\"uniform\\\", \\\"per_layer_sparsity\\\": \\\"uniform 0.301 across all 32 layers\\\", \\\"mmlu_improvement_vs_global\\\": \\\"+11.87pp (0.2874 → 0.4061)\\\", \\\"gsm8k_change_vs_global\\\": \\\"no change (0.0743 → 0.0735, within noise)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"bench_mistral_kl50_s42\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mistral_kl_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"train_final_loss\\\": 0.2188, \\\"train_final_kl_raw\\\": 0.2188, \\\"train_final_kl_norm\\\": 0.2188, \\\"train_final_constraint\\\": 0, \\\"train_final_sparsity\\\": 0.48, \\\"train_final_lambda\\\": 1000, \\\"train_final_tau\\\": 0.1, \\\"train_steps_completed\\\": 1000, \\\"true_dense_ppl\\\": 5.52, \\\"predictor_hard_mask_ppl\\\": 7.3, \\\"teal_sparse_ppl\\\": 8.98, \\\"model_level_sparsity\\\": 0.5, \\\"eval_dataset\\\": \\\"wikitext-2\\\", \\\"eval_seq_len\\\": 2048, \\\"calibration_samples\\\": 32, \\\"eval_samples\\\": 159}, \\\"conclusion\\\": \\\"success\\\"}, \\\"lm_eval_mistral_kl_50pct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"arc_challenge_acc\\\": 0.2927, \\\"arc_challenge_acc_norm\\\": 0.3183, \\\"arc_challenge_acc_norm_stderr\\\": 0.0136, \\\"winogrande_acc\\\": 0.629, \\\"winogrande_acc_stderr\\\": 0.0136, \\\"mmlu_acc\\\": 0.2295, \\\"mmlu_acc_stderr\\\": 0.0035, \\\"mmlu_stem_acc\\\": 0.2125, \\\"mmlu_humanities_acc\\\": 0.2421, \\\"mmlu_social_sciences_acc\\\": 0.2171, \\\"mmlu_other_acc\\\": 0.2398, \\\"gsm8k_exact_match_strict\\\": 0.0045, \\\"gsm8k_exact_match_flexible\\\": 0.0212, \\\"model\\\": \\\"Mistral-7B-v0.3\\\", \\\"condition\\\": \\\"kl_distill_50pct_sparsity_s42\\\", \\\"arc_challenge_retention_vs_dense\\\": 0.528, \\\"winogrande_retention_vs_dense\\\": 0.799, \\\"mmlu_retention_vs_dense\\\": 0.368, \\\"gsm8k_retention_vs_dense\\\": 0.012}}, \\\"lm_eval_teal_30pct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"arc_challenge\\\": {\\\"acc\\\": 0.3933, \\\"acc_norm\\\": 0.4155, \\\"acc_stderr\\\": 0.0143, \\\"acc_norm_stderr\\\": 0.0144}, \\\"winogrande\\\": {\\\"acc\\\": 0.6559, \\\"acc_stderr\\\": 0.0134}, \\\"mmlu\\\": {\\\"acc\\\": 0.3598, \\\"acc_stderr\\\": 0.004}, \\\"mmlu_stem\\\": {\\\"acc\\\": 0.313}, \\\"mmlu_humanities\\\": {\\\"acc\\\": 0.3305}, \\\"mmlu_social_sciences\\\": {\\\"acc\\\": 0.4108}, \\\"mmlu_other\\\": {\\\"acc\\\": 0.401}, \\\"gsm8k\\\": {\\\"exact_match_strict\\\": 0.0849, \\\"exact_match_flexible\\\": 0.0925, \\\"strict_stderr\\\": 0.0077, \\\"flexible_stderr\\\": 0.008}, \\\"actual_sparsity\\\": 0.3}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"kl_lagrangian_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"kl_norm_v3_quicktest\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"step1_kl_raw\\\": 1.1797, \\\"step1_kl_norm\\\": 1.1797, \\\"step1_sparsity\\\": 0.406, \\\"step1_lambda\\\": 2, \\\"step50_kl_raw\\\": 0.7344, \\\"step50_kl_norm\\\": 0.7344, \\\"step50_sparsity\\\": 0.514, \\\"step50_lambda\\\": 1.95, \\\"step100_kl_raw\\\": 0.625, \\\"step100_kl_norm\\\": 0.625, \\\"step100_sparsity\\\": 0.496, \\\"step100_lambda\\\": 1000, \\\"step150_kl_raw\\\": 0.5703, \\\"step150_kl_norm\\\": 0.5703, \\\"step150_sparsity\\\": 0.48, \\\"step150_lambda\\\": 1000, \\\"step200_kl_raw\\\": 0.6836, \\\"step200_kl_norm\\\": 0.6836, \\\"step200_sparsity\\\": 0.477, \\\"step200_lambda\\\": 1000, \\\"step200_constraint\\\": 0.01178, \\\"kl_trend\\\": \\\"decreasing (1.18→0.57 min, uptick to 0.68 at end)\\\", \\\"sparsity_range\\\": \\\"0.477-0.514 after step 50\\\", \\\"checkpoint_path\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_norm_v3_quicktest/predictor_kl_normalized.pt\\\"}}, \\\"mvp_kl_norm_s456\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"spon_kl_s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"diag_30pct_downstream\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"diag_gsm8k_gencomp\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"diag_teal_downstream\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"lm_eval_kl_30pct_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"arc_challenge_acc\\\": 0.3575, \\\"arc_challenge_acc_norm\\\": 0.3737, \\\"winogrande_acc\\\": 0.6756, \\\"mmlu_acc\\\": 0.2874, \\\"gsm8k_exact_match_strict\\\": 0.0743, \\\"gsm8k_exact_match_flexible\\\": 0.0781, \\\"actual_sparsity\\\": 0.3, \\\"model\\\": \\\"llama-3.1-8b\\\", \\\"condition\\\": \\\"kl_distill_30pct_sparsity_s42\\\", \\\"mmlu_stem_acc\\\": 0.2499, \\\"mmlu_social_sciences_acc\\\": 0.2896, \\\"mmlu_humanities_acc\\\": 0.2786, \\\"mmlu_other_acc\\\": 0.3363}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"bce_isocompute_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_spon_supp_retry\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"lm_eval_dense_test\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"lm_eval_mistral_downstream\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_kl_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_kl_s456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"lm_eval_mistral_dense\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"arc_challenge_acc_norm\\\": 0.6024, \\\"winogrande_acc\\\": 0.7869, \\\"mmlu_acc\\\": 0.6244, \\\"gsm8k_exact_match\\\": 0.3654, \\\"model\\\": \\\"Mistral-7B-v0.3\\\", \\\"condition\\\": \\\"dense\\\", \\\"server\\\": \\\"westd-34887\\\"}}, \\\"lm_eval_kl_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"arc_challenge_acc_norm\\\": 0.3771, \\\"winogrande_acc\\\": 0.6156, \\\"mmlu_acc\\\": 0.2591, \\\"gsm8k_exact_match\\\": 0.0121, \\\"eval_tasks\\\": [\\\"arc_challenge\\\", \\\"winogrande\\\", \\\"mmlu\\\", \\\"gsm8k\\\"], \\\"model\\\": \\\"llama-3.1-8b\\\", \\\"condition\\\": \\\"kl_sparse_50pct\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"exit_code\\\": 129, \\\"wall_time_sec\\\": 3010, \\\"flag\\\": \\\"SUSPECT — gsm8k 0.50→0.01 catastrophic drop; PID 179918 rerunning with lm_eval_sparse.py\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"gsm8k_gen_compare\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"kl_sparsity70_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.12, \\\"predictor_hard_mask_ppl\\\": 13.84, \\\"predictor_teal_sparse_ppl\\\": 17.91, \\\"vanilla_teal_sparse_ppl\\\": 100.11, \\\"teal_sparse_ppl\\\": 17.91, \\\"teal_sparse_ppl_static_baseline\\\": 17.91, \\\"model_level_sparsity\\\": 0.7, \\\"teal_sparse_note\\\": \\\"17.91 = predictor-based TEAL (teal_global_masks: predictor-gated magnitude scoring + global topk @70%). vanilla TEAL @70% = 100.11. 代码来源: quick_sp70.py L10 imports teal_global_masks, L60 调用. plan_007_all_ppl_fixed.json 的 mode=static_mask_70pct metadata 有误导性.\\\", \\\"eval_dataset\\\": \\\"wikitext-2\\\", \\\"eval_seq_len\\\": 2048, \\\"calibration_samples\\\": 32, \\\"per_layer_sparsity_range\\\": [0.508, 0.876]}, \\\"conclusion\\\": \\\"success\\\"}, \\\"training_free_baselines\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dense_ppl\\\": 6.12, \\\"vanilla_teal_global_ppl_30pct\\\": 10.97, \\\"vanilla_teal_global_ppl_50pct\\\": 23.31, \\\"vanilla_teal_global_ppl_70pct\\\": 100.11, \\\"wina_global_ppl_30pct\\\": 11.45, \\\"wina_global_ppl_50pct\\\": 27.93, \\\"wina_global_ppl_70pct\\\": 137.24, \\\"uniform_50pct_ppl\\\": 23.9, \\\"teal_greedy_ppl\\\": 33.47, \\\"vanilla_teal_global_ppl\\\": 23.31, \\\"wina_global_ppl\\\": 27.93, \\\"rsparse_global_ppl\\\": 151.2}}, \\\"lm_eval_dense\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"arc_challenge_acc_norm\\\": 0.5819, \\\"winogrande_acc\\\": 0.7814, \\\"mmlu_acc\\\": 0.6532, \\\"gsm8k_exact_match\\\": 0.5004, \\\"eval_tasks\\\": [\\\"arc_challenge\\\", \\\"winogrande\\\", \\\"mmlu\\\", \\\"gsm8k\\\"], \\\"model\\\": \\\"llama-3.1-8b\\\", \\\"condition\\\": \\\"dense\\\", \\\"server\\\": \\\"westd-34887\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"kl_sparsity30_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.1465, \\\"kl_normalized\\\": 0.1465, \\\"kl_raw\\\": 0.1465, \\\"model_level_sparsity\\\": 0.281, \\\"sparsity_target\\\": 0.3, \\\"lambda_sparse_final\\\": 1000, \\\"lambda_max_cap\\\": 1000, \\\"tau_final\\\": 0.1, \\\"constraint_loss_final\\\": 0, \\\"training_steps\\\": 1000, \\\"wall_clock_seconds\\\": 2662.6, \\\"gpu_hours\\\": 0.74, \\\"note\\\": \\\"No PPL evaluation in training script. Sparsity stuck at 0.281 (same as v1). Lambda hit cap=1000 by step 220 and could not push sparsity further. W&B run was offline (not synced).\\\"}}, \\\"bce_isocompute_v2_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.6637, \\\"final_bce_loss\\\": 0.6586, \\\"final_reg_loss\\\": 0.0051, \\\"final_sparsity\\\": 0.502, \\\"training_steps\\\": 1000, \\\"training_time_sec\\\": 1047.8, \\\"reg_weight\\\": 2, \\\"true_dense_ppl\\\": 6.12, \\\"predictor_hard_mask_ppl\\\": 26.76, \\\"teal_sparse_ppl\\\": 54.84, \\\"eval_seq_len\\\": 2048, \\\"eval_dataset\\\": \\\"wikitext-2\\\"}}, \\\"kl_sparsity70_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"kl_sparsity30_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan_005_subsumption_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"linearity_ratio\\\": 0.2644, \\\"linearity_ratio_std\\\": 0.0073, \\\"magnitude_ratio\\\": 0.1578, \\\"magnitude_ratio_std\\\": 0.0088, \\\"cosine_similarity\\\": 0.1962, \\\"cosine_similarity_std\\\": 0.0268, \\\"predictor_effect_norm\\\": 482.65, \\\"spon_correction_norm\\\": 76.2, \\\"interaction_norm\\\": 147.74, \\\"num_samples\\\": 50, \\\"seq_len\\\": 2048, \\\"conclusion_type\\\": \\\"weak_subsumption\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"ste_baseline_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.12, \\\"predictor_hard_mask_ppl\\\": 8.18, \\\"teal_sparse_ppl\\\": 15.77, \\\"model_level_sparsity\\\": 0.47, \\\"ppl_increase_vs_true_dense_pct\\\": 157.7, \\\"eval_seq_len\\\": 2048, \\\"calibration_samples\\\": 32, \\\"eval_dataset\\\": \\\"wikitext-2\\\", \\\"per_token_sparsity\\\": 0.47, \\\"lambda_stats\\\": {\\\"steps_70_130_mean\\\": 66.4, \\\"steps_70_130_std\\\": 94.87, \\\"first_500_mean\\\": 688.07, \\\"first_500_std\\\": 440.57, \\\"last_500_mean\\\": 965.69, \\\"last_500_std\\\": 141.59, \\\"overall_mean\\\": 826.88, \\\"overall_std\\\": 354.23}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"spon_supp_eval_retry\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"spon_2048_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.1173, \\\"predictor_hard_mask_ppl\\\": 9.2165, \\\"spon_sparse_ppl\\\": 8.991, \\\"spon_recovery_pct\\\": 7.3, \\\"ppl_improvement_from_spon\\\": 0.2255, \\\"mean_bias_norm\\\": 0.05312, \\\"max_bias_norm\\\": 0.065918, \\\"model_level_sparsity\\\": 0.498, \\\"eval_seq_len\\\": 2048, \\\"training_seq_len\\\": 2048, \\\"eval_samples\\\": 141, \\\"trainable_params\\\": 458752, \\\"trainable_pct\\\": 0.0057, \\\"training_steps\\\": 1000, \\\"final_loss\\\": 0.377, \\\"dense_with_spon_ppl\\\": 6.1823, \\\"dense_ppl_degradation\\\": 0.0651, \\\"teal_sparse_no_spon_ppl\\\": 12.0776, \\\"teal_sparse_with_spon_ppl\\\": 11.7907, \\\"spon_recovery_teal_pct\\\": 4.8, \\\"teal_sparsity\\\": 0.4979}}, \\\"bce_isocompute_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_kl_norm_v2_s456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.1173, \\\"predictor_hard_mask_ppl\\\": 9.14, \\\"teal_sparse_ppl\\\": 13.58, \\\"model_level_sparsity\\\": 0.498, \\\"ppl_increase_vs_true_dense_pct\\\": 121.9, \\\"eval_md5\\\": \\\"f4086818bb55dc354ea4c6fe8ed8899a\\\", \\\"calibration_samples\\\": 32, \\\"vanilla_teal_sparse_ppl_INVALID\\\": 66036.4062}, \\\"conclusion\\\": \\\"success\\\"}, \\\"spon_training\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.1193, \\\"predictor_hard_mask_ppl\\\": 9.2165, \\\"spon_sparse_ppl\\\": 9.0977, \\\"spon_recovery_pct\\\": 3.8, \\\"ppl_improvement_from_spon\\\": 0.1188, \\\"ppl_increase_vs_true_dense_pct\\\": 48.7, \\\"ppl_increase_no_spon_vs_true_dense_pct\\\": 50.6, \\\"mean_bias_norm\\\": 0.040596, \\\"max_bias_norm\\\": 0.054199, \\\"teal_sparse_ppl\\\": 12.08, \\\"teal_with_spon_ppl\\\": 11.93, \\\"spon_dense_ppl_degradation\\\": 6.19, \\\"model_level_sparsity\\\": 0.5, \\\"eval_seq_len\\\": 2048, \\\"eval_samples\\\": 141, \\\"trainable_params\\\": 458752, \\\"trainable_pct\\\": 0.0057}}, \\\"training_free_wina_greedy\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"wina_greedy_ppl\\\": 2126.03, \\\"dense_ppl\\\": 6.12, \\\"model_level_sparsity\\\": 0.5, \\\"eval_dataset\\\": \\\"WikiText-2\\\", \\\"eval_seq_len\\\": 2048, \\\"greedy_allocation_summary\\\": \\\"layers 0-11: 0.90, layer 12: 0.85, layer 13: 0.80, layer 14: 0.70, layers 15-16: 0.50-0.55, layers 17-20: 0.30-0.35, layers 21-24: 0.05-0.15, layers 25-31: 0.00\\\"}}, \\\"ste_kl_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"bce_comp_staged_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.12, \\\"predictor_hard_mask_ppl\\\": 25.44, \\\"predictor_hard_mask_ppl_no_comp\\\": 27.96, \\\"teal_sparse_ppl\\\": 44.54, \\\"model_level_sparsity\\\": 0.558, \\\"ppl_increase_vs_true_dense_pct\\\": 315.7, \\\"comp_loss_final\\\": 0.0033, \\\"bce_loss_final\\\": 0.6379, \\\"eval_seq_len\\\": 2048, \\\"calibration_samples\\\": 32}}, \\\"spon_training_seq2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"kl_only_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.12, \\\"predictor_hard_mask_ppl\\\": 9.19, \\\"teal_sparse_ppl\\\": 12.03, \\\"model_level_sparsity\\\": 0.499, \\\"ppl_increase_vs_true_dense_pct\\\": 96.57, \\\"eval_seq_len\\\": 2048, \\\"calibration_samples\\\": 32}}, \\\"kl_only_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.12, \\\"predictor_hard_mask_ppl\\\": 9.15, \\\"teal_sparse_ppl\\\": 11.99, \\\"model_level_sparsity\\\": 0.498, \\\"ppl_increase_vs_true_dense_pct\\\": 96}}, \\\"mvp_bce_s456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.1173, \\\"predictor_hard_mask_ppl\\\": 28.1437, \\\"teal_sparse_ppl\\\": 43.033, \\\"model_level_sparsity\\\": 0.4957, \\\"ppl_increase_vs_true_dense_pct\\\": 603.3, \\\"eval_md5\\\": \\\"f4086818bb55dc354ea4c6fe8ed8899a\\\", \\\"calibration_samples\\\": 32, \\\"vanilla_teal_sparse_ppl_INVALID\\\": 66036.4062}}, \\\"mvp_bce_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.1173, \\\"predictor_hard_mask_ppl\\\": 28.3817, \\\"teal_sparse_ppl\\\": 44.5864, \\\"model_level_sparsity\\\": 0.4957, \\\"ppl_increase_vs_true_dense_pct\\\": 629, \\\"eval_md5\\\": \\\"f4086818bb55dc354ea4c6fe8ed8899a\\\", \\\"calibration_samples\\\": 32, \\\"vanilla_teal_sparse_ppl_INVALID\\\": 66036.4062}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_bce_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.1173, \\\"predictor_hard_mask_ppl\\\": 27.9603, \\\"teal_sparse_ppl\\\": 44.537, \\\"model_level_sparsity\\\": 0.4957, \\\"ppl_increase_vs_true_dense_pct\\\": 628, \\\"eval_md5\\\": \\\"f4086818bb55dc354ea4c6fe8ed8899a\\\", \\\"calibration_samples\\\": 32, \\\"vanilla_teal_sparse_ppl_INVALID\\\": 66036.4062}}, \\\"mvp_kl_norm_v2_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.1173, \\\"predictor_hard_mask_ppl\\\": 9.2474, \\\"teal_sparse_ppl\\\": 11.9128, \\\"model_level_sparsity\\\": 0.4979, \\\"ppl_increase_vs_true_dense_pct\\\": 94.7, \\\"eval_md5\\\": \\\"f4086818bb55dc354ea4c6fe8ed8899a\\\", \\\"calibration_samples\\\": 32, \\\"vanilla_teal_sparse_ppl_INVALID\\\": 66036.4062}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_kl_norm_v2_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.1173, \\\"predictor_hard_mask_ppl\\\": 9.2142, \\\"teal_sparse_ppl\\\": 12.0776, \\\"model_level_sparsity\\\": 0.4979, \\\"ppl_increase_vs_true_dense_pct\\\": 97.4, \\\"eval_md5\\\": \\\"f4086818bb55dc354ea4c6fe8ed8899a\\\", \\\"calibration_samples\\\": 32, \\\"vanilla_teal_sparse_ppl_INVALID\\\": 66036.4062}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_kl_norm_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_kl_norm_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"kl_normalized_quicktest\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"step1_kl\\\": 1.18, \\\"step200_kl\\\": 0.641, \\\"step200_sparsity\\\": 0.504, \\\"final_lambda\\\": 8, \\\"sparsity_converged_step\\\": 80, \\\"sparsity_trajectory\\\": [0.406, 0.398, 0.398, 0.457, 0.52, 0.506, 0.504, 0.504], \\\"lambda_trajectory\\\": [1, 2, 4, 8, 8, 8, 8, 8]}}, \\\"kl_lagrangian_quicktest\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"final_kl_loss\\\": 418, \\\"final_constraint_loss\\\": 1.211, \\\"final_sparsity\\\": 0.141, \\\"final_lambda\\\": 5.06, \\\"steps\\\": 200, \\\"sparsity_trajectory\\\": [0.406, 0.387, 0.289, 0.168, 0.141]}}, \\\"mvp_kl_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"final_total_loss\\\": 3.3438, \\\"final_kl_loss\\\": 3.2969, \\\"final_reg_loss\\\": 0.05, \\\"final_sparsity\\\": 0, \\\"steps\\\": 1000, \\\"tau_final\\\": 0.1, \\\"wikitext2_ppl_dense\\\": 6.12, \\\"wikitext2_ppl_sparse\\\": 455.93, \\\"wikitext2_ppl_increase_pct\\\": 7349, \\\"model_level_sparsity\\\": 0.372, \\\"checkpoint_path\\\": \\\"/root/distill_sparse_swiglu/checkpoints/mvp_kl_s42/predictor_kl.pt\\\"}}}, \\\"count\\\": 56, \\\"total\\\": 56, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2172}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"kl_sparsity30_s42_v3\": {\"status\": \"DONE\", \"metrics\": {\"loss\": 0.165, \"kl_normalized\": 0.165, \"kl_raw\": 0.165, \"sparsity\": 0.285, \"lambda_sparse\": 5000, \"tau\": 0.1, \"constraint_loss\": 0, \"steps\": 1000, \"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 7.3, \"teal_sparse_ppl\": 13.63, \"teal_sparse_ppl_old_wrong\": 8.98, \"teal_sparse_ppl_fix_note\": \"D032: 原值 8.98 是 Mistral 数据误拷，正确值 13.63 来自 eval_kl_sparsity30_s42_v3.log\", \"model_level_sparsity\": 0.3, \"eval_dataset\": \"wikitext-2\", \"eval_seq_len\": 2048}, \"conclusion\": \"success\"}, \"d030_kl50_uniform\": {\"status\": \"ANALYZING\"}, \"lm_eval_teal_50pct\": {\"status\": \"DONE\", \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Llama-3.1-8B\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\"}, \"bce_isocompute_v3_s42\": {\"status\": \"RUNNING\"}, \"d030_kl30_uniform\": {\"status\": \"DONE\", \"metrics\": {\"wikitext2_ppl\": 8.8157, \"arc_challenge_acc_norm\": 0.4078, \"winogrande_acc\": 0.6859, \"mmlu_acc\": 0.4061, \"gsm8k_exact_match\": 0.0735, \"actual_sparsity\": 0.3, \"allocation\": \"uniform\", \"per_layer_sparsity\": \"uniform 0.301 across all 32 layers\", \"mmlu_improvement_vs_global\": \"+11.87pp (0.2874 → 0.4061)\", \"gsm8k_change_vs_global\": \"no change (0.0743 → 0.0735, within noise)\"}, \"conclusion\": \"success\"}, \"bench_mistral_kl50_s42\": {\"status\": \"PENDING\", \"conclusion\": \"killed\"}, \"mistral_kl_s42\": {\"status\": \"DONE\", \"metrics\": {\"train_final_loss\": 0.2188, \"train_final_kl_raw\": 0.2188, \"train_final_kl_norm\": 0.2188, \"train_final_constraint\": 0, \"train_final_sparsity\": 0.48, \"train_final_lambda\": 1000, \"train_final_tau\": 0.1, \"train_steps_completed\": 1000, \"true_dense_ppl\": 5.52, \"predictor_hard_mask_ppl\": 7.3, \"teal_sparse_ppl\": 8.98, \"model_level_sparsity\": 0.5, \"eval_dataset\": \"wikitext-2\", \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"eval_samples\": 159}, \"conclusion\": \"success\"}, \"lm_eval_mistral_kl_50pct\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"arc_challenge_acc\": 0.2927, \"arc_challenge_acc_norm\": 0.3183, \"arc_challenge_acc_norm_stderr\": 0.0136, \"winogrande_acc\": 0.629, \"winogrande_acc_stderr\": 0.0136, \"mmlu_acc\": 0.2295, \"mmlu_acc_stderr\": 0.0035, \"mmlu_stem_acc\": 0.2125, \"mmlu_humanities_acc\": 0.2421, \"mmlu_social_sciences_acc\": 0.2171, \"mmlu_other_acc\": 0.2398, \"gsm8k_exact_match_strict\": 0.0045, \"gsm8k_exact_match_flexible\": 0.0212, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_distill_50pct_sparsity_s42\", \"arc_challenge_retention_vs_dense\": 0.528, \"winogrande_retention_vs_dense\": 0.799, \"mmlu_retention_vs_dense\": 0.368, \"gsm8k_retention_vs_dense\": 0.012}}, \"lm_eval_teal_30pct\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge\": {\"acc\": 0.3933, \"acc_norm\": 0.4155, \"acc_stderr\": 0.0143, \"acc_norm_stderr\": 0.0144}, \"winogrande\": {\"acc\": 0.6559, \"acc_stderr\": 0.0134}, \"mmlu\": {\"acc\": 0.3598, \"acc_stderr\": 0.004}, \"mmlu_stem\": {\"acc\": 0.313}, \"mmlu_humanities\": {\"acc\": 0.3305}, \"mmlu_social_sciences\": {\"acc\": 0.4108}, \"mmlu_other\": {\"acc\": 0.401}, \"gsm8k\": {\"exact_match_strict\": 0.0849, \"exact_match_flexible\": 0.0925, \"strict_stderr\": 0.0077, \"flexible_stderr\": 0.008}, \"actual_sparsity\": 0.3}, \"conclusion\": \"negative\"}, \"kl_lagrangian_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"kl_norm_v3_quicktest\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\", \"metrics\": {\"step1_kl_raw\": 1.1797, \"step1_kl_norm\": 1.1797, \"step1_sparsity\": 0.406, \"step1_lambda\": 2, \"step50_kl_raw\": 0.7344, \"step50_kl_norm\": 0.7344, \"step50_sparsity\": 0.514, \"step50_lambda\": 1.95, \"step100_kl_raw\": 0.625, \"step100_kl_norm\": 0.625, \"step100_sparsity\": 0.496, \"step100_lambda\": 1000, \"step150_kl_raw\": 0.5703, \"step150_kl_norm\": 0.5703, \"step150_sparsity\": 0.48, \"step150_lambda\": 1000, \"step200_kl_raw\": 0.6836, \"step200_kl_norm\": 0.6836, \"step200_sparsity\": 0.477, \"step200_lambda\": 1000, \"step200_constraint\": 0.01178, \"kl_trend\": \"decreasing (1.18→0.57 min, uptick to 0.68 at end)\", \"sparsity_range\": \"0.477-0.514 after step 50\", \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/kl_norm_v3_quicktest/predictor_kl_normalized.pt\"}}, \"mvp_kl_norm_s456\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"spon_kl_s42\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"diag_30pct_downstream\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"diag_gsm8k_gencomp\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"diag_teal_downstream\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"lm_eval_kl_30pct_s42\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge_acc\": 0.3575, \"arc_challenge_acc_norm\": 0.3737, \"winogrande_acc\": 0.6756, \"mmlu_acc\": 0.2874, \"gsm8k_exact_match_strict\": 0.0743, \"gsm8k_exact_match_flexible\": 0.0781, \"actual_sparsity\": 0.3, \"model\": \"llama-3.1-8b\", \"condition\": \"kl_distill_30pct_sparsity_s42\", \"mmlu_stem_acc\": 0.2499, \"mmlu_social_sciences_acc\": 0.2896, \"mmlu_humanities_acc\": 0.2786, \"mmlu_other_acc\": 0.3363}, \"conclusion\": \"negative\"}, \"bce_isocompute_s42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_spon_supp_retry\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"lm_eval_dense_test\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"lm_eval_mistral_downstream\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_kl_s123\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_kl_s456\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"lm_eval_mistral_dense\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"arc_challenge_acc_norm\": 0.6024, \"winogrande_acc\": 0.7869, \"mmlu_acc\": 0.6244, \"gsm8k_exact_match\": 0.3654, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"dense\", \"server\": \"westd-34887\"}}, \"lm_eval_kl_s42\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge_acc_norm\": 0.3771, \"winogrande_acc\": 0.6156, \"mmlu_acc\": 0.2591, \"gsm8k_exact_match\": 0.0121, \"eval_tasks\": [\"arc_challenge\", \"winogrande\", \"mmlu\", \"gsm8k\"], \"model\": \"llama-3.1-8b\", \"condition\": \"kl_sparse_50pct\", \"server\": \"westd-34887\", \"exit_code\": 129, \"wall_time_sec\": 3010, \"flag\": \"SUSPECT — gsm8k 0.50→0.01 catastrophic drop; PID 179918 rerunning with lm_eval_sparse.py\"}, \"conclusion\": \"negative\"}, \"gsm8k_gen_compare\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"kl_sparsity70_s42_v2\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 13.84, \"predictor_teal_sparse_ppl\": 17.91, \"vanilla_teal_sparse_ppl\": 100.11, \"teal_sparse_ppl\": 17.91, \"teal_sparse_ppl_static_baseline\": 17.91, \"model_level_sparsity\": 0.7, \"teal_sparse_note\": \"17.91 = predictor-based TEAL (teal_global_masks: predictor-gated magnitude scoring + global topk @70%). vanilla TEAL @70% = 100.11. 代码来源: quick_sp70.py L10 imports teal_global_masks, L60 调用. plan_007_all_ppl_fixed.json 的 mode=static_mask_70pct metadata 有误导性.\", \"eval_dataset\": \"wikitext-2\", \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"per_layer_sparsity_range\": [0.508, 0.876]}, \"conclusion\": \"success\"}, \"training_free_baselines\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"dense_ppl\": 6.12, \"vanilla_teal_global_ppl_30pct\": 10.97, \"vanilla_teal_global_ppl_50pct\": 23.31, \"vanilla_teal_global_ppl_70pct\": 100.11, \"wina_global_ppl_30pct\": 11.45, \"wina_global_ppl_50pct\": 27.93, \"wina_global_ppl_70pct\": 137.24, \"uniform_50pct_ppl\": 23.9, \"teal_greedy_ppl\": 33.47, \"vanilla_teal_global_ppl\": 23.31, \"wina_global_ppl\": 27.93, \"rsparse_global_ppl\": 151.2}}, \"lm_eval_dense\": {\"status\": \"DONE\", \"metrics\": {\"arc_challenge_acc_norm\": 0.5819, \"winogrande_acc\": 0.7814, \"mmlu_acc\": 0.6532, \"gsm8k_exact_match\": 0.5004, \"eval_tasks\": [\"arc_challenge\", \"winogrande\", \"mmlu\", \"gsm8k\"], \"model\": \"llama-3.1-8b\", \"condition\": \"dense\", \"server\": \"westd-34887\"}, \"conclusion\": \"success\"}, \"kl_sparsity30_s42_v2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"final_loss\": 0.1465, \"kl_normalized\": 0.1465, \"kl_raw\": 0.1465, \"model_level_sparsity\": 0.281, \"sparsity_target\": 0.3, \"lambda_sparse_final\": 1000, \"lambda_max_cap\": 1000, \"tau_final\": 0.1, \"constraint_loss_final\": 0, \"training_steps\": 1000, \"wall_clock_seconds\": 2662.6, \"gpu_hours\": 0.74, \"note\": \"No PPL evaluation in training script. Sparsity stuck at 0.281 (same as v1). Lambda hit cap=1000 by step 220 and could not push sparsity further. W&B run was offline (not synced).\"}}, \"bce_isocompute_v2_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.6637, \"final_bce_loss\": 0.6586, \"final_reg_loss\": 0.0051, \"final_sparsity\": 0.502, \"training_steps\": 1000, \"training_time_sec\": 1047.8, \"reg_weight\": 2, \"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 26.76, \"teal_sparse_ppl\": 54.84, \"eval_seq_len\": 2048, \"eval_dataset\": \"wikitext-2\"}}, \"kl_sparsity70_s42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"kl_sparsity30_s42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_005_subsumption_s42\": {\"status\": \"DONE\", \"metrics\": {\"linearity_ratio\": 0.2644, \"linearity_ratio_std\": 0.0073, \"magnitude_ratio\": 0.1578, \"magnitude_ratio_std\": 0.0088, \"cosine_similarity\": 0.1962, \"cosine_similarity_std\": 0.0268, \"predictor_effect_norm\": 482.65, \"spon_correction_norm\": 76.2, \"interaction_norm\": 147.74, \"num_samples\": 50, \"seq_len\": 2048, \"conclusion_type\": \"weak_subsumption\"}, \"conclusion\": \"success\"}, \"ste_baseline_s42\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 8.18, \"teal_sparse_ppl\": 15.77, \"model_level_sparsity\": 0.47, \"ppl_increase_vs_true_dense_pct\": 157.7, \"eval_seq_len\": 2048, \"calibration_samples\": 32, \"eval_dataset\": \"wikitext-2\", \"per_token_sparsity\": 0.47, \"lambda_stats\": {\"steps_70_130_mean\": 66.4, \"steps_70_130_std\": 94.87, \"first_500_mean\": 688.07, \"first_500_std\": 440.57, \"last_500_mean\": 965.69, \"last_500_std\": 141.59, \"overall_mean\": 826.88, \"overall_std\": 354.23}}, \"conclusion\": \"success\"}, \"spon_supp_eval_retry\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"spon_2048_s42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.2165, \"spon_sparse_ppl\": 8.991, \"spon_recovery_pct\": 7.3, \"ppl_improvement_from_spon\": 0.2255, \"mean_bias_norm\": 0.05312, \"max_bias_norm\": 0.065918, \"model_level_sparsity\": 0.498, \"eval_seq_len\": 2048, \"training_seq_len\": 2048, \"eval_samples\": 141, \"trainable_params\": 458752, \"trainable_pct\": 0.0057, \"training_steps\": 1000, \"final_loss\": 0.377, \"dense_with_spon_ppl\": 6.1823, \"dense_ppl_degradation\": 0.0651, \"teal_sparse_no_spon_ppl\": 12.0776, \"teal_sparse_with_spon_ppl\": 11.7907, \"spon_recovery_teal_pct\": 4.8, \"teal_sparsity\": 0.4979}}, \"bce_isocompute_s42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_kl_norm_v2_s456\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.14, \"teal_sparse_ppl\": 13.58, \"model_level_sparsity\": 0.498, \"ppl_increase_vs_true_dense_pct\": 121.9, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"spon_training\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"true_dense_ppl\": 6.1193, \"predictor_hard_mask_ppl\": 9.2165, \"spon_sparse_ppl\": 9.0977, \"spon_recovery_pct\": 3.8, \"ppl_improvement_from_spon\": 0.1188, \"ppl_increase_vs_true_dense_pct\": 48.7, \"ppl_increase_no_spon_vs_true_dense_pct\": 50.6, \"mean_bias_norm\": 0.040596, \"max_bias_norm\": 0.054199, \"teal_sparse_ppl\": 12.08, \"teal_with_spon_ppl\": 11.93, \"spon_dense_ppl_degradation\": 6.19, \"model_level_sparsity\": 0.5, \"eval_seq_len\": 2048, \"eval_samples\": 141, \"trainable_params\": 458752, \"trainable_pct\": 0.0057}}, \"training_free_wina_greedy\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"wina_greedy_ppl\": 2126.03, \"dense_ppl\": 6.12, \"model_level_sparsity\": 0.5, \"eval_dataset\": \"WikiText-2\", \"eval_seq_len\": 2048, \"greedy_allocation_summary\": \"layers 0-11: 0.90, layer 12: 0.85, layer 13: 0.80, layer 14: 0.70, layers 15-16: 0.50-0.55, layers 17-20: 0.30-0.35, layers 21-24: 0.05-0.15, layers 25-31: 0.00\"}}, \"ste_kl_s42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"bce_comp_staged_s42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 25.44, \"predictor_hard_mask_ppl_no_comp\": 27.96, \"teal_sparse_ppl\": 44.54, \"model_level_sparsity\": 0.558, \"ppl_increase_vs_true_dense_pct\": 315.7, \"comp_loss_final\": 0.0033, \"bce_loss_final\": 0.6379, \"eval_seq_len\": 2048, \"calibration_samples\": 32}}, \"spon_training_seq2048\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"kl_only_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 9.19, \"teal_sparse_ppl\": 12.03, \"model_level_sparsity\": 0.499, \"ppl_increase_vs_true_dense_pct\": 96.57, \"eval_seq_len\": 2048, \"calibration_samples\": 32}}, \"kl_only_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.12, \"predictor_hard_mask_ppl\": 9.15, \"teal_sparse_ppl\": 11.99, \"model_level_sparsity\": 0.498, \"ppl_increase_vs_true_dense_pct\": 96}}, \"mvp_bce_s456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 28.1437, \"teal_sparse_ppl\": 43.033, \"model_level_sparsity\": 0.4957, \"ppl_increase_vs_true_dense_pct\": 603.3, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}}, \"mvp_bce_s123\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 28.3817, \"teal_sparse_ppl\": 44.5864, \"model_level_sparsity\": 0.4957, \"ppl_increase_vs_true_dense_pct\": 629, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"mvp_bce_s42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 27.9603, \"teal_sparse_ppl\": 44.537, \"model_level_sparsity\": 0.4957, \"ppl_increase_vs_true_dense_pct\": 628, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}}, \"mvp_kl_norm_v2_s123\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.2474, \"teal_sparse_ppl\": 11.9128, \"model_level_sparsity\": 0.4979, \"ppl_increase_vs_true_dense_pct\": 94.7, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"mvp_kl_norm_v2_s42\": {\"status\": \"DONE\", \"metrics\": {\"true_dense_ppl\": 6.1173, \"predictor_hard_mask_ppl\": 9.2142, \"teal_sparse_ppl\": 12.0776, \"model_level_sparsity\": 0.4979, \"ppl_increase_vs_true_dense_pct\": 97.4, \"eval_md5\": \"f4086818bb55dc354ea4c6fe8ed8899a\", \"calibration_samples\": 32, \"vanilla_teal_sparse_ppl_INVALID\": 66036.4062}, \"conclusion\": \"success\"}, \"mvp_kl_norm_s123\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_kl_norm_s42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"kl_normalized_quicktest\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"step1_kl\": 1.18, \"step200_kl\": 0.641, \"step200_sparsity\": 0.504, \"final_lambda\": 8, \"sparsity_converged_step\": 80, \"sparsity_trajectory\": [0.406, 0.398, 0.398, 0.457, 0.52, 0.506, 0.504, 0.504], \"lambda_trajectory\": [1, 2, 4, 8, 8, 8, 8, 8]}}, \"kl_lagrangian_quicktest\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"final_kl_loss\": 418, \"final_constraint_loss\": 1.211, \"final_sparsity\": 0.141, \"final_lambda\": 5.06, \"steps\": 200, \"sparsity_trajectory\": [0.406, 0.387, 0.289, 0.168, 0.141]}}, \"mvp_kl_s42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"final_total_loss\": 3.3438, \"final_kl_loss\": 3.2969, \"final_reg_loss\": 0.05, \"final_sparsity\": 0, \"steps\": 1000, \"tau_final\": 0.1, \"wikitext2_ppl_dense\": 6.12, \"wikitext2_ppl_sparse\": 455.93, \"wikitext2_ppl_increase_pct\": 7349, \"model_level_sparsity\": 0.372, \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/mvp_kl_s42/predictor_kl.pt\"}}}, \"count\": 56, \"total\": 56, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2172}}"
+    }
+  }
+}
+```
+
+</details>
+
+---

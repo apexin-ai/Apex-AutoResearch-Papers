@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a85ce5d73492d1fd74d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "train bce isocompute v3 s456",
+  "task_key": "worker_train_bce_isocompute_v3_s456_20260517T185351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_bce_isocompute_v3_s456_20260517T185351_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "8ea771a43bdd8aeb3bf726926a63437f2e7f73faa3cc913998a351f3ebdd0281"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动确认完成：\n\n- **模型加载**: LLaMA-3.1-8B 加载成功\n- **Predictor**: Gumbel-sigmoid relaxation 初始化完成\n- **参数量**: 75.9M trainable / 8.03B total (0.946%)\n- **GPU 状态**: cuda:1 占用 90723MiB, 100% 利用率，正在训练\n- **无 OOM 或错误**\n\n训练已在运行，log_every=100 所以第一条 step 日志会在 ~100 步后出现。日志路径：`~/runs/distill_sparse_swiglu/bce_isocompute_v3_s456.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-bce-isocompute-v3-s456.md"
+}

@@ -1,0 +1,42 @@
+{
+  "exp_id": "qwen14b_bce30_s42_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:03:24.580Z",
+    "updated_at": "2026-05-17T16:36:03.030Z",
+    "hypothesis": "BCE with 10x stronger Lagrangian (lambda_max=50000) on Qwen-14B achieves target 30% sparsity. If still fails (sparsity <25%), this confirms BCE gradient signal is fundamentally insufficient at 14B scale to drive sparsity through Lagrangian constraint, which is itself a publishable finding about objective mismatch scaling.",
+    "parent": "qwen14b_bce30_s42",
+    "spec": {
+      "command": "cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type bce --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --lambda_max 50000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_bce30_s42_v2 --wandb_run_name qwen14b_bce30_s42_v2 --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "57864",
+      "log_path": "~/runs/distill_sparse_swiglu/qwen14b_bce30_s42_v2.log",
+      "submitted_at": "2026-05-17T16:26:53.579Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-34887",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-34887",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T16:04:35.846Z",
+      "command": "cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --loss_type bce --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --lambda_max 50000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_bce30_s42_v2 --wandb_run_name qwen14b_bce30_s42_v2 --gpu 0",
+      "finished_at": "2026-05-17T16:36:02.114Z",
+      "training_hours": 0.52
+    },
+    "pid": "57864",
+    "log_path": "~/runs/distill_sparse_swiglu/qwen14b_bce30_s42_v2.log"
+  },
+  "timestamp": "2026-05-17T16:36:03.262968+00:00",
+  "trigger": "update_registry"
+}

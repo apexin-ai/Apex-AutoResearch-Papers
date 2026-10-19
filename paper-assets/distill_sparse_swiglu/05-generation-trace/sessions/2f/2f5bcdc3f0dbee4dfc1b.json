@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f5bcdc3f0dbee4dfc1b",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_10_1779054963.md",
+  "task_key": "loop_10_1779054963",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1779054963.md",
+    "occurrence": 1,
+    "bytes": 3557,
+    "sha256": "ddea4842c546f098e9afce6cd5c66902adfad4c56b17d7df9231e71abad031d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_wall_time\nupdated: '2026-05-17T21:49:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-41718 cuda:0/1, westd-34887 cuda:0/1（共 4 卡）\n- submit_training_job 命令必须自带完整环境：`/root/miniconda3/bin/python`，不能依赖 conda activate\n- CUDA_VISIBLE_DEVICES 映射后脚本内永远用 `--gpu 0`\n- bce_isocompute_v3_s456_eval 已 DONE，PPL=28.35——不要重跑\n- bce_isocompute_v3_s123 训练已 DONE（loss=0.6362, checkpoint 已存）——不要重跑\n- 14B eval 用 `--baseline_mode teal_vanilla` (TEAL) 或 `--checkpoint X --sparsity_mode teal_global` (KL/BCE predictor)\n- HF 离线模式必须设 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets`\n\n### 2. 🖥️ 基础设施快照\n- **westd-41718**: /root/distill_sparse_swiglu, Python=/root/miniconda3/bin/python\n  - 模型: /root/autodl-tmp/models/qwen2.5-14b/\n  - Log 目录: ~/runs/distill_sparse_swiglu/\n  - qwen14b_teal30_eval PID 6896 cuda:1, qwen14b_dense_baseline PID 18845 cuda:0\n- **westd-34887**: /root/distill_sparse_swiglu, Python=/root/miniconda3/bin/python\n  - 模型 LLaMA: /root/autodl-tmp/models/llama-3.1-8b\n  - 模型 Qwen: /root/autodl-tmp/models/qwen2.5-14b/\n  - HF cache: /root/autodl-tmp/.hf_cache/datasets\n  - qwen14b_bce30_s42_eval PID 59122 cuda:0\n  - bce_isocompute_v3_s123_eval PID 74858 cuda:1 (刚提交 ~21:39 UTC)\n- **W&B**: disabled (WANDB_MODE=disabled)\n\n### 3. 📊 当前状态\n刚派出 worker_infra_urgent_collect_all_14b_results_20260517T214835 去两台机器收集所有结果——这个 Worker 尚未返回。\n\nRegistry RUNNING:\n- qwen14b_teal30_eval — 14B vanilla TEAL eval（PPL=8.73 已知，等下游指标）\n- qwen14b_dense_baseline — 14B dense reference（PPL=5.19 已知，等下游指标）\n- qwen14b_bce30_s42_eval — 14B BCE predictor eval（PPL=8.76 已知，等下游指标）\n- bce_isocompute_v3_s123_eval — 8B BCE s123 eval（刚提交，~45min 完成）\n\n等待回调：\n- worker_infra_urgent_collect_all_14b_results — 正在 SSH 收集上面 4 个实验完整结果\n- bce_isocompute_v3_s123_eval cron（PID 74858）\n\n### 4. 📋 待办\n- Worker 回调到 → 提取 14B 三个实验完整指标 → registry DONE → 向 Director 汇报完整 cross-scale table\n- **最高优先级**: qwen14b_teal30_eval 的 ARC/WG/MMLU/GSM8K（论文急等 vanilla TEAL 14B 下游数据）\n- bce_isocompute_v3_s123_eval 完成 → 收集结果 → Table 2 BCE 3-seed 全部就绪\n- 全部 14B eval 完成后 → 统一汇报格式: `实验ID | PPL | ARC | WG | MMLU | GSM8K`\n- 14B eval 全完成 + s123 eval 完成 → 所有 GPU 空出 → 汇报 Director 可用资源，等下一批任务（C4 OOD / 其他）\n\n### 5. 🎯 战略上下文\n- **论文核心 story**: KL distillation > BCE > TEAL vanilla，跨 scale (8B→14B) 验证\n- **已确认 14B PPL**: Dense=5.19, KL-30%=7.62, TEAL-30%=8.73, BCE-30%=8.76 → KL 显著优于 TEAL(-1.11) 和 BCE(-1.14)\n- **Table 2 多 seed 进度**: KL 50% global 3-seed 已有 (s42+s123+s456)；BCE 50% s42 已有，s456 eval DONE，s123 eval 刚提交\n- **易错点**: \n  - qwen14b_bce30_s42_eval 最初计划在 westd-34887 cuda:0 但 registry 里 server 可能写的 westd-41718——以实际 PID 所在机器为准(westd-34887)\n  - bce_isocompute_v3 系列是 LLaMA-8B 50% sparsity，不是 14B 30%——不要混淆\n  - 14B eval 的 benchmark_eval.py 跑 GSM8K generate_until 极慢（~17s/it, 1319 samples），这是瓶颈\n- **DDL**: EMNLP 2026 ARR May, 2026-05-25（距今 8 天）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1779054963.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06f8aaf2fe7bb42bdd75",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check 8b multiseed results",
+  "task_key": "worker_ssh_check_8b_multiseed_results_20260518T011619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_8b_multiseed_results_20260518T011619_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "ed8c92aee4ccec2e85ac3cc800dd082144c648241cf0d4285b5a3801121a47e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**两个实验都还在运行，并未退出。** EXIT_CODE=1 的报告有误。\n\n### seed=123 (cuda:0, PID 37184)\n- **训练**: 完成。checkpoint 存在 (`predictor_kl_normalized.pt`, 145MB)\n- **Eval**: 正在运行中 (09:05 启动，已跑 ~13 分钟)\n  - WikiText-2 PPL = **8.9267** (已完成)\n  - ARC-Challenge: 已完成 (进度条 100%)\n  - Winogrande + MMLU: 正在跑 (日志停在 MMLU 子数据集加载)\n  - GSM8K: 待跑\n- **results.json**: 尚未生成\n\n### seed=456 (cuda:1, PID 37480)\n- **训练**: 完成。checkpoint 存在 (`predictor_kl_normalized.pt`, 145MB)\n- **Eval**: 正在运行中 (09:05 启动，已跑 ~13 分钟)\n  - WikiText-2 PPL = **8.9614** (已完成)\n  - ARC-Challenge: 已完成 (进度条 100%)\n  - Winogrande + MMLU: 正在跑\n  - GSM8K: 待跑\n- **results.json**: 尚未生成\n\n### 其他\n- **GPU 占用**: 各 49GB / 98GB，正常\n- **无 tmux 残留**\n- **Model-level sparsity**: 两个 seed 均为 0.300，符合目标\n- **无 OOM / crash / traceback**\n\nMMLU 有 57 个子数据集，每个都要网络重试后 fallback 到缓存，预计 eval 全部完成还需 ~20-30 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-8b-multiseed-results.md"
+}

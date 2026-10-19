@@ -1,0 +1,1497 @@
+{
+  "schema_version": "1.0",
+  "id": "367bb8ac46cf9999e0c5",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "analysis paper gaps for round2",
+  "task_key": "worker_analysis_paper_gaps_for_round2_20260518T010621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper_gaps_for_round2_20260518T010621.log",
+    "occurrence": 1,
+    "bytes": 173449,
+    "sha256": "a3e0c346eedc9fcbfcf29e57ae192116f82fa1f6ee5aea4a32bbb87d55d4d676"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+                "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "398fb26f-f4d7-42e4-981a-e8fccfa3cc89",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779066600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "08ebd1c3-a474-453a-9a01-aa4efb076de1",
+                "session_id": "a197955d-a162-4816-9741-8986073df8c3"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the paper's tex files to identify all data gaps."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "5da740a0-9d5f-406e-9469-ade260e5b369",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011UXRhLTxvwHUvVM7buyw1H",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13499,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13499
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011nEXMQRFpXCuZMhpPgYZES",
+              "name": "Glob",
+              "input": {
+                "pattern": "paper/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "3397076d-3135-4d23-8d51-ad8c0a4222bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011UXRhLTxvwHUvVM7buyw1H",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13499,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13499
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T01:06:36.290Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011nEXMQRFpXCuZMhpPgYZES",
+              "type": "tool_result",
+              "content": "paper/main.tex\npaper/ethics.tex\npaper/abstract.tex\npaper/method.tex\npaper/related_work.tex\npaper/introduction.tex\npaper/appendix.tex\npaper/limitations.tex\npaper/experiments.tex\npaper/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "ba6f79d6-eb63-4bed-b795-7da55cfe4259",
+            "tool_use_result": {
+              "filenames": [
+                "paper/main.tex",
+                "paper/ethics.tex",
+                "paper/abstract.tex",
+                "paper/method.tex",
+                "paper/related_work.tex",
+                "paper/introduction.tex",
+                "paper/appendix.tex",
+                "paper/limitations.tex",
+                "paper/experiments.tex",
+                "paper/conclusion.tex"
+              ],
+              "durationMs": 14,
+              "numFiles": 10,
+              "truncated": false
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01597jjiQ3U3KPVT4EjK7fqd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "bb5480eb-db4b-4c21-88c5-f66399aed7a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018tAwZoJUSJNXxq6ZSbpVw8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 193,
+                "cache_read_input_tokens": 25340,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 193
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T01:06:38.962Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01597jjiQ3U3KPVT4EjK7fqd",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\n6\t\\paragraph{Model and Predictor.}\n7\tWe evaluate on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}, which uses SwiGLU FFN blocks~\\cite{shazeer2020glu} with $d_{\\text{model}}=4096$ and $d_{\\text{ff}}=14336$ across 32 layers.\n8\tThe sparsity predictor is a two-layer MLP with 2.37M parameters per layer (75.9M total), implemented as Linear($4096 \\to 128$) + GELU + Linear($128 \\to 14336$), trained to produce per-neuron importance scores that minimize output-distribution divergence under sparsity.\n9\t\n10\t\\paragraph{Training.}\n11\tAll predictors are trained for 1000 steps on WikiText-103 with sequence length 2048 and batch size 4, using AdamW~\\cite{loshchilov2019adamw} with learning rate $1 \\times 10^{-3}$, weight decay $5 \\times 10^{-2}$, and cosine decay.\n12\tThe KL predictor uses Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} with temperature $\\tau=1.0$ annealed to $0.1$ over training.\n13\t\n14\t\\paragraph{Evaluation.}\n15\tWe report perplexity on WikiText-2~\\cite{merity2017pointer} (seq\\_len=2048) and downstream accuracy on ARC-Challenge (25-shot), WinoGrande (5-shot), MMLU (5-shot), and GSM8K (8-shot).\n16\t\n17\t\\paragraph{Inference Protocol.}\n18\tAt inference, the predictor produces per-neuron scores that are passed to TEAL's global top-$k$ allocation mechanism~\\cite{liu2025teal}, which distributes the sparsity budget across layers non-uniformly.\n19\tWe term this \\textit{predictor-TEAL}: the predictor replaces TEAL's magnitude-based scoring while retaining its allocation strategy.\n20\t\n21\t\\paragraph{Baselines.}\n22\tWe compare against: (1) \\textbf{Vanilla TEAL}~\\cite{liu2025teal}, which uses activation magnitudes directly; (2) \\textbf{BCE predictor} (DejaVu-style~\\cite{liu2023dejavu}), trained with per-neuron binary cross-entropy on magnitude-based oracle masks for 1000 and 2700 steps; (3) \\textbf{Uniform allocation}, which distributes the sparsity budget equally across layers; and (4) \\textbf{WINA}~\\cite{liu2025teal}, an importance-weighted variant.\n23\t\n24\t\n25\t\\subsection{Main Results}\n26\t\n27\tTable~\\ref{tab:main} presents the primary comparison. We recommend uniform allocation for deployment (best downstream preservation); global allocation is analyzed to understand allocation-quality tradeoffs (\\S\\ref{sec:scaling}).\n28\tAt 30\\% sparsity, KL distillation with global TEAL allocation achieves PPL 8.98 and reduces TEAL's degradation from dense (10.97 $\\to$ 8.98, an 18\\% improvement). % exp_id: kl_30_global_teal\n29\tThe advantage holds across additional downstream benchmarks (Appendix~\\ref{app:downstream}).\n30\tUniform allocation at 30\\% provides stable downstream performance (MMLU 40.7$\\pm$1.3\\%, 3-seed) while global top-$k$ exhibits high seed variance (35.7$\\pm$9.5\\%), with late-layer starvation (L31 retention 28.4\\%) interacting with predictor initialization (\\S\\ref{sec:scaling}). % exp_id: bench_kl30_uniform, kl30_3seed\n31\t\n32\tAt 50\\% sparsity, KL distillation over vanilla TEAL widens the PPL advantage: 11.79 vs.\\ 23.31, a 49\\% reduction. % exp_id: bench_kl50_global, bench_teal50\n33\tThe predictor generalizes to C4 validation at both 30\\% (PPL 16.05) and 50\\% (52.5\\% over TEAL; Appendix~\\ref{app:ood}).\n34\tHowever, all methods exhibit downstream collapse on MMLU (28.1$\\pm$0.2\\% vs.\\ 28.0$\\pm$0.6\\%, both $\\approx$ random, 3-seed) and GSM8K ($<$2.2\\%); this is a capacity-limited regime where no allocation strategy can recover. % exp_id: bench_kl50_global, d030_kl50_uniform, multi_seed_kl50_global\n35\t\n36\t\\begin{table}[t]\n37\t\\centering\n38\t\\caption{Main results on LLaMA-3.1-8B. PPL$\\downarrow$ on WikiText-2; accuracy$\\uparrow$ on downstream tasks. \\textbf{Bold}: best among compensation-free methods per sparsity level. BCE follows the DejaVu~\\cite{liu2023dejavu} predictor pipeline (per-neuron BCE on magnitude oracles) with a FastForward-style~\\cite{gautam2026fastforward} compensation network (67.2M params) applied post-masking; no TEAL allocation. KL MMLU at 30\\% and 50\\% reports 3-seed mean$\\pm$std; 50\\% uniform PPL is 3-seed ($11.92 \\pm 0.07$; Appendix~\\ref{app:stability}); all other entries use seed 42.}\n39\t\\label{tab:main}\n40\t\\resizebox{\\columnwidth}{!}{\n41\t\\begin{tabular}{llccccc}\n42\t\\toprule\n43\tSparsity & Method & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n44\t\\midrule\n45\t0\\% & Dense & 6.12 & 58.28 & 78.06 & 65.27 & 48.75 \\\\\n46\t\\midrule\n47\t\\multirow{3}{*}{30\\%}\n48\t& TEAL vanilla & 10.97 & \\textbf{42.32} & 66.06 & 38.61 & 7.88 \\\\ % exp_id: bench_teal30\n49\t& KL global (Ours) & 8.98 & 39.68 & \\textbf{70.17} & 35.7$\\pm$9.5 & \\textbf{8.79} \\\\ % exp_id: kl30_3seed_global\n50\t& KL uniform & \\textbf{8.82} & 40.78 & 68.59 & \\textbf{40.7$\\pm$1.3} & 7.35 \\\\ % exp_id: kl30_3seed_uniform\n51\t\\midrule\n52\t\\multirow{4}{*}{50\\%}\n53\t& TEAL vanilla & 23.31 & 28.41 & 53.04 & \\textbf{28.32} & 1.97 \\\\ % exp_id: bench_teal50\n54\t& KL global (Ours) & \\textbf{11.79} & \\textbf{32.85} & \\textbf{63.46} & 28.1$\\pm$0.2 & 1.29 \\\\ % exp_id: multi_seed_kl50_global\n55\t& KL uniform & 11.96 & 32.76 & 62.90 & 28.0$\\pm$0.6 & \\textbf{2.12} \\\\ % exp_id: multi_seed_kl50_uniform\n56\t& BCE (2700 steps)$^\\ast$ & 27.97 & 23.98 & 50.59 & 30.02 & 4.85 \\\\ % exp_id: eval_bce_v3_s42\n57\t\\bottomrule\n58\t\\end{tabular}}\n59\t\\end{table}\n60\t\n61\t\n62\t\\subsection{Extended Training Analysis}\n63\t\\label{sec:isocompute}\n64\t\n65\tTo test whether BCE simply requires more compute, we train it for 2700 steps (2.71$\\times$ the KL step budget, approximately equal wall-clock time: $\\sim$46 min BCE vs.\\ $\\sim$45 min KL on RTX PRO 6000).\n66\tThe BCE predictor achieves PPL 27.97, still 2.37$\\times$ worse than KL at 1000 steps (PPL 11.79). % exp_id: bce_isocompute_s42\n67\tThe difference is systematic, not due to architectural or compute limitations: both predictors use identical architectures and TEAL allocation, yet BCE achieves +7pp oracle F1 (0.613 vs.\\ 0.540) with 137\\% worse PPL (27.97 vs.\\ 11.79). KL's near-random precision (0.51) is consistent with learning a mask optimized for distributional fidelity rather than magnitude matching. % exp_id: f1_oracle_analysis, bce_isocompute_s42\n68\tCoupled training correlates with better output preservation, but disentangling gradient coupling from oracle quality remains open (BCE uses magnitude oracles while KL optimizes output directly; an ablation using KL-derived masks as BCE targets would isolate the effect).\n69\t\n70\t\n71\t\\subsection{Ablation Studies}\n72\t\n73\tTable~\\ref{tab:ablation} isolates the contribution of each design choice at 50\\% sparsity.\n74\t\n75\t\\begin{table}[t]\n76\t\\centering\n77\t\\caption{Ablation at 50\\% sparsity on LLaMA-3.1-8B (WikiText-2 PPL$\\downarrow$, unified benchmark protocol).}\n78\t\\label{tab:ablation}\n79\t\\small\n80\t\\begin{tabular}{lcc}\n81\t\\toprule\n82\tConfiguration & PPL$\\downarrow$ & $\\Delta$ from Ours \\\\\n83\t\\midrule\n84\t\\multicolumn{3}{l}{\\textit{KL-based variants}} \\\\\n85\tForward KL + Gumbel (Ours) & \\textbf{11.79} & --- \\\\ % exp_id: bench_kl50_global\n86\tJSD (symmetric) + Gumbel & 12.54 & +0.75 \\\\ % exp_id: jsd_ablation_s42\n87\tReverse KL + Gumbel & 12.80 & +1.01 \\\\ % exp_id: reverse_kl_ablation_s42\n88\tForward KL + STE & 15.77 & +3.98 \\\\ % exp_id: ste_baseline_s42\n89\t\\midrule\n90\t\\multicolumn{3}{l}{\\textit{BCE-based variants}} \\\\\n91\tBCE + Compensation (hard mask) & 25.44 & +13.65 \\\\ % exp_id: bce_comp_staged_s42\n92\tBCE (no compensation) & 27.97 & +16.18 \\\\ % exp_id: eval_bce_v3_s42\n93\tBCE + Gumbel + Penalty (no KL) & 38.02 & +26.23 \\\\ % exp_id: bce_gumbel_lagrangian_isolation\n94\t\\bottomrule\n95\t\\end{tabular}\n96\t\\end{table}\n97\t\n98\t\\paragraph{Gumbel vs.\\ STE.}\n99\tReplacing Gumbel-Sigmoid with STE~\\cite{bengio2013ste} degrades PPL from 11.79 to 15.77 (+3.98), accounting for 34.5\\% of the improvement over vanilla TEAL. % exp_id: ste_baseline_s42\n100\t\n101\t\\paragraph{Divergence Direction.}\n102\tForward KL (mode-covering) outperforms JSD (+6.4\\%) and reverse KL (+8.6\\%), consistent with the SNR analysis in \\S\\ref{sec:method:gradient}: complete teacher supervision is associated with better global allocation quality. % exp_id: jsd_ablation_s42, reverse_kl_ablation_s42\n103\tThis contrasts with MiniLLM~\\cite{gu2024minillm} (reverse KL for generation); in mask prediction, mode-covering ensures no important neuron is omitted.\n104\t\n105\t\\paragraph{SPON Contribution.}\n106\tAdding SPON~\\cite{xu2026spon} bias correction reduces PPL from 12.08 to 11.79 (2.4\\% relative); see \\S\\ref{sec:spon} for decomposition.\\footnote{SPON analysis uses \\texttt{evaluate.py}; main results use the unified benchmark.} % exp_id: spon_2048_s42, mvp_kl_norm_v2_s42\n107\t\n108\t\\paragraph{Loss Function Isolation.}\n109\tBCE with identical Gumbel-Sigmoid and penalty yields PPL 38.02, worse than vanilla BCE (27.97): the penalty interferes with per-neuron optimization without global coordination. % exp_id: bce_gumbel_lagrangian_isolation\n110\tThe loss effect ($\\Delta$PPL=26.23) is $6.6\\times$ the relaxation effect ($\\Delta$PPL=3.98).\n111\t\n112\t\\paragraph{BCE + Compensation.}\n113\tFastForward-style compensation~\\cite{gautam2026fastforward} improves BCE from 27.97 to 25.44 (9.0\\%), still $2.16\\times$ worse than KL. % exp_id: bce_comp_staged_s42\n114\t\n115\t\\paragraph{Hyperparameter Robustness.}\n116\tAppendix~\\ref{app:db_sensitivity} confirms robustness to predictor capacity ($d_b$, $<$3\\%), temperature ($<$1.8\\%), and training steps (saturated by 800). % exp_id: db_sensitivity_sweep, tau_schedule_sweep, training_steps_sweep\n117\t\n118\t\n119\t\\subsection{Sparsity Scaling and Regime Analysis}\n120\t\\label{sec:scaling}\n121\t\n122\tTable~\\ref{tab:scaling} and Figure~\\ref{fig:sparsity_sweep} show PPL as a function of sparsity for the KL predictor under global allocation and vanilla TEAL.\n123\t\n124\t\\begin{figure}[t]\n125\t\\centering\n126\t\\includegraphics[width=\\columnwidth]{fig2_sparsity_sweep.pdf}\n127\t\\caption{Perplexity scaling with sparsity. The KL predictor's advantage grows disproportionately as more neurons are pruned.}\n128\t\\label{fig:sparsity_sweep}\n129\t\\end{figure}\n130\t\n131\t\\begin{table}[t]\n132\t\\centering\n133\t\\caption{PPL scaling with sparsity (WikiText-2). KL advantage grows disproportionately with sparsity.}\n134\t\\label{tab:scaling}\n135\t\\small\n136\t\\begin{tabular}{lccc}\n137\t\\toprule\n138\tSparsity & KL (Ours) & TEAL vanilla & Relative advantage \\\\\n139\t\\midrule\n140\t30\\% & \\textbf{8.98} & 10.97 & 18\\% \\\\ % exp_id: kl_30_global_teal\n141\t50\\% & \\textbf{11.79} & 23.31 & 49\\% \\\\ % exp_id: bench_kl50_global\n142\t70\\% & \\textbf{17.91} & 100.11 & 82\\% \\\\ % exp_id: kl_70_global_teal\n143\t\\bottomrule\n144\t\\end{tabular}\n145\t\\end{table}\n146\t\n147\tThe KL advantage grows from 18\\% at 30\\% to 82\\% at 70\\%, where TEAL collapses (PPL 100.11) while the learned predictor maintains coherent allocation.\n148\tIn absolute terms, KL/Dense degradation is $1.47\\times$ at 30\\%, $1.93\\times$ at 50\\%, and $2.93\\times$ at 70\\%, compared to TEAL/Dense ratios of $1.79\\times$, $3.81\\times$, and $16.4\\times$ respectively.\n149\t\n150\t\\paragraph{Three Operating Regions.}\n151\tTable~\\ref{tab:phase} presents global vs.\\ uniform allocation at three sparsity levels and reveals qualitative shifts in allocation preference. Denser sampling (e.g., 35\\% sparsity) would be needed to precisely locate region boundaries.\n152\t\n153\t\\begin{table}[t]\n154\t\\centering\n155\t\\caption{Allocation analysis: global (TEAL) vs.\\ uniform per-layer allocation across sparsity levels. 30\\% and 50\\% KL rows report 3-seed mean$\\pm$std for MMLU; other metrics use seed 42. Each row uses a predictor trained at the respective sparsity target.}\n156\t\\label{tab:phase}\n157\t\\resizebox{\\columnwidth}{!}{\n158\t\\begin{tabular}{llccccc}\n159\t\\toprule\n160\tSparsity & Allocation & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n161\t\\midrule\n162\t0\\% & Dense & 6.12 & 58.28 & 78.06 & 65.27 & 48.75 \\\\\n163\t\\midrule\n164\t\\multirow{3}{*}{30\\%}\n165\t& TEAL vanilla & 10.97 & \\textbf{42.32} & 66.06 & 38.61 & 7.88 \\\\ % exp_id: bench_teal30\n166\t& KL global & 8.98 & 39.68 & \\textbf{70.17} & 35.7$\\pm$9.5 & \\textbf{8.79} \\\\ % exp_id: kl30_3seed_global\n167\t& KL uniform & \\textbf{8.82} & 40.78 & 68.59 & \\textbf{40.7$\\pm$1.3} & 7.35 \\\\ % exp_id: kl30_3seed_uniform\n168\t\\midrule\n169\t\\multirow{2}{*}{40\\%}\n170\t& KL global & 10.12 & 40.96 & 65.35 & \\textbf{38.06} & \\textbf{5.00} \\\\ % exp_id: bench_kl40_global\n171\t& KL uniform & \\textbf{8.36} & \\textbf{41.81} & \\textbf{67.17} & 30.68 & 3.94 \\\\ % exp_id: d030_kl40_uniform\n172\t\\midrule\n173\t\\multirow{3}{*}{50\\%}\n174\t& TEAL vanilla & 23.31 & 28.41 & 53.04 & \\textbf{28.32} & 1.97 \\\\ % exp_id: bench_teal50\n175\t& KL global & \\textbf{11.79} & \\textbf{32.85} & \\textbf{63.46} & 28.1$\\pm$0.2 & 1.29 \\\\ % exp_id: multi_seed_kl50_global\n176\t& KL uniform & 11.96 & 32.76 & 62.90 & 28.0$\\pm$0.6 & \\textbf{2.12} \\\\ % exp_id: multi_seed_kl50_uniform\n177\t\\bottomrule\n178\t\\end{tabular}}\n179\t\\end{table}\n180\t\n181\tThe allocation preference is \\emph{non-monotonic}. We observe three qualitative behaviors at the sampled sparsity levels (7--8B scale):\n182\t\n183\t\\noindent\\textbf{Budget-surplus ($\\leq$30\\%).}\n184\tUniform allocation provides $7.5\\times$ smaller cross-seed MMLU standard deviation ($\\sigma$: 1.3pp vs.\\ 9.5pp), eliminating catastrophic seed-dependent degradation under global top-$k$ (MMLU 35.7$\\pm$9.5\\% vs.\\ 40.7$\\pm$1.3\\%, 3-seed). Global top-$k$ starves late layers (L31: 28.4\\%, std/mean$=$1.89), and this starvation interacts unpredictably with predictor initialization (Appendix~\\ref{app:lagrangian}). % exp_id: kl30_3seed\n185\t\n186\t\\noindent\\textbf{Budget-constrained ($\\sim$40\\%).}\n187\tThe preference reverses: global achieves MMLU 38.06\\% vs.\\ uniform's 30.68\\% (+7.4pp). % exp_id: bench_kl40_global, d030_kl40_uniform\n188\tPPL remains low (8.36) but downstream accuracy degrades; PPL is a poor proxy for reasoning.\n189\t\n190\t\\noindent\\textbf{Capacity-limited ($\\geq$50\\%).}\n191\tGlobal/uniform gap vanishes (MMLU 28.1$\\pm$0.2\\% vs.\\ 28.0$\\pm$0.6\\%, $\\sigma\\leq$0.6pp; contrast 9.5pp at 30\\%), consistent with capacity limitation. % exp_id: multi_seed_kl50_global, multi_seed_kl50_uniform\n192\tLate-layer starvation persists across levels (L24--31 retention: 50.1/34.2/22.6\\% at 30/50/70\\% sparsity; Figure~\\ref{fig:retention}), consistent on both 7--8B models (\\S\\ref{sec:cross_arch}).\n193\t\n194\t\\paragraph{Gap Decomposition.}\n195\tUnder uniform allocation, 53\\% of the Dense$\\to$KL gap is predictor approximation, 47\\% budget allocation (Appendix~\\ref{app:db_sensitivity}); under global, KL remains $1.98\\times$ better than TEAL.\n196\t\n197\t\n198\t\\subsection{SPON Orthogonality Analysis}\n199\t\\label{sec:spon}\n200\t\n201\tAt 50\\% sparsity, the predictor's hidden-state perturbation (L2=482.65) and SPON's additive correction (L2=76.2, cosine similarity 0.196) are weakly correlated ($R^2$=0.038); SPON yields only 2.4\\% PPL improvement (12.08$\\to$11.79); the KL predictor already captures most recoverable signal. % exp_id: spon_decomposition, spon_2048_s42, mvp_kl_norm_v2_s42\n202\t\n203\t\\paragraph{Cross-Architecture Validation.}\n204\t\\label{sec:cross_arch}\n205\tTable~\\ref{tab:cross_arch} evaluates on Mistral-7B-v0.3~\\cite{jiang2023mistral} (GQA + sliding window, dense PPL 5.52).\n206\t\n207\t\\begin{table}[t]\n208\t\\centering\n209\t\\caption{Cross-architecture comparison (WikiText-2 PPL$\\downarrow$). Adv = TEAL\\,/\\,KL ratio. LLaMA uses global top-$k$; Mistral uses uniform allocation (matched within each architecture).}\n210\t\\label{tab:cross_arch}\n211\t\\small\n212\t\\begin{tabular}{l@{\\hspace{4pt}}cc@{\\hspace{3pt}}c@{\\hspace{6pt}}|@{\\hspace{6pt}}cc@{\\hspace{3pt}}c}\n213\t\\toprule\n214\t & \\multicolumn{3}{c}{Mistral-7B} & \\multicolumn{3}{c}{LLaMA-8B} \\\\\n215\t & KL & TEAL & Adv & KL & TEAL & Adv \\\\\n216\t\\midrule\n217\t30\\% & \\textbf{6.77} & 8.38 & 1.24$\\times$ & \\textbf{8.98} & 10.97 & 1.22$\\times$ \\\\ % exp_id: kl_30_mistral, teal_30_mistral\n218\t50\\% & \\textbf{8.65} & 18.31 & 2.12$\\times$ & \\textbf{11.79} & 23.31 & 1.98$\\times$ \\\\ % exp_id: kl_50_mistral, teal_50_mistral\n219\t70\\% & \\textbf{13.33} & 61.72 & 4.63$\\times$ & \\textbf{17.91} & 100.11 & 5.59$\\times$ \\\\ % exp_id: kl_70_mistral, teal_70_mistral\n220\t\\bottomrule\n221\t\\end{tabular}\n222\t\\end{table}\n223\t\n224\tThe KL advantage ratio is consistent across architectures (within 8\\% at $\\leq$50\\% sparsity; 4.63$\\times$ vs.\\ 5.59$\\times$ at 70\\%) and provides preliminary evidence of generality at the 7--8B scale.\n225\t\n226\t\\paragraph{Scale Generalization: Qwen-2.5-14B.}\n227\t\\label{sec:14b}\n228\tTable~\\ref{tab:14b} evaluates on Qwen-2.5-14B~\\cite{qwen2024qwen25} at 30\\% (global top-$k$): KL's PPL advantage generalizes ($1.47\\times$ dense, matching 8B) but MMLU falls below TEAL/BCE (63.7 vs.\\ 71.8/71.7\\%), consistent with allocation-dependent degradation at 8B (\\S\\ref{sec:scaling}); uniform results pending.\n229\tBCE with native allocation collapses to 6.4\\% sparsity (architecture-general gradient insufficiency, \\S\\ref{sec:method:gradient}); Table~\\ref{tab:14b} uses forced global top-$k$ for BCE. % exp_id: qwen14b_kl30_s42, qwen14b_bce30_s42, qwen14b_bce30_s42_v2, qwen14b_teal30_eval\n230\t\n231\t\\begin{table}[t]\n232\t\\centering\n233\t\\caption{Qwen-2.5-14B at 30\\% sparsity (global top-$k$ allocation). PPL$\\downarrow$ on WikiText-2; accuracy$\\uparrow$ on downstream tasks. \\textbf{Bold}: best among sparse methods per column. KL's PPL/Dense ratio ($1.47\\times$) matches the 8B result exactly.}\n234\t\\label{tab:14b}\n235\t\\small\n236\t\\begin{tabular}{lccccc}\n237\t\\toprule\n238\tMethod & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n239\t\\midrule\n240\tDense & 5.19 & 67.58 & 81.06 & 79.77 & 87.57 \\\\\n241\t\\midrule\n242\tKL (Ours) & \\textbf{7.62} & 57.17 & 72.06 & 63.72 & 48.82 \\\\ % exp_id: qwen14b_kl30_s42\n243\tTEAL vanilla & 8.73 & 56.83 & \\textbf{72.69} & \\textbf{71.83} & 49.51 \\\\ % exp_id: qwen14b_teal30_eval\n244\tBCE & 8.76 & \\textbf{57.59} & 72.61 & 71.67 & \\textbf{53.07} \\\\ % exp_id: qwen14b_bce30_s42_eval\n245\t% KL uniform & TBD & TBD & TBD & TBD & TBD \\\\ % exp_id: qwen14b_kl30_uniform (running, ~3-4h)\n246\t\\bottomrule\n247\t\\end{tabular}\n248\t\\end{table}\n249\t\n250\t\n251\t\\paragraph{Inference Efficiency.}\n252\tThe pipeline adds 6.4\\% overhead to dense inference while removing the compensation network ($-$2.7\\% latency, $-$67.2M params); post-hoc SPON yields $<$3\\% additional gain (\\S\\ref{sec:spon}); the predictor already internalizes most error-correction signal (Appendix~\\ref{app:latency}).\n253\t\n254\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "c83d6b4b-1926-4192-9452-f25beaed09d7",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex",
+                "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\n\\paragraph{Model and Predictor.}\nWe evaluate on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}, which uses SwiGLU FFN blocks~\\cite{shazeer2020glu} with $d_{\\text{model}}=4096$ and $d_{\\text{ff}}=14336$ across 32 layers.\nThe sparsity predictor is a two-layer MLP with 2.37M parameters per layer (75.9M total), implemented as Linear($4096 \\to 128$) + GELU + Linear($128 \\to 14336$), trained to produce per-neuron importance scores that minimize output-distribution divergence under sparsity.\n\n\\paragraph{Training.}\nAll predictors are trained for 1000 steps on WikiText-103 with sequence length 2048 and batch size 4, using AdamW~\\cite{loshchilov2019adamw} with learning rate $1 \\times 10^{-3}$, weight decay $5 \\times 10^{-2}$, and cosine decay.\nThe KL predictor uses Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} with temperature $\\tau=1.0$ annealed to $0.1$ over training.\n\n\\paragraph{Evaluation.}\nWe report perplexity on WikiText-2~\\cite{merity2017pointer} (seq\\_len=2048) and downstream accuracy on ARC-Challenge (25-shot), WinoGrande (5-shot), MMLU (5-shot), and GSM8K (8-shot).\n\n\\paragraph{Inference Protocol.}\nAt inference, the predictor produces per-neuron scores that are passed to TEAL's global top-$k$ allocation mechanism~\\cite{liu2025teal}, which distributes the sparsity budget across layers non-uniformly.\nWe term this \\textit{predictor-TEAL}: the predictor replaces TEAL's magnitude-based scoring while retaining its allocation strategy.\n\n\\paragraph{Baselines.}\nWe compare against: (1) \\textbf{Vanilla TEAL}~\\cite{liu2025teal}, which uses activation magnitudes directly; (2) \\textbf{BCE predictor} (DejaVu-style~\\cite{liu2023dejavu}), trained with per-neuron binary cross-entropy on magnitude-based oracle masks for 1000 and 2700 steps; (3) \\textbf{Uniform allocation}, which distributes the sparsity budget equally across layers; and (4) \\textbf{WINA}~\\cite{liu2025teal}, an importance-weighted variant.\n\n\n\\subsection{Main Results}\n\nTable~\\ref{tab:main} presents the primary comparison. We recommend uniform allocation for deployment (best downstream preservation); global allocation is analyzed to understand allocation-quality tradeoffs (\\S\\ref{sec:scaling}).\nAt 30\\% sparsity, KL distillation with global TEAL allocation achieves PPL 8.98 and reduces TEAL's degradation from dense (10.97 $\\to$ 8.98, an 18\\% improvement). % exp_id: kl_30_global_teal\nThe advantage holds across additional downstream benchmarks (Appendix~\\ref{app:downstream}).\nUniform allocation at 30\\% provides stable downstream performance (MMLU 40.7$\\pm$1.3\\%, 3-seed) while global top-$k$ exhibits high seed variance (35.7$\\pm$9.5\\%), with late-layer starvation (L31 retention 28.4\\%) interacting with predictor initialization (\\S\\ref{sec:scaling}). % exp_id: bench_kl30_uniform, kl30_3seed\n\nAt 50\\% sparsity, KL distillation over vanilla TEAL widens the PPL advantage: 11.79 vs.\\ 23.31, a 49\\% reduction. % exp_id: bench_kl50_global, bench_teal50\nThe predictor generalizes to C4 validation at both 30\\% (PPL 16.05) and 50\\% (52.5\\% over TEAL; Appendix~\\ref{app:ood}).\nHowever, all methods exhibit downstream collapse on MMLU (28.1$\\pm$0.2\\% vs.\\ 28.0$\\pm$0.6\\%, both $\\approx$ random, 3-seed) and GSM8K ($<$2.2\\%); this is a capacity-limited regime where no allocation strategy can recover. % exp_id: bench_kl50_global, d030_kl50_uniform, multi_seed_kl50_global\n\n\\begin{table}[t]\n\\centering\n\\caption{Main results on LLaMA-3.1-8B. PPL$\\downarrow$ on WikiText-2; accuracy$\\uparrow$ on downstream tasks. \\textbf{Bold}: best among compensation-free methods per sparsity level. BCE follows the DejaVu~\\cite{liu2023dejavu} predictor pipeline (per-neuron BCE on magnitude oracles) with a FastForward-style~\\cite{gautam2026fastforward} compensation network (67.2M params) applied post-masking; no TEAL allocation. KL MMLU at 30\\% and 50\\% reports 3-seed mean$\\pm$std; 50\\% uniform PPL is 3-seed ($11.92 \\pm 0.07$; Appendix~\\ref{app:stability}); all other entries use seed 42.}\n\\label{tab:main}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{llccccc}\n\\toprule\nSparsity & Method & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n\\midrule\n0\\% & Dense & 6.12 & 58.28 & 78.06 & 65.27 & 48.75 \\\\\n\\midrule\n\\multirow{3}{*}{30\\%}\n& TEAL vanilla & 10.97 & \\textbf{42.32} & 66.06 & 38.61 & 7.88 \\\\ % exp_id: bench_teal30\n& KL global (Ours) & 8.98 & 39.68 & \\textbf{70.17} & 35.7$\\pm$9.5 & \\textbf{8.79} \\\\ % exp_id: kl30_3seed_global\n& KL uniform & \\textbf{8.82} & 40.78 & 68.59 & \\textbf{40.7$\\pm$1.3} & 7.35 \\\\ % exp_id: kl30_3seed_uniform\n\\midrule\n\\multirow{4}{*}{50\\%}\n& TEAL vanilla & 23.31 & 28.41 & 53.04 & \\textbf{28.32} & 1.97 \\\\ % exp_id: bench_teal50\n& KL global (Ours) & \\textbf{11.79} & \\textbf{32.85} & \\textbf{63.46} & 28.1$\\pm$0.2 & 1.29 \\\\ % exp_id: multi_seed_kl50_global\n& KL uniform & 11.96 & 32.76 & 62.90 & 28.0$\\pm$0.6 & \\textbf{2.12} \\\\ % exp_id: multi_seed_kl50_uniform\n& BCE (2700 steps)$^\\ast$ & 27.97 & 23.98 & 50.59 & 30.02 & 4.85 \\\\ % exp_id: eval_bce_v3_s42\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\n\\subsection{Extended Training Analysis}\n\\label{sec:isocompute}\n\nTo test whether BCE simply requires more compute, we train it for 2700 steps (2.71$\\times$ the KL step budget, approximately equal wall-clock time: $\\sim$46 min BCE vs.\\ $\\sim$45 min KL on RTX PRO 6000).\nThe BCE predictor achieves PPL 27.97, still 2.37$\\times$ worse than KL at 1000 steps (PPL 11.79). % exp_id: bce_isocompute_s42\nThe difference is systematic, not due to architectural or compute limitations: both predictors use identical architectures and TEAL allocation, yet BCE achieves +7pp oracle F1 (0.613 vs.\\ 0.540) with 137\\% worse PPL (27.97 vs.\\ 11.79). KL's near-random precision (0.51) is consistent with learning a mask optimized for distributional fidelity rather than magnitude matching. % exp_id: f1_oracle_analysis, bce_isocompute_s42\nCoupled training correlates with better output preservation, but disentangling gradient coupling from oracle quality remains open (BCE uses magnitude oracles while KL optimizes output directly; an ablation using KL-derived masks as BCE targets would isolate the effect).\n\n\n\\subsection{Ablation Studies}\n\nTable~\\ref{tab:ablation} isolates the contribution of each design choice at 50\\% sparsity.\n\n\\begin{table}[t]\n\\centering\n\\caption{Ablation at 50\\% sparsity on LLaMA-3.1-8B (WikiText-2 PPL$\\downarrow$, unified benchmark protocol).}\n\\label{tab:ablation}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\nConfiguration & PPL$\\downarrow$ & $\\Delta$ from Ours \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textit{KL-based variants}} \\\\\nForward KL + Gumbel (Ours) & \\textbf{11.79} & --- \\\\ % exp_id: bench_kl50_global\nJSD (symmetric) + Gumbel & 12.54 & +0.75 \\\\ % exp_id: jsd_ablation_s42\nReverse KL + Gumbel & 12.80 & +1.01 \\\\ % exp_id: reverse_kl_ablation_s42\nForward KL + STE & 15.77 & +3.98 \\\\ % exp_id: ste_baseline_s42\n\\midrule\n\\multicolumn{3}{l}{\\textit{BCE-based variants}} \\\\\nBCE + Compensation (hard mask) & 25.44 & +13.65 \\\\ % exp_id: bce_comp_staged_s42\nBCE (no compensation) & 27.97 & +16.18 \\\\ % exp_id: eval_bce_v3_s42\nBCE + Gumbel + Penalty (no KL) & 38.02 & +26.23 \\\\ % exp_id: bce_gumbel_lagrangian_isolation\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Gumbel vs.\\ STE.}\nReplacing Gumbel-Sigmoid with STE~\\cite{bengio2013ste} degrades PPL from 11.79 to 15.77 (+3.98), accounting for 34.5\\% of the improvement over vanilla TEAL. % exp_id: ste_baseline_s42\n\n\\paragraph{Divergence Direction.}\nForward KL (mode-covering) outperforms JSD (+6.4\\%) and reverse KL (+8.6\\%), consistent with the SNR analysis in \\S\\ref{sec:method:gradient}: complete teacher supervision is associated with better global allocation quality. % exp_id: jsd_ablation_s42, reverse_kl_ablation_s42\nThis contrasts with MiniLLM~\\cite{gu2024minillm} (reverse KL for generation); in mask prediction, mode-covering ensures no important neuron is omitted.\n\n\\paragraph{SPON Contribution.}\nAdding SPON~\\cite{xu2026spon} bias correction reduces PPL from 12.08 to 11.79 (2.4\\% relative); see \\S\\ref{sec:spon} for decomposition.\\footnote{SPON analysis uses \\texttt{evaluate.py}; main results use the unified benchmark.} % exp_id: spon_2048_s42, mvp_kl_norm_v2_s42\n\n\\paragraph{Loss Function Isolation.}\nBCE with identical Gumbel-Sigmoid and penalty yields PPL 38.02, worse than vanilla BCE (27.97): the penalty interferes with per-neuron optimization without global coordination. % exp_id: bce_gumbel_lagrangian_isolation\nThe loss effect ($\\Delta$PPL=26.23) is $6.6\\times$ the relaxation effect ($\\Delta$PPL=3.98).\n\n\\paragraph{BCE + Compensation.}\nFastForward-style compensation~\\cite{gautam2026fastforward} improves BCE from 27.97 to 25.44 (9.0\\%), still $2.16\\times$ worse than KL. % exp_id: bce_comp_staged_s42\n\n\\paragraph{Hyperparameter Robustness.}\nAppendix~\\ref{app:db_sensitivity} confirms robustness to predictor capacity ($d_b$, $<$3\\%), temperature ($<$1.8\\%), and training steps (saturated by 800). % exp_id: db_sensitivity_sweep, tau_schedule_sweep, training_steps_sweep\n\n\n\\subsection{Sparsity Scaling and Regime Analysis}\n\\label{sec:scaling}\n\nTable~\\ref{tab:scaling} and Figure~\\ref{fig:sparsity_sweep} show PPL as a function of sparsity for the KL predictor under global allocation and vanilla TEAL.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig2_sparsity_sweep.pdf}\n\\caption{Perplexity scaling with sparsity. The KL predictor's advantage grows disproportionately as more neurons are pruned.}\n\\label{fig:sparsity_sweep}\n\\end{figure}\n\n\\begin{table}[t]\n\\centering\n\\caption{PPL scaling with sparsity (WikiText-2). KL advantage grows disproportionately with sparsity.}\n\\label{tab:scaling}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nSparsity & KL (Ours) & TEAL vanilla & Relative advantage \\\\\n\\midrule\n30\\% & \\textbf{8.98} & 10.97 & 18\\% \\\\ % exp_id: kl_30_global_teal\n50\\% & \\textbf{11.79} & 23.31 & 49\\% \\\\ % exp_id: bench_kl50_global\n70\\% & \\textbf{17.91} & 100.11 & 82\\% \\\\ % exp_id: kl_70_global_teal\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe KL advantage grows from 18\\% at 30\\% to 82\\% at 70\\%, where TEAL collapses (PPL 100.11) while the learned predictor maintains coherent allocation.\nIn absolute terms, KL/Dense degradation is $1.47\\times$ at 30\\%, $1.93\\times$ at 50\\%, and $2.93\\times$ at 70\\%, compared to TEAL/Dense ratios of $1.79\\times$, $3.81\\times$, and $16.4\\times$ respectively.\n\n\\paragraph{Three Operating Regions.}\nTable~\\ref{tab:phase} presents global vs.\\ uniform allocation at three sparsity levels and reveals qualitative shifts in allocation preference. Denser sampling (e.g., 35\\% sparsity) would be needed to precisely locate region boundaries.\n\n\\begin{table}[t]\n\\centering\n\\caption{Allocation analysis: global (TEAL) vs.\\ uniform per-layer allocation across sparsity levels. 30\\% and 50\\% KL rows report 3-seed mean$\\pm$std for MMLU; other metrics use seed 42. Each row uses a predictor trained at the respective sparsity target.}\n\\label{tab:phase}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{llccccc}\n\\toprule\nSparsity & Allocation & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n\\midrule\n0\\% & Dense & 6.12 & 58.28 & 78.06 & 65.27 & 48.75 \\\\\n\\midrule\n\\multirow{3}{*}{30\\%}\n& TEAL vanilla & 10.97 & \\textbf{42.32} & 66.06 & 38.61 & 7.88 \\\\ % exp_id: bench_teal30\n& KL global & 8.98 & 39.68 & \\textbf{70.17} & 35.7$\\pm$9.5 & \\textbf{8.79} \\\\ % exp_id: kl30_3seed_global\n& KL uniform & \\textbf{8.82} & 40.78 & 68.59 & \\textbf{40.7$\\pm$1.3} & 7.35 \\\\ % exp_id: kl30_3seed_uniform\n\\midrule\n\\multirow{2}{*}{40\\%}\n& KL global & 10.12 & 40.96 & 65.35 & \\textbf{38.06} & \\textbf{5.00} \\\\ % exp_id: bench_kl40_global\n& KL uniform & \\textbf{8.36} & \\textbf{41.81} & \\textbf{67.17} & 30.68 & 3.94 \\\\ % exp_id: d030_kl40_uniform\n\\midrule\n\\multirow{3}{*}{50\\%}\n& TEAL vanilla & 23.31 & 28.41 & 53.04 & \\textbf{28.32} & 1.97 \\\\ % exp_id: bench_teal50\n& KL global & \\textbf{11.79} & \\textbf{32.85} & \\textbf{63.46} & 28.1$\\pm$0.2 & 1.29 \\\\ % exp_id: multi_seed_kl50_global\n& KL uniform & 11.96 & 32.76 & 62.90 & 28.0$\\pm$0.6 & \\textbf{2.12} \\\\ % exp_id: multi_seed_kl50_uniform\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nThe allocation preference is \\emph{non-monotonic}. We observe three qualitative behaviors at the sampled sparsity levels (7--8B scale):\n\n\\noindent\\textbf{Budget-surplus ($\\leq$30\\%).}\nUniform allocation provides $7.5\\times$ smaller cross-seed MMLU standard deviation ($\\sigma$: 1.3pp vs.\\ 9.5pp), eliminating catastrophic seed-dependent degradation under global top-$k$ (MMLU 35.7$\\pm$9.5\\% vs.\\ 40.7$\\pm$1.3\\%, 3-seed). Global top-$k$ starves late layers (L31: 28.4\\%, std/mean$=$1.89), and this starvation interacts unpredictably with predictor initialization (Appendix~\\ref{app:lagrangian}). % exp_id: kl30_3seed\n\n\\noindent\\textbf{Budget-constrained ($\\sim$40\\%).}\nThe preference reverses: global achieves MMLU 38.06\\% vs.\\ uniform's 30.68\\% (+7.4pp). % exp_id: bench_kl40_global, d030_kl40_uniform\nPPL remains low (8.36) but downstream accuracy degrades; PPL is a poor proxy for reasoning.\n\n\\noindent\\textbf{Capacity-limited ($\\geq$50\\%).}\nGlobal/uniform gap vanishes (MMLU 28.1$\\pm$0.2\\% vs.\\ 28.0$\\pm$0.6\\%, $\\sigma\\leq$0.6pp; contrast 9.5pp at 30\\%), consistent with capacity limitation. % exp_id: multi_seed_kl50_global, multi_seed_kl50_uniform\nLate-layer starvation persists across levels (L24--31 retention: 50.1/34.2/22.6\\% at 30/50/70\\% sparsity; Figure~\\ref{fig:retention}), consistent on both 7--8B models (\\S\\ref{sec:cross_arch}).\n\n\\paragraph{Gap Decomposition.}\nUnder uniform allocation, 53\\% of the Dense$\\to$KL gap is predictor approximation, 47\\% budget allocation (Appendix~\\ref{app:db_sensitivity}); under global, KL remains $1.98\\times$ better than TEAL.\n\n\n\\subsection{SPON Orthogonality Analysis}\n\\label{sec:spon}\n\nAt 50\\% sparsity, the predictor's hidden-state perturbation (L2=482.65) and SPON's additive correction (L2=76.2, cosine similarity 0.196) are weakly correlated ($R^2$=0.038); SPON yields only 2.4\\% PPL improvement (12.08$\\to$11.79); the KL predictor already captures most recoverable signal. % exp_id: spon_decomposition, spon_2048_s42, mvp_kl_norm_v2_s42\n\n\\paragraph{Cross-Architecture Validation.}\n\\label{sec:cross_arch}\nTable~\\ref{tab:cross_arch} evaluates on Mistral-7B-v0.3~\\cite{jiang2023mistral} (GQA + sliding window, dense PPL 5.52).\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-architecture comparison (WikiText-2 PPL$\\downarrow$). Adv = TEAL\\,/\\,KL ratio. LLaMA uses global top-$k$; Mistral uses uniform allocation (matched within each architecture).}\n\\label{tab:cross_arch}\n\\small\n\\begin{tabular}{l@{\\hspace{4pt}}cc@{\\hspace{3pt}}c@{\\hspace{6pt}}|@{\\hspace{6pt}}cc@{\\hspace{3pt}}c}\n\\toprule\n & \\multicolumn{3}{c}{Mistral-7B} & \\multicolumn{3}{c}{LLaMA-8B} \\\\\n & KL & TEAL & Adv & KL & TEAL & Adv \\\\\n\\midrule\n30\\% & \\textbf{6.77} & 8.38 & 1.24$\\times$ & \\textbf{8.98} & 10.97 & 1.22$\\times$ \\\\ % exp_id: kl_30_mistral, teal_30_mistral\n50\\% & \\textbf{8.65} & 18.31 & 2.12$\\times$ & \\textbf{11.79} & 23.31 & 1.98$\\times$ \\\\ % exp_id: kl_50_mistral, teal_50_mistral\n70\\% & \\textbf{13.33} & 61.72 & 4.63$\\times$ & \\textbf{17.91} & 100.11 & 5.59$\\times$ \\\\ % exp_id: kl_70_mistral, teal_70_mistral\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe KL advantage ratio is consistent across architectures (within 8\\% at $\\leq$50\\% sparsity; 4.63$\\times$ vs.\\ 5.59$\\times$ at 70\\%) and provides preliminary evidence of generality at the 7--8B scale.\n\n\\paragraph{Scale Generalization: Qwen-2.5-14B.}\n\\label{sec:14b}\nTable~\\ref{tab:14b} evaluates on Qwen-2.5-14B~\\cite{qwen2024qwen25} at 30\\% (global top-$k$): KL's PPL advantage generalizes ($1.47\\times$ dense, matching 8B) but MMLU falls below TEAL/BCE (63.7 vs.\\ 71.8/71.7\\%), consistent with allocation-dependent degradation at 8B (\\S\\ref{sec:scaling}); uniform results pending.\nBCE with native allocation collapses to 6.4\\% sparsity (architecture-general gradient insufficiency, \\S\\ref{sec:method:gradient}); Table~\\ref{tab:14b} uses forced global top-$k$ for BCE. % exp_id: qwen14b_kl30_s42, qwen14b_bce30_s42, qwen14b_bce30_s42_v2, qwen14b_teal30_eval\n\n\\begin{table}[t]\n\\centering\n\\caption{Qwen-2.5-14B at 30\\% sparsity (global top-$k$ allocation). PPL$\\downarrow$ on WikiText-2; accuracy$\\uparrow$ on downstream tasks. \\textbf{Bold}: best among sparse methods per column. KL's PPL/Dense ratio ($1.47\\times$) matches the 8B result exactly.}\n\\label{tab:14b}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nMethod & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n\\midrule\nDense & 5.19 & 67.58 & 81.06 & 79.77 & 87.57 \\\\\n\\midrule\nKL (Ours) & \\textbf{7.62} & 57.17 & 72.06 & 63.72 & 48.82 \\\\ % exp_id: qwen14b_kl30_s42\nTEAL vanilla & 8.73 & 56.83 & \\textbf{72.69} & \\textbf{71.83} & 49.51 \\\\ % exp_id: qwen14b_teal30_eval\nBCE & 8.76 & \\textbf{57.59} & 72.61 & 71.67 & \\textbf{53.07} \\\\ % exp_id: qwen14b_bce30_s42_eval\n% KL uniform & TBD & TBD & TBD & TBD & TBD \\\\ % exp_id: qwen14b_kl30_uniform (running, ~3-4h)\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\paragraph{Inference Efficiency.}\nThe pipeline adds 6.4\\% overhead to dense inference while removing the compensation network ($-$2.7\\% latency, $-$67.2M params); post-hoc SPON yields $<$3\\% additional gain (\\S\\ref{sec:spon}); the predictor already internalizes most error-correction signal (Appendix~\\ref{app:latency}).\n\n",
+                "numLines": 254,
+                "startLine": 1,
+                "totalLines": 254
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UVtmccX3JPUeb5tjWyEe58",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "86597e5d-015f-4c69-b80b-54831b248826",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PmRSeFZqjDmxvucct5hLGc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7645,
+                "cache_read_input_tokens": 25533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7645
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T01:06:44.212Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UVtmccX3JPUeb5tjWyEe58",
+              "type": "tool_result",
+              "content": "1\t\\appendix\n2\t\n3\t\\section{Inference Efficiency}\n4\t\\label{app:latency}\n5\t\n6\tTable~\\ref{tab:latency} reports inference throughput on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (batch size 1, sequence length 2048, fp16, averaged over 100 forward passes).\n7\t\n8\t\\begin{table}[h]\n9\t\\centering\n10\t\\caption{Inference latency on LLaMA-3.1-8B (RTX PRO 6000 Blackwell, batch=1, seq=2048, fp16, 100 forward passes). Overhead is relative to dense inference.}\n11\t\\label{tab:latency}\n12\t\\small\n13\t\\begin{tabular}{llcccc}\n14\t\\toprule\n15\tMethod & Sparsity & ms/fwd & tok/s & Overhead \\\\\n16\t\\midrule\n17\tDense & 0\\% & 119.11$\\pm$0.57 & 17{,}195 & --- \\\\\n18\t\\midrule\n19\tKL predictor-only & 30\\% & 126.64$\\pm$0.70 & 16{,}172 & +6.3\\% \\\\ % exp_id: latency_bench\n20\tKL predictor-only & 50\\% & 126.78$\\pm$0.31 & 16{,}154 & +6.4\\% \\\\ % exp_id: latency_bench\n21\t\\midrule\n22\tPredictor + compensation & 30\\% & 129.94$\\pm$0.75 & 15{,}761 & +9.1\\% \\\\ % exp_id: latency_bench\n23\tPredictor + compensation & 50\\% & 129.71$\\pm$0.53 & 15{,}789 & +8.9\\% \\\\ % exp_id: latency_bench\n24\t\\bottomrule\n25\t\\end{tabular}\n26\t\\end{table}\n27\t\n28\tThe full KL-sparse pipeline adds 6.4\\% overhead to dense inference (126.78 vs.\\ 119.11\\,ms/forward), of which the predictor's 32-layer forward pass contributes 3.17\\,ms (2.7\\%); the remainder arises from mask application and sparse FFN indexing.\n29\tEliminating the compensation network saves an additional $\\sim$2.7\\% latency overhead and 67.2M parameters (the per-layer GEMV required for output rescaling); KL distillation thus provides both quality and efficiency advantages over BCE-based approaches.\n30\tThe overhead is near-identical at 30\\% and 50\\% sparsity because the predictor runs the same computation regardless of target sparsity; only the top-$k$ threshold changes.\n31\t\n32\tNote that the current implementation uses unstructured element-wise masks, which do not translate to wall-clock speedup without sparse kernel support.\n33\tThe pipeline adds $\\sim$6.4\\% overhead; net acceleration requires kernel-level sparse computation optimizations (e.g., Triton block-sparse, cuSPARSE) that are beyond the scope of this work.\n34\tOur contribution is prediction quality and inference simplification (removing the compensation network), not end-to-end latency reduction.\n35\t\n36\t\n37\t\\section{Predictor Bottleneck Sensitivity}\n38\t\\label{app:db_sensitivity}\n39\t\n40\tTable~\\ref{tab:db_sensitivity} reports the effect of predictor bottleneck dimension $d_b$ on PPL at 50\\% sparsity under both TEAL global allocation (the paper's primary inference protocol) and per-token evaluation.\n41\t\n42\t\\begin{table}[h]\n43\t\\centering\n44\t\\caption{Predictor bottleneck sensitivity at 50\\% sparsity (WikiText-2 PPL$\\downarrow$). TEAL global is the primary inference protocol; per-token shown for reference.}\n45\t\\label{tab:db_sensitivity}\n46\t\\small\n47\t\\begin{tabular}{lcccc}\n48\t\\toprule\n49\t$d_b$ & Params & TEAL global & $\\Delta$ & Per-token \\\\\n50\t\\midrule\n51\t64 & 38.2M (0.48\\%) & 12.076 & +0.9\\% & 10.16 \\\\ % exp_id: db_sensitivity_sweep\n52\t128 & 75.9M (0.95\\%) & 11.963 & --- & 9.218 \\\\ % exp_id: db_sensitivity_sweep\n53\t256 & 151.5M (1.89\\%) & 12.105 & +1.2\\% & 8.586 \\\\ % exp_id: db_sensitivity_sweep\n54\t512 & 302.5M (3.77\\%) & 12.315 & +2.9\\% & 7.93 \\\\ % exp_id: db_sensitivity_sweep\n55\t\\bottomrule\n56\t\\end{tabular}\n57\t\\end{table}\n58\t\n59\tUnder TEAL global allocation, increasing $d_b$ beyond 128 provides no benefit (PPL slightly worsens), while per-token evaluation shows monotonic improvement (10.16$\\to$7.93).\n60\tThis divergence indicates that the global top-$k$ allocation mechanism, not predictor capacity, is the binding constraint: additional predictor capacity produces better per-neuron scores, but the global ranking and budget distribution cannot exploit them.\n61\tThe $d_b{=}128$ configuration (75.9M params, $<$1\\% of base model) is therefore optimal for the TEAL inference protocol.\n62\t\n63\t\\subsection{Temperature Schedule Sensitivity}\n64\t\\label{app:tau_sensitivity}\n65\t\n66\t\\begin{table}[h]\n67\t\\centering\n68\t\\caption{Temperature schedule sensitivity at 50\\% sparsity (WikiText-2 PPL$\\downarrow$, TEAL global).}\n69\t\\label{tab:tau_sensitivity}\n70\t\\small\n71\t\\begin{tabular}{lc}\n72\t\\toprule\n73\t$\\tau$ Schedule & PPL$\\downarrow$ \\\\\n74\t\\midrule\n75\tFixed $\\tau{=}0.5$ & \\textbf{11.861} \\\\ % exp_id: tau_schedule_sweep\n76\tLinear $1.0 \\to 0.1$ (default) & 11.963 \\\\ % exp_id: tau_schedule_sweep\n77\tFixed $\\tau{=}0.1$ & 12.072 \\\\ % exp_id: tau_schedule_sweep\n78\t\\bottomrule\n79\t\\end{tabular}\n80\t\\end{table}\n81\t\n82\tTemperature schedule has minimal impact ($<$1.8\\% PPL variation).\n83\tThe linear annealing default is a conservative choice; even removing annealing entirely (fixed $\\tau{=}0.5$) yields comparable performance.\n84\t\n85\t\\subsection{Training Convergence}\n86\t\\label{app:training_convergence}\n87\t\n88\t\\begin{table}[h]\n89\t\\centering\n90\t\\caption{Training convergence at 50\\% sparsity (WikiText-2 PPL$\\downarrow$, TEAL global).}\n91\t\\label{tab:training_convergence}\n92\t\\small\n93\t\\begin{tabular}{cc}\n94\t\\toprule\n95\tSteps & PPL$\\downarrow$ \\\\\n96\t\\midrule\n97\t200 & 15.158 \\\\ % exp_id: training_steps_sweep\n98\t400 & 12.538 \\\\ % exp_id: training_steps_sweep\n99\t600 & 12.046 \\\\ % exp_id: training_steps_sweep\n100\t800 & 11.907 \\\\ % exp_id: training_steps_sweep\n101\t1000 & \\textbf{11.906} \\\\ % exp_id: training_steps_sweep\n102\t\\bottomrule\n103\t\\end{tabular}\n104\t\\end{table}\n105\t\n106\tTraining converges rapidly: 95\\% of the quality gap closes by step 600, and performance saturates by step 800 ($\\Delta < 0.001$ between 800 and 1000 steps).\n107\tOur default of 1000 steps provides a conservative margin.\n108\t\n109\t\n110\t\\section{Adaptive Penalty Controller Dynamics}\n111\t\\label{app:lagrangian}\n112\t\n113\tTable~\\ref{tab:lagrangian} reports the convergence of the adaptive penalty controller across sparsity targets.\n114\tThe geometric doubling pattern ($1 \\to 2 \\to 4 \\to 8 \\to \\ldots$) enables $\\lambda$ to reach steady state within $\\sim$10 steps; the deadzone ($\\epsilon = 0.02$) then stabilizes $\\lambda$ once actual sparsity is within $\\pm$2\\% of the target.\n115\t\n116\t\\begin{table}[h]\n117\t\\centering\n118\t\\caption{Penalty controller convergence across sparsity targets (multiplicative schedule, margin $\\epsilon=0.02$, 1000 training steps). Deviation is $|$actual $-$ target$|$ / target.}\n119\t\\label{tab:lagrangian}\n120\t\\small\n121\t\\begin{tabular}{lccccc}\n122\t\\toprule\n123\tTarget $\\rho$ & $\\lambda_{\\max}$ & Final $\\lambda$ & Actual sparsity & Deviation \\\\\n124\t\\midrule\n125\t30\\% & 5000 & 5000 (cap) & 0.285 & 5.0\\% \\\\ % exp_id: kl_30pct_s42\n126\t40\\% & 5000 & 625 & 0.398 & 0.5\\% \\\\ % exp_id: kl_40pct_s42\n127\t50\\% & 1000 & 8 & 0.504 & 0.8\\% \\\\ % exp_id: kl_50pct_s42\n128\t70\\% & 1000 & 1000 (cap) & 0.688 & 1.7\\% \\\\ % exp_id: kl_70pct_s42\n129\t\\bottomrule\n130\t\\end{tabular}\n131\t\\end{table}\n132\t\n133\tAt 50\\% sparsity, the SwiGLU gate distribution already clusters near the target, so $\\lambda$ remains low (8); the constraint is nearly satisfied by the initial predictor outputs.\n134\tAt 30\\% and 70\\%, the gap between the gate prior and target is larger, driving $\\lambda$ to its respective caps.\n135\tThe 40\\% target converges to $\\lambda = 625$ with only 0.5\\% deviation; this precision reflects a regime where the target is reachable without $\\lambda$ saturation.\n136\t\n137\t\\begin{figure}[h]\n138\t\\centering\n139\t\\includegraphics[width=\\columnwidth]{lagrangian_dynamics.pdf}\n140\t\\caption{Adaptive penalty controller convergence across sparsity targets. Upper panel: penalty weight $\\lambda$ (log scale) over training steps. The 30\\% target requires extreme penalty ($\\lambda \\to 5000$) to suppress activations below their natural density, while 50\\% needs only $\\lambda \\approx 8$ since SwiGLU gates already cluster near this sparsity. Lower panel: actual sparsity (solid) converges to the target (dashed) within $\\sim$10 steps via geometric doubling.}\n141\t\\label{fig:lagrangian_dynamics}\n142\t\\end{figure}\n143\t\n144\tTemperature $\\tau$ is annealed linearly from 1.0 to 0.1 over 1000 steps.\n145\tA mild loss increase in the final $\\sim$100 steps is expected: as masks become more binary ($\\tau \\to 0$), discrete rounding noise slightly increases KL divergence, consistent with convergence toward the hard-mask inference regime.\n146\t\n147\tThe controller reliably drives actual sparsity to within 5\\% of the target across all tested regimes, with $\\lambda$ spanning three orders of magnitude (8 to 5000) via geometric doubling.\n148\tFor the recommended 30\\% operating point, actual sparsity is $\\approx$28.5\\% (5\\% deviation). This does not affect conclusions: TEAL at interpolated 28.5\\% actual sparsity yields PPL$\\approx$10.7 (vs.\\ 10.97 at exact 30\\%), a $<$0.3 PPL difference negligible relative to the KL vs.\\ TEAL gap (8.98 vs.\\ 10.97).\n149\t\n150\t\n151\t\\section{Out-of-Distribution Evaluation}\n152\t\\label{app:ood}\n153\t\n154\tTo address concerns about data homogeneity between training (WikiText-103) and evaluation (WikiText-2), we evaluate on C4~\\cite{raffel2020c4} validation set under TEAL global allocation.\n155\t\n156\t\\begin{table}[h]\n157\t\\centering\n158\t\\caption{Out-of-distribution evaluation on C4 validation (PPL$\\downarrow$).}\n159\t\\label{tab:ood}\n160\t\\small\n161\t\\begin{tabular}{llc}\n162\t\\toprule\n163\tSparsity & Method & C4 PPL$\\downarrow$ \\\\\n164\t\\midrule\n165\t0\\% & Dense & 9.21 \\\\\n166\t\\midrule\n167\t30\\% & KL predictor (Ours) & \\textbf{16.05} \\\\ % exp_id: c4_ood_kl30_s42\n168\t\\midrule\n169\t\\multirow{2}{*}{50\\%} & KL predictor (Ours) & \\textbf{18.40} \\\\ % exp_id: eval_c4_ood_kl50\n170\t& TEAL vanilla & 38.75 \\\\\n171\t\\bottomrule\n172\t\\end{tabular}\n173\t\\end{table}\n174\t\n175\tAt the recommended 30\\% operating point, the KL predictor achieves C4 PPL 16.05 ($1.74\\times$ dense), confirming OOD generalization at the deployment-relevant sparsity level.\n176\tAt 50\\%, the KL predictor achieves 52.5\\% relative advantage over TEAL (18.40 vs.\\ 38.75), comparable to the 49\\% advantage on WikiText-2 (11.79 vs.\\ 23.31), confirming that KL-trained predictions generalize across distributions.\n177\t\n178\t\n179\t\\section{Per-Layer Retention Analysis}\n180\t\\label{app:retention}\n181\t\n182\t\\begin{figure}[h]\n183\t\\centering\n184\t\\includegraphics[width=\\columnwidth]{per_layer_retention_chart.pdf}\n185\t\\caption{Per-layer neuron retention under global top-$k$ allocation at 30\\%, 50\\%, and 70\\% sparsity. Dashed lines indicate uniform retention baselines. Late layers (L24--31) are consistently starved due to long-tailed activation distributions, with retention dropping to 28.4\\% (L31) even at 30\\% sparsity. At 70\\%, starvation extends to mid-layers (L10--12: 16.7--20.1\\%), explaining the transition to the capacity-limited regime.}\n186\t\\label{fig:retention}\n187\t\\end{figure}\n188\t\n189\t\n190\t\\section{Training Stability}\n191\t\\label{app:stability}\n192\t\n193\tThree-seed evaluation ($s \\in \\{42, 123, 456\\}$) at 50\\% sparsity under uniform allocation yields PPL $11.92 \\pm 0.07$ (CV=0.6\\%); training is stable across random initializations. % exp_id: multi_seed_kl50_uniform\n194\tDownstream metrics are similarly stable: ARC-c $33.8 \\pm 1.2$\\%, WinoGrande $62.9 \\pm 0.1$\\%, MMLU $28.0 \\pm 0.6$\\%, GSM8K $2.2 \\pm 0.1$\\%.\n195\t\n196\tUnder global allocation at 50\\%, MMLU is equally stable: $28.1 \\pm 0.2$\\% (s42=27.89, s123=28.34, s456=27.94); the near-random performance is therefore capacity-limited rather than seed-sensitive ($\\sigma$=0.2pp vs.\\ 9.5pp at 30\\% global). % exp_id: multi_seed_kl50_global\n197\tThe low standard deviation across both allocation strategies indicates that the KL training landscape is well-conditioned for this predictor architecture, with low sensitivity to initialization.\n198\t\n199\t\n200\t\\section{Extended Downstream Evaluation}\n201\t\\label{app:downstream}\n202\t\n203\tTable~\\ref{tab:downstream} compares Dense, KL 30\\% (uniform allocation), and TEAL 30\\% on three additional downstream benchmarks not included in the main results.\n204\t\n205\t\\begin{table}[h]\n206\t\\centering\n207\t\\caption{Extended downstream benchmarks at 30\\% sparsity (LLaMA-3.1-8B, seed 42). HellaSwag: 10-shot normalized acc; PIQA: 0-shot normalized acc; BoolQ: 0-shot acc.}\n208\t\\label{tab:downstream}\n209\t\\small\n210\t\\begin{tabular}{lccc}\n211\t\\toprule\n212\tMethod & HellaSwag & PIQA & BoolQ \\\\\n213\t\\midrule\n214\tDense & \\textbf{82.33} & \\textbf{80.74} & \\textbf{82.94} \\\\\n215\tKL 30\\% uniform & 72.70 & 75.95 & 76.85 \\\\ % exp_id: downstream_extended_kl30_s42\n216\tTEAL 30\\% vanilla & 66.70 & 73.61 & 68.50 \\\\ % exp_id: downstream_teal30_baseline\n217\t\\bottomrule\n218\t\\end{tabular}\n219\t\\end{table}\n220\t\n221\tThe KL predictor outperforms TEAL on all three benchmarks. On HellaSwag, it preserves 88.3\\% of dense accuracy (72.70 vs.\\ 82.33) vs.\\ 81.0\\% for TEAL (66.70). BoolQ shows the largest gap: 92.7\\% vs.\\ 82.6\\% preservation. PIQA shows a smaller differential (94.1\\% vs.\\ 91.2\\%).\n222\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "b9139d4b-dc03-49f9-a23c-fffc8158e272",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+                "content": "\\appendix\n\n\\section{Inference Efficiency}\n\\label{app:latency}\n\nTable~\\ref{tab:latency} reports inference throughput on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (batch size 1, sequence length 2048, fp16, averaged over 100 forward passes).\n\n\\begin{table}[h]\n\\centering\n\\caption{Inference latency on LLaMA-3.1-8B (RTX PRO 6000 Blackwell, batch=1, seq=2048, fp16, 100 forward passes). Overhead is relative to dense inference.}\n\\label{tab:latency}\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\nMethod & Sparsity & ms/fwd & tok/s & Overhead \\\\\n\\midrule\nDense & 0\\% & 119.11$\\pm$0.57 & 17{,}195 & --- \\\\\n\\midrule\nKL predictor-only & 30\\% & 126.64$\\pm$0.70 & 16{,}172 & +6.3\\% \\\\ % exp_id: latency_bench\nKL predictor-only & 50\\% & 126.78$\\pm$0.31 & 16{,}154 & +6.4\\% \\\\ % exp_id: latency_bench\n\\midrule\nPredictor + compensation & 30\\% & 129.94$\\pm$0.75 & 15{,}761 & +9.1\\% \\\\ % exp_id: latency_bench\nPredictor + compensation & 50\\% & 129.71$\\pm$0.53 & 15{,}789 & +8.9\\% \\\\ % exp_id: latency_bench\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe full KL-sparse pipeline adds 6.4\\% overhead to dense inference (126.78 vs.\\ 119.11\\,ms/forward), of which the predictor's 32-layer forward pass contributes 3.17\\,ms (2.7\\%); the remainder arises from mask application and sparse FFN indexing.\nEliminating the compensation network saves an additional $\\sim$2.7\\% latency overhead and 67.2M parameters (the per-layer GEMV required for output rescaling); KL distillation thus provides both quality and efficiency advantages over BCE-based approaches.\nThe overhead is near-identical at 30\\% and 50\\% sparsity because the predictor runs the same computation regardless of target sparsity; only the top-$k$ threshold changes.\n\nNote that the current implementation uses unstructured element-wise masks, which do not translate to wall-clock speedup without sparse kernel support.\nThe pipeline adds $\\sim$6.4\\% overhead; net acceleration requires kernel-level sparse computation optimizations (e.g., Triton block-sparse, cuSPARSE) that are beyond the scope of this work.\nOur contribution is prediction quality and inference simplification (removing the compensation network), not end-to-end latency reduction.\n\n\n\\section{Predictor Bottleneck Sensitivity}\n\\label{app:db_sensitivity}\n\nTable~\\ref{tab:db_sensitivity} reports the effect of predictor bottleneck dimension $d_b$ on PPL at 50\\% sparsity under both TEAL global allocation (the paper's primary inference protocol) and per-token evaluation.\n\n\\begin{table}[h]\n\\centering\n\\caption{Predictor bottleneck sensitivity at 50\\% sparsity (WikiText-2 PPL$\\downarrow$). TEAL global is the primary inference protocol; per-token shown for reference.}\n\\label{tab:db_sensitivity}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n$d_b$ & Params & TEAL global & $\\Delta$ & Per-token \\\\\n\\midrule\n64 & 38.2M (0.48\\%) & 12.076 & +0.9\\% & 10.16 \\\\ % exp_id: db_sensitivity_sweep\n128 & 75.9M (0.95\\%) & 11.963 & --- & 9.218 \\\\ % exp_id: db_sensitivity_sweep\n256 & 151.5M (1.89\\%) & 12.105 & +1.2\\% & 8.586 \\\\ % exp_id: db_sensitivity_sweep\n512 & 302.5M (3.77\\%) & 12.315 & +2.9\\% & 7.93 \\\\ % exp_id: db_sensitivity_sweep\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nUnder TEAL global allocation, increasing $d_b$ beyond 128 provides no benefit (PPL slightly worsens), while per-token evaluation shows monotonic improvement (10.16$\\to$7.93).\nThis divergence indicates that the global top-$k$ allocation mechanism, not predictor capacity, is the binding constraint: additional predictor capacity produces better per-neuron scores, but the global ranking and budget distribution cannot exploit them.\nThe $d_b{=}128$ configuration (75.9M params, $<$1\\% of base model) is therefore optimal for the TEAL inference protocol.\n\n\\subsection{Temperature Schedule Sensitivity}\n\\label{app:tau_sensitivity}\n\n\\begin{table}[h]\n\\centering\n\\caption{Temperature schedule sensitivity at 50\\% sparsity (WikiText-2 PPL$\\downarrow$, TEAL global).}\n\\label{tab:tau_sensitivity}\n\\small\n\\begin{tabular}{lc}\n\\toprule\n$\\tau$ Schedule & PPL$\\downarrow$ \\\\\n\\midrule\nFixed $\\tau{=}0.5$ & \\textbf{11.861} \\\\ % exp_id: tau_schedule_sweep\nLinear $1.0 \\to 0.1$ (default) & 11.963 \\\\ % exp_id: tau_schedule_sweep\nFixed $\\tau{=}0.1$ & 12.072 \\\\ % exp_id: tau_schedule_sweep\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTemperature schedule has minimal impact ($<$1.8\\% PPL variation).\nThe linear annealing default is a conservative choice; even removing annealing entirely (fixed $\\tau{=}0.5$) yields comparable performance.\n\n\\subsection{Training Convergence}\n\\label{app:training_convergence}\n\n\\begin{table}[h]\n\\centering\n\\caption{Training convergence at 50\\% sparsity (WikiText-2 PPL$\\downarrow$, TEAL global).}\n\\label{tab:training_convergence}\n\\small\n\\begin{tabular}{cc}\n\\toprule\nSteps & PPL$\\downarrow$ \\\\\n\\midrule\n200 & 15.158 \\\\ % exp_id: training_steps_sweep\n400 & 12.538 \\\\ % exp_id: training_steps_sweep\n600 & 12.046 \\\\ % exp_id: training_steps_sweep\n800 & 11.907 \\\\ % exp_id: training_steps_sweep\n1000 & \\textbf{11.906} \\\\ % exp_id: training_steps_sweep\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTraining converges rapidly: 95\\% of the quality gap closes by step 600, and performance saturates by step 800 ($\\Delta < 0.001$ between 800 and 1000 steps).\nOur default of 1000 steps provides a conservative margin.\n\n\n\\section{Adaptive Penalty Controller Dynamics}\n\\label{app:lagrangian}\n\nTable~\\ref{tab:lagrangian} reports the convergence of the adaptive penalty controller across sparsity targets.\nThe geometric doubling pattern ($1 \\to 2 \\to 4 \\to 8 \\to \\ldots$) enables $\\lambda$ to reach steady state within $\\sim$10 steps; the deadzone ($\\epsilon = 0.02$) then stabilizes $\\lambda$ once actual sparsity is within $\\pm$2\\% of the target.\n\n\\begin{table}[h]\n\\centering\n\\caption{Penalty controller convergence across sparsity targets (multiplicative schedule, margin $\\epsilon=0.02$, 1000 training steps). Deviation is $|$actual $-$ target$|$ / target.}\n\\label{tab:lagrangian}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nTarget $\\rho$ & $\\lambda_{\\max}$ & Final $\\lambda$ & Actual sparsity & Deviation \\\\\n\\midrule\n30\\% & 5000 & 5000 (cap) & 0.285 & 5.0\\% \\\\ % exp_id: kl_30pct_s42\n40\\% & 5000 & 625 & 0.398 & 0.5\\% \\\\ % exp_id: kl_40pct_s42\n50\\% & 1000 & 8 & 0.504 & 0.8\\% \\\\ % exp_id: kl_50pct_s42\n70\\% & 1000 & 1000 (cap) & 0.688 & 1.7\\% \\\\ % exp_id: kl_70pct_s42\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt 50\\% sparsity, the SwiGLU gate distribution already clusters near the target, so $\\lambda$ remains low (8); the constraint is nearly satisfied by the initial predictor outputs.\nAt 30\\% and 70\\%, the gap between the gate prior and target is larger, driving $\\lambda$ to its respective caps.\nThe 40\\% target converges to $\\lambda = 625$ with only 0.5\\% deviation; this precision reflects a regime where the target is reachable without $\\lambda$ saturation.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{lagrangian_dynamics.pdf}\n\\caption{Adaptive penalty controller convergence across sparsity targets. Upper panel: penalty weight $\\lambda$ (log scale) over training steps. The 30\\% target requires extreme penalty ($\\lambda \\to 5000$) to suppress activations below their natural density, while 50\\% needs only $\\lambda \\approx 8$ since SwiGLU gates already cluster near this sparsity. Lower panel: actual sparsity (solid) converges to the target (dashed) within $\\sim$10 steps via geometric doubling.}\n\\label{fig:lagrangian_dynamics}\n\\end{figure}\n\nTemperature $\\tau$ is annealed linearly from 1.0 to 0.1 over 1000 steps.\nA mild loss increase in the final $\\sim$100 steps is expected: as masks become more binary ($\\tau \\to 0$), discrete rounding noise slightly increases KL divergence, consistent with convergence toward the hard-mask inference regime.\n\nThe controller reliably drives actual sparsity to within 5\\% of the target across all tested regimes, with $\\lambda$ spanning three orders of magnitude (8 to 5000) via geometric doubling.\nFor the recommended 30\\% operating point, actual sparsity is $\\approx$28.5\\% (5\\% deviation). This does not affect conclusions: TEAL at interpolated 28.5\\% actual sparsity yields PPL$\\approx$10.7 (vs.\\ 10.97 at exact 30\\%), a $<$0.3 PPL difference negligible relative to the KL vs.\\ TEAL gap (8.98 vs.\\ 10.97).\n\n\n\\section{Out-of-Distribution Evaluation}\n\\label{app:ood}\n\nTo address concerns about data homogeneity between training (WikiText-103) and evaluation (WikiText-2), we evaluate on C4~\\cite{raffel2020c4} validation set under TEAL global allocation.\n\n\\begin{table}[h]\n\\centering\n\\caption{Out-of-distribution evaluation on C4 validation (PPL$\\downarrow$).}\n\\label{tab:ood}\n\\small\n\\begin{tabular}{llc}\n\\toprule\nSparsity & Method & C4 PPL$\\downarrow$ \\\\\n\\midrule\n0\\% & Dense & 9.21 \\\\\n\\midrule\n30\\% & KL predictor (Ours) & \\textbf{16.05} \\\\ % exp_id: c4_ood_kl30_s42\n\\midrule\n\\multirow{2}{*}{50\\%} & KL predictor (Ours) & \\textbf{18.40} \\\\ % exp_id: eval_c4_ood_kl50\n& TEAL vanilla & 38.75 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt the recommended 30\\% operating point, the KL predictor achieves C4 PPL 16.05 ($1.74\\times$ dense), confirming OOD generalization at the deployment-relevant sparsity level.\nAt 50\\%, the KL predictor achieves 52.5\\% relative advantage over TEAL (18.40 vs.\\ 38.75), comparable to the 49\\% advantage on WikiText-2 (11.79 vs.\\ 23.31), confirming that KL-trained predictions generalize across distributions.\n\n\n\\section{Per-Layer Retention Analysis}\n\\label{app:retention}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{per_layer_retention_chart.pdf}\n\\caption{Per-layer neuron retention under global top-$k$ allocation at 30\\%, 50\\%, and 70\\% sparsity. Dashed lines indicate uniform retention baselines. Late layers (L24--31) are consistently starved due to long-tailed activation distributions, with retention dropping to 28.4\\% (L31) even at 30\\% sparsity. At 70\\%, starvation extends to mid-layers (L10--12: 16.7--20.1\\%), explaining the transition to the capacity-limited regime.}\n\\label{fig:retention}\n\\end{figure}\n\n\n\\section{Training Stability}\n\\label{app:stability}\n\nThree-seed evaluation ($s \\in \\{42, 123, 456\\}$) at 50\\% sparsity under uniform allocation yields PPL $11.92 \\pm 0.07$ (CV=0.6\\%); training is stable across random initializations. % exp_id: multi_seed_kl50_uniform\nDownstream metrics are similarly stable: ARC-c $33.8 \\pm 1.2$\\%, WinoGrande $62.9 \\pm 0.1$\\%, MMLU $28.0 \\pm 0.6$\\%, GSM8K $2.2 \\pm 0.1$\\%.\n\nUnder global allocation at 50\\%, MMLU is equally stable: $28.1 \\pm 0.2$\\% (s42=27.89, s123=28.34, s456=27.94); the near-random performance is therefore capacity-limited rather than seed-sensitive ($\\sigma$=0.2pp vs.\\ 9.5pp at 30\\% global). % exp_id: multi_seed_kl50_global\nThe low standard deviation across both allocation strategies indicates that the KL training landscape is well-conditioned for this predictor architecture, with low sensitivity to initialization.\n\n\n\\section{Extended Downstream Evaluation}\n\\label{app:downstream}\n\nTable~\\ref{tab:downstream} compares Dense, KL 30\\% (uniform allocation), and TEAL 30\\% on three additional downstream benchmarks not included in the main results.\n\n\\begin{table}[h]\n\\centering\n\\caption{Extended downstream benchmarks at 30\\% sparsity (LLaMA-3.1-8B, seed 42). HellaSwag: 10-shot normalized acc; PIQA: 0-shot normalized acc; BoolQ: 0-shot acc.}\n\\label{tab:downstream}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nMethod & HellaSwag & PIQA & BoolQ \\\\\n\\midrule\nDense & \\textbf{82.33} & \\textbf{80.74} & \\textbf{82.94} \\\\\nKL 30\\% uniform & 72.70 & 75.95 & 76.85 \\\\ % exp_id: downstream_extended_kl30_s42\nTEAL 30\\% vanilla & 66.70 & 73.61 & 68.50 \\\\ % exp_id: downstream_teal30_baseline\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe KL predictor outperforms TEAL on all three benchmarks. On HellaSwag, it preserves 88.3\\% of dense accuracy (72.70 vs.\\ 82.33) vs.\\ 81.0\\% for TEAL (66.70). BoolQ shows the largest gap: 92.7\\% vs.\\ 82.6\\% preservation. PIQA shows a smaller differential (94.1\\% vs.\\ 91.2\\%).\n",
+                "numLines": 222,
+                "startLine": 1,
+                "totalLines": 222
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AJzLPgouBTAPmzT7SvGJ7D",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "353d6248-5cca-4f54-98dc-fef4bcb6b86b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XVoxJZoVpps69EaNmLbA6Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4910,
+                "cache_read_input_tokens": 33178,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4910
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T01:06:49.358Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AJzLPgouBTAPmzT7SvGJ7D",
+              "type": "tool_result",
+              "content": "1\tWe study whether end-to-end KL distillation can replace per-neuron classification for activation sparsity prediction in SwiGLU LLMs.\n2\tExisting predictors trained with binary cross-entropy (BCE) optimize each neuron independently, but inference allocates sparsity budgets via global top-$k$ across all layers.\n3\tGradient analysis reveals a structural mismatch: BCE's per-neuron gradient is blind to cross-neuron interactions and achieves higher oracle F1 yet 137\\% worse perplexity than a KL-trained predictor.\n4\tA lightweight predictor ($<$1\\% of base parameters) trained with forward KL and Gumbel-Sigmoid relaxation resolves this mismatch by coupling all neurons through the output distribution.\n5\tAt the recommended 30\\% sparsity operating point on LLaMA-3.1-8B, KL distillation reduces PPL degradation by 18\\% over magnitude-based TEAL; uniform allocation provides $7.5\\times$ smaller cross-seed downstream standard deviation than global top-$k$, eliminating seed-dependent performance instability.\n6\tAt higher sparsity (50\\%), PPL advantage widens (49\\% over TEAL) but downstream tasks degrade regardless of allocation strategy; these results reveal allocation-dependent operating regions at the 7--8B scale.\n7\tCross-architecture evaluation on Mistral-7B-v0.3 confirms consistent improvements (within 8\\% ratio at $\\leq$50\\% sparsity).\n8\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "ba428fcf-12f2-4e5c-af0f-9da21e1a12e9",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex",
+                "content": "We study whether end-to-end KL distillation can replace per-neuron classification for activation sparsity prediction in SwiGLU LLMs.\nExisting predictors trained with binary cross-entropy (BCE) optimize each neuron independently, but inference allocates sparsity budgets via global top-$k$ across all layers.\nGradient analysis reveals a structural mismatch: BCE's per-neuron gradient is blind to cross-neuron interactions and achieves higher oracle F1 yet 137\\% worse perplexity than a KL-trained predictor.\nA lightweight predictor ($<$1\\% of base parameters) trained with forward KL and Gumbel-Sigmoid relaxation resolves this mismatch by coupling all neurons through the output distribution.\nAt the recommended 30\\% sparsity operating point on LLaMA-3.1-8B, KL distillation reduces PPL degradation by 18\\% over magnitude-based TEAL; uniform allocation provides $7.5\\times$ smaller cross-seed downstream standard deviation than global top-$k$, eliminating seed-dependent performance instability.\nAt higher sparsity (50\\%), PPL advantage widens (49\\% over TEAL) but downstream tasks degrade regardless of allocation strategy; these results reveal allocation-dependent operating regions at the 7--8B scale.\nCross-architecture evaluation on Mistral-7B-v0.3 confirms consistent improvements (within 8\\% ratio at $\\leq$50\\% sparsity).\n",
+                "numLines": 8,
+                "startLine": 1,
+                "totalLines": 8
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PVWoumVvtTUbpJxjwE8MGL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "1d8a1266-dbeb-4303-a0ac-4d19718b49b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XVoxJZoVpps69EaNmLbA6Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4910,
+                "cache_read_input_tokens": 33178,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4910
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T01:06:49.862Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PVWoumVvtTUbpJxjwE8MGL",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\n3\tSwiGLU feed-forward networks~\\cite{shazeer2020glu} in modern LLMs exhibit high contextual sparsity: at any given token, a large fraction of FFN neurons contribute negligibly to the output.\n4\tLearned sparsity predictors~\\cite{liu2023dejavu,gautam2026fastforward} exploit this property by training small networks to anticipate which neurons are important, but they universally rely on binary cross-entropy (BCE) loss, treating each neuron as an independent classification target.\n5\tYet at inference, sparsity budgets are allocated globally: TEAL's top-$k$ mechanism~\\cite{liu2025teal} ranks all neurons across all layers and retains only those above a model-wide threshold.\n6\tThis mismatch between per-neuron training and global inference allocation has not been formally analyzed.\n7\t\n8\tWe provide this analysis.\n9\tThe gradient of BCE with respect to neuron $j$'s score is $\\partial \\mathcal{L}_{\\text{BCE}} / \\partial s_j = \\sigma(s_j) - m_j^*$, a function of $j$ alone, independent of every other neuron.\n10\tUnder KL divergence, the gradient for neuron $j$ in layer $\\ell$ factors as:\n11\t\\begin{equation*}\n12\t\\frac{\\partial \\mathcal{L}_{\\text{KL}}}{\\partial s_j^{(\\ell)}} = \\frac{\\partial \\mathcal{L}_{\\text{KL}}}{\\partial \\mathbf{z}} \\cdot \\frac{\\partial \\mathbf{z}}{\\partial \\mathbf{h}^{(\\ell)}} \\cdot \\frac{\\partial \\mathbf{h}^{(\\ell)}}{\\partial \\tilde{m}_j^{(\\ell)}} \\cdot \\frac{\\partial \\tilde{m}_j^{(\\ell)}}{\\partial s_j^{(\\ell)}},\n13\t\\end{equation*}\n14\twhere the Jacobian $\\partial \\mathbf{z} / \\partial \\mathbf{h}^{(\\ell)}$ propagates through all downstream layers, coupling each neuron's gradient to every other neuron's mask state.\n15\tThis structural difference predicts that KL should outperform BCE specifically under global allocation, and the prediction is confirmed empirically: BCE achieves higher oracle F1 (0.613 vs.\\ 0.540) yet produces 137\\% worse perplexity, because per-neuron magnitude accuracy is a misaligned proxy for output-distribution preservation.\n16\t\n17\tTo test whether end-to-end distillation can overcome this mismatch, we instantiate a lightweight predictor (75.9M params, $<$1\\% of base) trained with forward KL and Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}.\n18\tWith uniform allocation, the predictor achieves PPL 11.96 at 50\\% sparsity; under global top-$k$, PPL improves to 11.79 (49\\% over TEAL) but late-layer starvation amplifies cross-seed downstream standard deviation ($7.5\\times$), motivating uniform allocation for deployment.\n19\tCross-architecture evaluation on Mistral-7B-v0.3~\\cite{jiang2023mistral} confirms consistent improvements at the 7--8B scale (Table~\\ref{tab:taxonomy} situates prior work along correction granularity and training signal coupling).\n20\t\n21\tOur contributions are:\n22\t\\begin{itemize}[nosep,leftmargin=*]\n23\t\\item Empirical observation and quantification of the structural mismatch between per-neuron BCE training and global top-$k$ inference allocation, supported by oracle F1 decomposition and gradient SNR measurements (\\S\\ref{sec:method:gradient}).\n24\t\\item Empirical validation that KL distillation overcomes this mismatch for activation sparsity: oracle F1 and perplexity are inversely decoupled, with BCE at +7pp F1 yet 137\\% worse PPL (\\S\\ref{sec:isocompute}).\n25\t\\item Analysis of how allocation strategy governs the prediction-to-downstream gap, identifying a late-layer starvation mechanism and characterizing qualitative shifts across sparsity levels at the 7--8B scale (\\S\\ref{sec:scaling}).\n26\t\\end{itemize}\n27\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "f083ff50-61f4-4de6-b82e-690c6b91ce2e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex",
+                "content": "\\section{Introduction}\n\nSwiGLU feed-forward networks~\\cite{shazeer2020glu} in modern LLMs exhibit high contextual sparsity: at any given token, a large fraction of FFN neurons contribute negligibly to the output.\nLearned sparsity predictors~\\cite{liu2023dejavu,gautam2026fastforward} exploit this property by training small networks to anticipate which neurons are important, but they universally rely on binary cross-entropy (BCE) loss, treating each neuron as an independent classification target.\nYet at inference, sparsity budgets are allocated globally: TEAL's top-$k$ mechanism~\\cite{liu2025teal} ranks all neurons across all layers and retains only those above a model-wide threshold.\nThis mismatch between per-neuron training and global inference allocation has not been formally analyzed.\n\nWe provide this analysis.\nThe gradient of BCE with respect to neuron $j$'s score is $\\partial \\mathcal{L}_{\\text{BCE}} / \\partial s_j = \\sigma(s_j) - m_j^*$, a function of $j$ alone, independent of every other neuron.\nUnder KL divergence, the gradient for neuron $j$ in layer $\\ell$ factors as:\n\\begin{equation*}\n\\frac{\\partial \\mathcal{L}_{\\text{KL}}}{\\partial s_j^{(\\ell)}} = \\frac{\\partial \\mathcal{L}_{\\text{KL}}}{\\partial \\mathbf{z}} \\cdot \\frac{\\partial \\mathbf{z}}{\\partial \\mathbf{h}^{(\\ell)}} \\cdot \\frac{\\partial \\mathbf{h}^{(\\ell)}}{\\partial \\tilde{m}_j^{(\\ell)}} \\cdot \\frac{\\partial \\tilde{m}_j^{(\\ell)}}{\\partial s_j^{(\\ell)}},\n\\end{equation*}\nwhere the Jacobian $\\partial \\mathbf{z} / \\partial \\mathbf{h}^{(\\ell)}$ propagates through all downstream layers, coupling each neuron's gradient to every other neuron's mask state.\nThis structural difference predicts that KL should outperform BCE specifically under global allocation, and the prediction is confirmed empirically: BCE achieves higher oracle F1 (0.613 vs.\\ 0.540) yet produces 137\\% worse perplexity, because per-neuron magnitude accuracy is a misaligned proxy for output-distribution preservation.\n\nTo test whether end-to-end distillation can overcome this mismatch, we instantiate a lightweight predictor (75.9M params, $<$1\\% of base) trained with forward KL and Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}.\nWith uniform allocation, the predictor achieves PPL 11.96 at 50\\% sparsity; under global top-$k$, PPL improves to 11.79 (49\\% over TEAL) but late-layer starvation amplifies cross-seed downstream standard deviation ($7.5\\times$), motivating uniform allocation for deployment.\nCross-architecture evaluation on Mistral-7B-v0.3~\\cite{jiang2023mistral} confirms consistent improvements at the 7--8B scale (Table~\\ref{tab:taxonomy} situates prior work along correction granularity and training signal coupling).\n\nOur contributions are:\n\\begin{itemize}[nosep,leftmargin=*]\n\\item Empirical observation and quantification of the structural mismatch between per-neuron BCE training and global top-$k$ inference allocation, supported by oracle F1 decomposition and gradient SNR measurements (\\S\\ref{sec:method:gradient}).\n\\item Empirical validation that KL distillation overcomes this mismatch for activation sparsity: oracle F1 and perplexity are inversely decoupled, with BCE at +7pp F1 yet 137\\% worse PPL (\\S\\ref{sec:isocompute}).\n\\item Analysis of how allocation strategy governs the prediction-to-downstream gap, identifying a late-layer starvation mechanism and characterizing qualitative shifts across sparsity levels at the 7--8B scale (\\S\\ref{sec:scaling}).\n\\end{itemize}\n",
+                "numLines": 27,
+                "startLine": 1,
+                "totalLines": 27
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XKCAg8myn8cJk54bqkh43N",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "c40ef39b-ddf6-47f9-8e07-93af4331f4c9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XVoxJZoVpps69EaNmLbA6Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4910,
+                "cache_read_input_tokens": 33178,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4910
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T01:06:50.359Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XKCAg8myn8cJk54bqkh43N",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tWe present a KL distillation framework for training contextual sparsity predictors in SwiGLU-based language models.\n5\tThe method replaces per-neuron binary classification (BCE) with an output-distribution objective that couples all pruning decisions through the model's forward pass and achieves competitive performance without auxiliary error compensation networks at inference.\n6\t\n7\t\\subsection{Problem Formulation}\n8\t\\label{sec:method:formulation}\n9\t\n10\tConsider a pretrained transformer with $L$ layers, each containing a SwiGLU feed-forward network~\\cite{shazeer2020glu}.\n11\tFor layer $\\ell$, the FFN computes:\n12\t\\begin{align}\n13\t\\mathbf{y}^{(\\ell)} = \\bigl(\\sigma(\\mathbf{x}^{(\\ell)} \\mathbf{W}_g^{(\\ell)}) \\odot \\mathbf{x}^{(\\ell)} \\mathbf{W}_u^{(\\ell)}\\bigr) \\mathbf{W}_d^{(\\ell)},\n14\t\\label{eq:swiglu}\n15\t\\end{align}\n16\twhere $\\mathbf{x}^{(\\ell)} \\in \\mathbb{R}^{d}$ is the hidden state after attention ($d{=}4096$), $\\sigma$ denotes SiLU, $\\mathbf{W}_g^{(\\ell)}, \\mathbf{W}_u^{(\\ell)} \\in \\mathbb{R}^{d \\times d_{\\text{ff}}}$ and $\\mathbf{W}_d^{(\\ell)} \\in \\mathbb{R}^{d_{\\text{ff}} \\times d}$ are the gate, up-projection, and down-projection matrices, and $d_{\\text{ff}}{=}14{,}336$.\n17\t\n18\tDefine the gate activation $\\mathbf{g}^{(\\ell)} = \\sigma(\\mathbf{x}^{(\\ell)} \\mathbf{W}_g^{(\\ell)}) \\in \\mathbb{R}^{d_{\\text{ff}}}$.\n19\tEach element $g_j^{(\\ell)}$ determines the contribution of neuron $j$ to the output.\n20\tWe introduce a binary mask $\\mathbf{m}^{(\\ell)} \\in \\{0,1\\}^{d_{\\text{ff}}}$ that zeros out pruned neurons:\n21\t\\begin{align}\n22\t\\mathbf{y}_{\\text{sparse}}^{(\\ell)} = \\bigl(\\mathbf{m}^{(\\ell)} \\odot \\mathbf{g}^{(\\ell)} \\odot \\mathbf{x}^{(\\ell)} \\mathbf{W}_u^{(\\ell)}\\bigr) \\mathbf{W}_d^{(\\ell)}.\n23\t\\label{eq:sparse_ffn}\n24\t\\end{align}\n25\tOur goal is to learn a mask predictor $f_\\theta^{(\\ell)}(\\mathbf{h}) \\to \\mathbf{s}^{(\\ell)} \\in (0,1)^{d_{\\text{ff}}}$ that produces per-neuron importance scores from the pre-FFN hidden state $\\mathbf{h}$.\n26\tAt inference, the scores are fed to a global top-$k$ allocation mechanism~\\cite{liu2025teal} that distributes the sparsity budget across layers non-uniformly, retaining the $(1{-}\\rho) \\times L \\times d_{\\text{ff}}$ highest-scoring neurons model-wide for a target sparsity ratio $\\rho$.\n27\t\n28\t\n29\t\\subsection{Predictor Architecture}\n30\t\\label{sec:method:predictor}\n31\t\n32\tEach layer $\\ell$ has an independent two-layer MLP predictor:\n33\t\\begin{align}\n34\tf_\\theta^{(\\ell)}(\\mathbf{h}) = \\text{GELU}(\\mathbf{h} \\mathbf{W}_1^{(\\ell)}) \\, \\mathbf{W}_2^{(\\ell)},\n35\t\\label{eq:predictor}\n36\t\\end{align}\n37\twhere $\\mathbf{W}_1^{(\\ell)} \\in \\mathbb{R}^{d \\times d_b}$ and $\\mathbf{W}_2^{(\\ell)} \\in \\mathbb{R}^{d_b \\times d_{\\text{ff}}}$ with bottleneck dimension $d_b{=}128$.\n38\tThe predictor takes the hidden state after attention (before the FFN) and outputs $d_{\\text{ff}}$-dimensional logits $\\mathbf{s}^{(\\ell)}$, from which the mask is derived.\n39\t\n40\tEach predictor has $(4096 \\times 128) + (128 \\times 14336) = 2.37\\text{M}$ parameters.\n41\tWith 32 independent predictors (one per layer), the total overhead is 75.9M parameters, less than 1\\% of the 8B base model.\n42\tThe predictors operate independently across layers, requiring no cross-layer communication at inference.\n43\t\n44\t\n45\t\\subsection{Gumbel-Sigmoid Relaxation}\n46\t\\label{sec:method:gumbel}\n47\t\n48\tThe hard mask $m_j = \\mathbf{1}[s_j > \\text{threshold}]$ is non-differentiable, preventing gradient flow from the KL objective through the mask to the predictor parameters.\n49\tWe apply Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} to produce differentiable soft masks:\n50\t\\begin{align}\n51\t\\tilde{m}_j = \\sigma_\\tau\\!\\left(\\log \\frac{s_j}{1 - s_j} + g_1 - g_2\\right), \\quad g_1, g_2 \\sim \\text{Gumbel}(0,1),\n52\t\\label{eq:gumbel}\n53\t\\end{align}\n54\twhere $\\sigma_\\tau(x) = \\text{sigmoid}(x / \\tau)$ and $\\tau$ is a temperature parameter.\n55\tThe Gumbel noise provides stochastic exploration of mask configurations during training, while the temperature controls sharpness: as $\\tau \\to 0$, $\\tilde{m}_j$ approaches a binary decision.\n56\t\n57\tWe anneal $\\tau$ linearly from 1.0 to 0.1 over training.\n58\tAt high temperature, the soft mask permits gradient flow through all neurons for broad exploration.\n59\tAs temperature decreases, the mask concentrates on confident decisions, approximating the hard allocation used at inference.\n60\t\n61\t\\paragraph{Comparison with Straight-Through Estimation.}\n62\tThe straight-through estimator (STE)~\\cite{bengio2013ste} applies a hard threshold in the forward pass and passes gradients through unchanged ($\\partial m / \\partial s = 1$).\n63\tIn our setting, STE produces discontinuous gradient signals: small parameter changes can flip many neurons simultaneously, causing violent oscillations in the penalty weight and failure to converge to the target sparsity.\n64\tGumbel relaxation eliminates this pathology, contributing a 34.5\\% improvement (PPL 15.77 $\\to$ 11.79 at 50\\% sparsity), as we verify empirically in \\S\\ref{sec:experiments}.\n65\t\n66\t\n67\t\\subsection{KL Divergence Training Objective}\n68\t\\label{sec:method:kl}\n69\t\n70\tLet $\\mathbf{z}_{\\text{dense}}$ denote the output logits from a full dense forward pass, and $\\mathbf{z}_{\\text{sparse}}$ the logits from a forward pass with predictor-generated soft masks $\\{\\tilde{\\mathbf{m}}^{(\\ell)}\\}_\\ell$ applied at every layer.\n71\tWe minimize the forward KL divergence between the dense and sparse output distributions:\n72\t\\begin{align}\n73\t\\mathcal{L}_{\\text{KL}} = D_{\\text{KL}}(p_{\\text{dense}} \\,\\|\\, p_{\\text{sparse}}) = \\sum_{v} p_{\\text{dense}}^{(v)} \\log \\frac{p_{\\text{dense}}^{(v)}}{p_{\\text{sparse}}^{(v)}},\n74\t\\label{eq:kl_loss}\n75\t\\end{align}\n76\twhere $p_{\\text{dense}} = \\text{softmax}(\\mathbf{z}_{\\text{dense}})$ and $p_{\\text{sparse}} = \\text{softmax}(\\mathbf{z}_{\\text{sparse}})$, summed over the vocabulary $v$ and averaged over sequence positions.\n77\tThe base model is frozen; only the predictor parameters receive gradients.\n78\t\n79\tWe use forward KL (mean-seeking) rather than reverse KL, as the goal is to preserve the dense model's primary predictions rather than explore alternative modes; \\S\\ref{sec:experiments} validates this choice with ablations over divergence direction (forward KL outperforms JSD by 6.4\\% and reverse KL by 8.6\\%).\n80\tNo temperature scaling ($T{=}1$) is applied~\\cite{hinton2015distilling}.\n81\t\n82\t\n83\t\\subsection{Adaptive Penalty Sparsity Controller}\n84\t\\label{sec:method:lagrangian}\n85\t\n86\tWe enforce a model-level sparsity target $\\rho$ via constrained optimization.\n87\tLet $\\bar{s} = \\frac{1}{L} \\sum_\\ell \\frac{1}{d_{\\text{ff}}} \\sum_j \\tilde{m}_j^{(\\ell)}$ denote the average fraction of retained neurons.\n88\tThe constrained problem is:\n89\t\\begin{align}\n90\t\\min_\\theta \\; \\mathcal{L}_{\\text{KL}} \\quad \\text{s.t.} \\quad \\bar{s} \\leq 1 - \\rho.\n91\t\\label{eq:constrained}\n92\t\\end{align}\n93\tWe relax this via an adaptive penalty controller:\n94\t\\begin{align}\n95\t\\mathcal{L} = \\mathcal{L}_{\\text{KL}} + \\lambda \\cdot \\text{clamp}(|\\bar{s} - (1 - \\rho)| - \\epsilon, \\min{=}0)^2,\n96\t\\label{eq:lagrangian}\n97\t\\end{align}\n98\twhere $\\epsilon = 0.02$ is a deadzone margin that prevents $\\lambda$ from responding to small constraint violations.\n99\tThe penalty weight $\\lambda$ is updated multiplicatively at each step:\n100\t\\begin{align}\n101\t\\lambda \\leftarrow \\begin{cases} \\lambda \\times 2 & \\text{if } \\bar{s} > (1-\\rho) + \\epsilon \\\\ \\lambda \\times 0.5 & \\text{if } \\bar{s} < (1-\\rho) - \\epsilon \\\\ \\lambda & \\text{otherwise} \\end{cases}\n102\t\\label{eq:dual_update}\n103\t\\end{align}\n104\twith $\\lambda$ clamped to $[\\lambda_{\\text{floor}}, \\lambda_{\\max}]$ where $\\lambda_{\\text{floor}} = 0.01$ and $\\lambda_{\\max} \\in \\{1000, 5000\\}$ depending on the target.\n105\tThe geometric doubling requires only $\\lambda_{\\max}$ as a user-specified hyperparameter (no step-size tuning) and reaches target sparsity within 40--110 steps for 40--50\\% targets; for 30\\% and 70\\% targets, $\\lambda$ saturates at $\\lambda_{\\max}$ with 1.7--5.0\\% residual deviation (Appendix~\\ref{app:lagrangian}, Figure~\\ref{fig:lagrangian_dynamics}). The deadzone prevents oscillation once sparsity is within $\\pm$2\\%.\\footnote{Our update rule resembles the augmented Lagrangian method but replaces gradient-based dual updates with a multiplicative schedule for training stability. We term it an adaptive penalty controller to distinguish from formal dual methods that guarantee KKT satisfaction.}\n106\t\n107\t\n108\t\\subsection{Gradient-Based Motivation: BCE vs.\\ KL}\n109\t\\label{sec:method:gradient}\n110\t\n111\tWe analyze the structural difference between BCE and KL training signals to motivate why KL distillation is better suited to global top-$k$ inference.\n112\t\n113\t\\paragraph{BCE gradient structure.}\n114\tThe standard approach trains the predictor against oracle masks $m_j^* = \\mathbf{1}[|g_j| \\geq \\text{top-}k\\text{ threshold}]$ derived from the dense model's activation magnitudes, where the threshold is the global top-$k$ cutoff across all layers (matching TEAL's inference protocol).\n115\tThe loss decomposes per neuron:\n116\t\\begin{align}\n117\t\\mathcal{L}_{\\text{BCE}} = -\\frac{1}{d_{\\text{ff}}} \\sum_{j=1}^{d_{\\text{ff}}} \\bigl[ m_j^* \\log \\sigma(s_j) + (1 - m_j^*) \\log(1 - \\sigma(s_j)) \\bigr].\n118\t\\label{eq:bce}\n119\t\\end{align}\n120\tThe gradient with respect to predictor logit $s_j$ is:\n121\t\\begin{align}\n122\t\\frac{\\partial \\mathcal{L}_{\\text{BCE}}}{\\partial s_j} = \\sigma(s_j) - m_j^*.\n123\t\\label{eq:bce_grad}\n124\t\\end{align}\n125\tThis gradient depends \\emph{only} on neuron $j$'s own prediction and target.\n126\tEach neuron is trained independently; there is no inter-neuron coupling in the learning signal.\n127\t\n128\t\\paragraph{KL gradient structure.}\n129\tUnder KL distillation, the gradient for predictor logit $s_j^{(\\ell)}$ in layer $\\ell$ is:\n130\t\\begin{align}\n131\t\\frac{\\partial \\mathcal{L}_{\\text{KL}}}{\\partial s_j^{(\\ell)}} = \\underbrace{\\frac{\\partial \\mathcal{L}_{\\text{KL}}}{\\partial \\mathbf{z}_{\\text{sparse}}}}_{\\text{(a)}} \\cdot \\underbrace{\\frac{\\partial \\mathbf{z}_{\\text{sparse}}}{\\partial \\mathbf{h}^{(\\ell)}}}_{\\text{(b)}} \\cdot \\underbrace{\\frac{\\partial \\mathbf{h}^{(\\ell)}}{\\partial \\tilde{m}_j^{(\\ell)}}}_{\\text{(c)}} \\cdot \\underbrace{\\frac{\\partial \\tilde{m}_j^{(\\ell)}}{\\partial s_j^{(\\ell)}}}_{\\text{(d)}},\n132\t\\label{eq:kl_grad}\n133\t\\end{align}\n134\twhere each factor has a distinct role:\n135\t\\begin{itemize}\n136\t\\item[\\textbf{(a)}] The KL gradient at the output, reflecting how each logit component deviates from the dense distribution.\n137\t\\item[\\textbf{(b)}] The Jacobian through all downstream layers from layer $\\ell$'s output to the final logits. This factor couples neuron $j$'s gradient to the state of every other retained neuron in layers $\\ell, \\ell{+}1, \\ldots, L$, because the sparse hidden state propagates through subsequent attention and FFN operations.\n138\t\\item[\\textbf{(c)}] The local mask effect: $\\partial \\mathbf{h}^{(\\ell)} / \\partial \\tilde{m}_j^{(\\ell)} = (g_j^{(\\ell)} \\cdot [\\mathbf{x}^{(\\ell)} \\mathbf{W}_u^{(\\ell)}]_j) \\cdot \\mathbf{W}_{d,j}^{(\\ell)}$, projecting through the down-projection to affect the full $d$-dimensional hidden state.\n139\t\\item[\\textbf{(d)}] The Gumbel-Sigmoid derivative: the differentiable path from logit to mask.\n140\t\\end{itemize}\n141\t\n142\t\\paragraph{The structural mismatch.}\n143\tThe key observation is that factor (b) makes the KL gradient for neuron $j$ depend on \\emph{all} other neurons' mask values.\n144\tBCE's factorized gradient (Eq.~\\ref{eq:bce_grad}) optimizes each neuron's prediction accuracy in isolation, but TEAL inference selects neurons via a global ranking across all layers.\n145\tUnder global top-$k$, the decision to retain neuron $j$ depends on the scores of all other neurons, a combinatorial interaction that BCE cannot capture.\n146\t\n147\tConcretely, BCE achieves high per-neuron accuracy ($>$90\\% oracle agreement) yet produces poor output under TEAL, because it optimizes a proxy misaligned with output preservation under global budget allocation.\n148\tKL directly optimizes the end-to-end objective, with gradients that reflect inter-neuron dependencies through the computation graph.\n149\t\n150\t\\paragraph{Empirical verification.}\n151\tMeasuring gradient SNR\\footnote{$\\text{SNR}_\\ell = \\|\\mathbb{E}[\\nabla_{\\theta_\\ell} \\mathcal{L}]\\|_2^2 / \\text{Var}[\\nabla_{\\theta_\\ell} \\mathcal{L}]$, expectation over mini-batches.} over 80 steps on LLaMA-3.1-8B (C4 data), KL achieves $5.76\\times$ higher average SNR than BCE ($5.77{\\times}10^{-5}$ vs.\\ $1.00{\\times}10^{-5}$), concentrated in early layers (0--4: $34$--$156\\times$) where factor~(b)'s Jacobian traverses the full remaining network; late layers (27--31: $1.7$--$3.8\\times$) show reduced advantage.\n152\tBCE's early-layer SNR collapses to ${\\sim}10^{-8}$ after step~10, consistent with rapid convergence of per-neuron classification, though an alternative explanation is loss saturation (gradient vanishing once accuracy plateaus).\n153\tThis preliminary measurement persists across learning rates; full-trajectory characterization is left to future work.\n154\t\n155\t\\subsection{Two-Dimensional Taxonomy of Sparsity Prediction Methods}\n156\t\\label{sec:method:taxonomy}\n157\t\n158\tWe organize prior work along two axes that capture the essential design decisions for sparsity prediction: \\emph{correction granularity} (how the mask adapts to input) and \\emph{training signal coupling} (whether the objective captures inter-neuron dependencies). These axes are motivated by our gradient analysis (\\S\\ref{sec:method:gradient}): granularity determines what information the predictor conditions on, while coupling determines whether the training signal reflects global allocation effects.\n159\t\n160\t\\begin{table}[t]\n161\t\\centering\n162\t\\caption{Taxonomy of learned sparsity prediction methods along correction granularity (rows) and training signal coupling (columns). Our method fills the previously unexplored Per-token $\\times$ Coupled cell.}\n163\t\\label{tab:taxonomy}\n164\t\\resizebox{\\columnwidth}{!}{\n165\t\\begin{tabular}{lccc}\n166\t\\toprule\n167\t & Decomposed (BCE) & Intermediate (MSE) & Coupled (KL) \\\\\n168\t\\midrule\n169\tStatic & --- & --- & SPON \\\\\n170\tPer-token & DejaVu, FastForward & ShadowLLM, D2DMoE & \\textbf{Ours} \\\\\n171\t\\bottomrule\n172\t\\end{tabular}}\n173\t\\end{table}\n174\t\n175\t\\paragraph{Correction granularity.}\n176\t\\emph{Static} methods~\\cite{xu2026spon} learn a fixed bias vector per layer that does not depend on the input token.\n177\t\\emph{Per-token} methods~\\cite{liu2023dejavu,gautam2026fastforward,akhauri2024shadowllm,szatkowski2024d2dmoe} produce a unique mask for each input position, conditioning on the token's hidden state at each layer.\n178\t\n179\t\\paragraph{Training signal coupling.}\n180\t\\emph{Decomposed} objectives (BCE) treat each neuron independently, optimizing per-element classification against an oracle mask.\n181\t\\emph{Intermediate} objectives (MSE on hidden states) capture local coupling within a single layer but not end-to-end output effects.\n182\t\\emph{Coupled} objectives (KL on output distribution) propagate gradients through the full forward pass, reflecting how all mask decisions jointly affect the final distribution.\n183\t\n184\tSPON~\\cite{xu2026spon} distills a per-layer bias via KL but cannot adapt to per-input neuron importance (static $\\times$ coupled).\n185\tDejaVu~\\cite{liu2023dejavu} and FastForward~\\cite{gautam2026fastforward} achieve per-token granularity but use BCE, losing inter-neuron coupling: their decomposed gradient (Eq.~\\ref{eq:bce_grad}) is blind to cross-neuron interactions under global allocation.\n186\tD2DMoE~\\cite{szatkowski2024d2dmoe} provides intermediate coupling (MSE on hidden states) but not end-to-end output effects.\n187\tOur method combines per-token prediction with coupled KL training (Table~\\ref{tab:taxonomy}), propagating gradients through all downstream layers.\n188\t\n189\t\\begin{figure}[t]\n190\t\\centering\n191\t\\includegraphics[width=\\columnwidth]{fig1_overview.pdf}\n192\t\\caption{Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks.}\n193\t\\label{fig:overview}\n194\t\\end{figure}\n195\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "550eca82-4102-4ad0-ab02-0e01a476c4a6",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex",
+                "content": "\\section{Method}\n\\label{sec:method}\n\nWe present a KL distillation framework for training contextual sparsity predictors in SwiGLU-based language models.\nThe method replaces per-neuron binary classification (BCE) with an output-distribution objective that couples all pruning decisions through the model's forward pass and achieves competitive performance without auxiliary error compensation networks at inference.\n\n\\subsection{Problem Formulation}\n\\label{sec:method:formulation}\n\nConsider a pretrained transformer with $L$ layers, each containing a SwiGLU feed-forward network~\\cite{shazeer2020glu}.\nFor layer $\\ell$, the FFN computes:\n\\begin{align}\n\\mathbf{y}^{(\\ell)} = \\bigl(\\sigma(\\mathbf{x}^{(\\ell)} \\mathbf{W}_g^{(\\ell)}) \\odot \\mathbf{x}^{(\\ell)} \\mathbf{W}_u^{(\\ell)}\\bigr) \\mathbf{W}_d^{(\\ell)},\n\\label{eq:swiglu}\n\\end{align}\nwhere $\\mathbf{x}^{(\\ell)} \\in \\mathbb{R}^{d}$ is the hidden state after attention ($d{=}4096$), $\\sigma$ denotes SiLU, $\\mathbf{W}_g^{(\\ell)}, \\mathbf{W}_u^{(\\ell)} \\in \\mathbb{R}^{d \\times d_{\\text{ff}}}$ and $\\mathbf{W}_d^{(\\ell)} \\in \\mathbb{R}^{d_{\\text{ff}} \\times d}$ are the gate, up-projection, and down-projection matrices, and $d_{\\text{ff}}{=}14{,}336$.\n\nDefine the gate activation $\\mathbf{g}^{(\\ell)} = \\sigma(\\mathbf{x}^{(\\ell)} \\mathbf{W}_g^{(\\ell)}) \\in \\mathbb{R}^{d_{\\text{ff}}}$.\nEach element $g_j^{(\\ell)}$ determines the contribution of neuron $j$ to the output.\nWe introduce a binary mask $\\mathbf{m}^{(\\ell)} \\in \\{0,1\\}^{d_{\\text{ff}}}$ that zeros out pruned neurons:\n\\begin{align}\n\\mathbf{y}_{\\text{sparse}}^{(\\ell)} = \\bigl(\\mathbf{m}^{(\\ell)} \\odot \\mathbf{g}^{(\\ell)} \\odot \\mathbf{x}^{(\\ell)} \\mathbf{W}_u^{(\\ell)}\\bigr) \\mathbf{W}_d^{(\\ell)}.\n\\label{eq:sparse_ffn}\n\\end{align}\nOur goal is to learn a mask predictor $f_\\theta^{(\\ell)}(\\mathbf{h}) \\to \\mathbf{s}^{(\\ell)} \\in (0,1)^{d_{\\text{ff}}}$ that produces per-neuron importance scores from the pre-FFN hidden state $\\mathbf{h}$.\nAt inference, the scores are fed to a global top-$k$ allocation mechanism~\\cite{liu2025teal} that distributes the sparsity budget across layers non-uniformly, retaining the $(1{-}\\rho) \\times L \\times d_{\\text{ff}}$ highest-scoring neurons model-wide for a target sparsity ratio $\\rho$.\n\n\n\\subsection{Predictor Architecture}\n\\label{sec:method:predictor}\n\nEach layer $\\ell$ has an independent two-layer MLP predictor:\n\\begin{align}\nf_\\theta^{(\\ell)}(\\mathbf{h}) = \\text{GELU}(\\mathbf{h} \\mathbf{W}_1^{(\\ell)}) \\, \\mathbf{W}_2^{(\\ell)},\n\\label{eq:predictor}\n\\end{align}\nwhere $\\mathbf{W}_1^{(\\ell)} \\in \\mathbb{R}^{d \\times d_b}$ and $\\mathbf{W}_2^{(\\ell)} \\in \\mathbb{R}^{d_b \\times d_{\\text{ff}}}$ with bottleneck dimension $d_b{=}128$.\nThe predictor takes the hidden state after attention (before the FFN) and outputs $d_{\\text{ff}}$-dimensional logits $\\mathbf{s}^{(\\ell)}$, from which the mask is derived.\n\nEach predictor has $(4096 \\times 128) + (128 \\times 14336) = 2.37\\text{M}$ parameters.\nWith 32 independent predictors (one per layer), the total overhead is 75.9M parameters, less than 1\\% of the 8B base model.\nThe predictors operate independently across layers, requiring no cross-layer communication at inference.\n\n\n\\subsection{Gumbel-Sigmoid Relaxation}\n\\label{sec:method:gumbel}\n\nThe hard mask $m_j = \\mathbf{1}[s_j > \\text{threshold}]$ is non-differentiable, preventing gradient flow from the KL objective through the mask to the predictor parameters.\nWe apply Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} to produce differentiable soft masks:\n\\begin{align}\n\\tilde{m}_j = \\sigma_\\tau\\!\\left(\\log \\frac{s_j}{1 - s_j} + g_1 - g_2\\right), \\quad g_1, g_2 \\sim \\text{Gumbel}(0,1),\n\\label{eq:gumbel}\n\\end{align}\nwhere $\\sigma_\\tau(x) = \\text{sigmoid}(x / \\tau)$ and $\\tau$ is a temperature parameter.\nThe Gumbel noise provides stochastic exploration of mask configurations during training, while the temperature controls sharpness: as $\\tau \\to 0$, $\\tilde{m}_j$ approaches a binary decision.\n\nWe anneal $\\tau$ linearly from 1.0 to 0.1 over training.\nAt high temperature, the soft mask permits gradient flow through all neurons for broad exploration.\nAs temperature decreases, the mask concentrates on confident decisions, approximating the hard allocation used at inference.\n\n\\paragraph{Comparison with Straight-Through Estimation.}\nThe straight-through estimator (STE)~\\cite{bengio2013ste} applies a hard threshold in the forward pass and passes gradients through unchanged ($\\partial m / \\partial s = 1$).\nIn our setting, STE produces discontinuous gradient signals: small parameter changes can flip many neurons simultaneously, causing violent oscillations in the penalty weight and failure to converge to the target sparsity.\nGumbel relaxation eliminates this pathology, contributing a 34.5\\% improvement (PPL 15.77 $\\to$ 11.79 at 50\\% sparsity), as we verify empirically in \\S\\ref{sec:experiments}.\n\n\n\\subsection{KL Divergence Training Objective}\n\\label{sec:method:kl}\n\nLet $\\mathbf{z}_{\\text{dense}}$ denote the output logits from a full dense forward pass, and $\\mathbf{z}_{\\text{sparse}}$ the logits from a forward pass with predictor-generated soft masks $\\{\\tilde{\\mathbf{m}}^{(\\ell)}\\}_\\ell$ applied at every layer.\nWe minimize the forward KL divergence between the dense and sparse output distributions:\n\\begin{align}\n\\mathcal{L}_{\\text{KL}} = D_{\\text{KL}}(p_{\\text{dense}} \\,\\|\\, p_{\\text{sparse}}) = \\sum_{v} p_{\\text{dense}}^{(v)} \\log \\frac{p_{\\text{dense}}^{(v)}}{p_{\\text{sparse}}^{(v)}},\n\\label{eq:kl_loss}\n\\end{align}\nwhere $p_{\\text{dense}} = \\text{softmax}(\\mathbf{z}_{\\text{dense}})$ and $p_{\\text{sparse}} = \\text{softmax}(\\mathbf{z}_{\\text{sparse}})$, summed over the vocabulary $v$ and averaged over sequence positions.\nThe base model is frozen; only the predictor parameters receive gradients.\n\nWe use forward KL (mean-seeking) rather than reverse KL, as the goal is to preserve the dense model's primary predictions rather than explore alternative modes; \\S\\ref{sec:experiments} validates this choice with ablations over divergence direction (forward KL outperforms JSD by 6.4\\% and reverse KL by 8.6\\%).\nNo temperature scaling ($T{=}1$) is applied~\\cite{hinton2015distilling}.\n\n\n\\subsection{Adaptive Penalty Sparsity Controller}\n\\label{sec:method:lagrangian}\n\nWe enforce a model-level sparsity target $\\rho$ via constrained optimization.\nLet $\\bar{s} = \\frac{1}{L} \\sum_\\ell \\frac{1}{d_{\\text{ff}}} \\sum_j \\tilde{m}_j^{(\\ell)}$ denote the average fraction of retained neurons.\nThe constrained problem is:\n\\begin{align}\n\\min_\\theta \\; \\mathcal{L}_{\\text{KL}} \\quad \\text{s.t.} \\quad \\bar{s} \\leq 1 - \\rho.\n\\label{eq:constrained}\n\\end{align}\nWe relax this via an adaptive penalty controller:\n\\begin{align}\n\\mathcal{L} = \\mathcal{L}_{\\text{KL}} + \\lambda \\cdot \\text{clamp}(|\\bar{s} - (1 - \\rho)| - \\epsilon, \\min{=}0)^2,\n\\label{eq:lagrangian}\n\\end{align}\nwhere $\\epsilon = 0.02$ is a deadzone margin that prevents $\\lambda$ from responding to small constraint violations.\nThe penalty weight $\\lambda$ is updated multiplicatively at each step:\n\\begin{align}\n\\lambda \\leftarrow \\begin{cases} \\lambda \\times 2 & \\text{if } \\bar{s} > (1-\\rho) + \\epsilon \\\\ \\lambda \\times 0.5 & \\text{if } \\bar{s} < (1-\\rho) - \\epsilon \\\\ \\lambda & \\text{otherwise} \\end{cases}\n\\label{eq:dual_update}\n\\end{align}\nwith $\\lambda$ clamped to $[\\lambda_{\\text{floor}}, \\lambda_{\\max}]$ where $\\lambda_{\\text{floor}} = 0.01$ and $\\lambda_{\\max} \\in \\{1000, 5000\\}$ depending on the target.\nThe geometric doubling requires only $\\lambda_{\\max}$ as a user-specified hyperparameter (no step-size tuning) and reaches target sparsity within 40--110 steps for 40--50\\% targets; for 30\\% and 70\\% targets, $\\lambda$ saturates at $\\lambda_{\\max}$ with 1.7--5.0\\% residual deviation (Appendix~\\ref{app:lagrangian}, Figure~\\ref{fig:lagrangian_dynamics}). The deadzone prevents oscillation once sparsity is within $\\pm$2\\%.\\footnote{Our update rule resembles the augmented Lagrangian method but replaces gradient-based dual updates with a multiplicative schedule for training stability. We term it an adaptive penalty controller to distinguish from formal dual methods that guarantee KKT satisfaction.}\n\n\n\\subsection{Gradient-Based Motivation: BCE vs.\\ KL}\n\\label{sec:method:gradient}\n\nWe analyze the structural difference between BCE and KL training signals to motivate why KL distillation is better suited to global top-$k$ inference.\n\n\\paragraph{BCE gradient structure.}\nThe standard approach trains the predictor against oracle masks $m_j^* = \\mathbf{1}[|g_j| \\geq \\text{top-}k\\text{ threshold}]$ derived from the dense model's activation magnitudes, where the threshold is the global top-$k$ cutoff across all layers (matching TEAL's inference protocol).\nThe loss decomposes per neuron:\n\\begin{align}\n\\mathcal{L}_{\\text{BCE}} = -\\frac{1}{d_{\\text{ff}}} \\sum_{j=1}^{d_{\\text{ff}}} \\bigl[ m_j^* \\log \\sigma(s_j) + (1 - m_j^*) \\log(1 - \\sigma(s_j)) \\bigr].\n\\label{eq:bce}\n\\end{align}\nThe gradient with respect to predictor logit $s_j$ is:\n\\begin{align}\n\\frac{\\partial \\mathcal{L}_{\\text{BCE}}}{\\partial s_j} = \\sigma(s_j) - m_j^*.\n\\label{eq:bce_grad}\n\\end{align}\nThis gradient depends \\emph{only} on neuron $j$'s own prediction and target.\nEach neuron is trained independently; there is no inter-neuron coupling in the learning signal.\n\n\\paragraph{KL gradient structure.}\nUnder KL distillation, the gradient for predictor logit $s_j^{(\\ell)}$ in layer $\\ell$ is:\n\\begin{align}\n\\frac{\\partial \\mathcal{L}_{\\text{KL}}}{\\partial s_j^{(\\ell)}} = \\underbrace{\\frac{\\partial \\mathcal{L}_{\\text{KL}}}{\\partial \\mathbf{z}_{\\text{sparse}}}}_{\\text{(a)}} \\cdot \\underbrace{\\frac{\\partial \\mathbf{z}_{\\text{sparse}}}{\\partial \\mathbf{h}^{(\\ell)}}}_{\\text{(b)}} \\cdot \\underbrace{\\frac{\\partial \\mathbf{h}^{(\\ell)}}{\\partial \\tilde{m}_j^{(\\ell)}}}_{\\text{(c)}} \\cdot \\underbrace{\\frac{\\partial \\tilde{m}_j^{(\\ell)}}{\\partial s_j^{(\\ell)}}}_{\\text{(d)}},\n\\label{eq:kl_grad}\n\\end{align}\nwhere each factor has a distinct role:\n\\begin{itemize}\n\\item[\\textbf{(a)}] The KL gradient at the output, reflecting how each logit component deviates from the dense distribution.\n\\item[\\textbf{(b)}] The Jacobian through all downstream layers from layer $\\ell$'s output to the final logits. This factor couples neuron $j$'s gradient to the state of every other retained neuron in layers $\\ell, \\ell{+}1, \\ldots, L$, because the sparse hidden state propagates through subsequent attention and FFN operations.\n\\item[\\textbf{(c)}] The local mask effect: $\\partial \\mathbf{h}^{(\\ell)} / \\partial \\tilde{m}_j^{(\\ell)} = (g_j^{(\\ell)} \\cdot [\\mathbf{x}^{(\\ell)} \\mathbf{W}_u^{(\\ell)}]_j) \\cdot \\mathbf{W}_{d,j}^{(\\ell)}$, projecting through the down-projection to affect the full $d$-dimensional hidden state.\n\\item[\\textbf{(d)}] The Gumbel-Sigmoid derivative: the differentiable path from logit to mask.\n\\end{itemize}\n\n\\paragraph{The structural mismatch.}\nThe key observation is that factor (b) makes the KL gradient for neuron $j$ depend on \\emph{all} other neurons' mask values.\nBCE's factorized gradient (Eq.~\\ref{eq:bce_grad}) optimizes each neuron's prediction accuracy in isolation, but TEAL inference selects neurons via a global ranking across all layers.\nUnder global top-$k$, the decision to retain neuron $j$ depends on the scores of all other neurons, a combinatorial interaction that BCE cannot capture.\n\nConcretely, BCE achieves high per-neuron accuracy ($>$90\\% oracle agreement) yet produces poor output under TEAL, because it optimizes a proxy misaligned with output preservation under global budget allocation.\nKL directly optimizes the end-to-end objective, with gradients that reflect inter-neuron dependencies through the computation graph.\n\n\\paragraph{Empirical verification.}\nMeasuring gradient SNR\\footnote{$\\text{SNR}_\\ell = \\|\\mathbb{E}[\\nabla_{\\theta_\\ell} \\mathcal{L}]\\|_2^2 / \\text{Var}[\\nabla_{\\theta_\\ell} \\mathcal{L}]$, expectation over mini-batches.} over 80 steps on LLaMA-3.1-8B (C4 data), KL achieves $5.76\\times$ higher average SNR than BCE ($5.77{\\times}10^{-5}$ vs.\\ $1.00{\\times}10^{-5}$), concentrated in early layers (0--4: $34$--$156\\times$) where factor~(b)'s Jacobian traverses the full remaining network; late layers (27--31: $1.7$--$3.8\\times$) show reduced advantage.\nBCE's early-layer SNR collapses to ${\\sim}10^{-8}$ after step~10, consistent with rapid convergence of per-neuron classification, though an alternative explanation is loss saturation (gradient vanishing once accuracy plateaus).\nThis preliminary measurement persists across learning rates; full-trajectory characterization is left to future work.\n\n\\subsection{Two-Dimensional Taxonomy of Sparsity Prediction Methods}\n\\label{sec:method:taxonomy}\n\nWe organize prior work along two axes that capture the essential design decisions for sparsity prediction: \\emph{correction granularity} (how the mask adapts to input) and \\emph{training signal coupling} (whether the objective captures inter-neuron dependencies). These axes are motivated by our gradient analysis (\\S\\ref{sec:method:gradient}): granularity determines what information the predictor conditions on, while coupling determines whether the training signal reflects global allocation effects.\n\n\\begin{table}[t]\n\\centering\n\\caption{Taxonomy of learned sparsity prediction methods along correction granularity (rows) and training signal coupling (columns). Our method fills the previously unexplored Per-token $\\times$ Coupled cell.}\n\\label{tab:taxonomy}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccc}\n\\toprule\n & Decomposed (BCE) & Intermediate (MSE) & Coupled (KL) \\\\\n\\midrule\nStatic & --- & --- & SPON \\\\\nPer-token & DejaVu, FastForward & ShadowLLM, D2DMoE & \\textbf{Ours} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Correction granularity.}\n\\emph{Static} methods~\\cite{xu2026spon} learn a fixed bias vector per layer that does not depend on the input token.\n\\emph{Per-token} methods~\\cite{liu2023dejavu,gautam2026fastforward,akhauri2024shadowllm,szatkowski2024d2dmoe} produce a unique mask for each input position, conditioning on the token's hidden state at each layer.\n\n\\paragraph{Training signal coupling.}\n\\emph{Decomposed} objectives (BCE) treat each neuron independently, optimizing per-element classification against an oracle mask.\n\\emph{Intermediate} objectives (MSE on hidden states) capture local coupling within a single layer but not end-to-end output effects.\n\\emph{Coupled} objectives (KL on output distribution) propagate gradients through the full forward pass, reflecting how all mask decisions jointly affect the final distribution.\n\nSPON~\\cite{xu2026spon} distills a per-layer bias via KL but cannot adapt to per-input neuron importance (static $\\times$ coupled).\nDejaVu~\\cite{liu2023dejavu} and FastForward~\\cite{gautam2026fastforward} achieve per-token granularity but use BCE, losing inter-neuron coupling: their decomposed gradient (Eq.~\\ref{eq:bce_grad}) is blind to cross-neuron interactions under global allocation.\nD2DMoE~\\cite{szatkowski2024d2dmoe} provides intermediate coupling (MSE on hidden states) but not end-to-end output effects.\nOur method combines per-token prediction with coupled KL training (Table~\\ref{tab:taxonomy}), propagating gradients through all downstream layers.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig1_overview.pdf}\n\\caption{Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks.}\n\\label{fig:overview}\n\\end{figure}\n",
+                "numLines": 195,
+                "startLine": 1,
+                "totalLines": 195
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014k4eX9uB2bttkdsM7ecFm7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "9ce768bd-f141-475a-a477-e88361892da5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XVoxJZoVpps69EaNmLbA6Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4910,
+                "cache_read_input_tokens": 33178,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4910
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T01:06:50.758Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014k4eX9uB2bttkdsM7ecFm7",
+              "type": "tool_result",
+              "content": "1\t\\enlargethispage{\\baselineskip}\n2\t\\section{Conclusion}\n3\t\\label{sec:conclusion}\n4\t\n5\tKL distillation resolves the per-neuron/global-inference mismatch: a lightweight predictor ($<$1\\% of base) halves TEAL's perplexity at 50\\% sparsity across three architectures; uniform allocation reduces cross-seed $\\sigma$ by $7.5\\times$ at 30\\%.\n6\t\n7\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "1dabe561-3af7-4e2a-a91d-ef52f1e1b97b",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex",
+                "content": "\\enlargethispage{\\baselineskip}\n\\section{Conclusion}\n\\label{sec:conclusion}\n\nKL distillation resolves the per-neuron/global-inference mismatch: a lightweight predictor ($<$1\\% of base) halves TEAL's perplexity at 50\\% sparsity across three architectures; uniform allocation reduces cross-seed $\\sigma$ by $7.5\\times$ at 30\\%.\n\n",
+                "numLines": 7,
+                "startLine": 1,
+                "totalLines": 7
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me also check for any TODO markers, TBD placeholders, or other unresolved items across all tex files.",
+              "signature": "EqgCClkIDRgCKkDPeDIDkoeyesmWETlt2fEZ4FRNaLN8JmK2oU4H/+Uvjmyf+TNON+QCVg2I+kUrLRdsnVxe/OabHOSTHSubwvFKMg9jbGF1ZGUtb3B1cy00LTY4ABIMp5ZqZZVIiyHzJlt9GgyS0vxNS1CHfNrNpa0iMGMzSdcYw6CpAZaBzdgVoG6STCY7I3YwRn+uRqr7ijwgV8WnJM1CSx7dmzlygtIboyp9yhuh8ZB6rfcfuIIgwbHP7bv7uHSk6Ub5GGzeZBXv0FaOI31rrCrQoKx0r0SsgeZu0KiNLn/Gvr6ORBf6NdS4WFE5qub4pw9FmeTiaTlA7HQNn7I3qDdqIHg8kstiH438mIHTikGsunJtkGsRNi23Byms7+rZBVi7QZnkEUIYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "bae7db81-daa9-47e7-ad3c-fd03c4a9cf63",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AkHc9rdRg7tF8SKmNQ5F2F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7754,
+                "cache_read_input_tokens": 38088,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7754
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for placeholders and check the remaining files."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "84ba3bbc-4701-4200-a845-9ecf87258be8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AkHc9rdRg7tF8SKmNQ5F2F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7754,
+                "cache_read_input_tokens": 38088,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7754
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012LcYtZFwERhS4FYJKG7vuf",
+              "name": "Grep",
+              "input": {
+                "pattern": "TODO|TBD|FIXME|XXX|\\?\\?\\?|PLACEHOLDER|pending|tbd",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+                "output_mode": "content",
+                "-i": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "da3cfe16-ae76-4586-a126-e5bdb813e4d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AkHc9rdRg7tF8SKmNQ5F2F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7754,
+                "cache_read_input_tokens": 38088,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7754
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T01:06:58.224Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012LcYtZFwERhS4FYJKG7vuf",
+              "type": "tool_result",
+              "content": "paper/experiments.tex:228:Table~\\ref{tab:14b} evaluates on Qwen-2.5-14B~\\cite{qwen2024qwen25} at 30\\% (global top-$k$): KL's PPL advantage generalizes ($1.47\\times$ dense, matching 8B) but MMLU falls below TEAL/BCE (63.7 vs.\\ 71.8/71.7\\%), consistent with allocation-dependent degradation at 8B (\\S\\ref{sec:scaling}); uniform results pending.\npaper/experiments.tex:245:% KL uniform & TBD & TBD & TBD & TBD & TBD \\\\ % exp_id: qwen14b_kl30_uniform (running, ~3-4h)\npaper/method.tex:104:with $\\lambda$ clamped to $[\\lambda_{\\text{floor}}, \\lambda_{\\max}]$ where $\\lambda_{\\text{floor}} = 0.01$ and $\\lambda_{\\max} \\in \\{1000, 5000\\}$ depending on the target.\npaper/acl_natbib.bst:226:            { \"XXX\" }\npaper/acl_natbib.bst:395: % Each function has a name bbl.xxx where xxx is the English word."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "e6290d99-d44e-490e-99f6-cd288bd71608",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "paper/experiments.tex:228:Table~\\ref{tab:14b} evaluates on Qwen-2.5-14B~\\cite{qwen2024qwen25} at 30\\% (global top-$k$): KL's PPL advantage generalizes ($1.47\\times$ dense, matching 8B) but MMLU falls below TEAL/BCE (63.7 vs.\\ 71.8/71.7\\%), consistent with allocation-dependent degradation at 8B (\\S\\ref{sec:scaling}); uniform results pending.\npaper/experiments.tex:245:% KL uniform & TBD & TBD & TBD & TBD & TBD \\\\ % exp_id: qwen14b_kl30_uniform (running, ~3-4h)\npaper/method.tex:104:with $\\lambda$ clamped to $[\\lambda_{\\text{floor}}, \\lambda_{\\max}]$ where $\\lambda_{\\text{floor}} = 0.01$ and $\\lambda_{\\max} \\in \\{1000, 5000\\}$ depending on the target.\npaper/acl_natbib.bst:226:            { \"XXX\" }\npaper/acl_natbib.bst:395: % Each function has a name bbl.xxx where xxx is the English word.",
+              "numLines": 5
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CdZRjNxV4rQzftvoECvSoL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "4c5d95e5-2cd1-4b9a-b232-5783e8296663",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AkHc9rdRg7tF8SKmNQ5F2F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7754,
+                "cache_read_input_tokens": 38088,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7754
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T01:06:58.672Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CdZRjNxV4rQzftvoECvSoL",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\n3\t\\paragraph{Training-Free Activation Sparsity.}\n4\tTEAL~\\cite{liu2025teal} applies global top-$k$ selection by activation magnitude and achieves 40--50\\% sparsity with no training cost.\n5\tCATS~\\cite{lee2024cats} adapts per-layer thresholds for SiLU/SwiGLU activations; R-Sparse~\\cite{zhang2025rsparse} predicts sparsity from rank-aware SVD projections; DIP~\\cite{federici2025dip} combines dynamic input pruning with cache-aware masking; SparseInfer~\\cite{shin2025sparseinfer} predicts activation sparsity patterns from attention outputs without additional training.\n6\tAll training-free methods determine masks from fixed statistics or input-independent criteria, while our predictor generates \\emph{input-dependent} masks trained to minimize output-distribution divergence.\n7\t\n8\t\\paragraph{Predictor-Based Contextual Sparsity.}\n9\tDejaVu~\\cite{liu2023dejavu} introduced learned sparsity predictors trained via BCE to classify each neuron independently.\n10\tShadowLLM~\\cite{akhauri2024shadowllm} uses attention-based routing with per-layer MSE supervision for intermediate coupling within each layer but without end-to-end gradient signal.\n11\tFastForward~\\cite{gautam2026fastforward} adds a 67.2M-parameter compensation network using BCE for mask prediction, adding inference latency.\n12\tSVD-CSP~\\cite{serbin2026svdcsp} compresses sparsity predictors via SVD decomposition for reduced predictor overhead.\n13\tPowerInfer~\\cite{song2024powerinfer} exploits power-law activation frequencies for GPU--CPU scheduling.\n14\tMaskLLM~\\cite{fang2024maskllm} also employs learnable masks with Gumbel relaxation and frozen weights, but targets N:M semi-structured \\emph{weight} sparsity (2:4 patterns) via per-group categorical selection (Gumbel-Softmax), producing fixed masks independent of input tokens.\n15\tBoth share the principle of frozen weights + learnable masks + KL training, but solve distinct optimization problems: MaskLLM finds optimal static N:M patterns within fixed groups, while we predict dynamic per-token masks under a global budget constraint.\n16\tThe structural mismatch we characterize (per-neuron gradient decomposition vs.\\ global top-$k$) does not arise in MaskLLM's per-group categorical setting, where N:M patterns eliminate cross-group budget competition.\n17\tAll prior predictor-based methods use decomposed (BCE) or intermediate (MSE) objectives where each neuron's gradient is independent of other mask states.\n18\tOur contribution is primarily empirical: we observe that a coupled KL objective propagates gradients through all downstream layers and quantify when this matters for global allocation quality.\n19\t\n20\t\\paragraph{Static Bias Correction.}\n21\tSPON~\\cite{xu2026spon} learns input-independent bias vectors via closed-form KL minimization per layer, absorbed into weights at deployment.\n22\tOur method is fundamentally different: a per-token contextual predictor trained end-to-end across all layers, producing input-dependent masks.\n23\tSPON solves a static per-layer problem; we solve a global dynamic prediction problem. The two are weakly correlated (cosine similarity 0.196, $R^2$=0.038; \\S\\ref{sec:experiments}).\n24\t\n25\t\\paragraph{Activation Function Engineering.}\n26\tReLU Strikes Back~\\cite{mirzadeh2024relu} replaces SiLU with ReLU for $>$90\\% natural sparsity; TurboSparse~\\cite{song2024turbosparse} and ProSparse~\\cite{song2025prosparse} engineer extreme sparsity through activation modifications; the Sparsing Law~\\cite{luo2024sparsinglaw} formalizes how activation density increases with training compute.\n27\tMiniTron~\\cite{muralidharan2024minitron} combines structured pruning with distillation but modifies architecture permanently.\n28\tAll require retraining or weight modification; our method is a plug-in predictor on \\emph{unmodified} SwiGLU models.\n29\t\n30\t\\paragraph{Weight Pruning, Distillation, and Routing.}\n31\tWanda~\\cite{sun2024wanda} and SparseGPT~\\cite{frantar2023sparsegpt} produce static weight masks; Switch Transformers~\\cite{fedus2022switch} and Mixture-of-Depths~\\cite{raposo2024mod} achieve conditional computation through learned routing.\n32\tKL-based distillation~\\cite{kim2016sequencekd,sanh2019distilbert,gu2024minillm,agarwal2024gkd} trains compact students; SparseLoRA~\\cite{khaki2025sparselora} exploits contextual sparsity for fine-tuning.\n33\tWe apply the KL principle to train a sparsity predictor on unmodified dense models, using Gumbel-Sigmoid sampling~\\cite{maddison2017concrete,louizos2018l0} for differentiable discrete mask optimization.\n34\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "8981220d-4ad7-4a8d-91ec-035b81bbbcbc",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/related_work.tex",
+                "content": "\\section{Related Work}\n\n\\paragraph{Training-Free Activation Sparsity.}\nTEAL~\\cite{liu2025teal} applies global top-$k$ selection by activation magnitude and achieves 40--50\\% sparsity with no training cost.\nCATS~\\cite{lee2024cats} adapts per-layer thresholds for SiLU/SwiGLU activations; R-Sparse~\\cite{zhang2025rsparse} predicts sparsity from rank-aware SVD projections; DIP~\\cite{federici2025dip} combines dynamic input pruning with cache-aware masking; SparseInfer~\\cite{shin2025sparseinfer} predicts activation sparsity patterns from attention outputs without additional training.\nAll training-free methods determine masks from fixed statistics or input-independent criteria, while our predictor generates \\emph{input-dependent} masks trained to minimize output-distribution divergence.\n\n\\paragraph{Predictor-Based Contextual Sparsity.}\nDejaVu~\\cite{liu2023dejavu} introduced learned sparsity predictors trained via BCE to classify each neuron independently.\nShadowLLM~\\cite{akhauri2024shadowllm} uses attention-based routing with per-layer MSE supervision for intermediate coupling within each layer but without end-to-end gradient signal.\nFastForward~\\cite{gautam2026fastforward} adds a 67.2M-parameter compensation network using BCE for mask prediction, adding inference latency.\nSVD-CSP~\\cite{serbin2026svdcsp} compresses sparsity predictors via SVD decomposition for reduced predictor overhead.\nPowerInfer~\\cite{song2024powerinfer} exploits power-law activation frequencies for GPU--CPU scheduling.\nMaskLLM~\\cite{fang2024maskllm} also employs learnable masks with Gumbel relaxation and frozen weights, but targets N:M semi-structured \\emph{weight} sparsity (2:4 patterns) via per-group categorical selection (Gumbel-Softmax), producing fixed masks independent of input tokens.\nBoth share the principle of frozen weights + learnable masks + KL training, but solve distinct optimization problems: MaskLLM finds optimal static N:M patterns within fixed groups, while we predict dynamic per-token masks under a global budget constraint.\nThe structural mismatch we characterize (per-neuron gradient decomposition vs.\\ global top-$k$) does not arise in MaskLLM's per-group categorical setting, where N:M patterns eliminate cross-group budget competition.\nAll prior predictor-based methods use decomposed (BCE) or intermediate (MSE) objectives where each neuron's gradient is independent of other mask states.\nOur contribution is primarily empirical: we observe that a coupled KL objective propagates gradients through all downstream layers and quantify when this matters for global allocation quality.\n\n\\paragraph{Static Bias Correction.}\nSPON~\\cite{xu2026spon} learns input-independent bias vectors via closed-form KL minimization per layer, absorbed into weights at deployment.\nOur method is fundamentally different: a per-token contextual predictor trained end-to-end across all layers, producing input-dependent masks.\nSPON solves a static per-layer problem; we solve a global dynamic prediction problem. The two are weakly correlated (cosine similarity 0.196, $R^2$=0.038; \\S\\ref{sec:experiments}).\n\n\\paragraph{Activation Function Engineering.}\nReLU Strikes Back~\\cite{mirzadeh2024relu} replaces SiLU with ReLU for $>$90\\% natural sparsity; TurboSparse~\\cite{song2024turbosparse} and ProSparse~\\cite{song2025prosparse} engineer extreme sparsity through activation modifications; the Sparsing Law~\\cite{luo2024sparsinglaw} formalizes how activation density increases with training compute.\nMiniTron~\\cite{muralidharan2024minitron} combines structured pruning with distillation but modifies architecture permanently.\nAll require retraining or weight modification; our method is a plug-in predictor on \\emph{unmodified} SwiGLU models.\n\n\\paragraph{Weight Pruning, Distillation, and Routing.}\nWanda~\\cite{sun2024wanda} and SparseGPT~\\cite{frantar2023sparsegpt} produce static weight masks; Switch Transformers~\\cite{fedus2022switch} and Mixture-of-Depths~\\cite{raposo2024mod} achieve conditional computation through learned routing.\nKL-based distillation~\\cite{kim2016sequencekd,sanh2019distilbert,gu2024minillm,agarwal2024gkd} trains compact students; SparseLoRA~\\cite{khaki2025sparselora} exploits contextual sparsity for fine-tuning.\nWe apply the KL principle to train a sparsity predictor on unmodified dense models, using Gumbel-Sigmoid sampling~\\cite{maddison2017concrete,louizos2018l0} for differentiable discrete mask optimization.\n",
+                "numLines": 34,
+                "startLine": 1,
+                "totalLines": 34
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GA3E4xG4BM1PLpccB4yDbD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "4160e166-bc92-4515-aba1-506bc56e651d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AkHc9rdRg7tF8SKmNQ5F2F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7754,
+                "cache_read_input_tokens": 38088,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7754
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T01:06:59.181Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GA3E4xG4BM1PLpccB4yDbD",
+              "type": "tool_result",
+              "content": "1\t\\section*{Limitations}\n2\t\n3\tOur primary evaluation uses WikiText-2 perplexity, and downstream benchmarks reveal that perplexity is a poor proxy for reasoning ability at moderate sparsity: 40\\% sparsity achieves PPL 8.36 but MMLU already degrades, motivating 30\\% as the recommended operating point for downstream fidelity.\n4\tTraining requires 1000 steps on WikiText-103 ($\\sim$45 minutes on RTX PRO 6000 for KL, $\\sim$17 minutes for BCE), but a separate predictor must be trained for each sparsity target.\n5\tAll experiments use 7--8B parameter models (LLaMA-3.1-8B, Mistral-7B-v0.3); scaling behavior to 13B or 70B models remains untested.\n6\tOut-of-distribution evaluation (Appendix~\\ref{app:ood}) covers 30\\% and 50\\% sparsity on C4; extending to 70\\% is left to future work.\n7\tOur attribution of KL's advantage to gradient coupling (\\S\\ref{sec:method:gradient}) is supported by SNR measurements and the BCE isolation ablation, but does not fully disentangle coupling from oracle quality: BCE uses magnitude-based oracles while KL directly optimizes output preservation, and an ablation using KL-derived masks as BCE targets would more precisely isolate the coupling effect.\n8\tAt 30\\% sparsity, global allocation exhibits 9.5pp cross-seed MMLU standard deviation (3-seed); allocation strategy interacts with predictor initialization in task-specific ways. This variance is MMLU-specific, as ARC, WinoGrande, and GSM8K show stable performance across seeds under both allocation strategies.\n9\tWhile we motivate our work with inference speedup potential, actual wall-clock acceleration depends on sparse kernel implementations (e.g., Triton, cuSPARSE) and hardware-specific memory access patterns; this work focuses on prediction quality rather than systems optimization.\n10\tFuture directions include N:M structured sparsity for hardware-native acceleration, scaling to 13B+ models, and training a single predictor that serves multiple sparsity targets simultaneously.\n11\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "08e01c89-01aa-4dff-b04a-6f108f9c475a",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex",
+                "content": "\\section*{Limitations}\n\nOur primary evaluation uses WikiText-2 perplexity, and downstream benchmarks reveal that perplexity is a poor proxy for reasoning ability at moderate sparsity: 40\\% sparsity achieves PPL 8.36 but MMLU already degrades, motivating 30\\% as the recommended operating point for downstream fidelity.\nTraining requires 1000 steps on WikiText-103 ($\\sim$45 minutes on RTX PRO 6000 for KL, $\\sim$17 minutes for BCE), but a separate predictor must be trained for each sparsity target.\nAll experiments use 7--8B parameter models (LLaMA-3.1-8B, Mistral-7B-v0.3); scaling behavior to 13B or 70B models remains untested.\nOut-of-distribution evaluation (Appendix~\\ref{app:ood}) covers 30\\% and 50\\% sparsity on C4; extending to 70\\% is left to future work.\nOur attribution of KL's advantage to gradient coupling (\\S\\ref{sec:method:gradient}) is supported by SNR measurements and the BCE isolation ablation, but does not fully disentangle coupling from oracle quality: BCE uses magnitude-based oracles while KL directly optimizes output preservation, and an ablation using KL-derived masks as BCE targets would more precisely isolate the coupling effect.\nAt 30\\% sparsity, global allocation exhibits 9.5pp cross-seed MMLU standard deviation (3-seed); allocation strategy interacts with predictor initialization in task-specific ways. This variance is MMLU-specific, as ARC, WinoGrande, and GSM8K show stable performance across seeds under both allocation strategies.\nWhile we motivate our work with inference speedup potential, actual wall-clock acceleration depends on sparse kernel implementations (e.g., Triton, cuSPARSE) and hardware-specific memory access patterns; this work focuses on prediction quality rather than systems optimization.\nFuture directions include N:M structured sparsity for hardware-native acceleration, scaling to 13B+ models, and training a single predictor that serves multiple sparsity targets simultaneously.\n",
+                "numLines": 11,
+                "startLine": 1,
+                "totalLines": 11
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me check if there are any references to BCE iso-compute multi-seed data, and look for mentions of 3-seed data that may be incomplete for certain rows in the tables.\n\nLet me also look at the main.tex to see if there are any other issues.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "01575e80-3967-4daa-9f96-5ab438ff5c06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K2b1oFHPPb8mGD4Dnf9UEn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2712,
+                "cache_read_input_tokens": 45842,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2712
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the main.tex for structure and any other gaps."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "7f493196-129d-4bdc-99a9-a818c187cec3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K2b1oFHPPb8mGD4Dnf9UEn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2712,
+                "cache_read_input_tokens": 45842,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2712
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JtExerRALDYf3iGxekUoNo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "76dc1a6a-e2a2-41d3-b59e-2b6eb0eecfaa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K2b1oFHPPb8mGD4Dnf9UEn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2712,
+                "cache_read_input_tokens": 45842,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2712
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T01:07:07.611Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JtExerRALDYf3iGxekUoNo",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t% \\usepackage{inconsolata} % not available on this system\n9\t\\usepackage{graphicx}\n10\t\\graphicspath{{../figures/paper/}}\n11\t\\usepackage{amsmath}\n12\t\\usepackage{amssymb}\n13\t\\usepackage{booktabs}\n14\t\\usepackage{multirow}\n15\t\\usepackage{enumitem}\n16\t\n17\t\\title{Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs}\n18\t\n19\t\\author{Anonymous}\n20\t\n21\t\\begin{document}\n22\t\\maketitle\n23\t\n24\t\\begin{abstract}\n25\t\\input{abstract}\n26\t\\end{abstract}\n27\t\n28\t\\input{introduction}\n29\t\\input{related_work}\n30\t\\input{method}\n31\t\\input{experiments}\n32\t\\input{conclusion}\n33\t\\input{limitations}\n34\t\\input{ethics}\n35\t\n36\t\\bibliography{references}\n37\t\n38\t\\input{appendix}\n39\t\n40\t\\end{document}\n41\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "429969e6-9faa-424a-990a-e85761dd6152",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.tex",
+                "content": "\\documentclass[11pt]{article}\n\\usepackage[review]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n% \\usepackage{inconsolata} % not available on this system\n\\usepackage{graphicx}\n\\graphicspath{{../figures/paper/}}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{enumitem}\n\n\\title{Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\n\\input{abstract}\n\\end{abstract}\n\n\\input{introduction}\n\\input{related_work}\n\\input{method}\n\\input{experiments}\n\\input{conclusion}\n\\input{limitations}\n\\input{ethics}\n\n\\bibliography{references}\n\n\\input{appendix}\n\n\\end{document}\n",
+                "numLines": 41,
+                "startLine": 1,
+                "totalLines": 41
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N6mvW2oJZvM2GbxSFKSbDM",
+              "name": "Grep",
+              "input": {
+                "pattern": "three (architecture|model)|14B|Qwen|cross.?arch",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+                "output_mode": "content",
+                "-i": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "914e7857-3771-4889-a118-ccc4fbd0cfdf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K2b1oFHPPb8mGD4Dnf9UEn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2712,
+                "cache_read_input_tokens": 45842,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2712
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T01:07:10.068Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N6mvW2oJZvM2GbxSFKSbDM",
+              "type": "tool_result",
+              "content": "paper/experiments.tex:192:Late-layer starvation persists across levels (L24--31 retention: 50.1/34.2/22.6\\% at 30/50/70\\% sparsity; Figure~\\ref{fig:retention}), consistent on both 7--8B models (\\S\\ref{sec:cross_arch}).\npaper/experiments.tex:203:\\paragraph{Cross-Architecture Validation.}\npaper/experiments.tex:204:\\label{sec:cross_arch}\npaper/experiments.tex:205:Table~\\ref{tab:cross_arch} evaluates on Mistral-7B-v0.3~\\cite{jiang2023mistral} (GQA + sliding window, dense PPL 5.52).\npaper/experiments.tex:209:\\caption{Cross-architecture comparison (WikiText-2 PPL$\\downarrow$). Adv = TEAL\\,/\\,KL ratio. LLaMA uses global top-$k$; Mistral uses uniform allocation (matched within each architecture).}\npaper/experiments.tex:210:\\label{tab:cross_arch}\npaper/experiments.tex:224:The KL advantage ratio is consistent across architectures (within 8\\% at $\\leq$50\\% sparsity; 4.63$\\times$ vs.\\ 5.59$\\times$ at 70\\%) and provides preliminary evidence of generality at the 7--8B scale.\npaper/experiments.tex:226:\\paragraph{Scale Generalization: Qwen-2.5-14B.}\npaper/experiments.tex:227:\\label{sec:14b}\npaper/experiments.tex:228:Table~\\ref{tab:14b} evaluates on Qwen-2.5-14B~\\cite{qwen2024qwen25} at 30\\% (global top-$k$): KL's PPL advantage generalizes ($1.47\\times$ dense, matching 8B) but MMLU falls below TEAL/BCE (63.7 vs.\\ 71.8/71.7\\%), consistent with allocation-dependent degradation at 8B (\\S\\ref{sec:scaling}); uniform results pending.\npaper/experiments.tex:229:BCE with native allocation collapses to 6.4\\% sparsity (architecture-general gradient insufficiency, \\S\\ref{sec:method:gradient}); Table~\\ref{tab:14b} uses forced global top-$k$ for BCE. % exp_id: qwen14b_kl30_s42, qwen14b_bce30_s42, qwen14b_bce30_s42_v2, qwen14b_teal30_eval\npaper/experiments.tex:233:\\caption{Qwen-2.5-14B at 30\\% sparsity (global top-$k$ allocation). PPL$\\downarrow$ on WikiText-2; accuracy$\\uparrow$ on downstream tasks. \\textbf{Bold}: best among sparse methods per column. KL's PPL/Dense ratio ($1.47\\times$) matches the 8B result exactly.}\npaper/experiments.tex:234:\\label{tab:14b}\npaper/experiments.tex:242:KL (Ours) & \\textbf{7.62} & 57.17 & 72.06 & 63.72 & 48.82 \\\\ % exp_id: qwen14b_kl30_s42\npaper/experiments.tex:243:TEAL vanilla & 8.73 & 56.83 & \\textbf{72.69} & \\textbf{71.83} & 49.51 \\\\ % exp_id: qwen14b_teal30_eval\npaper/experiments.tex:244:BCE & 8.76 & \\textbf{57.59} & 72.61 & 71.67 & \\textbf{53.07} \\\\ % exp_id: qwen14b_bce30_s42_eval\npaper/experiments.tex:245:% KL uniform & TBD & TBD & TBD & TBD & TBD \\\\ % exp_id: qwen14b_kl30_uniform (running, ~3-4h)\npaper/main.bbl:287:\\bibitem[{Team(2024)}]{qwen2024qwen25}\npaper/main.bbl:288:Qwen Team. 2024.\npaper/main.bbl:289:\\newblock \\href {https://arxiv.org/abs/2412.15115} {Qwen2.5 technical report}.\npaper/conclusion.tex:5:KL distillation resolves the per-neuron/global-inference mismatch: a lightweight predictor ($<$1\\% of base) halves TEAL's perplexity at 50\\% sparsity across three architectures; uniform allocation reduces cross-seed $\\sigma$ by $7.5\\times$ at 30\\%.\npaper/main.fdb_latexmk:142:  \"/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def\" 1752350709 14249 e14b403fb70abdf1f6742598a63b0e2a \"\"\npaper/main.fdb_latexmk:163:  \"/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\" 1750533675 9684 a33a14b82ce60d6e77cb9be689d79ee6 \"\"\npaper/main.fdb_latexmk:181:  \"main.tex\" 1779006993.07467 779 5dbaf61b1cdf85bca7765d9d03e114b4 \"\"\npaper/abstract.tex:7:Cross-architecture evaluation on Mistral-7B-v0.3 confirms consistent improvements (within 8\\% ratio at $\\leq$50\\% sparsity).\npaper/introduction.tex:19:Cross-architecture evaluation on Mistral-7B-v0.3~\\cite{jiang2023mistral} confirms consistent improvements at the 7--8B scale (Table~\\ref{tab:taxonomy} situates prior work along correction granularity and training signal coupling).\npaper/references.bib:286:@article{qwen2024qwen25,\npaper/references.bib:287:  title = {Qwen2.5 Technical Report},\npaper/references.bib:288:  author = {Qwen Team},\npaper/main.aux:711:\\citation{qwen2024qwen25}\npaper/main.aux:755:\\@writefile{lot}{\\contentsline {table}{\\numberline {6}{\\ignorespaces Cross-architecture comparison (WikiText-2 PPL$\\downarrow $). Adv = TEAL\\,/\\,KL ratio. LLaMA uses global top-$k$; Mistral uses uniform allocation (matched within each architecture).}}{8}{table.caption.34}\\protected@file@percent }\npaper/main.aux:756:\\newlabel{tab:cross_arch}{{6}{8}{Cross-architecture comparison (WikiText-2 PPL$\\downarrow $). Adv = TEAL\\,/\\,KL ratio. LLaMA uses global top-$k$; Mistral uses uniform allocation (matched within each architecture)}{table.caption.34}{}}\npaper/main.aux:757:\\@writefile{lot}{\\contentsline {table}{\\numberline {7}{\\ignorespaces Qwen-2.5-14B at 30\\% sparsity (global top-$k$ allocation). PPL$\\downarrow $ on WikiText-2; accuracy$\\uparrow $ on downstream tasks. \\textbf  {Bold}: best among sparse methods per column. KL's PPL/Dense ratio ($1.47\\times $) matches the 8B result exactly.}}{8}{table.caption.36}\\protected@file@percent }\npaper/main.aux:758:\\newlabel{tab:14b}{{7}{8}{Qwen-2.5-14B at 30\\% sparsity (global top-$k$ allocation). PPL$\\downarrow $ on WikiText-2; accuracy$\\uparrow $ on downstream tasks. \\textbf {Bold}: best among sparse methods per column. KL's PPL/Dense ratio ($1.47\\times $) matches the 8B result exactly}{table.caption.36}{}}\npaper/main.aux:759:\\newlabel{sec:cross_arch}{{4.6}{8}{Cross-Architecture Validation}{section*.33}{}}\npaper/main.aux:760:\\@writefile{toc}{\\contentsline {paragraph}{Cross-Architecture Validation.}{8}{section*.33}\\protected@file@percent }\npaper/main.aux:768:\\newlabel{sec:14b}{{4.6}{8}{Scale Generalization: Qwen-2.5-14B}{section*.35}{}}\npaper/main.aux:769:\\@writefile{toc}{\\contentsline {paragraph}{Scale Generalization: Qwen-2.5-14B.}{8}{section*.35}\\protected@file@percent }\npaper/main.aux:1050:\\bibcite{qwen2024qwen25}{{37}{2024}{{Team}}{{}}}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "4dfd3891-d295-4133-b03f-cc3147c35901",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "paper/experiments.tex:192:Late-layer starvation persists across levels (L24--31 retention: 50.1/34.2/22.6\\% at 30/50/70\\% sparsity; Figure~\\ref{fig:retention}), consistent on both 7--8B models (\\S\\ref{sec:cross_arch}).\npaper/experiments.tex:203:\\paragraph{Cross-Architecture Validation.}\npaper/experiments.tex:204:\\label{sec:cross_arch}\npaper/experiments.tex:205:Table~\\ref{tab:cross_arch} evaluates on Mistral-7B-v0.3~\\cite{jiang2023mistral} (GQA + sliding window, dense PPL 5.52).\npaper/experiments.tex:209:\\caption{Cross-architecture comparison (WikiText-2 PPL$\\downarrow$). Adv = TEAL\\,/\\,KL ratio. LLaMA uses global top-$k$; Mistral uses uniform allocation (matched within each architecture).}\npaper/experiments.tex:210:\\label{tab:cross_arch}\npaper/experiments.tex:224:The KL advantage ratio is consistent across architectures (within 8\\% at $\\leq$50\\% sparsity; 4.63$\\times$ vs.\\ 5.59$\\times$ at 70\\%) and provides preliminary evidence of generality at the 7--8B scale.\npaper/experiments.tex:226:\\paragraph{Scale Generalization: Qwen-2.5-14B.}\npaper/experiments.tex:227:\\label{sec:14b}\npaper/experiments.tex:228:Table~\\ref{tab:14b} evaluates on Qwen-2.5-14B~\\cite{qwen2024qwen25} at 30\\% (global top-$k$): KL's PPL advantage generalizes ($1.47\\times$ dense, matching 8B) but MMLU falls below TEAL/BCE (63.7 vs.\\ 71.8/71.7\\%), consistent with allocation-dependent degradation at 8B (\\S\\ref{sec:scaling}); uniform results pending.\npaper/experiments.tex:229:BCE with native allocation collapses to 6.4\\% sparsity (architecture-general gradient insufficiency, \\S\\ref{sec:method:gradient}); Table~\\ref{tab:14b} uses forced global top-$k$ for BCE. % exp_id: qwen14b_kl30_s42, qwen14b_bce30_s42, qwen14b_bce30_s42_v2, qwen14b_teal30_eval\npaper/experiments.tex:233:\\caption{Qwen-2.5-14B at 30\\% sparsity (global top-$k$ allocation). PPL$\\downarrow$ on WikiText-2; accuracy$\\uparrow$ on downstream tasks. \\textbf{Bold}: best among sparse methods per column. KL's PPL/Dense ratio ($1.47\\times$) matches the 8B result exactly.}\npaper/experiments.tex:234:\\label{tab:14b}\npaper/experiments.tex:242:KL (Ours) & \\textbf{7.62} & 57.17 & 72.06 & 63.72 & 48.82 \\\\ % exp_id: qwen14b_kl30_s42\npaper/experiments.tex:243:TEAL vanilla & 8.73 & 56.83 & \\textbf{72.69} & \\textbf{71.83} & 49.51 \\\\ % exp_id: qwen14b_teal30_eval\npaper/experiments.tex:244:BCE & 8.76 & \\textbf{57.59} & 72.61 & 71.67 & \\textbf{53.07} \\\\ % exp_id: qwen14b_bce30_s42_eval\npaper/experiments.tex:245:% KL uniform & TBD & TBD & TBD & TBD & TBD \\\\ % exp_id: qwen14b_kl30_uniform (running, ~3-4h)\npaper/main.bbl:287:\\bibitem[{Team(2024)}]{qwen2024qwen25}\npaper/main.bbl:288:Qwen Team. 2024.\npaper/main.bbl:289:\\newblock \\href {https://arxiv.org/abs/2412.15115} {Qwen2.5 technical report}.\npaper/conclusion.tex:5:KL distillation resolves the per-neuron/global-inference mismatch: a lightweight predictor ($<$1\\% of base) halves TEAL's perplexity at 50\\% sparsity across three architectures; uniform allocation reduces cross-seed $\\sigma$ by $7.5\\times$ at 30\\%.\npaper/main.fdb_latexmk:142:  \"/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def\" 1752350709 14249 e14b403fb70abdf1f6742598a63b0e2a \"\"\npaper/main.fdb_latexmk:163:  \"/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\" 1750533675 9684 a33a14b82ce60d6e77cb9be689d79ee6 \"\"\npaper/main.fdb_latexmk:181:  \"main.tex\" 1779006993.07467 779 5dbaf61b1cdf85bca7765d9d03e114b4 \"\"\npaper/abstract.tex:7:Cross-architecture evaluation on Mistral-7B-v0.3 confirms consistent improvements (within 8\\% ratio at $\\leq$50\\% sparsity).\npaper/introduction.tex:19:Cross-architecture evaluation on Mistral-7B-v0.3~\\cite{jiang2023mistral} confirms consistent improvements at the 7--8B scale (Table~\\ref{tab:taxonomy} situates prior work along correction granularity and training signal coupling).\npaper/references.bib:286:@article{qwen2024qwen25,\npaper/references.bib:287:  title = {Qwen2.5 Technical Report},\npaper/references.bib:288:  author = {Qwen Team},\npaper/main.aux:711:\\citation{qwen2024qwen25}\npaper/main.aux:755:\\@writefile{lot}{\\contentsline {table}{\\numberline {6}{\\ignorespaces Cross-architecture comparison (WikiText-2 PPL$\\downarrow $). Adv = TEAL\\,/\\,KL ratio. LLaMA uses global top-$k$; Mistral uses uniform allocation (matched within each architecture).}}{8}{table.caption.34}\\protected@file@percent }\npaper/main.aux:756:\\newlabel{tab:cross_arch}{{6}{8}{Cross-architecture comparison (WikiText-2 PPL$\\downarrow $). Adv = TEAL\\,/\\,KL ratio. LLaMA uses global top-$k$; Mistral uses uniform allocation (matched within each architecture)}{table.caption.34}{}}\npaper/main.aux:757:\\@writefile{lot}{\\contentsline {table}{\\numberline {7}{\\ignorespaces Qwen-2.5-14B at 30\\% sparsity (global top-$k$ allocation). PPL$\\downarrow $ on WikiText-2; accuracy$\\uparrow $ on downstream tasks. \\textbf  {Bold}: best among sparse methods per column. KL's PPL/Dense ratio ($1.47\\times $) matches the 8B result exactly.}}{8}{table.caption.36}\\protected@file@percent }\npaper/main.aux:758:\\newlabel{tab:14b}{{7}{8}{Qwen-2.5-14B at 30\\% sparsity (global top-$k$ allocation). PPL$\\downarrow $ on WikiText-2; accuracy$\\uparrow $ on downstream tasks. \\textbf {Bold}: best among sparse methods per column. KL's PPL/Dense ratio ($1.47\\times $) matches the 8B result exactly}{table.caption.36}{}}\npaper/main.aux:759:\\newlabel{sec:cross_arch}{{4.6}{8}{Cross-Architecture Validation}{section*.33}{}}\npaper/main.aux:760:\\@writefile{toc}{\\contentsline {paragraph}{Cross-Architecture Validation.}{8}{section*.33}\\protected@file@percent }\npaper/main.aux:768:\\newlabel{sec:14b}{{4.6}{8}{Scale Generalization: Qwen-2.5-14B}{section*.35}{}}\npaper/main.aux:769:\\@writefile{toc}{\\contentsline {paragraph}{Scale Generalization: Qwen-2.5-14B.}{8}{section*.35}\\protected@file@percent }\npaper/main.aux:1050:\\bibcite{qwen2024qwen25}{{37}{2024}{{Team}}{{}}}",
+              "numLines": 39
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a good picture of the paper. Let me also check a few more things:\n\n1. The conclusion says \"three architectures\" - let me verify: LLaMA-8B, Mistral-7B, Qwen-14B. That's correct.\n2. The abstract doesn't mention 14B/Qwen at all.\n3. Let me look at the KL 30% 3-seed data - the paper has it for MMLU only (35.7±9.5 global, 40.7±1.3 uniform). But do we have 3-seed for PPL at 30%? The main table uses single seed 42 for PPL.\n\n\n4. For BCE iso-compute, the paper reports 27.97 for PPL, but the user's eval results show different values across seeds - I need to figure out which seed the paper's number comes from.\n5. The C4 OOD results check out: 30% KL gives 16.05 and 50% KL gives 18.40, both matching the paper.\n6. One gap I'm noticing: the OOD table only has TEAL results at 50% KL, but there's no TEAL baseline for the 30% KL condition.\n\nNow I'm compiling the full list of gaps. The 14B KL uniform row is still running with all TBD values. There's also an inconsistency where the conclusion mentions three architectures but the abstract and introduction only reference Mistral-7B. For BCE, I only have single-seed results in the paper, but the user's data suggests I should report the mean and standard deviation across seeds to strengthen the iso-compute comparison. Similarly, the main table reports 3-seed results for MMLU but the PPL metrics appear to be single-seed.\n\nThe OOD table is missing the 30% TEAL baseline entirely—it only shows 50%—and there's no BCE comparison in the OOD results at all. The experiments file explicitly states \"uniform results pending\" for the 14B model, and given that uniform allocation showed downstream benefits at 8B, I should verify whether this pattern holds at the larger scale.\n\nLooking at Table 1 more closely, the 30% KL rows report single-seed PPL values without standard deviation, while the 50% uniform case does include 3-seed mean±std. The caption confirms this discrepancy: 30% results are from seed 42 only, and seeds 123 and 456 are still training. I need to check whether the paper addresses the Qwen 14B KL MMLU gap issue.\n\nThe text does acknowledge this—at line 228 it notes that MMLU falls below TEAL/BCE (63.7 vs. 71.8/71.7%), which aligns with the allocation-dependent degradation observed at 8B. The uniform results that should show better MMLU performance are still pending. Now I'll compile the complete gap list.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "b4e5d5cd-62b5-46b6-ad9e-893417da12d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Bcw96M78um2K5gtNDwLAe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3034,
+                "cache_read_input_tokens": 48554,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3034
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete gap analysis:\n\n---\n\n## Data Gap List (Priority-Ranked)\n\n### 1. 14B KL Uniform — All Metrics Missing\n- **位置**: `experiments.tex:245` (commented-out TBD row), `experiments.tex:228` (\"uniform results pending\")\n- **缺什么**: Qwen-14B KL 30% uniform allocation 的 PPL, ARC-c, WG, MMLU, GSM8K 全部缺失\n- **当前状态**: 运行中 (4-task eval，无 GSM8K)\n- **影响**: **Critical** — 论文 8B 部分的核心叙事是 \"uniform allocation 消除 global top-k 的 MMLU 崩塌\"。14B KL global MMLU 63.7% 远低于 TEAL 71.8%，如果 uniform 不能恢复，reviewer 会直接质疑 allocation 建议的 generality。结论中写 \"three architectures\" 但 14B 缺 uniform 数据，claim 不完整。\n\n### 2. 30% KL 3-Seed PPL (8B)\n- **位置**: `experiments.tex:49-50` (Table 1 中 30% KL global PPL=8.98, uniform PPL=8.82，均为单 seed)\n- **缺什么**: 30% sparsity 的 PPL mean±std (s123, s456)\n- **当前状态**: s42 done, s123/s456 训练中\n- **影响**: **Important** — 50% 已有 3-seed PPL (11.92±0.07)，30% 作为推荐 operating point 却只有单 seed PPL，reviewer 可能质疑 robustness claim 的一致性。Table 1 caption 已经说明 MMLU 是 3-seed，PPL 不是，这个不对称性容易被注意到。\n\n### 3. BCE ISO-Compute 3-Seed\n- **位置**: `experiments.tex:66` (PPL 27.97 单 seed)\n- **缺什么**: BCE 2700-step 的 mean±std PPL\n- **当前状态**: s456 eval PPL 28.35, s123 eval PPL 28.06, s42 eval 缺失\n- **影响**: **Important** — ISO-compute 是回应 \"BCE 只是训练不够\" 的核心证据。单 seed 对比 (27.97 vs 11.79) 可能被质疑为 cherry-pick。三 seed 均值更有说服力，且现有两个 seed 已确认结论不变 (28.06, 28.35 vs ~11.8)。s42 eval 缺失需确认是否有数据。\n\n### 4. C4 OOD 30% TEAL Baseline\n- **位置**: `appendix.tex:161-173` (Table OOD)\n- **缺什么**: 30% sparsity 下 TEAL vanilla 的 C4 PPL。50% 有 TEAL baseline (38.75)，30% 只有 KL (16.05) 没有 TEAL 对照\n- **当前状态**: 未开始\n- **影响**: **Important** — 30% 是推荐 operating point，OOD 只报 KL 不报 TEAL，reviewer 无法判断 OOD 下 KL 的相对优势。50% 可以算出 52.5% advantage，30% 无法算。\n\n### 5. Abstract/Introduction 未提及 14B\n- **位置**: `abstract.tex` (全文), `introduction.tex:19` (只提 Mistral-7B)\n- **缺什么**: 14B 结果不在 abstract/intro 中，但 `conclusion.tex:5` 写 \"three architectures\"\n- **当前状态**: 文字 gap，不需要新数据\n- **影响**: **Important** — Conclusion 声称 \"three architectures\" 但 abstract 和 intro 只说 Mistral。一旦 14B uniform 数据到位，需要更新 abstract/intro 以包含 scale generalization claim，否则叙事断层。\n\n### 6. 14B Uniform Allocation 缺 GSM8K\n- **位置**: `experiments.tex:245`\n- **缺什么**: 14B KL uniform 的 GSM8K 评测\n- **当前状态**: 当前运行的 4-task eval 无 GSM8K\n- **影响**: **Nice-to-have** — 14B global 已有 GSM8K=48.82，如果 uniform 行缺此列会在表格中留空或需要 footnote。但 8B 50% GSM8K 都 <2.2% 近乎随机，reviewer 对此 metric 关注度较低。14B 30% 场景下 GSM8K 差异可能有意义 (global 48.82 vs dense 87.57)。\n\n### 7. 14B 50% Sparsity 数据\n- **位置**: 无 — 论文未写 14B 50% 数据\n- **缺什么**: 14B 在 50% sparsity 下的表现\n- **当前状态**: 未开始\n- **影响**: **Nice-to-have** — 8B 的核心故事在 50% 处展开 (49% advantage)。14B 只有 30% 一个点，reviewer 可能问 \"14B 在 50% 也有类似 advantage 吗？\" 不过这可以在 limitations 中 acknowledge，当前 limitations.tex:5 已写 \"scaling behavior to 13B or 70B models remains untested\"。\n\n### 8. Limitations 中 14B 表述过时\n- **位置**: `limitations.tex:5` — \"All experiments use 7--8B parameter models\"\n- **缺什么**: 文字与 14B 实验矛盾\n- **当前状态**: 文字 gap\n- **影响**: **Nice-to-have** — 小问题，但 reviewer 会注意到论文自己说 \"all 7-8B\" 同时有 14B 表格。\n\n---\n\n## 总结\n\n| 优先级 | Gap | 阻塞程度 |\n|--------|-----|---------|\n| Critical | 14B KL uniform 全指标 | 阻塞 conclusion \"three architectures\" claim |\n| Important | 30% KL 3-seed PPL | 等 s123/s456 训练完成 |\n| Important | BCE iso-compute 3-seed | s42 eval 缺失需排查 |\n| Important | C4 OOD 30% TEAL baseline | 未开始，需一次 eval |\n| Important | Abstract/Intro 加 14B mention | 等 #1 数据到位后改文字 |\n| Nice-to-have | 14B uniform GSM8K | 当前 eval 未包含 |\n| Nice-to-have | 14B 50% sparsity | 未开始 |\n| Nice-to-have | Limitations 文字修正 | 纯文字 |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "uuid": "f7257b58-26f5-48c3-a2eb-5c9d22779799",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Bcw96M78um2K5gtNDwLAe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3034,
+                "cache_read_input_tokens": 48554,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3034
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete gap analysis:\n\n---\n\n## Data Gap List (Priority-Ranked)\n\n### 1. 14B KL Uniform — All Metrics Missing\n- **位置**: `experiments.tex:245` (commented-out TBD row), `experiments.tex:228` (\"uniform results pending\")\n- **缺什么**: Qwen-14B KL 30% uniform allocation 的 PPL, ARC-c, WG, MMLU, GSM8K 全部缺失\n- **当前状态**: 运行中 (4-task eval，无 GSM8K)\n- **影响**: **Critical** — 论文 8B 部分的核心叙事是 \"uniform allocation 消除 global top-k 的 MMLU 崩塌\"。14B KL global MMLU 63.7% 远低于 TEAL 71.8%，如果 uniform 不能恢复，reviewer 会直接质疑 allocation 建议的 generality。结论中写 \"three architectures\" 但 14B 缺 uniform 数据，claim 不完整。\n\n### 2. 30% KL 3-Seed PPL (8B)\n- **位置**: `experiments.tex:49-50` (Table 1 中 30% KL global PPL=8.98, uniform PPL=8.82，均为单 seed)\n- **缺什么**: 30% sparsity 的 PPL mean±std (s123, s456)\n- **当前状态**: s42 done, s123/s456 训练中\n- **影响**: **Important** — 50% 已有 3-seed PPL (11.92±0.07)，30% 作为推荐 operating point 却只有单 seed PPL，reviewer 可能质疑 robustness claim 的一致性。Table 1 caption 已经说明 MMLU 是 3-seed，PPL 不是，这个不对称性容易被注意到。\n\n### 3. BCE ISO-Compute 3-Seed\n- **位置**: `experiments.tex:66` (PPL 27.97 单 seed)\n- **缺什么**: BCE 2700-step 的 mean±std PPL\n- **当前状态**: s456 eval PPL 28.35, s123 eval PPL 28.06, s42 eval 缺失\n- **影响**: **Important** — ISO-compute 是回应 \"BCE 只是训练不够\" 的核心证据。单 seed 对比 (27.97 vs 11.79) 可能被质疑为 cherry-pick。三 seed 均值更有说服力，且现有两个 seed 已确认结论不变 (28.06, 28.35 vs ~11.8)。s42 eval 缺失需确认是否有数据。\n\n### 4. C4 OOD 30% TEAL Baseline\n- **位置**: `appendix.tex:161-173` (Table OOD)\n- **缺什么**: 30% sparsity 下 TEAL vanilla 的 C4 PPL。50% 有 TEAL baseline (38.75)，30% 只有 KL (16.05) 没有 TEAL 对照\n- **当前状态**: 未开始\n- **影响**: **Important** — 30% 是推荐 operating point，OOD 只报 KL 不报 TEAL，reviewer 无法判断 OOD 下 KL 的相对优势。50% 可以算出 52.5% advantage，30% 无法算。\n\n### 5. Abstract/Introduction 未提及 14B\n- **位置**: `abstract.tex` (全文), `introduction.tex:19` (只提 Mistral-7B)\n- **缺什么**: 14B 结果不在 abstract/intro 中，但 `conclusion.tex:5` 写 \"three architectures\"\n- **当前状态**: 文字 gap，不需要新数据\n- **影响**: **Important** — Conclusion 声称 \"three architectures\" 但 abstract 和 intro 只说 Mistral。一旦 14B uniform 数据到位，需要更新 abstract/intro 以包含 scale generalization claim，否则叙事断层。\n\n### 6. 14B Uniform Allocation 缺 GSM8K\n- **位置**: `experiments.tex:245`\n- **缺什么**: 14B KL uniform 的 GSM8K 评测\n- **当前状态**: 当前运行的 4-task eval 无 GSM8K\n- **影响**: **Nice-to-have** — 14B global 已有 GSM8K=48.82，如果 uniform 行缺此列会在表格中留空或需要 footnote。但 8B 50% GSM8K 都 <2.2% 近乎随机，reviewer 对此 metric 关注度较低。14B 30% 场景下 GSM8K 差异可能有意义 (global 48.82 vs dense 87.57)。\n\n### 7. 14B 50% Sparsity 数据\n- **位置**: 无 — 论文未写 14B 50% 数据\n- **缺什么**: 14B 在 50% sparsity 下的表现\n- **当前状态**: 未开始\n- **影响**: **Nice-to-have** — 8B 的核心故事在 50% 处展开 (49% advantage)。14B 只有 30% 一个点，reviewer 可能问 \"14B 在 50% 也有类似 advantage 吗？\" 不过这可以在 limitations 中 acknowledge，当前 limitations.tex:5 已写 \"scaling behavior to 13B or 70B models remains untested\"。\n\n### 8. Limitations 中 14B 表述过时\n- **位置**: `limitations.tex:5` — \"All experiments use 7--8B parameter models\"\n- **缺什么**: 文字与 14B 实验矛盾\n- **当前状态**: 文字 gap\n- **影响**: **Nice-to-have** — 小问题，但 reviewer 会注意到论文自己说 \"all 7-8B\" 同时有 14B 表格。\n\n---\n\n## 总结\n\n| 优先级 | Gap | 阻塞程度 |\n|--------|-----|---------|\n| Critical | 14B KL uniform 全指标 | 阻塞 conclusion \"three architectures\" claim |\n| Important | 30% KL 3-seed PPL | 等 s123/s456 训练完成 |\n| Important | BCE iso-compute 3-seed | s42 eval 缺失需排查 |\n| Important | C4 OOD 30% TEAL baseline | 未开始，需一次 eval |\n| Important | Abstract/Intro 加 14B mention | 等 #1 数据到位后改文字 |\n| Nice-to-have | 14B uniform GSM8K | 当前 eval 未包含 |\n| Nice-to-have | 14B 50% sparsity | 未开始 |\n| Nice-to-have | Limitations 文字修正 | 纯文字 |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 110877,
+            "duration_api_ms": 111699,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "a197955d-a162-4816-9741-8986073df8c3",
+            "total_cost_usd": 0.46979175,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 39747,
+              "cache_read_input_tokens": 228376,
+              "output_tokens": 4221,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 39747,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 2952,
+                  "cache_read_input_tokens": 48554,
+                  "cache_creation_input_tokens": 3034,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3034
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1535,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001615,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 4221,
+                "cacheReadInputTokens": 228376,
+                "cacheCreationInputTokens": 39747,
+                "webSearchRequests": 0,
+                "costUSD": 0.46817675,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "6ed9ff5c-1d69-48bb-a461-38483f2d76c0"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-paper-gaps-for-round2.md"
+}

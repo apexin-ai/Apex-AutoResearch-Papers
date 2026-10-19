@@ -1,0 +1,40 @@
+{
+  "exp_id": "perlayer_kl_k8_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:00:06.503Z",
+    "updated_at": "2026-05-23T03:15:06.936Z",
+    "hypothesis": "K=8 per-layer KL training masks 8/32 layers per step (vs K=4). Tests whether doubling masking breadth improves train-inference alignment and downstream quality at 30% sparsity.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u src/train_perlayer_kl_k4.py --num_masked_layers 8 --seed 42 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k8_s42 --gpu 0",
+      "server": "westd-34887",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "pid": 98975,
+      "data_path": "wikitext-103",
+      "data_count": "auto",
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "num_steps": 1000,
+      "sparsity_target": 0.3,
+      "num_masked_layers": 8,
+      "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k8_s42/predictor_perlayer_kl_k4.pt",
+      "log_path": "/root/distill_sparse_swiglu/logs/perlayer_kl_k8_s42.log"
+    },
+    "metrics": {
+      "wikitext2_ppl": 8.97,
+      "final_avg_kl": 0.0983,
+      "final_avg_sparsity": 0.281,
+      "wall_time_s": 1894.1
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T03:15:06.936Z"
+  },
+  "timestamp": "2026-05-23T03:15:07.544537+00:00",
+  "trigger": "update_registry"
+}

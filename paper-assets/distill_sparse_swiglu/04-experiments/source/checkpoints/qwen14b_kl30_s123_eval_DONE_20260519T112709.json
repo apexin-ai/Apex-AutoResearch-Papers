@@ -1,0 +1,30 @@
+{
+  "exp_id": "qwen14b_kl30_s123_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T08:41:03.644Z",
+    "updated_at": "2026-05-19T11:27:09.250Z",
+    "hypothesis": "The qwen14b_kl30_s123 predictor at 30% TEAL uniform sparsity will maintain downstream benchmark performance (ARC, WinoGrande, HellaSwag, PIQA, MMLU, GSM8K) within acceptable degradation from the dense baseline.",
+    "parent": "qwen14b_kl30_s123",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu,gsm8k --sparsity_mode teal_global --allocation uniform --seq_len 2048 --gpu 0 --exp_id qwen14b_kl30_s123_eval",
+      "server": "westd-34887",
+      "data_path": "wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu,gsm8k",
+      "data_count": 7,
+      "model_name": "qwen2.5-14b",
+      "seed": 123,
+      "checkpoint_source": "checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt",
+      "eval_data": "wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu,gsm8k",
+      "log_path": "~/runs/distill_sparse_swiglu/qwen14b_kl30_s123_eval.log",
+      "pid": "93137"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-19T11:27:09.250Z"
+  },
+  "timestamp": "2026-05-19T11:27:09.729584+00:00",
+  "trigger": "update_registry"
+}

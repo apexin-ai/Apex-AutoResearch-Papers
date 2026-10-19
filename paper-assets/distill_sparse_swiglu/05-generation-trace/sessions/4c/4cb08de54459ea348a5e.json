@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cb08de54459ea348a5e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval resubmit 30pct v2",
+  "task_key": "worker_eval_resubmit_30pct_v2_20260516T015649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_resubmit_30pct_v2_20260516T015649_result.json",
+    "occurrence": 1,
+    "bytes": 488,
+    "sha256": "87d26210a0cebba5040789e28481a7c20853a7da0de37b65b7717c609885ae61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已通过上次失败点。状态：\n\n- **PID**: 191335\n- **GPU**: cuda:0\n- **tmux session**: lm_eval_kl_30pct_s42\n- **日志**: `~/runs/distill_sparse_swiglu/lm_eval_kl_30pct_s42.log`\n\n模型加载成功，WikiText-2 calibration data 加载成功（32 sequences），正在计算 TEAL global masks (sparsity=0.3)。上次失败根因是缺少 `source /etc/network_turbo`，本次已修复，同时配置了 `HF_HOME=/root/autodl-tmp/.hf_cache` 指向缓存目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-resubmit-30pct-v2.md"
+}

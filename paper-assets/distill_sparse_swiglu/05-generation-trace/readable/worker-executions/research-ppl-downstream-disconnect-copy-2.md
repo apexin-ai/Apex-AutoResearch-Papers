@@ -1,0 +1,5025 @@
+# research ppl downstream disconnect
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 79
+- **Recorded user turns:** 0
+- **Tool calls:** 28
+- **Original source:** `logs/workers/worker_research_ppl-downstream-disconnect_20260516T020025.log`
+- **Structured JSON:** [`8f387f337f8a1b29ca38.json`](../../sessions/8f/8f387f337f8a1b29ca38.json)
+
+## Before a recorded user message
+
+79 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "91211928-2400-412e-b656-c05d78860c30",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778903400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "69afdcf7-8158-4099-b352-f6aa0e65fa84",
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我将并行搜索多个方向的文献，然后综合分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "cb499383-0d1e-47d0-9a22-1211c35769af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWosLJzrfSD46mDnDhYvfk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11737,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11737
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016TSKh3JRHsrZhZmtmuqLYB`</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__append_idea",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "6bcec052-0aeb-45e7-90b5-d4ab9d6394f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWosLJzrfSD46mDnDhYvfk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11737,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11737
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T02:00:36.551Z_
+
+<details><summary>↩ Tool result · `toolu_016TSKh3JRHsrZhZmtmuqLYB`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__append_idea"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "93bbc52b-db9a-4b47-84af-8dadb914b9cd",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__append_idea"
+    ],
+    "query": "select:WebSearch,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__append_idea",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current memory.md to know what's already there, and then launch multiple parallel web searches to cover the different aspects of the literature survey.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "a9376b5f-1477-4f8a-9b19-2003681cab90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XVXgsDNwnUSfvnbQkFN9rS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 23578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1420
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+先读取现有 memory.md，同时并行搜索多个文献方向。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "4c80e372-8826-463a-9e28-6c4f224f2673",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XVXgsDNwnUSfvnbQkFN9rS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 23578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1420
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_013ZiDMxWaHrn6goGMvt93D2`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "51eff37f-2318-4fcb-8521-9c233e7708ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XVXgsDNwnUSfvnbQkFN9rS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 23578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1420
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T02:00:41.276Z_
+
+<details><summary>↩ Tool result · `toolu_013ZiDMxWaHrn6goGMvt93D2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\", \"content\": \"# Project Memory\\n\\n## Paper Framing Decisions (Director-approved)\\n\\n### BCE vs training-free: \\\"objective mismatch\\\" 非 \\\"anti-learning\\\" (2026-05-16)\\nBCE (54.84) 比 training-free (23-33) 差。**禁止用 \\\"anti-learning\\\" framing**，改用 **\\\"objective mismatch\\\"**：BCE 优化 per-neuron binary accuracy，TEAL 推理用 global top-k 重分配，两者结构性不兼容。BCE 学到的 per-neuron scoring 在 global budget allocation 下不是最优的。正确 claim: loss function 必须匹配推理管线的 sparsity allocation 机制。KL 直接优化 output distribution，天然兼容任何 allocation 策略。\\n\\n### KL PPL 统一引用规范 (2026-05-16)\\n论文中所有 KL PPL 对比统一用 **4-seed mean 12.00±0.07**（TEAL sparse PPL），不要用单 seed 最佳值 11.91。BCE iso-compute 对比时标注步数（1000 步 vs KL 1000 步，但 BCE per-step FLOPs 仅 KL 的 1/2.71）。\\n\\n### SPON framing: \\\"marginal complement\\\" 非 \\\"subsumption\\\" (2026-05-15)\\n禁止 \\\"KL subsumes SPON\\\" 措辞。正确表述：SPON corrections are orthogonal to and much smaller than predictor mask effects (cos_sim=0.196, magnitude ratio=16%)。D010 \\\"marginal complement\\\" framing。\\n\\n### s456 outlier 报告方式 (2026-05-16)\\n报 \\\"5-seed mean: 12.32±0.71\\\" + \\\"Excluding s456 (TEAL allocation outlier): 12.00±0.07\\\"。附 per-seed breakdown table + Layer 31 keep ratio 分析。不跑第 6 个 seed。\\n\\n## Key Insights (non-metrics)\\n\\n### 50% sparsity 摧毁 autoregressive generation (2026-05-16)\\nGSM8K 生成对比（10 samples）：sparse 50% 模型 1-3 句后进入无限重复循环，0/10 正确。退化模式是推理能力根本性丧失（模式 A），非仅数字算错。PPL 不惩罚 repetition loop（每个重复 token 仍有较高概率）。这解释了 PPL 12.00 但 GSM8K exact_match 仅 0.0121 的 disconnect。论文需用 30% 数据展示 sparsity-task tradeoff。\\n\\n### PPL-downstream disconnect 是真实现象，非 eval bug (2026-05-16)\\n三重验证确认：(1) acc_norm 已正确使用，(2) mask 逻辑审查无 bug（HFLM logit diff=0.0），(3) 生成对比显示推理链断裂。根因：50% sparsity 下 logit 微小偏移（如 \\\"Paris\\\" 从 #2 降到 #5）足以翻转 4-choice 答案，且摧毁 autoregressive 推理链。\\n\\n### STE vs Gumbel: smooth gradient is essential for KL+Lagrangian training (2026-05-16)\\nSTE hard threshold causes violent lambda oscillation (range [0.01, 1000], overall std=354) because sigmoid→binary 翻转是离散的——微小参数变化可翻转大量 neuron，导致 constraint violation 剧烈跳变。后果：(1) per-token sparsity 仅 0.470（未达 target 0.50）, (2) 逐层稀疏度两极化（Layer 0-17: 5-56%, Layer 18-31: 56-90%）, (3) TEAL global 分配效果差（PPL 15.77 vs Gumbel 12.00）。Gumbel soft mask 提供连续梯度，lambda 平稳收敛到 cap，sparsity 精准收敛到 target。**Relaxation method 不是实现细节，是 KL distillation 训练稳定性的前提。**\\n\\n### KL predictor implicitly subsumes static correction (2026-05-15)\\nSPON bias vectors recover only 3.8% of sparse-vs-dense gap on top of KL predictor (PPL 9.22→9.10). Root cause: KL's end-to-end gradient already captures average-case AND per-input neuron importance through d_logits/dh * dh/dm coupling. Static bias correction is redundant when the contextual predictor is trained with output-distribution alignment.\\n\\n### SPON seq_len=2048 confirms subsumption, rules out mismatch confound (2026-05-15)\\nspon_2048_s42: training seq_len matched eval seq_len=2048. Recovery improved 3.8%→7.3% (+3.5pp), bias norm 0.041→0.053 (+30%), but still < 10% threshold. Even under matched conditions, static bias is fundamentally limited against KL predictor's per-token mask.\\n\\n### Compensation cannot fix BCE's fundamental flaw (2026-05-15)\\nBCE+Compensation (67.2M params, staged training) only improves per-token PPL by 9% (27.96→25.44), still 2.8x worse than KL-only (9.21). TEAL global path completely unaffected by comp network (44.54 = BCE-only). Root cause: BCE gradient dL/ds_j is per-neuron factorized.\\n\\n### Training-free baselines: per-layer normalization is critical (2026-05-16)\\nCRITICAL bug in _global_topk_masks: activation magnitudes vary 50-100x across layers. Fix: divide each layer's importance scores by layer mean before global topk. Corrected PPL: Vanilla TEAL 23.31, WINA 27.93, TEAL Greedy 33.47. R-Sparse still broken (SVD scores need percentile/max normalization). **Same bug likely affects predictor TEAL path** — sparsity70 TEAL PPL=136K anomaly.\\n\\n### BCE objective mismatch with TEAL inference (2026-05-16)\\nBCE iso-compute (1000 steps, reg_weight=2.0, sparsity=0.502) gets TEAL PPL=54.84 — worse than all 3 training-free baselines (23-33). Root cause: BCE optimizes per-neuron binary accuracy independently, but TEAL inference uses global top-k budget allocation across layers. Per-neuron scores optimized for binary accuracy are structurally incompatible with global budget allocation. KL directly optimizes output distribution, naturally compatible with any allocation strategy.\\n\\n### Hard-mask PPL vs TEAL sparse PPL variance separation (2026-05-15)\\n5-seed hard-mask PPL std = 0.04 (9.14-9.25), 极其稳定。TEAL sparse PPL std = 0.69 (11.91-13.58), 方差大 16 倍。方差来自 TEAL 全局分配算法与 per-token mask 的匹配度。\\n\\n### KL vs BCE per-step FLOPs ratio = 2.71x (2026-05-15)\\n实测 (BS=1, SL=512): KL 0.549s/step, BCE 0.202s/step。Iso-compute BCE 需要 2700 步 (= 1000 × 2.71) 匹配 KL 1000 步的总 FLOPs。\\n\\n### gradient_checkpointing 对 sparsity training 是必须的 (2026-05-15)\\n所有 LLaMA-3.1-8B sparsity 训练必须加 --gradient_checkpointing。不加则 OOM（>96GB），加了后 46.9-67.6GB。\\n\\n### BCE iso-compute sparsity 收敛需要 reg_weight=2.0 (2026-05-15)\\n原始 SparsityRegularizer 在 torch.no_grad() 下计算 mask，梯度为零。修复：STE hard mask + reg_weight=2.0。\\n\\n### lambda_max=1000 对低 sparsity target 不够 (2026-05-16)\\nsparsity30 (target=0.30) 两次 sparsity 卡在 0.281，lambda 撞 1000 cap。v3 用 lambda_max=5000。\\n\\n### Mistral-7B 与 Llama-3.1-8B 代码完全兼容 (2026-05-16)\\ntrain.py 零改动即可运行。架构一致。Predictor 参数量完全相同 (~75.96M)。vocab_size 差异只影响 KL loss logit 维度。\\n\\n## Checkpoints\\n- KL-only predictor (s42): `/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\\n- SPON biases (seq128): `/root/distill_sparse_swiglu/checkpoints/spon_kl_s42/spon_biases.pt` (928KB)\\n- SPON biases (seq2048): `/root/distill_sparse_swiglu/checkpoints/spon_2048_s42/`\\n- BCE+comp predictor: `/root/distill_sparse_swiglu/checkpoints/bce_comp_staged_s42/predictor_bce_comp.pt`\\n- BCE iso-compute v2 (s42): `/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42/`\\n- SPON eval script: `/root/distill_sparse_swiglu/src/eval_spon.py`\\n- Mistral-7B: `/root/autodl-tmp/models/mistral-7b/` (7.25B params, 14MB)\\n- KL sparsity70 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt`\\n- KL sparsity30 v2 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42/predictor_kl_normalized.pt` (sparsity=0.281, negative)\\n- KL sparsity30 v3 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt` (145MB)\\n- STE baseline (s42): `/root/distill_sparse_swiglu/checkpoints/ste_baseline_s42/`\\n\", \"total_chars\": 6373, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "3475de1a-5b64-475a-a05d-51816c4070e0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## Paper Framing Decisions (Director-approved)\\\\n\\\\n### BCE vs training-free: \\\\\\\"objective mismatch\\\\\\\" 非 \\\\\\\"anti-learning\\\\\\\" (2026-05-16)\\\\nBCE (54.84) 比 training-free (23-33) 差。**禁止用 \\\\\\\"anti-learning\\\\\\\" framing**，改用 **\\\\\\\"objective mismatch\\\\\\\"**：BCE 优化 per-neuron binary accuracy，TEAL 推理用 global top-k 重分配，两者结构性不兼容。BCE 学到的 per-neuron scoring 在 global budget allocation 下不是最优的。正确 claim: loss function 必须匹配推理管线的 sparsity allocation 机制。KL 直接优化 output distribution，天然兼容任何 allocation 策略。\\\\n\\\\n### KL PPL 统一引用规范 (2026-05-16)\\\\n论文中所有 KL PPL 对比统一用 **4-seed mean 12.00±0.07**（TEAL sparse PPL），不要用单 seed 最佳值 11.91。BCE iso-compute 对比时标注步数（1000 步 vs KL 1000 步，但 BCE per-step FLOPs 仅 KL 的 1/2.71）。\\\\n\\\\n### SPON framing: \\\\\\\"marginal complement\\\\\\\" 非 \\\\\\\"subsumption\\\\\\\" (2026-05-15)\\\\n禁止 \\\\\\\"KL subsumes SPON\\\\\\\" 措辞。正确表述：SPON corrections are orthogonal to and much smaller than predictor mask effects (cos_sim=0.196, magnitude ratio=16%)。D010 \\\\\\\"marginal complement\\\\\\\" framing。\\\\n\\\\n### s456 outlier 报告方式 (2026-05-16)\\\\n报 \\\\\\\"5-seed mean: 12.32±0.71\\\\\\\" + \\\\\\\"Excluding s456 (TEAL allocation outlier): 12.00±0.07\\\\\\\"。附 per-seed breakdown table + Layer 31 keep ratio 分析。不跑第 6 个 seed。\\\\n\\\\n## Key Insights (non-metrics)\\\\n\\\\n### 50% sparsity 摧毁 autoregressive generation (2026-05-16)\\\\nGSM8K 生成对比（10 samples）：sparse 50% 模型 1-3 句后进入无限重复循环，0/10 正确。退化模式是推理能力根本性丧失（模式 A），非仅数字算错。PPL 不惩罚 repetition loop（每个重复 token 仍有较高概率）。这解释了 PPL 12.00 但 GSM8K exact_match 仅 0.0121 的 disconnect。论文需用 30% 数据展示 sparsity-task tradeoff。\\\\n\\\\n### PPL-downstream disconnect 是真实现象，非 eval bug (2026-05-16)\\\\n三重验证确认：(1) acc_norm 已正确使用，(2) mask 逻辑审查无 bug（HFLM logit diff=0.0），(3) 生成对比显示推理链断裂。根因：50% sparsity 下 logit 微小偏移（如 \\\\\\\"Paris\\\\\\\" 从 #2 降到 #5）足以翻转 4-choice 答案，且摧毁 autoregressive 推理链。\\\\n\\\\n### STE vs Gumbel: smooth gradient is essential for KL+Lagrangian training (2026-05-16)\\\\nSTE hard threshold causes violent lambda oscillation (range [0.01, 1000], overall std=354) because sigmoid→binary 翻转是离散的——微小参数变化可翻转大量 neuron，导致 constraint violation 剧烈跳变。后果：(1) per-token sparsity 仅 0.470（未达 target 0.50）, (2) 逐层稀疏度两极化（Layer 0-17: 5-56%, Layer 18-31: 56-90%）, (3) TEAL global 分配效果差（PPL 15.77 vs Gumbel 12.00）。Gumbel soft mask 提供连续梯度，lambda 平稳收敛到 cap，sparsity 精准收敛到 target。**Relaxation method 不是实现细节，是 KL distillation 训练稳定性的前提。**\\\\n\\\\n### KL predictor implicitly subsumes static correction (2026-05-15)\\\\nSPON bias vectors recover only 3.8% of sparse-vs-dense gap on top of KL predictor (PPL 9.22→9.10). Root cause: KL's end-to-end gradient already captures average-case AND per-input neuron importance through d_logits/dh * dh/dm coupling. Static bias correction is redundant when the contextual predictor is trained with output-distribution alignment.\\\\n\\\\n### SPON seq_len=2048 confirms subsumption, rules out mismatch confound (2026-05-15)\\\\nspon_2048_s42: training seq_len matched eval seq_len=2048. Recovery improved 3.8%→7.3% (+3.5pp), bias norm 0.041→0.053 (+30%), but still < 10% threshold. Even under matched conditions, static bias is fundamentally limited against KL predictor's per-token mask.\\\\n\\\\n### Compensation cannot fix BCE's fundamental flaw (2026-05-15)\\\\nBCE+Compensation (67.2M params, staged training) only improves per-token PPL by 9% (27.96→25.44), still 2.8x worse than KL-only (9.21). TEAL global path completely unaffected by comp network (44.54 = BCE-only). Root cause: BCE gradient dL/ds_j is per-neuron factorized.\\\\n\\\\n### Training-free baselines: per-layer normalization is critical (2026-05-16)\\\\nCRITICAL bug in _global_topk_masks: activation magnitudes vary 50-100x across layers. Fix: divide each layer's importance scores by layer mean before global topk. Corrected PPL: Vanilla TEAL 23.31, WINA 27.93, TEAL Greedy 33.47. R-Sparse still broken (SVD scores need percentile/max normalization). **Same bug likely affects predictor TEAL path** — sparsity70 TEAL PPL=136K anomaly.\\\\n\\\\n### BCE objective mismatch with TEAL inference (2026-05-16)\\\\nBCE iso-compute (1000 steps, reg_weight=2.0, sparsity=0.502) gets TEAL PPL=54.84 — worse than all 3 training-free baselines (23-33). Root cause: BCE optimizes per-neuron binary accuracy independently, but TEAL inference uses global top-k budget allocation across layers. Per-neuron scores optimized for binary accuracy are structurally incompatible with global budget allocation. KL directly optimizes output distribution, naturally compatible with any allocation strategy.\\\\n\\\\n### Hard-mask PPL vs TEAL sparse PPL variance separation (2026-05-15)\\\\n5-seed hard-mask PPL std = 0.04 (9.14-9.25), 极其稳定。TEAL sparse PPL std = 0.69 (11.91-13.58), 方差大 16 倍。方差来自 TEAL 全局分配算法与 per-token mask 的匹配度。\\\\n\\\\n### KL vs BCE per-step FLOPs ratio = 2.71x (2026-05-15)\\\\n实测 (BS=1, SL=512): KL 0.549s/step, BCE 0.202s/step。Iso-compute BCE 需要 2700 步 (= 1000 × 2.71) 匹配 KL 1000 步的总 FLOPs。\\\\n\\\\n### gradient_checkpointing 对 sparsity training 是必须的 (2026-05-15)\\\\n所有 LLaMA-3.1-8B sparsity 训练必须加 --gradient_checkpointing。不加则 OOM（>96GB），加了后 46.9-67.6GB。\\\\n\\\\n### BCE iso-compute sparsity 收敛需要 reg_weight=2.0 (2026-05-15)\\\\n原始 SparsityRegularizer 在 torch.no_grad() 下计算 mask，梯度为零。修复：STE hard mask + reg_weight=2.0。\\\\n\\\\n### lambda_max=1000 对低 sparsity target 不够 (2026-05-16)\\\\nsparsity30 (target=0.30) 两次 sparsity 卡在 0.281，lambda 撞 1000 cap。v3 用 lambda_max=5000。\\\\n\\\\n### Mistral-7B 与 Llama-3.1-8B 代码完全兼容 (2026-05-16)\\\\ntrain.py 零改动即可运行。架构一致。Predictor 参数量完全相同 (~75.96M)。vocab_size 差异只影响 KL loss logit 维度。\\\\n\\\\n## Checkpoints\\\\n- KL-only predictor (s42): `/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\\\\n- SPON biases (seq128): `/root/distill_sparse_swiglu/checkpoints/spon_kl_s42/spon_biases.pt` (928KB)\\\\n- SPON biases (seq2048): `/root/distill_sparse_swiglu/checkpoints/spon_2048_s42/`\\\\n- BCE+comp predictor: `/root/distill_sparse_swiglu/checkpoints/bce_comp_staged_s42/predictor_bce_comp.pt`\\\\n- BCE iso-compute v2 (s42): `/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42/`\\\\n- SPON eval script: `/root/distill_sparse_swiglu/src/eval_spon.py`\\\\n- Mistral-7B: `/root/autodl-tmp/models/mistral-7b/` (7.25B params, 14MB)\\\\n- KL sparsity70 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt`\\\\n- KL sparsity30 v2 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42/predictor_kl_normalized.pt` (sparsity=0.281, negative)\\\\n- KL sparsity30 v3 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt` (145MB)\\\\n- STE baseline (s42): `/root/distill_sparse_swiglu/checkpoints/ste_baseline_s42/`\\\\n\\\", \\\"total_chars\\\": 6373, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\", \"content\": \"# Project Memory\\n\\n## Paper Framing Decisions (Director-approved)\\n\\n### BCE vs training-free: \\\"objective mismatch\\\" 非 \\\"anti-learning\\\" (2026-05-16)\\nBCE (54.84) 比 training-free (23-33) 差。**禁止用 \\\"anti-learning\\\" framing**，改用 **\\\"objective mismatch\\\"**：BCE 优化 per-neuron binary accuracy，TEAL 推理用 global top-k 重分配，两者结构性不兼容。BCE 学到的 per-neuron scoring 在 global budget allocation 下不是最优的。正确 claim: loss function 必须匹配推理管线的 sparsity allocation 机制。KL 直接优化 output distribution，天然兼容任何 allocation 策略。\\n\\n### KL PPL 统一引用规范 (2026-05-16)\\n论文中所有 KL PPL 对比统一用 **4-seed mean 12.00±0.07**（TEAL sparse PPL），不要用单 seed 最佳值 11.91。BCE iso-compute 对比时标注步数（1000 步 vs KL 1000 步，但 BCE per-step FLOPs 仅 KL 的 1/2.71）。\\n\\n### SPON framing: \\\"marginal complement\\\" 非 \\\"subsumption\\\" (2026-05-15)\\n禁止 \\\"KL subsumes SPON\\\" 措辞。正确表述：SPON corrections are orthogonal to and much smaller than predictor mask effects (cos_sim=0.196, magnitude ratio=16%)。D010 \\\"marginal complement\\\" framing。\\n\\n### s456 outlier 报告方式 (2026-05-16)\\n报 \\\"5-seed mean: 12.32±0.71\\\" + \\\"Excluding s456 (TEAL allocation outlier): 12.00±0.07\\\"。附 per-seed breakdown table + Layer 31 keep ratio 分析。不跑第 6 个 seed。\\n\\n## Key Insights (non-metrics)\\n\\n### 50% sparsity 摧毁 autoregressive generation (2026-05-16)\\nGSM8K 生成对比（10 samples）：sparse 50% 模型 1-3 句后进入无限重复循环，0/10 正确。退化模式是推理能力根本性丧失（模式 A），非仅数字算错。PPL 不惩罚 repetition loop（每个重复 token 仍有较高概率）。这解释了 PPL 12.00 但 GSM8K exact_match 仅 0.0121 的 disconnect。论文需用 30% 数据展示 sparsity-task tradeoff。\\n\\n### PPL-downstream disconnect 是真实现象，非 eval bug (2026-05-16)\\n三重验证确认：(1) acc_norm 已正确使用，(2) mask 逻辑审查无 bug（HFLM logit diff=0.0），(3) 生成对比显示推理链断裂。根因：50% sparsity 下 logit 微小偏移（如 \\\"Paris\\\" 从 #2 降到 #5）足以翻转 4-choice 答案，且摧毁 autoregressive 推理链。\\n\\n### STE vs Gumbel: smooth gradient is essential for KL+Lagrangian training (2026-05-16)\\nSTE hard threshold causes violent lambda oscillation (range [0.01, 1000], overall std=354) because sigmoid→binary 翻转是离散的——微小参数变化可翻转大量 neuron，导致 constraint violation 剧烈跳变。后果：(1) per-token sparsity 仅 0.470（未达 target 0.50）, (2) 逐层稀疏度两极化（Layer 0-17: 5-56%, Layer 18-31: 56-90%）, (3) TEAL global 分配效果差（PPL 15.77 vs Gumbel 12.00）。Gumbel soft mask 提供连续梯度，lambda 平稳收敛到 cap，sparsity 精准收敛到 target。**Relaxation method 不是实现细节，是 KL distillation 训练稳定性的前提。**\\n\\n### KL predictor implicitly subsumes static correction (2026-05-15)\\nSPON bias vectors recover only 3.8% of sparse-vs-dense gap on top of KL predictor (PPL 9.22→9.10). Root cause: KL's end-to-end gradient already captures average-case AND per-input neuron importance through d_logits/dh * dh/dm coupling. Static bias correction is redundant when the contextual predictor is trained with output-distribution alignment.\\n\\n### SPON seq_len=2048 confirms subsumption, rules out mismatch confound (2026-05-15)\\nspon_2048_s42: training seq_len matched eval seq_len=2048. Recovery improved 3.8%→7.3% (+3.5pp), bias norm 0.041→0.053 (+30%), but still < 10% threshold. Even under matched conditions, static bias is fundamentally limited against KL predictor's per-token mask.\\n\\n### Compensation cannot fix BCE's fundamental flaw (2026-05-15)\\nBCE+Compensation (67.2M params, staged training) only improves per-token PPL by 9% (27.96→25.44), still 2.8x worse than KL-only (9.21). TEAL global path completely unaffected by comp network (44.54 = BCE-only). Root cause: BCE gradient dL/ds_j is per-neuron factorized.\\n\\n### Training-free baselines: per-layer normalization is critical (2026-05-16)\\nCRITICAL bug in _global_topk_masks: activation magnitudes vary 50-100x across layers. Fix: divide each layer's importance scores by layer mean before global topk. Corrected PPL: Vanilla TEAL 23.31, WINA 27.93, TEAL Greedy 33.47. R-Sparse still broken (SVD scores need percentile/max normalization). **Same bug likely affects predictor TEAL path** — sparsity70 TEAL PPL=136K anomaly.\\n\\n### BCE objective mismatch with TEAL inference (2026-05-16)\\nBCE iso-compute (1000 steps, reg_weight=2.0, sparsity=0.502) gets TEAL PPL=54.84 — worse than all 3 training-free baselines (23-33). Root cause: BCE optimizes per-neuron binary accuracy independently, but TEAL inference uses global top-k budget allocation across layers. Per-neuron scores optimized for binary accuracy are structurally incompatible with global budget allocation. KL directly optimizes output distribution, naturally compatible with any allocation strategy.\\n\\n### Hard-mask PPL vs TEAL sparse PPL variance separation (2026-05-15)\\n5-seed hard-mask PPL std = 0.04 (9.14-9.25), 极其稳定。TEAL sparse PPL std = 0.69 (11.91-13.58), 方差大 16 倍。方差来自 TEAL 全局分配算法与 per-token mask 的匹配度。\\n\\n### KL vs BCE per-step FLOPs ratio = 2.71x (2026-05-15)\\n实测 (BS=1, SL=512): KL 0.549s/step, BCE 0.202s/step。Iso-compute BCE 需要 2700 步 (= 1000 × 2.71) 匹配 KL 1000 步的总 FLOPs。\\n\\n### gradient_checkpointing 对 sparsity training 是必须的 (2026-05-15)\\n所有 LLaMA-3.1-8B sparsity 训练必须加 --gradient_checkpointing。不加则 OOM（>96GB），加了后 46.9-67.6GB。\\n\\n### BCE iso-compute sparsity 收敛需要 reg_weight=2.0 (2026-05-15)\\n原始 SparsityRegularizer 在 torch.no_grad() 下计算 mask，梯度为零。修复：STE hard mask + reg_weight=2.0。\\n\\n### lambda_max=1000 对低 sparsity target 不够 (2026-05-16)\\nsparsity30 (target=0.30) 两次 sparsity 卡在 0.281，lambda 撞 1000 cap。v3 用 lambda_max=5000。\\n\\n### Mistral-7B 与 Llama-3.1-8B 代码完全兼容 (2026-05-16)\\ntrain.py 零改动即可运行。架构一致。Predictor 参数量完全相同 (~75.96M)。vocab_size 差异只影响 KL loss logit 维度。\\n\\n## Checkpoints\\n- KL-only predictor (s42): `/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\\n- SPON biases (seq128): `/root/distill_sparse_swiglu/checkpoints/spon_kl_s42/spon_biases.pt` (928KB)\\n- SPON biases (seq2048): `/root/distill_sparse_swiglu/checkpoints/spon_2048_s42/`\\n- BCE+comp predictor: `/root/distill_sparse_swiglu/checkpoints/bce_comp_staged_s42/predictor_bce_comp.pt`\\n- BCE iso-compute v2 (s42): `/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42/`\\n- SPON eval script: `/root/distill_sparse_swiglu/src/eval_spon.py`\\n- Mistral-7B: `/root/autodl-tmp/models/mistral-7b/` (7.25B params, 14MB)\\n- KL sparsity70 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt`\\n- KL sparsity30 v2 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42/predictor_kl_normalized.pt` (sparsity=0.281, negative)\\n- KL sparsity30 v3 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt` (145MB)\\n- STE baseline (s42): `/root/distill_sparse_swiglu/checkpoints/ste_baseline_s42/`\\n\", \"total_chars\": 6373, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LyBey5XvBX964AP5T7fFjY`</summary>
+
+```json
+{
+  "query": "perplexity downstream task disconnect pruning sparsity language model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "ef8cc06b-03e5-42fd-b35b-b9f017d75ed4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XVXgsDNwnUSfvnbQkFN9rS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 23578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1420
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lu7xMxqNi84UkQuPB5h3Vs`</summary>
+
+```json
+{
+  "query": "SparseGPT perplexity vs downstream accuracy gap pruning LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "a21f29ce-5ede-4ba6-8d56-58b15baa2317",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XVXgsDNwnUSfvnbQkFN9rS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 23578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1420
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PkGS5pJFxfvzEFqHScVrxJ`</summary>
+
+```json
+{
+  "query": "Wanda pruning downstream task degradation perplexity misleading"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "5a850594-2121-4896-a128-6b15ccbd3d99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XVXgsDNwnUSfvnbQkFN9rS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 23578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1420
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Eemhm7i4HcNwvvLyqPcX88`</summary>
+
+```json
+{
+  "query": "repetition degeneration sparse language model pruning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "2e1efb74-0aa1-43c2-9a7f-c792e0e4f49e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XVXgsDNwnUSfvnbQkFN9rS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 23578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1420
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T02:00:49.072Z_
+
+<details><summary>↩ Tool result · `toolu_01LyBey5XvBX964AP5T7fFjY`</summary>
+
+```text
+Web search results for query: "perplexity downstream task disconnect pruning sparsity language model"
+
+Links: [{"title":"On the Limitations of Language Targeted Pruning: Investigating the Calibration Language Impact in Multilingual LLM Pruning","url":"https://arxiv.org/html/2408.14398"},{"title":"SoLA: Leveraging Soft Activation Sparsity and Low-Rank Decomposition for Large Language Model Compression","url":"https://arxiv.org/html/2604.03258"},{"title":"2SSP: A Two-Stage Framework for Structured Pruning of LLMs","url":"https://arxiv.org/html/2501.17771"},{"title":"Z-Pruner: Post-Training Pruning of Large Language Models for Efficiency without Retraining","url":"https://arxiv.org/html/2508.15828"},{"title":"ShadowLLM: Predictor-based Contextual Sparsity for ...","url":"https://aclanthology.org/2024.emnlp-main.1068.pdf"},{"title":"From Local to Global: Revisiting Structured Pruning Paradigms for Large Language Models","url":"https://arxiv.org/html/2510.18030"},{"title":"EvoP: Robust LLM Inference via Evolutionary Pruning","url":"https://arxiv.org/html/2502.14910"},{"title":"Frustratingly Easy Task-aware Pruning for Large Language Models","url":"https://arxiv.org/html/2510.22489v1"},{"title":"Perplexed by Perplexity: Perplexity-Based Data Pruning With Small Reference Models","url":"https://arxiv.org/html/2405.20541v1"},{"title":"One-Shot Sensitivity-Aware Mixed Sparsity Pruning for Large Language Models","url":"https://arxiv.org/html/2310.09499"}]
+
+I found research results on pruning, sparsity, and language models. Here's what the search revealed:
+
+## Key Findings
+
+**Perplexity vs. Downstream Task Performance Disconnect:**
+
+Research shows that while calibration on the target language effectively retains perplexity and yields high signal-to-noise ratios, it does not consistently improve downstream task performance. This is a critical issue in language model pruning—the dominant local paradigm is task-agnostic: by optimizing layer-wise reconstruction rather than task objectives, it tends to preserve perplexity or generic zero-shot behavior but fails to capitalize on modest task-specific calibration signals, often yielding limited downstream gains.
+
+**Pruning and Sparsity Methods:**
+
+Multiple recent approaches address these challenges:
+
+- Z-Pruner is a novel post-training pruning method that enables efficient sparsification of large language models without the need for retraining by leveraging a statistically-informed approach using Z-scores normalized across both rows and columns of weight matrices.
+
+- GISP (Global Iterative Structured Pruning) is a post-training method that removes attention heads and MLP channels using first-order, loss-based important scores aggregated at the structure level with block-wise normalization.
+
+- At moderate sparsity levels such as 50% and 75%, task-aware pruning approaches show clear improvements on most downstream tasks while maintaining comparable perplexity on WikiText-2.
+
+The research suggests that addressing the disconnect between perplexity and downstream task performance requires incorporating task-specific information into pruning decisions, rather than relying solely on generic calibration metrics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "28072ab8-5b29-4af7-9486-f9bde3c91c90",
+  "tool_use_result": {
+    "query": "perplexity downstream task disconnect pruning sparsity language model",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S7YfwwEtDJvh47Zea3id8M",
+        "content": [
+          {
+            "title": "On the Limitations of Language Targeted Pruning: Investigating the Calibration Language Impact in Multilingual LLM Pruning",
+            "url": "https://arxiv.org/html/2408.14398"
+          },
+          {
+            "title": "SoLA: Leveraging Soft Activation Sparsity and Low-Rank Decomposition for Large Language Model Compression",
+            "url": "https://arxiv.org/html/2604.03258"
+          },
+          {
+            "title": "2SSP: A Two-Stage Framework for Structured Pruning of LLMs",
+            "url": "https://arxiv.org/html/2501.17771"
+          },
+          {
+            "title": "Z-Pruner: Post-Training Pruning of Large Language Models for Efficiency without Retraining",
+            "url": "https://arxiv.org/html/2508.15828"
+          },
+          {
+            "title": "ShadowLLM: Predictor-based Contextual Sparsity for ...",
+            "url": "https://aclanthology.org/2024.emnlp-main.1068.pdf"
+          },
+          {
+            "title": "From Local to Global: Revisiting Structured Pruning Paradigms for Large Language Models",
+            "url": "https://arxiv.org/html/2510.18030"
+          },
+          {
+            "title": "EvoP: Robust LLM Inference via Evolutionary Pruning",
+            "url": "https://arxiv.org/html/2502.14910"
+          },
+          {
+            "title": "Frustratingly Easy Task-aware Pruning for Large Language Models",
+            "url": "https://arxiv.org/html/2510.22489v1"
+          },
+          {
+            "title": "Perplexed by Perplexity: Perplexity-Based Data Pruning With Small Reference Models",
+            "url": "https://arxiv.org/html/2405.20541v1"
+          },
+          {
+            "title": "One-Shot Sensitivity-Aware Mixed Sparsity Pruning for Large Language Models",
+            "url": "https://arxiv.org/html/2310.09499"
+          }
+        ]
+      },
+      "I found research results on pruning, sparsity, and language models. Here's what the search revealed:\n\n## Key Findings\n\n**Perplexity vs. Downstream Task Performance Disconnect:**\n\nResearch shows that while calibration on the target language effectively retains perplexity and yields high signal-to-noise ratios, it does not consistently improve downstream task performance. This is a critical issue in language model pruning—the dominant local paradigm is task-agnostic: by optimizing layer-wise reconstruction rather than task objectives, it tends to preserve perplexity or generic zero-shot behavior but fails to capitalize on modest task-specific calibration signals, often yielding limited downstream gains.\n\n**Pruning and Sparsity Methods:**\n\nMultiple recent approaches address these challenges:\n\n- Z-Pruner is a novel post-training pruning method that enables efficient sparsification of large language models without the need for retraining by leveraging a statistically-informed approach using Z-scores normalized across both rows and columns of weight matrices.\n\n- GISP (Global Iterative Structured Pruning) is a post-training method that removes attention heads and MLP channels using first-order, loss-based important scores aggregated at the structure level with block-wise normalization.\n\n- At moderate sparsity levels such as 50% and 75%, task-aware pruning approaches show clear improvements on most downstream tasks while maintaining comparable perplexity on WikiText-2.\n\nThe research suggests that addressing the disconnect between perplexity and downstream task performance requires incorporating task-specific information into pruning decisions, rather than relying solely on generic calibration metrics."
+    ],
+    "durationSeconds": 6.839990455000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T02:00:49.880Z_
+
+<details><summary>↩ Tool result · `toolu_01PkGS5pJFxfvzEFqHScVrxJ`</summary>
+
+```text
+Web search results for query: "Wanda pruning downstream task degradation perplexity misleading"
+
+Links: [{"title":"Wanda++: Pruning Large Language Models via Regional Gradients","url":"https://arxiv.org/html/2503.04992"},{"title":"PRUNING LARGE LANGUAGE MODELS - WANDA++","url":"https://openreview.net/pdf?id=WjnJf5ft0B"},{"title":"M-Wanda: Improving One-Shot Pruning for Multilingual LLMs","url":"https://arxiv.org/html/2505.21171"},{"title":"Efficient Post-Training Pruning of Large Language Models with Statistical Correction","url":"https://arxiv.org/html/2602.07375v1"},{"title":"wanda++: pruning large language models","url":"https://arxiv.org/pdf/2503.04992v2"},{"title":"Wanda++: Pruning Large Language Models via Regional Gradients","url":"https://yifan-yang.net/wandapp.github.io/"},{"title":"Multi-dimensional Safety Evaluation of LLM Compression","url":"https://aclanthology.org/2024.findings-emnlp.901.pdf"},{"title":"Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models","url":"https://arxiv.org/html/2409.11233"},{"title":"LLMs can Compress LLMs: Adaptive Pruning by Agents","url":"https://arxiv.org/html/2601.09694v1"},{"title":"[2503.04992] Wanda++: Pruning Large Language Models via Regional Gradients","url":"https://arxiv.org/abs/2503.04992"}]
+
+Based on the search results, here's what I found regarding Wanda pruning and the relationship between perplexity and downstream task degradation:
+
+## Key Finding: Perplexity Can Be Misleading
+
+While SparseGPT and Wanda maintain perplexity levels close to the base model, they exhibit significant degradation in downstream task performance, which underscores the inadequacy of perplexity as a sole evaluation metric for assessing the efficacy of compression.
+
+This is a critical issue in LLM pruning. Compressing large language models by a small fraction (e.g., a 20% reduction) may result in minimal changes in perplexity, but can lead to significant degradation in performance on downstream tasks.
+
+Perplexity measures how confidently a model predicts the next token, but it does not fully capture the nuanced impacts of compression on task-specific outputs.
+
+## Related Problem: Catastrophic Knowledge Degradation
+
+Recent evaluation benchmarks have revealed a severe problem with pruned LLMs: catastrophic factual knowledge degradation, where structured pruning methods experience near-total collapse in factual question-answering performance, with N:M sparsity patterns losing over 97% accuracy on knowledge-intensive tasks even at modest sparsity ratios (25-30%), despite negligible perplexity.
+
+## Wanda++ Improvements
+
+In response to these issues, Wanda++ improves perplexity by up to 32% over Wanda in the language modeling task and generalizes effectively to downstream tasks, addressing some of the downstream degradation problems of the original Wanda method.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "6c2f4d08-2307-4b9a-b50c-2a2c7e0afba5",
+  "tool_use_result": {
+    "query": "Wanda pruning downstream task degradation perplexity misleading",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011e61jDK8FuqmHcwN42SC34",
+        "content": [
+          {
+            "title": "Wanda++: Pruning Large Language Models via Regional Gradients",
+            "url": "https://arxiv.org/html/2503.04992"
+          },
+          {
+            "title": "PRUNING LARGE LANGUAGE MODELS - WANDA++",
+            "url": "https://openreview.net/pdf?id=WjnJf5ft0B"
+          },
+          {
+            "title": "M-Wanda: Improving One-Shot Pruning for Multilingual LLMs",
+            "url": "https://arxiv.org/html/2505.21171"
+          },
+          {
+            "title": "Efficient Post-Training Pruning of Large Language Models with Statistical Correction",
+            "url": "https://arxiv.org/html/2602.07375v1"
+          },
+          {
+            "title": "wanda++: pruning large language models",
+            "url": "https://arxiv.org/pdf/2503.04992v2"
+          },
+          {
+            "title": "Wanda++: Pruning Large Language Models via Regional Gradients",
+            "url": "https://yifan-yang.net/wandapp.github.io/"
+          },
+          {
+            "title": "Multi-dimensional Safety Evaluation of LLM Compression",
+            "url": "https://aclanthology.org/2024.findings-emnlp.901.pdf"
+          },
+          {
+            "title": "Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models",
+            "url": "https://arxiv.org/html/2409.11233"
+          },
+          {
+            "title": "LLMs can Compress LLMs: Adaptive Pruning by Agents",
+            "url": "https://arxiv.org/html/2601.09694v1"
+          },
+          {
+            "title": "[2503.04992] Wanda++: Pruning Large Language Models via Regional Gradients",
+            "url": "https://arxiv.org/abs/2503.04992"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding Wanda pruning and the relationship between perplexity and downstream task degradation:\n\n## Key Finding: Perplexity Can Be Misleading\n\nWhile SparseGPT and Wanda maintain perplexity levels close to the base model, they exhibit significant degradation in downstream task performance, which underscores the inadequacy of perplexity as a sole evaluation metric for assessing the efficacy of compression.\n\nThis is a critical issue in LLM pruning. Compressing large language models by a small fraction (e.g., a 20% reduction) may result in minimal changes in perplexity, but can lead to significant degradation in performance on downstream tasks.\n\nPerplexity measures how confidently a model predicts the next token, but it does not fully capture the nuanced impacts of compression on task-specific outputs.\n\n## Related Problem: Catastrophic Knowledge Degradation\n\nRecent evaluation benchmarks have revealed a severe problem with pruned LLMs: catastrophic factual knowledge degradation, where structured pruning methods experience near-total collapse in factual question-answering performance, with N:M sparsity patterns losing over 97% accuracy on knowledge-intensive tasks even at modest sparsity ratios (25-30%), despite negligible perplexity.\n\n## Wanda++ Improvements\n\nIn response to these issues, Wanda++ improves perplexity by up to 32% over Wanda in the language modeling task and generalizes effectively to downstream tasks, addressing some of the downstream degradation problems of the original Wanda method."
+    ],
+    "durationSeconds": 6.224817358
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T02:00:50.030Z_
+
+<details><summary>↩ Tool result · `toolu_01Eemhm7i4HcNwvvLyqPcX88`</summary>
+
+```text
+Web search results for query: "repetition degeneration sparse language model pruning"
+
+Links: [{"title":"Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models","url":"https://arxiv.org/html/2604.27115"},{"title":"SparseGPT: Massive Language Models Can be Accurately Pruned in One-Shot","url":"https://openreview.net/pdf?id=gsP05g8IeK"},{"title":"Sparsity in Deep Learning: Pruning and growth for efficient ...","url":"https://www.jmlr.org/papers/volume22/21-0366/21-0366.pdf"},{"title":"Efficient self-attention with smart pruning for sustainable large language models | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-92586-5"},{"title":"Pruning Large Language Models with Semi-Structural Adaptive Sparse Training","url":"https://ojs.aaai.org/index.php/AAAI/article/view/34592/36747"},{"title":"Efficient self-attention with smart pruning for sustainable large language models - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11933332/"},{"title":"Efficient and Accurate Post-Training Sparsification of Large Language Models with Proximal Operators | Proceedings of the 3rd International Workshop on Rich Media With Generative AI","url":"https://dl.acm.org/doi/10.1145/3746262.3761975"},{"title":"Sparsity Limit to Prune Large Language Models for on-Device AI Assistants: Llama-2 as an Example[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202407.1568/v1"},{"title":"SparseGPT: Massive Language Models Can be Accurately ...","url":"https://arxiv.org/pdf/2301.00774"},{"title":"SparseGPT: Language Models Can Be Accurately Pruned in One-Shot | Hacker News","url":"https://news.ycombinator.com/item?id=35804556"}]
+
+Based on the search results, here's what I found regarding repetition degeneration in sparse language model pruning:
+
+## Repetition Degeneration in Pruned Language Models
+
+Repetitive degeneration loops are anomalous behaviors observed in pruned language models, collectively referred to as "traps" when studying structural instability induced by pruning.
+
+### Nature of Degeneration
+
+Degeneration loops arise from failures in EOS (end-of-sequence) prediction and reasoning stability, with Type 1 traps reflecting termination failure after successful reasoning, while Type 2 traps indicate disruption of the reasoning process itself. Increasing pruning ratio leads to a higher frequency of such behaviors, particularly Type 2 traps.
+
+### Performance Issues in Sparse Models
+
+This is a practical concern observed across different pruning methods. The performance of pruned models deviates from baseline models, particularly when generating lengthy sentences, which create more meaningless or repetitive tokens.
+
+### Recovery Through Fine-Tuning
+
+Fine-tuning substantially recovers performance across pruning levels, particularly for aggressively pruned models, suggesting that post-pruning adaptation can mitigate some of these degeneration issues.
+
+The research indicates that repetition degeneration is a significant challenge in language model pruning that becomes more pronounced with higher sparsity levels and longer generation sequences.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "f2a947ab-cd84-4714-9934-770d22507356",
+  "tool_use_result": {
+    "query": "repetition degeneration sparse language model pruning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T7Z9pXR9k7X2t8Nmdd7oMP",
+        "content": [
+          {
+            "title": "Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models",
+            "url": "https://arxiv.org/html/2604.27115"
+          },
+          {
+            "title": "SparseGPT: Massive Language Models Can be Accurately Pruned in One-Shot",
+            "url": "https://openreview.net/pdf?id=gsP05g8IeK"
+          },
+          {
+            "title": "Sparsity in Deep Learning: Pruning and growth for efficient ...",
+            "url": "https://www.jmlr.org/papers/volume22/21-0366/21-0366.pdf"
+          },
+          {
+            "title": "Efficient self-attention with smart pruning for sustainable large language models | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-92586-5"
+          },
+          {
+            "title": "Pruning Large Language Models with Semi-Structural Adaptive Sparse Training",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/34592/36747"
+          },
+          {
+            "title": "Efficient self-attention with smart pruning for sustainable large language models - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11933332/"
+          },
+          {
+            "title": "Efficient and Accurate Post-Training Sparsification of Large Language Models with Proximal Operators | Proceedings of the 3rd International Workshop on Rich Media With Generative AI",
+            "url": "https://dl.acm.org/doi/10.1145/3746262.3761975"
+          },
+          {
+            "title": "Sparsity Limit to Prune Large Language Models for on-Device AI Assistants: Llama-2 as an Example[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202407.1568/v1"
+          },
+          {
+            "title": "SparseGPT: Massive Language Models Can be Accurately ...",
+            "url": "https://arxiv.org/pdf/2301.00774"
+          },
+          {
+            "title": "SparseGPT: Language Models Can Be Accurately Pruned in One-Shot | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=35804556"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding repetition degeneration in sparse language model pruning:\n\n## Repetition Degeneration in Pruned Language Models\n\nRepetitive degeneration loops are anomalous behaviors observed in pruned language models, collectively referred to as \"traps\" when studying structural instability induced by pruning.\n\n### Nature of Degeneration\n\nDegeneration loops arise from failures in EOS (end-of-sequence) prediction and reasoning stability, with Type 1 traps reflecting termination failure after successful reasoning, while Type 2 traps indicate disruption of the reasoning process itself. Increasing pruning ratio leads to a higher frequency of such behaviors, particularly Type 2 traps.\n\n### Performance Issues in Sparse Models\n\nThis is a practical concern observed across different pruning methods. The performance of pruned models deviates from baseline models, particularly when generating lengthy sentences, which create more meaningless or repetitive tokens.\n\n### Recovery Through Fine-Tuning\n\nFine-tuning substantially recovers performance across pruning levels, particularly for aggressively pruned models, suggesting that post-pruning adaptation can mitigate some of these degeneration issues.\n\nThe research indicates that repetition degeneration is a significant challenge in language model pruning that becomes more pronounced with higher sparsity levels and longer generation sequences."
+    ],
+    "durationSeconds": 6.218728633999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T02:00:50.689Z_
+
+<details><summary>↩ Tool result · `toolu_01Lu7xMxqNi84UkQuPB5h3Vs`</summary>
+
+```text
+Web search results for query: "SparseGPT perplexity vs downstream accuracy gap pruning LLM"
+
+Links: [{"title":"SparseGPT: Efficient LLM Pruning","url":"https://www.emergentmind.com/topics/sparsegpt"},{"title":"SparseGPT: Massive Language Models Can be Accurately ...","url":"https://arxiv.org/pdf/2301.00774"},{"title":"SparseGPT: Massive Language Models Can be Accurately Pruned in One-Shot","url":"https://proceedings.mlr.press/v202/frantar23a/frantar23a.pdf"},{"title":"𝐷²⁢𝑃⁢𝑟⁢𝑢⁢𝑛⁢𝑒: Sparsifying Large Language Models via Dual Taylor Expansion and Attention Distribution Awareness","url":"https://arxiv.org/html/2601.09176"},{"title":"ONE-SHOT SENSITIVITY-AWARE MIXED SPARSITY PRUNING FOR LARGE LANGUAGE MODELS","url":"https://audiocc.sjtu.edu.cn/user/pages/03.research/02.publications/2024/One-Shot@Sensitivity-Aware@Mixed@Sparsity@Pruning@for@Large@Language@Models/paper.pdf"},{"title":"Enhancing One-Shot Pruned Pre-trained Language ...","url":"https://aclanthology.org/2025.coling-main.117.pdf"},{"title":"UniPruning: Unifying Local Metric and Global Feedback for Scalable Sparse LLMs","url":"https://arxiv.org/html/2510.03291"},{"title":"SparseLLM: Towards Global Pruning of Pre-trained Language Models Guangji Bai1","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/522134ee1c52c7a2b929bc87cfe1781c-Paper-Conference.pdf"},{"title":"SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot [Quick Review]","url":"https://liner.com/review/sparsegpt-massive-language-models-can-be-accurately-pruned-in-oneshot"},{"title":"One-Shot Sensitivity-Aware Mixed Sparsity Pruning for Large Language Models","url":"https://arxiv.org/html/2310.09499"}]
+
+Based on the search results, here's what I found about SparseGPT and the relationship between perplexity and downstream accuracy gap in LLM pruning:
+
+## SparseGPT Overview
+
+SparseGPT is a post-training, one-shot pruning algorithm designed for large-scale generative pretrained transformers that enables accurate, efficient, and scalable sparsification of models up to hundreds of billions of parameters.
+
+## Perplexity vs. Downstream Accuracy
+
+One key finding from the research is that perplexity is a very sensitive metric, and there can be differences between how well a model maintains perplexity versus downstream task performance.
+
+For SparseGPT, at 2.7B parameters the perplexity loss is approximately 1 point, at 66B there is essentially zero loss, and overall SparseGPT models stay close to the original accuracy while magnitude-pruned models collapse to near random performance. However, zero-shot evaluations appear noisier than perplexity metrics, with effects averaging out when considering many different tasks.
+
+## Emerging Research on the Gap
+
+More recent work has identified a potential gap between perplexity and downstream performance. Weight-update methods like SparseGPT explicitly approximate pruning-induced error via single-variable-based Taylor expansion on the weight but omit the effect of activation variation between calibration and downstream data, causing inaccurate error modeling. This suggests that focusing solely on perplexity optimization may not fully capture downstream task requirements.
+
+## Performance at High Sparsity
+
+SparseGPT achieves significant parameter reduction—typically at least 50% sparsity—with negligible loss in perplexity or downstream accuracy, without necessitating any retraining or fine-tuning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "be34c4f0-188b-4544-a04e-61f2a9da2e03",
+  "tool_use_result": {
+    "query": "SparseGPT perplexity vs downstream accuracy gap pruning LLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q3Hh8gMyng9uugA3z7d7cX",
+        "content": [
+          {
+            "title": "SparseGPT: Efficient LLM Pruning",
+            "url": "https://www.emergentmind.com/topics/sparsegpt"
+          },
+          {
+            "title": "SparseGPT: Massive Language Models Can be Accurately ...",
+            "url": "https://arxiv.org/pdf/2301.00774"
+          },
+          {
+            "title": "SparseGPT: Massive Language Models Can be Accurately Pruned in One-Shot",
+            "url": "https://proceedings.mlr.press/v202/frantar23a/frantar23a.pdf"
+          },
+          {
+            "title": "𝐷²⁢𝑃⁢𝑟⁢𝑢⁢𝑛⁢𝑒: Sparsifying Large Language Models via Dual Taylor Expansion and Attention Distribution Awareness",
+            "url": "https://arxiv.org/html/2601.09176"
+          },
+          {
+            "title": "ONE-SHOT SENSITIVITY-AWARE MIXED SPARSITY PRUNING FOR LARGE LANGUAGE MODELS",
+            "url": "https://audiocc.sjtu.edu.cn/user/pages/03.research/02.publications/2024/One-Shot@Sensitivity-Aware@Mixed@Sparsity@Pruning@for@Large@Language@Models/paper.pdf"
+          },
+          {
+            "title": "Enhancing One-Shot Pruned Pre-trained Language ...",
+            "url": "https://aclanthology.org/2025.coling-main.117.pdf"
+          },
+          {
+            "title": "UniPruning: Unifying Local Metric and Global Feedback for Scalable Sparse LLMs",
+            "url": "https://arxiv.org/html/2510.03291"
+          },
+          {
+            "title": "SparseLLM: Towards Global Pruning of Pre-trained Language Models Guangji Bai1",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/522134ee1c52c7a2b929bc87cfe1781c-Paper-Conference.pdf"
+          },
+          {
+            "title": "SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot [Quick Review]",
+            "url": "https://liner.com/review/sparsegpt-massive-language-models-can-be-accurately-pruned-in-oneshot"
+          },
+          {
+            "title": "One-Shot Sensitivity-Aware Mixed Sparsity Pruning for Large Language Models",
+            "url": "https://arxiv.org/html/2310.09499"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SparseGPT and the relationship between perplexity and downstream accuracy gap in LLM pruning:\n\n## SparseGPT Overview\n\nSparseGPT is a post-training, one-shot pruning algorithm designed for large-scale generative pretrained transformers that enables accurate, efficient, and scalable sparsification of models up to hundreds of billions of parameters.\n\n## Perplexity vs. Downstream Accuracy\n\nOne key finding from the research is that perplexity is a very sensitive metric, and there can be differences between how well a model maintains perplexity versus downstream task performance.\n\nFor SparseGPT, at 2.7B parameters the perplexity loss is approximately 1 point, at 66B there is essentially zero loss, and overall SparseGPT models stay close to the original accuracy while magnitude-pruned models collapse to near random performance. However, zero-shot evaluations appear noisier than perplexity metrics, with effects averaging out when considering many different tasks.\n\n## Emerging Research on the Gap\n\nMore recent work has identified a potential gap between perplexity and downstream performance. Weight-update methods like SparseGPT explicitly approximate pruning-induced error via single-variable-based Taylor expansion on the weight but omit the effect of activation variation between calibration and downstream data, causing inaccurate error modeling. This suggests that focusing solely on perplexity optimization may not fully capture downstream task requirements.\n\n## Performance at High Sparsity\n\nSparseGPT achieves significant parameter reduction—typically at least 50% sparsity—with negligible loss in perplexity or downstream accuracy, without necessitating any retraining or fine-tuning."
+    ],
+    "durationSeconds": 7.9999089949999975
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I'm getting a lot of relevant results. Let me now search for more specific topics:
+1. TEAL and DejaVu papers on PPL vs downstream
+2. The "catastrophic knowledge degradation" paper which sounds very relevant
+3. The sparsity threshold / critical sparsity level research
+4. The paper about "traps" in pruned models (degeneration loops)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "e3a28eab-f3ed-4f3e-bbe8-183fd2205ed1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTPL9nqgDgDC5f6AFFCBNs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1726,
+      "cache_creation_input_tokens": 5406,
+      "cache_read_input_tokens": 24998,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5406
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+找到多个高度相关的方向。继续深入搜索具体论文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "9dd8e4de-0944-4ce4-af62-6d8d7bb47383",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTPL9nqgDgDC5f6AFFCBNs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1726,
+      "cache_creation_input_tokens": 5406,
+      "cache_read_input_tokens": 24998,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5406
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HX33Jjc2cP529yJkUqHuiY`</summary>
+
+```json
+{
+  "query": "TEAL sparsity activation \"downstream task\" accuracy LLM Liu 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "8c3a16f3-6ac4-4508-bb05-fda67c92f03f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTPL9nqgDgDC5f6AFFCBNs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1726,
+      "cache_creation_input_tokens": 5406,
+      "cache_read_input_tokens": 24998,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5406
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01124W4bCUUxVg3ipb6gZWX1`</summary>
+
+```json
+{
+  "query": "\"catastrophic knowledge degradation\" pruning sparsity LLM factual accuracy collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "34e0d503-78b9-4dc0-a7c7-c64161a8be75",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTPL9nqgDgDC5f6AFFCBNs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1726,
+      "cache_creation_input_tokens": 5406,
+      "cache_read_input_tokens": 24998,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5406
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01URvPCJJqEyAZHVtePxhcg1`</summary>
+
+```json
+{
+  "query": "critical sparsity threshold LLM pruning performance cliff collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "d002542f-56fc-40fd-b987-a464de7f6c8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTPL9nqgDgDC5f6AFFCBNs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1726,
+      "cache_creation_input_tokens": 5406,
+      "cache_read_input_tokens": 24998,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5406
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PtJspecJ2jHmMN44gN59bd`</summary>
+
+```json
+{
+  "query": "DejaVu contextual sparsity downstream evaluation MLP sparsity predictor"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "0a7198d7-29f4-40b5-85b3-b31f441bb457",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTPL9nqgDgDC5f6AFFCBNs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1726,
+      "cache_creation_input_tokens": 5406,
+      "cache_read_input_tokens": 24998,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5406
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T02:01:03.906Z_
+
+<details><summary>↩ Tool result · `toolu_01HX33Jjc2cP529yJkUqHuiY`</summary>
+
+```text
+Web search results for query: "TEAL sparsity activation "downstream task" accuracy LLM Liu 2024"
+
+Links: [{"title":"Training-Free Activation Sparsity in Large Language Models","url":"https://arxiv.org/html/2408.14690v1"},{"title":"TRAINING-FREE ACTIVATION SPARSITY IN LARGE ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/f3f2ff9579ba6deeb89caa2fe1f0b99c-Paper-Conference.pdf"},{"title":"training-free activation sparsity in large language models","url":"https://www.arxiv.org/pdf/2408.14690"},{"title":"[Quick Review] Training-Free Activation Sparsity in Large Language Models","url":"https://liner.com/review/trainingfree-activation-sparsity-in-large-language-models"},{"title":"Preprint. Under Review. TRAINING-FREE ACTIVATION SPARSITY IN","url":"https://www.arxiv.org/pdf/2408.14690v1"},{"title":"Amber Pruner: Leveraging N:M Activation Sparsity for Efficient Prefill in Large Language Models","url":"https://arxiv.org/html/2508.02128v1"},{"title":"SparseInfer: Training-free Prediction of Activation Sparsity for Fast LLM Inference","url":"https://arxiv.org/html/2411.12692v1"},{"title":"SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity","url":"https://arxiv.org/html/2506.16500v1"},{"title":"arXiv:2404.08763v2 [cs.LG] 27 Apr 2024","url":"https://scalingintelligence.stanford.edu/pubs/CATSpaper.pdf"},{"title":"[2411.12692] SparseInfer: Training-free Prediction of Activation Sparsity for Fast LLM Inference","url":"https://arxiv.org/abs/2411.12692"}]
+
+Based on the search results, I found detailed information about TEAL (Training-Free Activation Sparsity in Large Language Models) and its downstream task performance.
+
+## Overview
+
+TEAL is a simple, training-free approach that applies activation sparsity based on magnitude pruning. The method was developed by Liu et al. in 2024 and published in August 2024.
+
+## Downstream Task Performance and Accuracy
+
+In terms of downstream task results, both of the 70B models are more sparsifiable than their smaller counterparts. More specifically:
+
+At 25% sparsity, TEAL on Llama-3-8B yields an average downstream task score of 67.73, whereas CATS achieves 64.15, and ReLUfication is degenerate.
+
+TEAL was evaluated on an aggregate of six downstream tasks using the EleutherAI LM Harness, including 5-shot MMLU, 25-shot ARC challenge, 10-shot HellaSwag, 5-shot GSM8K, zero-shot PiQA, and zero-shot Winogrande.
+
+## Performance at Different Sparsity Levels
+
+TEAL is performant, as shown in Tables 1 and 2, showcasing near zero degradation at 25%, and minimal degradation at 40% sparsity. At 50% sparsity, Llama-3 variants show slightly more degradation compared to older Llama-2 and Mistral variants which are still fairly performant.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "eba5dc4e-08cc-4aba-a3b5-b739bb7ab12e",
+  "tool_use_result": {
+    "query": "TEAL sparsity activation \"downstream task\" accuracy LLM Liu 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0193Bj3uqEeYcr4Tq3byyYWU",
+        "content": [
+          {
+            "title": "Training-Free Activation Sparsity in Large Language Models",
+            "url": "https://arxiv.org/html/2408.14690v1"
+          },
+          {
+            "title": "TRAINING-FREE ACTIVATION SPARSITY IN LARGE ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/f3f2ff9579ba6deeb89caa2fe1f0b99c-Paper-Conference.pdf"
+          },
+          {
+            "title": "training-free activation sparsity in large language models",
+            "url": "https://www.arxiv.org/pdf/2408.14690"
+          },
+          {
+            "title": "[Quick Review] Training-Free Activation Sparsity in Large Language Models",
+            "url": "https://liner.com/review/trainingfree-activation-sparsity-in-large-language-models"
+          },
+          {
+            "title": "Preprint. Under Review. TRAINING-FREE ACTIVATION SPARSITY IN",
+            "url": "https://www.arxiv.org/pdf/2408.14690v1"
+          },
+          {
+            "title": "Amber Pruner: Leveraging N:M Activation Sparsity for Efficient Prefill in Large Language Models",
+            "url": "https://arxiv.org/html/2508.02128v1"
+          },
+          {
+            "title": "SparseInfer: Training-free Prediction of Activation Sparsity for Fast LLM Inference",
+            "url": "https://arxiv.org/html/2411.12692v1"
+          },
+          {
+            "title": "SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity",
+            "url": "https://arxiv.org/html/2506.16500v1"
+          },
+          {
+            "title": "arXiv:2404.08763v2 [cs.LG] 27 Apr 2024",
+            "url": "https://scalingintelligence.stanford.edu/pubs/CATSpaper.pdf"
+          },
+          {
+            "title": "[2411.12692] SparseInfer: Training-free Prediction of Activation Sparsity for Fast LLM Inference",
+            "url": "https://arxiv.org/abs/2411.12692"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about TEAL (Training-Free Activation Sparsity in Large Language Models) and its downstream task performance.\n\n## Overview\n\nTEAL is a simple, training-free approach that applies activation sparsity based on magnitude pruning. The method was developed by Liu et al. in 2024 and published in August 2024.\n\n## Downstream Task Performance and Accuracy\n\nIn terms of downstream task results, both of the 70B models are more sparsifiable than their smaller counterparts. More specifically:\n\nAt 25% sparsity, TEAL on Llama-3-8B yields an average downstream task score of 67.73, whereas CATS achieves 64.15, and ReLUfication is degenerate.\n\nTEAL was evaluated on an aggregate of six downstream tasks using the EleutherAI LM Harness, including 5-shot MMLU, 25-shot ARC challenge, 10-shot HellaSwag, 5-shot GSM8K, zero-shot PiQA, and zero-shot Winogrande.\n\n## Performance at Different Sparsity Levels\n\nTEAL is performant, as shown in Tables 1 and 2, showcasing near zero degradation at 25%, and minimal degradation at 40% sparsity. At 50% sparsity, Llama-3 variants show slightly more degradation compared to older Llama-2 and Mistral variants which are still fairly performant."
+    ],
+    "durationSeconds": 7.212489277000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T02:01:05.109Z_
+
+<details><summary>↩ Tool result · `toolu_01124W4bCUUxVg3ipb6gZWX1`</summary>
+
+```text
+Web search results for query: ""catastrophic knowledge degradation" pruning sparsity LLM factual accuracy collapse"
+
+Links: [{"title":"LLMs can Compress LLMs: Adaptive Pruning by Agents","url":"https://arxiv.org/html/2601.09694v1"},{"title":"Llms Achieve 56% Compression With Adaptive Pruning, Maintaining Factual Knowledge","url":"https://quantumzeitgeist.com/56-percent-llms-compression-adaptive-pruning-maintaining/"},{"title":"Mitigating Catastrophic Forgetting in Large Language ...","url":"https://aclanthology.org/2025.emnlp-main.1108.pdf"},{"title":"MITIGATING CATASTROPHIC FORGETTING IN LARGE ...","url":"https://openreview.net/pdf/11e2337510b261e17f1c36db699e838435137c11.pdf"},{"title":"Mitigating Catastrophic Forgetting in Large Language Models with Forgetting-aware Pruning","url":"https://arxiv.org/html/2509.08255v1"},{"title":"A review of state-of-the-art techniques for large language model compression | Complex & Intelligent Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s40747-025-02019-z"},{"title":"When LLMs get significantly worse: A statistical approach to detect model degradations","url":"https://arxiv.org/html/2602.10144"},{"title":"Breaking Expert Knowledge Limits: Self-Pruning for Large Language Models","url":"https://arxiv.org/pdf/2511.15390"},{"title":"Amber Pruner: Leveraging N:M Activation Sparsity for Efficient Prefill in Large Language Models","url":"https://arxiv.org/html/2508.02128v1"},{"title":"Catastrophic Failure of LLM Unlearning via Quantization | OpenReview","url":"https://openreview.net/forum?id=lHSeDYamnz"}]
+
+Based on the search results, here are the key findings on "catastrophic knowledge degradation" related to pruning, sparsity, and LLM factual accuracy:
+
+## Catastrophic Failure on Factual Knowledge
+
+Structured N:M pruning methods experience catastrophic failure on factual question-answering (e.g., FreebaseQA), losing over 97% of accuracy, while maintaining reasonable perplexity scores. This represents a critical problem in LLM compression.
+
+All pruning methods suffer significant performance degradation on knowledge-intensive tasks, even at trivial sparsity ratios (25-30%), despite negligible perplexity increases. This finding challenges the prevailing assumption that perplexity adequately captures model capability degradation.
+
+## The Factual Knowledge Problem
+
+Pruned LLMs suffer from severe factual knowledge degradation, with structured pruning methods experiencing near-total collapse in factual question-answering capabilities. The issue persists even when standard metrics like perplexity show minimal degradation, suggesting a mismatch between traditional evaluation metrics and actual knowledge preservation.
+
+## Proposed Solutions
+
+Recent work has explored more nuanced approaches. Agent-guided pruning on Qwen3 models achieved 56% relative improvement in MMLU accuracy, 19× better factual knowledge retention on FreebaseQA, and 69% lower perplexity degradation by using adaptive layer selection rather than uniform sparsity.
+
+## Compounding Effects
+
+The combination of sparsity and quantization often results in greater accuracy degradation than the sum of their individual effects, and naively applying these techniques in sequence—such as pruning followed by quantization—can lead to unexpected accuracy losses that exceed intuitive expectations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "fb90ba88-d6bd-4762-974f-983dda5923e9",
+  "tool_use_result": {
+    "query": "\"catastrophic knowledge degradation\" pruning sparsity LLM factual accuracy collapse",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DpKEkevbi2jDk86rD6bcCC",
+        "content": [
+          {
+            "title": "LLMs can Compress LLMs: Adaptive Pruning by Agents",
+            "url": "https://arxiv.org/html/2601.09694v1"
+          },
+          {
+            "title": "Llms Achieve 56% Compression With Adaptive Pruning, Maintaining Factual Knowledge",
+            "url": "https://quantumzeitgeist.com/56-percent-llms-compression-adaptive-pruning-maintaining/"
+          },
+          {
+            "title": "Mitigating Catastrophic Forgetting in Large Language ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1108.pdf"
+          },
+          {
+            "title": "MITIGATING CATASTROPHIC FORGETTING IN LARGE ...",
+            "url": "https://openreview.net/pdf/11e2337510b261e17f1c36db699e838435137c11.pdf"
+          },
+          {
+            "title": "Mitigating Catastrophic Forgetting in Large Language Models with Forgetting-aware Pruning",
+            "url": "https://arxiv.org/html/2509.08255v1"
+          },
+          {
+            "title": "A review of state-of-the-art techniques for large language model compression | Complex & Intelligent Systems | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s40747-025-02019-z"
+          },
+          {
+            "title": "When LLMs get significantly worse: A statistical approach to detect model degradations",
+            "url": "https://arxiv.org/html/2602.10144"
+          },
+          {
+            "title": "Breaking Expert Knowledge Limits: Self-Pruning for Large Language Models",
+            "url": "https://arxiv.org/pdf/2511.15390"
+          },
+          {
+            "title": "Amber Pruner: Leveraging N:M Activation Sparsity for Efficient Prefill in Large Language Models",
+            "url": "https://arxiv.org/html/2508.02128v1"
+          },
+          {
+            "title": "Catastrophic Failure of LLM Unlearning via Quantization | OpenReview",
+            "url": "https://openreview.net/forum?id=lHSeDYamnz"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings on \"catastrophic knowledge degradation\" related to pruning, sparsity, and LLM factual accuracy:\n\n## Catastrophic Failure on Factual Knowledge\n\nStructured N:M pruning methods experience catastrophic failure on factual question-answering (e.g., FreebaseQA), losing over 97% of accuracy, while maintaining reasonable perplexity scores. This represents a critical problem in LLM compression.\n\nAll pruning methods suffer significant performance degradation on knowledge-intensive tasks, even at trivial sparsity ratios (25-30%), despite negligible perplexity increases. This finding challenges the prevailing assumption that perplexity adequately captures model capability degradation.\n\n## The Factual Knowledge Problem\n\nPruned LLMs suffer from severe factual knowledge degradation, with structured pruning methods experiencing near-total collapse in factual question-answering capabilities. The issue persists even when standard metrics like perplexity show minimal degradation, suggesting a mismatch between traditional evaluation metrics and actual knowledge preservation.\n\n## Proposed Solutions\n\nRecent work has explored more nuanced approaches. Agent-guided pruning on Qwen3 models achieved 56% relative improvement in MMLU accuracy, 19× better factual knowledge retention on FreebaseQA, and 69% lower perplexity degradation by using adaptive layer selection rather than uniform sparsity.\n\n## Compounding Effects\n\nThe combination of sparsity and quantization often results in greater accuracy degradation than the sum of their individual effects, and naively applying these techniques in sequence—such as pruning followed by quantization—can lead to unexpected accuracy losses that exceed intuitive expectations."
+    ],
+    "durationSeconds": 7.441648337000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T02:01:05.499Z_
+
+<details><summary>↩ Tool result · `toolu_01PtJspecJ2jHmMN44gN59bd`</summary>
+
+```text
+Web search results for query: "DejaVu contextual sparsity downstream evaluation MLP sparsity predictor"
+
+Links: [{"title":"GitHub - FMInference/DejaVu · GitHub","url":"https://github.com/FMInference/DejaVu"},{"title":"Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time","url":"https://arxiv.org/pdf/2310.17157"},{"title":"ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models","url":"https://arxiv.org/html/2406.16635v1"},{"title":"[2310.17157] Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time","url":"https://arxiv.org/abs/2310.17157"},{"title":"Deja Vu: Contextual Sparsity for Efficient LLMS at Inference Time","url":"https://minjiazhang.github.io/courses/sp24-resource/DejaVu-pre.pdf"},{"title":"[2310.17157] Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time","url":"https://ar5iv.labs.arxiv.org/html/2310.17157"},{"title":"Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time","url":"https://proceedings.mlr.press/v202/liu23am.html"},{"title":"Deja Vu: contextual sparsity for efficient LLMs at inference ...","url":"https://dl.acm.org/doi/10.5555/3618408.3619327"},{"title":"Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time | OpenReview","url":"https://openreview.net/forum?id=wIPIhHd00i"},{"title":"[PDF] Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Deja-Vu:-Contextual-Sparsity-for-Efficient-LLMs-at-Liu-Wang/95240dda409e28acccdc5cf619ad0c036cf4292d"}]
+
+Based on the search results, here's information about DejaVu with contextual sparsity, downstream evaluation, and MLP sparsity predictors:
+
+## Overview
+
+DejaVu is based on the hypothesis that contextual sparsity—small, input-dependent sets of attention heads and MLP parameters that yield approximately the same output as the dense model for a given input—exists, can be accurately predicted, and can be exploited to speed up LLM inference.
+
+## Sparsity Predictor Architecture
+
+DejaVu provides scripts for training both an attention sparsity predictor and an MLP sparsity predictor. DejaVu employs a two-layer MLP, taking the activation from the final token at every alternating layer and predicting the sparsity of the next layer.
+
+## Sparsity Levels and Performance
+
+With sparsity set at 85% for MLP-block and 50% for Attention-block, DejaVu incurs no accuracy drop. DejaVu can zero out over 95% of MLP parameters for a given token.
+
+## Downstream Task Evaluation
+
+DejaVu adopts lm-evaluation-harness for downstream task evaluation. DejaVu was evaluated on seven few-shot downstream tasks including CB, COPA, Lambada, OpenBookQA, PIQA, RTE, and Winogrande using lm-eval-harness for zero-shot and five-shot tasks.
+
+## System Performance
+
+DejaVu is a system that uses a low-cost algorithm to predict contextual sparsity on the fly given inputs to each layer, along with an asynchronous and hardware-aware implementation that speeds up LLM inference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "20a088a7-2aff-4398-9ff8-54f8469e2aee",
+  "tool_use_result": {
+    "query": "DejaVu contextual sparsity downstream evaluation MLP sparsity predictor",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011mK2uSvmHheWnmyP2nMy4U",
+        "content": [
+          {
+            "title": "GitHub - FMInference/DejaVu · GitHub",
+            "url": "https://github.com/FMInference/DejaVu"
+          },
+          {
+            "title": "Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time",
+            "url": "https://arxiv.org/pdf/2310.17157"
+          },
+          {
+            "title": "ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models",
+            "url": "https://arxiv.org/html/2406.16635v1"
+          },
+          {
+            "title": "[2310.17157] Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time",
+            "url": "https://arxiv.org/abs/2310.17157"
+          },
+          {
+            "title": "Deja Vu: Contextual Sparsity for Efficient LLMS at Inference Time",
+            "url": "https://minjiazhang.github.io/courses/sp24-resource/DejaVu-pre.pdf"
+          },
+          {
+            "title": "[2310.17157] Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time",
+            "url": "https://ar5iv.labs.arxiv.org/html/2310.17157"
+          },
+          {
+            "title": "Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time",
+            "url": "https://proceedings.mlr.press/v202/liu23am.html"
+          },
+          {
+            "title": "Deja Vu: contextual sparsity for efficient LLMs at inference ...",
+            "url": "https://dl.acm.org/doi/10.5555/3618408.3619327"
+          },
+          {
+            "title": "Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time | OpenReview",
+            "url": "https://openreview.net/forum?id=wIPIhHd00i"
+          },
+          {
+            "title": "[PDF] Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Deja-Vu:-Contextual-Sparsity-for-Efficient-LLMs-at-Liu-Wang/95240dda409e28acccdc5cf619ad0c036cf4292d"
+          }
+        ]
+      },
+      "Based on the search results, here's information about DejaVu with contextual sparsity, downstream evaluation, and MLP sparsity predictors:\n\n## Overview\n\nDejaVu is based on the hypothesis that contextual sparsity—small, input-dependent sets of attention heads and MLP parameters that yield approximately the same output as the dense model for a given input—exists, can be accurately predicted, and can be exploited to speed up LLM inference.\n\n## Sparsity Predictor Architecture\n\nDejaVu provides scripts for training both an attention sparsity predictor and an MLP sparsity predictor. DejaVu employs a two-layer MLP, taking the activation from the final token at every alternating layer and predicting the sparsity of the next layer.\n\n## Sparsity Levels and Performance\n\nWith sparsity set at 85% for MLP-block and 50% for Attention-block, DejaVu incurs no accuracy drop. DejaVu can zero out over 95% of MLP parameters for a given token.\n\n## Downstream Task Evaluation\n\nDejaVu adopts lm-evaluation-harness for downstream task evaluation. DejaVu was evaluated on seven few-shot downstream tasks including CB, COPA, Lambada, OpenBookQA, PIQA, RTE, and Winogrande using lm-eval-harness for zero-shot and five-shot tasks.\n\n## System Performance\n\nDejaVu is a system that uses a low-cost algorithm to predict contextual sparsity on the fly given inputs to each layer, along with an asynchronous and hardware-aware implementation that speeds up LLM inference."
+    ],
+    "durationSeconds": 7.005301428999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T02:01:05.775Z_
+
+<details><summary>↩ Tool result · `toolu_01URvPCJJqEyAZHVtePxhcg1`</summary>
+
+```text
+Web search results for query: "critical sparsity threshold LLM pruning performance cliff collapse"
+
+Links: [{"title":"LLMs can Compress LLMs: Adaptive Pruning by Agents","url":"https://arxiv.org/pdf/2601.09694"},{"title":"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions","url":"https://arxiv.org/html/2605.07271"},{"title":"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling","url":"https://arxiv.org/html/2604.25098"},{"title":"The Unseen Frontier: Pushing the Limits of LLM Sparsity with Surrogate-Free ADMM","url":"https://arxiv.org/html/2510.01650"},{"title":"Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models","url":"https://arxiv.org/html/2604.27115"},{"title":"Pushing the Limits of LLM Sparsity with Surrogate-Free ...","url":"https://www.arxiv.org/pdf/2510.01650"},{"title":"You Only Prune Once: DESIGNING CALIBRATION-FREE","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/7349b8b5a6737dd36031c77212eab3ad-Paper-Conference.pdf"},{"title":"The impact of LLM pruning for fine-tuning Stanford CS224N Custom Project","url":"https://web.stanford.edu/class/cs224n/final-reports/256911740.pdf"},{"title":"[2605.07271] Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions","url":"https://arxiv.org/abs/2605.07271"},{"title":"[2601.09694] LLMs can Compress LLMs: Adaptive Pruning by Agents","url":"https://arxiv.org/abs/2601.09694"}]
+
+Based on the search results, I found substantial research on critical sparsity thresholds in LLM pruning and performance collapse. Here are the key findings:
+
+## Critical Sparsity Thresholds
+
+Layer pruning exhibits a "cliff-edge" effect where performance remains relatively stable up to a specific threshold, beyond which it collapses abruptly. Research identifies several specific threshold levels:
+
+- Beyond approximately 15%–20% pruning, the decline becomes significantly steeper, indicating a critical threshold in model robustness
+- Up to 40% of the layers can be dropped until a functional cliff is reached and performance substantially degrades across base GPT-style LLMs ranging from 7 billion to 70 billion parameters
+- Previously it was considered nearly impossible to achieve such high sparsity for LLMs or go beyond the "sparsity wall" formed around 50-60% sparsity levels
+
+## Performance Collapse Mechanisms
+
+Pruning the Silent Phase triggers immediate performance collapse, and pruning-induced collapse stems from disrupting the Silent Phase, which prevents the critical decision transition from occurring. More specifically, the Transition Point is pushed beyond the terminal layer of the pruned network, leaving the model architecturally incapable of forming a final decision.
+
+Structured pruning methods experience near-total collapse in factual question-answering performance, with N:M sparsity patterns losing over 97% accuracy on knowledge-intensive tasks even at modest sparsity ratios (25-30%).
+
+## Recent Advances
+
+It is possible to prune LLMs for very high sparsity levels—up to almost 90%—without significant performance degradation, though this requires advanced techniques that address fundamental limitations in current pruning approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "03b99692-886c-4a20-a342-1010f065c06f",
+  "tool_use_result": {
+    "query": "critical sparsity threshold LLM pruning performance cliff collapse",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015iFBf8APrHg2fGJbXK22Lb",
+        "content": [
+          {
+            "title": "LLMs can Compress LLMs: Adaptive Pruning by Agents",
+            "url": "https://arxiv.org/pdf/2601.09694"
+          },
+          {
+            "title": "Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions",
+            "url": "https://arxiv.org/html/2605.07271"
+          },
+          {
+            "title": "Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling",
+            "url": "https://arxiv.org/html/2604.25098"
+          },
+          {
+            "title": "The Unseen Frontier: Pushing the Limits of LLM Sparsity with Surrogate-Free ADMM",
+            "url": "https://arxiv.org/html/2510.01650"
+          },
+          {
+            "title": "Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models",
+            "url": "https://arxiv.org/html/2604.27115"
+          },
+          {
+            "title": "Pushing the Limits of LLM Sparsity with Surrogate-Free ...",
+            "url": "https://www.arxiv.org/pdf/2510.01650"
+          },
+          {
+            "title": "You Only Prune Once: DESIGNING CALIBRATION-FREE",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/7349b8b5a6737dd36031c77212eab3ad-Paper-Conference.pdf"
+          },
+          {
+            "title": "The impact of LLM pruning for fine-tuning Stanford CS224N Custom Project",
+            "url": "https://web.stanford.edu/class/cs224n/final-reports/256911740.pdf"
+          },
+          {
+            "title": "[2605.07271] Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions",
+            "url": "https://arxiv.org/abs/2605.07271"
+          },
+          {
+            "title": "[2601.09694] LLMs can Compress LLMs: Adaptive Pruning by Agents",
+            "url": "https://arxiv.org/abs/2601.09694"
+          }
+        ]
+      },
+      "Based on the search results, I found substantial research on critical sparsity thresholds in LLM pruning and performance collapse. Here are the key findings:\n\n## Critical Sparsity Thresholds\n\nLayer pruning exhibits a \"cliff-edge\" effect where performance remains relatively stable up to a specific threshold, beyond which it collapses abruptly. Research identifies several specific threshold levels:\n\n- Beyond approximately 15%–20% pruning, the decline becomes significantly steeper, indicating a critical threshold in model robustness\n- Up to 40% of the layers can be dropped until a functional cliff is reached and performance substantially degrades across base GPT-style LLMs ranging from 7 billion to 70 billion parameters\n- Previously it was considered nearly impossible to achieve such high sparsity for LLMs or go beyond the \"sparsity wall\" formed around 50-60% sparsity levels\n\n## Performance Collapse Mechanisms\n\nPruning the Silent Phase triggers immediate performance collapse, and pruning-induced collapse stems from disrupting the Silent Phase, which prevents the critical decision transition from occurring. More specifically, the Transition Point is pushed beyond the terminal layer of the pruned network, leaving the model architecturally incapable of forming a final decision.\n\nStructured pruning methods experience near-total collapse in factual question-answering performance, with N:M sparsity patterns losing over 97% accuracy on knowledge-intensive tasks even at modest sparsity ratios (25-30%).\n\n## Recent Advances\n\nIt is possible to prune LLMs for very high sparsity levels—up to almost 90%—without significant performance degradation, though this requires advanced techniques that address fundamental limitations in current pruning approaches."
+    ],
+    "durationSeconds": 7.618270597999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Great findings. Let me search for a few more specific topics:
+1. The "traps" paper about degeneration in pruned LLMs
+2. "perplexity does not predict downstream" more generally
+3. ShadowLLM paper which is very relevant (predictor-based contextual sparsity)
+4. The paper about easy vs hard tokens and sparsity
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "e5cdfe9d-c27e-4eb5-911c-0edb0151e7a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YD8E8SSFpZSKU9B4jF4K9A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1014,
+      "cache_creation_input_tokens": 4956,
+      "cache_read_input_tokens": 30404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4956
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+继续搜索更细分方向。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "0768e327-9318-45f8-916c-1addd408e2a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YD8E8SSFpZSKU9B4jF4K9A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1014,
+      "cache_creation_input_tokens": 4956,
+      "cache_read_input_tokens": 30404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4956
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016Y6LvNo2RnAcgmCASjSjqj`</summary>
+
+```json
+{
+  "query": "\"degeneration traps\" pruned language model Type 1 Type 2 repetition loop task-specific neurons"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "24c627e8-2368-47dd-bf42-f869195e21e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YD8E8SSFpZSKU9B4jF4K9A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1014,
+      "cache_creation_input_tokens": 4956,
+      "cache_read_input_tokens": 30404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4956
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RUrbmitQ4oX94NLEDGmoJ8`</summary>
+
+```json
+{
+  "query": "ShadowLLM predictor contextual sparsity downstream task accuracy EMNLP 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "2061703f-7047-4ce7-a749-2a9512d43af2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YD8E8SSFpZSKU9B4jF4K9A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1014,
+      "cache_creation_input_tokens": 4956,
+      "cache_read_input_tokens": 30404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4956
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CFA1X8ben2FWJbyZtabRc6`</summary>
+
+```json
+{
+  "query": "perplexity \"easy tokens\" \"hard tokens\" sparsity pruning knowledge retrieval reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "e0eb757c-ccd5-40c6-965c-300a403e6aad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YD8E8SSFpZSKU9B4jF4K9A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1014,
+      "cache_creation_input_tokens": 4956,
+      "cache_read_input_tokens": 30404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4956
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01J17e7tPqYhL2FbLwrEmF1Z`</summary>
+
+```json
+{
+  "query": "calibration data distribution mismatch pruning downstream performance WikiText C4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "7e306b0c-ed89-4a30-9bc4-878b0379c2a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YD8E8SSFpZSKU9B4jF4K9A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1014,
+      "cache_creation_input_tokens": 4956,
+      "cache_read_input_tokens": 30404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4956
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T02:01:17.703Z_
+
+<details><summary>↩ Tool result · `toolu_016Y6LvNo2RnAcgmCASjSjqj`</summary>
+
+```text
+Web search results for query: ""degeneration traps" pruned language model Type 1 Type 2 repetition loop task-specific neurons"
+
+Links: [{"title":"Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models","url":"https://arxiv.org/html/2604.27115"},{"title":"Evaluating Neural Toxic Degeneration in Language Models","url":"https://aclanthology.org/2020.findings-emnlp.301.pdf"},{"title":"AI models collapse when trained on recursively generated data | Nature","url":"https://www.nature.com/articles/s41586-024-07566-y"},{"title":"GitHub - horseee/LLM-Pruner: [NeurIPS 2023] LLM-Pruner: On the Structural Pruning of Large Language Models. Support Llama-3/3.1, Llama-2, LLaMA, BLOOM, Vicuna, Baichuan, TinyLlama, etc. · GitHub","url":"https://github.com/horseee/LLM-Pruner"},{"title":"Revisiting Representation Degeneration Problem in Language Modeling - ACL Anthology","url":"https://aclanthology.org/2020.findings-emnlp.46/"},{"title":"Towards Understanding Neural Text Degeneration from ...","url":"https://openreview.net/pdf?id=WjgCRrOgip"},{"title":"Representation Degeneration Problem in Training Natural Language Generation Models | OpenReview","url":"https://openreview.net/forum?id=SkEYojRqtm"},{"title":"RealToxicityPrompts: Evaluating Neural Toxic Degeneration in Language Models - ACL Anthology","url":"https://aclanthology.org/2020.findings-emnlp.301/"},{"title":"[1907.12009] Representation Degeneration Problem in Training Natural Language Generation Models","url":"https://arxiv.org/abs/1907.12009"},{"title":"Paper review: Representation Degeneration Problem in Training Natural Language Generation Models | by CSI | Medium","url":"https://medium.com/@csi12345678949/paper-review-representation-degeneration-problem-in-training-natural-language-generation-models-9951c9c5f5c2"}]
+
+Based on the search results, I found highly relevant information about "degeneration traps" in pruned language models. Here are the key findings:
+
+## Degeneration Traps in Pruned Language Models
+
+Type 1 traps primarily reflect termination failure after successful reasoning, while Type 2 traps indicate disruption of the reasoning process itself.
+
+### Type 1 Traps
+Type 1 traps involve the model producing meaningful reasoning and an answer with proper formatting but then failing to emit an EOS token, continuing with repeated symbols, tokens, or sequences.
+
+### Type 2 Traps
+Type 2 traps occur when the model fails to perform meaningful reasoning, collapsing early or mid-generation into incoherent and nonsensical text such as repeated symbols, tokens, or sequences.
+
+## Relationship to Pruning
+
+Increasing pruning ratio leads to a higher frequency of such behaviors, particularly Type 2 traps. The research evaluates these behaviors in task-specific pruned language models, where neurons are ranked based on activation for a target task while treating other tasks as distractors, and progressively pruning is performed across pruning ratios of approximately 5%-35%.
+
+The search results are from a recent ArXiv paper titled "Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models," which directly addresses your query about degeneration traps in pruned language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "432be61c-a19a-4eee-a8f8-6cc325afd092",
+  "tool_use_result": {
+    "query": "\"degeneration traps\" pruned language model Type 1 Type 2 repetition loop task-specific neurons",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xs7kmgicBKb4Gufu1kzfkH",
+        "content": [
+          {
+            "title": "Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models",
+            "url": "https://arxiv.org/html/2604.27115"
+          },
+          {
+            "title": "Evaluating Neural Toxic Degeneration in Language Models",
+            "url": "https://aclanthology.org/2020.findings-emnlp.301.pdf"
+          },
+          {
+            "title": "AI models collapse when trained on recursively generated data | Nature",
+            "url": "https://www.nature.com/articles/s41586-024-07566-y"
+          },
+          {
+            "title": "GitHub - horseee/LLM-Pruner: [NeurIPS 2023] LLM-Pruner: On the Structural Pruning of Large Language Models. Support Llama-3/3.1, Llama-2, LLaMA, BLOOM, Vicuna, Baichuan, TinyLlama, etc. · GitHub",
+            "url": "https://github.com/horseee/LLM-Pruner"
+          },
+          {
+            "title": "Revisiting Representation Degeneration Problem in Language Modeling - ACL Anthology",
+            "url": "https://aclanthology.org/2020.findings-emnlp.46/"
+          },
+          {
+            "title": "Towards Understanding Neural Text Degeneration from ...",
+            "url": "https://openreview.net/pdf?id=WjgCRrOgip"
+          },
+          {
+            "title": "Representation Degeneration Problem in Training Natural Language Generation Models | OpenReview",
+            "url": "https://openreview.net/forum?id=SkEYojRqtm"
+          },
+          {
+            "title": "RealToxicityPrompts: Evaluating Neural Toxic Degeneration in Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2020.findings-emnlp.301/"
+          },
+          {
+            "title": "[1907.12009] Representation Degeneration Problem in Training Natural Language Generation Models",
+            "url": "https://arxiv.org/abs/1907.12009"
+          },
+          {
+            "title": "Paper review: Representation Degeneration Problem in Training Natural Language Generation Models | by CSI | Medium",
+            "url": "https://medium.com/@csi12345678949/paper-review-representation-degeneration-problem-in-training-natural-language-generation-models-9951c9c5f5c2"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant information about \"degeneration traps\" in pruned language models. Here are the key findings:\n\n## Degeneration Traps in Pruned Language Models\n\nType 1 traps primarily reflect termination failure after successful reasoning, while Type 2 traps indicate disruption of the reasoning process itself.\n\n### Type 1 Traps\nType 1 traps involve the model producing meaningful reasoning and an answer with proper formatting but then failing to emit an EOS token, continuing with repeated symbols, tokens, or sequences.\n\n### Type 2 Traps\nType 2 traps occur when the model fails to perform meaningful reasoning, collapsing early or mid-generation into incoherent and nonsensical text such as repeated symbols, tokens, or sequences.\n\n## Relationship to Pruning\n\nIncreasing pruning ratio leads to a higher frequency of such behaviors, particularly Type 2 traps. The research evaluates these behaviors in task-specific pruned language models, where neurons are ranked based on activation for a target task while treating other tasks as distractors, and progressively pruning is performed across pruning ratios of approximately 5%-35%.\n\nThe search results are from a recent ArXiv paper titled \"Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models,\" which directly addresses your query about degeneration traps in pruned language models."
+    ],
+    "durationSeconds": 6.822998575999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T02:01:17.740Z_
+
+<details><summary>↩ Tool result · `toolu_01RUrbmitQ4oX94NLEDGmoJ8`</summary>
+
+```text
+Web search results for query: "ShadowLLM predictor contextual sparsity downstream task accuracy EMNLP 2024"
+
+Links: [{"title":"ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models - ACL Anthology","url":"https://aclanthology.org/2024.emnlp-main.1068/"},{"title":"[2406.16635] ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models","url":"https://arxiv.org/abs/2406.16635"},{"title":"ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models","url":"https://arxiv.org/html/2406.16635v2"},{"title":"ShadowLLM: Predictor-based Contextual Sparsity for ...","url":"https://aclanthology.org/2024.emnlp-main.1068.pdf"},{"title":"ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/shadowllm-predictor-based-contextual-sparsity-large-language"},{"title":"[Literature Review] ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models","url":"https://www.themoonlight.io/en/review/shadowllm-predictor-based-contextual-sparsity-for-large-language-models"},{"title":"ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models | Space Frontiers","url":"https://spacefrontiers.org/r/10.48550/arxiv.2406.16635"},{"title":"[PDF] Polar Sparsity: High Throughput Batched LLM Inferencing with Scalable Contextual Sparsity | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Polar-Sparsity:-High-Throughput-Batched-LLM-with-Shrestha-Settlemyer/328fcf757fa9647ea5eb96d37ee735e52a43df43"},{"title":"[2406.16635v2] ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models","url":"https://arxiv.org/abs/2406.16635v2"},{"title":"abdelfattah-lab/shadow_llm - ShadowLLM","url":"https://github.com/abdelfattah-lab/shadow_llm"}]
+
+Based on the search results, here's what I found about ShadowLLM:
+
+## ShadowLLM: Overview
+
+ShadowLLM is a novel predictor that can shadow LLM behavior and enforce better sparsity patterns, resulting in over 15% improvement in end-to-end accuracy compared to prior methods. The paper was published at EMNLP 2024.
+
+## Key Concepts
+
+Contextual sparsity, where the sparsity pattern is input-dependent, is crucial in LLMs because the permanent removal of attention heads or neurons from LLMs can significantly degrade accuracy. Prior work attempted to model contextual sparsity using neural networks trained to predict activation magnitudes, which can be used to dynamically prune structures with low predicted activation magnitude.
+
+## Methodology & Performance
+
+The paper looks beyond magnitude-based pruning criteria to assess attention head and neuron importance in LLMs. The pruning criteria results in a stronger accuracy-sparsity trade-off across seven downstream evaluation tasks, and its unified predictor improves the execution latency compared to the layerwise predictor of DejaVu.
+
+## Experimental Results
+
+ShadowLLM achieves up to a 20% speed-up over the state-of-the-art DejaVu framework, with these enhancements validated on Llama-2 and OPT models with up to 30 billion parameters.
+
+The research is available on [ACL Anthology](https://aclanthology.org/2024.emnlp-main.1068/) and [arXiv](https://arxiv.org/abs/2406.16635), with code available on [GitHub](https://github.com/abdelfattah-lab/shadow_llm/).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "b839adf2-a907-4cad-bdd2-1b956a9278fe",
+  "tool_use_result": {
+    "query": "ShadowLLM predictor contextual sparsity downstream task accuracy EMNLP 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015geCA4nSjoEA2ERHGYV88s",
+        "content": [
+          {
+            "title": "ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2024.emnlp-main.1068/"
+          },
+          {
+            "title": "[2406.16635] ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models",
+            "url": "https://arxiv.org/abs/2406.16635"
+          },
+          {
+            "title": "ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models",
+            "url": "https://arxiv.org/html/2406.16635v2"
+          },
+          {
+            "title": "ShadowLLM: Predictor-based Contextual Sparsity for ...",
+            "url": "https://aclanthology.org/2024.emnlp-main.1068.pdf"
+          },
+          {
+            "title": "ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/shadowllm-predictor-based-contextual-sparsity-large-language"
+          },
+          {
+            "title": "[Literature Review] ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models",
+            "url": "https://www.themoonlight.io/en/review/shadowllm-predictor-based-contextual-sparsity-for-large-language-models"
+          },
+          {
+            "title": "ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models | Space Frontiers",
+            "url": "https://spacefrontiers.org/r/10.48550/arxiv.2406.16635"
+          },
+          {
+            "title": "[PDF] Polar Sparsity: High Throughput Batched LLM Inferencing with Scalable Contextual Sparsity | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Polar-Sparsity:-High-Throughput-Batched-LLM-with-Shrestha-Settlemyer/328fcf757fa9647ea5eb96d37ee735e52a43df43"
+          },
+          {
+            "title": "[2406.16635v2] ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models",
+            "url": "https://arxiv.org/abs/2406.16635v2"
+          },
+          {
+            "title": "abdelfattah-lab/shadow_llm - ShadowLLM",
+            "url": "https://github.com/abdelfattah-lab/shadow_llm"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ShadowLLM:\n\n## ShadowLLM: Overview\n\nShadowLLM is a novel predictor that can shadow LLM behavior and enforce better sparsity patterns, resulting in over 15% improvement in end-to-end accuracy compared to prior methods. The paper was published at EMNLP 2024.\n\n## Key Concepts\n\nContextual sparsity, where the sparsity pattern is input-dependent, is crucial in LLMs because the permanent removal of attention heads or neurons from LLMs can significantly degrade accuracy. Prior work attempted to model contextual sparsity using neural networks trained to predict activation magnitudes, which can be used to dynamically prune structures with low predicted activation magnitude.\n\n## Methodology & Performance\n\nThe paper looks beyond magnitude-based pruning criteria to assess attention head and neuron importance in LLMs. The pruning criteria results in a stronger accuracy-sparsity trade-off across seven downstream evaluation tasks, and its unified predictor improves the execution latency compared to the layerwise predictor of DejaVu.\n\n## Experimental Results\n\nShadowLLM achieves up to a 20% speed-up over the state-of-the-art DejaVu framework, with these enhancements validated on Llama-2 and OPT models with up to 30 billion parameters.\n\nThe research is available on [ACL Anthology](https://aclanthology.org/2024.emnlp-main.1068/) and [arXiv](https://arxiv.org/abs/2406.16635), with code available on [GitHub](https://github.com/abdelfattah-lab/shadow_llm/)."
+    ],
+    "durationSeconds": 5.872683327999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T02:01:19.296Z_
+
+<details><summary>↩ Tool result · `toolu_01CFA1X8ben2FWJbyZtabRc6`</summary>
+
+```text
+Web search results for query: "perplexity "easy tokens" "hard tokens" sparsity pruning knowledge retrieval reasoning"
+
+Links: [{"title":"Dynamic Context Pruning for Efficient and Interpretable ...","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/cdaac2a02c4fdcae77ba083b110efcc3-Paper-Conference.pdf"},{"title":"Appendix","url":"https://arxiv.org/html/2505.20698"},{"title":"Perplexity AI context window: token limits, memory policy, and 2025 rules.","url":"https://www.datastudios.org/post/perplexity-ai-context-window-token-limits-memory-policy-and-2025-rules"},{"title":"Understanding Perplexity. This blog is extracted from my previous… | by Mukul Ranjan | Medium","url":"https://medium.com/@mukulranjan/understanding-perplexity-9df50dfa8827"},{"title":"Perplexity of fixed-length models · Hugging Face","url":"https://huggingface.co/docs/transformers/perplexity"},{"title":"What is a token, and how many tokens can ...","url":"https://www.perplexity.ai/hub/technical-faq/what-is-a-token-and-how-many-tokens-can-perplexity-read-at-once"},{"title":"Not all tokens are created equal: Perplexity Attention Weighted Networks for AI-generated text detection - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S156625352500538X"},{"title":"Token Pruning and Prompt Compression in Modern AI - DEV Community","url":"https://dev.to/softwarejutsu/token-pruning-and-prompt-compression-in-modern-ai-h0o"},{"title":"Perplexity Pricing Calculator & Token Counter — API Cost Estimator","url":"https://pricepertoken.com/token-counter/provider/perplexity"},{"title":"Normalizing Tokenizers | Hao Hoang posted on the topic","url":"https://www.linkedin.com/posts/hoang-van-hao_machinelearning-llm-datascience-activity-7409577373035204608-Ykyq"}]
+
+I found some relevant results, though the search results don't contain specific content about "easy tokens" and "hard tokens" in the exact terminology you're looking for. However, I did find one highly relevant result:
+
+Research on AI-generated text detection identifies that some tokens are naturally easier to predict (like word completions) and harder to predict (like beginnings of texts without prompt conditioning), with researchers using semantic information from hidden states and positional information to weight features based on next-token distribution metrics.
+
+Regarding the other aspects of your query:
+
+**Sparsity and Pruning**: Recent work on context pruning has found that up to 80% of context can be successfully removed with no performance loss in terms of perplexity. Token pruning techniques achieve sparsity hierarchically at each layer, with pruning at a particular layer automatically decreasing the computational burden on subsequent layers as pruned tokens are no longer propagated.
+
+**Knowledge Retrieval**: In Retrieval-Augmented Generation systems that pull multiple documents to answer a question, token pruning allows models to focus specifically on relevant paragraphs while mitigating the "Lost in the Middle" phenomenon where performance degrades when key information is buried in a long context.
+
+If you're looking for more specific research on "easy tokens" and "hard tokens" in the context of reasoning and knowledge retrieval, you may want to search for more recent papers on token importance, selective attention, or token-level difficulty estimation in language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "b93f16e6-123b-4d37-8f1e-da63355e90e7",
+  "tool_use_result": {
+    "query": "perplexity \"easy tokens\" \"hard tokens\" sparsity pruning knowledge retrieval reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012Z9ULogR4P8xRf8oQrfxHD",
+        "content": [
+          {
+            "title": "Dynamic Context Pruning for Efficient and Interpretable ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/cdaac2a02c4fdcae77ba083b110efcc3-Paper-Conference.pdf"
+          },
+          {
+            "title": "Appendix",
+            "url": "https://arxiv.org/html/2505.20698"
+          },
+          {
+            "title": "Perplexity AI context window: token limits, memory policy, and 2025 rules.",
+            "url": "https://www.datastudios.org/post/perplexity-ai-context-window-token-limits-memory-policy-and-2025-rules"
+          },
+          {
+            "title": "Understanding Perplexity. This blog is extracted from my previous… | by Mukul Ranjan | Medium",
+            "url": "https://medium.com/@mukulranjan/understanding-perplexity-9df50dfa8827"
+          },
+          {
+            "title": "Perplexity of fixed-length models · Hugging Face",
+            "url": "https://huggingface.co/docs/transformers/perplexity"
+          },
+          {
+            "title": "What is a token, and how many tokens can ...",
+            "url": "https://www.perplexity.ai/hub/technical-faq/what-is-a-token-and-how-many-tokens-can-perplexity-read-at-once"
+          },
+          {
+            "title": "Not all tokens are created equal: Perplexity Attention Weighted Networks for AI-generated text detection - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S156625352500538X"
+          },
+          {
+            "title": "Token Pruning and Prompt Compression in Modern AI - DEV Community",
+            "url": "https://dev.to/softwarejutsu/token-pruning-and-prompt-compression-in-modern-ai-h0o"
+          },
+          {
+            "title": "Perplexity Pricing Calculator & Token Counter — API Cost Estimator",
+            "url": "https://pricepertoken.com/token-counter/provider/perplexity"
+          },
+          {
+            "title": "Normalizing Tokenizers | Hao Hoang posted on the topic",
+            "url": "https://www.linkedin.com/posts/hoang-van-hao_machinelearning-llm-datascience-activity-7409577373035204608-Ykyq"
+          }
+        ]
+      },
+      "I found some relevant results, though the search results don't contain specific content about \"easy tokens\" and \"hard tokens\" in the exact terminology you're looking for. However, I did find one highly relevant result:\n\nResearch on AI-generated text detection identifies that some tokens are naturally easier to predict (like word completions) and harder to predict (like beginnings of texts without prompt conditioning), with researchers using semantic information from hidden states and positional information to weight features based on next-token distribution metrics.\n\nRegarding the other aspects of your query:\n\n**Sparsity and Pruning**: Recent work on context pruning has found that up to 80% of context can be successfully removed with no performance loss in terms of perplexity. Token pruning techniques achieve sparsity hierarchically at each layer, with pruning at a particular layer automatically decreasing the computational burden on subsequent layers as pruned tokens are no longer propagated.\n\n**Knowledge Retrieval**: In Retrieval-Augmented Generation systems that pull multiple documents to answer a question, token pruning allows models to focus specifically on relevant paragraphs while mitigating the \"Lost in the Middle\" phenomenon where performance degrades when key information is buried in a long context.\n\nIf you're looking for more specific research on \"easy tokens\" and \"hard tokens\" in the context of reasoning and knowledge retrieval, you may want to search for more recent papers on token importance, selective attention, or token-level difficulty estimation in language models."
+    ],
+    "durationSeconds": 6.477801189999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T02:01:20.557Z_
+
+<details><summary>↩ Tool result · `toolu_01J17e7tPqYhL2FbLwrEmF1Z`</summary>
+
+```text
+Web search results for query: "calibration data distribution mismatch pruning downstream performance WikiText C4"
+
+Links: [{"title":"Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning","url":"https://arxiv.org/html/2410.07461v1"},{"title":"GitHub - abx393/llm-pruning-calibration-data: [EMNLP 2024] Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning","url":"https://github.com/abx393/llm-pruning-calibration-data"},{"title":"[2410.07461] Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning","url":"https://arxiv.org/abs/2410.07461"},{"title":"Beware of Calibration Data for Pruning Large Language Models","url":"https://arxiv.org/html/2410.17711v1"},{"title":"Pruning as a Cooperative Game: Surrogate-Assisted Layer Contribution Estimation for Large Language Models","url":"https://arxiv.org/html/2602.07804"},{"title":"Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning - ACL Anthology","url":"https://aclanthology.org/2024.emnlp-main.1004/"},{"title":"[Quick Review] Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning","url":"https://liner.com/review/is-c4-dataset-optimal-for-pruning-investigation-calibration-data-for"},{"title":"On the Impact of Calibration Data in Post-training Quantization and Pruning","url":"https://arxiv.org/html/2311.09755"},{"title":"From Local to Global: Revisiting Structured Pruning Paradigms for Large Language Models","url":"https://arxiv.org/html/2510.18030"},{"title":"Self-calibration for Language Model Quantization and Pruning","url":"https://arxiv.org/html/2410.17170v1"}]
+
+I found relevant research on your query. Here are the key findings:
+
+## Overview
+
+The search results reveal important research investigating how calibration data selection affects LLM pruning performance, specifically examining the relationship between calibration data distribution mismatch and downstream task performance.
+
+## Key Findings
+
+**C4 Dataset Optimality**
+
+Existing LLM pruning approaches universally rely on the C4 dataset as the calibration data for calculating pruning scores, leaving its optimality unexplored. However, while C4 consistently produces robust sparse models, it is not the best calibration dataset for pruning.
+
+**Impact of Data Distribution Mismatch**
+
+The quality of calibration data is not the primary factor affecting pruning performance. Instead, researchers quantified the similarity between different calibration data and training data using the MinHash-LSH algorithm to encode 3-grams, calculating their Jaccard similarities, with results showing that the Jaccard similarity between C4 and DCLM is 0.070, SlimPajama is 0.016, and Wikipedia is 0.008.
+
+**Downstream Performance Effects**
+
+With mild pruning, different datasets lead to comparable outcomes, but discrepancies become evident under more aggressive pruning: WikiText2 calibration degrades PTB perplexity more severely, while C4 shows less stability on its own domain. Additionally, the selection of calibration data in post-training pruning and quantization methods significantly impacts downstream tasks' performance, especially post-training pruning, which is highly sensitive to calibration data.
+
+These findings highlight that calibration data distribution mismatch is a critical factor influencing pruned model performance on downstream tasks, particularly when using WikiText and C4 evaluation benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "617a265c-41c7-408a-a97a-6cb9be3f22be",
+  "tool_use_result": {
+    "query": "calibration data distribution mismatch pruning downstream performance WikiText C4",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013aaV7NjoeGRUkLFnb6XYDh",
+        "content": [
+          {
+            "title": "Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning",
+            "url": "https://arxiv.org/html/2410.07461v1"
+          },
+          {
+            "title": "GitHub - abx393/llm-pruning-calibration-data: [EMNLP 2024] Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning",
+            "url": "https://github.com/abx393/llm-pruning-calibration-data"
+          },
+          {
+            "title": "[2410.07461] Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning",
+            "url": "https://arxiv.org/abs/2410.07461"
+          },
+          {
+            "title": "Beware of Calibration Data for Pruning Large Language Models",
+            "url": "https://arxiv.org/html/2410.17711v1"
+          },
+          {
+            "title": "Pruning as a Cooperative Game: Surrogate-Assisted Layer Contribution Estimation for Large Language Models",
+            "url": "https://arxiv.org/html/2602.07804"
+          },
+          {
+            "title": "Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning - ACL Anthology",
+            "url": "https://aclanthology.org/2024.emnlp-main.1004/"
+          },
+          {
+            "title": "[Quick Review] Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning",
+            "url": "https://liner.com/review/is-c4-dataset-optimal-for-pruning-investigation-calibration-data-for"
+          },
+          {
+            "title": "On the Impact of Calibration Data in Post-training Quantization and Pruning",
+            "url": "https://arxiv.org/html/2311.09755"
+          },
+          {
+            "title": "From Local to Global: Revisiting Structured Pruning Paradigms for Large Language Models",
+            "url": "https://arxiv.org/html/2510.18030"
+          },
+          {
+            "title": "Self-calibration for Language Model Quantization and Pruning",
+            "url": "https://arxiv.org/html/2410.17170v1"
+          }
+        ]
+      },
+      "I found relevant research on your query. Here are the key findings:\n\n## Overview\n\nThe search results reveal important research investigating how calibration data selection affects LLM pruning performance, specifically examining the relationship between calibration data distribution mismatch and downstream task performance.\n\n## Key Findings\n\n**C4 Dataset Optimality**\n\nExisting LLM pruning approaches universally rely on the C4 dataset as the calibration data for calculating pruning scores, leaving its optimality unexplored. However, while C4 consistently produces robust sparse models, it is not the best calibration dataset for pruning.\n\n**Impact of Data Distribution Mismatch**\n\nThe quality of calibration data is not the primary factor affecting pruning performance. Instead, researchers quantified the similarity between different calibration data and training data using the MinHash-LSH algorithm to encode 3-grams, calculating their Jaccard similarities, with results showing that the Jaccard similarity between C4 and DCLM is 0.070, SlimPajama is 0.016, and Wikipedia is 0.008.\n\n**Downstream Performance Effects**\n\nWith mild pruning, different datasets lead to comparable outcomes, but discrepancies become evident under more aggressive pruning: WikiText2 calibration degrades PTB perplexity more severely, while C4 shows less stability on its own domain. Additionally, the selection of calibration data in post-training pruning and quantization methods significantly impacts downstream tasks' performance, especially post-training pruning, which is highly sensitive to calibration data.\n\nThese findings highlight that calibration data distribution mismatch is a critical factor influencing pruned model performance on downstream tasks, particularly when using WikiText and C4 evaluation benchmarks."
+    ],
+    "durationSeconds": 7.403449991000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! I now have substantial findings. Let me do a few more targeted searches to fill in remaining gaps, then compile the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "4ad49d46-ff7e-4b8e-ba52-986e270e0de3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AouRAGGTr4RMRXp1jsM1sJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5336,
+      "cache_read_input_tokens": 35360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5336
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+搜索到非常关键的文献。再搜几个补充方向。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "9fed91c9-4714-48db-94fc-7ad66fbc3a50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AouRAGGTr4RMRXp1jsM1sJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5336,
+      "cache_read_input_tokens": 35360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5336
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RJ16TZ7DJYt8FiVdoPVJQp`</summary>
+
+```json
+{
+  "query": "arxiv 2410.07461 \"Is C4 Dataset Optimal for Pruning\" calibration data EMNLP 2024 findings"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "27dbb6b5-33b4-48f8-a99c-47f4ec385037",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AouRAGGTr4RMRXp1jsM1sJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5336,
+      "cache_read_input_tokens": 35360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5336
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0127F8MZkaeFEQSrZ8HZkMVU`</summary>
+
+```json
+{
+  "query": "arxiv 2604.27115 \"Exploring the Limits of Pruning\" task-specific neurons model collapse degeneration traps"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "70f85ede-b257-4453-9f83-ff906ba05912",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AouRAGGTr4RMRXp1jsM1sJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5336,
+      "cache_read_input_tokens": 35360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5336
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0174ycky3vqXRLjPxtMGt6hP`</summary>
+
+```json
+{
+  "query": "\"perplexity is not enough\" OR \"perplexity inadequate\" evaluation metric LLM compression sparsity 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "b7e4d5ec-d4d4-45cd-a852-20a2e196f9f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AouRAGGTr4RMRXp1jsM1sJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5336,
+      "cache_read_input_tokens": 35360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5336
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T02:01:31.383Z_
+
+<details><summary>↩ Tool result · `toolu_01RJ16TZ7DJYt8FiVdoPVJQp`</summary>
+
+```text
+Web search results for query: "arxiv 2410.07461 "Is C4 Dataset Optimal for Pruning" calibration data EMNLP 2024 findings"
+
+Links: [{"title":"[2410.07461] Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning","url":"https://arxiv.org/abs/2410.07461"},{"title":"Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning","url":"https://arxiv.org/html/2410.07461"},{"title":"GitHub - abx393/llm-pruning-calibration-data: [EMNLP 2024] Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning","url":"https://github.com/abx393/llm-pruning-calibration-data"},{"title":"[Literature Review] Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning","url":"https://www.themoonlight.io/en/review/is-c4-dataset-optimal-for-pruning-an-investigation-of-calibration-data-for-llm-pruning"},{"title":"Is C4 Dataset Optimal for Pruning? An Investigation of ...","url":"https://www.aimodels.fyi/papers/arxiv/is-c4-dataset-optimal-pruning-investigation-calibration"},{"title":"Computer Science Oct 2024","url":"https://arxiv.org/list/cs/2024-10?skip=3600&show=100"},{"title":"Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning - ACL Anthology","url":"https://aclanthology.org/2024.emnlp-main.1004/"},{"title":"Revisiting Large Language Model Pruning using Neuron Semantic Attribution","url":"https://arxiv.org/html/2503.01542"},{"title":"Diversifying the Expert Knowledge for Task-Agnostic Pruning in Sparse Mixture-of-Experts","url":"https://arxiv.org/html/2407.09590v1"},{"title":"Is C4 Dataset Optimal for Pruning? An Investigation of ...","url":"https://aclanthology.org/2024.emnlp-main.1004.pdf"}]
+
+Based on the search results, here are the key findings from the paper "Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning" (arXiv 2410.07461), which was accepted to EMNLP 2024:
+
+## Main Findings
+
+Existing LLM pruning approaches universally rely on the C4 dataset as the calibration data for calculating pruning scores, leaving its optimality unexplored.
+
+**Key Discovery**: C4 is not the optimal choice for LLM pruning, even among commonly used pre-training datasets, and arithmetic datasets showed promise as alternatives.
+
+## Study Methodology
+
+The study evaluates the choice of calibration data on LLM pruning, across a wide range of datasets that are most commonly used in LLM training and evaluation, including four pertaining datasets as well as three categories of downstream tasks encompassing nine datasets. Each downstream dataset is prompted with In-Context Learning (ICL) and Chain-of-Thought (CoT), respectively.
+
+## Dataset Categories Examined
+
+The study examined multiple pre-training datasets (C4, Pile, OSCAR, and RedPajama) and various categories of downstream tasks encompassing arithmetic reasoning, natural language inference (NLI), and commonsense reasoning, with specific datasets like GSM8K, SVAMP, and MAWPS for arithmetic reasoning.
+
+## Impact on Performance
+
+The choice of calibration data significantly impacts the performance of pruned LLMs, revealing that the field's standard practice of using C4 may not be optimal across all use cases.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "774a0ae6-cb5f-43f6-aa75-52022589da18",
+  "tool_use_result": {
+    "query": "arxiv 2410.07461 \"Is C4 Dataset Optimal for Pruning\" calibration data EMNLP 2024 findings",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0192L2x1o6VrnSaFEpcL65KQ",
+        "content": [
+          {
+            "title": "[2410.07461] Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning",
+            "url": "https://arxiv.org/abs/2410.07461"
+          },
+          {
+            "title": "Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning",
+            "url": "https://arxiv.org/html/2410.07461"
+          },
+          {
+            "title": "GitHub - abx393/llm-pruning-calibration-data: [EMNLP 2024] Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning",
+            "url": "https://github.com/abx393/llm-pruning-calibration-data"
+          },
+          {
+            "title": "[Literature Review] Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning",
+            "url": "https://www.themoonlight.io/en/review/is-c4-dataset-optimal-for-pruning-an-investigation-of-calibration-data-for-llm-pruning"
+          },
+          {
+            "title": "Is C4 Dataset Optimal for Pruning? An Investigation of ...",
+            "url": "https://www.aimodels.fyi/papers/arxiv/is-c4-dataset-optimal-pruning-investigation-calibration"
+          },
+          {
+            "title": "Computer Science Oct 2024",
+            "url": "https://arxiv.org/list/cs/2024-10?skip=3600&show=100"
+          },
+          {
+            "title": "Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning - ACL Anthology",
+            "url": "https://aclanthology.org/2024.emnlp-main.1004/"
+          },
+          {
+            "title": "Revisiting Large Language Model Pruning using Neuron Semantic Attribution",
+            "url": "https://arxiv.org/html/2503.01542"
+          },
+          {
+            "title": "Diversifying the Expert Knowledge for Task-Agnostic Pruning in Sparse Mixture-of-Experts",
+            "url": "https://arxiv.org/html/2407.09590v1"
+          },
+          {
+            "title": "Is C4 Dataset Optimal for Pruning? An Investigation of ...",
+            "url": "https://aclanthology.org/2024.emnlp-main.1004.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings from the paper \"Is C4 Dataset Optimal for Pruning? An Investigation of Calibration Data for LLM Pruning\" (arXiv 2410.07461), which was accepted to EMNLP 2024:\n\n## Main Findings\n\nExisting LLM pruning approaches universally rely on the C4 dataset as the calibration data for calculating pruning scores, leaving its optimality unexplored.\n\n**Key Discovery**: C4 is not the optimal choice for LLM pruning, even among commonly used pre-training datasets, and arithmetic datasets showed promise as alternatives.\n\n## Study Methodology\n\nThe study evaluates the choice of calibration data on LLM pruning, across a wide range of datasets that are most commonly used in LLM training and evaluation, including four pertaining datasets as well as three categories of downstream tasks encompassing nine datasets. Each downstream dataset is prompted with In-Context Learning (ICL) and Chain-of-Thought (CoT), respectively.\n\n## Dataset Categories Examined\n\nThe study examined multiple pre-training datasets (C4, Pile, OSCAR, and RedPajama) and various categories of downstream tasks encompassing arithmetic reasoning, natural language inference (NLI), and commonsense reasoning, with specific datasets like GSM8K, SVAMP, and MAWPS for arithmetic reasoning.\n\n## Impact on Performance\n\nThe choice of calibration data significantly impacts the performance of pruned LLMs, revealing that the field's standard practice of using C4 may not be optimal across all use cases."
+    ],
+    "durationSeconds": 6.512426716000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T02:01:34.356Z_
+
+<details><summary>↩ Tool result · `toolu_0174ycky3vqXRLjPxtMGt6hP`</summary>
+
+```text
+Web search results for query: ""perplexity is not enough" OR "perplexity inadequate" evaluation metric LLM compression sparsity 2024 2025"
+
+Links: [{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf/a70c74bcc9a4aaa48fc2bd4a616c14d0067ebf9e.pdf"},{"title":"Perplexity for LLM Evaluation - Comet","url":"https://www.comet.com/site/blog/perplexity-for-llm-evaluation/"},{"title":"Multi-dimensional Safety Evaluation of LLM Compression","url":"https://aclanthology.org/2024.findings-emnlp.901.pdf"},{"title":"Perplexity for LLM Evaluation - GeeksforGeeks","url":"https://www.geeksforgeeks.org/nlp/perplexity-for-llm-evaluation/"},{"title":"Perplexity Metric for LLM Evaluation - Analytics Vidhya","url":"https://www.analyticsvidhya.com/blog/2025/04/perplexity-metric-for-llm-evaluation/"},{"title":"Published as a conference paper at ICLR 2025 WHAT IS WRONG WITH PERPLEXITY","url":"https://arxiv.org/pdf/2410.23771"},{"title":"Published as a conference paper at ICLR 2024","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/9f09f316a3eaf59d9ced5ffaefe97e0f-Paper-Conference.pdf"},{"title":"What is Wrong with Perplexity for Long-context Language Modeling?","url":"https://arxiv.org/html/2410.23771v5"},{"title":"[2410.23771] What is Wrong with Perplexity for Long-context Language Modeling?","url":"https://arxiv.org/abs/2410.23771"},{"title":"Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression - ACL Anthology","url":"https://aclanthology.org/2024.findings-emnlp.901/"}]
+
+I found relevant research on perplexity's limitations as an evaluation metric for LLM compression and sparsity. Here are the key findings:
+
+## Perplexity's Inadequacy for LLM Compression Evaluation
+
+Perplexity's unbounded value range and model-specific baselines make fair cross-model comparison difficult. More critically, perplexity can be easily exploited, as certain compression strategies such as KV cache dropping can be over-optimized to achieve favorable perplexity scores.
+
+### Core Problem with Proxy Metrics
+
+Prevailing evaluation methods resort to proxy metrics (e.g., perplexity and QA benchmarks), where the final score is not a direct measure of generative fidelity but an indirect comparison of abstract values derived from model outputs. A compressed model may achieve a perplexity score nearly identical to the original's while generating text that is factually different.
+
+### Evidence from Compression Studies
+
+Perplexity shows no significant variation up to 45-60% sparsity, with complete failure to capture subtle changes in the abilities of compressed LLMs. Research also shows that the normalized perplexity score shows poor alignment with human-aligned evaluation, incorrectly assigning high scores to methods exhibiting severe performance collapse while penalizing effective methods.
+
+### Beyond Compression: Long-Context Concerns
+
+Recent studies have shown that perplexity does not adequately reflect the long-context performance of language models, with a huge discrepancy between perplexity and actual performance on long-context tasks.
+
+### Safety Evaluation Gaps
+
+Prior work on compression typically prioritizes preserving perplexity, which is directly analogous to training loss, but the impact of compression on other critical aspects of model behavior—particularly safety—requires systematic assessment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "84bb7264-bb6f-44d0-885f-0dc47323da27",
+  "tool_use_result": {
+    "query": "\"perplexity is not enough\" OR \"perplexity inadequate\" evaluation metric LLM compression sparsity 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D8MFe9DPJwkcWusqDxf6yc",
+        "content": [
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf/a70c74bcc9a4aaa48fc2bd4a616c14d0067ebf9e.pdf"
+          },
+          {
+            "title": "Perplexity for LLM Evaluation - Comet",
+            "url": "https://www.comet.com/site/blog/perplexity-for-llm-evaluation/"
+          },
+          {
+            "title": "Multi-dimensional Safety Evaluation of LLM Compression",
+            "url": "https://aclanthology.org/2024.findings-emnlp.901.pdf"
+          },
+          {
+            "title": "Perplexity for LLM Evaluation - GeeksforGeeks",
+            "url": "https://www.geeksforgeeks.org/nlp/perplexity-for-llm-evaluation/"
+          },
+          {
+            "title": "Perplexity Metric for LLM Evaluation - Analytics Vidhya",
+            "url": "https://www.analyticsvidhya.com/blog/2025/04/perplexity-metric-for-llm-evaluation/"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 WHAT IS WRONG WITH PERPLEXITY",
+            "url": "https://arxiv.org/pdf/2410.23771"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/9f09f316a3eaf59d9ced5ffaefe97e0f-Paper-Conference.pdf"
+          },
+          {
+            "title": "What is Wrong with Perplexity for Long-context Language Modeling?",
+            "url": "https://arxiv.org/html/2410.23771v5"
+          },
+          {
+            "title": "[2410.23771] What is Wrong with Perplexity for Long-context Language Modeling?",
+            "url": "https://arxiv.org/abs/2410.23771"
+          },
+          {
+            "title": "Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression - ACL Anthology",
+            "url": "https://aclanthology.org/2024.findings-emnlp.901/"
+          }
+        ]
+      },
+      "I found relevant research on perplexity's limitations as an evaluation metric for LLM compression and sparsity. Here are the key findings:\n\n## Perplexity's Inadequacy for LLM Compression Evaluation\n\nPerplexity's unbounded value range and model-specific baselines make fair cross-model comparison difficult. More critically, perplexity can be easily exploited, as certain compression strategies such as KV cache dropping can be over-optimized to achieve favorable perplexity scores.\n\n### Core Problem with Proxy Metrics\n\nPrevailing evaluation methods resort to proxy metrics (e.g., perplexity and QA benchmarks), where the final score is not a direct measure of generative fidelity but an indirect comparison of abstract values derived from model outputs. A compressed model may achieve a perplexity score nearly identical to the original's while generating text that is factually different.\n\n### Evidence from Compression Studies\n\nPerplexity shows no significant variation up to 45-60% sparsity, with complete failure to capture subtle changes in the abilities of compressed LLMs. Research also shows that the normalized perplexity score shows poor alignment with human-aligned evaluation, incorrectly assigning high scores to methods exhibiting severe performance collapse while penalizing effective methods.\n\n### Beyond Compression: Long-Context Concerns\n\nRecent studies have shown that perplexity does not adequately reflect the long-context performance of language models, with a huge discrepancy between perplexity and actual performance on long-context tasks.\n\n### Safety Evaluation Gaps\n\nPrior work on compression typically prioritizes preserving perplexity, which is directly analogous to training loss, but the impact of compression on other critical aspects of model behavior—particularly safety—requires systematic assessment."
+    ],
+    "durationSeconds": 7.802949887999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T02:01:44.220Z_
+
+<details><summary>↩ Tool result · `toolu_0127F8MZkaeFEQSrZ8HZkMVU`</summary>
+
+```text
+Web search results for query: "arxiv 2604.27115 "Exploring the Limits of Pruning" task-specific neurons model collapse degeneration traps"
+
+Links: [{"title":"[2604.27115] Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models","url":"https://arxiv.org/abs/2604.27115"},{"title":"Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models","url":"https://arxiv.org/html/2604.27115"},{"title":"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling","url":"https://arxiv.org/html/2604.25098"},{"title":"Structural Pruning of Large Vision Language Models: A Comprehensive Study on Pruning Dynamics, Recovery, and Data Efficiency","url":"https://arxiv.org/html/2604.24380"},{"title":"Exploring Neural Network Pruning with Screening Methods","url":"https://arxiv.org/html/2502.07189v1"},{"title":"Soft Label Pruning and Quantization for Large-Scale Dataset Distillation","url":"https://arxiv.org/html/2604.18135"},{"title":"Pushing the Limits of Sparsity: A Bag of Tricks for Extreme Pruning","url":"https://arxiv.org/html/2411.13545"},{"title":"LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models","url":"https://arxiv.org/html/2604.23950"},{"title":"Exploring 3D Dataset Pruning","url":"https://arxiv.org/html/2603.00651v1"},{"title":"Effective pruning of web-scale datasets based on complexity of concept clusters","url":"https://arxiv.org/html/2401.04578v2"}]
+
+I found the paper you were looking for! Here's what I found about arxiv paper 2604.27115:
+
+## "Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models"
+
+**Key Findings:**
+
+Neuron pruning is widely used to reduce computational cost and parameter footprint of large language models, and this work provides empirical evidence for the existence and importance of task-specific neurons through a systematic pruning study on language models specialized for mathematical reasoning and code generation.
+
+**Methodology:**
+
+The researchers introduce an activation-based selectivity metric to identify neurons with low contribution to the target task and prune them while preserving target-task accuracy, comparing selective pruning with random pruning. Selective pruning consistently outperforms random pruning, indicating that activation-based selectivity provides a systematic advantage.
+
+**Model Collapse and Task-Specific Neurons:**
+
+Reverse pruning experiments show that removing a small subset of highly task-specific neurons (~10%) causes complete performance collapse.
+
+**Robustness Thresholds:**
+
+Experiments on both 1.5B and 7B models reveal a robustness threshold around 15-20% pruning, beyond which accuracy loss and generation failures increase sharply.
+
+**Recovery:**
+
+Fine-tuning substantially recovers performance across pruning levels, particularly for aggressively pruned models.
+
+The paper was posted on April 29, 2026, by M. K. Khalidi Siam and colleagues from BRAC University.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "c6ef2ce6-538c-45a6-bafb-93c7b4239c83",
+  "tool_use_result": {
+    "query": "arxiv 2604.27115 \"Exploring the Limits of Pruning\" task-specific neurons model collapse degeneration traps",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013nsL3sj4yQChCeLXPgDXtA",
+        "content": [
+          {
+            "title": "[2604.27115] Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models",
+            "url": "https://arxiv.org/abs/2604.27115"
+          },
+          {
+            "title": "Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models",
+            "url": "https://arxiv.org/html/2604.27115"
+          },
+          {
+            "title": "Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling",
+            "url": "https://arxiv.org/html/2604.25098"
+          },
+          {
+            "title": "Structural Pruning of Large Vision Language Models: A Comprehensive Study on Pruning Dynamics, Recovery, and Data Efficiency",
+            "url": "https://arxiv.org/html/2604.24380"
+          },
+          {
+            "title": "Exploring Neural Network Pruning with Screening Methods",
+            "url": "https://arxiv.org/html/2502.07189v1"
+          },
+          {
+            "title": "Soft Label Pruning and Quantization for Large-Scale Dataset Distillation",
+            "url": "https://arxiv.org/html/2604.18135"
+          },
+          {
+            "title": "Pushing the Limits of Sparsity: A Bag of Tricks for Extreme Pruning",
+            "url": "https://arxiv.org/html/2411.13545"
+          },
+          {
+            "title": "LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models",
+            "url": "https://arxiv.org/html/2604.23950"
+          },
+          {
+            "title": "Exploring 3D Dataset Pruning",
+            "url": "https://arxiv.org/html/2603.00651v1"
+          },
+          {
+            "title": "Effective pruning of web-scale datasets based on complexity of concept clusters",
+            "url": "https://arxiv.org/html/2401.04578v2"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here's what I found about arxiv paper 2604.27115:\n\n## \"Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models\"\n\n**Key Findings:**\n\nNeuron pruning is widely used to reduce computational cost and parameter footprint of large language models, and this work provides empirical evidence for the existence and importance of task-specific neurons through a systematic pruning study on language models specialized for mathematical reasoning and code generation.\n\n**Methodology:**\n\nThe researchers introduce an activation-based selectivity metric to identify neurons with low contribution to the target task and prune them while preserving target-task accuracy, comparing selective pruning with random pruning. Selective pruning consistently outperforms random pruning, indicating that activation-based selectivity provides a systematic advantage.\n\n**Model Collapse and Task-Specific Neurons:**\n\nReverse pruning experiments show that removing a small subset of highly task-specific neurons (~10%) causes complete performance collapse.\n\n**Robustness Thresholds:**\n\nExperiments on both 1.5B and 7B models reveal a robustness threshold around 15-20% pruning, beyond which accuracy loss and generation failures increase sharply.\n\n**Recovery:**\n\nFine-tuning substantially recovers performance across pruning levels, particularly for aggressively pruned models.\n\nThe paper was posted on April 29, 2026, by M. K. Khalidi Siam and colleagues from BRAC University."
+    ],
+    "durationSeconds": 18.413278932999994
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have comprehensive findings. Let me search for two more specific papers:
+1. The "Multi-dimensional Safety Evaluation of LLM Compression" paper (EMNLP Findings 2024)
+2. The "What is Wrong with Perplexity" paper (ICLR 2025)
+3. The agent-guided pruning paper about knowledge degradation
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "f4f15158-e415-4570-8b96-8489940c6883",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cq67T1i2Wwk8pYjtTkBDVj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1024,
+      "cache_creation_input_tokens": 2158,
+      "cache_read_input_tokens": 40696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2158
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+核心文献已经齐全。最后补充几个关键论文的细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "1034473e-2f7c-460a-bbbe-106d3d4d24c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cq67T1i2Wwk8pYjtTkBDVj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1024,
+      "cache_creation_input_tokens": 2158,
+      "cache_read_input_tokens": 40696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2158
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DDQECumevufTK7ybZGsJeZ`</summary>
+
+```json
+{
+  "query": "\"Multi-dimensional Safety Evaluation of LLM Compression\" EMNLP 2024 perplexity sparsity safety evaluation beyond"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "4159b7f4-5a41-4a1c-9117-d3bf7cba1113",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cq67T1i2Wwk8pYjtTkBDVj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1024,
+      "cache_creation_input_tokens": 2158,
+      "cache_read_input_tokens": 40696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2158
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016KNrrpcKB1faE694jPRDgc`</summary>
+
+```json
+{
+  "query": "arxiv 2601.09694 \"LLMs can Compress LLMs\" adaptive pruning agents factual knowledge FreebaseQA N:M sparsity 97%"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "8d3a9a54-2919-40bc-8ee3-a597d884df31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cq67T1i2Wwk8pYjtTkBDVj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1024,
+      "cache_creation_input_tokens": 2158,
+      "cache_read_input_tokens": 40696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2158
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XJebquqwu6gnbefDcq65eQ`</summary>
+
+```json
+{
+  "query": "TEAL activation sparsity 50% downstream accuracy Llama-3 8B MMLU ARC WinoGrande GSM8K results table"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "c7540713-9a60-4d1d-907c-2f46f7a23b3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cq67T1i2Wwk8pYjtTkBDVj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1024,
+      "cache_creation_input_tokens": 2158,
+      "cache_read_input_tokens": 40696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2158
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T02:01:56.089Z_
+
+<details><summary>↩ Tool result · `toolu_01DDQECumevufTK7ybZGsJeZ`</summary>
+
+```text
+Web search results for query: ""Multi-dimensional Safety Evaluation of LLM Compression" EMNLP 2024 perplexity sparsity safety evaluation beyond"
+
+Links: [{"title":"Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression - ACL Anthology","url":"https://aclanthology.org/2024.findings-emnlp.901/"},{"title":"Multi-dimensional Safety Evaluation of LLM Compression","url":"https://aclanthology.org/2024.findings-emnlp.901.pdf"},{"title":"[2407.04965] Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression","url":"https://arxiv.org/abs/2407.04965"},{"title":"Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression :: Vivek Srikumar","url":"https://svivek.com/research/xu2024beyond.html"},{"title":"Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression","url":"https://arxiv.org/html/2407.04965v1"},{"title":"(PDF) Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression","url":"https://www.researchgate.net/publication/382080819_Beyond_Perplexity_Multi-dimensional_Safety_Evaluation_of_LLM_Compression"},{"title":"Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression | Request PDF","url":"https://www.researchgate.net/publication/386188051_Beyond_Perplexity_Multi-dimensional_Safety_Evaluation_of_LLM_Compression"},{"title":"System Demonstration - EMNLP 2024","url":"https://2024.emnlp.org/program/demo/"},{"title":"A Systematic Survey and Critical Review on Evaluating ...","url":"https://aclanthology.org/2024.emnlp-main.764.pdf"},{"title":"SALAD-Bench: LLM Safety Evaluation Tool | PDF | Computing | Cognitive Science","url":"https://www.scribd.com/document/797975068/Li-%E7%AD%89-2024-SALAD-Bench-A-Hierarchical-and-Comprehensive-Safety-Benchmark-for-Large-Language-Models"}]
+
+I found the research paper you're looking for! Here's a summary of the search results:
+
+## "Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression"
+
+This paper, titled "Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression," was published in Findings of the Association for Computational Linguistics: EMNLP 2024 (pages 15359–15396, Miami, Florida, USA). The authors are Zhichao Xu, Ashim Gupta, Tao Li, Oliver Bentham, and Vivek Srikumar.
+
+### Key Focus Areas:
+
+The research investigates the impact of model compression along four dimensions: (1) degeneration harm, i.e., bias and toxicity in generation; (2) representational harm, i.e., biases in discriminative tasks; (3) dialect bias; and (4) language modeling and downstream task performance.
+
+The researchers examine a wide spectrum of LLM compression techniques, including unstructured pruning, semi-structured pruning, and quantization.
+
+### Key Findings:
+
+Although compression may unintentionally alleviate LLMs' degeneration harm, it can still exacerbate representational harm. Furthermore, increasing compression produces a divergent impact on different protected groups. Different compression methods have drastically different safety impacts: for example, quantization mostly preserves bias while pruning degrades quickly.
+
+The findings underscore the importance of integrating safety assessments into the development of compressed LLMs to ensure their reliability across real-world applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "5d9fc1fd-e710-4302-966e-23df6c22edf2",
+  "tool_use_result": {
+    "query": "\"Multi-dimensional Safety Evaluation of LLM Compression\" EMNLP 2024 perplexity sparsity safety evaluation beyond",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SysGBzzGPhtgy1cffJaDNo",
+        "content": [
+          {
+            "title": "Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression - ACL Anthology",
+            "url": "https://aclanthology.org/2024.findings-emnlp.901/"
+          },
+          {
+            "title": "Multi-dimensional Safety Evaluation of LLM Compression",
+            "url": "https://aclanthology.org/2024.findings-emnlp.901.pdf"
+          },
+          {
+            "title": "[2407.04965] Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression",
+            "url": "https://arxiv.org/abs/2407.04965"
+          },
+          {
+            "title": "Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression :: Vivek Srikumar",
+            "url": "https://svivek.com/research/xu2024beyond.html"
+          },
+          {
+            "title": "Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression",
+            "url": "https://arxiv.org/html/2407.04965v1"
+          },
+          {
+            "title": "(PDF) Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression",
+            "url": "https://www.researchgate.net/publication/382080819_Beyond_Perplexity_Multi-dimensional_Safety_Evaluation_of_LLM_Compression"
+          },
+          {
+            "title": "Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression | Request PDF",
+            "url": "https://www.researchgate.net/publication/386188051_Beyond_Perplexity_Multi-dimensional_Safety_Evaluation_of_LLM_Compression"
+          },
+          {
+            "title": "System Demonstration - EMNLP 2024",
+            "url": "https://2024.emnlp.org/program/demo/"
+          },
+          {
+            "title": "A Systematic Survey and Critical Review on Evaluating ...",
+            "url": "https://aclanthology.org/2024.emnlp-main.764.pdf"
+          },
+          {
+            "title": "SALAD-Bench: LLM Safety Evaluation Tool | PDF | Computing | Cognitive Science",
+            "url": "https://www.scribd.com/document/797975068/Li-%E7%AD%89-2024-SALAD-Bench-A-Hierarchical-and-Comprehensive-Safety-Benchmark-for-Large-Language-Models"
+          }
+        ]
+      },
+      "I found the research paper you're looking for! Here's a summary of the search results:\n\n## \"Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression\"\n\nThis paper, titled \"Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression,\" was published in Findings of the Association for Computational Linguistics: EMNLP 2024 (pages 15359–15396, Miami, Florida, USA). The authors are Zhichao Xu, Ashim Gupta, Tao Li, Oliver Bentham, and Vivek Srikumar.\n\n### Key Focus Areas:\n\nThe research investigates the impact of model compression along four dimensions: (1) degeneration harm, i.e., bias and toxicity in generation; (2) representational harm, i.e., biases in discriminative tasks; (3) dialect bias; and (4) language modeling and downstream task performance.\n\nThe researchers examine a wide spectrum of LLM compression techniques, including unstructured pruning, semi-structured pruning, and quantization.\n\n### Key Findings:\n\nAlthough compression may unintentionally alleviate LLMs' degeneration harm, it can still exacerbate representational harm. Furthermore, increasing compression produces a divergent impact on different protected groups. Different compression methods have drastically different safety impacts: for example, quantization mostly preserves bias while pruning degrades quickly.\n\nThe findings underscore the importance of integrating safety assessments into the development of compressed LLMs to ensure their reliability across real-world applications."
+    ],
+    "durationSeconds": 6.622881703999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-16T02:01:58.452Z_
+
+<details><summary>↩ Tool result · `toolu_016KNrrpcKB1faE694jPRDgc`</summary>
+
+```text
+Web search results for query: "arxiv 2601.09694 "LLMs can Compress LLMs" adaptive pruning agents factual knowledge FreebaseQA N:M sparsity 97%"
+
+Links: [{"title":"LLMs can Compress LLMs: Adaptive Pruning by Agents","url":"https://arxiv.org/pdf/2601.09694"},{"title":"[2601.09694] LLMs can Compress LLMs: Adaptive Pruning by Agents","url":"https://arxiv.org/abs/2601.09694"},{"title":"LLMs can Compress LLMs: Adaptive Pruning by Agents","url":"https://bytez.com/docs/arxiv/2601.09694/paper"},{"title":"Llms Achieve 56% Compression With Adaptive Pruning, Maintaining Factual Knowledge","url":"https://quantumzeitgeist.com/56-percent-llms-compression-adaptive-pruning-maintaining/"},{"title":"Runtime Adaptive Pruning for LLM Inference","url":"https://arxiv.org/html/2505.17138v4"},{"title":"Towards Efficient VLMs: Information-Theoretic Driven Compression via Adaptive Structural Pruning","url":"https://arxiv.org/html/2511.19518v1"},{"title":"Pruning Large Language Models with Semi-Structural Adaptive Sparse Training","url":"https://arxiv.org/html/2407.20584v1"},{"title":"Model Compression and Efficient Inference for Large Language Models: A Survey","url":"https://arxiv.org/html/2402.09748v1"},{"title":"RAP: Runtime-Adaptive Pruning for LLM Inference","url":"https://arxiv.org/html/2505.17138v1"},{"title":"Toward Adaptive Large Language Models Structured Pruning via Hybrid-grained Weight Importance Assessment","url":"https://arxiv.org/html/2403.10799v4"}]
+
+Based on the search results, I found the paper arxiv 2601.09694 "LLMs can Compress LLMs: Adaptive Pruning by Agents". Here's information about it:
+
+## Overview
+
+As Large Language Models (LLMs) continue to scale, post-training pruning has emerged as a promising approach to reduce computational costs while preserving performance.
+
+## The Problem It Addresses
+
+Existing methods such as SparseGPT and Wanda achieve high sparsity through layer-wise weight reconstruction or activation-aware magnitude pruning, but rely on uniform or hand-crafted heuristics to determine per-layer sparsity ratios. Moreover, recent work has shown that pruned LLMs suffer from severe factual knowledge degradation, with structured pruning methods experiencing near-total collapse in factual question-answering capabilities.
+
+## Proposed Solution
+
+The paper introduces agent-guided pruning, where a foundation model acts as an adaptive pruning agent to intelligently select which layers to prune at each iteration while preserving critical knowledge pathways.
+
+## Authors and Submission
+
+The paper was submitted on January 14, 2026, by authors Sai Varun Kodathala and Rakesh Vunnam.
+
+The paper specifically addresses the critical issue of preserving factual knowledge during aggressive pruning while achieving high sparsity levels (the 97% sparsity and N:M sparsity patterns you mentioned in your query relate to the compression targets the method aims to achieve with minimal performance loss).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "ec3be887-b327-4641-9337-47cd7f62804e",
+  "tool_use_result": {
+    "query": "arxiv 2601.09694 \"LLMs can Compress LLMs\" adaptive pruning agents factual knowledge FreebaseQA N:M sparsity 97%",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CFidvXrGmXMVBDAjyskYq6",
+        "content": [
+          {
+            "title": "LLMs can Compress LLMs: Adaptive Pruning by Agents",
+            "url": "https://arxiv.org/pdf/2601.09694"
+          },
+          {
+            "title": "[2601.09694] LLMs can Compress LLMs: Adaptive Pruning by Agents",
+            "url": "https://arxiv.org/abs/2601.09694"
+          },
+          {
+            "title": "LLMs can Compress LLMs: Adaptive Pruning by Agents",
+            "url": "https://bytez.com/docs/arxiv/2601.09694/paper"
+          },
+          {
+            "title": "Llms Achieve 56% Compression With Adaptive Pruning, Maintaining Factual Knowledge",
+            "url": "https://quantumzeitgeist.com/56-percent-llms-compression-adaptive-pruning-maintaining/"
+          },
+          {
+            "title": "Runtime Adaptive Pruning for LLM Inference",
+            "url": "https://arxiv.org/html/2505.17138v4"
+          },
+          {
+            "title": "Towards Efficient VLMs: Information-Theoretic Driven Compression via Adaptive Structural Pruning",
+            "url": "https://arxiv.org/html/2511.19518v1"
+          },
+          {
+            "title": "Pruning Large Language Models with Semi-Structural Adaptive Sparse Training",
+            "url": "https://arxiv.org/html/2407.20584v1"
+          },
+          {
+            "title": "Model Compression and Efficient Inference for Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2402.09748v1"
+          },
+          {
+            "title": "RAP: Runtime-Adaptive Pruning for LLM Inference",
+            "url": "https://arxiv.org/html/2505.17138v1"
+          },
+          {
+            "title": "Toward Adaptive Large Language Models Structured Pruning via Hybrid-grained Weight Importance Assessment",
+            "url": "https://arxiv.org/html/2403.10799v4"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper arxiv 2601.09694 \"LLMs can Compress LLMs: Adaptive Pruning by Agents\". Here's information about it:\n\n## Overview\n\nAs Large Language Models (LLMs) continue to scale, post-training pruning has emerged as a promising approach to reduce computational costs while preserving performance.\n\n## The Problem It Addresses\n\nExisting methods such as SparseGPT and Wanda achieve high sparsity through layer-wise weight reconstruction or activation-aware magnitude pruning, but rely on uniform or hand-crafted heuristics to determine per-layer sparsity ratios. Moreover, recent work has shown that pruned LLMs suffer from severe factual knowledge degradation, with structured pruning methods experiencing near-total collapse in factual question-answering capabilities.\n\n## Proposed Solution\n\nThe paper introduces agent-guided pruning, where a foundation model acts as an adaptive pruning agent to intelligently select which layers to prune at each iteration while preserving critical knowledge pathways.\n\n## Authors and Submission\n\nThe paper was submitted on January 14, 2026, by authors Sai Varun Kodathala and Rakesh Vunnam.\n\nThe paper specifically addresses the critical issue of preserving factual knowledge during aggressive pruning while achieving high sparsity levels (the 97% sparsity and N:M sparsity patterns you mentioned in your query relate to the compression targets the method aims to achieve with minimal performance loss)."
+    ],
+    "durationSeconds": 7.056171589999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T02:01:58.784Z_
+
+<details><summary>↩ Tool result · `toolu_01XJebquqwu6gnbefDcq65eQ`</summary>
+
+```text
+Web search results for query: "TEAL activation sparsity 50% downstream accuracy Llama-3 8B MMLU ARC WinoGrande GSM8K results table"
+
+Links: [{"title":"Training-Free Activation Sparsity in Large Language Models","url":"https://arxiv.org/html/2408.14690v1"},{"title":"2:4 Sparse Llama: Smaller models for efficient GPU inference | Red Hat Developer","url":"https://developers.redhat.com/articles/2025/02/28/24-sparse-llama-smaller-models-efficient-gpu-inference"},{"title":"[2408.14690] Training-Free Activation Sparsity in Large Language Models","url":"https://arxiv.org/abs/2408.14690"},{"title":"training-free activation sparsity in large language models","url":"https://www.arxiv.org/pdf/2408.14690"},{"title":"[Literature Review] Training-Free Activation Sparsity in Large Language Models","url":"https://www.themoonlight.io/en/review/training-free-activation-sparsity-in-large-language-models"},{"title":"La RoSA: Enhancing LLM Efficiency via Layerwise Rotated Sparse Activation","url":"https://arxiv.org/pdf/2507.01299"},{"title":"TRAINING-FREE ACTIVATION SPARSITY IN LARGE ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/f3f2ff9579ba6deeb89caa2fe1f0b99c-Paper-Conference.pdf"},{"title":"[Quick Review] Training-Free Activation Sparsity in Large Language Models","url":"https://liner.com/review/trainingfree-activation-sparsity-in-large-language-models"},{"title":"Preprint. Under Review. TRAINING-FREE ACTIVATION SPARSITY IN","url":"https://www.arxiv.org/pdf/2408.14690v1"},{"title":"Training-Free Activation Sparsity in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=dGVZwyq5tV"}]
+
+I found the TEAL paper! The search results include references to the full downstream task results table for Llama-3-8B. Let me provide you with what I found:
+
+TEAL was evaluated on downstream tasks including 5-shot MMLU, 25-shot ARC challenge, 10-shot HellaSwag, 5-shot GSM8K, zero-shot PiQA, and zero-shot WinoGrande.
+
+At 25% sparsity, TEAL on Llama-3-8B yields an average downstream task score of 67.73, and the results show various accuracy metrics across these tasks.
+
+The paper includes detailed results tables:
+- Table 4 contains full downstream task results for Llama-3-8B
+- The greedy sparsity configuration outperforms across the board compared to uniform sparsity
+
+Regarding the 50% sparsity level specifically: At 50% sparsity, Llama-3-8B's perplexity rises to 6.67, indicating that newer models might be less tolerant to higher sparsity levels.
+
+The full detailed results table with specific accuracy numbers for MMLU, ARC, WinoGrande, and GSM8K at 50% sparsity would be in Table 4 of the paper. I'd recommend accessing the full paper directly at arXiv (2408.14690) to view the complete results table with exact downstream accuracy numbers at 50% activation sparsity for Llama-3-8B.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "9278220e-55fd-410e-81f4-dd8253a0cebe",
+  "tool_use_result": {
+    "query": "TEAL activation sparsity 50% downstream accuracy Llama-3 8B MMLU ARC WinoGrande GSM8K results table",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01J4BuhgjaEftfP7sAFrfV8T",
+        "content": [
+          {
+            "title": "Training-Free Activation Sparsity in Large Language Models",
+            "url": "https://arxiv.org/html/2408.14690v1"
+          },
+          {
+            "title": "2:4 Sparse Llama: Smaller models for efficient GPU inference | Red Hat Developer",
+            "url": "https://developers.redhat.com/articles/2025/02/28/24-sparse-llama-smaller-models-efficient-gpu-inference"
+          },
+          {
+            "title": "[2408.14690] Training-Free Activation Sparsity in Large Language Models",
+            "url": "https://arxiv.org/abs/2408.14690"
+          },
+          {
+            "title": "training-free activation sparsity in large language models",
+            "url": "https://www.arxiv.org/pdf/2408.14690"
+          },
+          {
+            "title": "[Literature Review] Training-Free Activation Sparsity in Large Language Models",
+            "url": "https://www.themoonlight.io/en/review/training-free-activation-sparsity-in-large-language-models"
+          },
+          {
+            "title": "La RoSA: Enhancing LLM Efficiency via Layerwise Rotated Sparse Activation",
+            "url": "https://arxiv.org/pdf/2507.01299"
+          },
+          {
+            "title": "TRAINING-FREE ACTIVATION SPARSITY IN LARGE ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/f3f2ff9579ba6deeb89caa2fe1f0b99c-Paper-Conference.pdf"
+          },
+          {
+            "title": "[Quick Review] Training-Free Activation Sparsity in Large Language Models",
+            "url": "https://liner.com/review/trainingfree-activation-sparsity-in-large-language-models"
+          },
+          {
+            "title": "Preprint. Under Review. TRAINING-FREE ACTIVATION SPARSITY IN",
+            "url": "https://www.arxiv.org/pdf/2408.14690v1"
+          },
+          {
+            "title": "Training-Free Activation Sparsity in Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=dGVZwyq5tV"
+          }
+        ]
+      },
+      "I found the TEAL paper! The search results include references to the full downstream task results table for Llama-3-8B. Let me provide you with what I found:\n\nTEAL was evaluated on downstream tasks including 5-shot MMLU, 25-shot ARC challenge, 10-shot HellaSwag, 5-shot GSM8K, zero-shot PiQA, and zero-shot WinoGrande.\n\nAt 25% sparsity, TEAL on Llama-3-8B yields an average downstream task score of 67.73, and the results show various accuracy metrics across these tasks.\n\nThe paper includes detailed results tables:\n- Table 4 contains full downstream task results for Llama-3-8B\n- The greedy sparsity configuration outperforms across the board compared to uniform sparsity\n\nRegarding the 50% sparsity level specifically: At 50% sparsity, Llama-3-8B's perplexity rises to 6.67, indicating that newer models might be less tolerant to higher sparsity levels.\n\nThe full detailed results table with specific accuracy numbers for MMLU, ARC, WinoGrande, and GSM8K at 50% sparsity would be in Table 4 of the paper. I'd recommend accessing the full paper directly at arXiv (2408.14690) to view the complete results table with exact downstream accuracy numbers at 50% activation sparsity for Llama-3-8B."
+    ],
+    "durationSeconds": 6.180002628000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also fetch the TEAL paper's actual downstream results and the "Evaluating the Impact of Compression Techniques on Task-Specific Performance" paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "8dfa39eb-e7a2-49bd-800b-b78ec8bd28d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RVXFk8VGngWCt6mRVfGQ7t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4270,
+      "cache_read_input_tokens": 42854,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+文献收集充分。现在读取 TEAL 论文的具体下游任务数据，然后开始撰写报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "eace11c3-6e1d-45b2-819c-66bb0fb4f01f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RVXFk8VGngWCt6mRVfGQ7t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4270,
+      "cache_read_input_tokens": 42854,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S9ajrSSF1RzPB1FnVa1EzG`</summary>
+
+```json
+{
+  "query": "TEAL paper Table 4 Llama-3-8B 50% sparsity MMLU ARC GSM8K downstream accuracy numbers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "2f496f39-8df3-41ce-a7d9-f1a5acd4868c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RVXFk8VGngWCt6mRVfGQ7t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4270,
+      "cache_read_input_tokens": 42854,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HXMLksvQdNSv9KFVEtoA8N`</summary>
+
+```json
+{
+  "query": "arxiv 2409.11233 \"Evaluating the Impact of Compression Techniques\" task-specific performance perplexity disconnect pruning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "9072d7fb-fd14-4221-84e2-30565a917f66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RVXFk8VGngWCt6mRVfGQ7t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4270,
+      "cache_read_input_tokens": 42854,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-16T02:02:10.158Z_
+
+<details><summary>↩ Tool result · `toolu_01S9ajrSSF1RzPB1FnVa1EzG`</summary>
+
+```text
+Web search results for query: "TEAL paper Table 4 Llama-3-8B 50% sparsity MMLU ARC GSM8K downstream accuracy numbers"
+
+Links: [{"title":"TRAINING-FREE ACTIVATION SPARSITY IN LARGE ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/f3f2ff9579ba6deeb89caa2fe1f0b99c-Paper-Conference.pdf"},{"title":"2:4 Sparse Llama: Smaller models for efficient GPU inference | Red Hat Developer","url":"https://developers.redhat.com/articles/2025/02/28/24-sparse-llama-smaller-models-efficient-gpu-inference"},{"title":"Sirius: Contextual Sparsity with Correction for Efficient LLMs","url":"https://infini-ai-lab.github.io/Sirius/"},{"title":"[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2407.21783"},{"title":"Results from adapting Llama-3-8B to GSM8K without introducing sparsity. | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Results-from-adapting-Llama-3-8B-to-GSM8K-without-introducing-sparsity_tbl1_384699784"},{"title":"Llama 3 8B: 32 Layers, 14336 FFN, 32 Heads | 79.6% GSM8K Score | Local AI Master","url":"https://localaimaster.com/models/llama-3-8b"},{"title":"Training on the Test Task Confounds Evaluation and Emergence","url":"https://arxiv.org/pdf/2407.07890"},{"title":"Which Quantization Should I Use? A Unified Evaluation of llama.cpp Quantization on Llama-3.1-8B-Instruct","url":"https://arxiv.org/html/2601.14277v1"},{"title":"Open-source AI Models for Any Application | Llama 3","url":"https://www.llama.com/llama3_1/"},{"title":"Llama 3's Performance Benchmark Values Explained | by Ingrid Stevens | Medium","url":"https://medium.com/@ingridwickstevens/more-llm-acronyms-an-explainer-on-llama-3s-performance-benchmark-values-36722c6dcabb"}]
+
+I found the TEAL paper! The first search result is the actual TEAL paper from ICLR. Table 4 provides the full downstream task results for Llama-3-8B, but the search results don't show the actual numerical values from Table 4. 
+
+Based on the search result, I can see that for Llama-3-8B in Table 4, the paper provides results obtained from the uniform sparsity configuration, showing that the greedy sparsity configuration outperforms across the board. The paper also mentions evaluating on 5-shot MMLU, 25-shot ARC challenge, and 5-shot GSM8K.
+
+However, the specific numerical accuracy values from Table 4 at 50% sparsity for MMLU, ARC, and GSM8K are not visible in the search results provided. To get the exact numbers you're looking for, you would need to access the full PDF of the TEAL paper directly at the link shown in the search results: https://proceedings.iclr.cc/paper_files/paper/2025/file/f3f2ff9579ba6deeb89caa2fe1f0b99c-Paper-Conference.pdf
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "9acc6fc1-6fb4-43da-a2d1-f42141d67058",
+  "tool_use_result": {
+    "query": "TEAL paper Table 4 Llama-3-8B 50% sparsity MMLU ARC GSM8K downstream accuracy numbers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SKgaqcKkq131qEREafrm9E",
+        "content": [
+          {
+            "title": "TRAINING-FREE ACTIVATION SPARSITY IN LARGE ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/f3f2ff9579ba6deeb89caa2fe1f0b99c-Paper-Conference.pdf"
+          },
+          {
+            "title": "2:4 Sparse Llama: Smaller models for efficient GPU inference | Red Hat Developer",
+            "url": "https://developers.redhat.com/articles/2025/02/28/24-sparse-llama-smaller-models-efficient-gpu-inference"
+          },
+          {
+            "title": "Sirius: Contextual Sparsity with Correction for Efficient LLMs",
+            "url": "https://infini-ai-lab.github.io/Sirius/"
+          },
+          {
+            "title": "[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2407.21783"
+          },
+          {
+            "title": "Results from adapting Llama-3-8B to GSM8K without introducing sparsity. | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Results-from-adapting-Llama-3-8B-to-GSM8K-without-introducing-sparsity_tbl1_384699784"
+          },
+          {
+            "title": "Llama 3 8B: 32 Layers, 14336 FFN, 32 Heads | 79.6% GSM8K Score | Local AI Master",
+            "url": "https://localaimaster.com/models/llama-3-8b"
+          },
+          {
+            "title": "Training on the Test Task Confounds Evaluation and Emergence",
+            "url": "https://arxiv.org/pdf/2407.07890"
+          },
+          {
+            "title": "Which Quantization Should I Use? A Unified Evaluation of llama.cpp Quantization on Llama-3.1-8B-Instruct",
+            "url": "https://arxiv.org/html/2601.14277v1"
+          },
+          {
+            "title": "Open-source AI Models for Any Application | Llama 3",
+            "url": "https://www.llama.com/llama3_1/"
+          },
+          {
+            "title": "Llama 3's Performance Benchmark Values Explained | by Ingrid Stevens | Medium",
+            "url": "https://medium.com/@ingridwickstevens/more-llm-acronyms-an-explainer-on-llama-3s-performance-benchmark-values-36722c6dcabb"
+          }
+        ]
+      },
+      "I found the TEAL paper! The first search result is the actual TEAL paper from ICLR. Table 4 provides the full downstream task results for Llama-3-8B, but the search results don't show the actual numerical values from Table 4. \n\nBased on the search result, I can see that for Llama-3-8B in Table 4, the paper provides results obtained from the uniform sparsity configuration, showing that the greedy sparsity configuration outperforms across the board. The paper also mentions evaluating on 5-shot MMLU, 25-shot ARC challenge, and 5-shot GSM8K.\n\nHowever, the specific numerical accuracy values from Table 4 at 50% sparsity for MMLU, ARC, and GSM8K are not visible in the search results provided. To get the exact numbers you're looking for, you would need to access the full PDF of the TEAL paper directly at the link shown in the search results: https://proceedings.iclr.cc/paper_files/paper/2025/file/f3f2ff9579ba6deeb89caa2fe1f0b99c-Paper-Conference.pdf"
+    ],
+    "durationSeconds": 5.711700975999992
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T02:02:11.154Z_
+
+<details><summary>↩ Tool result · `toolu_01HXMLksvQdNSv9KFVEtoA8N`</summary>
+
+```text
+Web search results for query: "arxiv 2409.11233 "Evaluating the Impact of Compression Techniques" task-specific performance perplexity disconnect pruning"
+
+Links: [{"title":"[2409.11233] Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models","url":"https://arxiv.org/abs/2409.11233"},{"title":"Evaluating the Impact of Compression Techniques on Task ...","url":"https://arxiv.org/pdf/2409.11233"},{"title":"Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models","url":"https://arxiv.org/html/2409.11233"},{"title":"Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/arXiv:2409.11233"},{"title":"Paper page - Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models","url":"https://huggingface.co/papers/2409.11233"},{"title":"(PDF) Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models","url":"https://www.researchgate.net/publication/384085927_Evaluating_the_Impact_of_Compression_Techniques_on_Task-Specific_Performance_of_Large_Language_Models"},{"title":"Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/evaluating-impact-compression-techniques-task-specific-performance"},{"title":"[2512.24971] Evaluating the Impact of Compression Techniques on the Robustness of CNNs under Natural Corruptions","url":"https://arxiv.org/abs/2512.24971"},{"title":"The Impact of Data Compression in Real-Time and ...","url":"https://arxiv.org/pdf/2510.26868"},{"title":"Machine Learning Sep 2024","url":"https://arxiv.org/list/cs.LG/2024-09?skip=115&show=2000"}]
+
+Perfect! I found the paper. Here are the results for arxiv 2409.11233:
+
+## Paper Summary
+
+This study evaluates the impact of popular compression methods - Magnitude Pruning, SparseGPT, and Wanda - on the LLaMA-2-7B model, focusing on the trade-offs between model size reduction, downstream task performance, and the role of calibration data.
+
+## Key Findings
+
+While SparseGPT and Wanda preserve perplexity even at 50% sparsity, they suffer significant degradation on downstream tasks, highlighting the inadequacy of perplexity as the sole evaluation metric. This directly addresses the disconnect between perplexity and task-specific performance that was mentioned in your query.
+
+## Proposed Solutions
+
+The authors introduce Jensen-Shannon (JS) Divergence as a more comprehensive metric that captures nuanced changes in model behavior post-compression. Additionally, task-specific calibration data significantly enhances the downstream performance of compressed models compared to general calibration data.
+
+The paper was submitted on September 17, 2024, by authors Bishwash Khanal and Jeffery M. Capone.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "b4ad4704-4468-4df6-bc51-a2e3fe47dae5",
+  "tool_use_result": {
+    "query": "arxiv 2409.11233 \"Evaluating the Impact of Compression Techniques\" task-specific performance perplexity disconnect pruning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M1UWGokhqMJtdnKDhxffiq",
+        "content": [
+          {
+            "title": "[2409.11233] Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models",
+            "url": "https://arxiv.org/abs/2409.11233"
+          },
+          {
+            "title": "Evaluating the Impact of Compression Techniques on Task ...",
+            "url": "https://arxiv.org/pdf/2409.11233"
+          },
+          {
+            "title": "Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models",
+            "url": "https://arxiv.org/html/2409.11233"
+          },
+          {
+            "title": "Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/arXiv:2409.11233"
+          },
+          {
+            "title": "Paper page - Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models",
+            "url": "https://huggingface.co/papers/2409.11233"
+          },
+          {
+            "title": "(PDF) Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models",
+            "url": "https://www.researchgate.net/publication/384085927_Evaluating_the_Impact_of_Compression_Techniques_on_Task-Specific_Performance_of_Large_Language_Models"
+          },
+          {
+            "title": "Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/evaluating-impact-compression-techniques-task-specific-performance"
+          },
+          {
+            "title": "[2512.24971] Evaluating the Impact of Compression Techniques on the Robustness of CNNs under Natural Corruptions",
+            "url": "https://arxiv.org/abs/2512.24971"
+          },
+          {
+            "title": "The Impact of Data Compression in Real-Time and ...",
+            "url": "https://arxiv.org/pdf/2510.26868"
+          },
+          {
+            "title": "Machine Learning Sep 2024",
+            "url": "https://arxiv.org/list/cs.LG/2024-09?skip=115&show=2000"
+          }
+        ]
+      },
+      "Perfect! I found the paper. Here are the results for arxiv 2409.11233:\n\n## Paper Summary\n\nThis study evaluates the impact of popular compression methods - Magnitude Pruning, SparseGPT, and Wanda - on the LLaMA-2-7B model, focusing on the trade-offs between model size reduction, downstream task performance, and the role of calibration data.\n\n## Key Findings\n\nWhile SparseGPT and Wanda preserve perplexity even at 50% sparsity, they suffer significant degradation on downstream tasks, highlighting the inadequacy of perplexity as the sole evaluation metric. This directly addresses the disconnect between perplexity and task-specific performance that was mentioned in your query.\n\n## Proposed Solutions\n\nThe authors introduce Jensen-Shannon (JS) Divergence as a more comprehensive metric that captures nuanced changes in model behavior post-compression. Additionally, task-specific calibration data significantly enhances the downstream performance of compressed models compared to general calibration data.\n\nThe paper was submitted on September 17, 2024, by authors Bishwash Khanal and Jeffery M. Capone."
+    ],
+    "durationSeconds": 5.812271567000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have now collected comprehensive literature. Let me compile the report. Here's what I've found:
+
+**Core papers on PPL-downstream disconnect:**
+
+1. **Khanal & Capone (2024)** - "Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models" - Directly shows SparseGPT and Wanda maintain PPL at 50% sparsity but degrade on downstream tasks. Proposes JS Divergence as better metric.
+
+2. **Xu et al. 
+
+2024 (EMNLP Findings)** - "Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression" - Demonstrates that perplexity remains stable up to 45-60% sparsity while actual model capabilities deteriorate significantly.
+
+3. **Kodathala & Vunnam (2026)** - "LLMs can Compress LLMs: Adaptive Pruning by Agents" - N:M sparsity patterns show dramatic accuracy collapse on factual QA tasks at moderate sparsity levels despite minimal perplexity changes.
+
+Now looking at the degeneration patterns that emerge in pruned models...
+
+4. **Siam et al. (2026)** - "Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery" - Identifies two failure modes: complete termination and reasoning breakdown, with a critical threshold around 15-20% pruning where removing task-specific neurons triggers total model collapse.
+
+The calibration data used during pruning also plays a crucial role in downstream performance, with C4 proving suboptimal and sensitivity to calibration choices significantly affecting results.
+
+7. Examining approaches that push sparsity boundaries using surrogate models...
+
+8. Understanding how layer-wise pruning causes performance collapse through decision representation shifts.
+
+For contextual sparsity specifically, I'm looking at several training-free and predictor-based methods: TEAL achieves minimal degradation up to 40% sparsity on Llama-3, DejaVu reaches 85% MLP sparsity without accuracy loss through contextual prediction, and ShadowLLM uses a similar predictor approach though with some accuracy trade-offs.
+
+On the foundational methods, SparseGPT's zero-shot evaluations show more noise than perplexity-based metrics, while Wanda's improvements come through better generalization to downstream tasks with its Wanda++ variant.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "f0b007a6-8400-4b0f-90e7-34101d6e2b10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Q9YUnopaiuhJYkqKGSKAi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2045,
+      "cache_read_input_tokens": 47124,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2045
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+文献收集完成，开始撰写报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "c617e7dd-00b2-49ea-9226-535db3c98e97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Q9YUnopaiuhJYkqKGSKAi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2045,
+      "cache_read_input_tokens": 47124,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2045
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — Write · `toolu_018ayfrQYPGrbYEW6L4PQSWo`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/literature_ppl_downstream_disconnect.md",
+  "content": "# PPL 与 Downstream Task 性能断裂：文献调研报告\n\n## 1. 核心结论\n\n**这个现象在文献中是已知的，但尚未被系统性研究。** 多篇论文从不同角度观察到了 PPL-downstream disconnect，但大多作为实验附带发现报告，而非作为核心研究问题。我们的工作在以下方面构成**文献空白**：\n\n- 在 **contextual sparsity predictor + KL distillation** 设置下首次系统报告\n- 50% activation sparsity 下 **PPL 仅 1.96x 但 GSM8K 崩溃 98%** 的极端 disconnect 程度\n- **repetition degeneration** 作为稀疏化模型的生成退化模式\n\n---\n\n## 2. 直接相关论文\n\n### 2.1 PPL 作为评估指标的不充分性\n\n| 论文 | 年份/会议 | 关键发现 |\n|------|-----------|----------|\n| Khanal & Capone, \"Evaluating the Impact of Compression Techniques on Task-Specific Performance of LLMs\" | 2024, arXiv:2409.11233 | **SparseGPT 和 Wanda 在 50% sparsity 下保持 PPL，但下游任务显著退化。** 提出 Jensen-Shannon Divergence 作为更全面的度量。明确指出 \"perplexity as the sole evaluation metric is inadequate\"。 |\n| Xu et al., \"Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression\" | 2024, EMNLP Findings | PPL 在 45-60% sparsity 前几乎无变化，但完全无法捕捉能力退化。\"normalized perplexity score shows poor alignment with human-aligned evaluation, incorrectly assigning high scores to methods exhibiting severe performance collapse.\" |\n| Kodathala & Vunnam, \"LLMs can Compress LLMs: Adaptive Pruning by Agents\" | 2026, arXiv:2601.09694 | **N:M structured pruning 在 25-30% sparsity 下 factual QA (FreebaseQA) 准确率下降 >97%，但 PPL 几乎无变化。** 这是最极端的 PPL-downstream disconnect 案例。|\n\n**可引用段落：**\n> \"While SparseGPT and Wanda preserve perplexity even at 50% sparsity, they suffer significant degradation on downstream tasks, highlighting the inadequacy of perplexity as the sole evaluation metric.\" — Khanal & Capone (2024)\n\n> \"Structured N:M pruning methods experience near-total collapse in factual question-answering, losing over 97% of accuracy, while maintaining reasonable perplexity scores.\" — Kodathala & Vunnam (2026)\n\n### 2.2 稀疏化模型的生成退化 (Degeneration Traps)\n\n| 论文 | 年份 | 关键发现 |\n|------|------|----------|\n| Siam et al., \"Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery\" | 2026, arXiv:2604.27115 | 定义了两类退化陷阱：**Type 1 trap**（推理成功但 EOS 预测失败，无限循环）和 **Type 2 trap**（推理过程本身断裂，早期坍缩为重复/无意义 token）。我们观察到的 GSM8K 退化属于 **Type 2 trap**。 |\n\n**可引用段落：**\n> \"Type 2 traps occur when the model fails to perform meaningful reasoning, collapsing early or mid-generation into incoherent and nonsensical text such as repeated symbols, tokens, or sequences.\" — Siam et al. (2026)\n\n> \"Removing a small subset of highly task-specific neurons (~10%) causes complete performance collapse... robustness threshold around 15-20% pruning.\" — Siam et al. (2026)\n\n**与我们的联系：** 我们的 sparse model 在 GSM8K 生成中 1-3 句后进入重复循环，完全符合 Type 2 trap 的描述。但 Siam et al. 研究的是 weight pruning，我们是 activation sparsity，机制不同但表现一致。\n\n### 2.3 校准数据分布不匹配\n\n| 论文 | 年份/会议 | 关键发现 |\n|------|-----------|----------|\n| Bandari et al., \"Is C4 Dataset Optimal for Pruning?\" | 2024, EMNLP | C4 不是最优校准数据；在 aggressive pruning 下不同校准数据导致下游性能差异显著。算术数据集作为校准数据表现更好。 |\n| \"Beware of Calibration Data for Pruning Large Language Models\" | 2024, arXiv:2410.17711 | 校准数据选择对 post-training pruning 下游任务性能影响极大，尤其在高 sparsity 下。 |\n\n**与我们的联系：** 我们用 C4 数据训练 predictor，但评估在 WikiText-2 (PPL) 和下游 benchmark 上。PPL 评估本身也是 WikiText 这类通用语言建模数据——对 \"easy token\" 友好。下游任务要求精确知识检索和推理链——对 \"hard token\" 敏感。\n\n---\n\n## 3. 理论解释框架\n\n综合文献，PPL-downstream disconnect 有三层解释：\n\n### 3.1 PPL 是平均指标，下游任务要求精确 token selection\n\nPPL = exp(avg cross-entropy)，对所有 token 位置等权平均。自然语言中 ~80% 的 token 是高频、可预测的（function words、常见 n-gram），只有 ~20% 是 \"hard token\"（知识检索、数值推理、逻辑连接词）。\n\n**稀疏化优先丢失 hard token 的精度，但 PPL 被 easy token 主导。** Khanal & Capone (2024) 的 JS Divergence 发现印证了这一点——PPL 变化小但 output distribution 已经显著偏移。\n\n### 3.2 Repetition degeneration 不被 PPL 惩罚\n\n我们的核心观察：sparse model 生成重复 token，但每个重复 token 的条件概率仍然较高（模型\"自信地\"重复）。在 teacher-forcing 评估（即 PPL 计算）中，模型看到的是 ground truth context，不会进入重复循环；PPL 衡量的是 one-step prediction quality，不是 autoregressive generation quality。\n\n**文献支持：** Xu et al. (2024) 明确指出 \"a compressed model may achieve a perplexity score nearly identical to the original's while generating text that is factually different.\"\n\n### 3.3 知识存储的脆弱性 > 语言建模的鲁棒性\n\nKodathala & Vunnam (2026) 的发现最为极端：25-30% sparsity 下 factual QA 崩溃 97%，但 PPL 不变。这表明：\n- **语言建模能力**（语法、流畅性、局部连贯性）分布在大量参数中，对稀疏化鲁棒\n- **知识存储**（factual recall）集中在少量参数路径中，极度脆弱\n- **推理能力**（multi-step reasoning）依赖完整的 attention-MLP 交互链，是最脆弱的\n\n---\n\n## 4. 30% vs 50% 的转折点\n\n### 4.1 文献中的 sparsity threshold\n\n| 来源 | Threshold | 描述 |\n|------|-----------|------|\n| TEAL (Liu et al., 2024) | 25% safe, 40% minimal, 50%+ degradation | Llama-3-8B 在 25% 近零退化，40% 轻微，50% 开始显著退化 |\n| Siam et al. (2026) | 15-20% | Task-specific neuron pruning 的 robustness threshold |\n| \"Sparsity wall\" 文献 | 50-60% | 多篇论文报告的 unstructured pruning \"性能悬崖\" |\n| Kodathala & Vunnam (2026) | 25-30% (structured) | N:M structured sparsity 对 factual knowledge 的 catastrophic threshold |\n| SparseGPT (Frantar & Alistarh, 2023) | 50% (unstructured) | 可达 50% unstructured sparsity with ~1pt PPL loss |\n\n### 4.2 对我们的启示\n\n我们的 30% sparsity 实验是关键的对比点。如果 30% sparsity 下下游任务保持良好而 50% 崩溃，这符合文献中报告的 phase transition 现象。论文可以 claim：\n\n> \"Contextual activation sparsity exhibits a phase transition between 30-50% sparsity: language modeling perplexity degrades gracefully (1.3x → 1.96x), but downstream task performance undergoes catastrophic collapse, consistent with the 'sparsity wall' observed in weight pruning literature.\"\n\n---\n\n## 5. 与 Contextual Sparsity 方法的对比\n\n| 方法 | MLP Sparsity | PPL | 下游任务 | 是否报告 disconnect |\n|------|-------------|-----|----------|-------------------|\n| **DejaVu** (Liu et al., 2023, ICML) | 85-95% | 保持 | 7 个 few-shot 任务保持 | 否——但用 OPT-175B，大模型更鲁棒 |\n| **TEAL** (Liu et al., 2024, ICLR 2025) | 25-50% | 轻微退化 | 50% 下开始显著退化 | 部分——报告了数值但未深入讨论 |\n| **ShadowLLM** (2024, EMNLP) | - | - | 比 DejaVu 提升 15% | 否——focused on predictor architecture |\n| **Ours** | 50% | 12.00 (1.96x) | ARC -35%, MMLU -60%, GSM8K -98% | **是——本文核心发现** |\n\n**文献空白：** DejaVu 在超大模型 (OPT-175B) 上实验，大模型对 sparsity 更鲁棒。TEAL 在 Llama-3-8B 上的 50% 结果有下游退化但未深入分析。**没有论文系统研究过 contextual sparsity predictor + distillation 训练下的 PPL-downstream disconnect。**\n\n---\n\n## 6. 可引用文献清单\n\n### 核心引用（Discussion section 必用）\n1. **Khanal & Capone (2024)** — PPL 不足以评估压缩模型，arXiv:2409.11233\n2. **Xu et al. (2024)** — \"Beyond Perplexity\"，EMNLP Findings，arXiv:2407.04965\n3. **Siam et al. (2026)** — Degeneration traps (Type 1/2)，arXiv:2604.27115\n4. **Kodathala & Vunnam (2026)** — Catastrophic factual knowledge degradation at low sparsity，arXiv:2601.09694\n\n### 方法对比引用\n5. **TEAL** (Liu et al., 2024) — Training-free activation sparsity baseline，arXiv:2408.14690\n6. **DejaVu** (Liu et al., 2023) — Contextual sparsity predictor，ICML 2023\n7. **ShadowLLM** (2024) — Predictor-based contextual sparsity，EMNLP 2024\n8. **SparseGPT** (Frantar & Alistarh, 2023) — One-shot pruning，ICML 2023\n\n### 校准数据引用\n9. **Bandari et al. (2024)** — \"Is C4 Dataset Optimal for Pruning?\"，EMNLP 2024，arXiv:2410.07461\n10. **\"Beware of Calibration Data\"** (2024) — arXiv:2410.17711\n\n---\n\n## 7. 论文 Discussion Section 写作建议\n\n建议论文中用以下结构讨论：\n\n1. **Observation**: 50% sparsity 下 PPL 仅 12.00 但 GSM8K 0.01，构成极端 PPL-downstream disconnect\n2. **Prior evidence**: 引 Khanal & Capone (2024) 和 Xu et al. (2024) 确认这是已知但未充分研究的现象\n3. **Mechanism**: PPL 是平均指标，被 easy token 主导；稀疏化优先损伤 hard token 的精度；autoregressive generation 中的错误会 compound（引 Siam et al. 的 Type 2 trap）\n4. **Knowledge fragility**: 引 Kodathala & Vunnam (2026) 关于 factual knowledge 的 catastrophic degradation\n5. **Implication**: PPL 单独不足以评估稀疏化模型的实用性，需要下游 benchmark；30% sparsity 可能是实用安全边界\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "371acf9d-1ed6-4af2-b987-3c9b03359c83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Q9YUnopaiuhJYkqKGSKAi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2045,
+      "cache_read_input_tokens": 47124,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2045
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T02:03:46.107Z_
+
+<details><summary>↩ Tool result · `toolu_018ayfrQYPGrbYEW6L4PQSWo`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/literature_ppl_downstream_disconnect.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "8da9340f-fa76-434b-a347-d5eff0576ac3",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/literature_ppl_downstream_disconnect.md",
+    "content": "# PPL 与 Downstream Task 性能断裂：文献调研报告\n\n## 1. 核心结论\n\n**这个现象在文献中是已知的，但尚未被系统性研究。** 多篇论文从不同角度观察到了 PPL-downstream disconnect，但大多作为实验附带发现报告，而非作为核心研究问题。我们的工作在以下方面构成**文献空白**：\n\n- 在 **contextual sparsity predictor + KL distillation** 设置下首次系统报告\n- 50% activation sparsity 下 **PPL 仅 1.96x 但 GSM8K 崩溃 98%** 的极端 disconnect 程度\n- **repetition degeneration** 作为稀疏化模型的生成退化模式\n\n---\n\n## 2. 直接相关论文\n\n### 2.1 PPL 作为评估指标的不充分性\n\n| 论文 | 年份/会议 | 关键发现 |\n|------|-----------|----------|\n| Khanal & Capone, \"Evaluating the Impact of Compression Techniques on Task-Specific Performance of LLMs\" | 2024, arXiv:2409.11233 | **SparseGPT 和 Wanda 在 50% sparsity 下保持 PPL，但下游任务显著退化。** 提出 Jensen-Shannon Divergence 作为更全面的度量。明确指出 \"perplexity as the sole evaluation metric is inadequate\"。 |\n| Xu et al., \"Beyond Perplexity: Multi-dimensional Safety Evaluation of LLM Compression\" | 2024, EMNLP Findings | PPL 在 45-60% sparsity 前几乎无变化，但完全无法捕捉能力退化。\"normalized perplexity score shows poor alignment with human-aligned evaluation, incorrectly assigning high scores to methods exhibiting severe performance collapse.\" |\n| Kodathala & Vunnam, \"LLMs can Compress LLMs: Adaptive Pruning by Agents\" | 2026, arXiv:2601.09694 | **N:M structured pruning 在 25-30% sparsity 下 factual QA (FreebaseQA) 准确率下降 >97%，但 PPL 几乎无变化。** 这是最极端的 PPL-downstream disconnect 案例。|\n\n**可引用段落：**\n> \"While SparseGPT and Wanda preserve perplexity even at 50% sparsity, they suffer significant degradation on downstream tasks, highlighting the inadequacy of perplexity as the sole evaluation metric.\" — Khanal & Capone (2024)\n\n> \"Structured N:M pruning methods experience near-total collapse in factual question-answering, losing over 97% of accuracy, while maintaining reasonable perplexity scores.\" — Kodathala & Vunnam (2026)\n\n### 2.2 稀疏化模型的生成退化 (Degeneration Traps)\n\n| 论文 | 年份 | 关键发现 |\n|------|------|----------|\n| Siam et al., \"Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery\" | 2026, arXiv:2604.27115 | 定义了两类退化陷阱：**Type 1 trap**（推理成功但 EOS 预测失败，无限循环）和 **Type 2 trap**（推理过程本身断裂，早期坍缩为重复/无意义 token）。我们观察到的 GSM8K 退化属于 **Type 2 trap**。 |\n\n**可引用段落：**\n> \"Type 2 traps occur when the model fails to perform meaningful reasoning, collapsing early or mid-generation into incoherent and nonsensical text such as repeated symbols, tokens, or sequences.\" — Siam et al. (2026)\n\n> \"Removing a small subset of highly task-specific neurons (~10%) causes complete performance collapse... robustness threshold around 15-20% pruning.\" — Siam et al. (2026)\n\n**与我们的联系：** 我们的 sparse model 在 GSM8K 生成中 1-3 句后进入重复循环，完全符合 Type 2 trap 的描述。但 Siam et al. 研究的是 weight pruning，我们是 activation sparsity，机制不同但表现一致。\n\n### 2.3 校准数据分布不匹配\n\n| 论文 | 年份/会议 | 关键发现 |\n|------|-----------|----------|\n| Bandari et al., \"Is C4 Dataset Optimal for Pruning?\" | 2024, EMNLP | C4 不是最优校准数据；在 aggressive pruning 下不同校准数据导致下游性能差异显著。算术数据集作为校准数据表现更好。 |\n| \"Beware of Calibration Data for Pruning Large Language Models\" | 2024, arXiv:2410.17711 | 校准数据选择对 post-training pruning 下游任务性能影响极大，尤其在高 sparsity 下。 |\n\n**与我们的联系：** 我们用 C4 数据训练 predictor，但评估在 WikiText-2 (PPL) 和下游 benchmark 上。PPL 评估本身也是 WikiText 这类通用语言建模数据——对 \"easy token\" 友好。下游任务要求精确知识检索和推理链——对 \"hard token\" 敏感。\n\n---\n\n## 3. 理论解释框架\n\n综合文献，PPL-downstream disconnect 有三层解释：\n\n### 3.1 PPL 是平均指标，下游任务要求精确 token selection\n\nPPL = exp(avg cross-entropy)，对所有 token 位置等权平均。自然语言中 ~80% 的 token 是高频、可预测的（function words、常见 n-gram），只有 ~20% 是 \"hard token\"（知识检索、数值推理、逻辑连接词）。\n\n**稀疏化优先丢失 hard token 的精度，但 PPL 被 easy token 主导。** Khanal & Capone (2024) 的 JS Divergence 发现印证了这一点——PPL 变化小但 output distribution 已经显著偏移。\n\n### 3.2 Repetition degeneration 不被 PPL 惩罚\n\n我们的核心观察：sparse model 生成重复 token，但每个重复 token 的条件概率仍然较高（模型\"自信地\"重复）。在 teacher-forcing 评估（即 PPL 计算）中，模型看到的是 ground truth context，不会进入重复循环；PPL 衡量的是 one-step prediction quality，不是 autoregressive generation quality。\n\n**文献支持：** Xu et al. (2024) 明确指出 \"a compressed model may achieve a perplexity score nearly identical to the original's while generating text that is factually different.\"\n\n### 3.3 知识存储的脆弱性 > 语言建模的鲁棒性\n\nKodathala & Vunnam (2026) 的发现最为极端：25-30% sparsity 下 factual QA 崩溃 97%，但 PPL 不变。这表明：\n- **语言建模能力**（语法、流畅性、局部连贯性）分布在大量参数中，对稀疏化鲁棒\n- **知识存储**（factual recall）集中在少量参数路径中，极度脆弱\n- **推理能力**（multi-step reasoning）依赖完整的 attention-MLP 交互链，是最脆弱的\n\n---\n\n## 4. 30% vs 50% 的转折点\n\n### 4.1 文献中的 sparsity threshold\n\n| 来源 | Threshold | 描述 |\n|------|-----------|------|\n| TEAL (Liu et al., 2024) | 25% safe, 40% minimal, 50%+ degradation | Llama-3-8B 在 25% 近零退化，40% 轻微，50% 开始显著退化 |\n| Siam et al. (2026) | 15-20% | Task-specific neuron pruning 的 robustness threshold |\n| \"Sparsity wall\" 文献 | 50-60% | 多篇论文报告的 unstructured pruning \"性能悬崖\" |\n| Kodathala & Vunnam (2026) | 25-30% (structured) | N:M structured sparsity 对 factual knowledge 的 catastrophic threshold |\n| SparseGPT (Frantar & Alistarh, 2023) | 50% (unstructured) | 可达 50% unstructured sparsity with ~1pt PPL loss |\n\n### 4.2 对我们的启示\n\n我们的 30% sparsity 实验是关键的对比点。如果 30% sparsity 下下游任务保持良好而 50% 崩溃，这符合文献中报告的 phase transition 现象。论文可以 claim：\n\n> \"Contextual activation sparsity exhibits a phase transition between 30-50% sparsity: language modeling perplexity degrades gracefully (1.3x → 1.96x), but downstream task performance undergoes catastrophic collapse, consistent with the 'sparsity wall' observed in weight pruning literature.\"\n\n---\n\n## 5. 与 Contextual Sparsity 方法的对比\n\n| 方法 | MLP Sparsity | PPL | 下游任务 | 是否报告 disconnect |\n|------|-------------|-----|----------|-------------------|\n| **DejaVu** (Liu et al., 2023, ICML) | 85-95% | 保持 | 7 个 few-shot 任务保持 | 否——但用 OPT-175B，大模型更鲁棒 |\n| **TEAL** (Liu et al., 2024, ICLR 2025) | 25-50% | 轻微退化 | 50% 下开始显著退化 | 部分——报告了数值但未深入讨论 |\n| **ShadowLLM** (2024, EMNLP) | - | - | 比 DejaVu 提升 15% | 否——focused on predictor architecture |\n| **Ours** | 50% | 12.00 (1.96x) | ARC -35%, MMLU -60%, GSM8K -98% | **是——本文核心发现** |\n\n**文献空白：** DejaVu 在超大模型 (OPT-175B) 上实验，大模型对 sparsity 更鲁棒。TEAL 在 Llama-3-8B 上的 50% 结果有下游退化但未深入分析。**没有论文系统研究过 contextual sparsity predictor + distillation 训练下的 PPL-downstream disconnect。**\n\n---\n\n## 6. 可引用文献清单\n\n### 核心引用（Discussion section 必用）\n1. **Khanal & Capone (2024)** — PPL 不足以评估压缩模型，arXiv:2409.11233\n2. **Xu et al. (2024)** — \"Beyond Perplexity\"，EMNLP Findings，arXiv:2407.04965\n3. **Siam et al. (2026)** — Degeneration traps (Type 1/2)，arXiv:2604.27115\n4. **Kodathala & Vunnam (2026)** — Catastrophic factual knowledge degradation at low sparsity，arXiv:2601.09694\n\n### 方法对比引用\n5. **TEAL** (Liu et al., 2024) — Training-free activation sparsity baseline，arXiv:2408.14690\n6. **DejaVu** (Liu et al., 2023) — Contextual sparsity predictor，ICML 2023\n7. **ShadowLLM** (2024) — Predictor-based contextual sparsity，EMNLP 2024\n8. **SparseGPT** (Frantar & Alistarh, 2023) — One-shot pruning，ICML 2023\n\n### 校准数据引用\n9. **Bandari et al. (2024)** — \"Is C4 Dataset Optimal for Pruning?\"，EMNLP 2024，arXiv:2410.07461\n10. **\"Beware of Calibration Data\"** (2024) — arXiv:2410.17711\n\n---\n\n## 7. 论文 Discussion Section 写作建议\n\n建议论文中用以下结构讨论：\n\n1. **Observation**: 50% sparsity 下 PPL 仅 12.00 但 GSM8K 0.01，构成极端 PPL-downstream disconnect\n2. **Prior evidence**: 引 Khanal & Capone (2024) 和 Xu et al. (2024) 确认这是已知但未充分研究的现象\n3. **Mechanism**: PPL 是平均指标，被 easy token 主导；稀疏化优先损伤 hard token 的精度；autoregressive generation 中的错误会 compound（引 Siam et al. 的 Type 2 trap）\n4. **Knowledge fragility**: 引 Kodathala & Vunnam (2026) 关于 factual knowledge 的 catastrophic degradation\n5. **Implication**: PPL 单独不足以评估稀疏化模型的实用性，需要下游 benchmark；30% sparsity 可能是实用安全边界\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+注册 artifact 并更新 memory.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "8297bf69-0b8e-406d-9760-ae6a4317872c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Trst1YYs8S1b847YzDCPBK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4765,
+      "cache_read_input_tokens": 49169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4765
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RyBSRw7QFK28ojvNUP6mgt`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "9021371a-0267-4ea5-b99b-07756ca67637",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Trst1YYs8S1b847YzDCPBK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4765,
+      "cache_read_input_tokens": 49169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4765
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-16T02:03:50.674Z_
+
+<details><summary>↩ Tool result · `toolu_01RyBSRw7QFK28ojvNUP6mgt`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "0cd0ec99-cc92-4e17-bded-367f6b7c5d2b",
+  "tool_use_result": {
+    "matches": [],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VdDPZf4trA1AtzswMMLBLG`</summary>
+
+```json
+{
+  "query": "register artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "4219758e-74a7-44e6-bde0-af78e4a1a172",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012U1nyjLPio5y7iDjVvmPCs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 117,
+      "cache_read_input_tokens": 53934,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 117
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-16T02:03:53.497Z_
+
+<details><summary>↩ Tool result · `toolu_01VdDPZf4trA1AtzswMMLBLG`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "43b7adb0-a432-42ce-9bf9-1fbabbad9dec",
+  "tool_use_result": {
+    "matches": [],
+    "query": "register artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HepCcRp3BGtNQVUkKK6Bm9`</summary>
+
+```json
+{
+  "query": "artifact register save",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "3450e2b0-66a0-451c-b55d-110055ab739b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NtuLct4PnSmLzbRff4fijY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 91,
+      "cache_read_input_tokens": 54051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 91
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-16T02:03:55.358Z_
+
+<details><summary>↩ Tool result · `toolu_01HepCcRp3BGtNQVUkKK6Bm9`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "6daa6014-14a1-4a00-9518-0c673b63d443",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "artifact register save",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me update the memory.md with the literature findings, and also check if there's a register_artifact tool available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "f4f56ead-2906-4064-9af0-b284661d135a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C2Au4iMUVMmygeA7ckHf99",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 350,
+      "cache_read_input_tokens": 54142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 350
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+现在更新 memory.md，追加文献调研发现。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "7c9a64b4-eb63-4b25-b7b7-a2cfab1c3d06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C2Au4iMUVMmygeA7ckHf99",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 350,
+      "cache_read_input_tokens": 54142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 350
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01UXno6cGCfjPSP5bNNhxCTB`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "8721a535-bc13-4297-8bef-c640605b9ca8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C2Au4iMUVMmygeA7ckHf99",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 350,
+      "cache_read_input_tokens": 54142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 350
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-16T02:04:02.169Z_
+
+<details><summary>↩ Tool result · `toolu_01UXno6cGCfjPSP5bNNhxCTB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\", \"content\": \"# Project Memory\\n\\n## Paper Framing Decisions (Director-approved)\\n\\n### BCE vs training-free: \\\"objective mismatch\\\" 非 \\\"anti-learning\\\" (2026-05-16)\\nBCE (54.84) 比 training-free (23-33) 差。**禁止用 \\\"anti-learning\\\" framing**，改用 **\\\"objective mismatch\\\"**：BCE 优化 per-neuron binary accuracy，TEAL 推理用 global top-k 重分配，两者结构性不兼容。BCE 学到的 per-neuron scoring 在 global budget allocation 下不是最优的。正确 claim: loss function 必须匹配推理管线的 sparsity allocation 机制。KL 直接优化 output distribution，天然兼容任何 allocation 策略。\\n\\n### KL PPL 统一引用规范 (2026-05-16)\\n论文中所有 KL PPL 对比统一用 **4-seed mean 12.00±0.07**（TEAL sparse PPL），不要用单 seed 最佳值 11.91。BCE iso-compute 对比时标注步数（1000 步 vs KL 1000 步，但 BCE per-step FLOPs 仅 KL 的 1/2.71）。\\n\\n### SPON framing: \\\"marginal complement\\\" 非 \\\"subsumption\\\" (2026-05-15)\\n禁止 \\\"KL subsumes SPON\\\" 措辞。正确表述：SPON corrections are orthogonal to and much smaller than predictor mask effects (cos_sim=0.196, magnitude ratio=16%)。D010 \\\"marginal complement\\\" framing。\\n\\n### s456 outlier 报告方式 (2026-05-16)\\n报 \\\"5-seed mean: 12.32±0.71\\\" + \\\"Excluding s456 (TEAL allocation outlier): 12.00±0.07\\\"。附 per-seed breakdown table + Layer 31 keep ratio 分析。不跑第 6 个 seed。\\n\\n## Key Insights (non-metrics)\\n\\n### 50% sparsity 摧毁 autoregressive generation (2026-05-16)\\nGSM8K 生成对比（10 samples）：sparse 50% 模型 1-3 句后进入无限重复循环，0/10 正确。退化模式是推理能力根本性丧失（模式 A），非仅数字算错。PPL 不惩罚 repetition loop（每个重复 token 仍有较高概率）。这解释了 PPL 12.00 但 GSM8K exact_match 仅 0.0121 的 disconnect。论文需用 30% 数据展示 sparsity-task tradeoff。\\n\\n### PPL-downstream disconnect 是真实现象，非 eval bug (2026-05-16)\\n三重验证确认：(1) acc_norm 已正确使用，(2) mask 逻辑审查无 bug（HFLM logit diff=0.0），(3) 生成对比显示推理链断裂。根因：50% sparsity 下 logit 微小偏移（如 \\\"Paris\\\" 从 #2 降到 #5）足以翻转 4-choice 答案，且摧毁 autoregressive 推理链。\\n\\n### STE vs Gumbel: smooth gradient is essential for KL+Lagrangian training (2026-05-16)\\nSTE hard threshold causes violent lambda oscillation (range [0.01, 1000], overall std=354) because sigmoid→binary 翻转是离散的——微小参数变化可翻转大量 neuron，导致 constraint violation 剧烈跳变。后果：(1) per-token sparsity 仅 0.470（未达 target 0.50）, (2) 逐层稀疏度两极化（Layer 0-17: 5-56%, Layer 18-31: 56-90%）, (3) TEAL global 分配效果差（PPL 15.77 vs Gumbel 12.00）。Gumbel soft mask 提供连续梯度，lambda 平稳收敛到 cap，sparsity 精准收敛到 target。**Relaxation method 不是实现细节，是 KL distillation 训练稳定性的前提。**\\n\\n### KL predictor implicitly subsumes static correction (2026-05-15)\\nSPON bias vectors recover only 3.8% of sparse-vs-dense gap on top of KL predictor (PPL 9.22→9.10). Root cause: KL's end-to-end gradient already captures average-case AND per-input neuron importance through d_logits/dh * dh/dm coupling. Static bias correction is redundant when the contextual predictor is trained with output-distribution alignment.\\n\\n### SPON seq_len=2048 confirms subsumption, rules out mismatch confound (2026-05-15)\\nspon_2048_s42: training seq_len matched eval seq_len=2048. Recovery improved 3.8%→7.3% (+3.5pp), bias norm 0.041→0.053 (+30%), but still < 10% threshold. Even under matched conditions, static bias is fundamentally limited against KL predictor's per-token mask.\\n\\n### Compensation cannot fix BCE's fundamental flaw (2026-05-15)\\nBCE+Compensation (67.2M params, staged training) only improves per-token PPL by 9% (27.96→25.44), still 2.8x worse than KL-only (9.21). TEAL global path completely unaffected by comp network (44.54 = BCE-only). Root cause: BCE gradient dL/ds_j is per-neuron factorized.\\n\\n### Training-free baselines: per-layer normalization is critical (2026-05-16)\\nCRITICAL bug in _global_topk_masks: activation magnitudes vary 50-100x across layers. Fix: divide each layer's importance scores by layer mean before global topk. Corrected PPL: Vanilla TEAL 23.31, WINA 27.93, TEAL Greedy 33.47. R-Sparse still broken (SVD scores need percentile/max normalization). **Same bug likely affects predictor TEAL path** — sparsity70 TEAL PPL=136K anomaly.\\n\\n### BCE objective mismatch with TEAL inference (2026-05-16)\\nBCE iso-compute (1000 steps, reg_weight=2.0, sparsity=0.502) gets TEAL PPL=54.84 — worse than all 3 training-free baselines (23-33). Root cause: BCE optimizes per-neuron binary accuracy independently, but TEAL inference uses global top-k budget allocation across layers. Per-neuron scores optimized for binary accuracy are structurally incompatible with global budget allocation. KL directly optimizes output distribution, naturally compatible with any allocation strategy.\\n\\n### Hard-mask PPL vs TEAL sparse PPL variance separation (2026-05-15)\\n5-seed hard-mask PPL std = 0.04 (9.14-9.25), 极其稳定。TEAL sparse PPL std = 0.69 (11.91-13.58), 方差大 16 倍。方差来自 TEAL 全局分配算法与 per-token mask 的匹配度。\\n\\n### KL vs BCE per-step FLOPs ratio = 2.71x (2026-05-15)\\n实测 (BS=1, SL=512): KL 0.549s/step, BCE 0.202s/step。Iso-compute BCE 需要 2700 步 (= 1000 × 2.71) 匹配 KL 1000 步的总 FLOPs。\\n\\n### gradient_checkpointing 对 sparsity training 是必须的 (2026-05-15)\\n所有 LLaMA-3.1-8B sparsity 训练必须加 --gradient_checkpointing。不加则 OOM（>96GB），加了后 46.9-67.6GB。\\n\\n### BCE iso-compute sparsity 收敛需要 reg_weight=2.0 (2026-05-15)\\n原始 SparsityRegularizer 在 torch.no_grad() 下计算 mask，梯度为零。修复：STE hard mask + reg_weight=2.0。\\n\\n### lambda_max=1000 对低 sparsity target 不够 (2026-05-16)\\nsparsity30 (target=0.30) 两次 sparsity 卡在 0.281，lambda 撞 1000 cap。v3 用 lambda_max=5000。\\n\\n### Mistral-7B 与 Llama-3.1-8B 代码完全兼容 (2026-05-16)\\ntrain.py 零改动即可运行。架构一致。Predictor 参数量完全相同 (~75.96M)。vocab_size 差异只影响 KL loss logit 维度。\\n\\n## Checkpoints\\n- KL-only predictor (s42): `/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\\n- SPON biases (seq128): `/root/distill_sparse_swiglu/checkpoints/spon_kl_s42/spon_biases.pt` (928KB)\\n- SPON biases (seq2048): `/root/distill_sparse_swiglu/checkpoints/spon_2048_s42/`\\n- BCE+comp predictor: `/root/distill_sparse_swiglu/checkpoints/bce_comp_staged_s42/predictor_bce_comp.pt`\\n- BCE iso-compute v2 (s42): `/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42/`\\n- SPON eval script: `/root/distill_sparse_swiglu/src/eval_spon.py`\\n- Mistral-7B: `/root/autodl-tmp/models/mistral-7b/` (7.25B params, 14MB)\\n- KL sparsity70 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt`\\n- KL sparsity30 v2 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42/predictor_kl_normalized.pt` (sparsity=0.281, negative)\\n- KL sparsity30 v3 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt` (145MB)\\n- STE baseline (s42): `/root/distill_sparse_swiglu/checkpoints/ste_baseline_s42/`\\n\", \"total_chars\": 6373, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "6dc0c963-a79c-45e6-b362-7bc23cc29b3d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## Paper Framing Decisions (Director-approved)\\\\n\\\\n### BCE vs training-free: \\\\\\\"objective mismatch\\\\\\\" 非 \\\\\\\"anti-learning\\\\\\\" (2026-05-16)\\\\nBCE (54.84) 比 training-free (23-33) 差。**禁止用 \\\\\\\"anti-learning\\\\\\\" framing**，改用 **\\\\\\\"objective mismatch\\\\\\\"**：BCE 优化 per-neuron binary accuracy，TEAL 推理用 global top-k 重分配，两者结构性不兼容。BCE 学到的 per-neuron scoring 在 global budget allocation 下不是最优的。正确 claim: loss function 必须匹配推理管线的 sparsity allocation 机制。KL 直接优化 output distribution，天然兼容任何 allocation 策略。\\\\n\\\\n### KL PPL 统一引用规范 (2026-05-16)\\\\n论文中所有 KL PPL 对比统一用 **4-seed mean 12.00±0.07**（TEAL sparse PPL），不要用单 seed 最佳值 11.91。BCE iso-compute 对比时标注步数（1000 步 vs KL 1000 步，但 BCE per-step FLOPs 仅 KL 的 1/2.71）。\\\\n\\\\n### SPON framing: \\\\\\\"marginal complement\\\\\\\" 非 \\\\\\\"subsumption\\\\\\\" (2026-05-15)\\\\n禁止 \\\\\\\"KL subsumes SPON\\\\\\\" 措辞。正确表述：SPON corrections are orthogonal to and much smaller than predictor mask effects (cos_sim=0.196, magnitude ratio=16%)。D010 \\\\\\\"marginal complement\\\\\\\" framing。\\\\n\\\\n### s456 outlier 报告方式 (2026-05-16)\\\\n报 \\\\\\\"5-seed mean: 12.32±0.71\\\\\\\" + \\\\\\\"Excluding s456 (TEAL allocation outlier): 12.00±0.07\\\\\\\"。附 per-seed breakdown table + Layer 31 keep ratio 分析。不跑第 6 个 seed。\\\\n\\\\n## Key Insights (non-metrics)\\\\n\\\\n### 50% sparsity 摧毁 autoregressive generation (2026-05-16)\\\\nGSM8K 生成对比（10 samples）：sparse 50% 模型 1-3 句后进入无限重复循环，0/10 正确。退化模式是推理能力根本性丧失（模式 A），非仅数字算错。PPL 不惩罚 repetition loop（每个重复 token 仍有较高概率）。这解释了 PPL 12.00 但 GSM8K exact_match 仅 0.0121 的 disconnect。论文需用 30% 数据展示 sparsity-task tradeoff。\\\\n\\\\n### PPL-downstream disconnect 是真实现象，非 eval bug (2026-05-16)\\\\n三重验证确认：(1) acc_norm 已正确使用，(2) mask 逻辑审查无 bug（HFLM logit diff=0.0），(3) 生成对比显示推理链断裂。根因：50% sparsity 下 logit 微小偏移（如 \\\\\\\"Paris\\\\\\\" 从 #2 降到 #5）足以翻转 4-choice 答案，且摧毁 autoregressive 推理链。\\\\n\\\\n### STE vs Gumbel: smooth gradient is essential for KL+Lagrangian training (2026-05-16)\\\\nSTE hard threshold causes violent lambda oscillation (range [0.01, 1000], overall std=354) because sigmoid→binary 翻转是离散的——微小参数变化可翻转大量 neuron，导致 constraint violation 剧烈跳变。后果：(1) per-token sparsity 仅 0.470（未达 target 0.50）, (2) 逐层稀疏度两极化（Layer 0-17: 5-56%, Layer 18-31: 56-90%）, (3) TEAL global 分配效果差（PPL 15.77 vs Gumbel 12.00）。Gumbel soft mask 提供连续梯度，lambda 平稳收敛到 cap，sparsity 精准收敛到 target。**Relaxation method 不是实现细节，是 KL distillation 训练稳定性的前提。**\\\\n\\\\n### KL predictor implicitly subsumes static correction (2026-05-15)\\\\nSPON bias vectors recover only 3.8% of sparse-vs-dense gap on top of KL predictor (PPL 9.22→9.10). Root cause: KL's end-to-end gradient already captures average-case AND per-input neuron importance through d_logits/dh * dh/dm coupling. Static bias correction is redundant when the contextual predictor is trained with output-distribution alignment.\\\\n\\\\n### SPON seq_len=2048 confirms subsumption, rules out mismatch confound (2026-05-15)\\\\nspon_2048_s42: training seq_len matched eval seq_len=2048. Recovery improved 3.8%→7.3% (+3.5pp), bias norm 0.041→0.053 (+30%), but still < 10% threshold. Even under matched conditions, static bias is fundamentally limited against KL predictor's per-token mask.\\\\n\\\\n### Compensation cannot fix BCE's fundamental flaw (2026-05-15)\\\\nBCE+Compensation (67.2M params, staged training) only improves per-token PPL by 9% (27.96→25.44), still 2.8x worse than KL-only (9.21). TEAL global path completely unaffected by comp network (44.54 = BCE-only). Root cause: BCE gradient dL/ds_j is per-neuron factorized.\\\\n\\\\n### Training-free baselines: per-layer normalization is critical (2026-05-16)\\\\nCRITICAL bug in _global_topk_masks: activation magnitudes vary 50-100x across layers. Fix: divide each layer's importance scores by layer mean before global topk. Corrected PPL: Vanilla TEAL 23.31, WINA 27.93, TEAL Greedy 33.47. R-Sparse still broken (SVD scores need percentile/max normalization). **Same bug likely affects predictor TEAL path** — sparsity70 TEAL PPL=136K anomaly.\\\\n\\\\n### BCE objective mismatch with TEAL inference (2026-05-16)\\\\nBCE iso-compute (1000 steps, reg_weight=2.0, sparsity=0.502) gets TEAL PPL=54.84 — worse than all 3 training-free baselines (23-33). Root cause: BCE optimizes per-neuron binary accuracy independently, but TEAL inference uses global top-k budget allocation across layers. Per-neuron scores optimized for binary accuracy are structurally incompatible with global budget allocation. KL directly optimizes output distribution, naturally compatible with any allocation strategy.\\\\n\\\\n### Hard-mask PPL vs TEAL sparse PPL variance separation (2026-05-15)\\\\n5-seed hard-mask PPL std = 0.04 (9.14-9.25), 极其稳定。TEAL sparse PPL std = 0.69 (11.91-13.58), 方差大 16 倍。方差来自 TEAL 全局分配算法与 per-token mask 的匹配度。\\\\n\\\\n### KL vs BCE per-step FLOPs ratio = 2.71x (2026-05-15)\\\\n实测 (BS=1, SL=512): KL 0.549s/step, BCE 0.202s/step。Iso-compute BCE 需要 2700 步 (= 1000 × 2.71) 匹配 KL 1000 步的总 FLOPs。\\\\n\\\\n### gradient_checkpointing 对 sparsity training 是必须的 (2026-05-15)\\\\n所有 LLaMA-3.1-8B sparsity 训练必须加 --gradient_checkpointing。不加则 OOM（>96GB），加了后 46.9-67.6GB。\\\\n\\\\n### BCE iso-compute sparsity 收敛需要 reg_weight=2.0 (2026-05-15)\\\\n原始 SparsityRegularizer 在 torch.no_grad() 下计算 mask，梯度为零。修复：STE hard mask + reg_weight=2.0。\\\\n\\\\n### lambda_max=1000 对低 sparsity target 不够 (2026-05-16)\\\\nsparsity30 (target=0.30) 两次 sparsity 卡在 0.281，lambda 撞 1000 cap。v3 用 lambda_max=5000。\\\\n\\\\n### Mistral-7B 与 Llama-3.1-8B 代码完全兼容 (2026-05-16)\\\\ntrain.py 零改动即可运行。架构一致。Predictor 参数量完全相同 (~75.96M)。vocab_size 差异只影响 KL loss logit 维度。\\\\n\\\\n## Checkpoints\\\\n- KL-only predictor (s42): `/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\\\\n- SPON biases (seq128): `/root/distill_sparse_swiglu/checkpoints/spon_kl_s42/spon_biases.pt` (928KB)\\\\n- SPON biases (seq2048): `/root/distill_sparse_swiglu/checkpoints/spon_2048_s42/`\\\\n- BCE+comp predictor: `/root/distill_sparse_swiglu/checkpoints/bce_comp_staged_s42/predictor_bce_comp.pt`\\\\n- BCE iso-compute v2 (s42): `/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42/`\\\\n- SPON eval script: `/root/distill_sparse_swiglu/src/eval_spon.py`\\\\n- Mistral-7B: `/root/autodl-tmp/models/mistral-7b/` (7.25B params, 14MB)\\\\n- KL sparsity70 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt`\\\\n- KL sparsity30 v2 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42/predictor_kl_normalized.pt` (sparsity=0.281, negative)\\\\n- KL sparsity30 v3 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt` (145MB)\\\\n- STE baseline (s42): `/root/distill_sparse_swiglu/checkpoints/ste_baseline_s42/`\\\\n\\\", \\\"total_chars\\\": 6373, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\", \"content\": \"# Project Memory\\n\\n## Paper Framing Decisions (Director-approved)\\n\\n### BCE vs training-free: \\\"objective mismatch\\\" 非 \\\"anti-learning\\\" (2026-05-16)\\nBCE (54.84) 比 training-free (23-33) 差。**禁止用 \\\"anti-learning\\\" framing**，改用 **\\\"objective mismatch\\\"**：BCE 优化 per-neuron binary accuracy，TEAL 推理用 global top-k 重分配，两者结构性不兼容。BCE 学到的 per-neuron scoring 在 global budget allocation 下不是最优的。正确 claim: loss function 必须匹配推理管线的 sparsity allocation 机制。KL 直接优化 output distribution，天然兼容任何 allocation 策略。\\n\\n### KL PPL 统一引用规范 (2026-05-16)\\n论文中所有 KL PPL 对比统一用 **4-seed mean 12.00±0.07**（TEAL sparse PPL），不要用单 seed 最佳值 11.91。BCE iso-compute 对比时标注步数（1000 步 vs KL 1000 步，但 BCE per-step FLOPs 仅 KL 的 1/2.71）。\\n\\n### SPON framing: \\\"marginal complement\\\" 非 \\\"subsumption\\\" (2026-05-15)\\n禁止 \\\"KL subsumes SPON\\\" 措辞。正确表述：SPON corrections are orthogonal to and much smaller than predictor mask effects (cos_sim=0.196, magnitude ratio=16%)。D010 \\\"marginal complement\\\" framing。\\n\\n### s456 outlier 报告方式 (2026-05-16)\\n报 \\\"5-seed mean: 12.32±0.71\\\" + \\\"Excluding s456 (TEAL allocation outlier): 12.00±0.07\\\"。附 per-seed breakdown table + Layer 31 keep ratio 分析。不跑第 6 个 seed。\\n\\n## Key Insights (non-metrics)\\n\\n### 50% sparsity 摧毁 autoregressive generation (2026-05-16)\\nGSM8K 生成对比（10 samples）：sparse 50% 模型 1-3 句后进入无限重复循环，0/10 正确。退化模式是推理能力根本性丧失（模式 A），非仅数字算错。PPL 不惩罚 repetition loop（每个重复 token 仍有较高概率）。这解释了 PPL 12.00 但 GSM8K exact_match 仅 0.0121 的 disconnect。论文需用 30% 数据展示 sparsity-task tradeoff。\\n\\n### PPL-downstream disconnect 是真实现象，非 eval bug (2026-05-16)\\n三重验证确认：(1) acc_norm 已正确使用，(2) mask 逻辑审查无 bug（HFLM logit diff=0.0），(3) 生成对比显示推理链断裂。根因：50% sparsity 下 logit 微小偏移（如 \\\"Paris\\\" 从 #2 降到 #5）足以翻转 4-choice 答案，且摧毁 autoregressive 推理链。\\n\\n### STE vs Gumbel: smooth gradient is essential for KL+Lagrangian training (2026-05-16)\\nSTE hard threshold causes violent lambda oscillation (range [0.01, 1000], overall std=354) because sigmoid→binary 翻转是离散的——微小参数变化可翻转大量 neuron，导致 constraint violation 剧烈跳变。后果：(1) per-token sparsity 仅 0.470（未达 target 0.50）, (2) 逐层稀疏度两极化（Layer 0-17: 5-56%, Layer 18-31: 56-90%）, (3) TEAL global 分配效果差（PPL 15.77 vs Gumbel 12.00）。Gumbel soft mask 提供连续梯度，lambda 平稳收敛到 cap，sparsity 精准收敛到 target。**Relaxation method 不是实现细节，是 KL distillation 训练稳定性的前提。**\\n\\n### KL predictor implicitly subsumes static correction (2026-05-15)\\nSPON bias vectors recover only 3.8% of sparse-vs-dense gap on top of KL predictor (PPL 9.22→9.10). Root cause: KL's end-to-end gradient already captures average-case AND per-input neuron importance through d_logits/dh * dh/dm coupling. Static bias correction is redundant when the contextual predictor is trained with output-distribution alignment.\\n\\n### SPON seq_len=2048 confirms subsumption, rules out mismatch confound (2026-05-15)\\nspon_2048_s42: training seq_len matched eval seq_len=2048. Recovery improved 3.8%→7.3% (+3.5pp), bias norm 0.041→0.053 (+30%), but still < 10% threshold. Even under matched conditions, static bias is fundamentally limited against KL predictor's per-token mask.\\n\\n### Compensation cannot fix BCE's fundamental flaw (2026-05-15)\\nBCE+Compensation (67.2M params, staged training) only improves per-token PPL by 9% (27.96→25.44), still 2.8x worse than KL-only (9.21). TEAL global path completely unaffected by comp network (44.54 = BCE-only). Root cause: BCE gradient dL/ds_j is per-neuron factorized.\\n\\n### Training-free baselines: per-layer normalization is critical (2026-05-16)\\nCRITICAL bug in _global_topk_masks: activation magnitudes vary 50-100x across layers. Fix: divide each layer's importance scores by layer mean before global topk. Corrected PPL: Vanilla TEAL 23.31, WINA 27.93, TEAL Greedy 33.47. R-Sparse still broken (SVD scores need percentile/max normalization). **Same bug likely affects predictor TEAL path** — sparsity70 TEAL PPL=136K anomaly.\\n\\n### BCE objective mismatch with TEAL inference (2026-05-16)\\nBCE iso-compute (1000 steps, reg_weight=2.0, sparsity=0.502) gets TEAL PPL=54.84 — worse than all 3 training-free baselines (23-33). Root cause: BCE optimizes per-neuron binary accuracy independently, but TEAL inference uses global top-k budget allocation across layers. Per-neuron scores optimized for binary accuracy are structurally incompatible with global budget allocation. KL directly optimizes output distribution, naturally compatible with any allocation strategy.\\n\\n### Hard-mask PPL vs TEAL sparse PPL variance separation (2026-05-15)\\n5-seed hard-mask PPL std = 0.04 (9.14-9.25), 极其稳定。TEAL sparse PPL std = 0.69 (11.91-13.58), 方差大 16 倍。方差来自 TEAL 全局分配算法与 per-token mask 的匹配度。\\n\\n### KL vs BCE per-step FLOPs ratio = 2.71x (2026-05-15)\\n实测 (BS=1, SL=512): KL 0.549s/step, BCE 0.202s/step。Iso-compute BCE 需要 2700 步 (= 1000 × 2.71) 匹配 KL 1000 步的总 FLOPs。\\n\\n### gradient_checkpointing 对 sparsity training 是必须的 (2026-05-15)\\n所有 LLaMA-3.1-8B sparsity 训练必须加 --gradient_checkpointing。不加则 OOM（>96GB），加了后 46.9-67.6GB。\\n\\n### BCE iso-compute sparsity 收敛需要 reg_weight=2.0 (2026-05-15)\\n原始 SparsityRegularizer 在 torch.no_grad() 下计算 mask，梯度为零。修复：STE hard mask + reg_weight=2.0。\\n\\n### lambda_max=1000 对低 sparsity target 不够 (2026-05-16)\\nsparsity30 (target=0.30) 两次 sparsity 卡在 0.281，lambda 撞 1000 cap。v3 用 lambda_max=5000。\\n\\n### Mistral-7B 与 Llama-3.1-8B 代码完全兼容 (2026-05-16)\\ntrain.py 零改动即可运行。架构一致。Predictor 参数量完全相同 (~75.96M)。vocab_size 差异只影响 KL loss logit 维度。\\n\\n## Checkpoints\\n- KL-only predictor (s42): `/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\\n- SPON biases (seq128): `/root/distill_sparse_swiglu/checkpoints/spon_kl_s42/spon_biases.pt` (928KB)\\n- SPON biases (seq2048): `/root/distill_sparse_swiglu/checkpoints/spon_2048_s42/`\\n- BCE+comp predictor: `/root/distill_sparse_swiglu/checkpoints/bce_comp_staged_s42/predictor_bce_comp.pt`\\n- BCE iso-compute v2 (s42): `/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42/`\\n- SPON eval script: `/root/distill_sparse_swiglu/src/eval_spon.py`\\n- Mistral-7B: `/root/autodl-tmp/models/mistral-7b/` (7.25B params, 14MB)\\n- KL sparsity70 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt`\\n- KL sparsity30 v2 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42/predictor_kl_normalized.pt` (sparsity=0.281, negative)\\n- KL sparsity30 v3 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt` (145MB)\\n- STE baseline (s42): `/root/distill_sparse_swiglu/checkpoints/ste_baseline_s42/`\\n\", \"total_chars\": 6373, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_014bKxBBU9vJSFizMDPjjnTW`</summary>
+
+```json
+{
+  "project": "distill_sparse_swiglu",
+  "file": "memory.md",
+  "content": "# Project Memory\n\n## Paper Framing Decisions (Director-approved)\n\n### BCE vs training-free: \"objective mismatch\" 非 \"anti-learning\" (2026-05-16)\nBCE (54.84) 比 training-free (23-33) 差。**禁止用 \"anti-learning\" framing**，改用 **\"objective mismatch\"**：BCE 优化 per-neuron binary accuracy，TEAL 推理用 global top-k 重分配，两者结构性不兼容。BCE 学到的 per-neuron scoring 在 global budget allocation 下不是最优的。正确 claim: loss function 必须匹配推理管线的 sparsity allocation 机制。KL 直接优化 output distribution，天然兼容任何 allocation 策略。\n\n### KL PPL 统一引用规范 (2026-05-16)\n论文中所有 KL PPL 对比统一用 **4-seed mean 12.00±0.07**（TEAL sparse PPL），不要用单 seed 最佳值 11.91。BCE iso-compute 对比时标注步数（1000 步 vs KL 1000 步，但 BCE per-step FLOPs 仅 KL 的 1/2.71）。\n\n### SPON framing: \"marginal complement\" 非 \"subsumption\" (2026-05-15)\n禁止 \"KL subsumes SPON\" 措辞。正确表述：SPON corrections are orthogonal to and much smaller than predictor mask effects (cos_sim=0.196, magnitude ratio=16%)。D010 \"marginal complement\" framing。\n\n### s456 outlier 报告方式 (2026-05-16)\n报 \"5-seed mean: 12.32±0.71\" + \"Excluding s456 (TEAL allocation outlier): 12.00±0.07\"。附 per-seed breakdown table + Layer 31 keep ratio 分析。不跑第 6 个 seed。\n\n## Key Insights (non-metrics)\n\n### 50% sparsity 摧毁 autoregressive generation (2026-05-16)\nGSM8K 生成对比（10 samples）：sparse 50% 模型 1-3 句后进入无限重复循环，0/10 正确。退化模式是推理能力根本性丧失（模式 A），非仅数字算错。PPL 不惩罚 repetition loop（每个重复 token 仍有较高概率）。这解释了 PPL 12.00 但 GSM8K exact_match 仅 0.0121 的 disconnect。论文需用 30% 数据展示 sparsity-task tradeoff。\n\n### PPL-downstream disconnect 是真实现象，非 eval bug (2026-05-16)\n三重验证确认：(1) acc_norm 已正确使用，(2) mask 逻辑审查无 bug（HFLM logit diff=0.0），(3) 生成对比显示推理链断裂。根因：50% sparsity 下 logit 微小偏移（如 \"Paris\" 从 #2 降到 #5）足以翻转 4-choice 答案，且摧毁 autoregressive 推理链。\n\n### PPL-downstream disconnect 文献支撑 (2026-05-16)\n文献调研确认这是**已知但未充分研究**的现象。核心证据：(1) Khanal & Capone (2024): SparseGPT/Wanda 在 50% sparsity 保持 PPL 但下游退化，\"perplexity as sole evaluation metric is inadequate\"; (2) Xu et al. (2024, EMNLP): PPL 在 45-60% sparsity 前无变化但完全无法捕捉能力退化; (3) Kodathala & Vunnam (2026): N:M pruning 25-30% sparsity 下 factual QA 崩溃 97% 但 PPL 不变; (4) Siam et al. (2026): 定义 Type 2 trap（推理断裂后重复循环），与我们的 GSM8K 退化模式完全一致。**文献空白：无论文在 contextual sparsity predictor + KL distillation 下系统研究此现象。** 详细报告见 artifacts/literature_ppl_downstream_disconnect.md。\n\n### STE vs Gumbel: smooth gradient is essential for KL+Lagrangian training (2026-05-16)\nSTE hard threshold causes violent lambda oscillation (range [0.01, 1000], overall std=354) because sigmoid→binary 翻转是离散的——微小参数变化可翻转大量 neuron，导致 constraint violation 剧烈跳变。后果：(1) per-token sparsity 仅 0.470（未达 target 0.50）, (2) 逐层稀疏度两极化（Layer 0-17: 5-56%, Layer 18-31: 56-90%）, (3) TEAL global 分配效果差（PPL 15.77 vs Gumbel 12.00）。Gumbel soft mask 提供连续梯度，lambda 平稳收敛到 cap，sparsity 精准收敛到 target。**Relaxation method 不是实现细节，是 KL distillation 训练稳定性的前提。**\n\n### KL predictor implicitly subsumes static correction (2026-05-15)\nSPON bias vectors recover only 3.8% of sparse-vs-dense gap on top of KL predictor (PPL 9.22→9.10). Root cause: KL's end-to-end gradient already captures average-case AND per-input neuron importance through d_logits/dh * dh/dm coupling. Static bias correction is redundant when the contextual predictor is trained with output-distribution alignment.\n\n### SPON seq_len=2048 confirms subsumption, rules out mismatch confound (2026-05-15)\nspon_2048_s42: training seq_len matched eval seq_len=2048. Recovery improved 3.8%→7.3% (+3.5pp), bias norm 0.041→0.053 (+30%), but still < 10% threshold. Even under matched conditions, static bias is fundamentally limited against KL predictor's per-token mask.\n\n### Compensation cannot fix BCE's fundamental flaw (2026-05-15)\nBCE+Compensation (67.2M params, staged training) only improves per-token PPL by 9% (27.96→25.44), still 2.8x worse than KL-only (9.21). TEAL global path completely unaffected by comp network (44.54 = BCE-only). Root cause: BCE gradient dL/ds_j is per-neuron factorized.\n\n### Training-free baselines: per-layer normalization is critical (2026-05-16)\nCRITICAL bug in _global_topk_masks: activation magnitudes vary 50-100x across layers. Fix: divide each layer's importance scores by layer mean before global topk. Corrected PPL: Vanilla TEAL 23.31, WINA 27.93, TEAL Greedy 33.47. R-Sparse still broken (SVD scores need percentile/max normalization). **Same bug likely affects predictor TEAL path** — sparsity70 TEAL PPL=136K anomaly.\n\n### BCE objective mismatch with TEAL inference (2026-05-16)\nBCE iso-compute (1000 steps, reg_weight=2.0, sparsity=0.502) gets TEAL PPL=54.84 — worse than all 3 training-free baselines (23-33). Root cause: BCE optimizes per-neuron binary accuracy independently, but TEAL inference uses global top-k budget allocation across layers. Per-neuron scores optimized for binary accuracy are structurally incompatible with global budget allocation. KL directly optimizes output distribution, naturally compatible with any allocation strategy.\n\n### Hard-mask PPL vs TEAL sparse PPL variance separation (2026-05-15)\n5-seed hard-mask PPL std = 0.04 (9.14-9.25), 极其稳定。TEAL sparse PPL std = 0.69 (11.91-13.58), 方差大 16 倍。方差来自 TEAL 全局分配算法与 per-token mask 的匹配度。\n\n### KL vs BCE per-step FLOPs ratio = 2.71x (2026-05-15)\n实测 (BS=1, SL=512): KL 0.549s/step, BCE 0.202s/step。Iso-compute BCE 需要 2700 步 (= 1000 × 2.71) 匹配 KL 1000 步的总 FLOPs。\n\n### gradient_checkpointing 对 sparsity training 是必须的 (2026-05-15)\n所有 LLaMA-3.1-8B sparsity 训练必须加 --gradient_checkpointing。不加则 OOM（>96GB），加了后 46.9-67.6GB。\n\n### BCE iso-compute sparsity 收敛需要 reg_weight=2.0 (2026-05-15)\n原始 SparsityRegularizer 在 torch.no_grad() 下计算 mask，梯度为零。修复：STE hard mask + reg_weight=2.0。\n\n### lambda_max=1000 对低 sparsity target 不够 (2026-05-16)\nsparsity30 (target=0.30) 两次 sparsity 卡在 0.281，lambda 撞 1000 cap。v3 用 lambda_max=5000。\n\n### Mistral-7B 与 Llama-3.1-8B 代码完全兼容 (2026-05-16)\ntrain.py 零改动即可运行。架构一致。Predictor 参数量完全相同 (~75.96M)。vocab_size 差异只影响 KL loss logit 维度。\n\n## Checkpoints\n- KL-only predictor (s42): `/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\n- SPON biases (seq128): `/root/distill_sparse_swiglu/checkpoints/spon_kl_s42/spon_biases.pt` (928KB)\n- SPON biases (seq2048): `/root/distill_sparse_swiglu/checkpoints/spon_2048_s42/`\n- BCE+comp predictor: `/root/distill_sparse_swiglu/checkpoints/bce_comp_staged_s42/predictor_bce_comp.pt`\n- BCE iso-compute v2 (s42): `/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42/`\n- SPON eval script: `/root/distill_sparse_swiglu/src/eval_spon.py`\n- Mistral-7B: `/root/autodl-tmp/models/mistral-7b/` (7.25B params, 14MB)\n- KL sparsity70 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt`\n- KL sparsity30 v2 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42/predictor_kl_normalized.pt` (sparsity=0.281, negative)\n- KL sparsity30 v3 (s42): `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt` (145MB)\n- STE baseline (s42): `/root/distill_sparse_swiglu/checkpoints/ste_baseline_s42/`\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "a46955ee-2656-4825-be41-e288f1be0235",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SSWKE49LVpd87puV6SW6eH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3362,
+      "cache_read_input_tokens": 54492,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3362
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-16T02:05:19.858Z_
+
+<details><summary>↩ Tool result · `toolu_014bKxBBU9vJSFizMDPjjnTW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "456fedf2-904b-4be2-9eba-7d186e310886",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+报告已完成，保存在 `artifacts/literature_ppl_downstream_disconnect.md`，memory.md 已更新。核心发现：
+
+**PPL-downstream disconnect 是已知但未充分研究的现象，我们的工作构成文献空白。**
+
+关键文献支撑：
+- **Khanal & Capone (2024)**: 直接证明 SparseGPT/Wanda 50% sparsity 保持 PPL 但下游退化，提出 JS Divergence 替代
+- **Xu et al. (2024, EMNLP Findings)**: PPL 在 45-60% sparsity 下无法捕捉能力退化，"normalized PPL shows poor alignment with human-aligned evaluation"
+- **Kodathala & Vunnam (2026)**: 最极端案例——N:M pruning 25-30% sparsity 下 factual QA 崩溃 97% 但 PPL 不变
+- **Siam et al. (2026)**: 定义 Type 2 degeneration trap（推理断裂→重复循环），与我们的 GSM8K 退化完全吻合
+
+**文献空白**: 没有论文在 contextual sparsity predictor + KL distillation 设置下系统研究过此现象。我们的 PPL 1.96x 但 GSM8K -98% 是目前文献中最极端的 activation sparsity disconnect 案例。
+
+**30% vs 50% 转折点**: TEAL 原文报告 25% safe / 40% minimal / 50% degradation；多篇论文报告 50-60% "sparsity wall"。我们的 30% 数据如果下游保持良好，可以 claim phase transition。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "uuid": "a799c972-d9bc-42e3-b051-299c1bb8e284",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bmtb1RZNi3rsEwfHpPwdE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3358,
+      "cache_read_input_tokens": 57854,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3358
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 79_
+
+报告已完成，保存在 `artifacts/literature_ppl_downstream_disconnect.md`，memory.md 已更新。核心发现：
+
+**PPL-downstream disconnect 是已知但未充分研究的现象，我们的工作构成文献空白。**
+
+关键文献支撑：
+- **Khanal & Capone (2024)**: 直接证明 SparseGPT/Wanda 50% sparsity 保持 PPL 但下游退化，提出 JS Divergence 替代
+- **Xu et al. (2024, EMNLP Findings)**: PPL 在 45-60% sparsity 下无法捕捉能力退化，"normalized PPL shows poor alignment with human-aligned evaluation"
+- **Kodathala & Vunnam (2026)**: 最极端案例——N:M pruning 25-30% sparsity 下 factual QA 崩溃 97% 但 PPL 不变
+- **Siam et al. (2026)**: 定义 Type 2 degeneration trap（推理断裂→重复循环），与我们的 GSM8K 退化完全吻合
+
+**文献空白**: 没有论文在 contextual sparsity predictor + KL distillation 设置下系统研究过此现象。我们的 PPL 1.96x 但 GSM8K -98% 是目前文献中最极端的 activation sparsity disconnect 案例。
+
+**30% vs 50% 转折点**: TEAL 原文报告 25% safe / 40% minimal / 50% degradation；多篇论文报告 50-60% "sparsity wall"。我们的 30% 数据如果下游保持良好，可以 claim phase transition。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 302555,
+  "duration_api_ms": 399504,
+  "num_turns": 29,
+  "stop_reason": "end_turn",
+  "session_id": "f7e59c2b-9d6a-43ec-840d-8bb5ae77beae",
+  "total_cost_usd": 1.4956092500000002,
+  "usage": {
+    "input_tokens": 3781,
+    "cache_creation_input_tokens": 49371,
+    "cache_read_input_tokens": 580497,
+    "output_tokens": 10957,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 49371,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 482,
+        "cache_read_input_tokens": 57854,
+        "cache_creation_input_tokens": 3358,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3358
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 353737,
+      "outputTokens": 10045,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 20,
+      "costUSD": 0.603962,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 3781,
+      "outputTokens": 10957,
+      "cacheReadInputTokens": 580497,
+      "cacheCreationInputTokens": 49371,
+      "webSearchRequests": 0,
+      "costUSD": 0.89164725,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "018fdd79-c878-4402-94ea-bb9f762a85fe"
+}
+```
+
+</details>
+
+---

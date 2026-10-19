@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eb4c1eec218972dd5bd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b uniform eval monitor",
+  "task_key": "worker_analysis_qwen14b_uniform_eval_monitor_20260517T231257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_uniform_eval_monitor_20260517T231257_result.json",
+    "occurrence": 1,
+    "bytes": 59,
+    "sha256": "f75e01fdeb15c51f74e69ccc6007c870a6c732e22d576c5dd99bb73177a761b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 分钟后回来检查 KL uniform 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-uniform-eval-monitor.md"
+}

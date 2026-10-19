@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06a4eabbf7ba97ff16be",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops tau schedule ablation",
+  "task_key": "worker_ops_tau-schedule-ablation_20260516T220836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_tau-schedule-ablation_20260516T220836_result.json",
+    "occurrence": 1,
+    "bytes": 104,
+    "sha256": "46de7938da3c95dc5e8ec72acfb33b61dd6718151a7051b94f1e5ac3ca533db5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Run B progressing well at step 570/1000. Scheduled check in ~4.5 min to catch completion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-tau-schedule-ablation.md"
+}

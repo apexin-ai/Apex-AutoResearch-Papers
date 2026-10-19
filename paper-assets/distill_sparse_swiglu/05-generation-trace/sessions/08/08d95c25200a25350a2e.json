@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08d95c25200a25350a2e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect c1 30pct downstream",
+  "task_key": "worker_ops_collect-c1-30pct-downstream_20260519T010824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-c1-30pct-downstream_20260519T010824_result.json",
+    "occurrence": 1,
+    "bytes": 561,
+    "sha256": "7728c272f72061508ac23b37944b87ce843db7b110897e7deb9fa9ed4bc3b0c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## C1 Ablation 30% Eval 完整结果\n\n| Metric | Value |\n|--------|-------|\n| **WikiText-2 PPL** | 9.4463 |\n| **ARC-Challenge acc_norm** (25-shot) | 0.4027 |\n| **WinoGrande acc** (5-shot) | 0.6740 |\n| **MMLU acc** (5-shot) | 0.4229 |\n| **GSM8K exact_match** (5-shot) | 0.0758 |\n\n配置确认：TEAL global, sparsity=30%, uniform allocation, checkpoint=`c1_ablation_30pct_s42/predictor_bce_kl_targets.pt`。进程已完成退出，结果保存于 `/root/distill_sparse_swiglu/results/benchmark/c1_ablation_30pct_s42_eval/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-c1-30pct-downstream.md"
+}

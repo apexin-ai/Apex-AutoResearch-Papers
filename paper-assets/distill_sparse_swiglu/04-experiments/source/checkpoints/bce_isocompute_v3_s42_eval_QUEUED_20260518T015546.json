@@ -1,0 +1,16 @@
+{
+  "exp_id": "bce_isocompute_v3_s42_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T01:03:16.947Z",
+    "updated_at": "2026-05-18T01:55:46.559Z",
+    "hypothesis": "BCE iso-compute v3 s42 checkpoint downstream eval (PPL, ARC, WG, MMLU, GSM8K) completes 3-seed mean±std for Table 2 BCE row. Expected PPL ~28 consistent with s456 (28.35) and s123 (28.06).",
+    "parent": "bce_isocompute_v3_s42"
+  },
+  "timestamp": "2026-05-18T01:55:46.844794+00:00",
+  "trigger": "update_registry"
+}

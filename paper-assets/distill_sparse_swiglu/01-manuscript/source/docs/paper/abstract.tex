@@ -1,0 +1,7 @@
+Activation sparsity can accelerate SwiGLU-based LLMs by pruning FFN neurons at inference, but existing learned predictors trained with binary cross-entropy (BCE) require error compensation networks due to a structural mismatch: BCE decomposes per neuron while inference uses global top-$k$ allocation across all layers.
+We train lightweight predictors (2.37M parameters per layer, 75.9M total, $<$1\% of the base model) with KL divergence, which couples all neurons through the output distribution via Gumbel-Sigmoid relaxation, eliminating the need for compensation.
+On LLaMA-3.1-8B (WikiText-2), our KL-trained predictor achieves perplexity 11.79 at 50\% sparsity, compared to 23.31 for vanilla TEAL and 27.97 for BCE trained at 2.71$\times$ the compute budget---whose loss saturates, confirming a structural rather than computational failure.
+The KL advantage scales super-linearly with sparsity: 18\% relative improvement at 30\%, 49\% at 50\%, and 82\% at 70\%.
+Cross-architecture evaluation on Mistral-7B-v0.3 yields +63\% degradation from dense, compared to +93\% on LLaMA.
+SPON's static bias correction proves near-orthogonal to the predictor (cosine similarity 0.196), recovering only 2.4\% of residual error.
+We propose a two-dimensional taxonomy over correction granularity $\times$ training signal coupling that unifies prior methods and identify a phase transition between allocation-fixable and capacity-limited sparsity regimes.

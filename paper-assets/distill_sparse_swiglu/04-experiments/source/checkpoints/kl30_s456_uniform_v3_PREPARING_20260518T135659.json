@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl30_s456_uniform_v3",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:53:04.002Z",
+    "updated_at": "2026-05-18T13:56:58.716Z",
+    "hypothesis": "KL-trained predictor at 30% sparsity (seed 456) with uniform allocation evaluated on westd-34887 for cross-server consistency with s42 benchmark, ensuring all 3 seeds share identical eval environment for reliable mean±std.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-18T13:56:59.012456+00:00",
+  "trigger": "update_registry"
+}

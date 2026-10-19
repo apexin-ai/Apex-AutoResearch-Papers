@@ -1,0 +1,26 @@
+paper_key: "Distilling to Hybrid Attention Models via KL-Guided Layer Selection"
+title: "Distilling to Hybrid Attention Models via KL-Guided Layer Selection"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["uniform interleaving of linear attention layers", "diagnostic dataset-based layer selection", "RADLADS pipeline"]
+  metrics:
+    - {name: "downstream task performance", direction: "higher_better"}
+    - {name: "inference efficiency", direction: "higher_better"}
+    - {name: "layer importance scores", direction: "higher_better"}
+  datasets:
+    - {name: "generic text data (for layer importance)", size: "not specified"}
+  ablation_dimensions: ["layer selection strategy", "number of converted layers", "distillation pipeline stages"]
+  training_recipe: {optimizer: "not specified", lr: "not specified", hardware: "not specified"}
+  method_family: "architecture distillation (softmax → hybrid attention)"
+
+positioning:
+  core_claim: "KL-divergence-based layer importance scores from minimal generic text training provide better layer selection for softmax-to-linear attention conversion than uniform heuristics or diagnostic datasets."
+  key_results: "More effective than uniform interleaving and specialized diagnostic approaches for hybrid attention model distillation."
+  limitations: ["requires small amount of training for layer scoring", "focused on attention layer conversion only"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

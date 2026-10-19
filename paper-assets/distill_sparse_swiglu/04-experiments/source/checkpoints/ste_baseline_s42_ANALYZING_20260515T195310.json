@@ -1,0 +1,49 @@
+{
+  "exp_id": "ste_baseline_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-15T18:35:42.177Z",
+    "updated_at": "2026-05-15T19:53:10.931Z",
+    "server": "westd-34887",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-34887",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T18:39:42.234Z",
+      "finished_at": "2026-05-15T19:53:10.785Z",
+      "training_hours": 1.22
+    },
+    "completed_at": "2026-05-15T18:50:00.760Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "negative"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=offline python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --relaxation ste --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/ste_baseline_s42 --wandb_run_name ste_baseline_s42 --dataset wikitext-103\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "116142",
+      "log_path": "~/runs/distill_sparse_swiglu/ste_baseline_s42.log",
+      "submitted_at": "2026-05-15T19:17:21.463Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103",
+      "data_count": null,
+      "model_name": "llama-3.1-8b",
+      "seed": 42
+    },
+    "notes": "STE baseline 代码实现完成 (Worker worker_code_ste_baseline_20260515T183635)。修改：src/predictor.py 新增 STEMask 类（hard threshold + STE gradient），src/train.py 新增 --relaxation ste/gumbel 参数。\n\n第一次提交 OOM 失败：ste_kl_s42 僵尸进程（PID 112197/112202）仍占用 cuda:1 73.41 GiB 显存。已杀死僵尸进程后重新提交。\n\nRetry #2: PID 116142, cuda:1, submit_at 2026-05-15T19:17。\n\n## 跟踪要求 (Director)\n训练中 lambda 在 0.01-1000 间剧烈震荡——这本身支持 Gumbel-sigmoid（soft mask 提供平滑梯度，STE 的 hard threshold 导致 constraint 满足不稳定）。完成后需记录：lambda mean/std/最终收敛值，用于论文 ablation 讨论。",
+    "hypothesis": "STE relaxation (hard threshold + straight-through gradient) 是否能匹配 Gumbel-sigmoid 的 KL distillation 效果？如果差距大，说明 Gumbel soft mask 对 KL 训练至关重要（Reviewer Concern #3 defense）。"
+  },
+  "timestamp": "2026-05-15T19:53:10.995581+00:00",
+  "trigger": "update_registry"
+}

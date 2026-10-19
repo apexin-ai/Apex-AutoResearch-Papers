@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b27013ee96866bad0a6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check mse30 s123 downstream",
+  "task_key": "worker_check_mse30_s123_downstream_20260522T151006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_mse30_s123_downstream_20260522T151006_result.json",
+    "occurrence": 1,
+    "bytes": 56,
+    "sha256": "7a024f5a2e4e3a1de9594cfa372d55199db758e5d8f100950e8a33f0b0ef6655"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-mse30-s123-downstream.md"
+}

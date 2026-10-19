@@ -1,0 +1,16 @@
+{
+  "exp_id": "perlayer_kl_k2_s123_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:02:31.289Z",
+    "updated_at": "2026-05-23T10:02:51.847Z",
+    "hypothesis": "K=2 s123 eval at 30% TEAL uniform: 7-task downstream for 3-seed K-curve. s123 sparsity=0.307 vs s42=0.268, may show improved PPL.",
+    "parent": "perlayer_kl_k2_s123"
+  },
+  "timestamp": "2026-05-23T10:02:52.464121+00:00",
+  "trigger": "update_registry"
+}

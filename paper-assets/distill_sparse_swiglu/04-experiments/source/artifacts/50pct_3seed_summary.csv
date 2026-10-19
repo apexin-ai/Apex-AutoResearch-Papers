@@ -1,0 +1,11 @@
+allocation,metric,seed42,seed123,seed456,mean,std
+uniform,wikitext2_ppl,11.963,11.83,11.9604,11.9178,0.076
+uniform,arc_challenge_acc_norm,0.3276,0.3515,0.3345,0.3379,0.0123
+uniform,winogrande_acc,0.629,0.6298,0.6275,0.6288,0.0012
+uniform,mmlu_acc,0.2777,0.2751,0.2874,0.2801,0.0065
+uniform,gsm8k_exact_match,0.0212,0.0235,0.0212,0.022,0.0013
+global,wikitext2_ppl,11.7933,11.7184,11.8057,11.7725,0.0472
+global,arc_challenge_acc_norm,0.3285,0.3635,0.3319,0.3413,0.0193
+global,winogrande_acc,0.6346,0.6109,0.6488,0.6314,0.0191
+global,mmlu_acc,0.2789,0.2834,0.2794,0.2806,0.0025
+global,gsm8k_exact_match,0.0129,0.0258,0.0212,0.02,0.0065

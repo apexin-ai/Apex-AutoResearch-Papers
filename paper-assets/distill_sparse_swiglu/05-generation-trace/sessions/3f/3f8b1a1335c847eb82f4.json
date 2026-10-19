@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f8b1a1335c847eb82f4",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis lm eval kl 30pct s42",
+  "task_key": "worker_analysis_lm_eval_kl_30pct_s42_20260516T024801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lm_eval_kl_30pct_s42_20260516T024801_result.json",
+    "occurrence": 1,
+    "bytes": 1458,
+    "sha256": "27d690beb131907feb0296f41d59e9d0e7a06018f3c6d9db80fa8c6b8d2b38bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n---\n\n## lm_eval_kl_30pct_s42 Results — **Conclusion: NEGATIVE**\n\n### Metrics (KL distill, 30% sparsity)\n\n| Task | Metric | KL 30% | Dense | Drop % | KL 50% | Δ vs 50% |\n|------|--------|--------|-------|--------|--------|----------|\n| ARC-c | acc_norm | 0.3737 | 0.5819 | **-35.8%** | 0.3771 | -0.003 |\n| WinoGrande | acc | 0.6756 | 0.7814 | **-13.5%** | 0.6156 | +0.060 |\n| MMLU | acc | 0.2874 | 0.6532 | **-56.0%** | 0.2591 | +0.028 |\n| GSM8K | em_flex | 0.0781 | 0.5004 | **-84.4%** | 0.0121 | +0.066 |\n\nActual sparsity: 0.300 (on target). Per-layer range: 0.125 (layer 18) to 0.703 (layer 31).\n\n### Analysis\n\n- **WinoGrande** is the only task with acceptable retention (86.5% of dense). 30% meaningfully better than 50% (+6 pts).\n- **ARC-c** nearly identical at 30% vs 50% — both ~36% drop from dense. Reducing sparsity from 50% → 30% did not help.\n- **MMLU** at 0.2874 is near random chance (0.25). 56% drop from dense. Only marginally better than 50% KL (0.2591).\n- **GSM8K** improved 6x over 50% (7.8% vs 1.2%), but still catastrophic — 84% drop from dense. Reasoning capability is destroyed.\n\n### Verdict\n\n30% sparsity with KL distillation still shows catastrophic degradation on knowledge (MMLU) and reasoning (GSM8K) tasks. The improvement over 50% is insufficient — GSM8K remains near-zero, MMLU remains near-random. Cannot claim \"30% as recommended configuration.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lm-eval-kl-30pct-s42.md"
+}

@@ -1,0 +1,37 @@
+{
+  "exp_id": "mvp_kl_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-15T11:50:59.003Z",
+    "updated_at": "2026-05-15T12:07:56.162Z",
+    "server": "westd-34887",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_s42 --wandb_run_name mvp_kl_s42\"",
+      "finished_at": "2026-05-15T11:58:28.261Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-15T11:58:28.834Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T11:58:29.490811+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "诊断中 | fix_worker_id: worker_diagnose_mvp_kl_s42_20260515T115944 | 两个 seed-42 实验同时 ~15s 崩溃，疑似同一根因"
+      }
+    },
+    "notes": "诊断中 | fix_worker_id: worker_diagnose_mvp_kl_s42_20260515T115944 | 两个 seed-42 实验同时 ~15s 崩溃，疑似同一根因"
+  },
+  "timestamp": "2026-05-15T12:07:56.198162+00:00",
+  "trigger": "update_registry"
+}

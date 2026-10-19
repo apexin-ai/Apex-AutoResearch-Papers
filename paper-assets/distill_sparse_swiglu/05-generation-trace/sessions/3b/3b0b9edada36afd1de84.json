@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b0b9edada36afd1de84",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra urgent collect all 14b results",
+  "task_key": "worker_infra_urgent_collect_all_14b_results_20260517T214835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_urgent_collect_all_14b_results_20260517T214835_result.json",
+    "occurrence": 1,
+    "bytes": 1679,
+    "sha256": "90b1b407d36a9bf10aec87072cc49bc1ec954b507e981bff75cb8d1440d02ab8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 experiments are still actively running. Here's the current status:\n\n```\n实验ID                        | 状态          | PPL     | ARC | WG | MMLU | GSM8K     | 备注\n-----------------------------|--------------|---------|-----|----|------|-----------|----\nqwen14b_teal30_eval          | RUNNING      | 8.7332  | ✓   | ✓  | ✓    | 86% (1129/1319) | GSM8K ~53 min remaining\nqwen14b_dense_baseline       | RUNNING      | 5.1854  | ✓   | ✓  | ✓    | 75% (993/1319)  | GSM8K ~43 min remaining\nqwen14b_bce30_s42_eval       | RUNNING      | 8.7634  | ✓   | ✓  | ✓    | 84% (1113/1319) | GSM8K ~50 min remaining\nbce_isocompute_v3_s123_eval  | RUNNING      | 28.0627 | ✓   | ✓  | 54%  | not started     | MMLU ~3 min left, then GSM8K ~2-3h\n```\n\n**GPU 状态:**\n- westd-41718 cuda:0: BUSY (dense_baseline, ~43 min)\n- westd-41718 cuda:1: BUSY (teal30_eval, ~53 min)\n- westd-34887 cuda:0: BUSY (bce30_s42_eval, ~50 min)\n- westd-34887 cuda:1: BUSY (v3_s123_eval, ~2-3h)\n\n**额外:**\n- bce_isocompute_v3_s123 训练 (PID 72392): **已完成**。Checkpoint 存在于 `/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v3_s123/predictor_bce.pt` (152MB, May 18 05:33)\n\n**关键发现:**\n- 前 3 个实验都在最后一个 benchmark (GSM8K) 阶段，约 43-53 分钟内完成\n- 第 4 个 (v3_s123) 是 LLaMA-3.1-8B (非 Qwen14B)，50% sparsity，MMLU 即将完成但 GSM8K 还需 2-3 小时\n- TEAL vanilla PPL (8.73) 和 BCE predictor PPL (8.76) 在 30% sparsity 下非常接近\n- Dense baseline PPL = 5.19 作为上界参考\n\n**无法更新 registry**——所有实验尚未完成，等 ~1h 后再检查前 3 个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-urgent-collect-all-14b-results.md"
+}

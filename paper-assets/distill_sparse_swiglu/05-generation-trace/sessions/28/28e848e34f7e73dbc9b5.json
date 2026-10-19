@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28e848e34f7e73dbc9b5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "viz lagrangian dynamics",
+  "task_key": "worker_viz_lagrangian_dynamics_20260517T044635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_lagrangian_dynamics_20260517T044635_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "5a1a1c2e6ce6bc6731c3443e18af0a7645f268983f29c72bb4055e959dd00fe3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。生成文件：\n\n- **PDF**: `/root/distill_sparse_swiglu/paper/figures/lagrangian_dynamics.pdf`\n- **PNG**: `/root/distill_sparse_swiglu/paper/figures/lagrangian_dynamics.png` (1036×1336 px, 300 DPI)\n- **脚本**: `/root/distill_sparse_swiglu/scripts/plot_lagrangian_dynamics.py`\n\n图的内容：\n- **(a)** 上面板：4 条 λ 曲线（log scale），30% 的 λ 从 0.01 涨到 5000，70% 的从 2 涨到 1000，展示 Lagrangian multiplier 的自适应调节过程\n- **(b)** 下面板：实际 sparsity（实线）vs 目标 sparsity（虚线），可见各 target 的收敛行为\n\n注意：50% 实验只有 200 步数据（其余三个有 1000 步），图上会体现为 50% 曲线较短。如需补跑 50% 的完整数据再告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-lagrangian-dynamics.md"
+}

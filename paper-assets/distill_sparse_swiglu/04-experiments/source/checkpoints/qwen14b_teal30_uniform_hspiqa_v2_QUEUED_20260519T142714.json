@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen14b_teal30_uniform_hspiqa_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:25:23.976Z",
+    "updated_at": "2026-05-19T14:27:14.006Z",
+    "hypothesis": "TEAL 30% uniform on Qwen-14B HellaSwag+PIQA. Re-submit after erroneous kill (TEAL vanilla not affected by D075 bug).",
+    "parent": "qwen14b_teal30_uniform_eval_4task"
+  },
+  "timestamp": "2026-05-19T14:27:14.434118+00:00",
+  "trigger": "update_registry"
+}

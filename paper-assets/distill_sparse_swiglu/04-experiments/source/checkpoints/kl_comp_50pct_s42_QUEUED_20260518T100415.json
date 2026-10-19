@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl_comp_50pct_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:03:41.768Z",
+    "updated_at": "2026-05-18T10:04:15.258Z",
+    "hypothesis": "KL+compensation at 50% sparsity (s42) recovers quality similar to 30% compensation, validating that compensation heads generalize across sparsity levels.",
+    "parent": "kl_comp_30pct_s42"
+  },
+  "timestamp": "2026-05-18T10:04:15.599736+00:00",
+  "trigger": "update_registry"
+}

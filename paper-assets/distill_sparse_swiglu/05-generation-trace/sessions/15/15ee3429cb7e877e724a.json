@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15ee3429cb7e877e724a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval kl30 s123 independent",
+  "task_key": "worker_eval_kl30_s123_independent_20260517T112444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl30_s123_independent_20260517T112444_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "daf6fc0fdff6adf77470c0be2af0d408994ebdc6444320415f6c7902af2a7ca3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s456 训练正在启动，参数确认：lambda_max=5000, target=0.3, seed=456。\n\n---\n\n## 汇报\n\n**30% s123 eval 完整结果：**\n| Metric | Value |\n|---|---|\n| WikiText-2 PPL | **8.9748** |\n| ARC-c (25-shot acc_norm) | **0.4531** |\n| WinoGrande (5-shot acc) | **0.6930** |\n| MMLU (5-shot acc) | **0.3807** |\n| GSM8K (8-shot exact_match) | **0.0758** |\n\n**s456 训练已提交：**\n- Job ID: `kl30_s456_train`\n- PID: 36749\n- GPU: cuda:1\n- 参数：seed=456, lambda_max=5000, sparsity_target=0.3, 1000 steps\n- 日志：`~/runs/distill_sparse_swiglu/kl30_s456_train.log`\n\n**已完成操作：**\n1. Kill 了 chain 脚本 (PIDs 31022, 31023)\n2. 等待 s123 eval 完成并收集全部 downstream 结果\n3. 独立提交 s456 训练到 cuda:1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kl30-s123-independent.md"
+}

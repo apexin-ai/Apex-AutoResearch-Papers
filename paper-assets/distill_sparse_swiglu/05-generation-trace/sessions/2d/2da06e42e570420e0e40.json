@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2da06e42e570420e0e40",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops s42 eval uniform check",
+  "task_key": "worker_ops_s42-eval-uniform-check_20260519T132100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s42-eval-uniform-check_20260519T132100_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "b71b9b3ed58fdd016f66f640b8905dca6bbcbe2e19f9eb94eea9db911077e3a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果**：`qwen14b_kl30_s42_eval_uniform` **失败**，已在 registry 标记。\n\n| 指标 | 状态 |\n|------|------|\n| WikiText-2 PPL | 7.6318 (成功计算但未持久化) |\n| arc_challenge | 未运行 |\n| winogrande | 未运行 |\n| hellaswag | 未运行 |\n| piqa | 未运行 |\n| mmlu | 未运行 |\n\n**失败原因**：服务器网络中断 (`[Errno 101] Network is unreachable`)，lm-eval 无法从 HuggingFace 下载 arc_challenge 数据集。脚本在 lm-eval 阶段崩溃，results.json 未写入。\n\n**重跑建议**：重跑前需确保 westd-34887 网络恢复，或提前将 lm-eval 所需数据集缓存到本地。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s42-eval-uniform-check.md"
+}

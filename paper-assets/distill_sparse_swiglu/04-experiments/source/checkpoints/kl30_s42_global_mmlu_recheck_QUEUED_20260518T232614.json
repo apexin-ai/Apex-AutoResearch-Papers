@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl30_s42_global_mmlu_recheck",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:25:44.731Z",
+    "updated_at": "2026-05-18T23:26:14.443Z",
+    "hypothesis": "s42 global 30% MMLU=25.3% is an anomalous outlier (vs s123=38.1%, s456=43.8%) likely due to eval instability rather than predictor quality, since PPL is consistent across seeds (8.93-8.98). Rerunning with identical protocol should either reproduce the low score (confirming seed-specific MMLU sensitivity) or show a normal score (confirming eval noise).",
+    "parent": "kl30_s42_global_v3"
+  },
+  "timestamp": "2026-05-18T23:26:14.781923+00:00",
+  "trigger": "update_registry"
+}

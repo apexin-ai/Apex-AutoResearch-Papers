@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03cd11ea981fac5f7d97",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze downstream dense baseline",
+  "task_key": "worker_analyze_downstream_dense_baseline_20260517T170511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_downstream_dense_baseline_20260517T170511_result.json",
+    "occurrence": 1,
+    "bytes": 403,
+    "sha256": "91dcf209a87e2a8b7a675686bb892bb99af7accbf472bf6eb0c2518c11557ae5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被清除或未在本 session 创建）。无需进一步操作。\n\n**结果汇总 — LLaMA-3.1-8B Dense Baseline (downstream)**\n\n| Benchmark | Metric | Score |\n|-----------|--------|-------|\n| HellaSwag | acc_norm | 0.8233 ± 0.0038 |\n| PIQA | acc_norm | 0.8074 ± 0.0092 |\n| BoolQ | acc | 0.8294 ± 0.0066 |\n\nRegistry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-downstream-dense-baseline.md"
+}

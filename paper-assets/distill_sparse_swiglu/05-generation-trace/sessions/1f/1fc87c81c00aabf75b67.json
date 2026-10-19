@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fc87c81c00aabf75b67",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops full status post restart2",
+  "task_key": "worker_ops_full_status_post_restart2_20260520T032455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_status_post_restart2_20260520T032455_result.json",
+    "occurrence": 1,
+    "bytes": 1625,
+    "sha256": "d9b8da3f4aadecf89d0e3c72ccaab4d2ba350a9bd6359bfd305cc5e31de25668"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全面状态报告\n\n### westd-41718（两个 GPU 均空闲）\n\n| GPU | 实验 | PID | 状态 | 关键 Metrics |\n|-----|------|-----|------|-------------|\n| cuda:0 | MSE 训练 s42 | 196791 | **DEAD / 已完成** | loss=0.0130, mse=0.0057, sparsity=0.277 |\n| cuda:1 | C4 OOD s42 | 199770 | **DEAD / 已完成** | C4 PPL=18.2211, sparsity=0.296 |\n\nGPU 状态：cuda:0 = 0 MiB / 0%, cuda:1 = 0 MiB / 0%\n\n**MSE 训练详情：**\n- 1000/1000 steps 完成，EXIT_CODE=0\n- Checkpoint: `checkpoints/mse30_s42/predictor_mse.pt` (145MB, 11:19 保存)\n- 最终 step: mse=0.005735, constraint=0.007294, sparsity=0.277, tau=0.100, lambda=1000\n\n**C4 OOD 详情：**\n- 完成，EXIT_CODE=0\n- C4 PPL = **18.2211**（132 sequences, seq_len=2048）\n- Model-level sparsity = 0.296\n- 使用 checkpoint: `kl_sparsity30_s42_v3/predictor_kl_normalized.pt`, teal_global + uniform allocation\n\n---\n\n### westd-34887（两个 GPU 满载运行）\n\n| GPU | 实验 | PID | 状态 | 进度 |\n|-----|------|-----|------|------|\n| cuda:0 | TEAL 30% global HS+PIQA | 157764 | **ALIVE / 运行中** | lm-eval 86% (34681/40168) |\n| cuda:1 | BCE 30% global HS+PIQA | 157845 | **ALIVE / 运行中** | lm-eval 86% (34737/40168) |\n\nGPU 状态：cuda:0 = 39993 MiB / 100%, cuda:1 = 68697 MiB / 100%\n\n- 两个 eval 进度几乎同步，约 14 it/s，剩余 ~5500 requests 每个\n- 预计 ~6-7 分钟完成\n- Model-level sparsity 均为 0.300\n- TEAL 层级分布：后几层显著更高（L47=0.810, L46=0.660）\n- BCE 层级分布：更平坦，后层较低（L42=0.055, L43=0.078），尾部回升（L46=0.570）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-status-post-restart2.md"
+}

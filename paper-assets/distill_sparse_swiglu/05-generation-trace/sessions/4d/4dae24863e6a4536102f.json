@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dae24863e6a4536102f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check and submit mse 20260520T0240",
+  "task_key": "worker_ops_check_and_submit_mse_20260520T0240_20260520T023636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_and_submit_mse_20260520T0240_20260520T023636_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "e6ebee3344cfd7d2ed88d618f5d995fa89cb8cbf5d78d6cea2e49b66d7928e4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 14B Eval 状态 ===\nqwen14b_kl30_global_hspiqa (41718:1): 运行中 — PIQA loglikelihood 98% (39497/40168), ~42秒后完成\nqwen14b_teal30_global_hspiqa (34887:0): 运行中 — PIQA loglikelihood 2% (665/40168), 预计还需 ~67分钟\nqwen14b_bce30_global_hspiqa (34887:1): 运行中 — PIQA loglikelihood 2% (649/40168), 预计还需 ~68分钟\n\n三个实验都已完成 HellaSwag eval，正在跑 PIQA。kl30 马上完成，34887 上两个还需约1小时。\n\n=== 41718:0 GPU 状态 ===\n空闲 — 0 MiB / 0%，可以提交 MSE 训练\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-and-submit-mse-20260520t0240.md"
+}

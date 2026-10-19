@@ -1,0 +1,15 @@
+{
+  "exp_id": "perlayer_kl_k2_s456",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:54:22.643Z",
+    "updated_at": "2026-05-23T07:54:30.624Z",
+    "hypothesis": "K=2 per-layer KL predictor seed=456 for 3-seed K-curve. Part of R20-W1 multi-seed validation at 30% sparsity."
+  },
+  "timestamp": "2026-05-23T07:54:31.261459+00:00",
+  "trigger": "update_registry"
+}

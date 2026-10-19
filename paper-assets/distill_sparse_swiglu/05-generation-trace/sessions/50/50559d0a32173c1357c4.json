@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50559d0a32173c1357c4",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code qwen14b kl30 s456 eval v3 resubmit",
+  "task_key": "worker_code_qwen14b_kl30_s456_eval_v3_resubmit_20260519T154015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen14b_kl30_s456_eval_v3_resubmit_20260519T154015_result.json",
+    "occurrence": 1,
+    "bytes": 336,
+    "sha256": "06cccc940ab0442e51622627b263e453e0948a6bb4b6f8ef075cc9d2db7d4c6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **实验已启动**：westd-41718 cuda:0，PID 156636\n- **日志正常**：mask 生成完毕（model-level sparsity 0.297），WikiText-2 评估进行中\n- **Registry 已更新**：API + 磁盘 YAML 双写，status=RUNNING\n- **Cron 监控已注册**：每 2 分钟自动检查进程状态和日志"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen14b-kl30-s456-eval-v3-resubmit.md"
+}

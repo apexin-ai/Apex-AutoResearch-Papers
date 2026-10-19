@@ -1,0 +1,44 @@
+{
+  "eval_results": {
+    "wikitext2_ppl_dense": 6.12,
+    "wikitext2_ppl_sparse": 455.93,
+    "ppl_increase_pct": 7349.0,
+    "model_level_sparsity": 0.372,
+    "sparsity_target": 0.5,
+    "per_layer_sparsity": {
+      "0": 0.568, "1": 0.605, "2": 0.590, "3": 0.678, "4": 0.633,
+      "5": 0.555, "6": 0.615, "7": 0.717, "8": 0.682, "9": 0.592,
+      "10": 0.611, "11": 0.609, "12": 0.674, "13": 0.584, "14": 0.473,
+      "15": 0.320, "16": 0.273, "17": 0.109, "18": 0.137, "19": 0.176,
+      "20": 0.203, "21": 0.121, "22": 0.129, "23": 0.145, "24": 0.125,
+      "25": 0.141, "26": 0.141, "27": 0.176, "28": 0.125, "29": 0.098,
+      "30": 0.137, "31": 0.164
+    },
+    "note_dense_ppl_discrepancy": "Dense PPL 6.12 differs from BCE baseline reported 27.96; same evaluate.py, cause TBD"
+  },
+  "sparsity_collapse_analysis": {
+    "root_cause": "KL loss magnitude (~556) overwhelms sparsity regularizer (~0.017) by ~32700:1. Predictor learns trivial solution (keep all neurons). Gumbel tau annealing (1.0->0.1) locks in all-ones mask before reg takes effect.",
+    "kl_loss_magnitude": "initial ~556, final ~3.3 (batchmean KL on 128K-vocab logits, T=1.0)",
+    "reg_loss_weight": "0.1 (--sparsity_reg_weight default)",
+    "reg_loss_magnitude": "initial ~0.017, max possible 0.05 (= 0.1 * |density - target|)",
+    "loss_ratio": "KL:reg = 32700:1 initially, 66:1 finally",
+    "tau_schedule": "linear 1.0->0.1 over 1000 steps (train.py L97)",
+    "why_bce_works": "BCE ~0.5-0.7 per neuron, directly teaches neuron selection via binary targets. Inherently encodes sparsity structure.",
+    "model_sparsity_below_target": "0.372 < 0.5 because predictor scores cluster tightly, causing ties at global threshold",
+    "fix_suggestions": [
+      "Increase --sparsity_reg_weight to 1000-5000",
+      "Two-phase: BCE pre-train then KL fine-tune",
+      "Normalize KL: divide by seq_len or per-token reduction",
+      "Delay tau annealing: keep tau=1.0 during warmup",
+      "Adaptive lambda: maintain KL:reg ratio ~10:1"
+    ]
+  },
+  "comparison_with_bce": {
+    "bce_sparse_ppl": 44.21,
+    "kl_sparse_ppl": 455.93,
+    "kl_better": false,
+    "delta": -411.72,
+    "note": "KL ~10x worse than BCE due to sparsity collapse"
+  },
+  "missing_eval_reason": "Neither train_kl() nor train_bce() calls evaluate.py. Both only save checkpoint + wandb.finish(). BCE eval was a separate manual step."
+}

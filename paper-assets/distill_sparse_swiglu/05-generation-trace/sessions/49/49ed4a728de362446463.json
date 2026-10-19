@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49ed4a728de362446463",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops lm eval dataset precache",
+  "task_key": "worker_ops_lm_eval_dataset_precache_20260515T220904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_lm_eval_dataset_precache_20260515T220904_result.json",
+    "occurrence": 1,
+    "bytes": 1268,
+    "sha256": "4e0c5e9a07a5e6383acda8b004a7c0bbf058bda4425d58db47af1be8c5ebdca7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部离线验证通过。汇总报告：\n\n## 数据集缓存状态\n\n| 数据集 | 状态 | 样本数 |\n|--------|------|--------|\n| WikiText-2 (test) | ✅ 已缓存（之前就有） | 4,358 |\n| WikiText-103 (train+test) | ✅ 已缓存（之前就有） | - |\n| ARC-Challenge (test) | ✅ 新缓存 | 1,172 |\n| ARC-Easy (test) | ✅ 新缓存 | 2,376 |\n| WinoGrande (val) | ✅ 新缓存 | 1,267 |\n| MMLU - cais/mmlu (全部 57 科目) | ✅ 新缓存 | 14,042 |\n| GSM8K (test) | ✅ 新缓存 | 1,319 |\n| C4 (validation, streaming) | ❌ 无法预缓存 | - |\n\n### C4 说明\n`allenai/c4` streaming 模式初始化在此网络环境下持续超时（尝试了 HF 直连和 hf-mirror 均失败）。hub 元数据已缓存在 `/root/autodl-tmp/.hf_cache/hub/datasets--allenai--c4/`。项目 `evaluate.py` 已提供 `--skip_c4` 选项可绕过。运行 C4 PPL eval 时需要保证网络畅通。\n\n### lm-eval 数据源确认\n- lm-eval 0.4.12 的 `mmlu` task 使用 `cais/mmlu`（不是 `hails/mmlu_no_train`）\n- `arc_challenge` → `allenai/ai2_arc` ARC-Challenge\n- `winogrande` → `allenai/winogrande` winogrande_xl\n- `gsm8k` → `openai/gsm8k` main\n\n所有数据集均已通过 `TRANSFORMERS_OFFLINE=1` 离线加载验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-lm-eval-dataset-precache.md"
+}

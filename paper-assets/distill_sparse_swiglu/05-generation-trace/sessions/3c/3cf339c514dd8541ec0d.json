@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3cf339c514dd8541ec0d",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "ops copy checkpoint and eval revkl s456 20260521T043522 retry1 retry2",
+  "task_key": "worker_ops_copy_checkpoint_and_eval_revkl_s456_20260521T043522_retry1_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_copy_checkpoint_and_eval_revkl_s456_20260521T043522_retry1_retry2.log",
+    "occurrence": 1,
+    "bytes": 535080,
+    "sha256": "eac2f027f1265e47e084ef862d13ee39f990c05e7e555d2b2c7da1477eb547ee"
+  },
+  "statistics": {
+    "messages": 327,
+    "user_turns": 0,
+    "tool_calls": 118,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 85,
+      "tool_call": 118,
+      "tool_result": 118,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 327,
+      "chunks": [
+        {
+          "path": "3cf339c514dd8541ec0d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3cf339c514dd8541ec0d-part-0002.json",
+          "message_count": 147
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-copy-checkpoint-and-eval-revkl-s456-20260521t043522-retry1-retry2.md"
+}

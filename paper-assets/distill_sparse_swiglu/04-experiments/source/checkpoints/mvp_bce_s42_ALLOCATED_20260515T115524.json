@@ -1,0 +1,27 @@
+{
+  "exp_id": "mvp_bce_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:51:05.131Z",
+    "updated_at": "2026-05-15T11:55:24.801Z",
+    "spec": {
+      "hypothesis": "BCE baseline: per-neuron independent binary target training for sparsity prediction",
+      "loss_type": "bce",
+      "seed": 42,
+      "model": "Llama-3.1-8B",
+      "sparsity": 0.5,
+      "steps": 1000,
+      "batch_size": 4,
+      "seq_len": 2048,
+      "gpu": "cuda:1",
+      "server": "westd-34887",
+      "eval": "WikiText-2 + C4 perplexity"
+    }
+  },
+  "timestamp": "2026-05-15T11:55:24.810919+00:00",
+  "trigger": "update_registry"
+}

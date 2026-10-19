@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0226b2b086882bb0e124",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops westd 41718 fill gpus",
+  "task_key": "worker_ops_westd-41718-fill-gpus_20260518T065036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-41718-fill-gpus_20260518T065036_result.json",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "5e7c6448f4c6ef4ec79d07f5d95182f62cbde22a8b27a7c878706a4d29fa0210"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两卡已满：\n\n| GPU | 实验 | 内容 |\n|-----|------|------|\n| cuda:0 | `downstream_ext_kl50_uniform_s42` | KL 50% uniform → HellaSwag, PIQA, BoolQ |\n| cuda:1 | `downstream_ext_kl30_uniform_s123` | KL 30% uniform s123 → HellaSwag, PIQA, BoolQ (多 seed 补充) |\n\n两个实验各占 ~41.7GB，tmux session 正常运行。填补的数据空白：50% sparsity 缺扩展下游任务结果，30% sparsity 缺 s123 seed 的扩展任务多 seed 方差数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-41718-fill-gpus.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "122f9b8c16919c0340de",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze perlayer kl 50 s42 ppl",
+  "task_key": "worker_analyze_perlayer_kl_50_s42_ppl_20260522T071107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_perlayer_kl_50_s42_ppl_20260522T071107_result.json",
+    "occurrence": 1,
+    "bytes": 868,
+    "sha256": "4be2a52ace6fe9c30a4a956b35f6dc18136927ca5fc8f8d2f4925a58b6ccfe16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已存在且数据完整。\n\n## 结果汇总\n\n**Benchmark eval PPL: 34.8473**\n\n| 指标 | 值 |\n|------|-----|\n| WikiText-2 PPL | 34.8473 |\n| 实际 sparsity | 0.496 (target 0.50) |\n| Per-layer sparsity 范围 | 0.484 ~ 0.500 |\n| 与训练 eval PPL (34.85) 一致性 | **完全一致** (34.8473 ≈ 34.85) |\n\n**训练过程正常：**\n- 10000/10000 steps 完成，EXIT_CODE=0\n- avg_kl 从训练过程中稳步收敛至 0.0282\n- 每层 sparsity 控制精确（均在 0.484–0.520 范围内，最终 eval 时 0.484–0.500）\n- lambda 自适应调节工作正常（各层 final_lambda 从 0.01 到 5000 不等）\n\n**结论：** PPL=34.85 已确认，远超预期范围 (11.84~18.52)。Sparsity 控制本身没有问题（精确达到 ~50%），问题出在 per-layer KL 训练方法在 50% sparsity 下的质量严重退化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-perlayer-kl-50-s42-ppl.md"
+}

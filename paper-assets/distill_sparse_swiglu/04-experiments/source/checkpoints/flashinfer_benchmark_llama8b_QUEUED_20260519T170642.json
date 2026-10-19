@@ -1,0 +1,15 @@
+{
+  "exp_id": "flashinfer_benchmark_llama8b",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:05:25.529Z",
+    "updated_at": "2026-05-19T17:06:41.626Z",
+    "hypothesis": "Wall-clock inference speedup: gather-matmul sparse FFN (30%/50% sparsity) vs dense on LLaMA-3.1-8B. Full-sparse path: all 3 projections (gate/up/down) use gathered weights. Addresses reviewer W3."
+  },
+  "timestamp": "2026-05-19T17:06:42.070706+00:00",
+  "trigger": "update_registry"
+}

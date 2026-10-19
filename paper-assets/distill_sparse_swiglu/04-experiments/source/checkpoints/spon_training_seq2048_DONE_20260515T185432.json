@@ -1,0 +1,40 @@
+{
+  "exp_id": "spon_training_seq2048",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:35:39.812Z",
+    "updated_at": "2026-05-15T18:54:31.996Z",
+    "spec": {
+      "hypothesis": "SPON seq_len=2048 重训消除 train/eval seq_len mismatch confound (原 128 vs eval 2048)，决定 Claim 2 是否有救",
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "server": "westd-34887",
+      "parent": "spon_training",
+      "data_path": "wikitext-103 (HF cached)",
+      "loss_type": "kl_spon",
+      "sparsity": 0.5,
+      "steps": 1000,
+      "seq_len": 2048,
+      "batch_size": 4,
+      "gpu": "cuda:0"
+    },
+    "server": "westd-34887",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-34887",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T18:39:41.493Z"
+    },
+    "conclusion": "killed",
+    "checkpoint_path": "N/A",
+    "log_path": "N/A",
+    "completed_at": "2026-05-15T18:41:36.489Z"
+  },
+  "timestamp": "2026-05-15T18:54:32.055330+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "bce_isocompute_s42_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:47:02.076Z",
+    "updated_at": "2026-05-15T20:23:59.977Z",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=offline python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 2700 --warmup_steps 100 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --dataset wikitext-103 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/bce_isocompute_s42_v2 --wandb_run_name bce_isocompute_2700steps_s42_v2 --gradient_checkpointing\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "123984",
+      "log_path": "~/runs/distill_sparse_swiglu/bce_isocompute_s42_v2.log",
+      "submitted_at": "2026-05-15T19:47:01.988Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "BCE 在等量 FLOPs (2700 步 vs KL 1000 步, ratio=2.71x) 下是否能缩小与 KL 的 PPL 差距？如果不能，说明 KL 的优势来自 loss 函数本身而非计算量（Reviewer Concern #2 defense）。[Retry of bce_isocompute_s42 which crashed at step 500]",
+    "notes": "原 bce_isocompute_s42 (PID 120879) 在 step 500/2700 后静默退出。调查结论：(1) 日志无 error/traceback，最后输出为 step 500 的正常 metrics；(2) tmux session 已不存在，且无 /tmp/agent-ml-exit/bce_isocompute_s42.exit 退出码文件，说明 tmux session 被外部 kill（非正常退出，EXIT trap 未触发）；(3) dmesg 不可访问（容器权限限制），无法确认 OOM killer；(4) 磁盘空间正常（root 46%, data 11%）。最可能原因：tmux session 被其他操作意外终止。v2 以相同参数重提交到 cuda:0，output_dir 改为 bce_isocompute_s42_v2。",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T20:24:00.093512+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3858575a0d7e727fcae2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops kill stale processes",
+  "task_key": "worker_ops_kill_stale_processes_20260515T223733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_stale_processes_20260515T223733_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "a8a78e9cca02b1ddc0ba4e7a7e909d863075a9140b392efe7b225d50adf7ceae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 7 个 PID 均已不存在（`ps` 返回空，exit code 1）。\n\n**处理结果：**\n\n| PID | 描述 | 状态 |\n|-----|------|------|\n| 152728 | 重复 ARC test (max_eval_samples 50) | 已不存在，无需 kill |\n| 148236 | 卡死 C4 streaming | 已不存在，无需 kill |\n| 46706, 46711, 46712 | 卡死 wikitext | 已不存在，无需 kill |\n| 153259 | dense ARC 完整版 | 已不存在 |\n| 152874 | kl_sparsity70 eval | 已不存在 |\n\n所有进程都已自行结束。需要继续运行的 153259 和 152874 也不在了，可能需要检查它们的输出日志确认是正常完成还是异常退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-stale-processes.md"
+}

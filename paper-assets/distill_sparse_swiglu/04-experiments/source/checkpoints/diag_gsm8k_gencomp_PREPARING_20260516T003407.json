@@ -1,0 +1,22 @@
+{
+  "exp_id": "diag_gsm8k_gencomp",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:34:07.736Z",
+    "updated_at": "2026-05-16T00:34:07.736Z",
+    "spec": {
+      "hypothesis": "稀疏模型 GSM8K 退化是推理能力丧失（输出无意义/重复）还是仅格式错误（推理正确但答案格式不匹配）？",
+      "model_name": "meta-llama/Llama-3.1-8B dense vs KL sparse 50%",
+      "eval_data": "GSM8K 5-10 samples, greedy generation",
+      "server": "westd-34887",
+      "seed": 42,
+      "parent": "lm_eval_kl_s42"
+    }
+  },
+  "timestamp": "2026-05-16T00:34:07.848895+00:00",
+  "trigger": "update_registry"
+}

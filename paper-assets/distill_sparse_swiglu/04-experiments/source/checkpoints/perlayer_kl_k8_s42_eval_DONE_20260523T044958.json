@@ -1,0 +1,43 @@
+{
+  "exp_id": "perlayer_kl_k8_s42_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:30:20.399Z",
+    "updated_at": "2026-05-23T04:49:56.617Z",
+    "hypothesis": "K=8 predictor eval at 30% TEAL uniform: part of K-curve {1,2,4,8,16,32} to quantify coupling scope effect on downstream quality.",
+    "parent": "perlayer_kl_k8_s42",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py --exp_id perlayer_kl_k8_s42_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_k8_s42/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0",
+      "server": "westd-34887",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "data_path": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa",
+      "data_count": 0,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/perlayer_kl_k8_s42/predictor_perlayer_kl_k4.pt",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa",
+      "pid": 104348
+    },
+    "metrics": {
+      "wikitext2_ppl": 8.9704,
+      "arc_challenge_acc_norm": 0.4104,
+      "winogrande_acc": 0.674,
+      "mmlu_acc": 0.398,
+      "gsm8k_exact_match": 0.0561,
+      "hellaswag_acc_norm": 0.6919,
+      "piqa_acc_norm": 0.7612
+    },
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k8_s42/predictor_perlayer_kl_k4.pt",
+    "log_path": "/root/distill_sparse_swiglu/logs/perlayer_kl_k8_s42_eval.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T04:49:56.617Z"
+  },
+  "timestamp": "2026-05-23T04:49:58.449607+00:00",
+  "trigger": "update_registry"
+}

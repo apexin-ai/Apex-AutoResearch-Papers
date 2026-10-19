@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "111a12e9b52f82985384",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops comp s123 collect eval",
+  "task_key": "worker_ops_comp-s123-collect-eval_20260518T092608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_comp-s123-collect-eval_20260518T092608_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "7fea5760f72df66a5cb3aa86350c15454d9915c73a7f5f2a8074d34345f84067"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个步骤完成。总结：\n\n**Step 1 - 训练结果收集** ✅\n- kl_comp_30pct_s123 训练完成：final_loss=0.7617, 1000 steps, compensation 0.837% params\n- Registry 已更新为 DONE/success\n\n**Step 2 - PPL eval** ✅\n- WikiText2 PPL = **8.9768**，C4 PPL = **16.0401**\n- 与 s42 完全一致（两个 seed 共用同一 base predictor，compensation 不影响 PPL 路径）\n- Registry kl_comp_30pct_s123_ppl 已标记 DONE/success\n\n**Step 3 - rsync checkpoint 到 34887** ✅\n- 通过 `scp -P 34887` 从 41718 传 compensation.pt 到 34887\n- 在 34887 上完成 predictor + compensation 合并（273.2 MB）\n- 路径：`/root/distill_sparse_swiglu/checkpoints/kl_comp_30pct_s123/predictor_with_comp.pt`\n\n**Step 4 - 41718 cuda:1** \n- 无需额外任务（PPL eval 已包含 C4，不需要重复）\n- 两卡均空闲，可用于后续 downstream eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-comp-s123-collect-eval.md"
+}

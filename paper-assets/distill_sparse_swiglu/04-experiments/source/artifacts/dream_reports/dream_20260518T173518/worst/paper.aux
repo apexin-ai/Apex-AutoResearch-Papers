@@ -1,0 +1,70 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training-free activation sparsity.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Learned sparsity predictors.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{KL distillation for sparse inference.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sparsity analysis and regime characterization.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Loss Function Taxonomy}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:loss-taxonomy}{{3.2}{3}{Loss Function Taxonomy}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Decomposed loss (BCE).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Intermediate loss (MSE).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Coupled loss (KL).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Two-dimensional design space.}{3}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Two-dimensional taxonomy of sparsity predictor training. Our work fills the per-token contextual + coupled (KL) cell.}}{3}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:taxonomy}{{1}{3}{Two-dimensional taxonomy of sparsity predictor training. Our work fills the per-token contextual + coupled (KL) cell}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Gradient Signal-to-Noise Analysis}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Training Procedure}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{4}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sparsity protocol.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Operating Point Comparison at 30\% Sparsity}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main-results}{{4.2}{4}{Operating Point Comparison at 30\% Sparsity}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Recommended operating point comparison at 30\% uniform sparsity on Llama-3.1-8B. PPL = WikiText-2 perplexity. Comp. = requires compensation network. BCE 30\% achieves PPL 9.15, closing the gap with KL to $\Delta $=0.33. Downstream gaps are larger: ARC-c $-$4.2pp, WinoGrande $-$2.4pp, MMLU $-$0.7pp.}}{4}{table.caption.14}\protected@file@percent }
+\newlabel{tab:operating-point}{{2}{4}{Recommended operating point comparison at 30\% uniform sparsity on Llama-3.1-8B. PPL = WikiText-2 perplexity. Comp. = requires compensation network. BCE 30\% achieves PPL 9.15, closing the gap with KL to $\Delta $=0.33. Downstream gaps are larger: ARC-c $-$4.2pp, WinoGrande $-$2.4pp, MMLU $-$0.7pp}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Causal Ablation: Gradient Coupling vs.\ Mask Quality}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:c1-ablation}{{4.3}{5}{Causal Ablation: Gradient Coupling vs.\ Mask Quality}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Causal ablation of gradient coupling vs.\ mask quality across three seeds. BCE+KL-t = BCE trained on KL-derived oracle masks, evaluated under TEAL 50\% uniform protocol. Oracle Agree. = mask agreement between BCE+KL-targets and original KL predictor. The PPL gap ($\Delta $) is seed-dependent: 0.00 for s42 (exact match), 0.85 for s123, 0.60 for s456. Gradient coupling contributes 0\%--18\% depending on seed; target mask quality is the dominant driver (82\%--100\%).}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:c1-ablation}{{3}{5}{Causal ablation of gradient coupling vs.\ mask quality across three seeds. BCE+KL-t = BCE trained on KL-derived oracle masks, evaluated under TEAL 50\% uniform protocol. Oracle Agree. = mask agreement between BCE+KL-targets and original KL predictor. The PPL gap ($\Delta $) is seed-dependent: 0.00 for s42 (exact match), 0.85 for s123, 0.60 for s456. Gradient coupling contributes 0\%--18\% depending on seed; target mask quality is the dominant driver (82\%--100\%)}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Sparsity Regime Analysis}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:regime}{{4.4}{5}{Sparsity Regime Analysis}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Non-monotonic PPL behavior.}{5}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Six-point sparsity regime analysis with KL predictors on Llama-3.1-8B. Each sparsity level uses a dedicated predictor. Uniform PPL exhibits non-monotonic behavior (decreasing from 25\% to 40\%) due to per-level predictor optimization effects, with a sharp cliff at 40\%--45\%. Downstream metrics show a different cliff location: MMLU drops 10.8pp between 35\% and 40\%.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:regime}{{4}{6}{Six-point sparsity regime analysis with KL predictors on Llama-3.1-8B. Each sparsity level uses a dedicated predictor. Uniform PPL exhibits non-monotonic behavior (decreasing from 25\% to 40\%) due to per-level predictor optimization effects, with a sharp cliff at 40\%--45\%. Downstream metrics show a different cliff location: MMLU drops 10.8pp between 35\% and 40\%}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{PPL-downstream dissociation.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical recommendation.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Long-Context Evaluation}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:longbench}{{4.5}{6}{Long-Context Evaluation}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces LongBench English subset results by task category. KL 30\% retains 61\% of dense performance (overall 14.0 vs.\ 23.0). The KL vs.\ BCE+comp gap is compressed to 1.1 points (14.0 vs.\ 12.9) in the long-context setting, compared to larger gaps at standard context length. Summarization is the best-preserved category ($-$20\% vs.\ dense), while single-document QA degrades most ($-$46\%).}}{6}{table.caption.21}\protected@file@percent }
+\newlabel{tab:longbench}{{5}{6}{LongBench English subset results by task category. KL 30\% retains 61\% of dense performance (overall 14.0 vs.\ 23.0). The KL vs.\ BCE+comp gap is compressed to 1.1 points (14.0 vs.\ 12.9) in the long-context setting, compared to larger gaps at standard context length. Summarization is the best-preserved category ($-$20\% vs.\ dense), while single-document QA degrades most ($-$46\%)}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitation.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Discussion}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:discussion}{{4.6}{7}{Discussion}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{KL as automated oracle discovery.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations of single-seed sweep.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Predictor length generalization.}{7}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{7}{Conclusion}{section.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}MT-Bench Evaluation}{8}{appendix.A}\protected@file@percent }
+\newlabel{app:mtbench}{{A}{8}{MT-Bench Evaluation}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces MT-Bench scores (GPT-4o judge). Dense baseline 3.8 is near the quality floor for base models. All sparsity conditions fall within 1.5--4.0, with differences likely within scoring noise. KL 30\% vs.\ BCE+comp 30\% gap is only 0.2 points. Math is the worst-affected category (KL 30\% = 1.2, $-$40\% vs.\ dense 2.0). These results have low discriminative power due to the base model limitation.}}{8}{table.caption.26}\protected@file@percent }
+\newlabel{tab:mtbench}{{6}{8}{MT-Bench scores (GPT-4o judge). Dense baseline 3.8 is near the quality floor for base models. All sparsity conditions fall within 1.5--4.0, with differences likely within scoring noise. KL 30\% vs.\ BCE+comp 30\% gap is only 0.2 points. Math is the worst-affected category (KL 30\% = 1.2, $-$40\% vs.\ dense 2.0). These results have low discriminative power due to the base model limitation}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}RULER Long-Context Evaluation}{8}{appendix.B}\protected@file@percent }
+\newlabel{app:ruler}{{B}{8}{RULER Long-Context Evaluation}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces RULER evaluation at 4K and 16K context lengths. KL 30\% retention drops from 80\% (4K) to 55\% (16K). Variable Tracking is the most affected task type, requiring cross-token state maintenance that sparse FFN disrupts. KL 50\% at 16K (15.0 average) approaches random performance.}}{8}{table.caption.27}\protected@file@percent }
+\newlabel{tab:ruler}{{7}{8}{RULER evaluation at 4K and 16K context lengths. KL 30\% retention drops from 80\% (4K) to 55\% (16K). Variable Tracking is the most affected task type, requiring cross-token state maintenance that sparse FFN disrupts. KL 50\% at 16K (15.0 average) approaches random performance}{table.caption.27}{}}
+\gdef \@abspage@last{9}

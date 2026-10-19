@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fdc0ca6adb51ede6d6d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "prep perlayer kl 50 eval env 34887",
+  "task_key": "worker_prep_perlayer_kl_50_eval_env_34887_20260522T035816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_perlayer_kl_50_eval_env_34887_20260522T035816_result.json",
+    "occurrence": 1,
+    "bytes": 1092,
+    "sha256": "62910be5161b344cdea3e80a48e5eae3910e42995edd4fc9c934159fdf81d2b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "单向足够（34887 从 41718 拉取 checkpoint）。\n\n---\n\n**汇报：**\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| **SCP 连通性** | 单向可用 | 34887 → 41718 通过 `scp -P 41718 root@connect.westd.seetacloud.com:` 可达（已配置 SSH key）。反向未配置（不需要）。 |\n| **Eval 代码** | 就绪 | `benchmark_eval.py` 存在 (17817B, May 18) |\n| **Python 环境** | 就绪 | torch=2.8.0+cu128, cuda=True, gpus=2, transformers=5.8.1, lm_eval=0.4.12 |\n| **磁盘空间** | 充足 | 根分区 8.4G 可用，数据盘 181G 可用。Checkpoint ~150MB 无压力 |\n| **LLaMA-3.1-8B 缓存** | 完整 | `/root/autodl-tmp/models/llama-3.1-8b/` (15G) |\n| **BoolQ/SuperGLUE 数据集** | 已缓存 | `super_glue` + `boolq` 均在 `.hf_cache/datasets/` 中 |\n\n**SCP 命令（训练完成后用）：**\n```bash\n# 在 westd-34887 上执行\nscp -P 41718 root@connect.westd.seetacloud.com:/root/distill_sparse_swiglu/checkpoints/<checkpoint_file> /root/distill_sparse_swiglu/checkpoints/\n```\n\n无问题需要修复，环境已就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-perlayer-kl-50-eval-env-34887.md"
+}

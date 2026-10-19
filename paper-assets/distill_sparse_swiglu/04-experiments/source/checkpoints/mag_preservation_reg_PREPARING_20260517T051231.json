@@ -1,0 +1,15 @@
+{
+  "exp_id": "mag_preservation_reg",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:12:31.666Z",
+    "updated_at": "2026-05-17T05:12:31.666Z",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-17T05:12:31.852142+00:00",
+  "trigger": "update_registry"
+}

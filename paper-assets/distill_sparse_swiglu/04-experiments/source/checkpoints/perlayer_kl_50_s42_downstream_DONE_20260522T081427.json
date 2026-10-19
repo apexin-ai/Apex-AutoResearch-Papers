@@ -1,0 +1,60 @@
+{
+  "exp_id": "perlayer_kl_50_s42_downstream",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:53:21.544Z",
+    "updated_at": "2026-05-22T08:14:27.075Z",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py --exp_id perlayer_kl_50_s42_downstream --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_50_s42/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "374284",
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_50_s42_downstream.log",
+      "submitted_at": "2026-05-22T06:53:19.892Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "lm-eval-harness benchmarks",
+      "data_count": 0,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "perlayer_kl_50_s42",
+      "eval_data": "arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa",
+      "wall_clock_seconds": 4867.2,
+      "gpu_hours": 1.35
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T08:05:34.443Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T08:05:40.063465+00:00"
+        }
+      ]
+    },
+    "hypothesis": "Per-layer KL distillation at 50% sparsity will produce competitive downstream task performance despite high PPL (34.85), because per-layer optimization may preserve task-relevant features even when global perplexity degrades.",
+    "conclusion": "negative",
+    "metrics": {
+      "arc_challenge_acc_norm": 0.2705,
+      "winogrande_acc": 0.5154,
+      "mmlu_acc": 0.2658,
+      "gsm8k_exact_match": 0.0174,
+      "hellaswag_acc_norm": 0.3818,
+      "piqa_acc_norm": 0.6279
+    },
+    "checkpoint_path": "checkpoints/perlayer_kl_50_s42/predictor_perlayer_kl.pt",
+    "log_path": "/root/runs/distill_sparse_swiglu/perlayer_kl_50_s42_downstream.log",
+    "completed_at": "2026-05-22T08:14:27.075Z"
+  },
+  "timestamp": "2026-05-22T08:14:27.650804+00:00",
+  "trigger": "update_registry"
+}

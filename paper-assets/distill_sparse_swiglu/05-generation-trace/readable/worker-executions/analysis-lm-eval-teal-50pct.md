@@ -1,0 +1,1557 @@
+# analysis lm eval teal 50pct
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/workers/worker_analysis_lm_eval_teal_50pct_20260516T023351.log`
+- **Structured JSON:** [`746f0f346aba709a400b.json`](../../sessions/74/746f0f346aba709a400b.json)
+
+## Before a recorded user message
+
+32 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a845aa90-54c6-40aa-94ed-319158b167b9",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778903400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0c8dc007-6c7e-4772-861c-510db98e8fe2",
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the experiment results from the server. I'll SSH to westd-34887 to check the log file and results directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "157bd42f-5529-43c3-a7d4-33db8cbdd72d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJpVhnqHP4suz9JXhJjafb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12031,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019xSZSEuPMfgn8tctiUHM5F`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "fe51a123-7314-43ea-89e7-ebb9183b480d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJpVhnqHP4suz9JXhJjafb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12031,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T02:34:02.345Z_
+
+<details><summary>↩ Tool result · `toolu_019xSZSEuPMfgn8tctiUHM5F`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "adcb038c-ad0b-48df-8747-8c4aaa177e2b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the log file and results directory from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "f354402b-5f85-4514-b4b5-9fcc8ed532d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LADsxEvyF5LxKvSgkssfkx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 23872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 879
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011LbBDPGYmrLh1J3Z7fqiWh`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "tail -50 ~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "32bf8730-b890-4a6d-a269-9cf3ddf95e5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LADsxEvyF5LxKvSgkssfkx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 23872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 879
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Eh6CssANEQFJuUwGWmpP2e`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "ls /root/distill_sparse_swiglu/results/lm_eval_teal_50pct/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "f8067908-f904-4861-8ae4-914352b36cb4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LADsxEvyF5LxKvSgkssfkx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 23872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 879
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T02:34:08.265Z_
+
+<details><summary>↩ Tool result · `toolu_011LbBDPGYmrLh1J3Z7fqiWh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    alias: gsm8k\\n    sample_len: 1319.0000\\n    exact_match,strict-match: 0.0114\\n    exact_match_stderr,strict-match: 0.0029\\n    exact_match,flexible-extract: 0.0190\\n    exact_match_stderr,flexible-extract: 0.0038\\n\\n  mmlu_stem:\\n    alias: stem\\n    name: mmlu_stem\\n    sample_len: 3153.0000\\n    acc,none: 0.2823\\n    acc_stderr,none: 0.0080\\n    sample_count: {'acc,none': 3153}\\n\\n  mmlu_other:\\n    alias: other\\n    name: mmlu_other\\n    sample_len: 3107.0000\\n    acc,none: 0.2855\\n    acc_stderr,none: 0.0080\\n    sample_count: {'acc,none': 3107}\\n\\n  mmlu_social_sciences:\\n    alias: social sciences\\n    name: mmlu_social_sciences\\n    sample_len: 3077.0000\\n    acc,none: 0.3165\\n    acc_stderr,none: 0.0084\\n    sample_count: {'acc,none': 3077}\\n\\n  mmlu_humanities:\\n    alias: humanities\\n    name: mmlu_humanities\\n    sample_len: 4705.0000\\n    acc,none: 0.2676\\n    acc_stderr,none: 0.0064\\n    sample_count: {'acc,none': 4705}\\n\\n  mmlu:\\n    alias: mmlu\\n    name: mmlu\\n    sample_len: 14042.0000\\n    acc,none: 0.2856\\n    acc_stderr,none: 0.0038\\n    sample_count: {'acc,none': 14042}\\n\\nResults saved to results/lm_eval_teal_50pct/results.json\\nSummary saved to results/lm_eval_teal_50pct/summary.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "e7ef4327-621f-4097-950e-68a7e3985924",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    alias: gsm8k\\\\n    sample_len: 1319.0000\\\\n    exact_match,strict-match: 0.0114\\\\n    exact_match_stderr,strict-match: 0.0029\\\\n    exact_match,flexible-extract: 0.0190\\\\n    exact_match_stderr,flexible-extract: 0.0038\\\\n\\\\n  mmlu_stem:\\\\n    alias: stem\\\\n    name: mmlu_stem\\\\n    sample_len: 3153.0000\\\\n    acc,none: 0.2823\\\\n    acc_stderr,none: 0.0080\\\\n    sample_count: {'acc,none': 3153}\\\\n\\\\n  mmlu_other:\\\\n    alias: other\\\\n    name: mmlu_other\\\\n    sample_len: 3107.0000\\\\n    acc,none: 0.2855\\\\n    acc_stderr,none: 0.0080\\\\n    sample_count: {'acc,none': 3107}\\\\n\\\\n  mmlu_social_sciences:\\\\n    alias: social sciences\\\\n    name: mmlu_social_sciences\\\\n    sample_len: 3077.0000\\\\n    acc,none: 0.3165\\\\n    acc_stderr,none: 0.0084\\\\n    sample_count: {'acc,none': 3077}\\\\n\\\\n  mmlu_humanities:\\\\n    alias: humanities\\\\n    name: mmlu_humanities\\\\n    sample_len: 4705.0000\\\\n    acc,none: 0.2676\\\\n    acc_stderr,none: 0.0064\\\\n    sample_count: {'acc,none': 4705}\\\\n\\\\n  mmlu:\\\\n    alias: mmlu\\\\n    name: mmlu\\\\n    sample_len: 14042.0000\\\\n    acc,none: 0.2856\\\\n    acc_stderr,none: 0.0038\\\\n    sample_count: {'acc,none': 14042}\\\\n\\\\nResults saved to results/lm_eval_teal_50pct/results.json\\\\nSummary saved to results/lm_eval_teal_50pct/summary.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    alias: gsm8k\\n    sample_len: 1319.0000\\n    exact_match,strict-match: 0.0114\\n    exact_match_stderr,strict-match: 0.0029\\n    exact_match,flexible-extract: 0.0190\\n    exact_match_stderr,flexible-extract: 0.0038\\n\\n  mmlu_stem:\\n    alias: stem\\n    name: mmlu_stem\\n    sample_len: 3153.0000\\n    acc,none: 0.2823\\n    acc_stderr,none: 0.0080\\n    sample_count: {'acc,none': 3153}\\n\\n  mmlu_other:\\n    alias: other\\n    name: mmlu_other\\n    sample_len: 3107.0000\\n    acc,none: 0.2855\\n    acc_stderr,none: 0.0080\\n    sample_count: {'acc,none': 3107}\\n\\n  mmlu_social_sciences:\\n    alias: social sciences\\n    name: mmlu_social_sciences\\n    sample_len: 3077.0000\\n    acc,none: 0.3165\\n    acc_stderr,none: 0.0084\\n    sample_count: {'acc,none': 3077}\\n\\n  mmlu_humanities:\\n    alias: humanities\\n    name: mmlu_humanities\\n    sample_len: 4705.0000\\n    acc,none: 0.2676\\n    acc_stderr,none: 0.0064\\n    sample_count: {'acc,none': 4705}\\n\\n  mmlu:\\n    alias: mmlu\\n    name: mmlu\\n    sample_len: 14042.0000\\n    acc,none: 0.2856\\n    acc_stderr,none: 0.0038\\n    sample_count: {'acc,none': 14042}\\n\\nResults saved to results/lm_eval_teal_50pct/results.json\\nSummary saved to results/lm_eval_teal_50pct/summary.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T02:34:08.803Z_
+
+<details><summary>↩ Tool result · `toolu_01Eh6CssANEQFJuUwGWmpP2e`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\nsummary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "8fe12182-b24f-466f-97a8-2ccde9d03459",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"results.json\\\\nsummary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"results.json\\nsummary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014HN4vDGFZGuJTAxfN8pcLQ`</summary>
+
+```json
+{
+  "server": "westd-34887",
+  "command": "cat /root/distill_sparse_swiglu/results/lm_eval_teal_50pct/summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "1a5aec1d-78f8-43f2-be61-488101ea3aa9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B37mr9PAcFoymQuSgPNhgX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1033,
+      "cache_read_input_tokens": 24751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1033
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T02:34:16.363Z_
+
+<details><summary>↩ Tool result · `toolu_014HN4vDGFZGuJTAxfN8pcLQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"vanilla_teal\\\",\\n  \\\"sparsity\\\": 0.5,\\n  \\\"actual_sparsity\\\": 0.49999782017299105,\\n  \\\"arc_challenge\\\": {\\n    \\\"sample_len\\\": 1172,\\n    \\\"acc,none\\\": 0.24914675767918087,\\n    \\\"acc_stderr,none\\\": 0.012639407111926505,\\n    \\\"acc_norm,none\\\": 0.2909556313993174,\\n    \\\"acc_norm_stderr,none\\\": 0.013273077865907774\\n  },\\n  \\\"winogrande\\\": {\\n    \\\"sample_len\\\": 1267,\\n    \\\"acc,none\\\": 0.5556432517758485,\\n    \\\"acc_stderr,none\\\": 0.013965196769083407\\n  },\\n  \\\"mmlu_abstract_algebra\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.23,\\n    \\\"acc_stderr,none\\\": 0.04229525846816507\\n  },\\n  \\\"mmlu_anatomy\\\": {\\n    \\\"sample_len\\\": 135,\\n    \\\"acc,none\\\": 0.21481481481481482,\\n    \\\"acc_stderr,none\\\": 0.03547854198560821\\n  },\\n  \\\"mmlu_astronomy\\\": {\\n    \\\"sample_len\\\": 152,\\n    \\\"acc,none\\\": 0.2631578947368421,\\n    \\\"acc_stderr,none\\\": 0.03583496176361067\\n  },\\n  \\\"mmlu_college_biology\\\": {\\n    \\\"sample_len\\\": 144,\\n    \\\"acc,none\\\": 0.3055555555555556,\\n    \\\"acc_stderr,none\\\": 0.038520846960085356\\n  },\\n  \\\"mmlu_college_chemistry\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.42,\\n    \\\"acc_stderr,none\\\": 0.04960449637488583\\n  },\\n  \\\"mmlu_college_computer_science\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.35,\\n    \\\"acc_stderr,none\\\": 0.04793724854411023\\n  },\\n  \\\"mmlu_college_mathematics\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.27,\\n    \\\"acc_stderr,none\\\": 0.04461960433384737\\n  },\\n  \\\"mmlu_college_physics\\\": {\\n    \\\"sample_len\\\": 102,\\n    \\\"acc,none\\\": 0.3235294117647059,\\n    \\\"acc_stderr,none\\\": 0.04655010411319613\\n  },\\n  \\\"mmlu_computer_security\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.2,\\n    \\\"acc_stderr,none\\\": 0.04020151261036849\\n  },\\n  \\\"mmlu_conceptual_physics\\\": {\\n    \\\"sample_len\\\": 235,\\n    \\\"acc,none\\\": 0.2851063829787234,\\n    \\\"acc_stderr,none\\\": 0.029513196625539355\\n  },\\n  \\\"mmlu_electrical_engineering\\\": {\\n    \\\"sample_len\\\": 145,\\n    \\\"acc,none\\\": 0.2689655172413793,\\n    \\\"acc_stderr,none\\\": 0.03695183311650232\\n  },\\n  \\\"mmlu_elementary_mathematics\\\": {\\n    \\\"sample_len\\\": 378,\\n    \\\"acc,none\\\": 0.24603174603174602,\\n    \\\"acc_stderr,none\\\": 0.022182037202948424\\n  },\\n  \\\"mmlu_high_school_biology\\\": {\\n    \\\"sample_len\\\": 310,\\n    \\\"acc,none\\\": 0.32903225806451614,\\n    \\\"acc_stderr,none\\\": 0.026729499068350024\\n  },\\n  \\\"mmlu_high_school_chemistry\\\": {\\n    \\\"sample_len\\\": 203,\\n    \\\"acc,none\\\": 0.270935960591133,\\n    \\\"acc_stderr,none\\\": 0.03127090713297701\\n  },\\n  \\\"mmlu_high_school_computer_science\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.24,\\n    \\\"acc_stderr,none\\\": 0.04292346959909278\\n  },\\n  \\\"mmlu_high_school_mathematics\\\": {\\n    \\\"sample_len\\\": 270,\\n    \\\"acc,none\\\": 0.2814814814814815,\\n    \\\"acc_stderr,none\\\": 0.02742001935094531\\n  },\\n  \\\"mmlu_high_school_physics\\\": {\\n    \\\"sample_len\\\": 151,\\n    \\\"acc,none\\\": 0.2980132450331126,\\n    \\\"acc_stderr,none\\\": 0.03734535676787201\\n  },\\n  \\\"mmlu_high_school_statistics\\\": {\\n    \\\"sample_len\\\": 216,\\n    \\\"acc,none\\\": 0.35185185185185186,\\n    \\\"acc_stderr,none\\\": 0.032568505702936484\\n  },\\n  \\\"mmlu_machine_learning\\\": {\\n    \\\"sample_len\\\": 112,\\n    \\\"acc,none\\\": 0.17857142857142858,\\n    \\\"acc_stderr,none\\\": 0.03635209121577808\\n  },\\n  \\\"mmlu_business_ethics\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.22,\\n    \\\"acc_stderr,none\\\": 0.041633319989322654\\n  },\\n  \\\"mmlu_clinical_knowledge\\\": {\\n    \\\"sample_len\\\": 265,\\n    \\\"acc,none\\\": 0.3283018867924528,\\n    \\\"acc_stderr,none\\\": 0.028901593612411777\\n  },\\n  \\\"mmlu_college_medicine\\\": {\\n    \\\"sample_len\\\": 173,\\n    \\\"acc,none\\\": 0.34104046242774566,\\n    \\\"acc_stderr,none\\\": 0.03614665424180821\\n  },\\n  \\\"mmlu_global_facts\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.28,\\n    \\\"acc_stderr,none\\\": 0.045126085985421296\\n  },\\n  \\\"mmlu_human_aging\\\": {\\n    \\\"sample_len\\\": 223,\\n    \\\"acc,none\\\": 0.18385650224215247,\\n    \\\"acc_stderr,none\\\": 0.025998379092356555\\n  },\\n  \\\"mmlu_management\\\": {\\n    \\\"sample_len\\\": 103,\\n    \\\"acc,none\\\": 0.4077669902912621,\\n    \\\"acc_stderr,none\\\": 0.048657775704107696\\n  },\\n  \\\"mmlu_marketing\\\": {\\n    \\\"sample_len\\\": 234,\\n    \\\"acc,none\\\": 0.29914529914529914,\\n    \\\"acc_stderr,none\\\": 0.02999695185834954\\n  },\\n  \\\"mmlu_medical_genetics\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.29,\\n    \\\"acc_stderr,none\\\":\\n\\n... [截断: 输出过长，省略 1095 字符] ...\\n\\n \\\"acc_stderr,none\\\": 0.03447478286414359\\n  },\\n  \\\"mmlu_high_school_macroeconomics\\\": {\\n    \\\"sample_len\\\": 390,\\n    \\\"acc,none\\\": 0.31794871794871793,\\n    \\\"acc_stderr,none\\\": 0.023610884308927833\\n  },\\n  \\\"mmlu_high_school_microeconomics\\\": {\\n    \\\"sample_len\\\": 238,\\n    \\\"acc,none\\\": 0.3277310924369748,\\n    \\\"acc_stderr,none\\\": 0.030489911417673238\\n  },\\n  \\\"mmlu_high_school_psychology\\\": {\\n    \\\"sample_len\\\": 545,\\n    \\\"acc,none\\\": 0.3779816513761468,\\n    \\\"acc_stderr,none\\\": 0.020789187066728193\\n  },\\n  \\\"mmlu_human_sexuality\\\": {\\n    \\\"sample_len\\\": 131,\\n    \\\"acc,none\\\": 0.2900763358778626,\\n    \\\"acc_stderr,none\\\": 0.03980066246467765\\n  },\\n  \\\"mmlu_professional_psychology\\\": {\\n    \\\"sample_len\\\": 612,\\n    \\\"acc,none\\\": 0.24836601307189543,\\n    \\\"acc_stderr,none\\\": 0.017479487001364716\\n  },\\n  \\\"mmlu_public_relations\\\": {\\n    \\\"sample_len\\\": 110,\\n    \\\"acc,none\\\": 0.2818181818181818,\\n    \\\"acc_stderr,none\\\": 0.043091187099464606\\n  },\\n  \\\"mmlu_security_studies\\\": {\\n    \\\"sample_len\\\": 245,\\n    \\\"acc,none\\\": 0.363265306122449,\\n    \\\"acc_stderr,none\\\": 0.030789051139030802\\n  },\\n  \\\"mmlu_sociology\\\": {\\n    \\\"sample_len\\\": 201,\\n    \\\"acc,none\\\": 0.32338308457711445,\\n    \\\"acc_stderr,none\\\": 0.033076159479790375\\n  },\\n  \\\"mmlu_us_foreign_policy\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.35,\\n    \\\"acc_stderr,none\\\": 0.04793724854411023\\n  },\\n  \\\"mmlu_formal_logic\\\": {\\n    \\\"sample_len\\\": 126,\\n    \\\"acc,none\\\": 0.36507936507936506,\\n    \\\"acc_stderr,none\\\": 0.04306241259127153\\n  },\\n  \\\"mmlu_high_school_european_history\\\": {\\n    \\\"sample_len\\\": 165,\\n    \\\"acc,none\\\": 0.30303030303030304,\\n    \\\"acc_stderr,none\\\": 0.035886248000917116\\n  },\\n  \\\"mmlu_high_school_us_history\\\": {\\n    \\\"sample_len\\\": 204,\\n    \\\"acc,none\\\": 0.3137254901960784,\\n    \\\"acc_stderr,none\\\": 0.03256685484460391\\n  },\\n  \\\"mmlu_high_school_world_history\\\": {\\n    \\\"sample_len\\\": 237,\\n    \\\"acc,none\\\": 0.27848101265822783,\\n    \\\"acc_stderr,none\\\": 0.029178682304842548\\n  },\\n  \\\"mmlu_international_law\\\": {\\n    \\\"sample_len\\\": 121,\\n    \\\"acc,none\\\": 0.2975206611570248,\\n    \\\"acc_stderr,none\\\": 0.04173349148083503\\n  },\\n  \\\"mmlu_jurisprudence\\\": {\\n    \\\"sample_len\\\": 108,\\n    \\\"acc,none\\\": 0.28703703703703703,\\n    \\\"acc_stderr,none\\\": 0.04373313040914761\\n  },\\n  \\\"mmlu_logical_fallacies\\\": {\\n    \\\"sample_len\\\": 163,\\n    \\\"acc,none\\\": 0.294478527607362,\\n    \\\"acc_stderr,none\\\": 0.03581165790474082\\n  },\\n  \\\"mmlu_moral_disputes\\\": {\\n    \\\"sample_len\\\": 346,\\n    \\\"acc,none\\\": 0.2398843930635838,\\n    \\\"acc_stderr,none\\\": 0.02298959254312351\\n  },\\n  \\\"mmlu_moral_scenarios\\\": {\\n    \\\"sample_len\\\": 895,\\n    \\\"acc,none\\\": 0.24581005586592178,\\n    \\\"acc_stderr,none\\\": 0.014400296429225632\\n  },\\n  \\\"mmlu_philosophy\\\": {\\n    \\\"sample_len\\\": 311,\\n    \\\"acc,none\\\": 0.3054662379421222,\\n    \\\"acc_stderr,none\\\": 0.026160584450140488\\n  },\\n  \\\"mmlu_prehistory\\\": {\\n    \\\"sample_len\\\": 324,\\n    \\\"acc,none\\\": 0.2839506172839506,\\n    \\\"acc_stderr,none\\\": 0.02508947852376511\\n  },\\n  \\\"mmlu_professional_law\\\": {\\n    \\\"sample_len\\\": 1534,\\n    \\\"acc,none\\\": 0.25488917861799215,\\n    \\\"acc_stderr,none\\\": 0.011130509812662809\\n  },\\n  \\\"mmlu_world_religions\\\": {\\n    \\\"sample_len\\\": 171,\\n    \\\"acc,none\\\": 0.21637426900584794,\\n    \\\"acc_stderr,none\\\": 0.03158149539338735\\n  },\\n  \\\"gsm8k\\\": {\\n    \\\"sample_len\\\": 1319,\\n    \\\"exact_match,strict-match\\\": 0.011372251705837756,\\n    \\\"exact_match_stderr,strict-match\\\": 0.0029206661987887486,\\n    \\\"exact_match,flexible-extract\\\": 0.018953752843062926,\\n    \\\"exact_match_stderr,flexible-extract\\\": 0.003756078341031472\\n  },\\n  \\\"mmlu_stem\\\": {\\n    \\\"sample_len\\\": 3153,\\n    \\\"acc,none\\\": 0.2822708531557247,\\n    \\\"acc_stderr,none\\\": 0.007990039278986848\\n  },\\n  \\\"mmlu_other\\\": {\\n    \\\"sample_len\\\": 3107,\\n    \\\"acc,none\\\": 0.2854843900869006,\\n    \\\"acc_stderr,none\\\": 0.00802152872154904\\n  },\\n  \\\"mmlu_social_sciences\\\": {\\n    \\\"sample_len\\\": 3077,\\n    \\\"acc,none\\\": 0.3165420864478388,\\n    \\\"acc_stderr,none\\\": 0.008357488437329702\\n  },\\n  \\\"mmlu_humanities\\\": {\\n    \\\"sample_len\\\": 4705,\\n    \\\"acc,none\\\": 0.2675876726886291,\\n    \\\"acc_stderr,none\\\": 0.006448746082402352\\n  },\\n  \\\"mmlu\\\": {\\n    \\\"sample_len\\\": 14042,\\n    \\\"acc,none\\\": 0.2855718558609885,\\n    \\\"acc_stderr,none\\\": 0.0037936237475861023\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "c9a74f25-e6fc-4714-985b-216eb85f22d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"vanilla_teal\\\\\\\",\\\\n  \\\\\\\"sparsity\\\\\\\": 0.5,\\\\n  \\\\\\\"actual_sparsity\\\\\\\": 0.49999782017299105,\\\\n  \\\\\\\"arc_challenge\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 1172,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.24914675767918087,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.012639407111926505,\\\\n    \\\\\\\"acc_norm,none\\\\\\\": 0.2909556313993174,\\\\n    \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.013273077865907774\\\\n  },\\\\n  \\\\\\\"winogrande\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 1267,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.5556432517758485,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.013965196769083407\\\\n  },\\\\n  \\\\\\\"mmlu_abstract_algebra\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 100,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.23,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.04229525846816507\\\\n  },\\\\n  \\\\\\\"mmlu_anatomy\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 135,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.21481481481481482,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.03547854198560821\\\\n  },\\\\n  \\\\\\\"mmlu_astronomy\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 152,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2631578947368421,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.03583496176361067\\\\n  },\\\\n  \\\\\\\"mmlu_college_biology\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 144,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.3055555555555556,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.038520846960085356\\\\n  },\\\\n  \\\\\\\"mmlu_college_chemistry\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 100,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.42,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.04960449637488583\\\\n  },\\\\n  \\\\\\\"mmlu_college_computer_science\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 100,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.35,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.04793724854411023\\\\n  },\\\\n  \\\\\\\"mmlu_college_mathematics\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 100,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.27,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.04461960433384737\\\\n  },\\\\n  \\\\\\\"mmlu_college_physics\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 102,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.3235294117647059,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.04655010411319613\\\\n  },\\\\n  \\\\\\\"mmlu_computer_security\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 100,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.04020151261036849\\\\n  },\\\\n  \\\\\\\"mmlu_conceptual_physics\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 235,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2851063829787234,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.029513196625539355\\\\n  },\\\\n  \\\\\\\"mmlu_electrical_engineering\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 145,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2689655172413793,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.03695183311650232\\\\n  },\\\\n  \\\\\\\"mmlu_elementary_mathematics\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 378,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.24603174603174602,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.022182037202948424\\\\n  },\\\\n  \\\\\\\"mmlu_high_school_biology\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 310,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.32903225806451614,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.026729499068350024\\\\n  },\\\\n  \\\\\\\"mmlu_high_school_chemistry\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 203,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.270935960591133,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.03127090713297701\\\\n  },\\\\n  \\\\\\\"mmlu_high_school_computer_science\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 100,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.24,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.04292346959909278\\\\n  },\\\\n  \\\\\\\"mmlu_high_school_mathematics\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 270,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2814814814814815,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.02742001935094531\\\\n  },\\\\n  \\\\\\\"mmlu_high_school_physics\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 151,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2980132450331126,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.03734535676787201\\\\n  },\\\\n  \\\\\\\"mmlu_high_school_statistics\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 216,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.35185185185185186,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.032568505702936484\\\\n  },\\\\n  \\\\\\\"mmlu_machine_learning\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 112,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.17857142857142858,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.03635209121577808\\\\n  },\\\\n  \\\\\\\"mmlu_business_ethics\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 100,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.22,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.041633319989322654\\\\n  },\\\\n  \\\\\\\"mmlu_clinical_knowledge\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 265,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.3283018867924528,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.028901593612411777\\\\n  },\\\\n  \\\\\\\"mmlu_college_medicine\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 173,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.34104046242774566,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.03614665424180821\\\\n  },\\\\n  \\\\\\\"mmlu_global_facts\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 100,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.28,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.045126085985421296\\\\n  },\\\\n  \\\\\\\"mmlu_human_aging\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 223,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.18385650224215247,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.025998379092356555\\\\n  },\\\\n  \\\\\\\"mmlu_management\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 103,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.4077669902912621,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.048657775704107696\\\\n  },\\\\n  \\\\\\\"mmlu_marketing\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 234,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.29914529914529914,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.02999695185834954\\\\n  },\\\\n  \\\\\\\"mmlu_medical_genetics\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 100,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.29,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\":\\\\n\\\\n... [截断: 输出过长，省略 1095 字符] ...\\\\n\\\\n \\\\\\\"acc_stderr,none\\\\\\\": 0.03447478286414359\\\\n  },\\\\n  \\\\\\\"mmlu_high_school_macroeconomics\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 390,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.31794871794871793,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.023610884308927833\\\\n  },\\\\n  \\\\\\\"mmlu_high_school_microeconomics\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 238,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.3277310924369748,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.030489911417673238\\\\n  },\\\\n  \\\\\\\"mmlu_high_school_psychology\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 545,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.3779816513761468,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.020789187066728193\\\\n  },\\\\n  \\\\\\\"mmlu_human_sexuality\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 131,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2900763358778626,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.03980066246467765\\\\n  },\\\\n  \\\\\\\"mmlu_professional_psychology\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 612,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.24836601307189543,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.017479487001364716\\\\n  },\\\\n  \\\\\\\"mmlu_public_relations\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 110,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2818181818181818,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.043091187099464606\\\\n  },\\\\n  \\\\\\\"mmlu_security_studies\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 245,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.363265306122449,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.030789051139030802\\\\n  },\\\\n  \\\\\\\"mmlu_sociology\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 201,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.32338308457711445,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.033076159479790375\\\\n  },\\\\n  \\\\\\\"mmlu_us_foreign_policy\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 100,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.35,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.04793724854411023\\\\n  },\\\\n  \\\\\\\"mmlu_formal_logic\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 126,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.36507936507936506,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.04306241259127153\\\\n  },\\\\n  \\\\\\\"mmlu_high_school_european_history\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 165,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.30303030303030304,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.035886248000917116\\\\n  },\\\\n  \\\\\\\"mmlu_high_school_us_history\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 204,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.3137254901960784,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.03256685484460391\\\\n  },\\\\n  \\\\\\\"mmlu_high_school_world_history\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 237,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.27848101265822783,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.029178682304842548\\\\n  },\\\\n  \\\\\\\"mmlu_international_law\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 121,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2975206611570248,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.04173349148083503\\\\n  },\\\\n  \\\\\\\"mmlu_jurisprudence\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 108,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.28703703703703703,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.04373313040914761\\\\n  },\\\\n  \\\\\\\"mmlu_logical_fallacies\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 163,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.294478527607362,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.03581165790474082\\\\n  },\\\\n  \\\\\\\"mmlu_moral_disputes\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 346,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2398843930635838,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.02298959254312351\\\\n  },\\\\n  \\\\\\\"mmlu_moral_scenarios\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 895,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.24581005586592178,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.014400296429225632\\\\n  },\\\\n  \\\\\\\"mmlu_philosophy\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 311,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.3054662379421222,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.026160584450140488\\\\n  },\\\\n  \\\\\\\"mmlu_prehistory\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 324,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2839506172839506,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.02508947852376511\\\\n  },\\\\n  \\\\\\\"mmlu_professional_law\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 1534,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.25488917861799215,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.011130509812662809\\\\n  },\\\\n  \\\\\\\"mmlu_world_religions\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 171,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.21637426900584794,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.03158149539338735\\\\n  },\\\\n  \\\\\\\"gsm8k\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 1319,\\\\n    \\\\\\\"exact_match,strict-match\\\\\\\": 0.011372251705837756,\\\\n    \\\\\\\"exact_match_stderr,strict-match\\\\\\\": 0.0029206661987887486,\\\\n    \\\\\\\"exact_match,flexible-extract\\\\\\\": 0.018953752843062926,\\\\n    \\\\\\\"exact_match_stderr,flexible-extract\\\\\\\": 0.003756078341031472\\\\n  },\\\\n  \\\\\\\"mmlu_stem\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 3153,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2822708531557247,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.007990039278986848\\\\n  },\\\\n  \\\\\\\"mmlu_other\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 3107,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2854843900869006,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.00802152872154904\\\\n  },\\\\n  \\\\\\\"mmlu_social_sciences\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 3077,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.3165420864478388,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.008357488437329702\\\\n  },\\\\n  \\\\\\\"mmlu_humanities\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 4705,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2675876726886291,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.006448746082402352\\\\n  },\\\\n  \\\\\\\"mmlu\\\\\\\": {\\\\n    \\\\\\\"sample_len\\\\\\\": 14042,\\\\n    \\\\\\\"acc,none\\\\\\\": 0.2855718558609885,\\\\n    \\\\\\\"acc_stderr,none\\\\\\\": 0.0037936237475861023\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"vanilla_teal\\\",\\n  \\\"sparsity\\\": 0.5,\\n  \\\"actual_sparsity\\\": 0.49999782017299105,\\n  \\\"arc_challenge\\\": {\\n    \\\"sample_len\\\": 1172,\\n    \\\"acc,none\\\": 0.24914675767918087,\\n    \\\"acc_stderr,none\\\": 0.012639407111926505,\\n    \\\"acc_norm,none\\\": 0.2909556313993174,\\n    \\\"acc_norm_stderr,none\\\": 0.013273077865907774\\n  },\\n  \\\"winogrande\\\": {\\n    \\\"sample_len\\\": 1267,\\n    \\\"acc,none\\\": 0.5556432517758485,\\n    \\\"acc_stderr,none\\\": 0.013965196769083407\\n  },\\n  \\\"mmlu_abstract_algebra\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.23,\\n    \\\"acc_stderr,none\\\": 0.04229525846816507\\n  },\\n  \\\"mmlu_anatomy\\\": {\\n    \\\"sample_len\\\": 135,\\n    \\\"acc,none\\\": 0.21481481481481482,\\n    \\\"acc_stderr,none\\\": 0.03547854198560821\\n  },\\n  \\\"mmlu_astronomy\\\": {\\n    \\\"sample_len\\\": 152,\\n    \\\"acc,none\\\": 0.2631578947368421,\\n    \\\"acc_stderr,none\\\": 0.03583496176361067\\n  },\\n  \\\"mmlu_college_biology\\\": {\\n    \\\"sample_len\\\": 144,\\n    \\\"acc,none\\\": 0.3055555555555556,\\n    \\\"acc_stderr,none\\\": 0.038520846960085356\\n  },\\n  \\\"mmlu_college_chemistry\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.42,\\n    \\\"acc_stderr,none\\\": 0.04960449637488583\\n  },\\n  \\\"mmlu_college_computer_science\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.35,\\n    \\\"acc_stderr,none\\\": 0.04793724854411023\\n  },\\n  \\\"mmlu_college_mathematics\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.27,\\n    \\\"acc_stderr,none\\\": 0.04461960433384737\\n  },\\n  \\\"mmlu_college_physics\\\": {\\n    \\\"sample_len\\\": 102,\\n    \\\"acc,none\\\": 0.3235294117647059,\\n    \\\"acc_stderr,none\\\": 0.04655010411319613\\n  },\\n  \\\"mmlu_computer_security\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.2,\\n    \\\"acc_stderr,none\\\": 0.04020151261036849\\n  },\\n  \\\"mmlu_conceptual_physics\\\": {\\n    \\\"sample_len\\\": 235,\\n    \\\"acc,none\\\": 0.2851063829787234,\\n    \\\"acc_stderr,none\\\": 0.029513196625539355\\n  },\\n  \\\"mmlu_electrical_engineering\\\": {\\n    \\\"sample_len\\\": 145,\\n    \\\"acc,none\\\": 0.2689655172413793,\\n    \\\"acc_stderr,none\\\": 0.03695183311650232\\n  },\\n  \\\"mmlu_elementary_mathematics\\\": {\\n    \\\"sample_len\\\": 378,\\n    \\\"acc,none\\\": 0.24603174603174602,\\n    \\\"acc_stderr,none\\\": 0.022182037202948424\\n  },\\n  \\\"mmlu_high_school_biology\\\": {\\n    \\\"sample_len\\\": 310,\\n    \\\"acc,none\\\": 0.32903225806451614,\\n    \\\"acc_stderr,none\\\": 0.026729499068350024\\n  },\\n  \\\"mmlu_high_school_chemistry\\\": {\\n    \\\"sample_len\\\": 203,\\n    \\\"acc,none\\\": 0.270935960591133,\\n    \\\"acc_stderr,none\\\": 0.03127090713297701\\n  },\\n  \\\"mmlu_high_school_computer_science\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.24,\\n    \\\"acc_stderr,none\\\": 0.04292346959909278\\n  },\\n  \\\"mmlu_high_school_mathematics\\\": {\\n    \\\"sample_len\\\": 270,\\n    \\\"acc,none\\\": 0.2814814814814815,\\n    \\\"acc_stderr,none\\\": 0.02742001935094531\\n  },\\n  \\\"mmlu_high_school_physics\\\": {\\n    \\\"sample_len\\\": 151,\\n    \\\"acc,none\\\": 0.2980132450331126,\\n    \\\"acc_stderr,none\\\": 0.03734535676787201\\n  },\\n  \\\"mmlu_high_school_statistics\\\": {\\n    \\\"sample_len\\\": 216,\\n    \\\"acc,none\\\": 0.35185185185185186,\\n    \\\"acc_stderr,none\\\": 0.032568505702936484\\n  },\\n  \\\"mmlu_machine_learning\\\": {\\n    \\\"sample_len\\\": 112,\\n    \\\"acc,none\\\": 0.17857142857142858,\\n    \\\"acc_stderr,none\\\": 0.03635209121577808\\n  },\\n  \\\"mmlu_business_ethics\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.22,\\n    \\\"acc_stderr,none\\\": 0.041633319989322654\\n  },\\n  \\\"mmlu_clinical_knowledge\\\": {\\n    \\\"sample_len\\\": 265,\\n    \\\"acc,none\\\": 0.3283018867924528,\\n    \\\"acc_stderr,none\\\": 0.028901593612411777\\n  },\\n  \\\"mmlu_college_medicine\\\": {\\n    \\\"sample_len\\\": 173,\\n    \\\"acc,none\\\": 0.34104046242774566,\\n    \\\"acc_stderr,none\\\": 0.03614665424180821\\n  },\\n  \\\"mmlu_global_facts\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.28,\\n    \\\"acc_stderr,none\\\": 0.045126085985421296\\n  },\\n  \\\"mmlu_human_aging\\\": {\\n    \\\"sample_len\\\": 223,\\n    \\\"acc,none\\\": 0.18385650224215247,\\n    \\\"acc_stderr,none\\\": 0.025998379092356555\\n  },\\n  \\\"mmlu_management\\\": {\\n    \\\"sample_len\\\": 103,\\n    \\\"acc,none\\\": 0.4077669902912621,\\n    \\\"acc_stderr,none\\\": 0.048657775704107696\\n  },\\n  \\\"mmlu_marketing\\\": {\\n    \\\"sample_len\\\": 234,\\n    \\\"acc,none\\\": 0.29914529914529914,\\n    \\\"acc_stderr,none\\\": 0.02999695185834954\\n  },\\n  \\\"mmlu_medical_genetics\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.29,\\n    \\\"acc_stderr,none\\\":\\n\\n... [截断: 输出过长，省略 1095 字符] ...\\n\\n \\\"acc_stderr,none\\\": 0.03447478286414359\\n  },\\n  \\\"mmlu_high_school_macroeconomics\\\": {\\n    \\\"sample_len\\\": 390,\\n    \\\"acc,none\\\": 0.31794871794871793,\\n    \\\"acc_stderr,none\\\": 0.023610884308927833\\n  },\\n  \\\"mmlu_high_school_microeconomics\\\": {\\n    \\\"sample_len\\\": 238,\\n    \\\"acc,none\\\": 0.3277310924369748,\\n    \\\"acc_stderr,none\\\": 0.030489911417673238\\n  },\\n  \\\"mmlu_high_school_psychology\\\": {\\n    \\\"sample_len\\\": 545,\\n    \\\"acc,none\\\": 0.3779816513761468,\\n    \\\"acc_stderr,none\\\": 0.020789187066728193\\n  },\\n  \\\"mmlu_human_sexuality\\\": {\\n    \\\"sample_len\\\": 131,\\n    \\\"acc,none\\\": 0.2900763358778626,\\n    \\\"acc_stderr,none\\\": 0.03980066246467765\\n  },\\n  \\\"mmlu_professional_psychology\\\": {\\n    \\\"sample_len\\\": 612,\\n    \\\"acc,none\\\": 0.24836601307189543,\\n    \\\"acc_stderr,none\\\": 0.017479487001364716\\n  },\\n  \\\"mmlu_public_relations\\\": {\\n    \\\"sample_len\\\": 110,\\n    \\\"acc,none\\\": 0.2818181818181818,\\n    \\\"acc_stderr,none\\\": 0.043091187099464606\\n  },\\n  \\\"mmlu_security_studies\\\": {\\n    \\\"sample_len\\\": 245,\\n    \\\"acc,none\\\": 0.363265306122449,\\n    \\\"acc_stderr,none\\\": 0.030789051139030802\\n  },\\n  \\\"mmlu_sociology\\\": {\\n    \\\"sample_len\\\": 201,\\n    \\\"acc,none\\\": 0.32338308457711445,\\n    \\\"acc_stderr,none\\\": 0.033076159479790375\\n  },\\n  \\\"mmlu_us_foreign_policy\\\": {\\n    \\\"sample_len\\\": 100,\\n    \\\"acc,none\\\": 0.35,\\n    \\\"acc_stderr,none\\\": 0.04793724854411023\\n  },\\n  \\\"mmlu_formal_logic\\\": {\\n    \\\"sample_len\\\": 126,\\n    \\\"acc,none\\\": 0.36507936507936506,\\n    \\\"acc_stderr,none\\\": 0.04306241259127153\\n  },\\n  \\\"mmlu_high_school_european_history\\\": {\\n    \\\"sample_len\\\": 165,\\n    \\\"acc,none\\\": 0.30303030303030304,\\n    \\\"acc_stderr,none\\\": 0.035886248000917116\\n  },\\n  \\\"mmlu_high_school_us_history\\\": {\\n    \\\"sample_len\\\": 204,\\n    \\\"acc,none\\\": 0.3137254901960784,\\n    \\\"acc_stderr,none\\\": 0.03256685484460391\\n  },\\n  \\\"mmlu_high_school_world_history\\\": {\\n    \\\"sample_len\\\": 237,\\n    \\\"acc,none\\\": 0.27848101265822783,\\n    \\\"acc_stderr,none\\\": 0.029178682304842548\\n  },\\n  \\\"mmlu_international_law\\\": {\\n    \\\"sample_len\\\": 121,\\n    \\\"acc,none\\\": 0.2975206611570248,\\n    \\\"acc_stderr,none\\\": 0.04173349148083503\\n  },\\n  \\\"mmlu_jurisprudence\\\": {\\n    \\\"sample_len\\\": 108,\\n    \\\"acc,none\\\": 0.28703703703703703,\\n    \\\"acc_stderr,none\\\": 0.04373313040914761\\n  },\\n  \\\"mmlu_logical_fallacies\\\": {\\n    \\\"sample_len\\\": 163,\\n    \\\"acc,none\\\": 0.294478527607362,\\n    \\\"acc_stderr,none\\\": 0.03581165790474082\\n  },\\n  \\\"mmlu_moral_disputes\\\": {\\n    \\\"sample_len\\\": 346,\\n    \\\"acc,none\\\": 0.2398843930635838,\\n    \\\"acc_stderr,none\\\": 0.02298959254312351\\n  },\\n  \\\"mmlu_moral_scenarios\\\": {\\n    \\\"sample_len\\\": 895,\\n    \\\"acc,none\\\": 0.24581005586592178,\\n    \\\"acc_stderr,none\\\": 0.014400296429225632\\n  },\\n  \\\"mmlu_philosophy\\\": {\\n    \\\"sample_len\\\": 311,\\n    \\\"acc,none\\\": 0.3054662379421222,\\n    \\\"acc_stderr,none\\\": 0.026160584450140488\\n  },\\n  \\\"mmlu_prehistory\\\": {\\n    \\\"sample_len\\\": 324,\\n    \\\"acc,none\\\": 0.2839506172839506,\\n    \\\"acc_stderr,none\\\": 0.02508947852376511\\n  },\\n  \\\"mmlu_professional_law\\\": {\\n    \\\"sample_len\\\": 1534,\\n    \\\"acc,none\\\": 0.25488917861799215,\\n    \\\"acc_stderr,none\\\": 0.011130509812662809\\n  },\\n  \\\"mmlu_world_religions\\\": {\\n    \\\"sample_len\\\": 171,\\n    \\\"acc,none\\\": 0.21637426900584794,\\n    \\\"acc_stderr,none\\\": 0.03158149539338735\\n  },\\n  \\\"gsm8k\\\": {\\n    \\\"sample_len\\\": 1319,\\n    \\\"exact_match,strict-match\\\": 0.011372251705837756,\\n    \\\"exact_match_stderr,strict-match\\\": 0.0029206661987887486,\\n    \\\"exact_match,flexible-extract\\\": 0.018953752843062926,\\n    \\\"exact_match_stderr,flexible-extract\\\": 0.003756078341031472\\n  },\\n  \\\"mmlu_stem\\\": {\\n    \\\"sample_len\\\": 3153,\\n    \\\"acc,none\\\": 0.2822708531557247,\\n    \\\"acc_stderr,none\\\": 0.007990039278986848\\n  },\\n  \\\"mmlu_other\\\": {\\n    \\\"sample_len\\\": 3107,\\n    \\\"acc,none\\\": 0.2854843900869006,\\n    \\\"acc_stderr,none\\\": 0.00802152872154904\\n  },\\n  \\\"mmlu_social_sciences\\\": {\\n    \\\"sample_len\\\": 3077,\\n    \\\"acc,none\\\": 0.3165420864478388,\\n    \\\"acc_stderr,none\\\": 0.008357488437329702\\n  },\\n  \\\"mmlu_humanities\\\": {\\n    \\\"sample_len\\\": 4705,\\n    \\\"acc,none\\\": 0.2675876726886291,\\n    \\\"acc_stderr,none\\\": 0.006448746082402352\\n  },\\n  \\\"mmlu\\\": {\\n    \\\"sample_len\\\": 14042,\\n    \\\"acc,none\\\": 0.2855718558609885,\\n    \\\"acc_stderr,none\\\": 0.0037936237475861023\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have all the results now. Let me extract the key metrics:
+
+- arc_challenge acc_norm: 0.2910
+- winogrande acc: 0.5556
+- mmlu acc: 0.2856
+- gsm8k exact_match (flexible-extract): 0.0190
+
+Now let me calculate the drops relative to dense baseline:
+- arc_challenge: (0.2910 - 0.5819) / 0.5819 = -0.4998 → -50.0%
+- winogrande: (0.5556 - 0.7814) / 0.7814 = -0.2889 → -28.9%
+
+
+- mmlu: (0.2856 - 0.6532) / 0.6532 = -0.5628 → -56.3%
+- gsm8k: (0.0190 - 0.5004) / 0.5004 = -0.9620 → -96.2%
+
+Comparing against the KL 50% baseline, TEAL underperforms across most benchmarks—arc_challenge and winogrande are notably worse, while mmlu shows a marginal improvement despite both being quite low overall.
+
+On gsm8k, both methods collapse to near-zero performance, with TEAL slightly ahead but the difference is negligible. The pattern is clear: both approaches trigger catastrophic degradation on MMLU and GSM8K, which confirms the hypothesis that 50% downstream collapse is universal. Time to update the registry with these findings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "cacbd09e-1f74-4374-825d-43a7bfdb8912",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MJimSdXzqMhc6zhGKpLoEa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4952,
+      "cache_read_input_tokens": 25784,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4952
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+结果提取完成。关键指标：
+
+| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |
+|------|----------|--------|-------|-----------|---------|
+| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |
+| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |
+| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |
+| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |
+
+TEAL 50% 也出现灾难性崩溃（MMLU=0.286 < 0.35, GSM8K=0.019 < 0.05），支持 "50% sparsity downstream collapse is universal" 结论。
+
+更新 registry：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "d1acff07-3168-4b59-b95c-933a7f4e0d41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MJimSdXzqMhc6zhGKpLoEa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4952,
+      "cache_read_input_tokens": 25784,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4952
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Mn4EkXhzbhCmwsrYQh9QEY`</summary>
+
+```json
+{
+  "exp_id": "lm_eval_teal_50pct",
+  "field": "metrics",
+  "value": {
+    "method": "vanilla_teal",
+    "sparsity": 0.5,
+    "actual_sparsity": 0.5,
+    "arc_challenge_acc_norm": 0.291,
+    "winogrande_acc": 0.5556,
+    "mmlu_acc": 0.2856,
+    "gsm8k_exact_match_flexible": 0.019,
+    "gsm8k_exact_match_strict": 0.0114,
+    "arc_challenge_drop_vs_dense": -0.5,
+    "winogrande_drop_vs_dense": -0.289,
+    "mmlu_drop_vs_dense": -0.563,
+    "gsm8k_drop_vs_dense": -0.962,
+    "model": "Qwen2.5-7B-Instruct",
+    "condition": "TEAL 50% training-free sparsity"
+  },
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "a3787579-f057-4d08-b308-68ab662f5ddf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MJimSdXzqMhc6zhGKpLoEa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4952,
+      "cache_read_input_tokens": 25784,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4952
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T02:34:37.584Z_
+
+<details><summary>↩ Tool result · `toolu_01Mn4EkXhzbhCmwsrYQh9QEY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"lm_eval_teal_50pct\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T02:34:37.437Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"第一次提交 (PID 187335) 因 HF httpx \\\"Cannot send a request, client closed\\\" 失败，无输出。需设 HF_HUB_OFFLINE=1 重跑。\", \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:09.806Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:11.809131+00:00\"}]}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Qwen2.5-7B-Instruct\", \"condition\": \"TEAL 50% training-free sparsity\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3082}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "e6c6d851-fde9-4e7b-814c-61c1eb09b3ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"lm_eval_teal_50pct\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T00:35:57.527Z\\\", \\\"updated_at\\\": \\\"2026-05-16T02:34:37.437Z\\\", \\\"hypothesis\\\": \\\"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"190830\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T01:58:07.000Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"第一次提交 (PID 187335) 因 HF httpx \\\\\\\"Cannot send a request, client closed\\\\\\\" 失败，无输出。需设 HF_HUB_OFFLINE=1 重跑。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T02:32:09.806Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T02:32:11.809131+00:00\\\"}]}, \\\"metrics\\\": {\\\"method\\\": \\\"vanilla_teal\\\", \\\"sparsity\\\": 0.5, \\\"actual_sparsity\\\": 0.5, \\\"arc_challenge_acc_norm\\\": 0.291, \\\"winogrande_acc\\\": 0.5556, \\\"mmlu_acc\\\": 0.2856, \\\"gsm8k_exact_match_flexible\\\": 0.019, \\\"gsm8k_exact_match_strict\\\": 0.0114, \\\"arc_challenge_drop_vs_dense\\\": -0.5, \\\"winogrande_drop_vs_dense\\\": -0.289, \\\"mmlu_drop_vs_dense\\\": -0.563, \\\"gsm8k_drop_vs_dense\\\": -0.962, \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"condition\\\": \\\"TEAL 50% training-free sparsity\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3082}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"lm_eval_teal_50pct\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T02:34:37.437Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"第一次提交 (PID 187335) 因 HF httpx \\\"Cannot send a request, client closed\\\" 失败，无输出。需设 HF_HUB_OFFLINE=1 重跑。\", \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:09.806Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:11.809131+00:00\"}]}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Qwen2.5-7B-Instruct\", \"condition\": \"TEAL 50% training-free sparsity\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3082}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01YQWT8UxhNDb9wyshSc4cbu`</summary>
+
+```json
+{
+  "exp_id": "lm_eval_teal_50pct",
+  "field": "notes",
+  "value": "TEAL 50% downstream 结果确认 collapse 是 universal：\n\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\n|------|----------|--------|-------|-----------|---------|\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\n\n关键发现：\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "28097dc9-a78c-4f8a-acc9-795726794a08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoCpt2w2c9VUm1KFzYvyr9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1943,
+      "cache_read_input_tokens": 30736,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1943
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T02:34:49.675Z_
+
+<details><summary>↩ Tool result · `toolu_01YQWT8UxhNDb9wyshSc4cbu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"lm_eval_teal_50pct\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T02:34:49.536Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"TEAL 50% downstream 结果确认 collapse 是 universal：\\n\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\n|------|----------|--------|-------|-----------|---------|\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\n\\n关键发现：\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\", \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:09.806Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:11.809131+00:00\"}]}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Qwen2.5-7B-Instruct\", \"condition\": \"TEAL 50% training-free sparsity\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2841}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "7b7ae284-5215-42f3-b77a-9e595d5d566e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"lm_eval_teal_50pct\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T00:35:57.527Z\\\", \\\"updated_at\\\": \\\"2026-05-16T02:34:49.536Z\\\", \\\"hypothesis\\\": \\\"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"190830\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T01:58:07.000Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"TEAL 50% downstream 结果确认 collapse 是 universal：\\\\n\\\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\\\n|------|----------|--------|-------|-----------|---------|\\\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\\\n\\\\n关键发现：\\\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T02:32:09.806Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T02:32:11.809131+00:00\\\"}]}, \\\"metrics\\\": {\\\"method\\\": \\\"vanilla_teal\\\", \\\"sparsity\\\": 0.5, \\\"actual_sparsity\\\": 0.5, \\\"arc_challenge_acc_norm\\\": 0.291, \\\"winogrande_acc\\\": 0.5556, \\\"mmlu_acc\\\": 0.2856, \\\"gsm8k_exact_match_flexible\\\": 0.019, \\\"gsm8k_exact_match_strict\\\": 0.0114, \\\"arc_challenge_drop_vs_dense\\\": -0.5, \\\"winogrande_drop_vs_dense\\\": -0.289, \\\"mmlu_drop_vs_dense\\\": -0.563, \\\"gsm8k_drop_vs_dense\\\": -0.962, \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"condition\\\": \\\"TEAL 50% training-free sparsity\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2841}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"lm_eval_teal_50pct\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T02:34:49.536Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"TEAL 50% downstream 结果确认 collapse 是 universal：\\n\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\n|------|----------|--------|-------|-----------|---------|\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\n\\n关键发现：\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\", \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:09.806Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:11.809131+00:00\"}]}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Qwen2.5-7B-Instruct\", \"condition\": \"TEAL 50% training-free sparsity\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2841}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Xf53nzwZ1o414M764mdvub`</summary>
+
+```json
+{
+  "exp_id": "lm_eval_teal_50pct",
+  "field": "conclusion",
+  "value": "success",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "6e730678-29b9-4899-b3b1-33e656011a02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoCpt2w2c9VUm1KFzYvyr9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1943,
+      "cache_read_input_tokens": 30736,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1943
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T02:34:50.266Z_
+
+<details><summary>↩ Tool result · `toolu_01Xf53nzwZ1o414M764mdvub`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"lm_eval_teal_50pct\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T02:34:50.141Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"TEAL 50% downstream 结果确认 collapse 是 universal：\\n\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\n|------|----------|--------|-------|-----------|---------|\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\n\\n关键发现：\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\", \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:09.806Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:11.809131+00:00\"}]}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Qwen2.5-7B-Instruct\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3129}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "7c79631d-621f-4811-b693-39c96128a4ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"lm_eval_teal_50pct\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T00:35:57.527Z\\\", \\\"updated_at\\\": \\\"2026-05-16T02:34:50.141Z\\\", \\\"hypothesis\\\": \\\"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"190830\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T01:58:07.000Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"TEAL 50% downstream 结果确认 collapse 是 universal：\\\\n\\\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\\\n|------|----------|--------|-------|-----------|---------|\\\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\\\n\\\\n关键发现：\\\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T02:32:09.806Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T02:32:11.809131+00:00\\\"}]}, \\\"metrics\\\": {\\\"method\\\": \\\"vanilla_teal\\\", \\\"sparsity\\\": 0.5, \\\"actual_sparsity\\\": 0.5, \\\"arc_challenge_acc_norm\\\": 0.291, \\\"winogrande_acc\\\": 0.5556, \\\"mmlu_acc\\\": 0.2856, \\\"gsm8k_exact_match_flexible\\\": 0.019, \\\"gsm8k_exact_match_strict\\\": 0.0114, \\\"arc_challenge_drop_vs_dense\\\": -0.5, \\\"winogrande_drop_vs_dense\\\": -0.289, \\\"mmlu_drop_vs_dense\\\": -0.563, \\\"gsm8k_drop_vs_dense\\\": -0.962, \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"condition\\\": \\\"TEAL 50% training-free sparsity\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3129}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"lm_eval_teal_50pct\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T02:34:50.141Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"TEAL 50% downstream 结果确认 collapse 是 universal：\\n\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\n|------|----------|--------|-------|-----------|---------|\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\n\\n关键发现：\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\", \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:09.806Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:11.809131+00:00\"}]}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Qwen2.5-7B-Instruct\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3129}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01LgPSGFpRRN1gCTwBcpdUKn`</summary>
+
+```json
+{
+  "exp_id": "lm_eval_teal_50pct",
+  "field": "status",
+  "value": "DONE",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "b833dc26-2a1c-4001-85d5-f9bde5899081",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SVD8aX4e5CtnQRf6BMCcTC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3380,
+      "cache_read_input_tokens": 32679,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3380
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T02:34:53.769Z_
+
+<details><summary>↩ Tool result · `toolu_01LgPSGFpRRN1gCTwBcpdUKn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.1472}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "c5ec5c97-802c-4348-ae93-ddff17e531e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1472}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.1472}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01CjS4sTGTUV66zWhGHUj4S6`</summary>
+
+```json
+{
+  "exp_id": "lm_eval_teal_50pct",
+  "field": "checkpoint_path",
+  "value": "N/A (eval experiment, TEAL training-free)",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "e1bf4022-818b-48c4-9bb7-7d9911cc3a85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SVD8aX4e5CtnQRf6BMCcTC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3380,
+      "cache_read_input_tokens": 32679,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3380
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T02:34:55.481Z_
+
+<details><summary>↩ Tool result · `toolu_01CjS4sTGTUV66zWhGHUj4S6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"lm_eval_teal_50pct\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T02:34:55.368Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"TEAL 50% downstream 结果确认 collapse 是 universal：\\n\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\n|------|----------|--------|-------|-----------|---------|\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\n\\n关键发现：\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\", \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:09.806Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:11.809131+00:00\"}]}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Qwen2.5-7B-Instruct\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (eval experiment, TEAL training-free)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2722}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "6e2585f4-3a61-4ab1-acc1-55a35f0ab0a5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"lm_eval_teal_50pct\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T00:35:57.527Z\\\", \\\"updated_at\\\": \\\"2026-05-16T02:34:55.368Z\\\", \\\"hypothesis\\\": \\\"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"190830\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T01:58:07.000Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"TEAL 50% downstream 结果确认 collapse 是 universal：\\\\n\\\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\\\n|------|----------|--------|-------|-----------|---------|\\\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\\\n\\\\n关键发现：\\\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T02:32:09.806Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T02:32:11.809131+00:00\\\"}]}, \\\"metrics\\\": {\\\"method\\\": \\\"vanilla_teal\\\", \\\"sparsity\\\": 0.5, \\\"actual_sparsity\\\": 0.5, \\\"arc_challenge_acc_norm\\\": 0.291, \\\"winogrande_acc\\\": 0.5556, \\\"mmlu_acc\\\": 0.2856, \\\"gsm8k_exact_match_flexible\\\": 0.019, \\\"gsm8k_exact_match_strict\\\": 0.0114, \\\"arc_challenge_drop_vs_dense\\\": -0.5, \\\"winogrande_drop_vs_dense\\\": -0.289, \\\"mmlu_drop_vs_dense\\\": -0.563, \\\"gsm8k_drop_vs_dense\\\": -0.962, \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"condition\\\": \\\"TEAL 50% training-free sparsity\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (eval experiment, TEAL training-free)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2722}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"lm_eval_teal_50pct\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T02:34:55.368Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"TEAL 50% downstream 结果确认 collapse 是 universal：\\n\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\n|------|----------|--------|-------|-----------|---------|\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\n\\n关键发现：\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\", \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:09.806Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:11.809131+00:00\"}]}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Qwen2.5-7B-Instruct\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (eval experiment, TEAL training-free)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2722}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01RwNyz6tn166AEP7PUFtcJt`</summary>
+
+```json
+{
+  "exp_id": "lm_eval_teal_50pct",
+  "field": "log_path",
+  "value": "~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "59006718-bddd-4acc-87fb-a74085421c92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SVD8aX4e5CtnQRf6BMCcTC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3380,
+      "cache_read_input_tokens": 32679,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3380
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T02:34:55.984Z_
+
+<details><summary>↩ Tool result · `toolu_01RwNyz6tn166AEP7PUFtcJt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"lm_eval_teal_50pct\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T02:34:55.875Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"TEAL 50% downstream 结果确认 collapse 是 universal：\\n\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\n|------|----------|--------|-------|-----------|---------|\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\n\\n关键发现：\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\", \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:09.806Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:11.809131+00:00\"}]}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Qwen2.5-7B-Instruct\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (eval experiment, TEAL training-free)\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2478}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "5d946572-b5d2-4405-85ba-89c225aa23ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"lm_eval_teal_50pct\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T00:35:57.527Z\\\", \\\"updated_at\\\": \\\"2026-05-16T02:34:55.875Z\\\", \\\"hypothesis\\\": \\\"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"190830\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T01:58:07.000Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"TEAL 50% downstream 结果确认 collapse 是 universal：\\\\n\\\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\\\n|------|----------|--------|-------|-----------|---------|\\\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\\\n\\\\n关键发现：\\\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T02:32:09.806Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T02:32:11.809131+00:00\\\"}]}, \\\"metrics\\\": {\\\"method\\\": \\\"vanilla_teal\\\", \\\"sparsity\\\": 0.5, \\\"actual_sparsity\\\": 0.5, \\\"arc_challenge_acc_norm\\\": 0.291, \\\"winogrande_acc\\\": 0.5556, \\\"mmlu_acc\\\": 0.2856, \\\"gsm8k_exact_match_flexible\\\": 0.019, \\\"gsm8k_exact_match_strict\\\": 0.0114, \\\"arc_challenge_drop_vs_dense\\\": -0.5, \\\"winogrande_drop_vs_dense\\\": -0.289, \\\"mmlu_drop_vs_dense\\\": -0.563, \\\"gsm8k_drop_vs_dense\\\": -0.962, \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"condition\\\": \\\"TEAL 50% training-free sparsity\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (eval experiment, TEAL training-free)\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2478}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"lm_eval_teal_50pct\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T02:34:55.875Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"TEAL 50% downstream 结果确认 collapse 是 universal：\\n\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\n|------|----------|--------|-------|-----------|---------|\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\n\\n关键发现：\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\", \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:09.806Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:11.809131+00:00\"}]}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Qwen2.5-7B-Instruct\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (eval experiment, TEAL training-free)\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2478}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+checkpoint_path 和 log_path 已设置，重试 status → DONE：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "1c271614-5c16-483f-8d99-d35e45b1d98d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFJm7PZNXxNH18pHXXEUXZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3348,
+      "cache_read_input_tokens": 36059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3348
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01J61Gf7gjAjm4badsvH6Wvn`</summary>
+
+```json
+{
+  "exp_id": "lm_eval_teal_50pct",
+  "field": "status",
+  "value": "DONE",
+  "project": "distill_sparse_swiglu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "5b90e8cf-642e-453c-8d35-37128f33adc3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFJm7PZNXxNH18pHXXEUXZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3348,
+      "cache_read_input_tokens": 36059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3348
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T02:35:02.703Z_
+
+<details><summary>↩ Tool result · `toolu_01J61Gf7gjAjm4badsvH6Wvn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"lm_eval_teal_50pct\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T02:35:02.296Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2215.3, \"gpu_hours\": 0.62}, \"notes\": \"TEAL 50% downstream 结果确认 collapse 是 universal：\\n\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\n|------|----------|--------|-------|-----------|---------|\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\n\\n关键发现：\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\", \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:09.806Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:11.809131+00:00\"}]}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Qwen2.5-7B-Instruct\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (eval experiment, TEAL training-free)\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"completed_at\": \"2026-05-16T02:35:02.296Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5779}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "e004fedf-9d1d-4a6a-859e-e17448c7d663",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"lm_eval_teal_50pct\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T00:35:57.527Z\\\", \\\"updated_at\\\": \\\"2026-05-16T02:35:02.296Z\\\", \\\"hypothesis\\\": \\\"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"190830\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T01:58:07.000Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 2215.3, \\\"gpu_hours\\\": 0.62}, \\\"notes\\\": \\\"TEAL 50% downstream 结果确认 collapse 是 universal：\\\\n\\\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\\\n|------|----------|--------|-------|-----------|---------|\\\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\\\n\\\\n关键发现：\\\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T02:32:09.806Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T02:32:11.809131+00:00\\\"}]}, \\\"metrics\\\": {\\\"method\\\": \\\"vanilla_teal\\\", \\\"sparsity\\\": 0.5, \\\"actual_sparsity\\\": 0.5, \\\"arc_challenge_acc_norm\\\": 0.291, \\\"winogrande_acc\\\": 0.5556, \\\"mmlu_acc\\\": 0.2856, \\\"gsm8k_exact_match_flexible\\\": 0.019, \\\"gsm8k_exact_match_strict\\\": 0.0114, \\\"arc_challenge_drop_vs_dense\\\": -0.5, \\\"winogrande_drop_vs_dense\\\": -0.289, \\\"mmlu_drop_vs_dense\\\": -0.563, \\\"gsm8k_drop_vs_dense\\\": -0.962, \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"condition\\\": \\\"TEAL 50% training-free sparsity\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (eval experiment, TEAL training-free)\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\\\", \\\"completed_at\\\": \\\"2026-05-16T02:35:02.296Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5779}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"lm_eval_teal_50pct\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:35:57.527Z\", \"updated_at\": \"2026-05-16T02:35:02.296Z\", \"hypothesis\": \"TEAL 50% training-free sparse downstream eval - 判断 downstream 崩溃是否为所有 50% sparsity 方法的固有限制，而非 KL predictor 特有问题。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/lm_eval_teal.py --sparsity_target 0.5 --tasks arc_challenge,winogrande,mmlu,gsm8k --output_path results/lm_eval_teal_50pct\\\"\", \"server\": \"westd-34887\", \"gpu\": [\"cuda:1\"], \"pid\": \"190830\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"submitted_at\": \"2026-05-16T01:58:07.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2215.3, \"gpu_hours\": 0.62}, \"notes\": \"TEAL 50% downstream 结果确认 collapse 是 universal：\\n\\n| Task | TEAL 50% | KL 50% | Dense | TEAL drop | KL drop |\\n|------|----------|--------|-------|-----------|---------|\\n| arc_challenge (acc_norm) | 0.2910 | 0.3771 | 0.5819 | -50.0% | -35.2% |\\n| winogrande (acc) | 0.5556 | 0.6156 | 0.7814 | -28.9% | -21.2% |\\n| mmlu (acc) | 0.2856 | 0.2591 | 0.6532 | -56.3% | -60.3% |\\n| gsm8k (flexible-extract) | 0.0190 | 0.0121 | 0.5004 | -96.2% | -97.6% |\\n\\n关键发现：\\n1. TEAL 和 KL 在 MMLU/GSM8K 上均出现灾难性崩溃（接近随机水平），证明 50% sparsity downstream collapse 不是 KL predictor 特有问题\\n2. TEAL 在 ARC/WinoGrande 上甚至比 KL 更差（TEAL drop -50%/-29% vs KL drop -35%/-21%），说明 training-free 方法在简单 task 上也不如 learned predictor\\n3. MMLU/GSM8K 两者均近随机（MMLU ~0.25-0.29 = 4-choice random level），collapse 程度相当\\n4. 结论：50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 有根本性破坏，与 sparsity 选择方法无关\", \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:09.806Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:11.809131+00:00\"}]}, \"metrics\": {\"method\": \"vanilla_teal\", \"sparsity\": 0.5, \"actual_sparsity\": 0.5, \"arc_challenge_acc_norm\": 0.291, \"winogrande_acc\": 0.5556, \"mmlu_acc\": 0.2856, \"gsm8k_exact_match_flexible\": 0.019, \"gsm8k_exact_match_strict\": 0.0114, \"arc_challenge_drop_vs_dense\": -0.5, \"winogrande_drop_vs_dense\": -0.289, \"mmlu_drop_vs_dense\": -0.563, \"gsm8k_drop_vs_dense\": -0.962, \"model\": \"Qwen2.5-7B-Instruct\", \"condition\": \"TEAL 50% training-free sparsity\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (eval experiment, TEAL training-free)\", \"log_path\": \"~/runs/distill_sparse_swiglu/lm_eval_teal_50pct.log\", \"completed_at\": \"2026-05-16T02:35:02.296Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5779}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Registry 更新完成。实验 `lm_eval_teal_50pct` → **DONE (success)**。
+
+**结论**：TEAL 50% 也全面崩溃（MMLU=0.286, GSM8K=0.019），与 KL 50% 的崩溃程度相当。50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 破坏是方法无关的（universal），不是 KL predictor 特有问题。TEAL 在简单 task（ARC/WinoGrande）上甚至比 KL 更差，说明 learned predictor 至少在保留部分能力上优于 training-free 方法。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "uuid": "dedb2eef-98c4-4b6b-9c6e-a69e1e30ce73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J8YruVxRXMvqw2tBuaFwQF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1598,
+      "cache_read_input_tokens": 39407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1598
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 32_
+
+Registry 更新完成。实验 `lm_eval_teal_50pct` → **DONE (success)**。
+
+**结论**：TEAL 50% 也全面崩溃（MMLU=0.286, GSM8K=0.019），与 KL 50% 的崩溃程度相当。50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 破坏是方法无关的（universal），不是 KL predictor 特有问题。TEAL 在简单 task（ARC/WinoGrande）上甚至比 KL 更差，说明 learned predictor 至少在保留部分能力上优于 training-free 方法。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 72244,
+  "duration_api_ms": 70516,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "bdbdb487-b5d2-49cf-8164-2c8591d35809",
+  "total_cost_usd": 0.37455150000000004,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 29164,
+    "cache_read_input_tokens": 225129,
+    "output_tokens": 3109,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 29164,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 198,
+        "cache_read_input_tokens": 39407,
+        "cache_creation_input_tokens": 1598,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1598
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1837,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0019320000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 3109,
+      "cacheReadInputTokens": 225129,
+      "cacheCreationInputTokens": 29164,
+      "webSearchRequests": 0,
+      "costUSD": 0.37261950000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d343a4fd-b4f3-4f3c-909b-6adfcd9d5ff7"
+}
+```
+
+</details>
+
+---

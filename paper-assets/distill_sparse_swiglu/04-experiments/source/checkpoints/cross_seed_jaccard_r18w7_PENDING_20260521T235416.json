@@ -1,0 +1,15 @@
+{
+  "exp_id": "cross_seed_jaccard_r18w7",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:54:11.633Z",
+    "updated_at": "2026-05-21T23:54:15.862Z",
+    "hypothesis": "Cross-seed mask Jaccard distance for KL-trained predictors should be significantly lower than KL-vs-magnitude divergence (46-68%), proving that the divergence is caused by loss function design rather than seed noise. If cross-seed Jaccard is comparable to 46-68%, then the KL-vs-magnitude divergence claim lacks discriminative power (R18-W7)."
+  },
+  "timestamp": "2026-05-21T23:54:16.431361+00:00",
+  "trigger": "update_registry"
+}

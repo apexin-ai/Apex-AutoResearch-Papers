@@ -1,0 +1,49 @@
+{
+  "exp_id": "mse30_s456_downstream",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:46:58.268Z",
+    "updated_at": "2026-05-22T10:58:00.517Z",
+    "hypothesis": "MSE 30% s456 full downstream eval (ARC-c+WG+MMLU+GSM8K+HS+PIQA+BoolQ) to complete 3-seed mean±std for 2D decomposition table (objective × allocation). Reviewer required multi-seed for MSE row; s42 already has full downstream, s123 running in parallel. Together the three seeds give mean±std for MSE 30% uniform downstream so the table can replace s42-only numbers without re-write of the framing.",
+    "parent": "mse30_s456",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id mse30_s456_downstream --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mse30_s456/predictor_mse.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq --seq_len 2048 --gpu 0\"",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "lm-eval cached datasets at /root/autodl-tmp/.hf_cache/datasets",
+      "data_count": "ARC-c 1172 / WG 1267 / MMLU 14042 / GSM8K 1319 / HS 10042 / PIQA 1838 / BoolQ 3270",
+      "model_name": "meta-llama/Llama-3.1-8B",
+      "seed": 456,
+      "checkpoint_source": "checkpoints/mse30_s456/predictor_mse.pt",
+      "eval_data": "arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq (TEAL global 30% uniform allocation)",
+      "pid": "402809",
+      "log_path": "/root/runs/distill_sparse_swiglu/mse30_s456_downstream.log",
+      "submitted_at": "2026-05-22T09:47:30Z",
+      "submitted_via": "ssh_execute_nohup",
+      "backend": "nohup",
+      "account": "root",
+      "wall_clock_seconds": 4230.5,
+      "gpu_hours": 1.18
+    },
+    "metrics": {
+      "arc_challenge_acc_norm": 0.3882,
+      "winogrande_acc": 0.6196,
+      "mmlu_acc": 0.3264,
+      "gsm8k_exact_match": 0.0311,
+      "hellaswag_acc_norm": 0.6129,
+      "piqa_acc_norm": 0.7383,
+      "boolq_acc": 0.7034
+    },
+    "conclusion": "success",
+    "checkpoint_path": "checkpoints/mse30_s456/predictor_mse.pt",
+    "completed_at": "2026-05-22T10:58:00.517Z"
+  },
+  "timestamp": "2026-05-22T10:58:01.093855+00:00",
+  "trigger": "update_registry"
+}

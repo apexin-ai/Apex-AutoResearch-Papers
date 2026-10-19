@@ -1,0 +1,41 @@
+\section{Related Work}
+\label{sec:related}
+
+Prior approaches to activation sparsity in LLMs vary along two axes: \emph{correction granularity} (static, per-layer, or per-token contextual) and \emph{training signal coupling} (decomposed per-neuron objectives, intermediate representations, or coupled output distributions). We survey each regime below and position our method in the resulting taxonomy (Table~\ref{tab:taxonomy}).
+
+\paragraph{Training-Free Activation Sparsity.}
+A family of methods prune activations at inference time without learned parameters.
+TEAL~\cite{liu2025teal} applies magnitude-based thresholding across hidden states, achieving 1.8$\times$ decoding speedup at 50\% sparsity on ReLU models but degrading substantially on SwiGLU architectures.
+WINA~\cite{wina2025} incorporates weight magnitudes into importance scoring, and R-Sparse~\cite{zhang2025rsparse} derives rank-aware scores via SVD.
+CATS~\cite{lee2024cats} computes per-layer percentile thresholds on SiLU activations.
+Amber Pruner~\cite{an2025amber} enforces hardware-friendly N:M structured patterns, and DIP~\cite{federici2025dip} applies dynamic magnitude pruning directly to SwiGLU layers with LoRA-based recovery.
+These methods avoid training costs but rely on fixed scoring criteria that cannot adapt to per-input neuron importance.
+On Llama-3.1-8B at 50\% sparsity, even the best training-free method incurs a perplexity gap exceeding 6 points.
+
+\paragraph{KL Distillation for Model Compression.}
+Forward KL divergence has proven effective for recovering quality after structural compression.
+Minitron~\cite{muralidharan2024minitron} shows that logit-only KL distillation outperforms both cross-entropy and intermediate-layer matching for structured pruning recovery, attributing this to preservation of inter-token distributional relationships.
+\citet{hou2025ifp} train input-dependent mask predictors for instruction-aware weight pruning, and \citet{distill2025hybrid} use per-layer KL as a selection criterion for hybrid attention architectures.
+These results establish KL as the preferred objective for distribution-preserving compression, yet no prior work applies KL to train activation sparsity predictors.
+
+\paragraph{Learned Contextual Sparsity Predictors.}
+DejaVu~\cite{liu2023dejavu} introduces lightweight MLP predictors trained with binary cross-entropy (BCE) to identify skippable neurons and attention heads, achieving 2$\times$ speedup on OPT-175B.
+ShadowLLM~\cite{akhauri2024shadowllm} improves predictor architectures with per-layer MSE distillation of intermediate representations, reporting 15\% accuracy gains over DejaVu.
+FastForward~\cite{gautam2026fastforward} augments a BCE-trained predictor with a 67.2M-parameter error compensation network and a layer-wise sparsity scheduler, reaching 1.45$\times$ prefill acceleration at 50\% sparsity.
+All three methods optimize per-neuron objectives whose gradients factorize across neurons, preventing the predictor from capturing how joint neuron interactions shape the output distribution.
+This creates an objective mismatch: predictors trained for per-neuron binary accuracy produce scores that are structurally incompatible with inference-time global budget allocation~\cite{liu2025teal}.
+FastForward's compensation network partially addresses this gap but adds inference overhead; we show that replacing the per-neuron objective with KL divergence eliminates the need for compensation entirely.
+
+\paragraph{Distribution-Coupled Sparsity Correction.}
+SPON~\cite{xu2026spon} is the closest precedent: it trains input-independent learnable bias vectors via KL divergence between dense and sparse output logits, then absorbs the biases into model parameters for zero-inference-overhead correction.
+SPON demonstrates that KL is well-suited for sparsity-aware distribution matching.
+However, static biases cannot adapt to per-input variation in neuron importance.
+In our experiments, SPON corrections are orthogonal to and substantially smaller than contextual predictor mask effects (cosine similarity 0.196, magnitude ratio 16\%), recovering less than 10\% of the sparse-to-dense gap when applied on top of a KL-trained predictor.
+Our method fills the remaining cell in the granularity$\times$coupling taxonomy: per-token contextual prediction with a coupled KL objective, combining SPON's distribution-level training signal with DejaVu's input-dependent prediction.
+
+\paragraph{Perplexity--Downstream Disconnect.}
+Several studies document that perplexity inadequately captures capability degradation in sparse models.
+\citet{khanal2024ppl} show that SparseGPT and Wanda at 50\% weight sparsity maintain perplexity while downstream accuracy degrades significantly.
+\citet{xu2024sparsity} observe that perplexity remains flat up to 45--60\% activation sparsity yet fails to reflect emerging capability loss.
+\citet{siam2026type2} characterize a Type~2 failure mode---reasoning chain breakage followed by repetitive cycling---that perplexity by construction cannot penalize.
+We observe the same pattern: at 50\% activation sparsity, Llama-3.1-8B achieves near-baseline perplexity but collapses on chain-of-thought tasks, motivating our multi-metric evaluation beyond perplexity alone.

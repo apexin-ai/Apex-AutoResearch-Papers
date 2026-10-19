@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "47fa2ee1ed5130dd95b3",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "code qwen14b adaptation",
+  "task_key": "worker_code_qwen14b_adaptation_20260517T112250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen14b_adaptation_20260517T112250.log",
+    "occurrence": 1,
+    "bytes": 1118006,
+    "sha256": "722e3b12b95e75d63274ed6ff4fa1c4187914dba479f33136b63995bf7ef2261"
+  },
+  "statistics": {
+    "messages": 745,
+    "user_turns": 1,
+    "tool_calls": 235,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 268,
+      "tool_call": 235,
+      "tool_result": 235,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 623,
+      "chunks": [
+        {
+          "path": "47fa2ee1ed5130dd95b3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "47fa2ee1ed5130dd95b3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "47fa2ee1ed5130dd95b3-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "47fa2ee1ed5130dd95b3-part-0004.json",
+          "message_count": 83
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 122,
+      "chunks": [
+        {
+          "path": "47fa2ee1ed5130dd95b3-part-0004.json",
+          "message_count": 97
+        },
+        {
+          "path": "47fa2ee1ed5130dd95b3-part-0005.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-qwen14b-adaptation.md"
+}

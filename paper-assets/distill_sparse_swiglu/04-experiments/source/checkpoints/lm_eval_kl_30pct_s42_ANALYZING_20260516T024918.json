@@ -1,0 +1,61 @@
+{
+  "exp_id": "lm_eval_kl_30pct_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:35:56.358Z",
+    "updated_at": "2026-05-16T02:49:18.082Z",
+    "hypothesis": "30% sparsity downstream eval (ARC-c, WinoGrande, MMLU, GSM8K) - 与 50% 对比看退化是否有梯度。决定论文是否能 claim \"30% 为推荐配置\"。",
+    "spec": {
+      "command": "python -u src/lm_eval_sparse.py --tasks arc_challenge,winogrande,mmlu,gsm8k --sparsity_target 0.3",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "191335",
+      "log_path": "~/runs/distill_sparse_swiglu/lm_eval_kl_30pct_s42.log",
+      "submitted_at": "2026-05-16T01:58:48.081Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "arc_challenge,winogrande,mmlu,gsm8k",
+      "data_count": 0,
+      "model_name": "meta-llama/Llama-3.1-8B",
+      "seed": 42
+    },
+    "notes": "第一次提交 (PID 186674) 因 HF httpx \"Cannot send a request, client closed\" 失败，无输出。需设 HF_HUB_OFFLINE=1 重跑。",
+    "reproduce": {
+      "finished_at": "2026-05-16T02:46:54.414Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T02:46:56.057400+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "arc_challenge_acc": 0.3575,
+      "arc_challenge_acc_norm": 0.3737,
+      "winogrande_acc": 0.6756,
+      "mmlu_acc": 0.2874,
+      "gsm8k_exact_match_strict": 0.0743,
+      "gsm8k_exact_match_flexible": 0.0781,
+      "actual_sparsity": 0.3,
+      "model": "llama-3.1-8b",
+      "condition": "kl_distill_30pct_sparsity_s42",
+      "mmlu_stem_acc": 0.2499,
+      "mmlu_social_sciences_acc": 0.2896,
+      "mmlu_humanities_acc": 0.2786,
+      "mmlu_other_acc": 0.3363
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-16T02:49:18.196377+00:00",
+  "trigger": "update_registry"
+}

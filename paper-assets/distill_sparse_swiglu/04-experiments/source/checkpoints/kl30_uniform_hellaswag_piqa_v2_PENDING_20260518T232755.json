@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl30_uniform_hellaswag_piqa_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:27:28.149Z",
+    "updated_at": "2026-05-18T23:27:55.436Z",
+    "hypothesis": "KL 30% uniform predictor should maintain near-dense performance on HellaSwag (10-shot) and PIQA (0-shot) at the recommended 30% operating point, consistent with graceful degradation observed on ARC/Winogrande/MMLU/GSM8K. Broadens downstream coverage from 4 to 6 tasks. V2: retry after fixing HF dataset cache (hellaswag+piqa now pre-downloaded).",
+    "parent": "kl30_uniform_hellaswag_piqa"
+  },
+  "timestamp": "2026-05-18T23:27:55.786597+00:00",
+  "trigger": "update_registry"
+}

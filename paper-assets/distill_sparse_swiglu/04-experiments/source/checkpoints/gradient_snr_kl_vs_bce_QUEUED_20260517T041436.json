@@ -1,0 +1,15 @@
+{
+  "exp_id": "gradient_snr_kl_vs_bce",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:14:30.896Z",
+    "updated_at": "2026-05-17T04:14:36.184Z",
+    "hypothesis": "KL loss provides higher gradient signal-to-noise ratio than BCE because end-to-end coupling propagates output-distribution information to early layers, while BCE's local proxy targets saturate early-layer gradients"
+  },
+  "timestamp": "2026-05-17T04:14:36.413849+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "kl50_global_hellaswag_piqa_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:27:29.696Z",
+    "updated_at": "2026-05-18T23:27:29.696Z"
+  },
+  "timestamp": "2026-05-18T23:27:30.053316+00:00",
+  "trigger": "update_registry"
+}

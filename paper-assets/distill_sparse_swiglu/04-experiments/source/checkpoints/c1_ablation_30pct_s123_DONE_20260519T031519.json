@@ -1,0 +1,44 @@
+{
+  "exp_id": "c1_ablation_30pct_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:07:21.635Z",
+    "updated_at": "2026-05-19T03:15:19.324Z",
+    "hypothesis": "C1 causal ablation at 30% sparsity seed 123: BCE predictor trained on KL-derived oracle masks should reproduce KL quality (max Δ ≤ 2pp downstream), confirming target quality drives KL advantage across seeds. Multi-seed validation strengthens C1 claim.",
+    "spec": {
+      "command": "benchmark_eval.py C1@30% s123",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "117411",
+      "log_path": "~/runs/distill_sparse_swiglu/c1_ablation_30pct_s123.log",
+      "submitted_at": "2026-05-19T02:26:49.892Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "data_count": 5,
+      "model_name": "llama-3.1-8b",
+      "seed": 123,
+      "checkpoint_source": "c1_ablation_30pct_s123 (train)",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "checkpoint_path": "checkpoints/c1_ablation_30pct_s123/predictor_bce_kl_targets.pt",
+      "wall_clock_seconds": 2909.4,
+      "gpu_hours": 0.81
+    },
+    "metrics": {
+      "wikitext2_ppl": 8.83,
+      "mmlu_acc": 0.3833,
+      "winogrande_acc": 0.7119
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T03:15:19.324Z"
+  },
+  "timestamp": "2026-05-19T03:15:19.843589+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,56 @@
+{
+  "exp_id": "qwen14b_kl30_s123_eval_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:20:36.444Z",
+    "updated_at": "2026-05-19T11:23:55.893Z",
+    "hypothesis": "Qwen-14B KL 30% s123 benchmark eval (WikiText-2 PPL + 5 downstream: ARC/WG/HS/PIQA/MMLU) with TEAL uniform allocation. Multi-seed replication to confirm MMLU reversal is systematic. GSM8K excluded due to generate_until cost on 14B.",
+    "parent": "qwen14b_kl30_s123",
+    "server": "westd-34887",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-34887",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-19T11:21:05.995Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s123_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\"",
+      "finished_at": "2026-05-19T11:21:31.704Z",
+      "training_hours": 0.01
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s123_eval_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "99904",
+      "log_path": "~/runs/distill_sparse_swiglu/qwen14b_kl30_s123_eval_v2.log",
+      "submitted_at": "2026-05-19T11:21:08.256Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 27.6,
+      "gpu_hours": 0.01
+    },
+    "pid": "99904",
+    "log_path": "~/runs/distill_sparse_swiglu/qwen14b_kl30_s123_eval_v2.log",
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 27.51 GiB. GPU 0 has a total capacity of 94.97 GiB of which 2.55 GiB is free. Process 93142 has 91.87 GiB memory in use. Including non-PyTorch memory, this process has 550.00 MiB memory in use. Of the allocated m",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T11:21:35.897Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T11:21:40.453494+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-19T11:23:56.291570+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,26 @@
+paper_key: "CATS: Contextually-Aware Thresholding for Sparsity in Large Language Models"
+title: "CATS: Contextually-Aware Thresholding for Sparsity in Large Language Models"
+venue: "COLM 2024"
+full_text_available: false
+
+research:
+  baselines: ["base dense models (Mistral-7B, Llama2-7B, Llama2-13B)", "existing sparsification techniques"]
+  metrics:
+    - {name: "downstream task performance", direction: "higher_better"}
+    - {name: "activation sparsity level", direction: "higher_better"}
+    - {name: "wall-clock inference latency", direction: "lower_better"}
+  datasets:
+    - {name: "standard downstream task benchmarks", size: "not specified"}
+  ablation_dimensions: ["sparsity level", "fine-tuning vs no fine-tuning", "activation function design"]
+  training_recipe: {optimizer: "not specified (parameter-efficient fine-tuning optional)", lr: "not specified", hardware: "GPU with custom kernel"}
+  method_family: "contextually-aware activation sparsification"
+
+positioning:
+  core_claim: "A novel non-linear activation function enables contextually-aware thresholding that achieves 50% activation sparsity with only 1-2% performance drop and no fine-tuning, plus ~15% wall-clock speedup."
+  key_results: "Within 1-2% of base model performance at 50% sparsity without fine-tuning; ~15% wall-clock latency improvement on Llama-7B and Mistral-7B."
+  limitations: ["requires custom GPU kernel for speedup", "moderate speedup (~15%) compared to methods targeting higher sparsity"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

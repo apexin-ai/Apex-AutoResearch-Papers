@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "063f9e60c7e74e390051",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra extract teal30 bce30 results v2",
+  "task_key": "worker_infra_extract_teal30_bce30_results_v2_20260517T222852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_extract_teal30_bce30_results_v2_20260517T222852_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "802d065c32a5b1e4860bbfb968a58b49c4c5fe586f7a2314e433e56044b273f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both evals are nearly done with GSM8K (the last benchmark task):\n\n| Experiment | Server | PPL | GSM8K Progress | ETA |\n|---|---|---|---|---|\n| **qwen14b_teal30_eval** | westd-41718 | 8.7332 | 1273/1319 (97%) | ~12 min |\n| **qwen14b_bce30_s42_eval** | westd-34887 | 8.7634 | 1265/1319 (96%) | ~13 min |\n\nBoth should finish within ~15 minutes. Results (arc_challenge, winogrande, mmlu, gsm8k scores) will only be printed to the log after GSM8K generation completes. I'll check back shortly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-extract-teal30-bce30-results-v2.md"
+}

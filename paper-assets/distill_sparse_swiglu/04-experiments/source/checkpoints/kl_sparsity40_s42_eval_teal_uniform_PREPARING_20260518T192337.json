@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl_sparsity40_s42_eval_teal_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:13:21.692Z",
+    "updated_at": "2026-05-18T19:23:37.081Z",
+    "hypothesis": "KL predictor at 40% sparsity with TEAL uniform allocation fills the gap in the 6-point regime curve, providing protocol-consistent data alongside existing global_topk eval.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-18T19:23:37.425545+00:00",
+  "trigger": "update_registry"
+}

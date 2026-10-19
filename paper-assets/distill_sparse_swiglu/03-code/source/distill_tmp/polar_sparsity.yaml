@@ -1,0 +1,213 @@
+paper_key: "polar_sparsity"
+title: "Polar Sparsity: High Throughput Batched LLM Inferencing with Scalable Contextual Sparsity"
+venue: "NeurIPS 2025"
+authors: "Susav Shrestha, Brad Settlemyer, Nikoli Dryden, Narasimha Reddy"
+arxiv_id: "2505.14884"
+full_text_available: true
+
+research:
+  baselines:
+    - Dense (full model)
+    - DejaVu
+    - ProbePruning (40%)
+    - ReLUfication
+    - ProSparse
+    - CATS (50%)
+    - TEAL (50%)
+    - GRIFFIN (50%)
+    - R-Sparse (50%)
+  metrics:
+    - {name: "Zero-shot accuracy (COPA, OpenBookQA, PIQA, RTE, Winogrande, HellaSwag, ARC-e, ARC-c)", direction: "higher_better"}
+    - {name: "MMLU 5-shot accuracy", direction: "higher_better"}
+    - {name: "Perplexity (WikiText-2)", direction: "lower_better"}
+    - {name: "Decoding throughput (tokens/sec)", direction: "higher_better"}
+    - {name: "Inter-token latency", direction: "lower_better"}
+    - {name: "End-to-end speedup vs dense", direction: "higher_better"}
+    - {name: "Kernel speedup vs dense GEMM/FlashAttention", direction: "higher_better"}
+  datasets:
+    - {name: "WikiText-2", size: "400K token samples for router training"}
+    - {name: "COPA", size: "standard"}
+    - {name: "OpenBookQA", size: "standard"}
+    - {name: "PIQA", size: "standard"}
+    - {name: "RTE", size: "standard"}
+    - {name: "Winogrande", size: "standard"}
+    - {name: "HellaSwag", size: "standard"}
+    - {name: "MMLU", size: "standard, 5-shot"}
+    - {name: "ARC-easy", size: "standard"}
+    - {name: "ARC-challenge", size: "standard"}
+  ablation_dimensions:
+    - "Attention density threshold (30%-100%)"
+    - "MLP sparsity level"
+    - "Batch size scaling (1-512)"
+    - "Sequence length scaling"
+    - "Per-layer head importance (layer 0 dense vs uniform sparsity)"
+    - "Router overhead analysis"
+    - "Tensor parallel degree (1, 2, 4)"
+    - "Model family (OPT vs LLaMA-2 vs LLaMA-3.1)"
+    - "Attention type: MHA vs GQA impact on achievable sparsity"
+  training_recipe:
+    router_architecture: "MLP router: two-layer feedforward, 1024 hidden dim; Attention router: single-layer feedforward"
+    router_training_data: "400K token samples from WikiText-2 training set"
+    router_loss: "Binary cross-entropy"
+    router_optimizer: "AdamW, lr=1e-4"
+    dynamic_topk_target: "99% recall for MLP neurons"
+    hardware: "NVIDIA DGX A100 80GB GPUs"
+    no_model_retraining: true
+  method_family: "Contextual sparsity for inference acceleration (activation sparsity + attention head sparsity)"
+
+positioning:
+  core_claim: "MLP contextual sparsity degrades with batch size due to union activations, but attention head sparsity is batch-invariant; shifting optimization focus to attention heads enables the first scalable contextual sparsity system for high-throughput batched LLM inference."
+  key_results: |
+    End-to-end speedup: up to 2.2x over dense (OPT-66B, batch 64)
+    Selective GEMM kernel: up to 5.5x speedup for dynamic MLP activations
+    Selective FlashAttention kernel: up to 2.8x speedup for head-sparse attention
+    OPT-66B at 30% attention density: avg accuracy 0.560 vs 0.570 dense (-1.0%)
+    LLaMA-2-7B at 50% attention density: avg accuracy 0.594 vs 0.608 dense (-1.4%)
+    LLaMA-3.1-70B at 62.5% attention density: avg accuracy 0.712 vs 0.724 dense (-1.2%)
+    Throughput at batch 64: 2x over DejaVu, 1.83x over dense (OPT-6.7B)
+    LLaMA-3.1-70B: 1.51x speedup at large batch sizes despite higher density requirement
+  limitations:
+    - "Diminishing returns at small model scale or small-batch inference due to reduced GPU workload"
+    - "Fixed top-k head selection per layer; dynamic input-adaptive strategies could improve efficiency"
+    - "Average ~1% accuracy loss at critical thresholds; could potentially recover with fine-tuning"
+    - "GQA models (LLaMA-3.1) require higher density (62.5%) than MHA models (30% for OPT-66B), limiting sparsity gains"
+    - "MLP sparsity benefits limited for non-ReLU models (LLaMA family); attention-only sparsity applied"
+    - "Router overhead not negligible at small batch sizes (Figure 10 shows latency contribution)"
+  relation_to_us: "competitor"
+  # We distill sparse SwiGLU activation patterns into static masks; Polar Sparsity uses dynamic contextual
+  # sparsity with routers. Key difference: they show MLP sparsity degrades under batching (union activation
+  # problem), which is exactly the problem our static mask approach can address differently. Their attention
+  # head sparsity insight is orthogonal/complementary to our MLP-focused work. Their Table 2 directly
+  # compares against TEAL and R-Sparse which are also in our competitor set. Their finding that GQA limits
+  # sparsity gains is relevant to our work on modern architectures.
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Contextual sparsity is promising but fails to scale beyond single-query inference; real-world LLM serving requires batched decoding."
+  tension: |
+    Prior contextual sparsity work (DejaVu, CATS, TEAL, etc.) only demonstrated gains on single-query
+    inference. In production settings with batching, the union of activated MLP neurons across batch
+    elements erases sparsity gains. This creates a fundamental gap: the technique that works beautifully
+    at batch=1 becomes useless at production batch sizes.
+  key_insight: |
+    The paper reveals a "polarity" in sparsity behavior: MLP sparsity degrades with batch size (union
+    activation effect), while attention head sparsity remains stable and batch-invariant. This is because
+    each sequence computes attention independently, so per-head importance doesn't suffer from the union
+    problem. The insight is revealed through Figure 1 (latency breakdown showing attention dominance at
+    scale) and the batch neuron activation analysis. The name "Polar" captures this dichotomy.
+  argument_chain: |
+    1. LLM inference is expensive, sparsity is a promising acceleration path
+    2. Existing contextual sparsity only works at batch=1
+    3. Analysis reveals WHY: MLP union activations grow with batch size (Figure 1b)
+    4. But attention computation grows linearly AND head sparsity is batch-invariant
+    5. Therefore: shift optimization focus from MLP to attention heads
+    6. Design custom GPU kernels (Selective GEMM + Selective FlashAttention)
+    7. Validate across OPT, LLaMA-2, LLaMA-3.1 with minimal accuracy loss
+    8. Demonstrate first scalable contextual sparsity at large batch sizes (up to 2.2x)
+  contribution_framing: "Four contributions listed as enumerated items: (1) empirical observation, (2) MLP kernel, (3) attention kernel, (4) end-to-end system with speedup claims"
+  intro_structure: |
+    9 paragraphs:
+    P1: LLM deployment costs motivation
+    P2: Sparsity/pruning limitations, introduce contextual activation sparsity
+    P3: Research gap - activation sparsity limited to single-query
+    P4: Key observation from Figure 1 - attention dominates at scale
+    P5: Define "Polar Sparsity" concept
+    P6: Detail stable attention head sparsity vs degrading MLP sparsity
+    P7: Hardware-efficient kernel development
+    P8: Claims about first demonstration of scalable contextual sparsity
+    P9: Four contribution bullet points
+  notable_technique: |
+    The "polarity" framing is the strongest narrative device: by naming the paper after the observed
+    dichotomy (MLP sparsity degrades vs attention sparsity stable), they create a memorable conceptual
+    handle. The intro builds tension through a gap analysis (existing sparsity fails at scale) before
+    revealing the solution through empirical analysis rather than top-down design. Figure 1 is placed
+    very early (paragraph 4) to ground the argument in data immediately.
+
+figures:
+  figure_count: 14  # including appendix figures
+  figure1:
+    type: "motivation"
+    description: |
+      Two-panel figure for OPT-66B. (a) Decode latency breakdown bar chart across batch sizes showing
+      component contributions (Attention, MLP, QKV projection, output projection, others) on A100 with
+      seq_len=1920. Shows attention dominating at larger batch sizes. (b) Line graph showing union neuron
+      sparsity decline as batch size increases with random sequences - demonstrates MLP sparsity erosion.
+    narrative_role: "Establishes the core problem: MLP sparsity degrades with batching while attention becomes the bottleneck. This is THE motivating evidence for the entire paper."
+    design_elements:
+      - "Side-by-side panels contrasting latency breakdown (a) with sparsity degradation (b)"
+      - "Stacked bar chart for component decomposition"
+      - "Line plot showing monotonic degradation trend"
+      - "Batch size as shared x-axis creating visual linkage"
+    visual_style: "Clean two-panel layout, standard academic colors, shared x-axis (batch size), clear axis labels"
+
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Kernel speedup vs sparsity level for (a) Selective GEMM and (b) Selective FlashAttention"
+      how_gain_highlighted: "Shows near-linear speedup scaling with sparsity, demonstrating kernel efficiency"
+      design_note: "Separate panels for MLP and attention kernels; uses batch=64, seq=1920 as realistic production config"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Zero-shot accuracy across downstream tasks vs attention density for OPT-66B, LLaMA-2-7B, LLaMA-3.1-70B"
+      how_gain_highlighted: "Shows accuracy plateau before sharp degradation, identifying 'critical threshold' visually"
+      design_note: "Three subplots for different model families; multiple task lines allow readers to see variance across tasks"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "Throughput (tokens/sec) vs batch size for dense, DejaVu, and Polar Sparsity on OPT-6.7B and OPT-66B"
+      how_gain_highlighted: "Polar Sparsity line diverges upward from baselines at larger batch sizes, visually emphasizing the scaling advantage"
+      design_note: "Two panels (6.7B and 66B) showing consistent pattern; DejaVu included as strongest prior baseline"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Throughput vs batch size for dense vs Polar Sparsity on LLaMA-2-7B and LLaMA-3.1-70B"
+      how_gain_highlighted: "Growing gap between dense and sparse lines at larger batch sizes"
+      design_note: "Demonstrates generalization to non-OPT architectures and GQA; no DejaVu baseline (doesn't apply to attention-only sparsity)"
+
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot + bar_chart"
+      dimensions_varied: ["Head sparsity level vs perplexity across models", "Per-layer attention importance"]
+      design_note: "Two-panel: (a) perplexity degradation curves across models establish safe sparsity ranges; (b) bar chart of per-layer importance justifies dense layer-0 design choice"
+    - figure_id: "Figure 10 (Appendix C)"
+      viz_type: "bar_chart"
+      dimensions_varied: ["Router overhead at different sparsity levels for MLP and Attention blocks"]
+      design_note: "Stacked bars showing router latency as fraction of total; justifies router design is practical"
+
+  figure_narrative_role: |
+    Figure 1 (motivation: MLP sparsity degrades, attention dominates)
+    -> Figure 2 (analysis: head sparsity is viable, layer-0 is special)
+    -> Figure 3 (kernel performance: custom kernels achieve near-linear speedup)
+    -> Figure 4 (accuracy: critical thresholds identified per model)
+    -> Figure 5-6 (throughput results: end-to-end speedup across models and batch sizes)
+    Flow: problem observation -> feasibility analysis -> implementation validation -> accuracy validation -> throughput validation
+
+tables:
+  table_count: 2  # main paper; additional in appendix
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "models (Dense vs PolarSparse at critical threshold)"
+    col_axis: "9 downstream tasks + average"
+    row_organization: "by_model_family"
+    col_organization: "flat (individual tasks + average)"
+    highlight_strategy: "Paired rows (dense/sparse) per model for direct comparison"
+    statistical_reporting: "Single-run numbers, no variance reported"
+    num_baselines: 5  # 5 model variants, each with dense baseline
+    design_note: |
+      Clean paired-row design: each model has dense row immediately followed by PolarSparse row,
+      making accuracy drop instantly visible. Critical threshold noted in row label
+      (e.g., PolarSparse-0.3 for 30% density). Average column on far right for quick summary.
+      10 tasks is comprehensive but pushes table width.
+
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["Sparsity method (8 competitors + dense baseline)"]
+      variation_style: "full_numbers"
+      design_note: |
+        Comparison table on LLaMA-2-7B specifically. All methods at 50% sparsity level
+        (where applicable). 7 tasks shown. Directly compares against TEAL, R-Sparse, CATS,
+        ProSparse, GRIFFIN, ReLUfication, ProbePruning. PolarSparse competitive but MMLU shows
+        weakness (0.381 vs 0.458 dense). Honest reporting of mixed results.
+
+  supplementary_tables:
+    in_appendix: true
+    content: "Extended throughput results, tensor parallel results, latency breakdowns across sequence lengths"
+    reason: "Main paper focused on accuracy (Table 1) and method comparison (Table 2); throughput presented as figures rather than tables for visual impact"

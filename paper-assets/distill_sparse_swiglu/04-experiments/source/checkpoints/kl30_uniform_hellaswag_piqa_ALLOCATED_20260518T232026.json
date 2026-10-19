@@ -1,0 +1,29 @@
+{
+  "exp_id": "kl30_uniform_hellaswag_piqa",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:12:05.345Z",
+    "updated_at": "2026-05-18T23:20:26.226Z",
+    "hypothesis": "Extend KL 30% uniform (recommended operating point) eval with HellaSwag and PIQA to broaden downstream task coverage. Expect performance consistent with other downstream metrics showing graceful degradation from dense baseline.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id kl30_uniform_hellaswag_piqa --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks hellaswag,piqa --gpu 0 2>&1\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "60749",
+      "log_path": "~/runs/distill_sparse_swiglu/kl30_uniform_hellaswag_piqa.log",
+      "submitted_at": "2026-05-18T23:12:36.402Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-18T23:20:26.594323+00:00",
+  "trigger": "update_registry"
+}

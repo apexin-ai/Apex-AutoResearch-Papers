@@ -1,0 +1,39 @@
+{
+  "exp_id": "bce_ste_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:30:01.125Z",
+    "updated_at": "2026-05-20T13:25:33.780Z",
+    "hypothesis": "BCE+STE combination fills the missing cell in the 2x2 loss×relaxation ablation matrix; if BCE+STE underperforms KL+Gumbel similarly to BCE+Gumbel, the loss function (not relaxation) is the dominant factor",
+    "metrics": {
+      "training_final_loss": 0.641,
+      "training_final_bce": 0.6398,
+      "training_final_sparsity": 0.512,
+      "wikitext2_ppl": 60.54,
+      "arc_challenge_acc_norm": 0.2321,
+      "winogrande_acc": 0.5185,
+      "mmlu_acc": 0.2898,
+      "gsm8k_exact_match": 0.0182,
+      "hellaswag_acc_norm": 0.3446,
+      "piqa_acc_norm": 0.6273,
+      "model_level_sparsity": 0.495
+    },
+    "spec": {
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:0"
+      ],
+      "checkpoint_path": "checkpoints/bce_ste_s42/predictor_bce.pt",
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "data_path": "wikitext-103"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T13:25:34.244090+00:00",
+  "trigger": "update_registry"
+}

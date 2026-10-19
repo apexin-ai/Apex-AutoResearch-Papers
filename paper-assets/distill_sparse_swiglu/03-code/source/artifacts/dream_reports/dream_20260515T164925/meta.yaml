@@ -1,0 +1,4021 @@
+dream_id: dream_20260515T164925
+project: distill_sparse_swiglu
+venue: ''
+focus: 'MVP showed massive KL vs BCE gap (12.52 vs 44.05 PPL). Key uncertainty: will
+  BCE+compensation close this gap? If yes, headline shifts to "KL eliminates compensation
+  overhead" rather than "KL is categorically better". Also: seed s456 is outlier (13.58
+  vs 12.08/11.91), variance needs attention.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: KL categorically dominates——KL-only（无compensation）在质量上全面碾压BCE+compensation，compensation网络被证明完全不必要
+      key_assumptions:
+      - KL-only PPL 在5 seeds下稳定在~9.2（std < 0.3），s456 outlier是噪声非系统性问题
+      - BCE+compensation无法收敛到KL-only水平（PPL仍 ≥ 15），compensation对BCE的帮助有限
+      - SPON + KL 组合干净地可加（interaction residual < 10%），进一步将PPL压到7.5-8.5
+      - KL-BCE delta随sparsity呈s²增长，R² > 0.95，理论预测被定量验证
+      - Mistral-7B复现同方向优势（KL-only vs BCE+comp gap ≥ 30% PPL）
+      - STE baseline确认是loss function（非Gumbel relaxation）驱动KL优势
+      number_ranges:
+        kl_only_wikitext2_ppl:
+        - 8.5
+        - 9.5
+        kl_only_ppl_std:
+        - 0.05
+        - 0.3
+        bce_comp_wikitext2_ppl:
+        - 15.0
+        - 22.0
+        spon_kl_wikitext2_ppl:
+        - 7.5
+        - 8.5
+        kl_vs_bce_comp_ppl_gap:
+        - 5.5
+        - 13.5
+        downstream_acc_drop_vs_dense_pct:
+        - 0
+        - 2
+        s2_scaling_r2:
+        - 0.95
+        - 1.0
+        mistral_kl_ppl_increase_vs_dense_pct:
+        - 40
+        - 70
+      narrative_direction: '三个claims原样成立。Headline: ''Output-distribution distillation
+        makes compensation networks obsolete for SwiGLU sparsity.'' 理论（gradient coupling解释KL捕获joint
+        interaction）、实验（PPL gap 5-13 points）、实践（省掉256MB compensation weights + per-layer
+        GEMV）三线汇聚。Taxonomy table每个cell都有实验支撑，quadratic scaling提供可检验的理论预测。投EMNLP Efficient
+        Methods无需调整framing。'
+    median:
+      tier: median
+      meaning: KL优势收窄为效率等价——BCE+compensation达到与KL-only相近的质量，但KL无需compensation开销即可达到
+      key_assumptions:
+      - KL-only PPL稳定在9.0-10.5但seed方差增大（std 0.3-0.8）
+      - BCE+compensation有效收敛到10-13 PPL，compensation网络确实有用
+      - SPON + KL部分可加（interaction residual 10-30%），组合收益存在但不clean
+      - KL-BCE delta随sparsity有上升趋势但fit有噪声（R² 0.80-0.95），不足以声称精确quadratic law
+      - Mistral同方向但相对差距更小
+      - STE baseline部分复现KL优势（Gumbel贡献约30%的gain，loss和relaxation都重要）
+      number_ranges:
+        kl_only_wikitext2_ppl:
+        - 9.0
+        - 10.5
+        kl_only_ppl_std:
+        - 0.3
+        - 0.8
+        bce_comp_wikitext2_ppl:
+        - 10.0
+        - 13.0
+        spon_kl_wikitext2_ppl:
+        - 8.5
+        - 9.5
+        kl_vs_bce_comp_ppl_gap:
+        - 0.0
+        - 3.0
+        downstream_acc_drop_vs_dense_pct:
+        - 2
+        - 5
+        s2_scaling_r2:
+        - 0.8
+        - 0.95
+        mistral_kl_ppl_increase_vs_dense_pct:
+        - 50
+        - 90
+      narrative_direction: Claim 1 从'KL categorically better'调整为'KL eliminates compensation
+        overhead at quality parity'——核心贡献变成效率：同等质量下，推理pipeline更简单，省256MB参数。Claim 2
+        弱化为'empirically observed partial additivity'，需补充interaction term分析作为honest
+        characterization。Claim 3 降级为'consistent empirical trend'而非precise quantitative
+        law，放appendix展示fit。Paper结构重心转向taxonomy + systematic ablation的方法论贡献，efficiency作为practical
+        payoff。仍是solid EMNLP contribution，但需要更careful的claims wording。
+    worst:
+      tier: worst
+      meaning: KL优势是假象——BCE缺compensation导致的baseline weakness，而非loss function的内在优势。加上compensation后BCE追平或反超KL
+      key_assumptions:
+      - KL-only PPL 方差比MVP显示的更大（std > 0.8，部分seeds > 11），稳定性存疑
+      - BCE+compensation充分收敛到 ≤ 9.5 PPL，完全弥合与KL的差距甚至反超
+      - SPON + KL有显著interaction effects，不满足可加性
+      - KL-BCE delta不服从s²规律（R² < 0.80），linear fit同样好，理论叙事不成立
+      - Mistral结果不一致或方向相反
+      - STE baseline与Gumbel KL持平→relaxation method比loss function重要，因果归因错误
+      number_ranges:
+        kl_only_wikitext2_ppl:
+        - 9.5
+        - 12.0
+        kl_only_ppl_std:
+        - 0.8
+        - 2.0
+        bce_comp_wikitext2_ppl:
+        - 8.5
+        - 10.0
+        spon_kl_wikitext2_ppl:
+        - 9.0
+        - 11.0
+        kl_vs_bce_comp_ppl_gap:
+        - -1.5
+        - 0.5
+        downstream_acc_drop_vs_dense_pct:
+        - 5
+        - 10
+        s2_scaling_r2:
+        - 0.5
+        - 0.8
+        mistral_kl_ppl_increase_vs_dense_pct:
+        - 60
+        - 120
+      narrative_direction: 核心claim（KL eliminates compensation）不成立。Reframe策略，不降级venue：(1)
+        将paper重心转向'首个系统性taxonomy of training signals × correction granularity for
+        activation sparsity'——四象限ablation grid本身就是贡献，填补了文献空白；(2) 叙事从'A beats B'转为'characterization
+        study'：'Both KL-only and BCE+compensation reach near-dense quality at 50%
+        sparsity through fundamentally different mechanisms——we provide the first
+        empirical decomposition of when and why each succeeds'；(3) SPON + contextual
+        composition分析即使不完美可加也可作为standalone empirical finding。EMNLP Efficient Methods
+        track重视thorough empirical methodology，paper_framing中预设的four-quadrant design正是为此scenario准备的。关键是honest
+        framing而非overclaiming。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/dream_reports/dream_20260515T164925/best/paper.pdf
+  imagined_experiments:
+  - name: Four-Condition Ablation @ 50% Sparsity
+    plan_id: plan_001
+    description: 'KL-only扩展到5 seeds（新增s0, s1），BCE+comp 5 seeds，KL+comp 3 seeds。 已有数据：KL-only
+      3 seeds (s42/s123/s456)均~9.2 PPL；BCE-only 3 seeds均~28.2 PPL。
+
+      '
+    expected_results:
+      kl_only_s42_ppl: 9.2142
+      kl_only_s123_ppl: 9.2474
+      kl_only_s456_ppl: 9.14
+      kl_only_s0_ppl: 9.19
+      kl_only_s1_ppl: 9.23
+      kl_only_mean_ppl: 9.2
+      kl_only_std_ppl: 0.04
+      kl_only_model_sparsity: 0.498
+      bce_comp_s42_ppl: 18.22
+      bce_comp_s123_ppl: 18.91
+      bce_comp_s456_ppl: 18.38
+      bce_comp_s0_ppl: 18.65
+      bce_comp_s1_ppl: 19.05
+      bce_comp_mean_ppl: 18.64
+      bce_comp_std_ppl: 0.33
+      bce_comp_model_sparsity: 0.496
+      kl_comp_s42_ppl: 9.05
+      kl_comp_s123_ppl: 9.08
+      kl_comp_s456_ppl: 8.92
+      kl_comp_mean_ppl: 9.02
+      kl_comp_std_ppl: 0.07
+      bce_only_mean_ppl: 28.16
+      bce_only_std_ppl: 0.17
+      kl_only_vs_bce_comp_gap: 9.44
+      kl_only_vs_dense_increase_pct: 50.3
+      bce_comp_vs_dense_increase_pct: 204.6
+      comp_benefit_for_bce_ppl: 9.52
+      comp_benefit_for_kl_ppl: 0.18
+    result_rationale: 'KL的gradient dL_KL/ds_j通过d_logits/dh * dh/dm耦合所有active neurons，天然捕获joint
+      interaction effects。因此KL-only已将output distribution对齐到接近dense水平（PPL 9.2 vs 6.12），
+      compensation网络能额外修正的residual极小（仅0.18 PPL），大部分interaction已被KL loss消化。 反观BCE的per-neuron
+      factorized gradient只优化每个neuron独立的on/off decision，完全忽略joint effects——这在50% sparsity下产生巨大误差（PPL
+      28.2）。Compensation网络虽然能回收~40%的 质量gap（28.2→18.6），但其capacity有限，无法弥补BCE从根源上丢失的coupling
+      information。 5-seed KL-only的极低std（0.04）证明s456不是outlier，训练高度稳定。 核心结论：compensation对KL是冗余的（0.18
+      PPL改善 vs 9.44 PPL gap），claims 1成立。
+
+      '
+    tables:
+    - name: 'Table 1: Four-Condition Ablation Results (WikiText-2 PPL, Llama 3.1 8B,
+        50% sparsity)'
+      columns:
+      - Condition
+      - Seeds
+      - PPL (mean±std)
+      - Δ vs Dense
+      - Comp Benefit
+      rows:
+      - - Dense
+        - '-'
+        - '6.12'
+        - '-'
+        - '-'
+      - - BCE-only
+        - 3
+        - 28.16±0.17
+        - +360%
+        - '-'
+      - - BCE+comp
+        - 5
+        - 18.64±0.33
+        - +205%
+        - −9.52
+      - - KL-only
+        - 5
+        - 9.20±0.04
+        - +50%
+        - '-'
+      - - KL+comp
+        - 3
+        - 9.02±0.07
+        - +47%
+        - −0.18
+    figures_description:
+    - 'Box plot: 5-seed PPL distributions for KL-only vs BCE+comp，中位线、IQR和outliers，直观展示两个分布零重叠'
+    - 'Bar chart: compensation benefit (PPL reduction) for BCE vs KL，量化compensation对两种loss的边际价值'
+    analysis: 'KL-only以9.20 PPL大幅碾压BCE+comp的18.64 PPL（gap 9.44 points），且compensation对KL仅贡献
+      0.18 PPL改善（vs对BCE贡献9.52），证明compensation网络对KL训练的predictor完全不必要。 5-seed std=0.04证明高度可复现。Headline
+      claim直接成立：output-distribution distillation eliminates the need for compensation
+      networks.
+
+      '
+  - name: STE Baseline — Isolating Loss vs Relaxation
+    plan_id: plan_002
+    description: '用Straight-Through Estimator替换Gumbel-sigmoid，保持KL loss不变。3 seeds。
+      目的：确认KL优势来自loss function而非Gumbel relaxation。
+
+      '
+    expected_results:
+      ste_kl_s42_ppl: 9.72
+      ste_kl_s123_ppl: 9.85
+      ste_kl_s456_ppl: 9.64
+      ste_kl_mean_ppl: 9.74
+      ste_kl_std_ppl: 0.09
+      ste_kl_model_sparsity: 0.497
+      ste_kl_vs_gumbel_kl_gap: 0.54
+      ste_kl_vs_bce_only_gap: 18.42
+      gumbel_contribution_pct: 2.8
+    result_rationale: 'STE用biased but unbiased-in-expectation的梯度直通传播，丢失了Gumbel relaxation提供的
+      smooth gradient landscape。因此STE+KL比Gumbel+KL略差（+0.54 PPL），对应predictor在 decision
+      boundary附近的optimization稍差。但关键是STE+KL（9.74）仍远优于Gumbel+BCE（28.16）， 说明KL-BCE的18.96
+      point gap中97%以上来自loss function的gradient coupling property， Gumbel relaxation仅贡献~3%的marginal
+      improvement。这直接排除了reviewer concern "Gumbel-sigmoid relaxation, not KL, explains
+      gains"。
+
+      '
+    tables:
+    - name: 'Table 2: Relaxation Method Ablation'
+      columns:
+      - Condition
+      - Relaxation
+      - Loss
+      - PPL (mean±std)
+      rows:
+      - - Gumbel+KL (ours)
+        - Gumbel-sigmoid
+        - KL
+        - 9.20±0.04
+      - - STE+KL
+        - Straight-Through
+        - KL
+        - 9.74±0.09
+      - - Gumbel+BCE
+        - Gumbel-sigmoid
+        - BCE
+        - 28.16±0.17
+    figures_description:
+    - 'Attribution bar chart: 将KL-BCE总gap分解为loss contribution (97.2%) vs relaxation
+      contribution (2.8%)'
+    analysis: 'STE实验明确归因：KL的gradient coupling是优势的几乎全部来源（97%），Gumbel relaxation是 锦上添花的minor
+      optimization trick。这为理论narrative提供clean experimental support， 且预防了reviewer的alternative
+      explanation attack。
+
+      '
+  - name: Iso-Compute BCE vs KL
+    plan_id: plan_003
+    description: 'KL每步需full forward pass计算logit targets（~3.2x BCE per-step FLOPs）。
+      给BCE同等total FLOPs预算（3.2x steps），排除compute advantage。3 seeds。
+
+      '
+    expected_results:
+      kl_steps: 1000
+      kl_flops_per_step_ratio: 3.2
+      kl_total_flops_ratio: 3200
+      bce_standard_steps: 1000
+      bce_extended_steps: 3200
+      bce_extended_total_flops_ratio: 3200
+      bce_extended_s42_ppl: 25.28
+      bce_extended_s123_ppl: 25.83
+      bce_extended_s456_ppl: 25.12
+      bce_extended_mean_ppl: 25.41
+      bce_extended_std_ppl: 0.31
+      bce_standard_mean_ppl: 28.16
+      improvement_from_extended_training: 2.75
+      remaining_gap_vs_kl: 16.21
+      training_wall_clock_kl_hours: 4.2
+      training_wall_clock_bce_extended_hours: 4.1
+    result_rationale: 'BCE的梯度dL_BCE/ds_j = (σ(s_j) - t_j) * σ''(s_j)仅依赖neuron j自身的target，
+      更多training steps只能更精确地拟合这个per-neuron target——但target本身就是次优的 （忽略joint interaction）。因此extended
+      training让BCE-only从28.16降到25.41（降2.75）， 收益递减明显（loss curve在~2000步后plateau），而与KL的gap仍有16.21
+      points。 这证明KL的优势是information-theoretic的（loss function的gradient structure差异），
+      不是compute-driven的，直接回应reviewer concern "KL wins only because more compute"。
+
+      '
+    tables:
+    - name: 'Table 3: Iso-Compute Comparison'
+      columns:
+      - Condition
+      - Steps
+      - Total FLOPs (relative)
+      - PPL (mean±std)
+      rows:
+      - - KL (Gumbel)
+        - 1000
+        - 3200x
+        - 9.20±0.04
+      - - BCE (standard)
+        - 1000
+        - 1000x
+        - 28.16±0.17
+      - - BCE (extended)
+        - 3200
+        - 3200x
+        - 25.41±0.31
+    figures_description:
+    - 'BCE training curve (PPL vs steps): 展示extended training的diminishing returns，标注KL水平线作为reference'
+    - 'FLOPs-PPL scatter: 三个condition在iso-FLOPs平面上的位置'
+    analysis: '即使给BCE 3.2x的training budget，PPL只从28.16降到25.41，distance to KL-only（16.21）
+      几乎未缩小。BCE的information bottleneck在loss function级别，无法通过更多compute突破。
+
+      '
+  - name: SPON Reimplementation & Validation
+    plan_id: plan_004
+    description: '在Llama 3.1 8B上重新实现SPON（learnable per-layer bias vectors + KL training），
+      在5个QA benchmarks上验证质量以确认实现正确性。
+
+      '
+    expected_results:
+      spon_wikitext2_ppl: 10.82
+      spon_model_sparsity: 0.501
+      spon_ppl_increase_vs_dense_pct: 76.9
+      spon_arc_c: 51.2
+      spon_arc_e: 74.5
+      spon_boolq: 79.3
+      spon_piqa: 78.1
+      spon_winogrande: 74.8
+      spon_params_bytes: 1048576
+      spon_training_time_minutes: 12
+      dense_arc_c: 55.2
+      dense_arc_e: 79.4
+      dense_boolq: 83.1
+      dense_piqa: 81.3
+      dense_winogrande: 77.8
+    result_rationale: 'SPON使用input-independent的bias correction——本质上是per-layer calibration，矫正average-case
+      下sparsity引入的activation drift。由于是static的，它只能修正E[Δh]（期望偏移），无法处理 per-input variation
+      Var[Δh|x]。因此SPON将PPL从training-free水平（~12-13）压到10.82， 是一个meaningful but limited的improvement。QA
+      benchmarks上drops 3-6%符合PPL改善幅度。 SPON的主要价值不在于standalone quality，而是作为composition实验的building
+      block—— 它修正的orthogonal component（average drift）与contextual predictor修正的component（per-input
+      variation） 应当可加。
+
+      '
+    tables:
+    - name: 'Table 4: SPON Validation on QA Benchmarks'
+      columns:
+      - Benchmark
+      - Dense
+      - SPON
+      - Δ (abs)
+      rows:
+      - - ARC-c
+        - 55.2
+        - 51.2
+        - −4.0
+      - - ARC-e
+        - 79.4
+        - 74.5
+        - −4.9
+      - - BoolQ
+        - 83.1
+        - 79.3
+        - −3.8
+      - - PIQA
+        - 81.3
+        - 78.1
+        - −3.2
+      - - WinoGrande
+        - 77.8
+        - 74.8
+        - −3.0
+    figures_description:
+    - 'Radar chart: Dense vs SPON在5个QA tasks上的profile，验证SPON实现没有catastrophic failure'
+    analysis: 'SPON实现通过QA benchmark验证，drops幅度与原论文一致（3-5 points），确认实现正确性。 PPL 10.82定位在training-free（12-13）和contextual-KL（9.2）之间，为claim
+      2 的additivity实验提供可靠的static correction baseline。
+
+      '
+  - name: SPON + KL Predictor Composition
+    plan_id: plan_005
+    description: '同时应用SPON bias correction和KL contextual prediction。 测试output-space
+      linearity（interaction residual）和per-layer orthogonality。3 seeds。
+
+      '
+    expected_results:
+      spon_kl_s42_ppl: 7.95
+      spon_kl_s123_ppl: 8.12
+      spon_kl_s456_ppl: 7.88
+      spon_kl_mean_ppl: 7.98
+      spon_kl_std_ppl: 0.1
+      spon_kl_model_sparsity: 0.499
+      spon_kl_ppl_increase_vs_dense_pct: 30.4
+      spon_alone_ppl_recovery: 1.68
+      kl_alone_ppl_recovery: 3.3
+      combined_ppl_recovery: 4.52
+      predicted_additive_recovery: 4.98
+      interaction_residual_pct: 6.8
+      logit_interaction_residual_l2_norm: 0.042
+      logit_spon_correction_l2_norm: 0.38
+      logit_kl_correction_l2_norm: 0.61
+      logit_interaction_ratio_pct: 6.8
+      mean_cosine_similarity_spon_kl: 0.11
+      max_cosine_similarity_spon_kl: 0.23
+      layers_with_cosine_gt_0_2: 4
+    result_rationale: 'SPON修正c_s = E[Δh]（average activation drift），KL predictor修正c_θ(x)
+      = Δh(x) - E[Δh] （per-input residual variation）。两者在correction space中近似正交——SPON的correction是
+      constant vector，KL的correction是zero-mean（训练过程中自然去中心化）。因此组合 c = c_s + c_θ(x)的interaction
+      residual很小（6.8%）。PPL从KL-only的9.20进一步压到7.98， 接近dense的6.12。mean cosine similarity仅0.11，证明两种correction确实address不同的
+      error components。少数layers（4/32）cosine > 0.2，是因为某些layers的average drift 和per-input
+      variation方向部分对齐（如early layers的token-independent patterns）， 但这不影响整体additivity。Claim
+      2（modular decomposition）直接成立。
+
+      '
+    tables:
+    - name: 'Table 5: Composition Additivity Analysis'
+      columns:
+      - Component
+      - PPL Recovery (from TEAL baseline)
+      - Predicted Additive
+      - Actual
+      - Interaction Residual
+      rows:
+      - - SPON only
+        - 1.68
+        - '-'
+        - '-'
+        - '-'
+      - - KL only
+        - 3.3
+        - '-'
+        - '-'
+        - '-'
+      - - SPON+KL
+        - '-'
+        - 4.98
+        - 4.52
+        - 9.2%
+    - name: 'Table 5b: Per-Layer Cosine Similarity Statistics'
+      columns:
+      - Statistic
+      - Value
+      rows:
+      - - Mean cosine
+        - 0.11
+      - - Median cosine
+        - 0.08
+      - - Max cosine
+        - 0.23
+      - - Layers > 0.2
+        - 4/32
+    figures_description:
+    - 'Scatter plot: per-layer SPON correction magnitude vs KL correction magnitude，color
+      by cosine similarity，展示orthogonality'
+    - 'Logit-space decomposition visualization: ||Δ(s+c)||, ||Δ(s)||, ||Δ(c)||, ||residual||
+      的bar chart，直观展示linearity'
+    - 'PPL waterfall chart: Dense → TEAL → +SPON → +KL → SPON+KL，展示每个component的incremental
+      contribution'
+    analysis: 'SPON+KL组合将PPL压到7.98（仅比dense高30%），interaction residual 6.8% < 10%阈值，
+      per-layer cosine similarity平均0.11。c = c_s + c_θ(x)的modular decomposition experimentally
+      validated。两种correction address不同error sources的理论预测被定量确认。
+
+      '
+  - name: Training-Free Baselines (TEAL, WINA, R-Sparse)
+    plan_id: plan_006
+    description: '三种training-free方法在Llama 3.1 8B @ 50% model-level sparsity下的质量。 建立三级hierarchy:
+      training-free < static-learned < contextual-learned。
+
+      '
+    expected_results:
+      teal_wikitext2_ppl: 12.48
+      wina_wikitext2_ppl: 14.76
+      rsparse_wikitext2_ppl: 13.62
+      teal_model_sparsity: 0.5
+      wina_model_sparsity: 0.5
+      rsparse_model_sparsity: 0.5
+      teal_ppl_increase_vs_dense_pct: 103.9
+      wina_ppl_increase_vs_dense_pct: 141.3
+      rsparse_ppl_increase_vs_dense_pct: 122.6
+    result_rationale: 'TEAL使用magnitude pruning + greedy per-layer allocation，在training-free中最优，因为
+      magnitude直接反映activation contribution。R-Sparse加入rank-aware scoring，理论上更好但 实现中的approximation引入noise，实际略逊于TEAL。WINA的weight-informed
+      scoring虽然 考虑了weight magnitude，但在SwiGLU的gated结构下，weight和activation importance的
+      correlation比standard FFN更弱（gate和up projection交互），因此表现最差。 所有三种方法PPL都在12-15范围，远逊于learned
+      methods（KL-only 9.2、SPON 10.8）， 建立clean的三级hierarchy。Training-free方法的根本限制是它们无法learn
+      per-input neuron importance patterns，只能依赖固定heuristic。
+
+      '
+    tables:
+    - name: 'Table 6: Training-Free Baseline Comparison'
+      columns:
+      - Method
+      - Type
+      - WikiText-2 PPL
+      - Δ vs Dense
+      rows:
+      - - Dense
+        - '-'
+        - 6.12
+        - '-'
+      - - TEAL
+        - Magnitude + greedy
+        - 12.48
+        - +104%
+      - - R-Sparse
+        - Rank-aware
+        - 13.62
+        - +123%
+      - - WINA
+        - Weight-informed
+        - 14.76
+        - +141%
+      - - SPON
+        - Static learned (KL)
+        - 10.82
+        - +77%
+      - - KL-only
+        - Contextual learned (KL)
+        - 9.2
+        - +50%
+    figures_description:
+    - 'Horizontal bar chart: 所有methods按PPL排序，color-coded by method type (training-free
+      / static / contextual)，清晰展示三级hierarchy'
+    analysis: '三级hierarchy清晰：training-free (12.5-14.8) < static-learned (10.8) < contextual-learned
+      (9.2)。 每级提升对应information quality的提高：heuristic → average-case calibration → per-input
+      optimization。 TEAL作为最强training-free baseline仍比KL-only差3.28 PPL points（+36%），justifies
+      learned approach的overhead。
+
+      '
+  - name: Full Benchmark Suite + Latency Profiling
+    plan_id: plan_007
+    description: '所有conditions在WikiText-2/C4 PPL、5个discriminative tasks、wall-clock
+      profiling上的 完整evaluation。构建efficiency-accuracy Pareto frontier。
+
+      '
+    expected_results:
+      dense_wikitext2_ppl: 6.12
+      teal_wikitext2_ppl: 12.48
+      wina_wikitext2_ppl: 14.76
+      rsparse_wikitext2_ppl: 13.62
+      spon_wikitext2_ppl: 10.82
+      bce_only_wikitext2_ppl: 28.16
+      bce_comp_wikitext2_ppl: 18.64
+      kl_only_wikitext2_ppl: 9.2
+      kl_comp_wikitext2_ppl: 9.02
+      spon_kl_wikitext2_ppl: 7.98
+      dense_c4_ppl: 7.85
+      teal_c4_ppl: 15.12
+      wina_c4_ppl: 17.88
+      rsparse_c4_ppl: 16.31
+      spon_c4_ppl: 13.24
+      bce_only_c4_ppl: 33.42
+      bce_comp_c4_ppl: 22.15
+      kl_only_c4_ppl: 11.38
+      kl_comp_c4_ppl: 11.12
+      spon_kl_c4_ppl: 9.81
+      dense_arc_c: 55.2
+      teal_arc_c: 48.1
+      wina_arc_c: 46.3
+      rsparse_arc_c: 47.2
+      spon_arc_c: 51.2
+      bce_comp_arc_c: 44.8
+      kl_only_arc_c: 54.3
+      spon_kl_arc_c: 54.8
+      dense_winogrande: 77.8
+      teal_winogrande: 72.4
+      wina_winogrande: 70.8
+      rsparse_winogrande: 71.5
+      spon_winogrande: 74.8
+      bce_comp_winogrande: 68.3
+      kl_only_winogrande: 76.9
+      spon_kl_winogrande: 77.2
+      dense_mmlu: 65.8
+      teal_mmlu: 58.2
+      wina_mmlu: 56.4
+      rsparse_mmlu: 57.1
+      spon_mmlu: 60.3
+      bce_comp_mmlu: 54.9
+      kl_only_mmlu: 65.0
+      spon_kl_mmlu: 65.4
+      dense_gsm8k: 53.8
+      teal_gsm8k: 44.2
+      wina_gsm8k: 41.8
+      rsparse_gsm8k: 43.1
+      spon_gsm8k: 46.5
+      bce_comp_gsm8k: 39.7
+      kl_only_gsm8k: 52.8
+      spon_kl_gsm8k: 53.2
+      dense_humaneval: 32.9
+      teal_humaneval: 26.2
+      wina_humaneval: 24.4
+      rsparse_humaneval: 25.6
+      spon_humaneval: 28.1
+      bce_comp_humaneval: 23.8
+      kl_only_humaneval: 32.3
+      spon_kl_humaneval: 32.5
+      kl_only_avg_acc_drop_pct: 1.3
+      spon_kl_avg_acc_drop_pct: 0.7
+      bce_comp_avg_acc_drop_pct: 12.8
+      dense_latency_ms: 16.8
+      teal_latency_ms: 11.2
+      spon_latency_ms: 10.9
+      bce_only_latency_ms: 12.0
+      bce_comp_latency_ms: 13.8
+      kl_only_latency_ms: 12.0
+      kl_comp_latency_ms: 13.8
+      spon_kl_latency_ms: 12.1
+      predictor_params_mb: 24
+      compensation_params_mb: 256
+      spon_params_mb: 1
+      kl_only_speedup_vs_dense_pct: 28.6
+      bce_comp_speedup_vs_dense_pct: 17.9
+      kl_only_speedup_vs_bce_comp_pct: 13.0
+    result_rationale: 'Downstream tasks与PPL高度correlated——KL-only的低PPL (9.20)直接转化为downstream任务上
+      接近dense的accuracy（平均drop仅1.3%）。这是因为KL优化output distribution matching， 保留了token-level的prediction
+      quality，而downstream tasks本质上都依赖model的next-token prediction能力。BCE+comp虽然有compensation，但其PPL
+      (18.64)反映的distribution mismatch 在需要precise reasoning的任务上（GSM8K, HumanEval）伤害更大（drop
+      26-28%），因为 这些任务对error compounding更敏感。 Wall-clock方面，KL-only和BCE-only的predictor开销相同（同架构），但KL-only不需要
+      compensation，因此比BCE+comp省1.8ms/token（13.8→12.0）。SPON+KL仅比KL-only多0.1ms （bias
+      add几乎免费），但PPL进一步降到7.98。KL-only在Pareto frontier上dominates BCE+comp——更快、更好、更小。
+
+      '
+    tables:
+    - name: 'Table 7: Comprehensive Benchmark Results (Llama 3.1 8B, 50% sparsity)'
+      columns:
+      - Method
+      - Wiki PPL↓
+      - C4 PPL↓
+      - ARC-c↑
+      - WinoG↑
+      - MMLU↑
+      - GSM8K↑
+      - HumanE↑
+      - Avg Δ↓
+      rows:
+      - - Dense
+        - 6.12
+        - 7.85
+        - 55.2
+        - 77.8
+        - 65.8
+        - 53.8
+        - 32.9
+        - —
+      - - TEAL
+        - 12.48
+        - 15.12
+        - 48.1
+        - 72.4
+        - 58.2
+        - 44.2
+        - 26.2
+        - −7.8
+      - - WINA
+        - 14.76
+        - 17.88
+        - 46.3
+        - 70.8
+        - 56.4
+        - 41.8
+        - 24.4
+        - −9.9
+      - - R-Sparse
+        - 13.62
+        - 16.31
+        - 47.2
+        - 71.5
+        - 57.1
+        - 43.1
+        - 25.6
+        - −8.8
+      - - SPON
+        - 10.82
+        - 13.24
+        - 51.2
+        - 74.8
+        - 60.3
+        - 46.5
+        - 28.1
+        - −5.3
+      - - BCE+comp
+        - 18.64
+        - 22.15
+        - 44.8
+        - 68.3
+        - 54.9
+        - 39.7
+        - 23.8
+        - −12.8
+      - - KL-only
+        - 9.2
+        - 11.38
+        - 54.3
+        - 76.9
+        - 65.0
+        - 52.8
+        - 32.3
+        - −1.3
+      - - SPON+KL
+        - 7.98
+        - 9.81
+        - 54.8
+        - 77.2
+        - 65.4
+        - 53.2
+        - 32.5
+        - −0.7
+    - name: 'Table 8: Inference Efficiency Comparison'
+      columns:
+      - Method
+      - Latency (ms/tok)
+      - Speedup vs Dense
+      - Extra Params (MB)
+      - PPL
+      rows:
+      - - Dense
+        - 16.8
+        - 1.00×
+        - 0
+        - 6.12
+      - - TEAL
+        - 11.2
+        - 1.50×
+        - 0
+        - 12.48
+      - - SPON
+        - 10.9
+        - 1.54×
+        - 1
+        - 10.82
+      - - KL-only
+        - 12.0
+        - 1.40×
+        - 24
+        - 9.2
+      - - BCE+comp
+        - 13.8
+        - 1.22×
+        - 280
+        - 18.64
+      - - SPON+KL
+        - 12.1
+        - 1.39×
+        - 25
+        - 7.98
+    figures_description:
+    - 'Pareto frontier plot: x=latency (ms/tok), y=WikiText-2 PPL, 所有conditions标注。KL-only和SPON+KL在frontier上，BCE+comp
+      dominated'
+    - 'Grouped bar chart: 5个downstream tasks，每个task所有methods并排，直观展示KL-only接近dense而BCE+comp远逊'
+    - 'Taxonomy heatmap: 2D table (granularity × coupling) 填入PPL值，our cell (contextual
+      × KL) 最优'
+    analysis: 'KL-only在quality-efficiency Pareto frontier上strictly dominates BCE+comp：更低PPL（9.20
+      vs 18.64）， 更低latency（12.0 vs 13.8），更少参数（24MB vs 280MB）。Downstream tasks确认PPL
+      gains transfer：KL-only平均仅drop 1.3%（best tier阈值2%以内），BCE+comp drop 12.8%。 SPON+KL作为our
+      best configuration达到7.98 PPL和0.7%平均drop，接近free lunch。 Taxonomy table的每个cell都有实验数据支撑。
+
+      '
+  - name: 7-Level Sparsity Sweep — Quadratic Scaling Test
+    plan_id: plan_008
+    description: '在30/35/40/45/50/55/60%七个sparsity level下训练KL-only和BCE-only（各1 seed），
+      测试KL-BCE delta ∝ s²的理论预测。50%复用plan_001。每个level做Taylor expansion accuracy test。
+
+      '
+    expected_results:
+      sparsity_levels:
+      - 0.3
+      - 0.35
+      - 0.4
+      - 0.45
+      - 0.5
+      - 0.55
+      - 0.6
+      kl_ppls:
+      - 7.05
+      - 7.42
+      - 7.98
+      - 8.51
+      - 9.2
+      - 10.82
+      - 13.15
+      bce_ppls:
+      - 14.55
+      - 17.82
+      - 19.98
+      - 24.71
+      - 28.2
+      - 33.62
+      - 42.65
+      kl_bce_deltas:
+      - 7.5
+      - 10.4
+      - 12.0
+      - 16.2
+      - 19.0
+      - 22.8
+      - 29.5
+      s2_fit_coefficient_a: 79.2
+      s2_fit_r_squared: 0.97
+      s2_plus_linear_fit_r_squared: 0.99
+      taylor_accuracy_pct:
+      - 96.8
+      - 95.4
+      - 94.1
+      - 92.5
+      - 89.8
+      - 85.6
+      - 80.2
+      predicted_deltas_s2_only:
+      - 7.13
+      - 9.7
+      - 12.67
+      - 16.03
+      - 19.8
+      - 23.96
+      - 28.51
+    result_rationale: 'KL的梯度dL_KL/ds_j通过Jacobian d_logits/dh耦合所有active neurons。当sparsity为s时，
+      每个pruned neuron的interaction涉及O(sD)个其他pruned neurons，total interaction scale为
+      O(s²D²)。BCE的factorized gradient完全忽略这些interactions。因此KL-BCE quality delta 应当scale
+      as s²（leading term来自pairwise neuron interaction）。 实验数据R²=0.97证实quadratic scaling
+      dominates。Taylor expansion在低sparsity（30-40%） 下accuracy > 94%是因为higher-order
+      terms（s³等）negligible；在高sparsity（55-60%） accuracy降到80-86%是因为三体及更高阶interaction开始significant——这本身也是consistent
+      with the theory（Taylor展开在远离展开点时精度下降）。 加入linear term后R²=0.99，说明residual主要是one
+      lower-order correction。 Claim 3（quadratic scaling）定量验证通过。
+
+      '
+    tables:
+    - name: 'Table 9: Sparsity Sweep Results'
+      columns:
+      - Sparsity s
+      - s²
+      - KL PPL
+      - BCE PPL
+      - Δ (BCE−KL)
+      - Predicted Δ (as²)
+      - Taylor Acc %
+      rows:
+      - - 0.3
+        - 0.09
+        - 7.05
+        - 14.55
+        - 7.5
+        - 7.13
+        - 96.8
+      - - 0.35
+        - 0.123
+        - 7.42
+        - 17.82
+        - 10.4
+        - 9.7
+        - 95.4
+      - - 0.4
+        - 0.16
+        - 7.98
+        - 19.98
+        - 12.0
+        - 12.67
+        - 94.1
+      - - 0.45
+        - 0.203
+        - 8.51
+        - 24.71
+        - 16.2
+        - 16.03
+        - 92.5
+      - - 0.5
+        - 0.25
+        - 9.2
+        - 28.2
+        - 19.0
+        - 19.8
+        - 89.8
+      - - 0.55
+        - 0.303
+        - 10.82
+        - 33.62
+        - 22.8
+        - 23.96
+        - 85.6
+      - - 0.6
+        - 0.36
+        - 13.15
+        - 42.65
+        - 29.5
+        - 28.51
+        - 80.2
+    - name: 'Table 9b: Scaling Fit Statistics'
+      columns:
+      - Model
+      - R²
+      - Parameters
+      rows:
+      - - Δ = as²
+        - 0.97
+        - a=79.2
+      - - Δ = as² + bs
+        - 0.99
+        - a=68.1, b=5.8
+      - - Δ = as² + bs + c
+        - 0.99
+        - a=65.3, b=7.2, c=−0.4
+    figures_description:
+    - 'Scatter + fitted curve: x=s², y=KL-BCE delta, 实测点+quadratic fit曲线+95% CI band。R²=0.97标注'
+    - 'Dual-axis line plot: x=sparsity, 左轴=KL PPL和BCE PPL（两条线），右轴=delta（bar chart），展示gap加速增长'
+    - 'Taylor accuracy vs sparsity: 展示理论预测precision随sparsity的graceful degradation'
+    analysis: 'KL-BCE delta与s²的R²=0.97，定量验证了gradient coupling theory的核心预测。 Quadratic
+      scaling意味着在高sparsity regime（>50%），KL的优势accelerates—— 这提供了一个可检验的、非trivial的理论预测，不仅描述已有数据，也predicts
+      extrapolation behavior。Taylor accuracy的graceful degradation pattern进一步 增强理论credibility。Claim
+      3直接成立。
+
+      '
+  - name: Mistral-7B-v0.3 Cross-Architecture Validation
+    plan_id: plan_009
+    description: '在Mistral-7B-v0.3（GQA + sliding window attention，不同于Llama的GQA-only）上
+      复现KL-only vs BCE+comp comparison。Core benchmarks: WikiText-2 PPL, ARC-c, MMLU。3
+      seeds each。
+
+      '
+    expected_results:
+      mistral_dense_wikitext2_ppl: 5.48
+      mistral_dense_arc_c: 58.1
+      mistral_dense_mmlu: 62.8
+      mistral_kl_s42_ppl: 8.12
+      mistral_kl_s123_ppl: 8.35
+      mistral_kl_s456_ppl: 8.18
+      mistral_kl_mean_ppl: 8.22
+      mistral_kl_std_ppl: 0.1
+      mistral_kl_model_sparsity: 0.498
+      mistral_kl_ppl_increase_vs_dense_pct: 50.0
+      mistral_kl_arc_c: 56.4
+      mistral_kl_mmlu: 61.3
+      mistral_bce_comp_s42_ppl: 12.81
+      mistral_bce_comp_s123_ppl: 13.24
+      mistral_bce_comp_s456_ppl: 12.53
+      mistral_bce_comp_mean_ppl: 12.86
+      mistral_bce_comp_std_ppl: 0.29
+      mistral_bce_comp_model_sparsity: 0.497
+      mistral_bce_comp_arc_c: 50.8
+      mistral_bce_comp_mmlu: 55.9
+      mistral_kl_vs_bce_comp_ppl_gap: 4.64
+      mistral_kl_vs_bce_comp_ppl_gap_pct: 36.1
+    result_rationale: 'Mistral-7B-v0.3使用GQA + sliding window attention，SwiGLU FFN结构与Llama相同但
+      attention pattern不同，导致不同的activation sparsity distribution。KL的gradient coupling
+      property是loss function的数学性质，与architecture无关——只要model有SwiGLU FFN且sparsity 在hidden
+      states上操作，KL就能捕获joint interactions。因此KL优势在Mistral上同方向复现。 PPL increase 50%（vs
+      Llama的50.3%）高度一致。Gap绝对值（4.64 vs 9.44）较小是因为 Mistral的dense PPL更低（5.48 vs 6.12），两个model的relative
+      gap pattern一致。 Sliding window attention可能使某些layers的neuron importance更localized，略微
+      降低BCE+comp的absolute PPL（12.86 vs Llama的18.64），但不改变KL dominance。
+
+      '
+    tables:
+    - name: 'Table 10: Mistral-7B-v0.3 Cross-Architecture Validation'
+      columns:
+      - Condition
+      - Wiki PPL↓
+      - ARC-c↑
+      - MMLU↑
+      rows:
+      - - Dense
+        - 5.48
+        - 58.1
+        - 62.8
+      - - KL-only
+        - 8.22±0.10
+        - 56.4
+        - 61.3
+      - - BCE+comp
+        - 12.86±0.29
+        - 50.8
+        - 55.9
+      - - Gap (KL vs BCE+comp)
+        - −4.64
+        - '+5.6'
+        - '+5.4'
+    - name: 'Table 10b: Cross-Architecture Consistency'
+      columns:
+      - Metric
+      - Llama 3.1 8B
+      - Mistral-7B-v0.3
+      rows:
+      - - KL PPL increase vs dense
+        - 50.3%
+        - 50.0%
+      - - KL vs BCE+comp gap (PPL)
+        - 9.44
+        - 4.64
+      - - KL vs BCE+comp gap (%)
+        - 50.6%
+        - 36.1%
+    figures_description:
+    - 'Side-by-side bar chart: Llama和Mistral的KL-only vs BCE+comp PPL，展示cross-architecture
+      consistency'
+    analysis: 'Mistral-7B-v0.3成功复现KL dominance：KL-only (8.22) vs BCE+comp (12.86)，gap
+      36%。 KL PPL increase vs dense（50%）与Llama（50.3%）惊人一致，证明KL的优势是loss function 的universal
+      property而非architecture-specific artifact。排除reviewer concern "Single model /
+      limited generalization"。
+
+      '
+  - name: LongBench Long-Context Evaluation
+    plan_id: plan_010
+    description: 'LongBench English subset（4K-32K tokens），所有conditions。 Per-task-type
+      breakdown: single-doc QA, multi-doc QA, summarization, few-shot, code。
+
+      '
+    expected_results:
+      dense_longbench_avg: 43.5
+      teal_longbench_avg: 35.4
+      wina_longbench_avg: 33.8
+      rsparse_longbench_avg: 34.6
+      spon_longbench_avg: 39.8
+      bce_comp_longbench_avg: 32.1
+      kl_only_longbench_avg: 42.1
+      spon_kl_longbench_avg: 42.8
+      kl_single_doc_qa: 44.8
+      kl_multi_doc_qa: 38.2
+      kl_summarization: 42.5
+      kl_few_shot: 47.1
+      kl_code: 38.0
+      bce_comp_single_doc_qa: 35.2
+      bce_comp_multi_doc_qa: 28.4
+      bce_comp_summarization: 33.8
+      bce_comp_few_shot: 34.6
+      bce_comp_code: 28.5
+      dense_single_doc_qa: 46.2
+      dense_multi_doc_qa: 39.5
+      dense_summarization: 43.8
+      dense_few_shot: 48.3
+      dense_code: 39.6
+      kl_only_avg_drop_vs_dense: 1.4
+      bce_comp_avg_drop_vs_dense: 11.4
+      kl_worst_task_type: multi-doc QA
+      kl_worst_task_drop: 3.3
+    result_rationale: '长序列evaluation测试predictor是否generalize beyond短训练序列。KL的output-distribution
+      matching objective在长序列下仍然有效，因为它不依赖specific sequence length——predictor 看到的是per-token
+      hidden states，length主要影响attention pattern。KL-only的drop（1.4 avg） 与short-context
+      evaluation一致。Multi-doc QA是最challenging的任务类型（需要cross-document reasoning），因此KL-only在此处drop最大（3.3
+      points）。BCE+comp在长序列下degradation 更严重（11.4 avg drop）——因为BCE的per-neuron error在长序列中accumulates
+      without compensation fully correcting the compounding effect。SPON+KL以42.8接近dense的43.5，
+      进一步确认composition在长序列下仍然有效。
+
+      '
+    tables:
+    - name: 'Table 11: LongBench Per-Task-Type Breakdown'
+      columns:
+      - Task Type
+      - Dense
+      - TEAL
+      - SPON
+      - BCE+comp
+      - KL-only
+      - SPON+KL
+      rows:
+      - - Single-doc QA
+        - 46.2
+        - 38.1
+        - 42.0
+        - 35.2
+        - 44.8
+        - 45.3
+      - - Multi-doc QA
+        - 39.5
+        - 31.2
+        - 36.1
+        - 28.4
+        - 38.2
+        - 38.8
+      - - Summarization
+        - 43.8
+        - 35.8
+        - 40.2
+        - 33.8
+        - 42.5
+        - 43.1
+      - - Few-shot
+        - 48.3
+        - 39.5
+        - 44.3
+        - 34.6
+        - 47.1
+        - 47.8
+      - - Code
+        - 39.6
+        - 32.4
+        - 36.5
+        - 28.5
+        - 38.0
+        - 38.9
+      - - '**Average**'
+        - '**43.5**'
+        - '**35.4**'
+        - '**39.8**'
+        - '**32.1**'
+        - '**42.1**'
+        - '**42.8**'
+    figures_description:
+    - 'Radar chart: 5个task types，Dense/KL-only/BCE+comp/SPON+KL四条线，展示KL-only profile近似dense'
+    - 'Heatmap: methods × task types，color by score，直观展示BCE+comp在所有task types上consistently差'
+    analysis: 'LongBench结果证明KL predictor在长序列（4K-32K）下generalization良好（avg drop 1.4），
+      无需长序列finetune。BCE+comp在long-context下进一步恶化（avg drop 11.4 vs short-context的12.8%），
+      可能因为compensation网络对error accumulation的correction在长序列下saturate。 增强了EMNLP venue
+      fit（NLP-specific long-context evaluation）。
+
+      '
+  - name: MT-Bench Multi-Turn Instruction Following
+    plan_id: plan_011
+    description: 'MT-Bench 80题 × 8 categories，GPT-4o judge。测试sparsity对instruction
+      following quality的影响。
+
+      '
+    expected_results:
+      dense_mtbench_avg: 7.21
+      teal_mtbench_avg: 6.18
+      spon_mtbench_avg: 6.78
+      bce_comp_mtbench_avg: 6.42
+      kl_only_mtbench_avg: 7.05
+      spon_kl_mtbench_avg: 7.12
+      kl_writing: 7.35
+      kl_roleplay: 7.15
+      kl_reasoning: 6.65
+      kl_math: 6.55
+      kl_coding: 6.85
+      kl_extraction: 7.45
+      kl_stem: 7.1
+      kl_humanities: 7.3
+      bce_comp_writing: 6.8
+      bce_comp_reasoning: 5.85
+      bce_comp_math: 5.65
+      bce_comp_coding: 5.9
+    result_rationale: 'MT-Bench测试multi-turn instruction following——一个对output quality高度敏感的setting。
+      KL-only（7.05）与dense（7.21）差距仅0.16（GPT-4o judge的scoring granularity内）， 说明KL的output
+      distribution matching直接保留了instruction following能力。 Math和reasoning categories
+      drop略大（KL-only 6.55/6.65 vs dense ~6.8/6.85），因为 这些tasks需要precise multi-step
+      reasoning，对任何distribution shift更敏感。 BCE+comp（6.42）在reasoning-heavy categories下degradation严重（5.85/5.65），因为
+      BCE的imprecise sparsity mask在需要所有neurons correctly participate的reasoning chain上
+      产生compounding errors，compensation无法fully recover。
+
+      '
+    tables:
+    - name: 'Table 12: MT-Bench Results'
+      columns:
+      - Method
+      - Avg Score
+      - Writing
+      - Reasoning
+      - Math
+      - Coding
+      rows:
+      - - Dense
+        - 7.21
+        - 7.5
+        - 6.85
+        - 6.8
+        - 7.1
+      - - TEAL
+        - 6.18
+        - 6.45
+        - 5.6
+        - 5.4
+        - 5.8
+      - - SPON
+        - 6.78
+        - 7.1
+        - 6.35
+        - 6.15
+        - 6.55
+      - - BCE+comp
+        - 6.42
+        - 6.8
+        - 5.85
+        - 5.65
+        - 5.9
+      - - KL-only
+        - 7.05
+        - 7.35
+        - 6.65
+        - 6.55
+        - 6.85
+      - - SPON+KL
+        - 7.12
+        - 7.4
+        - 6.75
+        - 6.65
+        - 6.95
+    figures_description:
+    - 'Grouped bar chart per category: Dense vs KL-only vs BCE+comp，8个categories并排'
+    analysis: 'MT-Bench进一步确认KL-only在generation quality上接近dense。GPT-4o judge评分差异 KL-only
+      vs dense仅0.16——在judge的noise floor以内。BCE+comp在math/reasoning上 severe degradation（-1.15/-1.00
+      vs dense），而KL-only仅-0.25/-0.20。 Strengthens EMNLP NLP evaluation story。
+
+      '
+  - name: RULER Synthetic Long-Context Diagnostics
+    plan_id: plan_012
+    description: 'RULER synthetic evaluation at 4K and 16K context，3 representative
+      task types (needle-in-a-haystack, multi-key retrieval, variable tracking)。 Fine-grained
+      diagnostics complementing LongBench。
+
+      '
+    expected_results:
+      dense_ruler_4k_avg: 95.2
+      kl_only_ruler_4k_avg: 93.8
+      bce_comp_ruler_4k_avg: 87.4
+      spon_kl_ruler_4k_avg: 94.5
+      dense_ruler_16k_avg: 88.5
+      kl_only_ruler_16k_avg: 86.1
+      bce_comp_ruler_16k_avg: 78.3
+      spon_kl_ruler_16k_avg: 87.2
+      kl_needle_4k: 98.0
+      kl_needle_16k: 94.5
+      kl_multikey_4k: 91.2
+      kl_multikey_16k: 82.4
+      kl_vartrack_4k: 92.1
+      kl_vartrack_16k: 81.3
+      bce_comp_needle_4k: 94.5
+      bce_comp_needle_16k: 86.2
+      bce_comp_multikey_4k: 83.8
+      bce_comp_multikey_16k: 72.1
+      bce_comp_vartrack_4k: 83.9
+      bce_comp_vartrack_16k: 76.5
+      kl_only_4k_to_16k_drop: 7.7
+      bce_comp_4k_to_16k_drop: 9.1
+      dense_4k_to_16k_drop: 6.7
+    result_rationale: 'RULER的synthetic tasks提供controlled diagnostics——每个task isolate一种capability
+      (retrieval precision, multi-hop tracking等)。KL-only在4K下接近dense（93.8 vs 95.2），
+      在16K下gracefully degrade（86.1 vs 88.5）——4K→16K drop (7.7)接近dense pattern (6.7)，
+      说明KL predictor不会随context length引入额外的degradation。BCE+comp的4K→16K drop更大 (9.1)，在multi-key
+      retrieval（需要同时attend to多个scattered positions）和variable tracking（需要maintain state
+      across distance）上degradation尤其严重——因为这些tasks 对sparse mask quality最敏感，BCE的imprecise
+      masks在长距离dependency上compounding。 Needle-in-a-haystack是最简单的task（单点retrieval），所有methods都表现好。
+
+      '
+    tables:
+    - name: 'Table 13: RULER Synthetic Evaluation'
+      columns:
+      - Task
+      - Context
+      - Dense
+      - KL-only
+      - BCE+comp
+      - SPON+KL
+      rows:
+      - - Needle
+        - 4K
+        - 99.2
+        - 98.0
+        - 94.5
+        - 98.5
+      - - Needle
+        - 16K
+        - 96.8
+        - 94.5
+        - 86.2
+        - 95.8
+      - - Multi-key
+        - 4K
+        - 93.5
+        - 91.2
+        - 83.8
+        - 92.4
+      - - Multi-key
+        - 16K
+        - 84.1
+        - 82.4
+        - 72.1
+        - 83.5
+      - - Var-track
+        - 4K
+        - 92.8
+        - 92.1
+        - 83.9
+        - 92.5
+      - - Var-track
+        - 16K
+        - 84.5
+        - 81.3
+        - 76.5
+        - 83.2
+      - - '**Average**'
+        - '**4K**'
+        - '**95.2**'
+        - '**93.8**'
+        - '**87.4**'
+        - '**94.5**'
+      - - '**Average**'
+        - '**16K**'
+        - '**88.5**'
+        - '**86.1**'
+        - '**78.3**'
+        - '**87.2**'
+    figures_description:
+    - 'Line plot: x=context length (4K, 16K), y=RULER avg accuracy, 每个method一条线，展示degradation
+      rate'
+    - 'Heatmap: task × method × context length，诊断哪些capabilities被sparsity影响最大'
+    analysis: RULER诊断补充LongBench：KL-only的context-length degradation pattern与dense一致
+      (4K→16K drop差仅1 point)，而BCE+comp多drop 2.4 points。Multi-key retrieval 是differentiation最大的task（KL
+      82.4 vs BCE+comp 72.1 at 16K），这与理论一致—— multi-key需要FFN准确处理多个simultaneously relevant
+      positions，joint neuron interaction quality直接影响结果。
+  review_report: "---\ndream_id: dream_20260515T164925\ntier: best\noverall_score:\
+    \ Weak Reject (3/6)\ntimestamp: 2026-05-15T17:45:35.237727+00:00\n---\n\n# Dream\
+    \ Review Report — distill_sparse_swiglu\n\n**Paper:** \"Output-Distribution Distillation\
+    \ Makes Compensation Networks Obsolete for SwiGLU Activation Sparsity\"\n**Dream\
+    \ ID:** 20260515T164925\n**Review Mode:** Full (2 Reviewers + Roundtable)\n**Date:**\
+    \ 2026-05-15\n\n---\n\n## Roundtable Summary\n\n| | R1 (Methods & Experiments)\
+    \ | R2 (Novelty & Related Work) | Consensus |\n|---|---|---|---|\n| **Score**\
+    \ | 3/6 (Weak Reject) | 3/6 (Weak Reject) | **3/6 (Weak Reject)** |\n| **Confidence**\
+    \ | 4/5 | 4/5 | 4/5 |\n\nBoth reviewers independently converged on Weak Reject.\
+    \ The paper presents a large, consistent effect size (KL-only 9.20 vs BCE+comp\
+    \ 18.64 PPL) with thorough ablation design, but multiple major concerns — limited\
+    \ novelty, questionable baseline fairness, missing critical controls, and informal\
+    \ theory — prevent acceptance at a top ML venue (~25% acceptance rate).\n\n---\n\
+    \n## Step 1: Independent Reviews\n\n### R1 — Methods & Experiments (Score: 3/6)\n\
+    \n**Strengths:**\n1. Well-motivated theoretical distinction between KL (gradient\
+    \ coupling through Jacobian) and BCE (factorized per-neuron gradient). The argument\
+    \ is mathematically correct.\n2. Excellent ablation design: four-condition ablation\
+    \ cleanly isolates loss vs. compensation; STE baseline (Table 2) isolates loss\
+    \ vs. relaxation; iso-compute (Table 3) controls for FLOPs.\n3. Large, consistent\
+    \ effect size with low variance (KL std=0.04 across 5 seeds). Not a paper where\
+    \ you squint at error bars.\n4. Comprehensive evaluation breadth: PPL, 5 discriminative\
+    \ benchmarks, LongBench, MT-Bench, RULER, latency profiling, cross-architecture\
+    \ validation.\n5. Practical relevance: KL-only Pareto-dominates BCE+comp on quality,\
+    \ latency, and parameter count simultaneously.\n6. Modular decomposition (SPON+KL)\
+    \ with quantified interaction residual (6.8%) is a useful contribution.\n\n**Major\
+    \ Weaknesses:**\n1. **Result provenance concern.** Project files suggest only\
+    \ MVP experiments (KL-only 3 seeds, BCE-only 3 seeds) actually completed. The\
+    \ remaining experiments (BCE+comp, SPON, SPON+KL, Mistral, downstream benchmarks,\
+    \ sparsity sweep, LongBench, MT-Bench, RULER) appear to be dream simulations with\
+    \ imagined numbers matching `review_context.yaml` exactly. If all experiments\
+    \ were actually run, this concern evaporates — but the paper should provide W&B\
+    \ links or training logs.\n2. **BCE oracle target confound.** BCE is trained with\
+    \ top-k by activation magnitude as the binary target. This target is itself suboptimal\
+    \ — it does not account for downstream impact on the output distribution. KL implicitly\
+    \ discovers optimal masks via end-to-end gradients. Much of the KL-BCE gap may\
+    \ reflect target quality, not loss function quality. A BCE variant with KL-optimal\
+    \ targets (neurons whose removal maximizes KL divergence) would disentangle these\
+    \ factors.\n3. **Quadratic scaling argument is informal.** The O(s²D²) claim conflates\
+    \ the count of pairwise interactions with the gradient signal magnitude gap. The\
+    \ actual KL-BCE difference depends on spectral properties of the Jacobian, not\
+    \ merely neuron pair counts. Fitting Δ=as² to 7 single-seed points with R²=0.97\
+    \ is suggestive but not definitive — many monotone functions would fit comparably.\
+    \ No AIC/BIC comparison against alternative forms is reported.\n\n**Minor Weaknesses:**\n\
+    - Sparsity constraint mechanism (Lagrangian multiplier with exponential updates,\
+    \ clamping to [0.1, 1000]) underreported despite being essential for reproducibility.\n\
+    - Seed sensitivity: actual MVP results show KL std ~0.92 on TEAL sparse PPL vs.\
+    \ reported 0.04 on hard-mask PPL. Which evaluation protocol produces the headline\
+    \ number?\n- Unequal seed counts across conditions (BCE-only 3, BCE+comp 5, KL+comp\
+    \ 3) are unusual.\n- Calibration data (WikiText-103) is narrow domain; sensitivity\
+    \ to calibration data not analyzed.\n\n**Missing Experiments Requested:**\n- BCE\
+    \ with KL-optimal targets\n- Per-layer analysis of KL-BCE gap\n- Training dynamics\
+    \ (learning curves for all conditions)\n- Statistical significance tests (paired\
+    \ t-test on headline comparison)\n- Predictor architecture sensitivity\n\n---\n\
+    \n### R2 — Novelty & Related Work (Score: 3/6)\n\n**Strengths:**\n1. Two-dimensional\
+    \ taxonomy (correction granularity × training signal coupling) is a genuinely\
+    \ useful organizational contribution that clearly identifies the unoccupied design\
+    \ cell.\n2. Thorough ablation design (STE, iso-compute) above average for this\
+    \ subfield.\n3. Large effect size — the KL-BCE gap is decisive, not marginal.\n\
+    4. Modular decomposition (SPON+KL) with orthogonality analysis is the most original\
+    \ contribution.\n5. Comprehensive evaluation breadth across PPL, discriminative,\
+    \ generative, and long-context benchmarks.\n\n**Major Weaknesses:**\n1. **Thin\
+    \ novelty.** The core contribution reduces to \"use KL instead of BCE when training\
+    \ your sparsity predictor\" — a one-line change in the training loop. SPON already\
+    \ demonstrated KL works for sparsity in this exact domain. Extending from static\
+    \ to contextual is a natural next step, not a conceptual leap. No new algorithm,\
+    \ architecture, or training procedure.\n2. **Gradient coupling theory is trivial.**\
+    \ The chain rule applied to two different losses. Any output-level loss (MSE on\
+    \ logits, JS divergence, reverse KL) would exhibit the same coupling property.\
+    \ The paper does not explain why KL is uniquely better than other coupled losses.\n\
+    3. **Missing MSE-on-logits baseline — the most critical gap.** MSE on output logits\
+    \ also provides gradient coupling through the same Jacobian pathway. If MSE-logits\
+    \ matches KL, the paper's framing collapses from \"KL is special\" to \"any output-level\
+    \ loss beats BCE.\" This omission is conspicuous.\n4. **BCE baseline appears unreasonably\
+    \ weak.** BCE-only at 28.16 PPL is worse than training-free TEAL (12.48) — a trained\
+    \ predictor performing 2× worse than a heuristic suggests implementation issues.\
+    \ Was BCE trained with Gumbel-sigmoid (designed for continuous losses) rather\
+    \ than STE (its natural relaxation)? Were the same target generation and hyperparameters\
+    \ as FastForward used?\n\n**Minor Weaknesses:**\n- Only 8 references — alarmingly\
+    \ sparse. Missing: Deja Vu (foundational BCE predictor work), CATS, Minitron (KL\
+    \ for structured pruning), DIP, L0 regularization, Gumbel-softmax foundations,\
+    \ Sparsing Law, ReLU Strikes Back, TurboSparse, ProSparse, SparseInfer, SVD-CSP.\n\
+    - Scope limited to two 7-8B SwiGLU models. No larger models (13B, 70B) where the\
+    \ efficiency tradeoff matters most. No non-SwiGLU architectures.\n- Quadratic\
+    \ scaling claim is post-hoc curve fitting on 7 single-seed points presented as\
+    \ theoretical prediction.\n\n**Novelty Assessment:**\nThe paper sits at the intersection\
+    \ of two well-established techniques (KL distillation + learned sparsity prediction).\
+    \ Useful empirical knowledge, but the novelty is limited to filling a cell in\
+    \ the authors' own taxonomy. Engineering value is clear (simpler inference pipeline),\
+    \ but scientific novelty is insufficient for a ~25% acceptance rate venue. The\
+    \ modular decomposition (Claim 2) is the strongest original contribution but is\
+    \ positioned as secondary.\n\n---\n\n## Step 2: Cross-Sharing\n\n**R1 reacting\
+    \ to R2's concerns:**\n- R1 agrees the missing MSE-on-logits baseline is critical.\
+    \ The gradient coupling argument applies equally to MSE, JS divergence, or any\
+    \ output-level loss. Without this control, the paper cannot claim KL is uniquely\
+    \ effective vs. \"any coupled loss beats BCE.\"\n- R1 agrees the BCE baseline\
+    \ weakness (28.16 > TEAL's 12.48) is suspicious. Combined with the oracle target\
+    \ concern, there are two independent reasons to question whether the BCE comparison\
+    \ is fair.\n- R1 acknowledges the thin novelty concern but notes that if the effect\
+    \ size is this large and reproducible, it has practical impact even if the idea\
+    \ is simple. However, this alone is insufficient for acceptance.\n\n**R2 reacting\
+    \ to R1's concerns:**\n- R2 notes the result provenance concern strengthens the\
+    \ case for rejection — if only MVP experiments were actually run, the paper's\
+    \ comprehensive evaluation is aspirational, not evidential.\n- R2 agrees the Lagrangian\
+    \ sparsity enforcement is underreported and could be a hidden source of advantage\
+    \ (KL+Lagrangian is a more sophisticated training setup than vanilla BCE).\n-\
+    \ R2 finds the seed sensitivity issue (0.04 vs 0.92 std depending on evaluation\
+    \ protocol) concerning for headline reliability.\n\n---\n\n## Step 3: Convergence\n\
+    \n### Areas of Full Agreement\n1. **The effect size is large and interesting.**\
+    \ KL-only vs. BCE-only shows a dramatic gap that is scientifically meaningful\
+    \ if the comparison is fair.\n2. **Ablation design is strong.** STE baseline,\
+    \ iso-compute comparison, and four-condition ablation are well-designed and above\
+    \ average for this subfield.\n3. **BCE baseline fairness is questionable.** Two\
+    \ independent concerns: (a) oracle target quality confound (R1), (b) BCE-only\
+    \ worse than training-free methods suggesting implementation issues (R2).\n4.\
+    \ **Quadratic scaling theory is weak.** Informal counting argument + curve-fitting\
+    \ on 7 single-seed points, not rigorous theory.\n5. **Missing MSE-on-logits baseline\
+    \ is critical.** Cannot claim KL-specific advantage without ruling out that any\
+    \ output-level loss achieves similar gains.\n6. **Novelty is limited for a top\
+    \ venue.** Loss function swap in an existing pipeline, even with large effect.\n\
+    \n### Areas of Disagreement\n- **Severity of provenance concern:** R1 treats this\
+    \ as a major issue; R2 does not emphasize it (focuses on novelty instead). Resolution:\
+    \ if this is a dream-simulated paper, provenance is moot for the dream review\
+    \ — evaluate the paper as-written.\n- **Relative weight of novelty vs. empirical\
+    \ contribution:** R1 is more willing to accept strong empirical findings even\
+    \ with limited novelty; R2 holds novelty as a hard requirement. Both converge\
+    \ on 3/6 regardless.\n\n---\n\n## Step 4: Final Synthesis\n\n### Overall Assessment:\
+    \ 3/6 (Weak Reject)\n\n**Decision rationale:** The paper identifies a real and\
+    \ practically important phenomenon — KL-trained contextual sparsity predictors\
+    \ dramatically outperform BCE-trained ones, eliminating the need for compensation\
+    \ networks. The ablation design is thorough and the effect size is large. However,\
+    \ the paper does not meet the acceptance bar for a top ML venue for the following\
+    \ reasons:\n\n### Critical Issues (must address for acceptance)\n\n1. **Missing\
+    \ MSE-on-logits baseline.** The paper's entire narrative hinges on KL being uniquely\
+    \ effective due to gradient coupling. But gradient coupling is a property of ANY\
+    \ output-level loss, not KL specifically. MSE on output logits must be tested.\
+    \ If MSE matches KL, the contribution generalizes to \"use output-level losses\
+    \ for sparsity predictor training\" — still useful but requires reframing. If\
+    \ KL uniquely dominates MSE, this strengthens the distributional matching argument\
+    \ considerably.\n\n2. **BCE baseline fairness.** Two concerns must be addressed:\n\
+    \   - (a) **Target quality confound:** BCE uses top-k by activation magnitude,\
+    \ while KL implicitly discovers optimal masks. Test BCE with KL-informed targets\
+    \ (neurons whose removal maximizes KL divergence) to separate loss function from\
+    \ target quality.\n   - (b) **Implementation fairness:** BCE-only (28.16) is worse\
+    \ than training-free TEAL (12.48). This is anomalous for a trained predictor and\
+    \ suggests potential issues with Gumbel-sigmoid relaxation applied to binary targets,\
+    \ or other training setup differences. Explicitly confirm identical training conditions\
+    \ and explain this anomaly.\n\n3. **Thin novelty must be offset by deeper analysis.**\
+    \ If the core contribution is a loss function swap, the paper needs stronger theoretical\
+    \ or analytical depth to justify a full paper. Options:\n   - Formal theorem connecting\
+    \ Jacobian spectral properties to the KL-BCE gap\n   - Per-layer analysis showing\
+    \ which layers benefit and why\n   - Information-theoretic analysis of what KL\
+    \ captures that BCE misses\n   - Extend to non-SwiGLU architectures to test generality\n\
+    \n### Important Issues\n\n4. **Related work is inadequate.** 8 references for\
+    \ a paper in this space is insufficient. Must cite Deja Vu, CATS, Minitron, L0\
+    \ regularization / Gumbel-softmax foundations, and relevant sparsity scaling work.\n\
+    \n5. **Quadratic scaling claim needs strengthening.** Either provide a formal\
+    \ derivation connecting Jacobian structure to quadratic scaling, or downgrade\
+    \ the claim to an empirical observation. Report AIC/BIC against alternative functional\
+    \ forms (power law, exponential). Use multiple seeds per sparsity level.\n\n6.\
+    \ **Scale validation.** Test on at least one model >8B (13B or 70B) to support\
+    \ the \"makes compensation networks obsolete\" claim. The gradient coupling argument\
+    \ predicts stronger KL advantage at larger hidden dimensions — this is a testable\
+    \ prediction.\n\n### Minor Issues\n\n7. Report the Lagrangian sparsity enforcement\
+    \ mechanism in full (essential for reproducibility).\n8. Clarify evaluation protocol\
+    \ (hard-mask PPL vs. TEAL sparse PPL) and report variance for both.\n9. Equalize\
+    \ seed counts across all conditions.\n10. Test calibration data sensitivity (WikiText-103\
+    \ is narrow domain).\n\n### What Would Change the Score\n\n| Action | Score Impact\
+    \ |\n|--------|-------------|\n| MSE-logits baseline shows KL uniquely dominates\
+    \ | +1 (→ 4/6) |\n| BCE with KL-optimal targets still loses to KL | +0.5 |\n|\
+    \ Formal quadratic scaling theorem | +0.5 |\n| 13B/70B validation | +0.5 |\n|\
+    \ Adequate related work section (≥20 refs) | +0.5 |\n| All above combined | →\
+    \ 5/6 (Accept) |\n| MSE-logits matches KL | −0.5 (→ 2-3/6, requires full reframing)\
+    \ |\n| BCE implementation found unfair | −1 (→ 2/6) |\n\n### Strengths to Preserve\n\
+    - The four-condition ablation + STE + iso-compute ablation battery is exemplary\n\
+    - SPON+KL modular decomposition with orthogonality analysis is the most original\
+    \ contribution — consider promoting it to the headline\n- Comprehensive benchmark\
+    \ coverage (PPL, discriminative, generative, long-context, efficiency)\n- Cross-architecture\
+    \ validation on Mistral\n\n### Recommendation for Authors\nThe strongest path\
+    \ to acceptance is: (1) run the MSE-logits baseline, (2) fix the BCE baseline\
+    \ fairness concerns, (3) substantially expand related work, and (4) promote the\
+    \ modular decomposition to a co-equal headline contribution. If MSE-logits shows\
+    \ KL is uniquely effective, the paper becomes significantly stronger. If not,\
+    \ reframe around \"output-level distillation\" more broadly. Consider whether\
+    \ the modular decomposition + orthogonality analysis could be the primary contribution,\
+    \ with the KL-vs-BCE comparison as supporting evidence.\n\n---\n\n**Experiment\
+    \ Coverage:** All 12 planned experiments appear in the paper (Tables 1-14). Coverage\
+    \ is complete in breadth. The critical gap is not in coverage but in missing baselines\
+    \ outside the original plan (MSE-logits, BCE with better targets).\n\n**Venue\
+    \ Fit:** EMNLP Efficient Methods track is appropriate for the topic. The paper\
+    \ needs stronger novelty or deeper analysis to meet the acceptance bar."
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/dream_reports/dream_20260515T164925/median/paper.pdf
+  imagined_experiments:
+  - name: Four-condition ablation @ 50% sparsity
+    plan_id: plan_001
+    description: '补充KL-only 2 seeds (s0, s1) 达到5-seed headline；新增BCE+comp 5 seeds；
+      新增KL+comp 3 seeds。与已有BCE-only 3 seeds和KL-only 3 seeds组合。
+
+      '
+    expected_results:
+      kl_only_wikitext2_ppl_mean: 9.53
+      kl_only_wikitext2_ppl_std: 0.41
+      kl_only_wikitext2_ppl_seeds:
+      - 9.21
+      - 9.25
+      - 9.14
+      - 9.85
+      - 10.18
+      kl_only_model_sparsity: 0.498
+      bce_only_wikitext2_ppl_mean: 28.16
+      bce_only_wikitext2_ppl_std: 0.21
+      bce_comp_wikitext2_ppl_mean: 11.56
+      bce_comp_wikitext2_ppl_std: 0.61
+      bce_comp_wikitext2_ppl_seeds:
+      - 11.2
+      - 11.8
+      - 12.5
+      - 10.8
+      - 11.5
+      bce_comp_param_overhead_mb: 256
+      kl_comp_wikitext2_ppl_mean: 9.05
+      kl_comp_wikitext2_ppl_std: 0.15
+      kl_comp_wikitext2_ppl_seeds:
+      - 9.05
+      - 9.2
+      - 8.9
+      kl_only_vs_bce_comp_gap: 2.03
+      kl_comp_vs_kl_only_improvement: 0.48
+      dense_wikitext2_ppl: 6.12
+    result_rationale: 'KL-only: 新增s0/s1引入方差增大（s1=10.18为较弱种子），5-seed std从0.05升至0.41。
+      这反映Gumbel-sigmoid采样在不同初始化下的探索路径差异——部分种子的predictor在特定层学到次优mask分布， 导致几个层的neuron
+      selection偏差累积。均值9.53仍在9.0-10.5范围内。
+
+      BCE+comp: compensation网络（per-layer MLP, ~256MB）有效修正BCE predictor的mask错误： BCE-only的per-neuron独立预测在高sparsity下产生大量joint
+      interaction error， compensation网络通过residual connection学习修正sparse hidden state的drift。
+      PPL从28.16降至11.56，compensation确实有用（回收~16.6 PPL）。 但BCE的factorized gradient本身限制了mask质量ceiling，compensation只能修正而非预防错误。
+
+      KL+comp: compensation对KL的提升微弱（9.53→9.05, 仅0.48 PPL）。 因为KL loss通过d_logits/dh
+      * dh/dm的gradient coupling已经在训练时优化了joint neuron selection， 留给compensation修正的residual
+      error很小。这证明KL在训练阶段"preempt"了compensation需要解决的问题。
+
+      核心结论：KL-only (9.53) < BCE+comp (11.56)，且KL不需要256MB compensation overhead。 KL+comp的diminishing
+      return进一步确认compensation对KL是冗余的。
+
+      '
+    tables:
+    - name: 'Table 1: Four-condition ablation at 50% model-level sparsity (Llama 3.1
+        8B)'
+      columns:
+      - Condition
+      - WikiText-2 PPL (↓)
+      - Seeds
+      - Compensation Params
+      - Pipeline Complexity
+      rows:
+      - - Dense (reference)
+        - '6.12'
+        - —
+        - —
+        - —
+      - - BCE-only
+        - 28.16 ± 0.21
+        - 3
+        - 0
+        - Simple
+      - - BCE + compensation
+        - 11.56 ± 0.61
+        - 5
+        - 256 MB
+        - Complex
+      - - KL-only
+        - 9.53 ± 0.41
+        - 5
+        - 0
+        - Simple
+      - - KL + compensation
+        - 9.05 ± 0.15
+        - 3
+        - 256 MB
+        - Complex
+    figures_description:
+    - 'Bar chart with 95% CI error bars for 4 conditions + dense baseline. Y轴: WikiText-2
+      PPL (log scale). 标注KL-only与BCE+comp的gap (2.03 PPL) 和compensation的marginal gain
+      for each loss type.'
+    analysis: 'Headline result支持revised Claim 1：KL-only在质量上优于BCE+comp (9.53 vs 11.56)，
+      同时完全省去compensation网络。KL+comp的微弱提升(0.48 PPL)表明compensation对KL是冗余的， 而对BCE是必需的(28.16→11.56)。这将论文核心message从"KL
+      is categorically better" 调整为"KL eliminates compensation overhead while achieving
+      better quality"—— 更nuanced但仍有明确的practical implication。 Seed方差增大(std 0.41)需要在paper中transparent报告，但5-seed
+      mean的confidence interval 仍完全在BCE+comp之下。
+
+      '
+  - name: 'STE baseline: KL loss + Straight-Through Estimator'
+    plan_id: plan_002
+    description: '用STE替换Gumbel-sigmoid作为gradient estimator，保持KL loss不变。 3 seeds。隔离KL优势中loss
+      function vs relaxation method的各自贡献。
+
+      '
+    expected_results:
+      kl_ste_wikitext2_ppl_mean: 14.7
+      kl_ste_wikitext2_ppl_std: 0.6
+      kl_ste_wikitext2_ppl_seeds:
+      - 14.7
+      - 15.3
+      - 14.1
+      kl_ste_model_sparsity: 0.498
+      total_gain_over_bce: 18.63
+      gain_from_kl_loss: 13.46
+      gain_from_gumbel: 5.17
+      gumbel_contribution_pct: 27.8
+    result_rationale: 'STE将hard threshold的gradient设为1（identity），丢失了neuron importance的magnitude信息。
+      Gumbel-sigmoid在forward pass中通过temperature-controlled soft sampling保留了importance
+      ranking的连续性， 使KL gradient能够区分"barely active"和"strongly active"的neurons。
+
+      KL+STE (14.70) 仍大幅优于BCE-only (28.16)，因为KL loss的joint coupling效应不依赖relaxation方法——
+      即使用STE的biased gradient，KL的∂logits/∂mask仍传递了output-distribution level的supervision。
+      但STE的gradient bias导致predictor在边界neurons（importance接近threshold的neurons）上做出次优决策，
+      累积~5 PPL的损失。
+
+      Gumbel贡献~28%的gain，说明"loss和relaxation都重要"——KL loss是主要贡献者（72%）， 但Gumbel的smooth
+      gradient对于fine-grained mask optimization不可或缺。 这防御了reviewer concern "Gumbel relaxation,
+      not KL, explains gains"。
+
+      '
+    tables:
+    - name: 'Table 2: Loss function vs relaxation method ablation'
+      columns:
+      - Condition
+      - Loss
+      - Relaxation
+      - WikiText-2 PPL
+      - Gain over BCE-only
+      rows:
+      - - BCE-only
+        - BCE
+        - STE
+        - '28.16'
+        - —
+      - - KL + STE
+        - KL
+        - STE
+        - 14.70 ± 0.60
+        - 13.46 (72%)
+      - - KL + Gumbel
+        - KL
+        - Gumbel-σ
+        - 9.53 ± 0.41
+        - 18.63 (100%)
+    figures_description:
+    - 'Stacked bar或waterfall chart: BCE-only baseline (28.16) → KL loss contribution
+      (-13.46) → Gumbel contribution (-5.17) → KL+Gumbel (9.53)。直观展示两个因素的相对贡献。'
+    analysis: 'KL loss贡献72%的improvement，Gumbel贡献28%。两者都是necessary component。 这回答reviewer
+      concern #3: gains不是purely from Gumbel relaxation，KL loss本身是主要driver。 同时也表明gradient
+      estimator的选择有meaningful impact，为future work （更好的relaxation methods）留下空间。
+
+      '
+  - name: Iso-compute BCE comparison
+    plan_id: plan_003
+    description: '扩展BCE训练步数以匹配KL的total FLOPs。KL需要per-step dense forward pass获取logits，
+      BCE可用cached targets，因此BCE per-step成本远低于KL。等量计算下BCE可训练更多步。
+
+      '
+    expected_results:
+      kl_per_step_tflops: 66.0
+      bce_per_step_tflops: 0.8
+      kl_total_training_hours: 3.8
+      bce_standard_training_hours: 0.4
+      bce_isocompute_training_steps: 33000
+      bce_isocompute_training_hours: 3.8
+      bce_standard_ppl: 28.16
+      bce_isocompute_ppl_mean: 23.5
+      bce_isocompute_ppl_std: 0.7
+      bce_isocompute_ppl_seeds:
+      - 23.5
+      - 24.2
+      - 22.8
+      kl_only_ppl_mean: 9.53
+      gap_kl_vs_bce_isocompute: 13.97
+    result_rationale: 'BCE per-step成本远低于KL（0.8 vs 66 TFLOPs），因为BCE只需predictor forward+binary
+      target比对， 无需base model forward pass。等量计算下BCE获得~33x训练步数。
+
+      额外训练将BCE PPL从28.16降至23.50（降低16.5%）。改善来源： (1) predictor在更多数据上泛化更好，(2) 更充分的convergence。
+      但改善呈sharp diminishing returns——BCE在~5000步后已接近per-neuron prediction accuracy的ceiling。
+
+      即便给予等量计算，BCE (23.50) 仍比KL (9.53) 差14 PPL points。 这确认KL的优势不是compute artifact——BCE的factorized
+      gradient （∂L/∂s_j仅依赖neuron j）无论训练多久都无法捕获joint neuron interactions。 Information
+      bottleneck在loss function structure中，不在训练预算中。
+
+      '
+    tables:
+    - name: 'Table 3: Iso-compute training comparison'
+      columns:
+      - Condition
+      - Per-step TFLOPs
+      - Total Steps
+      - GPU-hours
+      - WikiText-2 PPL
+      rows:
+      - - KL + Gumbel
+        - 66.0
+        - 1000
+        - 3.8
+        - 9.53 ± 0.41
+      - - BCE (standard)
+        - 0.8
+        - 1000
+        - 0.4
+        - 28.16 ± 0.21
+      - - BCE (iso-compute)
+        - 0.8
+        - 33000
+        - 3.8
+        - 23.50 ± 0.70
+    figures_description:
+    - PPL vs cumulative training FLOPs曲线。BCE曲线在~5000步后flatten（信息瓶颈），KL曲线在1000步时已远低于BCE的asymptote。标注两条曲线在等量FLOPs处的PPL差距。
+    analysis: '直接回答reviewer concern #2 "KL wins only because more compute"。 等量计算下KL仍领先14
+      PPL points，BCE的per-neuron independence assumption是根本瓶颈。 附带发现：BCE training cost极低（0.4
+      vs 3.8 GPU-hours），在不追求最优质量的场景下 BCE+comp仍有实用价值（training便宜，compensation弥补质量），但KL在quality-critical场景下
+      是strictly better choice。
+
+      '
+  - name: SPON reimplementation on Llama 3.1 8B
+    plan_id: plan_004
+    description: '实现SPON（learnable per-layer bias vectors + KL training）。 先在5个QA benchmarks上验证可复现SPON发表结果，再用于composition实验。
+
+      '
+    expected_results:
+      spon_wikitext2_ppl: 11.2
+      spon_ppl_increase_vs_dense_pct: 83.0
+      spon_arc_c: 49.5
+      spon_arc_e: 75.8
+      spon_boolq: 78.2
+      spon_piqa: 77.5
+      spon_winogrande: 69.8
+      reproduction_arc_c_delta_vs_published: 1.2
+      reproduction_boolq_delta_vs_published: 0.8
+      spon_training_hours: 0.3
+      spon_param_count_mb: 0.5
+      spon_inference_overhead_ms: 0.0
+    result_rationale: 'SPON的per-layer bias vector捕获average-case activation drift——当50%的neurons被pruned时，
+      每层hidden state的均值会systematically shift，bias correction直接补偿这个first-order偏差。 KL
+      loss训练确保bias correction在output distribution level是optimal的（而非仅在hidden space
+      level）。
+
+      PPL 11.20优于TEAL (~12.5)，因为static bias correction addresses the mean drift that
+      magnitude-based pruning cannot handle。但远不如contextual KL (9.53)，因为 input-independent
+      correction无法适应per-token的neuron importance variation—— 不同输入的optimal pruning pattern差异很大，static
+      bias只是average correction。
+
+      QA benchmarks应在published results的±2%内，偏差来源： (1) Llama 3.1 8B vs SPON原文可能用不同base
+      model，(2) sparsity target可能略有差异。 零inference overhead是SPON的关键优势——bias只是per-layer
+      addition，fused into existing computation。
+
+      '
+    tables:
+    - name: 'Table 4: SPON reproduction — QA benchmark comparison'
+      columns:
+      - Benchmark
+      - Dense
+      - SPON (ours)
+      - Δ vs published SPON
+      rows:
+      - - ARC-c
+        - 53.4%
+        - 49.5%
+        - +1.2%
+      - - ARC-e
+        - 81.2%
+        - 75.8%
+        - -0.5%
+      - - BoolQ
+        - 83.5%
+        - 78.2%
+        - +0.8%
+      - - PIQA
+        - 81.0%
+        - 77.5%
+        - -1.0%
+      - - WinoGrande
+        - 74.2%
+        - 69.8%
+        - +0.6%
+    figures_description: []
+    analysis: 'SPON成功复现，PPL 11.20接近BCE+comp (11.56) 但zero overhead。 这为composition实验(plan_005)建立baseline。
+      有趣的observation：SPON (static KL-trained) ≈ BCE+comp (contextual BCE-trained)，
+      说明KL loss signal的quality甚至在static correction场景下也有value， 与BCE需要contextual compensation才能达到同等水平形成对比。
+
+      '
+  - name: SPON + KL predictor composition
+    plan_id: plan_005
+    description: '同时应用SPON bias correction + KL contextual predictor。 Additivity test:
+      测量output-space interaction residual。Per-layer orthogonality分析。
+
+      '
+    expected_results:
+      spon_kl_wikitext2_ppl_mean: 8.91
+      spon_kl_wikitext2_ppl_std: 0.14
+      spon_kl_wikitext2_ppl_seeds:
+      - 8.75
+      - 9.02
+      - 8.95
+      spon_only_ppl: 11.2
+      kl_only_ppl: 9.53
+      interaction_residual_norm_ratio: 0.22
+      per_layer_orthogonality_mean_cosine: 0.18
+      hypothetical_fully_additive_ppl: 8.23
+      actual_vs_additive_gap: 0.68
+      interaction_residual_pct: 22.0
+    result_rationale: 'SPON corrects average drift (first-order bias)，KL predictor
+      adapts per-token neuron importance (conditional correction)。两者address partially
+      orthogonal error sources： SPON修正"平均而言哪些neurons被drop后hidden state往哪个方向drift"，
+      KL修正"对这个specific input应该keep哪些neurons"。
+
+      Interaction residual ~22%表明non-trivial overlap：KL predictor在训练时部分学到了 SPON负责的mean
+      drift correction（因为KL loss本身会push predictor去修正所有可修正的error， 包括systematic bias）。因此组合收益存在但不perfectly
+      additive。
+
+      PPL从KL-only (9.53) 提升到SPON+KL (8.91)，gain = 0.62 PPL。 如果fully additive（TEAL
+      baseline 12.5为reference）： SPON improvement = 12.5 - 11.2 = 1.3, KL improvement
+      = 12.5 - 9.53 = 2.97 Additive prediction: 12.5 - 1.3 - 2.97 = 8.23。Actual 8.91
+      vs 8.23 → 22% interaction residual。
+
+      Output-space linearity test: ||Δ_logits(s+c) - Δ_logits(s) - Δ_logits(c)|| /
+      ||Δ_logits(s+c)|| ≈ 0.22。 Per-layer分析：attention-heavy layers (early layers)
+      的correction更orthogonal (cosine ~0.1)， FFN-heavy layers (middle layers) 的overlap更大
+      (cosine ~0.25)。
+
+      '
+    tables:
+    - name: 'Table 5: Composition additivity analysis'
+      columns:
+      - Condition
+      - WikiText-2 PPL
+      - Δ from TEAL baseline
+      rows:
+      - - TEAL (no learned correction)
+        - 12.5
+        - —
+      - - SPON only
+        - 11.2
+        - '-1.30'
+      - - KL-only
+        - 9.53
+        - '-2.97'
+      - - SPON + KL (if fully additive)
+        - 8.23
+        - '-4.27'
+      - - SPON + KL (actual)
+        - 8.91 ± 0.14
+        - '-3.59'
+      - - Interaction residual
+        - —
+        - 0.68 (22%)
+    figures_description:
+    - 'Per-layer interaction residual heatmap: X轴=layer index (0-31), Y轴=metric (cosine
+      similarity, residual norm ratio)。展示哪些层的SPON和KL corrections更orthogonal。'
+    - 'Venn-style decomposition diagram: 展示SPON correction, KL correction, 和overlap的relative
+      magnitudes in logit space。'
+    analysis: 'Composition有效但not clean：22% interaction residual意味着不能声称perfect additivity。
+      Claim 2需要弱化为"empirically observed partial additivity"。 Paper中需要supplementary
+      analysis展示interaction term的per-layer breakdown， honest地characterize哪些层composition是near-additive的，哪些有significant
+      overlap。 但SPON+KL (8.91) 作为best overall result仍然有value—— 证明static和contextual
+      corrections可以有意义地组合，即使不是mathematically clean的。
+
+      '
+  - name: Training-free baselines @ 50% sparsity
+    plan_id: plan_006
+    description: 'TEAL (magnitude + greedy allocation), WINA (weight-informed scoring),
+      R-Sparse (rank-aware scoring) 在Llama 3.1 8B上的controlled evaluation。
+
+      '
+    expected_results:
+      teal_wikitext2_ppl: 12.5
+      teal_ppl_increase_vs_dense_pct: 104.2
+      wina_wikitext2_ppl: 14.2
+      wina_ppl_increase_vs_dense_pct: 132.1
+      rsparse_wikitext2_ppl: 13.5
+      rsparse_ppl_increase_vs_dense_pct: 120.7
+      teal_training_hours: 0
+      wina_training_hours: 0
+      rsparse_training_hours: 0
+    result_rationale: 'TEAL最强：magnitude pruning + greedy per-layer allocation在SwiGLU上效果好，
+      因为gate activation magnitude直接反映neuron importance（gate值接近0的neuron贡献小）。 Greedy
+      allocation在layers间智能分配sparsity budget（让important layers保留更多neurons）。
+
+      WINA次之（14.20）：weight-informed scoring考虑weight magnitude × activation， 但在50%
+      high sparsity下，weight和activation的interaction是non-monotonic的 （large weight ×
+      small activation vs small weight × large activation的trade-off不清晰）， 导致pruning决策noisier。
+
+      R-Sparse居中（13.50）：rank-aware approach比pure magnitude好 （考虑了neurons之间的redundancy），但不如TEAL的greedy
+      allocation adaptive。
+
+      三个training-free方法都比learned approaches差3-5 PPL以上， 确立了"training-free < learned"的hierarchy，justifying学习predictor的必要性。
+
+      '
+    tables:
+    - name: 'Table 6: Training-free baselines at 50% model-level sparsity'
+      columns:
+      - Method
+      - WikiText-2 PPL
+      - Δ vs Dense
+      - Training Cost
+      rows:
+      - - Dense
+        - 6.12
+        - —
+        - —
+      - - TEAL
+        - 12.5
+        - '+6.38'
+        - '0'
+      - - R-Sparse
+        - 13.5
+        - '+7.38'
+        - '0'
+      - - WINA
+        - 14.2
+        - '+8.08'
+        - '0'
+      - - KL-only (reference)
+        - 9.53
+        - '+3.41'
+        - 3.8 h
+    figures_description: []
+    analysis: 'Training-free方法在50% sparsity下留下6-8 PPL gap，验证了paper framing中 "training-free
+      heuristics leave a 6+ point quality gap"的claim。 TEAL是最强baseline (12.50)，将作为所有learned
+      methods的primary comparison point。 三层hierarchy清晰：training-free (12.5-14.2) →
+      static-learned/SPON (11.2) → contextual-learned/KL (9.5)。
+
+      '
+  - name: Full benchmark evaluation + wall-clock profiling
+    plan_id: plan_007
+    description: '所有conditions在WikiText-2, C4, ARC-c, WinoGrande, MMLU, GSM8K, HumanEval上的完整评估。
+      Wall-clock latency profiling + memory overhead。Pareto frontier。
+
+      '
+    expected_results:
+      dense_wikitext2_ppl: 6.12
+      dense_c4_ppl: 8.88
+      dense_arc_c: 53.4
+      dense_winogrande: 74.2
+      dense_mmlu: 65.3
+      dense_gsm8k: 48.2
+      dense_humaneval: 33.5
+      kl_only_wikitext2_ppl: 9.53
+      kl_only_c4_ppl: 12.8
+      kl_only_arc_c: 51.5
+      kl_only_winogrande: 72.0
+      kl_only_mmlu: 63.0
+      kl_only_gsm8k: 46.2
+      kl_only_humaneval: 31.5
+      kl_only_avg_acc_drop_vs_dense_pct: 3.4
+      bce_comp_wikitext2_ppl: 11.56
+      bce_comp_c4_ppl: 15.2
+      bce_comp_arc_c: 50.2
+      bce_comp_winogrande: 70.5
+      bce_comp_mmlu: 61.8
+      bce_comp_gsm8k: 44.8
+      bce_comp_humaneval: 30.5
+      bce_comp_avg_acc_drop_vs_dense_pct: 5.2
+      spon_kl_wikitext2_ppl: 8.91
+      spon_kl_c4_ppl: 11.9
+      spon_kl_arc_c: 52.1
+      spon_kl_winogrande: 72.8
+      spon_kl_mmlu: 63.8
+      spon_kl_gsm8k: 47.0
+      spon_kl_humaneval: 32.0
+      spon_kl_avg_acc_drop_vs_dense_pct: 2.3
+      teal_wikitext2_ppl: 12.5
+      teal_arc_c: 47.8
+      teal_mmlu: 58.5
+      teal_avg_acc_drop_vs_dense_pct: 9.8
+      dense_latency_ms_b1: 18.0
+      kl_only_latency_ms_b1: 16.5
+      bce_comp_latency_ms_b1: 17.8
+      spon_kl_latency_ms_b1: 16.5
+      kl_only_speedup_b1: 1.09
+      bce_comp_speedup_b1: 1.01
+      dense_latency_ms_b32: 3.2
+      kl_only_latency_ms_b32: 2.15
+      bce_comp_latency_ms_b32: 2.72
+      spon_kl_latency_ms_b32: 2.15
+      kl_only_speedup_b32: 1.49
+      bce_comp_speedup_b32: 1.18
+      kl_only_extra_params_mb: 8
+      bce_comp_extra_params_mb: 264
+      spon_kl_extra_params_mb: 8.5
+    result_rationale: 'Downstream accuracy: KL-only的2-5% relative drop反映PPL degradation在discriminative
+      tasks上的衰减： PPL从6.12升至9.53 (+56%)，但downstream accuracy仅降3.4%，因为discriminative
+      tasks 主要依赖representation quality而非exact next-token prediction，而50% sparsity下
+      KL predictor保留了most important neurons，representation受损有限。
+
+      BCE+comp的downstream drop更大(5.2%)因为compensation网络修正的是hidden state drift而非 representation
+      quality——补偿了数值偏差但未恢复pruning导致的information loss。
+
+      SPON+KL最佳(2.3% drop)因为static bias correction + contextual prediction覆盖了 both
+      systematic和input-specific errors，leaving minimal residual representation damage。
+
+      Latency: batch=1时memory-bandwidth bound，sparsity的compute reduction被parameter
+      loading开销稀释， KL仅1.09x speedup。Batch=32时compute-bound，50% FFN sparsity的savings充分显现：
+      KL 1.49x vs BCE+comp 1.18x——compensation网络的256MB参数和per-layer GEMV 吃掉了batch场景下1/3的sparsity
+      savings。这是KL的practical efficiency论点的核心。
+
+      '
+    tables:
+    - name: 'Table 7: Full benchmark comparison (Llama 3.1 8B, 50% sparsity)'
+      columns:
+      - Method
+      - Wiki PPL↓
+      - C4 PPL↓
+      - ARC-c↑
+      - WG↑
+      - MMLU↑
+      - GSM8K↑
+      - HE↑
+      - Avg Acc Drop
+      rows:
+      - - Dense
+        - 6.12
+        - 8.88
+        - 53.4
+        - 74.2
+        - 65.3
+        - 48.2
+        - 33.5
+        - —
+      - - TEAL
+        - 12.5
+        - 17.1
+        - 47.8
+        - 67.2
+        - 58.5
+        - 40.5
+        - 27.0
+        - 9.8%
+      - - SPON
+        - 11.2
+        - 15.5
+        - 49.5
+        - 69.8
+        - 60.5
+        - 43.0
+        - 28.5
+        - 7.0%
+      - - BCE+comp
+        - 11.56
+        - 15.2
+        - 50.2
+        - 70.5
+        - 61.8
+        - 44.8
+        - 30.5
+        - 5.2%
+      - - KL-only
+        - 9.53
+        - 12.8
+        - 51.5
+        - 72.0
+        - 63.0
+        - 46.2
+        - 31.5
+        - 3.4%
+      - - SPON+KL
+        - 8.91
+        - 11.9
+        - 52.1
+        - 72.8
+        - 63.8
+        - 47.0
+        - 32.0
+        - 2.3%
+    - name: 'Table 8: Inference efficiency (A100 GPU)'
+      columns:
+      - Method
+      - Latency b=1 (ms)
+      - Speedup b=1
+      - Latency b=32 (ms)
+      - Speedup b=32
+      - Extra Params
+      rows:
+      - - Dense
+        - 18.0
+        - 1.00×
+        - 3.2
+        - 1.00×
+        - —
+      - - KL-only
+        - 16.5
+        - 1.09×
+        - 2.15
+        - 1.49×
+        - 8 MB
+      - - SPON+KL
+        - 16.5
+        - 1.09×
+        - 2.15
+        - 1.49×
+        - 8.5 MB
+      - - BCE+comp
+        - 17.8
+        - 1.01×
+        - 2.72
+        - 1.18×
+        - 264 MB
+    figures_description:
+    - 'Efficiency-accuracy Pareto frontier: X轴=speedup (b=32), Y轴=average downstream
+      accuracy。KL-only和SPON+KL在Pareto frontier上，BCE+comp被dominated。Training-free methods在右下角（fast
+      but low quality）。'
+    - 'Radar chart: 6个downstream tasks normalized to dense=1.0。展示各method的capability
+      profile——KL-only在所有axes上接近dense，BCE+comp在reasoning tasks (GSM8K, ARC-c) 上相对更弱。'
+    analysis: 'Main paper table确认KL-only在quality和efficiency两个维度上都dominate BCE+comp。
+      Quality: 9.53 vs 11.56 PPL, 3.4% vs 5.2% downstream drop。 Efficiency: 1.49x
+      vs 1.18x at b=32, 8MB vs 264MB extra params。 SPON+KL是quality-optimal (8.91,
+      2.3% drop) 且efficiency与KL-only相同。 This is the paper''s main result table, supporting
+      the "simpler pipeline, better quality" narrative。
+
+      '
+  - name: '7-level sparsity sweep: KL vs BCE scaling'
+    plan_id: plan_008
+    description: '30/35/40/45/50/55/60% sparsity下KL-only vs BCE-only。 Test: KL-BCE
+      PPL delta ~ s²。1 seed per level。50%复用plan_001数据。
+
+      '
+    expected_results:
+      sparsity_levels:
+      - 0.3
+      - 0.35
+      - 0.4
+      - 0.45
+      - 0.5
+      - 0.55
+      - 0.6
+      kl_only_ppls:
+      - 6.82
+      - 7.28
+      - 7.95
+      - 8.58
+      - 9.53
+      - 11.2
+      - 14.05
+      bce_only_ppls:
+      - 11.32
+      - 14.48
+      - 18.95
+      - 23.38
+      - 28.16
+      - 36.7
+      - 49.05
+      kl_bce_deltas:
+      - 4.5
+      - 7.2
+      - 11.0
+      - 14.8
+      - 18.63
+      - 25.5
+      - 35.0
+      quadratic_fit_a: 97.2
+      quadratic_fit_r2: 0.88
+      residual_at_030: -2.17
+      residual_at_060: 8.17
+    result_rationale: 'KL-BCE delta随sparsity单调递增：低sparsity时BCE的per-neuron独立假设damage较小
+      （pruning少量neurons时joint interaction effect有限），高sparsity时damage急剧增大 （每个pruning决策影响更多remaining
+      neurons的joint output）。
+
+      Quadratic fit R²=0.88：存在clear上升趋势，但不是clean quadratic。 Deviation pattern: 低sparsity处delta低于quadratic
+      prediction（此时neuron interactions是sparse的， BCE的independence assumption伤害有限）；高sparsity处delta高于quadratic
+      prediction （此时interaction density超过O(s²)的简化模型，higher-order terms变得significant）。
+
+      这支持"KL gradient captures joint interactions that scale with sparsity"的intuition，
+      但fit noise和systematic residual pattern意味着precise s² law不成立。 R² 0.88在0.80-0.95范围内，支持"consistent
+      empirical trend"但不支持"precise quantitative law"。
+
+      '
+    tables:
+    - name: 'Table 9: Sparsity sweep — KL vs BCE PPL'
+      columns:
+      - Sparsity
+      - KL PPL
+      - BCE PPL
+      - Δ(BCE-KL)
+      - Quadratic prediction
+      - Residual
+      rows:
+      - - 30%
+        - 6.82
+        - 11.32
+        - 4.5
+        - 6.67
+        - -2.17
+      - - 35%
+        - 7.28
+        - 14.48
+        - 7.2
+        - 9.07
+        - -1.87
+      - - 40%
+        - 7.95
+        - 18.95
+        - 11.0
+        - 11.9
+        - -0.9
+      - - 45%
+        - 8.58
+        - 23.38
+        - 14.8
+        - 15.08
+        - -0.28
+      - - 50%
+        - 9.53
+        - 28.16
+        - 18.63
+        - 18.71
+        - -0.08
+      - - 55%
+        - 11.2
+        - 36.7
+        - 25.5
+        - 22.79
+        - 2.71
+      - - 60%
+        - 14.05
+        - 49.05
+        - 35.0
+        - 27.31
+        - 7.69
+    figures_description:
+    - 'Scatter plot: X轴=s², Y轴=Δ(BCE-KL)。Quadratic fit线 (R²=0.88) + 95% CI band。标注各sparsity
+      level的数据点。Low-s点在fit线下方，high-s点在上方，展示systematic deviation。'
+    - 'Supplementary: 两条PPL vs sparsity曲线(KL和BCE)，shaded area表示gap。KL曲线gentle上升，BCE曲线accelerating上升。'
+    analysis: 'Claim 3降级为"consistent empirical trend"而非"precise quadratic law"。 R²=0.88表明quadratic
+      model解释了88%的variance，但systematic residual pattern (low-s sub-quadratic, high-s
+      super-quadratic) 表明真实关系比s²更complex。 在paper中放appendix展示完整fit，main text仅claim
+      "KL advantage grows super-linearly with sparsity, consistent with the theoretical
+      prediction that joint interaction effects scale with the number of pruned neurons"。
+
+      '
+  - name: Mistral-7B-v0.3 generalization validation
+    plan_id: plan_009
+    description: 'KL-only vs BCE+comp @ 50% sparsity on Mistral-7B-v0.3。 Core benchmarks:
+      WikiText-2, ARC-c, MMLU。3 seeds each。
+
+      '
+    expected_results:
+      mistral_dense_wikitext2_ppl: 5.52
+      mistral_kl_wikitext2_ppl_mean: 9.38
+      mistral_kl_wikitext2_ppl_std: 0.35
+      mistral_kl_wikitext2_ppl_seeds:
+      - 9.15
+      - 9.35
+      - 9.65
+      mistral_kl_ppl_increase_vs_dense_pct: 69.9
+      mistral_kl_arc_c: 52.8
+      mistral_kl_mmlu: 61.5
+      mistral_bce_comp_wikitext2_ppl_mean: 10.45
+      mistral_bce_comp_wikitext2_ppl_std: 0.48
+      mistral_bce_comp_wikitext2_ppl_seeds:
+      - 10.1
+      - 10.3
+      - 10.95
+      mistral_bce_comp_ppl_increase_vs_dense_pct: 89.3
+      mistral_bce_comp_arc_c: 51.5
+      mistral_bce_comp_mmlu: 60.2
+      mistral_kl_vs_bce_comp_gap: 1.07
+      llama_kl_vs_bce_comp_gap: 2.03
+    result_rationale: 'Mistral同方向但relative gap更小 (1.07 vs Llama''s 2.03 PPL)。原因： (1)
+      Mistral的GQA (grouped-query attention) 产生更structured的activation pattern， SwiGLU层的neuron
+      importance分布more concentrated (fewer "ambiguous" neurons near threshold)， 使得BCE的per-neuron独立预测在Mistral上less
+      harmful。 (2) Mistral的sliding window attention导致信息更local，每个token的neuron importance
+      变化更平滑，减少了KL的contextual adaptation advantage。
+
+      KL PPL increase 70% vs dense (5.52→9.38) 在median tier的50-90%范围内。 BCE+comp PPL
+      increase 89% (5.52→10.45) 表明compensation在Mistral上也有效。
+
+      Gap缩小但方向一致：KL-only仍优于BCE+comp on all metrics， 证明KL advantage不是Llama-specific
+      artifact，generalize across architectures。
+
+      '
+    tables:
+    - name: 'Table 10: Cross-model validation (50% sparsity)'
+      columns:
+      - Model
+      - Condition
+      - Wiki PPL↓
+      - ARC-c↑
+      - MMLU↑
+      - KL-BCE gap
+      rows:
+      - - Llama 3.1 8B
+        - Dense
+        - 6.12
+        - 53.4
+        - 65.3
+        - —
+      - - Llama 3.1 8B
+        - KL-only
+        - 9.53
+        - 51.5
+        - 63.0
+        - '2.03'
+      - - Llama 3.1 8B
+        - BCE+comp
+        - 11.56
+        - 50.2
+        - 61.8
+        - —
+      - - Mistral 7B v0.3
+        - Dense
+        - 5.52
+        - 55.0
+        - 63.5
+        - —
+      - - Mistral 7B v0.3
+        - KL-only
+        - 9.38
+        - 52.8
+        - 61.5
+        - '1.07'
+      - - Mistral 7B v0.3
+        - BCE+comp
+        - 10.45
+        - 51.5
+        - 60.2
+        - —
+    figures_description:
+    - 'Grouped bar chart: Llama vs Mistral, 对比KL-only和BCE+comp在PPL和downstream accuracy上的gap。展示same
+      direction, smaller gap pattern。'
+    analysis: '回答reviewer concern #4 "single model / limited generalization"。 Mistral验证KL
+      advantage的方向一致性，但smaller gap是honest finding—— 不同架构下advantage magnitude varies。Paper中报告为"consistent
+      across architectures" 而非"universal with fixed effect size"。Mistral的GQA/sliding
+      window解释 为gap缩小提供architectural intuition。
+
+      '
+  - name: LongBench English subset evaluation (4K-32K tokens)
+    plan_id: plan_010
+    description: '所有conditions在LongBench English subset上的评估： single-doc QA, multi-doc
+      QA, summarization, few-shot, code。 测试predictor在超出训练序列长度时的generalization。
+
+      '
+    expected_results:
+      dense_single_doc_qa: 42.5
+      dense_multi_doc_qa: 36.0
+      dense_summarization: 27.2
+      dense_few_shot: 60.0
+      dense_code: 34.0
+      dense_avg: 39.9
+      kl_single_doc_qa: 38.8
+      kl_multi_doc_qa: 32.2
+      kl_summarization: 25.5
+      kl_few_shot: 55.8
+      kl_code: 30.2
+      kl_avg: 36.5
+      kl_avg_drop_pct: 8.5
+      bce_comp_single_doc_qa: 36.5
+      bce_comp_multi_doc_qa: 30.0
+      bce_comp_summarization: 24.2
+      bce_comp_few_shot: 53.5
+      bce_comp_code: 28.5
+      bce_comp_avg: 34.5
+      bce_comp_avg_drop_pct: 13.5
+      spon_kl_single_doc_qa: 39.5
+      spon_kl_multi_doc_qa: 33.0
+      spon_kl_summarization: 25.8
+      spon_kl_few_shot: 56.5
+      spon_kl_code: 31.0
+      spon_kl_avg: 37.2
+      spon_kl_avg_drop_pct: 6.8
+      teal_avg: 31.5
+      teal_avg_drop_pct: 21.1
+    result_rationale: 'Long-context evaluation drop (KL avg 8.5%) 大于short-context
+      downstream (3.4%)， 因为predictor在2048-token序列上训练，推广到4K-32K时neuron importance distribution
+      shifts： 长文本中attention pattern更diffuse，neuron activation的long-range dependency增加，
+      predictor需要在unseen的activation regime下做决策。
+
+      KL仍优于BCE+comp (8.5% vs 13.5% drop)：KL的output-distribution supervision在 distributional
+      shift下更robust，因为即使在OOD inputs上，KL梯度仍push predictor 去最小化logit divergence，而BCE的target
+      masks在OOD时可能fundamentally错误 （训练时的"correct" mask对长文本不适用）。
+
+      Per-task pattern: multi-doc QA和code drop最大（需要跨document/long-range reasoning，
+      对neuron selection错误最敏感）；summarization drop最小（更tolerant of approximate representation，
+      核心信息在early tokens中已被captured）。
+
+      SPON+KL最佳 (6.8% drop)：SPON的static bias correction在长文本中仍然valid （average drift不依赖sequence
+      length），提供stable baseline correction。
+
+      '
+    tables:
+    - name: 'Table 11: LongBench performance (English subset)'
+      columns:
+      - Method
+      - Single-doc QA
+      - Multi-doc QA
+      - Summ.
+      - Few-shot
+      - Code
+      - Avg
+      - Avg Drop
+      rows:
+      - - Dense
+        - 42.5
+        - 36.0
+        - 27.2
+        - 60.0
+        - 34.0
+        - 39.9
+        - —
+      - - TEAL
+        - 34.0
+        - 27.5
+        - 23.0
+        - 48.5
+        - 24.5
+        - 31.5
+        - 21.1%
+      - - BCE+comp
+        - 36.5
+        - 30.0
+        - 24.2
+        - 53.5
+        - 28.5
+        - 34.5
+        - 13.5%
+      - - KL-only
+        - 38.8
+        - 32.2
+        - 25.5
+        - 55.8
+        - 30.2
+        - 36.5
+        - 8.5%
+      - - SPON+KL
+        - 39.5
+        - 33.0
+        - 25.8
+        - 56.5
+        - 31.0
+        - 37.2
+        - 6.8%
+    figures_description:
+    - 'Grouped bar chart: per-task breakdown for all conditions。展示task-specific degradation
+      patterns——multi-doc QA和code是most sensitive tasks。'
+    analysis: 'Long-context generalization是KL approach的非trivial validation： predictor
+      trained on short sequences仍在long context下保持8.5% average drop。 KL vs BCE+comp
+      gap在long context下expand (8.5% vs 13.5%)，suggesting KL''s distributional supervision
+      provides better OOD robustness。 SPON+KL进一步improve (6.8%)，supporting the composition
+      claim''s practical value。
+
+      '
+  - name: MT-Bench evaluation with GPT-4o judge
+    plan_id: plan_011
+    description: '80 multi-turn questions, 8 categories。All conditions。 Tests instruction-following
+      quality under sparsity。
+
+      '
+    expected_results:
+      dense_mt_bench_avg: 7.25
+      kl_only_mt_bench_avg: 6.72
+      bce_comp_mt_bench_avg: 6.38
+      spon_kl_mt_bench_avg: 6.85
+      teal_mt_bench_avg: 5.8
+      kl_mt_writing: 7.1
+      kl_mt_roleplay: 6.9
+      kl_mt_reasoning: 6.2
+      kl_mt_math: 5.8
+      kl_mt_coding: 6.5
+      kl_mt_extraction: 7.3
+      kl_mt_stem: 6.8
+      kl_mt_humanities: 7.2
+    result_rationale: 'MT-Bench average drop: KL -0.53, BCE+comp -0.87。Multi-turn
+      instruction following 对model quality less sensitive than PPL would suggest：MT-Bench更多测试format
+      compliance 和high-level reasoning，而非exact token probability。但math和reasoning categories
+      受sparsity影响最大（6.2, 5.8 for KL），因为这些需要precise computation chains where even small
+      representation errors accumulate across reasoning steps。
+
+      Writing和extraction受影响最小（7.1, 7.3），因为这些依赖pattern matching和formatting rather than
+      deep logical reasoning。
+
+      KL显著优于BCE+comp in multi-turn setting：multi-turn对话中error accumulation更严重， KL的lower
+      per-step error导致multi-turn quality degradation更小。
+
+      '
+    tables:
+    - name: 'Table 12: MT-Bench scores by category (GPT-4o judge)'
+      columns:
+      - Category
+      - Dense
+      - KL-only
+      - BCE+comp
+      - SPON+KL
+      rows:
+      - - Writing
+        - 7.5
+        - 7.1
+        - 6.8
+        - 7.2
+      - - Roleplay
+        - 7.3
+        - 6.9
+        - 6.5
+        - 7.0
+      - - Reasoning
+        - 6.8
+        - 6.2
+        - 5.8
+        - 6.4
+      - - Math
+        - 6.5
+        - 5.8
+        - 5.3
+        - 6.0
+      - - Coding
+        - 7.0
+        - 6.5
+        - 6.1
+        - 6.7
+      - - Extraction
+        - 7.8
+        - 7.3
+        - 7.0
+        - 7.5
+      - - STEM
+        - 7.2
+        - 6.8
+        - 6.4
+        - 6.9
+      - - Humanities
+        - 7.9
+        - 7.2
+        - 7.2
+        - 7.3
+      - - Average
+        - 7.25
+        - 6.72
+        - 6.38
+        - 6.85
+    figures_description:
+    - 'Radar chart: 8 categories normalized to dense score。KL-only轮廓接近dense，BCE+comp在math/reasoning处明显凹陷。'
+    analysis: 'MT-Bench验证KL approach在instruction-following场景下的质量保持。 Average drop 0.53
+      for KL vs 0.87 for BCE+comp, consistent with PPL results。 Category-level breakdown
+      provides actionable insight: math/reasoning是sparsity的weak spot， 可作为future work的optimization
+      target。EMNLP reviewers重视NLP-specific evaluation， MT-Bench作为multi-turn generation
+      quality metric补充了discriminative benchmarks。
+
+      '
+  - name: RULER synthetic long-context evaluation
+    plan_id: plan_012
+    description: 'RULER @ 4K和16K context，3 representative task types。 Fine-grained
+      capability diagnostics complementing LongBench。
+
+      '
+    expected_results:
+      dense_ruler_4k_avg: 92.0
+      kl_only_ruler_4k_avg: 85.5
+      bce_comp_ruler_4k_avg: 81.0
+      spon_kl_ruler_4k_avg: 87.0
+      dense_ruler_16k_avg: 85.0
+      kl_only_ruler_16k_avg: 73.5
+      bce_comp_ruler_16k_avg: 67.0
+      spon_kl_ruler_16k_avg: 75.5
+      kl_ruler_16k_needle_retrieval: 78.0
+      kl_ruler_16k_multi_key: 70.5
+      kl_ruler_16k_aggregation: 72.0
+    result_rationale: 'RULER的synthetic tasks提供controlled diagnostics： 4K时KL drop 7%
+      (85.5 vs 92.0)，与LongBench consistent但more controlled。 16K时KL drop增大到13.5% (73.5
+      vs 85.0)，表明predictor的generalization 随context length增加而degrade——在超出训练distribution的长context中，
+      predictor对late-position tokens的neuron importance估计less accurate （attention pattern在long
+      context中more diffuse，activation statistics shift）。
+
+      Needle retrieval (78.0 at 16K) 相对较好因为retrieval主要依赖attention mechanism 而非FFN
+      computation。Multi-key (70.5) 和aggregation (72.0) 更差因为 需要跨position的information
+      integration，FFN computation的precision更重要。
+
+      BCE+comp在16K时drop更严重 (67.0, 21.2% drop)：compensation网络在OOD context下 不仅没帮助，反而可能introduce
+      noise（compensation trained on short context的correction pattern在long context下不适用）。
+
+      '
+    tables:
+    - name: 'Table 13: RULER evaluation at 4K and 16K context'
+      columns:
+      - Method
+      - 4K Avg
+      - 16K Avg
+      - 4K→16K Δ
+      rows:
+      - - Dense
+        - 92.0
+        - 85.0
+        - '-7.0'
+      - - KL-only
+        - 85.5
+        - 73.5
+        - '-12.0'
+      - - SPON+KL
+        - 87.0
+        - 75.5
+        - '-11.5'
+      - - BCE+comp
+        - 81.0
+        - 67.0
+        - '-14.0'
+    figures_description:
+    - 'Line plot: X轴=context length (4K, 16K), Y轴=RULER average score。各condition的degradation
+      slope不同——KL slope最gentle，BCE+comp最steep。'
+    analysis: 'RULER确认LongBench的findings: KL在long context下更robust than BCE+comp， 且degradation
+      rate (slope) 更小。作为appendix-level diagnostic complement LongBench的 naturalistic
+      evaluation。4K→16K的degradation pattern suggest training on longer sequences could
+      improve predictor robustness（future work direction）。'
+  review_report: '---
+
+    dream_id: dream_20260515T164925
+
+    tier: median
+
+    overall_score: weak reject
+
+    timestamp: 2026-05-15T17:51:48.790433+00:00
+
+    ---
+
+
+
+    # Dream Review Report: Output-Distribution Distillation Eliminates Compensation
+    Overhead for Contextual SwiGLU Sparsity Prediction
+
+
+    **Dream ID**: 20260515T164925 | **Review Mode**: full | **Date**: 2026-05-15
+
+
+    ---
+
+
+    ## Panel
+
+
+    - **R1** (Methods + Experiments): Score 3/6 (Weak Reject), Confidence 4/5
+
+    - **R2** (Novelty + Related Work): Score 3/6 (Weak Reject), Confidence 4/5
+
+    - **Consensus Score: 3/6 (Weak Reject)**
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    The paper studies training signals for contextual SwiGLU sparsity prediction,
+    organized around a 2D taxonomy (loss coupling × correction granularity). The central
+    finding is that a KL-divergence-trained contextual predictor (PPL 9.53 at 50%
+    sparsity, Llama 3.1 8B) surpasses BCE+compensation (PPL 11.56) while eliminating
+    256MB of compensation parameters, yielding a simpler pipeline with 1.49× batch-32
+    speedup and 8MB overhead. Secondary contributions include SPON+KL composition
+    with 22% interaction residual and a sparsity scaling analysis.
+
+
+    ---
+
+
+    ## 2. Strengths (Consensus)
+
+
+    - **Large, unambiguous effect size.** KL-only Pareto-dominates BCE+compensation
+    on both quality (9.53 vs 11.56 PPL) and efficiency (1.49× vs 1.18× speedup, 8MB
+    vs 264MB). The practical implication — eliminating compensation networks — is
+    clear and deployment-relevant.
+
+
+    - **Above-average ablation design.** The four-condition matrix (loss × compensation),
+    STE isolation experiment (72/28% decomposition), iso-compute comparison, and SPON
+    composition analysis form a methodologically sound set of controls that systematically
+    isolates confounds. This structure exceeds the norm for the subfield.
+
+
+    - **Comprehensive evaluation breadth.** 13 tables spanning perplexity, 7 discriminative
+    benchmarks, 2 long-context evaluations (LongBench, RULER), instruction-following
+    (MT-Bench), inference profiling, cross-architecture (Mistral), and sparsity sweep.
+    Coverage of the planned experiment list is complete (12/12 imagined experiments
+    appear in the paper).
+
+
+    - **Honest limitation reporting.** The 22% interaction residual is properly characterized
+    as "partial additivity" rather than clean decomposition. The sparsity scaling
+    R²=0.88 is reported as "consistent empirical trend" rather than a precise law.
+    The paper acknowledges scale limitations, training cost, and long-context degradation
+    explicitly.
+
+
+    - **Gradient coupling argument is mathematically precise.** The chain-rule distinction
+    between BCE''s factorized gradient (∂L_BCE/∂s_j depends only on neuron j) and
+    KL''s coupled gradient (flows through ∂logits/∂h Jacobian) is a correct structural
+    observation, not an analogy.
+
+
+    - **SPON+KL modular decomposition is the most original contribution.** The orthogonality
+    analysis (per-layer cosine similarity, logit-space linearity test) and quantified
+    interaction residual provide the right kind of evidence for composition claims.
+    This deserves co-headline status.
+
+
+    ---
+
+
+    ## 3. Weaknesses
+
+
+    ### 3.1 Critical (would block acceptance)
+
+
+    **(W1) Missing MSE-on-logits baseline — both reviewers flag this as the single
+    most damaging omission.**
+
+    The gradient coupling property that the paper''s theoretical narrative rests on
+    (∂L/∂s_j couples all neurons through ∂logits/∂h) is a property of ANY output-level
+    loss (MSE on logits, JS divergence, reverse KL, etc.), not uniquely KL. Without
+    testing at least MSE on output logits, the paper cannot distinguish "KL is special"
+    from "any coupled output-level loss beats BCE." If MSE-logits matches KL, the
+    framing collapses from "KL divergence eliminates compensation" to the weaker but
+    still valid "output-level training signals eliminate compensation." This is a
+    one-experiment fix that would either strengthen or appropriately reframe the contribution.
+    **Severity: Major.**
+
+
+    **(W2) BCE baseline fairness concerns.**
+
+    BCE-only (28.16 PPL) is 2.25× worse than training-free TEAL (12.50 PPL). A trained
+    predictor performing dramatically worse than a magnitude heuristic is anomalous
+    and raises multiple fairness questions:
+
+    - Was BCE trained with Gumbel-sigmoid relaxation? Gumbel-sigmoid is designed for
+    continuous losses; applying it to BCE (which naturally pairs with STE) may actively
+    harm BCE training. The STE ablation (Table 4) only tests KL+STE, never BCE+STE.
+
+    - How are BCE targets generated? If by top-k activation magnitude, target quality
+    is a confound — KL implicitly discovers better masks, so the gap may partly reflect
+    target quality rather than loss function quality.
+
+    - The KL pipeline uses a Lagrangian multiplier mechanism for sparsity enforcement
+    that required multiple iterations to stabilize. Does the BCE baseline receive
+    comparable engineering effort?
+
+    Without a BCE+STE control and BCE with KL-optimal targets, the reported gap is
+    confounded. **Severity: Major.**
+
+
+    **(W3) Novelty is thin for a top venue.**
+
+    The core contribution is swapping BCE for KL divergence in an existing predictor
+    pipeline (FastForward-style architecture + Gumbel relaxation). SPON already demonstrated
+    that KL works for sparsity prediction (in the static setting); extending to contextual
+    prediction is the obvious next step in the taxonomy the paper itself constructs.
+    The 2D taxonomy is useful framing but is organizational, not a technical contribution.
+    The gradient coupling insight, while correct, is a standard observation about
+    output-level losses in knowledge distillation — it has been well-understood since
+    at least Hinton et al. (2015) that distillation losses propagate richer gradients
+    than classification losses. The paper does not cite or differentiate from the
+    broader distillation literature. **Severity: Major.**
+
+
+    ### 3.2 Significant (should be addressed)
+
+
+    **(W4) Related work is severely underdeveloped.**
+
+    The paper references only a handful of methods (TEAL, WINA, R-Sparse, SPON, FastForward,
+    ShadowLLM). Missing citations include:
+
+    - Deja Vu (foundational contextual sparsity predictor work)
+
+    - CATS (contextual activation sparsity)
+
+    - Minitron (structured pruning with distillation)
+
+    - DIP (dynamic inference pruning)
+
+    - Knowledge distillation foundations (Hinton et al. 2015 — the gradient coupling
+    insight originates here)
+
+    - Gumbel-softmax/Gumbel-sigmoid foundations (Jang et al. 2017, Maddison et al.
+    2017)
+
+    - L0 regularization (Louizos et al. 2018 — directly relevant to learned binary
+    masks)
+
+    - MoE routing literature (per-token expert selection is structurally identical
+    to per-token neuron selection)
+
+    A paper claiming a taxonomic contribution must comprehensively survey the field.
+    **Severity: Moderate.**
+
+
+    **(W5) Unequal seed counts and missing statistical tests.**
+
+    KL-only and BCE+comp use 5 seeds, but BCE-only and KL+comp use only 3. The sparsity
+    sweep uses 1 seed per level. The claim "compensation is redundant for KL" rests
+    on 9.53 vs 9.05 (5 vs 3 seeds) — a 0.48 PPL gap within 1 standard deviation (0.41).
+    No formal significance tests (paired bootstrap, permutation test, Cohen''s d)
+    are reported for any comparison. The sparsity scaling curve fit (R²=0.88, 7 single-seed
+    points) cannot distinguish quadratic from alternative functional forms without
+    AIC/BIC comparison. **Severity: Moderate.**
+
+
+    **(W6) Reproducibility gaps.**
+
+    The Lagrangian multiplier mechanism for sparsity enforcement (lambda initialization,
+    exponential update schedule, clamping range) is critical for KL training stability
+    but underspecified in the paper. Project history suggests this mechanism required
+    multiple debugging iterations (sparsity collapse, normalization bugs). Without
+    full specification, first-attempt reproduction is unlikely. Predictor architecture
+    details (rank-128 bottleneck) are stated but not justified — no sensitivity analysis
+    across alternative ranks. **Severity: Moderate.**
+
+
+    ### 3.3 Minor
+
+
+    **(W7) Only 7-8B scale tested.** The "eliminates compensation" claim is validated
+    at a single model scale. The gradient coupling argument predicts stronger KL advantage
+    at larger hidden dimensions, but this is untested. At minimum, a testable prediction
+    about scaling should be stated.
+
+
+    **(W8) Calibration data sensitivity unexamined.** Training uses 128 sequences
+    from C4, evaluation is on WikiText-2. No cross-domain sensitivity analysis is
+    provided. Given known OOD fragility of learned sparsity predictors, this is a
+    meaningful gap.
+
+
+    **(W9) Long-context degradation (8.5-12% drop) is non-trivial.** The predictor
+    is trained on 2048-token sequences but evaluated at 4K-32K. The increased degradation
+    at longer contexts suggests distributional robustness limits. This is acknowledged
+    in limitations but not analyzed (e.g., training on longer sequences as a control).
+
+
+    ---
+
+
+    ## 4. Questions for Authors
+
+
+    1. **Evaluation protocol clarity**: Which protocol produces the headline PPL numbers
+    — the predictor''s own hard-mask evaluation, or TEAL''s greedy allocation applied
+    on top? Please specify unambiguously.
+
+
+    2. **BCE relaxation method**: Was BCE trained with Gumbel-sigmoid? If so, was
+    BCE+STE tested? The STE ablation (Table 4) only varies KL''s relaxation, creating
+    an asymmetry.
+
+
+    3. **BCE target generation**: How are binary targets for BCE constructed? Top-k
+    by activation magnitude? Have you tested BCE with oracle targets derived from
+    KL-optimal masks?
+
+
+    4. **Why KL specifically vs. other output-level losses?** The gradient coupling
+    argument applies identically to MSE on logits. What property of KL (asymmetry,
+    information-geometric structure, etc.) makes it preferable? Or is this an untested
+    assumption?
+
+
+    5. **Lagrangian mechanism details**: What are lambda_init, the update schedule,
+    and the clamping bounds? How sensitive is training to these hyperparameters?
+
+
+    6. **Compensation redundancy claim**: The KL-only vs KL+comp gap (0.48 PPL, 5
+    vs 3 seeds) is within 1 std. Can you provide a formal significance test for this
+    comparison?
+
+
+    ---
+
+
+    ## 5. Missing Experiments / Analysis (Priority-Ordered)
+
+
+    1. **MSE-on-logits baseline** — Highest priority. One experiment that either validates
+    KL-specificity or correctly reframes the contribution.
+
+    2. **BCE + STE baseline** — Ensures the BCE baseline uses its natural relaxation,
+    eliminating a fairness confound.
+
+    3. **BCE with KL-optimal targets** — Disentangles loss function quality from target
+    quality.
+
+    4. **Per-layer PPL decomposition** — Which layers show the largest KL-BCE gap?
+    The KL predictor learns highly non-uniform per-layer sparsity (reportedly 0.22-0.80
+    range) vs BCE''s near-uniform allocation. A per-layer analysis would strengthen
+    the joint-interaction narrative.
+
+    5. **Training dynamics curves** — Loss, sparsity, PPL vs training step for all
+    conditions. The KL training landscape appears more complex than presented.
+
+    6. **Formal statistical tests** — Paired bootstrap on headline comparisons; AIC/BIC
+    for sparsity scaling functional form.
+
+    7. **Predictor rank sensitivity** — At least one alternative (r=64 or r=256) to
+    show robustness.
+
+
+    ---
+
+
+    ## 6. Experiment Coverage Assessment
+
+
+    All 12 imagined experiments from the design document are present in the paper:
+
+
+    | # | Experiment | Table | Covered |
+
+    |---|-----------|-------|---------|
+
+    | 1 | Four-condition ablation | Table 3 | ✓ |
+
+    | 2 | STE baseline | Table 4 | ✓ |
+
+    | 3 | Iso-compute BCE | Table 5 | ✓ |
+
+    | 4 | SPON reproduction | Table 6 | ✓ |
+
+    | 5 | SPON+KL composition | Table 7 | ✓ |
+
+    | 6 | Training-free baselines | Table 2 | ✓ |
+
+    | 7 | Full benchmarks + profiling | Tables 8-9 | ✓ |
+
+    | 8 | Sparsity sweep | Table 14 | ✓ |
+
+    | 9 | Mistral generalization | Table 10 | ✓ |
+
+    | 10 | LongBench | Table 11 | ✓ |
+
+    | 11 | MT-Bench | Table 13 | ✓ |
+
+    | 12 | RULER | Table 12 | ✓ |
+
+
+    Coverage is complete. The gap is not in what was planned but in what was NOT planned:
+    the missing MSE-logits and BCE+STE controls.
+
+
+    ---
+
+
+    ## 7. Consolidated Assessment
+
+
+    ### What works well
+
+    The paper asks a genuinely useful question (can output-distribution distillation
+    replace compensation?) and answers it with a well-structured ablation battery.
+    The effect size is large and practically meaningful. The SPON+KL composition analysis
+    with quantified interaction residual is the most original element. The evaluation
+    breadth (13 tables, 7 benchmarks, long-context, MT-Bench, cross-model) exceeds
+    the subfield norm. Claims are mostly well-calibrated to evidence, with honest
+    limitation reporting.
+
+
+    ### What prevents acceptance
+
+    Three issues converge: (1) The missing MSE-on-logits control leaves the paper
+    unable to distinguish its specific claim ("KL is special") from the more general
+    claim ("any output-level loss beats BCE") — this is a one-experiment gap but it
+    undermines the entire theoretical narrative. (2) The BCE baseline may be unfairly
+    handicapped by using Gumbel-sigmoid (designed for continuous losses) rather than
+    STE (its natural pairing), inflating the reported gap. (3) The novelty threshold
+    is marginal — swapping BCE for KL in an existing pipeline, where SPON already
+    proved KL works for sparsity prediction, is an incremental advance. The gradient
+    coupling insight, while correct, is well-known from the knowledge distillation
+    literature.
+
+
+    ### Path to acceptance
+
+    - Run MSE-on-logits and BCE+STE controls (two experiments, likely <1 day compute)
+
+    - If MSE-logits ≈ KL: reframe as "output-level training signals eliminate compensation"
+    (still a valid contribution, different framing)
+
+    - If MSE-logits ≪ KL: the paper has a stronger, KL-specific story
+
+    - Expand related work to cover distillation foundations, Deja Vu, CATS, L0 regularization,
+    MoE routing
+
+    - Add formal significance tests and per-layer analysis
+
+    - Promote SPON+KL composition to co-headline contribution
+
+    - Fully specify the Lagrangian mechanism
+
+
+    ---
+
+
+    ## 8. Scores Summary
+
+
+    | | R1 (Methods) | R2 (Novelty) | Consensus |
+
+    |---|---|---|---|
+
+    | Score | 3/6 | 3/6 | **3/6 (Weak Reject)** |
+
+    | Confidence | 4/5 | 4/5 | 4/5 |
+
+
+    **Bottom line**: A well-executed empirical study with a large effect size, held
+    back by a thin novelty margin and two missing critical controls (MSE-logits, BCE+STE)
+    that leave the core theoretical claim untested. The path to acceptance is short
+    (2 experiments + reframing) but essential.
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/dream_reports/dream_20260515T164925/worst/paper.pdf
+  imagined_experiments:
+  - name: Four-condition ablation @ 50% sparsity
+    plan_id: plan_001
+    description: 四条件消融：(a) BCE-only 3 seeds existing, (b) BCE+comp 5 seeds new, (c)
+      KL-only 5 seeds (3 existing + 2 new), (d) KL+comp 3 seeds new。 Headline对比KL-only
+      vs BCE+comp各5 seeds。
+    expected_results:
+      kl_only_s42_ppl: 9.21
+      kl_only_s123_ppl: 9.25
+      kl_only_s456_ppl: 9.14
+      kl_only_s0_ppl: 10.31
+      kl_only_s1_ppl: 11.08
+      kl_only_mean_ppl: 9.8
+      kl_only_std_ppl: 0.87
+      kl_only_model_sparsity: 0.498
+      bce_comp_s42_ppl: 9.18
+      bce_comp_s123_ppl: 9.35
+      bce_comp_s456_ppl: 9.52
+      bce_comp_s0_ppl: 9.28
+      bce_comp_s1_ppl: 9.68
+      bce_comp_mean_ppl: 9.4
+      bce_comp_std_ppl: 0.19
+      bce_comp_model_sparsity: 0.496
+      kl_comp_s42_ppl: 8.82
+      kl_comp_s123_ppl: 8.95
+      kl_comp_s456_ppl: 9.08
+      kl_comp_mean_ppl: 8.95
+      kl_comp_std_ppl: 0.13
+      bce_only_mean_ppl: 28.16
+      kl_vs_bce_comp_gap: 0.4
+      kl_comp_vs_bce_comp_gap: -0.45
+      dense_ppl: 6.12
+    result_rationale: s0和s1两个新seed暴露了KL训练的Lagrangian不稳定性。 Lagrangian乘子在这两个seed下出现λ震荡（未收敛到稳定平衡点），
+      导致sparsity在0.47-0.52间振荡，predictor未充分优化。 s456的teal异常（13.58 vs 12.08/11.91）已经暗示了seed敏感性，
+      新seed进一步确认：KL+Lagrangian在某些初始化下不稳定， std=0.87远高于BCE+comp的0.19。 BCE+comp通过compensation
+      MLP有效纠正了BCE predictor的per-neuron误差， 从28.16降至9.40——compensation消除了~67%的BCE quality
+      gap。 KL+comp是最佳条件（8.95），说明compensation对KL也有帮助， 而非KL已经"不需要"compensation。核心发现：compensation是通用质量提升手段，
+      KL的"优势"仅是在不公平对比（有comp vs 无comp）下的假象。
+    tables:
+    - title: 'Table 1: Four-condition WikiText-2 PPL @ 50% sparsity (Llama 3.1 8B)'
+      rows:
+      - Condition | Seeds | Mean PPL | Std | Δ vs Dense (%)
+      - Dense (no sparsity) | — | 6.12 | — | —
+      - BCE-only | 3 | 28.16 | 0.22 | +360.1%
+      - BCE+compensation | 5 | 9.40 | 0.19 | +53.6%
+      - KL-only | 5 | 9.80 | 0.87 | +60.1%
+      - KL+compensation | 3 | 8.95 | 0.13 | +46.2%
+    - title: 'Table 1b: Per-seed breakdown'
+      rows:
+      - Seed | BCE-only | BCE+comp | KL-only | KL+comp
+      - s42  | 27.96    | 9.18     | 9.21    | 8.82
+      - s123 | 28.38    | 9.35     | 9.25    | 8.95
+      - s456 | 28.14    | 9.52     | 9.14    | 9.08
+      - s0   | —        | 9.28     | 10.31   | —
+      - s1   | —        | 9.68     | 11.08   | —
+    figures_description:
+    - 'Fig 1a: Boxplot of WikiText-2 PPL across 4 conditions. KL-only box明显比BCE+comp宽（whisker覆盖9.14-11.08），且median偏高。BCE+comp
+      box最窄最低。KL+comp最低但仅3 seeds。'
+    - 'Fig 1b: Per-seed PPL scatter plot with mean±std error bars。突出s0/s1两个KL outlier。'
+    - 'Fig 1c: Training loss curves (KL loss for KL conditions, BCE loss for BCE conditions)。KL
+      s0和s1的loss曲线后半段出现oscillation，lambda未收敛。'
+    analysis: 'headline claim "KL eliminates compensation"不成立。BCE+comp (9.40) < KL-only
+      (9.80)， 且KL-only的高方差使其在deployment中不可靠。 KL+comp是全局最佳（8.95），但这反证了compensation的通用价值，
+      而非KL的独特优势。Narrative需从"KL beats BCE+comp"转向 "characterization: 不同training signal
+      × compensation的交互效应"。 唯一保留的KL叙事：KL-only在不使用compensation时确实优于BCE-only（9.80 vs
+      28.16）， 但这个"免compensation"优势在BCE+comp面前消失。'
+  - name: STE baseline (KL + Straight-Through Estimator)
+    plan_id: plan_002
+    description: 用STE替换Gumbel-sigmoid作为梯度通路，保留KL loss不变。 隔离KL优势来源：loss function还是relaxation
+      method。3 seeds。
+    expected_results:
+      ste_kl_s42_ppl: 9.85
+      ste_kl_s123_ppl: 10.1
+      ste_kl_s456_ppl: 9.72
+      ste_kl_mean_ppl: 9.89
+      ste_kl_std_ppl: 0.19
+      ste_kl_model_sparsity: 0.497
+      ste_kl_vs_gumbel_kl_gap: 0.09
+      ste_kl_training_steps_to_converge: 950
+    result_rationale: STE+KL (9.89) ≈ Gumbel+KL (9.80)，差距仅0.09 PPL，在KL-only自身方差（std=0.87）
+      内可忽略。这说明Gumbel-sigmoid relaxation对最终质量贡献极小， KL loss gradient本身才是驱动因素。 表面上这支持"KL是关键"——但结合plan_001的结论（BCE+comp追平KL），
+      更准确的解读是：任何能传递端到端output-distribution信息的training signal （无论STE还是Gumbel路径）都能达到~9.8
+      PPL，而BCE+comp通过不同路径达到了9.4。 relaxation method不重要这一事实削弱了论文的technical novelty——
+      "Gumbel + KL"不是一个不可替代的组合，STE+KL同样有效。
+    tables:
+    - title: 'Table 2: Gradient estimator ablation (KL loss fixed)'
+      rows:
+      - Method | Mean PPL | Std | Sparsity
+      - Gumbel-sigmoid + KL | 9.80 | 0.87 | 0.498
+      - STE + KL | 9.89 | 0.19 | 0.497
+      - BCE-only (ref) | 28.16 | 0.22 | 0.496
+    figures_description:
+    - 'Fig 2: Training curves overlay — Gumbel+KL vs STE+KL。两条KL loss曲线高度重合，STE略慢收敛（~50
+      steps），最终值相同。STE的sparsity曲线更平滑（无Gumbel温度退火的阶梯）。'
+    analysis: STE≈Gumbel确认relaxation method不是KL优势的来源。 但结合BCE+comp追平KL的结果，因果归因链断裂：
+      KL的优势不来自relaxation，也不来自"独特的loss function"—— 因为compensation可以弥补BCE的不足。 论文无法claim
+      "our Gumbel-KL combination is uniquely effective"。 可作为honest ablation报告，支持characterization
+      study叙事。 额外发现：STE+KL的std=0.19远低于Gumbel+KL的0.87， 说明Gumbel温度退火引入了额外的seed sensitivity（进一步削弱Gumbel的必要性）。
+  - name: Iso-compute BCE vs KL
+    plan_id: plan_003
+    description: KL每步需full forward pass计算output logits（~2x FLOPs per step vs BCE用cached
+      targets）。 给BCE等量total FLOPs（extended training），评估compute-normalized比较。3 seeds。
+    expected_results:
+      kl_flops_per_step: 4.2e14
+      bce_flops_per_step: 1.8e14
+      kl_total_training_flops: 4.2e17
+      bce_extended_steps: 2333
+      bce_extended_s42_ppl: 24.5
+      bce_extended_s123_ppl: 25.1
+      bce_extended_s456_ppl: 24.8
+      bce_extended_mean_ppl: 24.8
+      bce_extended_std_ppl: 0.3
+      bce_1000step_mean_ppl: 28.16
+      bce_improvement_from_extended: -3.36
+      kl_training_time_min: 42
+      bce_extended_training_time_min: 58
+    result_rationale: BCE extended training从28.16降至24.80——额外1333步仅带来3.36 PPL改善。 BCE的收敛曲线在~800步后进入plateau，更多步数的边际收益递减。
+      这是因为BCE的per-neuron factorized gradient本身信息不足： 无论训练多久，BCE无法学到neuron间的joint interaction。
+      但这个结果不支持"KL需要更多compute所以不公平"的reviewer concern—— 即使给BCE等量compute，差距仍然巨大（24.80
+      vs 9.80）。 然而结合plan_001，真正的解决方案不是更多BCE training， 而是加compensation（9.40）——这才是compute的正确使用方式。
+    tables:
+    - title: 'Table 3: Iso-compute comparison'
+      rows:
+      - Condition | Steps | Total FLOPs | Mean PPL | Wall Time
+      - KL-only (1000 steps) | 1000 | 4.2e17 | 9.80 | 42 min
+      - BCE-only (1000 steps) | 1000 | 1.8e17 | 28.16 | 25 min
+      - BCE-only (extended, iso-FLOP) | 2333 | 4.2e17 | 24.80 | 58 min
+      - BCE+comp (1000+500 steps) | 1500 | 3.5e17 | 9.40 | 50 min
+    figures_description:
+    - 'Fig 3: PPL vs total FLOPs曲线。KL在~4e17 FLOPs处达到9.80；BCE extended在同样FLOPs仅到24.80；BCE+comp在更少FLOPs（3.5e17）就到9.40。说明compute不是瓶颈，compensation
+      architecture才是。'
+    analysis: Iso-compute消除了"KL wins because more compute"的reviewer concern。 但同时也表明：BCE的瓶颈不是compute，而是loss
+      function的结构性局限。 当compensation弥补了这个局限后（BCE+comp），以更少compute达到更好结果。 论文中可诚实报告：KL确实compute-efficient（fewer
+      total FLOPs to reach good quality）， 但"KL eliminates compensation"的claim仍然不成立。
+  - name: SPON reimplementation & reproduction
+    plan_id: plan_004
+    description: 在Llama 3.1 8B上重现SPON（static learnable bias + KL training）。 5个QA benchmarks验证reproduction质量。
+    expected_results:
+      spon_wikitext2_ppl: 10.82
+      spon_model_sparsity: 0.5
+      spon_params_per_layer: 4096
+      spon_total_params: 131072
+      spon_training_time_min: 15
+      spon_arc_c: 50.2
+      spon_arc_e: 77.5
+      spon_boolq: 79.8
+      spon_piqa: 78.1
+      spon_winogrande: 73.6
+      published_arc_c: 50.8
+      published_arc_e: 78.2
+      published_boolq: 80.5
+      published_piqa: 78.8
+      published_winogrande: 74.2
+      reproduction_max_gap: 1.0
+    result_rationale: SPON方法简单（每层仅hidden_dim个learnable参数），超参数空间小， reproduction误差主要来自KL训练的随机性和calibration
+      data差异。 所有5个benchmark与published results差距 < 1 point，reproduction合格。 PPL=10.82确认static
+      correction的天花板：input-independent bias只能修正 average-case drift，无法适应per-input neuron
+      importance变化。 这为plan_005的composition实验提供了valid SPON baseline。
+    tables:
+    - title: 'Table 4: SPON reproduction on 5 QA benchmarks'
+      rows:
+      - Benchmark | Published | Ours | Δ
+      - ARC-c | 50.8 | 50.2 | -0.6
+      - ARC-e | 78.2 | 77.5 | -0.7
+      - BoolQ | 80.5 | 79.8 | -0.7
+      - PIQA | 78.8 | 78.1 | -0.7
+      - WinoGrande | 74.2 | 73.6 | -0.6
+    figures_description: []
+    analysis: SPON reproduction成功，5个benchmark最大偏差0.7 points。 PPL=10.82介于KL-only (9.80)和training-free
+      (~12.5)之间， 符合static correction的预期能力范围。
+  - name: SPON + KL predictor composition & additivity test
+    plan_id: plan_005
+    description: 同时应用SPON bias correction + KL contextual prediction。 Output-space
+      linearity测试和per-layer正交性分析。3 seeds。
+    expected_results:
+      spon_kl_s42_ppl: 9.55
+      spon_kl_s123_ppl: 9.78
+      spon_kl_s456_ppl: 10.05
+      spon_kl_mean_ppl: 9.79
+      spon_kl_std_ppl: 0.25
+      spon_only_ppl: 10.82
+      kl_only_mean_ppl: 9.8
+      teal_baseline_ppl: 12.5
+      spon_improvement_over_teal: 1.68
+      kl_improvement_over_teal: 2.7
+      predicted_additive_ppl: 8.12
+      actual_combined_ppl: 9.79
+      additivity_residual_ppl: 1.67
+      additivity_ratio: 0.62
+      logit_residual_norm_ratio: 0.38
+      mean_cos_similarity: 0.34
+      layers_with_cos_gt_03: 20
+      max_cos_similarity_layer: 0.62
+    result_rationale: SPON+KL (9.79) ≈ KL-only (9.80)——组合几乎没有额外收益。 predicted additive
+      PPL=8.12 vs actual=9.79，additivity ratio仅0.62。 原因：SPON的static bias和KL predictor的contextual
+      correction在output space 高度相关——两者都在修正同一组"容易误杀"的neurons的drift。 cos similarity分析确认：在中间层（layer
+      12-20），两种correction方向高度一致 （cos > 0.4），说明它们修正的是同一类误差而非互补的不同误差源。 Claim 2（可加性）在worst
+      tier下彻底不成立。 logit_residual_norm_ratio=0.38 >> 0（如果可加应接近0）， interaction term不可忽略。
+    tables:
+    - title: 'Table 5: SPON + KL composition results'
+      rows:
+      - Condition | PPL | Improvement over TEAL
+      - TEAL baseline | 12.50 | —
+      - SPON only | 10.82 | 1.68
+      - KL only | 9.80 | 2.70
+      - SPON+KL (actual) | 9.79 | 2.71
+      - SPON+KL (additive prediction) | 8.12 | 4.38
+    - title: 'Table 5b: Additivity metrics'
+      rows:
+      - Metric | Value
+      - Additivity ratio | 0.62
+      - Logit residual norm ratio | 0.38
+      - Mean cos(c_s, c_θ) | 0.34
+      - Layers with cos > 0.3 | 20/32
+    figures_description:
+    - 'Fig 5a: Per-layer cos similarity heatmap (32 layers × 3 seeds)。中间层（12-20）呈暖色（cos
+      > 0.4），首尾层冷色（cos < 0.2）。说明interaction集中在中间表征层。'
+    - 'Fig 5b: Logit residual magnitude per layer bar chart。中间层residual最大，与cos similarity
+      pattern一致。'
+    analysis: SPON+KL composition不满足可加性假设（Claim 2不成立）。 但这本身是一个有价值的empirical finding——
+      "static和contextual corrections的overlap分析"可作为standalone贡献。 论文中不再claim可加性，改为report
+      interaction structure： "static和contextual corrections在中间层高度相关， suggesting both
+      target the same error mode (average-case neuron importance drift)"。 这支持characterization
+      study的叙事方向。
+  - name: Training-free baselines @ 50% sparsity
+    plan_id: plan_006
+    description: TEAL (activation magnitude + greedy allocation), WINA (weight-informed
+      scoring), R-Sparse (rank-aware scoring)。建立三层比较：training-free < static-learned
+      < contextual-learned。
+    expected_results:
+      teal_vanilla_ppl: 12.48
+      wina_ppl: 15.8
+      rsparse_ppl: 14.2
+      dense_ppl: 6.12
+      teal_vanilla_sparsity: 0.5
+      wina_sparsity: 0.5
+      rsparse_sparsity: 0.5
+      teal_vs_dense_pct: 103.9
+      wina_vs_dense_pct: 158.2
+      rsparse_vs_dense_pct: 132.0
+    result_rationale: TEAL表现最好（12.48），因为activation magnitude是neuron importance的直接proxy，
+      加上greedy per-layer allocation自适应地保护关键层。 R-Sparse (14.20)次之——rank-aware scoring考虑了相对重要性但无跨层allocation。
+      WINA最差（15.80）——weight-informed scoring在SwiGLU gate×up结构下信号较弱， weight magnitude与activation
+      importance的相关性不如直接用activation。 这建立了清晰的tier结构：training-free（12-16）<< SPON（10.8）<<
+      contextual（9.4-9.8）。 注意这里的TEAL使用vanilla activation magnitude（非predictor scores），
+      与registry中基于predictor scores的"teal_sparse_ppl"不同。
+    tables:
+    - title: 'Table 6: Training-free baselines @ 50% sparsity'
+      rows:
+      - Method | WikiText-2 PPL | Δ vs Dense (%)
+      - Dense | 6.12 | —
+      - TEAL (activation magnitude) | 12.48 | +103.9%
+      - R-Sparse | 14.20 | +132.0%
+      - WINA | 15.80 | +158.2%
+      - SPON (static learned) | 10.82 | +76.8%
+      - KL-only (contextual) | 9.80 | +60.1%
+      - BCE+comp (contextual) | 9.40 | +53.6%
+    figures_description:
+    - 'Fig 6: PPL bar chart (horizontal) 按质量排序。清晰展示training-free → static → contextual的层级。BCE+comp和KL-only在误差bar内重叠。'
+    analysis: 三层层级结构清晰，training-free到contextual有6-7 PPL points的gap。 这验证了learned prediction的价值。在worst
+      tier下， KL-only和BCE+comp处于同一tier（contextual），彼此差距不显著。 paper的taxonomy贡献成立：不同training
+      signal在不同granularity下的表现分布 本身就是有价值的empirical map。
+  - name: Full benchmark suite + wall-clock profiling
+    plan_id: plan_007
+    description: 所有条件在Llama 3.1 8B上的完整评估：WikiText-2, C4, ARC-c, WinoGrande, MMLU,
+      GSM8K, HumanEval。Wall-clock profiling和Pareto frontier。
+    expected_results:
+      dense_wikitext2: 6.12
+      dense_c4: 8.85
+      dense_arc_c: 53.2
+      dense_winogrande: 76.4
+      dense_mmlu: 65.8
+      dense_gsm8k: 52.1
+      dense_humaneval: 31.7
+      kl_wikitext2: 9.8
+      kl_c4: 12.65
+      kl_arc_c: 48.2
+      kl_winogrande: 69.8
+      kl_mmlu: 60.1
+      kl_gsm8k: 44.5
+      kl_humaneval: 25.0
+      kl_mean_acc_drop_vs_dense_pct: 8.9
+      bce_comp_wikitext2: 9.4
+      bce_comp_c4: 12.15
+      bce_comp_arc_c: 49.5
+      bce_comp_winogrande: 71.2
+      bce_comp_mmlu: 61.5
+      bce_comp_gsm8k: 46.0
+      bce_comp_humaneval: 26.5
+      bce_comp_mean_acc_drop_vs_dense_pct: 7.4
+      spon_wikitext2: 10.82
+      spon_c4: 14.0
+      spon_arc_c: 46.5
+      spon_winogrande: 67.0
+      spon_mmlu: 57.8
+      spon_gsm8k: 40.2
+      spon_humaneval: 21.0
+      spon_kl_wikitext2: 9.79
+      spon_kl_arc_c: 47.8
+      spon_kl_mmlu: 59.5
+      teal_wikitext2: 12.48
+      teal_arc_c: 41.5
+      teal_mmlu: 52.0
+      dense_throughput: 42.0
+      kl_only_throughput: 56.5
+      bce_comp_throughput: 49.8
+      spon_kl_throughput: 55.8
+      teal_throughput: 58.2
+      kl_only_extra_mem_mb: 48
+      bce_comp_extra_mem_mb: 304
+    result_rationale: 'BCE+comp在6/7个benchmark上优于KL-only（唯一例外HumanEval仅差1.5 points）。
+      Mean accuracy drop: BCE+comp 7.4% vs KL-only 8.9%——差距一致且显著。 原因：compensation
+      MLP通过per-layer修正补偿了BCE predictor的误差， 提供了比KL更均匀的quality recovery。KL在某些任务（GSM8K
+      -14.6%） 降幅显著——多步推理任务对sparse noise更敏感，KL的layer-adaptive sparsity 并未给reasoning带来额外保护。
+
+      Wall-clock方面，KL-only (1.35x) > BCE+comp (1.19x)： KL唯一的结构性优势是不需要compensation
+      MLP，inference更轻量。 但0.16x的speedup差距（大致4ms/token on batch=1） 在多数deployment场景中不是决定性差异。
+      BCE+comp的304MB extra memory vs KL的48MB是更显著的差异—— 在memory-constrained edge deployment中KL有优势。'
+    tables:
+    - title: 'Table 7: Full benchmark results (Llama 3.1 8B, 50% sparsity)'
+      rows:
+      - Method | Wiki-2↓ | C4↓ | ARC-c↑ | WinoG↑ | MMLU↑ | GSM8K↑ | HumanE↑ | Avg
+        Δ%
+      - Dense | 6.12 | 8.85 | 53.2 | 76.4 | 65.8 | 52.1 | 31.7 | —
+      - TEAL | 12.48 | 16.50 | 41.5 | 62.0 | 52.0 | 30.5 | 15.0 | -24.8
+      - SPON | 10.82 | 14.00 | 46.5 | 67.0 | 57.8 | 40.2 | 21.0 | -14.5
+      - KL-only | 9.80 | 12.65 | 48.2 | 69.8 | 60.1 | 44.5 | 25.0 | -8.9
+      - BCE+comp | 9.40 | 12.15 | 49.5 | 71.2 | 61.5 | 46.0 | 26.5 | -7.4
+      - KL+comp | 8.95 | 11.60 | 50.8 | 72.5 | 62.8 | 48.0 | 28.0 | -5.5
+    - title: 'Table 7b: Inference profiling'
+      rows:
+      - Method | Throughput (tok/s) | Speedup | Extra Memory (MB)
+      - Dense | 42.0 | 1.00x | 0
+      - TEAL | 58.2 | 1.39x | 0
+      - SPON | 57.0 | 1.36x | 0 (absorbed)
+      - KL-only | 56.5 | 1.35x | 48
+      - SPON+KL | 55.8 | 1.33x | 48
+      - BCE+comp | 49.8 | 1.19x | 304
+      - KL+comp | 49.2 | 1.17x | 304
+    figures_description:
+    - 'Fig 7a: Pareto frontier (accuracy vs throughput)。X轴=throughput (tok/s), Y轴=mean
+      benchmark accuracy。BCE+comp和KL-only在accuracy维度相近但KL throughput更高——KL在Pareto
+      frontier上略优于BCE+comp（更快同等质量），但KL+comp是accuracy最高点。'
+    - 'Fig 7b: Radar chart — 5个discriminative benchmarks。BCE+comp的radar面积略大于KL-only。'
+    - 'Fig 7c: Per-benchmark accuracy drop bar chart (grouped by method)。GSM8K是KL-only的最大弱点（-14.6%）。'
+    analysis: Full evaluation确认worst tier叙事：BCE+comp全面优于KL-only（quality）， KL-only优势仅在inference
+      efficiency。Pareto分析显示两种方法在 quality-efficiency tradeoff空间占据不同的niche，不存在一方dominance。
+      KL+comp是global best quality但最慢——说明最优方案是KL+comp而非KL alone。 Paper的Pareto frontier图本身就是有价值的contribution，
+      展示了training signal × compensation × granularity的完整landscape。
+  - name: '7-level sparsity sweep: KL vs BCE s² scaling test'
+    plan_id: plan_008
+    description: '30/35/40/45/50/55/60% sparsity sweep, KL-only vs BCE-only。 测试Claim
+      3: KL-BCE delta ~ s²。1 seed per level。'
+    expected_results:
+      kl_ppl_30: 6.55
+      kl_ppl_35: 6.85
+      kl_ppl_40: 7.8
+      kl_ppl_45: 8.6
+      kl_ppl_50: 9.8
+      kl_ppl_55: 16.0
+      kl_ppl_60: 32.0
+      bce_ppl_30: 7.5
+      bce_ppl_35: 11.5
+      bce_ppl_40: 9.8
+      bce_ppl_45: 14.5
+      bce_ppl_50: 28.0
+      bce_ppl_55: 30.0
+      bce_ppl_60: 45.0
+      delta_30: 0.95
+      delta_35: 4.65
+      delta_40: 2.0
+      delta_45: 5.9
+      delta_50: 18.2
+      delta_55: 14.0
+      delta_60: 13.0
+      r2_delta_vs_s2: 0.66
+      r2_delta_vs_s_linear: 0.68
+      r2_delta_vs_s2_excluding_high: 0.81
+      quadratic_coeff_a: 74.9
+      taylor_second_order_error_50pct: 0.28
+      taylor_second_order_error_60pct: 0.55
+    result_rationale: 'Delta呈非单调pattern——在s=0.40处下降（2.00 < 4.65 at s=0.35）， 在s=0.55-0.60处plateau/下降（14.00→13.00）。
+      s=0.40异常原因：BCE在某些sparsity level恰好命中"easy"的neuron pruning pattern， 偶尔表现好于趋势。s=0.55-0.60下降原因：KL本身开始collapse（16→32
+      PPL）， 两种方法都在高sparsity下崩溃，delta反而缩小。
+
+      R²(Δ~s²) = 0.66, R²(Δ~s) = 0.68——linear fit甚至略好于quadratic， s²理论叙事不成立。限制在s≤0.50范围内R²=0.81略好，
+      但这是cherry-picking range来fit理论。
+
+      Taylor expansion在s=0.50已有28%相对误差，在s=0.60达55%。 O(s²D²) scaling argument的前提是Taylor展开有效——
+      高sparsity下高阶项不可忽略，理论prediction失效。'
+    tables:
+    - title: 'Table 8a: Sparsity sweep results'
+      rows:
+      - Sparsity | s² | KL PPL | BCE PPL | Δ(BCE−KL)
+      - 30% | 0.090 | 6.55 | 7.50 | 0.95
+      - 35% | 0.122 | 6.85 | 11.50 | 4.65
+      - 40% | 0.160 | 7.80 | 9.80 | 2.00
+      - 45% | 0.202 | 8.60 | 14.50 | 5.90
+      - 50% | 0.250 | 9.80 | 28.00 | 18.20
+      - 55% | 0.302 | 16.00 | 30.00 | 14.00
+      - 60% | 0.360 | 32.00 | 45.00 | 13.00
+    - title: 'Table 8b: Scaling law fit comparison'
+      rows:
+      - Model | R² (all points) | R² (s≤0.50)
+      - Δ ~ a·s² + b | 0.66 | 0.81
+      - Δ ~ a·s + b | 0.68 | 0.82
+      - Δ ~ a·exp(b·s) | 0.72 | 0.78
+    figures_description:
+    - 'Fig 8a: Δ vs s² scatter plot with linear fit (R²=0.66). 同时叠加Δ vs s的linear fit
+      (R²=0.68, dashed)。两条fit线几乎等好，s²无优势。'
+    - 'Fig 8b: PPL vs sparsity双曲线（KL and BCE）。KL在s>0.50后急剧上升，BCE在s>0.35后就持续恶化。两者在s=0.55-0.60区间差距缩小。'
+    - 'Fig 8c: Taylor expansion second-order approximation vs actual delta per sparsity
+      level。在s≥0.50处出现系统性偏差。'
+    analysis: Claim 3（s² scaling）不成立。数据呈现phase-transition而非smooth polynomial关系： BCE在s≈0.45-0.50有一个"catastrophic
+      transition"（PPL从14.5跳到28）， 之后plateau；KL在s≈0.55有类似transition（8.6→16）但更晚。 两个transition
+      point的差异——而非smooth quadratic——才是delta的真正驱动力。 论文中不应claim s² scaling law，改为报告"BCE
+      exits graceful degradation at lower sparsity than KL（~45% vs ~55%），resulting
+      in a phase-transition rather than polynomial relationship in the KL-BCE gap"。
+  - name: Mistral-7B-v0.3 generalization validation
+    plan_id: plan_009
+    description: 'Mistral-7B-v0.3上KL-only vs BCE+comp @ 50%。 Core benchmarks: WikiText-2,
+      ARC-c, MMLU。3 seeds each。'
+    expected_results:
+      mistral_dense_ppl: 7.82
+      mistral_kl_s42_ppl: 14.1
+      mistral_kl_s123_ppl: 14.85
+      mistral_kl_s456_ppl: 13.5
+      mistral_kl_mean_ppl: 14.15
+      mistral_kl_std_ppl: 0.68
+      mistral_kl_ppl_increase_pct: 80.9
+      mistral_kl_arc_c: 41.5
+      mistral_kl_mmlu: 51.8
+      mistral_bce_comp_s42_ppl: 12.5
+      mistral_bce_comp_s123_ppl: 12.8
+      mistral_bce_comp_s456_ppl: 13.1
+      mistral_bce_comp_mean_ppl: 12.8
+      mistral_bce_comp_std_ppl: 0.3
+      mistral_bce_comp_ppl_increase_pct: 63.7
+      mistral_bce_comp_arc_c: 44.8
+      mistral_bce_comp_mmlu: 55.2
+      mistral_kl_vs_bce_comp_gap: 1.35
+      mistral_dense_arc_c: 49.5
+      mistral_dense_mmlu: 62.0
+    result_rationale: 'Mistral-7B-v0.3使用GQA + sliding window attention， KV cache结构与Llama
+      3.1不同（GQA → 更少的KV heads，信息更集中）。 KL训练依赖full output distribution匹配——Mistral的sliding
+      window 导致不同position的logit distribution变化更剧烈， KL predictor更难学习稳定的mask pattern。
+
+      BCE+comp在Mistral上表现更好（12.80 vs 14.15）， gap进一步扩大到+1.35（Llama上是+0.40）。 compensation
+      MLP通过直接修正sparse output对architecture更鲁棒， 不依赖output distribution的稳定性。
+
+      KL PPL increase 80.9%在target range [60, 120]内。 这彻底否定了KL优势的generalizability——
+      在第二个architecture上，方向反转且差距更大。'
+    tables:
+    - title: 'Table 9: Mistral-7B-v0.3 results @ 50% sparsity'
+      rows:
+      - Method | PPL | Δ vs Dense (%) | ARC-c | MMLU
+      - Dense | 7.82 | — | 49.5 | 62.0
+      - KL-only | 14.15±0.68 | +80.9 | 41.5 | 51.8
+      - BCE+comp | 12.80±0.30 | +63.7 | 44.8 | 55.2
+    - title: 'Table 9b: Cross-architecture comparison'
+      rows:
+      - Architecture | KL-only PPL Δ% | BCE+comp PPL Δ% | KL−BCE_comp gap
+      - Llama 3.1 8B | +60.1 | +53.6 | +0.40
+      - Mistral-7B-v0.3 | +80.9 | +63.7 | +1.35
+    figures_description:
+    - 'Fig 9: Cross-architecture bar chart。两个model分组，每组KL和BCE+comp并列。Llama上gap小（0.40），Mistral上gap大（1.35）且方向一致（BCE+comp更好）。'
+    analysis: Mistral结果是worst tier的strongest evidence。 不仅KL不优于BCE+comp，差距还在第二个architecture上放大了。
+      这说明KL的"优势"（如果存在）是architecture-dependent的， 不具备generalize条件。论文中必须诚实报告cross-architecture
+      inconsistency， 并在characterization framework下解释： "KL-only的effectiveness取决于output
+      distribution的per-layer stability， 而这是architecture-dependent的property"。
+  - name: LongBench English subset evaluation (4K-32K)
+    plan_id: plan_010
+    description: '全条件在LongBench English subset上评估。 Per-task-type breakdown: single-doc
+      QA, multi-doc QA, summarization, few-shot, code。'
+    expected_results:
+      dense_single_doc_qa: 22.0
+      dense_multi_doc_qa: 35.0
+      dense_summarization: 28.0
+      dense_few_shot: 68.0
+      dense_code: 55.0
+      kl_single_doc_qa: 17.2
+      kl_multi_doc_qa: 26.5
+      kl_summarization: 21.5
+      kl_few_shot: 59.5
+      kl_code: 46.0
+      kl_longbench_avg_drop_pct: 18.5
+      bce_comp_single_doc_qa: 18.5
+      bce_comp_multi_doc_qa: 28.8
+      bce_comp_summarization: 23.2
+      bce_comp_few_shot: 61.0
+      bce_comp_code: 47.5
+      bce_comp_longbench_avg_drop_pct: 14.2
+      spon_kl_single_doc_qa: 17.8
+      spon_kl_multi_doc_qa: 27.0
+      spon_kl_few_shot: 60.0
+      teal_single_doc_qa: 13.5
+      teal_multi_doc_qa: 20.0
+      teal_few_shot: 50.0
+    result_rationale: '长文本任务放大了sparse prediction的错误累积效应。 KL predictor在训练时用512-token
+      sequences—— 长context下distribution shift导致predictor的mask decisions drift， 错误在long-range
+      dependencies中逐步放大。
+
+      BCE+comp的compensation MLP提供了per-layer error correction， 对distribution shift更鲁棒——即使mask不完美，compensation能部分修正。
+      Multi-doc QA差距最大（26.5 vs 28.8，8.7% gap）， 因为multi-doc需要跨文档信息整合，sparse noise影响cross-document
+      attention。
+
+      SPON+KL (17.8 single-doc) 仅略优于KL-only (17.2)， 再次确认SPON+KL的非可加性——在long context下也如此。'
+    tables:
+    - title: 'Table 10: LongBench per-task-type results'
+      rows:
+      - Task Type | Dense | KL-only | BCE+comp | SPON+KL | TEAL
+      - Single-doc QA | 22.0 | 17.2 | 18.5 | 17.8 | 13.5
+      - Multi-doc QA | 35.0 | 26.5 | 28.8 | 27.0 | 20.0
+      - Summarization | 28.0 | 21.5 | 23.2 | 22.0 | 16.5
+      - Few-shot | 68.0 | 59.5 | 61.0 | 60.0 | 50.0
+      - Code | 55.0 | 46.0 | 47.5 | 46.5 | 38.0
+      - Avg Drop % | — | -18.5 | -14.2 | -16.8 | -32.5
+    figures_description:
+    - 'Fig 10: Grouped bar chart per task type。每组5个bars (Dense, KL, BCE+comp, SPON+KL,
+      TEAL)。BCE+comp一致优于KL-only，差距在multi-doc QA最大。'
+    analysis: Long context进一步支持worst tier叙事—— KL-only的degradation在long context下比short
+      context更严重 （avg drop 18.5% vs short-context benchmarks的8.9%）。 BCE+comp更鲁棒（14.2%
+      vs 18.5%），compensation提供了error buffering。 这对NLP venue特别重要——long-context capability是EMNLP
+      reviewer关注的重点。
+  - name: MT-Bench evaluation (GPT-4o judge)
+    plan_id: plan_011
+    description: 80个multi-turn questions, 8个categories。GPT-4o作为judge。 测试instruction-following
+      quality under sparsity。
+    expected_results:
+      dense_mt_bench_avg: 7.2
+      kl_mt_bench_avg: 5.95
+      bce_comp_mt_bench_avg: 6.3
+      spon_kl_mt_bench_avg: 6.05
+      teal_mt_bench_avg: 4.8
+      kl_writing: 6.5
+      kl_reasoning: 5.2
+      kl_math: 4.8
+      kl_coding: 5.5
+      bce_comp_writing: 6.8
+      bce_comp_reasoning: 5.8
+      bce_comp_math: 5.2
+      bce_comp_coding: 5.9
+    result_rationale: MT-Bench是multi-turn对话质量的综合测试。 KL-only (5.95) vs BCE+comp (6.30)——差距0.35分在MT-Bench
+      scale上有意义。 Reasoning和math categories差距最大（0.6和0.4分）， 因为多步推理对intermediate representation的准确性要求高，
+      sparse noise在turn间累积。 Compensation MLP提供的error correction在multi-turn setting下尤其有价值，
+      每个turn的correction防止error向后续turns propagation。
+    tables:
+    - title: 'Table 11: MT-Bench scores (GPT-4o judge)'
+      rows:
+      - Method | Avg | Writing | Reasoning | Math | Coding | Roleplay | Extraction
+        | STEM | Humanities
+      - Dense | 7.20 | 7.8 | 6.8 | 6.5 | 7.0 | 7.5 | 7.2 | 7.0 | 7.8
+      - KL-only | 5.95 | 6.5 | 5.2 | 4.8 | 5.5 | 6.5 | 6.0 | 5.8 | 6.3
+      - BCE+comp | 6.30 | 6.8 | 5.8 | 5.2 | 5.9 | 6.8 | 6.2 | 6.2 | 6.5
+      - SPON+KL | 6.05 | 6.6 | 5.3 | 4.9 | 5.6 | 6.5 | 6.1 | 5.9 | 6.5
+      - TEAL | 4.80 | 5.2 | 4.0 | 3.5 | 4.5 | 5.5 | 4.8 | 4.5 | 5.0
+    figures_description:
+    - 'Fig 11: MT-Bench radar chart (8 categories)。Dense最大，BCE+comp > KL-only在所有categories。Reasoning/Math差距最明显。'
+    analysis: 'MT-Bench确认了downstream quality ordering: BCE+comp > KL-only。 在NLP-relevant的instruction-following
+      setting下， compensation的error correction在multi-turn中有cumulative benefit。 对EMNLP
+      submission有利——MT-Bench直接评估NLP应用质量。'
+  - name: RULER synthetic long-context evaluation
+    plan_id: plan_012
+    description: 'RULER (4K, 16K) × 3 task types: NIAH-Single, NIAH-MultiKey, Variable
+      Tracking。 Fine-grained capability diagnostics。'
+    expected_results:
+      dense_niah_s_4k: 98.0
+      dense_niah_s_16k: 92.0
+      dense_niah_mk_4k: 85.0
+      dense_niah_mk_16k: 70.0
+      dense_vt_4k: 80.0
+      dense_vt_16k: 62.0
+      kl_niah_s_4k: 88.0
+      kl_niah_s_16k: 70.0
+      kl_niah_mk_4k: 71.0
+      kl_niah_mk_16k: 45.0
+      kl_vt_4k: 64.0
+      kl_vt_16k: 35.0
+      bce_comp_niah_s_4k: 91.0
+      bce_comp_niah_s_16k: 76.0
+      bce_comp_niah_mk_4k: 75.0
+      bce_comp_niah_mk_16k: 52.0
+      bce_comp_vt_4k: 68.0
+      bce_comp_vt_16k: 42.0
+      kl_16k_avg_drop_vs_dense: 31.3
+      bce_comp_16k_avg_drop_vs_dense: 23.5
+    result_rationale: 'RULER的synthetic tasks提供了controlled capability measurement。
+      16K context下KL-only降幅最大——NIAH-MultiKey从85→45（-47.1%）， Variable Tracking从62→35（-43.5%）。
+      这些任务需要精确的long-range retrieval和state tracking， sparse noise在16K tokens范围内严重干扰attention
+      pattern。
+
+      BCE+comp在所有6个setting上优于KL-only， 16K的NIAH-MultiKey差距7 points（52 vs 45），VT差距7
+      points（42 vs 35）。 Compensation的per-layer correction在长序列下提供了持续的error mitigation。
+
+      KL在4K→16K的degradation slope比BCE+comp更陡， 说明KL predictor的mask decision在序列长度增加时快速恶化——
+      进一步支持"KL的训练信号不够robust"的worst-tier叙事。'
+    tables:
+    - title: 'Table 12: RULER results (accuracy %)'
+      rows:
+      - Task | Context | Dense | KL-only | BCE+comp | Δ(KL vs BCE+comp)
+      - NIAH-S | 4K | 98.0 | 88.0 | 91.0 | -3.0
+      - NIAH-S | 16K | 92.0 | 70.0 | 76.0 | -6.0
+      - NIAH-MK | 4K | 85.0 | 71.0 | 75.0 | -4.0
+      - NIAH-MK | 16K | 70.0 | 45.0 | 52.0 | -7.0
+      - VT | 4K | 80.0 | 64.0 | 68.0 | -4.0
+      - VT | 16K | 62.0 | 35.0 | 42.0 | -7.0
+    figures_description:
+    - 'Fig 12: Heatmap (method × task-context)。颜色深浅表示accuracy。KL-only在16K列明显偏暗，BCE+comp介于Dense和KL之间。'
+    analysis: RULER的controlled diagnostics是worst tier的fine-grained evidence。 KL-only在长序列上的capability
+      loss pattern清晰且一致， 作为EMNLP paper的补充diagnostics有说服力。 但RULER本身是P2 priority——如果时间不足，
+      LongBench (plan_010)已经cover了long-context方向， RULER提供的是complementary validation而非必要条件。
+  review_report: '---
+
+    dream_id: dream_20260515T164925
+
+    tier: worst
+
+    overall_score: weak reject
+
+    timestamp: 2026-05-15T17:58:58.596714+00:00
+
+    ---
+
+
+    # Dream Review Report
+
+
+    **Paper**: "Training Signal Meets Correction Granularity: A Systematic Taxonomy
+    of Learned Activation Sparsity for SwiGLU LLMs"
+
+    **Review mode**: Full (2 Reviewers, 4-step roundtable)
+
+    **Venue standard**: Top ML venue, ~25% acceptance rate, 6-point scale
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    The paper proposes a two-dimensional taxonomy for learned activation sparsity
+    in SwiGLU LLMs: training signal (BCE decomposed vs. KL coupled) × correction granularity
+    (none, static bias, contextual compensation MLP). It evaluates 10 configurations
+    on Llama 3.1 8B and Mistral-7B-v0.3 across 12 benchmarks. The central finding
+    is that BCE+compensation (PPL 9.40±0.19) matches or outperforms KL-only (PPL 9.80±0.87)
+    with 4.6× lower seed variance, challenging the hypothesis that KL training eliminates
+    the need for compensation. Three additional negative results are reported: SPON+KL
+    corrections are non-additive, the KL–BCE gap does not follow s² scaling, and KL''s
+    advantage does not generalize across architectures.
+
+
+    ---
+
+
+    ## 2. Reviewer Scores
+
+
+    | Reviewer | Focus | Score | Confidence |
+
+    |----------|-------|-------|------------|
+
+    | R1 | Methods + Experiments | 3/6 (Weak Reject) | 4/5 |
+
+    | R2 | Novelty + Related Work | 3/6 (Weak Reject) | 4/5 |
+
+    | **Consensus** | | **3/6 (Weak Reject)** | **4/5** |
+
+
+    ---
+
+
+    ## 3. Strengths (consensus)
+
+
+    - **Evaluation breadth is above average.** 12 benchmarks spanning perplexity,
+    QA/reasoning, long-context (LongBench, RULER), and multi-turn dialogue (MT-Bench)
+    on two architectures. This is significantly more thorough than typical activation
+    sparsity papers.
+
+    - **Honest negative results.** The paper does not cherry-pick: it reports that
+    s² scaling fails (R²=0.66), SPON+KL is non-additive, and KL advantage reverses
+    on Mistral. This intellectual honesty is commendable.
+
+    - **Well-designed core ablation.** The 2×2 (training signal × compensation) design
+    in §5.1 cleanly isolates the variables of interest. The iso-compute comparison
+    (§5.3) and STE ablation (§5.2) address natural reviewer concerns proactively.
+
+    - **Practical Pareto analysis.** Table 11 (inference profiling) provides actionable
+    deployment guidance: KL-only for memory-constrained settings (48 MB), BCE+comp
+    for quality-critical applications (304 MB).
+
+    - **Clear taxonomy framing.** Table 1 cleanly organizes prior work and identifies
+    which cells are unexplored. The 2D framework is a useful conceptual contribution
+    even if organizational rather than technical.
+
+
+    ---
+
+
+    ## 4. Weaknesses
+
+
+    ### 4.1 Major Weaknesses
+
+
+    **W1. BCE-only baseline is anomalously poor, raising fairness concerns.**
+
+    BCE-only PPL of 28.16 is 2.3× worse than training-free TEAL (12.48). A *trained*
+    predictor performing worse than a training-free heuristic is extraordinary and
+    suggests potential implementation issues or insufficient hyperparameter tuning
+    for the BCE condition. The project history shows extensive debugging of the KL
+    pipeline (Lagrangian tuning, sparsity collapse fixes, normalization) with no evidence
+    that BCE received comparable engineering effort. If BCE-only is artificially weak,
+    the claim that "compensation recovers 67% of the BCE quality gap" is inflated—the
+    gap itself may be an artifact.
+
+    *Severity: Major. Affects credibility of Claims 1 and 3.*
+
+
+    **W2. Missing MSE-on-logits control.**
+
+    The paper''s theoretical motivation (§2, §3) attributes KL''s advantage to gradient
+    coupling through the Jacobian (∂L_KL/∂s_j couples all neurons). But this property
+    holds for ANY output-level loss, not uniquely KL. Without an MSE-on-logits baseline
+    (which also has coupled gradients but different loss geometry), the paper cannot
+    distinguish "KL divergence is special" from "any coupled loss beats decomposed
+    BCE." One experiment would resolve this gap.
+
+    *Severity: Major. Undermines the theoretical framing.*
+
+
+    **W3. Statistical rigor is insufficient for the headline claims.**
+
+    - Unequal seed counts across conditions (3 vs 5) complicate variance comparisons.
+
+    - No formal significance tests (e.g., Welch''s t-test, bootstrap CI) across any
+    of the 18 tables. The headline gap (9.40 vs 9.80 = 0.40 PPL) falls within KL-only''s
+    own standard deviation (0.87). Without a test, readers cannot assess whether this
+    difference is meaningful.
+
+    - The sparsity sweep (Table 12) uses only 1 seed per level, yet draws strong conclusions
+    about scaling laws. R²=0.66 vs R²=0.68 (linear) is within noise; claiming "s²
+    scaling does not hold" on this basis is overreach.
+
+    - KL-only''s two outlier seeds (s0=10.31, s1=11.08) drive much of the variance
+    narrative. Are these outliers or representative? The paper attributes them to
+    Lagrangian instability but provides no direct evidence (e.g., λ trajectories).
+
+    *Severity: Major. Undermines quantitative claims throughout.*
+
+
+    **W4. Thin technical novelty.**
+
+    The core methodological contribution is replacing BCE with KL in an existing predictor
+    pipeline (FastForward-style). The taxonomy (Table 1) is organizational, not technical—it
+    categorizes existing methods along two axes without introducing new algorithms,
+    architectures, or theoretical frameworks. The compensation MLP is borrowed from
+    FastForward. The Gumbel-sigmoid relaxation is standard. The Lagrangian sparsity
+    constraint is standard. For a top venue, a characterization study typically needs
+    either (a) surprising findings that change community understanding or (b) new
+    methods motivated by the characterization. The negative results, while honest,
+    are confirmatory rather than surprising—experienced practitioners would expect
+    that adding compensation helps any predictor.
+
+    *Severity: Major. Core acceptance barrier at a top venue.*
+
+
+    ### 4.2 Moderate Weaknesses
+
+
+    **W5. Narrative tension between motivation and results is unresolved.**
+
+    Section 3 motivates KL via gradient coupling (Jacobian argument). Section 5 then
+    shows this advantage is subsumed by compensation. The Discussion (§6) provides
+    no mechanistic explanation for *why* compensation outperforms KL coupling—it speculates
+    about "phase transitions" and "Lagrangian instability" without formalizing either.
+    A characterization study should characterize; the paper identifies phenomena but
+    doesn''t explain them.
+
+
+    **W6. Related work is underdeveloped for a taxonomy paper.**
+
+    A paper framed as "the first systematic characterization" should comprehensively
+    survey the space. Section 2 covers only ~8 methods in ~0.5 pages. Missing or underrepresented:
+    ShadowLLM (appears in Table 1 but has no experimental comparison or discussion),
+    PowerInfer/Dejavu (hardware-aware sparsity), ProSparse/ReLUfication (activation
+    function modification approaches), CATS, and recent concurrent work. For a taxonomy
+    paper, 20+ references with detailed positioning would be expected.
+
+
+    **W7. SPON+KL composition result is uninformative as presented.**
+
+    SPON+KL (9.79) ≈ KL-only (9.80)—the composition provides essentially zero benefit.
+    The additivity analysis (ratio=0.62, cos similarity=0.34) is interesting but the
+    paper doesn''t leverage it: it demonstrates redundancy without explaining what
+    would make corrections complementary. This experiment confirms the obvious (two
+    corrections targeting the same error mode don''t stack) without advancing understanding.
+
+
+    **W8. Lagrangian training mechanism is underspecified.**
+
+    The KL loss includes a Lagrangian sparsity constraint with dual gradient ascent
+    on λ, but the paper omits: learning rate for λ, initialization, clipping/projection,
+    and convergence criteria. Since Lagrangian instability is cited as the primary
+    cause of KL''s variance (§5.1, §6), this omission directly impacts reproducibility
+    of the central finding.
+
+
+    ### 4.3 Minor Weaknesses
+
+
+    **W9. Hyperparameter reporting inconsistency.** Paper states batch_size=8, seq_len=512.
+    If actual training used different settings, this should be reconciled.
+
+
+    **W10. No calibration data sensitivity analysis.** All experiments use WikiText-2
+    for training. Whether findings hold with different calibration data (e.g., C4,
+    RedPajama) is untested.
+
+
+    **W11. BCE+STE ablation missing.** The STE ablation (Table 4) only tests KL+STE
+    vs KL+Gumbel. A BCE+STE condition would test whether STE helps BCE too, isolating
+    the relaxation method''s role for both training signals.
+
+
+    **W12. Single sparsity target.** Almost all experiments use 50% sparsity. The
+    sweep (§5.8) uses 1 seed. Practitioners need multi-seed results at other operating
+    points.
+
+
+    ---
+
+
+    ## 5. Questions for Authors
+
+
+    1. Why does BCE-only (28.16) perform 2.3× worse than training-free TEAL (12.48)?
+    Did you tune BCE hyperparameters (threshold ε, learning rate) with the same effort
+    as KL? Can you provide training curves for BCE-only showing convergence?
+
+    2. Have you tried MSE on output logits as a training signal? This would directly
+    test whether gradient coupling (not KL specifically) drives the advantage.
+
+    3. Can you provide Lagrangian multiplier (λ) trajectories for all 5 KL seeds?
+    This would substantiate the "Lagrangian instability" explanation for seeds s0
+    and s1.
+
+    4. What is the p-value for the BCE+comp vs KL-only comparison (9.40 vs 9.80) under
+    a two-sample t-test?
+
+    5. Why not include ShadowLLM in the experimental comparison, given it appears
+    in the taxonomy (Table 1)?
+
+    6. Can you provide results at 40% and 60% sparsity with 3+ seeds for the main
+    conditions?
+
+
+    ---
+
+
+    ## 6. Experiment Coverage Assessment
+
+
+    All 12 planned experiments are covered in the paper:
+
+    - plan_001 (4-condition ablation): §5.1 ✓
+
+    - plan_002 (STE baseline): §5.2 ✓
+
+    - plan_003 (Iso-compute): §5.3 ✓
+
+    - plan_004 (SPON reproduction): §5.4 ✓
+
+    - plan_005 (SPON+KL composition): §5.5 ✓
+
+    - plan_006 (Training-free baselines): §5.6 ✓
+
+    - plan_007 (Full benchmarks + profiling): §5.7 ✓
+
+    - plan_008 (Sparsity sweep): §5.8 ✓
+
+    - plan_009 (Mistral generalization): §5.9 ✓
+
+    - plan_010 (LongBench): §5.10 ✓
+
+    - plan_011 (MT-Bench): §5.11 ✓
+
+    - plan_012 (RULER): §5.12 ✓
+
+
+    Coverage is complete. The issue is not missing experiments but missing *controls*
+    (MSE-logits, BCE+STE) and *statistical validation* within existing experiments.
+
+
+    ---
+
+
+    ## 7. Consolidated Assessment
+
+
+    ### What works
+
+    The paper asks a good question ("does KL eliminate compensation?"), designs a
+    clean 2×2 ablation to answer it, and provides an unusually thorough evaluation.
+    The honest reporting of negative results is refreshing. The practical Pareto analysis
+    (quality vs efficiency) provides genuine value to practitioners.
+
+
+    ### What doesn''t work
+
+    The paper suffers from a convergence of three problems:
+
+
+    1. **Fairness concerns** (W1, W2, W11) mean the core comparison may not be apples-to-apples.
+    The anomalously poor BCE-only baseline and missing MSE-logits control leave alternative
+    explanations unaddressed.
+
+
+    2. **Statistical gaps** (W3) mean even if the comparison is fair, readers cannot
+    assess whether the differences are meaningful. The headline 0.40 PPL gap is within
+    KL-only''s own noise.
+
+
+    3. **Novelty ceiling** (W4, W5) means that even if the results are sound and significant,
+    the contribution—running existing methods in new combinations—may not clear the
+    bar for a top venue without deeper mechanistic insight or a new method motivated
+    by the findings.
+
+
+    These three issues compound: any one alone might be addressable, but together
+    they place the paper below the acceptance threshold.
+
+
+    ### Path to acceptance
+
+    The gap to acceptance is bridgeable with targeted revisions:
+
+    - Run MSE-logits and BCE+STE baselines (~2 experiments)
+
+    - Add formal significance tests to all pairwise comparisons
+
+    - Investigate and explain the anomalous BCE-only performance
+
+    - Provide λ trajectories to substantiate the Lagrangian instability narrative
+
+    - Expand related work significantly
+
+    - Either (a) develop a mechanistic explanation for why compensation > KL coupling,
+    or (b) propose a new method (e.g., stabilized KL+comp) motivated by the characterization
+
+
+    ---
+
+
+    ## 8. Final Scores
+
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | Soundness | 2.5/4 — Good design, but fairness and statistical gaps |
+
+    | Novelty | 2/4 — Organizational taxonomy + negative results; no new methods |
+
+    | Significance | 2.5/4 — Useful practical guidance, but limited conceptual advance
+    |
+
+    | Presentation | 3/4 — Well-organized, honest, but related work thin and discussion
+    speculative |
+
+
+    **Overall: 3/6 (Weak Reject)**
+
+    **Confidence: 4/5 (High)**
+
+
+    The paper is below the acceptance threshold due to the combination of baseline
+    fairness concerns, insufficient statistical validation, and limited technical
+    novelty. However, the research question is well-motivated and the evaluation infrastructure
+    is strong. With the targeted revisions outlined above (especially MSE-logits control,
+    significance tests, and BCE debugging), a revised version could reach the acceptance
+    threshold at an efficient methods track.'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-15T17:59:07+00:00'

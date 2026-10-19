@@ -1,0 +1,34 @@
+{
+  "exp_id": "mse30_lr1e4_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T10:08:12.674Z",
+    "updated_at": "2026-05-24T11:16:37.009Z",
+    "hypothesis": "MSE loss has ~5x larger gradient magnitude than KL. Using LR=1e-4 (10x lower than default 1e-3) should stabilize MSE training and improve PPL, addressing potential reviewer concern about unfair LR for MSE baseline",
+    "spec": {
+      "command": "python -u src/train.py --loss_type mse --lr 1e-4 --sparsity_target 0.3 --allocation uniform --seed 42 --num_steps 1000 --batch_size 4 --seq_len 2048 --warmup 100",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "log_path": "~/runs/distill_sparse_swiglu/mse30_lr1e4_s42.log",
+      "submitted_at": "2026-05-24T18:05:00Z",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103",
+      "data_count": 1000,
+      "model_name": "LLaMA-3.1-8B",
+      "seed": 42
+    },
+    "parent": "mse30_uniform_s42",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "negative",
+    "completed_at": "2026-05-24T11:13:28.565Z"
+  },
+  "timestamp": "2026-05-24T11:16:37.649389+00:00",
+  "trigger": "update_registry"
+}

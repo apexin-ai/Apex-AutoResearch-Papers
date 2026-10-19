@@ -1,0 +1,27 @@
+{
+  "exp_id": "lm_eval_kl_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:34:42.788Z",
+    "updated_at": "2026-05-15T23:46:57.756Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && CUDA_VISIBLE_DEVICES=0 python -u src/eval_benchmark.py --condition kl_s42 --tasks lm_eval --skip_ppl --gpu 0 --batch_size 4\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "171560",
+      "log_path": "~/runs/distill_sparse_swiglu/lm_eval_kl_s42.log",
+      "submitted_at": "2026-05-15T23:03:33.750Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-15T23:46:58.024289+00:00",
+  "trigger": "update_registry"
+}

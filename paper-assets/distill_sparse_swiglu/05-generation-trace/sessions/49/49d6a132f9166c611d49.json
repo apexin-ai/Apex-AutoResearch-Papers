@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49d6a132f9166c611d49",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh ste 30 s42",
+  "task_key": "worker_ssh_ste_30_s42_20260520T163044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_ste_30_s42_20260520T163044_result.json",
+    "occurrence": 1,
+    "bytes": 289,
+    "sha256": "611f07cb32ae3a059fed40f900cf66b7fdd52451743ca60b71fbd899d107134c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **服务器**: westd-41718, cuda:0\n- **PID**: 268288\n- **日志**: `~/runs/distill_sparse_swiglu/ste_30_s42.log`\n- **Registry**: `ste_30_s42` → RUNNING\n- **流程**: train (1000 steps, STE + KL, 30% sparsity) → eval (wikitext2 + 6 downstream tasks)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-ste-30-s42-copy-2.md"
+}

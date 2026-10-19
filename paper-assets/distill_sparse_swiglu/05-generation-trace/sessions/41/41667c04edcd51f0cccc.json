@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41667c04edcd51f0cccc",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp c1 ablation 30pct s123",
+  "task_key": "worker_exp_c1-ablation-30pct-s123_20260519T020801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_c1-ablation-30pct-s123_20260519T020801_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "aa8f16203cad164a6f0cca70e8f27a596411bbd8ad7b83cff4fbf62885f32500"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## C1@30% s123 完整结果\n\n### 训练\n- **KL checkpoint**: `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt`\n- **BCE checkpoint**: `/root/distill_sparse_swiglu/checkpoints/c1_ablation_30pct_s123/predictor_bce_kl_targets.pt` (151MB)\n- **最终 BCE loss**: 0.0604 (step 600), agreement=0.975-0.976\n- **训练耗时**: 877.9s (0.88s/step)\n\n### Eval 指标 (TEAL 30% uniform)\n\n| Metric | Value |\n|--------|-------|\n| WikiText-2 PPL | **8.83** |\n| ARC-Challenge (acc_norm) | **47.35%** |\n| WinoGrande (acc) | **71.19%** |\n| MMLU (acc) | **38.33%** |\n| GSM8K (exact_match) | **6.07%** |\n\n### 备注\n- 训练内置 eval 报 PPL=7.57（仅 141 sequences，较乐观），benchmark_eval 完整评估 PPL=8.83\n- 无失败，全流程正常完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-c1-ablation-30pct-s123.md"
+}

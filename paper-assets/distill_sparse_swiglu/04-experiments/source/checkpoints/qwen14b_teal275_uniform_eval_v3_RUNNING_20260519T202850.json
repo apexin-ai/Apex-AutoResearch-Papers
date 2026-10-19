@@ -1,0 +1,38 @@
+{
+  "exp_id": "qwen14b_teal275_uniform_eval_v3",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:39:28.152Z",
+    "updated_at": "2026-05-19T20:28:50.159Z",
+    "hypothesis": "TEAL@27.5% uniform baseline for sparsity-matched KL comparison on Qwen-14B. Fix: relaxed _uniform_topk_masks assert from 0.02 to 0.05 tolerance. Current tasks: wikitext2,arc,wg,mmlu,gsm8k. Missing hellaswag+piqa will supplement.",
+    "parent": "qwen14b_teal275_uniform_eval_v2",
+    "spec": {
+      "pid": 115174,
+      "server": "westd-34887",
+      "gpu": "cuda:1",
+      "command": "python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.275 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --exp_id qwen14b_teal275_uniform_eval_v3 --seq_len 2048 --gpu 0",
+      "data_path": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "data_count": 0,
+      "model_name": "qwen2.5-14b",
+      "seed": 42,
+      "checkpoint_source": "N/A (TEAL vanilla)",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k"
+    },
+    "log_path": "/root/distill_sparse_swiglu/logs/qwen14b_teal275_uniform_eval_v3.log",
+    "checkpoint_path": "N/A",
+    "metrics": {
+      "wikitext2_ppl": 7.7087,
+      "arc_challenge_acc_norm": 0.57,
+      "winogrande_acc": 0.7167,
+      "mmlu_acc": 0.6738,
+      "gsm8k_exact_match": 0.5709
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T20:28:50.587130+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "bench_kl70_global",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T01:19:58.812Z",
+    "updated_at": "2026-05-17T01:20:07.489Z",
+    "hypothesis": "LLaMA-3.1-8B KL predictor at 70% sparsity (teal_global eval) completes the symmetric cross-architecture comparison showing consistent KL advantage pattern"
+  },
+  "timestamp": "2026-05-17T01:20:07.669307+00:00",
+  "trigger": "update_registry"
+}

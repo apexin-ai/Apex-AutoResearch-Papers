@@ -1,0 +1,226 @@
+paper_key: "compact_lm_pruning_kd"
+title: "Compact Language Models via Pruning and Knowledge Distillation"
+venue: "NeurIPS 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - Nemotron-3 8B
+    - Nemotron-4 15B
+    - Llama-3 8B
+    - Llama-2 7B/13B
+    - Mistral 7B
+    - Gemma 7B
+    - Gemma2 2.6B
+    - Phi-2
+    - Qwen2 1.5B
+    - MiniCPM 2.4B
+    - LLM-Pruner
+    - SliceGPT
+    - LaCo
+    - ShortGPT
+    - Sheared LLaMa
+  metrics:
+    - {name: "MMLU (5-shot)", direction: "higher_better"}
+    - {name: "HellaSwag (10-shot)", direction: "higher_better"}
+    - {name: "WinoGrande (5-shot)", direction: "higher_better"}
+    - {name: "GSM8K (5-shot)", direction: "higher_better"}
+    - {name: "HumanEval pass@1", direction: "higher_better"}
+    - {name: "MBPP pass@1", direction: "higher_better"}
+    - {name: "LM Validation Loss", direction: "lower_better"}
+    - {name: "MT-Bench", direction: "higher_better"}
+    - {name: "IFEval strict accuracy", direction: "higher_better"}
+    - {name: "ChatRAG-Bench", direction: "higher_better"}
+    - {name: "BFCL v2", direction: "higher_better"}
+  datasets:
+    - {name: "Nemotron-4 8T token pretraining corpus", size: "8T tokens"}
+    - {name: "Continued training (CT) dataset blend", size: "not specified"}
+    - {name: "1024-sample calibration set for importance estimation", size: "1024 samples"}
+    - {name: "1.8B token retraining budget per model", size: "1.8B tokens"}
+  ablation_dimensions:
+    - "Width vs. depth pruning strategy"
+    - "Aggregation metrics for importance estimation (batch: L2/mean/var x seq: mean/L2/var)"
+    - "Single-shot vs. iterative importance estimation (T=1,2,4)"
+    - "Distillation vs. conventional training"
+    - "Loss function variants (KLD vs. MSE vs. cosine vs. reverse-KLD)"
+    - "Intermediate state loss components (embedding, attention, input, output)"
+    - "One-shot vs. iterative pruning (15B->4B vs. 15B->8B->4B)"
+    - "Pruning checkpoint selection (phase 1 vs. phase 2 of multi-phase training)"
+    - "Architecture search candidates (15 for 8B, 18 for 4B)"
+  training_recipe:
+    optimizer: "Same as Nemotron-4 (Adam variant, not fully specified)"
+    lr: "Cosine decay from 2e-4 to 4.5e-7"
+    batch_size: "1152"
+    hardware: "NVIDIA GPUs (exact count not specified), Megatron-LM framework"
+    retraining_tokens: "~1.8B tokens (~400 steps) for lightweight search; full retraining for final models"
+    calibration: "1024 samples, forward-pass only"
+    schedule: "Cosine LR decay"
+  method_family: "Structured pruning + knowledge distillation for LLM compression"
+
+positioning:
+  core_claim: "A single large pretrained LLM can be pruned along width and depth dimensions and retrained with <3% of original training data via knowledge distillation to produce a family of smaller models that match or exceed models trained from scratch, yielding up to 40x token savings."
+  key_results: >
+    Minitron 8B: MMLU 63.8% (+16% vs training-from-scratch Nemotron-3 8B's 54.7%),
+    HellaSwag 80.7%, GSM8K 51.3% (vs Nemotron-3's 24.0%).
+    Minitron 4B: MMLU 58.6%, competitive with Phi-2/Gemma/Qwen2.
+    40x fewer training tokens per derived model.
+    1.8x total compute savings for full model family (15B+8B+4B).
+    Minitron 8B matches Llama-3 8B and Mistral 7B on most benchmarks.
+    Pruned+distilled 4B achieves 37.81 MMLU vs 24.57 for pruned+conventional training.
+    Two-stage iterative pruning (15B->8B->4B) gives 12% MMLU improvement over one-shot.
+  limitations:
+    - "Architecture search limited to models <= 15B parameters; scalability to larger models untested"
+    - "Parameter-efficient fine-tuning (LoRA) during search not explored"
+    - "Study focuses on base models; SFT/DPO alignment not deeply investigated"
+    - "Nemotron-4 specific: importance estimation and search tied to one model family"
+    - "Limited discussion of inference optimization trade-offs (latency, throughput)"
+    - "Search space enumeration tractable only for <20 candidates; genetic/Bayesian optimization deferred"
+  relation_to_us: "foundation"
+  # Rationale: This paper establishes the pruning+KD paradigm for LLM compression that our
+  # sparse SwiGLU distillation work builds upon. Their finding that width pruning > depth pruning
+  # and that KD loss dominates conventional training loss directly informs our approach.
+  # Their structured pruning of MLP neurons is related to our sparse activation pattern distillation.
+
+narrative:
+  story_type: "化繁为简型"
+  hook: >
+    Opens with the practical pain point every LLM team faces: training separate models for
+    each deployment target (8B, 4B, etc.) from scratch is extremely compute-intensive.
+    Poses a direct question: can we derive smaller models from a single large one with
+    minimal retraining?
+  tension: >
+    Structured pruning is well-studied for smaller models, but practitioners lack clear guidance
+    on which technique to use, when, and how to combine them for LLMs. Prior work hasn't
+    explored knowledge distillation for pruned LLMs. The gap is: lots of pruning methods exist
+    but no systematic best-practices framework for LLM-scale compression.
+  key_insight: >
+    Width pruning initially appears worse than depth pruning (before retraining), but after
+    even minimal distillation-based retraining, width pruning becomes clearly superior.
+    This reversal is the paper's central empirical discovery and motivates the "prune wide,
+    distill briefly" recipe.
+  argument_chain: >
+    Problem (training LLM families is expensive) -> Background (structured pruning exists but
+    no LLM-scale best practices) -> Methodology (systematic exploration of pruning dimensions
+    + distillation variants + architecture search) -> Key finding (width > depth after
+    retraining, KD >> conventional training) -> 10 best practices codified -> Minitron models
+    validate at scale (match/exceed community models with 40x fewer tokens) -> Instruction
+    tuning confirms quality transfers downstream.
+  contribution_framing: >
+    Three contributions explicitly listed: (1) first thorough empirical exploration of
+    structured pruning across multiple axes at LLM scale, (2) codified list of 10 best
+    practices, (3) Minitron model family with open weights. The framing emphasizes
+    practical utility and reproducibility rather than algorithmic novelty.
+  intro_structure: >
+    4 paragraphs: P1 = motivation/research question (expensive to train model families),
+    P2 = background gap (no systematic guidance for LLM pruning+KD),
+    P3-P4 = contributions and results summary (best practices + Minitron models).
+    Compact introduction that quickly reaches the contribution statement.
+  notable_technique: >
+    The "10 best practices" framing is highly effective — it transforms a sprawling empirical
+    study into a memorable, actionable checklist. This makes the paper immediately useful to
+    practitioners and gives reviewers a clear mental scaffold for evaluating contributions.
+
+figures:
+  figure_count: 9
+  figure1:
+    type: "teaser_result"
+    description: >
+      Bar chart with line overlay showing compression results. Demonstrates that pruning+KD
+      achieves 40x training cost reduction while producing better results than training from
+      scratch. Compares Minitron models against baselines on key metrics with cost annotation.
+    narrative_role: >
+      Serves as the "money shot" — immediately establishes the value proposition before any
+      technical detail. Reader sees the 40x savings and competitive performance at a glance.
+    design_elements:
+      - "Bar chart for performance comparison"
+      - "Cost reduction annotation (40x) prominently displayed"
+      - "Dual encoding: bars for quality, line/annotation for efficiency"
+      - "Multiple model comparisons in single view"
+    visual_style: >
+      Clean bar chart layout with numeric annotations. Performance bars grouped by model,
+      with a clear visual hierarchy emphasizing the Minitron results. Training token count
+      used as efficiency proxy.
+  result_figures:
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Depth vs width pruning loss evolution during retraining"
+      how_gain_highlighted: "Shows the crossover point where width pruning overtakes depth pruning after retraining begins"
+      design_note: "Temporal evolution plot is more convincing than static comparison — shows the reversal dynamically"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["aggregation metrics for importance estimation"]
+      design_note: "Loss convergence curves for different aggregation strategies; differences visible but converge"
+    - figure_id: "Figure 9"
+      viz_type: "line_plot"
+      dimensions_varied: ["architecture search candidates"]
+      design_note: "Validation loss over training steps for multiple 8B candidates; shows ranking stabilization after ~300 steps, justifying lightweight search"
+  figure_narrative_role: >
+    Figure 1 (teaser result) -> Figure 2 (method overview: iterative pruning+distillation) ->
+    Figure 3 (architecture search procedure) -> Figure 4 (distillation architecture with
+    loss components) -> Figures 5-9 (appendix: detailed ablation curves). The main paper
+    uses 4 figures for motivation+method; all ablation visualizations are deferred to appendix.
+    Method figures (2,3,4) form a progressive zoom: high-level pipeline -> search -> distillation.
+
+tables:
+  table_count: 20
+  main_result_table:
+    table_id: "Table 2 (8B) and Table 3 (4B)"
+    row_axis: "methods"
+    col_axis: "model metadata (params, non-embedding params, training tokens) + downstream benchmarks"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold_best (implied by result discussion, standard NeurIPS convention)"
+    statistical_reporting: "Single-run numbers, no error bars"
+    num_baselines: "7 for 8B (Table 2), 6 for 4B (Table 3)"
+    design_note: >
+      Two separate tables for 8B and 4B size classes. Include non-embedding parameter count
+      and training token count as columns, enabling fair comparison across models with
+      different tokenizers. Benchmarks span reasoning (MMLU, GSM8K), commonsense
+      (HellaSwag, WinoGrande), and code (HumanEval, MBPP) — broad coverage.
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["pruning strategy components (depth/MLP/attention/embedding)", "distillation loss presence"]
+      variation_style: "full_numbers"
+      design_note: "Shows LM validation loss for different pruning configurations. Compact 5-row table establishing width vs depth finding."
+    - table_id: "Table 10"
+      what_varied: ["depth vs width pruning strategy"]
+      variation_style: "full_numbers"
+      design_note: "Direct comparison of depth-only, width-only, and combined strategies with parameter counts and loss values."
+    - table_id: "Table 11"
+      what_varied: ["distillation vs conventional training", "token budget (iso-compute)"]
+      variation_style: "full_numbers"
+      design_note: "Asterisks mark iso-compute settings. Shows HellaSwag and MMLU for fair comparison. Pruned+distilled clearly dominates."
+    - table_id: "Table 13"
+      what_varied: ["batch aggregation (mean/L2/var)", "sequence aggregation (mean/L2/var)"]
+      variation_style: "full_numbers"
+      design_note: "Grid of aggregation function combinations; identifies (batch=L2, seq=mean) as optimal."
+    - table_id: "Table 14"
+      what_varied: ["number of iterative importance estimation rounds (T=1,2,4)"]
+      variation_style: "full_numbers"
+      design_note: "Shows convergence — single-shot suffices, simplifying the pipeline."
+    - table_id: "Table 16"
+      what_varied: ["logit loss function (KLD, MSE, cosine, reverse-KLD)"]
+      variation_style: "full_numbers"
+      design_note: "Loss function shootout; KLD wins. Clean single-variable comparison."
+    - table_id: "Table 17"
+      what_varied: ["intermediate state loss components (embedding, attention, input, output)"]
+      variation_style: "checkmark_grid"
+      design_note: "Checkmark grid showing which loss components are active. Progressive addition shows marginal value of each."
+    - table_id: "Table 18"
+      what_varied: ["intermediate state loss with/without depth pruning"]
+      variation_style: "full_numbers"
+      design_note: "Shows intermediate state loss helps more when depth is significantly reduced."
+  supplementary_tables:
+    in_appendix: true
+    content: >
+      Tables 12-20 in appendix. Architecture search space (Table 12), aggregation metrics
+      (Table 13), iterative importance (Table 14), loss functions (Table 16-18), search
+      candidates (Table 19), multi-phase training (Table 20). Essentially all ablation
+      detail tables live in the appendix.
+    reason: >
+      Main paper keeps only the high-impact comparison tables (Tables 1-9): main results,
+      pruning baselines, architecture specs, instruction tuning. All ablation tables that
+      support individual best practices are relegated to appendix, keeping the main paper
+      focused on the final recipe and results. This is a clean split: main = "what works",
+      appendix = "how we know it works".

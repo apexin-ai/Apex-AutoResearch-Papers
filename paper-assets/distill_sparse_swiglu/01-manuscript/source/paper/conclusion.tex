@@ -1,0 +1,9 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We systematically compared five training objectives for learned sparsity prediction in SwiGLU LLMs and found output-distribution alignment to be the primary design axis: forward KL outperforms JSD, reverse KL, BCE, and MSE, with per-neuron objectives degrading by $1.7$--$19\times$ in perplexity.
+The signal type gap (9.47 PPL between per-layer KL and MSE under shared hyperparameters) exceeds the coupling breadth range (2.08 PPL across $K \in \{1,\ldots,32\}$), though confounded by train--inference mismatch; a target-swap ablation confirms that KL-discovered mask patterns transfer to simpler BCE training (PPL gap $\leq$0.65pp), indicating that \emph{what} to mask matters more than \emph{how} the gradient flows.
+The KL predictor ($<$1\% of base parameters) reduces TEAL's perplexity by 14.5\% at 30\% on LLaMA-3.1-8B, generalizing to Mistral-7B ($-$17.3\%) and Qwen-2.5-14B, while rendering compensation (+67.2M params) redundant.
+Gains are task-type dependent ($n{=}3$, directional): KL improves commonsense reasoning (4/4 tasks) but shows knowledge-task decline driven primarily by allocation-induced layer starvation, with C4 domain control ruling out training data composition.
+
+Sparse kernel integration for wall-clock speedup and task-aware allocation strategies that balance commonsense and knowledge preservation are the most pressing open directions.

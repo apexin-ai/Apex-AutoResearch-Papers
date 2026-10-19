@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c23bfbaffa26445b3de",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval kl30 s123 uniform",
+  "task_key": "worker_eval_kl30_s123_uniform_20260517T125234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl30_s123_uniform_20260517T125234_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "14fa0387a75c4d7105345deb12978c24404027786375fd90e23f913e6b8f6820"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均已成功启动：\n\n| 任务 | GPU | 显存占用 | PID | 日志 |\n|------|-----|---------|-----|------|\n| `kl30_s123_eval` (uniform eval) | cuda:0 | 15,879 MiB | 42019 | `~/runs/distill_sparse_swiglu/kl30_s123_eval.log` |\n| `kl30_s456_train` (KL训练) | cuda:1 | 加载中 | 42092 | `~/runs/distill_sparse_swiglu/kl30_s456_train.log` |\n\ncuda:0 eval 已在加载模型（~16GB），cuda:1 train 刚启动正在初始化。双卡并行运行中，无冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kl30-s123-uniform.md"
+}

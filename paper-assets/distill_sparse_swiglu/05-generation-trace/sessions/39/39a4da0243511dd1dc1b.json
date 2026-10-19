@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39a4da0243511dd1dc1b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops survival check and collect",
+  "task_key": "worker_ops_survival-check-and-collect_20260518T162959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_survival-check-and-collect_20260518T162959_result.json",
+    "occurrence": 1,
+    "bytes": 1066,
+    "sha256": "50f258f302788bfefe09609c9eafb9f952835fcbb868ca041d26aed0f03e0488"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| 实验 | 服务器 | GPU | 状态 | 指标/进度 |\n|------|--------|-----|------|-----------|\n| c1_ablation_eval_uniform | westd-41718 | 0 | **运行中** | MMLU loglikelihood 14% (8545/58702)，~50 it/s，预计还需 ~20min 完成 MMLU + gsm8k |\n| kl_sparsity25_s42 | westd-41718 | 1 | **完成** ✓ | loss=0.158, sparsity=0.230 (target 0.25), 1000/1000 steps, checkpoint saved |\n| kl_sparsity35_s42 | westd-34887 | 0 | **运行中** | step 450/1000 (45%), loss~0.19, sparsity~0.34, 预计 ~20min 完成 |\n| kl_sparsity45_s42 | westd-34887 | 1 | **运行中** | step 450/1000 (45%), loss~0.28, sparsity~0.43, 预计 ~20min 完成 |\n\n**kl_sparsity25_s42 已更新 registry → DONE/success**，训练指标已录入。checkpoint 在 `checkpoints/kl_sparsity25_s42/predictor_kl_normalized.pt` (145MB)。\n\n注意：kl_sparsity25_s42 实际 sparsity 收敛到 0.23（vs target 0.25），与 30% target 收敛到 ~0.27 的模式一致（均略低于 target）。需要后续跑 benchmark eval 获取 PPL 和 downstream 指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-survival-check-and-collect.md"
+}

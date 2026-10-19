@@ -1,0 +1,22 @@
+{
+  "exp_id": "eval_bce_v3_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:53:24.152Z",
+    "updated_at": "2026-05-16T05:53:31.127Z",
+    "hypothesis": "D031 eval: BCE iso-compute v3 评测——对比 KL predictor 在相同 sparsity (50%) 下的 PPL/TEAL，证明 KL 优势来自 loss 函数本身而非计算量差异 (Reviewer Concern #2 defense)",
+    "spec": {
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-16T05:53:31.306886+00:00",
+  "trigger": "update_registry"
+}

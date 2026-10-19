@@ -1,0 +1,18 @@
+Gradient SNR Analysis Results (KL vs BCE, 80 steps, LLaMA-3.1-8B + C4)
+
+KL avg SNR: 5.77e-05
+BCE avg SNR: 1.00e-05
+Ratio: 5.76x
+
+Per-layer patterns:
+- Early layers (0-4): KL/BCE ratio 34-156x
+- Late layers (27-31): KL/BCE ratio 2-4x
+
+Temporal trends:
+- KL SNR grows: 9e-6 (step 1) -> 9.5e-5 (step 30)
+- BCE SNR decays: drops to ~1e-8 after step 10 (early layers)
+
+Conclusion: KL coupled gradient provides significantly clearer optimization signal, especially for early layers where BCE local proxy targets provide near-zero gradient information.
+
+Script: /root/distill_sparse_swiglu/scripts/gradient_snr_analysis.py
+Full JSON: /root/distill_sparse_swiglu/artifacts/gradient_snr_results.json

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0947c12eb3bc98ed91fd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis gradient snr",
+  "task_key": "worker_analysis_gradient_snr_20260517T040234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_snr_20260517T040234_result.json",
+    "occurrence": 1,
+    "bytes": 1239,
+    "sha256": "2d6312bc145640cc602916e524ee49c807ecf68ceda70c6e32bf4c3b7a72603d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n**Gradient SNR (KL vs BCE) — 80 steps on LLaMA-3.1-8B + C4**\n\n| Metric | KL | BCE | Ratio |\n|--------|-----|-----|-------|\n| Avg SNR | 5.77×10⁻⁵ | 1.00×10⁻⁵ | **5.76×** |\n\n关键发现：\n- **早期层（0-4）差异最大**：KL 的 SNR 比 BCE 高 34-156×，因为 KL 的 end-to-end gradient 让早期 predictor 接收到来自最终输出分布的强信号，而 BCE 对早期层的梯度几乎为零（local target 信息太局部）\n- **后期层（27-31）差异缩小到 2-4×**：后期层更接近输出，两种 loss 都能提供有意义的梯度\n- **KL 的 SNR 随训练增长**：从 step 1 的 9e-6 增长到 step 30 的 9.5e-5，说明优化信号随着 mask 学习越来越清晰\n- **BCE 的 SNR 快速衰减**：step 10 后基本降到 ~1e-8 水平（早期层），符合 local proxy loss 梯度饱和的预期\n\n结论：KL 的 coupled gradient 确实提供了更清晰的优化信号，尤其是对模型早期层。这解释了为什么 KL 训练的 predictor 最终质量更高。\n\n脚本在 `/root/distill_sparse_swiglu/scripts/gradient_snr_analysis.py`，完整 JSON 结果在 `/root/distill_sparse_swiglu/artifacts/gradient_snr_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-snr.md"
+}

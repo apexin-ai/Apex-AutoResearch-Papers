@@ -1,0 +1,35 @@
+{
+  "exp_id": "bce_isocompute_v2_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:01:43.104Z",
+    "updated_at": "2026-05-15T20:15:44.153Z",
+    "spec": {
+      "command": "python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --warmup_steps 100 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --sparsity_reg_weight 2.0 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42 --gradient_checkpointing --log_every 100 --save_every 250 --wandb_run_name bce_isocompute_v2_s42",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "128985",
+      "log_path": "~/runs/distill_sparse_swiglu/bce_isocompute_v2_s42.log",
+      "submitted_at": "2026-05-15T20:15:33.006Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103 (HF cached at /root/autodl-tmp/.hf_cache)",
+      "data_count": "wikitext-103-raw-v1",
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "reg_weight": 2,
+      "reg_fix": "STE mask (hard forward, sigmoid backward) replacing original no-grad hard threshold",
+      "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42"
+    },
+    "hypothesis": "BCE 在 1000 步（与 KL 等步数）下 loss 是否已饱和？获取 eval PPL 用于 iso-compute 对比。(D011: 改自原 2700 步方案)"
+  },
+  "timestamp": "2026-05-15T20:15:44.236413+00:00",
+  "trigger": "update_registry"
+}

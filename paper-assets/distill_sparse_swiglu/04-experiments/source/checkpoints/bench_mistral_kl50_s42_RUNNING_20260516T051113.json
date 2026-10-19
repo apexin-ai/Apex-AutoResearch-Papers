@@ -1,0 +1,38 @@
+{
+  "exp_id": "bench_mistral_kl50_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:22:12.157Z",
+    "updated_at": "2026-05-16T05:11:13.110Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id bench_mistral_kl50_s42 --model_name_or_path /root/autodl-tmp/models/mistral-7b --checkpoint checkpoints/mistral_kl_s42/predictor_kl_normalized.pt --sparsity_mode per_token --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "207957",
+      "log_path": "~/runs/distill_sparse_swiglu/bench_mistral_kl50_s42.log",
+      "submitted_at": "2026-05-16T05:11:11.758Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "D029: Mistral KL 50% sparsity — benchmark_eval.py 统一 few-shot 评测 (ARC-c=25, WG=5, MMLU=5, GSM8K=8)。与 lm_eval_mistral_kl_50pct (0-shot) 对比，确保评测一致性。",
+    "conclusion": "killed",
+    "notes": "Director 优先级调整: BCE iso-compute v3 (P0) 插队到 cuda:1。本实验被 kill，待 BCE 完成后重跑。",
+    "gpu": "cuda:0",
+    "server": "westd-34887",
+    "account": "root",
+    "pid": "207957",
+    "log_path": "~/runs/distill_sparse_swiglu/bench_mistral_kl50_s42.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id bench_mistral_kl50_s42 --model_name_or_path /root/autodl-tmp/models/mistral-7b --checkpoint checkpoints/mistral_kl_s42/predictor_kl_normalized.pt --sparsity_mode per_token --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\""
+    }
+  },
+  "timestamp": "2026-05-16T05:11:13.765133+00:00",
+  "trigger": "update_registry"
+}

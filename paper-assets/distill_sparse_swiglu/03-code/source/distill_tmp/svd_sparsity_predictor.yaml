@@ -1,0 +1,26 @@
+paper_key: "SVD Contextual Sparsity Predictors for Fast LLM Inference"
+title: "SVD Contextual Sparsity Predictors for Fast LLM Inference"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: ["trained sparsity predictors", "dense baseline"]
+  metrics:
+    - {name: "end-to-end decoding time reduction", direction: "higher_better"}
+    - {name: "benchmark score degradation", direction: "lower_better"}
+  datasets:
+    - {name: "math benchmarks", size: "not specified"}
+    - {name: "code generation benchmarks", size: "not specified"}
+  ablation_dimensions: ["SVD truncation rank", "threshold calibration", "sparsity level"]
+  training_recipe: {optimizer: "N/A (training-free, SVD-based)", lr: "N/A", hardware: "CUDA and CANN devices"}
+  method_family: "training-free SVD-based sparsity prediction"
+
+positioning:
+  core_claim: "Truncation-aware SVD of the gate projection matrix builds training-free sparsity predictors for ReGLU FFNs, achieving 1.8x decoding speedup at 90% sparsity with <1% benchmark degradation."
+  key_results: "Up to 1.8x end-to-end decoding time reduction at 90% FFN sparsity; <1% degradation on math and code generation tasks."
+  limitations: ["requires ReGLU activation (not SwiGLU directly)", "90% sparsity assumes ReLU-fied models"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

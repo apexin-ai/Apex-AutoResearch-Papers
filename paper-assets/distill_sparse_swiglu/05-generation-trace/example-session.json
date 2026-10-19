@@ -1,0 +1,562 @@
+{
+  "schema_version": "1.0",
+  "id": "8498c48b2a5a43fb744d",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "cron hook qwen14b kl30 s42 gsm8k v2",
+  "task_key": "cron_hook_qwen14b_kl30_s42_gsm8k_v2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_qwen14b_kl30_s42_gsm8k_v2.jsonl",
+    "occurrence": 1,
+    "bytes": 70204,
+    "sha256": "54a5dbb27a577e2fff2d486669d3f182808c93c4379f25225d5ea733e3019d33"
+  },
+  "readable_path": "readable/conversations/cron-hook-qwen14b-kl30-s42-gsm8k-v2.md",
+  "paper_title": "Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs",
+  "preview_selection": {
+    "round": 1,
+    "total_source_events": 79,
+    "policy": "First bounded recorded conversation round with user, assistant, tool call, and tool result; 5–70 events and under 160 KB. Not a scientific-quality ranking."
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "tool_call": 13,
+      "tool_result": 12,
+      "assistant": 1
+    }
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T22:50:06.208300+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: qwen14b_kl30_s42_gsm8k_v2\n- project: distill_sparse_swiglu\n- server: westd-41718\n- log_path: ~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_v2.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T22:50:21.962753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "15"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T22:50:22.214108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 251
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T22:50:25.837199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T22:50:25.837646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T22:50:26.790769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T22:50:27.254707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (427,648 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2fdffc1c/dfe77071-3b8d-413a-9f3d-8aa23d7f4933/tool-results/mcp-agent-ml-research-read_registry-1779231026975.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2fdffc1c/dfe77071-3b8d-413a-9f3d-8aa23d7f4933/tool-results/mcp-agent-ml-research-read_registry-1779231026975.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2fdffc1c/dfe77071-3b8d-413a-9f3d-8aa23d7f4933/tool-results/mcp-agent-ml-research-read_registry-1779231026975.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1417
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T22:50:27.255211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T22:50:27.706780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T22:50:27.707217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "status": "running"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T22:50:32.425008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"qwen14b_kl30_s456_gsm8k\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=129220)\\\"]}, {\\\"exp_id\\\": \\\"qwen14b_teal30_uniform_gsm8k\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=133906)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 6587
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T22:50:32.425726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-19T22:50:06Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 262 个实验 — ANALYZING 1, DONE 243, PREPARING 16, QUEUED 1, RUNNING 1\\\\n**DONE 分布**: failed 30, killed 17, negative 21, success 175\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 1 张 — westd-34887:cuda:0(qwen14b_kl30_s456_gsm8k)\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-34887**:\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\\\n- **westd-41718**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 764G/879G 可用（已用 9%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `qwen14b_kl30_s456_gsm8k` | westd-34887 | cuda:0 | 129220 | `~/runs/distill_sparse_swiglu/qwen14b_kl30_s456_gsm8k.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `bench_teal30_uniform_gsm8k` [success] — 2026-05-19T22:34:00\\\\n- `qwen14b_kl30_s123_gsm8k` [success] — 2026-05-19T20:56:54\\\\n- `qwen14b_kl30_s456_eval_v3` [success] — 2026-05-19T20:40:09\\\\n- `qwen14b_kl30_s123_eval_v5` [success] — 2026-05-19T20:40:08\\\\n- `qwen14b_kl30_s42_eval_uniform_v3` [success] — 2026-05-19T20:40:06\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-19\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| qwen14b_kl30_s456_gsm8k | KL s456 GSM8K supplement for Qwen-14B. Completes 3-seed GSM8K comparison. Required for complete 14B paper table. | — | — | — |\\\\n| qwen14b_kl30_s42_gsm8k_v2 | KL s42 GSM8K supplement for Qwen-14B (retry). Enables KL vs TEAL comparison on reasoning task. v1 killed due to GPU contention on 41718:1. | — | — | — |\\\\n\\\\n## 待处理\\\\n- qwen14b_teal30_uniform_\n…[truncated 3905 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 5634
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T22:50:32.426210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md\\\", \\\"content\\\": \\\"# distill_sparse_swiglu — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 05:07 UTC | 更新原因: D071 Mistral cross-arch downstream 确认 KL 优势，进入最终整合阶段\\\\n\\\\n> 最后更新: 2026-05-19 05:10 UTC | 更新原因: D071 Mistral cross-arch 确认\\\\n\\\\n## 核心方向\\\\nKL distillation discovers fundamentally different neuron importance patterns for SwiGLU sparsity prediction (LLaMA-3.1-8B). C1 causal ablation provides evidence target quality drives KL advantage. Cross-arch (Mistral) downstream confirms KL > TEAL. 详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: 最终数据整合 → Round 11 review → ARR 提交\\\\n- **架构**: LLaMA-3.1-8B (主) + Mistral-7B (cross-arch, downstream confirmed) + Qwen-14B (cross-scale)\\\\n- **D071**: Mistral TEAL baseline 确认 KL downstream 优势 (ARC +9pp, WG +5.6pp)\\\\n- **C1 retrain**: max Δ=1.70pp with consistent checkpoints ✅\\\\n- **Paper P1-P9 text patches**: ✅\\\\n- **Paper consistency**: 0 critical / 0 warning ✅\\\\n\\\\n## 实验状态\\\\n\\\\n### 全部完成\\\\n- ✅ Mistral TEAL 30%: ARC=41.1%, WG=63.5%, MMLU=43.5% → KL wins (ARC +9, WG +5.6)\\\\n- ✅ Mistral TEAL 50%: MMLU=26.4%≈random → capacity cliff cross-arch\\\\n- ✅ C1 retrain s123/s456: max Δ=1.70pp, consistent with main table\\\\n- ✅ BCE 50% unified: PPL=27.97, MMLU=26.1%≈random\\\\n- ✅ C1@30% 3-seed: all Δ ≤ 1.70pp\\\\n\\\\n### 进行中\\\\n- 🔄 Mistral KL 30% HellaSwag/PIQA (~30min) — 补全 Mistral 对比表\\\\n\\\\n## 后续\\\\n- [ ] Paper Agent 整合 Mistral cross-arch + C1 retrain 数据\\\\n- [ ] Mistral KL HellaSwag/PIQA 到齐后补表\\\\n- [ ] Round 11 review (continue mode)\\\\n- [ ] 最终 ARR 提交\\\\n\\\\n## GPU 预算\\\\n本项目分配: westd-34887 (cuda:0,1) + westd-41718 (cuda:0,1) = 4 GPU\\\\n状态: 34887:0 Mistral KL HS/PIQA, 其余空闲\\\\n\\\\n## DDL\\\\nEMNLP 2026 ARR May cycle: **2026-05-25** (6 天)\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D082 | 2026-05-19 | 8B D075 验证通过(bit-identical)，Table 2 uniform 数据安全，取 | bench_kl30_uniform_gsm8k_d075 |\\\\n| D0\n…[truncated 1344 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 5170
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T22:50:33.128738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"qwen14b_kl30_s456_gsm8k\\\"}], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"qwen14b_kl30_s456_gsm8k\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 0 张, 实际跑 1 张 | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 5421
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T22:50:33.229586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 5522
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T22:50:48.842206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2fdffc1c/dfe77071-3b8d-413a-9f3d-8aa23d7f4933/tool-results/mcp-agent-ml-research-read_registry-1779231026975.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\ntarget = [e for e in exps if e.get('exp_id') == 'qwen14b_kl30_s42_gsm8k_v2']\nif target:\n    print(json.dumps(target[0], indent=2, ensure_ascii=False))\nelse:\n    print('NOT FOUND')\n\"",
+              "description": "Extract qwen14b_kl30_s42_gsm8k_v2 from registry JSON"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T22:50:49.143669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    target = [e for e in exps if e.get('exp_id') == 'qwen14b_kl30_s42_gsm8k_v2']\n                                 ^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "Bash",
+            "elapsed_ms": 301
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T22:50:55.684854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2fdffc1c/dfe77071-3b8d-413a-9f3d-8aa23d7f4933/tool-results/mcp-agent-ml-research-read_registry-1779231026975.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\n# Check structure\nif isinstance(registry, dict) and 'data' in registry:\n    d = registry['data']\n    if isinstance(d, dict) and 'experiments' in d:\n        exps = d['experiments']\n        if isinstance(exps, dict):\n            target = exps.get('qwen14b_kl30_s42_gsm8k_v2')\n            if target:\n                print(json.dumps(target, indent=2, ensure_ascii=False))\n            else:\n                print('NOT FOUND, keys sample:', list(exps.keys())[:5])\n        elif isinstance(exps, list):\n            print('list type, len=', len(exps))\n            print('first element type:', type(exps[0]))\n    else:\n        print('data keys:', list(d.keys()) if isinstance(d, dict) else type(d))\nelse:\n    print('top keys:', list(registry.keys()) if isinstance(registry, dict) else type(registry))\n\"",
+              "description": "Probe registry structure and extract target experiment"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T22:50:55.735662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"ANALYZING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-19T17:52:58.669Z\",\n  \"updated_at\": \"2026-05-19T22:50:01.174Z\",\n  \"hypothesis\": \"KL s42 GSM8K supplement for Qwen-14B (retry). Enables KL vs TEAL comparison on reasoning task. v1 killed due to GPU contention on 41718:1.\",\n  \"parent\": \"qwen14b_kl30_s42_eval_uniform_v3\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42_gsm8k_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks gsm8k --seq_len 2048 --gpu 0\\\"\",\n    \"server\": \"westd-41718\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"166099\",\n    \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_v2.log\",\n    \"submitted_at\": \"2026-05-19T18:18:18.206Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\"\n  },\n  \"server\": \"westd-41718\",\n  \"gpu\": \"cuda:0\",\n  \"pid\": \"166099\",\n  \"log_path\": \"~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_v2.log\",\n  \"reproduce\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42_gsm8k_v2 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks gsm8k --seq_len 2048 --gpu 0\\\"\",\n    \"finished_at\": \"2026-05-19T22:49:58.678Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"o\n…[truncated 108 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T22:51:14.416559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2fdffc1c/dfe77071-3b8d-413a-9f3d-8aa23d7f4933/tool-results/mcp-agent-ml-research-read_registry-1779231026975.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n\n# Get related GSM8K experiments for Qwen-14B\nrelated_keys = [k for k in exps if 'qwen14b' in k and 'gsm8k' in k]\nfor k in sorted(related_keys):\n    e = exps[k]\n    print(f'{k}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\",\\\"-\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}), ensure_ascii=False)}')\nprint()\n# Also get the TEAL uniform GSM8K for comparison\nteal_keys = [k for k in exps if 'teal' in k and 'gsm8k' in k]\nfor k in sorted(teal_keys):\n    e = exps[k]\n    print(f'{k}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\",\\\"-\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}), ensure_ascii=False)}')\nprint()\n# Dense GSM8K baseline\ndense_keys = [k for k in exps if 'dense' in k and 'gsm8k' in k]\nfor k in sorted(dense_keys):\n    e = exps[k]\n    print(f'{k}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\",\\\"-\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}), ensure_ascii=False)}')\n\"",
+              "description": "Extract related Qwen-14B GSM8K and TEAL/Dense GSM8K experiments"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T22:51:14.517394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "qwen14b_kl30_s123_gsm8k: status=DONE, conclusion=success, metrics={\"gsm8k_exact_match\": 0.3442, \"gsm8k_exact_match_strict\": 0.3434, \"actual_sparsity\": 0.297}\nqwen14b_kl30_s42_gsm8k: status=DONE, conclusion=killed, metrics={}\nqwen14b_kl30_s42_gsm8k_v2: status=ANALYZING, conclusion=-, metrics={}\nqwen14b_kl30_s456_gsm8k: status=RUNNING, conclusion=-, metrics={}\nqwen14b_teal30_uniform_gsm8k: status=QUEUED, conclusion=-, metrics={}\n\nbench_teal30_uniform_gsm8k: status=DONE, conclusion=success, metrics={\"gsm8k_exact_match\": 0.0879, \"actual_sparsity\": 0.3}\nqwen14b_teal30_uniform_gsm8k: status=QUEUED, conclusion=-, metrics={}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T22:51:28.332577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2fdffc1c/dfe77071-3b8d-413a-9f3d-8aa23d7f4933/tool-results/mcp-agent-ml-research-read_registry-1779231026975.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n\n# Get Qwen-14B dense GSM8K\ndense_14b = [k for k in exps if 'qwen14b' in k and 'dense' in k]\nfor k in sorted(dense_14b):\n    e = exps[k]\n    print(f'{k}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\",\\\"-\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}), ensure_ascii=False)}')\nprint()\n# 8B benchmarks for GSM8K (bench_dense, bench_kl30_uniform)\nbench_keys = [k for k in exps if k.startswith('bench_') and 'gsm8k' in k]\nfor k in sorted(bench_keys):\n    e = exps[k]\n    print(f'{k}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\",\\\"-\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}), ensure_ascii=False)}')\nprint()\n# Dense baseline\nbench_dense = exps.get('bench_dense', {})\nprint(f'bench_dense: status={bench_dense.get(\\\"status\\\")}, conclusion={bench_dense.get(\\\"conclusion\\\",\\\"-\\\")}, metrics={json.dumps(bench_dense.get(\\\"metrics\\\",{}), ensure_ascii=False)}')\n# KL uniform GSM8K 8B\nkl_gsm8k = [k for k in exps if 'kl' in k and 'gsm8k' in k and 'qwen' not in k]\nfor k in sorted(kl_gsm8k):\n    e = exps[k]\n    print(f'{k}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\",\\\"-\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}), ensure_ascii=False)}')\n\"",
+              "description": "Get 14B dense and 8B GSM8K baselines"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T22:51:28.434205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "qwen14b_dense_4task: status=DONE, conclusion=failed, metrics={}\nqwen14b_dense_4task_v2: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 5.1854, \"arc_challenge_acc_norm\": 0.6758, \"winogrande_acc\": 0.8106, \"mmlu_acc\": 0.7977}\nqwen14b_dense_baseline: status=DONE, conclusion=success, metrics={\"ppl\": 5.1854, \"arc_challenge\": 0.6758, \"winogrande\": 0.8106, \"mmlu\": 0.7977, \"gsm8k\": 0.8757}\nqwen14b_dense_hspiqa: status=DONE, conclusion=success, metrics={\"hellaswag_acc\": 0.6444, \"hellaswag_acc_norm\": 0.8421, \"piqa_acc\": 0.809, \"piqa_acc_norm\": 0.8194}\n\nbench_kl30_uniform_gsm8k_d075: status=PREPARING, conclusion=-, metrics={}\nbench_teal30_uniform_gsm8k: status=DONE, conclusion=success, metrics={\"gsm8k_exact_match\": 0.0879, \"actual_sparsity\": 0.3}\n\nbench_dense: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 6.1173, \"arc_challenge_acc\": 0.5478, \"arc_challenge_acc_norm\": 0.5828, \"winogrande_acc\": 0.7806, \"mmlu_acc\": 0.6527, \"gsm8k_exact_match\": 0.4875}\nbench_kl30_uniform_gsm8k_d075: status=PREPARING, conclusion=-, metrics={}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T22:51:48.094996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:qwen14b_kl30_s42_gsm8k_v2",
+              "project": "distill_sparse_swiglu",
+              "task_prompt": "## 任务\nSSH 到 westd-41718 读取实验 qwen14b_kl30_s42_gsm8k_v2 的日志，提取 GSM8K 评测结果。\n\n## 步骤\n\n1. SSH 到 westd-41718，读取日志文件：\n   ```\n   cat ~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_v2.log\n   ```\n   如果日志很长，先 tail -100 看最后的结果部分。\n\n2. 提取以下关键指标：\n   - gsm8k_exact_match (或 gsm8k_acc)\n   - actual_sparsity\n   - 任何其他输出的 metrics\n\n3. 检查是否有错误或异常（比如 OOM、NaN 等）。\n\n4. 用 update_registry 更新实验：\n   - 设置 metrics（GSM8K 结果）\n   - 设置 conclusion = \"success\"（如果结果正常）或 \"negative\"/\"failed\"（如果有问题）\n   - 设置 status = \"DONE\"\n   - 设置 checkpoint_path（如果适用，这是 eval 实验，checkpoint 来自 parent）\n   - 确认 log_path 已设置\n\n5. 对比已有数据做简要分析：\n   - Qwen-14B Dense GSM8K baseline: 0.8757\n   - Qwen-14B KL30 s123 GSM8K: 0.3442\n   - 8B Dense GSM8K: 0.4875\n   - 8B TEAL 30% uniform GSM8K: 0.0879\n\n6. 在最终输出中报告：\n   - 提取的完整 metrics\n   - 与 s123 的一致性判断\n   - 与 Dense baseline 的 retention 比例\n   - 结论（success/negative/failed）和原因\n",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T22:51:51.009192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_qwen14b_kl30_s42_gsm8k_v2_20260519T225148\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/logs/workers/worker_analysis_qwen14b_kl30_s42_gsm8k_v2_20260519T225148.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_qwen14b_kl30_s42_gsm8k_v2_20260519T225148 started. Use get_worker_status('worker_analysis_qwen14b_kl30_s42_gsm8k_v2_20260519T225148') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2914
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T22:51:55.839336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "filters": "{'exp_id': 'qwen14b_teal30_uniform_gsm8k'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T23:10:08.378656+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出分析日志。同时检查 reconcile 发现 qwen14b_teal30_uniform_gsm8k 也在运行（pid=133906），但 registry 显示 QUEUED——需要确认状态。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:qwen14b_kl30_s42_gsm8k_v2"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ]
+}

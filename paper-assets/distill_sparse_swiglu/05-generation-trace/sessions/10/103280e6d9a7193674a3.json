@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "103280e6d9a7193674a3",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis k16 eval final2 result",
+  "task_key": "worker_analysis_k16_eval_final2_result_20260523T062940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k16_eval_final2_result_20260523T062940_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "618ed295a9ad50abff7311ef6ec6703aa6106c468b664137ab1c225c71ab29a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`perlayer_kl_k16_eval_final2` 评估成功完成，registry 已更新为 DONE/success，cron 已清除。\n\n## 完整指标表\n\n| 指标 | 值 |\n|------|-----|\n| wikitext2_ppl | **8.6737** |\n| arc_challenge (acc_norm) | **0.4104** |\n| winogrande (acc) | **0.6843** |\n| mmlu (acc) | **0.4403** |\n| gsm8k (exact_match) | **0.0811** |\n| hellaswag (acc_norm) | **0.6963** |\n| piqa (acc_norm) | **0.7590** |\n\n配置：LLaMA-3.1-8B, teal_global, 30% sparsity, uniform allocation, K=16 predictor checkpoint。评估耗时约 4177 秒。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-k16-eval-final2-result.md"
+}

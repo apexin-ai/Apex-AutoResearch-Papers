@@ -1,0 +1,27 @@
+{
+  "sparsity": [28.5, 50.0, 70.0],
+  "dense_baseline": 6.12,
+  "methods": {
+    "KL Predictor": {
+      "ppl": [8.98, 12.00, 17.91],
+      "color": "#1f77b4",
+      "linestyle": "-",
+      "marker": "o",
+      "label": "KL Predictor (Ours)"
+    },
+    "Vanilla TEAL": {
+      "ppl": [10.97, 23.31, 100.11],
+      "color": "#ff7f0e",
+      "linestyle": "--",
+      "marker": "^",
+      "label": "Vanilla TEAL"
+    },
+    "WINA": {
+      "ppl": [11.45, 27.93, 137.24],
+      "color": "#2ca02c",
+      "linestyle": ":",
+      "marker": "s",
+      "label": "WINA"
+    }
+  }
+}

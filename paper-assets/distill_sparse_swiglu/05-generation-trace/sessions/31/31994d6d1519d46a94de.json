@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31994d6d1519d46a94de",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops read s123 eval ppl",
+  "task_key": "worker_ops_read-s123-eval-ppl_20260519T125347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read-s123-eval-ppl_20260519T125347_result.json",
+    "occurrence": 1,
+    "bytes": 42,
+    "sha256": "e827bc840b6a006ede75c9a7624be9375bf939693f0e0eecc3b30c29d6101f32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**WikiText-2 PPL = 7.6607**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-s123-eval-ppl.md"
+}

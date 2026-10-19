@@ -1,0 +1,65 @@
+{
+  "exp_id": "kl_normalized_quicktest",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:36:21.345Z",
+    "updated_at": "2026-05-15T14:36:05.579Z",
+    "spec": {
+      "hypothesis": "KL loss per-token-per-dim 归一化后 (~0.003 量级) + Lagrangian 约束可维持 50% sparsity",
+      "loss_type": "kl_normalized",
+      "seed": 42,
+      "model": "Llama-3.1-8B",
+      "sparsity": 0.5,
+      "steps": 200,
+      "batch_size": 4,
+      "seq_len": 2048,
+      "gpu": "cuda:0",
+      "server": "westd-34887",
+      "parent": "kl_lagrangian_quicktest",
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 200 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/kl_normalized_quicktest --wandb_run_name kl_normalized_quicktest --dataset wikitext-103\"",
+      "data_path": "wikitext-103 (HF cached)",
+      "data_count": null,
+      "model_name": "llama-3.1-8b",
+      "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/kl_normalized_quicktest/predictor_kl_normalized.pt",
+      "log_path": "/root/distill_sparse_swiglu/logs/kl_normalized_quicktest.log"
+    },
+    "conclusion": "failed",
+    "metrics": {
+      "step1_kl": 1.18,
+      "step200_kl": 0.641,
+      "step200_sparsity": 0.504,
+      "final_lambda": 8,
+      "sparsity_converged_step": 80,
+      "sparsity_trajectory": [
+        0.406,
+        0.398,
+        0.398,
+        0.457,
+        0.52,
+        0.506,
+        0.504,
+        0.504
+      ],
+      "lambda_trajectory": [
+        1,
+        2,
+        4,
+        8,
+        8,
+        8,
+        8,
+        8
+      ]
+    },
+    "notes": "SUCCESS: seq_len-only 归一化有效。KL 从 1.18(step1)→0.641(step200)，sparsity 在 step 80 收敛到 0.50-0.52 (target 0.5)。Lambda 1→8 后稳定。归一化前 KL~418 vs constraint~1.2 (3 个数量级差距) → 归一化后 KL~0.5-1.2 vs constraint~0.2 (同量级)。Lagrangian 正常工作。",
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/kl_normalized_quicktest/predictor_kl.pt",
+    "log_path": "Worker log: worker_code_fix-kl-norm_20260515T135636",
+    "completed_at": "2026-05-15T14:18:05.703Z"
+  },
+  "timestamp": "2026-05-15T14:36:05.608004+00:00",
+  "trigger": "update_registry"
+}

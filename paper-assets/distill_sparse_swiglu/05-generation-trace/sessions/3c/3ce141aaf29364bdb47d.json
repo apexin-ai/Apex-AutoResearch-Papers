@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ce141aaf29364bdb47d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis mvp kl norm v2 s456",
+  "task_key": "worker_analysis_mvp_kl_norm_v2_s456_20260515T163529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp_kl_norm_v2_s456_20260515T163529_result.json",
+    "occurrence": 1,
+    "bytes": 158,
+    "sha256": "a89995f90d0574adfa0bcd93afa2a7621f471963532ca6e83b132b528c804940"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "之前等待评估的后台任务已完成，评估结果已在上一轮全部处理完毕，registry 已更新为 DONE。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-kl-norm-v2-s456.md"
+}

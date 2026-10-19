@@ -1,0 +1,540 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure",
+      "image_path": "fig1_overview.pdf",
+      "caption": "Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation witho",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "introduction.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure",
+      "image_path": "k_curve_ppl",
+      "caption": "Coupling breadth $K$ vs.\\ perplexity (30\\%, TEAL uniform, 3-seed mean$\\pm$std). $K{=}32$ denotes end-to-end training. $K{=}2$ degradation reflects insufficient per-layer updates (${\\sim}62$ vs.\\ ${\\si",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "3",
+      "env_type": "figure",
+      "image_path": "fig2_sparsity_sweep.pdf",
+      "caption": "PPL scaling with sparsity (global allocation). KL's advantage over TEAL grows with sparsity.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "A.1",
+      "env_type": "figure",
+      "image_path": "lagrangian_dynamics.pdf",
+      "caption": "Lagrangian controller dynamics for 30\\% sparsity target ($\\lambda_{\\max}=5000$). Left axis (log scale): penalty weight $\\lambda$ rises from $0.01$ to its cap once actual sparsity undershoots the targe",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.2",
+      "env_type": "figure",
+      "image_path": "per_layer_retention_chart.pdf",
+      "caption": "Per-layer neuron retention under global top-$k$ allocation at 30\\%, 50\\%, and 70\\% sparsity. Dashed lines indicate uniform retention baselines. Late layers (L24--31) are consistently starved due to lo",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.3",
+      "env_type": "figure",
+      "image_path": "snr_trajectory.pdf",
+      "caption": "Gradient SNR trajectory across 1000 training steps. BCE (orange) maintains consistently higher SNR than KL (blue) from step 100 onward (2.3--17$\\times$), yet KL produces superior masks (Table~\\ref{tab",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.4",
+      "env_type": "figure",
+      "image_path": "neuron_scatter_layer16.pdf",
+      "caption": "KL vs.\\ magnitude importance scores for layer 16 neurons at 50\\% sparsity. 41\\% of neurons fall in disagreement quadrants where one method selects a neuron the other discards.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.5",
+      "env_type": "figure*",
+      "image_path": "mask_divergence_heatmap.pdf",
+      "caption": "Per-layer Jaccard distance between KL-derived and magnitude-based masks at 30\\% and 50\\% sparsity (64 samples, 131K tokens). Divergence peaks in layers 24--28 (Jaccard distance $>$0.73 at 50\\%) and in",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.6",
+      "env_type": "figure*",
+      "image_path": "mask_comparison.pdf",
+      "caption": "Binary mask comparison between KL-derived and magnitude-based masks at selected layers (L2, L16, L28) for 30\\% and 50\\% sparsity (64 samples). Black = selected by both, light regions = selected by onl",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "1",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "2",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "3",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.1",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.2",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.3",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.4",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.5",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.6",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/_latex_iso_170ul_1b/main.pdf"
+    },
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'lagrangian_dynamics.pdf' which does not exist",
+          "location": "appendix.tex:139"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'per_layer_retention_chart.pdf' which does not exist",
+          "location": "appendix.tex:209"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'snr_trajectory.pdf' which does not exist",
+          "location": "appendix.tex:259"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'neuron_scatter_layer16.pdf' which does not exist",
+          "location": "appendix.tex:404"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'mask_divergence_heatmap.pdf' which does not exist",
+          "location": "appendix.tex:411"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'mask_comparison.pdf' which does not exist",
+          "location": "appendix.tex:418"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'k_curve_ppl' which does not exist",
+          "location": "experiments.tex:164"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig2_sparsity_sweep.pdf' which does not exist",
+          "location": "experiments.tex:181"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig1_overview.pdf' which does not exist",
+          "location": "introduction.tex:31"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:kl_loss} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:constrained} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:lagrangian_dynamics} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method:lagrangian} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:retention} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:constraint} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:lagrangian} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:k_curve} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:sparsity_sweep} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:c4_control} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method:kl} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method:predictor} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:predictor} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:gumbel} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:tau_sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:training_convergence} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:cross_arch} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:14b} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:swiglu} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:tau_sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:sparse_ffn} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method:formulation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:ood} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:licenses} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method:taxonomy} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:307"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:449"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:504"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:531"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:605"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:628"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:41"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:89"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:122"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "method.tex:120"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "9 critical, 39 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 5,
+          "num_cites": 0
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 5,
+          "num_cites": 0
+        },
+        {
+          "file": "ethics.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 252,
+          "num_cites": 13
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 16,
+          "num_cites": 9
+        },
+        {
+          "file": "limitations.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 12,
+          "num_cites": 8
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 50
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'raffel2020c4' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\leq"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\S",
+              "\\ast",
+              "\\dagger",
+              "\\ddagger",
+              "\\downarrow",
+              "\\geq",
+              "\\leq",
+              "\\pm",
+              "\\sigma",
+              "\\sim",
+              "\\tau",
+              "\\times",
+              "\\to"
+            ],
+            "introduction": [
+              "\\leq",
+              "\\partial",
+              "\\pm",
+              "\\sigma",
+              "\\times"
+            ],
+            "limitations": [
+              "\\sim",
+              "\\times"
+            ],
+            "method": [
+              "\\bar",
+              "\\ell",
+              "\\epsilon",
+              "\\geq",
+              "\\in",
+              "\\lambda",
+              "\\ldots",
+              "\\max",
+              "\\nabla",
+              "\\partial",
+              "\\rho",
+              "\\sigma",
+              "\\tau",
+              "\\theta",
+              "\\tilde",
+              "\\times",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 1,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/_figure_backups/20260524_051924",
+  "error": "",
+  "timestamp": "2026-05-24T05:49:31.870494+00:00"
+}

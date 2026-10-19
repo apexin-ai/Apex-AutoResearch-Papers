@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "332b19053d5fdd32377e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code kl normalized quicktest",
+  "task_key": "worker_code_kl_normalized_quicktest_20260515T140431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kl_normalized_quicktest_20260515T140431_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "21f410b508c1fde4d307dcb224756eb04cae542ce5c978a701822231272f3ba6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 RUNNING。汇总：\n\n**代码修改**：\n1. `train.py` 新增 `--loss_type kl_normalized` 选项\n2. 新增 `train_kl_normalized()` 函数（~100 行），核心改动：\n   - **KL 归一化**：`kl_norm = kl_raw / vocab_size`，将 KL 从 ~418 降到 ~0.003 量级\n   - **激进 Lagrangian**：每步更新 lambda，×2.0 增长/×0.5 衰减，cap=1000，margin=0.02\n   - **Soft constraint**：`clamp(|sparsity - target| - margin, 0)²` 替代 hard clamp，确保梯度不被截断\n   - 日志打印 raw_kl、normalized_kl、lambda、constraint、sparsity\n3. `main()` 路由增加 `kl_normalized` 分支，自动启用 gradient checkpointing\n\n**训练状态**：\n- PID=65772，正在 westd-34887 cuda:0 上运行\n- 早期数据：kl_norm ~0.000009，sparsity ~0.40，lambda 在 10 步内就涨到 cap=1000\n- lambda 涨得很快是因为 sparsity (0.40) 一直 < target-margin (0.48)，符合预期——接下来看 constraint 能否推动 sparsity 上升"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kl-normalized-quicktest.md"
+}

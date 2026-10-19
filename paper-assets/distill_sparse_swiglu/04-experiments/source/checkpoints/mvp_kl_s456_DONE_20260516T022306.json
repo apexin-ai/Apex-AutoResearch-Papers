@@ -1,0 +1,32 @@
+{
+  "exp_id": "mvp_kl_s456",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:51:02.768Z",
+    "updated_at": "2026-05-16T02:23:06.464Z",
+    "spec": {
+      "hypothesis": "KL-trained predictor captures joint neuron interactions via end-to-end gradient flow, outperforming BCE at 50% sparsity",
+      "loss_type": "kl",
+      "seed": 456,
+      "model": "Llama-3.1-8B",
+      "sparsity": 0.5,
+      "steps": 1000,
+      "batch_size": 4,
+      "seq_len": 2048,
+      "gpu": "cuda:0",
+      "server": "westd-34887",
+      "eval": "WikiText-2 + C4 perplexity",
+      "checkpoint_path": "N/A (killed)",
+      "log_path": "N/A"
+    },
+    "conclusion": "killed",
+    "notes": "Killed: 使用旧 KL 配置（无归一化），已被 mvp_kl_norm_s456 替代。参见 kl_normalized_quicktest 验证 seq_len-only 归一化有效。",
+    "completed_at": "2026-05-16T02:23:06.464Z"
+  },
+  "timestamp": "2026-05-16T02:23:06.571353+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54e03d0bca9c41e1fdcb",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect bce30 eval results",
+  "task_key": "worker_ops_collect-bce30-eval-results_20260518T180525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-bce30-eval-results_20260518T180525_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "1415bb17195609b5a830620ffe7742649df1bee0d8cc3791dedcc6253b69514e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n**bce_30pct_s42_eval — DONE (negative)**\n\n| Metric | BCE 30% | KL 30% uniform | TEAL 30% | Dense |\n|--------|---------|----------------|----------|-------|\n| PPL | 11.24 | 8.82 | 10.97 | 6.12 |\n| ARC (norm) | 41.2% | 40.8% | 42.3% | 58.3% |\n| WinoGrande | 66.0% | 68.6% | 66.1% | 78.1% |\n| MMLU | 36.3% | 40.6% | 38.6% | 65.3% |\n| GSM8K | 6.0% | 7.4% | 7.9% | 48.8% |\n\n**Downstream collapse?** No catastrophic collapse (contrast with KL 50% where GSM8K drops to ~1-2%). But BCE 30% is consistently worse than TEAL 30% baseline on PPL and most downstream tasks, confirming BCE-trained masks are genuinely inferior even when allocation is forced externally via TEAL top-k. The PPL gap (11.24 vs 8.82) propagates proportionally to downstream."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-bce30-eval-results.md"
+}

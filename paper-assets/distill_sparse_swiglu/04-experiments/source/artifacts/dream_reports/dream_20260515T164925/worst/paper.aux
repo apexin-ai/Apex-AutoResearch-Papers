@@ -1,0 +1,81 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Activation sparsity in SwiGLU.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Learned sparsity prediction.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{KL divergence for sparsity.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gumbel-sigmoid relaxation.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Two-Dimensional Design Space}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Two-dimensional taxonomy of activation sparsity methods. Each cell indicates the method occupying that position. Bold indicates configurations evaluated in this work.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:taxonomy}{{1}{3}{Two-dimensional taxonomy of activation sparsity methods. Each cell indicates the method occupying that position. Bold indicates configurations evaluated in this work}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Sparsity Predictor}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Training Objectives}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{BCE loss.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{KL loss.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Compensation MLP.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Conditions.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Seeds.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Four-Condition Ablation at 50\% Sparsity}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces WikiText-2 perplexity at 50\% sparsity (Llama~3.1~8B). Lower is better.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:four_cond}{{2}{4}{WikiText-2 perplexity at 50\% sparsity (Llama~3.1~8B). Lower is better}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-seed PPL breakdown for the four-condition ablation.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:per_seed}{{3}{4}{Per-seed PPL breakdown for the four-condition ablation}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Gradient Estimator Ablation}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Gradient estimator ablation (KL loss fixed, Llama~3.1~8B, 50\% sparsity).}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:ste}{{4}{4}{Gradient estimator ablation (KL loss fixed, Llama~3.1~8B, 50\% sparsity)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Iso-Compute Comparison}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Iso-compute comparison (Llama~3.1~8B, 50\% sparsity).}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:iso_compute}{{5}{5}{Iso-compute comparison (Llama~3.1~8B, 50\% sparsity)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}SPON Reproduction}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces SPON reproduction on 5 QA benchmarks (Llama~3.1~8B, 50\% sparsity).}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:spon_repro}{{6}{5}{SPON reproduction on 5 QA benchmarks (Llama~3.1~8B, 50\% sparsity)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}SPON + KL Composition and Additivity}{5}{subsection.5.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces SPON + KL composition results (Llama~3.1~8B, 50\% sparsity).}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:composition}{{7}{6}{SPON + KL composition results (Llama~3.1~8B, 50\% sparsity)}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Additivity analysis metrics for SPON + KL composition.}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:additivity}{{8}{6}{Additivity analysis metrics for SPON + KL composition}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Training-Free Baselines}{6}{subsection.5.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Training-free baselines at 50\% sparsity (Llama~3.1~8B).}}{6}{table.9}\protected@file@percent }
+\newlabel{tab:baselines}{{9}{6}{Training-free baselines at 50\% sparsity (Llama~3.1~8B)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Full Benchmark Suite and Inference Profiling}{7}{subsection.5.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Full benchmark results (Llama~3.1~8B, 50\% sparsity). $\uparrow $: higher is better, $\downarrow $: lower is better.}}{7}{table.10}\protected@file@percent }
+\newlabel{tab:full_bench}{{10}{7}{Full benchmark results (Llama~3.1~8B, 50\% sparsity). $\uparrow $: higher is better, $\downarrow $: lower is better}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Inference profiling (Llama~3.1~8B, 50\% sparsity, batch size 1).}}{7}{table.11}\protected@file@percent }
+\newlabel{tab:profiling}{{11}{7}{Inference profiling (Llama~3.1~8B, 50\% sparsity, batch size 1)}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Sparsity Scaling Analysis}{7}{subsection.5.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Sparsity sweep: KL-only vs.\ BCE-only PPL (Llama~3.1~8B, 1 seed).}}{8}{table.12}\protected@file@percent }
+\newlabel{tab:sweep}{{12}{8}{Sparsity sweep: KL-only vs.\ BCE-only PPL (Llama~3.1~8B, 1 seed)}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Scaling law fit comparison for $\Delta $(BCE$-$KL) vs.\ sparsity.}}{8}{table.13}\protected@file@percent }
+\newlabel{tab:scaling_fit}{{13}{8}{Scaling law fit comparison for $\Delta $(BCE$-$KL) vs.\ sparsity}{table.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Cross-Architecture Generalization}{8}{subsection.5.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Mistral-7B-v0.3 results at 50\% sparsity (3 seeds each).}}{8}{table.14}\protected@file@percent }
+\newlabel{tab:mistral}{{14}{8}{Mistral-7B-v0.3 results at 50\% sparsity (3 seeds each)}{table.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Long-Context Evaluation: LongBench}{8}{subsection.5.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Cross-architecture comparison of KL-only vs.\ BCE+compensation.}}{9}{table.15}\protected@file@percent }
+\newlabel{tab:cross_arch}{{15}{9}{Cross-architecture comparison of KL-only vs.\ BCE+compensation}{table.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces LongBench English subset per-task-type results (Llama~3.1~8B, 50\% sparsity).}}{9}{table.16}\protected@file@percent }
+\newlabel{tab:longbench}{{16}{9}{LongBench English subset per-task-type results (Llama~3.1~8B, 50\% sparsity)}{table.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}MT-Bench Evaluation}{9}{subsection.5.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces MT-Bench scores (GPT-4o judge, Llama~3.1~8B, 50\% sparsity). 80 multi-turn questions.}}{9}{table.17}\protected@file@percent }
+\newlabel{tab:mtbench}{{17}{9}{MT-Bench scores (GPT-4o judge, Llama~3.1~8B, 50\% sparsity). 80 multi-turn questions}{table.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.12}RULER Synthetic Long-Context Diagnostics}{9}{subsection.5.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces RULER results (accuracy \%, Llama~3.1~8B, 50\% sparsity).}}{10}{table.18}\protected@file@percent }
+\newlabel{tab:ruler}{{18}{10}{RULER results (accuracy \%, Llama~3.1~8B, 50\% sparsity)}{table.18}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{10}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reframing KL divergence for sparsity.}{10}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Compensation as the universal mechanism.}{10}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The instability of Lagrangian KL training.}{10}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Phase transitions vs.\ scaling laws.}{10}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{10}{section*.17}\protected@file@percent }
+\bibstyle{plainnat}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{11}{section.7}\protected@file@percent }
+\gdef \@abspage@last{11}

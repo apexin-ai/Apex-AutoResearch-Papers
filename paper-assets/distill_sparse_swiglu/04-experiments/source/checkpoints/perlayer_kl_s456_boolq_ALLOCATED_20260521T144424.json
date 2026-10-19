@@ -1,0 +1,29 @@
+{
+  "exp_id": "perlayer_kl_s456_boolq",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:43:45.621Z",
+    "updated_at": "2026-05-21T14:44:24.450Z",
+    "parent": "perlayer_kl_30_s456_ppl",
+    "hypothesis": "Per-layer KL s456 BoolQ eval to align with RevKL 7-task format for Table 4 comparison. Checkpoint SCP from westd-41718.",
+    "spec": {
+      "command": "bash -c \"echo '=== SCP CHECKPOINT ===' && mkdir -p /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s456 && scp -P 41718 -o StrictHostKeyChecking=no -o ConnectTimeout=30 root@connect.westd.seetacloud.com:/root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt && echo SCP_OK && ls -la /root/distill_sparse_swiglu/checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && export WANDB_MODE=disabled && python -u src/benchmark_eval.py --exp_id perlayer_kl_s456_boolq --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/perlayer_kl_30_s456/predictor_perlayer_kl.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks boolq --gpu 0 2>&1\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "286953",
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_s456_boolq.log",
+      "submitted_at": "2026-05-21T14:44:04.165Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T14:44:24.976060+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+# Worker execution logs
+
+[Back to trace guide](../README.md) · [Readable Markdown indexes](../readable/README.md)
+
+| Source record | Events | User turns | Readable Markdown | JSON |
+|---|---:|---:|---|---|
+| `logs/workers/worker_ssh_check_all_servers_status_20260520_20260520T190019.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-check-all-servers-status-20260520.md) | [Open JSON](../sessions/5a/5a5398a12cd5f4172dff.json) |
+| `logs/workers/worker_ssh_check_revkl_mse_status_20260520_20260520T205750.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-check-revkl-mse-status-20260520.md) | [Open JSON](../sessions/42/42c537f9b42453e98694.json) |
+| `logs/workers/worker_ssh_check_revkl_mse_status_20260520_20260520T205750_retry1.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/ssh-check-revkl-mse-status-20260520-20260520t205750-retry1.md) | [Open JSON](../sessions/c2/c294c3c3fd037f399e7b.json) |
+| `logs/workers/worker_ssh_director_cleanup_34887_20260520T210504.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-director-cleanup-34887.md) | [Open JSON](../sessions/2c/2c98c4d6390014f40d5e.json) |
+| `logs/workers/worker_ssh_director_cleanup_34887_20260520T210504_retry1.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-director-cleanup-34887-20260520t210504-retry1.md) | [Open JSON](../sessions/c3/c32c2fe09c47bc6a33ff.json) |
+| `logs/workers/worker_ssh_director_cleanup_41718_20260520T210513.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-director-cleanup-41718.md) | [Open JSON](../sessions/36/366656ba6f2118b8d481.json) |
+| `logs/workers/worker_ssh_director_cleanup_41718_20260520T210513_retry1.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-director-cleanup-41718-20260520t210513-retry1.md) | [Open JSON](../sessions/26/26b0bfe4d20f20278b0f.json) |
+| `logs/workers/worker_ssh_jsd30_uniform_eval_20260520T192013.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/ssh-jsd30-uniform-eval.md) | [Open JSON](../sessions/e0/e03af0966cccb88f3e81.json) |
+| `logs/workers/worker_ssh_kill_slow_revkl_pid_41718_20260520T210343.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-kill-slow-revkl-pid-41718.md) | [Open JSON](../sessions/c0/c0bb108faf8119a4d18a.json) |
+| `logs/workers/worker_ssh_kill_slow_revkl_pid_41718_20260520T210343_retry1.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-kill-slow-revkl-pid-41718-20260520t210343-retry1.md) | [Open JSON](../sessions/ac/aced8adbc55c617ea24f.json) |
+| `logs/workers/worker_ssh_mse50_s123_train_20260520T185500.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-mse50-s123-train.md) | [Open JSON](../sessions/84/84c9c63d3730f3b3b8b2.json) |
+| `logs/workers/worker_ssh_read_benchmark_eval_allocation_default_20260520T190832.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-read-benchmark-eval-allocation-default.md) | [Open JSON](../sessions/cc/cc93715b70af2094b545.json) |
+| `logs/workers/worker_ssh_revkl30_uniform_eval_20260520T194456.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-revkl30-uniform-eval.md) | [Open JSON](../sessions/aa/aa38a310b4f41326a44f.json) |
+| `logs/workers/worker_ssh_revkl30_uniform_eval_20260520T194456_retry2.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/ssh-revkl30-uniform-eval-20260520t194456-retry2.md) | [Open JSON](../sessions/59/5929a92320c1e8b20604.json) |
+| `logs/workers/worker_ssh_ste_mask_sparsity_verify_20260520T184606.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-ste-mask-sparsity-verify.md) | [Open JSON](../sessions/01/011c40546ef84f682c51.json) |
+| `logs/workers/worker_ssh_verify_table4_eval_commands_20260520T191142.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/ssh-verify-table4-eval-commands.md) | [Open JSON](../sessions/3c/3c4d86596107b6ca6c44.json) |
+| `logs/workers/worker_ssh_verify_table4_eval_commands_20260520T191142_retry2.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/ssh-verify-table4-eval-commands-20260520t191142-retry2.md) | [Open JSON](../sessions/5c/5ca6f8c1ed7cd93e4954.json) |
+| `logs/workers/worker_train_perlayer_kl_k4_50_s42_20260522T174053.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/train-perlayer-kl-k4-50-s42.md) | [Open JSON](../sessions/2b/2b114ec13f06656dd852.json) |
+| `logs/workers/worker_train_perlayer_kl_k4_s123_20260522T133446.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/train-perlayer-kl-k4-s123.md) | [Open JSON](../sessions/ab/ab4c36bc99e2c3af2310.json) |
+| `logs/workers/worker_train_perlayer_kl_k4_s123_fix_20260522T133918.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/train-perlayer-kl-k4-s123-fix.md) | [Open JSON](../sessions/79/797b3f39b3176bc25c86.json) |
+| `logs/workers/worker_train_perlayer_kl_k4_s456_20260522T133458.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/train-perlayer-kl-k4-s456.md) | [Open JSON](../sessions/45/45dc4b6ea37c1440793d.json) |
+| `logs/workers/worker_train_perlayer_kl_k4_s456_fix_20260522T133926.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/train-perlayer-kl-k4-s456-fix.md) | [Open JSON](../sessions/1a/1a06670c92f3bc3a2260.json) |

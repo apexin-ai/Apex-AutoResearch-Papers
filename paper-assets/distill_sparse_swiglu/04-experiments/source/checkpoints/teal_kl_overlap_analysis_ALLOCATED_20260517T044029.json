@@ -1,0 +1,15 @@
+{
+  "exp_id": "teal_kl_overlap_analysis",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:40:07.085Z",
+    "updated_at": "2026-05-17T04:40:28.678Z",
+    "hypothesis": "KL predictor and TEAL prune different neuron sets; KL sacrifices high-magnitude knowledge neurons (concentrated in middle layers) to optimize output distribution matching, explaining why TEAL retains MMLU advantage despite worse PPL"
+  },
+  "timestamp": "2026-05-17T04:40:29.071569+00:00",
+  "trigger": "update_registry"
+}

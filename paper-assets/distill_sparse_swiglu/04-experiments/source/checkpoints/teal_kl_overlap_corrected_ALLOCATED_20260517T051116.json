@@ -1,0 +1,16 @@
+{
+  "exp_id": "teal_kl_overlap_corrected",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:10:52.550Z",
+    "updated_at": "2026-05-17T05:11:15.961Z",
+    "hypothesis": "The 1.48x magnitude ratio of KL-only-pruned neurons is not a selection bias artifact; permutation testing and percentile rank analysis will confirm KL systematically prunes high-magnitude neurons that TEAL preserves",
+    "parent": "teal_kl_overlap_analysis"
+  },
+  "timestamp": "2026-05-17T05:11:16.163592+00:00",
+  "trigger": "update_registry"
+}

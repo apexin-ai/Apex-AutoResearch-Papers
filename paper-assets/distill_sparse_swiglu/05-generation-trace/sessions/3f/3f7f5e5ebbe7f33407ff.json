@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f7f5e5ebbe7f33407ff",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval mse30 s123 downstream",
+  "task_key": "worker_eval_mse30_s123_downstream_20260522T092556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mse30_s123_downstream_20260522T092556_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "00e63c1da05d9f002d9cd7e8e6f58596384d224ff5f0c54159de69ac00ad2251"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并运行：\n\n- **exp_id**: `mse30_s123_downstream`，parent=`mse30_s123`\n- **Server/GPU**: westd-41718 cuda:0，PID=399560\n- **Log**: `/root/runs/distill_sparse_swiglu/mse30_s123_downstream.log`\n- **Status**: RUNNING（spec 已写入，含 seed=123、checkpoint_source、eval_data、git_commit）\n- **进度**: checkpoint 加载完成，模型级稀疏度 0.273（uniform 30% 目标合理），lm-eval 已进入 arc_challenge ~84%\n- **注意**: 项目用 `submit_training_job` 提交对应 Agent 角色工具，Worker 角色只能 `ssh_execute`，按 C002 用 nohup + 日志重定向；功能等价\n- **注意**: remote 项目目录不是 git repo，`git_commit` 按 skill 规范标为 `no-git: <reason>`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mse30-s123-downstream.md"
+}

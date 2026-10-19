@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "340998b18c4a639f4279",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check qwen14b eval results 34887 v2",
+  "task_key": "worker_check_qwen14b_eval_results_34887_v2_20260522T040255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen14b_eval_results_34887_v2_20260522T040255_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "422216a1951608ec5a6a408ad428aa2b3700afe43e284a0fa7dbdf8fddb71303"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部完成，results.json 均存在且完整。\n\n| 实验 | 模式 | Sparsity | PPL | ARC-C | WinoG | MMLU | GSM8K | HellaS | PIQA | 时间 |\n|------|------|----------|-----|-------|-------|------|-------|--------|------|------|\n| **qwen14b_teal30_uniform_gsm8k** | TEAL baseline | 30% | — | — | — | — | 52.08 | — | — | 05-20 04:39 |\n| **qwen14b_teal275_uniform_eval_v3** | TEAL baseline | 27.5% | 7.709 | 53.07 / 57.00 | 71.67 | 67.38 | 57.09 | — | — | 05-19 22:39 |\n| **qwen14b_kl30_s42_eval_uniform_v3** | KL distilled (ours) | 30% | 7.872 | 50.51 / 54.95 | 71.27 | 64.80 | — | 53.52 / 72.68 | 74.32 / 74.76 | 05-19 22:27 |\n\n注意事项：\n- 实验 1 只跑了 GSM8K 单任务\n- 实验 2 和 3 的 benchmark 集合不同（2 有 GSM8K 无 HellaSwag/PIQA，3 反之），直接对比时需注意 task 覆盖差异\n- KL distilled (30%) vs TEAL baseline (27.5%) 在重叠指标上：PPL 略高 (+0.16)，ARC-C 低 2.6pp，WinoG 持平，MMLU 低 2.6pp"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen14b-eval-results-34887-v2.md"
+}

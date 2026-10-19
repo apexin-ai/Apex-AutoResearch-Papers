@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f0e25c8ba902915926c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit westd 41718 cuda0 c4ood50",
+  "task_key": "worker_submit_westd-41718-cuda0-c4ood50_20260518T081352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_westd-41718-cuda0-c4ood50_20260518T081352_result.json",
+    "occurrence": 1,
+    "bytes": 298,
+    "sha256": "3f73bf4d76727337580605380858846510d9f8cbbe1f575d30feae1245ee8f55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载中（291/291 weights 已完成），正在初始化。任务正常运行。\n\n- **exp_id**: `c4_ood_kl50_s42`\n- **服务器**: westd-41718 cuda:0\n- **日志**: `~/runs/distill_sparse_swiglu/c4_ood_kl50_s42.log`\n- **状态**: 模型加载完成，即将开始 C4 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-westd-41718-cuda0-c4ood50.md"
+}

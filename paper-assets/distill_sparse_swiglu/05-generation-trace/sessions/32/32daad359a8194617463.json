@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32daad359a8194617463",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "viz mask divergence heatmap",
+  "task_key": "worker_viz_mask-divergence-heatmap_20260519T115459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_mask-divergence-heatmap_20260519T115459_result.json",
+    "occurrence": 1,
+    "bytes": 1427,
+    "sha256": "7fcb0604e2c4a78ce682d8c58c50a90d5bd9150e7a3b8d094d30416e3d7442b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary:\n\n**3 figures generated** on westd-41718 at `/root/distill_sparse_swiglu/results/mask_visualization/`:\n\n| Figure | File | Description |\n|--------|------|-------------|\n| Fig 1 | `fig1_mask_heatmap.pdf` | Per-layer heatmap: (a) KL mask, (b) Magnitude mask, (c) Divergence. 32 layers × 512 neuron bins, sorted by weight magnitude |\n| Fig 2 | `fig2_token_dynamics.pdf` | Token-level KL dynamics vs static magnitude at layer 16, top 100 variable neurons |\n| Fig 3 | `fig3_jaccard_divergence.pdf` | Per-layer Jaccard divergence bar chart |\n\n**Key statistics** (10 samples, 30% sparsity, weight-based magnitude baseline):\n- Mean Jaccard divergence: **0.4507**\n- Range: 0.349 (L16) to 0.595 (L28)\n- KL sparsity varies 14.2% (L16) to 54.4% (L28) despite 30% global target\n\n**Key patterns**:\n- Late layers (L24-28) diverge most (~0.54-0.59) and have highest KL sparsity\n- Mid layers (L15-18) diverge least (~0.35) and have lowest KL sparsity\n- Boundary layers (L0-1, L30-31) are conservative (~17-20% sparsity)\n- Figure 2 clearly shows KL's per-token dynamics vs magnitude's static horizontal stripes\n\nNote: The mean divergence is 0.45 rather than the expected 0.53 because this uses **weight-based** static magnitude masks (gate_proj L2 norm). The 0.53 figure likely used activation-based per-token magnitude masks. Summary and stats registered as artifact `art_20260519_maskviz`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-mask-divergence-heatmap.md"
+}

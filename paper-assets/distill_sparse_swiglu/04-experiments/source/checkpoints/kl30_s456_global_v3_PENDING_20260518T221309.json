@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl30_s456_global_v3",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:12:57.454Z",
+    "updated_at": "2026-05-18T22:13:08.992Z",
+    "hypothesis": "KL 30% predictor (seed 456) global_topk eval on westd-34887 with unified protocol. Resolves MMLU contradiction (27.1% on 41718 vs 43.8% on 34887 in prior runs). Expect PPL ~8.93 consistent with s42 (8.98) and s123.",
+    "parent": "bench_kl30_global"
+  },
+  "timestamp": "2026-05-18T22:13:09.391187+00:00",
+  "trigger": "update_registry"
+}

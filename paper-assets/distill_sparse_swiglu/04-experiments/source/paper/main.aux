@@ -1,0 +1,1565 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shazeer2020glu}
+\citation{liu2023dejavu,gautam2026fastforward}
+\citation{liu2025teal}
+\citation{fang2024maskllm}
+\citation{grattafiori2024llama3}
+\citation{jang2017gumbel}
+\citation{jiang2023mistral}
+\citation{qwen2024qwen25}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN@col{2}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\citation{liu2025teal}
+\citation{lee2024cats}
+\citation{zhang2025rsparse}
+\citation{federici2025dip}
+\citation{liu2025larosa}
+\citation{dhar2024activation}
+\citation{liu2023dejavu}
+\citation{akhauri2024shadowllm}
+\citation{gautam2026fastforward}
+\citation{song2024powerinfer}
+\citation{fang2024maskllm}
+\citation{serbin2026svdcsp}
+\citation{xu2025spon}
+\citation{mirzadeh2024relu}
+\citation{song2024turbosparse}
+\citation{song2025prosparse}
+\citation{haziza2025accelerating}
+\citation{wu2025moc}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:overview}{{1}{2}{Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{80}{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Activation Sparsity.}{2}{section*.2}\protected@file@percent }
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN@col{2}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\@LN{139}{1}
+\citation{sun2024wanda}
+\citation{frantar2023sparsegpt}
+\citation{ashkboos2024slicegpt}
+\citation{kim2016sequencekd,sanh2019distilbert,gu2024minillm,agarwal2024gkd}
+\citation{maddison2017concrete,louizos2018l0}
+\citation{zhou2022expertchoice}
+\citation{szatkowski2024d2dmoe}
+\citation{shazeer2020glu}
+\citation{liu2025teal}
+\citation{maddison2017concrete,louizos2018l0,jang2017gumbel}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Compensation and Architecture.}{3}{section*.3}\protected@file@percent }
+\@LN{140}{2}
+\@LN{141}{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@writefile{toc}{\contentsline {paragraph}{Pruning, Distillation, and Routing.}{3}{section*.4}\protected@file@percent }
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:method:formulation}{{3.1}{3}{Problem Formulation}{subsection.3.1}{}}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN@col{2}
+\@LN{188}{2}
+\newlabel{eq:swiglu}{{1}{3}{Problem Formulation}{equation.1}{}}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\newlabel{eq:sparse_ffn}{{2}{3}{Problem Formulation}{equation.2}{}}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Predictor Architecture}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:method:predictor}{{3.2}{3}{Predictor Architecture}{subsection.3.2}{}}
+\@LN{209}{2}
+\@LN{210}{2}
+\newlabel{eq:predictor}{{3}{3}{Predictor Architecture}{equation.3}{}}
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@LN{223}{2}
+\@LN{224}{2}
+\@LN{225}{2}
+\@LN{226}{2}
+\@LN{227}{2}
+\@LN{228}{2}
+\@LN{229}{2}
+\@LN{230}{2}
+\@LN{231}{2}
+\@LN{232}{2}
+\citation{bengio2013ste}
+\citation{wu2025rethinking}
+\citation{hinton2015distilling}
+\@LN@col{1}
+\@LN{233}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Gumbel-Sigmoid Relaxation}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:method:gumbel}{{3.3}{4}{Gumbel-Sigmoid Relaxation}{subsection.3.3}{}}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\newlabel{eq:gumbel}{{4}{4}{Gumbel-Sigmoid Relaxation}{equation.4}{}}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@writefile{toc}{\contentsline {paragraph}{Comparison with Straight-Through Estimation.}{4}{section*.5}\protected@file@percent }
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}KL Divergence Training Objective}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:method:kl}{{3.4}{4}{KL Divergence Training Objective}{subsection.3.4}{}}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\newlabel{eq:kl_loss}{{5}{4}{KL Divergence Training Objective}{equation.5}{}}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Geometric penalty schedule dynamics for 30\% sparsity target ($\lambda _{\max }{=}5000$). Left axis (log): $\lambda $ rises via geometric doubling once sparsity undershoots the target, saturating at its cap. Right axis: actual sparsity converges from natural density (${\approx }$0.41) toward 0.28.}}{4}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:lagrangian_dynamics}{{2}{4}{Geometric penalty schedule dynamics for 30\% sparsity target ($\lambda _{\max }{=}5000$). Left axis (log): $\lambda $ rises via geometric doubling once sparsity undershoots the target, saturating at its cap. Right axis: actual sparsity converges from natural density (${\approx }$0.41) toward 0.28}{figure.caption.6}{}}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN{290}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Geometric Penalty Schedule}{4}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:method:lagrangian}{{3.5}{4}{Geometric Penalty Schedule}{subsection.3.5}{}}
+\@LN{291}{3}
+\@LN{292}{3}
+\@LN{293}{3}
+\newlabel{eq:constrained}{{6}{4}{Geometric Penalty Schedule}{equation.6}{}}
+\@LN{294}{3}
+\@LN{295}{3}
+\newlabel{eq:lagrangian}{{7}{4}{Geometric Penalty Schedule}{equation.7}{}}
+\@LN{296}{3}
+\@LN{297}{3}
+\@LN{298}{3}
+\@LN{299}{3}
+\@LN{300}{3}
+\@LN{301}{3}
+\@LN{302}{3}
+\citation{grattafiori2024llama3}
+\citation{shazeer2020glu}
+\citation{loshchilov2019adamw}
+\citation{jang2017gumbel}
+\citation{merity2017pointer}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Gradient SNR trajectory across 1000 training steps. BCE (orange) maintains consistently higher SNR than KL (blue) from step 100 onward ($2.3$--$17\times $), yet KL produces superior masks (Table~\ref {tab:main}), confirming that target alignment matters more than gradient clarity.}}{5}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:snr_trajectory}{{3}{5}{Gradient SNR trajectory across 1000 training steps. BCE (orange) maintains consistently higher SNR than KL (blue) from step 100 onward ($2.3$--$17\times $), yet KL produces superior masks (Table~\ref {tab:main}), confirming that target alignment matters more than gradient clarity}{figure.caption.7}{}}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Gradient Analysis: BCE vs.\ KL}{5}{subsection.3.6}\protected@file@percent }
+\newlabel{sec:method:gradient}{{3.6}{5}{Gradient Analysis: BCE vs.\ KL}{subsection.3.6}{}}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Taxonomy of learned sparsity prediction methods along correction granularity (rows) and training signal coupling (columns). Our method occupies the Per-token $\times $ Coupled cell (organizational framework). Empty cells represent unexplored combinations; their relative merit is an open question.}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:taxonomy}{{1}{5}{Taxonomy of learned sparsity prediction methods along correction granularity (rows) and training signal coupling (columns). Our method occupies the Per-token $\times $ Coupled cell (organizational framework). Empty cells represent unexplored combinations; their relative merit is an open question}{table.caption.8}{}}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Two-Dimensional Taxonomy of Sparsity Prediction Methods}{5}{subsection.3.7}\protected@file@percent }
+\newlabel{sec:method:taxonomy}{{3.7}{5}{Two-Dimensional Taxonomy of Sparsity Prediction Methods}{subsection.3.7}{}}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{5}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{5}{Experiments}{section.4}{}}
+\@LN{349}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{5}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model and Predictor.}{5}{section*.9}\protected@file@percent }
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\@writefile{toc}{\contentsline {paragraph}{Training.}{5}{section*.10}\protected@file@percent }
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@LN{363}{4}
+\@LN{364}{4}
+\@LN{365}{4}
+\@LN{366}{4}
+\@LN{367}{4}
+\@LN{368}{4}
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{5}{section*.11}\protected@file@percent }
+\@LN{369}{4}
+\@LN{370}{4}
+\citation{liu2025teal}
+\citation{liu2025teal}
+\citation{liu2023dejavu}
+\citation{geva2023dissecting}
+\@LN@col{1}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@LN{374}{5}
+\@LN{375}{5}
+\@writefile{toc}{\contentsline {paragraph}{Inference Protocol.}{6}{section*.12}\protected@file@percent }
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{6}{section*.13}\protected@file@percent }
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results}{6}{subsection.4.2}\protected@file@percent }
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@writefile{toc}{\contentsline {paragraph}{Task-Type Split.}{6}{section*.14}\protected@file@percent }
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Main results on LLaMA-3.1-8B. $^\ast $$2.71\times $ KL compute (\S  \ref {sec:isocompute}). $\pm $: 3-seed; unmarked: s42. $^\ddagger $Actual sparsity: KL 28.5\% vs.\ TEAL 29.3\% at 30\% (Appendix~\ref {app:ood}).}}{6}{table.caption.15}\protected@file@percent }
+\newlabel{tab:main}{{2}{6}{Main results on LLaMA-3.1-8B. $^\ast $$2.71\times $ KL compute (\S \ref {sec:isocompute}). $\pm $: 3-seed; unmarked: s42. $^\ddagger $Actual sparsity: KL 28.5\% vs.\ TEAL 29.3\% at 30\% (Appendix~\ref {app:ood})}{table.caption.15}{}}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Extended Training Analysis}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:isocompute}{{4.3}{6}{Extended Training Analysis}{subsection.4.3}{}}
+\@LN{431}{5}
+\@LN{432}{5}
+\@LN{433}{5}
+\@LN{434}{5}
+\@LN{435}{5}
+\@LN{436}{5}
+\@LN{437}{5}
+\@LN{438}{5}
+\@LN{439}{5}
+\@LN{440}{5}
+\@LN{441}{5}
+\@LN{442}{5}
+\@LN{443}{5}
+\@LN{444}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Mask Pattern Analysis}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:mask_analysis}{{4.4}{6}{Mask Pattern Analysis}{subsection.4.4}{}}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\@LN{448}{5}
+\@LN{449}{5}
+\@LN{450}{5}
+\@LN{451}{5}
+\@LN{452}{5}
+\citation{bengio2013ste}
+\citation{gu2024minillm}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Per-layer Jaccard distance between KL-derived and magnitude-based masks at 30\% and 50\% sparsity (64 samples, 131K tokens). Divergence peaks in layers 24--28 ($>$0.73 at 50\%).}}{7}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:mask_heatmap}{{4}{7}{Per-layer Jaccard distance between KL-derived and magnitude-based masks at 30\% and 50\% sparsity (64 samples, 131K tokens). Divergence peaks in layers 24--28 ($>$0.73 at 50\%)}{figure.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Target-swap ablation (C1): BCE on KL-derived masks vs.\ KL predictor (same seed), TEAL uniform. All seeds show max $\Delta $$\leq $1.70pp at 30\%; max $\Delta $$\leq $0.79pp at 50\% (s42). $^\dagger $\textbf  {Provenance:} s42 oracle extracted from an earlier training run (not seed-matched); s123/s456 use seed-matched retrained oracles (Appendix~\ref {app:oracle_provenance}).}}{7}{table.caption.18}\protected@file@percent }
+\newlabel{tab:c1}{{3}{7}{Target-swap ablation (C1): BCE on KL-derived masks vs.\ KL predictor (same seed), TEAL uniform. All seeds show max $\Delta $$\leq $1.70pp at 30\%; max $\Delta $$\leq $0.79pp at 50\% (s42). $^\dagger $\textbf {Provenance:} s42 oracle extracted from an earlier training run (not seed-matched); s123/s456 use seed-matched retrained oracles (Appendix~\ref {app:oracle_provenance})}{table.caption.18}{}}
+\@LN{453}{6}
+\@LN{454}{6}
+\@LN{455}{6}
+\@writefile{toc}{\contentsline {paragraph}{Target-Swap Ablation: Target Quality vs.\ Gradient Coupling.}{7}{section*.17}\protected@file@percent }
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN{458}{6}
+\@LN{459}{6}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\@LN{471}{6}
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Ablation Studies}{7}{subsection.4.5}\protected@file@percent }
+\@LN{476}{6}
+\@LN{477}{6}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Ablation on LLaMA-3.1-8B (WikiText-2 PPL$\downarrow $; uniform at 30\%, global at 50\%). $\pm $: 3-seed; unmarked: s42. $^\ddagger $STE: 20.8\% actual sparsity at 30\% target; loss effect ($\Delta $PPL=20.4) is $5.1\times $ relaxation effect ($\Delta $PPL=3.98). $^\S  $MSE 50\%: 2/3 seeds collapsed to ${\sim }$5\% actual sparsity; s42 only (Appendix~\ref {app:mse_config}).}}{7}{table.caption.19}\protected@file@percent }
+\newlabel{tab:ablation}{{4}{7}{Ablation on LLaMA-3.1-8B (WikiText-2 PPL$\downarrow $; uniform at 30\%, global at 50\%). $\pm $: 3-seed; unmarked: s42. $^\ddagger $STE: 20.8\% actual sparsity at 30\% target; loss effect ($\Delta $PPL=20.4) is $5.1\times $ relaxation effect ($\Delta $PPL=3.98). $^\S $MSE 50\%: 2/3 seeds collapsed to ${\sim }$5\% actual sparsity; s42 only (Appendix~\ref {app:mse_config})}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Relaxation and Divergence.}{7}{section*.20}\protected@file@percent }
+\@LN{478}{6}
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@LN{482}{6}
+\@LN{483}{6}
+\@LN{484}{6}
+\@LN{485}{6}
+\@LN{486}{6}
+\@LN{487}{6}
+\@LN{488}{6}
+\@LN{489}{6}
+\@LN{490}{6}
+\@LN{491}{6}
+\@LN{492}{6}
+\newlabel{sec:perlayer}{{4.5}{7}{Per-Layer KL: Signal Type vs.\ Coupling Scope}{section*.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-Layer KL: Signal Type vs.\ Coupling Scope.}{7}{section*.21}\protected@file@percent }
+\@LN{493}{6}
+\@LN{494}{6}
+\@LN{495}{6}
+\@LN{496}{6}
+\@LN{497}{6}
+\@LN{498}{6}
+\@LN{499}{6}
+\@LN{500}{6}
+\@LN{501}{6}
+\@LN{502}{6}
+\@LN{503}{6}
+\@LN{504}{6}
+\@LN{505}{6}
+\citation{gautam2026fastforward}
+\citation{jiang2023mistral}
+\citation{qwen2024qwen25}
+\citation{geva2023dissecting}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Coupling breadth $K$ vs.\ perplexity (30\%, TEAL uniform, 3-seed mean$\pm $std). $K{=}32$ denotes end-to-end training. $K{=}2$ degradation reflects insufficient per-layer updates (${\sim }62$ vs.\ ${\sim }250$ at $K{=}8$).}}{8}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:k_curve_ppl}{{5}{8}{Coupling breadth $K$ vs.\ perplexity (30\%, TEAL uniform, 3-seed mean$\pm $std). $K{=}32$ denotes end-to-end training. $K{=}2$ degradation reflects insufficient per-layer updates (${\sim }62$ vs.\ ${\sim }250$ at $K{=}8$)}{figure.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces PPL scaling with sparsity (global allocation). KL's advantage over TEAL grows with sparsity.}}{8}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:sparsity_sweep}{{6}{8}{PPL scaling with sparsity (global allocation). KL's advantage over TEAL grows with sparsity}{figure.caption.24}{}}
+\@LN{506}{7}
+\@LN{507}{7}
+\@LN{508}{7}
+\newlabel{sec:compensation}{{4.5}{8}{Compensation Redundancy}{section*.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Compensation Redundancy.}{8}{section*.23}\protected@file@percent }
+\@LN{509}{7}
+\@LN{510}{7}
+\@LN{511}{7}
+\@LN{512}{7}
+\@LN{513}{7}
+\@LN{514}{7}
+\@LN{515}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Sparsity Scaling and Regime Analysis}{8}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:scaling}{{4.6}{8}{Sparsity Scaling and Regime Analysis}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Allocation Behavior.}{8}{section*.25}\protected@file@percent }
+\@LN{516}{7}
+\@LN{517}{7}
+\@LN{518}{7}
+\@LN{519}{7}
+\@LN{520}{7}
+\@LN{521}{7}
+\@LN{522}{7}
+\@LN{523}{7}
+\@LN@col{2}
+\@LN{524}{7}
+\newlabel{sec:cross_arch}{{4.6}{8}{Cross-Architecture and Scale}{section*.26}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Architecture and Scale.}{8}{section*.26}\protected@file@percent }
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{8}{Conclusion}{section.5}{}}
+\@LN{538}{7}
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@LN{549}{7}
+\@LN{550}{7}
+\@LN{551}{7}
+\@LN{552}{7}
+\@LN{553}{7}
+\@LN{554}{7}
+\@LN{555}{7}
+\@LN{556}{7}
+\@LN{557}{7}
+\@LN{558}{7}
+\@LN{559}{7}
+\@LN{560}{7}
+\@LN{561}{7}
+\@LN{562}{7}
+\@LN{563}{7}
+\@LN{564}{7}
+\@LN{565}{7}
+\bibdata{references}
+\bibcite{agarwal2024gkd}{{1}{2024}{{Agarwal et~al.}}{{Agarwal, Vieillard, Zhou, Stanczyk, Ramos, Geist, and Bachem}}}
+\bibcite{akhauri2024shadowllm}{{2}{2024}{{Akhauri et~al.}}{{Akhauri, AbouElhamayed, Dotzel, Zhang, Rush, Huda, and Abdelfattah}}}
+\bibcite{ashkboos2024slicegpt}{{3}{2024}{{Ashkboos et~al.}}{{Ashkboos, Croci, do~Nascimento, Hoefler, and Hensman}}}
+\bibcite{bengio2013ste}{{4}{2013}{{Bengio et~al.}}{{Bengio, L\'{e}onard, and Courville}}}
+\bibcite{dhar2024activation}{{5}{2024}{{Dhar et~al.}}{{Dhar, Deng, Islam, Nasif, Zhao, and Suo}}}
+\bibcite{fang2024maskllm}{{6}{2024}{{Fang et~al.}}{{Fang, Yin, Muralidharan, Heinrich, Pool, Kautz, Molchanov, and Wang}}}
+\bibcite{federici2025dip}{{7}{2025}{{Federici et~al.}}{{Federici, Belli, van Baalen, Jalalirad, Skliar, Major, Nagel, and Whatmough}}}
+\bibcite{frantar2023sparsegpt}{{8}{2023}{{Frantar and Alistarh}}{{}}}
+\bibcite{eval-harness}{{9}{2023}{{Gao et~al.}}{{Gao, Tow, Abbasi, Biderman, Black, DiPofi, Foster, Golding, Hsu et~al.}}}
+\bibcite{gautam2026fastforward}{{10}{2026}{{Gautam et~al.}}{{Gautam, Gagrani, Park, Lee, Lott, and Reddy}}}
+\bibcite{geva2023dissecting}{{11}{2023}{{Geva et~al.}}{{Geva, Bastings, Filippova, and Globerson}}}
+\bibcite{grattafiori2024llama3}{{12}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri, Pandey, Kadian, Al-Dahle, Lakber, Chen, Salma, and Menon}}}
+\bibcite{gu2024minillm}{{13}{2024}{{Gu et~al.}}{{Gu, Dong, Wei, and Huang}}}
+\bibcite{haziza2025accelerating}{{14}{2025}{{Haziza et~al.}}{{Haziza, Chou, Choudhary, Wehrstedt, Massa, Yu, Jeong, Rao, Labatut, and Cai}}}
+\bibcite{hinton2015distilling}{{15}{2015}{{Hinton et~al.}}{{Hinton, Vinyals, and Dean}}}
+\bibcite{jang2017gumbel}{{16}{2017}{{Jang et~al.}}{{Jang, Gu, and Poole}}}
+\bibcite{jiang2023mistral}{{17}{2023}{{Jiang et~al.}}{{Jiang, Sablayrolles, Mensch, Bamford, Chaplot, de~las Casas, Bressand, Lengyel, Lample, and Saulnier}}}
+\bibcite{kim2016sequencekd}{{18}{2016}{{Kim and Rush}}{{}}}
+\bibcite{lee2024cats}{{19}{2024}{{Lee et~al.}}{{Lee, Lee, Zhang, Tiwari, and Mirhoseini}}}
+\bibcite{liu2025teal}{{20}{2025{a}}{{Liu et~al.}}{{Liu, Ponnusamy, Cai, Guo, Kim, and Athiwaratkun}}}
+\@LN@col{1}
+\@LN{566}{8}
+\@LN{567}{8}
+\@LN{568}{8}
+\@LN{569}{8}
+\@LN{570}{8}
+\@LN{571}{8}
+\@LN{572}{8}
+\@LN{573}{8}
+\@LN{574}{8}
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN@col{2}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\bibcite{liu2025larosa}{{21}{2025{b}}{{Liu et~al.}}{{Liu, Xu, Wu, Chen, Zhou, Tao, and Hu}}}
+\bibcite{liu2023dejavu}{{22}{2023}{{Liu et~al.}}{{Liu, Wang, Dao, Zhou, Yuan, Song, Shrivastava, Zhang, Tian, Re, and Chen}}}
+\bibcite{loshchilov2019adamw}{{23}{2019}{{Loshchilov and Hutter}}{{}}}
+\bibcite{louizos2018l0}{{24}{2018}{{Louizos et~al.}}{{Louizos, Welling, and Kingma}}}
+\bibcite{maddison2017concrete}{{25}{2017}{{Maddison et~al.}}{{Maddison, Mnih, and Teh}}}
+\bibcite{merity2017pointer}{{26}{2017}{{Merity et~al.}}{{Merity, Xiong, Bradbury, and Socher}}}
+\bibcite{mirzadeh2024relu}{{27}{2024}{{Mirzadeh et~al.}}{{Mirzadeh, Alizadeh, Mehta, Mundo, Tuzel, Samei, Rastegari, and Farajtabar}}}
+\bibcite{raffel2020c4}{{28}{2020}{{Raffel et~al.}}{{Raffel, Shazeer, Roberts, Lee, Narang, Matena, Zhou, Li, and Liu}}}
+\bibcite{sanh2019distilbert}{{29}{2019}{{Sanh et~al.}}{{Sanh, Debut, Chaumond, and Wolf}}}
+\bibcite{serbin2026svdcsp}{{30}{2026}{{Serbin et~al.}}{{Serbin, Koshkin, Sun, Bistrigova, and Korikov}}}
+\bibcite{shazeer2020glu}{{31}{2020}{{Shazeer}}{{}}}
+\bibcite{song2025prosparse}{{32}{2025}{{Song et~al.}}{{Song, Han, Zhang, Hu, Shi, Li, Chen, Liu, Li, Yang, and Sun}}}
+\bibcite{song2024powerinfer}{{33}{2024{a}}{{Song et~al.}}{{Song, Mi, Xie, and Chen}}}
+\bibcite{song2024turbosparse}{{34}{2024{b}}{{Song et~al.}}{{Song, Xie, Zhang, Wen, Ma, Mi, and Chen}}}
+\bibcite{sun2024wanda}{{35}{2024}{{Sun et~al.}}{{Sun, Liu, Bair, and Kolter}}}
+\bibcite{szatkowski2024d2dmoe}{{36}{2024}{{Szatkowski et~al.}}{{Szatkowski, W{\'o}jcik, Pi{\'o}rczy{\'n}ski, and Scardapane}}}
+\bibcite{qwen2024qwen25}{{37}{2024}{{Team}}{{}}}
+\bibcite{wu2025rethinking}{{38}{2025{a}}{{Wu et~al.}}{{Wu, Tao, Wang, Yang, Zhao, and Wong}}}
+\bibcite{wu2025moc}{{39}{2025{b}}{{Wu et~al.}}{{Wu, He, Wang, and Yuan}}}
+\bibcite{xu2025spon}{{40}{2025}{{Xu et~al.}}{{Xu, Yang, Gao, Weng, and Ma}}}
+\bibcite{zhang2025rsparse}{{41}{2025}{{Zhang et~al.}}{{Zhang, Liu, Tian, Khaitan, Wang, and Li}}}
+\bibcite{zhou2022expertchoice}{{42}{2022}{{Zhou et~al.}}{{Zhou, Lei, Liu, Du, Huang, Zhao, Dai, Chen, Le, and Laudon}}}
+\@LN@col{1}
+\@LN{671}{9}
+\@LN{672}{9}
+\@LN{673}{9}
+\@LN{674}{9}
+\@LN{675}{9}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN@col{2}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN{768}{9}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\@LN{775}{9}
+\@LN{776}{9}
+\@LN{777}{9}
+\@LN{778}{9}
+\@LN{779}{9}
+\@LN{780}{9}
+\@LN@col{1}
+\@LN{781}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Inference Efficiency}{11}{appendix.A}\protected@file@percent }
+\newlabel{app:latency}{{A}{11}{Inference Efficiency}{appendix.A}{}}
+\@LN{782}{10}
+\@LN{783}{10}
+\@LN{784}{10}
+\@LN{785}{10}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Inference latency on LLaMA-3.1-8B (RTX PRO 6000 Blackwell, batch=1, seq=2048, fp16, 100 forward passes). Overhead is relative to dense inference.}}{11}{table.caption.29}\protected@file@percent }
+\newlabel{tab:latency}{{5}{11}{Inference latency on LLaMA-3.1-8B (RTX PRO 6000 Blackwell, batch=1, seq=2048, fp16, 100 forward passes). Overhead is relative to dense inference}{table.caption.29}{}}
+\@LN{786}{10}
+\@LN{787}{10}
+\@LN{788}{10}
+\@LN{789}{10}
+\@LN{790}{10}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@LN{798}{10}
+\@LN{799}{10}
+\@LN{800}{10}
+\@LN{801}{10}
+\@LN{802}{10}
+\@LN{803}{10}
+\@LN{804}{10}
+\@LN{805}{10}
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Predictor Bottleneck Sensitivity}{11}{appendix.B}\protected@file@percent }
+\newlabel{app:db_sensitivity}{{B}{11}{Predictor Bottleneck Sensitivity}{appendix.B}{}}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@LN{819}{10}
+\@LN{820}{10}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Predictor bottleneck sensitivity at 50\% sparsity (WikiText-2 PPL$\downarrow $). TEAL global is the primary inference protocol; per-token shown for reference.}}{11}{table.caption.30}\protected@file@percent }
+\newlabel{tab:db_sensitivity}{{6}{11}{Predictor bottleneck sensitivity at 50\% sparsity (WikiText-2 PPL$\downarrow $). TEAL global is the primary inference protocol; per-token shown for reference}{table.caption.30}{}}
+\@LN{821}{10}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@LN{825}{10}
+\@LN{826}{10}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Temperature Schedule Sensitivity}{11}{subsection.B.1}\protected@file@percent }
+\newlabel{app:tau_sensitivity}{{B.1}{11}{Temperature Schedule Sensitivity}{subsection.B.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Temperature schedule sensitivity at 50\% sparsity (WikiText-2 PPL$\downarrow $, TEAL global).}}{11}{table.caption.31}\protected@file@percent }
+\newlabel{tab:tau_sensitivity}{{7}{11}{Temperature schedule sensitivity at 50\% sparsity (WikiText-2 PPL$\downarrow $, TEAL global)}{table.caption.31}{}}
+\@LN{827}{10}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN{831}{10}
+\@LN{832}{10}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2}Training Convergence}{11}{subsection.B.2}\protected@file@percent }
+\newlabel{app:training_convergence}{{B.2}{11}{Training Convergence}{subsection.B.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Training convergence at 50\% sparsity (WikiText-2 PPL$\downarrow $, TEAL global).}}{11}{table.caption.32}\protected@file@percent }
+\newlabel{tab:training_convergence}{{8}{11}{Training convergence at 50\% sparsity (WikiText-2 PPL$\downarrow $, TEAL global)}{table.caption.32}{}}
+\@LN{833}{10}
+\@LN{834}{10}
+\@LN{835}{10}
+\@LN{836}{10}
+\@LN{837}{10}
+\@LN{838}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Geometric Penalty Schedule Dynamics}{11}{appendix.C}\protected@file@percent }
+\newlabel{app:lagrangian}{{C}{11}{Geometric Penalty Schedule Dynamics}{appendix.C}{}}
+\@LN{839}{10}
+\@LN{840}{10}
+\@LN{841}{10}
+\citation{raffel2020c4}
+\@LN@col{1}
+\@LN{842}{11}
+\@LN{843}{11}
+\@LN{844}{11}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Geometric penalty schedule convergence across sparsity targets (margin $\epsilon =0.02$, 1000 training steps). Deviation is $|$actual $-$ target$|$ / target.}}{12}{table.caption.33}\protected@file@percent }
+\newlabel{tab:lagrangian}{{9}{12}{Geometric penalty schedule convergence across sparsity targets (margin $\epsilon =0.02$, 1000 training steps). Deviation is $|$actual $-$ target$|$ / target}{table.caption.33}{}}
+\@LN{845}{11}
+\@LN{846}{11}
+\@LN{847}{11}
+\@LN{848}{11}
+\@LN{849}{11}
+\@LN{850}{11}
+\@LN{851}{11}
+\@LN{852}{11}
+\@LN{853}{11}
+\@LN{854}{11}
+\@LN{855}{11}
+\@LN{856}{11}
+\@LN{857}{11}
+\@LN{858}{11}
+\@LN{859}{11}
+\@LN{860}{11}
+\@LN{861}{11}
+\@LN{862}{11}
+\@LN{863}{11}
+\@LN{864}{11}
+\@LN{865}{11}
+\@LN{866}{11}
+\@LN{867}{11}
+\@LN{868}{11}
+\@LN{869}{11}
+\@LN{870}{11}
+\@LN{871}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Out-of-Distribution Evaluation}{12}{appendix.D}\protected@file@percent }
+\newlabel{app:ood}{{D}{12}{Out-of-Distribution Evaluation}{appendix.D}{}}
+\@LN{872}{11}
+\@LN{873}{11}
+\@LN{874}{11}
+\@LN{875}{11}
+\@LN{876}{11}
+\@LN{877}{11}
+\@LN{878}{11}
+\@LN{879}{11}
+\@LN{880}{11}
+\@LN{881}{11}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Out-of-distribution evaluation on C4 validation (PPL$\downarrow $). 30\% KL reports 2-seed mean$\pm $std; other entries use seed 42.}}{12}{table.caption.34}\protected@file@percent }
+\newlabel{tab:ood}{{10}{12}{Out-of-distribution evaluation on C4 validation (PPL$\downarrow $). 30\% KL reports 2-seed mean$\pm $std; other entries use seed 42}{table.caption.34}{}}
+\@LN{882}{11}
+\@LN{883}{11}
+\@writefile{toc}{\contentsline {paragraph}{Uniform Allocation.}{12}{section*.35}\protected@file@percent }
+\@LN{884}{11}
+\@LN{885}{11}
+\@LN{886}{11}
+\@LN{887}{11}
+\@LN{888}{11}
+\@LN{889}{11}
+\@LN{890}{11}
+\@LN{891}{11}
+\@LN{892}{11}
+\@LN{893}{11}
+\@LN{894}{11}
+\@LN{895}{11}
+\@LN{896}{11}
+\@writefile{toc}{\contentsline {paragraph}{Downstream Task Robustness.}{12}{section*.36}\protected@file@percent }
+\@LN{897}{11}
+\@LN{898}{11}
+\@LN{899}{11}
+\@LN{900}{11}
+\@LN{901}{11}
+\@LN{902}{11}
+\@LN{903}{11}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Downstream task robustness to calibration domain shift (KL 30\% uniform, seed 42). WikiText: predictor masks from in-domain text; C4: masks from OOD text. Metrics: acc\_norm (ARC-c, HS, PIQA), acc (WG, MMLU), exact\_match (GSM8K).}}{12}{table.caption.37}\protected@file@percent }
+\newlabel{tab:ood_downstream}{{11}{12}{Downstream task robustness to calibration domain shift (KL 30\% uniform, seed 42). WikiText: predictor masks from in-domain text; C4: masks from OOD text. Metrics: acc\_norm (ARC-c, HS, PIQA), acc (WG, MMLU), exact\_match (GSM8K)}{table.caption.37}{}}
+\@LN{904}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Per-Layer Retention Analysis}{12}{appendix.E}\protected@file@percent }
+\newlabel{app:retention}{{E}{12}{Per-Layer Retention Analysis}{appendix.E}{}}
+\@LN{905}{11}
+\@LN{906}{11}
+\@LN{907}{11}
+\@LN{908}{11}
+\@LN{909}{11}
+\@LN{910}{11}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Per-layer neuron retention under global top-$k$ at 30\%, 50\%, and 70\% sparsity. Dashed lines: uniform baselines. Late layers (L24--31) are starved (28.4\% at L31 even at 30\%).}}{13}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:retention}{{7}{13}{Per-layer neuron retention under global top-$k$ at 30\%, 50\%, and 70\% sparsity. Dashed lines: uniform baselines. Late layers (L24--31) are starved (28.4\% at L31 even at 30\%)}{figure.caption.38}{}}
+\@LN{911}{12}
+\@LN{912}{12}
+\@LN{913}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Training Stability}{13}{appendix.F}\protected@file@percent }
+\newlabel{app:stability}{{F}{13}{Training Stability}{appendix.F}{}}
+\@LN{914}{12}
+\@LN{915}{12}
+\@LN{916}{12}
+\@LN{917}{12}
+\@LN{918}{12}
+\@LN{919}{12}
+\@LN{920}{12}
+\@LN{921}{12}
+\@LN{922}{12}
+\@LN{923}{12}
+\@LN{924}{12}
+\@LN{925}{12}
+\@LN{926}{12}
+\@LN{927}{12}
+\@LN{928}{12}
+\@LN{929}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.1}Cross-Seed Mask Consistency}{13}{subsection.F.1}\protected@file@percent }
+\newlabel{app:cross_seed_jaccard}{{F.1}{13}{Cross-Seed Mask Consistency}{subsection.F.1}{}}
+\@LN{930}{12}
+\@LN{931}{12}
+\@LN{932}{12}
+\@LN{933}{12}
+\@LN{934}{12}
+\@LN{935}{12}
+\@LN{936}{12}
+\@LN{937}{12}
+\@LN{938}{12}
+\@LN{939}{12}
+\@LN{940}{12}
+\@LN{941}{12}
+\@LN@col{2}
+\@LN{942}{12}
+\@LN{943}{12}
+\@LN{944}{12}
+\@LN{945}{12}
+\@LN{946}{12}
+\@LN{947}{12}
+\@LN{948}{12}
+\@LN{949}{12}
+\@LN{950}{12}
+\@LN{951}{12}
+\@LN{952}{12}
+\@LN{953}{12}
+\@LN{954}{12}
+\@LN{955}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {G}MSE Baseline Configuration}{13}{appendix.G}\protected@file@percent }
+\newlabel{app:mse_config}{{G}{13}{MSE Baseline Configuration}{appendix.G}{}}
+\@LN{956}{12}
+\@LN{957}{12}
+\@LN{958}{12}
+\@LN{959}{12}
+\@LN{960}{12}
+\@LN{961}{12}
+\@LN{962}{12}
+\@LN{963}{12}
+\@LN{964}{12}
+\@LN{965}{12}
+\@LN{966}{12}
+\@LN{967}{12}
+\@LN{968}{12}
+\@LN{969}{12}
+\@LN{970}{12}
+\@LN{971}{12}
+\@LN{972}{12}
+\@LN{973}{12}
+\@LN{974}{12}
+\@LN{975}{12}
+\@LN{976}{12}
+\@LN{977}{12}
+\@LN{978}{12}
+\@LN{979}{12}
+\@LN{980}{12}
+\@LN{981}{12}
+\@LN{982}{12}
+\@LN{983}{12}
+\@LN{984}{12}
+\@LN{985}{12}
+\@LN{986}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Extended SNR Analysis}{13}{appendix.H}\protected@file@percent }
+\newlabel{app:snr_extended}{{H}{13}{Extended SNR Analysis}{appendix.H}{}}
+\@LN{987}{12}
+\@LN{988}{12}
+\@LN{989}{12}
+\@LN{990}{12}
+\citation{gautam2026fastforward}
+\citation{jiang2023mistral}
+\citation{xu2025spon}
+\citation{liu2023dejavu,gautam2026fastforward,akhauri2024shadowllm,szatkowski2024d2dmoe}
+\@LN@col{1}
+\@LN{991}{13}
+\@LN{992}{13}
+\@LN{993}{13}
+\@LN{994}{13}
+\@LN{995}{13}
+\@LN{996}{13}
+\@LN{997}{13}
+\@LN{998}{13}
+\@LN{999}{13}
+\@LN{1000}{13}
+\@LN{1001}{13}
+\@LN{1002}{13}
+\@LN{1003}{13}
+\@LN{1004}{13}
+\@LN{1005}{13}
+\@LN{1006}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Extended Downstream Evaluation}{14}{appendix.I}\protected@file@percent }
+\newlabel{app:downstream}{{I}{14}{Extended Downstream Evaluation}{appendix.I}{}}
+\@LN{1007}{13}
+\@LN{1008}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Extended downstream benchmarks (LLaMA-3.1-8B). HellaSwag: 10-shot normalized acc; PIQA: 0-shot normalized acc. KL 30\% uniform: 3-seed mean$\pm $std; others: seed 42.}}{14}{table.caption.39}\protected@file@percent }
+\newlabel{tab:downstream}{{12}{14}{Extended downstream benchmarks (LLaMA-3.1-8B). HellaSwag: 10-shot normalized acc; PIQA: 0-shot normalized acc. KL 30\% uniform: 3-seed mean$\pm $std; others: seed 42}{table.caption.39}{}}
+\@LN{1009}{13}
+\@LN{1010}{13}
+\@LN{1011}{13}
+\@LN{1012}{13}
+\@LN{1013}{13}
+\@LN{1014}{13}
+\@LN{1015}{13}
+\@LN{1016}{13}
+\@LN{1017}{13}
+\@LN{1018}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Compensation Training Convergence}{14}{appendix.J}\protected@file@percent }
+\newlabel{app:comp_convergence}{{J}{14}{Compensation Training Convergence}{appendix.J}{}}
+\@LN{1019}{13}
+\@LN{1020}{13}
+\@LN{1021}{13}
+\@LN{1022}{13}
+\@LN{1023}{13}
+\@LN{1024}{13}
+\@LN{1025}{13}
+\@LN@col{2}
+\@LN{1026}{13}
+\@LN{1027}{13}
+\@LN{1028}{13}
+\@LN{1029}{13}
+\@LN{1030}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Qwen-2.5-14B Detailed Results}{14}{appendix.K}\protected@file@percent }
+\newlabel{app:14b}{{K}{14}{Qwen-2.5-14B Detailed Results}{appendix.K}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Qwen-2.5-14B at 30\% nominal sparsity. Actual sparsity differs: KL 29.6\% (3-seed), TEAL 29.3\% (target 30\%). \textbf  {Bold}: best sparse per column per group. BCE collapses to 6.4\% native sparsity (\S  \ref {sec:method:gradient}), so forced global top-$k$ is used.}}{14}{table.caption.40}\protected@file@percent }
+\newlabel{tab:14b}{{13}{14}{Qwen-2.5-14B at 30\% nominal sparsity. Actual sparsity differs: KL 29.6\% (3-seed), TEAL 29.3\% (target 30\%). \textbf {Bold}: best sparse per column per group. BCE collapses to 6.4\% native sparsity (\S \ref {sec:method:gradient}), so forced global top-$k$ is used}{table.caption.40}{}}
+\@LN{1031}{13}
+\@LN{1032}{13}
+\@LN{1033}{13}
+\@LN{1034}{13}
+\@LN{1035}{13}
+\@LN{1036}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Full Allocation Analysis}{14}{appendix.L}\protected@file@percent }
+\newlabel{app:alloc_full}{{L}{14}{Full Allocation Analysis}{appendix.L}{}}
+\@LN{1037}{13}
+\@LN{1038}{13}
+\@LN{1039}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Mask Pattern Visualization}{14}{appendix.M}\protected@file@percent }
+\newlabel{app:mask_viz}{{M}{14}{Mask Pattern Visualization}{appendix.M}{}}
+\@LN{1040}{13}
+\@LN{1041}{13}
+\@LN{1042}{13}
+\@LN{1043}{13}
+\@LN{1044}{13}
+\@LN{1045}{13}
+\@LN{1046}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Cross-Architecture Comparison}{14}{appendix.N}\protected@file@percent }
+\newlabel{app:cross_arch}{{N}{14}{Cross-Architecture Comparison}{appendix.N}{}}
+\@LN{1047}{13}
+\@LN{1048}{13}
+\@LN{1049}{13}
+\@LN{1050}{13}
+\@LN{1051}{13}
+\@LN{1052}{13}
+\@LN{1053}{13}
+\@LN{1054}{13}
+\@LN{1055}{13}
+\@LN{1056}{13}
+\@LN{1057}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {O}Taxonomy Discussion}{14}{appendix.O}\protected@file@percent }
+\newlabel{app:taxonomy}{{O}{14}{Taxonomy Discussion}{appendix.O}{}}
+\@writefile{toc}{\contentsline {paragraph}{Correction granularity.}{14}{section*.47}\protected@file@percent }
+\@LN{1058}{13}
+\@LN{1059}{13}
+\citation{xu2025spon}
+\citation{liu2023dejavu}
+\citation{gautam2026fastforward}
+\citation{szatkowski2024d2dmoe}
+\citation{xu2025spon}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Allocation summary (LLaMA-3.1-8B). $\pm $: 3-seed; $^\ast $high seed variance.}}{15}{table.caption.41}\protected@file@percent }
+\newlabel{tab:phase}{{14}{15}{Allocation summary (LLaMA-3.1-8B). $\pm $: 3-seed; $^\ast $high seed variance}{table.caption.41}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces KL vs.\ magnitude importance scores for layer 16 neurons at 50\% sparsity. 41\% of neurons fall in disagreement quadrants where one method selects a neuron the other discards.}}{15}{figure.caption.43}\protected@file@percent }
+\newlabel{fig:scatter}{{8}{15}{KL vs.\ magnitude importance scores for layer 16 neurons at 50\% sparsity. 41\% of neurons fall in disagreement quadrants where one method selects a neuron the other discards}{figure.caption.43}{}}
+\@LN{1060}{14}
+\@LN{1061}{14}
+\@LN{1062}{14}
+\@LN{1063}{14}
+\@LN{1064}{14}
+\@writefile{toc}{\contentsline {paragraph}{Training signal coupling.}{15}{section*.48}\protected@file@percent }
+\@LN{1065}{14}
+\@LN{1066}{14}
+\@LN{1067}{14}
+\@LN{1068}{14}
+\@LN{1069}{14}
+\@LN{1070}{14}
+\@LN{1071}{14}
+\@LN{1072}{14}
+\@LN{1073}{14}
+\@LN{1074}{14}
+\@LN{1075}{14}
+\@LN{1076}{14}
+\@LN{1077}{14}
+\@LN{1078}{14}
+\@LN{1079}{14}
+\@LN{1080}{14}
+\@LN{1081}{14}
+\@LN{1082}{14}
+\@LN{1083}{14}
+\@LN@col{2}
+\@LN{1084}{14}
+\@LN{1085}{14}
+\@LN{1086}{14}
+\@LN{1087}{14}
+\@LN{1088}{14}
+\@LN{1089}{14}
+\@LN{1090}{14}
+\@LN{1091}{14}
+\@LN{1092}{14}
+\@LN{1093}{14}
+\@LN{1094}{14}
+\@LN{1095}{14}
+\@LN{1096}{14}
+\@LN{1097}{14}
+\@LN{1098}{14}
+\@LN{1099}{14}
+\@LN{1100}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {P}Oracle Mask Provenance}{15}{appendix.P}\protected@file@percent }
+\newlabel{app:oracle_provenance}{{P}{15}{Oracle Mask Provenance}{appendix.P}{}}
+\@LN{1101}{14}
+\@LN{1102}{14}
+\@LN{1103}{14}
+\@LN{1104}{14}
+\@LN{1105}{14}
+\@LN{1106}{14}
+\@LN{1107}{14}
+\@LN{1108}{14}
+\@LN{1109}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}SPON Orthogonality}{15}{appendix.Q}\protected@file@percent }
+\newlabel{app:spon}{{Q}{15}{SPON Orthogonality}{appendix.Q}{}}
+\@LN{1110}{14}
+\@LN{1111}{14}
+\@LN{1112}{14}
+\@LN{1113}{14}
+\@LN{1114}{14}
+\@LN{1115}{14}
+\@LN{1116}{14}
+\@LN{1117}{14}
+\@LN{1118}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {R}Per-Layer KL Downstream Decomposition}{15}{appendix.R}\protected@file@percent }
+\newlabel{app:perlayer_downstream}{{R}{15}{Per-Layer KL Downstream Decomposition}{appendix.R}{}}
+\@LN{1119}{14}
+\@LN{1120}{14}
+\@LN{1121}{14}
+\@LN{1122}{14}
+\@LN{1123}{14}
+\@LN{1124}{14}
+\@LN{1125}{14}
+\@LN{1126}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {S}$K{=}4$ Mismatch Control}{15}{appendix.S}\protected@file@percent }
+\newlabel{app:k4_downstream}{{S}{15}{$K{=}4$ Mismatch Control}{appendix.S}{}}
+\@LN{1127}{14}
+\@LN{1128}{14}
+\@LN{1129}{14}
+\@LN{1130}{14}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Full allocation analysis: global top-$k$ vs.\ uniform across sparsity levels (LLaMA-3.1-8B). Entries with $\pm $: 3-seed mean$\pm $std ($s \in \{42, 123, 456\}$); others: seed 42. $^\ast $High MMLU seed variance (individual seeds span 25.3--43.5\%).}}{16}{table.caption.42}\protected@file@percent }
+\newlabel{tab:phase_full}{{15}{16}{Full allocation analysis: global top-$k$ vs.\ uniform across sparsity levels (LLaMA-3.1-8B). Entries with $\pm $: 3-seed mean$\pm $std ($s \in \{42, 123, 456\}$); others: seed 42. $^\ast $High MMLU seed variance (individual seeds span 25.3--43.5\%)}{table.caption.42}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Cross-architecture comparison (WikiText-2 PPL$\downarrow $). Adv = TEAL\,/\,KL ratio. \textbf  {Note:} LLaMA results use global top-$k$ allocation; Mistral results use uniform allocation. Mistral 30\%: 3-seed mean$\pm $std; other rows: seed 42.}}{16}{table.caption.45}\protected@file@percent }
+\newlabel{tab:cross_arch}{{16}{16}{Cross-architecture comparison (WikiText-2 PPL$\downarrow $). Adv = TEAL\,/\,KL ratio. \textbf {Note:} LLaMA results use global top-$k$ allocation; Mistral results use uniform allocation. Mistral 30\%: 3-seed mean$\pm $std; other rows: seed 42}{table.caption.45}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Mistral-7B-v0.3 downstream evaluation at 30\% sparsity. $\pm $: 3-seed mean$\pm $std ($s \in \{42, 123, 456\}$); TEAL is deterministic (single run). ARC-c exhibits high seed variance ($\sigma $=6.4pp).}}{16}{table.caption.46}\protected@file@percent }
+\newlabel{tab:mistral_downstream}{{17}{16}{Mistral-7B-v0.3 downstream evaluation at 30\% sparsity. $\pm $: 3-seed mean$\pm $std ($s \in \{42, 123, 456\}$); TEAL is deterministic (single run). ARC-c exhibits high seed variance ($\sigma $=6.4pp)}{table.caption.46}{}}
+\@LN{1131}{15}
+\@LN{1132}{15}
+\@LN{1133}{15}
+\@LN{1134}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {T}Per-Layer Sparsity Constraint Analysis}{16}{appendix.T}\protected@file@percent }
+\newlabel{app:constraint}{{T}{16}{Per-Layer Sparsity Constraint Analysis}{appendix.T}{}}
+\@LN{1135}{15}
+\@LN{1136}{15}
+\@LN{1137}{15}
+\@LN{1138}{15}
+\@LN{1139}{15}
+\@LN{1140}{15}
+\@LN{1141}{15}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces 2D decomposition at 30\% sparsity (LLaMA-3.1-8B, uniform allocation). All rows are 3-seed mean$\pm $std. Signal type = per-layer KL $-$ MSE; coupling = E2E KL $-$ per-layer KL. Percentages are upper bounds (dimensions not fully orthogonal; see \S  \ref {sec:perlayer}).}}{16}{table.caption.49}\protected@file@percent }
+\newlabel{tab:perlayer_downstream}{{18}{16}{2D decomposition at 30\% sparsity (LLaMA-3.1-8B, uniform allocation). All rows are 3-seed mean$\pm $std. Signal type = per-layer KL $-$ MSE; coupling = E2E KL $-$ per-layer KL. Percentages are upper bounds (dimensions not fully orthogonal; see \S \ref {sec:perlayer})}{table.caption.49}{}}
+\@LN{1142}{15}
+\@LN{1143}{15}
+\@LN{1144}{15}
+\@LN{1145}{15}
+\@LN{1146}{15}
+\@LN{1147}{15}
+\@LN{1148}{15}
+\@LN{1149}{15}
+\@LN{1150}{15}
+\@LN{1151}{15}
+\@LN{1152}{15}
+\@LN{1153}{15}
+\@LN{1154}{15}
+\@LN{1155}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {U}Per-Layer Sparsity Distribution}{16}{appendix.U}\protected@file@percent }
+\newlabel{app:perlayer_sparsity}{{U}{16}{Per-Layer Sparsity Distribution}{appendix.U}{}}
+\@LN{1156}{15}
+\@LN{1157}{15}
+\@LN{1158}{15}
+\@LN{1159}{15}
+\citation{raffel2020c4}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Binary mask comparison between KL-derived and magnitude-based masks at selected layers (L2, L16, L28) for 30\% and 50\% sparsity (64 samples). Black = selected by both, light regions = selected by only one method. Deep layers show the largest divergence (L28 Jaccard distance: 0.60 at 30\%, 0.74 at 50\%).}}{17}{figure.caption.44}\protected@file@percent }
+\newlabel{fig:mask_comparison}{{9}{17}{Binary mask comparison between KL-derived and magnitude-based masks at selected layers (L2, L16, L28) for 30\% and 50\% sparsity (64 samples). Black = selected by both, light regions = selected by only one method. Deep layers show the largest divergence (L28 Jaccard distance: 0.60 at 30\%, 0.74 at 50\%)}{figure.caption.44}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces 3-seed $K{=}4$ mismatch control at 30\% sparsity (LLaMA-3.1-8B, uniform allocation, $s \in \{42, 123, 456\}$). Actual sparsity 29.6\%; per-layer sparsity std=0.003 (near-uniform). Gap closure $= (K{=}4 - K{=}1) / (\text  {E2E} - K{=}1) \times 100$.}}{17}{table.caption.50}\protected@file@percent }
+\newlabel{tab:k4_downstream}{{19}{17}{3-seed $K{=}4$ mismatch control at 30\% sparsity (LLaMA-3.1-8B, uniform allocation, $s \in \{42, 123, 456\}$). Actual sparsity 29.6\%; per-layer sparsity std=0.003 (near-uniform). Gap closure $= (K{=}4 - K{=}1) / (\text {E2E} - K{=}1) \times 100$}{table.caption.50}{}}
+\@LN{1160}{16}
+\@LN{1161}{16}
+\@LN{1162}{16}
+\@LN{1163}{16}
+\@LN{1164}{16}
+\@LN{1165}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {V}C4 Training Data Control}{17}{appendix.V}\protected@file@percent }
+\newlabel{app:c4_control}{{V}{17}{C4 Training Data Control}{appendix.V}{}}
+\@LN{1166}{16}
+\@LN{1167}{16}
+\@LN{1168}{16}
+\@LN{1169}{16}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Per-layer sparsity constraint analysis. \emph  {Protect late}: cap L22--L28 sparsity $\leq $30\%; \emph  {Remove valley}: override L14--L18 sparsity to 30\%. Budget redistributed to maintain 30\% overall.}}{17}{table.caption.51}\protected@file@percent }
+\newlabel{tab:constraint}{{20}{17}{Per-layer sparsity constraint analysis. \emph {Protect late}: cap L22--L28 sparsity $\leq $30\%; \emph {Remove valley}: override L14--L18 sparsity to 30\%. Budget redistributed to maintain 30\% overall}{table.caption.51}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Per-layer sparsity sub-ranges: KL predictor vs.\ magnitude (LLaMA-3.1-8B, 30\%, uniform allocation). Ranges denote min--max across layers in each group.}}{17}{table.caption.52}\protected@file@percent }
+\newlabel{tab:perlayer_sparsity}{{21}{17}{Per-layer sparsity sub-ranges: KL predictor vs.\ magnitude (LLaMA-3.1-8B, 30\%, uniform allocation). Ranges denote min--max across layers in each group}{table.caption.52}{}}
+\@LN{1170}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces C4-trained vs.\ WikiText-trained KL predictor (LLaMA-3.1-8B, 30\% uniform, s42).}}{17}{table.caption.53}\protected@file@percent }
+\newlabel{tab:c4_control}{{22}{17}{C4-trained vs.\ WikiText-trained KL predictor (LLaMA-3.1-8B, 30\% uniform, s42)}{table.caption.53}{}}
+\@LN{1171}{16}
+\@LN{1172}{16}
+\@LN{1173}{16}
+\@LN{1174}{16}
+\citation{merity2017pointer}
+\citation{eval-harness}
+\@LN@col{1}
+\@LN{1175}{17}
+\@LN{1176}{17}
+\@LN{1177}{17}
+\@LN{1178}{17}
+\@LN{1179}{17}
+\@LN{1180}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {W}Per-Layer Coupling Breadth Analysis}{18}{appendix.W}\protected@file@percent }
+\newlabel{app:k_curve}{{W}{18}{Per-Layer Coupling Breadth Analysis}{appendix.W}{}}
+\@LN{1181}{17}
+\@LN{1182}{17}
+\@LN{1183}{17}
+\@LN{1184}{17}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces K-curve: coupling breadth vs.\ predictor quality (30\%, TEAL uniform, LLaMA-3.1-8B). All values are 3-seed mean$\pm $std (s42/s123/s456) except $K{=}1$ downstream (single seed). ``---'' = not evaluated.}}{18}{table.caption.54}\protected@file@percent }
+\newlabel{tab:k_curve}{{23}{18}{K-curve: coupling breadth vs.\ predictor quality (30\%, TEAL uniform, LLaMA-3.1-8B). All values are 3-seed mean$\pm $std (s42/s123/s456) except $K{=}1$ downstream (single seed). ``---'' = not evaluated}{table.caption.54}{}}
+\@LN{1185}{17}
+\@LN{1186}{17}
+\@LN{1187}{17}
+\@LN{1188}{17}
+\@LN{1189}{17}
+\@LN{1190}{17}
+\@LN{1191}{17}
+\@LN{1192}{17}
+\@LN{1193}{17}
+\@LN{1194}{17}
+\@LN{1195}{17}
+\@LN{1196}{17}
+\@LN{1197}{17}
+\@LN{1198}{17}
+\@LN{1199}{17}
+\@LN{1200}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {X}Licenses}{18}{appendix.X}\protected@file@percent }
+\newlabel{app:licenses}{{X}{18}{Licenses}{appendix.X}{}}
+\@LN{1201}{17}
+\@LN{1202}{17}
+\@LN{1203}{17}
+\@LN{1204}{17}
+\@LN{1205}{17}
+\@LN{1206}{17}
+\@LN{1207}{17}
+\@LN{1208}{17}
+\@LN{1209}{17}
+\@LN{1210}{17}
+\@LN{1211}{17}
+\@LN{1212}{17}
+\@LN@col{2}
+\@LN{1213}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {Y}Reproducibility Details}{18}{appendix.Y}\protected@file@percent }
+\newlabel{app:reproducibility}{{Y}{18}{Reproducibility Details}{appendix.Y}{}}
+\@writefile{toc}{\contentsline {paragraph}{Software environment.}{18}{section*.55}\protected@file@percent }
+\@LN{1214}{17}
+\@LN{1215}{17}
+\@LN{1216}{17}
+\@LN{1217}{17}
+\@LN{1218}{17}
+\@LN{1219}{17}
+\@LN{1220}{17}
+\@writefile{toc}{\contentsline {paragraph}{Dataset statistics.}{18}{section*.56}\protected@file@percent }
+\@LN{1221}{17}
+\@LN{1222}{17}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Dataset statistics. Predictor training uses WikiText-103; perplexity evaluation uses WikiText-2 and C4 validation splits; downstream evaluation uses standard benchmarks with their default splits.}}{18}{table.caption.57}\protected@file@percent }
+\newlabel{tab:dataset_stats}{{24}{18}{Dataset statistics. Predictor training uses WikiText-103; perplexity evaluation uses WikiText-2 and C4 validation splits; downstream evaluation uses standard benchmarks with their default splits}{table.caption.57}{}}
+\@LN{1223}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {Z}Use of AI Assistance}{18}{appendix.Z}\protected@file@percent }
+\@LN{1224}{17}
+\@LN{1225}{17}
+\gdef \@abspage@last{18}

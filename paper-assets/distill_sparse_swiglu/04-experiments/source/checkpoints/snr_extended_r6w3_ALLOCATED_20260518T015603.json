@@ -1,0 +1,15 @@
+{
+  "exp_id": "snr_extended_r6w3",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T01:55:41.436Z",
+    "updated_at": "2026-05-18T01:56:02.967Z",
+    "hypothesis": "Extended SNR analysis (steps 0-300, 7 checkpoints) with 95% CI shows KL gradient signal-to-noise ratio consistently exceeds BCE across training, explaining why KL converges to better sparsity patterns. Addresses reviewer R6-W3."
+  },
+  "timestamp": "2026-05-18T01:56:03.342489+00:00",
+  "trigger": "update_registry"
+}

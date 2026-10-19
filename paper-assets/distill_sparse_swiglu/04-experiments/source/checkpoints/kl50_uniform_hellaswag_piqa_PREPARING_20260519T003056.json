@@ -1,0 +1,14 @@
+{
+  "exp_id": "kl50_uniform_hellaswag_piqa",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:30:56.542Z",
+    "updated_at": "2026-05-19T00:30:56.542Z"
+  },
+  "timestamp": "2026-05-19T00:30:56.996201+00:00",
+  "trigger": "update_registry"
+}

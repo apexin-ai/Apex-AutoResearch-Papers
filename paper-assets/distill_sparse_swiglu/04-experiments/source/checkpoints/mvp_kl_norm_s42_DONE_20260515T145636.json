@@ -1,0 +1,39 @@
+{
+  "exp_id": "mvp_kl_norm_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:23:52.490Z",
+    "updated_at": "2026-05-15T14:56:36.798Z",
+    "spec": {
+      "hypothesis": "Normalized KL (÷seq_len) + Lagrangian 约束在 1000 步完整训练下产生优于 BCE 的稀疏预测器 (PPL increase < 58%)",
+      "loss_type": "kl_normalized",
+      "seed": 42,
+      "model": "Llama-3.1-8B",
+      "model_name": "llama-3.1-8b",
+      "sparsity": 0.5,
+      "steps": 1000,
+      "batch_size": 4,
+      "seq_len": 2048,
+      "gpu": "cuda:0",
+      "server": "westd-34887",
+      "parent": "kl_normalized_quicktest",
+      "data_path": "wikitext-103 (HF cached)",
+      "data_count": null,
+      "kl_normalization": "÷seq_len only",
+      "lagrangian": "lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]",
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_s42 --wandb_run_name mvp_kl_norm_s42 --dataset wikitext-103\""
+    },
+    "pid": 67789,
+    "log_path": "~/runs/distill_sparse_swiglu/mvp_kl_norm_s42.log",
+    "notes": "Director 指令的 mvp_kl_s42（新配方）。Normalized KL (÷seq_len) + Lagrangian, 1000 steps, seed=42。已于 session 恢复时提交 (PID=67789)。训练完后需跑 WikiText-2 + C4 eval。",
+    "conclusion": "failed",
+    "failure_reason": "KL normalization bug: train.py:228 ÷vocab_size + losses.py ÷seq_len = double normalization, kl_norm≈0.00007, gradient signal ~10^-5",
+    "completed_at": "2026-05-15T14:56:36.798Z"
+  },
+  "timestamp": "2026-05-15T14:56:36.828554+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fc1e95b58eed0818d01",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "monitor bce comp step500",
+  "task_key": "worker_monitor_bce_comp_step500_20260515T181059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_bce_comp_step500_20260515T181059_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "1c0a07321017b30cbef7e6f9f757a47102c691c4c5cc4e5d40a6b92503b06500"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "⚠️ **SPARSITY_HIGH: 0.557，建议调 reg_weight 重跑**\n\nStep 500 关键指标：\n- `sparsity=0.557`，`total_loss=0.6508`，`bce_loss=0.6417`，`comp_loss=0.0035`，`reg=0.0056`\n- Phase 2（joint training）已在 step 201 启动，运行正常\n\nSparsity 趋势：\n\n| Step | Sparsity |\n|------|----------|\n| 250  | 0.561    |\n| 300  | 0.557    |\n| 400  | 0.555    |\n| 500  | 0.557    |\n\n下降速度极慢，step 300→500 之间基本停滞在 0.555-0.557，未能有效收敛到 target 0.5。当前 reg_weight 的正则化力度不足以继续压低 sparsity。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-bce-comp-step500.md"
+}

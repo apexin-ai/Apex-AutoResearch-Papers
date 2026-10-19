@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "2d93a90c083b47d2406c",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "ops anon repo sync appendix",
+  "task_key": "worker_ops_anon_repo_sync_appendix_20260525T091033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_anon_repo_sync_appendix_20260525T091033.jsonl",
+    "occurrence": 1,
+    "bytes": 175,
+    "sha256": "4d201297a46e7fe75ffe5947508a2951190db53c13b51e401606bb2e0d60585b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T09:10:44.775149+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_anon_repo_sync_appendix_20260525T091033"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-anon-repo-sync-appendix.md"
+}

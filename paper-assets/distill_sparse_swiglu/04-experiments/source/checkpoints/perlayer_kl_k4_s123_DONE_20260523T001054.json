@@ -1,0 +1,61 @@
+{
+  "exp_id": "perlayer_kl_k4_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:36:32.577Z",
+    "updated_at": "2026-05-23T00:10:52.965Z",
+    "hypothesis": "K=4 per-layer KL (seed 123): replicates s42 pilot to confirm PPL mismatch explanation rate ~67% and downstream task-dependency pattern across seeds.",
+    "parent": "perlayer_kl_k4_s42",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/distill_sparse_swiglu/run_k4_s123_pipeline.sh\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "65980",
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_k4_s123.log",
+      "submitted_at": "2026-05-22T13:40:39.779Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 123,
+      "model_name": "LLaMA-3.1-8B",
+      "data_path": "wikitext-103",
+      "wall_clock_seconds": 9108.4,
+      "gpu_hours": 2.53
+    },
+    "metrics": {
+      "wikitext2_ppl": 8.8897,
+      "arc_challenge_acc_norm": 0.4053,
+      "winogrande_acc": 0.6701,
+      "mmlu_acc": 0.4118,
+      "gsm8k_exact_match": 0.0781,
+      "hellaswag_acc_norm": 0.6668,
+      "piqa_acc_norm": 0.7448,
+      "boolq_acc": 0.5914
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T16:12:20.006Z"
+    },
+    "failure_reason": "Phase 4 sparsity analysis failed (missing --model_path/--predictor_path in pipeline script). Phase 1-3 (train+PPL+downstream) all succeeded.",
+    "conclusion": "killed",
+    "completed_at": "2026-05-22T16:12:28.142Z",
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k4_s123/predictor_perlayer_kl_k4.pt",
+    "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_k4_s123.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T16:12:37.968058+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-23T00:10:54.067648+00:00",
+  "trigger": "update_registry"
+}

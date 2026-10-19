@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12a5ef6502e2b8ba1ab0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check kl eval and read results",
+  "task_key": "worker_ops_check_kl_eval_and_read_results_20260515T233513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_kl_eval_and_read_results_20260515T233513_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "26a563e883f5c9215ce45d63a050c6692930f121f0ae492c30a6888d621fd142"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n**Dense eval** — 已完成。**KL sparse eval (PID 171565)** — 仍在跑，GSM8K generate_until 47% (625/1319)，预计还需 ~15 分钟。**Mistral KL eval (PID 174840)** — 刚启动 1 分 13 秒，ARC-challenge loglikelihood 10% (496/4687)。\n\n两块 GPU 均在工作：cuda:0 跑 KL sparse eval (29.8 GB)，cuda:1 跑 Mistral eval (16.9 GB)。\n\n## 对比表\n\n| Condition | ARC-c | WinoGrande | MMLU | GSM8K |\n|-----------|-------|------------|------|-------|\n| Dense | 0.5819 | 0.7814 | 0.6532 | 0.5004 |\n| KL sparse | *pending* | *pending* | *pending* | *pending* (~47% GSM8K) |\n| Mistral KL sparse | *pending* | *pending (~10% ARC)* | *pending* | *pending* |\n\nKL sparse eval 预计 15-20 分钟内出结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-kl-eval-and-read-results.md"
+}

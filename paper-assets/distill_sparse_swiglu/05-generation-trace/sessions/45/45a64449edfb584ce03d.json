@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45a64449edfb584ce03d",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_3_1778887468.md",
+  "task_key": "loop_3_1778887468",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778887468.md",
+    "occurrence": 1,
+    "bytes": 3981,
+    "sha256": "ff0bac1c1b679e3fcac0f10e5be07d917672ca782ba42147ce162b60132beb7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T22:58:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-34887:cuda:0 和 westd-34887:cuda:1，禁止使用其他卡\n- W&B 模式：当前服务器用 `WANDB_MODE=offline` 或 `WANDB_MODE=disabled`，指标从日志提取而非 W&B API\n- 环境激活必须用 `source /root/distill_sparse_swiglu/setup_env.sh` 或 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- mvp_kl_s456 / mvp_kl_s123（QUEUED）是归一化 bug 修复前的旧实验，**不要提交**——已被 mvp_kl_norm_v2_* 系列替代\n- submit_training_job 的 command 里 `--gpu 0` 固定写 0（框架自动映射物理 GPU）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，账号 root\n- 工作目录：/root/distill_sparse_swiglu\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型：/root/autodl-tmp/models/llama-3.1-8b\n- 数据集：wikitext-103（HF cached），eval 用 wikitext-2\n- Checkpoints：/root/distill_sparse_swiglu/checkpoints/{exp_id}/\n- 日志：~/runs/distill_sparse_swiglu/{exp_id}.log\n- W&B：offline/disabled\n- 训练脚本：src/train.py（支持 --relaxation ste/gumbel, --loss_type kl_normalized/bce）\n- 活跃进程：无（ste_baseline_s42 刚结束，两张卡均空闲）\n- Cron：reconcile 返回 0 个活跃 cron\n\n### 3. 📊 当前状态\n**刚发生的事**：收到 CRON 回调 ste_baseline_s42（plan_002, STE baseline）训练完成。已 spawn Worker `worker_analysis_ste_baseline_s42_20260515T195504` 去 SSH 读日志提取 metrics，**该 Worker 尚未返回**。已向 Director 简报实验完成+分析中。\n\n**Registry 状态**：\n- ANALYZING: ste_baseline_s42（等 Worker 分析）\n- QUEUED: mvp_kl_s456, mvp_kl_s123（废弃，勿提交）\n- PREPARING: bce_isocompute_s42_v2（plan_003 retry）、eval_spon_supp_retry、spon_kl_s42、mvp_kl_norm_s456（已被 v2 替代）、kl_norm_v3_quicktest（已验证通过）、kl_lagrangian_v2（已取消）\n- DONE: 21 个（success 9, negative 6, failed 4, killed 2）\n\n**等待中**：Worker 回调 → 完成 on-experiment-done 全流程\n\n### 4. 📋 待办\n- Worker `worker_analysis_ste_baseline_s42_*` 返回 → 提取 metrics（PPL/sparsity/lambda stats）→ 判定 conclusion → update_registry(status=DONE) → 刷新 report.md → 按 on-experiment-done 分叉处理（success 则铺 STE s123/s456；negative 则出 Framing 提案）→ 完整汇报 Director\n- STE PPL > 12（success，Gumbel 优势确认）→ cuda:1 提交 ste_baseline_s123，cuda:0 提交 bce_isocompute_s42_v2\n- STE PPL < 10（negative，STE ≈ Gumbel）→ 产出 Framing 提案（Reviewer Concern #3 需要换 defense 策略），同时 cuda:0 提交 bce_isocompute_s42_v2\n- bce_isocompute_s42_v2 可以不等 STE 结果直接提交（独立实验，plan_003）——优先填充空闲 GPU\n- 两张 GPU 均空闲 → 必须尽快填满，分析完成后立即安排\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D007: MVP PASS，KL PPL ~9.19 vs BCE PPL ~28.1（3x gap），进入 research 阶段\n- D008: BCE+Comp 和 SPON 均 negative，Claim 1 极强确认\n- D009/D010: Claim 2 reframe 为 \"KL subsumes SPON\"（SPON recovery 仅 3.8-7.3%）\n- 当前焦点：Reviewer defense 实验（plan_002 STE + plan_003 iso-compute）\n\n**DDL**：EMNLP 2026 ARR May，2026-05-25（还剩 10 天）\n\n**易错点**：\n- ste_baseline_s42 之前有一次 negative 记录（`extra.previous_failure.conclusion: negative`），但那可能是第一次 OOM 失败被误标。当前 retry 是真正的完整训练，以本次 metrics 为准\n- Director 特别关注 lambda 震荡数据（0.01-1000 range），分析时必须提取 lambda 统计\n- 5-seed headline 中 s456 是 outlier（PPL 13.58 vs 其他 ~12.0 的 teal_sparse_ppl），调查尚未完成\n- kl_norm_v3_quicktest / kl_lagrangian_v2 / mvp_kl_norm_s456 这三个 PREPARING 实验实际已废弃/替代，不要尝试推进\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778887468.md"
+}

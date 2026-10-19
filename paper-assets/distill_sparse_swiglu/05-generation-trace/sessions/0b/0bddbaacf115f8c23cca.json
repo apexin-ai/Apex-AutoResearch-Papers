@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bddbaacf115f8c23cca",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval training free baselines",
+  "task_key": "worker_eval_training_free_baselines_20260515T180055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_training_free_baselines_20260515T180055_result.json",
+    "occurrence": 1,
+    "bytes": 1199,
+    "sha256": "75f0c2ead5b09452d224da4df823e9ff4e0f588048968005d93e33b6531e68f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完整结果\n\n### WikiText-2 PPL @ 50% Sparsity (LLaMA-3.1-8B)\n\n| Method | PPL | Model Sparsity |\n|---|---|---|\n| **Dense (baseline)** | **6.12** | 0% |\n| **TEAL Greedy** | **50,035** | 50.0% |\n| **Vanilla TEAL** | **66,036** | 49.9% |\n| **R-Sparse** (rank=256) | **74,929** | 50.0% |\n| **WINA** | **82,567** | 50.0% |\n\n### Per-layer Sparsity 分布特征\n\n四个 baseline 呈现相同模式：\n- **Layer 0-5**: 几乎完全 sparse (95-100%)\n- **Layer 6-15**: 中等 sparsity (50-95%)\n- **Layer 16-23**: 轻度 sparse (2-50%)\n- **Layer 24-31**: 完全 dense (0%)\n\nTEAL Greedy 稍好是因为 greedy allocation 基于 reconstruction error，但仍然把前层 prune 得太狠。WINA 和 R-Sparse 虽然引入了 weight-aware scoring，但 global topk 分配仍导致相同的结构性问题。\n\n### 关键结论\n\n所有 training-free baseline 在 50% sparsity 下完全崩溃（PPL 50k-83k vs Dense 6.12）。根因：global allocation 系统性地 over-prune 前层 MLP，而这些层对模型输出至关重要。这为 distillation-based 方法提供了强有力的 motivation——需要通过训练学习 per-layer allocation 来避免灾难性退化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-training-free-baselines.md"
+}

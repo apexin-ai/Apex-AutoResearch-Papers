@@ -1,0 +1,59 @@
+{
+  "exp_id": "d030_kl30_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:53:01.230Z",
+    "updated_at": "2026-05-16T04:30:36.104Z",
+    "hypothesis": "D030: KL 30% sparsity with UNIFORM per-layer allocation — 验证 global top-k 的 per-layer 不均匀是否是 downstream 崩溃的根因。对比 global top-k 的 MMLU 28.74%/GSM8K 7.43%。",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && python -u src/benchmark_eval.py --exp_id d030_kl30_uniform --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0'",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "200692",
+      "log_path": "~/runs/distill_sparse_swiglu/d030_kl30_uniform.log",
+      "submitted_at": "2026-05-16T03:53:05.667Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "data_count": 0,
+      "model_name": "Llama-3.1-8B",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt"
+    },
+    "plan_id": "plan_008",
+    "reproduce": {
+      "finished_at": "2026-05-16T04:27:03.930Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T04:27:05.705355+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "wikitext2_ppl": 8.8157,
+      "arc_challenge_acc_norm": 0.4078,
+      "winogrande_acc": 0.6859,
+      "mmlu_acc": 0.4061,
+      "gsm8k_exact_match": 0.0735,
+      "actual_sparsity": 0.3,
+      "allocation": "uniform",
+      "per_layer_sparsity": "uniform 0.301 across all 32 layers",
+      "mmlu_improvement_vs_global": "+11.87pp (0.2874 → 0.4061)",
+      "gsm8k_change_vs_global": "no change (0.0743 → 0.0735, within noise)"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-16T04:30:36.219696+00:00",
+  "trigger": "update_registry"
+}

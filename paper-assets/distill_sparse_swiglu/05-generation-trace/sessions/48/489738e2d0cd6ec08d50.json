@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "489738e2d0cd6ec08d50",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval collect 14b uniform final",
+  "task_key": "worker_eval_collect_14b_uniform_final_20260518T005613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect_14b_uniform_final_20260518T005613_result.json",
+    "occurrence": 1,
+    "bytes": 2222000,
+    "sha256": "896957362c21420bbb15f3f2017bd5a9e3fb390c51af9612f68a11bcc2318d54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "489738e2d0cd6ec08d50-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-14b-uniform-final.md"
+}

@@ -1,0 +1,48 @@
+{
+  "exp_id": "bce_isocompute_v2_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:01:43.104Z",
+    "updated_at": "2026-05-23T00:11:35.391Z",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 1000 --warmup_steps 100 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --sparsity_reg_weight 2.0 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42 --gradient_checkpointing --log_every 100 --save_every 250 --wandb_run_name bce_isocompute_v2_s42\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "129182",
+      "log_path": "~/runs/distill_sparse_swiglu/bce_isocompute_v2_s42.log",
+      "submitted_at": "2026-05-15T20:16:10.918Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1727.3,
+      "gpu_hours": 0.48
+    },
+    "hypothesis": "BCE 在 iso-compute (1000 steps) + iso-sparsity (STE reg_weight=2.0 使 sparsity 收敛到 ~0.50) 下是否能缩小与 KL 的 PPL 差距？消除 compute 和 sparsity 两个 confound。",
+    "notes": "## Eval Results (2026-05-16)\n- true_dense_ppl: 6.12\n- predictor_hard_mask_ppl: 26.76\n- teal_sparse_ppl: 54.84\n- sparsity_target: 0.50 (converged correctly, STE fix worked)\n\n## Training Summary\n- 1000 steps, 1048s (1.05s/step), EXIT_CODE=0\n- BCE loss: 0.6714 → 0.6586 (only 5% better than random 0.693)\n- Reg loss: 0.0171 → 0.0051 (sparsity converged to 0.50)\n- reg_weight=2.0, Gumbel-sigmoid STE\n\n## Comparison with KL Baseline\n- KL normalized (50% sparsity, 4-seed mean): teal_sparse_ppl = 12.00 ± 0.07\n- BCE v2: teal_sparse_ppl = 54.84 — 4.6x worse than KL\n\n## Conclusion\nBCE + STE dramatically underperforms KL at 50% sparsity under iso-compute (1000 steps). BCE treats each neuron as an independent binary classification, losing inter-neuron coordination and output distribution signal. The predictor barely learned meaningful patterns (BCE only 5% better than random). KL's direct output-distribution matching provides much stronger learning signal. BCE is not a viable alternative loss for sparsity predictor training.",
+    "conclusion": "killed",
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42/",
+    "metrics": {
+      "final_loss": 0.6637,
+      "final_bce_loss": 0.6586,
+      "final_reg_loss": 0.0051,
+      "final_sparsity": 0.502,
+      "training_steps": 1000,
+      "training_time_sec": 1047.8,
+      "reg_weight": 2,
+      "true_dense_ppl": 6.12,
+      "predictor_hard_mask_ppl": 26.76,
+      "teal_sparse_ppl": 54.84,
+      "eval_seq_len": 2048,
+      "eval_dataset": "wikitext-2"
+    },
+    "completed_at": "2026-05-15T20:44:58.239Z"
+  },
+  "timestamp": "2026-05-23T00:11:35.985727+00:00",
+  "trigger": "update_registry"
+}

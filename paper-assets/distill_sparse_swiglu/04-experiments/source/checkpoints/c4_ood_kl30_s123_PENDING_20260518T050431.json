@@ -1,0 +1,16 @@
+{
+  "exp_id": "c4_ood_kl30_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:04:06.474Z",
+    "updated_at": "2026-05-18T05:04:31.014Z",
+    "hypothesis": "KL-trained predictor (30% sparsity, seed 123) generalizes to out-of-distribution C4 validation data, maintaining low PPL degradation vs dense baseline, because the predictor learns activation importance patterns that transfer across text domains.",
+    "parent": "kl_sparsity30_s123"
+  },
+  "timestamp": "2026-05-18T05:04:31.317057+00:00",
+  "trigger": "update_registry"
+}

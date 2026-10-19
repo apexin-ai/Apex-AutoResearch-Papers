@@ -1,0 +1,5 @@
+See server: /root/distill_sparse_swiglu/artifacts/eval_results_v3_vanilla_teal.json
+
+Summary: vanilla_teal_ppl=66036.41, true_dense_ppl=6.12, sparsity=0.499
+All 6 checkpoints produce identical vanilla_teal_ppl (expected, since vanilla TEAL is predictor-independent).
+Per-layer sparsity: Layer 0-7 pruned 93-100%, Layer 25-31 pruned 0% — extreme imbalance from raw magnitude ranking.

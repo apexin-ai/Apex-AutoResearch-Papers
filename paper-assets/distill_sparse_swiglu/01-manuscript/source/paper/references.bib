@@ -1,0 +1,398 @@
+@misc{eval-harness,
+  author = {Gao, Leo and Tow, Jonathan and Abbasi, Baber and Biderman, Stella and Black, Sid and DiPofi, Anthony and Foster, Charles and Golding, Laurence and Hsu, Jeffrey and others},
+  title = {A Framework for Few-Shot Language Model Evaluation},
+  year = {2023},
+  publisher = {Zenodo},
+  url = {https://doi.org/10.5281/zenodo.10256836}
+}
+
+% =============================================================================
+% Additional references (R20 review response)
+% =============================================================================
+
+
+@article{serbin2026svdcsp,
+  title={{SVD} Contextual Sparsity Predictors for Fast {LLM} Inference},
+  author={Serbin, Georgii and Koshkin, Kirill and Sun, Zhongao and Bistrigova, Anastasiya and Korikov, C.C.},
+  journal={arXiv preprint arXiv:2603.14110},
+  year={2026}
+}
+
+@inproceedings{liu2025larosa,
+  title={La{R}o{SA}: Enhancing {LLM} Efficiency via Layerwise Rotated Sparse Activation},
+  author={Kai Liu and Bowen Xu and Shaoyu Wu and Xin Chen and Hao Zhou and Yongliang Tao and Lulu Hu},
+  booktitle={Proceedings of the International Conference on Machine Learning (ICML)},
+  year={2025},
+  url={https://arxiv.org/abs/2507.01299}
+}
+
+@inproceedings{geva2023dissecting,
+  title = {Dissecting Recall of Factual Associations in Auto-Regressive Language Models},
+  author = {Geva, Mor and Bastings, Jasmijn and Filippova, Katja and Globerson, Amir},
+  booktitle = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages = {12216--12235},
+  year = {2023},
+}
+
+
+% =============================================================================
+% Direction 1: KL distillation for structured/activation sparsity
+% =============================================================================
+
+@inproceedings{fang2024maskllm,
+  title = {MaskLLM: Learnable Semi-Structured Sparsity for Large Language Models},
+  author = {Gongfan Fang and Hongxu Yin and Saurav Muralidharan and Greg Heinrich and Jeff Pool and Jan Kautz and Pavlo Molchanov and Xinchao Wang},
+  year = {2024},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  url = {https://arxiv.org/abs/2409.17481},
+}
+
+@article{xu2025spon,
+  title = {Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models},
+  author = {Haotian Xu and Jiannan Yang and Tian Gao and Tsui-Wei Weng and Tengfei Ma},
+  year = {2025},
+  journal = {arXiv preprint arXiv:2512.12744},
+  url = {https://arxiv.org/abs/2512.12744},
+}
+
+
+
+% =============================================================================
+% Direction 3: SPON and learnable bias correction for sparsity
+% =============================================================================
+
+@article{gautam2026fastforward,
+  title = {Fast Forward: Accelerating LLM Prefill with Predictive FFN Sparsity},
+  author = {Aayush Gautam and Mukul Gagrani and Junyoung Park and Mingu Lee and Chiris Lott and Narasimha Reddy},
+  year = {2026},
+  journal = {arXiv preprint arXiv:2602.00397},
+  url = {https://arxiv.org/abs/2602.00397},
+}
+
+
+% =============================================================================
+% Direction 4: Predictor-based activation sparsity
+% =============================================================================
+
+@inproceedings{liu2025teal,
+  title = {Training-Free Activation Sparsity in Large Language Models},
+  author = {James Liu and Pragaash Ponnusamy and Tianle Cai and Han Guo and Yoon Kim and Ben Athiwaratkun},
+  year = {2025},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  url = {https://arxiv.org/abs/2408.14690},
+}
+
+@inproceedings{liu2023dejavu,
+  title = {Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time},
+  author = {Zichang Liu and Jue Wang and Tri Dao and Tianyi Zhou and Binhang Yuan and Zhao Song and Anshumali Shrivastava and Ce Zhang and Yuandong Tian and Christopher Re and Beidi Chen},
+  year = {2023},
+  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},
+  url = {https://arxiv.org/abs/2310.17157},
+}
+
+@inproceedings{akhauri2024shadowllm,
+  title = {ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models},
+  author = {Yash Akhauri and Ahmed F AbouElhamayed and Jordan Dotzel and Zhiru Zhang and Alexander M Rush and Safeen Huda and Mohamed S Abdelfattah},
+  year = {2024},
+  booktitle = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  url = {https://arxiv.org/abs/2406.16635},
+}
+
+
+@inproceedings{lee2024cats,
+  title = {CATS: Contextually-Aware Thresholding for Sparsity in Large Language Models},
+  author = {Je-Yong Lee and Donghyun Lee and Genghan Zhang and Mo Tiwari and Azalia Mirhoseini},
+  year = {2024},
+  booktitle = {Proceedings of the Conference on Language Modeling (COLM)},
+  url = {https://arxiv.org/abs/2404.08763},
+}
+
+@inproceedings{zhang2025rsparse,
+  title = {R-Sparse: Rank-Aware Activation Sparsity for Efficient LLM Inference},
+  author = {Zhenyu Zhang and Zechun Liu and Yuandong Tian and Harshit Khaitan and Zhangyang Wang and Steven Li},
+  year = {2025},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  url = {https://arxiv.org/abs/2504.19449},
+}
+
+@inproceedings{federici2025dip,
+  title = {Efficient LLM Inference using Dynamic Input Pruning and Cache-Aware Masking},
+  author = {Marco Federici and Davide Belli and Mart van Baalen and Amir Jalalirad and Andrii Skliar and Bence Major and Markus Nagel and Paul Whatmough},
+  year = {2025},
+  booktitle = {Proceedings of Machine Learning and Systems (MLSys)},
+  url = {https://arxiv.org/abs/2412.01380},
+}
+
+
+% =============================================================================
+% Activation function replacement and sparsity enhancement
+% =============================================================================
+
+@inproceedings{mirzadeh2024relu,
+  title = {ReLU Strikes Back: Exploiting Activation Sparsity in Large Language Models},
+  author = {Iman Mirzadeh and Keivan Alizadeh and Sachin Mehta and Carlo C Del Mundo and Oncel Tuzel and Golnoosh Samei and Mohammad Rastegari and Mehrdad Farajtabar},
+  year = {2024},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  url = {https://arxiv.org/abs/2310.04564},
+}
+
+@article{song2024turbosparse,
+  title = {Turbo Sparse: Achieving LLM SOTA Performance with Minimal Activated Parameters},
+  author = {Yixin Song and Haotong Xie and Zhengyan Zhang and Bo Wen and Li Ma and Zeyu Mi and Haibo Chen},
+  year = {2024},
+  journal = {arXiv preprint arXiv:2406.05955},
+  url = {https://arxiv.org/abs/2406.05955},
+}
+
+@inproceedings{song2025prosparse,
+  title = {ProSparse: Introducing and Enhancing Intrinsic Activation Sparsity within Large Language Models},
+  author = {Chenyang Song and Xu Han and Zhengyan Zhang and Shengding Hu and Xiyu Shi and Kuai Li and Chen Chen and Zhiyuan Liu and Guangli Li and Tao Yang and Maosong Sun},
+  year = {2025},
+  booktitle = {Proceedings of the International Conference on Computational Linguistics (COLING)},
+  url = {https://arxiv.org/abs/2402.13516},
+}
+
+
+@article{wu2025moc,
+  title = {Mixture-of-Channels: Exploiting Sparse {FFN}s for Efficient {LLM}s Pre-Training and Inference},
+  author = {Tong Wu and Yutong He and Bin Wang and Kun Yuan},
+  year = {2025},
+  journal = {arXiv preprint arXiv:2511.09323},
+  url = {https://arxiv.org/abs/2511.09323},
+}
+
+
+@inproceedings{song2024powerinfer,
+  title = {PowerInfer: Fast Large Language Model Serving with a Consumer-grade GPU},
+  author = {Yixin Song and Zeyu Mi and Haotong Xie and Haibo Chen},
+  year = {2024},
+  booktitle = {Proceedings of the ACM Symposium on Operating Systems Principles (SOSP)},
+  url = {https://arxiv.org/abs/2312.12456},
+}
+
+
+% =============================================================================
+% KL distillation and knowledge distillation
+% =============================================================================
+
+@inproceedings{kim2016sequencekd,
+  title = {Sequence-Level Knowledge Distillation},
+  author = {Yoon Kim and Alexander M. Rush},
+  year = {2016},
+  booktitle = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  url = {https://arxiv.org/abs/1606.07947},
+}
+
+@inproceedings{gu2024minillm,
+  title = {MiniLLM: Knowledge Distillation of Large Language Models},
+  author = {Yuxian Gu and Li Dong and Furu Wei and Minlie Huang},
+  year = {2024},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  url = {https://openreview.net/forum?id=5h0qf7IBZZ},
+}
+
+@inproceedings{agarwal2024gkd,
+  title = {On-Policy Distillation of Language Models: Learning from Self-Generated Mistakes},
+  author = {Rishabh Agarwal and Nino Vieillard and Yongchao Zhou and Piotr Stanczyk and Sabela Ramos and Matthieu Geist and Olivier Bachem},
+  year = {2024},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  url = {https://openreview.net/forum?id=3zKtaqxLhW},
+}
+
+
+@article{sanh2019distilbert,
+  title = {DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter},
+  author = {Victor Sanh and Lysandre Debut and Julien Chaumond and Thomas Wolf},
+  year = {2019},
+  journal = {arXiv preprint arXiv:1910.01108},
+  url = {https://arxiv.org/abs/1910.01108},
+}
+
+% =============================================================================
+% Weight pruning methods
+% =============================================================================
+
+@inproceedings{sun2024wanda,
+  title = {A Simple and Effective Pruning Approach for Large Language Models},
+  author = {Mingjie Sun and Zhuang Liu and Anna Bair and J. Zico Kolter},
+  year = {2024},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  url = {https://arxiv.org/abs/2306.11695},
+}
+
+@inproceedings{frantar2023sparsegpt,
+  title = {SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot},
+  author = {Elias Frantar and Dan Alistarh},
+  year = {2023},
+  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},
+  url = {https://arxiv.org/abs/2301.00774},
+}
+
+@inproceedings{ashkboos2024slicegpt,
+  title = {SliceGPT: Compress Large Language Models by Deleting Rows and Columns},
+  author = {Saleh Ashkboos and Maximilian L. Croci and Marcelo Gennari do Nascimento and Torsten Hoefler and James Hensman},
+  year = {2024},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  url = {https://arxiv.org/abs/2401.15024},
+}
+
+
+% =============================================================================
+% Conditional computation and MoE
+% =============================================================================
+
+@inproceedings{szatkowski2024d2dmoe,
+  title = {Exploiting Activation Sparsity with Dense to Dynamic-$k$ Mixture-of-Experts Conversion},
+  author = {Filip Szatkowski and Bartosz W{\'o}jcik and Miko{\l}aj Pi{\'o}rczy{\'n}ski and Simone Scardapane},
+  year = {2024},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume = {37},
+  url = {https://arxiv.org/abs/2310.04361},
+}
+
+
+% =============================================================================
+% MoE routing and gated architectures
+% =============================================================================
+
+@inproceedings{zhou2022expertchoice,
+  title = {Mixture-of-Experts with Expert Choice Routing},
+  author = {Yanqi Zhou and Tao Lei and Hanxiao Liu and Nan Du and Yanping Huang and Vincent Zhao and Andrew M. Dai and Zhifeng Chen and Quoc V. Le and James Laudon},
+  year = {2022},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume = {35},
+  url = {https://arxiv.org/abs/2202.09368},
+}
+
+% =============================================================================
+% Relaxation methods (Gumbel/Concrete)
+% =============================================================================
+
+@inproceedings{louizos2018l0,
+  title = {Learning Sparse Neural Networks through $L_0$ Regularization},
+  author = {Christos Louizos and Max Welling and Diederik P. Kingma},
+  year = {2018},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  url = {https://arxiv.org/abs/1712.01312},
+}
+
+@inproceedings{maddison2017concrete,
+  title = {The Concrete Distribution: A Continuous Relaxation of Discrete Random Variables},
+  author = {Chris J. Maddison and Andriy Mnih and Yee Whye Teh},
+  year = {2017},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  url = {https://arxiv.org/abs/1611.00712},
+}
+
+% =============================================================================
+% Foundational references
+% =============================================================================
+
+@article{grattafiori2024llama3,
+  title = {The Llama 3 Herd of Models},
+  author = {Aaron Grattafiori and Abhimanyu Dubey and Abhinav Jauhri and Abhinav Pandey and Abhishek Kadian and Ahmad Al-Dahle and Aieleen Lakber and Aimin Chen and Ait Mokhtar Salma and Ajay Menon},
+  year = {2024},
+  journal = {arXiv preprint arXiv:2407.21783},
+  url = {https://arxiv.org/abs/2407.21783},
+}
+
+@article{qwen2024qwen25,
+  title = {Qwen2.5 Technical Report},
+  author = {Qwen Team},
+  year = {2024},
+  journal = {arXiv preprint arXiv:2412.15115},
+  url = {https://arxiv.org/abs/2412.15115},
+}
+
+@article{jiang2023mistral,
+  title = {Mistral 7B},
+  author = {Albert Q. Jiang and Alexandre Sablayrolles and Arthur Mensch and Chris Bamford and Devendra Singh Chaplot and Diego de las Casas and Florian Bressand and Gianna Lengyel and Guillaume Lample and Lucile Saulnier},
+  year = {2023},
+  journal = {arXiv preprint arXiv:2310.06825},
+  url = {https://arxiv.org/abs/2310.06825},
+}
+
+@inproceedings{jang2017gumbel,
+  title = {Categorical Reparameterization with Gumbel-Softmax},
+  author = {Eric Jang and Shixiang Gu and Ben Poole},
+  year = {2017},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  url = {https://arxiv.org/abs/1611.01144},
+}
+
+@article{shazeer2020glu,
+  title = {GLU Variants Improve Transformer},
+  author = {Noam Shazeer},
+  year = {2020},
+  journal = {arXiv preprint arXiv:2002.05202},
+  url = {https://arxiv.org/abs/2002.05202},
+}
+
+@inproceedings{merity2017pointer,
+  title = {Pointer Sentinel Mixture Models},
+  author = {Stephen Merity and Caiming Xiong and James Bradbury and Richard Socher},
+  year = {2017},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  url = {https://arxiv.org/abs/1609.07843},
+}
+
+@inproceedings{hinton2015distilling,
+  title = {Distilling the Knowledge in a Neural Network},
+  author = {Geoffrey Hinton and Oriol Vinyals and Jeff Dean},
+  year = {2015},
+  booktitle = {NIPS 2014 Deep Learning Workshop},
+  url = {https://arxiv.org/abs/1503.02531},
+}
+
+@article{bengio2013ste,
+  title = {Estimating or Propagating Gradients Through Stochastic Neurons for Conditional Computation},
+  author = {Yoshua Bengio and Nicholas L\'{e}onard and Aaron Courville},
+  year = {2013},
+  journal = {arXiv preprint arXiv:1308.3432},
+  url = {https://arxiv.org/abs/1308.3432},
+}
+
+@inproceedings{loshchilov2019adamw,
+  title = {Decoupled Weight Decay Regularization},
+  author = {Ilya Loshchilov and Frank Hutter},
+  year = {2019},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  url = {https://arxiv.org/abs/1711.05101},
+}
+
+@article{raffel2020c4,
+  title = {Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer},
+  author = {Colin Raffel and Noam Shazeer and Adam Roberts and Katherine Lee and Sharan Narang and Michael Matena and Yanqi Zhou and Wei Li and Peter J. Liu},
+  year = {2020},
+  journal = {Journal of Machine Learning Research},
+  volume = {21},
+  number = {140},
+  pages = {1--67},
+  url = {https://arxiv.org/abs/1910.10683},
+}
+
+@inproceedings{wu2025rethinking,
+  title = {Rethinking Kullback-Leibler Divergence in Knowledge Distillation for Large Language Models},
+  author = {Taiqiang Wu and Chaofan Tao and Jiahao Wang and Runming Yang and Zhe Zhao and Ngai Wong},
+  year = {2025},
+  booktitle = {Proceedings of the International Conference on Computational Linguistics (COLING)},
+  url = {https://arxiv.org/abs/2404.02657},
+}
+
+@article{dhar2024activation,
+  title = {Activation Sparsity Opportunities for Compressing General Large Language Models},
+  author = {Nobel Dhar and Bobin Deng and Md Romyull Islam and Kazi Fahim Ahmad Nasif and Liang Zhao and Kun Suo},
+  year = {2024},
+  journal = {arXiv preprint arXiv:2412.12178},
+  url = {https://arxiv.org/abs/2412.12178},
+}
+
+
+@article{haziza2025accelerating,
+  title = {Accelerating Transformer Inference and Training with 2:4 Activation Sparsity},
+  author = {Daniel Haziza and Timothy Chou and Dhruv Choudhary and Luca Wehrstedt and Francisco Massa and Jiecao Yu and Geonhwa Jeong and Supriya Rao and Patrick Labatut and Jesse Cai},
+  year = {2025},
+  journal = {arXiv preprint arXiv:2503.16672},
+  url = {https://arxiv.org/abs/2503.16672},
+}
+

@@ -1,0 +1,25 @@
+paper_key: "A Sparsity Predicting Approach for Large Language Models via Activation Pattern Clustering"
+title: "A Sparsity Predicting Approach for Large Language Models via Activation Pattern Clustering"
+venue: "Euro-Par 2025"
+full_text_available: false
+
+research:
+  baselines: ["standard binary clustering"]
+  metrics:
+    - {name: "clustering precision", direction: "higher_better"}
+    - {name: "perplexity", direction: "lower_better"}
+  datasets:
+    - {name: "not specified in abstract", size: "N/A"}
+  ablation_dimensions: ["number of clusters", "clustering method"]
+  training_recipe: {optimizer: "N/A (clustering-based)", lr: "N/A", hardware: "not specified"}
+  method_family: "clustering-based sparsity prediction"
+
+positioning:
+  core_claim: "Grouping similar activation patterns into representative clusters enables scalable sparsity prediction, achieving 79.34% clustering precision with PPL as low as 12.49 on Mistral-7B."
+  key_results: "79.34% clustering precision; PPL 12.49 with sufficient clusters; outperforms standard binary clustering."
+  limitations: ["evaluated only on Mistral-7B", "clustering overhead not fully characterized"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a73928e8d2992f1ecf4",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval llama70 wait and collect",
+  "task_key": "worker_eval_llama70_wait_and_collect_20260517T013339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama70_wait_and_collect_20260517T013339_result.json",
+    "occurrence": 1,
+    "bytes": 143,
+    "sha256": "ddd80df168937239431ad55ab314a491f1a1dff0f4e1345ae808525b921d3193"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行中（PID 292902: 12m49s, PID 293211: 12m18s），CPU ~100% 正常。预计还需 4-6 分钟，90 秒后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama70-wait-and-collect.md"
+}

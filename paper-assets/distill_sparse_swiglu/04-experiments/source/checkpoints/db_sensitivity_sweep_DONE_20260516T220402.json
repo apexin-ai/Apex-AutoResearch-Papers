@@ -1,0 +1,49 @@
+{
+  "exp_id": "db_sensitivity_sweep",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:02:33.553Z",
+    "updated_at": "2026-05-16T22:04:02.778Z",
+    "spec": {
+      "command": "bash /root/distill_sparse_swiglu/src/run_db_sweep.sh 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "model_name": "llama-3.1-8b",
+      "data_path": "WikiText-103 train",
+      "data_count": 0,
+      "seed": 42,
+      "hypothesis": "Predictor bottleneck dimension d_b has low sensitivity to final PPL, justifying default d_b=128 choice",
+      "checkpoint_path": "checkpoints/db_sweep_{64,256,512}/predictor_kl_normalized.pt",
+      "log_path": "/root/distill_sparse_swiglu/logs/db_sweep.log"
+    },
+    "metrics": {
+      "db64_per_token_ppl": 10.158,
+      "db64_teal_global_ppl": 12.076,
+      "db64_sparsity": 0.5,
+      "db64_loss": 0.361,
+      "db128_teal_global_ppl": 11.963,
+      "db128_per_token_ppl": 9.218,
+      "db256_per_token_ppl": 8.586,
+      "db256_teal_global_ppl": 12.105,
+      "db256_sparsity": 0.5,
+      "db256_loss": 0.27,
+      "db512_per_token_ppl": 7.933,
+      "db512_teal_global_ppl": 12.315,
+      "db512_sparsity": 0.5,
+      "db512_loss": 0.224,
+      "best_teal_global_db": 128,
+      "best_teal_global_ppl": 11.963
+    },
+    "conclusion": "success",
+    "hypothesis": "Predictor bottleneck dimension d_b has low sensitivity to teal_global PPL across 4x range (64-512), justifying d_b=128 as default without hyperparameter tuning",
+    "completed_at": "2026-05-16T22:04:02.778Z"
+  },
+  "timestamp": "2026-05-16T22:04:02.953506+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,32 @@
+\section{Introduction}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.82\textwidth]{fig1_overview.pdf}
+\caption{Method overview: a lightweight per-layer predictor produces importance scores trained via KL divergence with Gumbel-Sigmoid relaxation. At inference, scores feed TEAL's global top-$k$ allocation without compensation networks.}
+\label{fig:overview}
+\end{figure*}
+
+Contextual activation sparsity, skipping neurons that contribute negligibly to each token, is an attractive approach to accelerating large language model (LLM) inference in SwiGLU architectures~\cite{shazeer2020glu}.
+Learned predictors~\cite{liu2023dejavu,gautam2026fastforward} train small networks to anticipate which neurons matter, but they universally rely on binary cross-entropy (BCE), treating each neuron as an independent classification target.
+At inference, however, these per-neuron scores feed TEAL~\cite{liu2025teal}, a global top-$k$ mechanism that ranks neurons \emph{jointly} across all layers, retaining only those above a model-wide threshold.
+This creates a fundamental mismatch: predictors are optimized for local per-neuron accuracy but evaluated under global cross-layer allocation.
+The consequences of this misalignment for contextual sparsity prediction remain uninvestigated.
+
+We close this gap by training sparsity predictors with output-distribution Kullback--Leibler (KL) divergence, which couples all masking decisions through the model's forward pass.
+Under BCE, the gradient for neuron $j$ depends only on $j$'s own activation magnitude; under KL, the chain rule introduces a downstream Jacobian that couples each neuron to every other retained neuron in subsequent layers (\S\ref{sec:method:gradient}).
+This allows the predictor to evaluate each neuron's importance in context, considering how pruning one neuron affects downstream computation when other neurons are simultaneously pruned.
+Unlike MaskLLM~\cite{fang2024maskllm}, which applies KL to static N:M weight masks, our predictors generate contextual masks that vary per token and coordinate across layers through global allocation.
+
+The results reveal a surprising picture of what drives quality in learned sparsity prediction.
+On LLaMA-3.1-8B~\cite{grattafiori2024llama3}, our lightweight predictor ($<$1\% of base parameters) trained with forward KL and Gumbel-Sigmoid relaxation~\cite{jang2017gumbel} reduces perplexity (PPL) by 14.5\% over TEAL at 30\% sparsity and renders post-hoc compensation networks redundant.
+More revealingly, the KL objective discovers mask patterns that diverge 68\% from magnitude-based targets, and a target-swap ablation isolates the source: BCE retrained on KL-derived targets recovers comparable perplexity ($\leq$0.63pp gap), suggesting that KL's primary contribution is discovering better mask targets rather than providing end-to-end coupling during training.
+Cross-architecture evaluation on Mistral-7B-v0.3~\cite{jiang2023mistral} and Qwen-2.5-14B~\cite{qwen2024qwen25} confirms perplexity gains, though knowledge-intensive tasks exhibit directional decline ($n{=}3$) that we trace to allocation-induced layer starvation and output-distribution optimization (\S\ref{sec:experiments}).
+
+Our contributions:
+\begin{itemize}[nosep,leftmargin=*]
+\item Output-distribution alignment consistently outperforms per-neuron classification for learned sparsity, ranking first among five losses across two sparsity levels and three architectures;
+\item Per-layer controls reveal that the signal type gap (9.47 PPL) substantially exceeds the coupling breadth range (2.08 PPL) at 30\% sparsity (under shared hyperparameters; dedicated MSE tuning narrows but does not close this gap, \S Limitations), suggesting what predictors optimize for matters more than how neurons interact during training (\S\ref{sec:perlayer});
+\item Target-swap ablation shows KL-discovered mask patterns transfer quality to BCE, isolating the discovered targets, not the training dynamics, as the primary driver;
+\item Task-type analysis across three model families (7--14B) provides preliminary observations ($n{=}3$, directional): output-distribution optimization improves commonsense reasoning but shows knowledge-intensive decline.
+\end{itemize}

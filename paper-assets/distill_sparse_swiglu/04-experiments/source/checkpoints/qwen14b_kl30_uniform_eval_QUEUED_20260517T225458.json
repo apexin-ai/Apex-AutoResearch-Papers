@@ -1,0 +1,28 @@
+{
+  "exp_id": "qwen14b_kl30_uniform_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:49:41.807Z",
+    "updated_at": "2026-05-17T22:54:57.948Z",
+    "hypothesis": "KL predictor's poor 14B MMLU (63.72 vs TEAL 71.83) is caused by global_topk allocation starving knowledge-critical middle layers; switching to uniform per-layer allocation will recover MMLU while trading some PPL",
+    "spec": {
+      "command": "bash -c \"cd /root/distill_sparse_swiglu && python src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/Qwen2.5-14B --checkpoint /root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --allocation uniform --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --exp_id qwen14b_kl30_uniform --gpu 0\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/distill_sparse_swiglu/qwen14b_kl30_uniform_eval.log",
+      "submitted_at": "2026-05-17T22:54:13.641Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T22:54:58.290932+00:00",
+  "trigger": "update_registry"
+}

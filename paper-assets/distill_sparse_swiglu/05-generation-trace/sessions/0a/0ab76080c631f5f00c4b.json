@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ab76080c631f5f00c4b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra poll extract 14b persistent",
+  "task_key": "worker_infra_poll_extract_14b_persistent_20260517T223549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_poll_extract_14b_persistent_20260517T223549_result.json",
+    "occurrence": 1,
+    "bytes": 69,
+    "sha256": "43baa34effa5bc749301d99aef8f38ec7be1596f95e0a80b12f0c148c9beb1ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待中，约 4 分钟后自动检查完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-poll-extract-14b-persistent.md"
+}

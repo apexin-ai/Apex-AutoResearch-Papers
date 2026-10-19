@@ -1,0 +1,37 @@
+{
+  "exp_id": "bce_isocompute_hellaswag_piqa_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:08:16.119Z",
+    "updated_at": "2026-05-19T02:32:57.874Z",
+    "hypothesis": "BCE iso-compute predictor evaluated on HellaSwag (10-shot) and PIQA (0-shot) with TEAL uniform 30% completes the BCE row in the 6-task downstream table. Expected to show larger degradation than KL 30% (hellaswag=70.85%, piqa=74.81%). V2: submit on 34887 where checkpoint exists (M026 lesson).",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id bce_isocompute_hellaswag_piqa_v2 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/bce_isocompute_v3_s42/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.30 --allocation uniform --tasks hellaswag,piqa --gpu 0 2>&1\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "69598",
+      "log_path": "~/runs/distill_sparse_swiglu/bce_isocompute_hellaswag_piqa_v2.log",
+      "submitted_at": "2026-05-19T01:38:00.231Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "checkpoints/bce_isocompute_v3_s42/predictor_bce.pt",
+      "wall_clock_seconds": 3297.6,
+      "gpu_hours": 0.92
+    },
+    "metrics": {
+      "hellaswag_acc_norm": 0.6281,
+      "piqa_acc_norm": 0.7421
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T02:32:57.874Z"
+  },
+  "timestamp": "2026-05-19T02:32:58.327641+00:00",
+  "trigger": "update_registry"
+}

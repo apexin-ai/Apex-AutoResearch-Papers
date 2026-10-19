@@ -1,0 +1,28 @@
+{
+  "exp_id": "kl30_8b_s456_train",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T00:21:15.119Z",
+    "updated_at": "2026-05-18T00:29:37.649Z",
+    "hypothesis": "KL 30% predictor multi-seed replication (seed=456) for Table 2 statistical robustness. Third seed for mean±std reporting. Expect consistent convergence to ~0.285 sparsity and comparable downstream metrics.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export PYTHONUNBUFFERED=1 && export WANDB_MODE=offline && echo '=== Phase 1: Train KL 30% predictor seed=456 (1000 steps) ===' && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.3 --gpu 0 --output_dir checkpoints/kl_sparsity30_s456 --wandb_run_name kl30_8b_s456 --dataset wikitext-103 --gradient_checkpointing --lambda_max 5000 --log_every 100 && echo '=== Phase 2: Full eval ===' && python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --exp_id kl30_8b_s456_eval --gpu 0\"",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "33988",
+      "log_path": "~/runs/distill_sparse_swiglu/kl30_8b_s456_train.log",
+      "submitted_at": "2026-05-18T00:21:33.744Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T00:29:37.925794+00:00",
+  "trigger": "update_registry"
+}

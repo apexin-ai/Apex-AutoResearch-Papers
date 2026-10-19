@@ -1,0 +1,80 @@
+# director / loop_7.md
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_7.md`
+- **Structured JSON:** [`9b02bec54dca8ca7c25f.json`](../../sessions/9b/9b02bec54dca8ca7c25f.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 7
+reason: max_messages
+updated: '2026-05-18T00:12:20+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单（C004）：westd-34887 cuda:0/1 + westd-41718 cuda:0/1，共 4 张卡，禁止用其他
+- 训练 log 中 `sparsity=X` 是 predictor 内部诊断值，**不是推理 sparsity**（M008）
+- evaluate.py 中 `teal_global_ppl` 字段使用 predictor scores 排序（M010），**不是** vanilla TEAL。只有 `baseline_mode=teal_vanilla` 的独立 eval 才是 vanilla TEAL
+- 论文 allocation claim 已 pivot（D050）：禁止写 "+15.3pp uniform gain"，只能写 variance reduction（7.5× stability）
+- 50% global 3-seed MMLU = 28.1±0.2（s42=27.89, s123=28.34, s456=27.94），旧 38.07% 来自错误 checkpoint（D051）
+- M011（高优）：Agent 反复 idle 等 cron 回调不主动 SSH 查，必须在指令中明确写"禁止等 cron，必须 SSH 实查"
+- 跨服务器提交实验前必须确认 checkpoint/数据存在于目标服务器（M009）
+
+### 2. 🖥️ 基础设施快照
+- **westd-34887**：SSH -p 34887 root@connect.westd.seetacloud.com，2×RTX PRO 6000 Blackwell (95GB)
+  - 工作目录：`/root/distill_sparse_swiglu/`，Python：`/root/miniconda3/bin/python`
+  - 模型：LLaMA-8B `/root/autodl-tmp/models/llama-3.1-8b/`，Qwen-14B `/root/autodl-tmp/models/qwen2.5-14b/`
+  - C4 数据：`/root/autodl-tmp/data/c4_val/`（~800MB，本地可用）
+  - 活跃进程：qwen14b_kl30_uniform_eval (cuda:0, GSM8K ~10%)，qwen14b_teal30_uniform_eval (cuda:1, GSM8K ~6%)，预计 ~5h 完成
+- **westd-41718**：SSH -p 41718 root@connect.westd.seetacloud.com，2×RTX PRO 6000 (97GB)
+  - 同上工作目录和模型路径（已 rsync）
+  - C4 数据**不在**此机器（HF 下载失败过）
+  - 当前 cuda:0/1 均空闲
+
+### 3. 📊 当前状态
+**刚完成**：14B 四方对比数据全部到齐（PPL + downstream）。发现 critical issue：KL 赢 PPL（7.62 vs TEAL 8.73）但下游 MMLU 落后 8pp（63.72% vs 71.83%）。已启动 uniform allocation 验证实验（D052）。
+
+**RUNNING**：
+- `qwen14b_kl30_uniform_eval`（westd-34887 cuda:0）— 14B KL uniform allocation eval，GSM8K 10%，~5h
+- `qwen14b_teal30_uniform_eval`（westd-34887 cuda:1）— 14B TEAL uniform 对照组，GSM8K 6%，~5h
+- 日志有 null 字节损坏，中间指标（PPL/ARC/WG/MMLU）已算完但不可直接读。已指令 Agent 用 `tr -d '\0'` 提取
+
+**已完成关键数据**：
+- c4_ood_kl30_s42: C4 OOD PPL=16.05（8B KL 30% global_topk）
+- bce_isocompute_v3 三 seed 全齐: PPL=28.13±0.20, MMLU=27.4±2.3%
+- 14B global_topk 完整表：Dense PPL=5.19/KL=7.62/TEAL=8.73/BCE=8.76
+
+### 4. 📋 待办（条件触发式）
+- uniform eval 中间指标提取成功（tr -d '\0' grep） → **立即看 MMLU 数字**：≥70% = 完整故事成立，<65% = mixed result 需重写叙事
+- uniform eval 全部完成（~5h） → 构建 14B allocation comparison table（global vs uniform × KL/TEAL）→ 派 Paper Agent 写 cross-scale + allocation robustness section
+- MMLU ≥70% → 论文叙事 "KL + uniform = PPL 最优 + 下游稳定"，14B 成为 strength
+- MMLU <65% → 14B 作为 mixed result 放 appendix，limitations 诚实处理
+- westd-41718 cuda:0/1 空闲 → 安排 PREPARING 实验（wallclock_speedup_30_50 或其他 ablation）
+- 全部论文更新完成 → submit_paper_to_review（Round 2 审稿）
+
+### 5. 🎯 战略上下文
+- **核心 claim**：KL distillation >> baselines（PPL + downstream + iso-compute + SNR 5.76× + cross-arch）。8B 数据坚固，14B PPL 一致但下游有分歧
+- **D052 是当前最关键决策**：14B KL global_topk 下游落后 TEAL 8pp MMLU。假设 uniform allocation 修复。Reviewer 确认 KL uniform PPL=7.63 ≈ global 7.62（PPL robustness 成立），但下游 MMLU 待确认
+- **决策链**：D047(reframe)→D048(+Qwen14B)→D050(variance reduction only)→D051(50% data fix)→D052(uniform allocation 验证)
+- **DDL**：EMNLP 2026 ARR May，2026-05-25（剩 ~6 天）
+- **Reviewer framing 建议**：避免 "allocation-invariant" overclaim，用 "PPL robustness to allocation choice is consistent across tested scales" 的事实描述。如果 uniform 恢复 MMLU，推荐 "uniform allocation for deployment" 叙事
+- **Round 6 审稿遗留 open items**：R3-S1(弱化 novelty)、R4-W2(弱化 Contribution 1)、R1-W3(multi-seed 在补)、R4-W3(C4 OOD 已有 30% 数据)、R6-W3(SNR extended)
+- **易踩的坑**：(1) BCE 的 teal_global_ppl ≠ vanilla TEAL (2) C4 在 41718 没缓存 (3) Agent 会 idle 等 cron 不主动查——必须明确指令 SSH (4) 14B uniform log 有 null 字节需 tr -d '\0' 过滤
+
+
+---

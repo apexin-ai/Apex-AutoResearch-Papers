@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c6cafe03a0d55a3d7de",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code bench mistral prep",
+  "task_key": "worker_code_bench_mistral_prep_20260516T050300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bench_mistral_prep_20260516T050300_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "771e5b971e6a4f4ba4847c27e0527446045e1c9b0f7266bba8e39633499669eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "预验证完成。9/10 项通过，1 项等待中：\n\n**全部就绪**：checkpoint (145MB)、base model (3 shards)、架构兼容（Mistral 用相同 gate_proj/up_proj 接口）、benchmark_eval.py 参数齐全、few-shot 硬编码正确、lm-eval 已装。\n\n**唯一阻塞**：cuda:1 被 bce_isocompute_v3_s42 占用。\n\n**需确认一点**：Registry 中已有的 PENDING 条目用的是 `--sparsity_mode per_token`，但本次任务要求 `teal_global + global_topk`。提交前需决定用哪种模式。推荐命令已写入 artifact `bench_mistral_kl50_ready.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bench-mistral-prep.md"
+}

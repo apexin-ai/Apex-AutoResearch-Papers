@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c6561f3585653596b41",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh submit mistral kl30 s456",
+  "task_key": "worker_ssh_submit_mistral_kl30_s456_20260520T124828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_mistral_kl30_s456_20260520T124828_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "41e80da339e88a3c2a7b3ed066030a78e5c0056b1d1f9a1fc8f1dd809b833c29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **实验**: mistral_kl30_s456, PID 215419, westd-34887 cuda:1\n- **注意**: cuda:0 正在跑 mistral_kl30_s123（seed 123），已改用 cuda:1 启动 s456，`--gpu 0` 配合 `CUDA_VISIBLE_DEVICES=1`\n- **训练完自动接 eval**（7 个 benchmark）\n- **Registry**: RUNNING, parent=mistral_kl30_s123, hypothesis 已设\n- **日志**: `~/runs/distill_sparse_swiglu/mistral_kl30_s456.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-mistral-kl30-s456.md"
+}

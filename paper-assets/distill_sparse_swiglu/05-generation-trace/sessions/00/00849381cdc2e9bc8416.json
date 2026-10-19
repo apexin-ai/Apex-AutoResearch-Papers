@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00849381cdc2e9bc8416",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "train multiseed kl 50 30",
+  "task_key": "worker_train_multiseed_kl_50_30_20260517T095510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_multiseed_kl_50_30_20260517T095510_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "664cebd9311dfce464cc5f275dd212a39e9fcf999b76be1c1dbde146914b8068"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Run 1 训练已启动，模型加载完毕，GPU 0 占用 18GB。\n\n日志文件：`/root/distill_sparse_swiglu/logs/multiseed_kl_20260517_175809.log`\n\n4 个 run 串行执行中（KL 50% s123 → KL 50% s456 → KL 30% s123 → KL 30% s456），预计约 1.5h 完成。每个 run 训练完自动接 eval。\n\n已有 seed=42 基线（供对照）：\n\n| Config | Seed | PPL | ARC-c | WG | MMLU | GSM8K |\n|--------|------|-----|-------|-----|------|-------|\n| KL 50% | 42 | 11.79 | 0.3285 | 0.6346 | 0.2789 | 0.0129 |\n| KL 30% | 42 | 8.98 | 0.3968 | 0.7017 | 0.2527 | 0.0879 |\n\n注意：KL 30% s42 实际 PPL=8.98，非 8.36。\n\n完成后结果会自动写入 `results/benchmark/kl_{50,30}pct_s{123,456}/results.json`。需要我过一会儿回来检查进度吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-multiseed-kl-50-30.md"
+}

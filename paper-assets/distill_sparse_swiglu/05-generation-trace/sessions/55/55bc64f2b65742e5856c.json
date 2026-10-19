@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55bc64f2b65742e5856c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh unified bce eval",
+  "task_key": "worker_ssh_unified-bce-eval_20260515T141602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_unified-bce-eval_20260515T141602_result.json",
+    "occurrence": 1,
+    "bytes": 1637,
+    "sha256": "03d2e8fe6d50e42b47569197b8993d58938a3d28bcca44f407b7168fa853be59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果已收集。Dense PPL 三次不完全一致（27.96 / 28.38 / 28.14），说明存在轻微非确定性，可能来自 flash_attention 或 bf16 算术。\n\n```\nevaluate.py md5: 4f2faa315b3e45b0781c1c07c47515eb\nevaluate.py 修复状态: off-by-one 已修复（数据端 shift，evaluate 不再 double shift）\n校准样本数: 32（mini-batch=4，分 8 轮平均）\n\n| Checkpoint | Dense PPL | Sparse PPL | Δ%     | Model Sparsity |\n|-----------|-----------|------------|--------|----------------|\n| s42       | 27.96     | 44.54      | +59.3% | 0.496          |\n| s123      | 28.38     | 44.59      | +57.1% | 0.496          |\n| s456      | 28.14     | 43.03      | +52.9% | 0.496          |\n\nDense PPL 是否一致: 否（27.96 ~ 28.38，spread 0.42，~1.5%）\n```\n\n**注意事项**：\n\n1. **Dense PPL ~28 而非 ~6**：这与之前 KL eval 报的 6.12 差距很大。当前 evaluate.py 没有 double shift，逻辑上是正确的。之前报 6.12 的版本可能有别的问题（例如 input/label 对齐导致信息泄漏使 PPL 虚低）。建议检查当时的 evaluate.py 版本差异。\n\n2. **Dense PPL 不完全一致**：每次运行加载独立 Python 进程，可能的原因是 flash_attention_2 非确定性。如需完全一致，可改用 `sdpa` attention 实现。\n\n3. **C4 跳过**：因 HF Hub 无 token 导致 streaming 极慢。已添加 `--skip_c4` 参数，后续有 token 后可重新启用。\n\n4. **evaluate.py 改动**：\n   - 添加 `--calibration_samples`（默认 32）\n   - 添加 `--skip_c4` \n   - `teal_global_masks` 改为 mini-batch 校准避免 OOM"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-unified-bce-eval.md"
+}

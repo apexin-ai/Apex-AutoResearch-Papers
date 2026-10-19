@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15ac85297f84832f2b9e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra westd 41718 setup",
+  "task_key": "worker_infra_westd-41718-setup_20260517T150631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd-41718-setup_20260517T150631_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "0f0838f483e8e78cc446eaf23e3d0b6b54790f180e3919b67cd05f85c149534d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。汇总：\n\n## westd-41718 部署结果\n\n| 项目 | 状态 |\n|------|------|\n| GPU | 2× NVIDIA RTX PRO 6000 Blackwell, 97GB each |\n| Python | 3.12.3 (miniconda3) |\n| PyTorch | 2.8.0+cu128 |\n| transformers | 5.8.1 |\n| accelerate | 1.13.0 |\n| lm-eval | 0.4.12 |\n| datasets | 4.8.5 |\n| CUDA | 13.0, Driver 580.95 |\n\n**磁盘：**\n- `/` (overlay): 29G 可用 (6% used)\n- `/root/autodl-tmp`: 233G 可用 (7% used)\n\n**已同步文件：**\n- 代码: `/root/distill_sparse_swiglu/` (40 py files in src/)\n- 模型: `/root/autodl-tmp/models/llama-3.1-8b/` (15GB)\n- Checkpoint: `checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt` (145MB)\n- HF cache: `/root/autodl-tmp/.hf_cache/` (2.5GB)\n\n**验证通过：**\n- `nvidia-smi` ✓\n- `python -c \"import torch; torch.cuda.device_count()\"` → 2 ✓\n- `python src/benchmark_eval.py --help` ✓\n\n服务器已就绪，可直接跑 benchmark eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-41718-setup.md"
+}

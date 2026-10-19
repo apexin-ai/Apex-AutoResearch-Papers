@@ -1,0 +1,56 @@
+{
+  "exp_id": "longbench_dense_v6",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:37:54.958Z",
+    "updated_at": "2026-05-16T16:55:18.181Z",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py --exp_id longbench_dense_v6 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dense --multi_gpu --batch_size 1 --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "247777",
+      "log_path": "~/runs/distill_sparse_swiglu/longbench_dense_v6.log",
+      "submitted_at": "2026-05-16T15:37:54.676Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "llama-3.1-8b",
+      "data_path": "Xnhyacinth/LongBench",
+      "data_count": 800,
+      "seed": 42,
+      "checkpoint_path": "N/A (dense baseline)",
+      "wall_clock_seconds": 4643.5,
+      "gpu_hours": 2.58
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T16:53:17.934Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T16:53:20.054818+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "longbench_narrativeqa": 7.3,
+      "longbench_qasper": 13.4,
+      "longbench_gov_report": 30.5,
+      "longbench_multi_news": 2.5
+    },
+    "log_path": "~/runs/distill_sparse_swiglu/longbench_dense_v6.log",
+    "completed_at": "2026-05-16T16:55:18.181Z"
+  },
+  "timestamp": "2026-05-16T16:55:18.354113+00:00",
+  "trigger": "update_registry"
+}

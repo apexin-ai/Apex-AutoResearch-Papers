@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "352a9b262bb2af6f77b8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper mistral dense table fix",
+  "task_key": "worker_paper_mistral-dense-table-fix_20260519T074335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_mistral-dense-table-fix_20260519T074335_result.json",
+    "occurrence": 1,
+    "bytes": 337,
+    "sha256": "e0160ddf8143367a9f46273b4cb281ffdf2445da3051da099dbe56b74e93d112"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译 0 errors，17 pages，PDF 生成成功。\n\n`tab:mistral_downstream` 的 Dense 行已替换为实测数据：PPL 5.52, ARC-c 60.2, WG 78.7, HS 83.2, PIQA 81.9, MMLU 62.4, GSM8K 36.5。Caption 无需修改（KL vs TEAL 的 delta 不变）。experiments.tex 中未引用旧的 Dense 绝对值，无需同步修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-mistral-dense-table-fix.md"
+}

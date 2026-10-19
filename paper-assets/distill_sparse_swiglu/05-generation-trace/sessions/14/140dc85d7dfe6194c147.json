@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "140dc85d7dfe6194c147",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis experiment logs check",
+  "task_key": "worker_analysis_experiment_logs_check_20260525T194712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_experiment_logs_check_20260525T194712_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "88f6f2d435f983de1e245b914511e0dbd129f15531403b70cd468fcebc32e3ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均 **SUCCESS**（EXIT_CODE=0）。\n\n## 结果汇总\n\n| 实验 | Metric | 值 |\n|------|--------|----|\n| qwen14b_kl30_s456_gsm8k_bs1 | GSM8K exact_match | **0.2638** |\n| mistral_kl30_s42_ppl | WikiText-2 PPL | **6.9886** |\n\n### 实验 1 分析（GSM8K bs=1）\n\ns456 bs=1 得到 0.2638，对比：\n- s42 bs=8: 0.3548\n- s123 bs=8: 0.3609\n- s456 bs=8: 0.2608\n\nbs=1 的 0.2638 与 bs=8 的 0.2608 基本一致（差 0.003），说明 **s456 的低分不是 batch_size padding confound 导致的**，而是 seed 本身的方差。Padding confound 假设可以排除。\n\n### 实验 2 分析（Mistral PPL）\n\nMistral-7B 30% sparsity, seed 42 的 WikiText-2 PPL = **6.9886**，模型级实际稀疏率 0.297。数据已保存到 results.json，可用于填补论文中 Mistral PPL 缺失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-experiment-logs-check.md"
+}

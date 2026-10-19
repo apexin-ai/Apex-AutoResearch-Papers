@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "239fce998af44565a5a0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "fix lagrangian dynamics regen",
+  "task_key": "worker_fix_lagrangian_dynamics_regen_20260520T065139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_lagrangian_dynamics_regen_20260520T065139_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "e688b552a5f648a66f89ca0d7d790cdc58fea89e4d657b26e0d82f8ea89c1282"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**数据来源**: `/root/distill_sparse_swiglu/logs/multiseed_kl30_fixed.log`（KL 30% target=0.3, cap=5000, 完整 1000 步训练）\n\n**提取数据点**: 101 个（step 1, 10, 20, ..., 1000）\n\n**生成文件**:\n- 脚本: `figures/paper/gen_lagrangian_dynamics.py`\n- PDF: `figures/paper/lagrangian_dynamics.pdf`\n- PNG: `figures/paper/lagrangian_dynamics.png`\n\n图表展示了 Lagrangian controller 的典型行为：前 130 步 lambda 极低（0.01），sparsity 自然从 0.406 下降；~step 150 sparsity 首次低于 target，lambda 急升至 327→5000 触发 bang-bang 振荡；step 270 后 lambda 饱和在 cap=5000，sparsity 收敛并稳定在 0.28 附近。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-lagrangian-dynamics-regen.md"
+}

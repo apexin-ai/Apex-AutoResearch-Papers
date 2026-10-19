@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "135c39319eaa493ae031",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "analysis perlayer kl 30 s123 v4",
+  "task_key": "worker_analysis_perlayer_kl_30_s123_v4_20260521T190820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_perlayer_kl_30_s123_v4_20260521T190820.jsonl",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "a81d51178a7c5bdc03df923301ea00a4f40ad420915d441b6deb7f2471b9d804"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T19:08:28.107567+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_perlayer_kl_30_s123_v4_20260521T190820"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-perlayer-kl-30-s123-v4.md"
+}

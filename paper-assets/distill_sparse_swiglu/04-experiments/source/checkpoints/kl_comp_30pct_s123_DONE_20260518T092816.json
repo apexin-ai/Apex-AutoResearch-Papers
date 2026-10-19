@@ -1,0 +1,41 @@
+{
+  "exp_id": "kl_comp_30pct_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:38:37.230Z",
+    "updated_at": "2026-05-18T09:28:16.543Z",
+    "hypothesis": "KL+compensation at 30% sparsity with seed 123 converges to similar quality as seed 42, confirming compensation training stability across seeds.",
+    "parent": "kl_comp_30pct_s42",
+    "spec": {
+      "checkpoint_path": "checkpoints/kl_comp_30pct_s123/predictor_with_comp.pt",
+      "log_path": "~/runs/distill_sparse_swiglu/kl_comp_30pct_s123.log"
+    },
+    "metrics": {
+      "final_loss": 0.7617,
+      "steps": 1000,
+      "compensation_params": 67248128,
+      "compensation_pct": 0.837,
+      "mean_head_norm_final": 9.2012,
+      "loss_trajectory": [
+        2.0469,
+        1.3828,
+        1.0703,
+        0.9609,
+        0.8711,
+        0.7305,
+        0.6875,
+        0.7773,
+        0.7969,
+        0.7617
+      ]
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T09:28:16.543Z"
+  },
+  "timestamp": "2026-05-18T09:28:16.826972+00:00",
+  "trigger": "update_registry"
+}

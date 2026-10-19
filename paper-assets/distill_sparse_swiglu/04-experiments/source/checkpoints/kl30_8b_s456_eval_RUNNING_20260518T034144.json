@@ -1,0 +1,31 @@
+{
+  "exp_id": "kl30_8b_s456_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T01:54:50.231Z",
+    "updated_at": "2026-05-18T03:41:43.764Z",
+    "hypothesis": "KL 30% s456 downstream eval (PPL+ARC+WG+MMLU+GSM8K) validates cross-seed consistency of KL advantage for Table 2 multi-seed reporting.",
+    "parent": "kl30_8b_s456_train",
+    "spec": {
+      "command": "benchmark_eval.py 5-task on kl_sparsity30_s456 checkpoint",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "37480",
+      "data_path": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "data_count": 0,
+      "model_name": "llama-3.1-8b",
+      "seed": 456,
+      "checkpoint_source": "kl30_8b_s456_train",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T03:41:44.068442+00:00",
+  "trigger": "update_registry"
+}

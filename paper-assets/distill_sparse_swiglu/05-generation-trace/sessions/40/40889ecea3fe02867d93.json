@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40889ecea3fe02867d93",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit k2 eval",
+  "task_key": "worker_submit_k2_eval_20260523T060120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_k2_eval_20260523T060120_result.json",
+    "occurrence": 1,
+    "bytes": 387,
+    "sha256": "f3ed75518ebfdfbe569c529244d952fe85767f5972d32542cf2c2ab73b050e5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **PID 118963** — K=2 eval 在 cuda:1 上运行，模型已加载、TEAL masks 已计算\n- **Registry** — `perlayer_kl_k2_s42_eval` → RUNNING，parent=perlayer_kl_k2_s42\n- **Cron** — 120s 间隔监控，log: `/root/runs/distill_sparse_swiglu/perlayer_kl_k2_s42_eval.log`\n- 两个 GPU 同时跑：cuda:0 = K=16 eval final2，cuda:1 = K=2 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-k2-eval.md"
+}

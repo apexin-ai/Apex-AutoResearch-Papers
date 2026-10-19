@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41c0779d5002d7ade400",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp spon 2048 s42",
+  "task_key": "worker_exp_spon_2048_s42_20260515T184006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_spon_2048_s42_20260515T184006_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "2e97c3177ee3fa5c4c07a11ee5e0942079fae230584f5aa1c6ed465bbea912e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交成功。\n\n- **exp_id**: `spon_2048_s42`\n- **GPU**: cuda:0 @ westd-34887\n- **PID**: 109601\n- **日志**: `~/runs/distill_sparse_swiglu/spon_2048_s42.log`\n- **配置**: seq_len=2048, batch_size=4, 1000 steps, gradient_checkpointing\n\n注：cuda:0 之前被同一实验的旧提交 `spon_training_seq2048` 占用（另一个 worker 先行提交的同假设实验），已 kill 并标记 DONE/killed 后释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-spon-2048-s42.md"
+}

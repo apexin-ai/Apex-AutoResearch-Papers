@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cb222d931c7d651514b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check perlayer kl 50 progress",
+  "task_key": "worker_check_perlayer_kl_50_progress_20260522T064422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_perlayer_kl_50_progress_20260522T064422_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "510212506c98586ec2553e3f9b2a432ed955e588dd08a7a5ab54e8e661908cb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 训练进度\n| 项目 | 值 |\n|------|-----|\n| 当前 step | **9700 / 10000** (97%) |\n| avg_kl | 0.0280 |\n| sparsity | 0.500 |\n| lambda | 2048.00 |\n| tau | 0.127 |\n| lr | 2.26e-06 |\n| 进程 PID | 359449, 运行 4h57m, CPU 100% |\n\n### ETA\n- 每 100 steps 约 182s（基于 step 9600→9700 的 dt 差值）\n- 剩余 300 steps → **预计约 9 分钟后完成**\n\n### 已保存 Checkpoint（每 2000 步，各 ~456MB）\n1. `predictor_perlayer_kl_step_2000.pt` — 10:49\n2. `predictor_perlayer_kl_step_4000.pt` — 11:49\n3. `predictor_perlayer_kl_step_6000.pt` — 12:50\n4. `predictor_perlayer_kl_step_8000.pt` — 13:51\n\nstep 10000 的 final checkpoint 尚未保存，预计几分钟后生成。\n\n### SCP 通路\n**可用。** westd-34887 通过 `ssh -p 41718 root@connect.westd.seetacloud.com` 成功连接 westd-41718 并列出 checkpoint 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-perlayer-kl-50-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ead4b147d6a07635c95",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check gpu status 20260516T0439",
+  "task_key": "worker_check_gpu_status_20260516T0439_20260516T043949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_status_20260516T0439_20260516T043949_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "083f856124d7d7a261d30545f9bf6d17652308fc7ed9b0d925e2c12855b66830"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 双卡状态报告\n\n### GPU 占用\n\n| GPU | PID | 显存 | 利用率 | 进程 |\n|-----|-----|------|--------|------|\n| cuda:0 | 203707 | 66986 MiB / 97887 MiB | 100% | `benchmark_eval.py --exp_id d030_kl50_uniform` (50% sparsity, uniform allocation) |\n| cuda:1 | 205598 | 90714 MiB / 97887 MiB | 100% | `train.py --loss_type bce --output_dir checkpoints/bce_isocompute_v3_s42` |\n\n### D030 进度\n\n- **已完成**: wikitext2, arc_challenge, winogrande (3/5 tasks)\n- **进行中**: MMLU — `loglikelihood requests: 6% (3713/58702)`, ~44 it/s，预计还需约 21 分钟\n- **待跑**: gsm8k\n- PID 203702 (shell wrapper) → 实际 python PID 203707，12:30 启动，运行正常\n\n### BCE v3\n\n已启动，PID 205598 在 cuda:1 上跑 `train.py`（bce_isocompute_v3_s42, 2700 steps, batch_size=4, wandb offline），12:38 启动，已运行约 2 分钟。\n\n### cuda:1 无流氓进程\n\n没有 benchmark_eval 自动 spawn 的问题，`ps aux` 中除 BCE v3 外无其他 benchmark/train 进程。\n\n**结论**: 双卡均被占满。cuda:0 跑 D030 评测（约完成 60%，MMLU 阶段），cuda:1 已被 BCE v3 训练占用，不可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-status-20260516t0439.md"
+}

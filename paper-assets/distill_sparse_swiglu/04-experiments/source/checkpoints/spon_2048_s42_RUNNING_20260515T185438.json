@@ -1,0 +1,34 @@
+{
+  "exp_id": "spon_2048_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:40:29.059Z",
+    "updated_at": "2026-05-15T18:54:38.694Z",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train_spon.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --predictor_checkpoint /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-5 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/spon_2048_s42 --warmup_steps 100 --log_every 100 --dataset wikitext-103 --gradient_checkpointing\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "109601",
+      "log_path": "~/runs/distill_sparse_swiglu/spon_2048_s42.log",
+      "submitted_at": "2026-05-15T18:41:46.282Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103 (HF cached)",
+      "data_count": null,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt",
+      "eval_data": "wikitext-2 (post-training eval)"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T18:54:38.770000+00:00",
+  "trigger": "update_registry"
+}

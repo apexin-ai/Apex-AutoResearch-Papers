@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52b313253f2bfdb5f6d5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze constraint protect late kl30 s42",
+  "task_key": "worker_analyze_constraint_protect_late_kl30_s42_20260522T142651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_constraint_protect_late_kl30_s42_20260522T142651_result.json",
+    "occurrence": 1,
+    "bytes": 3099,
+    "sha256": "fa3fae0eba55a9817882432712ff0c94ffcb69780d6da5e73d7d830a16d92d85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果：`constraint_protect_late_kl30_s42`\n\n### 评估指标\n\n| Metric | Protect-Late | E2E KL (baseline) | Per-layer KL (baseline) | Δ vs E2E | Δ vs Per-layer |\n|--------|-------------|-------------------|------------------------|----------|----------------|\n| **PPL** | **9.26** | 8.81 | 9.05 | +0.45 ↑ | +0.21 ↑ |\n| **ARC-c (acc_norm)** | **42.41** | 43.7 | 39.9 | -1.29 | +2.51 |\n| **ARC-c (acc)** | **37.88** | — | — | — | — |\n| **MMLU** | **40.66** | 40.7 | 38.6 | -0.04 | +2.06 |\n| **GSM8K** | **6.52** | 7.5 | 5.8 | -0.98 | +0.72 |\n\n### 每层 Sparsity 分布\n\n**Uncapped（原始 predictor 输出）→ Capped（约束后）：**\n\n| Layer | Uncapped | Constrained | Note |\n|-------|----------|-------------|------|\n| 0 | 0.276 | 0.301 | |\n| 1 | 0.182 | 0.219 | 最低 |\n| 2 | 0.258 | 0.293 | |\n| 3 | 0.235 | 0.277 | |\n| 4 | 0.227 | 0.270 | |\n| 5 | 0.266 | 0.297 | |\n| 6 | 0.276 | 0.305 | |\n| 7 | 0.277 | 0.309 | |\n| 8 | 0.267 | 0.309 | |\n| 9 | 0.288 | 0.320 | |\n| 10 | 0.270 | 0.312 | |\n| 11 | 0.286 | 0.320 | |\n| 12 | 0.289 | 0.320 | |\n| 13 | 0.305 | 0.328 | |\n| 14 | 0.287 | 0.316 | |\n| 15 | 0.246 | 0.270 | |\n| 16 | 0.216 | 0.250 | |\n| 17 | 0.221 | 0.246 | |\n| 18 | 0.208 | 0.238 | |\n| 19 | 0.244 | 0.277 | |\n| 20 | 0.268 | 0.305 | |\n| 21 | 0.279 | 0.312 | |\n| **22** | **0.309** | **0.297** | capped ↓ |\n| **23** | **0.326** | **0.293** | capped ↓ |\n| **24** | **0.358** | **0.293** | capped ↓ |\n| **25** | **0.387** | **0.297** | capped ↓ |\n| **26** | **0.439** | **0.301** | capped ↓ |\n| **27** | **0.490** | **0.297** | capped ↓ |\n| **28** | **0.524** | **0.297** | capped ↓ |\n| 29 | 0.485 | **0.502** | 未被保护，吸收了溢出 ↑ |\n| 30 | 0.316 | 0.328 | |\n| 31 | 0.289 | 0.301 | |\n\n- **Model-level sparsity**: 0.300（精确命中目标）\n- **Capped 释放的 zeros**: 29,763 / 137,626 total（21.6% 的预算被重新分配）\n\n### 异常检查\n\n- `torch_dtype` deprecation warning — 无害\n- `fatal: not a git repository` — lm-eval 内部 git 调用，无害\n- **无实质性 error/warning**，EXIT_CODE=0\n\n### Conclusion: **Negative**\n\n保护晚期层（L22-L28 cap 0.30）没有带来质量提升，反而略有下降：\n\n1. **PPL 恶化**：9.26 vs 9.05（per-layer baseline），+0.21。比 E2E baseline 8.81 更差 +0.45。\n2. **下游任务**：ARC-c 和 MMLU 介于两个 baseline 之间（接近 per-layer），GSM8K 也处于中间位置。没有一个指标超过 E2E baseline。\n3. **水床效应（waterbed effect）**：从 L22-L28 释放的 21.6% sparsity 预算被重新分配到其他层，L29 从 0.485→0.502 成为新瓶颈。早期层（L0-L14）普遍增加了 2-4 个百分点的 sparsity，抵消了保护晚期层的收益。\n4. **核心问题**：约束只是把 sparsity 从一组\"重要\"层搬到了另一组层，总预算不变，质量没有 free lunch。\n\n等 `constraint_remove_valley_kl30_s42` 结果出来后可做交叉对比，但 protect-late 本身不支持\"晚期层保护能改善质量\"的假设。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-constraint-protect-late-kl30-s42.md"
+}

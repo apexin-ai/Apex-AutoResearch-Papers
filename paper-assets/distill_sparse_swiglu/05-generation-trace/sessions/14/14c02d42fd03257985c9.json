@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14c02d42fd03257985c9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze mvp bce s42",
+  "task_key": "worker_analyze_mvp_bce_s42_20260515T122609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_mvp_bce_s42_20260515T122609_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "c8ad15fa5194b4cce52ad287910a81bff0a95d73fedc32ecd2e247cce777000b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## mvp_bce_s42 实验结果\n\n**训练成功完成**，1000/1000 steps，耗时 ~25.5 分钟。\n\n| 指标 | 值 |\n|------|-----|\n| 最终 Total Loss | 0.6430 |\n| 最终 BCE Loss | 0.6379 |\n| 最终 Reg Loss | 0.0051 |\n| 最终 Sparsity | 0.551（目标 0.5） |\n| Checkpoint | `/root/distill_sparse_swiglu/checkpoints/mvp_bce_s42/predictor_bce.pt` (145 MB) |\n\nLoss 从 0.6711 → 0.6430（降幅 4.2%），step 400 后 plateau。Sparsity 从 0.582 收敛到 0.551，略高于 0.5 目标。\n\n**Eval 未执行。** `src/evaluate.py` 已就绪，支持 TEAL 全局分配 + WikiText-2/C4 perplexity 评测：\n```bash\npython src/evaluate.py \\\n  --checkpoint /root/distill_sparse_swiglu/checkpoints/mvp_bce_s42/predictor_bce.pt \\\n  --sparsity_target 0.5 --gpu 0\n```\n\n报告已注册为 artifact `art_20260515_1938be`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-mvp-bce-s42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28244a2926dac4f0b968",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_13_1779384236.md",
+  "task_key": "loop_13_1779384236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1779384236.md",
+    "occurrence": 1,
+    "bytes": 4862,
+    "sha256": "c6cd55f885b51ef5cd8032e38afce2d78831ec69b217ac3c3b77b8d0b9e3220b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-19T12:18:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 westd-34887 cuda:0,1（`get_project_resource_usage` 当前只分配这两张）。westd-41718 在 config 中但未分配 GPU，不要在上面启动 GPU 实验\n- HF 离线模式必须：`HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache`，否则下载挂起\n- 分析 Worker 禁止凭记忆引用数字（2026-05-18 幻觉事故教训），必须从 registry 读取\n- submit_training_job 自动注入 CUDA_VISIBLE_DEVICES，脚本内 `--gpu` 始终为 0\n- DDL: **EMNLP 2026 ARR 2026-05-25**（距今 6 天）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887**: 2×A6000, `/root/distill_sparse_swiglu/`, account=root\n- **westd-41718**: 2×GPU, `/root/distill_sparse_swiglu/`, account=root（有部分 checkpoints: kl_sparsity25/30, mvp_kl_norm_v2, c1_ablation 系列）\n- Python: `/root/miniconda3/bin/python`（不走 conda activate，用绝对路径）\n- 模型: LLaMA `/root/autodl-tmp/models/llama-3.1-8b`, Qwen `/root/autodl-tmp/models/qwen2.5-14b/`（在 westd-34887）\n- Predictor: GELU, d_b=128, 2.37M params/layer, 75.96M total (~0.9% of LLaMA-8B)\n- **活跃 GPU 进程**:\n  - `qwen14b_kl30_s456_eval_v2` — PID 100060, westd-34887 cuda:1, cron 监控中\n  - `qwen14b_kl30_s123_eval_v4` — PID 100832, westd-34887 cuda:0, cron 监控中\n- **活跃 CPU Workers** (3):\n  - `worker_analysis_flops-overhead-table_20260519T121505`\n  - `worker_ops_mask-divergence-30pct-64samples_20260519T121550`\n  - `worker_ops_mask-divergence-50pct-64samples_20260519T121559`\n\n### 3. 📊 当前状态\n项目处于**最终数据整合阶段**，距 ARR 提交 6 天。\n\n**正在跑的实验**: Qwen-14B KL 30% 多种子 eval（s123_v4 + s456_v2），用 TEAL uniform allocation 跑 WikiText-2 PPL + 5 downstream（ARC/WG/HS/PIQA/MMLU），目的是确认 MMLU reversal 是 systematic 而非 seed noise。之前 v1-v3 多次因 OOM / orphan PID 失败，当前 v4/v2 是 clean retry。\n\n**正在跑的 Workers**: (1) FLOP/overhead 表格分析, (2)(3) mask divergence 30%/50% 的 64-sample 重算（论文必须引用 64-sample 数据）。\n\n**等待中**: 2 个 cron 回调（GPU 实验完成）+ 3 个 Worker 回调。无 Director 决策待回。\n\n**已完成的关键里程碑**:\n- C1 因果消融双种子确认（target quality = KL 唯一驱动力）\n- Mistral cross-arch downstream 确认 KL > TEAL（ARC +9pp, WG +5.6pp）\n- 6-point regime curve 完整（global + uniform 双列）\n- Paper P1-P9 text patches done, consistency check 0 critical / 0 warning\n- D073 Round 12 Action Matrix 已下发（Fix N1/N2 data errors）\n\n### 4. 📋 待办（条件触发式）\n- `qwen14b_kl30_s456_eval_v2` cron 回调 → 更新 registry metrics → 与 s42 (MMLU=71.67) 对比\n- `qwen14b_kl30_s123_eval_v4` cron 回调 → 同上 → 三种子汇总确认 MMLU reversal 是否 systematic\n- 两个种子 eval 都完成 → 向 Director 汇报 Qwen-14B 多种子结论 → 更新 paper 表格\n- mask-divergence Workers 完成 → 确认 64-sample Jaccard 数据与论文引用一致 → 更新图表\n- flops-overhead-table Worker 完成 → 整合到论文 overhead 表\n- 所有数据到齐 → Round 12 review → 论文最终修改 → ARR 提交准备\n- 如 GPU 空闲（eval 完成后）→ 检查 ROADMAP \"Mistral KL HellaSwag/PIQA\" 是否还需补跑\n\n### 5. 🎯 战略上下文\n**核心结论链**: KL distillation 发现了 magnitude-based oracle 遗漏的 neuron importance pattern（53% mask divergence）。C1 因果消融证明 target quality 是唯一驱动力（gradient coupling ≈ 0）。跨架构（Mistral）、跨规模（Qwen-14B）验证 KL PPL 优势保持。Phase transition finding: ≤30% allocation-fixable, ~40% learned allocation wins, ≥50% capacity cliff。\n\n**决策链**: D064（C1 双种子）→ D066（30% MMLU 矛盾澄清）→ D071（Mistral cross-arch 确认）→ D072（Round 11 action: C1 reframe）→ D073（Round 12 action: fix N1/N2 data errors）\n\n**最容易判断错的事**:\n1. **14B MMLU gap 与 8B 不同**: 8B 上 uniform allocation 修复 MMLU variance，但 14B 上 uniform 只 +0.77pp（63.72→64.49），TEAL 仍 71.83%。不要假设 8B pattern 推广到 14B\n2. **不要混淆 global_topk 和 uniform 的结果**: 论文中两种 allocation 都报告，确保引用时标注清楚\n3. **Qwen-14B eval 历史**: s123/s456 已经失败多次（OOM、orphan PID），当前版本是 clean retry。如果再失败，先查是否有 orphan 进程占显存\n4. **论文数字来源**: mask divergence 必须引用 64-sample 数据（非 16-sample 初步数据）；C1 ablation downstream 数字用 TEAL 50% uniform controlled eval（非 training eval）\n5. **Paper consistency 上次 0/0** 但 Round 12 要 fix N1/N2 data errors，改完后必须重跑 consistency check\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1779384236.md"
+}

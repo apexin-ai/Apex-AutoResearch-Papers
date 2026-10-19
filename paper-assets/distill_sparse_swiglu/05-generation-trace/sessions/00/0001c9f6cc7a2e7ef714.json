@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0001c9f6cc7a2e7ef714",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_11_1779063130.md",
+  "task_key": "loop_11_1779063130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1779063130.md",
+    "occurrence": 1,
+    "bytes": 4159,
+    "sha256": "234fe7fef23acdd6b676e28eebb306d23f8f964072b1587d81e4cf7ab15a39c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-17T23:10:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 cuda:0,1 + westd-41718 cuda:0,1。绝不用其他卡\n- KL PPL 引用必须用 4-seed mean 12.00±0.07，禁用单 seed 最佳 11.91\n- D032 Mistral registry 数据疑似污染，暂不在论文引用\n- 14B TEAL PPL=8.73（global_topk eval 实测），BCE PPL=8.76；KL PPL=7.62。这三个数来自 qwen14b_*_eval 实验\n- 50% uniform MMLU=27.77% ≈ random，已证伪，不要再尝试 allocation 拯救 50%\n- WANDB_MODE=offline（两台服务器均无 wandb API key）\n- 论文 DDL: EMNLP 2026 ARR May, 2026-05-25（剩 8 天）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887**: 2×RTX PRO 6000 Blackwell, `/root/distill_sparse_swiglu/`, Python `/root/miniconda3/bin/python`, conda base\n- **westd-41718**: 2×RTX PRO 6000 Blackwell 97GB each, PyTorch 2.8.0+cu128, 同路径结构\n- 模型路径: LLaMA-8B `/root/autodl-tmp/models/llama-3.1-8b/`, Mistral-7B `/root/autodl-tmp/models/mistral-7b/`, Qwen-14B `/root/autodl-tmp/models/qwen2.5-14b/`\n- HF cache: `/root/autodl-tmp/.hf_cache/datasets`\n- Qwen-14B KL ckpt: `checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt` (223MB)\n- Qwen-14B BCE ckpt: `checkpoints/qwen14b_bce30_s42/predictor_bce.pt`\n- 活跃进程: `qwen14b_kl30_uniform_eval` (westd-34887 cuda:0, tmux) + `qwen14b_teal30_uniform_eval` (westd-34887 cuda:1, PID 80808, nohup)\n- Cron: 0 active (reconcile 返回空)——这两个 RUNNING 实验可能没有 cron 监控，下一个 session 需要手动 check 或补注册 cron\n\n### 3. 📊 当前状态\n**刚完成**: Session #11 初始化、D052 决策（14B KL global_topk MMLU 落后问题，紧急验证 uniform allocation 能否修复）\n\n**RUNNING (2 个)**:\n- `qwen14b_kl30_uniform_eval` — KL predictor + uniform allocation downstream eval，验证 hypothesis: global_topk 饿死 knowledge layers 导致 MMLU 差\n- `qwen14b_teal30_uniform_eval` — TEAL + uniform allocation 作为 control，隔离 allocation effect vs predictor quality\n\n**等待中**:\n- 无活跃 Worker（均已完成）\n- 无活跃 Cron（⚠️ 上述两个 RUNNING 实验可能缺 cron 监控）\n- 等 Director 对 14B PPL-downstream 矛盾的最终决策（D052 已汇报，选项 A/B/C 待定）\n- kl50_global_s123_reeval 失败诊断待跟进（D051 数据修正相关）\n- C4 OOD eval Worker 状态需确认\n\n### 4. 📋 待办（条件触发式）\n- qwen14b_kl30_uniform_eval 完成 → 对比 MMLU: 若 uniform > global_topk 63.72% 显著 → 确认 allocation 是根因，论文加 \"allocation sensitivity\" 分析段；若无改善 → KL 14B 知识压缩假说证伪，汇报 Director\n- qwen14b_teal30_uniform_eval 完成 → 对比 TEAL global (71.83) vs TEAL uniform → 量化 allocation effect 独立于 predictor\n- 两个 eval 都完成 → 更新 Table（cross-arch section）→ 汇报 Director 完整 14B 四方比较 → 推进 Round 2 review 提交\n- Director 对 D052 做出决策 → 按指示调整论文 cross-arch narrative\n- kl50_s123_reeval 诊断回来 → 更新 Table 2 50% 行数据 → 确认 3-seed consistency\n\n### 5. 🎯 战略上下文\n- **核心发现**: KL distillation 在 8B 上 PPL+downstream 双赢，但 14B 上出现 PPL-downstream disconnect（KL PPL 最优但 MMLU/GSM8K 最差）。这是论文最大的 narrative 风险\n- **决策链**: D047(reframe to distillation paper) → D048(加 14B 验证) → D052(14B KL downstream 落后，紧急验证 uniform)\n- **论文 framing**: \"KL distillation enables simplest sparse inference pipeline\"——14B 结果如果 uniform 修复 MMLU，叙事可调为 \"KL+uniform = best practice across scales\"；如果修不了，需要坦承 scale-dependent behavior\n- **易错点**: \n  - 不要混淆 global_topk 和 uniform 的结果——14B 已有两套 TEAL 数据（global vs uniform），引用时必须标注 allocation 方式\n  - report.md 里 \"qwen14b_bce30_s42_eval\" 的 TEAL PPL=8.76 注释是错的（那是 BCE 的 PPL，TEAL=8.73）——已在最新 commit 修复\n  - 两台服务器的 cron 可能不活跃，RUNNING 实验完成后不会自动回调，需要主动 check\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1779063130.md"
+}

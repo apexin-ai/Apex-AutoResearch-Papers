@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c35d1e4b87833685473",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis flops overhead table",
+  "task_key": "worker_analysis_flops-overhead-table_20260519T121505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_flops-overhead-table_20260519T121505_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "d23dc2253ac52b87784a5f215a4ee513eb294d37e73c576bc163af193596ef3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入并注册 `art_20260519_48cc33`。\n\n**原始任务中的关键修正：**\n\n| 原始值 | 修正值 | 原因 |\n|--------|--------|------|\n| FFN FLOPs ~11.3**T** | 11.27**B** | 单 token 过 32 层 FFN 的 FLOPs 是 billion 级，非 trillion |\n| 总 FLOPs ~16**T** | ~16.1**B** | 2N 近似：2 × 8.03B = 16.1B |\n| Predictor 占比 ~0.001% | **~0.94%** | 151M / 16.1B ≈ 0.94%，原始计算分母单位错了 1000 倍 |\n\n其余数值（FFN 参数 5.64B/70.2%、Predictor 151M FLOPs、30% sparsity 省 ~20% 总 FLOPs、latency overhead 2.5%/6-8%、net speedup 1.13-1.17x）均验证正确。\n\n训练成本：单 seed 约 0.86 GPU-hours（1000 steps, 1× RTX PRO 6000）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-flops-overhead-table.md"
+}

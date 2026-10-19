@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fedd2833ac1e75d3638",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check qwen14b gsm8k progress",
+  "task_key": "worker_check_qwen14b_gsm8k_progress_20260522T074438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen14b_gsm8k_progress_20260522T074438_result.json",
+    "occurrence": 1,
+    "bytes": 553,
+    "sha256": "2b21d1b9cfc01a4e4009d9bbf11a15b6edd99786b5e09a6ec84851342d83ad42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进度报告**\n\n- **当前阶段**：Sparsity setup + tokenization 已完成，正在执行 generation\n- **GSM8K 进度**：289/1319 (22%)，已运行 57:24\n- **生成速度**：~9-13 秒/题（每 8 题一个 batch，约 80-100s/batch）\n- **ETA**：剩余 1030 题，按当前节奏约 3:35-4:00 小时\n- **状态**：进行中，未完成。无 gsm8k_exact_match_flex 指标可提取\n- **模型 sparsity 验证**：Model-level 0.296（目标 0.30 ✓），逐层均匀 0.285-0.301\n\neval 仍需约 3.5-4 小时才能完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen14b-gsm8k-progress.md"
+}

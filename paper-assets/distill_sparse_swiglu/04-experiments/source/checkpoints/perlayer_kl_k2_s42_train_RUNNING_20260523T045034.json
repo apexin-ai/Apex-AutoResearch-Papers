@@ -1,0 +1,36 @@
+{
+  "exp_id": "perlayer_kl_k2_s42_train",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:49:44.331Z",
+    "updated_at": "2026-05-23T04:50:33.387Z",
+    "hypothesis": "K=2 per-layer KL at 30% sparsity: training with 2 random layers per step. Part of K-curve. K=2 tests minimal cross-layer interaction vs pure per-layer (K=1).",
+    "spec": {
+      "command": "WANDB_MODE=disabled python -u src/train_perlayer_kl_k4.py --num_masked_layers 2 --seed 42 --num_steps 1000 --save_every 500 --gradient_checkpointing --output_dir /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42 --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": 112468,
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_k2_s42_train.log",
+      "submitted_at": "2026-05-23T04:50:19.880Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "data_path": "redpajama",
+      "data_count": 0,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42"
+    }
+  },
+  "timestamp": "2026-05-23T04:50:34.039493+00:00",
+  "trigger": "update_registry"
+}

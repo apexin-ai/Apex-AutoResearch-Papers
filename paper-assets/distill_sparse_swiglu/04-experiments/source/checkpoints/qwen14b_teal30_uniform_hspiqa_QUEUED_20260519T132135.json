@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen14b_teal30_uniform_hspiqa",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:19:22.790Z",
+    "updated_at": "2026-05-19T13:21:34.186Z",
+    "hypothesis": "TEAL 30% uniform sparsity on Qwen-14B should show consistent accuracy drop on HellaSwag and PIQA compared to dense baseline, completing the 5-task evaluation suite for the 14B comparison table.",
+    "parent": "qwen14b_teal30_uniform_eval_4task"
+  },
+  "timestamp": "2026-05-19T13:21:35.119838+00:00",
+  "trigger": "update_registry"
+}

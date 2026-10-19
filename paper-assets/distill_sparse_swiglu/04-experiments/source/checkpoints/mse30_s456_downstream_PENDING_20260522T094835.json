@@ -1,0 +1,16 @@
+{
+  "exp_id": "mse30_s456_downstream",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:46:58.268Z",
+    "updated_at": "2026-05-22T09:48:34.948Z",
+    "hypothesis": "MSE 30% s456 full downstream eval (ARC-c+WG+MMLU+GSM8K+HS+PIQA+BoolQ) to complete 3-seed mean±std for 2D decomposition table (objective × allocation). Reviewer required multi-seed for MSE row; s42 already has full downstream, s123 running in parallel. Together the three seeds give mean±std for MSE 30% uniform downstream so the table can replace s42-only numbers without re-write of the framing.",
+    "parent": "mse30_s456"
+  },
+  "timestamp": "2026-05-22T09:48:35.636995+00:00",
+  "trigger": "update_registry"
+}

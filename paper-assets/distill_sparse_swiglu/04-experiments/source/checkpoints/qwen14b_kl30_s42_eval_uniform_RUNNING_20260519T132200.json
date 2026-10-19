@@ -1,0 +1,28 @@
+{
+  "exp_id": "qwen14b_kl30_s42_eval_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:13:51.678Z",
+    "updated_at": "2026-05-19T13:22:00.494Z",
+    "hypothesis": "Qwen-14B KL 30% s42 eval under TEAL uniform allocation will produce comparable downstream metrics to s123/s456 (also uniform), enabling valid 3-seed comparison. Prior s42 eval used global_topk (the default), making it inconsistent with s123/s456 which used uniform.",
+    "parent": "qwen14b_kl30_s42",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42_eval_uniform --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0",
+      "server": "westd-34887",
+      "gpu": "cuda:1",
+      "checkpoint_source": "qwen14b_kl30_s42",
+      "eval_data": "wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu",
+      "model_name": "qwen2.5-14b",
+      "seed": 42,
+      "data_path": "wikitext-103",
+      "data_count": "N/A"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T13:22:00.908871+00:00",
+  "trigger": "update_registry"
+}

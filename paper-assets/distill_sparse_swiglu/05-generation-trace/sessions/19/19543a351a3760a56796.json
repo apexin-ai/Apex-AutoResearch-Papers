@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19543a351a3760a56796",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops longbench final attempt",
+  "task_key": "worker_ops_longbench-final-attempt_20260516T153715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_longbench-final-attempt_20260516T153715_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "b659b2a9fc6e598ca00644dd623f3027e8168ffd24aa292ec8828558c0f94cb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**LongBench running successfully, no OOM after 5 minutes。**\n\n状态总结：\n- 进度：19/800（~2.4%），稳定 ~10s/it\n- GPU 内存：GPU0 19.2GB / GPU1 21.5GB（各占 ~20%，余量充裕）\n- 预计完成时间：约 2 小时（800 × 10s ÷ 60 ≈ 133 min）\n- 无任何 OOM/CUDA error\n\n任务在稳定运行中。需要我继续等待完整结果还是后续再来检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-longbench-final-attempt.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen14b_kl30_s42_eval_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:13:51.678Z",
+    "updated_at": "2026-05-19T13:15:58.875Z",
+    "hypothesis": "Qwen-14B KL 30% s42 eval under TEAL uniform allocation will produce comparable downstream metrics to s123/s456 (also uniform), enabling valid 3-seed comparison. Prior s42 eval used global_topk (the default), making it inconsistent with s123/s456 which used uniform.",
+    "parent": "qwen14b_kl30_s42"
+  },
+  "timestamp": "2026-05-19T13:15:59.313785+00:00",
+  "trigger": "update_registry"
+}

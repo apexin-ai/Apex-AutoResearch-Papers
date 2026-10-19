@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ab69218d6ab895cde3d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops training steps curve",
+  "task_key": "worker_ops_training-steps-curve_20260516T220852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_training-steps-curve_20260516T220852_result.json",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "b45697003963c72c52ef0d56d062dce625fca7e024ff20274a3f65a51fe53156"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已在后台运行（PID 274814，GPU:1）。预计 ~17 分钟完成 1000 steps，每 200 步保存一个 checkpoint。4.5 分钟后我会回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-training-steps-curve.md"
+}

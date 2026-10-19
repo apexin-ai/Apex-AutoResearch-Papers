@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3be955cc5ce9ce15f878",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval bce v3 eval pipeline",
+  "task_key": "worker_eval_bce_v3_eval_pipeline_20260516T055435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bce_v3_eval_pipeline_20260516T055435_result.json",
+    "occurrence": 1,
+    "bytes": 40,
+    "sha256": "cdee262426a3b791cf3b057e1db5930ed87682e2c3a6a9cfca7d111a2f2fe445"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next check at ~15:43 CST."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bce-v3-eval-pipeline.md"
+}

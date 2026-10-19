@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ded7822d8af5c1741db",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis benchmark table final",
+  "task_key": "worker_analysis_benchmark-table-final_20260516T165941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_benchmark-table-final_20260516T165941_result.json",
+    "occurrence": 1,
+    "bytes": 877,
+    "sha256": "536bec63f802af04f8e125a153eaa00dd1b88cd18fd22971ee761f1c249f09e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "表格已更新完成。变更摘要：\n\n**Main Results 表**：\n- 替换 TEAL 30%/50% unified 的 \"— queued\" 为实际数据\n- 新增 KL 40% global 行 (PPL=10.117, ARC=0.4096, WG=0.6535, MMLU=0.3806, GSM8K=0.05)\n- 保留 TEAL 50% † (lm_eval) 行作为参考，标注 \"retained for reference only\"\n\n**新增 Multi-seed stability 表**：3 seeds 全部 5 个指标的逐种子值 + mean/std/CV\n\n**Relative Change 表**：新增 KL 40% global (+65.4% PPL, −41.7% MMLU)、TEAL 30% (+79.3% PPL)、TEAL 50% unified (+281.1% PPL)\n\n**Key Observations 更新**：\n- Obs 1: TEAL 数据从旧 27.97 更新为 unified 23.31\n- Obs 2: 新增 40% uniform vs global 的反转现象（global MMLU 0.3806 > uniform 0.3068）\n- 新增 Obs 5: KL 30% ≈ TEAL 30% 在 downstream 上差异不大，KL 优势主要在 PPL\n- 新增 Obs 6: Multi-seed stability"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-benchmark-table-final.md"
+}

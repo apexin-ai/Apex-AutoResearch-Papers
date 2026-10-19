@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl_sparsity25_s42_eval_teal_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:13:23.135Z",
+    "updated_at": "2026-05-18T18:59:35.518Z",
+    "hypothesis": "KL 25% uniform allocation eval completes the dual-column (global + uniform) data for the regime curve.",
+    "parent": "kl_sparsity25_s42"
+  },
+  "timestamp": "2026-05-18T18:59:35.840421+00:00",
+  "trigger": "update_registry"
+}

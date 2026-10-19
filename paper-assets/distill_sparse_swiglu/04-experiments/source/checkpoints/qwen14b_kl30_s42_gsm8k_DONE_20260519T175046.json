@@ -1,0 +1,29 @@
+{
+  "exp_id": "qwen14b_kl30_s42_gsm8k",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:34:34.287Z",
+    "updated_at": "2026-05-19T17:50:46.038Z",
+    "hypothesis": "KL s42 GSM8K supplement for Qwen-14B. Enables KL vs TEAL comparison on reasoning task (Round 12 Q6).",
+    "parent": "qwen14b_kl30_s42_eval_uniform_v3",
+    "spec": {
+      "command": "cd /root/distill_sparse_swiglu && CUDA_VISIBLE_DEVICES=1 python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42_gsm8k --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks gsm8k --seq_len 2048 --gpu 0",
+      "server": "westd-41718",
+      "data_path": "openai/gsm8k (cached)",
+      "data_count": 1319,
+      "model_name": "Qwen2.5-14B",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt",
+      "eval_data": "gsm8k"
+    },
+    "failure_reason": "Worker launched PID 163224 on 41718:1 without submit_training_job (no cron). Startup recovery marked failed. Orphaned process killed to free cuda:1 for qwen14b_dense_4task (Director deprioritized GSM8K).",
+    "conclusion": "killed",
+    "completed_at": "2026-05-19T17:39:17.253Z"
+  },
+  "timestamp": "2026-05-19T17:50:46.607688+00:00",
+  "trigger": "update_registry"
+}

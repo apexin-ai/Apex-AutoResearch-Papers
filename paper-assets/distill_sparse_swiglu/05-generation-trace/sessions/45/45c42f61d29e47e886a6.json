@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45c42f61d29e47e886a6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops gpu check urgent v2",
+  "task_key": "worker_ops_gpu-check-urgent-v2_20260516T091431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-check-urgent-v2_20260516T091431_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "f6aca92d33c4afe8d2b07ed185505ba6770bda959b574dd0583b12ed379b2a6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\ncuda:0: idle (0 MiB / 97887 MiB, 0% util)\ncuda:1: idle (0 MiB / 97887 MiB, 0% util)\n\n## d030_kl40_uniform\n状态: completed (train 1000 steps + benchmark_eval, EXIT_CODE=0)\nMetrics:\n| 指标 | 值 |\n|------|-----|\n| wikitext2_ppl | 8.3627 |\n| arc_challenge_acc_norm | 0.4181 |\n| winogrande_acc | 0.6717 |\n| mmlu_acc | **0.3068** |\n| gsm8k_exact_match | 0.0394 |\n| actual_sparsity | 0.398 |\n\nRegistry: 已更新 (DONE)\n\n## bench_kl30_uniform\n状态: completed (eval only, EXIT_CODE=0)\nMetrics:\n| 指标 | 值 |\n|------|-----|\n| wikitext2_ppl | 8.8157 |\n| arc_challenge_acc_norm | 0.4078 |\n| winogrande_acc | 0.6859 |\n| mmlu_acc | **0.4061** |\n| gsm8k_exact_match | 0.0735 |\n| actual_sparsity | 0.300 |\n\nRegistry: 已��新 (DONE)\n\n---\n\n**关键发现**: 40% sparsity (d030_kl40_uniform) 的 MMLU 从 30% 的 40.61% 骤降到 30.68%（接近 random guess 25%），确认 allocation 修复的 threshold 在 30%-40% 之间。两张 GPU 均已空闲，可提交下一批实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-urgent-v2.md"
+}

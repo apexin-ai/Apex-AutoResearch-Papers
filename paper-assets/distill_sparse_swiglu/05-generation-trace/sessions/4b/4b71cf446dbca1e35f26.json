@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b71cf446dbca1e35f26",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra collect bce30 and teal30 final",
+  "task_key": "worker_infra_collect_bce30_and_teal30_final_20260517T222553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_collect_bce30_and_teal30_final_20260517T222553_result.json",
+    "occurrence": 1,
+    "bytes": 63,
+    "sha256": "bf970a520cf66c0ab9556428b57cc4a3c4d7dd40e3d5d67d3ad6ff8e1591c65d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Will check back in ~4 minutes for final results."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-collect-bce30-and-teal30-final.md"
+}

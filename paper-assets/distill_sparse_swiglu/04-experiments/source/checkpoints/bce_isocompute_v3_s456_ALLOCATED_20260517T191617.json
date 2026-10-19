@@ -1,0 +1,32 @@
+{
+  "exp_id": "bce_isocompute_v3_s456",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T17:41:59.821Z",
+    "updated_at": "2026-05-17T19:16:17.144Z",
+    "hypothesis": "BCE iso-compute 2700 steps with seed 456 at 50% sparsity produces comparable results to s42 (PPL and downstream), providing multi-seed validation for Table 2 BCE row",
+    "parent": "bce_isocompute_v3_s42",
+    "server": "westd-34887",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"cd /root/distill_sparse_swiglu && source /root/miniconda3/bin/activate && export WANDB_MODE=disabled && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type bce --num_steps 2700 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --sparsity_target 0.5 --gpu 0 --output_dir checkpoints/bce_isocompute_v3_s456 --wandb_run_name bce_isocompute_v3_s456 --dataset wikitext-103 --gradient_checkpointing --log_every 100\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "67029",
+      "log_path": "~/runs/distill_sparse_swiglu/bce_isocompute_v3_s456.log",
+      "submitted_at": "2026-05-17T19:13:30.954Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T19:16:17.402573+00:00",
+  "trigger": "update_registry"
+}

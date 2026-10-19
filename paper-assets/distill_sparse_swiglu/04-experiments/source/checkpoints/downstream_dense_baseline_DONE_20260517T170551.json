@@ -1,0 +1,37 @@
+{
+  "exp_id": "downstream_dense_baseline",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:29:57.759Z",
+    "updated_at": "2026-05-17T17:05:51.063Z",
+    "hypothesis": "Dense LLaMA-3.1-8B baseline on HellaSwag/PIQA/BoolQ provides reference scores for computing KL-30% sparsity degradation on extended downstream tasks, expected to show minimal degradation (less than 5pp drop from dense)",
+    "spec": {
+      "command": "cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_dense_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --tasks hellaswag,piqa,boolq --gpu 0",
+      "server": "westd-41718",
+      "gpu": "cuda:0",
+      "account": "root",
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "data_path": "hellaswag,piqa,boolq",
+      "data_count": 0
+    },
+    "metrics": {
+      "hellaswag_acc_norm": 0.8233,
+      "hellaswag_acc_norm_stderr": 0.0038,
+      "piqa_acc_norm": 0.8074,
+      "piqa_acc_norm_stderr": 0.0092,
+      "boolq_acc": 0.8294,
+      "boolq_acc_stderr": 0.0066
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (dense baseline)",
+    "log_path": "/root/distill_sparse_swiglu/logs/downstream_dense_baseline.log",
+    "completed_at": "2026-05-17T17:05:51.063Z"
+  },
+  "timestamp": "2026-05-17T17:05:51.291452+00:00",
+  "trigger": "update_registry"
+}

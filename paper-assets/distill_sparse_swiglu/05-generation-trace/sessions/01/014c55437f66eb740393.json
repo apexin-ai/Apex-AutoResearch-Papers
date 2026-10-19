@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "014c55437f66eb740393",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code plan 003 iso compute",
+  "task_key": "worker_code_plan_003_iso_compute_20260515T185324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_003_iso_compute_20260515T185324_result.json",
+    "occurrence": 1,
+    "bytes": 1962,
+    "sha256": "72f1013c95b17bbbd4cab0db07058a440d39561ead28985788a0f6532ca036ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### 1. FLOPs 比率估算\n\n**实测结果** (BS=1, SL=512, GPU=RTX PRO 6000 Blackwell):\n\n| | 每步时间 | 相对 FLOPs |\n|---|---|---|\n| KL (dense fwd + sparse fwd + backward w/ GC) | 0.549s | 2.71x |\n| BCE (dense fwd + predictor fwd/bwd) | 0.202s | 1.0x |\n\n**比率 R = 2.71**\n\nKL 每步需要：1次 dense forward (no grad) + 1次 sparse forward (grad) + backward (activation gradients through frozen model, with gradient checkpointing)。BCE 每步只需：1次 dense forward (no grad) + 32个 tiny predictor forward/backward (~0.9% model FLOPs)。\n\n**ISO-compute BCE steps = 1000 × 2.71 ≈ 2700 步**\n\n### 2. 代码修改\n\n对 `src/train.py` 添加了 4 处改动（原文件已备份为 `train.py.bak`）：\n\n- **L17**: `import time`\n- **L415**: `t0 = time.time()` — BCE 循环前\n- **L468-472**: `elapsed` 计算 + `wall_time`/`step_time` 写入 wandb\n- **L481-485**: print 添加 elapsed + 训练完成后打印总时间\n\n无需新建脚本，`--num_steps` 参数已存在。\n\n### 3. Dry-run 验证\n\n通过 (BS=1, SL=512, random data, 1 step):\n```\n[Step 1/1] loss=0.6941 bce=0.6938 reg=0.0002 sparsity=0.500 lr=1.00e-05 elapsed=0.8s (0.78s/step)\nBCE training complete: 1 steps in 0.8s (0.78s/step)\n```\n\n### 4. 启动命令\n\nGPU 空闲时执行（当前两张卡都被占满 ~73-75/98 GiB）：\n\n```bash\nsource /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && \\\nCUDA_VISIBLE_DEVICES=0 python src/train.py \\\n    --loss_type bce \\\n    --num_steps 2700 \\\n    --warmup_steps 100 \\\n    --batch_size 4 \\\n    --seq_len 2048 \\\n    --lr 1e-3 \\\n    --seed 42 \\\n    --sparsity_target 0.5 \\\n    --dataset wikitext-103 \\\n    --gpu 0 \\\n    --output_dir checkpoints/bce_isocompute_s42 \\\n    --wandb_run_name bce_isocompute_2700steps_s42\n```\n\n如果 OOM，可改为 `--batch_size 2 --gradient_accumulation_steps 2`（等效 BS=4）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-003-iso-compute.md"
+}

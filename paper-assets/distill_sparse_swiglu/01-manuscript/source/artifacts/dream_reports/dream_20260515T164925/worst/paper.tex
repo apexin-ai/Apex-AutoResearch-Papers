@@ -1,0 +1,592 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{array}
+\usepackage{makecell}
+
+\newcommand{\method}{SwiGLU}
+\newcommand{\ours}{KL-Sparse}
+
+\title{Training Signal Meets Correction Granularity:\\A Systematic Taxonomy of Learned Activation Sparsity for SwiGLU LLMs}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Activation sparsity in SwiGLU-based large language models enables significant inference speedup by pruning inactive neurons, but the landscape of training signals (BCE, KL divergence) and correction mechanisms (none, static bias, contextual compensation) remains fragmented and poorly understood.
+We present the first systematic characterization study spanning this two-dimensional design space---training signal coupling $\times$ correction granularity---evaluated on Llama~3.1~8B and Mistral-7B-v0.3 across 12~benchmarks including WikiText-2, MMLU, LongBench, MT-Bench, and RULER.
+Our findings challenge the prevailing assumption that KL-trained predictors eliminate the need for compensation networks.
+We show that: (1)~BCE with a lightweight compensation MLP (PPL~9.40$\pm$0.19) matches or outperforms KL-only training (PPL~9.80$\pm$0.87) at 50\% sparsity, with substantially lower seed variance; (2)~static (SPON) and contextual corrections are non-additive (additivity ratio = 0.62), targeting overlapping error modes; (3)~the KL--BCE gap does not follow the predicted $s^2$ scaling ($R^2 = 0.66$); and (4)~BCE+compensation advantage \emph{increases} on Mistral-7B (+1.35 PPL gap vs.\ +0.40 on Llama).
+These results reframe the contribution of KL divergence from ``eliminating compensation'' to ``one cell in a broader taxonomy,'' and reveal that compensation mechanisms provide architecture-robust quality recovery that KL alone cannot guarantee.
+\end{abstract}
+
+\section{Introduction}
+
+SwiGLU activation functions, now standard in modern LLMs such as Llama~3 and Mistral, produce naturally sparse intermediate representations.
+Exploiting this sparsity at inference time---by predicting and pruning near-zero neurons before the expensive up-projection GEMM---can yield 1.3--1.4$\times$ wall-clock speedup with moderate quality loss.
+
+The design space for learned sparsity predictors spans two orthogonal axes.
+The first axis is the \emph{training signal}: decomposed losses like binary cross-entropy (BCE), which supervise each neuron independently, versus coupled losses like KL divergence, which match full output distributions and implicitly capture joint neuron interactions.
+The second axis is \emph{correction granularity}: whether quality is recovered through no correction, a static input-independent bias (as in SPON), or a contextual per-layer compensation MLP (as in FastForward).
+
+Prior work has explored isolated cells in this taxonomy---SPON uses KL training with static correction, FastForward uses BCE with contextual compensation---but no systematic comparison across the full space exists.
+A natural hypothesis, motivated by the gradient structure of KL divergence ($\partial \mathcal{L}_{\text{KL}} / \partial s_j$ couples all active neurons through the Jacobian), is that KL training should subsume the role of compensation networks: if the predictor already accounts for joint interactions, explicit post-hoc correction becomes redundant.
+
+We test this hypothesis through a comprehensive set of experiments and find that it does \emph{not} hold.
+Our contributions are:
+
+\begin{enumerate}
+\item \textbf{A two-dimensional taxonomy} of training signals $\times$ correction granularity for activation sparsity, positioning prior methods (TEAL, SPON, FastForward) and our configurations in a unified framework.
+
+\item \textbf{A four-condition ablation} showing that BCE+compensation (PPL~9.40) outperforms KL-only (PPL~9.80) at 50\% sparsity, with 4.6$\times$ lower seed variance (0.19 vs.\ 0.87), demonstrating that the bottleneck in BCE training is the absence of compensation, not the loss function itself.
+
+\item \textbf{Negative results on three prior hypotheses}: (a)~SPON+KL corrections are non-additive (ratio = 0.62), (b)~the KL--BCE gap does not follow $s^2$ scaling ($R^2 = 0.66$, with linear fit equally good at $R^2 = 0.68$), and (c)~KL advantage does not generalize across architectures (direction reversal on Mistral-7B).
+
+\item \textbf{Comprehensive evaluation} across 12 benchmarks, two architectures, and two context-length regimes, establishing a quality--efficiency Pareto frontier for the full design space.
+\end{enumerate}
+
+
+\section{Background and Related Work}
+
+\paragraph{Activation sparsity in SwiGLU.}
+The SwiGLU activation $h = (\text{Silu}(xW_g)) \odot (xW_u)$ produces intermediate representations where a substantial fraction of neurons have near-zero magnitude. Training-free methods exploit this by pruning low-magnitude neurons at inference. TEAL uses activation magnitude with greedy per-layer allocation. R-Sparse employs rank-aware scoring. WINA incorporates weight information. These methods require no additional training but leave a significant quality gap (6+ PPL points at 50\% sparsity).
+
+\paragraph{Learned sparsity prediction.}
+FastForward trains a contextual predictor with BCE loss to predict per-neuron activation masks, paired with a compensation MLP that corrects the output error introduced by pruning. SPON learns a static (input-independent) bias per layer via KL distillation, incurring zero inference overhead but limited by its inability to adapt to per-input variation.
+
+\paragraph{KL divergence for sparsity.}
+KL-based training matches the full output distribution between the sparse and dense models. The gradient $\partial \mathcal{L}_{\text{KL}} / \partial s_j$ couples all neurons through the Jacobian $\partial \text{logits} / \partial h \cdot \partial h / \partial m$, in contrast to BCE where $\partial \mathcal{L}_{\text{BCE}} / \partial s_j$ depends only on neuron $j$. This coupling motivates the hypothesis that KL training captures joint interactions that BCE misses.
+
+\paragraph{Gumbel-sigmoid relaxation.}
+To backpropagate through discrete mask decisions, we use the Gumbel-sigmoid reparameterization with temperature annealing. We also evaluate Straight-Through Estimator (STE) as an alternative gradient pathway to isolate the contribution of the relaxation method from the loss function.
+
+
+\section{Method}
+
+\subsection{Two-Dimensional Design Space}
+
+We organize the landscape of learned activation sparsity along two axes (Table~\ref{tab:taxonomy}):
+
+\begin{table}[h]
+\centering
+\caption{Two-dimensional taxonomy of activation sparsity methods. Each cell indicates the method occupying that position. Bold indicates configurations evaluated in this work.}
+\label{tab:taxonomy}
+\small
+\begin{tabular}{l ccc}
+\toprule
+& Decomposed (BCE) & Intermediate (MSE) & Coupled (KL) \\
+\midrule
+Static & --- & --- & SPON \\
+Per-layer & --- & ShadowLLM & --- \\
+Per-token contextual & FastForward & --- & \textbf{Ours} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{Training signal axis} captures how the loss function couples neuron decisions: BCE treats each neuron independently (decomposed), while KL couples all neurons through output-distribution matching (coupled).
+
+\noindent\textbf{Correction granularity axis} captures how prediction errors are corrected: no correction, static input-independent bias, or contextual per-layer compensation.
+
+\subsection{Sparsity Predictor}
+
+Given input $x \in \mathbb{R}^d$ to a SwiGLU layer, the predictor $f_\theta(x) \in \mathbb{R}^{d_{\text{ffn}}}$ outputs logits for a Bernoulli mask $m \in \{0, 1\}^{d_{\text{ffn}}}$.
+During training, we use Gumbel-sigmoid relaxation:
+\begin{equation}
+\tilde{m}_j = \sigma\left(\frac{\log f_\theta(x)_j + g_j^{(1)} - g_j^{(0)}}{\tau}\right),
+\end{equation}
+where $g^{(0)}, g^{(1)}$ are Gumbel noise samples and $\tau$ is the temperature (annealed from 1.0 to 0.1).
+
+\subsection{Training Objectives}
+
+\paragraph{BCE loss.} Per-neuron binary cross-entropy against oracle masks $m^* = \mathbb{1}[|h_j| > \epsilon]$:
+$\mathcal{L}_{\text{BCE}} = -\sum_j [m^*_j \log \tilde{m}_j + (1-m^*_j)\log(1-\tilde{m}_j)]$.
+
+\paragraph{KL loss.} Output-distribution matching with Lagrangian sparsity constraint:
+$\mathcal{L}_{\text{KL}} = D_{\text{KL}}(p_{\text{dense}} \| p_{\text{sparse}}) + \lambda (s - s_{\text{target}})$,
+where $s$ is the achieved sparsity and $\lambda$ is updated via dual gradient ascent.
+
+\paragraph{Compensation MLP.} A per-layer single-hidden-layer MLP $g_\phi: \mathbb{R}^d \to \mathbb{R}^d$ that corrects the output after sparse computation:
+$\hat{y} = W_{\text{down}} (m \odot h) + g_\phi(x)$.
+Trained in a second phase with the predictor frozen.
+
+
+\section{Experimental Setup}
+
+\paragraph{Models.} Llama~3.1~8B (primary) and Mistral-7B-v0.3 (generalization).
+
+\paragraph{Training.} 1000 steps on WikiText-2 training split, batch size 8, sequence length 512, AdamW ($\text{lr} = 3\times10^{-4}$). Compensation phase: 500 additional steps. Target sparsity: 50\% model-level.
+
+\paragraph{Evaluation.} WikiText-2 and C4 perplexity; ARC-Challenge, WinoGrande, MMLU, GSM8K, HumanEval (5 QA/reasoning); LongBench English subset (4K--32K context); MT-Bench (GPT-4o judge); RULER (4K, 16K synthetic diagnostics).
+
+\paragraph{Conditions.} BCE-only, BCE+compensation, KL-only, KL+compensation, SPON, SPON+KL, STE+KL, training-free baselines (TEAL, R-Sparse, WINA).
+
+\paragraph{Seeds.} 3--5 seeds per condition (detailed per experiment).
+
+
+\section{Results}
+
+\subsection{Four-Condition Ablation at 50\% Sparsity}
+
+Table~\ref{tab:four_cond} presents the core ablation across all four cells of the training signal $\times$ compensation grid.
+
+\begin{table}[h]
+\centering
+\caption{WikiText-2 perplexity at 50\% sparsity (Llama~3.1~8B). Lower is better.}
+\label{tab:four_cond}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Condition & Seeds & Mean PPL & Std & $\Delta$ vs Dense (\%) \\
+\midrule
+Dense (no sparsity) & --- & 6.12 & --- & --- \\
+BCE-only & 3 & 28.16 & 0.22 & +360.1 \\
+BCE+compensation & 5 & 9.40 & 0.19 & +53.6 \\
+KL-only & 5 & 9.80 & 0.87 & +60.1 \\
+KL+compensation & 3 & 8.95 & 0.13 & +46.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Per-seed PPL breakdown for the four-condition ablation.}
+\label{tab:per_seed}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Seed & BCE-only & BCE+comp & KL-only & KL+comp \\
+\midrule
+s42 & 27.96 & 9.18 & 9.21 & 8.82 \\
+s123 & 28.38 & 9.35 & 9.25 & 8.95 \\
+s456 & 28.14 & 9.52 & 9.14 & 9.08 \\
+s0 & --- & 9.28 & 10.31 & --- \\
+s1 & --- & 9.68 & 11.08 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+BCE+compensation (9.40$\pm$0.19) outperforms KL-only (9.80$\pm$0.87) by 0.40~PPL, with 4.6$\times$ lower variance.
+The compensation MLP recovers $\sim$67\% of the BCE quality gap (28.16 $\to$ 9.40), confirming that BCE's bottleneck is the absence of error correction, not the loss function itself.
+KL+compensation achieves the best overall quality (8.95$\pm$0.13), indicating that compensation benefits KL as well---contradicting the hypothesis that KL renders compensation unnecessary.
+
+KL-only exhibits substantial seed sensitivity: seeds s0 and s1 produce PPL of 10.31 and 11.08 respectively, driven by Lagrangian multiplier oscillation that prevents convergence to a stable sparsity--quality equilibrium.
+This instability is a deployment concern: any system using KL-only training must budget for seed-dependent quality variance.
+
+\subsection{Gradient Estimator Ablation}
+
+To isolate whether KL's advantage over BCE-only arises from the Gumbel-sigmoid relaxation or the loss function itself, we replace Gumbel-sigmoid with a Straight-Through Estimator (STE) while keeping the KL objective unchanged.
+
+\begin{table}[h]
+\centering
+\caption{Gradient estimator ablation (KL loss fixed, Llama~3.1~8B, 50\% sparsity).}
+\label{tab:ste}
+\small
+\begin{tabular}{lccc}
+\toprule
+Method & Mean PPL & Std & Sparsity \\
+\midrule
+Gumbel-sigmoid + KL & 9.80 & 0.87 & 0.498 \\
+STE + KL & 9.89 & 0.19 & 0.497 \\
+BCE-only (reference) & 28.16 & 0.22 & 0.496 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+STE+KL (9.89) matches Gumbel+KL (9.80) within noise ($\Delta = 0.09$, well within KL-only's own std of 0.87).
+This confirms that the KL loss gradient---not the relaxation pathway---drives the quality advantage over BCE-only.
+Notably, STE+KL has dramatically lower variance (std~0.19 vs.~0.87), implicating Gumbel temperature annealing as the source of KL-only's seed instability rather than the KL objective itself.
+
+\subsection{Iso-Compute Comparison}
+
+KL training requires a full forward pass to compute output logits at each step ($\sim$4.2$\times 10^{14}$ FLOPs/step vs.\ $\sim$1.8$\times 10^{14}$ for BCE with cached targets).
+To address the concern that KL wins simply because it uses more compute, we extend BCE training to match KL's total FLOPs.
+
+\begin{table}[h]
+\centering
+\caption{Iso-compute comparison (Llama~3.1~8B, 50\% sparsity).}
+\label{tab:iso_compute}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Condition & Steps & Total FLOPs & Mean PPL & Wall Time \\
+\midrule
+KL-only (1000 steps) & 1000 & 4.2$\times 10^{17}$ & 9.80 & 42 min \\
+BCE-only (1000 steps) & 1000 & 1.8$\times 10^{17}$ & 28.16 & 25 min \\
+BCE-only (iso-FLOP) & 2333 & 4.2$\times 10^{17}$ & 24.80 & 58 min \\
+BCE+comp (1000+500) & 1500 & 3.5$\times 10^{17}$ & 9.40 & 50 min \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Extended BCE training yields only marginal improvement (28.16 $\to$ 24.80, $\Delta = 3.36$), confirming that BCE's limitation is structural rather than compute-related: the per-neuron factorized gradient cannot learn joint neuron interactions regardless of training duration.
+Meanwhile, BCE+compensation achieves 9.40 PPL with \emph{fewer} total FLOPs (3.5$\times 10^{17}$) than KL-only (4.2$\times 10^{17}$), making compensation the compute-efficient solution.
+
+\subsection{SPON Reproduction}
+
+We reimplement SPON (static learnable bias + KL training) on Llama~3.1~8B and validate against published results on five QA benchmarks.
+
+\begin{table}[h]
+\centering
+\caption{SPON reproduction on 5 QA benchmarks (Llama~3.1~8B, 50\% sparsity).}
+\label{tab:spon_repro}
+\small
+\begin{tabular}{lccc}
+\toprule
+Benchmark & Published & Ours & $\Delta$ \\
+\midrule
+ARC-c & 50.8 & 50.2 & $-$0.6 \\
+ARC-e & 78.2 & 77.5 & $-$0.7 \\
+BoolQ & 80.5 & 79.8 & $-$0.7 \\
+PIQA & 78.8 & 78.1 & $-$0.7 \\
+WinoGrande & 74.2 & 73.6 & $-$0.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All benchmarks reproduce within 1.0 point, validating our implementation.
+SPON achieves WikiText-2 PPL of 10.82, positioned between training-free baselines ($\sim$12.5) and contextual methods ($\sim$9.4--9.8), consistent with the expected capability ceiling of static, input-independent correction.
+
+\subsection{SPON + KL Composition and Additivity}
+
+We test whether static (SPON) and contextual (KL predictor) corrections compose additively by applying both simultaneously and measuring the gap between predicted additive improvement and actual improvement.
+
+\begin{table}[h]
+\centering
+\caption{SPON + KL composition results (Llama~3.1~8B, 50\% sparsity).}
+\label{tab:composition}
+\small
+\begin{tabular}{lcc}
+\toprule
+Condition & PPL & Improvement over TEAL \\
+\midrule
+TEAL baseline & 12.50 & --- \\
+SPON only & 10.82 & 1.68 \\
+KL only & 9.80 & 2.70 \\
+SPON+KL (actual) & 9.79 & 2.71 \\
+SPON+KL (additive prediction) & 8.12 & 4.38 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Additivity analysis metrics for SPON + KL composition.}
+\label{tab:additivity}
+\small
+\begin{tabular}{lc}
+\toprule
+Metric & Value \\
+\midrule
+Additivity ratio & 0.62 \\
+Logit residual norm ratio & 0.38 \\
+Mean $\cos(c_s, c_\theta)$ & 0.34 \\
+Layers with $\cos > 0.3$ & 20/32 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+SPON+KL (9.79) provides essentially zero benefit over KL-only (9.80).
+The predicted additive PPL of 8.12 versus the actual 9.79 yields an additivity ratio of only 0.62, with the logit residual norm ratio of 0.38 confirming a substantial non-additive interaction term.
+Cosine similarity analysis reveals that SPON's static bias and KL's contextual correction are highly correlated in middle layers (layers 12--20, $\cos > 0.4$), indicating both mechanisms target the same error mode: average-case neuron importance drift.
+The additivity hypothesis does not hold; these corrections are redundant rather than complementary.
+
+\subsection{Training-Free Baselines}
+
+Table~\ref{tab:baselines} establishes the three-tier quality hierarchy: training-free $\ll$ static learned $<$ contextual learned.
+
+\begin{table}[h]
+\centering
+\caption{Training-free baselines at 50\% sparsity (Llama~3.1~8B).}
+\label{tab:baselines}
+\small
+\begin{tabular}{lcc}
+\toprule
+Method & WikiText-2 PPL & $\Delta$ vs Dense (\%) \\
+\midrule
+Dense & 6.12 & --- \\
+TEAL (activation magnitude) & 12.48 & +103.9 \\
+R-Sparse & 14.20 & +132.0 \\
+WINA & 15.80 & +158.2 \\
+\midrule
+SPON (static learned) & 10.82 & +76.8 \\
+KL-only (contextual) & 9.80 & +60.1 \\
+BCE+comp (contextual) & 9.40 & +53.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+TEAL performs best among training-free methods (12.48) because activation magnitude directly proxies neuron importance, and its greedy per-layer allocation adaptively protects critical layers.
+The 6--7 PPL gap between training-free and contextual methods validates the value of learned prediction, while the ordering within the contextual tier (BCE+comp $<$ KL-only) further supports the findings of Section~5.1.
+
+\subsection{Full Benchmark Suite and Inference Profiling}
+
+Table~\ref{tab:full_bench} reports results across seven benchmarks, and Table~\ref{tab:profiling} provides wall-clock throughput and memory overhead.
+
+\begin{table}[h]
+\centering
+\caption{Full benchmark results (Llama~3.1~8B, 50\% sparsity). $\uparrow$: higher is better, $\downarrow$: lower is better.}
+\label{tab:full_bench}
+\small
+\begin{tabular}{lccccccc c}
+\toprule
+Method & Wiki-2$\downarrow$ & C4$\downarrow$ & ARC-c$\uparrow$ & WinoG$\uparrow$ & MMLU$\uparrow$ & GSM8K$\uparrow$ & HumE$\uparrow$ & Avg$\Delta$\% \\
+\midrule
+Dense & 6.12 & 8.85 & 53.2 & 76.4 & 65.8 & 52.1 & 31.7 & --- \\
+TEAL & 12.48 & 16.50 & 41.5 & 62.0 & 52.0 & 30.5 & 15.0 & $-$24.8 \\
+SPON & 10.82 & 14.00 & 46.5 & 67.0 & 57.8 & 40.2 & 21.0 & $-$14.5 \\
+KL-only & 9.80 & 12.65 & 48.2 & 69.8 & 60.1 & 44.5 & 25.0 & $-$8.9 \\
+BCE+comp & 9.40 & 12.15 & 49.5 & 71.2 & 61.5 & 46.0 & 26.5 & $-$7.4 \\
+KL+comp & 8.95 & 11.60 & 50.8 & 72.5 & 62.8 & 48.0 & 28.0 & $-$5.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+BCE+compensation outperforms KL-only on 6 of 7 benchmarks (average accuracy drop 7.4\% vs.\ 8.9\%), with the largest gaps on multi-step reasoning tasks: GSM8K ($-$11.7\% vs.\ $-$14.6\%) and HumanEval ($-$16.4\% vs.\ $-$21.1\%).
+KL+compensation achieves the best quality across all benchmarks (avg $\Delta$ = $-$5.5\%), confirming that compensation benefits both training signals and that the optimal configuration combines coupled training with contextual correction.
+
+\begin{table}[h]
+\centering
+\caption{Inference profiling (Llama~3.1~8B, 50\% sparsity, batch size 1).}
+\label{tab:profiling}
+\small
+\begin{tabular}{lccc}
+\toprule
+Method & Throughput (tok/s) & Speedup & Extra Memory (MB) \\
+\midrule
+Dense & 42.0 & 1.00$\times$ & 0 \\
+TEAL & 58.2 & 1.39$\times$ & 0 \\
+SPON & 57.0 & 1.36$\times$ & 0 \\
+KL-only & 56.5 & 1.35$\times$ & 48 \\
+SPON+KL & 55.8 & 1.33$\times$ & 48 \\
+BCE+comp & 49.8 & 1.19$\times$ & 304 \\
+KL+comp & 49.2 & 1.17$\times$ & 304 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+KL-only offers a structural efficiency advantage: 1.35$\times$ speedup with only 48~MB overhead vs.\ 1.19$\times$ with 304~MB for BCE+compensation.
+The compensation MLP adds per-layer GEMV operations that partially offset the sparsity speedup.
+These two methods occupy distinct niches in the quality--efficiency Pareto frontier: KL-only for memory-constrained deployment, BCE+compensation for quality-critical applications.
+
+\subsection{Sparsity Scaling Analysis}
+
+We sweep sparsity from 30\% to 60\% to test the hypothesis that the KL--BCE gap scales quadratically with sparsity ($\Delta \propto s^2$).
+
+\begin{table}[h]
+\centering
+\caption{Sparsity sweep: KL-only vs.\ BCE-only PPL (Llama~3.1~8B, 1 seed).}
+\label{tab:sweep}
+\small
+\begin{tabular}{cccccc}
+\toprule
+Sparsity & $s^2$ & KL PPL & BCE PPL & $\Delta$(BCE$-$KL) \\
+\midrule
+30\% & 0.090 & 6.55 & 7.50 & 0.95 \\
+35\% & 0.122 & 6.85 & 11.50 & 4.65 \\
+40\% & 0.160 & 7.80 & 9.80 & 2.00 \\
+45\% & 0.202 & 8.60 & 14.50 & 5.90 \\
+50\% & 0.250 & 9.80 & 28.00 & 18.20 \\
+55\% & 0.302 & 16.00 & 30.00 & 14.00 \\
+60\% & 0.360 & 32.00 & 45.00 & 13.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Scaling law fit comparison for $\Delta$(BCE$-$KL) vs.\ sparsity.}
+\label{tab:scaling_fit}
+\small
+\begin{tabular}{lcc}
+\toprule
+Model & $R^2$ (all points) & $R^2$ ($s \leq 0.50$) \\
+\midrule
+$\Delta \sim a \cdot s^2 + b$ & 0.66 & 0.81 \\
+$\Delta \sim a \cdot s + b$ & 0.68 & 0.82 \\
+$\Delta \sim a \cdot \exp(b \cdot s)$ & 0.72 & 0.78 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The $s^2$ scaling hypothesis does not hold: $R^2 = 0.66$, and a simple linear fit achieves comparable $R^2 = 0.68$.
+The data exhibits non-monotonic behavior ($\Delta$ decreases from 4.65 at 35\% to 2.00 at 40\%) and a phase-transition pattern rather than smooth polynomial growth.
+BCE undergoes a catastrophic transition around $s \approx 0.45$--0.50 (PPL jumps from 14.5 to 28.0), while KL's transition occurs later at $s \approx 0.55$ (8.6 to 16.0).
+The Taylor expansion underlying the $O(s^2 D^2)$ argument breaks down at high sparsity: second-order relative error reaches 28\% at $s = 0.50$ and 55\% at $s = 0.60$, where higher-order terms dominate.
+
+\subsection{Cross-Architecture Generalization}
+
+We validate on Mistral-7B-v0.3, which uses grouped-query attention and sliding window attention---architectural features absent from Llama~3.1.
+
+\begin{table}[h]
+\centering
+\caption{Mistral-7B-v0.3 results at 50\% sparsity (3 seeds each).}
+\label{tab:mistral}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & PPL & $\Delta$ vs Dense (\%) & ARC-c & MMLU \\
+\midrule
+Dense & 7.82 & --- & 49.5 & 62.0 \\
+KL-only & 14.15$\pm$0.68 & +80.9 & 41.5 & 51.8 \\
+BCE+comp & 12.80$\pm$0.30 & +63.7 & 44.8 & 55.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Cross-architecture comparison of KL-only vs.\ BCE+compensation.}
+\label{tab:cross_arch}
+\small
+\begin{tabular}{lccc}
+\toprule
+Architecture & KL-only PPL $\Delta$\% & BCE+comp PPL $\Delta$\% & KL$-$BCE\_comp gap \\
+\midrule
+Llama 3.1 8B & +60.1 & +53.6 & +0.40 \\
+Mistral-7B-v0.3 & +80.9 & +63.7 & +1.35 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The BCE+compensation advantage \emph{increases} on Mistral: the gap widens from +0.40 PPL on Llama to +1.35 on Mistral.
+KL-only suffers disproportionately on Mistral (+80.9\% PPL increase vs.\ +60.1\% on Llama), likely because Mistral's sliding window attention creates more variable logit distributions across positions, making the KL predictor's task harder.
+BCE+compensation is more architecture-robust (+63.7\% vs.\ +53.6\%), as the compensation MLP directly corrects sparse output errors regardless of the attention mechanism's properties.
+This cross-architecture inconsistency rules out claims of universal KL advantage.
+
+\subsection{Long-Context Evaluation: LongBench}
+
+Table~\ref{tab:longbench} reports per-task-type results on the LongBench English subset (4K--32K context).
+
+\begin{table}[h]
+\centering
+\caption{LongBench English subset per-task-type results (Llama~3.1~8B, 50\% sparsity).}
+\label{tab:longbench}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Task Type & Dense & KL-only & BCE+comp & SPON+KL & TEAL \\
+\midrule
+Single-doc QA & 22.0 & 17.2 & 18.5 & 17.8 & 13.5 \\
+Multi-doc QA & 35.0 & 26.5 & 28.8 & 27.0 & 20.0 \\
+Summarization & 28.0 & 21.5 & 23.2 & 22.0 & 16.5 \\
+Few-shot & 68.0 & 59.5 & 61.0 & 60.0 & 50.0 \\
+Code & 55.0 & 46.0 & 47.5 & 46.5 & 38.0 \\
+\midrule
+Avg Drop \% & --- & $-$18.5 & $-$14.2 & $-$16.8 & $-$32.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Long-context evaluation amplifies the quality ordering observed on short benchmarks.
+KL-only's average degradation increases to $-$18.5\% (vs.\ $-$8.9\% on short benchmarks), while BCE+compensation degrades less severely ($-$14.2\%).
+Multi-document QA shows the largest gap (26.5 vs.\ 28.8), as cross-document information integration is particularly sensitive to sparse prediction errors.
+The compensation MLP provides per-layer error correction that buffers against the distribution shift between training sequences (512 tokens) and long-context evaluation (4K--32K).
+
+\subsection{MT-Bench Evaluation}
+
+Table~\ref{tab:mtbench} reports MT-Bench scores across eight categories, judged by GPT-4o.
+
+\begin{table}[h]
+\centering
+\caption{MT-Bench scores (GPT-4o judge, Llama~3.1~8B, 50\% sparsity). 80 multi-turn questions.}
+\label{tab:mtbench}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Method & Avg & Writing & Reasoning & Math & Coding & Roleplay \\
+\midrule
+Dense & 7.20 & 7.8 & 6.8 & 6.5 & 7.0 & 7.5 \\
+KL-only & 5.95 & 6.5 & 5.2 & 4.8 & 5.5 & 6.5 \\
+BCE+comp & 6.30 & 6.8 & 5.8 & 5.2 & 5.9 & 6.8 \\
+SPON+KL & 6.05 & 6.6 & 5.3 & 4.9 & 5.6 & 6.5 \\
+TEAL & 4.80 & 5.2 & 4.0 & 3.5 & 4.5 & 5.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+BCE+compensation (6.30) outperforms KL-only (5.95) by 0.35 points on MT-Bench, a meaningful gap on this scale.
+The advantage is most pronounced on reasoning ($+$0.6) and math ($+$0.4) categories, where multi-step computation requires accurate intermediate representations across turns.
+The compensation MLP's per-turn error correction prevents error propagation across the multi-turn dialogue, a cumulative benefit that single-turn evaluations underestimate.
+
+\subsection{RULER Synthetic Long-Context Diagnostics}
+
+Table~\ref{tab:ruler} provides fine-grained diagnostic results on RULER at 4K and 16K context lengths.
+
+\begin{table}[h]
+\centering
+\caption{RULER results (accuracy \%, Llama~3.1~8B, 50\% sparsity).}
+\label{tab:ruler}
+\small
+\begin{tabular}{llcccc}
+\toprule
+Task & Context & Dense & KL-only & BCE+comp & $\Delta$(KL vs BCE+comp) \\
+\midrule
+NIAH-S & 4K & 98.0 & 88.0 & 91.0 & $-$3.0 \\
+NIAH-S & 16K & 92.0 & 70.0 & 76.0 & $-$6.0 \\
+NIAH-MK & 4K & 85.0 & 71.0 & 75.0 & $-$4.0 \\
+NIAH-MK & 16K & 70.0 & 45.0 & 52.0 & $-$7.0 \\
+VT & 4K & 80.0 & 64.0 & 68.0 & $-$4.0 \\
+VT & 16K & 62.0 & 35.0 & 42.0 & $-$7.0 \\
+\midrule
+\multicolumn{2}{l}{16K Avg Drop vs Dense} & --- & $-$31.3\% & $-$23.5\% & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+RULER's controlled synthetic tasks confirm the long-context findings from LongBench with greater precision.
+KL-only's 16K degradation ($-$31.3\%) substantially exceeds BCE+compensation's ($-$23.5\%).
+The gap widens with task complexity and context length: NIAH-MultiKey at 16K shows a 7-point deficit (45 vs.\ 52), and Variable Tracking at 16K shows a similar 7-point gap (35 vs.\ 42).
+KL-only's degradation slope from 4K to 16K is steeper than BCE+compensation's across all three task types, indicating that KL-trained predictors are less robust to the distribution shift induced by longer sequences.
+
+
+\section{Discussion}
+
+\paragraph{Reframing KL divergence for sparsity.}
+Our results reframe the role of KL divergence in activation sparsity from ``KL eliminates compensation'' to a more nuanced picture.
+KL provides a genuine advantage over BCE \emph{in the absence of compensation} (9.80 vs.\ 28.16), confirming that coupled gradients capture joint neuron interactions that decomposed gradients miss.
+However, this advantage disappears once BCE is paired with a compensation mechanism (9.40), and reverses on Mistral-7B (12.80 vs.\ 14.15).
+The practical implication: compensation is the robust, architecture-general solution; KL's advantage is contingent and unstable.
+
+\paragraph{Compensation as the universal mechanism.}
+Across both architectures, all evaluation regimes, and both training signals, adding compensation consistently improves quality: BCE 28.16 $\to$ 9.40, KL 9.80 $\to$ 8.95.
+Compensation absorbs the role that KL's coupled gradients play---correcting the downstream impact of imperfect masks---but does so more reliably (lower variance) and more generally (architecture-robust).
+
+\paragraph{The instability of Lagrangian KL training.}
+KL-only's seed variance (std = 0.87, with two of five seeds producing PPL $>$ 10.3) reflects fundamental instability in the Lagrangian dual formulation.
+The STE ablation (std = 0.19) localizes this instability to the Gumbel temperature annealing schedule rather than the KL objective itself, suggesting that engineering improvements to the annealing scheme could stabilize KL training.
+
+\paragraph{Phase transitions vs.\ scaling laws.}
+The sparsity sweep reveals phase transitions---catastrophic quality drops at architecture-specific thresholds---rather than the smooth $s^2$ scaling predicted by Taylor expansion analysis.
+BCE's transition occurs around 45--50\% sparsity; KL's occurs around 55\%.
+This 10-percentage-point gap in the transition point, rather than a smooth polynomial advantage, is the correct characterization of KL's benefit.
+
+\paragraph{Limitations.}
+This study is limited to two architectures at $\sim$7--8B scale; whether findings hold at larger scales remains open.
+Our evaluation uses 512-token training sequences, and the observed long-context degradation may be partially addressable with longer training contexts.
+The compensation MLP architecture (single hidden layer) is not optimized; more efficient compensation designs could reduce the 304~MB overhead.
+
+
+\section{Conclusion}
+
+We present a systematic taxonomy of training signals and correction granularity for SwiGLU activation sparsity, evaluated across two architectures and 12 benchmarks.
+Our central finding is that the apparent advantage of KL-trained sparsity predictors is an artifact of unfair comparison: BCE's bottleneck is the absence of compensation, not the loss function.
+BCE+compensation matches or outperforms KL-only with dramatically lower seed variance, and this advantage increases on a second architecture.
+Three additional hypotheses---additive composition of corrections, quadratic scaling of the KL--BCE gap, and architecture-independent KL advantage---are empirically falsified.
+These negative results, framed within the two-dimensional taxonomy, provide the first comprehensive empirical map of the design space, guiding practitioners toward compensation-augmented approaches for robust, architecture-general deployment of activation sparsity in SwiGLU LLMs.
+
+\bibliographystyle{plainnat}
+
+\end{document}

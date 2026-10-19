@@ -1,0 +1,191 @@
+\section{Experiments}
+
+\subsection{Experimental Setup}
+
+\paragraph{Model and Predictor.}
+We evaluate on LLaMA-3.1-8B~\cite{grattafiori2024llama3}, which uses SwiGLU FFN blocks~\cite{shazeer2020glu} with $d_{\text{model}}=4096$ and $d_{\text{ff}}=14336$ across 32 layers.
+The sparsity predictor is a lightweight two-layer MLP with 1.5M parameters per layer (48M total, 0.6\% of the base model), trained to predict activation magnitudes from the FFN input representation.
+
+\paragraph{Training.}
+All predictors are trained for 1000 steps on C4 calibration data~\cite{raffel2020t5} with sequence length 2048 and batch size 32, using AdamW with learning rate $3 \times 10^{-4}$ and cosine decay.
+The KL predictor uses Gumbel-Softmax relaxation~\cite{jang2017gumbel} with temperature $\tau=1.0$ annealed to $0.5$ over training.
+
+\paragraph{Evaluation.}
+We report perplexity on WikiText-2~\cite{merity2017pointer} (seq\_len=2048) and downstream accuracy on ARC-Challenge (25-shot), WinoGrande (5-shot), MMLU (5-shot), and GSM8K (8-shot).
+
+\paragraph{Inference Protocol.}
+At inference, the predictor produces per-neuron scores that are passed to TEAL's global top-$k$ allocation mechanism~\cite{liu2025teal}, which distributes the sparsity budget across layers non-uniformly.
+We term this \textit{predictor-TEAL}: the predictor replaces TEAL's magnitude-based scoring while retaining its allocation strategy.
+
+\paragraph{Baselines.}
+We compare against: (1) \textbf{Vanilla TEAL}~\cite{liu2025teal}, which uses activation magnitudes directly; (2) \textbf{BCE predictor}, trained with per-neuron binary cross-entropy loss for 1000 and 2700 steps; (3) \textbf{Uniform allocation}, which distributes the sparsity budget equally across layers; and (4) \textbf{WINA}~\cite{liu2025teal}, an importance-weighted variant.
+
+
+\subsection{Main Results}
+
+Table~\ref{tab:main} presents the primary comparison across sparsity levels.
+At 30\% sparsity, KL distillation with global TEAL allocation achieves PPL 8.98, reducing TEAL's degradation from dense (10.97 $\to$ 8.98, an 18\% improvement). % exp_id: kl_30_global_teal
+Uniform allocation at 30\% yields the lowest PPL (8.82) and notably recovers MMLU to 40.61\%, compared to 38.61\% for TEAL and 25.27\% for KL-global. % exp_id: kl_30_uniform
+This indicates that at moderate sparsity, the allocation strategy—not the predictor—is the primary lever for knowledge-intensive tasks.
+
+At 50\% sparsity, the advantage of KL distillation over vanilla TEAL widens: PPL 11.79 vs.\ 23.31, a 49\% reduction. % exp_id: kl_50_global_teal
+However, all methods exhibit downstream collapse on MMLU (27.89\% $\approx$ random at 25\%) and GSM8K ($<$2.2\%), indicating a capacity-limited regime where no allocation strategy can recover reasoning ability. % exp_id: kl_50_downstream
+
+\begin{table}[t]
+\centering
+\caption{Main results on LLaMA-3.1-8B. PPL$\downarrow$ on WikiText-2; accuracy$\uparrow$ on downstream tasks. Best per sparsity level in \textbf{bold}.}
+\label{tab:main}
+\small
+\begin{tabular}{llccccc}
+\toprule
+Sparsity & Method & PPL$\downarrow$ & ARC-c & WG & MMLU & GSM8K \\
+\midrule
+0\% & Dense & 6.12 & 58.28 & 78.06 & 65.27 & 48.75 \\
+\midrule
+\multirow{3}{*}{30\%}
+& TEAL vanilla & 10.97 & 42.32 & 66.06 & 38.61 & 7.88 \\ % exp_id: teal_30_vanilla
+& KL global (Ours) & 8.98 & 39.68 & 70.17 & 25.27 & 8.79 \\ % exp_id: kl_30_global_teal
+& KL uniform & \textbf{8.82} & \textbf{40.78} & \textbf{68.59} & \textbf{40.61} & \textbf{7.35} \\ % exp_id: kl_30_uniform
+\midrule
+\multirow{4}{*}{50\%}
+& TEAL vanilla & 23.31 & 28.41 & 53.04 & 28.32 & 1.97 \\ % exp_id: teal_50_vanilla
+& KL global (Ours) & \textbf{11.79} & \textbf{32.85} & \textbf{63.46} & \textbf{27.89} & 1.29 \\ % exp_id: kl_50_global_teal
+& KL uniform & 11.96 & 32.76 & 62.90 & 27.77 & \textbf{2.12} \\ % exp_id: kl_50_uniform
+& BCE (2700 steps) & 27.97 & 23.98 & 50.59 & 30.02 & 4.85 \\ % exp_id: bce_isocompute_s42
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Iso-Compute Analysis}
+\label{sec:isocompute}
+
+A natural question is whether BCE training simply requires more compute to converge.
+We train the BCE predictor for 2700 steps (2.71$\times$ the KL budget) and evaluate under identical TEAL inference.
+As Table~\ref{tab:main} shows, the BCE predictor at 2700 steps achieves PPL 27.97—still 2.37$\times$ worse than KL at 1000 steps (PPL 11.79). % exp_id: bce_isocompute_s42
+
+The failure is structural, not computational.
+BCE loss decomposes into independent per-neuron gradients, training each neuron's prediction in isolation.
+This factorized objective cannot learn the inter-neuron correlations required for global top-$k$ allocation, where the keep/prune decision for neuron $i$ depends on the scores of all other neurons across all layers.
+We observe that BCE training loss saturates early: between steps 500 and 2700, the loss decreases by only 0.006, confirming that additional compute yields diminishing returns under the wrong objective.
+
+
+\subsection{Ablation Studies}
+
+Table~\ref{tab:ablation} isolates the contribution of each design choice at 50\% sparsity.
+
+\begin{table}[t]
+\centering
+\caption{Ablation at 50\% sparsity on LLaMA-3.1-8B (WikiText-2 PPL$\downarrow$).}
+\label{tab:ablation}
+\small
+\begin{tabular}{lcc}
+\toprule
+Configuration & PPL$\downarrow$ & $\Delta$ from best \\
+\midrule
+KL + Gumbel + SPON (Full) & \textbf{11.79} & --- \\ % exp_id: kl_50_gumbel_spon
+KL + Gumbel & 12.00 & +0.21 \\ % exp_id: kl_50_gumbel
+KL + STE & 15.77 & +3.98 \\ % exp_id: kl_50_ste
+BCE + Compensation (hard mask) & 25.44 & +13.65 \\ % exp_id: bce_50_comp
+BCE (no compensation) & 27.97 & +16.18 \\ % exp_id: bce_50_nocomp
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Gumbel vs.\ STE.}
+Replacing Gumbel-Softmax relaxation with Straight-Through Estimation~\cite{bengio2013ste} degrades PPL from 12.00 to 15.77 (+3.77). % exp_id: kl_50_ste
+Gumbel relaxation provides smooth gradients through the top-$k$ selection, accounting for 31.4\% of the total improvement over vanilla TEAL (3.77 out of 11.99 PPL gap).
+
+\paragraph{SPON Contribution.}
+Adding SPON~\cite{xu2026spon} orthogonal correction yields PPL 11.79, a marginal 0.21 improvement (1.8\% relative) over KL+Gumbel alone. % exp_id: kl_50_gumbel_spon
+We analyze this limited contribution further in \S\ref{sec:spon}.
+
+\paragraph{BCE + Compensation.}
+Compensation (output rescaling after hard-mask pruning) improves BCE from 27.97 to 25.44 (8.9\% relative), but this hard-mask protocol remains 2.16$\times$ worse than KL under TEAL inference. % exp_id: bce_50_comp
+We report this separately as it uses a different inference protocol (hard mask vs.\ TEAL global allocation).
+
+
+\subsection{Sparsity Scaling and Phase Transition}
+\label{sec:scaling}
+
+Table~\ref{tab:scaling} and Figure~\ref{fig:sparsity_sweep} show PPL as a function of sparsity for KL-predictor-TEAL and vanilla TEAL.
+
+\begin{table}[t]
+\centering
+\caption{PPL scaling with sparsity (WikiText-2). KL advantage grows super-linearly.}
+\label{tab:scaling}
+\small
+\begin{tabular}{lccc}
+\toprule
+Sparsity & KL (Ours) & TEAL vanilla & Relative advantage \\
+\midrule
+30\% & \textbf{8.98} & 10.97 & 18\% \\ % exp_id: kl_30_global_teal
+50\% & \textbf{12.00} & 23.31 & 48\% \\ % exp_id: kl_50_gumbel
+70\% & \textbf{17.91} & 100.11 & 82\% \\ % exp_id: kl_70_global_teal
+\bottomrule
+\end{tabular}
+\end{table}
+
+The KL predictor's advantage grows from 18\% at 30\% sparsity to 82\% at 70\% sparsity.
+At high sparsity, TEAL's magnitude-based scoring collapses (PPL 100.11), while the learned predictor maintains coherent allocation by exploiting input-dependent contextual information.
+
+\paragraph{Downstream Phase Transition.}
+Table~\ref{tab:phase} examines how downstream task accuracy degrades with increasing sparsity under uniform allocation (which maximizes MMLU at each level).
+
+\begin{table}[t]
+\centering
+\caption{Phase transition in MMLU accuracy under uniform allocation. Random performance is 25\%.}
+\label{tab:phase}
+\small
+\begin{tabular}{lcc}
+\toprule
+Sparsity & MMLU (\%) & Regime \\
+\midrule
+0\% (Dense) & 65.27 & Full capacity \\
+30\% & 40.61 & Operable (15\% above random) \\ % exp_id: kl_30_uniform
+40\% & 30.68 & Degradation band \\ % exp_id: kl_40_uniform
+50\% & 27.77 & Capacity-limited ($\approx$ random) \\ % exp_id: kl_50_uniform
+\bottomrule
+\end{tabular}
+\end{table}
+
+The transition from operable to capacity-limited is gradual—a degradation band spanning 30--50\% sparsity—rather than a sharp cliff.
+At 30\%, the model retains sufficient capacity for knowledge recall (MMLU 40.61\%, 15 points above random), while at 50\%, no allocation strategy recovers meaningful performance.
+This suggests 30\% as the recommended operating point for deployment scenarios requiring both perplexity and downstream task fidelity.
+
+
+\subsection{SPON Orthogonality Analysis}
+\label{sec:spon}
+
+We analyze why SPON's contribution is limited by decomposing the output perturbation at 50\% sparsity (Figure~\ref{fig:subsumption}).
+
+The predictor's effect on the hidden state has L2 norm 482.65, while SPON's additive correction has norm 76.2—only 15.8\% of the predictor's magnitude. % exp_id: spon_decomposition
+The cosine similarity between the two perturbation directions is 0.196, confirming near-orthogonality: SPON corrects in a direction largely independent of the predictor's effect, but its small magnitude limits impact.
+
+In terms of PPL recovery, SPON provides: 7.3\% improvement under hard-mask inference (9.22 $\to$ 8.99) and 4.8\% under TEAL-path inference (12.08 $\to$ 11.79). % exp_id: spon_ppl_recovery
+The interaction norm between predictor and SPON effects is 147.74, indicating non-trivial coupling but insufficient magnitude for SPON to meaningfully complement KL distillation.
+This subsumption effect explains why the combination yields only marginal gains: the KL predictor already captures most of the recoverable signal, leaving little residual for SPON to correct.
+
+
+\subsection{Cross-Architecture Generalization}
+
+To verify that KL distillation is not specific to LLaMA's architecture, we evaluate on Mistral-7B-v0.3~\cite{jiang2023mistral}, which differs in using Grouped Query Attention (GQA) and sliding window attention.
+
+\begin{table}[t]
+\centering
+\caption{Cross-architecture results at 50\% sparsity (WikiText-2 PPL$\downarrow$).}
+\label{tab:cross_arch}
+\small
+\begin{tabular}{lccc}
+\toprule
+Model & Dense PPL & KL TEAL PPL & Relative degradation \\
+\midrule
+LLaMA-3.1-8B & 6.12 & 12.00 $\pm$ 0.07 & +96\% \\ % exp_id: kl_50_llama
+Mistral-7B-v0.3 & 5.52 & 8.98 & +63\% \\ % exp_id: kl_50_mistral
+\bottomrule
+\end{tabular}
+\end{table}
+
+The KL predictor transfers to Mistral with lower relative degradation (+63\% vs.\ +96\% on LLaMA). % exp_id: kl_50_mistral
+Mistral's GQA mechanism produces more informative key-value representations at each layer, potentially providing richer input signals for the sparsity predictor.
+The result confirms that KL distillation for contextual sparsity prediction generalizes across SwiGLU-based architectures with different attention configurations.

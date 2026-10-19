@@ -1,0 +1,53 @@
+{
+  "description": "Loss function ablation: WikiText-2 (in-distribution) and C4 (OOD) PPL at 50% sparsity, global top-k allocation, LLaMA-3.1-8B",
+  "model": "LLaMA-3.1-8B",
+  "sparsity": 0.5,
+  "allocation": "teal_global",
+  "training_data": "wikitext-103",
+  "eval_datasets": {
+    "wikitext2": "WikiText-2 (in-distribution)",
+    "c4": "C4 validation (out-of-distribution)"
+  },
+  "results": {
+    "dense": {
+      "wikitext2_ppl": 6.12,
+      "c4_ppl": 9.21
+    },
+    "forward_kl": {
+      "wikitext2_ppl": 11.79,
+      "c4_ppl": 18.40,
+      "vs_dense_wikitext": "+92.6%",
+      "vs_dense_c4": "+99.8%",
+      "seed": 42,
+      "checkpoint": "checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt"
+    },
+    "reverse_kl": {
+      "wikitext2_ppl": 12.80,
+      "c4_ppl": 19.93,
+      "vs_forward_kl_wikitext": "+8.6%",
+      "vs_forward_kl_c4": "+8.3%",
+      "seed": 42,
+      "checkpoint": "checkpoints/reverse_kl_50pct_s42/predictor_kl_normalized.pt"
+    },
+    "jsd": {
+      "wikitext2_ppl": 12.54,
+      "c4_ppl": 26.16,
+      "vs_forward_kl_wikitext": "+6.4%",
+      "vs_forward_kl_c4": "+42.2%",
+      "seed": 42,
+      "checkpoint": "checkpoints/jsd_50pct_s42/predictor_kl_normalized.pt"
+    },
+    "teal_baseline": {
+      "wikitext2_ppl": 54.84,
+      "c4_ppl": 38.75,
+      "note": "Training-free activation-based pruning (no predictor)"
+    }
+  },
+  "key_findings": [
+    "Forward KL dominates both in-distribution and OOD, confirming mode-covering is optimal for sparsity prediction",
+    "Reverse KL gap is stable across domains (WikiText +8.6%, C4 +8.3%), suggesting consistent but suboptimal patterns",
+    "JSD OOD gap amplifies dramatically (WikiText +6.4% -> C4 +42.2%), indicating mixed objective overfits to training distribution",
+    "All learned predictors dramatically outperform training-free TEAL baseline"
+  ],
+  "generated_at": "2026-05-17T08:18:00Z"
+}

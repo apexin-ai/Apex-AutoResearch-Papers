@@ -1,0 +1,26 @@
+paper_key: "Distilling the Knowledge in a Neural Network"
+title: "Distilling the Knowledge in a Neural Network"
+venue: "NeurIPS 2014 Workshop"
+full_text_available: false
+
+research:
+  baselines: ["ensemble of models", "single model baseline"]
+  metrics:
+    - {name: "classification accuracy", direction: "higher_better"}
+    - {name: "word error rate", direction: "lower_better"}
+  datasets:
+    - {name: "MNIST", size: "60K"}
+    - {name: "commercial speech recognition dataset", size: "not specified"}
+  ablation_dimensions: ["temperature scaling", "soft vs hard targets", "specialist models"]
+  training_recipe: {optimizer: "not specified", lr: "not specified", hardware: "not specified"}
+  method_family: "knowledge distillation (foundational)"
+
+positioning:
+  core_claim: "Soft probability distributions from a teacher model at high temperature transfer 'dark knowledge' to a smaller student, compressing ensemble knowledge into a single deployable model."
+  key_results: "Surprising results on MNIST; significant improvements to commercial acoustic model via ensemble distillation."
+  limitations: ["requires teacher model to be trained first", "temperature hyperparameter sensitivity"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

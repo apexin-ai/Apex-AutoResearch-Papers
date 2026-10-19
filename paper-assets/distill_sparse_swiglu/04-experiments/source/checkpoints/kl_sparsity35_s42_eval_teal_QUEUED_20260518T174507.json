@@ -1,0 +1,28 @@
+{
+  "exp_id": "kl_sparsity35_s42_eval_teal",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:42:55.307Z",
+    "updated_at": "2026-05-18T17:45:07.260Z",
+    "hypothesis": "KL predictor at 35% actual sparsity evaluated with TEAL global top-k produces PPL in the 9.5-10.5 range, filling a data point between 30% (PPL 8.82) and 50% (PPL 11.79) for the sparsity-quality tradeoff curve.",
+    "spec": {
+      "command": "bash -c \"export PATH=/root/miniconda3/bin:\\$PATH && eval \\\"\\$(conda shell.bash hook)\\\" && conda activate base && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python -u src/benchmark_eval.py --exp_id kl_sparsity35_s42_eval_teal --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.336 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "39463",
+      "log_path": "~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log",
+      "submitted_at": "2026-05-18T17:12:47.611Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T17:45:07.611287+00:00",
+  "trigger": "update_registry"
+}

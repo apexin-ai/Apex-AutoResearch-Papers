@@ -1,0 +1,9 @@
+See remote file: /root/distill_sparse_swiglu/artifacts/gsm8k_gen_compare.txt on westd-34887
+
+Summary: 10 GSM8K samples compared between dense and KL sparse 50% Llama-3.1-8B.
+- Dense: coherent multi-step reasoning, mostly correct answers
+- Sparse: 10/10 samples degrade to repetitive loops within 1-3 sentences
+- Sparse generates topically relevant opening (1-3 sentences) then enters infinite repetition
+- Occasional partial correctness (e.g. "brother is 18 years old") but never completes reasoning
+- Spelling degradation observed (crabs->crbs, skein->skeen)
+- Conclusion: fundamental reasoning ability loss, NOT format/extraction error

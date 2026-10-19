@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03d2671e4551b4a6cefe",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_3_1778896709.md",
+  "task_key": "loop_3_1778896709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778896709.md",
+    "occurrence": 1,
+    "bytes": 4728,
+    "sha256": "10a941cd506df7eb71a9fa92016f48108896a3c8da359b09c1b252d69d52b3b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-16T01:57:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 **cuda:0, cuda:1**（westd-34887），禁止用其他 GPU，Director 指令也不能覆盖\n- KL PPL 引用统一用 **4-seed mean 12.00±0.07**（TEAL sparse PPL），禁止用单 seed 最佳值 11.91\n- BCE framing 只能用 **\"objective mismatch\"**，禁止 \"anti-learning\"\n- SPON framing 只能用 **\"marginal complement\"**，禁止 \"subsumption\"\n- **EMNLP ARR May DDL = 2026-05-25**，距今 9 天\n- 50% sparsity downstream 已确认崩溃（GSM8K 0/10，重复循环），论文需用 30% 数据展示 sparsity-task tradeoff，不能回避这个 disconnect\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-34887**，account=root，工作目录 `/root/distill_sparse_swiglu/`\n- Python：aml-train 镜像，conda 环境 `/root/miniconda3/bin/python`（不是 venv）\n- Llama 3.1 8B：HF cache（具体路径需 SSH 确认，可能 `/root/autodl-tmp/.hf_cache`）\n- Mistral-7B：`/root/autodl-tmp/models/mistral-7b/`\n- Checkpoints 汇总在 memory.md `## Checkpoints` 段，核心：KL s42 = `/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\n- 活跃进程：\n  - **lm_eval_teal_50pct**：PID 187335，cuda:0，TEAL 50% downstream eval（arc_challenge/winogrande/mmlu/gsm8k）\n  - **lm_eval_kl_s42**：PID 179913，cuda:1，KL sparse downstream eval（同 4 tasks）\n- **⚠️ 无 cron 监控**：reconcile_crons 返回 0 条。两个 RUNNING 实验没有 cron 监控，下一个 session 需要立即为它们注册 cron 或 spawn worker 检查状态\n- **⚠️ 无 running workers**：Worker 池 = 0\n\n### 3. 📊 当前状态\n**刚做完**：收到 [WRITE HANDOFF] 前正在执行 session-start 初始化（读 registry、reconcile crons、读 report/roadmap）。本 session 未执行任何实质操作。\n\n**Registry 概况**：50 个实验，33 DONE / 2 RUNNING / 13 PREPARING（多数是历史残留）/ 2 QUEUED\n\n**RUNNING 实验**（均在 westd-34887，无 cron 监控）：\n- `lm_eval_teal_50pct`（cuda:0）：TEAL 50% training-free downstream eval，判断 downstream 崩溃是否为所有 50% 方法的固有限制\n- `lm_eval_kl_s42`（cuda:1）：KL sparse 50% downstream eval，同 4 个 benchmark\n\n**等待中**：无 Worker 回调、无 Cron 回调、无 Director 待决策事项\n\n**近期关键结论**：\n- gsm8k_gen_compare（negative）：50% sparse 生成完全崩溃，重复循环，0/10 正确\n- D026：downstream 崩溃根因 = sparsity 摧毁深层表征，非 eval format artifact\n- training_free_baselines（success）：TEAL 23.31, WINA 27.93, Uniform 23.90\n\n### 4. 📋 待办（条件触发式）\n- lm_eval_teal_50pct 或 lm_eval_kl_s42 完成 → 分析结果，更新 registry，对比 dense baseline，汇报 Director（这两个实验无 cron，需主动检查或注册 cron）\n- 两个 downstream eval 都完成 → 汇总 50% PPL vs downstream disconnect 分析，决定论文如何 frame downstream 结果\n- cuda:0 空出 → 启动 plan_007 lm-eval（full benchmark，P0）或 lm_eval_kl_30pct_s42（30% downstream，判断是否有 sparsity 梯度）\n- cuda:1 空出 → 启动 plan_009 Mistral KL 训练（P1，泛化验证）\n- plan_008 sparsity sweep 30%/70% eval 都完成 → 汇总 KL-BCE delta scaling trend，写入论文\n- **13 个 PREPARING 实验需要清理**：大部分是历史残留（stale PID），应该 batch update 为 DONE(failed) 或 DONE(killed)\n\n### 5. 🎯 战略上下文\n**核心 story**：KL distillation 让 SwiGLU LLM 的 contextual sparsity prediction 不需要 error compensation，实现最简推理管线。三层梯队：KL-only (12.00) >> training-free (23-33) >> BCE iso-compute (54.84)。\n\n**关键决策链**：\n- D026：downstream 崩溃是真实的表征破坏，非 eval bug → 论文必须正面讨论 50% sparsity 的 downstream 代价\n- D023：TEAL rerun 确认 Claim 1 gap 成立\n- D020：跳过 HellaSwag，用 ARC-c/WinoGrande/MMLU/GSM8K\n- D010：SPON framing = \"marginal complement\"\n\n**最容易判断错的事**：\n1. 不要以为 PPL 12.00 意味着 downstream 也很好——50% sparsity downstream 已确认崩溃，这是 PPL-downstream disconnect。30% 可能是论文推荐配置\n2. 13 个 PREPARING 实验看起来吓人，但大部分是 stale 的历史残留，真正重要的只有当前 2 个 RUNNING\n3. 两个 RUNNING 实验没有 cron 监控——如果进程已经结束，不会有回调通知你，必须主动 spawn worker 检查\n4. plan_007（full benchmark）是 DDL 前最关键的 P0 任务，但依赖 GPU 空出来\n5. Mistral 代码零改动兼容已确认，但模型在 `/root/autodl-tmp/models/mistral-7b/`，训练前确认路径存在\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778896709.md"
+}

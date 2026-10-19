@@ -1,0 +1,28 @@
+{
+  "exp_id": "kl50_s123_uniform_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:50:55.894Z",
+    "updated_at": "2026-05-18T05:51:42.971Z",
+    "hypothesis": "Uniform per-layer allocation with KL-trained predictor (seed 123, 50% sparsity) will show worse benchmark performance than global_topk allocation, demonstrating the value of learned budget allocation for phase transition analysis in Table 3.",
+    "parent": "kl50_s123_eval",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py --exp_id kl50_s123_uniform_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_50pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0",
+      "server": "westd-34887",
+      "data_path": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "data_count": 17800,
+      "model_name": "llama-3.1-8b",
+      "seed": 123,
+      "checkpoint_source": "checkpoints/kl_50pct_s123/predictor_kl_normalized.pt",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "checkpoint_path": "checkpoints/kl_50pct_s123/predictor_kl_normalized.pt",
+      "log_path": "/root/runs/distill_sparse_swiglu/kl50_s123_uniform_eval.log"
+    }
+  },
+  "timestamp": "2026-05-18T05:51:43.249752+00:00",
+  "trigger": "update_registry"
+}

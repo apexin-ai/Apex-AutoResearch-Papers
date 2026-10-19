@@ -1,0 +1,62 @@
+{
+  "exp_id": "perlayer_kl_k16_s456_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T12:39:57.378Z",
+    "updated_at": "2026-05-23T13:56:08.495Z",
+    "hypothesis": "K=16 s456 eval at 30% TEAL uniform: 7-task downstream for 3-seed K-curve.",
+    "parent": "perlayer_kl_k16_s456_v2",
+    "spec": {
+      "command": "bash -c \"cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_MODE=disabled HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u src/benchmark_eval.py --exp_id perlayer_kl_k16_s456_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint /root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s456/predictor_perlayer_kl_k4.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa --seq_len 2048 --gpu 0\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "141430",
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_k16_s456_eval.log",
+      "submitted_at": "2026-05-23T12:40:34.636Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103",
+      "data_count": "auto",
+      "model_name": "llama-3.1-8b",
+      "seed": 456,
+      "checkpoint_source": "perlayer_kl_k16_s456_v2",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa",
+      "wall_clock_seconds": 4533.9,
+      "gpu_hours": 1.26
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T13:53:32.751Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T13:53:41.342032+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ppl_wikitext2": 8.655,
+      "arc_challenge_acc_norm": 0.4155,
+      "winogrande_acc": 0.6946,
+      "mmlu_acc": 0.3873,
+      "gsm8k_exact_match": 0.0766,
+      "hellaswag_acc_norm": 0.7015,
+      "piqa_acc_norm": 0.7437
+    },
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s456/predictor_perlayer_kl_k4.pt",
+    "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_k16_s456_eval.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T13:56:08.495Z"
+  },
+  "timestamp": "2026-05-23T13:56:09.137684+00:00",
+  "trigger": "update_registry"
+}

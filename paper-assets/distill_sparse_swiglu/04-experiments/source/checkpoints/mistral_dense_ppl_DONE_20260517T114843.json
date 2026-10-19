@@ -1,0 +1,33 @@
+{
+  "exp_id": "mistral_dense_ppl",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:45:57.639Z",
+    "updated_at": "2026-05-17T11:48:43.546Z",
+    "hypothesis": "Mistral-7B-v0.3 dense WikiText-2 PPL establishes the upper-bound reference for all Mistral sparsity experiments",
+    "metrics": {
+      "wikitext2_ppl": 5.5238,
+      "model": "Mistral-7B-v0.3",
+      "condition": "dense",
+      "sparsity": 0
+    },
+    "conclusion": "success",
+    "spec": {
+      "command": "python src/benchmark_eval.py --model /root/autodl-tmp/models/mistral-7b/ --dense --tasks wikitext2",
+      "server": "westd-34887",
+      "data_path": "WikiText-2 test",
+      "data_count": 0,
+      "model_name": "Mistral-7B-v0.3",
+      "seed": 42,
+      "checkpoint_path": "N/A (dense eval)",
+      "log_path": "/root/distill_sparse_swiglu/results/benchmark/mistral_dense_ppl/results.json"
+    },
+    "completed_at": "2026-05-17T11:48:43.546Z"
+  },
+  "timestamp": "2026-05-17T11:48:43.752110+00:00",
+  "trigger": "update_registry"
+}

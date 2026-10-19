@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44cafe671bc2cc22e796",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b kl30 s123 gsm8k",
+  "task_key": "worker_analysis_qwen14b_kl30_s123_gsm8k_20260519T205339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_kl30_s123_gsm8k_20260519T205339_result.json",
+    "occurrence": 1,
+    "bytes": 1532,
+    "sha256": "787e277a9d2c66ea789fb88d020e87dc6fb685cb9fe7d80b4962d0e0b6c32956"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据充分，汇总如下。\n\n## 结果\n\n**qwen14b_kl30_s123_gsm8k** — 已完成 (EXIT_CODE=0)\n\n| 指标 | 值 |\n|------|-----|\n| gsm8k_exact_match (flexible) | **34.42%** (±1.31%) |\n| gsm8k_exact_match (strict) | 34.34% (±1.31%) |\n| actual sparsity (per-layer) | 0.285–0.301，均值 ~0.297 |\n| 样本数 | 1319 |\n| 运行时间 | 8842s (~2h27m) |\n| W&B run ID | 无（benchmark eval 不上报 W&B） |\n| 产出 | `/root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s123_gsm8k/results.json` |\n\n## 与已有数据对比\n\n| 配置 | GSM8K exact_match | Sparsity |\n|------|------------------|----------|\n| **KL predictor s123** | **34.42%** | ~29.7% |\n| TEAL@27.5% uniform | 57.09% | ~27.5% |\n| Dense (无数据) | — | 0% |\n\n**KL predictor 在 GSM8K 上比 TEAL@27.5% 低 22.67pp**，这是一个很大的退化。在其他 6 个 task 上 KL predictor 和 TEAL 差距较小（多数在 ±3pp 内），但 GSM8K（推理任务）退化严重。\n\n## 其他 seed 状态\n\n| 实验 | 状态 | 服务器 |\n|------|------|--------|\n| qwen14b_kl30_s42_gsm8k_v2 | RUNNING | westd-41718 |\n| qwen14b_kl30_s456_gsm8k | RUNNING | westd-41718 |\n\n## 建议 conclusion\n\n**Negative**。KL predictor 在 GSM8K 上表现远差于 TEAL vanilla baseline（34.42% vs 57.09%，-22.67pp）。需等 s42/s456 完成后确认是否为系统性问题。如果三个 seed 一致，则 KL predictor 的 mask pattern 对推理类任务有实质性伤害，论文中 GSM8K 列需要谨慎处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-kl30-s123-gsm8k.md"
+}

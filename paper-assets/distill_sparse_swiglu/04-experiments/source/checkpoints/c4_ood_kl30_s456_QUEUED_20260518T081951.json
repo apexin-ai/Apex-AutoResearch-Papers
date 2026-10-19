@@ -1,0 +1,28 @@
+{
+  "exp_id": "c4_ood_kl30_s456",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:18:42.154Z",
+    "updated_at": "2026-05-18T08:19:51.558Z",
+    "hypothesis": "KL 30% s456 C4 OOD PPL matches s42/s123 results, confirming cross-seed OOD consistency at 30% sparsity.",
+    "spec": {
+      "command": "bash -c \"source /root/.bashrc && cd /root/distill_sparse_swiglu && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/eval_c4_predictor.py --ckpt checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt --name kl_30pct_s456 --max_samples 200\"",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "58551",
+      "log_path": "~/runs/distill_sparse_swiglu/c4_ood_kl30_s456.log",
+      "submitted_at": "2026-05-18T08:18:51.218Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T08:19:51.889675+00:00",
+  "trigger": "update_registry"
+}

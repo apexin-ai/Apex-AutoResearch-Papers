@@ -1,0 +1,16 @@
+{
+  "exp_id": "kl50_s456_uniform_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:01:36.336Z",
+    "updated_at": "2026-05-18T10:04:12.292Z",
+    "hypothesis": "KL 50% uniform allocation (s456) shows downstream degradation vs global_topk, providing third seed for allocation strategy comparison.",
+    "parent": "kl50_s456_train"
+  },
+  "timestamp": "2026-05-18T10:04:12.611317+00:00",
+  "trigger": "update_registry"
+}

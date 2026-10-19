@@ -1,0 +1,47 @@
+{
+  "exp_id": "latency_benchmark",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:06:00.262Z",
+    "updated_at": "2026-05-16T14:24:47.243Z",
+    "spec": {
+      "command": "python src/latency_benchmark.py",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "model_name": "llama-3.1-8b",
+      "data_path": "N/A (synthetic input)",
+      "data_count": 100,
+      "seed": 42,
+      "checkpoint_path": "N/A (benchmark)",
+      "log_path": "/root/distill_sparse_swiglu/src/latency_benchmark.py"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "dense_tokens_per_s": 17018,
+      "dense_ms_per_token": 0.0588,
+      "kl_30pct_tokens_per_s": 16069.9,
+      "kl_30pct_ms_per_token": 0.0622,
+      "kl_30pct_speedup": 0.944,
+      "kl_50pct_tokens_per_s": 16062.3,
+      "kl_50pct_ms_per_token": 0.0623,
+      "kl_50pct_speedup": 0.944,
+      "comp_30pct_tokens_per_s": 15681.4,
+      "comp_30pct_speedup": 0.921,
+      "comp_50pct_tokens_per_s": 15731.4,
+      "comp_50pct_speedup": 0.924,
+      "predictor_overhead_ms": 3.16,
+      "predictor_overhead_pct": 5.9,
+      "per_layer_predictor_ms": 0.099,
+      "dense_ffn_per_layer_ms": 2.424
+    },
+    "completed_at": "2026-05-16T14:24:47.243Z"
+  },
+  "timestamp": "2026-05-16T14:24:47.392864+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "15cd781b2abfada1188f",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "eval constraint remove valley",
+  "task_key": "worker_eval_constraint_remove_valley_20260522T133549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_constraint_remove_valley_20260522T133549.jsonl",
+    "occurrence": 1,
+    "bytes": 177,
+    "sha256": "0027486cc1bb862eef4b468df550337b70c48324197f9be37c19feafa2f39965"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T13:35:57.347637+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_constraint_remove_valley_20260522T133549"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/eval-constraint-remove-valley.md"
+}

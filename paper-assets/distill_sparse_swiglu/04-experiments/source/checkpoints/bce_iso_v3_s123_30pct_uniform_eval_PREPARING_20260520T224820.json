@@ -1,0 +1,14 @@
+{
+  "exp_id": "bce_iso_v3_s123_30pct_uniform_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:48:20.128Z",
+    "updated_at": "2026-05-20T22:48:20.128Z"
+  },
+  "timestamp": "2026-05-20T22:48:20.606423+00:00",
+  "trigger": "update_registry"
+}

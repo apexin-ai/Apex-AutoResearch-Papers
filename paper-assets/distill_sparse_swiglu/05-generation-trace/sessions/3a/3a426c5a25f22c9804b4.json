@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "3a426c5a25f22c9804b4",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "code fix benchmark script",
+  "task_key": "worker_code_fix_benchmark_script_20260519T163114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_benchmark_script_20260519T163114.log",
+    "occurrence": 1,
+    "bytes": 677549,
+    "sha256": "4783ad2481ec6908f7362693e2a7b530712c010cc6894c96d6f8c92e9cd7b70a"
+  },
+  "statistics": {
+    "messages": 165,
+    "user_turns": 1,
+    "tool_calls": 52,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 52,
+      "tool_result": 52,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 110,
+      "chunks": [
+        {
+          "path": "3a426c5a25f22c9804b4-part-0001.json",
+          "message_count": 110
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 55,
+      "chunks": [
+        {
+          "path": "3a426c5a25f22c9804b4-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "3a426c5a25f22c9804b4-part-0002.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-benchmark-script.md"
+}

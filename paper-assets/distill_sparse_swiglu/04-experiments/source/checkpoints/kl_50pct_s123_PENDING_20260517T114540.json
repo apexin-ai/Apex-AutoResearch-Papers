@@ -1,0 +1,15 @@
+{
+  "exp_id": "kl_50pct_s123",
+  "project": "distill_sparse_swiglu",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:45:30.258Z",
+    "updated_at": "2026-05-17T11:45:39.968Z",
+    "hypothesis": "Multi-seed validation: KL 50% with seed=123 should produce PPL consistent with s42=11.79, confirming result stability"
+  },
+  "timestamp": "2026-05-17T11:45:40.273603+00:00",
+  "trigger": "update_registry"
+}

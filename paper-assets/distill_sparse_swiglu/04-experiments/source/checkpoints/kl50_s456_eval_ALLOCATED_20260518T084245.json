@@ -1,0 +1,29 @@
+{
+  "exp_id": "kl50_s456_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:49:04.123Z",
+    "updated_at": "2026-05-18T08:42:45.389Z",
+    "hypothesis": "KL-trained predictor at 50% sparsity (seed 456) with global_topk allocation preserves benchmark quality comparable to seed 123, confirming multi-seed consistency at 50% sparsity level.",
+    "parent": "kl50_s456_train",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/autodl-tmp/distill_sparse_swiglu && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python -u src/benchmark_eval.py --exp_id kl50_s456_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_50pct_s456/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/distill_sparse_swiglu/kl50_s456_eval.log",
+      "submitted_at": "2026-05-18T08:10:52.211Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T08:42:45.732490+00:00",
+  "trigger": "update_registry"
+}

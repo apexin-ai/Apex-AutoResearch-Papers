@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ca27bb4a8bcfdd16d34",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl k2 s456 result",
+  "task_key": "worker_analysis_perlayer_kl_k2_s456_result_20260523T082541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_k2_s456_result_20260523T082541_result.json",
+    "occurrence": 1,
+    "bytes": 416,
+    "sha256": "055fe1f36d93c8d83971f79dfad6620f9bbd15ae322fcd17b0c968c6a75fd72b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**K=2 s456 训练结果：**\n\n- **状态**：成功完成 1000/1000 steps，进程已退出\n- **最终 avg_kl**：0.0368\n- **avg_sparsity**：0.289（最后一步）\n- **Checkpoint**：\n  - `predictor_perlayer_kl_k4.pt` — 145 MB（最终）\n  - `predictor_perlayer_kl_k4_step_500.pt` — 435 MB\n  - `predictor_perlayer_kl_k4_step_1000.pt` — 435 MB\n- **Registry** 已更新为 DONE/success"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-k2-s456-result.md"
+}

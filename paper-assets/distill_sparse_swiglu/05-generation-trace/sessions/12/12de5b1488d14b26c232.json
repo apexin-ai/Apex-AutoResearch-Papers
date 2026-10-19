@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12de5b1488d14b26c232",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops gpu collision check",
+  "task_key": "worker_ops_gpu_collision_check_20260515T202601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_collision_check_20260515T202601_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "face09cb79bdc6cd982bcb56215e866187e5187b6599ca1cb4e455949375d946"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### cuda:0\n- **PID 129187** — `python src/train.py` (bce_isocompute_v2_s42), 占用 90938 MiB\n- 状态：**仍在运行**（stat: Rl），已完成 step 500/1000，约 1.05s/step，预计还需 ~9 分钟\n\n### cuda:1\n- **nvidia-smi 显示：空**，无 GPU 计算进程\n- **PID 131619** — `python src/train.py` (kl_sparsity**30**_s42, `--gpu 1`) 刚启动，正在加载模型权重 + 初始化 data loader，尚未分配显存\n\n### plan_005 (PID 129873)\n- **已正常完成**，EXIT_CODE=0\n- 最终结果：Linearity ratio=0.2644, Weak subsumption detected\n- 进程已退出，无 GPU 碰撞风险\n\n### kl_sparsity70_s42 (PID 130683)\n- **已死亡**，进程不存在，无日志文件\n- 服务器上没有任何 kl_sparsity70 相关进程或日志，只有 kl_sparsity**30**_s42\n\n### 结论\n**无 GPU 碰撞。** plan_005 已正常结束释放资源，PID 130683 (kl_sparsity70) 不存在。当前 cuda:1 上实际跑的是新提交的 kl_sparsity30_s42 (PID 131619)，正在初始化中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-collision-check.md"
+}

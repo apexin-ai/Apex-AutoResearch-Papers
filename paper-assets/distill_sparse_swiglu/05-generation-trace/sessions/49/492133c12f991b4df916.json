@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "492133c12f991b4df916",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "debug d017 teal normalization",
+  "task_key": "worker_debug_d017_teal_normalization_20260515T222817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_d017_teal_normalization_20260515T222817_result.json",
+    "occurrence": 1,
+    "bytes": 1351,
+    "sha256": "f7cf670d9676e7d4bf4c8fabf891c163f2dc68e6d8b74253010cde8f4a49a9eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D017 Bug Fix — Summary\n\n### Root Cause\n`teal_global_masks()` in `evaluate.py` scored neurons by **raw sigmoid(predictor(x))** averaged across tokens. Sigmoid probabilities are poor proxies for static neuron importance — they lack magnitude information. A neuron with high activation probability but tiny magnitude ranked above one with lower probability but large magnitude, leading to catastrophic mask selection.\n\n### Two bugs fixed\n1. **Wrong scoring metric**: Replaced `mean(sigmoid(logits))` with `mean(|intermediate| * (logits > 0))` — activation magnitude weighted by predictor hard mask. This scores each neuron by how large its activation is when the predictor keeps it.\n2. **Missing per-layer normalization**: The old inline topk didn't use `_global_topk_masks()`, which normalizes per-layer scores by their mean before global ranking. Now reuses the shared function.\n\n### Results\n\n| Checkpoint | Metric | Before Fix | After Fix |\n|---|---|---|---|\n| 70% (kl_sparsity70_s42_v2) | teal_sparse_ppl | 136,069 | **17.91** |\n| 30% (kl_sparsity30_s42_v3) | teal_sparse_ppl | (never eval'd) | **8.76** |\n\nReference: dense PPL = 6.12, predictor per-token PPL = 13.84 (70%) / 7.30 (30%).\n\n### Registry updated\n- `kl_sparsity70_s42_v2.teal_sparse_ppl` = 17.91\n- `kl_sparsity30_s42_v3.teal_sparse_ppl` = 8.76"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-d017-teal-normalization.md"
+}

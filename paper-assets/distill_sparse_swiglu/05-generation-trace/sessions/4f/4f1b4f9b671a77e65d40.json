@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f1b4f9b671a77e65d40",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "train kl sparsity70 s42",
+  "task_key": "worker_train_kl_sparsity70_s42_20260515T202340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_kl_sparsity70_s42_20260515T202340_result.json",
+    "occurrence": 1,
+    "bytes": 321,
+    "sha256": "4c627196014b60087bb832b80a8e3e6f6b862d2a0fa8d46af05a4be27659726b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**`kl_sparsity70_s42`** 已在 westd-34887 cuda:1 上启动：\n- PID 130683，tmux session `kl_sparsity70_s42`\n- KL normalized loss, sparsity_target=0.7, 1000 steps\n- Registry 状态: RUNNING, plan_id=plan_008\n- 日志: `/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/train.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-kl-sparsity70-s42.md"
+}

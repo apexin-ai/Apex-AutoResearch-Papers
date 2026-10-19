@@ -1,0 +1,21 @@
+Natural Sparsity Floor Analysis (kl_30pct_s42_v3, threshold=0.1)
+
+Overall: 278 / 458,752 neurons always-pruned = 0.06%
+
+Per-layer pattern:
+- Early (L0-L7): 0 always-pruned
+- Mid (L8-L14): 0 always-pruned
+- Mid-Late (L15-L27): 2-9/layer (<0.06%)
+- Late (L28-L31): 39-73/layer (0.27%-0.51%)
+
+Threshold sensitivity:
+- 0.05: 0.01%
+- 0.10: 0.06%
+- 0.20: 0.44%
+
+Gate prob distribution: 53% of neurons have mean prob 0.5-0.7 (highly dynamic)
+Layer mean gate prob: inverted-U shape (early ~0.55, mid ~0.71, late ~0.51-0.72)
+
+Conclusion: 28.5% actual sparsity is NOT from dead neurons. Predictor learns almost entirely contextual/token-dependent pruning decisions.
+
+Artifact: /root/distill_sparse_swiglu/artifacts/natural_sparsity_floor_analysis.json

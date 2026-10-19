@@ -1,0 +1,17 @@
+{
+  "exp_id": "wallclock_speedup_30_50",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:28:09.668Z",
+    "updated_at": "2026-05-18T19:21:54.747Z",
+    "hypothesis": "Predictor overhead characterization: KL predictor adds minimal inference overhead (target < 5% of total inference time) at 30% and 50% sparsity levels, measured as ms/token and % of dense baseline. No sparse kernel exists (mask-and-multiply only), so no wall-clock speedup expected. Positive if overhead is small enough to be practical when sparse kernels become available.",
+    "conclusion": "negative",
+    "metrics": {}
+  },
+  "timestamp": "2026-05-18T19:21:55.061895+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,26 @@
+paper_key: "Fast Forward: Accelerating LLM Prefill with Predictive FFN Sparsity"
+title: "Fast Forward: Accelerating LLM Prefill with Predictive FFN Sparsity"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: ["dense baseline"]
+  metrics:
+    - {name: "compute-bound speedup", direction: "higher_better"}
+    - {name: "accuracy loss", direction: "lower_better"}
+    - {name: "time-to-first-token (TTFT)", direction: "lower_better"}
+  datasets:
+    - {name: "LongBench", size: "not specified"}
+  ablation_dimensions: ["FFN sparsity level", "expert predictor design", "error compensation network", "layer-wise sparsity scheduler"]
+  training_recipe: {optimizer: "not specified", lr: "not specified", hardware: "constrained hardware"}
+  method_family: "predictive FFN sparsity for prefill"
+
+positioning:
+  core_claim: "Block-wise context-aware FFN sparsity with lightweight expert predictor, error compensation, and layer-wise sparsity scheduling achieves 1.45x prefill speedup at 50% sparsity with <6% accuracy loss."
+  key_results: "Up to 1.45x compute-bound speedup at 50% FFN sparsity on LLaMA/Qwen up to 8B; <6% accuracy loss on LongBench."
+  limitations: ["focused on prefill stage only", "error compensation adds overhead", "evaluated up to 8B models"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A
