@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_push_limitations-noindent_20260525T120225_result.json",
     "occurrence": 1,
-    "bytes": 255,
-    "sha256": "30ecca7e4bba43353a9c00f0d5210b235c03f7c6f78c8865ec5a080017f923ae"
+    "bytes": 254,
+    "sha256": "693c368358f75c80026327db9aca4eb587f74380dfa498f919e9d93299bdaf59"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_mvp_resume_scoring_and_ate_20260520T142937_result.json",
     "occurrence": 1,
-    "bytes": 287,
-    "sha256": "06211e53c5ac16ead4dfdfb6b8141d7ed7a44dcfcf56b7c770c1520b2a6fcc2c"
+    "bytes": 286,
+    "sha256": "4c0e2585285d976b9d72050722020ea06eec2de1264f26276d230e27dcf8315c"
   },
   "statistics": {
     "messages": 1,

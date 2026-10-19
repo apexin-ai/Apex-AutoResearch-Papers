@@ -1,0 +1,38 @@
+paper_key: "veitch_uai_2020"
+title: "Adapting Text Embeddings for Causal Inference"
+venue: "UAI 2020"
+full_text_available: false
+
+research:
+  baselines:
+    - "unadjusted estimator (no confounding control)"
+    - "bag-of-words representations"
+    - "unsupervised word embeddings"
+    - "unsupervised topic models"
+    - "propensity-score-only embeddings"
+    - "outcome-only embeddings"
+  metrics:
+    - {name: "absolute error of ATE estimate", direction: "lower_better"}
+    - {name: "bias of causal effect estimate", direction: "lower_better"}
+  datasets:
+    - {name: "semi-synthetic peer review dataset (theorem → acceptance)", size: "N/A"}
+    - {name: "semi-synthetic Reddit dataset (gender label → post popularity)", size: "N/A"}
+  ablation_dimensions:
+    - "embedding type (word embeddings vs topic models)"
+    - "supervision signal (treatment-predictive vs outcome-predictive vs both)"
+    - "dimensionality of causally sufficient embedding"
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "causally sufficient embeddings — supervised dimensionality reduction of text for causal adjustment via adapted language models"
+
+positioning:
+  core_claim: "通过有监督地调整文本嵌入使其同时预测 treatment 和 outcome，可以在高维文本数据中实现有效的因果效应估计"
+  key_results: "在半合成数据集上，causally sufficient embeddings 的因果估计精度优于无监督嵌入和单目标嵌入方法"
+  limitations:
+    - "依赖文本充分性假设（text sufficiency）——所有混杂因素都可从文本中恢复"
+    - "评估依赖半合成数据，真实因果效应的 ground truth 不可观测"
+    - "嵌入适配方法限于 word embeddings 和 topic models，未扩展到预训练 Transformer"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

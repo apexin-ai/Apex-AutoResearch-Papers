@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_exp013_direction_bias_20260521T010913_result.json",
     "occurrence": 1,
-    "bytes": 1697,
-    "sha256": "cd7edbf8d30ef96e5d418a68641329303aaabd66fbc0b4a54dc8a3085630efad"
+    "bytes": 1696,
+    "sha256": "aa8e0a6a45996d56dba8d5267bbf6c1309033ac51ac4dd9f29b06389a4506a55"
   },
   "statistics": {
     "messages": 1,

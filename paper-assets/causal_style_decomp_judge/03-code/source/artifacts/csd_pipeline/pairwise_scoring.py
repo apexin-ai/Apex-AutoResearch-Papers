@@ -166,7 +166,7 @@ def load_processed_ids(output_file: str) -> set[str]:
 async def run(args):
     api_key = [REDACTED] or os.environ.get("OPENAI_API_KEY")
     if not api_key:
-        [REDACTED] ValueError("Set OPENAI_API_KEY or pass --api-key")
+        raise ValueError("Set OPENAI_API_KEY or pass --api-key")
 
     from openai import AsyncOpenAI
     base_url = args.base_url or os.environ.get("OPENAI_BASE_URL")

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_r15-mf2-claude-tost-pool_20260523T065139_result.json",
     "occurrence": 1,
-    "bytes": 1011,
-    "sha256": "cd3f3f80066b6cad4ddc3da07dc4a8f470f6ee9341c683cc80cad86359372977"
+    "bytes": 1010,
+    "sha256": "5759eb07089bda9f13b14a6692340b32e5daceab4ef8403929ea4553eff22995"
   },
   "statistics": {
     "messages": 1,

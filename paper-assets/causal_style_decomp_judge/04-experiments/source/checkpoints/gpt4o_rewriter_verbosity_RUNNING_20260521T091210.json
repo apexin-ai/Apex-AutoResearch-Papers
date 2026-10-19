@@ -1,0 +1,56 @@
+{
+  "exp_id": "gpt4o_rewriter_verbosity",
+  "project": "causal_style_decomp_judge",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T09:11:53.204Z",
+    "updated_at": "2026-05-21T09:12:10.750Z",
+    "hypothesis": "Verbosity blindspot persists when using GPT-4o (instead of Qwen3-32B) as the counterfactual rewriter, demonstrating that the detected bias is rewriter-independent and not an artifact of a specific rewriting model",
+    "conclusion": "success",
+    "metrics": {
+      "cf_generated": 100,
+      "nli_pass": 81,
+      "nli_rate": 0.81,
+      "bt": {
+        "p_verbose": 0.735,
+        "ci": [
+          0.654,
+          0.809
+        ],
+        "p_value": 0.0001
+      },
+      "likert": {
+        "ate": 0,
+        "p": 0.8384,
+        "d": 0,
+        "tie_rate": 0.469
+      },
+      "gee": {
+        "style_or": 10.17,
+        "style_p": 0.0001,
+        "orig_or": 1.61,
+        "orig_p": 0.3143
+      },
+      "blindspot": true,
+      "vs_baseline": {
+        "qwen32b_bt": 0.773,
+        "delta_pp": -3.8,
+        "ci_overlap": true,
+        "note": "GPT-4o rewriter gives 73.5% vs Qwen3-32B rewriter 77.3%, CIs overlap → rewriter-independent"
+      }
+    },
+    "spec": {
+      "command": "python gpt4o_rewriter_verbosity.py",
+      "server": "westb-29275",
+      "data_path": "data/verified_verbosity.jsonl + GPT-4o rewritten CFs",
+      "data_count": 81,
+      "model_name": "GPT-4o (rewriter) + Qwen3-32B (judge)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-21T09:12:10.804588+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,112 @@
+{
+  "exp_id": "originality_minimal_subset",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:05:15.868Z",
+    "updated_at": "2026-05-21T12:05:41.868Z",
+    "hypothesis": "Style effect in BT remains stable when restricting to originality-balanced pairs (Likert score tied between original and counterfactual), confirming style bias is not driven by originality confound (addresses W-MF3)",
+    "spec": {
+      "command": "python csd_pipeline/originality_minimal_subset.py",
+      "server": "westb-29275",
+      "data_path": "data/pairwise_results_32b.jsonl + data/scored_32b.jsonl + verbosity equivalents",
+      "data_count": 174,
+      "model_name": "choix BT + bootstrap",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "data/originality_minimal_subset.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "formality": {
+        "full": {
+          "n": 88,
+          "bt": 0.63,
+          "ci": [
+            0.558,
+            0.703
+          ]
+        },
+        "likert_balanced": {
+          "n": 55,
+          "bt": 0.627,
+          "ci": [
+            0.536,
+            0.718
+          ],
+          "method": "Pairs where Likert score(original) == Likert score(counterfactual)"
+        },
+        "anti_originality": {
+          "n": 13,
+          "bt": 0.769,
+          "ci": [
+            0.538,
+            0.999
+          ]
+        },
+        "consistent_only": {
+          "n": 46,
+          "bt": 0.739,
+          "ci": [
+            0.609,
+            0.869
+          ]
+        },
+        "delta_likert_vs_full": -0.003,
+        "delta_ci": [
+          -0.121,
+          0.114
+        ],
+        "conclusion": "BT stable on originality-balanced subset (Δ=-0.003, CI includes 0)"
+      },
+      "verbosity": {
+        "full": {
+          "n": 86,
+          "bt": 0.773,
+          "ci": [
+            0.703,
+            0.843
+          ]
+        },
+        "likert_balanced": {
+          "n": 50,
+          "bt": 0.76,
+          "ci": [
+            0.66,
+            0.85
+          ],
+          "method": "Pairs where Likert score(original) == Likert score(counterfactual)"
+        },
+        "anti_originality": {
+          "n": 36,
+          "bt": 0.861,
+          "ci": [
+            0.75,
+            0.972
+          ]
+        },
+        "consistent_only": {
+          "n": 63,
+          "bt": 0.873,
+          "ci": [
+            0.794,
+            0.952
+          ]
+        },
+        "delta_likert_vs_full": -0.013,
+        "delta_ci": [
+          -0.133,
+          0.103
+        ],
+        "conclusion": "BT stable on originality-balanced subset (Δ=-0.013, CI includes 0)"
+      },
+      "note": "OC=1 method degenerate (position-inconsistent pairs yield BT=50% by construction). Likert-balanced is the valid originality control."
+    },
+    "completed_at": "2026-05-21T12:05:41.868Z"
+  },
+  "timestamp": "2026-05-21T12:05:41.940275+00:00",
+  "trigger": "update_registry"
+}

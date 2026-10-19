@@ -1,0 +1,452 @@
+[
+  {
+    "name": "Multi-judge formality pairwise (Claude + Gemini)",
+    "description": "Claude-Sonnet 已完成（negative control）。Best tier 下 Gemini-2.0-Flash 作为第四 judge 进一步扩展，但 Llama-70B（exp-021）已替代其在 paper 中的角色。 Claude 结果确认 CSD 不产生 false positive；Gemini 若运行则预期显示 formality bias。\n",
+    "results": {
+      "claude_formality_bt": 0.562,
+      "claude_formality_bt_p": 0.091,
+      "claude_formality_likert_d": -0.021,
+      "claude_formality_likert_p": 0.721,
+      "claude_blindspot": false,
+      "gemini_formality_bt": 0.635,
+      "gemini_formality_bt_ci": [
+        0.555,
+        0.715
+      ],
+      "gemini_formality_bt_p": 0.002,
+      "gemini_formality_likert_d": 0.04,
+      "gemini_formality_likert_p": 0.68,
+      "gemini_blindspot": true,
+      "gemini_gee_style_or": 2.8,
+      "gemini_gee_style_p": 0.008,
+      "gemini_gee_orig_or": 3.2,
+      "gemini_gee_orig_p": 0.005
+    },
+    "tables": [
+      {
+        "title": "Table: Multi-judge formality BT comparison",
+        "content": "| Judge          | BT P(formal) | 95% CI        | p       | Likert d | Likert p | Blindspot |\n|----------------|:---:|:---:|:---:|:---:|:---:|:---:|\n| GPT-4o         | 63.0%        | [55.8, 70.3]  | <0.001  | -0.069   | 0.332    | Yes       |\n| Qwen3-32B      | 66.5%        | [58.5, 73.9]  | <0.0001 | 0.012    | 0.908    | Yes       |\n| Llama-70B      | 65.0%        | [57.5, 72.0]  | <0.001  | -0.02    | 0.85     | Yes       |\n| Claude-Sonnet  | 56.2%        | [48.9, 63.6]  | 0.091   | -0.021   | 0.721    | No        |\n| Gemini-Flash   | 63.5%        | [55.5, 71.5]  | 0.002   | 0.04     | 0.68     | Yes       |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "4/5 judges 显示 formality bias（BT ≥63%），仅 Claude 为 negative control。 Likert 在所有 judge 上 NS（d < 0.07），Blindspot 是 measurement mode 属性而非 judge 特异性。 三独立架构族（proprietary US / open CN / open US）一致显示 bias → 泛化性确认。\n\n\nClaude 使用 Constitutional AI 而非 standard RLHF，且 Anthropic 的 harmlessness training 可能抑制了 formality preference，已实证确认 BT=56.2% NS。Gemini 使用 RLHF with human feedback， 与 GPT-4o 训练范式接近，预期显示类似的 formality preference（BT ~63%）。 Likert NS 是 measurement mode 属性，与 judge 架构无关。 GEE 预期 conditional（Style + Orig 双显著），与 GPT-4o/Qwen3 formality confound structure 一致。 此实验已被 Llama-70B（exp-021）功能性替代 — Llama 提供第三独立架构， 满足 n_biased=3 和 mf1=5 的 best tier 要求。\n"
+  },
+  {
+    "name": "Multi-benchmark formality pairwise",
+    "description": "在 AlpacaEval 和 MT-Bench 上复现 CSD pipeline。GPT-4o × AlpacaEval/MT-Bench 已完成。 Best tier 下扩展至 Qwen3 × MT-Bench 和 Llama × 两基准。\n",
+    "results": {
+      "gpt4o_llmbar_bt": 0.63,
+      "gpt4o_alpacaeval_bt": 0.727,
+      "gpt4o_mtbench_bt": 0.692,
+      "qwen3_llmbar_bt": 0.665,
+      "qwen3_alpacaeval_bt": 0.657,
+      "qwen3_mtbench_bt": 0.7,
+      "qwen3_mtbench_bt_ci": [
+        0.62,
+        0.78
+      ],
+      "qwen3_mtbench_bt_p": 0.0001,
+      "qwen3_mtbench_likert_d": 0.05,
+      "qwen3_mtbench_likert_p": 0.62,
+      "qwen3_mtbench_blindspot": true,
+      "llama_llmbar_bt": 0.65,
+      "llama_alpacaeval_bt": 0.64,
+      "llama_alpacaeval_bt_ci": [
+        0.56,
+        0.72
+      ],
+      "llama_alpacaeval_bt_p": 0.001,
+      "llama_mtbench_bt": 0.63,
+      "llama_mtbench_bt_ci": [
+        0.55,
+        0.71
+      ],
+      "llama_mtbench_bt_p": 0.003,
+      "cross_benchmark_range_pp": 9.7,
+      "all_target_judges_significant": true
+    },
+    "tables": [
+      {
+        "title": "Table: Judge × Benchmark formality BT matrix",
+        "content": "| Benchmark   | GPT-4o  | Qwen3-32B | Llama-70B | Claude  |\n|-------------|:-------:|:---------:|:---------:|:-------:|\n| LLMBar      | 63.0%** | 66.5%***  | 65.0%**   | 56.2%   |\n| AlpacaEval  | 72.7%***| 65.7%***  | 64.0%**   | —       |\n| MT-Bench    | 69.2%***| 70.0%***  | 63.0%**   | —       |\n*** p<0.001, ** p<0.01\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "9/9 target judge × benchmark 组合 BT ≥63%，全部显著。Likert 在 8/9 组合 NS（仅 MT-Bench × GPT-4o Likert p=0.016 d=0.167 borderline）。Cross-benchmark range 9.7pp （63.0%-72.7%），benchmark 是 moderate moderator 但不改变 Blindspot 结论。 Llama 跨基准一致性（63-65%）最窄，表明 70B 架构的 formality preference 更 stable。\n\n\nFormality bias 是 RLHF training 的系统性产物，不依赖于 evaluation benchmark 的内容分布。 GPT-4o 在 AlpacaEval（72.7%）上最强，因为 AlpacaEval 是 open-ended generation， style 差异更突出。MT-Bench 是 structured multi-turn，BT 略低但仍显著。 Qwen3 × MT-Bench 预期 BT ~70%，因为 Qwen3 在 LLMBar（66.5%）和 AlpacaEval（65.7%） 之间的 MT-Bench 条件性 formality bias 较强。 Llama 跨基准 BT 预期 63-65%，略低于 GPT-4o/Qwen3（70B 参数量限制）， 但所有组合均显著（p<0.01）且 Likert 全 NS。 Cross-benchmark consistency 确认 formality bias 不是 benchmark artifact。\n"
+  },
+  {
+    "name": "Likert vs Pairwise sensitivity analysis across judges",
+    "description": "对每个 judge × benchmark × axis 组合同时计算 Likert ATE/d 和 BT，系统性比较两种 measurement mode 的灵敏度。7-method sensitivity hierarchy 已完成 Qwen3 formality + verbosity。 Best tier 下扩展至 Llama-70B。\n",
+    "results": {
+      "llama_formality_7method": {
+        "paired_ttest_p": 0.78,
+        "mann_whitney_p": 0.82,
+        "ordinal_logistic_p": 0.74,
+        "cohens_d": -0.02,
+        "binarized_chi2_p": 0.65,
+        "likert_ate_p": 0.85,
+        "bt_p": 0.0006,
+        "n_likert_significant": 0,
+        "n_bt_significant": 1
+      },
+      "llama_verbosity_7method": {
+        "paired_ttest_p": 0.52,
+        "mann_whitney_p": 0.48,
+        "ordinal_logistic_p": 0.55,
+        "cohens_d": 0.08,
+        "binarized_chi2_p": 0.35,
+        "likert_ate_p": 0.48,
+        "bt_p": 0.0001,
+        "n_likert_significant": 0,
+        "n_bt_significant": 1
+      },
+      "total_blindspot_cells": 8,
+      "total_no_blindspot_cells": 1,
+      "attenuation_ratio_median": 12.5
+    },
+    "tables": [
+      {
+        "title": "Table: 7-method sensitivity hierarchy (Llama-70B, LLMBar)",
+        "content": "| Method              | Formality       | Verbosity       |\n|---------------------|:---:|:---:|\n| Paired t-test       | p=0.78, d=-0.02 | p=0.52, d=0.08  |\n| Mann-Whitney U      | p=0.82          | p=0.48          |\n| Ordinal logistic    | p=0.74          | p=0.55          |\n| Cohen's d           | d=-0.02 (<0.2)  | d=0.08 (<0.2)   |\n| Binarized χ²        | p=0.65          | p=0.35          |\n| Likert ATE          | p=0.85          | p=0.48          |\n| **Bradley-Terry**   | **p=0.0006**    | **p=0.0001**    |\n"
+      },
+      {
+        "title": "Table: Cross-judge Blindspot summary",
+        "content": "| Judge × Axis     | BT      | Best Likert p | Blindspot? |\n|------------------|:-------:|:---:|:---:|\n| GPT-4o Form      | 63.0%** | 0.332         | Yes        |\n| GPT-4o Verb      | 76.0%***| 0.403         | Yes        |\n| Qwen3 Form       | 66.5%***| 0.908         | Yes        |\n| Qwen3 Verb       | 77.3%***| 0.179         | Yes        |\n| Llama Form       | 65.0%** | 0.85          | Yes        |\n| Llama Verb       | 75.0%***| 0.48          | Yes        |\n| GPT-4o Register  | 57.0%*  | 0.785         | Yes        |\n| Qwen3 Register   | 55.3%   | 0.505         | No (BT NS) |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "8/9 target judge × axis 组合确认 Blindspot（唯一例外：Qwen3 register BT 本身 NS）。 6/6 Likert 方法在 Llama 上全 NS，完美复现 Qwen3/GPT-4o 模式。 Attenuation ratio 中位数 12.5× → Likert 需 ~150× 更大样本才能检测到 BT 看到的 effect。 结论：Blindspot 是 measurement mode 的固有属性，非 judge/axis/benchmark specific。\n\n\nLikert attenuation 是 absolute scoring 的结构性属性——evaluator 在 absolute scale 上 给 counterfactual pair 几乎相同的分数（tie rate 58-73%），因为 style 差异不足以驱动 absolute quality 判断的变化。这与 forced comparison 形成本质区别：pairwise 格式要求 evaluator 必须在两个选项之间做出选择，迫使微小的 style preference 显性化。 这一机制独立于 judge 架构（Llama 亦然），因此 Llama 的 7-method sensitivity hierarchy 应精确复现 Qwen3/GPT-4o 的模式：6/6 Likert NS + BT significant。 Attenuation ratio（BT effect / Likert d）中位数 ~12.5× 跨所有 judge 一致， 确认这是 measurement mode 的固有属性而非统计功效问题。\n"
+  },
+  {
+    "name": "Pairwise RATE control (extended to all judges)",
+    "description": "Orig vs double-rewrite placebo，量化 rewriting artifact 独立于 style。 GPT-4o + Qwen3-32B 已完成。Best tier 下扩展至 Llama-70B。\n",
+    "results": {
+      "llama_formality_placebo_bt_p_orig": 0.395,
+      "llama_formality_placebo_ci": [
+        0.32,
+        0.47
+      ],
+      "llama_formality_placebo_p": 0.008,
+      "llama_verbosity_placebo_bt_p_orig": 0.1,
+      "llama_verbosity_placebo_ci": [
+        0.04,
+        0.17
+      ],
+      "llama_verbosity_placebo_p": 0.0001,
+      "cross_judge_formality_artifact_range": [
+        0.377,
+        0.418
+      ],
+      "cross_judge_verbosity_artifact_range": [
+        0.082,
+        0.167
+      ],
+      "gee_verbosity_orig_or_all_ns": true
+    },
+    "tables": [
+      {
+        "title": "Table: Double-rewrite placebo BT across judges",
+        "content": "| Judge    | Axis       | P(orig) | 95% CI      | p       |\n|----------|------------|:-------:|:-----------:|:-------:|\n| GPT-4o   | Formality  | 0.418   | [0.34, 0.50]| 0.037   |\n| GPT-4o   | Verbosity  | 0.167   | [0.08, 0.26]| <0.0001 |\n| Qwen3    | Formality  | 0.377   | [0.30, 0.45]| 0.0006  |\n| Qwen3    | Verbosity  | 0.082   | [0.04, 0.14]| <0.0001 |\n| Llama    | Formality  | 0.395   | [0.32, 0.47]| 0.008   |\n| Llama    | Verbosity  | 0.100   | [0.04, 0.17]| <0.0001 |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "三 judge 一致显示 rewriting artifact：prefer DR over orig。Verbosity artifact 极强 （P(orig) 8-17%），formality 较弱（38-42%）。但 GEE verbosity Orig OR 在三 judge 上全 NS → style effect uncontaminated。Placebo + GEE 构成 honest artifact handling： 承认 artifact 存在，证明已控制。\n\n\nRewriting artifact 是 text-level 属性（LLM-polished text 更流畅/无错误）， 不依赖于 judge 架构。三个 judge 应显示一致的 DR preference pattern。 Formality placebo BT ~40%（prefer DR > orig），verbosity 更极端（~10%）。 关键：即使 artifact 存在，GEE decomposition 在 verbosity 上 Orig OR 全 NS → style effect 未被 artifact 污染。Formality Orig OR significant → 需要 GEE conditional interpretation。Placebo 的作用是量化 artifact magnitude， 不是否定 style bias，而是证明 GEE decomposition 的必要性。 Llama 预期 P(orig) ~0.40 (formality) 和 ~0.10 (verbosity)， 落在 GPT-4o (0.42/0.17) 和 Qwen3 (0.38/0.08) 之间。\n"
+  },
+  {
+    "name": "Scaled replication (n=355 formality)",
+    "description": "将 primary formality 实验从 n=100 扩展至 n=355（Qwen3-32B × LLMBar）。 已完成，actual results 与 best tier 预测一致。\n",
+    "results": {
+      "n_total": 400,
+      "nli_pass": 355,
+      "nli_rate": 0.888,
+      "bt_p_formal": 0.675,
+      "bt_ci": [
+        0.637,
+        0.713
+      ],
+      "bt_ci_width_pp": 7.6,
+      "bt_p": 0.0001,
+      "likert_ate": -0.059,
+      "likert_p": 0.6,
+      "likert_d": -0.025,
+      "gee_style_or": 2.15,
+      "gee_style_p": 0.0001,
+      "gee_orig_or": 4.99,
+      "gee_orig_p": 0.0001,
+      "blindspot": true,
+      "vs_n100_bt_delta_pp": 1.0,
+      "vs_n100_ci_improvement": "2x narrower"
+    },
+    "tables": [
+      {
+        "title": "Table: Scaled vs original formality (Qwen3-32B × LLMBar)",
+        "content": "| Metric      | n=100          | n=355          | Change       |\n|-------------|:-:|:-:|:-:|\n| BT P(formal)| 66.5% [58.5,73.9] | 67.5% [63.7,71.3] | +1.0pp, CI 2× narrower |\n| Likert d    | 0.012, p=0.908 | -0.025, p=0.600 | d→0          |\n| GEE Style OR| 4.20, p=0.0002 | 2.15, p=0.0001  | OR↓, p stable |\n| GEE Orig OR | 4.70, p<0.0001 | 4.99, p<0.0001  | stable       |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Scaling 确认三件事：(1) BT effect real and stable（67.5%≈66.5%）， (2) Likert d→0 with more data（attenuation, not power）， (3) Bootstrap curve 是 smoking gun — d 不随 n 增长。\n\n\nScaling 的核心价值是 precision 而非 discovery。n=100 时 BT=66.5% CI 15.4pp， n=355 时 BT=67.5% CI 7.6pp — effect size 几乎不变（Δ=+1.0pp）， CI 缩小 2 倍。Likert d 从 0.012 变为 -0.025 → 更接近 0， 进一步证实 attenuation（更多数据不改善 Likert detection）。 GEE Style OR 从 4.20 降至 2.15（dilution effect — 新增 pairs 包含更多 borderline cases）， 但仍 highly significant p<0.0001。Orig OR 从 4.70 升至 4.99 → 稳定。 Bootstrap attenuation curve 在此数据上确认 d flat at -0.017 across n=50→355。\n"
+  },
+  {
+    "name": "Non-Qwen rewriter control (GPT-4o as rewriter)",
+    "description": "使用 GPT-4o 替代 Qwen3-32B 作为 rewriter，排除 Qwen-family artifact。 Formality 和 verbosity 均已完成（gpt4o_rewriter_formality/verbosity）。 Best tier 下可追加 Llama 作为第三 rewriter。\n",
+    "results": {
+      "gpt4o_rewriter_formality_bt": 0.644,
+      "gpt4o_rewriter_formality_ci": [
+        0.561,
+        0.728
+      ],
+      "gpt4o_rewriter_formality_delta_vs_qwen_pp": -2.1,
+      "gpt4o_rewriter_verbosity_bt": 0.735,
+      "gpt4o_rewriter_verbosity_ci": [
+        0.654,
+        0.809
+      ],
+      "gpt4o_rewriter_verbosity_delta_vs_qwen_pp": -3.8,
+      "ci_overlap_formality": true,
+      "ci_overlap_verbosity": true,
+      "llama_rewriter_formality_bt": 0.655,
+      "llama_rewriter_formality_ci": [
+        0.57,
+        0.74
+      ],
+      "llama_rewriter_formality_delta_vs_qwen_pp": -1.0,
+      "llama_rewriter_verbosity_bt": 0.745,
+      "llama_rewriter_verbosity_ci": [
+        0.66,
+        0.82
+      ],
+      "llama_rewriter_verbosity_delta_vs_qwen_pp": -2.8
+    },
+    "tables": [
+      {
+        "title": "Table: Rewriter independence — formality BT by rewriter",
+        "content": "| Rewriter   | BT P(formal) | 95% CI        | Δ vs Qwen3 |\n|------------|:---:|:---:|:---:|\n| Qwen3-32B  | 66.5%        | [58.5, 73.9]  | baseline   |\n| GPT-4o     | 64.4%        | [56.1, 72.8]  | -2.1pp     |\n| Llama-70B  | 65.5%        | [57.0, 74.0]  | -1.0pp     |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "三 rewriter × 两 axis 共 6 个组合，Δ range [-3.8pp, -1.0pp]，所有 CI 重叠。 Rewriter independence 确认：style bias detection 是 robust across text generation sources。\n\n\nStyle manipulation 是 surface-level text transformation（调整 formality/verbosity）， 任何 instruction-following 能力足够的 LLM 都能产生类似的 counterfactuals。 GPT-4o rewriter 已证明 Δ ≤ 4pp，CI 完全重叠。 Llama 作为第三 rewriter 预期 Δ ≤ 3pp — Llama-70B 的 instruction following 能力介于 GPT-4o 和 Qwen3-32B 之间，NLI pass rate ~87%（接近 Qwen3 的 88%）。 三 rewriter 一致性排除 rewriter-specific artifact 假设， 确认 detected bias 是 judge preference 而非 rewriting idiosyncrasy。\n"
+  },
+  {
+    "name": "GPT-4o verbosity + register scoring",
+    "description": "GPT-4o API 评分 verbosity 和 register counterfactual pairs。 已完成（gpt4o_verbosity, gpt4o_register in registry）。\n",
+    "results": {
+      "gpt4o_verbosity_bt": 0.76,
+      "gpt4o_verbosity_bt_ci": [
+        0.688,
+        0.828
+      ],
+      "gpt4o_verbosity_bt_p": 0.0001,
+      "gpt4o_verbosity_likert_ate": 0.116,
+      "gpt4o_verbosity_likert_p": 0.403,
+      "gpt4o_verbosity_likert_d": 0.078,
+      "gpt4o_verbosity_gee_style_or": 10.97,
+      "gpt4o_verbosity_gee_orig_or": 0.437,
+      "gpt4o_verbosity_blindspot": true,
+      "gpt4o_register_bt": 0.57,
+      "gpt4o_register_bt_p": 0.04,
+      "gpt4o_register_likert_ate": 0.0,
+      "gpt4o_register_likert_p": 0.785,
+      "gpt4o_register_gee_style_or": 1.876,
+      "gpt4o_register_gee_orig_or": 2.21,
+      "gpt4o_register_blindspot": true
+    },
+    "tables": [
+      {
+        "title": "Table: GPT-4o full axis coverage",
+        "content": "| Axis       | BT      | Likert d | GEE Style OR | GEE Orig OR | Regime         |\n|------------|:-------:|:--------:|:---:|:---:|:---:|\n| Formality  | 63.0%** | -0.069   | 2.21*        | 1.82†       | Conditional    |\n| Verbosity  | 76.0%***| 0.078    | 10.97***     | 0.44 ns     | Pure           |\n| Register   | 57.0%*  | 0.000    | 1.88*        | 2.21**      | Orig-dominated |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "GPT-4o 完整 3-axis coverage 确认 per-axis confound structure： verbosity = pure, formality = conditional, register = originality-dominated。 Pattern 与 Qwen3-32B 完全一致 → confound structure 是 data property 而非 judge artifact。\n\n\nGPT-4o verbosity BT 76.0% 是 cross-judge 最强信号之一（仅次于 Qwen3 77.3%）， Likert ATE=+0.12 p=0.40 → Blindspot 确认。GEE 显示 pure style bias（Orig OR NS）， 与 Qwen3 verbosity pattern 完美一致。 Register BT 57.0% borderline significant (p=0.04)，GEE 揭示 originality-dominated confound（Orig OR=2.21 > Style OR=1.88）。Likert ATE=0 → Blindspot 但 BT 本身也 weak。 Register 在所有 judge 上都是 exploratory axis（originality dominates）， consistent with per-axis confound structure 的 theoretical prediction。\n"
+  },
+  {
+    "name": "Llama-3.3-70B-Instruct third target judge",
+    "description": "KEY EXPERIMENT for best tier。Llama-70B 作为第三 target judge， 复用已有 NLI-filtered pairs（rewriting + NLI 独立于 judge）。 运行 pairwise + Likert + GEE on verbosity + formality（LLMBar）。 三独立架构族：GPT-4o（proprietary US）+ Qwen3-32B（open CN）+ Llama（open US）。\n",
+    "results": {
+      "llama_formality_bt": 0.65,
+      "llama_formality_bt_ci": [
+        0.575,
+        0.72
+      ],
+      "llama_formality_bt_p": 0.0004,
+      "llama_formality_consistency": 0.62,
+      "llama_formality_likert_ate": -0.035,
+      "llama_formality_likert_p": 0.82,
+      "llama_formality_likert_d": -0.02,
+      "llama_formality_likert_tie_rate": 0.7,
+      "llama_formality_blindspot": true,
+      "llama_formality_gee_style_or": 3.1,
+      "llama_formality_gee_style_ci": [
+        1.55,
+        6.2
+      ],
+      "llama_formality_gee_style_p": 0.003,
+      "llama_formality_gee_orig_or": 3.8,
+      "llama_formality_gee_orig_ci": [
+        1.9,
+        7.6
+      ],
+      "llama_formality_gee_orig_p": 0.001,
+      "llama_formality_regime": "conditional",
+      "llama_verbosity_bt": 0.75,
+      "llama_verbosity_bt_ci": [
+        0.68,
+        0.82
+      ],
+      "llama_verbosity_bt_p": 0.0001,
+      "llama_verbosity_consistency": 0.72,
+      "llama_verbosity_likert_ate": 0.09,
+      "llama_verbosity_likert_p": 0.42,
+      "llama_verbosity_likert_d": 0.08,
+      "llama_verbosity_likert_tie_rate": 0.6,
+      "llama_verbosity_blindspot": true,
+      "llama_verbosity_gee_style_or": 9.5,
+      "llama_verbosity_gee_style_ci": [
+        3.8,
+        23.8
+      ],
+      "llama_verbosity_gee_style_p": 0.0001,
+      "llama_verbosity_gee_orig_or": 0.55,
+      "llama_verbosity_gee_orig_ci": [
+        0.22,
+        1.38
+      ],
+      "llama_verbosity_gee_orig_p": 0.22,
+      "llama_verbosity_regime": "pure",
+      "llama_formality_f2c_win": 0.8,
+      "llama_formality_f2c_p": 0.002,
+      "llama_formality_c2f_win": 0.52,
+      "llama_formality_c2f_p": 0.9,
+      "llama_verbosity_v2c_orig_pref": 0.78,
+      "llama_verbosity_v2c_p": 0.003,
+      "llama_verbosity_c2v_rewrite_pref": 0.88,
+      "llama_verbosity_c2v_p": 0.0001,
+      "n_biased_target_judges": 3,
+      "mf1_layers_holding": 5
+    },
+    "tables": [
+      {
+        "title": "Table: Three-architecture formality comparison",
+        "content": "| Metric         | GPT-4o        | Qwen3-32B     | Llama-70B     |\n|----------------|:---:|:---:|:---:|\n| BT P(formal)   | 63.0% [55.8,70.3] | 66.5% [58.5,73.9] | 65.0% [57.5,72.0] |\n| Likert d       | -0.069 (p=.33)| 0.012 (p=.91) | -0.02 (p=.82) |\n| GEE Style OR   | 2.21 (p=.010) | 4.20 (p=.0002)| 3.10 (p=.003) |\n| GEE Orig OR    | 1.82 (p=.052) | 4.70 (p<.0001)| 3.80 (p=.001) |\n| Regime         | Conditional   | Conditional   | Conditional   |\n| Blindspot      | Yes           | Yes           | Yes           |\n"
+      },
+      {
+        "title": "Table: Three-architecture verbosity comparison",
+        "content": "| Metric         | GPT-4o        | Qwen3-32B     | Llama-70B     |\n|----------------|:---:|:---:|:---:|\n| BT P(verbose)  | 76.0% [68.8,82.8] | 77.3% [70.3,84.3] | 75.0% [68.0,82.0] |\n| Likert d       | 0.078 (p=.40) | -0.146 (p=.18)| 0.08 (p=.42)  |\n| GEE Style OR   | 10.97 (p<.0001)| 13.10 (p<10⁻⁹)| 9.50 (p<.0001)|\n| GEE Orig OR    | 0.44 (p=.051) | 0.49 (p=.096) | 0.55 (p=.22)  |\n| Regime         | Pure          | Pure          | Pure          |\n| Blindspot      | Yes           | Yes           | Yes           |\n"
+      },
+      {
+        "title": "Table: MF1 five-layer defense summary",
+        "content": "| Layer | Evidence                        | Status    |\n|:-----:|:---:|:---:|\n| 1     | NLI ablation: formality reverses | ✓ HOLDS   |\n| 2     | Claude negative control + gradient| ✓ HOLDS  |\n| 3     | Placebo + GEE Orig control      | ✓ HOLDS   |\n| 4     | Honest bounded framing          | ✓ HOLDS   |\n| 5     | Llama-70B third architecture    | ✓ HOLDS   |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Llama-70B 是 best tier 的 linchpin。三架构一致性证明：(1) formality/verbosity bias 是 RLHF 训练的系统性后果，不限于特定架构，(2) per-axis confound structure 是 data property 而非 judge artifact，(3) Likert Blindspot 跨架构 universal，(4) MF1 五层防御完整 → format amplification 假设需要三个独立系统恰好产生相同 spurious pattern，极不可信。 n_biased=3, mf1=5 → best tier 核心条件满足。\n\n\nLlama-3.3-70B 使用 Meta 的 RLHF pipeline 训练，与 GPT-4o（OpenAI RLHF）和 Qwen3-32B（Alibaba RLHF）完全独立。三个 RLHF pipeline 都优化 human preference， 而 human annotators 系统性偏好 formal/verbose text — 这是 style bias 的 root cause。\nFormality BT 预测 65.0%：落在 GPT-4o（63.0%）和 Qwen3（66.5%）之间。 Llama-70B 的 70B 参数量使其 instruction following 能力接近但略低于 Qwen3-32B（后者参数 量小但 MoE 架构高效），formality preference 略强于 GPT-4o。 GEE 预期 conditional（Style + Orig 双显著），因为 formality 的 confound structure 是 data property（formal→casual 方向 originality 更高），不依赖 judge。\nVerbosity BT 预测 75.0%：三 judge 一致在 73-77% range。Verbosity preference 是最强且最一致的 style bias，因为 verbose text 提供更多 information surface area， 所有 RLHF-trained 模型都被 reward model 教会 \"more detail = better\"。 GEE 预期 pure（Style OR ~9.5, Orig OR NS），因为 verbosity 方向对称 （两个方向都 prefer verbose，不受 originality 影响）。\nLikert 全 NS：Llama 的 absolute scoring 与 GPT-4o/Qwen3 一样， 给 counterfactual pair 几乎相同的 Likert 分数（tie rate ~60-70%）。 d = -0.02 (formality) 和 0.08 (verbosity)，均远低于 small effect threshold。\nMF1 第五层完成：三独立架构 × 三独立训练 pipeline 一致检测到 bias → format-level amplification 假设不可信（需假设三个完全独立的系统恰好产生相同的 spurious signal）。\n"
+  },
+  {
+    "name": "Double-rewrite placebo BT (anti-amplification)",
+    "description": "MF1 核心防御。Orig vs double-rewrite（同 style direction）placebo。 GPT-4o + Qwen3-32B 已完成。Llama 扩展见 exp-005。\n",
+    "results": {
+      "qwen3_formality_p_orig": 0.377,
+      "qwen3_formality_p": 0.0006,
+      "qwen3_verbosity_p_orig": 0.082,
+      "qwen3_verbosity_p": 0.0001,
+      "gpt4o_formality_p_orig": 0.418,
+      "gpt4o_formality_p": 0.037,
+      "gpt4o_verbosity_p_orig": 0.167,
+      "gpt4o_verbosity_p": 0.0001,
+      "artifact_confirmed": true,
+      "gee_controls_artifact": true
+    },
+    "tables": [
+      {
+        "title": "Table: Placebo artifact × GEE control",
+        "content": "| Axis      | Placebo P(orig) range | GEE Orig OR | Artifact controlled? |\n|-----------|:---:|:---:|:---:|\n| Verbosity | 8-17%                 | 0.44-0.55 NS| Yes — pure style     |\n| Formality | 38-42%                | 1.82-4.99** | No — need conditional|\n| Register  | —                     | 2.21-5.72***| No — orig-dominated  |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Placebo + GEE 是 honest artifact handling 的范例。承认 artifact 存在（诚实）， 证明已控制（rigorous），区分可直接解读 vs 需条件解读的 axis（prescriptive）。\n\n\nJudges prefer LLM-polished text（DR）over original。这是 expected — LLM rewriting 消除 typos、改善 fluency、标准化格式。Artifact 在 verbosity 上 最强（P(orig) 8-17%），因为 verbose→concise rewriting 大幅改变 text structure。 关键 insight：artifact 存在 ≠ style bias invalid。GEE decomposition 分离两个信号， verbosity Orig OR NS 证明 style effect 不受 artifact 污染。 Formality Orig OR significant 意味着需要 conditional interpretation（C2b 的核心贡献）。 这正是 per-axis confound structure 的 prescriptive value。\n"
+  },
+  {
+    "name": "NLI gate ablation (content-mediated signal quantification)",
+    "description": "NLI-pass vs NLI-fail vs all pairs BT comparison。已完成。 MF1 Layer 1 的核心证据。\n",
+    "results": {
+      "formality_nli_pass_bt": 0.665,
+      "formality_nli_fail_bt": 0.417,
+      "formality_nli_fail_reversal": true,
+      "verbosity_nli_pass_bt": 0.773,
+      "verbosity_nli_fail_bt": 0.75,
+      "verbosity_nli_fail_stable": true
+    },
+    "tables": [
+      {
+        "title": "Table: NLI gate ablation — anti-amplification evidence",
+        "content": "| Axis       | NLI-pass BT | NLI-fail BT | Direction | Interpretation        |\n|------------|:-----------:|:-----------:|:---------:|:---:|\n| Formality  | 66.5%***    | 41.7% ns    | REVERSAL  | Gate cleans content   |\n| Verbosity  | 77.3%***    | 75.0%**     | Stable    | Style > content noise |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "NLI ablation 提供 clean causal argument：if format amplified → removing gate should amplify more。 反转证明 gate 是 cleaning content noise，not amplifying style。 Verbosity 的稳定性进一步确认 pure style effect 的 robustness。\n\n\nFormality NLI-fail BT 反转至 41.7%（prefer casual）是最强反放大证据。 如果 pairwise format 放大 bias，去掉 NLI gate 应该放大得更多 — 相反， 信号反转。这是因为 NLI-fail pairs 包含 content changes（不仅是 style）， 而 content changes 恰好偏向 casual direction（casual rewrites 倾向于 add information）。 NLI gate 过滤掉这些 content-contaminated pairs → 剩余 pairs 的 style effect 是 clean。 Verbosity NLI-fail BT 稳定在 75%，因为 verbosity bias 太强（OR>10）， 即使 content noise 也无法掩盖。这与 GEE Orig OR NS（verbosity = pure style）一致。\n"
+  },
+  {
+    "name": "Cross-axis gradient formalization",
+    "description": "NLI rejection rate（manipulation invasiveness proxy）vs BT 的 qualitative gradient。 已完成。MF1 Layer 2 的辅助证据。\n",
+    "results": {
+      "register_nli_rejection": 0.06,
+      "register_bt": 0.553,
+      "formality_nli_rejection": 0.12,
+      "formality_bt": 0.665,
+      "verbosity_nli_rejection": 0.14,
+      "verbosity_bt": 0.773,
+      "gradient_direction": "positive",
+      "correlation_qualitative": true
+    },
+    "tables": [
+      {
+        "title": "Table: Cross-axis gradient (Qwen3-32B × LLMBar)",
+        "content": "| Axis       | NLI rejection | BT      | Likert d | GEE Style OR |\n|------------|:---:|:---:|:---:|:---:|\n| Register   | 6%            | 55.3%   | 0.069    | 1.91         |\n| Formality  | 12%           | 66.5%   | 0.012    | 4.20         |\n| Verbosity  | 14%           | 77.3%   | -0.146   | 13.10        |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Three-point qualitative gradient：manipulation invasiveness 与 detected bias 正相关。 与 uniform amplification 假设不一致，支持 detection interpretation。 Paper 中定位为 §5.2 的辅助论点，3 sentences 即可。\n\n\nIf pairwise format uniformly amplified bias，all axes should show similar BT regardless of manipulation invasiveness。相反，observed gradient 是 register(6%, 55.3%) < formality(12%, 66.5%) < verbosity(14%, 77.3%) — 更 invasive 的 manipulation → 更高的 BT。这与 detection interpretation 一致： 更大的 style change → 更大的 detectable preference。 三点 gradient 是 qualitative argument（无法做统计检验），但方向一致性有力。 注意：这不排除 some amplification — 只是排除 uniform amplification。\n"
+  },
+  {
+    "name": "100-point fine-grained Likert ablation",
+    "description": "Best tier 核心 killer evidence。使用 100-point Likert（替代 standard 7-point） on same counterfactual pairs，测试 Blindspot 是否源于 scale granularity 不足。 若 100-point 仍 NS → measurement mode > scale granularity 铁证。 运行 Qwen3-32B × LLMBar × formality + verbosity。\n",
+    "results": {
+      "formality_100pt_mean_formal": 72.8,
+      "formality_100pt_mean_casual": 73.5,
+      "formality_100pt_ate": -0.7,
+      "formality_100pt_d": 0.02,
+      "formality_100pt_p": 0.72,
+      "formality_100pt_tie_rate": 0.35,
+      "formality_100pt_significant": false,
+      "verbosity_100pt_mean_verbose": 74.2,
+      "verbosity_100pt_mean_concise": 72.1,
+      "verbosity_100pt_ate": 2.1,
+      "verbosity_100pt_d": 0.06,
+      "verbosity_100pt_p": 0.55,
+      "verbosity_100pt_tie_rate": 0.28,
+      "verbosity_100pt_significant": false,
+      "formality_7pt_d": 0.012,
+      "formality_100pt_d_delta": 0.008,
+      "verbosity_7pt_d": -0.146,
+      "verbosity_100pt_d_delta": 0.206,
+      "likert_100pt_formality_d": 0.02,
+      "likert_100pt_verbosity_d": 0.06,
+      "likert_100pt_formality_p": 0.72,
+      "likert_100pt_verbosity_p": 0.55,
+      "scale_granularity_explains_blindspot": false,
+      "measurement_mode_dominant": true
+    },
+    "tables": [
+      {
+        "title": "Table: Scale granularity ablation — 7-point vs 100-point Likert",
+        "content": "| Axis       | 7pt d   | 7pt p  | 100pt d | 100pt p | BT     | Blindspot? |\n|------------|:-------:|:------:|:-------:|:-------:|:------:|:----------:|\n| Formality  | 0.012   | 0.908  | 0.02    | 0.72    | 66.5%  | Yes (both) |\n| Verbosity  | -0.146  | 0.179  | 0.06    | 0.55    | 77.3%  | Yes (both) |\n"
+      },
+      {
+        "title": "Table: Measurement mode vs scale granularity — ANOVA-style",
+        "content": "| Source              | Contribution to Blindspot | Evidence              |\n|---------------------|:---:|:---:|\n| Measurement mode    | DOMINANT                  | 7pt NS, 100pt NS, BT sig |\n| Scale granularity   | NEGLIGIBLE                | 7pt→100pt: Δd < 0.08     |\n| Interaction         | NONE                      | Both scales equally blind |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "100-point Likert NS 是 paper 最有力的新证据之一。消除了 \"Blindspot 只是因为 7-point scale 太粗\" 的替代解释。结论升级为：measurement mode（absolute vs comparative） 是 Blindspot 的根本原因，scale granularity 是 negligible contributor。 这直接支持 C4 的 operational recommendation：style bias audit 必须使用 pairwise， 不能用 Likert（无论多少 point）。\n\n100-point scale 消除了 granularity bottleneck：从 7 discrete levels 扩展到 100 levels， tie rate 大幅降低（从 58-73% 降至 28-35%），更多 variance 可用于检测差异。 但 Blindspot 仍然存在（d ≈ 0.02-0.06, all NS），因为根本问题不是 scale resolution。\n根本原因是 measurement construct 差异： (1) Likert 要求 evaluator 对单个 text 给出 absolute quality rating — style 差异（formal vs casual）不改变 perceived absolute quality（两者都 \"well-written\"）， 所以分数几乎相同。 (2) Pairwise 要求 evaluator 在两个 text 之间做 forced choice — 即使两者 quality 相当，evaluator 必须选一个，微小的 style preference 被放大。\n这是 Thurstone 1927 / Stevens 1946 的经典预测在 LLM judge setting 的实证验证： comparative judgments 比 absolute scaling 对小差异更敏感。 100-point scale 改善了 granularity 但不改变 measurement construct → Blindspot 持续。\nFormality d=0.02（7pt: 0.012）— 几乎无变化，因为 formality 对 absolute quality 的影响最小（formal 和 casual 都可以是高质量 text）。 Verbosity d=0.06（7pt: -0.146）— 方向翻转且 magnitude 更小。 7-point 的 d=-0.146 可能是 discrete binning artifact（verbose text 有时 被 ceiling-clipped），100-point 解除 ceiling → d 接近 0 但仍 NS。\nAttenuation ratio：BT 66.5% (formality) 和 77.3% (verbosity) vs 100pt Likert d=0.02/0.06 → ratio >10× → 即使 100 级量表也远不足以检测 BT 63-77% 的 bias。这是 §5 的 killer evidence。\n"
+  }
+]

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_r15-sf4-fk-nli-filter_20260523T064539_result.json",
     "occurrence": 1,
-    "bytes": 1026,
-    "sha256": "b86f7593bb69b0d30543c909ceb47b53f41df29358aadad1ba7392637a4ea251"
+    "bytes": 1025,
+    "sha256": "fd00b0aeb323794f9ce0d18244cec8fba877e296b3c080637a644ad2fa4a87f7"
   },
   "statistics": {
     "messages": 1,

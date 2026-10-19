@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_r15-sf3-100pt-likert-multi_20260523T065159_result.json",
     "occurrence": 1,
-    "bytes": 924,
-    "sha256": "cf2886bfd2fe8c8c2b73697bee95135478200721efbc25614a6d154bfaf4c362"
+    "bytes": 923,
+    "sha256": "a7c7a20d0dd489056b7d1f4c9e50e522bf6188ed7030fa833223426ccfdf3072"
   },
   "statistics": {
     "messages": 1,

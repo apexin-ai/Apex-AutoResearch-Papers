@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_alpacaeval_qwen32b_scoring_20260521T074636_result.json",
     "occurrence": 1,
-    "bytes": 1281,
-    "sha256": "f3ffac6fb184a6dc9f976c899052771d68c2416b08f0c3fed80210d010c747c9"
+    "bytes": 1280,
+    "sha256": "12a1b0210f42224f5af56760627a9511c7e508cc14771b826ffa18e8756ae93f"
   },
   "statistics": {
     "messages": 1,

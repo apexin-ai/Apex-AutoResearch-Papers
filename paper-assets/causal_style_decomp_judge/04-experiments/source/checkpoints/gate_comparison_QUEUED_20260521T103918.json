@@ -1,0 +1,80 @@
+{
+  "exp_id": "gate_comparison",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:38:32.232Z",
+    "updated_at": "2026-05-21T10:39:17.887Z",
+    "hypothesis": "Direction-aware NLI gate does not introduce systematic bias compared to strict bidirectional gate — the extra ~21% pairs admitted by direction-aware gating have consistent BT direction with the strict-filtered subset (addresses R3-W2)",
+    "conclusion": "success",
+    "metrics": {
+      "formality": {
+        "strict": {
+          "n": 88,
+          "bt": 0.6647,
+          "ci": [
+            0.5852,
+            0.7386
+          ],
+          "p": 0.0001
+        },
+        "direction_aware": {
+          "n": 97,
+          "bt": 0.634,
+          "ci": [
+            0.5567,
+            0.7061
+          ],
+          "p": 0.0001
+        },
+        "extra_only": {
+          "n": 9,
+          "bt": 0.3337
+        },
+        "delta": -0.0307,
+        "delta_ci": [
+          -0.0651,
+          -0.0018
+        ],
+        "significant": true,
+        "note": "Formality pipeline already uses strict gate (min). Extra 9 pairs lean casual. Moot for paper."
+      },
+      "verbosity": {
+        "strict": {
+          "n": 65,
+          "bt": 0.7845,
+          "ci": [
+            0.7076,
+            0.8537
+          ],
+          "p": 0.0001
+        },
+        "direction_aware": {
+          "n": 86,
+          "bt": 0.7732,
+          "ci": [
+            0.7034,
+            0.8429
+          ],
+          "p": 0.0001
+        },
+        "extra_only": {
+          "n": 21,
+          "bt": 0.7379
+        },
+        "delta": -0.0113,
+        "delta_ci": [
+          -0.0564,
+          0.0296
+        ],
+        "significant": false,
+        "note": "No systematic difference. Extra 21 pairs consistent with overall direction (73.8% vs 77.3%)."
+      }
+    }
+  },
+  "timestamp": "2026-05-21T10:39:18.067947+00:00",
+  "trigger": "update_registry"
+}

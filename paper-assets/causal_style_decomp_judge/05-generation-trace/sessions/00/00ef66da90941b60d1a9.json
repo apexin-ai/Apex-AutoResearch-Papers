@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_32b_monitor_and_prep_20260520T150803_result.json",
     "occurrence": 1,
-    "bytes": 1965,
-    "sha256": "ba155c03678c390383e4765d98c3085978516b069c3d7e7d05365db2f2d5b3cf"
+    "bytes": 1964,
+    "sha256": "a6bed4a36b57c76c06828d4c4a309ac004353259b2cf998060eab2b878001c1a"
   },
   "statistics": {
     "messages": 1,

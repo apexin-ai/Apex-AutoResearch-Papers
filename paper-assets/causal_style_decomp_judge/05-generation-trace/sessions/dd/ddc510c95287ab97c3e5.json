@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_nli_ablation_cross_axis_20260521T132507_result.json",
     "occurrence": 1,
-    "bytes": 1082,
-    "sha256": "6ae30b31bb4b0272f9b06e5ed142592447b88c477b9d96678b19230f51031486"
+    "bytes": 1081,
+    "sha256": "448bc436a74838046100d56e21e0e0309ee8177c029e64c0a52730c4a547f5bc"
   },
   "statistics": {
     "messages": 1,

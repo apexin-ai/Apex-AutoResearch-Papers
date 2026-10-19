@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fig_forest_plot_gemini_20260521T224443_result.json",
     "occurrence": 1,
-    "bytes": 359,
-    "sha256": "8ec6d331260e7b7e2dc5e0f12ea1475f22ae0c9effd9ff7ef537ebbd9481825b"
+    "bytes": 358,
+    "sha256": "0e509696857d14b1207a27f94d2b1ca847164cacc395f559e9515f6b937d99f2"
   },
   "statistics": {
     "messages": 1,

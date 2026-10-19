@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_verbosity_32b_continue_20260520T191740_result.json",
     "occurrence": 1,
-    "bytes": 173,
-    "sha256": "b7f8301e7297743e6400275e7cfed4fee7673006ca35d6c5c38fa8e1fab79365"
+    "bytes": 172,
+    "sha256": "ad7f5c8b1b15ddeb0804fd1374891688de819ff7b3a6638ddc39adba9ef5b44f"
   },
   "statistics": {
     "messages": 1,

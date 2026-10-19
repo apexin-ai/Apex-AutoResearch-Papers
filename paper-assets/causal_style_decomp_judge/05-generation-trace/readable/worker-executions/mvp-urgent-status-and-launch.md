@@ -10956,7 +10956,7 @@ _source line 243 · 2026-05-20T14:14:40.528Z_
 
 ```text
 1	openai_api_key:
-2	  created_at: '2026-05-20T10:31:44.465679+00:00'
+[REDACTED]	  created_at: '2026-05-20T10:31:44.465679+00:00'
 3	  provider: OpenAI
 4	  purpose: GPT-4o judge scoring for MVP (causal_style_decomp_judge)
 5	  updated_at: '2026-05-20T10:31:44.465705+00:00'
@@ -12577,7 +12577,7 @@ _source line 276 · 2026-05-20T14:14:51.877Z_
 
 ```text
 openai_api_key:
-  created_at: '2026-05-20T10:31:44.465679+00:00'
+  [REDACTED] '2026-05-20T10:31:44.465679+00:00'
   provider: OpenAI
   purpose: GPT-4o judge scoring for MVP (causal_style_decomp_judge)
   updated_at: '2026-05-20T10:31:44.465705+00:00'
@@ -13340,7 +13340,7 @@ _source line 292 · 2026-05-20T14:15:14.573Z_
 
 ```text
 1	openai_api_key:
-2	  created_at: '2026-05-20T10:31:44.465679+00:00'
+[REDACTED]	  created_at: '2026-05-20T10:31:44.465679+00:00'
 3	  provider: OpenAI
 4	  purpose: GPT-4o judge scoring for MVP (causal_style_decomp_judge)
 5	  updated_at: '2026-05-20T10:31:44.465705+00:00'
@@ -13372,7 +13372,7 @@ _source line 292 · 2026-05-20T14:15:14.573Z_
     "type": "text",
     "file": {
       "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/config/secrets/causal_style_decomp_judge/manifest.yaml",
-      "content": "openai_api_key:\n  created_at: '2026-05-20T10:31:44.465679+00:00'\n  provider: OpenAI\n  purpose: GPT-4o judge scoring for MVP (causal_style_decomp_judge)\n  updated_at: '2026-05-20T10:31:44.465705+00:00'\nopenai_api_key_direct:\n  created_at: '2026-05-20T12:15:26.116878+00:00'\n  provider: OpenRouter\n  purpose: GPT-4o judge scoring via OpenRouter endpoint (base_url=http://47.94.22.126/v1)\n  updated_at: '2026-05-20T12:15:26.116900+00:00'\nssh_westb_29275:\n  created_at: '2026-05-20T08:40:20.243593+00:00'\n  provider: SeetaCloud\n  purpose: westb-29275 root SSH password\n  updated_at: '2026-05-20T08:40:20.243619+00:00'\n",
+      "content": "openai_api_key:\n  [REDACTED] '2026-05-20T10:31:44.465679+00:00'\n  provider: OpenAI\n  purpose: GPT-4o judge scoring for MVP (causal_style_decomp_judge)\n  updated_at: '2026-05-20T10:31:44.465705+00:00'\nopenai_api_key_direct:\n  created_at: '2026-05-20T12:15:26.116878+00:00'\n  provider: OpenRouter\n  purpose: GPT-4o judge scoring via OpenRouter endpoint (base_url=http://47.94.22.126/v1)\n  updated_at: '2026-05-20T12:15:26.116900+00:00'\nssh_westb_29275:\n  created_at: '2026-05-20T08:40:20.243593+00:00'\n  provider: SeetaCloud\n  purpose: westb-29275 root SSH password\n  updated_at: '2026-05-20T08:40:20.243619+00:00'\n",
       "numLines": 16,
       "startLine": 1,
       "totalLines": 16

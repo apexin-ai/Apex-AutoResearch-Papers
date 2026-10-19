@@ -12715,7 +12715,7 @@ Summary:
      - The main script for this experiment, comprehensive self-contained 5-step pipeline
      - Written locally at `/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/gpt4o_rewriter_formality_scoring.py`
      - Uploaded to server at `/root/causal_style_decomp_judge/csd_pipeline/gpt4o_rewriter_formality_scoring.py`
-     - Key config: GPT4O_BASE_URL="http://47.94.22.126/v1", GPT4O_API_KEY="tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8", QWEN_BASE_URL="http://localhost:8000/v1", NLI_MODEL_PATH="/root/autodl-tmp/models/nli-deberta-v3-large/", NLI_THRESHOLD=0.90, N_BOOT=10000, SEED=42
+     - Key config: GPT4O_BASE_URL="http://47.94.22.126/v1", GPT4O_API_KEY="[REDACTED]", QWEN_BASE_URL="http://localhost:8000/v1", NLI_MODEL_PATH="/root/autodl-tmp/models/nli-deberta-v3-large/", NLI_THRESHOLD=0.90, N_BOOT=10000, SEED=42
      - Output files: counterfactuals_gpt4o_rewriter_formality.jsonl, verified_gpt4o_rewriter_formality.jsonl, pairwise_results_gpt4o_rewriter_formality_qwen32b.jsonl, scored_gpt4o_rewriter_formality_qwen32b.jsonl, gpt4o_rewriter_formality_results.json
      - 5 steps: step1_generate_counterfactuals(), step2_nli_verification(), step3_pairwise_scoring(), step4_likert_scoring(), step5_analysis()
      - Uses exact same prompts as existing pipeline (FORMALITY_SYSTEM_PROMPT, FORMALITY_DETECT_PROMPT, FORMALITY_EXAMPLES, PAIRWISE_SYSTEM, PAIRWISE_USER_TEMPLATE, JUDGE_SYSTEM, JUDGE_USER_TEMPLATE)

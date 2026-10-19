@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp-016",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:30:50.899Z",
+    "updated_at": "2026-05-21T02:31:32.935Z",
+    "hypothesis": "Bradley-Terry model on all pairwise comparisons (without consistency filtering) will confirm formal style preference, validating the sign test result with a parametric approach",
+    "spec": {
+      "command": "python3 csd_pipeline/exp016_bradley_terry.py",
+      "server": "westb-29275",
+      "data_path": "data/pairwise_results_32b.jsonl",
+      "data_count": 100,
+      "model_name": "n/a",
+      "seed": 42
+    },
+    "metrics": {
+      "bt_strength": 0.4436,
+      "bt_formal_win_prob": 0.6091,
+      "ci_lo_prob": 0.5381,
+      "ci_hi_prob": 0.6802,
+      "n_comparisons": 197,
+      "n_consistent_pairs": 55,
+      "bootstrap_n": 2000
+    },
+    "conclusion": "success",
+    "log_path": "csd_pipeline/exp016_bradley_terry.py",
+    "checkpoint_path": "n/a",
+    "completed_at": "2026-05-21T02:31:32.935Z"
+  },
+  "timestamp": "2026-05-21T02:31:32.969669+00:00",
+  "trigger": "update_registry"
+}

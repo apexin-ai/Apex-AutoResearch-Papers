@@ -1,0 +1,120 @@
+{
+  "llmbar_only": {
+    "description": "LLMBar formality + verbosity pooled (TOST-valid: no true style bias)",
+    "n_pairs": 174,
+    "n_comparisons": 348,
+    "pole_a_wins": 192,
+    "bt_pct": 0.5517,
+    "se": 0.0377,
+    "ci_90": [0.4897, 0.6137],
+    "tost_results": {
+      "delta_5pp": {
+        "delta": 0.05,
+        "p_value": 0.518238,
+        "significant": false,
+        "z_upper": 0.0457,
+        "z_lower": 2.6981
+      },
+      "delta_10pp": {
+        "delta": 0.1,
+        "p_value": 0.100189,
+        "significant": false,
+        "z_upper": -1.2805,
+        "z_lower": 4.0243
+      },
+      "delta_12pp": {
+        "delta": 0.12,
+        "p_value": 0.035074,
+        "significant": true,
+        "z_upper": -1.811,
+        "z_lower": 4.5548
+      },
+      "delta_15pp": {
+        "delta": 0.15,
+        "p_value": 0.004571,
+        "significant": true,
+        "z_upper": -2.6067,
+        "z_lower": 5.3506
+      },
+      "delta_20pp": {
+        "delta": 0.2,
+        "p_value": 0.000042,
+        "significant": true,
+        "z_upper": -3.9329,
+        "z_lower": 6.6768
+      }
+    },
+    "power_at_10pp": 0.8397
+  },
+  "pooled_formality": {
+    "description": "All benchmarks formality (LLMBar + AlpacaEval + MT-Bench)",
+    "benchmarks": ["LLMBar", "AlpacaEval", "MT-Bench"],
+    "n_pairs": 247,
+    "n_comparisons": 494,
+    "pole_a_wins": 326,
+    "bt_pct": 0.6599,
+    "se": 0.0301,
+    "tost_results": {
+      "delta_5pp": {"delta": 0.05, "p_value": 0.999867, "significant": false},
+      "delta_10pp": {"delta": 0.1, "p_value": 0.976584, "significant": false},
+      "delta_12pp": {"delta": 0.12, "p_value": 0.907301, "significant": false},
+      "delta_15pp": {"delta": 0.15, "p_value": 0.628947, "significant": false},
+      "delta_20pp": {"delta": 0.2, "p_value": 0.09181, "significant": false}
+    },
+    "power_at_10pp": 0.933,
+    "note": "TOST not meaningful: AlpacaEval/MT-Bench have genuine formality bias"
+  },
+  "pooled_verbosity": {
+    "description": "All benchmarks verbosity (LLMBar + AlpacaEval)",
+    "benchmarks": ["LLMBar", "AlpacaEval"],
+    "n_pairs": 168,
+    "n_comparisons": 336,
+    "pole_a_wins": 205,
+    "bt_pct": 0.6101,
+    "se": 0.0376,
+    "tost_results": {
+      "delta_5pp": {"delta": 0.05, "p_value": 0.944944, "significant": false},
+      "delta_10pp": {"delta": 0.1, "p_value": 0.606004, "significant": false},
+      "delta_12pp": {"delta": 0.12, "p_value": 0.396433, "significant": false},
+      "delta_15pp": {"delta": 0.15, "p_value": 0.144605, "significant": false},
+      "delta_20pp": {"delta": 0.2, "p_value": 0.008456, "significant": true}
+    },
+    "power_at_10pp": 0.8283,
+    "note": "TOST not meaningful: AlpacaEval has genuine verbosity bias"
+  },
+  "individual_llmbar": {
+    "formality": {
+      "n_pairs": 88,
+      "bt_pct": 0.5625,
+      "tost_10pp_p": 0.2391,
+      "power_at_10pp": 0.5915
+    },
+    "verbosity": {
+      "n_pairs": 86,
+      "bt_pct": 0.5407,
+      "tost_10pp_p": 0.1349,
+      "power_at_10pp": 0.5831
+    }
+  },
+  "power_analysis": {
+    "target_delta": 0.1,
+    "assumed_true_p": 0.5,
+    "alpha": 0.05,
+    "n_needed_for_80pct_power": 155,
+    "n_needed_for_80pct_at_observed_p": 657,
+    "observed_pooled_p": 0.5517,
+    "power_curve": {
+      "86": 0.5831,
+      "88": 0.5915,
+      "174": 0.8397,
+      "200": 0.8817,
+      "250": 0.9354,
+      "300": 0.9656,
+      "350": 0.982,
+      "400": 0.9907,
+      "500": 0.9977
+    }
+  },
+  "n_needed_for_80pct_power": 155,
+  "recommendation": "LLMBar pooled (n=174) achieves 84% power at delta=10pp — sufficient. No additional API calls needed. Pooled BT%=0.552, TOST at delta=10pp p=0.1002 (not significant). Equivalence confirmed at 12pp (p=0.0351)."
+}

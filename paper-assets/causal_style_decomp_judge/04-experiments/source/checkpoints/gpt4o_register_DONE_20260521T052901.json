@@ -1,0 +1,39 @@
+{
+  "exp_id": "gpt4o_register",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:28:11.858Z",
+    "updated_at": "2026-05-21T05:29:01.095Z",
+    "hypothesis": "GPT-4o judge shows register (academic/conversational) bias detectable via pairwise but not Likert, extending Blindspot to register axis with GPT-4o and enabling cross-model GEE decomposition comparison",
+    "spec": {
+      "command": "pairwise_scoring.py + judge_scoring.py via GPT-4o OpenRouter API",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/verified_register.jsonl",
+      "data_count": 100,
+      "model_name": "GPT-4o (OpenRouter via http://47.94.22.126/v1)",
+      "seed": 42,
+      "checkpoint_path": "data/pairwise_results_gpt4o_register.jsonl",
+      "log_path": "data/scored_gpt4o_register.jsonl"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "pairwise": {
+        "academic_win_rate": 0.633,
+        "sign_test_p": 0.085,
+        "note": "Not significant at α=0.05"
+      },
+      "likert": {
+        "pending_analysis": true,
+        "data_file": "data/scored_gpt4o_register.jsonl"
+      },
+      "status_note": "GPT-4o register pairwise 63.3% p=0.085 (NS). Likert data collected, BT/GEE pending."
+    },
+    "completed_at": "2026-05-21T05:29:01.095Z"
+  },
+  "timestamp": "2026-05-21T05:29:01.139465+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_llama70b_crossbench_20260524T081820_result.json",
     "occurrence": 1,
-    "bytes": 1809,
-    "sha256": "4d7936640968c6dc4c31f570932a1b26684babd49961b7b9b4baff4991f9ac79"
+    "bytes": 1808,
+    "sha256": "21478d73a8daa2eca46745131ce525d08b4e8cb62be2133e530c2fa9e42a73c7"
   },
   "statistics": {
     "messages": 1,

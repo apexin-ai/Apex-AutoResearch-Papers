@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_pull-annotation_20260522T231527_result.json",
     "occurrence": 1,
-    "bytes": 293,
-    "sha256": "e2d845eb13119473f04ae482e06b3937642321090c3b00501824559fc3d1d4e0"
+    "bytes": 292,
+    "sha256": "339c74574ddbc1958d2ca501eb45cde8cbfc4241057ab88949ff607ad49c33dd"
   },
   "statistics": {
     "messages": 1,

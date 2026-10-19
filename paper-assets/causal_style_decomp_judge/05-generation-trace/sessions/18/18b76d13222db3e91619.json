@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r15-mf3-gee-n355_20260523T055128_result.json",
     "occurrence": 1,
-    "bytes": 977,
-    "sha256": "53205cc1ba99013273a881aa2c873c8e3835a7ab31520a7f590810cefdf1ac13"
+    "bytes": 976,
+    "sha256": "5357ceec274e2856c4d44a59e9bc7e16be5f38851b882487f7333a098dad8a3e"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_investigate_h1h2-fk-mediation_20260525T201059_result.json",
     "occurrence": 1,
-    "bytes": 877,
-    "sha256": "dd88637f956bd8f96f6c692bbf3d0c72afad405845afcbd64166bb24dc85b928"
+    "bytes": 876,
+    "sha256": "a60a021532fa6d2961508465cd323555f499320f21c0dc2cba485050427d3437"
   },
   "statistics": {
     "messages": 1,

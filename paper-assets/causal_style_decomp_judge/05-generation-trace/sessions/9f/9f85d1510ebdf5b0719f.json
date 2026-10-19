@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_dryrun_content_verification_20260520T110435_result.json",
     "occurrence": 1,
-    "bytes": 1729,
-    "sha256": "ff79116df3720bddd5718ee4676a3203759f21b75d91efac8382311e2a784b56"
+    "bytes": 1728,
+    "sha256": "f36980248a5d2825f626c0304cf0fd4470df5c86f6d0bf388cbd4648b41641ec"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mtbench_qwen32b_scoring_20260521T080440_result.json",
     "occurrence": 1,
-    "bytes": 866,
-    "sha256": "5430edbd33b1c1fe91080936ba09bc1140b3b2aacef6d19a324d946d2b983ece"
+    "bytes": 865,
+    "sha256": "83f709915a03f74e00cced44f8cb20751bfcd0afcdccbac555974b12241d0664"
   },
   "statistics": {
     "messages": 1,

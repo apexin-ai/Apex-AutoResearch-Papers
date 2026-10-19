@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_claude_tost_equivalence_20260521T114415_result.json",
     "occurrence": 1,
-    "bytes": 918,
-    "sha256": "243e497312e39221f62142e52c600d9e7540417bc34abce6bc22eae15a81d2ca"
+    "bytes": 917,
+    "sha256": "0d533f34455fb9a44917ba92bff4dbb864b30e688a1cd5252237f39d46f637d3"
   },
   "statistics": {
     "messages": 1,

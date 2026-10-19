@@ -1,0 +1,15 @@
+{
+  "exp_id": "verbosity_7method_sensitivity",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:09:57.524Z",
+    "updated_at": "2026-05-21T13:10:01.024Z",
+    "hypothesis": "All 6 Likert-based statistical methods fail to detect verbosity bias (p>0.05) while Bradley-Terry detects it (77.3%, p<0.001), replicating the formality attenuation pattern on verbosity axis (addresses SF5)"
+  },
+  "timestamp": "2026-05-21T13:10:01.119879+00:00",
+  "trigger": "update_registry"
+}

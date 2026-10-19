@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_dual_model_download_20260520T095735_result.json",
     "occurrence": 1,
-    "bytes": 151,
-    "sha256": "146eec6d6a3f11a176b8a931952152578d81153efa493045c2460b4702b02bf3"
+    "bytes": 150,
+    "sha256": "bb488e3e4eb853fae6e985d7c1fe96e1a91252e6c205ddd6fd73f7ca92525a02"
   },
   "statistics": {
     "messages": 1,

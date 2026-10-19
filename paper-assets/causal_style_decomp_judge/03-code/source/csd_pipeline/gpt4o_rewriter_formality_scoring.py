@@ -28,11 +28,11 @@ logger = logging.getLogger(__name__)
 
 # ─── Config ────────────────────────────────────────────────────────────
 GPT4O_BASE_URL = "http://47.94.22.126/v1"
-GPT4O_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"
+GPT4O_API_KEY = "[REDACTED]"
 GPT4O_MODEL = "gpt-4o"
 
 QWEN_BASE_URL = "http://localhost:8000/v1"
-QWEN_API_KEY = "EMPTY"
+QWEN_API_KEY = "[REDACTED]"
 QWEN_MODEL = "/root/autodl-tmp/models/Qwen3-32B/"
 
 NLI_MODEL_PATH = "/root/autodl-tmp/models/nli-deberta-v3-large/"

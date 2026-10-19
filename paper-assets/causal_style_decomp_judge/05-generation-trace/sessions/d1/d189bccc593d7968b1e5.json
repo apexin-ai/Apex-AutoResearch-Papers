@@ -9,17 +9,17 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_formality_rewriter_independence_20260521T095907_result.json",
     "occurrence": 1,
-    "bytes": 2409795,
-    "sha256": "cdb6073ae37af9f855c65848a38a0a970e71e2321584a4975bc404b9eb83b88e"
+    "bytes": 2409843,
+    "sha256": "c4cb1faa453799c1917f443695185e0c2b600594d5f0785c607d6b4109cba5f3"
   },
   "statistics": {
     "messages": 1,
     "user_turns": 0,
     "tool_calls": 0,
     "roles": {
-      "result": 1
+      "log": 1
     },
-    "unparsed_lines_preserved": 0,
+    "unparsed_lines_preserved": 1,
     "reported_errors": 0
   },
   "rounds": [

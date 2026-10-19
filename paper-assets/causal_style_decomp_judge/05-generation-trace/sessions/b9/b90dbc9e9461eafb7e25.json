@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp006_scaled_cf_gen_20260521T041045.log",
     "occurrence": 1,
-    "bytes": 1232261,
-    "sha256": "0385296fddfce16bdb9ba4f37fac8c4f1e8a02c1ea5a06b8180309ab1092df6f"
+    "bytes": 1232296,
+    "sha256": "24eb815bdecf52c82fdca477c31b05d0e140becaec82f01b6c70e646f0e94d31"
   },
   "statistics": {
     "messages": 974,

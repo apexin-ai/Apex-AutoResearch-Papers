@@ -1,0 +1,108 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zheng2023judging}
+\citation{li2024alpacaeval}
+\citation{zheng2023judging}
+\citation{sosbench2025}
+\citation{soumik2026}
+\citation{ratebias2025}
+\citation{thurstone1927,kiritchenko2017,novikova2018}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{ratebias2025}
+\citation{zheng2023judging}
+\citation{sosbench2025}
+\citation{casse2026}
+\citation{fairjudge2025}
+\citation{preferenceleak2026}
+\citation{stureborg2024}
+\citation{thurstone1927}
+\citation{kiritchenko2017}
+\citation{novikova2018}
+\citation{karpinska2021}
+\citation{veitch2020}
+\citation{ratebias2025}
+\citation{zhou2025counterfactual}
+\citation{mir2019,krishna2020}
+\citation{li2024alpacaeval}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM Judge Biases.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Likert vs.\ Pairwise Measurement.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Counterfactual Text Methods.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Length Bias Correction.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Multi-judge pairwise formality results on LLMBar. Only GPT-4o shows significant formality preference.}}{3}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:multi_judge}{{1}{3}{Multi-judge pairwise formality results on LLMBar. Only GPT-4o shows significant formality preference}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Counterfactual Generation (Stage 1)}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Content Preservation Verification (Stage 2)}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Position-Controlled Pairwise Comparison (Stage 3)}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Likert Baseline and Binarized Control (Stage 4)}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Multi-Judge Formality Results}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:multi_judge}{{4.1}{3}{Multi-Judge Formality Results}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Counterfactual quality degrades with text length. NLI pass rate drops from 88\% (LLMBar, short texts) to 68\% (MT-Bench, long texts).}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:counterfactual_quality}{{2}{4}{Counterfactual quality degrades with text length. NLI pass rate drops from 88\% (LLMBar, short texts) to 68\% (MT-Bench, long texts)}{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 9-cell pairwise win rate matrix (formality axis). ** denotes $p < 0.01$. Only GPT-4o $\times $ LLMBar is significant.}}{4}{table.caption.7}\protected@file@percent }
+\newlabel{tab:nine_cell}{{3}{4}{9-cell pairwise win rate matrix (formality axis). ** denotes $p < 0.01$. Only GPT-4o $\times $ LLMBar is significant}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Multi-Benchmark Formality Results}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:multi_bench}{{4.2}{4}{Multi-Benchmark Formality Results}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Likert vs.\ Pairwise Sensitivity Analysis}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:likert_pairwise}{{4.3}{4}{Likert vs.\ Pairwise Sensitivity Analysis}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Original Preference (RATE Control)}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:rate_control}{{4.4}{4}{Original Preference (RATE Control)}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Likert vs.\ pairwise sensitivity comparison. The measurement gap (YES) appears only where a true effect exists. Binarized Likert applies sign test to Likert-derived preferences, controlling for statistical test choice.}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:likert_pairwise}{{4}{5}{Likert vs.\ pairwise sensitivity comparison. The measurement gap (YES) appears only where a true effect exists. Binarized Likert applies sign test to Likert-derived preferences, controlling for statistical test choice}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Original preference: judges prefer original text over its double-rewrite (same style). This confound is more robust across judges than formality bias itself.}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:original_pref}{{5}{5}{Original preference: judges prefer original text over its double-rewrite (same style). This confound is more robust across judges than formality bias itself}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Scaled Replication ($n$\,=\,500)}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:scale}{{4.5}{5}{Scaled Replication ($n$\,=\,500)}{subsection.4.5}{}}
+\citation{landis1977}
+\citation{ratebias2025}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Effect attenuates at scale: formal win rate drops from 69.1\% ($n$\,=\,100) to 59\% ($n$\,=\,500), but remains significant.}}{6}{table.caption.10}\protected@file@percent }
+\newlabel{tab:scale}{{6}{6}{Effect attenuates at scale: formal win rate drops from 69.1\% ($n$\,=\,100) to 59\% ($n$\,=\,500), but remains significant}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Results replicate across rewriters. Llama-3.1-70B produces slightly lower-quality counterfactuals but the same pattern: significant for GPT-4o, null for other judges.}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:rewriter}{{7}{6}{Results replicate across rewriters. Llama-3.1-70B produces slightly lower-quality counterfactuals but the same pattern: significant for GPT-4o, null for other judges}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Rewriter Robustness}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:rewriter}{{4.6}{6}{Rewriter Robustness}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Human Validation of NLI Gate}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:human_nli}{{4.7}{6}{Human Validation of NLI Gate}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The Likert Blindspot is real but narrow.}{6}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Human-NLI confusion matrix for content preservation ($n$\,=\,100). NLI achieves high precision (98.9\%) but low specificity (33.3\%).}}{7}{table.caption.12}\protected@file@percent }
+\newlabel{tab:human_nli}{{8}{7}{Human-NLI confusion matrix for content preservation ($n$\,=\,100). NLI achieves high precision (98.9\%) but low specificity (33.3\%)}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces NLI gate agreement metrics.}}{7}{table.caption.13}\protected@file@percent }
+\newlabel{tab:nli_metrics}{{9}{7}{NLI gate agreement metrics}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Implications for RATE and Likert-based audits.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Judge selection guidance.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Method boundaries.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Original preference confound.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single significant cell.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{NLI gate limitations.}{7}{section*.20}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{zheng2023judging}{{1}{2023}{{Zheng et al.}}{{}}}
+\bibcite{li2024alpacaeval}{{2}{2024}{{Li et al.}}{{}}}
+\bibcite{sosbench2025}{{3}{2025}{{SOS-Bench}}{{}}}
+\bibcite{soumik2026}{{4}{2026}{{Soumik}}{{}}}
+\bibcite{ratebias2025}{{5}{2025}{{RATE}}{{}}}
+\bibcite{casse2026}{{6}{2026}{{CASSE}}{{}}}
+\bibcite{fairjudge2025}{{7}{2025}{{FairJudge}}{{}}}
+\bibcite{preferenceleak2026}{{8}{2026}{{Li et al.}}{{}}}
+\bibcite{stureborg2024}{{9}{2024}{{Stureborg et al.}}{{}}}
+\bibcite{thurstone1927}{{10}{1927}{{Thurstone}}{{}}}
+\bibcite{kiritchenko2017}{{11}{2017}{{Kiritchenko and Mohammad}}{{}}}
+\bibcite{novikova2018}{{12}{2018}{{Novikova et al.}}{{}}}
+\bibcite{karpinska2021}{{13}{2021}{{Karpinska et al.}}{{}}}
+\bibcite{veitch2020}{{14}{2020}{{Veitch et al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Single style axis.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Effect attenuation at scale.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\bibcite{zhou2025counterfactual}{{15}{2025}{{Zhou et al.}}{{}}}
+\bibcite{mir2019}{{16}{2019}{{Mir et al.}}{{}}}
+\bibcite{krishna2020}{{17}{2020}{{Krishna et al.}}{{}}}
+\bibcite{landis1977}{{18}{1977}{{Landis and Koch}}{{}}}
+\bibcite{ye2024flask}{{19}{2024}{{Ye et al.}}{{}}}
+\bibcite{li2024split}{{20}{2024b}{{Li et al.}}{{}}}
+\gdef \@abspage@last{9}

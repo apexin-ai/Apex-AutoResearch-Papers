@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_mvp_32b_progress_and_nli_investigate_20260520T142517_result.json",
     "occurrence": 1,
-    "bytes": 2697,
-    "sha256": "eaaded85d675a02c1aa79a6e2527324660c6a0d7c8e0eb318f04502d7c4e22eb"
+    "bytes": 2696,
+    "sha256": "9eb3eca373066e8b91aa9f63e0afbf635a9f2d257672fc566c70bb2c40242f54"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp006_n400_scoring_20260521T082405_result.json",
     "occurrence": 1,
-    "bytes": 1293,
-    "sha256": "672310b7e5bf30828cd02131d438b1e70f1f2b4c297f99b2eb0db0ae54bd3b2a"
+    "bytes": 1292,
+    "sha256": "a495696c6295dce144b95b45459dcf83c8b87910da674af1becbefc62d554859"
   },
   "statistics": {
     "messages": 1,

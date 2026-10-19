@@ -1,0 +1,48 @@
+{
+  "exp_id": "claude_verbosity",
+  "project": "causal_style_decomp_judge",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:47:10.568Z",
+    "updated_at": "2026-05-21T08:58:12.254Z",
+    "hypothesis": "Claude Sonnet 4 shows verbosity style bias similar to GPT-4o (OR=10-13) and Qwen3-32B, confirming verbosity bias is model-independent",
+    "conclusion": "negative",
+    "metrics": {
+      "bt": {
+        "p_verbose": 0.541,
+        "ci": [
+          0.459,
+          0.616
+        ],
+        "p_value": 0.284
+      },
+      "likert": {
+        "ate": -0.081,
+        "p": 0.7427,
+        "d": -0.039,
+        "tie_rate": 0.674
+      },
+      "gee": {
+        "style_or": 1.52,
+        "style_p": 0.2858,
+        "orig_or": 0.8,
+        "orig_p": 0.5626
+      },
+      "blindspot": false,
+      "n_pairs": 86
+    },
+    "spec": {
+      "command": "python claude_judge_scoring.py --axis verbosity",
+      "server": "westb-29275",
+      "data_path": "data/verified_verbosity.jsonl",
+      "data_count": 86,
+      "model_name": "claude-sonnet-4-20250514",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-21T08:58:12.310311+00:00",
+  "trigger": "update_registry"
+}

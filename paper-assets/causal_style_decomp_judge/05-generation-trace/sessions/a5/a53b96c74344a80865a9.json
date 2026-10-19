@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_pipeline_claude-crossbench-scoring_20260523T005801_result.json",
     "occurrence": 1,
-    "bytes": 130,
-    "sha256": "fc6051007cc3568b9766fd142d99e267473756b11871b130ec6ef0d3a846a1d3"
+    "bytes": 129,
+    "sha256": "869ccc362a0bb7104c3fc3169d3c580805ca5068cd15e7bba4fe6596aadb038b"
   },
   "statistics": {
     "messages": 1,

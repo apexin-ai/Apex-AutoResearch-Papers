@@ -6,6 +6,61 @@
 
 ## Before a recorded user message
 
+### Tool call
+
+_source line 426_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xz7NdH9xNsEAx8fJXeJmCf`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_results_scaled_formality_llama70b.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0c532f6c-d815-415e-8395-2c0009979c43",
+  "uuid": "a36baced-6ad6-4fb7-86f6-9acd0a41158a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013obLcGC7EUeRmmce1evokX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 248,
+      "cache_read_input_tokens": 117351,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 248
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
 ### Tool result
 
 _source line 427 · 2026-05-24T06:40:50.621Z_

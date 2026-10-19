@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_verbosity_gee_decomposition_20260521T050306_result.json",
     "occurrence": 1,
-    "bytes": 452,
-    "sha256": "92a5c2147bd00dba5e36c42fd39685440e6fc14df99c432f8e4fa4f75cdc4867"
+    "bytes": 451,
+    "sha256": "6376bf5436cf9173b8522d300e75217145a0b141f8123083c4690c73163af6c4"
   },
   "statistics": {
     "messages": 1,

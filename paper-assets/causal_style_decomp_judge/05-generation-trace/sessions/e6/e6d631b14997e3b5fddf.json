@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exec_pairwise_scoring_32b_20260520T173534_result.json",
     "occurrence": 1,
-    "bytes": 1699,
-    "sha256": "7f1e92968ab11dabf2ed3f2c9d16e3c25ccb4d2cf33a3c083a10a0ae472bad4a"
+    "bytes": 1698,
+    "sha256": "3895857585d2b2f8d880dc2c34f566677dd788a4dd187d4f111d7b618a68f508"
   },
   "statistics": {
     "messages": 1,

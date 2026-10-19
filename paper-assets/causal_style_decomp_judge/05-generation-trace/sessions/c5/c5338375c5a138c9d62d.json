@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_sync_cv_fix_to_local_20260520T141812_result.json",
     "occurrence": 1,
-    "bytes": 418,
-    "sha256": "ce1c1262405011abe45b18eb2ec59e1119c095e0c6a4102f44ce936979e0763c"
+    "bytes": 417,
+    "sha256": "ff363e818c9309f284541a1c185c1861cf555ce34f4c9da0877ebf4534acf655"
   },
   "statistics": {
     "messages": 1,

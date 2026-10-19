@@ -1,0 +1,66 @@
+{
+  "exp_id": "exp014_logistic_decomposition",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T23:56:26.706Z",
+    "updated_at": "2026-05-21T00:19:41.292Z",
+    "hypothesis": "The observed 69.1% formal win rate in pairwise comparison is primarily driven by original-preference bias rather than genuine formality effect, and logistic regression decomposition will show formality coefficient is non-significant after controlling for original preference",
+    "metrics": {
+      "method_note": "CORRECTED: pair-level bootstrap + GEE (fixes independence violation)",
+      "pair_bootstrap": {
+        "formal_effect_coef": 0.7928,
+        "formal_effect_OR": 2.2095,
+        "formal_effect_OR_ci": [
+          1.228,
+          4.305
+        ],
+        "formal_effect_p": 0.0121,
+        "original_effect_coef": 0.5958,
+        "original_effect_OR": 1.8145,
+        "original_effect_OR_ci": [
+          0.976,
+          3.369
+        ],
+        "original_effect_p": 0.0643
+      },
+      "gee_exchangeable": {
+        "formal_effect_coef": 0.7931,
+        "formal_effect_OR": 2.2103,
+        "formal_effect_OR_ci": [
+          1.21,
+          4.038
+        ],
+        "formal_effect_p": 0.0099,
+        "original_effect_coef": 0.5973,
+        "original_effect_OR": 1.8172,
+        "original_effect_OR_ci": [
+          0.995,
+          3.319
+        ],
+        "original_effect_p": 0.052
+      },
+      "direction_subset": {
+        "formal_to_casual_win_rate": 0.788,
+        "formal_to_casual_p": 0.001319,
+        "casual_to_formal_win_rate": 0.545,
+        "casual_to_formal_p": 0.831812
+      },
+      "intercept_position_bias": -0.5851,
+      "n_pairs": 98,
+      "n_observations": 196,
+      "old_observation_bootstrap_note": "SUPERSEDED: old p=0.011/0.048 used observation-level bootstrap, understated SE"
+    },
+    "spec": {
+      "checkpoint_path": "N/A (reanalysis)",
+      "log_path": "artifacts/csd_pipeline/exp014_logistic_decomposition.py"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T00:19:41.292Z"
+  },
+  "timestamp": "2026-05-21T00:19:41.314099+00:00",
+  "trigger": "update_registry"
+}

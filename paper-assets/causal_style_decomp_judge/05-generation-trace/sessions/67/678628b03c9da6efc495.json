@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_bt_discrepancy_investigation_20260521T033133_result.json",
     "occurrence": 1,
-    "bytes": 1477,
-    "sha256": "0885629c27f070902900acfe50a7a926e8451038ee247089bab912453060a0ab"
+    "bytes": 1476,
+    "sha256": "097dafa6853cb17fa01d22ea3db2f11cf6bf7256d946f02a97076b1014bd0eee"
   },
   "statistics": {
     "messages": 1,

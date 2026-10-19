@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_mvp_urgent_status_and_launch_20260520T140237_result.json",
     "occurrence": 1,
-    "bytes": 1254,
-    "sha256": "ec28f9929bd69c5205fe2bffb94136f204fccb843c7ca45d262fa6ff2552b783"
+    "bytes": 1253,
+    "sha256": "6529c7ecc14f9bff1d6cf219337a6ca88025759a9d847cafbad7bd747294cc0e"
   },
   "statistics": {
     "messages": 1,

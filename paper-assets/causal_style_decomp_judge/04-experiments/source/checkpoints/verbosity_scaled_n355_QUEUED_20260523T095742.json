@@ -1,0 +1,15 @@
+{
+  "exp_id": "verbosity_scaled_n355",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:57:40.068Z",
+    "updated_at": "2026-05-23T09:57:42.868Z",
+    "hypothesis": "Verbosity Style OR at n=355 will shrink from n=86 estimates (8.21-13.10) to projected range 4-6.5 due to small-sample upward bias, mirroring the formality shrinkage pattern (4.20→2.15). Likert ATE will remain NS, confirming the Blindspot is robust to increased sample size for verbosity axis."
+  },
+  "timestamp": "2026-05-23T09:57:42.988600+00:00",
+  "trigger": "update_registry"
+}

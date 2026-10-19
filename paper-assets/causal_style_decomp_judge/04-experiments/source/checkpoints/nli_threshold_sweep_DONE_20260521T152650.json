@@ -1,0 +1,36 @@
+{
+  "exp_id": "nli_threshold_sweep",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:26:18.221Z",
+    "updated_at": "2026-05-21T15:26:50.643Z",
+    "hypothesis": "BT-detected style bias is robust to NLI threshold choice: sweeping from 0.50 to 0.98 should show stable BT probability and consistent significance across all 4 axis×judge combinations, proving the finding is not an artifact of a specific threshold cutoff",
+    "spec": {
+      "command": "/root/miniconda3/bin/python /tmp/nli_threshold_sweep.py /root/causal_style_decomp_judge",
+      "server": "westb-29275",
+      "data_path": "data/pairwise_results_{qwen32b_formality,32b,qwen32b_verbosity,gpt4o_verbosity}.jsonl",
+      "data_count": "100 pairs × 4 combos",
+      "model_name": "CPU analysis (choix BT + bootstrap)",
+      "seed": 42,
+      "checkpoint_path": "data/nli_threshold_sweep.json",
+      "log_path": "data/nli_threshold_sweep.json",
+      "metrics": {
+        "total_significant": "44/44 (100%)",
+        "formality_qwen32b_bt_range": "0.648-0.665",
+        "formality_gpt4o_bt_range": "0.614-0.642",
+        "verbosity_qwen32b_bt_range": "0.765-0.773",
+        "verbosity_gpt4o_bt_range": "0.752-0.769",
+        "all_p_values": "≤0.002",
+        "max_bt_delta_across_thresholds": "~3pp"
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T15:26:50.643Z"
+  },
+  "timestamp": "2026-05-21T15:26:50.729864+00:00",
+  "trigger": "update_registry"
+}

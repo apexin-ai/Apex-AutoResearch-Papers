@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_register_counterfactual_gen_100_20260521T004113_result.json",
     "occurrence": 1,
-    "bytes": 315,
-    "sha256": "a8870b661396b0a2309fbad0f6e5413efbb1560f8e503f2dba2a4dd8dc307542"
+    "bytes": 314,
+    "sha256": "3c58ccad41111729d25ee4cdf4a2590cee30be8e575ba1ec151e702889569f7d"
   },
   "statistics": {
     "messages": 1,

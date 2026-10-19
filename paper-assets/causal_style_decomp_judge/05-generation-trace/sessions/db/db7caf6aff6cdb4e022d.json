@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_r15-sf4-sobel-audit_20260523T063528_result.json",
     "occurrence": 1,
-    "bytes": 915,
-    "sha256": "c36e8c7f7fb91d940f1ee7cf9a50ea3899d7ca67a7d605e4b177725b501cfa93"
+    "bytes": 914,
+    "sha256": "6a61ff990b1166f4052090007585be1a4ab83d82d4fb6d5c25e9a492cc59fa4f"
   },
   "statistics": {
     "messages": 1,

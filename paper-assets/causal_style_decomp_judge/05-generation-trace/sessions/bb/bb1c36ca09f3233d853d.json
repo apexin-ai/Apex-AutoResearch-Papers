@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_fix_bertscore_download_20260520T121845_result.json",
     "occurrence": 1,
-    "bytes": 492,
-    "sha256": "94ea3773dfa9215dfc89482ca748752a983cc41bef711f6e687957aa566f22e4"
+    "bytes": 491,
+    "sha256": "e6904fbf0667f9ef0e871dceccc63df2270ebe55586e958fd591c178d7f3707b"
   },
   "statistics": {
     "messages": 1,

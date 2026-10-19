@@ -1,0 +1,41 @@
+{
+  "exp_id": "crossbench_alpacaeval_verbosity",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T16:52:26.420Z",
+    "updated_at": "2026-05-21T16:52:40.971Z",
+    "hypothesis": "AlpacaEval verbosity bias is strong enough (BT ~84%) that even Likert detects it, confirming the effect-size gradient: Blindspot occurs at small-to-medium effects (d<0.15) but not at large effects (d>0.3)",
+    "conclusion": "success",
+    "metrics": {
+      "bt_p_verbose": 84.1,
+      "bt_ci": [
+        77.4,
+        90.2
+      ],
+      "bt_p": 0.0001,
+      "likert_ate": 0.732,
+      "likert_d": 0.407,
+      "likert_p": 0.000414,
+      "tie_rate": 0.244,
+      "blindspot": false,
+      "n_pairs": 82
+    },
+    "spec": {
+      "command": "alpacaeval_qwen32b_scoring.py (previously completed)",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/verified_alpacaeval_verbosity.jsonl",
+      "data_count": "82 NLI-pass pairs",
+      "model_name": "Qwen3-32B",
+      "seed": 42,
+      "checkpoint_path": "/root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_verbosity_qwen32b.jsonl",
+      "log_path": "N/A (pre-existing data)"
+    },
+    "completed_at": "2026-05-21T16:52:40.971Z"
+  },
+  "timestamp": "2026-05-21T16:52:41.069679+00:00",
+  "trigger": "update_registry"
+}

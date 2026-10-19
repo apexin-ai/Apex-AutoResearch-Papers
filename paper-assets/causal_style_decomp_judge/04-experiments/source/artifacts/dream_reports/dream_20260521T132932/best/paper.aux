@@ -1,0 +1,574 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zheng2023judging,dubois2024alpacafarm}
+\citation{wu2024style,park2024offsetbias,stureborg2024large}
+\citation{koo2023benchmarking}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN@col{2}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\@LN{80}{0}
+\citation{zheng2023judging}
+\citation{wu2024style}
+\citation{park2024offsetbias}
+\citation{stureborg2024large}
+\citation{koo2023benchmarking}
+\citation{ye2024beyond}
+\citation{chen2024casse}
+\citation{dubois2024length}
+\citation{thurstone1927law}
+\citation{stevens1946theory}
+\citation{jeong2025comparative}
+\citation{zeng2024llmbar}
+\citation{dubois2024alpacafarm}
+\citation{zheng2023judging}
+\@LN@col{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-judge biases.}{2}{section*.1}\protected@file@percent }
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@writefile{toc}{\contentsline {paragraph}{Measurement methodology.}{2}{section*.2}\protected@file@percent }
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@writefile{toc}{\contentsline {paragraph}{Pairwise format considerations.}{2}{section*.3}\protected@file@percent }
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Controlled Style Decomposition}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method: Controlled Style Decomposition}{section.3}{}}
+\@LN{120}{1}
+\@writefile{toc}{\contentsline {paragraph}{Stage 1: Counterfactual generation.}{2}{section*.4}\protected@file@percent }
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of the CSD pipeline. Stages 1--2 produce content-controlled counterfactual pairs; Stages 3--4 quantify and decompose style bias.}}{2}{figure.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:pipeline}{{1}{2}{Overview of the CSD pipeline. Stages 1--2 produce content-controlled counterfactual pairs; Stages 3--4 quantify and decompose style bias}{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Stage 2: NLI gating.}{2}{section*.5}\protected@file@percent }
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\@LN{139}{1}
+\@writefile{toc}{\contentsline {paragraph}{Stage 3: Position-controlled pairwise comparison.}{2}{section*.6}\protected@file@percent }
+\@LN{140}{1}
+\@LN{141}{1}
+\@LN{142}{1}
+\@LN{143}{1}
+\@LN{144}{1}
+\@LN{145}{1}
+\@LN{146}{1}
+\@writefile{toc}{\contentsline {paragraph}{Stage 4: Statistical analysis.}{2}{section*.7}\protected@file@percent }
+\@LN{147}{1}
+\@LN{148}{1}
+\@LN{149}{1}
+\@LN{150}{1}
+\@LN{151}{1}
+\@LN{152}{1}
+\@LN{153}{1}
+\@LN{154}{1}
+\@LN{155}{1}
+\@LN{156}{1}
+\@LN{157}{1}
+\@LN{158}{1}
+\@LN{159}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{2}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{2}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Source data.}{2}{section*.9}\protected@file@percent }
+\@LN{160}{1}
+\@LN{161}{1}
+\@LN{162}{1}
+\@LN{163}{1}
+\@LN{164}{1}
+\citation{dubois2024alpacafarm}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Style axes.}{3}{section*.10}\protected@file@percent }
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@writefile{toc}{\contentsline {paragraph}{Rewriter.}{3}{section*.11}\protected@file@percent }
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@writefile{toc}{\contentsline {paragraph}{Judges.}{3}{section*.12}\protected@file@percent }
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@writefile{toc}{\contentsline {paragraph}{NLI verification.}{3}{section*.13}\protected@file@percent }
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{3}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{3}{Results}{section.5}{}}
+\@LN{187}{2}
+\@LN{188}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Primary: Cross-Judge Style Bias Detection}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:primary}{{5.1}{3}{Primary: Cross-Judge Style Bias Detection}{subsection.5.1}{}}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Likert Blindspot}{3}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:blindspot}{{5.2}{3}{The Likert Blindspot}{subsection.5.2}{}}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Bradley-Terry $P(\text  {styled wins})$ on LLMBar. Three target judges consistently show verbosity and formality bias; Claude does not. $n = 86$--88 NLI-pass pairs per axis. Pair-level bootstrap, 10{,}000 iterations.}}{3}{table.caption.14}\protected@file@percent }
+\newlabel{tab:primary}{{1}{3}{Bradley-Terry $P(\text {styled wins})$ on LLMBar. Three target judges consistently show verbosity and formality bias; Claude does not. $n = 86$--88 NLI-pass pairs per axis. Pair-level bootstrap, 10{,}000 iterations}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Detection matrix across 18 judge$\times $axis$\times $benchmark cells. The Likert Blindspot: 10 of 12 BT-significant cells are missed by Likert scoring. The two Likert-significant cells are MT-Bench formality ($d = 0.17$) and AlpacaEval verbosity ($d = 0.38$), both with BT $> 69\%$.}}{3}{table.caption.15}\protected@file@percent }
+\newlabel{tab:blindspot}{{2}{3}{Detection matrix across 18 judge$\times $axis$\times $benchmark cells. The Likert Blindspot: 10 of 12 BT-significant cells are missed by Likert scoring. The two Likert-significant cells are MT-Bench formality ($d = 0.17$) and AlpacaEval verbosity ($d = 0.38$), both with BT $> 69\%$}{table.caption.15}{}}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}GEE Decomposition: Per-Axis Confound Structure}{3}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:gee}{{5.3}{3}{GEE Decomposition: Per-Axis Confound Structure}{subsection.5.3}{}}
+\@LN{223}{2}
+\@LN{224}{2}
+\@LN{225}{2}
+\@LN{226}{2}
+\@LN{227}{2}
+\@LN{228}{2}
+\@LN{229}{2}
+\@LN{230}{2}
+\@LN{231}{2}
+\@LN{232}{2}
+\citation{jeong2025comparative}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces GEE decomposition on LLMBar. Style OR = odds ratio for style direction controlling for originality; Orig OR = odds ratio for originality controlling for style. Verbosity shows a pure style effect (high Style OR, non-significant Orig OR); formality shows a mixed effect; register is originality-dominated.}}{4}{table.caption.16}\protected@file@percent }
+\newlabel{tab:gee}{{3}{4}{GEE decomposition on LLMBar. Style OR = odds ratio for style direction controlling for originality; Orig OR = odds ratio for originality controlling for style. Verbosity shows a pure style effect (high Style OR, non-significant Orig OR); formality shows a mixed effect; register is originality-dominated}{table.caption.16}{}}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Methodological Controls}{4}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:controls}{{5.4}{4}{Methodological Controls}{subsection.5.4}{}}
+\@LN{250}{3}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}Double-Rewrite Placebo}{4}{subsubsection.5.4.1}\protected@file@percent }
+\newlabel{sec:placebo}{{5.4.1}{4}{Double-Rewrite Placebo}{subsubsection.5.4.1}{}}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Double-rewrite placebo control. Treatment BT uses style-changed pairs; Placebo BT uses same-style pairs differing only in rewriting artifacts. All placebo BTs are non-significant ($\approx 50\%$), ruling out format amplification.}}{4}{table.caption.17}\protected@file@percent }
+\newlabel{tab:placebo}{{4}{4}{Double-rewrite placebo control. Treatment BT uses style-changed pairs; Placebo BT uses same-style pairs differing only in rewriting artifacts. All placebo BTs are non-significant ($\approx 50\%$), ruling out format amplification}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces NLI gate ablation (Qwen3-32B judge). NLI-pass pairs show stronger BT than NLI-fail pairs, confirming the gate removes content-mediated signal ($\sim $10pp).}}{4}{table.caption.18}\protected@file@percent }
+\newlabel{tab:nli_ablation}{{5}{4}{NLI gate ablation (Qwen3-32B judge). NLI-pass pairs show stronger BT than NLI-fail pairs, confirming the gate removes content-mediated signal ($\sim $10pp)}{table.caption.18}{}}
+\@LN{264}{3}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}NLI Gate Ablation}{4}{subsubsection.5.4.2}\protected@file@percent }
+\newlabel{sec:nli_ablation}{{5.4.2}{4}{NLI Gate Ablation}{subsubsection.5.4.2}{}}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3}Cross-Axis Gradient}{4}{subsubsection.5.4.3}\protected@file@percent }
+\newlabel{sec:gradient}{{5.4.3}{4}{Cross-Axis Gradient}{subsubsection.5.4.3}{}}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.4}Negative Control}{4}{subsubsection.5.4.4}\protected@file@percent }
+\newlabel{sec:negative_control}{{5.4.4}{4}{Negative Control}{subsubsection.5.4.4}{}}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN{290}{3}
+\citation{jeong2025comparative}
+\citation{thurstone1927law}
+\citation{ye2024beyond}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-axis gradient. NLI rejection rate (manipulation invasiveness) and BT are monotonically ordered across axes. GEE Ratio = Style OR / Orig OR. The gradient is independently replicated across two judges (Spearman $\rho = 1.0$).}}{5}{table.caption.19}\protected@file@percent }
+\newlabel{tab:gradient}{{6}{5}{Cross-axis gradient. NLI rejection rate (manipulation invasiveness) and BT are monotonically ordered across axes. GEE Ratio = Style OR / Orig OR. The gradient is independently replicated across two judges (Spearman $\rho = 1.0$)}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-benchmark formality BT. All target-judge cells are significant ($p < 0.001$); all Claude cells are non-significant. The pattern replicates across three benchmarks.}}{5}{table.caption.20}\protected@file@percent }
+\newlabel{tab:cross_bench}{{7}{5}{Cross-benchmark formality BT. All target-judge cells are significant ($p < 0.001$); all Claude cells are non-significant. The pattern replicates across three benchmarks}{table.caption.20}{}}
+\@LN{291}{4}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.5}Rewriter Independence}{5}{subsubsection.5.4.5}\protected@file@percent }
+\newlabel{sec:rewriter}{{5.4.5}{5}{Rewriter Independence}{subsubsection.5.4.5}{}}
+\@LN{292}{4}
+\@LN{293}{4}
+\@LN{294}{4}
+\@LN{295}{4}
+\@LN{296}{4}
+\@LN{297}{4}
+\@LN{298}{4}
+\@LN{299}{4}
+\@LN{300}{4}
+\@LN{301}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cross-Benchmark Generalization}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:cross_benchmark}{{5.5}{5}{Cross-Benchmark Generalization}{subsection.5.5}{}}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@LN{308}{4}
+\@writefile{toc}{\contentsline {paragraph}{Scaled replication.}{5}{section*.21}\protected@file@percent }
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{5}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{5}{Discussion}{section.6}{}}
+\newlabel{sec:amplification}{{6}{5}{Detection versus amplification}{section*.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{Detection versus amplification.}{5}{section*.22}\protected@file@percent }
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN@col{2}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@writefile{toc}{\contentsline {paragraph}{Why Likert fails.}{5}{section*.23}\protected@file@percent }
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@writefile{toc}{\contentsline {paragraph}{Practitioner implications.}{5}{section*.24}\protected@file@percent }
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@writefile{toc}{\contentsline {paragraph}{Limitations of prompt-level debiasing.}{5}{section*.25}\protected@file@percent }
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@LN{363}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{5}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{5}{Conclusion}{section.7}{}}
+\@LN{364}{4}
+\@LN{365}{4}
+\@LN{366}{4}
+\@LN{367}{4}
+\@LN{368}{4}
+\bibcite{chen2024casse}{{1}{2024}{{Chen et~al.}}{{}}}
+\bibcite{dubois2024alpacafarm}{{2}{2024{a}}{{Dubois et~al.}}{{}}}
+\bibcite{dubois2024length}{{3}{2024{b}}{{Dubois et~al.}}{{}}}
+\bibcite{jeong2025comparative}{{4}{2025}{{Jeong et~al.}}{{}}}
+\bibcite{koo2023benchmarking}{{5}{2023}{{Koo et~al.}}{{}}}
+\bibcite{lakens2017equivalence}{{6}{2017}{{Lakens}}{{}}}
+\bibcite{panickssery2024selfpreference}{{7}{2024}{{Panickssery et~al.}}{{}}}
+\bibcite{park2024offsetbias}{{8}{2024}{{Park et~al.}}{{}}}
+\bibcite{preston2000scale}{{9}{2000}{{Preston and Colman}}{{}}}
+\bibcite{stevens1946theory}{{10}{1946}{{Stevens}}{{}}}
+\bibcite{stureborg2024large}{{11}{2024}{{Stureborg et~al.}}{{}}}
+\bibcite{thurstone1927law}{{12}{1927}{{Thurstone}}{{}}}
+\bibcite{wu2024style}{{13}{2024}{{Wu et~al.}}{{}}}
+\bibcite{ye2024beyond}{{14}{2024}{{Ye et~al.}}{{}}}
+\bibcite{zeng2024llmbar}{{15}{2024}{{Zeng et~al.}}{{}}}
+\bibcite{zheng2023judging}{{16}{2023}{{Zheng et~al.}}{{}}}
+\@LN@col{1}
+\@LN{369}{5}
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@LN{374}{5}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\newlabel{sec:limitations}{{7}{6}{Limitations}{section*.26}{}}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN@col{2}
+\@LN{416}{5}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@LN{431}{5}
+\@LN{432}{5}
+\@LN{433}{5}
+\@LN{434}{5}
+\@LN{435}{5}
+\@LN{436}{5}
+\@LN{437}{5}
+\@LN{438}{5}
+\@LN{439}{5}
+\@LN{440}{5}
+\@LN{441}{5}
+\@LN{442}{5}
+\@LN{443}{5}
+\@LN{444}{5}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\gdef \@abspage@last{6}

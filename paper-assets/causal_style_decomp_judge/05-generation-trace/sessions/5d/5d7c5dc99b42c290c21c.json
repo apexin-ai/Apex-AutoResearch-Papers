@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_cleanup_deploy_vllm_alpacaeval_20260521T072358_result.json",
     "occurrence": 1,
-    "bytes": 820,
-    "sha256": "6f554ffb780a337cfa86be6666eeae66d231c41001c354f6e5db28b1f86ef417"
+    "bytes": 819,
+    "sha256": "6e246c5b4d730dd05066561565225aefbe7b0a0ec65a6596efbe7821febde5ec"
   },
   "statistics": {
     "messages": 1,

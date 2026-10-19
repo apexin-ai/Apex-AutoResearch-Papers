@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_mvp_fix_thinking_and_restart_20260520T131913_result.json",
     "occurrence": 1,
-    "bytes": 499,
-    "sha256": "bd7f97011e8daedf02da2c1c02cae796aaa008e570f3966ea7ea66ef9d64ce6f"
+    "bytes": 498,
+    "sha256": "9801bbc91680ce6b641a29bcba1ad5760a41f1dfde93167fade1da5e289284ea"
   },
   "statistics": {
     "messages": 1,

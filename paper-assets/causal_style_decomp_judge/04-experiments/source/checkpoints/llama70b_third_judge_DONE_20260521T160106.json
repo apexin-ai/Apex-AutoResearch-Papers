@@ -1,0 +1,68 @@
+{
+  "exp_id": "llama70b_third_judge",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:58:29.292Z",
+    "updated_at": "2026-05-21T16:01:06.337Z",
+    "hypothesis": "Llama-3.3-70B as third independent judge architecture confirms the Likert Blindspot: BT pairwise detects style bias (formality + verbosity) with p<0.05 while Likert scoring shows no significant difference, replicating the pattern found with GPT-4o and Qwen3-32B judges",
+    "plan_id": "llama70b_third_judge",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python csd_pipeline/llama70b_scoring.py",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/verified_32b.jsonl + verified_verbosity.jsonl",
+      "data_count": "88 formality + 86 verbosity NLI-pass pairs",
+      "model_name": "Llama-3.3-70B-Instruct",
+      "seed": 42,
+      "gpu": "cuda:2,3",
+      "vllm_port": 8003,
+      "checkpoint_path": "/root/causal_style_decomp_judge/data/llama70b_third_judge.json",
+      "log_path": "/root/causal_style_decomp_judge/logs/llama70b_scoring.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "formality": {
+        "bt_p_formal": 0.695,
+        "bt_ci": [
+          0.619,
+          0.765
+        ],
+        "bt_p": 0.0001,
+        "likert_ate": 0.023,
+        "likert_p": 0.8458,
+        "likert_d": 0.01,
+        "likert_tie_rate": 0.727,
+        "gee_style_or": 4.81,
+        "gee_style_p": 0.0001,
+        "gee_orig_or": 3.12,
+        "gee_orig_p": 0.0007,
+        "blindspot": true
+      },
+      "verbosity": {
+        "bt_p_verbose": 0.735,
+        "bt_ci": [
+          0.655,
+          0.809
+        ],
+        "bt_p": 0.0001,
+        "likert_ate": 0.047,
+        "likert_p": 0.7524,
+        "likert_d": 0.02,
+        "likert_tie_rate": 0.616,
+        "gee_style_or": 8.21,
+        "gee_style_p": 0.0001,
+        "gee_orig_or": 0.38,
+        "gee_orig_p": 0.0196,
+        "blindspot": true
+      },
+      "blindspot_both_axes": true,
+      "third_judge_confirms": true
+    },
+    "completed_at": "2026-05-21T16:01:06.337Z"
+  },
+  "timestamp": "2026-05-21T16:01:06.435636+00:00",
+  "trigger": "update_registry"
+}

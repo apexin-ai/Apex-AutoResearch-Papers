@@ -1,0 +1,131 @@
+paper_key: "preference_leakage_2026"
+title: "Preference Leakage: A Contamination Problem in LLM-as-a-judge"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - GPT-4o-2024-11-20 (as judge/generator)
+    - Gemini-1.5-flash (as judge/generator)
+    - LLaMA-3.3-70B-Instruct-turbo (as judge/generator)
+    - Claude-3.5-Sonnet (expanded judge)
+    - BERT classifier (for recognition analysis)
+  metrics:
+    - {name: "Preference Leakage Score (PLS)", direction: "lower_better"}
+    - {name: "Win Rate (WR)", direction: "higher_better"}
+    - {name: "Error Bias", direction: "lower_better"}
+    - {name: "Classification Accuracy (pointwise/pairwise)", direction: "higher_better"}
+    - {name: "Spearman Correlation", direction: "higher_better"}
+  datasets:
+    - {name: "Arena-Hard", size: "500 questions, 96.7% Spearman correlation with human preferences"}
+    - {name: "AlpacaEval 2.0", size: "805 questions with reduced length bias"}
+    - {name: "Ultrafeedback (for synthetic data generation)", size: "30,000 prompts (includes TruthfulQA, FalseQA, Evol-Instruct)"}
+  ablation_dimensions:
+    - relatedness_type (same model / inheritance / same family)
+    - learning_method (SFT / DPO / ICL)
+    - data_mixing_ratio (10% / 30% / 50% / 70% synthetic)
+    - student_model_size (1B / 3B / 7B / 14B)
+    - question_type (objective vs subjective)
+    - judgment_dimension (completeness vs fairness)
+    - spurious_features (style / format / wording removal)
+    - mitigation_methods (prompting / CoT / paraphrase / auto-calibration / contextual-calibration)
+    - language (English / Chinese)
+  training_recipe:
+    optimizer: "not explicitly stated (LLaMA-Factory default)"
+    lr: "1.0e-5"
+    hardware: "not specified"
+    batch_size: "2 (SFT) / 1 (DPO)"
+    epochs: 3
+    precision: "BF16"
+    framework: "LLaMA-Factory"
+  method_family: "LLM-as-a-judge bias analysis / evaluation contamination detection"
+
+positioning:
+  core_claim: "LLM judge 对由相关模型生成的合成数据训练出的 student 模型存在系统性偏好（preference leakage），这种偏差比 egocentric bias 更隐蔽、更严重，且 judge 自身无法检测到"
+  key_results: "Same-model PLS 最高达 28.7% (Arena-Hard)；Inheritance 关系 PLS 17.8-26.3%；Same-family PLS 2.2-10.1%；Contextual calibration 将 Error Bias 从 17.8 降至 7.3（-59%）；BERT 可达 82.4% 识别准确率而 LLM judge 仅 ~50%（接近随机）；偏好泄漏造成的排名偏差 +1.33（高于 egocentric bias 的 +1.00）"
+  limitations:
+    - "仅测试了有限的 LLM 组合，未穷举所有可能的 generator-judge 关系"
+    - "缓解方法（contextual calibration）需要 held-out 校准集，实用性受限"
+    - "无法完全解释 preference leakage 的底层机制（style/format 是主因但非全部）"
+    - "未探索更复杂的多阶段数据流（如 generator A → student → generator B → student 2）"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "开篇从 LLM 评估的普遍实践切入——合成数据生成和 LLM-as-a-judge 是两大基石实践，但它们的结合引入了一个此前被忽视的系统性偏差"
+  tension: "现有 LLM-as-a-judge 偏差研究（length bias, egocentric bias, position bias）都是已知且可检测的，但 preference leakage 更隐蔽——judge 自己无法识别受污染的输出，且污染通过多种 relatedness 形式传播"
+  key_insight: "在 Section 3 通过数学公式化定义 preference leakage，然后在 Section 4-5 用大量实验逐步揭示三个关键洞察：(1) 偏差随 relatedness 程度递减但始终存在，(2) style/format 是主要载体，(3) judge 无法自检但 BERT 可以——说明偏好是潜意识层面的"
+  argument_chain: "两大实践结合的风险 → 形式化定义 preference leakage 和三种 relatedness → RQ1: 证明系统性偏差存在 → RQ2: 量化严重程度（模型大小/数据比例/关系类型/学习方法）→ RQ3: 揭示底层机制（style > format > wording；judge 不可自检）→ 缓解方案评估"
+  contribution_framing: "三个贡献，递进式：概念提出 → 实验验证 → 机制分析。措辞用 'introduce'、'conduct extensive experiments'、'further analysis reveals'"
+  intro_structure: "5段：(1) LLM 进展与评估挑战 (2) LLM-as-a-judge 范式及已知偏差 (3) 定义 preference leakage 并引 Figure 1 (4) 三个研究问题 RQ1/RQ2/RQ3 (5) 贡献总结与可复现承诺"
+  notable_technique: "用三个递进的研究问题（存在性→严重性→机制）组织全文，每个 RQ 对应一组实验；spurious features 消融实验（去 style/format/wording）直接量化偏差来源，这是最有说服力的证据设计"
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "problem_illustration"
+    description: "对比图展示 data leakage（传统数据泄漏）与 preference leakage（偏好泄漏）的区别，并可视化三种 relatedness 类型（same model, inheritance, model family）的数据流"
+    narrative_role: "作为 intro 第3段的视觉锚点，一张图定义整个问题空间和 taxonomy"
+    design_elements: ["对比布局（左右对比两种泄漏类型）", "数据流箭头", "三种 relatedness 类型的分类标注", "Generator → Student → Judge 的流程"]
+    visual_style: "概念图/流程图风格，用箭头和方框展示模型间关系，颜色区分不同 relatedness 类型"
+  result_figures:
+    - figure_id: "Figure 2a"
+      viz_type: "line_plot"
+      what_compared: "不同 student 模型大小（1B/3B/7B/14B）的 PLS 变化"
+      how_gain_highlighted: "展示 PLS 随模型缩小而增大的趋势，与 data contamination（大模型记忆更多）形成对比"
+      design_note: "用模型大小作为 x 轴的连续趋势图，直观展示反直觉发现"
+    - figure_id: "Figure 2b"
+      viz_type: "bar_chart"
+      what_compared: "不同 synthetic data 混合比例（10%/30%/50%/70%）对 PLS 的影响"
+      how_gain_highlighted: "柱状图展示递增趋势，强调即使 10% 也有可检测的泄漏"
+      design_note: "data mixing 比例作为离散分组，直观展示剂量-效应关系"
+    - figure_id: "Figure 3a"
+      viz_type: "bar_chart"
+      what_compared: "不同问题类型（math/writing/programming 等）的 PLS"
+      how_gain_highlighted: "按 PLS 大小排序，主观类（writing）明显高于客观类（math）"
+      design_note: "分类柱状图展示领域差异，为 'style 是主因' 的结论提供间接证据"
+    - figure_id: "Figure 3b"
+      viz_type: "bar_chart"
+      what_compared: "不同判断维度（completeness/fairness 等）的 PLS"
+      how_gain_highlighted: "主观维度高于客观维度"
+      design_note: "与 3a 并排展示，形成问题类型-判断维度的双视角分析"
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot + bar_chart (dual panel)"
+      dimensions_varied: ["model_size", "data_mixing_ratio"]
+      design_note: "双面板设计，一个维度用线图（连续趋势）一个用柱状图（离散分组），视觉上区分两类消融"
+  figure_narrative_role: "Figure 1 (问题定义/taxonomy) → Figure 2 (严重性量化：模型大小+数据比例) → Figure 3 (机制分析：问题类型+判断维度) → Appendix Figures 4-7 (补充验证：人工标注/详细判断结果/标注工具)"
+
+tables:
+  table_count: 14
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (generator-judge pairs × student models)"
+    col_axis: "Arena-Hard, AlpacaEval 2.0, Average"
+    row_organization: "by_category (grouped by student model: Mistral-7B vs Qwen-2.5-14B)"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "颜色编码背景（蓝色=负PLS，紫色=正PLS，颜色深浅表示程度）"
+    statistical_reporting: "百分比 PLS 值，附 bootstrap 显著性检验（Table 11）"
+    num_baselines: 6
+    design_note: "用颜色强度而非 bold 来标注，直观展示偏差方向和程度；行按 student 模型分组使得跨 judge 比较更清晰"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["relatedness_type (same model / inheritance same-inst / inheritance diff-inst / same family same-series / same family diff-series)"]
+      variation_style: "full_numbers"
+      design_note: "五种 relatedness 类型递进排列，清晰展示 relatedness 梯度与 PLS 的对应关系"
+    - table_id: "Table 3"
+      what_varied: ["learning_method (SFT / DPO / ICL)"]
+      variation_style: "full_numbers"
+      design_note: "仅三行，极简设计突出 SFT >> DPO >> ICL 的清晰梯度"
+    - table_id: "Table 6"
+      what_varied: ["spurious_features (style / format / wording removal)"]
+      variation_style: "full_numbers"
+      design_note: "baseline + 三种去除条件的四行设计，每列一个 judge 对，直接量化各特征的贡献"
+    - table_id: "Table 7"
+      what_varied: ["mitigation_methods (prompting / CoT / paraphrase / auto-calibration / contextual-calibration)"]
+      variation_style: "full_numbers"
+      design_note: "Error Bias 指标统一评估，contextual calibration 的优势一目了然"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 8: PLS 计算示例；Table 9: 稳定性评估（多次运行均值/方差）；Table 10: prompt 敏感性分析；Table 11: Bootstrap 显著性检验；Table 12: 中英文跨语言结果；Table 13: 扩展 judge 对（含 Claude-3.5）；Table 14: student 模型缩放效果"
+    reason: "主表聚焦核心发现（存在性/relatedness/学习方法/机制/缓解），附录放稳健性检验和扩展实验，避免主文过长同时保证可复现性"

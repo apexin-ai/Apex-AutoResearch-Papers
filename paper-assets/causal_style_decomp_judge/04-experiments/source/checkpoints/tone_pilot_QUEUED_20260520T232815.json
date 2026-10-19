@@ -1,0 +1,16 @@
+{
+  "exp_id": "tone_pilot",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T23:28:10.374Z",
+    "updated_at": "2026-05-20T23:28:15.010Z",
+    "hypothesis": "Tone axis (assertive/hedging) RATE counterfactuals preserve content (NLI+BERTScore pass rate ≥80%) because tone changes only modify epistemic hedging markers without altering factual claims, making it a viable third axis alongside formality",
+    "parent": "pairwise_32b"
+  },
+  "timestamp": "2026-05-20T23:28:15.096253+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_nli_gate_full_validation_20260521T114504.log",
     "occurrence": 1,
-    "bytes": 765355,
-    "sha256": "553f05c10acce0eb2b2b38fa510cffb5a146ca6c1cc037d729e3237ebd25401a"
+    "bytes": 765367,
+    "sha256": "19ed9a2a50ea63e4f05ace54e7b9f7a916fcd911888f2890573f7d39e4c5333d"
   },
   "statistics": {
     "messages": 469,

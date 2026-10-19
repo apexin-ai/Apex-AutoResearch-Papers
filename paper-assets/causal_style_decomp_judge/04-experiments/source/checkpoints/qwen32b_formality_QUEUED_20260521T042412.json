@@ -1,0 +1,15 @@
+{
+  "exp_id": "qwen32b_formality",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:24:01.452Z",
+    "updated_at": "2026-05-21T04:24:12.471Z",
+    "hypothesis": "Qwen3-32B as local judge will show similar formality bias pattern to GPT-4o (significant pairwise, non-significant Likert), confirming the Likert Blindspot is cross-model and not GPT-4o-specific"
+  },
+  "timestamp": "2026-05-21T04:24:12.533891+00:00",
+  "trigger": "update_registry"
+}

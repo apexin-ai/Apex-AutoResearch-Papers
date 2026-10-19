@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_exp005_prep_and_cleanup_20260520T224212_result.json",
     "occurrence": 1,
-    "bytes": 791,
-    "sha256": "892c1a3376d58dbb0bdf090d1fe88fb23ca9a6b981b698c6735fac11d6effc86"
+    "bytes": 790,
+    "sha256": "0cc82e8657845354df9840bd6b0b8e8e4a9b4cb7b53e6f1e60c173b3685ae83a"
   },
   "statistics": {
     "messages": 1,

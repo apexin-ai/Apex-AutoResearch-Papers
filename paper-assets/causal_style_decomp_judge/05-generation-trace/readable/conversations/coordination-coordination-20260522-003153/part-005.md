@@ -6,28 +6,6 @@
 
 ## Round 166
 
-### Tool result
-
-_source line 2000 · 2026-05-21T05:28:40.398043+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gpt4o_register\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:28:11.858Z\", \"updated_at\": \"2026-05-21T05:28:40.243Z\", \"hypothesis\": \"GPT-4o judge shows register (academic/conversational) bias detectable via pairwise but not Likert, extending Blindspot to register axis with GPT-4o and enabling cross-model GEE decomposition comparison\", \"spec\": {\"command\": \"pairwise_scoring.py + judge_scoring.py via GPT-4o OpenRouter API\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_register.jsonl\", \"data_count\": 100, \"model_name\": \"GPT-4o (OpenRouter via http://47.94.22.126/v1)\", \"seed\": 42, \"checkpoint_path\": \"data/pairwise_results_gpt4o_register.jsonl\", \"log_path\": \"data/scored_gpt4o_register.jsonl\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1937}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee",
-  "tool": "mcp__agent-ml-research__update_registry",
-  "elapsed_ms": 201
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
 _source line 2001 · 2026-05-21T05:28:47.881009+00:00_
@@ -15683,6 +15661,28 @@ called mcp__agent-ml-research__update_registry
     "value": "{'n_total': 400, 'nli_pass': 355, 'nli_rate': 0.888, 'bt': {'p_formal': 0.675, 'ci': [0.637, 0.713], 'ci_width_pp': 7.6, 'p_value': 0.0001}, 'likert': {'ate': -0.059, 'p': 0.5999, 'd': -0.025, 'tie_rate': 0.434, 'mean_formal': 6.58, 'mean_casual': 6.64}, 'gee': {'style_or': 2.15, 'style_ci': [1.46, 3.16], 'style_p': 0.0001, 'orig_or': 4.99, 'orig_ci': [3.4, 7.34], 'orig_p': 0.0001}, 'blindspot': True, 'consistency': 0.654, 'vs_n100': {'bt_delta': '+1.0pp (67.5 vs 66.5)', 'ci_improvement': '2x narrower (7.6pp vs 15.4pp)'}}",
     "project": "causal_style_decomp_judge"
   }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2493 · 2026-05-21T09:08:50.782898+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-006\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:57:42.107Z\", \"updated_at\": \"2026-05-21T09:08:50.683Z\", \"metrics\": {\"n_total\": 400, \"nli_pass\": 355, \"nli_rate\": 0.888, \"bt\": {\"p_formal\": 0.675, \"ci\": [0.637, 0.713], \"ci_width_pp\": 7.6, \"p_value\": 0.0001}, \"likert\": {\"ate\": -0.059, \"p\": 0.5999, \"d\": -0.025, \"tie_rate\": 0.434, \"mean_formal\": 6.58, \"mean_casual\": 6.64}, \"gee\": {\"style_or\": 2.15, \"style_ci\": [1.46, 3.16], \"style_p\": 0.0001, \"orig_or\": 4.99, \"orig_ci\": [3.4, 7.34], \"orig_p\": 0.0001}, \"blindspot\": true, \"consistency\": 0.654, \"vs_n100\": {\"bt_delta\": \"+1.0pp (67.5 vs 66.5)\", \"ci_improvement\": \"2x narrower (7.6pp vs 15.4pp)\"}}, \"hypothesis\": \"Scaling formality counterfactual generation from 100 to 400 pairs enables cross-benchmark validation (AlpacaEval/MT-Bench) and increases statistical power for detecting smaller effect sizes\", \"spec\": {\"command\": \"counterfactual_gen.py --axis formality --n 400 via vLLM Qwen3-32B tp=1 port 8002\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/scaled_formality_input.jsonl\", \"data_count\": 400, \"model_name\": \"Qwen3-32B (counterfactual generator via vLLM)\", \"seed\": 42, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/counterfactuals_scaled_formality.jsonl\", \"log_path\": \"/root/causal_style_decomp_judge/logs/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T07:45:18.441Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1587}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 151
 }
 ```
 

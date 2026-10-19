@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_gemini_flash_scoring_20260521T221654_result.json",
     "occurrence": 1,
-    "bytes": 150,
-    "sha256": "ce577f4ca6b7830f2f392b489cd3b8f7db477bc68a7b64a5743d618ace16c405"
+    "bytes": 149,
+    "sha256": "dcf42c49c3313f09f8f70eeb22077476a37d7a00549492af65c724661460c219"
   },
   "statistics": {
     "messages": 1,

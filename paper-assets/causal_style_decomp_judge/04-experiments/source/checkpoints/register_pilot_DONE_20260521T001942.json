@@ -1,0 +1,36 @@
+{
+  "exp_id": "register_pilot",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:14:47.268Z",
+    "updated_at": "2026-05-21T00:19:42.234Z",
+    "hypothesis": "Register axis (academic/conversational) RATE counterfactuals preserve content (NLI+BERTScore pass rate ≥80%) and register is independent from formality (agreement ≤95%), making it a viable third axis alongside formality and verbosity",
+    "metrics": {
+      "n_samples": 20,
+      "cf_pass_rate_joint": 0.2,
+      "cf_pass_rate_nli_only": 0.95,
+      "cf_pass_rate_bs_only": 0.2,
+      "nli_cf_mean": "high (19/20 ≥ 0.90)",
+      "bertscore_cf_mean": 0.8458,
+      "bertscore_threshold": 0.92,
+      "register_formality_agreement": 0.5,
+      "bs_sweep_0.80": 0.75,
+      "bs_sweep_0.84": 0.6,
+      "bs_sweep_0.88": 0.4,
+      "bs_sweep_0.92": 0.2,
+      "conclusion_note": "FAIL with joint gate (20%), PASS with NLI-only (95%). BERTScore sole bottleneck. Register-Formality 50% = orthogonal."
+    },
+    "spec": {
+      "checkpoint_path": "N/A (pilot)",
+      "log_path": "logs/workers/worker_ops_register_pilot_20260520T233206.log"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T00:19:42.234Z"
+  },
+  "timestamp": "2026-05-21T00:19:42.258198+00:00",
+  "trigger": "update_registry"
+}

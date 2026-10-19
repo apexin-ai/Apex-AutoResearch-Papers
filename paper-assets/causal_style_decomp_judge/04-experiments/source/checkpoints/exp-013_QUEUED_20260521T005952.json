@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-013",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:59:40.588Z",
+    "updated_at": "2026-05-21T00:59:52.382Z",
+    "hypothesis": "NLI gate (DeBERTa-v3-large, threshold 0.90) decisions are reliable proxies for human content-preservation judgments, achieving Cohen's kappa >= 0.6 with LLM-as-annotator (Qwen3-32B)"
+  },
+  "timestamp": "2026-05-21T00:59:52.434195+00:00",
+  "trigger": "update_registry"
+}

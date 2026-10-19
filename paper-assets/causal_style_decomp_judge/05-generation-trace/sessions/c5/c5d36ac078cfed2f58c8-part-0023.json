@@ -1252,7 +1252,7 @@
           "content": [
             {
               "type": "text",
-              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/_anonymous_repo.json\n/tmp/anon_repo/.git/config\n[core]\n\trepositoryformatversion = 0\n\tfilemode = true\n\tbare = false\n\tlogallrefupdates = true\n[user]\n\tname = Anonymous\n\temail = anonymous@example.com\n[remote \"origin\"]\n\turl = https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/causal_style_decomp_judge.git\n\tfetch = +refs/heads/*:refs/remotes/origin/*\n[branch \"main\"]\n\tremote = origin\n\tmerge = refs/heads/main"
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/_anonymous_repo.json\n/tmp/anon_repo/.git/config\n[core]\n\trepositoryformatversion = 0\n\tfilemode = true\n\tbare = false\n\tlogallrefupdates = true\n[user]\n\tname = Anonymous\n\temail = anonymous@example.com\n[remote \"origin\"]\n\turl = https://[REDACTED]@github.com/anonymous-nlp-2026-2/causal_style_decomp_judge.git\n\tfetch = +refs/heads/*:refs/remotes/origin/*\n[branch \"main\"]\n\tremote = origin\n\tmerge = refs/heads/main"
             }
           ],
           "metadata": {

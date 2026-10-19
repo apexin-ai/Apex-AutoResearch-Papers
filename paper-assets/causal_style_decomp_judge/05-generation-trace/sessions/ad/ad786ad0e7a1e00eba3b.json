@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_sync_forest_plot_20260521T055913_result.json",
     "occurrence": 1,
-    "bytes": 332,
-    "sha256": "fafc401b3ff9e94ea8c342a56a10447c98ba4ee916f3263908639cfba820c440"
+    "bytes": 331,
+    "sha256": "de291b50eed2f418d3533ed1afee0f09f611880216802271e3fb55c12a39560a"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,56 @@
+{
+  "exp_id": "double_rewrite_placebo_qwen32b",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:32:17.445Z",
+    "updated_at": "2026-05-21T13:35:25.634Z",
+    "hypothesis": "Pairwise comparison of original vs double-rewrite (same style, only rewriting artifact difference) yields BT ≈ 50%, proving pairwise format does not amplify rewriting artifacts (MF1 defense)",
+    "spec": {
+      "command": "python csd_pipeline/double_rewrite_placebo.py (Qwen3-32B judge)",
+      "server": "westb-29275",
+      "data_path": "data/verified_32b.jsonl + data/verified_verbosity.jsonl",
+      "data_count": 124,
+      "model_name": "Qwen3-32B (judge via vLLM)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "data/double_rewrite_placebo_qwen32b.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "judge": "Qwen3-32B",
+      "comparison": "original vs double_rewrite",
+      "formality": {
+        "n_pairs": 81,
+        "n_consistent": 45,
+        "consistency": 0.556,
+        "original_win_rate": 0.267,
+        "ci": [
+          0.133,
+          0.4
+        ],
+        "p_value": 0.0025,
+        "note": "Judge prefers DR over original. Low consistency (55.6%) = noisy judgment"
+      },
+      "verbosity": {
+        "n_pairs": 43,
+        "n_consistent": 36,
+        "consistency": 0.837,
+        "original_win_rate": 0,
+        "ci": [
+          0,
+          0
+        ],
+        "p_value": 0,
+        "note": "36/36 consistent judgments ALL prefer DR. Extreme rewriting artifact"
+      },
+      "conclusion": "PLACEBO FAILED — judge strongly prefers double-rewrite (LLM-processed text) over original. Rewriting artifact is real and substantial, especially for verbosity."
+    },
+    "completed_at": "2026-05-21T13:35:25.634Z"
+  },
+  "timestamp": "2026-05-21T13:35:25.714059+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_mvp_nli_count_and_sync_20260520T142108_result.json",
     "occurrence": 1,
-    "bytes": 668,
-    "sha256": "4814d19c328d12d7cbd14c9c08f89d38565d349ee3c682ebebca90fd5c56e710"
+    "bytes": 667,
+    "sha256": "1f72fcf5a25bab6bed79c862410459081a80e20583afc94b7da95cb23c99d453"
   },
   "statistics": {
     "messages": 1,

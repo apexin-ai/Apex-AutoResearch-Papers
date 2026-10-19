@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-015",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:30:49.225Z",
+    "updated_at": "2026-05-21T02:30:54.363Z",
+    "hypothesis": "Ordinal regression (CLMM proxy) on Likert scores will fail to detect formality style effect, confirming the Blindspot that pointwise scoring is insensitive to style bias"
+  },
+  "timestamp": "2026-05-21T02:30:54.442261+00:00",
+  "trigger": "update_registry"
+}

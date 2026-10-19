@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_formality_scaled_n300_20260524T062322_result.json",
     "occurrence": 1,
-    "bytes": 1337,
-    "sha256": "fb17d16bfababa76d9fa88c119660d6d08a59d4d95826feeacf8128e633245a5"
+    "bytes": 1336,
+    "sha256": "2daa5a349da5bc31d3b2cf890c185f721b3eb3300142b50f63098c4a1389e9df"
   },
   "statistics": {
     "messages": 1,

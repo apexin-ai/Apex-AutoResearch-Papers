@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp016_bradley_terry",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:32:58.075Z",
+    "updated_at": "2026-05-21T02:33:14.569Z",
+    "spec": {
+      "command": "python csd_pipeline/exp016_bradley_terry.py",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl",
+      "data_count": 197,
+      "model_name": "choix BT + bootstrap",
+      "seed": 42,
+      "checkpoint_path": "N/A (reanalysis)",
+      "log_path": "csd_pipeline/exp016_bradley_terry.py"
+    },
+    "hypothesis": "Bradley-Terry model on ALL pairwise data (no consistency filtering) will confirm formal preference is significant, validating the sign test result and showing the effect is robust to inclusion of position-inconsistent pairs",
+    "metrics": {
+      "bt_strength_diff": 0.4436,
+      "p_formal_wins": 0.609,
+      "bootstrap_ci": [
+        0.538,
+        0.68
+      ],
+      "ci_excludes_50": true,
+      "n_comparisons": 197,
+      "comparison_to_sign_test": "BT 60.9% [53.8-68.0%] vs sign test 69.1% [56.0-79.7%] p=0.006. BT more conservative (uses all data incl. inconsistent) but still significant."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T02:33:14.569Z"
+  },
+  "timestamp": "2026-05-21T02:33:14.606407+00:00",
+  "trigger": "update_registry"
+}

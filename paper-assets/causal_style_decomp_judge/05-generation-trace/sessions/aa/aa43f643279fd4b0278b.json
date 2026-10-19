@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_qwen32b_bt_and_decomp_20260521T042835_result.json",
     "occurrence": 1,
-    "bytes": 1440,
-    "sha256": "486e0341a1c6f0556cab14879dd8b4c081f02a43bdc2a4a437b637c07fc9a4e1"
+    "bytes": 1439,
+    "sha256": "7cd8e81bc7cad44dc54c08f3ce0c74cee15ef054de06bc2137dffbb387aab3f6"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,29 @@
+{
+  "exp_id": "cf_vs_dr_gpt4o",
+  "project": "causal_style_decomp_judge",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:37:04.042Z",
+    "updated_at": "2026-05-21T13:56:28.285Z",
+    "hypothesis": "Comparing counterfactual (style-changed + artifact) vs double-rewrite (original-style + artifact) with GPT-4o judge isolates pure style effect by controlling for rewriting artifact. CF win rate significantly different from 50% proves style bias exists beyond rewriting artifact (MF1 critical defense).",
+    "parent": "double_rewrite_placebo_gpt4o",
+    "spec": {
+      "command": "python csd_pipeline/cf_vs_dr_comparison_gpt4o.py",
+      "server": "westb-29275",
+      "data_path": "data/verified_32b.jsonl + data/verified_verbosity.jsonl",
+      "data_count": 124,
+      "model_name": "GPT-4o (judge via API)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "data/cf_vs_dr_gpt4o.json",
+      "checkpoint_source": "double_rewrite_placebo_gpt4o",
+      "eval_data": "data/verified_32b.jsonl + data/verified_verbosity.jsonl"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T13:56:28.375660+00:00",
+  "trigger": "update_registry"
+}

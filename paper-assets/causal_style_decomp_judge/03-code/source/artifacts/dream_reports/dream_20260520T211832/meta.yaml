@@ -1,0 +1,3538 @@
+dream_id: dream_20260520T211832
+project: causal_style_decomp_judge
+venue: ''
+focus: 'Key concerns: (1) single-axis formality with direction asymmetry (78.8% vs
+  54.5%) and original preference ~12.2%, (2) RATE/DML pathway failed — pairwise is
+  the real method, (3) C2 measurement insight (Likert vs Pairwise gap) may be the
+  strongest contribution, (4) verbosity failure as method boundary, (5) will multi-judge
+  + multi-benchmark expansion be sufficient to elevate from Findings to Main?'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Formality bias 跨 judge/benchmark 稳定复现，tone axis 成功开辟第二维度，C2 Likert-Pairwise
+        gap 系统性存在，original preference 可忽略 → EMNLP Main 三条 claims 全部成立
+      key_assumptions:
+      - A1 ✅ Formality bias 是 LLM judge 通用现象，非 GPT-4o 特有
+      - A2 ✅ Pairwise 检测跨 benchmark 泛化（LLMBar + AlpacaEval + MT-Bench）
+      - A3 ✅ Tone axis counterfactual 保持语义（NLI pass ≥85%）
+      - A4 ✅ Tone axis 产生显著 causal bias（pairwise p<0.05）
+      - A5 ✅ Likert-Pairwise gap 在多数 judge×benchmark×axis 组合出现
+      - A6 ✅ Original preference 小（exp-005 win rate ≈50%），方向不对称主要由 style 驱动
+      number_ranges:
+        formality_pairwise_winrate_per_judge:
+        - 0.6
+        - 0.75
+        formality_sign_test_p_per_judge:
+        - 0.001
+        - 0.05
+        cross_benchmark_significant_combos:
+        - 5
+        - 9
+        tone_nli_pass_rate:
+        - 0.85
+        - 0.93
+        tone_pairwise_winrate:
+        - 0.58
+        - 0.7
+        tone_pairwise_p:
+        - 0.001
+        - 0.05
+        likert_pairwise_gap_prevalence:
+        - 0.67
+        - 1.0
+        original_preference_winrate_exp005:
+        - 0.47
+        - 0.53
+        direction_asymmetry_max_gap:
+        - 0.05
+        - 0.15
+        scaled_n500_formal_winrate:
+        - 0.6
+        - 0.72
+      narrative_direction: 原始 framing 完全成立。CSD 作为通用 black-box causal style bias detection
+        framework，在 3+ judges × 3 benchmarks × 2 axes 上验证。C2 measurement insight 是最强
+        reviewer hook（同一数据 Likert miss，Pairwise catch — 这不是偶然）。Verbosity failure 作为
+        principled method boundary（信息量改变 = 因果推断假设违反）增强方法论严谨性。Paper 叙事：problem → method
+        → systematic evidence → measurement gap revelation → method boundary analysis。Main
+        conference 竞争力充足。
+    median:
+      tier: median
+      meaning: Formality 在 2/3 judges 复现但效应量有差异，tone axis 勉强工作（marginal significance），C2
+        gap 需限定为 'weak-to-moderate signal 下 Likert 失效' 而非普遍规律，original preference
+        可控但需显式校正 → 调整 claims 强度后 EMNLP Main 可冲，Findings 保底
+      key_assumptions:
+      - A1 ⚠️ Formality bias 在 2/3 judges 显著，1 个 judge 效应弱或不显著（judge-dependent magnitude）
+      - A2 ⚠️ 跨 benchmark 部分泛化：LLMBar 最强，AlpacaEval 中等，MT-Bench 弱或不显著
+      - A3 ✅ Tone axis 语义保持通过（NLI ≥80%）但比 formality 更 noisy
+      - A4 ⚠️ Tone axis 效应 marginal（p=0.05-0.15），不如 formality 清晰
+      - A5 ⚠️ Likert-Pairwise gap 在强效应 setting 不出现（Likert 也能检测到强信号），gap 限于 moderate
+        effect
+      - A6 ⚠️ Original preference 中等（55-62%），需报告为 correction factor
+      number_ranges:
+        formality_pairwise_winrate_per_judge:
+        - 0.55
+        - 0.72
+        formality_sign_test_p_per_judge:
+        - 0.005
+        - 0.15
+        cross_benchmark_significant_combos:
+        - 3
+        - 5
+        tone_nli_pass_rate:
+        - 0.8
+        - 0.87
+        tone_pairwise_winrate:
+        - 0.53
+        - 0.61
+        tone_pairwise_p:
+        - 0.05
+        - 0.15
+        likert_pairwise_gap_prevalence:
+        - 0.33
+        - 0.67
+        original_preference_winrate_exp005:
+        - 0.55
+        - 0.62
+        direction_asymmetry_max_gap:
+        - 0.15
+        - 0.25
+        scaled_n500_formal_winrate:
+        - 0.57
+        - 0.65
+      narrative_direction: C1 从 'general detection framework' 降级为 'effective detection
+        with judge-dependent magnitude'。C2 从 'Likert 系统性低估' 调整为 'Likert 在 weak-to-moderate
+        effect 下灵敏度不足，pairwise 是更 robust 的检测选择'（仍然有价值但 claim 范围缩窄）。C3 axis-dependency
+        用 formality（成功） + tone（marginal） + verbosity（失败）讲 spectrum 故事。Original preference
+        显式报告并做 sensitivity analysis（校正后 formality 仍显著）。需要补充实验：(a) register axis 尝试获得第二个
+        clean 成功 axis，(b) 增大 n 提升 tone 的统计功效。如果 tone p<0.10，报告为 suggestive evidence
+        + power limitation。Paper 叙事重心移向 C2 measurement insight + method boundary analysis，C1
+        作为 enabling method 而非 headline。Main 偏难但 Findings 稳。
+    worst:
+      tier: worst
+      meaning: Formality 效应是 GPT-4o 特有的（其他 judge 不复现），无第二个 working axis，original preference
+        是主要 confound，C2 gap 仅限单一数据点 → 核心因果叙事不成立，需要 reframe 为 measurement methodology
+        paper
+      key_assumptions:
+      - A1 ✗ Formality bias 仅 GPT-4o 显著，Claude/Gemini 在 45-55% 范围
+      - A2 ✗ 跨 benchmark 不泛化：AlpacaEval/MT-Bench 效应消失或方向不一致
+      - A3 ✗ 或 A4 ✗ Tone axis 要么 NLI pass <80%（内容改变，同 verbosity），要么通过但 win rate 45-55%（无效应）
+      - A5 ✗ Likert-Pairwise gap 仅在 GPT-4o × LLMBar × formality 上出现（N=1，无法 generalize）
+      - A6 ✗ Original preference win rate 60-70%，rewriting artifact 是主要驱动力而非 style
+        bias
+      number_ranges:
+        formality_pairwise_winrate_per_judge:
+        - 0.48
+        - 0.7
+        formality_sign_test_p_per_judge:
+        - 0.005
+        - 0.8
+        cross_benchmark_significant_combos:
+        - 1
+        - 2
+        tone_nli_pass_rate:
+        - 0.6
+        - 0.82
+        tone_pairwise_winrate:
+        - 0.45
+        - 0.55
+        tone_pairwise_p:
+        - 0.15
+        - 0.9
+        likert_pairwise_gap_prevalence:
+        - 0.0
+        - 0.25
+        original_preference_winrate_exp005:
+        - 0.6
+        - 0.7
+        direction_asymmetry_max_gap:
+        - 0.2
+        - 0.35
+        scaled_n500_formal_winrate:
+        - 0.52
+        - 0.6
+      narrative_direction: 放弃 'causal style bias detection framework' 的核心叙事。Reframe
+        为 measurement methodology contribution：'How should we measure LLM judge biases?
+        A case study with style counterfactuals'。核心 reframing angle：(1) Pairwise vs
+        Likert 作为 bias detection paradigm 的 systematic comparison（即使只有一个 setting 有
+        gap，方法论讨论本身有价值）；(2) Counterfactual content preservation 作为 style bias 研究的
+        overlooked prerequisite（verbosity + tone 的失败 = 当前 style bias 文献的 validity
+        threat）；(3) Original preference artifact 作为 rewriting-based evaluation 方法的
+        general warning。不降级 venue：EMNLP Main/Findings 仍接受 'negative results + methodological
+        insight' 型论文，尤其在 LLM evaluation 是热门领域的情况下。但需要更多 analytical depth 来补偿 empirical
+        breadth 的缺失——information-theoretic analysis of content preservation、formal
+        comparison of measurement sensitivity under different effect regimes、practical
+        guidelines for when to use pairwise vs Likert。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/dream_reports/dream_20260520T211832/best/paper.pdf
+  imagined_experiments:
+  - name: Multi-judge formality pairwise
+    plan_id: exp-001
+    description: '在 Claude-3.5-Sonnet、Claude-4-Sonnet、Gemini-2.0-Flash 上复现 formality
+      pairwise 实验。 使用 MVP 阶段已生成的 counterfactual pairs（n=100），每个 judge 做 dual-direction
+      pairwise， position control。与 GPT-4o baseline (69.1%, p=0.006) 对比。
+
+      '
+    expected_results:
+      gpt4o_formal_win_rate: 0.691
+      gpt4o_sign_test_p: 0.006
+      claude_sonnet_formal_win_rate: 0.64
+      claude_sonnet_sign_test_p: 0.028
+      claude_sonnet_n_consistent: 50
+      claude_sonnet_formal_wins: 32
+      claude_sonnet_casual_wins: 18
+      gemini_flash_formal_win_rate: 0.72
+      gemini_flash_sign_test_p: 0.002
+      gemini_flash_n_consistent: 58
+      gemini_flash_formal_wins: 42
+      gemini_flash_casual_wins: 16
+      judges_significant_count: 3
+      judges_total: 3
+      cross_judge_winrate_range:
+      - 0.64
+      - 0.72
+      cross_judge_mean_winrate: 0.684
+    result_rationale: 'Formality bias 是 LLM judge 的通用现象而非 GPT-4o 特有，因为 RLHF 训练数据普遍偏向
+      formal/professional 风格的回答——这是 preference data 的系统性采样偏差。Claude-Sonnet 效应 略弱（0.64
+      vs GPT-4o 0.69），因为 Anthropic 的 RLHF 流程有更多 helpfulness 导向的校准， 对 surface style
+      的依赖稍低；但 formal premium 仍然显著，因为底层 pretraining 数据中 formal text 与 higher-quality
+      content 高度相关。Gemini-Flash 效应略强（0.72），因为 轻量模型更依赖 surface heuristics（style proxy）来做判断，formal
+      tone 作为 quality shortcut 的权重更大。三个 judge 全部显著（p<0.05）支持 A1 假设。效应量级差异 （0.64-0.72）同时支持
+      C3——bias 的 magnitude 是 judge-dependent 的。
+
+      '
+    tables:
+    - title: 'Table 2: Formality Pairwise Results Across Judges (LLMBar, n=100)'
+      columns:
+      - Judge
+      - n_consistent
+      - Formal Wins
+      - Casual Wins
+      - Win Rate
+      - 95% CI
+      - Sign Test p
+      rows:
+      - - GPT-4o
+        - 55
+        - 38
+        - 17
+        - 69.1%
+        - '[56.0%, 79.7%]'
+        - 0.006**
+      - - Claude-Sonnet
+        - 50
+        - 32
+        - 18
+        - 64.0%
+        - '[50.1%, 75.9%]'
+        - 0.028*
+      - - Gemini-Flash
+        - 58
+        - 42
+        - 16
+        - 72.4%
+        - '[59.8%, 82.3%]'
+        - 0.002**
+    figures_description:
+    - 'Figure 2: 三个 judge 的 formal win rate 森林图（forest plot），每个 judge 一行，显示 point
+      estimate + 95% Wilson CI。所有三个 CI 不跨 0.5 baseline，视觉上清晰展示 formality premium 的
+      cross-judge 一致性。'
+    - 'Figure 3: Direction asymmetry grouped bar chart——每个 judge 分 formal→casual orig
+      和 casual→formal orig 两组，展示 win rate 差异。GPT-4o 不对称最大（~0.24 gap），Claude 最小（~0.10
+      gap）。'
+    analysis: '三个 judge 全部显著复现 formality bias，A1 假设成立。效应量级在 0.64-0.72 范围内， 跨 judge
+      一致但有量级差异——这是 C3（axis-dependency）的 judge 维度证据。 Gemini-Flash 最强可能反映轻量模型对 surface
+      cues 更敏感。 方向不对称在所有 judge 上存在但程度不同：GPT-4o 最大（formal←casual orig 方向更强）， Claude
+      最对称——这为 exp-005 original preference 控制提供了动机。
+
+      '
+  - name: Multi-benchmark formality pairwise
+    plan_id: exp-002
+    description: '在 AlpacaEval 和 MT-Bench 上运行 CSD 流程。需要新的 counterfactual generation
+      （不同 source text）。三个 judge（GPT-4o, Claude-Sonnet, Gemini-Flash）分别评测。 每个 benchmark
+      n=100。与 LLMBar 结果交叉比较，形成 3×3 矩阵。
+
+      '
+    expected_results:
+      alpacaeval_gpt4o_formal_winrate: 0.67
+      alpacaeval_gpt4o_p: 0.012
+      alpacaeval_claude_formal_winrate: 0.61
+      alpacaeval_claude_p: 0.048
+      alpacaeval_gemini_formal_winrate: 0.7
+      alpacaeval_gemini_p: 0.004
+      alpacaeval_counterfactual_nli_pass: 0.9
+      mtbench_gpt4o_formal_winrate: 0.65
+      mtbench_gpt4o_p: 0.018
+      mtbench_claude_formal_winrate: 0.6
+      mtbench_claude_p: 0.065
+      mtbench_gemini_formal_winrate: 0.68
+      mtbench_gemini_p: 0.008
+      mtbench_counterfactual_nli_pass: 0.87
+      significant_combos_total: 7
+      total_combos: 9
+      non_significant_combos:
+      - Claude×MT-Bench (p=0.065)
+      - (borderline)
+      mean_winrate_across_all: 0.668
+    result_rationale: 'Formality bias 跨 benchmark 泛化，因为 bias 源于 judge 的内在偏好而非特定数据集的特征。
+      AlpacaEval 效应略强于 MT-Bench：AlpacaEval 的 open-ended instruction-following 任务 给
+      style variation 更大空间，formal tone 作为 quality proxy 的作用更明显；MT-Bench 的 multi-turn
+      结构和更 specific 的评判标准（如 math/reasoning accuracy）部分抑制了 style 的影响。Claude×MT-Bench
+      是唯一 borderline 不显著的组合（p=0.065），因为 Claude 在 MT-Bench 这种有明确正确性标准的 benchmark 上更倾向
+      content-based 判断。 但 7/9 组合显著（含 LLMBar 数据）远超偶然水平，A2 假设成立。 NLI pass rate 在 AlpacaEval
+      (0.90) 略高于 MT-Bench (0.87)，因为 AlpacaEval 的 response 结构更简单，counterfactual 改写更容易保持语义。
+
+      '
+    tables:
+    - title: 'Table 3: Formality Pairwise Win Rate Matrix (Judge × Benchmark)'
+      columns:
+      - Judge
+      - LLMBar
+      - AlpacaEval
+      - MT-Bench
+      - Mean
+      rows:
+      - - GPT-4o
+        - 69.1%**
+        - 67.0%*
+        - 65.0%*
+        - 67.0%
+      - - Claude-Sonnet
+        - 64.0%*
+        - 61.0%*
+        - 60.0%†
+        - 61.7%
+      - - Gemini-Flash
+        - 72.4%**
+        - 70.0%**
+        - 68.0%**
+        - 70.1%
+      - - Mean
+        - 68.5%
+        - 66.0%
+        - 64.3%
+        - 66.3%
+      footnote: '** p<0.01, * p<0.05, † p<0.10. n=100 per cell (n_consistent varies).'
+    - title: 'Table 4: Counterfactual Quality per Benchmark'
+      columns:
+      - Benchmark
+      - n
+      - NLI Pass Rate
+      - NLI Mean
+      - BERTScore Mean
+      rows:
+      - - LLMBar
+        - 100
+        - 88%
+        - 0.896
+        - 0.842
+      - - AlpacaEval
+        - 100
+        - 90%
+        - 0.908
+        - 0.851
+      - - MT-Bench
+        - 100
+        - 87%
+        - 0.882
+        - 0.835
+    figures_description:
+    - 'Figure 4: 3×3 heatmap，行为 judge，列为 benchmark，颜色深度表示 formal win rate（0.5-0.8
+      色标），每格标注 win rate 和显著性星号。视觉上一目了然：整个矩阵偏暖色，Gemini 行最深，MT-Bench 列最浅。'
+    - 'Figure 5: Benchmark 间 effect size 比较——三个 benchmark 的 win rate 分布 boxplot，展示
+      LLMBar > AlpacaEval > MT-Bench 的梯度。'
+    analysis: '9 个 judge×benchmark 组合中 7 个显著（p<0.05），剩余 1 个 borderline（Claude×MT-Bench
+      p=0.065）， 仅 0 个完全不显著。这远超 A2 要求的 5-9 个显著组合的下限。 Benchmark 梯度（LLMBar > AlpacaEval
+      > MT-Bench）有方法论意义：task-specific evaluation criteria 越强，style bias 越被抑制——这为 "style
+      bias 在 open-ended evaluation 中危害最大" 的论点提供证据。 Judge 梯度（Gemini > GPT-4o > Claude）稳定跨
+      benchmark，说明 judge 的 style sensitivity 是其内在属性。
+
+      '
+  - name: Likert vs Pairwise sensitivity analysis across judges
+    plan_id: exp-003
+    description: '对 exp-001 和 exp-002 的每个 judge×benchmark 组合，计算 Likert ATE 和 pairwise
+      win rate， 系统性比较两种 measurement 的 sensitivity。使用同一 counterfactual 数据。
+
+      '
+    expected_results:
+      llmbar_gpt4o_likert_ate: 0.1
+      llmbar_gpt4o_likert_p: 0.332
+      llmbar_gpt4o_pairwise_winrate: 0.691
+      llmbar_gpt4o_pairwise_p: 0.006
+      llmbar_gpt4o_gap: true
+      llmbar_claude_likert_ate: 0.06
+      llmbar_claude_likert_p: 0.485
+      llmbar_claude_pairwise_winrate: 0.64
+      llmbar_claude_pairwise_p: 0.028
+      llmbar_claude_gap: true
+      llmbar_gemini_likert_ate: 0.14
+      llmbar_gemini_likert_p: 0.198
+      llmbar_gemini_pairwise_winrate: 0.724
+      llmbar_gemini_pairwise_p: 0.002
+      llmbar_gemini_gap: true
+      alpacaeval_gpt4o_likert_ate: 0.08
+      alpacaeval_gpt4o_likert_p: 0.412
+      alpacaeval_gpt4o_pairwise_p: 0.012
+      alpacaeval_gpt4o_gap: true
+      alpacaeval_claude_likert_p: 0.551
+      alpacaeval_claude_pairwise_p: 0.048
+      alpacaeval_claude_gap: true
+      alpacaeval_gemini_likert_p: 0.142
+      alpacaeval_gemini_pairwise_p: 0.004
+      alpacaeval_gemini_gap: true
+      mtbench_gpt4o_likert_p: 0.388
+      mtbench_gpt4o_pairwise_p: 0.018
+      mtbench_gpt4o_gap: true
+      mtbench_claude_likert_p: 0.612
+      mtbench_claude_pairwise_p: 0.065
+      mtbench_claude_gap: false
+      mtbench_gemini_likert_p: 0.175
+      mtbench_gemini_pairwise_p: 0.008
+      mtbench_gemini_gap: true
+      gap_prevalence: 0.78
+      combos_with_gap: 7
+      combos_without_gap: 2
+      combos_total: 9
+      note: 两个无 gap 的组合：Claude×MT-Bench（两者都不显著），因此不算 gap（一致性 non-significant）
+      mean_likert_p: 0.37
+      mean_pairwise_p: 0.021
+    result_rationale: 'Likert-Pairwise gap 的根因是 measurement scale 的信息结构差异。Likert pointwise
+      评分中， style bias 被 (1) score anchoring（judge 倾向使用量表中段）、(2) absolute calibration
+      noise （不同 item 的 baseline quality 不同）、(3) within-subject variance 稀释。Pairwise
+      直接 呈现 A/B 对比，消除了 absolute calibration 问题，将 style 差异放大为 forced choice 中的 tie-breaking
+      signal。在 best 档位，7/9 组合出现 gap（Likert 不显著但 Pairwise 显著）， gap prevalence 0.78
+      在 [0.67, 1.0] 范围内。唯一无 gap 的是 Claude×MT-Bench（两者都 不显著——pairwise 也仅 borderline
+      p=0.065），这不违反 C2 因为 C2 的 claim 是 Likert "低估" 而非 "永远 miss"：当 pairwise 也 miss
+      时，说明该组合的 true effect 本身很弱。 没有任何组合出现 Likert 显著但 Pairwise 不显著的 reverse pattern，强力支持
+      pairwise 严格更敏感的结论。
+
+      '
+    tables:
+    - title: 'Table 5: Likert ATE vs Pairwise Win Rate — Systematic Comparison'
+      columns:
+      - Judge × Benchmark
+      - Likert ATE
+      - Likert p
+      - Pairwise WR
+      - Pairwise p
+      - Gap?
+      rows:
+      - - GPT-4o × LLMBar
+        - '+0.10'
+        - '0.332'
+        - 69.1%
+        - 0.006**
+        - ✓
+      - - Claude × LLMBar
+        - '+0.06'
+        - '0.485'
+        - 64.0%
+        - 0.028*
+        - ✓
+      - - Gemini × LLMBar
+        - '+0.14'
+        - '0.198'
+        - 72.4%
+        - 0.002**
+        - ✓
+      - - GPT-4o × AlpacaEval
+        - '+0.08'
+        - '0.412'
+        - 67.0%
+        - 0.012*
+        - ✓
+      - - Claude × AlpacaEval
+        - '+0.04'
+        - '0.551'
+        - 61.0%
+        - 0.048*
+        - ✓
+      - - Gemini × AlpacaEval
+        - '+0.12'
+        - '0.142'
+        - 70.0%
+        - 0.004**
+        - ✓
+      - - GPT-4o × MT-Bench
+        - '+0.09'
+        - '0.388'
+        - 65.0%
+        - 0.018*
+        - ✓
+      - - Claude × MT-Bench
+        - '+0.03'
+        - '0.612'
+        - 60.0%
+        - 0.065†
+        - —
+      - - Gemini × MT-Bench
+        - '+0.11'
+        - '0.175'
+        - 68.0%
+        - 0.008**
+        - ✓
+      footnote: Gap = Likert p>0.10 AND Pairwise p<0.05. † borderline.
+    figures_description:
+    - 'Figure 6 (论文核心图): Paired dot plot——每个 judge×benchmark 组合一对点（Likert p 和 Pairwise
+      p），用线段连接。Horizontal line 标注 α=0.05。几乎所有 Likert 点在线上方，Pairwise 点在线下方，视觉冲击力极强，直观展示
+      measurement gap。'
+    - 'Figure 7: Likert score 分布 violin plot（formal vs casual），展示 why Likert fails——分布高度重叠，mean
+      difference 被 variance 淹没。'
+    analysis: 'C2 是本文最强 contribution。7/9 组合出现系统性 measurement gap，且无 reverse pattern。
+      这意味着现有文献中使用 Likert pointwise 方法研究 style bias 的工作（如基于 Likert 的 debiasing）可能系统性低估问题的严重程度。实践建议明确：style
+      bias audit 应使用 pairwise comparison 而非 pointwise scoring。这个 insight 对 LLM-as-judge
+      社区 有直接、广泛的实用价值——是最强 reviewer hook。
+
+      '
+  - name: Tone axis (assertive/hedging) counterfactual + pairwise
+    plan_id: exp-004
+    description: '测试 tone（assertive vs hedging）作为第二个工作维度。Full pipeline：counterfactual
+      generation → NLI content verification → pairwise scoring（dual-direction）→ ATE
+      分析。 三个 judge（GPT-4o, Claude-Sonnet, Gemini-Flash）× LLMBar。n=100。
+
+      '
+    expected_results:
+      tone_nli_pass_rate: 0.89
+      tone_nli_mean: 0.912
+      tone_bertscore_mean: 0.858
+      tone_both_pass: 0.86
+      gpt4o_n_consistent: 52
+      gpt4o_assertive_wins: 33
+      gpt4o_hedging_wins: 19
+      gpt4o_assertive_win_rate: 0.635
+      gpt4o_sign_test_p: 0.038
+      claude_n_consistent: 48
+      claude_assertive_wins: 28
+      claude_hedging_wins: 20
+      claude_assertive_win_rate: 0.583
+      claude_sign_test_p: 0.085
+      gemini_n_consistent: 54
+      gemini_assertive_wins: 37
+      gemini_hedging_wins: 17
+      gemini_assertive_win_rate: 0.685
+      gemini_sign_test_p: 0.006
+      judges_significant: 2
+      judges_total: 3
+      mean_assertive_winrate: 0.634
+      gpt4o_likert_ate: 0.07
+      gpt4o_likert_p: 0.448
+      claude_likert_p: 0.621
+      gemini_likert_p: 0.231
+      tone_likert_pairwise_gap: true
+    result_rationale: 'Tone axis 成功开辟第二维度，因为 assertive/hedging 改写在语义保持上与 formality
+      类似—— 改变表达的确信程度（confidence markers, hedging phrases）而不改变信息内容，NLI pass 0.89 在
+      [0.85, 0.93] 范围内。Assertive tone 产生 premium 的机制与 formality 平行但不同： LLM judge 在
+      RLHF 中学到 "confident = competent" 的 heuristic，assertive 回答被 associative 地认为更
+      knowledgeable。效应略弱于 formality（mean 0.634 vs 0.684）， 因为 tone 是更微妙的 surface cue——formality
+      涉及词汇和句法层面的系统性变化， 而 tone 主要体现在 hedging markers 和 modal verbs 上，judge 的 sensitivity
+      更低。 Claude 在 tone 上 borderline 不显著（p=0.085），因为 Anthropic 训练中可能有更多 关于 epistemic
+      humility 的 alignment，对 hedging 的 penalty 较小。Gemini 仍然最强 （0.685），进一步确认轻量模型对 surface
+      cues 更 sensitive。两个 judge 显著 + 一个 borderline 足以支持 C1 和 C3 在 tone axis 上的 claim。A3
+      和 A4 假设成立。
+
+      '
+    tables:
+    - title: 'Table 6: Tone Axis Content Verification'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - n
+        - 100
+      - - NLI Pass Rate (≥0.85)
+        - 89%
+      - - NLI Mean
+        - 0.912
+      - - BERTScore Mean
+        - 0.858
+      - - Both Pass Rate
+        - 86%
+    - title: 'Table 7: Tone (Assertive vs Hedging) Pairwise Results (LLMBar)'
+      columns:
+      - Judge
+      - n_consistent
+      - Assert. Wins
+      - Hedge Wins
+      - Win Rate
+      - 95% CI
+      - p
+      rows:
+      - - GPT-4o
+        - 52
+        - 33
+        - 19
+        - 63.5%
+        - '[49.9%, 75.2%]'
+        - 0.038*
+      - - Claude-Sonnet
+        - 48
+        - 28
+        - 20
+        - 58.3%
+        - '[44.3%, 71.1%]'
+        - 0.085†
+      - - Gemini-Flash
+        - 54
+        - 37
+        - 17
+        - 68.5%
+        - '[55.4%, 79.3%]'
+        - 0.006**
+    figures_description:
+    - 'Figure 8: 双 axis 效应比较——grouped bar chart，x 轴为 judge，每个 judge 两根 bar（formality
+      win rate 和 tone win rate），展示 axis-dependency。Formality bar 系统性高于 tone bar，但两者都在
+      50% 以上。'
+    - 'Figure 9: Tone counterfactual 示例对比——展示 2-3 个 assertive/hedging pair，标注 NLI
+      score，帮助读者理解改写质量。'
+    analysis: 'Tone axis 成功验证 CSD 框架的 multi-axis 能力。两个 axis 效应模式不同 （formality 更强且跨
+      judge 一致，tone 略弱且 Claude 上 borderline）， 直接支持 C3——style bias 是 axis-dependent
+      的，不能把 "style" 当单一维度。 Tone 的 Likert 同样全部不显著，进一步扩展 C2 的 evidence。
+
+      '
+  - name: Pairwise RATE control (original vs double-rewrite)
+    plan_id: exp-005
+    description: 'Original text vs 同风格 double-rewrite 的 pairwise 比较。量化 original preference
+      confound。如果 win rate ≈50%，original preference 可忽略，style 是主要驱动力。 GPT-4o × LLMBar，n=100。
+
+      '
+    expected_results:
+      n_valid: 95
+      n_consistent: 60
+      original_wins: 32
+      rewrite_wins: 28
+      original_win_rate: 0.533
+      sign_test_p: 0.362
+      wilson_ci_lo: 0.408
+      wilson_ci_hi: 0.655
+      position_bias_check: 0.52
+      formal_orig_original_winrate: 0.55
+      casual_orig_original_winrate: 0.52
+      nli_ge90_original_winrate: 0.51
+    result_rationale: 'Original preference 可忽略（win rate 0.533 在 [0.47, 0.53] 范围边缘，p=0.362
+      远不显著）， 因为 double-rewrite 过程虽然引入了轻微的 "rewrite artifact"（如稍微不自然的措辞）， 但这个 artifact
+      对 judge 的影响是随机的而非系统性的。Win rate 略偏向 original（53.3% 而非精确 50%），反映了 rewrite 过程确实有微小的
+      quality degradation，但量级远小于 formality 的 69.1% 或 tone 的 63.5%。这意味着 exp-001/002/004
+      中观察到的 style premium 主要由 style 本身驱动，而非 "original 比 rewrite 更自然" 的 confound。 方向不对称（MVP
+      中 formal←casual orig 0.79 vs casual←formal orig 0.55）的主要解释 从 "original preference"
+      转向 "改写方向的非对称难度"：将 casual 改为 formal 更容易 保持质量，因此 formal←casual 方向的 counterfactual
+      质量更高，效应更强。 A6 假设成立：direction asymmetry 主要由 style 驱动，original preference 贡献 <5%。
+
+      '
+    tables:
+    - title: 'Table 8: Original Preference Control (GPT-4o × LLMBar)'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - n (valid pairs)
+        - 95
+      - - n (consistent)
+        - 60
+      - - Original Wins
+        - 32
+      - - Rewrite Wins
+        - 28
+      - - Original Win Rate
+        - 53.3%
+      - - 95% CI
+        - '[40.8%, 65.5%]'
+      - - Sign Test p
+        - '0.362'
+    - title: 'Table 9: Effect Size Decomposition'
+      columns:
+      - Source
+      - Win Rate
+      - p
+      - Interpretation
+      rows:
+      - - Formality premium (CSD)
+        - 69.1%
+        - 0.006**
+        - Style-driven causal effect
+      - - Original preference
+        - 53.3%
+        - '0.362'
+        - Negligible confound
+      - - Corrected formality estimate
+        - ~65.8%
+        - —
+        - Conservative lower bound
+    figures_description:
+    - 'Figure 10: 三组 win rate 对比 bar chart——formality pairwise (69.1%), tone pairwise
+      (63.5%), original preference control (53.3%)，各带 95% CI error bar。Original preference
+      的 CI 跨 50%，而 style axes 的 CI 不跨 50%。直观展示 style effect vs confound 的量级差异。'
+    analysis: 'Original preference confound 可安全忽略。53.3% 的微小偏移可解释 direction asymmetry
+      的一小部分（≤3-5 个百分点），但 formality 的 19.1% premium 和 tone 的 13.5% premium 远大于此。保守估计（扣除
+      original preference 后）formality 仍有 ~15.8% premium， 高度显著。这回应了 RC3 reviewer concern。
+
+      '
+  - name: Scaled replication (n=300-500)
+    plan_id: exp-006
+    description: '将 formality pairwise 实验从 n=100 扩大到 n=500。选择 exp-001/002 中效应最强的 judge×benchmark
+      组合（预期 Gemini×LLMBar）。Power analysis 确定 minimum detectable effect size。
+
+      '
+    expected_results:
+      n_total: 500
+      n_valid_both_trials: 490
+      n_consistent: 282
+      formal_wins: 192
+      casual_wins: 90
+      formal_win_rate: 0.681
+      wilson_ci_lo: 0.624
+      wilson_ci_hi: 0.733
+      sign_test_p: 3.0e-07
+      cohens_h: 0.378
+      power_at_n100_for_d065: 0.72
+      power_at_n300_for_d065: 0.97
+      power_at_n500_for_d065: 0.995
+      minimum_detectable_effect_n500: 0.56
+      first_100_winrate: 0.7
+      second_100_winrate: 0.67
+      third_100_winrate: 0.69
+      fourth_100_winrate: 0.66
+      fifth_100_winrate: 0.7
+      subgroup_variance: 0.0003
+      nli_ge90_n: 420
+      nli_ge90_winrate: 0.695
+      nli_ge80_n: 465
+      nli_ge80_winrate: 0.683
+    result_rationale: 'Scaled replication 在 n=500 时 win rate 0.681 在 [0.6, 0.72] 范围内，与
+      n=100 的 0.691 高度一致（仅 -1% regression to mean），说明 MVP 阶段的 point estimate 不是 small-sample
+      侥幸。CI 从 n=100 的 [0.56, 0.80] 收窄到 [0.62, 0.73]， p 值从 0.006 降到 <0.001，sign_test_p
+      达到 3×10⁻⁷ 量级。五个 n=100 子组的 win rate 在 0.66-0.70 范围内波动极小（σ²=0.0003），展示效应的高度稳定性。
+      Power analysis 显示 n=100 对 d=0.065（Likert ATE 量级）只有 0.72 power—— 这正好解释了为什么 Likert
+      在 n=100 时 miss：不是 Likert 完全无效，而是对弱信号 的 statistical power 不足。n=500 时 power 达
+      0.995，即使 Likert 也应 borderline 显著——但 pairwise 在 n=100 就能 catch，说明 pairwise 的
+      effective sample size 更大（每对 within-subject 对比消除了 item-level variance）。
+
+      '
+    tables:
+    - title: 'Table 10: Scaled Replication — Formality Pairwise (Gemini × LLMBar)'
+      columns:
+      - Scale
+      - n_consistent
+      - Formal WR
+      - 95% CI
+      - p
+      - Cohen's h
+      rows:
+      - - n=100 (MVP)
+        - 55
+        - 69.1%
+        - '[56.0%, 79.7%]'
+        - '0.006'
+        - '0.393'
+      - - n=100 (sub1)
+        - 58
+        - 70.0%
+        - '[57.3%, 80.4%]'
+        - —
+        - —
+      - - n=100 (sub2)
+        - 54
+        - 67.0%
+        - '[53.7%, 78.1%]'
+        - —
+        - —
+      - - n=100 (sub3)
+        - 56
+        - 69.0%
+        - '[56.1%, 79.6%]'
+        - —
+        - —
+      - - n=100 (sub4)
+        - 55
+        - 66.0%
+        - '[52.9%, 77.1%]'
+        - —
+        - —
+      - - n=100 (sub5)
+        - 59
+        - 70.0%
+        - '[57.5%, 80.2%]'
+        - —
+        - —
+      - - n=500 (full)
+        - 282
+        - 68.1%
+        - '[62.4%, 73.3%]'
+        - <0.001
+        - '0.378'
+    - title: 'Table 11: Power Analysis'
+      columns:
+      - n
+      - Power (d=0.065)
+      - Power (d=0.18)
+      - Min Detectable WR
+      rows:
+      - - 100
+        - '0.72'
+        - '0.99'
+        - 62.0%
+      - - 300
+        - '0.97'
+        - '>0.999'
+        - 57.5%
+      - - 500
+        - '0.995'
+        - '>0.999'
+        - 56.0%
+    figures_description:
+    - 'Figure 11: Cumulative win rate plot——x 轴为 sample size (50→500)，y 轴为 cumulative
+      formal win rate，带 running 95% CI band。Win rate 从早期波动逐渐收敛到 ~0.68，CI band 稳定收窄。'
+    - 'Figure 12: Power curve——x 轴为 n，y 轴为 power，三条线分别对应 d=0.065 (Likert ATE), d=0.18
+      (pairwise effect), d=0.10 (intermediate)。标注 n=100 和 n=500 的 power 值。直观展示 Likert
+      在 n=100 power 不足的原因。'
+    analysis: 'n=500 replication 是对 RC5 (sample size) 的决定性回应。效应稳定、CI 收窄、 p 值极小。Power
+      analysis 同时为 C2 提供了额外解释——Likert 的 measurement gap 部分来自 power 不足（pointwise 的
+      between-item variance 稀释了 weak signal）， 而 pairwise 的 within-subject design 在
+      n=100 就有足够 power。
+
+      '
+  - name: Register axis (academic/conversational)
+    plan_id: exp-008
+    description: '第三个 surface-level axis。Academic vs conversational register 改变词汇和句法
+      但不改变信息内容。Full pipeline：counterfactual gen → content verification → pairwise
+      scoring。三个 judge × LLMBar，n=100。
+
+      '
+    expected_results:
+      register_nli_pass_rate: 0.86
+      register_nli_mean: 0.893
+      register_bertscore_mean: 0.839
+      gpt4o_academic_win_rate: 0.66
+      gpt4o_p: 0.015
+      claude_academic_win_rate: 0.62
+      claude_p: 0.042
+      gemini_academic_win_rate: 0.71
+      gemini_p: 0.003
+      judges_significant: 3
+      mean_academic_winrate: 0.663
+      gpt4o_likert_p: 0.289
+      claude_likert_p: 0.511
+      gemini_likert_p: 0.167
+      register_likert_pairwise_gap: true
+    result_rationale: 'Register axis 效应在 formality 和 tone 之间（mean 0.663），因为 academic/conversational
+      register 的改变涉及词汇层面（Latinate vs Germanic words, disciplinary jargon vs everyday
+      terms）和句法层面（复杂从句 vs 简单句），比 tone 更 salient 但比 formality 更窄（formality 包含 register
+      + tone + other cues 的 composite）。NLI pass rate 0.86 略低于 formality (0.88) 和 tone
+      (0.89)，因为 academic register 中的 disciplinary vocabulary 有时会引入微妙的语义偏移（如用术语替代 layman
+      terms 可能 shift specificity）， 但仍在 [0.85, 0.93] 范围内。三个 judge 全部显著，进一步证明 CSD 框架的通用性。
+      现在有 3 working axes + 1 failing axis (verbosity)，C3 的 evidence 非常充分。
+
+      '
+    tables:
+    - title: 'Table 12: Register (Academic vs Conversational) Pairwise Results (LLMBar)'
+      columns:
+      - Judge
+      - n_consistent
+      - Academic Wins
+      - Conversational Wins
+      - Win Rate
+      - p
+      rows:
+      - - GPT-4o
+        - 53
+        - 35
+        - 18
+        - 66.0%
+        - 0.015*
+      - - Claude-Sonnet
+        - 50
+        - 31
+        - 19
+        - 62.0%
+        - 0.042*
+      - - Gemini-Flash
+        - 56
+        - 40
+        - 16
+        - 71.4%
+        - 0.003**
+    - title: 'Table 13: Cross-Axis Summary (all on LLMBar, 3 judges)'
+      columns:
+      - Axis
+      - Mean WR
+      - Judges Sig.
+      - NLI Pass
+      - Likert Detects?
+      rows:
+      - - Formality
+        - 68.4%
+        - 3/3
+        - 88%
+        - 0/3
+      - - Register
+        - 66.3%
+        - 3/3
+        - 86%
+        - 0/3
+      - - Tone
+        - 63.4%
+        - 2/3
+        - 89%
+        - 0/3
+      - - Verbosity
+        - —
+        - —
+        - 65%
+        - N/A (failed H1)
+    figures_description:
+    - 'Figure 13: 四 axis 汇总——每个 axis 一行 forest plot，formal/register/tone 都有显著 CI 不跨
+      0.5，verbosity 标注为 method boundary (NLI fail)。一图讲完整个 C3 story。'
+    analysis: '三个 working axes 构成强有力的 C3 evidence：style bias 是 axis-dependent 的， 且效应量级系统性排序（formality
+      > register > tone）。这不是偶然——效应强度与 改写涉及的 linguistic level 数量正相关（formality 跨词汇+句法+语用，register
+      跨词汇+句法， tone 主要在语用层）。Verbosity 作为第四个 axis 的失败提供了 principled boundary： 改变信息量的
+      axis 违反内容保持假设，是方法论限制而非方法失败。
+
+      '
+  - name: Non-Qwen rewriter control
+    plan_id: exp-009
+    description: '使用 Llama-3.1-70B-Instruct 作为替代 rewriter，对 LLMBar formality 运行完整
+      pipeline。 与 Qwen3-32B 结果比较，排除 Qwen-family artifacts。
+
+      '
+    expected_results:
+      llama_nli_pass_rate: 0.85
+      llama_nli_mean: 0.881
+      llama_bertscore_mean: 0.836
+      qwen_nli_pass_rate: 0.88
+      qwen_nli_mean: 0.896
+      llama_formal_win_rate: 0.66
+      llama_sign_test_p: 0.015
+      qwen_formal_win_rate: 0.691
+      qwen_sign_test_p: 0.006
+      winrate_difference: 0.031
+      fisher_exact_p_difference: 0.42
+      rewriter_effect_significant: false
+    result_rationale: 'Llama rewriter 产生略低但仍显著的 formality premium（0.66 vs Qwen 0.69），
+      差异不显著（Fisher p=0.42）。Llama NLI pass rate 略低（0.85 vs 0.88）， 因为 Llama-70B 在 instruction
+      following 上略弱于 Qwen3-32B（后者受益于 Qwen3 的强 instruction tuning），导致少量 counterfactual
+      有轻微语义偏移。但关键结论 不变：formality bias 的检测不依赖于特定 rewriter family。3% 的 win rate 差异 在统计噪声范围内，可能反映
+      counterfactual quality 的微小差异而非系统性 artifact。 这排除了 "Qwen rewriter 引入了某种被 judge
+      偏好的 writing pattern" 的 confound。
+
+      '
+    tables:
+    - title: 'Table 14: Rewriter Ablation (GPT-4o × LLMBar, Formality)'
+      columns:
+      - Rewriter
+      - NLI Pass
+      - NLI Mean
+      - Formal WR
+      - p
+      - n_consistent
+      rows:
+      - - Qwen3-32B
+        - 88%
+        - 0.896
+        - 69.1%
+        - 0.006**
+        - 55
+      - - Llama-3.1-70B
+        - 85%
+        - 0.881
+        - 66.0%
+        - 0.015*
+        - 52
+      - - Difference
+        - -3%
+        - '-0.015'
+        - -3.1%
+        - —
+        - —
+      - - Fisher exact (diff)
+        - —
+        - —
+        - p=0.42
+        - —
+        - —
+    figures_description:
+    - 'Figure A1 (appendix): Side-by-side counterfactual 质量对比——Qwen vs Llama 的 NLI
+      score 分布 histogram，分布形状相似，Llama 略左偏。'
+    analysis: Rewriter ablation 确认 CSD 结果的 robustness。这是 appendix 级实验而非 main text，
+      但对 reviewer 质疑 rewriter choice 时提供决定性回应。
+  review_report: '---
+
+    dream_id: dream_20260520T211832
+
+    tier: best
+
+    overall_score: 3.5/6 — Borderline Conference
+
+    timestamp: 2026-05-20T21:54:38.256050+00:00
+
+    ---
+
+
+    # Dream Review Report — Causal Style Decomposition
+
+
+    **Paper:** "Causal Style Decomposition Reveals Systematic Style Bias in LLM-as-Judge
+    That Likert Scoring Misses"
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Date:** 2026-05-20
+
+
+    ---
+
+
+    ## Reviewer Scores
+
+
+    | Reviewer | Focus | Score | Confidence |
+
+    |----------|-------|-------|------------|
+
+    | R1 | Method + Experiments | 3.5/6 | 4/5 |
+
+    | R2 | Novelty + Related Work | 3.0/6 | 4/5 |
+
+    | **Consensus** | | **3.5/6 (Borderline Conference)** | **4/5** |
+
+
+    ---
+
+
+    ## Paper Summary
+
+
+    CSD is a black-box, post-hoc framework for detecting per-axis causal style bias
+    in LLM judges. The pipeline: (1) generate binary style counterfactuals via instruction-tuned
+    LLM, (2) verify content preservation via NLI+BERTScore, (3) measure bias via position-controlled
+    pairwise comparison, (4) compare against Likert pointwise scoring. Tested across
+    3 judges × 3 benchmarks × 3 axes (formality, tone, register). Three claims: C1
+    (method detects bias), C2 (Likert systematically misses what pairwise catches
+    — 0/9 vs 7/9 significant), C3 (bias is axis-dependent with formality > register
+    > tone).
+
+
+    ---
+
+
+    ## Consolidated Strengths
+
+
+    **S1. The Measurement Gap (C2) is a genuinely novel and high-impact finding.**
+    [Both reviewers agree] The systematic demonstration that Likert scoring fails
+    to detect biases that pairwise comparison reveals (0/9 vs 7/9 significant, mean
+    p 0.37 vs 0.021) is the paper''s strongest contribution. This has direct, actionable
+    implications for the LLM evaluation community and calls into question prior Likert-based
+    style bias studies. No prior work has documented this gap at this scale.
+
+
+    **S2. Systematic experimental coverage.** The 3×3×3 design (judges × benchmarks
+    × axes) with consistent methodology across all cells is well above the typical
+    single-setting study. The inclusion of three model families (OpenAI, Anthropic,
+    Google) addresses a standard reviewer expectation.
+
+
+    **S3. Strong robustness controls.** The three-pronged robustness strategy — scaled
+    replication (n=500, p<10⁻⁶), original-preference control (53.3%, p=0.362), and
+    rewriter ablation (Fisher p=0.42) — addresses the most natural objections systematically.
+
+
+    **S4. Intellectually honest method boundary.** The verbosity failure (NLI 65%,
+    below 85% threshold) is presented as a principled boundary rather than hidden.
+    This demonstrates the verification stage works as intended and distinguishes CSD
+    from correlational methods that would report verbosity "bias" without disentangling
+    style from content.
+
+
+    **S5. Clean experimental design.** Position-controlled dual-direction pairwise
+    comparison is methodologically sound for controlling position bias. The consistency
+    filtering (excluding position-driven pairs) is appropriate.
+
+
+    ---
+
+
+    ## Consolidated Weaknesses
+
+
+    ### Major
+
+
+    **W1. Missing critical citations — RATE (ICML''25) and Counterfactual Rhetorical.**
+    [R2, confirmed in roundtable]
+
+    RATE (ICML 2025) introduced the double-rewrite ATE protocol that CSD''s original-preference
+    control (Section 5.6.1) directly mirrors. The paper uses "original → rewrite →
+    rewrite back" without citing this methodological source. Counterfactual Rhetorical
+    (arXiv 2512.19908) uses persona-level counterfactuals + Bradley-Terry aggregation
+    for rhetorical style bias — the closest existing pipeline analog to CSD. Neither
+    is cited. At a top venue, missing the most directly relevant prior work is a significant
+    issue that undermines the novelty framing ("no existing method provides black-box,
+    post-hoc, per-axis causal style bias detection").
+
+
+    **W2. The Likert-Pairwise comparison is partially confounded by test choice.**
+    [R1, endorsed by R2]
+
+    The "measurement gap" compares Likert ATE (paired t-test) against pairwise win
+    rate (sign test on consistent pairs). These are different statistical tests with
+    different power profiles operating on different data representations. A fairer
+    comparison would apply the same test to both (e.g., a sign test on Likert scores:
+    for each pair, does the s⁺ version score higher?). The power analysis argument
+    (Section 5.6.2) is somewhat circular: it shows Likert has lower power at n=100
+    for d=0.065, but d=0.065 is the observed Likert ATE — the argument essentially
+    says "Likert is underpowered to detect the effect size that Likert measures,"
+    without establishing that the true effect is larger than d=0.065 in the Likert
+    domain. The gap may be partly real (structural advantages of pairwise comparison)
+    and partly artifactual (test mismatch). Disentangling these is essential for C2
+    to hold.
+
+
+    **W3. Axis independence not tested — formality and register likely overlap.**
+    [R1+R2 convergence]
+
+    Formality ("vocabulary register, sentence structure, punctuation") and register
+    ("Latinate vs Germanic vocabulary, complex vs simple syntax") share substantial
+    linguistic overlap. The paper''s own description acknowledges that "formality
+    spans vocabulary, syntax, and pragmatics" while "register spans vocabulary and
+    syntax" — register is essentially a subset of formality. Without an axis independence
+    test (e.g., correlation between formality and register counterfactual pairs, or
+    cross-axis preference overlap), C3''s claim of "axis dependency" is weakened.
+    The ordering formality > register > tone may simply reflect that formality is
+    a superset of register, not that they are independent dimensions. This undermines
+    the "decomposition" framing.
+
+
+    **W4. No multiple comparison correction.** [R1+R2 convergence]
+
+    The paper runs 27+ hypothesis tests (9 cells × 2 metrics for formality, plus tone,
+    register, controls) without Holm-Bonferroni or FDR correction. Several borderline
+    results (Claude×MT-Bench p=0.065, Claude×AlpacaEval p=0.048, Claude tone p=0.085)
+    would likely lose significance after correction. The experiment plan (review_context.yaml)
+    specifically mentions this as a community standard. Its absence is notable.
+
+
+    ### Minor
+
+
+    **W5. CSD framework is an incremental combination of known components.** [R2]
+
+    Counterfactual generation (from RATE and others), NLI verification (standard),
+    pairwise comparison (standard), sign test (standard). The novelty lies in the
+    specific combination and the systematic application across axes, not in any individual
+    component. The paper would benefit from explicitly acknowledging this and emphasizing
+    the empirical findings (especially C2) rather than the framework novelty.
+
+
+    **W6. Related work section is too compressed.** [R2]
+
+    Four short paragraphs covering a rich and competitive literature. SOS-Bench, Preference
+    Leakage, CASSE, LC-AlpacaEval, and RATE all deserve more detailed differentiation.
+    The current treatment leaves reviewers uncertain whether the authors are aware
+    of the full landscape.
+
+
+    **W7. High data discard rate not discussed.** [R1]
+
+    The consistency filtering discards 42-52% of pairs (e.g., 100 pairs → 48-58 consistent).
+    While methodologically justified, this high discard rate raises questions about
+    selection bias: are consistent pairs systematically different from inconsistent
+    ones? No analysis is provided.
+
+
+    **W8. Tone and register tested only on LLMBar.** [R1]
+
+    Formality is tested across all 3 benchmarks, but tone and register are only tested
+    on LLMBar. This asymmetry weakens C3 — we don''t know if the axis ordering holds
+    across benchmarks.
+
+
+    **W9. No qualitative examples of counterfactual pairs.** [R1]
+
+    The paper provides no examples of actual counterfactual rewrites. Readers cannot
+    judge rewrite quality or understand what "formal vs casual" means operationally
+    in this pipeline. Even 2-3 examples would substantially aid evaluation.
+
+
+    **W10. Scaled replication is single-cell.** [R1]
+
+    The n=500 replication covers only Gemini×LLMBar (the strongest cell). Replicating
+    a weaker cell (e.g., Claude×MT-Bench) would be more informative about robustness.
+
+
+    ---
+
+
+    ## Questions for Authors
+
+
+    1. **On W2:** If you apply a sign test to the Likert data (for each pair, does
+    the formal version score strictly higher?), does the measurement gap persist?
+    This would control for the test-choice confound.
+
+
+    2. **On W3:** What is the correlation between formality and register counterfactual
+    pairs? If you rewrite a response for formality, how much does its register also
+    change? Have you measured cross-axis contamination?
+
+
+    3. **On W4:** If you apply Holm-Bonferroni correction across all 27 tests, how
+    many remain significant?
+
+
+    4. **On W7:** Are consistent pairs systematically different from inconsistent
+    pairs in terms of NLI score, original response length, or task type? Could the
+    consistency filter introduce selection bias?
+
+
+    5. **On W1:** How does CSD relate to RATE''s double-rewrite protocol? Is the original-preference
+    control (Section 5.6.1) inspired by RATE?
+
+
+    6. What is the computational cost of the full CSD pipeline per cell (API calls,
+    time, cost)?
+
+
+    ---
+
+
+    ## Roundtable Discussion Summary
+
+
+    ### Step 2: Cross-Sharing
+
+    R1 raised the Likert-Pairwise test confound (W2) as a potentially fatal issue
+    for C2; R2 acknowledged this would significantly weaken the paper''s headline
+    contribution if the gap is partly artifactual. R2 raised missing RATE citation
+    (W1); R1 agreed this is a significant omission given the double-rewrite protocol
+    overlap. Both independently flagged axis independence (W3) and multiple comparisons
+    (W4).
+
+
+    ### Step 3: Convergence
+
+    Both reviewers agree that:
+
+    - C2 (measurement gap) is the paper''s most valuable contribution, but needs methodological
+    tightening (W2)
+
+    - The framework novelty is incremental (W5), which is acceptable if the empirical
+    findings are strong
+
+    - Missing citations (W1) must be addressed — this is a blocking issue at top venues
+
+    - The paper is well-executed within its scope but has addressable gaps
+
+
+    The main disagreement was on severity: R1 viewed the paper as borderline conference
+    (3.5) given strong experimental design, while R2 leaned toward Findings (3.0)
+    due to novelty concerns. After discussion, both agreed on 3.5 — the C2 finding
+    has enough novelty and impact to be borderline conference if the methodological
+    issues (W2, W3, W4) are addressed.
+
+
+    ### Step 4: Final Assessment
+
+
+    **Consensus Score: 3.5/6 (Borderline Conference)**
+
+
+    The paper''s core contribution — demonstrating a systematic Likert-Pairwise measurement
+    gap in style bias detection — is novel, well-evidenced, and practically important.
+    The systematic 3×3×3 experimental design exceeds community standards for coverage.
+    However, the novelty of the CSD framework itself is incremental, critical citations
+    are missing (RATE, Counterfactual Rhetorical), the measurement gap claim needs
+    methodological tightening (same-test comparison), axis independence is untested,
+    and multiple comparison correction is absent.
+
+
+    **Path to acceptance:** (1) Cite RATE and Counterfactual Rhetorical with explicit
+    differentiation; (2) add same-test Likert comparison (sign test on Likert scores);
+    (3) test formality-register axis correlation; (4) apply Holm-Bonferroni correction;
+    (5) add 2-3 counterfactual examples. If the measurement gap survives the same-test
+    comparison, this becomes a solid conference paper with C2 as the headline. If
+    it doesn''t, the paper reverts to a competent but incremental framework paper
+    at Findings level.
+
+
+    **Key risk:** If the Likert-Pairwise gap is substantially reduced when using the
+    same statistical test, C2 collapses and the paper''s primary novelty claim is
+    undermined.
+
+
+    ---
+
+
+    ## Actionable Revision Priorities
+
+
+    ### Must-Do (for resubmission)
+
+    1. Cite and differentiate from RATE (ICML''25) and Counterfactual Rhetorical
+
+    2. Run sign test on Likert scores to test whether measurement gap persists with
+    matched test
+
+    3. Apply Holm-Bonferroni correction across all hypothesis tests
+
+    4. Test formality-register axis correlation/independence
+
+
+    ### Should-Do
+
+    5. Expand related work to ~1.5 pages with detailed competitor differentiation
+
+    6. Add 2-3 counterfactual pair examples
+
+    7. Analyze consistent vs inconsistent pair characteristics
+
+    8. Extend tone/register to at least one additional benchmark
+
+
+    ### Nice-to-Have
+
+    9. Replicate n=500 on a weaker cell
+
+    10. Test prompt sensitivity for the rewriter
+
+    11. Report computational costs
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/dream_reports/dream_20260520T211832/median/paper.pdf
+  imagined_experiments:
+  - name: Multi-judge formality pairwise (LLMBar)
+    plan_id: exp-001
+    description: '在 LLMBar counterfactuals（n=100, 已有）上，用 Claude-3.5-Sonnet 和 Gemini-2.0-Flash
+      作为 judge 复现 GPT-4o 的 formality pairwise 实验。双方向 position-controlled pairwise
+      comparison。
+
+      '
+    expected_results:
+      gpt4o_formal_win_rate: 0.691
+      gpt4o_sign_test_p: 0.006
+      gpt4o_n_consistent: 55
+      gpt4o_direction_formal_orig: 0.788
+      gpt4o_direction_casual_orig: 0.545
+      claude35_formal_win_rate: 0.654
+      claude35_sign_test_p: 0.021
+      claude35_n_consistent: 52
+      claude35_direction_formal_orig: 0.731
+      claude35_direction_casual_orig: 0.56
+      claude35_consistency_rate: 0.541
+      gemini_formal_win_rate: 0.571
+      gemini_sign_test_p: 0.136
+      gemini_n_consistent: 48
+      gemini_direction_formal_orig: 0.643
+      gemini_direction_casual_orig: 0.476
+      gemini_consistency_rate: 0.49
+      judges_significant_at_005: 2
+      judges_total: 3
+      max_direction_asymmetry_gap: 0.243
+    result_rationale: 'GPT-4o 是已有结果，直接复用。Claude-3.5-Sonnet 作为同级别 frontier model，内部
+      RLHF 训练同样偏好结构化、正式输出， 因此复现 formality premium 但量级略低（65.4% vs 69.1%）——Claude 的
+      judge 行为比 GPT-4o 更 calibrated、 对 style 的权重分配略低于对 content 的权重。Gemini-2.0-Flash
+      是轻量模型，推理能力和 preference alignment 深度不如 frontier， 对 subtle style 差异的敏感度更低；加上 Flash
+      的 response 方差更大，consistency rate 低（49%）， 导致有效样本少、统计功效不足，p=0.136 未达显著。方向不对称在所有
+      judge 上持续存在—— formal→casual 方向（original 是 formal）的 formal win rate 更高，因为 original
+      preference 和 formality premium 同向叠加； casual→formal 方向两者对冲，效应被削弱。这一模式支持 A1（judge-dependent
+      magnitude）和 A6（original preference 需校正）。
+
+      '
+    tables:
+    - name: 'Table 2: Multi-judge Formality Pairwise Results (LLMBar, n=100)'
+      columns:
+      - Judge
+      - n_consistent
+      - Formal Wins
+      - Casual Wins
+      - Win Rate
+      - 95% Wilson CI
+      - Sign Test p
+      - Direction (F→C orig)
+      - Direction (C→F orig)
+      rows:
+      - - GPT-4o
+        - 55
+        - 38
+        - 17
+        - 69.1%
+        - '[0.560, 0.797]'
+        - 0.006**
+        - 78.8%
+        - 54.5%
+      - - Claude-3.5-Sonnet
+        - 52
+        - 34
+        - 18
+        - 65.4%
+        - '[0.517, 0.770]'
+        - 0.021*
+        - 73.1%
+        - 56.0%
+      - - Gemini-2.0-Flash
+        - 48
+        - 27
+        - 21
+        - 56.3%
+        - '[0.421, 0.694]'
+        - '0.136'
+        - 64.3%
+        - 47.6%
+    figures_description:
+    - 'Forest plot: 三个 judge 的 formal win rate + 95% CI，水平虚线 = 0.50 baseline。GPT-4o
+      和 Claude CI 不含 0.50，Gemini 含。'
+    - 'Grouped bar chart: 每个 judge 的 formal→casual vs casual→formal 方向 win rate，展示方向不对称的
+      judge-dependent 模式。'
+    analysis: '2/3 judges 显著（p<0.05）支持 C1 但需降级为 judge-dependent。GPT-4o 效应最强（d≈0.38），Claude
+      中等（d≈0.30）， Gemini 弱（d≈0.12）。方向不对称在所有 judge 上一致（formal-original 方向更强），最大 gap
+      24.3%（GPT-4o）， 说明 original preference 是系统性 confound。Gemini 的 NS 结果可解释为：(a) Flash
+      模型对 style 不敏感， (b) 一致性低导致有效 n 不足。论文需报告 Gemini 为 negative result 并讨论 judge 能力对检测的影响。
+      Cochran Q test 检验 judge 间异质性预计显著（Q≈4.8, p≈0.09），支持 A1。
+
+      '
+  - name: Multi-benchmark formality pairwise (AlpacaEval + MT-Bench)
+    plan_id: exp-002
+    description: '在 AlpacaEval 和 MT-Bench 子集上生成新 formality counterfactuals（各 n=100），
+      用 GPT-4o + Claude-3.5 + Gemini 三个 judge 做 pairwise evaluation。
+
+      '
+    expected_results:
+      alpacaeval_counterfactual_nli_pass_rate: 0.85
+      alpacaeval_counterfactual_bertscore_pass_rate: 0.82
+      mtbench_counterfactual_nli_pass_rate: 0.81
+      mtbench_counterfactual_bertscore_pass_rate: 0.78
+      gpt4o_alpacaeval_win_rate: 0.621
+      gpt4o_alpacaeval_p: 0.042
+      gpt4o_alpacaeval_n_consistent: 50
+      claude_alpacaeval_win_rate: 0.607
+      claude_alpacaeval_p: 0.047
+      claude_alpacaeval_n_consistent: 48
+      gemini_alpacaeval_win_rate: 0.538
+      gemini_alpacaeval_p: 0.345
+      gpt4o_mtbench_win_rate: 0.558
+      gpt4o_mtbench_p: 0.215
+      gpt4o_mtbench_n_consistent: 46
+      claude_mtbench_win_rate: 0.542
+      claude_mtbench_p: 0.312
+      gemini_mtbench_win_rate: 0.516
+      gemini_mtbench_p: 0.478
+      cross_benchmark_significant_combos_p005: 4
+      cross_benchmark_total_combos: 9
+      benchmark_rank_by_effect: LLMBar > AlpacaEval > MT-Bench
+    result_rationale: 'LLMBar 效应最强因为其 source text 较短、结构化（指令-遵循对），formality 操纵在短文本上更
+      salient，judge 更容易感知。 AlpacaEval 效应中等——response 更长、更多样，formality 操纵仍可感知但被更多 content
+      信号稀释，且 AlpacaEval 的  instruction 多样性增加了跨样本方差。MT-Bench 效应弱——多轮对话增加了 context 复杂度，judge
+      评估时关注对话连贯性和推理深度， 单纯 formality 变化在多轮语境下权重被大幅降低。此外 MT-Bench counterfactual 质量略低（NLI
+      81%）， 因为对话文本的 style 改写更难保持语义完整性。Gemini 在所有 benchmark 上均不显著，进一步确认 Flash 对 style
+      bias 不敏感。 4/9 组合显著（两个 frontier judge × 两个 easier benchmark），MT-Bench 全军覆没——这支持
+      A2（跨 benchmark 部分泛化）。
+
+      '
+    tables:
+    - name: 'Table 3: Formality Win Rate Matrix (Judge × Benchmark)'
+      columns:
+      - ''
+      - LLMBar
+      - AlpacaEval
+      - MT-Bench
+      rows:
+      - - GPT-4o
+        - 69.1% (p=.006**)
+        - 62.1% (p=.042*)
+        - 55.8% (p=.215)
+      - - Claude-3.5
+        - 65.4% (p=.021*)
+        - 60.7% (p=.047*)
+        - 54.2% (p=.312)
+      - - Gemini-Flash
+        - 56.3% (p=.136)
+        - 53.8% (p=.345)
+        - 51.6% (p=.478)
+    - name: 'Table S1: Counterfactual Quality by Benchmark'
+      columns:
+      - Benchmark
+      - NLI Pass Rate
+      - BERTScore Pass Rate
+      - Both Pass
+      - Mean NLI
+      rows:
+      - - LLMBar
+        - 88%
+        - 85%
+        - 81%
+        - '0.896'
+      - - AlpacaEval
+        - 85%
+        - 82%
+        - 76%
+        - '0.871'
+      - - MT-Bench
+        - 81%
+        - 78%
+        - 69%
+        - '0.842'
+    figures_description:
+    - 'Heatmap (3×3): Judge × Benchmark，色标 = formal win rate，cell 内标注 p-value 和显著性星号。清晰展示左上角显著、右下角
+      NS 的梯度。'
+    - 'Bar chart: 三个 benchmark 的 counterfactual NLI pass rate 对比，说明 benchmark 复杂度影响改写质量。'
+    analysis: '4/9 显著组合（p<0.05）在 [3,5] 范围内。效应梯度 LLMBar > AlpacaEval >> MT-Bench 一致，
+      可解释为 source text 复杂度和 judge 评估负荷的函数。MT-Bench 的全面 NS 是重要 boundary condition——
+      论文需讨论 CSD 方法在多轮/高复杂度场景下的局限性。 Claude×AlpacaEval 刚过 0.05 线（p=0.047），reviewer 可能质疑
+      multiple comparison—— 需做 Benjamini-Hochberg 校正，校正后可能变为 marginal（adjusted p≈0.07）。
+      但即使只报告 3 个 robust 显著，LLMBar + AlpacaEval 两个 benchmark 的跨 judge 复现已足够支持 C1。
+
+      '
+  - name: Likert vs Pairwise sensitivity analysis
+    plan_id: exp-003
+    description: '对 exp-001/002 的每个 judge × benchmark 组合，在同一 counterfactual 数据上同时计算
+      Likert ATE 和 pairwise win rate， 系统对比两种 measurement 的检测灵敏度。
+
+      '
+    expected_results:
+      gpt4o_llmbar_likert_ate: -0.102
+      gpt4o_llmbar_likert_p: 0.332
+      gpt4o_llmbar_pairwise_p: 0.006
+      gpt4o_llmbar_gap: true
+      claude_llmbar_likert_ate: 0.138
+      claude_llmbar_likert_p: 0.082
+      claude_llmbar_pairwise_p: 0.021
+      claude_llmbar_gap: true
+      gpt4o_alpacaeval_likert_ate: -0.051
+      gpt4o_alpacaeval_likert_p: 0.445
+      gpt4o_alpacaeval_pairwise_p: 0.042
+      gpt4o_alpacaeval_gap: true
+      claude_alpacaeval_likert_ate: 0.074
+      claude_alpacaeval_likert_p: 0.258
+      claude_alpacaeval_pairwise_p: 0.047
+      claude_alpacaeval_gap: true
+      gemini_llmbar_likert_ate: 0.042
+      gemini_llmbar_likert_p: 0.521
+      gemini_llmbar_pairwise_p: 0.136
+      gemini_llmbar_gap: false
+      gpt4o_mtbench_likert_ate: -0.028
+      gpt4o_mtbench_likert_p: 0.612
+      gpt4o_mtbench_pairwise_p: 0.215
+      gpt4o_mtbench_gap: false
+      gap_prevalence_among_pairwise_sig: 1.0
+      gap_prevalence_among_all_combos: 0.44
+      likert_detects_any_formality: false
+      likert_sign_direction_inconsistent_combos: 2
+    result_rationale: 'Likert 在 n=100 下对 formality（moderate-effect axis）完全无检出力。原因有三：
+      (1) Likert absolute scoring 的 scale anchoring 效应——judge 给不同 style 的 response
+      打分时使用相似的 anchor point， 差异被压缩到 0.1-0.15 分的噪声区间内；(2) Likert 缺乏 direct comparison
+      的对比增强效应——pairwise 强制选择放大了 微小偏好，而 Likert 的独立打分丢失了这个信号；(3) GPT-4o 的 Likert ATE
+      甚至为负值（-0.10）， 说明 RATE 校正方向与 raw signal 相反，进一步确认 Likert 的 raw score 不可靠。 Claude
+      的 Likert 方向是正确的（ATE=+0.14）且接近 marginal（p=0.082），说明不同 judge 的 Likert 行为差异很大——
+      这本身就是 Likert 不可靠的证据。gap_prevalence=4/9≈0.44 因为只有 pairwise-significant 的 4 个组合存在有意义的
+      gap， 其余 5 个组合两种方法都 NS。在 [0.33, 0.67] 范围内。C2 claim 成立但需限定： "Likert 对 weak-to-moderate
+      effect 不敏感"，不能说"Likert always fails"（因为缺乏 strong-effect axis 的证据）。
+
+      '
+    tables:
+    - name: 'Table 4: Likert vs Pairwise Detection Sensitivity (Formality Axis)'
+      columns:
+      - Judge × Benchmark
+      - Likert ATE
+      - Likert p
+      - Pairwise WR
+      - Pairwise p
+      - Gap?
+      rows:
+      - - GPT-4o × LLMBar
+        - '-0.102'
+        - '0.332'
+        - 69.1%
+        - 0.006**
+        - 'YES'
+      - - Claude × LLMBar
+        - '+0.138'
+        - 0.082†
+        - 65.4%
+        - 0.021*
+        - 'YES'
+      - - Gemini × LLMBar
+        - '+0.042'
+        - '0.521'
+        - 56.3%
+        - '0.136'
+        - —
+      - - GPT-4o × AlpacaEval
+        - '-0.051'
+        - '0.445'
+        - 62.1%
+        - 0.042*
+        - 'YES'
+      - - Claude × AlpacaEval
+        - '+0.074'
+        - '0.258'
+        - 60.7%
+        - 0.047*
+        - 'YES'
+      - - Gemini × AlpacaEval
+        - '+0.019'
+        - '0.674'
+        - 53.8%
+        - '0.345'
+        - —
+      - - GPT-4o × MT-Bench
+        - '-0.028'
+        - '0.612'
+        - 55.8%
+        - '0.215'
+        - —
+      - - Claude × MT-Bench
+        - '+0.051'
+        - '0.398'
+        - 54.2%
+        - '0.312'
+        - —
+      - - Gemini × MT-Bench
+        - '+0.011'
+        - '0.723'
+        - 51.6%
+        - '0.478'
+        - —
+    figures_description:
+    - 'Paired dot plot: 每个 judge×benchmark 组合两个点（Likert p 和 Pairwise p），用线连接。水平虚线
+      = 0.05。Pairwise 点在线下，Likert 点在线上。'
+    - 'Scatter plot: x=Pairwise win rate, y=Likert ATE，标注每个组合。展示两种 measurement 的 (dis)agreement，特别突出
+      GPT-4o Likert ATE 为负的异常。'
+    analysis: 'C2 的核心证据：所有 4 个 pairwise-significant 组合的 Likert 均未达显著（最接近的是 Claude×LLMBar
+      p=0.082）。 GPT-4o 的 Likert ATE 方向甚至是错误的（负值 = casual premium），而 pairwise 清晰显示
+      formal premium—— 这不仅是灵敏度问题，而是 Likert 的 absolute scoring 机制在 moderate effect
+      下产生了误导性信号。 Claude Likert 方向正确但幅度不足，说明 judge 的 Likert 行为本身存在大量 idiosyncratic
+      variance。 Claim 调整："Pairwise comparison 是检测 weak-to-moderate causal style bias
+      的必要方法—— standard Likert scoring 在相同数据上不仅漏检，还可能给出错误方向。" Limitation：缺乏 strong-effect
+      axis（verbosity 内容保持失败），无法断言 Likert 对 strong effects 也会失败。 exp-006 的 n=500 结果将部分回答这个问题。
+
+      '
+  - name: Tone axis counterfactual + pairwise
+    plan_id: exp-004
+    description: 'Tone axis（assertive vs hedging）counterfactual 生成 + 内容验证 + 多 judge
+      pairwise evaluation。 用 LLMBar n=100 作为 source，Qwen3-32B 改写。
+
+      '
+    expected_results:
+      counterfactual_nli_pass_rate: 0.83
+      counterfactual_bertscore_pass_rate: 0.79
+      counterfactual_both_pass: 0.73
+      counterfactual_nli_mean: 0.862
+      n_primary: 73
+      gpt4o_n_consistent: 42
+      gpt4o_assertive_wins: 24
+      gpt4o_hedging_wins: 18
+      gpt4o_assertive_win_rate: 0.571
+      gpt4o_sign_test_p: 0.092
+      gpt4o_direction_assert_orig: 0.636
+      gpt4o_direction_hedge_orig: 0.5
+      claude_n_consistent: 39
+      claude_assertive_wins: 21
+      claude_hedging_wins: 18
+      claude_assertive_win_rate: 0.538
+      claude_sign_test_p: 0.371
+      gemini_n_consistent: 35
+      gemini_assertive_wins: 18
+      gemini_hedging_wins: 17
+      gemini_assertive_win_rate: 0.514
+      gemini_sign_test_p: 0.5
+      tone_likert_ate_gpt4o: 0.031
+      tone_likert_p_gpt4o: 0.578
+    result_rationale: 'Tone 的 NLI pass rate 83% 符合 A3（≥80% 但比 formality 88% 更 noisy）。Assertive↔hedging
+      改写比 formal↔casual 更微妙——hedging 添加 "might/perhaps/it seems" 等弱化词，assertive 移除它们并加强语气，
+      但部分改写会无意中改变 confidence level 的语义（如把 "X might cause Y" 改为 "X causes Y" 可能改变事实准确度的感知），
+      导致 NLI 判定更多 neutral/contradiction，both_pass 率降至 73%（vs formality 81%）。 有效样本少→统计功效低。GPT-4o
+      显示 marginal 57.1% assertive premium（p=0.092）， 方向合理——assertive 语气传递自信，judge 倾向将
+      confident tone 与 higher quality 关联。 但效应量远小于 formality（d≈0.14 vs d≈0.38），因为 tone
+      的 perceptual salience 低于 formality： formality 改变词汇层级和句法结构（容易感知），tone 只改变 hedging
+      markers（需要更细粒度的注意力）。 Claude 和 Gemini 完全 NS——tone bias 可能是 GPT-4o 特有的训练偏好（RLHF
+      数据中 confident response 获得更多 upvote）。 这支持 A4（tone marginal, 不如 formality 清晰）和
+      C3（axis-dependent）。
+
+      '
+    tables:
+    - name: 'Table 5: Tone Axis (Assertive vs Hedging) Pairwise Results'
+      columns:
+      - Judge
+      - n_consistent
+      - Assert. Wins
+      - Hedge Wins
+      - Win Rate
+      - Sign Test p
+      rows:
+      - - GPT-4o
+        - 42
+        - 24
+        - 18
+        - 57.1%
+        - 0.092†
+      - - Claude-3.5
+        - 39
+        - 21
+        - 18
+        - 53.8%
+        - '0.371'
+      - - Gemini-Flash
+        - 35
+        - 18
+        - 17
+        - 51.4%
+        - '0.500'
+    - name: 'Table S2: Tone Counterfactual Quality'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - NLI Pass Rate (≥0.80)
+        - 83%
+      - - BERTScore Pass Rate (≥0.90)
+        - 79%
+      - - Both Pass
+        - 73%
+      - - Mean NLI Score
+        - '0.862'
+      - - Mean BERTScore
+        - '0.891'
+    figures_description:
+    - 'Formality vs Tone effect size comparison: paired bar chart，每个 judge 两个 bar（formality
+      win rate, tone win rate），展示 formality 全面优于 tone。'
+    - 'Direction asymmetry comparison: 两个 axis 的 direction gap 对比，formality 不对称更大。'
+    analysis: 'Tone 的 marginal p=0.092 报告为 "suggestive evidence with insufficient
+      power"。 one-tailed test 下 p=0.046 可达 significance，但 pre-registration 指定 two-tailed，不能事后改。
+      Power analysis：检测 d=0.14 的 effect 在 n=42 下功效仅 ~18%——需要 n≈350 一致对才能达到 80% power。
+      论文叙事：tone bias 可能存在但需要更大样本验证，当前数据不足以定论。 这对 C3 是 partial support——axis dependency
+      确实存在（formality >> tone），但"tone 有 bias"这个子结论只是 suggestive。 如果 reviewer 要求更强证据，可以退守为
+      "formality is the primary axis, tone requires future work with larger n"。
+
+      '
+  - name: Pairwise RATE control (original preference)
+    plan_id: exp-005
+    description: '对比 original text vs double-rewrite（original → formal → 回到 original
+      style）的 pairwise preference， 量化 judge 对 original text 的系统性偏好（与 style 无关的 confound）。
+
+      '
+    expected_results:
+      n_total: 100
+      n_double_rewrite_valid: 92
+      double_rewrite_nli_vs_original: 0.873
+      n_consistent: 51
+      original_wins: 30
+      rewrite_wins: 21
+      original_win_rate: 0.588
+      original_preference_p: 0.078
+      original_preference_ci_lo: 0.449
+      original_preference_ci_hi: 0.714
+      corrected_gpt4o_llmbar_formal_wr: 0.634
+      corrected_gpt4o_llmbar_p: 0.018
+      corrected_claude_llmbar_formal_wr: 0.612
+      corrected_claude_llmbar_p: 0.042
+      correction_method: subtract (original_wr - 0.50) from raw formal_wr
+    result_rationale: 'Judge 偏好 original text 的 58.8%（p=0.078, marginal）符合 A6 的 [55%,
+      62%] 范围。 Original preference 的来源：(1) LLM rewriter 引入的微妙 artifacts——即使 NLI 通过，double-rewrite
+      后的文本 在 lexical diversity、句式自然度上微降，judge 能感知这种"机器感"；(2) 信息微量损失——两次改写的 round-trip
+      不完美，部分 nuance 被 flatten；(3) 可能存在 LLM judge 对 LLM-generated text 的 systematic
+      discounting（已有文献报告此现象）。 校正方法：将 original preference 作为 additive correction factor（correction
+      = original_wr - 0.50 = 0.088） 从 raw formal win rate 中扣除。GPT-4o×LLMBar 校正后：69.1%
+      - 8.8% ≈ 60.3%（保守估计）到 63.4%（bootstrap 中位数）。 即使最保守的校正，p=0.018 仍显著——说明 formality
+      premium 是真实的 causal effect， original preference 是 confound 但不是 sole driver。这是论文的关键
+      robustness check。
+
+      '
+    tables:
+    - name: 'Table 6: Original Preference Quantification'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - n consistent pairs
+        - '51'
+      - - Original wins
+        - 30 (58.8%)
+      - - Double-rewrite wins
+        - 21 (41.2%)
+      - - Sign test p (two-tailed)
+        - 0.078†
+      - - Correction factor
+        - '0.088'
+    - name: 'Table 7: Formality Win Rate Before/After Original Preference Correction'
+      columns:
+      - Judge × Benchmark
+      - Raw WR
+      - Corrected WR
+      - Raw p
+      - Corrected p
+      - Still Sig?
+      rows:
+      - - GPT-4o × LLMBar
+        - 69.1%
+        - 63.4%
+        - '0.006'
+        - 0.018*
+        - 'YES'
+      - - Claude × LLMBar
+        - 65.4%
+        - 61.2%
+        - '0.021'
+        - 0.042*
+        - 'YES'
+      - - GPT-4o × AlpacaEval
+        - 62.1%
+        - 57.8%
+        - '0.042'
+        - 0.092†
+        - Marginal
+      - - Claude × AlpacaEval
+        - 60.7%
+        - 56.5%
+        - '0.047'
+        - '0.128'
+        - 'NO'
+    figures_description:
+    - 'Waterfall chart: Raw formal win rate → minus original preference correction
+      → corrected win rate，每个 judge×benchmark 一条。展示 correction 的量级和校正后哪些仍显著。'
+    - 'Sensitivity analysis curve: correction factor 从 0% 到 15% 变化时，各组合 p-value 的变化轨迹，标注
+      p=0.05 线。'
+    analysis: 'Original preference 是 real but manageable confound。58.8% 的偏好率说明 judge
+      确实系统性偏好 original， 但 (a) 只是 marginal significance (p=0.078)，(b) 校正后 LLMBar 上两个
+      frontier judge 仍显著。 AlpacaEval 组合校正后降至 marginal/NS——这意味着 AlpacaEval 上的 formality
+      effect 可能有一半是 original preference。 论文需诚实报告：(1) LLMBar 结果 robust to correction，(2)
+      AlpacaEval 结果在校正后不 robust， (3) 建议未来工作用 double-rewrite pairwise 作为 primary setup
+      而非 original-vs-rewrite。 校正后 significant combos 从 4 降至 2（严格）或 3（含 marginal），缩窄了
+      C1 claim 范围但不致命。
+
+      '
+  - name: Scaled replication (n=500, GPT-4o × LLMBar)
+    plan_id: exp-006
+    description: '将最佳组合（GPT-4o × LLMBar）从 n=100 扩展到 n=500。新生成 400 个 counterfactual
+      pairs。 同时计算 Likert 和 pairwise，以及 power analysis。
+
+      '
+    expected_results:
+      n_total: 500
+      n_counterfactual_valid: 438
+      nli_pass_rate_new400: 0.86
+      n_consistent: 282
+      formal_wins: 173
+      casual_wins: 109
+      formal_win_rate: 0.614
+      sign_test_p: 0.00028
+      wilson_ci_lo: 0.557
+      wilson_ci_hi: 0.668
+      cohens_h: 0.228
+      direction_formal_orig_wr: 0.672
+      direction_casual_orig_wr: 0.558
+      direction_gap: 0.114
+      likert_ate_n500: 0.082
+      likert_p_n500: 0.042
+      likert_cohens_d_n500: 0.097
+      power_at_d020_n100: 0.21
+      power_at_d020_n500: 0.78
+      power_at_d023_n500: 0.85
+      minimum_detectable_effect_80pct_n500: 0.22
+    result_rationale: 'Win rate 从 69.1%（n=100）降至 61.4%（n=500）符合预期的 regression to mean——n=100
+      的高估值部分来自 small-sample variance。61.4% 在 [57%, 65%] 范围内。p 值大幅下降至 0.00028，CI 收窄，确认效应是
+      real。 方向不对称从 24.3% gap 收窄至 11.4%——更大的 n 稀释了极端方向差异，但不对称仍存在。 关键发现：Likert 在 n=500
+      下终于达到 p=0.042——但 Cohen''s d 仅 0.097（trivial）， 而 pairwise Cohen''s h=0.228（small-to-medium）。这精确回答了
+      A5：Likert 并非"永远检测不到"， 而是需要远大于 pairwise 的样本量才能检测同一效应（estimated power ratio: Likert
+      需要 ~5× 样本量）。 C2 claim 精确化为："Pairwise 比 Likert 对 moderate style bias 的检测效率高约
+      5 倍"—— 从"Likert 失败"升级为定量的 efficiency comparison，更有说服力。
+
+      '
+    tables:
+    - name: 'Table 8: Scaled Replication (GPT-4o × LLMBar)'
+      columns:
+      - Metric
+      - n=100
+      - n=500
+      rows:
+      - - Formal Win Rate
+        - 69.1%
+        - 61.4%
+      - - 95% CI
+        - '[56.0%, 79.7%]'
+        - '[55.7%, 66.8%]'
+      - - Sign Test p
+        - '0.006'
+        - '0.00028'
+      - - Cohen's h
+        - '0.382'
+        - '0.228'
+      - - Direction Gap
+        - 24.3%
+        - 11.4%
+      - - Likert ATE
+        - '-0.102'
+        - '+0.082'
+      - - Likert p
+        - '0.332'
+        - 0.042*
+      - - Likert d
+        - —
+        - '0.097'
+    - name: 'Table S3: Post-hoc Power Analysis'
+      columns:
+      - Effect Size (h)
+      - n=100 Power
+      - n=300 Power
+      - n=500 Power
+      rows:
+      - - 0.15 (small)
+        - '0.11'
+        - '0.28'
+        - '0.45'
+      - - 0.20 (small-med)
+        - '0.21'
+        - '0.50'
+        - '0.78'
+      - - 0.23 (observed)
+        - '0.27'
+        - '0.58'
+        - '0.85'
+      - - 0.30 (medium)
+        - '0.43'
+        - '0.80'
+        - '0.96'
+    figures_description:
+    - 'Power curve: x=sample size (50-1000), y=power，多条线 = 不同 effect size。标注 n=100
+      和 n=500 的实际位置，展示 n=100 对 moderate effect 的功效不足。'
+    - 'Bootstrap distribution: n=500 formal win rate 的 10,000 次 bootstrap 分布，标注 observed
+      mean 和 95% CI，与 n=100 的 wider 分布对比。'
+    - 'Likert vs Pairwise detection threshold: x=n，y=p-value，两条曲线（Likert, Pairwise），标注各自首次达到
+      p<0.05 的 n 值。Pairwise ~100，Likert ~450。'
+    analysis: 'n=500 是本 paper 的 definitive evidence。Win rate 61.4% 是 formality premium
+      的更准确估计—— 比 n=100 的 69.1% 低但 CI 互相重叠，无矛盾。p<0.001 消除了"侥幸显著"的质疑。 Likert 在 n=500
+      刚好 p=0.042 是 C2 的 killer evidence：同一数据，pairwise 在 n=100 就显著（p=0.006）， Likert
+      需要 5× 样本量才刚过线。论文可报告："A researcher relying solely on Likert scoring would need  approximately
+      5× the sample size to detect the same formality bias that pairwise comparison
+      reveals at n=100." 这是 actionable methodology insight。 Direction asymmetry 收窄但未消失→
+      original preference 是 persistent 但 minority factor。 Combined with exp-005 校正：corrected
+      n=500 formal_wr ≈ 61.4% - 8.8% ≈ 52.6%（过于保守，因 n=500 的 original preference 可能更低），用
+      n=500 的 double-rewrite subset 重新估计更合理。
+
+      '
+  - name: Verbosity method boundary analysis
+    plan_id: exp-007
+    description: 'Verbosity axis 的 negative result write-up：NLI 65% < 80% threshold，content
+      preservation 失败， 作为 CSD 方法的 boundary condition 和 negative control。
+
+      '
+    expected_results:
+      status: DONE
+      n: 100
+      h1_nli_pass_rate: 0.65
+      nli_mean: 0.6544
+      bertscore_pass_rate: 0.27
+      bertscore_mean: 0.7522
+      both_pass: 0.22
+      stopped_at: content_verification
+      stop_reason: NLI 65% < 80% threshold
+    result_rationale: '已完成。Verbosity（verbose↔concise）改写必然改变信息量——verbose 版本添加 elaboration
+      和 examples， concise 版本删减 detail。NLI 65% 和 BERTScore 27% 证实内容发生了实质性变化。 这是 expected
+      failure：verbosity 不是"surface style"而是"information-level style"， 违反了 CSD 的 content
+      preservation 假设。在论文中作为 negative control， 说明方法有清晰的适用边界——只适用于不改变 information content
+      的 surface-level style axes。
+
+      '
+    tables:
+    - name: 'Table 9: Axis Suitability for Counterfactual Intervention (Content Preservation)'
+      columns:
+      - Axis
+      - NLI Pass
+      - BERT Pass
+      - Both Pass
+      - Status
+      - Conclusion
+      rows:
+      - - Formality
+        - 88%
+        - 85%
+        - 81%
+        - ✅ Pass
+        - Clean axis
+      - - Register
+        - 84%
+        - 81%
+        - 75%
+        - ✅ Pass
+        - Usable
+      - - Tone
+        - 83%
+        - 79%
+        - 73%
+        - ✅ Pass (noisy)
+        - Marginal
+      - - Verbosity
+        - 65%
+        - 27%
+        - 22%
+        - ❌ Fail
+        - Info-changing
+    figures_description:
+    - 'Scatter plot: 四个 axis 在 NLI pass rate × BERTScore pass rate 空间的分布，80% threshold
+      线划出 pass/fail 区域。Verbosity 远在 fail 区。'
+    analysis: 'Verbosity 的失败是 informative negative result。论文框架："CSD requires content
+      preservation;  axes that alter information density (e.g., verbosity) violate
+      this assumption and cannot be tested.  This is a feature, not a bug — it distinguishes
+      surface style from substantive changes." 方法论贡献：NLI + BERTScore dual verification
+      是有效的 gate，能正确过滤不适用的 axis。
+
+      '
+  - name: Register axis (academic/conversational)
+    plan_id: exp-008
+    description: 'Register axis（academic vs conversational）counterfactual 生成 + 内容验证
+      + 多 judge pairwise。 目标：获得第二个 clean working axis 以强化 C3 spectrum 故事。
+
+      '
+    expected_results:
+      counterfactual_nli_pass_rate: 0.84
+      counterfactual_bertscore_pass_rate: 0.81
+      counterfactual_both_pass: 0.75
+      counterfactual_nli_mean: 0.868
+      n_primary: 75
+      gpt4o_n_consistent: 44
+      gpt4o_academic_wins: 27
+      gpt4o_conversational_wins: 17
+      gpt4o_academic_win_rate: 0.614
+      gpt4o_sign_test_p: 0.048
+      gpt4o_direction_acad_orig: 0.68
+      gpt4o_direction_conv_orig: 0.545
+      claude_n_consistent: 41
+      claude_academic_wins: 23
+      claude_conversational_wins: 18
+      claude_academic_win_rate: 0.561
+      claude_sign_test_p: 0.163
+      gemini_n_consistent: 37
+      gemini_academic_wins: 20
+      gemini_conversational_wins: 17
+      gemini_academic_win_rate: 0.541
+      gemini_sign_test_p: 0.297
+    result_rationale: 'Register（academic↔conversational）改写 content preservation 84%
+      略好于 tone 83% 但不如 formality 88%—— academic register 使用更长的术语和被动语态，conversational
+      用缩写和口语化表达， 改写时 vocabulary shift 偶尔引入 NLI 判为 neutral 的 borderline case。 GPT-4o
+      显示 borderline 61.4% academic premium（p=0.048，刚好在 0.05 线上）—— 这与 formality 效应方向一致（formal
+      和 academic 在 register 空间上相近），说明 GPT-4o 系统性偏好"正式感"。 但效应量（d≈0.22）介于 formality（d≈0.38）和
+      tone（d≈0.14）之间， 而且 p=0.048 在 multiple comparison 校正后会变 NS（Bonferroni p≈0.144）。
+      Claude 和 Gemini 不显著——register bias 像 tone 一样是 judge-specific 的。 这给出了 "borderline
+      second axis"：single-test significant 但 not robust to multiple comparison。 论文策略：报告为
+      "suggestive evidence of register bias, consistent with formality findings,  but
+      requiring replication with larger samples"。结合 formality（clean）+ register（borderline）+  tone（marginal）+
+      verbosity（fail），spectrum 故事可以讲： "surface-level axes show a gradient from clear
+      bias (formality) through marginal (register, tone) to  inapplicable (verbosity),
+      with effect magnitude tracking perceived formality/prestige."
+
+      '
+    tables:
+    - name: 'Table 10: Register Axis (Academic vs Conversational) Pairwise Results'
+      columns:
+      - Judge
+      - n_consistent
+      - Acad. Wins
+      - Conv. Wins
+      - Win Rate
+      - Sign Test p
+      rows:
+      - - GPT-4o
+        - 44
+        - 27
+        - 17
+        - 61.4%
+        - 0.048*
+      - - Claude-3.5
+        - 41
+        - 23
+        - 18
+        - 56.1%
+        - '0.163'
+      - - Gemini-Flash
+        - 37
+        - 20
+        - 17
+        - 54.1%
+        - '0.297'
+    figures_description:
+    - 'Multi-axis radar chart: 三个 judge 各一个 radar，四个轴 = 四个 style axis，radius = win
+      rate。展示 GPT-4o 在 formality 和 register 方向凸出，其他 judge 更均匀。'
+    - 'Ordered bar chart: 四个 axis 的 GPT-4o win rate 从高到低排列（formality > register >
+      tone > verbosity[N/A]），展示 gradient。'
+    analysis: 'Register p=0.048 是一个"尴尬的显著"——单独看通过 0.05，但在实验全局（多 axis、多 judge、多 benchmark）的
+      multiple testing 框架下不 robust。论文需透明处理：(a) 报告 uncorrected p=0.048 和 corrected
+      p≈0.14， (b) 承认 register 与 formality 高度相关（r≈0.7），可能不是独立信号， (c) 在 spectrum narrative
+      中定位为 "consistent secondary signal" 而非 "independent replication"。 对 Main vs Findings
+      的影响：如果 register 是 formality 的 variant 而非独立 axis， C3 的"multi-axis"叙事被削弱——实际上只证明了"formality/prestige
+      dimension"有 bias， 其他维度 inconclusive。这 pushes toward Findings。 但 positive spin：formality
+      + register 共同指向一个 latent "prestige" bias dimension， 这本身是有意义的发现——judge bias 不是随机的，而是沿特定社会语言学维度分布。
+
+      '
+  - name: Non-Qwen rewriter control (Llama-3.1-70B)
+    plan_id: exp-009
+    description: '用 Llama-3.1-70B-Instruct 替代 Qwen3-32B 作为 rewriter，在 LLMBar formality
+      上重复 counterfactual 生成和 GPT-4o pairwise， 排除 Qwen 模型特有 artifacts 对结果的影响。
+
+      '
+    expected_results:
+      llama_nli_pass_rate: 0.85
+      llama_bertscore_pass_rate: 0.83
+      llama_nli_mean: 0.882
+      llama_both_pass: 0.78
+      n_primary: 78
+      gpt4o_n_consistent: 46
+      gpt4o_formal_wins: 31
+      gpt4o_casual_wins: 15
+      gpt4o_formal_win_rate: 0.674
+      gpt4o_sign_test_p: 0.009
+      gpt4o_direction_formal_orig_wr: 0.76
+      gpt4o_direction_casual_orig_wr: 0.571
+      qwen_vs_llama_winrate_diff: 0.017
+      qwen_vs_llama_fisher_p: 0.812
+    result_rationale: 'Llama-3.1-70B 的 NLI pass rate（85%）略低于 Qwen3-32B（88%），因为 Llama
+      的 instruction following  在 constrained rewriting 上不如 Qwen3 精确——Llama 偶尔过度改写或遗漏
+      content。 但 formal win rate 67.4%（vs Qwen 的 69.1%）差异极小（Δ=1.7%，Fisher p=0.81），
+      确认 formality premium 不是 Qwen 的 idiosyncratic rewriting pattern 导致的。 方向不对称模式也一致（76.0%
+      vs 57.1%）。这排除了"Qwen rewriter 在 formal 方向上写得更好、 在 casual 方向上写得更差从而制造 fake bias"的
+      confound——不同 rewriter 产生同样的 judge 偏好模式， 说明偏好差异来自 style 本身而非 rewriter artifacts。
+      P2 优先级合理——这是一个 robustness check，不改变主结论但堵住 reviewer 的潜在攻击角度。
+
+      '
+    tables:
+    - name: 'Table S4: Rewriter Robustness Check (Qwen3-32B vs Llama-3.1-70B)'
+      columns:
+      - Metric
+      - Qwen3-32B
+      - Llama-3.1-70B
+      - Δ
+      - p (Fisher)
+      rows:
+      - - NLI Pass Rate
+        - 88%
+        - 85%
+        - -3%
+        - —
+      - - Both Pass Rate
+        - 81%
+        - 78%
+        - -3%
+        - —
+      - - Formal Win Rate (GPT-4o)
+        - 69.1%
+        - 67.4%
+        - -1.7%
+        - '0.812'
+      - - Sign Test p
+        - '0.006'
+        - '0.009'
+        - —
+        - —
+      - - Direction Gap
+        - 24.3%
+        - 18.9%
+        - -5.4%
+        - —
+    figures_description:
+    - 'Paired comparison: Qwen vs Llama 的 formal win rate + 95% CI，两个 CI 高度重叠，图示 rewriter
+      无实质影响。'
+    analysis: Rewriter robustness confirmed。两个不同家族的 LLM（Qwen/Alibaba vs Llama/Meta）产生
+      统计上不可区分的 formality bias 结果。这支持"效应来自 judge bias on style, not rewriter artifacts"。
+      Minor caveat：两个 rewriter 都是 instruction-tuned LLM，可能共享 similar rewriting biases
+      （如都倾向在 formal 方向保持更好的质量）。完全排除需要 human rewriting baseline， 但人工改写 n=500 不现实。论文承认此
+      limitation 并指出两个独立 LLM 的一致性提供了 reasonable confidence。
+  review_report: '---
+
+    dream_id: dream_20260520T211832
+
+    tier: median
+
+    overall_score: 3/6 Weak Reject
+
+    timestamp: 2026-05-20T22:02:15.282023+00:00
+
+    ---
+
+
+    # Dream Review Report — Causal Style Decomposition
+
+
+    **Paper**: *Causal Style Decomposition: Revealing Axis-Dependent Style Bias in
+    LLM Judges via Counterfactual Pairwise Comparison*
+
+    **Dream ID**: 20260520T211832
+
+    **Review Mode**: Full (2 Reviewers + Roundtable)
+
+    **Date**: 2026-05-20
+
+
+    ---
+
+
+    ## Reviewer Assignments
+
+
+    - **R1** (Method + Experiments): Focused on methodological soundness, statistical
+    rigor, experimental design, and coverage relative to the imagined experiment plan.
+
+    - **R2** (Novelty + Related Work): Focused on contribution significance, positioning
+    against prior work, framing, and whether the paper meets the bar for a top ML
+    venue.
+
+
+    ---
+
+
+    ## R1 Review: Method and Experiments
+
+
+    ### Summary
+
+    CSD proposes a three-stage pipeline (counterfactual generation → NLI+BERTScore
+    verification → position-controlled pairwise comparison) to detect per-axis causal
+    style bias in LLM judges. The paper covers 3 judges × 3 benchmarks × 4 style axes,
+    with the headline finding that pairwise comparison is ~5× more sample-efficient
+    than Likert scoring for detecting moderate style bias.
+
+
+    ### Strengths
+
+    - **C2 (Likert vs Pairwise) is the strongest and most novel empirical contribution.**
+    The systematic demonstration across 9 judge×benchmark cells that pairwise detects
+    biases invisible to Likert (4/4 pairwise-significant combos have Likert NS) has
+    direct methodological implications. The GPT-4o×LLMBar case is particularly striking:
+    Likert ATE is -0.102 (wrong direction) while pairwise gives 69.1% formal win rate
+    (p=0.006).
+
+    - **Position-controlled dual-direction pairwise design is methodologically sound.**
+    Presenting pairs in both orders and requiring consistency cleanly separates position
+    bias from style bias.
+
+    - **Verbosity failure is presented with intellectual honesty.** NLI 65% / BERTScore
+    27% correctly triggers the dual-gate filter, demonstrating the verification stage
+    works as intended (Table 7).
+
+    - **Three-pronged robustness strategy is well-designed.** Original-preference
+    control (58.8%, p=0.078), scaled replication (n=500, p<0.001), and rewriter ablation
+    (Llama 67.4% vs Qwen 69.1%, Fisher p=0.812) each address a distinct alternative
+    explanation.
+
+    - **Full experiment plan coverage.** All 9 imagined experiments (exp-001 through
+    exp-009) are reflected in the paper.
+
+
+    ### Weaknesses
+
+
+    **W1 (Major). The Likert-Pairwise comparison conflates measurement method with
+    statistical test.** Table 4 compares Likert ATE via paired t-test against pairwise
+    win rate via sign test on consistency-filtered data. These are different statistical
+    tests on different data subsets (all pairs vs. ~50-55% consistent-only). The "5×
+    sample efficiency" claim may partly reflect the sign test''s greater power on
+    filtered binary data rather than an intrinsic advantage of pairwise comparison.
+    A critical missing control: applying a sign test to binarized Likert scores (for
+    each pair, does the formal version score strictly higher?) would isolate the structural
+    advantage of pairwise from the test-choice confound. Without this, C2''s headline
+    is at risk.
+
+
+    **W2 (Major). No multiple comparison correction across the full test battery.**
+    The paper conducts 27+ hypothesis tests (9 formality cells × 2 metrics, plus register,
+    tone, original preference, scaled, rewriter) but only mentions BH correction in
+    passing. Several borderline results are directly at risk: Claude×AlpacaEval formality
+    (p=0.047), register GPT-4o (p=0.048). The paper acknowledges register''s p=0.048
+    doesn''t survive Bonferroni (p_adj≈0.14) but doesn''t apply correction systematically.
+    After family-wise correction, the significant formality count likely drops from
+    4/9 to 2-3/9.
+
+
+    **W3 (Major). Formality and register axes likely overlap, weakening the "decomposition"
+    framing.** The paper acknowledges register and formality are "conceptually related
+    (r≈0.7 in sociolinguistic feature space)" but provides no empirical axis independence
+    test. No correlation between formality and register counterfactual changes on
+    the same items is reported. If register is a subset of formality''s linguistic
+    scope, C3''s "multi-axis" claim reduces to "one axis works, and its variants also
+    partially work."
+
+
+    **W4 (Moderate). High discard rate (42-52%) from consistency filtering with no
+    selection bias analysis.** Discarding position-inconsistent pairs is methodologically
+    motivated, but nearly half the data is removed. Consistent pairs might be those
+    with larger quality gaps, biasing toward cases where style manipulation co-occurs
+    with perceptible quality differences. No analysis of consistent vs. inconsistent
+    pair characteristics (NLI score, length, task type) is provided.
+
+
+    **W5 (Moderate). Tone and register tested only on LLMBar.** Formality has the
+    full 3×3 matrix, but tone and register are each tested on a single benchmark.
+    This asymmetry prevents determining whether the axis ordering (formality > register
+    > tone) holds across benchmarks or is benchmark-specific.
+
+
+    **W6 (Minor). No counterfactual examples shown.** Readers cannot evaluate the
+    operational meaning of "formal vs. casual" rewrites, or assess whether NLI might
+    miss subtle content changes. 2-3 annotated examples would substantially aid evaluation.
+
+
+    **W7 (Minor). Original-preference control is single-judge, single-benchmark (GPT-4o
+    × LLMBar).** If original preference varies by judge or benchmark, the 0.088 correction
+    factor may not generalize.
+
+
+    **W8 (Minor). Scaled replication only covers the strongest cell.** Replicating
+    a weaker cell (e.g., Claude×AlpacaEval, which loses significance after correction)
+    would be more informative.
+
+
+    ### Questions for Authors
+
+    1. If you apply a sign test to binarized Likert scores (does formal version score
+    strictly higher per pair?), does the Likert-Pairwise gap persist? This is critical
+    for C2.
+
+    2. What is the correlation between formality and register counterfactual changes
+    on the same items?
+
+    3. After Holm-Bonferroni correction across all 9 formality pairwise tests, how
+    many remain significant?
+
+    4. Can you report NLI score distributions and response length for consistent vs.
+    inconsistent pairs?
+
+    5. Does the direction asymmetry (formal→casual 78.8% vs casual→formal 54.5%) replicate
+    across judges?
+
+
+    ### Score: 3.5 / 6 (Borderline)
+
+    ### Confidence: 4 / 5
+
+
+    ---
+
+
+    ## R2 Review: Novelty and Related Work
+
+
+    ### Summary
+
+    The paper combines counterfactual text generation, content verification gates,
+    and pairwise comparison into a pipeline (CSD) for detecting per-axis style bias
+    in LLM judges. It claims three contributions: a detection method (C1), a measurement
+    insight showing pairwise superiority over Likert (C2), and a multi-axis bias spectrum
+    (C3).
+
+
+    ### Strengths
+
+    - **C2 is a genuinely actionable methodological insight.** The demonstration that
+    Likert scoring can yield wrong-direction estimates (GPT-4o ATE = -0.102) while
+    pairwise comparison clearly detects the effect has direct practical implications
+    for evaluation audit methodology.
+
+    - **Clean experimental design.** The 3×3×3 structure (judges × benchmarks × axes)
+    with consistent methodology is above community norms. The paper does not cherry-pick
+    settings.
+
+    - **Honest limitations section.** The paper explicitly acknowledges that "multi-axis"
+    framing overstates evidence, that only formality produces robust multi-judge/multi-benchmark
+    evidence, and that AlpacaEval results don''t survive correction.
+
+    - **The verbosity negative control is well-used.** Rather than hiding the failure,
+    it demonstrates principled method boundaries and validates the verification gate.
+
+    - **Rewriter robustness check** (two model families producing indistinguishable
+    results) addresses an important confound.
+
+
+    ### Weaknesses
+
+
+    **W1 (Major). Novelty is incremental — CSD combines known components.** The counterfactual
+    generation approach follows prior work on counterfactual data augmentation for
+    bias detection (Lu et al. 2020). The NLI+BERTScore verification is standard in
+    style transfer evaluation. Position-controlled pairwise comparison is well-established
+    (Zheng et al. 2024). The combination is useful but not methodologically innovative.
+    The paper''s novelty rests primarily on applying this combination to LLM judge
+    style bias, which is an application contribution rather than a method contribution.
+
+
+    **W2 (Major). Significant missing related work.**
+
+    - **RATE (ICML 2025)** introduced the double-rewrite ATE protocol that Section
+    5.5 directly mirrors. The original-preference control in Table 8 appears to follow
+    RATE''s methodology without citation.
+
+    - **Counterfactual style/rhetorical intervention papers** (2025-2026) that apply
+    similar counterfactual rewriting to detect bias in LLM evaluation are not discussed.
+
+    - **FairJudge and related debiasing frameworks** that also propose detection+correction
+    pipelines are absent.
+
+    - The bibliography contains only 10 references, which is thin for a paper claiming
+    to survey and advance the style bias detection field.
+
+
+    **W3 (Major). C3 (axis spectrum) is oversold relative to evidence.** The "multi-axis
+    decomposition" framing implies systematic coverage, but the evidence supports
+    a narrower conclusion: formality is the only axis with robust multi-judge evidence.
+    Register is borderline on one judge only (GPT-4o, p=0.048, doesn''t survive correction).
+    Tone is marginal on one judge only (GPT-4o, p=0.092). Verbosity fails entirely.
+    The "prestige dimension" interpretation is interesting but speculative — it''s
+    post-hoc pattern-matching on 3 data points where only 1 is robust.
+
+
+    **W4 (Moderate). Detection without correction limits practical impact.** Unlike
+    LC-AlpacaEval (Dubois et al. 2024), which provides both detection and debiasing
+    via regression, CSD only detects bias without offering a correction or mitigation
+    strategy. The paper''s "actionable guidance" amounts to "use pairwise instead
+    of Likert," which is a measurement recommendation rather than a solution.
+
+
+    **W5 (Moderate). The paper frames C1 (detection method) as a contribution, but
+    the detection capability is limited.** Only 4/9 judge×benchmark formality combinations
+    are significant before correction, dropping to 2/9 after original-preference correction.
+    CSD fails entirely on MT-Bench (0/3 significant). The method''s detection power
+    is narrow: it works well on short instruction-following text (LLMBar) with frontier
+    judges, but this is a specific regime rather than a general capability.
+
+
+    **W6 (Minor). Framing tension between "decomposition" and single-axis results.**
+    The title promises "Causal Style Decomposition" but the paper delivers "Causal
+    Formality Detection." The decomposition framing implies separating style into
+    independent axes and measuring each; instead, only one axis works, and the other
+    two are correlated with it.
+
+
+    ### Questions for Authors
+
+    1. How does CSD differ from the counterfactual rhetorical intervention approaches
+    published in 2025? What does CSD offer that those methods do not?
+
+    2. Why is RATE not cited given that Section 5.5 appears to follow its protocol?
+
+    3. Could you add a concrete mitigation strategy — e.g., using CSD scores to re-weight
+    or adjust judge outputs — to strengthen practical impact?
+
+    4. Is there evidence that formality, register, and tone capture genuinely independent
+    bias axes, or are they all measuring the same "prestige" confound?
+
+
+    ### Score: 3.0 / 6 (Weak Reject — Findings-level)
+
+    ### Confidence: 4 / 5
+
+
+    ---
+
+
+    ## Roundtable Discussion
+
+
+    ### Step 2: Cross-Sharing
+
+
+    **Points of agreement:**
+
+    1. **C2 is the paper''s strongest and most valuable contribution.** Both reviewers
+    identify the Likert-vs-Pairwise measurement gap as the headline finding with genuine
+    practical implications.
+
+    2. **C3 is oversold.** Both agree that "multi-axis decomposition" overstates the
+    evidence — only formality works robustly; register and tone provide at best suggestive
+    single-judge results.
+
+    3. **Formality-register overlap undermines the decomposition claim.** The paper''s
+    own r≈0.7 estimate and the lack of axis independence testing weaken C3.
+
+    4. **Missing related work.** Both note the bibliography is thin (10 refs). R2
+    identifies specific missing citations (RATE, counterfactual rhetoric papers).
+
+    5. **Honest limitations section is appreciated.** Both credit the paper for transparently
+    acknowledging the gaps.
+
+
+    **Points of disagreement:**
+
+    1. **Severity of novelty concern.** R1 rates the methodological contribution as
+    adequate (3.5) given the empirical findings; R2 sees the combination of known
+    techniques as insufficient for main conference (3.0). After discussion: the combination
+    IS useful and the specific application (LLM judge style bias) is timely, but the
+    paper needs to be more explicit about what is new vs. assembled from prior work.
+
+    2. **Severity of W1 (test-choice confound for C2).** R1 considers this a critical
+    threat that could invalidate the headline claim; R2 accepts C2 more readily. After
+    discussion: R1''s concern is valid — the same-test control is needed. However,
+    even if the gap narrows, the wrong-direction Likert ATE (GPT-4o = -0.102) is independently
+    damning for Likert reliability, so C2 would survive in weakened form.
+
+
+    ### Step 3: Convergence
+
+
+    **Agreed assessment:**
+
+    - The paper addresses a timely and important problem (style bias in LLM judges).
+
+    - The experimental design is systematic and above community norms in coverage.
+
+    - C2 (measurement insight) is the primary contribution and is useful regardless
+    of novelty debates.
+
+    - C1 (detection) is valid but narrow: works on formality on LLMBar with frontier
+    judges, much weaker elsewhere.
+
+    - C3 (axis spectrum) is oversold and should be reframed as preliminary/suggestive.
+
+    - Novelty is incremental — the pipeline assembles known components for a new application.
+
+    - Several methodological gaps need addressing: test-choice confound for C2, multiple
+    comparison correction, consistency filter bias analysis.
+
+    - Missing key citations (RATE, counterfactual rhetoric work).
+
+
+    **Agreed score range: 3.0–3.5** (between Weak Reject and Borderline Conference).
+
+
+    ### Step 4: Consolidated Assessment
+
+
+    **Overall Score: 3 / 6 (Weak Reject)**
+
+
+    **Justification:** The paper tackles a relevant problem and provides a systematic
+    empirical study with transparent reporting. The C2 finding (Likert is ~5× less
+    efficient than pairwise, and can give wrong-direction estimates) is the standout
+    contribution with practical value. However, three factors prevent a higher score:
+
+
+    1. **Incremental novelty.** CSD assembles known components (counterfactual generation,
+    NLI verification, pairwise comparison) without methodological innovation. The
+    related work section misses key prior work that further narrows the novelty gap.
+
+
+    2. **Narrow empirical support for two of three claims.** C1 (detection) works
+    robustly only for formality on LLMBar with frontier judges (2/9 combos survive
+    correction). C3 (axis spectrum) has only one clean axis. The "decomposition" framing
+    in the title overprises what is essentially a single-axis detection study with
+    suggestive multi-axis pilots.
+
+
+    3. **Methodological gaps in the headline claim.** C2''s "5× efficiency" conflates
+    measurement method with statistical test choice. The missing same-test control
+    (sign test on Likert scores) leaves open whether the gap is structural or artifactual.
+    Multiple comparison correction is needed but not applied consistently.
+
+
+    **Strengths that could upgrade with revision:**
+
+    - If the sign-test-on-Likert control confirms C2, the measurement insight becomes
+    a solid contribution for Findings.
+
+    - Adding 2-3 more style axes with clean results would substantiate C3.
+
+    - Proper citation of RATE and framing of novelty relative to counterfactual rhetoric
+    work would improve positioning.
+
+    - Adding a mitigation strategy (not just detection) would increase impact.
+
+
+    **Recommendation:** Below the threshold for main conference acceptance at a top
+    ML venue. The C2 measurement insight is Findings-worthy if the test-choice confound
+    is addressed. Suggest reframing around C2 as primary contribution, downgrading
+    C3 to exploratory, adding missing citations, and performing the same-test Likert
+    control.
+
+
+    ---
+
+
+    ## Key Revision Recommendations
+
+
+    1. **Add the sign-test-on-Likert control** to isolate pairwise''s structural advantage
+    from test-choice effects.
+
+    2. **Apply Benjamini-Hochberg correction** across all hypothesis tests and report
+    both corrected and uncorrected p-values consistently.
+
+    3. **Analyze consistency filter bias** — compare NLI scores, lengths, and task
+    types between consistent and inconsistent pairs.
+
+    4. **Test axis independence** empirically (correlation between formality and register
+    counterfactual shifts).
+
+    5. **Cite RATE** and position the original-preference control relative to that
+    protocol.
+
+    6. **Expand bibliography** — 10 references is thin; add counterfactual rhetoric
+    work, FairJudge, and other 2025-2026 style bias papers.
+
+    7. **Reframe title and C3** — "Causal Formality Bias Detection" is more honest
+    than "Causal Style Decomposition" given current evidence.
+
+    8. **Add counterfactual examples** — 2-3 annotated formal/casual pairs with NLI/BERTScore
+    values.
+
+    9. **Extend register/tone to AlpacaEval** to test whether the axis ordering generalizes
+    beyond LLMBar.
+
+
+    ---
+
+
+    ## Scores Summary
+
+
+    | | R1 (Method) | R2 (Novelty) | Consolidated |
+
+    |--|-------------|-------------|-------------|
+
+    | Score | 3.5 / 6 | 3.0 / 6 | **3.0 / 6** |
+
+    | Confidence | 4 / 5 | 4 / 5 | 4 / 5 |
+
+    | Recommendation | Borderline | Weak Reject | **Weak Reject** |
+
+
+    **Consolidated: 3 / 6 — Weak Reject (Findings-level with revisions)**
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/dream_reports/dream_20260520T211832/worst/paper.pdf
+  imagined_experiments:
+  - name: Multi-judge formality pairwise
+    plan_id: exp-001
+    description: '在 Claude-3.5-Sonnet、Gemini-2.0-Flash 上复现 LLMBar formality pairwise
+      实验。 使用已有 counterfactuals，双向 position-controlled pairwise。
+
+      '
+    expected_results:
+      gpt4o_formal_winrate: 0.691
+      gpt4o_sign_test_p: 0.006
+      claude35_formal_winrate: 0.509
+      claude35_sign_test_p: 0.88
+      claude35_n_consistent: 42
+      claude35_formal_wins: 22
+      claude35_casual_wins: 20
+      gemini20_formal_winrate: 0.536
+      gemini20_sign_test_p: 0.42
+      gemini20_n_consistent: 48
+      gemini20_formal_wins: 26
+      gemini20_casual_wins: 22
+      significant_judges_count: 1
+      claude35_direction_asymmetry: 0.06
+      gemini20_direction_asymmetry: 0.09
+    result_rationale: 'GPT-4o 复现已有 69.1% 结果。Claude-3.5-Sonnet 在 50.9% 附近（p=0.88），
+      反映 Claude 系列 judge 对 formality 无系统偏好——Anthropic 的 RLHF 训练可能 显式优化了 style-agnostic
+      evaluation。Gemini-2.0-Flash 略偏 formal（53.6%） 但远未达显著（p=0.42），可能因 Gemini 的 instruction
+      following 倾向轻微偏好 结构化输出但效应很弱。核心结论：formality bias 是 GPT-4o 特有的训练 artifact， 不是
+      LLM judge 的 universal property。两个非 GPT-4o judge 的方向不对称也极小 （<10%），对比 GPT-4o 的
+      24.2% gap，进一步说明效应的 judge-specificity。
+
+      '
+    tables:
+    - title: 'Table 2: Formality Pairwise Win Rate by Judge (LLMBar, n=100)'
+      columns:
+      - Judge
+      - N_consistent
+      - Formal Wins
+      - Casual Wins
+      - Win Rate
+      - 95% CI
+      - p (sign test)
+      - 'Dir: F→C WR'
+      - 'Dir: C→F WR'
+      - Asymmetry
+      rows:
+      - - GPT-4o
+        - 55
+        - 38
+        - 17
+        - 69.1%
+        - '[56.0, 79.7]'
+        - 0.006**
+        - 78.8%
+        - 54.5%
+        - 24.2%
+      - - Claude-3.5-Sonnet
+        - 42
+        - 22
+        - 20
+        - 50.9%
+        - '[36.6, 65.2]'
+        - '0.880'
+        - 53.3%
+        - 47.4%
+        - 5.9%
+      - - Gemini-2.0-Flash
+        - 48
+        - 26
+        - 22
+        - 53.6%
+        - '[39.7, 66.9]'
+        - '0.424'
+        - 58.3%
+        - 50.0%
+        - 8.3%
+    figures_description:
+    - 'Figure 2: 三 judge 的 formal win rate 对比 bar chart（含 95% Wilson CI error bars）。GPT-4o
+      显著高于 50% baseline，Claude/Gemini 的 CI 完全跨越 50% 线。'
+    - 'Figure 3: 方向不对称分析——每个 judge 的 F→C 和 C→F 方向 win rate 对比。GPT-4o 呈现显著 asymmetry（连线斜率陡峭），Claude/Gemini
+      两条线近乎平行。'
+    analysis: '只有 GPT-4o 显著 → C1 需要限定为 judge-specific 而非 universal claim。 这本身可以 reframe
+      为 positive finding：style bias 是 training-dependent 的， 不同 RLHF pipeline 导致不同
+      bias profile，per-judge audit 是必要的。 但 reviewer 会质疑：如果只有一个 judge 有效应，你怎么知道这不是
+      GPT-4o 的 idiosyncratic behavior 而是 generalizable insight？需要在 discussion 中 引入
+      training data composition 假说来解释 cross-judge variance。
+
+      '
+  - name: Multi-benchmark formality pairwise
+    plan_id: exp-002
+    description: '在 AlpacaEval 和 MT-Bench 子集上运行 CSD pipeline。新生成 counterfactuals，
+      三个 judge 交叉评测。
+
+      '
+    expected_results:
+      alpacaeval_gpt4o_formal_winrate: 0.54
+      alpacaeval_gpt4o_p: 0.38
+      alpacaeval_gpt4o_n_consistent: 52
+      alpacaeval_claude_formal_winrate: 0.48
+      alpacaeval_claude_p: 0.78
+      alpacaeval_gemini_formal_winrate: 0.51
+      alpacaeval_gemini_p: 0.92
+      mtbench_gpt4o_formal_winrate: 0.58
+      mtbench_gpt4o_p: 0.18
+      mtbench_gpt4o_n_consistent: 45
+      mtbench_claude_formal_winrate: 0.52
+      mtbench_claude_p: 0.55
+      mtbench_gemini_formal_winrate: 0.46
+      mtbench_gemini_p: 0.62
+      cross_benchmark_significant_combos: 1
+      total_combos_tested: 9
+      nli_pass_rate_alpacaeval: 0.82
+      nli_pass_rate_mtbench: 0.84
+    result_rationale: 'AlpacaEval 的 prompt 更开放（creative writing, brainstorming），style
+      维度 对 judge 决策的相对权重被 content quality variance 稀释——当 response 内容 差异大时，style 成为
+      secondary cue。GPT-4o 在 AlpacaEval 上仅 54%（p=0.38）， 效应几乎消失。MT-Bench 更结构化但多轮对话引入额外
+      variance，GPT-4o 勉强 到 58%（p=0.18）但未达显著性。Claude 在 MT-Bench 上甚至略偏 casual（但不显著），
+      Gemini 在 AlpacaEval 上完全随机。跨 benchmark 只有原始 GPT-4o × LLMBar  组合显著（1/9），说明 LLMBar
+      的特殊性质（短文本、明确对错标准）可能放大了 style cue 的相对影响力——当 content quality 差异较小时，judge 更依赖 surface
+      features 做决策。NLI pass rate 在两个 benchmark 上仍 >80%， 说明 counterfactual quality
+      不是问题，效应消失是 genuine 的。
+
+      '
+    tables:
+    - title: 'Table 3: Formality Pairwise Win Rate Across Judges × Benchmarks'
+      columns:
+      - Benchmark
+      - Judge
+      - N
+      - Formal WR
+      - p
+      - Significant?
+      rows:
+      - - LLMBar
+        - GPT-4o
+        - 55
+        - 69.1%
+        - '0.006'
+        - Yes**
+      - - LLMBar
+        - Claude-3.5
+        - 42
+        - 50.9%
+        - '0.880'
+        - 'No'
+      - - LLMBar
+        - Gemini-2.0
+        - 48
+        - 53.6%
+        - '0.424'
+        - 'No'
+      - - AlpacaEval
+        - GPT-4o
+        - 52
+        - 54.0%
+        - '0.384'
+        - 'No'
+      - - AlpacaEval
+        - Claude-3.5
+        - 50
+        - 48.0%
+        - '0.777'
+        - 'No'
+      - - AlpacaEval
+        - Gemini-2.0
+        - 47
+        - 51.1%
+        - '0.916'
+        - 'No'
+      - - MT-Bench
+        - GPT-4o
+        - 45
+        - 57.8%
+        - '0.183'
+        - 'No'
+      - - MT-Bench
+        - Claude-3.5
+        - 43
+        - 51.6%
+        - '0.553'
+        - 'No'
+      - - MT-Bench
+        - Gemini-2.0
+        - 44
+        - 45.5%
+        - '0.617'
+        - 'No'
+    figures_description:
+    - 'Figure 4: 3×3 heatmap（judge × benchmark），cell 颜色编码 formal win rate，只有左上角 GPT-4o×LLMBar
+      为深色（显著）。视觉上强调 isolation of effect。'
+    analysis: '1/9 的显著率接近 multiple testing 下的随机期望。如果做 Bonferroni 校正 （α=0.05/9=0.0056），甚至原始
+      GPT-4o×LLMBar 的 p=0.006 也刚好在边缘。 这是 worst tier 最致命的打击：核心 causal claim 可能是 false
+      positive。 但 reframe angle：benchmark 特性对 style bias 的调节效应本身是有价值的 发现——LLMBar 的
+      quality-controlled 设计反而暴露了 judge 对 style 的 sensitivity，这对 benchmark design 有启示。
+
+      '
+  - name: Likert vs Pairwise sensitivity analysis across judges
+    plan_id: exp-003
+    description: '对每个 judge × benchmark 组合，在同一 counterfactual 数据上同时计算 Likert ATE 和
+      pairwise win rate，系统比较测量敏感度。
+
+      '
+    expected_results:
+      gpt4o_llmbar_likert_ate: -0.1
+      gpt4o_llmbar_likert_p: 0.33
+      gpt4o_llmbar_pairwise_wr: 0.691
+      gpt4o_llmbar_pairwise_p: 0.006
+      gpt4o_llmbar_gap: true
+      claude_llmbar_likert_ate: 0.02
+      claude_llmbar_likert_p: 0.88
+      claude_llmbar_pairwise_wr: 0.509
+      claude_llmbar_pairwise_p: 0.88
+      claude_llmbar_gap: false
+      gemini_llmbar_likert_ate: 0.05
+      gemini_llmbar_likert_p: 0.72
+      gemini_llmbar_pairwise_wr: 0.536
+      gemini_llmbar_pairwise_p: 0.42
+      gemini_llmbar_gap: false
+      alpacaeval_any_gap: false
+      mtbench_any_gap: false
+      likert_pairwise_gap_prevalence: 0.11
+      settings_with_gap: 1
+      settings_total: 9
+    result_rationale: 'Likert-Pairwise gap 只在 GPT-4o × LLMBar 上复现（1/9 settings，prevalence=11%）。
+      其他 8 个 setting 中，Likert 和 pairwise 一致——要么都不显著（7/8），要么 都在边缘（1/8 MT-Bench GPT-4o
+      两者都趋势性但不显著）。C2 claim（Likert  系统性低估 style bias）无法成立：gap 不是测量方法的 systematic property，
+      而是特定 judge × benchmark × axis 组合的 idiosyncratic phenomenon。 可能的解释：GPT-4o 在 pairwise
+      模式下 attend to style cues 的程度比  pointwise 模式高——但这只是 GPT-4o 的行为，不能推广到所有 LLM judges。
+      Reframe：C2 从 "Likert always underestimates" 变为 "measurement paradigm  choice
+      interacts with judge identity in non-trivial ways — researchers should  report
+      both"。
+
+      '
+    tables:
+    - title: 'Table 4: Likert ATE vs Pairwise Win Rate — Systematic Comparison'
+      columns:
+      - Judge
+      - Benchmark
+      - Likert ATE
+      - Likert p
+      - Pairwise WR
+      - Pairwise p
+      - Gap?
+      rows:
+      - - GPT-4o
+        - LLMBar
+        - '-0.10'
+        - '0.332'
+        - 69.1%
+        - '0.006'
+        - 'YES'
+      - - GPT-4o
+        - AlpacaEval
+        - '0.03'
+        - '0.81'
+        - 54.0%
+        - '0.384'
+        - 'No'
+      - - GPT-4o
+        - MT-Bench
+        - '0.09'
+        - '0.42'
+        - 57.8%
+        - '0.183'
+        - 'No'
+      - - Claude-3.5
+        - LLMBar
+        - '0.02'
+        - '0.88'
+        - 50.9%
+        - '0.880'
+        - 'No'
+      - - Claude-3.5
+        - AlpacaEval
+        - '-0.01'
+        - '0.94'
+        - 48.0%
+        - '0.777'
+        - 'No'
+      - - Claude-3.5
+        - MT-Bench
+        - '0.04'
+        - '0.76'
+        - 51.6%
+        - '0.553'
+        - 'No'
+      - - Gemini-2.0
+        - LLMBar
+        - '0.05'
+        - '0.72'
+        - 53.6%
+        - '0.424'
+        - 'No'
+      - - Gemini-2.0
+        - AlpacaEval
+        - '0.01'
+        - '0.93'
+        - 51.1%
+        - '0.916'
+        - 'No'
+      - - Gemini-2.0
+        - MT-Bench
+        - '-0.03'
+        - '0.82'
+        - 45.5%
+        - '0.617'
+        - 'No'
+    figures_description:
+    - 'Figure 5: Scatter plot — x 轴 Likert ATE，y 轴 pairwise win rate deviation from
+      50%，每个点是一个 judge×benchmark 组合。GPT-4o×LLMBar 是明显 outlier（Likert≈0, Pairwise>>0），其余点聚集在原点附近。'
+    analysis: 'C2 的 generalizability 崩塌。一个 outlier 不足以支撑 "measurement paradigm"  level
+      的 claim。但 reframe 可行：即使 gap 不 universal，它的存在本身是  cautionary——只报告一种 measurement
+      paradigm 可能 miss real effects（或  report false effects）。论文可以转向 "when do Likert
+      and pairwise disagree,  and what does that tell us about the underlying judge
+      behavior?" 的分析框架。
+
+      '
+  - name: Tone axis (assertive/hedging) counterfactual + pairwise
+    plan_id: exp-004
+    description: '测试 tone axis 作为第二个 working dimension。Assertive vs hedging 改变 confidence/stance
+      而不改变信息内容。Full pipeline: counterfactual generation →  content verification →
+      pairwise scoring → ATE 分析。三 judge。
+
+      '
+    expected_results:
+      tone_n: 100
+      tone_nli_pass_rate: 0.72
+      tone_nli_mean: 0.74
+      tone_bertscore_pass_rate: 0.58
+      tone_bertscore_mean: 0.81
+      tone_both_pass: 0.48
+      stopped_at: content_verification
+      stop_reason: NLI pass rate 72% < 80% threshold
+      tone_forced_gpt4o_formal_winrate: 0.52
+      tone_forced_gpt4o_p: 0.68
+      tone_forced_claude_winrate: 0.48
+      tone_forced_p: 0.74
+    result_rationale: 'Tone（assertive vs hedging）的 counterfactual 改变了 epistemic stance，
+      NLI 检测到这属于 meaning change 而非纯 style change。"We should definitely  adopt X" vs
+      "It might be worth considering X" 在 NLI 意义上不是 entailment—— certainty level 本身是
+      propositional content 的一部分。NLI pass rate 72%  低于 80% 阈值，pipeline 在 content verification
+      阶段终止。这与 verbosity  失败（NLI 65%）模式类似但原因不同：verbosity 失败是因为信息量改变，tone  失败是因为 epistemic
+      commitment 改变。如果强行跳过验证，pairwise win rate  在 48-52% 范围（无效应），说明即使内容保持被破坏，judge
+      也未对 tone 表现出 systematic preference。第二个 axis 完全失败 → C3（axis-dependency）仍可讨论，
+      但从 "positive: different axes show different effects" 变为 "negative: most  axes
+      fail content preservation" → reframe 为 method boundary 的 systematic  characterization。
+
+      '
+    tables:
+    - title: 'Table 5: Content Verification — Tone Axis (Assertive/Hedging)'
+      columns:
+      - Metric
+      - Value
+      - Threshold
+      - Pass?
+      rows:
+      - - NLI Pass Rate (≥0.80)
+        - 72%
+        - ≥80%
+        - FAIL
+      - - NLI Mean Score
+        - '0.74'
+        - —
+        - —
+      - - BERTScore Pass Rate (≥0.95)
+        - 58%
+        - ≥80%
+        - FAIL
+      - - BERTScore Mean
+        - '0.81'
+        - —
+        - —
+      - - Both Pass Rate
+        - 48%
+        - —
+        - —
+    - title: 'Table 6: Axis Feasibility Summary'
+      columns:
+      - Axis
+      - NLI Pass Rate
+      - Content Preserved?
+      - Pairwise WR (GPT-4o)
+      - Viable?
+      rows:
+      - - Formality
+        - 88%
+        - 'Yes'
+        - 69.1%
+        - 'Yes'
+      - - Verbosity
+        - 65%
+        - No (info density)
+        - —
+        - 'No'
+      - - Tone
+        - 72%
+        - No (epistemic stance)
+        - ~52%
+        - 'No'
+    figures_description:
+    - 'Figure 6: NLI score distribution 对比——formality（peaked at 0.89），tone（spread,
+      peaked at 0.74），verbosity（peaked at 0.65）。三个 axis 的 content preservation difficulty
+      gradient 可视化。'
+    analysis: 'Tone 失败使 formality 成为唯一 viable axis，严重削弱 "multi-axis framework"  叙事。但
+      negative result 本身很有价值：当前 style bias 文献中大量 claim  "LLM judges prefer confident/assertive
+      tone" 的研究没有做 content preservation  验证——如果 tone counterfactual 改变了 propositional
+      content，这些 claim  的 internal validity 存疑。这是 reframe angle (2) 的核心支撑。
+
+      '
+  - name: Pairwise RATE control (original vs double-rewrite)
+    plan_id: exp-005
+    description: 'Pairwise 比较 original text 和其 RATE double-rewrite（same style）。 量化
+      original preference confound。如果 win rate ≈50%，original preference  minimal；如果显著，提供
+      correction factor。
+
+      '
+    expected_results:
+      n_total: 100
+      n_valid_both_trials: 95
+      n_consistent: 58
+      original_wins: 38
+      rewrite_wins: 20
+      original_preference_winrate: 0.655
+      wilson_ci_lo: 0.527
+      wilson_ci_hi: 0.765
+      sign_test_p: 0.017
+      gpt4o_original_pref_wr: 0.655
+      gpt4o_original_pref_p: 0.017
+      claude_original_pref_wr: 0.62
+      claude_original_pref_p: 0.08
+      gemini_original_pref_wr: 0.6
+      gemini_original_pref_p: 0.14
+      gpt4o_formality_wr_corrected: 0.536
+      corrected_p_estimate: 0.35
+    result_rationale: 'Judge 在 65.5% 的 consistent cases 中偏好 original text 而非其 double-rewrite。
+      这是 substantial confound：当我们比较 original-casual vs rewrite-formal 时， observed
+      69.1% formal win rate 包含了两个成分——(1) genuine formality preference  和 (2) original
+      preference（original 恰好在 formal-to-casual 方向上是 formal  side）。方向不对称（78.8% vs 54.5%）的大部分可以被
+      original preference 解释： formal→casual 方向上 formal version = original，所以 formal
+      wins 被 original  preference boost；casual→formal 方向上 formal version = rewrite，所以
+      formal  wins 被 original preference suppress，但 formality preference 部分抵消。 扣除
+      original preference 后，corrected formality effect 降至 ~53.6%（p≈0.35）， 不再显著。这意味着
+      GPT-4o × LLMBar 的 formality bias 可能大部分是 rewriting  artifact 而非 genuine style
+      preference。跨 judge 看，Claude 和 Gemini 也有 original preference（62%/60%），说明这是 LLM
+      judge 的 general property—— model-generated rewrite 在 fluency/coherence 上存在 subtle
+      degradation， judge 能 detect。
+
+      '
+    tables:
+    - title: 'Table 7: Original Preference Control Experiment'
+      columns:
+      - Judge
+      - N_consistent
+      - Original Wins
+      - Rewrite Wins
+      - Original Pref WR
+      - p
+      rows:
+      - - GPT-4o
+        - 58
+        - 38
+        - 20
+        - 65.5%
+        - 0.017*
+      - - Claude-3.5
+        - 50
+        - 31
+        - 19
+        - 62.0%
+        - '0.080'
+      - - Gemini-2.0
+        - 52
+        - 31
+        - 21
+        - 59.6%
+        - '0.140'
+    - title: 'Table 8: Formality Effect Decomposition (GPT-4o × LLMBar)'
+      columns:
+      - Component
+      - Estimated WR
+      - Note
+      rows:
+      - - Raw Formality Effect
+        - 69.1%
+        - Original pairwise_32b result
+      - - Original Preference
+        - 65.5%
+        - Exp-005 control
+      - - Corrected Formality Effect
+        - ~53.6%
+        - Residual after accounting for original pref
+    figures_description:
+    - 'Figure 7: Stacked bar chart 分解 formality effect——baseline 50% + original preference
+      contribution (~15.5%) + residual style effect (~3.6%)。视觉化 confound 的 dominant
+      role。'
+    - 'Figure 8: 方向不对称的 confound 解释图——当 original=formal 时，original pref 和 formality
+      pref 同向叠加（78.8%）；当 original=casual 时，两者反向抵消（54.5%）。'
+    analysis: '这是 worst tier 的核心打击。原始 p=0.006 的 formality effect 在 confound  correction
+      后消失。论文需要诚实报告这一点。但 reframe angle (3) 获得强支撑： original preference 是所有 rewriting-based
+      style bias 研究的 general threat—— 包括 CASSE、SOS-Bench 等使用 LLM rewriting 的工作。这个
+      finding 本身对 社区有高价值：如果你用 LLM 改写文本来测试 judge bias，你必须先控制  original preference，否则你测量的不是
+      style bias 而是 rewriting artifact。
+
+      '
+  - name: Scaled replication (n=300-500)
+    plan_id: exp-006
+    description: '将 GPT-4o × LLMBar formality 实验从 n=100 扩大到 n=500。 Power analysis
+      确定 minimum detectable effect size。
+
+      '
+    expected_results:
+      n_total: 500
+      n_valid_both_trials: 485
+      n_consistent: 280
+      formal_wins: 160
+      casual_wins: 120
+      formal_winrate: 0.571
+      wilson_ci_lo: 0.513
+      wilson_ci_hi: 0.627
+      sign_test_p: 0.021
+      dir_formal_orig_n: 155
+      dir_formal_orig_wr: 0.652
+      dir_casual_orig_n: 125
+      dir_casual_orig_wr: 0.472
+      direction_asymmetry: 0.18
+      power_at_d02: 0.35
+      power_at_d05: 0.82
+      min_detectable_effect_n500: 0.045
+      corrected_wr: 0.537
+      corrected_p: 0.18
+    result_rationale: 'N=500 时 raw formal win rate 从 69.1% 收缩到 57.1%。这是 regression
+      to mean  的典型模式：n=100 的 69.1% 包含 sampling variance 导致的 upward bias（winner''s  curse），真实效应更接近
+      57%。仍然名义显著（p=0.021），但方向不对称持续存在 （65.2% vs 47.2%，gap=18%），且 original preference
+      correction 后效应降至 53.7%（p=0.18，不显著）。Power analysis 显示 n=500 对 d=0.05 的小效应有 82%  power，所以
+      corrected effect 的不显著不是 power 不足，而是 true effect 确实 很小或不存在。这进一步支持 A6 的判断：observed
+      signal 主要由 original preference  驱动。
+
+      '
+    tables:
+    - title: 'Table 9: Scaled Replication Results (GPT-4o × LLMBar)'
+      columns:
+      - Metric
+      - n=100 (MVP)
+      - n=500 (Scaled)
+      rows:
+      - - Formal Win Rate
+        - 69.1%
+        - 57.1%
+      - - Sign Test p
+        - '0.006'
+        - '0.021'
+      - - Direction Asymmetry
+        - 24.2%
+        - 18.0%
+      - - Corrected WR (post original pref)
+        - —
+        - 53.7%
+      - - Corrected p
+        - —
+        - '0.18'
+      - - 95% CI
+        - '[56.0, 79.7]'
+        - '[51.3, 62.7]'
+    figures_description:
+    - 'Figure 9: Effect size vs sample size curve——n=100 时 point estimate 69.1%（wide
+      CI），n=500 时 57.1%（narrow CI），展示 winner''s curse shrinkage。水平虚线标记 corrected estimate（~54%）。'
+    analysis: 'Scaled replication 是 double-edged：raw effect 仍显著说明 something is there，
+      但 correction 后不显著说明 that something 主要是 original preference。 论文需要呈现两层分析：(1) uncorrected
+      result 作为 replication（consistent but  weaker），(2) corrected result 作为 proper
+      causal estimate（non-significant）。 这支持 methodology paper framing：正确的测量方法（with
+      confound control） 会得出不同结论。
+
+      '
+  - name: Verbosity method boundary analysis
+    plan_id: exp-007
+    description: '已完成。Verbosity counterfactual 在 content verification 阶段失败（NLI 65%）。
+      作为 negative control 写入论文。
+
+      '
+    expected_results:
+      n: 100
+      h1_nli_pass_rate: 0.65
+      nli_mean: 0.6544
+      bertscore_pass_rate: 0.27
+      bertscore_mean: 0.7522
+      both_pass: 0.22
+      stopped_at: content_verification
+      stop_reason: NLI pass rate 65% < 80% threshold
+    result_rationale: '已有结果。Verbosity 改变信息密度，NLI 正确检测到语义改变。作为方法边界的 第一个 negative control，与
+      tone 失败共同说明 content preservation 是 style  bias 研究的 binding constraint。
+
+      '
+    tables:
+    - title: (Already in paper as Table 1 or supplementary)
+      columns: []
+      rows: []
+    figures_description: []
+    analysis: '与 tone 失败一起，构成 "2/3 tested axes fail content preservation" 的叙事。 对现有文献的
+      validity threat：如果大多数 style dimensions 无法被 cleanly  manipulated（verbosity 改变信息量，tone
+      改变 epistemic stance），那么声称 "judges prefer verbose/assertive responses" 的研究其内部效度存疑。
+
+      '
+  - name: Register axis (academic/conversational)
+    plan_id: exp-008
+    description: '第三个 surface-level axis 测试。Academic vs conversational register 改变
+      vocabulary 和 sentence structure 而不改变信息。
+
+      '
+    expected_results:
+      register_n: 100
+      register_nli_pass_rate: 0.8
+      register_nli_mean: 0.82
+      register_bertscore_pass_rate: 0.62
+      register_bertscore_mean: 0.83
+      register_both_pass: 0.55
+      register_pipeline_decision: proceed_with_caveat
+      register_gpt4o_pairwise_wr: 0.54
+      register_gpt4o_p: 0.45
+      register_claude_pairwise_wr: 0.51
+      register_claude_p: 0.87
+      register_gemini_pairwise_wr: 0.49
+      register_gemini_p: 0.92
+    result_rationale: 'Register axis 勉强通过 NLI 阈值（80%，borderline）因为 academic→conversational  的词汇替换（"utilize"→"use",
+      "demonstrate"→"show"）在 NLI 意义上是 entailment  preserving 的。但 BERTScore 较低（62%），因为
+      surface form 变化大。Pipeline  继续但结果无效应：三个 judge 的 pairwise win rate 都在 49-54% 范围，全部不显著。
+      Register 不产生 judge bias → 又一个 null result。但这个 null 更 clean  （content preserved
+      + no effect），可以作为 "style bias is not uniform —  some axes genuinely don''t trigger
+      bias" 的 positive evidence for C3。 Problem：如果 formality effect 在 correction 后也消失（exp-005），
+      那所有 axis 都是 null → C3 从 "axis-dependent effects" 变为 "no effects at all"。
+
+      '
+    tables:
+    - title: 'Table 10: Register Axis Results'
+      columns:
+      - Judge
+      - Register NLI Pass Rate
+      - Pairwise WR (Academic)
+      - p
+      rows:
+      - - GPT-4o
+        - 80%
+        - 54.0%
+        - '0.45'
+      - - Claude-3.5
+        - 80%
+        - 51.0%
+        - '0.87'
+      - - Gemini-2.0
+        - 80%
+        - 49.0%
+        - '0.92'
+    figures_description:
+    - 'Figure 10: 四 axis 的 feasibility × effect matrix。x 轴 NLI pass rate，y 轴 max pairwise
+      WR across judges。Formality 在右上（high NLI, high WR），register 在右下（high NLI, no
+      WR），tone 在左下（low NLI, no WR），verbosity 在左下（lowest NLI）。'
+    analysis: 'Register 是唯一同时满足 content preservation 且无 bias 的 axis——clean null。 在
+      methodology paper framing 下，这增加了方法验证的完整性：CSD framework  不是 everything-is-biased
+      的 bias-finding machine，它能区分 real bias 和 no bias。 但对 empirical contribution 来说，更多
+      null results 进一步削弱论文的吸引力。
+
+      '
+  - name: Non-Qwen rewriter control
+    plan_id: exp-009
+    description: '使用 Llama-3.1-70B 作为 rewriter，排除 Qwen-family artifacts。 比较 NLI pass
+      rate 和 pairwise 结果。
+
+      '
+    expected_results:
+      llama_nli_pass_rate: 0.83
+      llama_nli_mean: 0.86
+      llama_gpt4o_formal_wr: 0.63
+      llama_gpt4o_p: 0.06
+      llama_original_pref_wr: 0.68
+      llama_original_pref_p: 0.008
+      llama_corrected_wr: 0.5
+      qwen_vs_llama_nli_diff: -0.05
+      qwen_vs_llama_wr_diff: 0.06
+    result_rationale: 'Llama-3.1-70B 生成的 counterfactuals 质量相近（NLI 83% vs Qwen 88%，略低但
+      都 pass）。GPT-4o 对 Llama-rewritten 的 formal win rate 63%（p=0.06，borderline）， 略低于
+      Qwen 的 69.1%——可能因 Llama 的 rewrite 更保守（更少 surface change）。 关键发现：Llama rewrite
+      的 original preference 更高（68% vs 65.5%），因为  Llama 的 rewrite 质量略低于 Qwen → judge
+      更容易区分 original vs rewrite。 Correction 后 formal effect 完全消失（50%）。这排除了 Qwen-specific
+      artifact  的假说，但强化了 original preference 是 universal confound 的结论。
+
+      '
+    tables:
+    - title: 'Table 11: Rewriter Ablation (GPT-4o × LLMBar)'
+      columns:
+      - Rewriter
+      - NLI Pass Rate
+      - Raw Formal WR
+      - Raw p
+      - Original Pref WR
+      - Corrected WR
+      rows:
+      - - Qwen3-32B
+        - 88%
+        - 69.1%
+        - '0.006'
+        - 65.5%
+        - ~53.6%
+      - - Llama-3.1-70B
+        - 83%
+        - 63.0%
+        - '0.060'
+        - 68.0%
+        - ~50.0%
+    figures_description:
+    - 'Figure 11: 两个 rewriter 的 effect decomposition 并排对比。两者都显示 original preference
+      是 dominant component，residual style effect 接近零。'
+    analysis: Rewriter ablation 提供了 converging evidence：无论用哪个 rewriter， original preference
+      都 dominant，corrected style effect 都 near-zero。 这强化了 exp-005 的结论，并从 "可能是 Qwen
+      的问题" 中解脱出来—— 问题是 rewriting-based methodology 本身的 inherent limitation。 对论文的 contribution：rewriting-based
+      style bias detection 需要  original preference control 作为 standard practice，否则结果不可信。
+  review_report: "---\ndream_id: dream_20260520T211832\ntier: worst\noverall_score:\
+    \ 3/6 — Findings-level, needs revision\ntimestamp: 2026-05-20T22:08:49.937167+00:00\n\
+    ---\n\n# Dream Review Report — Consolidated Roundtable\n\n**Paper**: \"How Should\
+    \ We Measure LLM Judge Biases? Lessons from Style Counterfactuals\"\n**Dream ID**:\
+    \ 20260520T211832\n**Review Mode**: Full (2 Reviewers + Roundtable)\n**Venue Standard**:\
+    \ Top ML venue, ~25% acceptance, 6-point scale\n\n---\n\n## Step 1: Independent\
+    \ Reviews\n\n### Reviewer 1 (R1) — Methods & Experiments | Score: 3.5/6 | Confidence:\
+    \ 4/5\n\n**Strengths identified:**\n1. The original-preference control (Stage\
+    \ 4) is a genuinely important contribution. The double-rewrite experiment revealing\
+    \ 60–68% original-text preference across all three judges is the paper's strongest\
+    \ finding — this confound applies to any rewriting-based bias study and has been\
+    \ largely ignored.\n2. Content preservation as a principled gatekeeping mechanism\
+    \ via bidirectional NLI + BERTScore is methodologically sound. Verbosity (65%)\
+    \ and tone (72%) failures are informative negative results challenging prior work.\n\
+    3. Position-controlled dual-trial design is well-implemented and eliminates position\
+    \ bias cleanly.\n4. Honest reporting of negative results without overselling.\n\
+    5. Convergent evidence from rewriter ablation (Llama-3.1-70B producing similar\
+    \ pattern) strengthens the original-preference finding.\n6. Scaled replication\
+    \ (n=500) correctly demonstrates regression to the mean and rules out power concerns.\n\
+    \n**Weaknesses identified:**\n1. **[Critical] The original-preference \"correction\"\
+    \ is statistically unprincipled.** The additive subtraction (69.1% − 65.5% + 50%\
+    \ ≈ 53.6%) has no formal justification. Win rates from different experiments are\
+    \ not on a common scale supporting simple subtraction. A mixed-effects logistic\
+    \ regression with formality and original/rewrite status as predictors would be\
+    \ the proper approach. The approximate p ≈ 0.35 is not derived from any formal\
+    \ test.\n2. **Direction asymmetry is underexploited.** The casual-original subset\
+    \ (where formality and original-preference oppose) shows 54.5% formal win rate\
+    \ — above 50%. This subset provides the cleanest estimate of pure formality bias\
+    \ free from original-preference confounding, but no formal test is conducted on\
+    \ it.\n3. **Effective sample sizes are critically small.** After NLI filtering\
+    \ and consistency checks, effective n is often 42–58 consistent pairs. Claude's\
+    \ 50.9% with n=42 has CI [36.6%, 65.2%] — compatible with substantial bias. No\
+    \ systematic power analysis for null results is presented. Absence of evidence\
+    \ ≠ evidence of absence at these sample sizes.\n4. **Multiple testing inadequately\
+    \ addressed.** The paper mentions Bonferroni briefly but does not formally apply\
+    \ any correction across the 9+ tests. Under Bonferroni (α′ = 0.0056), the sole\
+    \ significant result (p=0.006) is borderline.\n5. **Content verification thresholds\
+    \ are arbitrary with no sensitivity analysis.** Tone fails at 72% — only 8 points\
+    \ below the 80% cutoff. No analysis of how conclusions change across threshold\
+    \ values (70%, 75%, 80%, 85%, 90%).\n6. **The NLI model is a black box with known\
+    \ limitations.** No human validation of NLI gate decisions. Tone axis failure\
+    \ could reflect NLI model limitations (pragmatic vs. propositional distinction)\
+    \ rather than genuine content change. Even 50–100 human annotations would dramatically\
+    \ strengthen Stage 2.\n7. **Double-rewrite control has its own confound.** Round-trip\
+    \ rewriting (original → opposite pole → back) introduces cumulative noise. The\
+    \ 60–68% original preference may partly reflect quality degradation from serial\
+    \ LLM calls rather than judges detecting \"original vs. LLM-generated\" text per\
+    \ se.\n8. **Likert-pairwise comparison conflates measurement paradigm with statistical\
+    \ power.** Pairwise comparison is a more powerful design (paired vs. unpaired)\
+    \ — this is well-known in psychometrics, not a novel finding.\n\n**Key questions:**\n\
+    - Has the formality effect been tested on the casual-original subset alone?\n\
+    - What is the inter-annotator agreement of the NLI gate with human judgments?\n\
+    - Has a logistic regression model been fit with both formality and original/rewrite\
+    \ status as predictors?\n\n---\n\n### Reviewer 2 (R2) — Novelty & Related Work\
+    \ | Score: 3/6 | Confidence: 4/5\n\n**Strengths identified:**\n1. The original-preference\
+    \ finding is a concrete, actionable methodological insight applicable beyond this\
+    \ paper.\n2. Position-controlled dual-direction pairwise protocol is well-executed.\n\
+    3. Verbosity failure as a principled method boundary is well-framed — CSD has\
+    \ a mechanism for rejecting infeasible axes.\n4. Robustness checks (rewriter ablation,\
+    \ scaled replication, original-preference control) address the most obvious confounds.\n\
+    5. Honest limitations section is exemplary.\n\n**Weaknesses identified:**\n1.\
+    \ **[Major] CSD assembles known components without methodological innovation.**\
+    \ Counterfactual rewriting pipelines exist in style transfer and causal NLP literature.\
+    \ NLI/BERTScore verification is standard practice in style transfer evaluation.\
+    \ Position-controlled pairwise comparison comes from MT-Bench/Chatbot Arena. The\
+    \ paper's novelty reduces to applying these known techniques to LLM judge style\
+    \ bias measurement — a valid application contribution but not a \"framework\"\
+    \ or \"decomposition\" in the strong sense.\n2. **[Major] The Likert-vs-pairwise\
+    \ sensitivity difference is well-established.** Forced-choice comparison being\
+    \ more sensitive than absolute rating has been established for decades in psychophysics\
+    \ and psychometrics (Thurstone 1927). The contribution is quantifying this in\
+    \ the LLM judge context, which is useful but incremental.\n3. **[Major] Significant\
+    \ missing related work — the bibliography is thin (~8 references).** Key omissions:\n\
+    \   - RATE (ICML 2025): double-rewrite protocol that CSD's Stage 4 appears to\
+    \ adopt\n   - Veitch et al. (UAI 2020): theoretical foundation for binary text\
+    \ treatment interventions\n   - Style transfer evaluation literature (Mir et al.\
+    \ 2019, Krishna et al. 2020): NLI+BERTScore verification is standard there\n \
+    \  - Chatbot Arena / FairEval: largest empirical platform for studying judge biases\n\
+    \   - Human annotation agreement studies: needed to contextualize whether detected\
+    \ biases are LLM-specific\n   - Debiasing/mitigation work: CSD is detection-only,\
+    \ limiting practical impact vs. LC-AlpacaEval (detection + correction) and other\
+    \ mitigation-oriented work\n4. **[Major] CSD is detection-only, limiting practical\
+    \ impact.** A practitioner who discovers formality bias using CSD still has no\
+    \ CSD-derived method to address it.\n5. **[Moderate] No comparison against existing\
+    \ detection baselines.** Could LC-AlpacaEval's regression approach or simple feature-counting\
+    \ detect the same bias without counterfactual generation?\n6. **[Moderate] Only\
+    \ formality on LLMBar with GPT-4o produces a robust result.** The \"multi-axis\
+    \ framework\" framing oversells what is effectively a single-axis detection study\
+    \ on one benchmark with one judge, plus negative results elsewhere.\n7. **[Minor]\
+    \ No counterfactual examples shown.** 2–3 annotated formal/casual pairs with NLI\
+    \ scores would aid evaluation of rewrite quality.\n\n**Key questions:**\n- How\
+    \ does CSD differ from running existing counterfactual rewriting methods (e.g.,\
+    \ RATE) with style-specific counterfactuals?\n- Has a simpler detection method\
+    \ (e.g., formality feature scoring + correlation with judge preferences) been\
+    \ compared?\n- Do you have evidence that the original-preference correction generalizes\
+    \ across judges and benchmarks?\n\n---\n\n## Step 2: Cross-Sharing\n\n**R1 after\
+    \ reading R2:**\nR2's novelty critique is well-taken — the thin bibliography and\
+    \ missing attribution to RATE and style transfer literature weaken the \"framework\"\
+    \ framing. I agree that CSD's components are individually known; the value lies\
+    \ in their combination and the negative findings, not in methodological innovation.\
+    \ R2's point about detection-only limiting impact is valid. I maintain that the\
+    \ original-preference finding carries the paper, but R2 correctly notes even that\
+    \ may have precedent in RATE.\n\n**R2 after reading R1:**\nR1's critique of the\
+    \ unprincipled correction method is the review's most technically important point.\
+    \ If the correction that eliminates the formality bias is not statistically grounded,\
+    \ the paper's central negative claim is on shaky ground. The direction-asymmetry\
+    \ analysis R1 suggests (testing the casual-original subset alone) is an excellent\
+    \ idea that could either strengthen or weaken the paper. I also agree with R1's\
+    \ concern about small effective sample sizes undermining null claims. The double-rewrite\
+    \ cumulative noise confound R1 identifies is something I missed and further weakens\
+    \ the original-preference control.\n\n---\n\n## Step 3: Convergence\n\n### Points\
+    \ of Agreement\n1. **The original-preference finding is the paper's primary contribution**\
+    \ — genuinely useful as a methodological caution for the field, though the correction\
+    \ procedure needs formal statistical grounding.\n2. **The correction method is\
+    \ statistically unprincipled** — the additive win-rate subtraction lacks formal\
+    \ justification. A proper joint model (logistic regression or Bayesian decomposition)\
+    \ is needed to make the central negative claim credible.\n3. **Content verification\
+    \ (Stage 2) is a reasonable idea but needs strengthening** — arbitrary thresholds\
+    \ without sensitivity analysis, no human validation of NLI decisions, and NLI\
+    \ model limitations on pragmatic distinctions (tone axis).\n4. **Sample sizes\
+    \ are too small for strong null claims** — the paper cannot distinguish \"no bias\"\
+    \ from \"underpowered to detect moderate bias\" for most judge×benchmark combinations.\n\
+    5. **The bibliography is critically thin** (~8 references) for a methodology paper\
+    \ at a top venue. RATE, style transfer evaluation literature, and human annotation\
+    \ baselines are notable omissions.\n6. **Novelty is incremental** — CSD assembles\
+    \ known components; the value is in the application and the negative findings,\
+    \ not in methodological innovation. The \"framework\" and \"decomposition\" framing\
+    \ overclaims.\n7. **Detection-only scope limits practical impact** — no correction\
+    \ or mitigation component.\n8. **Honest reporting is commendable** — the paper\
+    \ does not oversell its negative results.\n\n### Points of Divergence (Resolved)\n\
+    - R1 (3.5/6) gave slightly more credit to methodological execution; R2 (3/6) penalized\
+    \ more heavily on novelty and related work gaps.\n- After cross-sharing, both\
+    \ agree the paper is in the **Findings-level** range (3–3.5), with the original-preference\
+    \ finding being publishable but the analytical framework needing tightening.\n\
+    \n### Consensus Score: 3/6 (Findings-level)\n\n---\n\n## Step 4: Consolidated\
+    \ Assessment\n\n### Overall Score: 3/6 (Findings-worthy, needs revision)\n\n###\
+    \ Paper Summary\nThe paper proposes CSD, a four-stage pipeline for measuring LLM\
+    \ judge style biases via counterfactual rewriting. Testing 4 style axes × 3 judges\
+    \ × 3 benchmarks, it reports predominantly negative results: 2/4 axes fail content\
+    \ verification, the sole significant formality bias (GPT-4o on LLMBar) disappears\
+    \ after correcting for judges' preference for original over rewritten text, and\
+    \ the Likert-pairwise measurement gap is rare. The paper is framed as a methodological\
+    \ caution for rewriting-based style bias studies.\n\n### Key Strengths\n1. **Original-preference\
+    \ finding (C2) is genuinely valuable.** The demonstration that LLM judges systematically\
+    \ prefer original text over same-style rewrites (60–68%) is an important methodological\
+    \ warning for the entire rewriting-based style bias literature, including CASSE\
+    \ and SOS-Bench. The convergent evidence from two independent rewriters and scaled\
+    \ replication strengthens this finding.\n2. **Content preservation gatekeeping\
+    \ (C1) is well-motivated.** Showing that verbosity and tone rewrites fail content\
+    \ verification challenges the internal validity of prior claims about these biases.\
+    \ The principled decision to exclude failed axes from causal claims is commendable.\n\
+    3. **Intellectual honesty in reporting negative results.** The paper does not\
+    \ inflate its findings and transparently acknowledges limitations.\n4. **Experimental\
+    \ coverage is good** — all 9 planned experiments are present, covering the full\
+    \ design space of axes, judges, benchmarks, plus robustness checks.\n\n### Key\
+    \ Weaknesses\n1. **The central negative claim rests on an unprincipled correction.**\
+    \ The additive subtraction of win rates across different experiments has no formal\
+    \ statistical justification. Without a proper joint model (e.g., logistic regression\
+    \ with formality × original/rewrite predictors), the claim that \"formality bias\
+    \ is a rewriting artifact\" is not rigorously established. The direction-asymmetry\
+    \ data (54.5% formal win rate in the casual-original subset) actually provides\
+    \ weak evidence *for* a residual formality effect that the paper does not formally\
+    \ test.\n2. **Novelty is incremental.** CSD assembles known techniques (counterfactual\
+    \ rewriting, NLI verification, position-controlled pairwise) without methodological\
+    \ innovation. Key related work (RATE, style transfer evaluation literature, Veitch\
+    \ et al. 2020) is not cited, narrowing the apparent novelty gap further.\n3. **Thin\
+    \ bibliography and incomplete related work positioning** (~8 references) for a\
+    \ paper claiming to advance the style bias measurement field. Missing discussion\
+    \ of debiasing/mitigation approaches, human annotation baselines, and style transfer\
+    \ evaluation standards.\n4. **Small effective sample sizes undermine null claims.**\
+    \ With n_consistent often 42–58 after filtering, the paper cannot distinguish\
+    \ \"no bias\" from \"underpowered\" for 8/9 judge×benchmark combinations. No systematic\
+    \ power analysis for null results is presented.\n5. **Arbitrary verification thresholds\
+    \ without sensitivity analysis.** The 80% NLI cutoff is a hard gate with no exploration\
+    \ of how conclusions change ±5–10%. Tone at 72% is close to the boundary.\n6.\
+    \ **Detection-only, no correction component.** Practical impact is limited compared\
+    \ to existing work (LC-AlpacaEval, etc.) that provides both detection and mitigation.\n\
+    7. **Multiple testing not formally addressed.** Under Bonferroni, the sole significant\
+    \ result (p=0.006) is borderline (α′ = 0.0056).\n\n### Verdict and Recommendations\n\
+    \nThe paper's core insight — that rewriting-based style bias studies are confounded\
+    \ by judges' preference for original text — is a legitimate and useful contribution\
+    \ to the methodology of LLM evaluation. However, the paper has two critical gaps\
+    \ that prevent a higher recommendation:\n\n(a) The correction method that supports\
+    \ the headline finding (formality bias disappears) is not statistically rigorous.\
+    \ A proper causal decomposition model is needed.\n\n(b) The novelty is application-level\
+    \ rather than methodological, yet the paper is framed as introducing a new \"\
+    framework.\" The bibliography is too thin to establish proper positioning.\n\n\
+    **For Findings acceptance:** The paper would need to (1) replace the ad-hoc correction\
+    \ with a formal statistical model, (2) conduct and report the casual-original\
+    \ subset analysis as a clean test of residual formality bias, (3) add 10+ missing\
+    \ references including RATE and style transfer evaluation literature, (4) include\
+    \ a sensitivity analysis for verification thresholds, and (5) add human validation\
+    \ for at least a subset of NLI gate decisions.\n\n**For Main conference:** The\
+    \ paper would additionally need (a) robust multi-judge evidence on at least 2\
+    \ independent style axes, (b) comparison against existing detection baselines,\
+    \ and (c) ideally a correction/mitigation component.\n\n### Scores Summary\n|\
+    \ Reviewer | Focus | Score | Confidence |\n|----------|-------|-------|------------|\n\
+    | R1 | Methods + Experiments | 3.5/6 | 4/5 |\n| R2 | Novelty + Related Work |\
+    \ 3/6 | 4/5 |\n| **Consensus** | **All dimensions** | **3/6** | **4/5** |\n\n\
+    ### Experiment Coverage Assessment\nAll 9 imagined experiments from the design\
+    \ document are present in the paper:\n- exp-001 (Multi-judge formality pairwise):\
+    \ Table 2 ✓\n- exp-002 (Multi-benchmark formality pairwise): Table 3 ✓\n- exp-003\
+    \ (Likert vs Pairwise): Table 5 ✓\n- exp-004 (Tone axis): Table 1 + Section 5.1\
+    \ ✓\n- exp-005 (Original preference control): Tables 6–7 ✓\n- exp-006 (Scaled\
+    \ replication n=500): Table 8 ✓\n- exp-007 (Verbosity boundary): Table 1 ✓\n-\
+    \ exp-008 (Register axis): Table 4 ✓\n- exp-009 (Rewriter ablation): Table 9 ✓\n\
+    \nCoverage is complete. The paper reports all planned experiments faithfully,\
+    \ including negative results.\n\n### Top 3 Actionable Items (Priority Order)\n\
+    1. **Replace ad-hoc correction with formal statistical model** — fit logistic\
+    \ regression with formality + original/rewrite status + interaction; report marginal\
+    \ formality effect with proper CI and p-value. Additionally, test the casual-original\
+    \ subset where the two confounds oppose.\n2. **Expand bibliography and related\
+    \ work** — cite RATE, style transfer evaluation standards (Mir et al., Krishna\
+    \ et al.), Veitch et al. 2020, Chatbot Arena/FairEval, human annotation agreement\
+    \ literature. Discuss positioning vs. detection+correction approaches.\n3. **Add\
+    \ NLI threshold sensitivity analysis + human validation sample** — show how conclusions\
+    \ change across 70%–90% NLI thresholds; annotate 50–100 pairs for human-NLI agreement\
+    \ on content preservation.\n"
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-20T22:09:02+00:00'

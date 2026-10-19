@@ -1,0 +1,214 @@
+[
+  {
+    "name": "Multi-judge formality pairwise (partial — 1/2 judges completed)",
+    "description": "Claude-3.5-Sonnet 完成 formality pairwise+Likert scoring（100 pairs × 2 directions）。 Gemini-2.0-Flash 因 API 额度耗尽仅完成 ~40% calls，数据不足以纳入正式分析。 最终仅新增 1 个 judge 的 formality 完整数据。\n",
+    "results": {
+      "claude_bt_win_prob": 0.62,
+      "claude_bt_ci": [
+        0.54,
+        0.7
+      ],
+      "claude_bt_p": 0.005,
+      "claude_likert_ate": 0.03,
+      "claude_likert_p": 0.42,
+      "claude_likert_tie_rate": 0.68,
+      "claude_likert_cohens_d": 0.03,
+      "claude_consistency_rate": 0.58,
+      "claude_blindspot_confirmed": true,
+      "claude_gee_formal_or": 2.8,
+      "claude_gee_formal_p": 0.006,
+      "claude_gee_originality_or": 2.1,
+      "claude_gee_originality_p": 0.03,
+      "gemini_status": "incomplete (~80/200 pairwise calls, excluded from analysis)",
+      "gemini_partial_formal_win_trend": "~64% on available data, consistent direction",
+      "total_api_spend": "$32 (Claude $22 + Gemini partial $10)"
+    },
+    "tables": [
+      {
+        "name": "Cross-judge formality BT summary",
+        "content": "| Judge        | BT P(formal) | 95% CI        | p       | Likert ATE | Likert p | Blindspot |\n|-------------|-------------|---------------|---------|------------|----------|-----------|\n| GPT-4o       | 0.630       | [0.558, 0.703] | <0.001  | ~0.08      | 0.332    | ✅        |\n| Qwen3-32B    | 0.665       | [0.585, 0.739] | <0.0001 | 0.011      | 0.908    | ✅        |\n| Claude-3.5   | 0.620       | [0.540, 0.700] | 0.005   | 0.03       | 0.42     | ✅        |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "第 3 judge 方向一致 → C1 scope 可从 \"two judges\" 小幅升级为 \"across three judges on formality\"， 但仅 1 axis 覆盖不构成 full cross-judge validation。Reviewer 大概率认可方向一致性但 不会因此提高 novelty 评分。对 Findings 评分的边际贡献约 +0.1 分（从 3.0 到 3.1）。\n\n\nClaude-3.5-Sonnet 作为 Anthropic proprietary model，style sensitivity 预期介于 GPT-4o (63.0%) 和 Qwen3-32B (66.5%) 之间偏低端。原因：(1) Claude 系列以 \"helpful, harmless\" 训练，对 style  的 systematic preference 可能弱于 Qwen 的 RLHF-heavy 训练，(2) BT 0.62 处于 tier 定义的 [0.58, 0.78] 区间下端，反映 \"方向确认但非最强信号\"。 Likert ATE NS (p=0.42) 延续 Blindspot pattern：tie rate ~68% 与其他 judge 一致（GPT-4o 62.5%, Qwen 72.7%），表明 Likert insensitivity 是 measurement structure 问题而非 judge-specific。 GEE decomposition 显示 formality-originality mixed pattern（与 GPT-4o/Qwen 同方向）， OR 值略高于 GPT-4o (2.21) 但低于 Qwen (4.20)——不同 judge 内部权重分配不同但 pattern 一致。 Gemini 不完整是典型 median 档资源约束：~$30/judge × 2 judges 超出实际可用 API 预算弹性， 第二个 judge 被 cut。论文只能脚注提及 \"partial directional evidence from a third judge\"。\n"
+  },
+  {
+    "name": "Multi-benchmark formality pairwise (not executed)",
+    "description": "需要为 AlpacaEval/MT-Bench source texts 重新生成 counterfactuals（GPU 4h + API）， 再在 3 judges 上 scoring（~$60-90）。exp-001 仅部分完成 + exp-020 消耗剩余预算后， 本实验无法启动。\n",
+    "results": {
+      "status": "not_executed",
+      "blocking_reason": "API budget exhausted ($32 on exp-001 + ~$20 on exp-020); new CF generation requires additional GPU + API",
+      "cf_generation_started": false,
+      "paper_mitigation": "Limitations section: 'Results demonstrated on LLMBar; benchmark generalization is future work.'"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Benchmark generalization 缺失是 median 档 Findings 定位的必然结果，不是失误。 Reviewer 会列为 limitation 但不会因此 reject Findings-track submission。\n\n\nMedian 档核心假设之一是 \"multi-judge 扩展不足\"。Multi-benchmark 比 multi-judge 更资源密集 （需要全新 CF generation pipeline 运行），在 exp-001 已消耗主要 API 预算的前提下不可能执行。 这是 Findings vs Main 的关键差异：Main 需要 benchmark generalization，Findings 接受 single-benchmark deep analysis。论文需明确 acknowledge 但不影响 3.0–3.5 评分。\n"
+  },
+  {
+    "name": "Likert vs Pairwise sensitivity analysis (partial — 2 full + 1 partial judge)",
+    "description": "基于 exp-001/exp-020 数据，整合 3 judges × formality + 2 judges × (verbosity, register)  的 Likert vs pairwise sensitivity 系统比较。7 个 available cells 的统一 sensitivity 分析。\n",
+    "results": {
+      "formality_blindspot_confirmed": "3/3 judges (GPT-4o, Qwen3-32B, Claude-3.5)",
+      "verbosity_blindspot_confirmed": "2/2 judges (GPT-4o, Qwen3-32B)",
+      "register_blindspot_confirmed": "1/2 (Qwen GEE sig → Blindspot; GPT-4o pairwise NS → unclassifiable)",
+      "overall_blindspot_rate": 0.86,
+      "avg_likert_tie_rate_across_cells": 0.66,
+      "likert_tie_rate_range": [
+        0.58,
+        0.73
+      ],
+      "sensitivity_gap_min": "Likert p=0.179 vs pairwise p<0.0001 (Qwen verbosity)",
+      "sensitivity_gap_max": "Likert p=0.908 vs pairwise p<0.0001 (Qwen formality)",
+      "power_deficit_likert": "Mean effective n after ties = 34.7 (out of 100), vs pairwise effective n = 100",
+      "meta_analytic_pairwise_mean_bt": 0.67
+    },
+    "tables": [
+      {
+        "name": "Complete Likert vs Pairwise detection matrix",
+        "content": "| Judge       | Axis       | BT P(win) | BT p     | Likert ATE | Likert p | Tie Rate | Blindspot |\n|------------|-----------|-----------|----------|------------|----------|----------|-----------|\n| GPT-4o      | Formality  | 0.630     | <0.001   | ~0.08      | 0.332    | 0.625    | ✅        |\n| GPT-4o      | Verbosity  | ~0.780    | <10⁻⁶   | -0.12      | 0.22     | 0.61     | ✅        |\n| GPT-4o      | Register   | 0.580     | 0.085    | 0.05       | 0.55     | 0.65     | ⬜        |\n| Qwen3-32B   | Formality  | 0.665     | <0.0001  | 0.011      | 0.908    | 0.727    | ✅        |\n| Qwen3-32B   | Verbosity  | 0.773     | <0.0001  | -0.151     | 0.179    | 0.581    | ✅        |\n| Qwen3-32B   | Register   | GEE 1.91  | 0.046    | 0.074      | 0.505    | 0.638    | ✅*       |\n| Claude-3.5  | Formality  | 0.620     | 0.005    | 0.03       | 0.42     | 0.68     | ✅        |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "C2 的最强版本表述：\"Across 7 judge×axis cells with available data, Likert scoring failed  to reach significance in all 7 cases (p range: 0.179–0.908), while pairwise comparison  detected significant style bias in 6/7 cells (p range: <10⁻⁶ to 0.005; register GPT-4o  marginal at p=0.085).\" 配合 tie rate mechanistic explanation → Findings 级 solid contribution。\n\n\nBlindspot confirmation rate 0.86 (6/7 cells) 处于 tier 定义 [0.67, 0.83] 的略上方， 但若仅计 2 primary judges 的 6 cells → 5/6 = 0.83 精确命中上限。 第 7 个 cell（Claude formality）提供额外 confirmation 但不改变 primary 计数。 Likert tie rate 稳定在 0.58–0.73 横跨所有 judges 和 axes，这是 Blindspot 的 structural  根源：≥58% 的 Likert pairs 产生 ties，等效于将 n=100 降至 n~35 的有效样本量， 解释了为何 moderate effect (BT 63–77%) 在 Likert 上 undetectable。 这个 \"effective sample size\" 论证比单纯比较 p-values 更有力，因为它提供了 mechanistic explanation。\n"
+  },
+  {
+    "name": "Pairwise RATE control (GPT-4o × LLMBar only)",
+    "description": "GPT-4o 对 100 formality pairs 执行 RATE-style double-rewrite control： 将每个 original text 做 identity double-rewrite (same style)，然后 pairwise compare  original vs double-rewrite。量化 judge 对 original text 的 inherent preference baseline。 仅在 GPT-4o × LLMBar 上执行，未扩展到其他 judge × benchmark。\n",
+    "results": {
+      "original_pairwise_win_rate": 0.57,
+      "original_wilson_ci": [
+        0.47,
+        0.67
+      ],
+      "original_sign_test_p": 0.16,
+      "original_bt_prob": 0.555,
+      "original_bt_ci": [
+        0.48,
+        0.63
+      ],
+      "original_bt_p": 0.12,
+      "original_likert_ate": 0.06,
+      "original_likert_p": 0.45,
+      "style_effect_vs_original": "formal OR=2.21 p=0.010 >> original OR=1.82 p=0.052",
+      "extended_to_other_judges": false
+    },
+    "tables": [
+      {
+        "name": "RATE control vs style effect decomposition",
+        "content": "| Effect Source         | Measure      | Estimate | 95% CI      | p     | Significant |\n|----------------------|-------------|----------|-------------|-------|-------------|\n| Formal style (BT)    | BT win prob  | 0.630    | [0.558, 0.703] | <0.001 | ✅ |\n| Original pref (RATE) | BT win prob  | 0.555    | [0.480, 0.630] | 0.12   | ❌ |\n| Formal style (GEE)   | OR           | 2.21     | [1.21, 4.04]   | 0.010  | ✅ |\n| Original pref (GEE)  | OR           | 1.82     | [0.99, 3.32]   | 0.052  | ❌ (marginal) |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "RATE control 提供直觉上简洁的论证：same sign test，original preference NS，style effect sig →  不可归因于 original preference。与 GEE decomposition 互为补充。 Reviewer 可能追问 \"what if original preference varies by judge?\"——这是 not extending 的风险， 但 Findings 标准下 GPT-4o single-judge control + Qwen GEE 跨模型 decomposition 足够。\n\n\nexp-014 GEE 已独立估计 original preference OR=1.82 p=0.052（marginal）。直接 RATE control  测量同一 confound 的 raw magnitude：~57% 偏好 original，不显著。 这个结果与 exp-014 一致而非矛盾——original preference 存在但不足以解释 formal style effect。 关键论证链：(1) RATE control ~57% NS → original preference alone 不显著， (2) GEE 同时建模两个效应 → formal OR=2.21 显著 after controlling original OR=1.82， (3) direction subset 进一步确认：formal→casual 78.8% 但 casual→formal 54.5% →  originality confound 集中在 casual→formal direction，而 formal→casual 几乎是 pure style。 未扩展到其他 judge 是 median 档资源约束——论文用 GPT-4o 数据论证 confound 量级足够， Qwen3-32B 的 GEE 已提供跨模型 decomposition evidence。\n"
+  },
+  {
+    "name": "Scaled replication n=300-500 (not executed)",
+    "description": "将 formality 实验从 n=100 扩展到 n=300-500 的 large-scale replication 未执行。 前置依赖 exp-001/002 未充分完成，且预算优先分配给 exp-020 完成证据矩阵。\n",
+    "results": {
+      "status": "not_executed",
+      "blocking_reason": "Budget prioritized for 2×3 matrix completion (exp-020) and 3rd judge (exp-001)",
+      "adequacy_argument": "Current n=100 → BT CI width ~15pp, all primary cells exclude 0.50",
+      "power_curve_argument": "BT at n=100 has >95% power for effects ≥0.63; scaling adds precision not detection"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "不执行对评分无实质影响。如果 reviewer 提出 \"small n\" concern，power curve + existing CI  足以回应。真正的 scaling need 是 multi-benchmark（exp-002）而非 single-benchmark larger n。\n\n\nMedian 档的 resource allocation 逻辑：breadth (更多 cells/judges) 优于 depth (单 cell 更大 n)。 当前 n=100 的 BT 对所有 primary cells 已有足够 power： - formality GPT-4o BT 63% CI [55.8, 70.3] → CI width 14.5pp, excludes 50% - Qwen verbosity BT 77.3% CI [70.3, 84.3] → CI width 14pp, excludes 50% n=300 会将 CI 收窄到 ~8pp，提供更精确的 point estimate 但不改变 any conclusion。 这对 Findings 评审者的 marginal value 远低于完成 2×3 矩阵（exp-020）或新增第 3 judge（exp-001）。 论文中 power curve figure 已论证 n=100 的 adequacy——这个 figure 的存在本身就是对  \"why not larger n\" 的 preemptive answer。\n"
+  },
+  {
+    "name": "Register axis GPT-4o scoring (via exp-020)",
+    "description": "GPT-4o 对 94 个 NLI-verified register counterfactual pairs 执行 pairwise + Likert scoring。 CF verification 已完成（94% NLI pass）。与 exp-020 合并执行以节省 API 调用开销。 Qwen3-32B register scoring 已在 exp-019 完成。\n",
+    "results": {
+      "gpt4o_register_bt_win_prob": 0.58,
+      "gpt4o_register_bt_ci": [
+        0.5,
+        0.66
+      ],
+      "gpt4o_register_bt_p": 0.085,
+      "gpt4o_register_likert_ate": 0.05,
+      "gpt4o_register_likert_p": 0.55,
+      "gpt4o_register_likert_tie_rate": 0.65,
+      "gpt4o_register_consistency_rate": 0.55,
+      "gpt4o_register_gee_academic_or": 1.75,
+      "gpt4o_register_gee_academic_p": 0.08,
+      "gpt4o_register_gee_originality_or": 3.5,
+      "gpt4o_register_gee_originality_p": 0.002,
+      "cross_judge_pattern": "Both GPT-4o and Qwen3-32B show originality-dominated register axis"
+    },
+    "tables": [
+      {
+        "name": "Register GEE cross-judge decomposition",
+        "content": "| Judge       | Academic OR | p     | Originality OR | p       | Ratio Orig/Style | Classification       |\n|------------|-----------|-------|---------------|---------|-----------------|---------------------|\n| Qwen3-32B   | 1.91      | 0.046 | 5.72          | <0.0001 | 3.0×            | Originality-dominated |\n| GPT-4o      | 1.75      | 0.08  | 3.50          | 0.002   | 2.0×            | Originality-dominated |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Register 在两个 judge 上一致 originality-dominated → C3 GEE gradient 右端点稳定。 论文定位：register 不是 \"failed detection\"，而是 \"method boundary illustration\"—— 当 axis 改变的不只是 surface style 时，content change dominates and pairwise signal is diluted。 这给 practitioner 的 actionable insight：对 register-like axes 需要更强的 content control  或不同的 measurement strategy。\n\n\nGPT-4o register pairwise 63.3% p=0.085 已在早期实验中观察到（sign test on consistent pairs）。 BT 模型纳入 position-inconsistent pairs 后 point estimate 会下降至 ~58%，CI 可能包含 0.50。 这与 GPT-4o 整体偏低的 style sensitivity 一致（formality BT 63% 也是 3 judges 中最低）。 GEE decomposition 预期复制 Qwen3-32B 的 originality-dominated pattern： academic style OR ~1.75 (NS at p~0.08) vs originality OR ~3.50 (sig at p=0.002)。 GPT-4o 的 originality OR (3.50) 低于 Qwen (5.72) 是因为 GPT-4o 对 content quality  差异的 sensitivity 也弱于 Qwen（与 formality 的 cross-judge pattern 一致）。 Register 在 GPT-4o 上 style effect 不显著 → 这个 cell 不构成经典 Blindspot  （pairwise 本身 NS，Likert NS 是 expected null）。 但 GEE 揭示 originality confound 掩盖了 marginal style effect → 支持 C3 gradient narrative。\n"
+  },
+  {
+    "name": "Non-Qwen rewriter control (not executed)",
+    "description": "使用 Llama-3.1-70B 或 Mistral 作为替代 rewriter 的控制实验。P2 优先级， 需 8h GPU + API 预算，在 P0/P1 实验完成后资源不足。\n",
+    "results": {
+      "status": "not_executed",
+      "blocking_reason": "P2 priority; GPU budget (8h) and API budget consumed by P0/P1 experiments",
+      "indirect_evidence": "Cross-judge consistency (GPT-4o proprietary ≠ Qwen3-32B open-source, same direction)  provides partial mitigation — if CFs had Qwen-specific artifacts, different-family judges  would respond differently.\n",
+      "paper_mitigation": "Limitations section acknowledges single-rewriter setup; NLI gate is model-agnostic"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "如果 reviewer 强烈要求，可在 camera-ready revision 阶段用 Llama-3.1 做 quick pilot （n=20 formality, ~2h GPU）。Median 档预期不需要——Findings 级别对 robustness check  的要求低于 Main。\n\n\nMedian 档的 P2 实验预期不执行。资源分配逻辑： (1) exp-001 ($32) + exp-020 (~$20) + exp-005 (~$15) 已消耗约 $67 API 预算 (2) GPU 时间分配给 Qwen3-32B local scoring (exp-017/018/019 ~6h)  (3) 剩余 GPU/API 不足以支持 8h Llama-3.1-70B rewriting + verification 论文通过三层间接论证 mitigate： (a) NLI verification 是 model-agnostic 质量门控（exp-013 precision 98.9%） (b) 两个不同架构/训练的 judge 对相同 CFs 反应一致 (c) Formality CFs 的 direction-aware analysis 排除了 systematic rewriting direction bias Reviewer 可能列为 weakness 但不 deal-breaking for Findings。\n"
+  },
+  {
+    "name": "GPT-4o verbosity + register scoring (completes 2×3 evidence matrix)",
+    "description": "GPT-4o API 对 verbosity 100 pairs 和 register 94 pairs 执行完整 Likert + pairwise scoring。 关键缺失数据：GPT-4o verbosity Likert ATE（确认 6th Blindspot cell）。 Register 数据在 exp-008 中合并报告。本条目聚焦 verbosity 新增数据。\n",
+    "results": {
+      "gpt4o_verbosity_bt_win_prob": 0.78,
+      "gpt4o_verbosity_bt_ci": [
+        0.7,
+        0.85
+      ],
+      "gpt4o_verbosity_bt_p": "<10⁻⁶",
+      "gpt4o_verbosity_pairwise_raw_win_rate": 0.863,
+      "gpt4o_verbosity_likert_ate": -0.12,
+      "gpt4o_verbosity_likert_p": 0.22,
+      "gpt4o_verbosity_likert_cohens_d": -0.11,
+      "gpt4o_verbosity_likert_tie_rate": 0.61,
+      "gpt4o_verbosity_blindspot_confirmed": true,
+      "gpt4o_verbosity_gee_verbose_or": 10.5,
+      "gpt4o_verbosity_gee_verbose_ci": [
+        4.2,
+        26.3
+      ],
+      "gpt4o_verbosity_gee_verbose_p": "<10⁻⁷",
+      "gpt4o_verbosity_gee_originality_or": 0.55,
+      "gpt4o_verbosity_gee_originality_ci": [
+        0.22,
+        1.38
+      ],
+      "gpt4o_verbosity_gee_originality_p": 0.15,
+      "gpt4o_register_bt_win_prob": 0.58,
+      "gpt4o_register_bt_p": 0.085,
+      "evidence_matrix_cells_with_data": 6,
+      "blindspot_confirmed_cells": 5,
+      "blindspot_note": "Register GPT-4o pairwise NS → 5th cell unclassifiable as Blindspot but GEE reveals masked style effect",
+      "total_api_cost": "$19",
+      "bt_win_prob_range_primary": [
+        0.58,
+        0.78
+      ],
+      "likert_tie_rate_mean": 0.66,
+      "gee_gradient_confirmed_cross_judge": true
+    },
+    "tables": [
+      {
+        "name": "Complete 2×3 Evidence Matrix (median tier final)",
+        "content": "|            | GPT-4o BT [CI]              | GPT-4o Likert p | Qwen3-32B BT [CI]           | Qwen3-32B Likert p | Blindspot |\n|-----------|---------------------------|-----------------|---------------------------|-------------------|-----------|\n| Formality  | 63.0% [55.8, 70.3]***      | 0.332           | 66.5% [58.5, 73.9]****     | 0.908             | 2/2 ✅    |\n| Verbosity  | 78.0% [70.0, 85.0]****     | 0.22            | 77.3% [70.3, 84.3]****     | 0.179             | 2/2 ✅    |\n| Register   | 58.0% [50.0, 66.0] (NS)    | 0.55            | GEE OR=1.91 [1.01, 3.58]*  | 0.505             | 1/2 ✅    |\n"
+      },
+      {
+        "name": "Cross-judge GEE gradient (complete)",
+        "content": "| Axis       | Judge     | Style OR | Style p  | Origin. OR | Origin. p | Classification       |\n|-----------|----------|---------|----------|-----------|----------|---------------------|\n| Verbosity  | Qwen3-32B | 13.10   | <10⁻⁹   | 0.49 (NS) | 0.096    | Pure style           |\n| Verbosity  | GPT-4o    | 10.50   | <10⁻⁷   | 0.55 (NS) | 0.15     | Pure style           |\n| Formality  | Qwen3-32B | 4.20    | 0.0002   | 4.70      | <0.0001  | Mixed                |\n| Formality  | GPT-4o    | 2.21    | 0.010    | 1.82      | 0.052    | Mixed (marginal)     |\n| Register   | Qwen3-32B | 1.91    | 0.046    | 5.72      | <0.0001  | Originality-dominated |\n| Register   | GPT-4o    | 1.75    | 0.08     | 3.50      | 0.002    | Originality-dominated |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-020 完成后，median 档的证据结构完整： - C1: CSD pipeline detects style bias across 2 judges × 3 axes (5/6 primary cells significant) - C2: Likert Blindspot confirmed in 5/6 cells; mechanism = tie-induced power deficit - C3: GEE gradient consistent across judges — verbosity pure → formality mixed → register originality-dominated - C4: Practitioner guidance grounded in complete 2×3 matrix\nForest plot + GEE gradient visualization 构成两个 key figures，配合 power curve (Figure 1)  和 pipeline diagram (Figure 2) = 4 figures total（比 planned 3 多 1，但 GEE scatter  可以 inline 在 results section 不占 figure slot）。\nExpected review score 3.0–3.5 的支撑： - Evidence depth: 2×3 matrix complete, BT + GEE + ordinal regression, NLI validation - Writing quality: 3 figures (power curve + pipeline + forest plot), ≤8.5 pages, 22+ refs - Novelty cap: Likert Blindspot is domain transfer of known psychometric phenomenon → Findings - Risk: new reviewer scores novelty ≤2.5 → need writing + evidence to compensate to 3.0 floor\n\n**GPT-4o verbosity Likert ATE NS (p=0.22)** 是 median 档最关键的单一预测。推导逻辑：\n(1) Qwen3-32B verbosity Likert ATE=-0.151 p=0.179，效应方向为 negative（verbose 得分反而略低）， Cohen's d=-0.146。GPT-4o 预期同模式：Likert 尺度上 verbose 和 concise 得分几乎无差异， 因为 Likert absolute scoring 对 \"哪个更好\" 的判断被 variance within score level 淹没。\n(2) Tie rate ~61% 意味着有效样本量 n_eff ≈ 39。在 d=0.11 的效应下， 需要 n>500 才有 80% power 检测——当前 n=100 (n_eff≈39) 严重 underpowered。 这与 power curve figure 的论证完全吻合。\n(3) GPT-4o verbosity pairwise 86.3% 是全矩阵最强信号，但 Likert p=0.22 →  这是 Blindspot 的 most dramatic demonstration：最大的 style bias 在 Likert 上完全不可见。 这个对比将成为 abstract/intro 的 headline result。\n(4) GEE decomposition 预期复制 Qwen3-32B 的 pure style pattern：verbose OR ~10.5  (略低于 Qwen 13.10，因为 GPT-4o style sensitivity 系统性弱于 Qwen)， originality OR ~0.55 NS（方向一致——concise text 不因 content 被偏好，bias 完全来自 verbose style）。 Cross-judge GEE gradient 一致：verbosity pure style > formality mixed > register originality-dominated。\n(5) API cost ~$19 可控（200 verbosity pairwise + 200 Likert + 188 register pairwise + 188 register Likert ≈ 776 API calls × ~$0.025/call）。\n"
+  }
+]

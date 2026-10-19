@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_double_rewrite_placebo_qwen_20260521T132436_result.json",
     "occurrence": 1,
-    "bytes": 1029,
-    "sha256": "03255db9c99d731b47fd7fcbbd1a94bd04b5e1367b908fa36933bfaf2ae1756e"
+    "bytes": 1028,
+    "sha256": "2dba73df68edc006dcf7569410ece591fa52a10ab6452db12fdf73a0c14eaba1"
   },
   "statistics": {
     "messages": 1,

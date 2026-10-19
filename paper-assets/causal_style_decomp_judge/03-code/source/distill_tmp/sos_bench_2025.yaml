@@ -1,0 +1,143 @@
+paper_key: "sos_bench_2025"
+title: "Style Over Substance: Failure Modes of LLM Judges in Alignment Benchmarking"
+venue: "ICLR 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "GPT-4-0314 (Arena-Hard-Auto baseline)"
+    - "Llama-3-8B (base model)"
+    - "Llama-3-Instruct"
+    - "opt-125m"
+    - "DPO"
+    - "IPO"
+    - "ORPO"
+    - "SimPO"
+    - "KTO"
+    - "WPO"
+    - "Curry-DPO"
+    - "DR-DPO"
+    - "SPPO"
+    - "Zephyr"
+    - "FLAN"
+    - "Tulu-2"
+    - "WizardLM"
+    - "UltraChat"
+    - "LIMA"
+    - "MetaMath"
+    - "Numina-CoT"
+    - "Replete Coder"
+    - "Bagel"
+    - "Dolphin"
+    - "Magpie+DPO"
+  metrics:
+    - {name: "Arena-Hard-Auto win rate", direction: "higher_better"}
+    - {name: "World Knowledge (WK) normalized accuracy", direction: "higher_better"}
+    - {name: "Instruction Following (IF) normalized accuracy", direction: "higher_better"}
+    - {name: "Safety normalized accuracy", direction: "higher_better"}
+    - {name: "Pearson correlation between criteria and overall score", direction: "higher_better"}
+    - {name: "Score loss percentage under intervention", direction: "lower_better"}
+  datasets:
+    - {name: "SOS-Bench", size: "152,380 data points across 19 benchmarks"}
+    - {name: "Arena-Hard-Auto", size: "1000 prompts"}
+    - {name: "LiveBench (coding, data analysis, language, math)", size: "subset of SOS-Bench"}
+    - {name: "MMLU-Pro", size: "subset of SOS-Bench"}
+    - {name: "TruthfulQA", size: "subset of SOS-Bench"}
+    - {name: "IFEval", size: "subset of SOS-Bench"}
+    - {name: "MATH", size: "subset of SOS-Bench"}
+    - {name: "HumanEval", size: "subset of SOS-Bench"}
+    - {name: "SALAD-Bench", size: "subset of SOS-Bench"}
+    - {name: "WildGuard", size: "subset of SOS-Bench"}
+    - {name: "ToxiGen", size: "subset of SOS-Bench"}
+    - {name: "HELM", size: "reference leaderboard"}
+    - {name: "Chatbot Arena", size: "reference leaderboard"}
+  ablation_dimensions:
+    - "Judge model choice (GPT-3.5-turbo, GPT-4o-mini, GPT-4o, Claude-3.5-Sonnet)"
+    - "Explicit criteria weighting (completeness, conciseness, style, safety, correctness)"
+    - "Systematic violation type (bland, wrong, concise, sarcastic)"
+    - "SFT dataset size scaling (500 to 4500 examples)"
+    - "SFT dataset composition (specialist vs generalist)"
+    - "Post-training stage (SFT only vs SFT+DPO)"
+  training_recipe:
+    optimizer: "AdamW"
+    lr: "varied per method (see appendix Table 6)"
+    hardware: "1,325+ A100-hours total; $1,505 API costs for judge evaluations"
+    details: "All models trained on Llama-3-8B base; 17 academic methods + 6 non-academic implementations"
+  method_family: "LLM-judge bias analysis / alignment benchmark meta-evaluation"
+
+positioning:
+  core_claim: "LLM 评委具有强大的隐性偏差——近乎完美地按风格评分（R=0.999）而非事实性或安全性，导致基于 LLM-judge 的对齐基准与真实对齐指标严重脱节；SFT 阶段的数据规模而非 PO 方法的创新才是对齐进步的主要驱动力"
+  key_results: "Style-overall 相关性 R=0.999; Safety-overall 相关性仅 0.727; 讽刺风格损失 96% 分数但事实错误仅损失 13%; SFT 3000-4500 样本的通用数据集优于领域专家数据集; DPO 阶段提升 IF(+0.7~1.9) 和 safety(+0.4~5.0) 但降低 WK(-1.0~1.8)"
+  limitations:
+    - "分析仅聚焦 Arena-Hard-Auto（因成本限制），虽提供泛化证据但无法保证对所有 LLM-judge 变体成立"
+    - "系统性违规由 GPT-4o-Mini 生成而非人类标注"
+    - "仅探索了少量可能的违规类型和评判标准"
+    - "缺少非英语评估"
+    - "如果天真地实施显式偏差标准化，可能产生 Goodhart 效应"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "开篇聚焦社区现象：自 ChatGPT 发布以来 PO 方法爆炸式增长，几乎所有工作都依赖 LLM-judge 基准（MT-Bench, AlpacaEval, Arena-Hard-Auto）来声称对齐进步。然后抛出关键质疑：这些偏好分数真的代表对齐吗？"
+  tension: "逐步揭示裂痕：(1) preference benchmarks 与 static benchmarks 的弱相关性暗示它们测量的是不同的东西 (2) LLM-judge 的结构性差异（不透明、无 ground truth、隐性偏差）使其本质上不同于传统 NLP 基准 (3) 最终的实验'炸弹'——style 与 overall score 的 R=0.999 完美相关"
+  key_insight: "Section 4.2 的干预实验是全文高潮：通过系统性地注入不同类型的缺陷（事实错误 vs 风格变化），定量证明 judge 对风格极度敏感（讽刺=-96%）但对事实错误几乎无感（错误=-13%）。这个'控制实验'设计是论文最有力的证据。"
+  argument_chain: "PO methods rely on LLM-judges → judges differ structurally from standard benchmarks → judges have implicit biases → style dominates over substance (R=0.999) → intervention experiments confirm: style violations punished 7x more than factual errors → SOS-Bench as ground-truth alternative → meta-analysis: data scale matters more than PO method"
+  contribution_framing: "四条贡献，措辞层层递进：(1) common framework for evaluating judge pipelines（基础设施）→ (2) powerful implicit biases finding（核心发现）→ (3) SOS-Bench introduction（解决方案）→ (4) largest controlled meta-analysis（实证规模）。注意第四条用'to the best of our knowledge, the largest'强调规模优势。"
+  intro_structure: "4段：P1=背景与现象（PO 方法依赖 LLM-judge）→ P2=核心研究问题（judge preferences 是否等于 alignment progress）→ P3=四条贡献 bullet points → P4=过渡到正文"
+  notable_technique: "干预实验设计（Section 4.2）是最值得学习的叙事技巧：不是被动分析相关性，而是主动注入控制变量（bland/wrong/concise/sarcastic），将观察性发现升格为因果性证据。'Wrong answers only lose 13% while sarcasm loses 96%'这个对比极具修辞冲击力。"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "problem_illustration"
+    description: "对比 LLM-judge 评估管线与标准 NLP 基准的结构差异图。展示 LLM-judge 系统如何通过不透明 judge、缺少 ground truth、有限领域覆盖和隐性偏差引入混淆因素。"
+    narrative_role: "建立全文的分析框架——将 LLM-judge 的四个结构性缺陷可视化，为后续逐一击破奠定基础"
+    design_elements: ["对比布局（左: standard benchmarks, 右: LLM-judge pipelines）", "标注四个结构差异", "箭头指示信息流和偏差来源"]
+    visual_style: "概念对比图，双栏布局，使用颜色/图标区分标准基准 vs judge 管线的各个组件"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "scatter"
+      what_compared: "5 个显式评判标准（completeness, conciseness, style, safety, correctness）与 overall score 的 Pearson 相关性"
+      how_gain_highlighted: "Style 的散点几乎落在对角线上（R≈1.0），与其他标准形成鲜明对比，视觉上一目了然"
+      design_note: "用散点图而非柱状图展示相关性，让 R=0.999 的'完美相关'在视觉上不可忽视——点几乎完全贴合拟合线"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "不同 SFT 数据集规模下的 normalized accuracy（含置信区间），Arena-Hard 作为离群值"
+      how_gain_highlighted: "Arena-Hard 的趋势线与其他指标方向不一致，突出其作为 preference benchmark 的异常行为"
+      design_note: "置信区间带增强了统计可信度；Arena-Hard 的离群行为在视觉上立即可辨"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1（框架: judge vs standard benchmark 的结构差异）→ Figure 2（证据: style 完美主导评分）→ Figure 3（后果: data scaling 分析中 preference benchmark 的异常）"
+
+tables:
+  table_count: 8
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods (judge models: GPT-3.5-turbo, GPT-4o-mini, GPT-4o, Claude-3.5-Sonnet)"
+    col_axis: "explicit criteria (completeness, conciseness, style, safety, correctness) × correlation with overall"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "数值对比，style 列的 0.999 相关性与 safety 的 0.727 形成强烈反差"
+    statistical_reporting: "Pearson R 值，跨 4 个 judge 模型的平均值"
+    num_baselines: 4
+    design_note: "表格设计让 style 列的数值在所有 judge 中一致趋近 1.0，形成视觉上的'一列高亮'效果，无需加粗即传递核心信息"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["violation type (bland, wrong, concise, sarcastic)"]
+      variation_style: "full_numbers"
+      design_note: "用 score loss percentage 量化不同违规的惩罚力度，sarcastic(96%) vs wrong(13%) 的对比是全文最具冲击力的数字"
+    - table_id: "Table 1"
+      what_varied: ["benchmark pair correlations (LiveBench, HELM, Arena-Hard, ChatBot Arena)"]
+      variation_style: "full_numbers"
+      design_note: "相关性矩阵揭示 preference benchmarks 与 ground-truth benchmarks 的脱节"
+    - table_id: "Table 4"
+      what_varied: ["SFT dataset type (specialist vs generalist)", "domain (coding, math, NLP)"]
+      variation_style: "full_numbers"
+      design_note: "generalist 在所有领域超越 specialist 的结果反直觉，表格布局让这种反转一目了然"
+    - table_id: "Table 5"
+      what_varied: ["post-training stage (SFT only vs SFT+DPO)", "alignment dimension (WK, IF, Safety)"]
+      variation_style: "delta_from_base"
+      design_note: "用增量展示 DPO 的 trade-off：IF 和 Safety 提升但 WK 下降，Arena-Hard 大幅提升但与其他指标背离"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 6: 训练超参数和模型一致性验证; Table 7: 17 种方法的分类对比（post-training stage, 是否依赖 LLM-judge 评估）; Table 8: SOS-Bench 19 个子数据集的完整规格（名称、领域、大小、指标）"
+    reason: "主表聚焦核心发现（偏差证据 + 对齐分析），附录放实验基础设施细节（超参/方法分类/数据集规格），避免主文过载同时保证可复现性"

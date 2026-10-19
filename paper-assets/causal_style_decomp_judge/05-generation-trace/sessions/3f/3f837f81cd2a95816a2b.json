@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_register_nli_only_gating_20260521T002132_result.json",
     "occurrence": 1,
-    "bytes": 904,
-    "sha256": "f8d36f92d709a2ad6e2d75539f48226a331310ba527b773936998908dff88e64"
+    "bytes": 903,
+    "sha256": "579b039700d708ff75a6484153f854e56a28aa2cfa019c6f0766d8677bba4044"
   },
   "statistics": {
     "messages": 1,

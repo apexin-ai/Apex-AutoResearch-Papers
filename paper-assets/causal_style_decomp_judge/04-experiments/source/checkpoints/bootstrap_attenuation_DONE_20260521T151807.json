@@ -1,0 +1,27 @@
+{
+  "exp_id": "bootstrap_attenuation",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:17:13.754Z",
+    "updated_at": "2026-05-21T15:18:07.145Z",
+    "hypothesis": "Bootstrap subsampling of Likert data shows Cohen's d remains near zero across all sample sizes (n=50-355), demonstrating measurement attenuation rather than power gap — Likert fundamentally cannot detect style bias regardless of sample size",
+    "conclusion": "success",
+    "spec": {
+      "command": "python /tmp/bootstrap_attenuation.py",
+      "server": "westb-29275",
+      "data_path": "data/scored_scaled_formality_qwen32b.jsonl + data/scored_qwen32b_verbosity.jsonl + data/scored_gpt4o_verbosity.jsonl",
+      "data_count": 527,
+      "model_name": "Statistical analysis (numpy bootstrap)",
+      "seed": 42,
+      "checkpoint_path": "data/bootstrap_attenuation.json",
+      "log_path": "data/bootstrap_attenuation.json"
+    },
+    "completed_at": "2026-05-21T15:18:07.145Z"
+  },
+  "timestamp": "2026-05-21T15:18:07.231188+00:00",
+  "trigger": "update_registry"
+}

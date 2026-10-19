@@ -1,0 +1,113 @@
+paper_key: "rate_icml_2025"
+title: "RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals"
+venue: "ICML 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - Naive estimator (compare original vs single-attribute-group averages)
+    - Single-rewrite estimator (compare original vs one rewrite)
+    - RATE / Double-rewrite estimator (proposed)
+  metrics:
+    - {name: "Average Treatment Effect (ATE)", direction: "context_dependent"}
+    - {name: "Average Treatment Effect on Treated (ATT)", direction: "context_dependent"}
+    - {name: "Average Treatment Effect on Untreated (ATU)", direction: "context_dependent"}
+    - {name: "Cohen's d (standardized effect size)", direction: "context_dependent"}
+  datasets:
+    - {name: "IMDB", size: "sentiment dataset, used for semi-synthetic and real experiments"}
+    - {name: "ELI5", size: "helpfulness/length attribute evaluation"}
+    - {name: "HelpSteer", size: "complexity/helpfulness attribute evaluation"}
+  ablation_dimensions:
+    - estimator_type (naive / single-rewrite / RATE double-rewrite)
+    - typo_correlation_strength (0% to 30%)
+    - length_sentiment_correlation_strength
+    - reward_model_choice (FsfairX-LLaMA3-RM / NCSOFT-OffsetBias-RM / ArmoRM)
+    - target_attribute (sentiment / length / complexity / helpfulness)
+    - distributional_shift
+  training_recipe:
+    optimizer: "N/A (no model training; RATE is an analysis method)"
+    lr: "N/A"
+    hardware: "N/A"
+    rewrite_model: "GPT-4o-2024-08-06"
+    rewrite_cost: "~$60 per 25K samples"
+  method_family: "Causal inference for reward model interpretability / counterfactual-based explainability"
+
+positioning:
+  core_claim: "通过 double-rewrite 策略消除 LLM 生成反事实时引入的系统性偏差（如自动纠正拼写错误），从而无偏地估计高层属性（如 helpfulness、style）对 reward model 输出的因果效应"
+  key_results: "Semi-synthetic: RATE 在 typo 相关性 0-30% 范围内始终保持 ~0 的 treatment effect（ground truth），而 naive 和 single-rewrite 方法随相关性增加偏差显著增大；Real-world: RATE 与 naive 估计在 length/complexity/helpfulness 效应上存在实质性差异，揭示 NCSOFT 声称的 length bias 改善实际上小于表面数字"
+  limitations:
+    - "方法依赖 LLM 反事实重写的质量，重写质量最终需主观评估"
+    - "RATE 测量的是 reward model 的属性敏感性，不直接预测对下游 LLM 对齐行为的影响"
+    - "double-rewrite 假设（重写误差与目标属性方向无关）在某些极端情况下可能不成立"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "开篇指出 reward model 是 LLM 对齐的核心组件但本质上是黑盒——我们甚至不知道它们到底在奖励什么（helpfulness? 还是 length?）"
+  tension: "朴素方法（直接比较有/无某属性的 response 的平均 reward）会混淆目标属性与数据中的伪相关；用 LLM 重写生成反事实看似解决了问题，但 LLM 重写本身会引入系统性 off-target 修改（如 GPT-4o 无论重写方向都会纠正拼写错误），导致单次重写估计同样有偏"
+  key_insight: "Section 3 提出核心洞察：如果重写误差与目标属性方向无关，那么对 (rewrite, rewrite-of-rewrite) 对求差可以抵消系统性误差——这是一个简洁的数学直觉，类似于差分消除法。用 Figure 1 的拼写错误例子具象化"
+  argument_chain: "RM 黑盒问题 → 朴素估计的混淆问题 → LLM 重写的 off-target 修改问题 → Double-rewrite 的误差抵消直觉 → 形式化为 ATE 估计并证明无偏性和 √n 一致性 → Semi-synthetic 验证（已知 ground truth）→ Real-world 应用（揭示 RM 的真实属性敏感性）"
+  contribution_framing: "四个贡献，层次分明：(1) 问题形式化（ATE），(2) 方法提出（RATE），(3) 理论保证（无偏+一致），(4) 实验验证。措辞精准：'formalize'、'develop'、'establish'、'demonstrate'"
+  intro_structure: "7段：(1) RM 黑盒问题的实际重要性 (2) 朴素方法的混淆缺陷 (3) 因果推断框架的引入 (4) LLM 重写作为反事实生成工具 (5) 重写不完美性问题 (6) Double-rewrite 核心方法 (7) 贡献列表和论文结构"
+  notable_technique: "用一个极其具体且直观的例子（GPT-4o 重写时自动纠正拼写错误）来具象化抽象的 'off-target modification' 概念，贯穿全文从 motivation 到 semi-synthetic 实验都用拼写错误作为 running example"
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "problem_illustration"
+    description: "三个场景展示 LLM 重写时的 off-target 修改：重写改变目标属性的同时也改变了 tone、length、grammar 等非目标属性"
+    narrative_role: "直观展示 'imperfect counterfactual' 问题——单次重写为什么不够，为 double-rewrite 方法铺垫"
+    design_elements: ["三个并列场景", "目标属性变化用颜色标注", "off-target 变化用不同颜色/标注突出", "文本对比展示"]
+    visual_style: "文本对比图，用颜色高亮标注改变的部分，多场景并列展示不同类型的 off-target 修改"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "三种估计器（naive/single-rewrite/RATE）在不同 typo 相关性强度下的 treatment effect 估计"
+      how_gain_highlighted: "RATE（橙色）始终贴近 ground truth（~0），而 naive（蓝色）和 single-rewrite（绿色）偏差随相关性增大；置信区间清晰展示"
+      design_note: "三线对比 + 置信带，ground truth 作为参考线，颜色区分三种方法，x 轴是 confound 强度——完美展示 RATE 的鲁棒性"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "sentiment classifier 作为 'reward model' 时 length 对分类的因果效应估计"
+      how_gain_highlighted: "RATE 近零（符合 ground truth：length 不应影响 sentiment），naive 随相关性增大而偏离"
+      design_note: "与 Figure 3 结构一致，形成 semi-synthetic 验证的双重证据"
+    - figure_id: "Figure 5"
+      viz_type: "bar_chart"
+      what_compared: "三个 reward model (FsfairX/NCSOFT/ArmoRM) 在 IMDB/ELI5/HelpSteer 上对 length/complexity/helpfulness 的 naive vs RATE 效应估计"
+      how_gain_highlighted: "蓝色（naive）vs 橙色（RATE）并排柱状图，用 Cohen's d 标准化使跨模型可比；RATE 估计通常小于 naive，揭示 naive 高估了某些效应"
+      design_note: "多面板网格布局（3 RM × 3 dataset × 多 attribute），置信区间用误差线表示，是全文最重要的 real-world 结果图"
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      dimensions_varied: ["distributional_shift (HelpSteer dataset)"]
+      design_note: "附录扩展实验，验证 RATE 在分布偏移下的鲁棒性"
+    - figure_id: "Figure 8"
+      viz_type: "line_plot"
+      dimensions_varied: ["single vs double rewrite estimate comparison"]
+      design_note: "直接对比单次 vs 双次重写的估计差异"
+  figure_narrative_role: "Figure 1 (问题可视化：off-target 修改) → Figure 2 (KDE 展示 double-rewrite 如何修正分布) → Figure 3-4 (semi-synthetic 验证：已知 ground truth) → Figure 5 (real-world 应用：三个 RM 的真实属性效应) → Appendix Figures (鲁棒性扩展)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "text examples (original / rewrite pairs)"
+    col_axis: "Original (W=0), Rewrite (W=1), text content"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "N/A (qualitative example table, not quantitative comparison)"
+    statistical_reporting: "N/A"
+    num_baselines: 0
+    design_note: "这不是传统的结果比较表，而是定性展示表——通过具体文本例子让读者直观理解重写的 off-target 问题。主要定量结果放在图中而非表中"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["rewrite stages (original → rewrite → rewrite-of-rewrite) with reward scores"]
+      variation_style: "full_numbers"
+      design_note: "展示 double-rewrite pipeline 的具体工作过程，含 reward score，是方法论的 walkthrough 而非消融"
+    - table_id: "Table 3"
+      what_varied: ["distribution parameters for synthetic experiments (Long Positive / Short Positive / Long Negative / Short Negative)"]
+      variation_style: "full_numbers"
+      design_note: "附录中的实验设置细节表，展示 semi-synthetic 实验的分布构造"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 3: 合成实验分布参数；附录含理论证明、额外实验（分布偏移）、重写质量分析"
+    reason: "论文采用 figure-heavy 策略：主要定量结果全部用图（line plot + bar chart with CI）呈现，表格仅用于定性展示和实验设置细节。这与因果推断领域的 treatment effect 可视化传统一致"

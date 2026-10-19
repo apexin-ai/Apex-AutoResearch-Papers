@@ -1,0 +1,32 @@
+{
+  "bidirectional_pass": {
+    "n": 65,
+    "bt_pct": 78.5,
+    "bt_ci": [
+      71.5,
+      85.4
+    ],
+    "bt_p": 0.0,
+    "likert_d": 0.0381,
+    "likert_p": 0.5901,
+    "likert_ate": 0.0615
+  },
+  "direction_aware_only": {
+    "n": 21,
+    "bt_pct": 73.8,
+    "bt_ci": [
+      59.5,
+      85.7
+    ],
+    "bt_p": 0.0008,
+    "likert_d": 0.029,
+    "likert_p": 0.8773,
+    "likert_ate": 0.0476
+  },
+  "comparison": {
+    "bt_diff": 4.7,
+    "bt_diff_p": 0.6628,
+    "likert_d_diff": 0.0091
+  },
+  "conclusion": "Direction-aware gating does not introduce systematic bias: BT% difference between strict bidirectional (78.5%) and DA-only (73.8%) groups is not significant (permutation p=0.6628)"
+}

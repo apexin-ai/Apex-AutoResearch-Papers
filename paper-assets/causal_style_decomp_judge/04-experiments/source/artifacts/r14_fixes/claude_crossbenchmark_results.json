@@ -1,0 +1,283 @@
+{
+  "per_config": [
+    {
+      "label": "LLMBar",
+      "axis": "formality",
+      "bt": {
+        "p_pole_a": 0.5624857986821177,
+        "ci_lo": 0.48849693251533755,
+        "ci_hi": 0.6363326516700749,
+        "p_val": 0.1234,
+        "n_pairs": 88,
+        "n_comparisons": 176,
+        "n_filtered": 88,
+        "pole_a_wins": 99,
+        "pole_b_wins": 77
+      },
+      "likert": {
+        "ate": 0.09090909090909091,
+        "cohen_d": 0.041729741551108535,
+        "paired_t_p": 0.44874840874956895,
+        "wilcoxon_p": 0.7475917279680763,
+        "tie_rate": 0.6818181818181818,
+        "n": 88,
+        "mean_orig": 4.943181818181818,
+        "mean_cf": 4.8522727272727275
+      },
+      "gee": {
+        "style_or": 1.4692601741317384,
+        "style_ci": [
+          0.7356151616811347,
+          2.934585326322248
+        ],
+        "style_p": 0.27567633487327836,
+        "orig_or": 6.6644013472752075,
+        "orig_ci": [
+          3.2139714877073158,
+          13.8191161581357
+        ],
+        "orig_p": 3.436173249919321e-07
+      },
+      "blindspot": false
+    },
+    {
+      "label": "LLMBar",
+      "axis": "verbosity",
+      "bt": {
+        "p_pole_a": 0.5406882120437109,
+        "ci_lo": 0.4593117879562892,
+        "ci_hi": 0.6220646361311323,
+        "p_val": 0.3538,
+        "n_pairs": 86,
+        "n_comparisons": 172,
+        "n_filtered": 86,
+        "pole_a_wins": 93,
+        "pole_b_wins": 79
+      },
+      "likert": {
+        "ate": 0.03488372093023256,
+        "cohen_d": 0.016924631492125794,
+        "paired_t_p": 0.7994082319902304,
+        "wilcoxon_p": 0.8146404012520829,
+        "tie_rate": 0.6744186046511628,
+        "n": 86,
+        "mean_orig": 4.767441860465116,
+        "mean_cf": 4.732558139534884
+      },
+      "gee": {
+        "style_or": 1.517443456054821,
+        "style_ci": [
+          0.7056052407486227,
+          3.263346853660813
+        ],
+        "style_p": 0.28576967372505546,
+        "orig_or": 0.7980764851846712,
+        "orig_ci": [
+          0.3718801642858219,
+          1.7127186050052037
+        ],
+        "orig_p": 0.5626454873103037
+      },
+      "blindspot": false
+    },
+    {
+      "label": "AlpacaEval",
+      "axis": "formality",
+      "bt": {
+        "p_pole_a": 0.6976284584980237,
+        "ci_lo": 0.6278772378516625,
+        "ci_hi": 0.7673796791443851,
+        "p_val": 0.0,
+        "n_pairs": 86,
+        "n_comparisons": 172,
+        "n_filtered": 86,
+        "pole_a_wins": 120,
+        "pole_b_wins": 52
+      },
+      "likert": {
+        "ate": 0.13953488372093023,
+        "cohen_d": 0.08113225589605724,
+        "paired_t_p": 0.07670720060897955,
+        "wilcoxon_p": 0.08987560200743173,
+        "tie_rate": 0.7325581395348837,
+        "n": 86,
+        "mean_orig": 5.953488372093023,
+        "mean_cf": 5.813953488372093
+      },
+      "gee": {
+        "style_or": 1.9866543292882117,
+        "style_ci": [
+          0.9162046431433672,
+          4.3077662328131225
+        ],
+        "style_p": 0.08214473344456363,
+        "orig_or": 9.325959855261793,
+        "orig_ci": [
+          4.234061304707844,
+          20.541395356096725
+        ],
+        "orig_p": 2.988081913325501e-08
+      },
+      "blindspot": true
+    },
+    {
+      "label": "AlpacaEval",
+      "axis": "verbosity",
+      "bt": {
+        "p_pole_a": 0.682882223847842,
+        "ci_lo": 0.5975371860521823,
+        "ci_hi": 0.7621311875152402,
+        "p_val": 0.0,
+        "n_pairs": 82,
+        "n_comparisons": 164,
+        "n_filtered": 82,
+        "pole_a_wins": 112,
+        "pole_b_wins": 52
+      },
+      "likert": {
+        "ate": -0.43902439024390244,
+        "cohen_d": -0.24297319849722965,
+        "paired_t_p": 0.0047981023888780585,
+        "wilcoxon_p": 0.004508079711048881,
+        "tie_rate": 0.4634146341463415,
+        "n": 82,
+        "mean_orig": 5.865853658536586,
+        "mean_cf": 6.304878048780488
+      },
+      "gee": {
+        "style_or": 4.7578804856223815,
+        "style_ci": [
+          2.153716475745937,
+          10.510866667176247
+        ],
+        "style_p": 0.00011471259405980918,
+        "orig_or": 0.8709164923599982,
+        "orig_ci": [
+          0.3945779740495073,
+          1.922295684374605
+        ],
+        "orig_p": 0.7322381921262724
+      },
+      "blindspot": false
+    },
+    {
+      "label": "MT-Bench",
+      "axis": "formality",
+      "bt": {
+        "p_pole_a": 0.7328129279649411,
+        "ci_lo": 0.6574910983292249,
+        "ci_hi": 0.8081347576006574,
+        "p_val": 0.0,
+        "n_pairs": 73,
+        "n_comparisons": 146,
+        "n_filtered": 73,
+        "pole_a_wins": 107,
+        "pole_b_wins": 39
+      },
+      "likert": {
+        "ate": 0.4383561643835616,
+        "cohen_d": 0.24513746824745314,
+        "paired_t_p": 6.631646391243449e-07,
+        "wilcoxon_p": 2.6423679034662387e-06,
+        "tie_rate": 0.5753424657534246,
+        "n": 73,
+        "mean_orig": 7.575342465753424,
+        "mean_cf": 7.136986301369863
+      },
+      "gee": {
+        "style_or": 1.6407802238999178,
+        "style_ci": [
+          0.5627905365421916,
+          4.783590995829115
+        ],
+        "style_p": 0.36439243661489906,
+        "orig_or": 11.849349326535863,
+        "orig_ci": [
+          4.084542131860273,
+          34.37523103680867
+        ],
+        "orig_p": 5.373769682563567e-06
+      },
+      "blindspot": false
+    }
+  ],
+  "merged_tost": {
+    "formality": {
+      "n_total": 145,
+      "n_pole_a_wins": 112,
+      "p_hat": 0.7724137931034483,
+      "se": 0.034818814308378195,
+      "ci_90": [
+        0.7151368435661661,
+        0.8296907426407304
+      ],
+      "tost": {
+        "delta_5pp": {
+          "delta": 0.05,
+          "p_value": 0.9999999999158264,
+          "significant": false
+        },
+        "delta_10pp": {
+          "delta": 0.1,
+          "p_value": 0.9999996322400396,
+          "significant": false
+        },
+        "delta_12pp": {
+          "delta": 0.12,
+          "p_value": 0.9999939931789559,
+          "significant": false
+        },
+        "delta_15pp": {
+          "delta": 0.15,
+          "p_value": 0.9997807324038096,
+          "significant": false
+        },
+        "delta_20pp": {
+          "delta": 0.2,
+          "p_value": 0.9812249272253002,
+          "significant": false
+        }
+      },
+      "equivalence_confirmed_at": null
+    },
+    "verbosity": {
+      "n_total": 109,
+      "n_pole_a_wins": 73,
+      "p_hat": 0.6697247706422018,
+      "se": 0.0450477323025308,
+      "ci_90": [
+        0.5956212510045387,
+        0.743828290279865
+      ],
+      "tost": {
+        "delta_5pp": {
+          "delta": 0.05,
+          "p_value": 0.9960665713021487,
+          "significant": false
+        },
+        "delta_10pp": {
+          "delta": 0.1,
+          "p_value": 0.9391644792607646,
+          "significant": false
+        },
+        "delta_12pp": {
+          "delta": 0.12,
+          "p_value": 0.8651652665325952,
+          "significant": false
+        },
+        "delta_15pp": {
+          "delta": 0.15,
+          "p_value": 0.6692574858483457,
+          "significant": false
+        },
+        "delta_20pp": {
+          "delta": 0.2,
+          "p_value": 0.25076956764774727,
+          "significant": false
+        }
+      },
+      "equivalence_confirmed_at": null
+    }
+  },
+  "bt_fix_note": "BT recomputed 2026-05-23: use ALL pairs with 2 obs/pair (trial1+trial2), not just consistent pairs. Old method dropped ~40% inconsistent pairs, inflating BT by 5-15pp. P-values are two-sided."
+}

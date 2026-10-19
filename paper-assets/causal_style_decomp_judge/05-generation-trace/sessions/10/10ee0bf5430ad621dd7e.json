@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_construct-divergence_20260522T230958_result.json",
     "occurrence": 1,
-    "bytes": 1746,
-    "sha256": "97e56e8981257bee9fe82642aa086bcee3338a5d5e8f5a872c091db49983565d"
+    "bytes": 1745,
+    "sha256": "f512d84247c7e19770da8b8d27320011d4ecfdc27837f8a6bac3eef8644d3472"
   },
   "statistics": {
     "messages": 1,

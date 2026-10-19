@@ -18,7 +18,7 @@ called mcp__agent-ml-research__store_secret
 {
   "project": "causal_style_decomp_judge",
   "key_id": "openrouter_api_key",
-  "value": "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",
+  "value": "[REDACTED_API_TOKEN]",
   "provider": "OpenRouter",
   "purpose": "Claude + GPT-4o API calls for supplementary experiments (tasks 3/4), replacing depleted TUM key"
 }
@@ -36,7 +36,7 @@ called mcp__agent-ml-research__store_secret
   "tool_args": {
     "project": "causal_style_decomp_judge",
     "key_id": "openrouter_api_key",
-    "value": "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",
+    "value": "[REDACTED_API_TOKEN]",
     "provider": "OpenRouter",
     "purpose": "Claude + GPT-4o API calls for supplementary experiments (tasks 3/4), replacing depleted TUM key"
   }

@@ -1,0 +1,33 @@
+2026-05-21 15:25:25,630 INFO    core.claude_client  pool select fallback: using pfjoshuatina35rTl (tier=watchdog-capped, util_5h=15%)
+2026-05-21 15:26:56,643 INFO    core.claude_client  pool select fallback: using pfjoshuatina35rTl (tier=watchdog-capped, util_5h=20%)
+2026-05-21 15:33:46,846 INFO    core.claude_client  pool select fallback: using pfjoshuatina35rTl (tier=watchdog-capped, util_5h=20%)
+2026-05-21 15:38:43,999 INFO    core.claude_client  pool select fallback: using pfjoshuatina35rTl (tier=watchdog-capped, util_5h=26%)
+2026-05-21 15:50:22,827 WARNING core.tools.dream  [dream] Phase 2 worst parse failed (attempt 0): while parsing a flow sequence
+  in "<unicode string>", line 241, column 18:
+            headers: [Judge, LLMBar Form, LLMBar Verb ... 
+                     ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 241, column 81:
+     ... b, AlpacaEval Form, Style biased?]
+                                         ^
+2026-05-21 15:50:22,876 INFO    core.claude_client  pool select fallback: using pfjoshuatina35rTl (tier=watchdog-capped, util_5h=32%)
+2026-05-21 15:54:33,480 WARNING core.tools.dream  [dream] Phase 2 worst parse failed (attempt 1): while parsing a flow sequence
+  in "<unicode string>", line 302, column 18:
+            columns: [Judge, Architecture, Formality_ ... 
+                     ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 302, column 74:
+     ... rmality_BT, Verbosity_BT, Biased?]
+                                         ^
+2026-05-21 15:54:33,481 WARNING core.tools.dream  [dream:dream_20260521T152517] Phase 2 worst failed: Phase 2 (worst) failed: while parsing a flow sequence
+  in "<unicode string>", line 302, column 18:
+            columns: [Judge, Architecture, Formality_ ... 
+                     ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 302, column 74:
+     ... rmality_BT, Verbosity_BT, Biased?]
+                                         ^
+2026-05-21 15:54:35,576 INFO    core.claude_client  pool select fallback: using pfjoshuatina35rTl (tier=watchdog-capped, util_5h=32%)
+2026-05-21 15:59:11,104 INFO    core.claude_client  pool select fallback: using pfjoshuatina35rTl (tier=watchdog-capped, util_5h=44%)
+2026-05-21 16:05:52,403 INFO    core.claude_client  pool select fallback: using pfjoshuatina35rTl (tier=watchdog-capped, util_5h=46%)
+2026-05-21 16:10:20,793 INFO    core.claude_client  pool select fallback: using pfjoshuatina35rTl (tier=watchdog-capped, util_5h=54%)

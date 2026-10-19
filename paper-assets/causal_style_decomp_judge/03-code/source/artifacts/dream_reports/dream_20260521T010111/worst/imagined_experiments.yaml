@@ -1,0 +1,575 @@
+tier: worst
+narrative_guidance: 'Core generalization claim collapses. GPT-4o × LLMBar × formality
+  is the sole surviving cell. Non-GPT-4o judges show null pairwise results; additional
+  benchmarks null due to different text distributions degrading counterfactual quality.
+  Reviewer frames finding as known GPT-4o formality bias, not a measurement insight.
+  Reframe required — Angle A (measurement methodology paper) or Angle B (comparative
+  judge robustness) are viable paths to EMNLP Findings. C2 restricts to "demonstrated
+  for GPT-4o × formality only," C3 becomes pure method boundary analysis, C4 drops
+  correction entirely.
+
+  '
+imagined_experiments:
+- name: Multi-judge formality pairwise
+  plan_id: exp-001
+  description: 'Replicate formality pairwise on Claude-3.5/4-Sonnet and Gemini-2.0-Flash
+    using existing LLMBar counterfactuals. Dual-direction pairwise with position control.
+
+    '
+  expected_results:
+    claude_sonnet_n_consistent: 52
+    claude_sonnet_formal_win_rate: 0.52
+    claude_sonnet_sign_test_p: 0.42
+    claude_sonnet_formal_to_casual_win_rate: 0.56
+    claude_sonnet_casual_to_formal_win_rate: 0.47
+    claude_sonnet_position_bias_A: 0.52
+    gemini_flash_n_consistent: 49
+    gemini_flash_formal_win_rate: 0.49
+    gemini_flash_sign_test_p: 0.55
+    gemini_flash_formal_to_casual_win_rate: 0.52
+    gemini_flash_casual_to_formal_win_rate: 0.45
+    gemini_flash_position_bias_A: 0.54
+    significant_judges_of_3: 1
+    gpt4o_replication_formal_win_rate: 0.69
+    gpt4o_replication_p: 0.006
+  result_rationale: 'GPT-4o 的 formality bias 源于其特定的 RLHF 训练数据偏向——OpenAI 的标注指南和偏好数据
+    系统性偏向 formal 文本。Claude 和 Gemini 使用不同的偏好数据集、不同的标注指南、不同的 RLHF 策略，没有理由共享同一个 formality
+    方向的 bias。Claude Sonnet 可能有微弱 formal 偏好（0.52）但远不显著；Gemini Flash 甚至可能略偏 casual（0.49），因为
+    Google 的训练 数据更多来自 conversational 场景。Reviewer 会说："你发现的是 GPT-4o 的个体特性， 不是 LLM judge
+    的普遍问题。"
+
+    '
+  tables:
+  - title: 'Table: Multi-Judge Formality Pairwise Results (LLMBar)'
+    columns:
+    - Judge
+    - n_consistent
+    - formal_win_rate
+    - 95% CI
+    - sign_test_p
+    - significant
+    rows:
+    - - GPT-4o (existing)
+      - 55
+      - 0.691
+      - '[0.560, 0.797]'
+      - 0.006
+      - 'Yes'
+    - - Claude-3.5-Sonnet
+      - 52
+      - 0.519
+      - '[0.383, 0.653]'
+      - 0.42
+      - 'No'
+    - - Gemini-2.0-Flash
+      - 49
+      - 0.49
+      - '[0.353, 0.628]'
+      - 0.55
+      - 'No'
+  figures_description:
+  - 'Bar chart: formal_win_rate per judge with 95% Wilson CI. GPT-4o bar clearly above
+    0.5 line; Claude and Gemini straddle 0.5. Visual 一目了然：效应不泛化。'
+  analysis: '1/3 judges significant。C1 generalization claim 崩塌——formality bias 是 GPT-4o
+    特异性的， 不是 LLM judge 的结构性属性。Angle B（"Which judges are style-robust?"）在此变得可行： Claude/Gemini
+    对 formality robust 但 GPT-4o 不是，这对选择 judge 的实践者有价值。 但 Reviewer 会 push back："这只是说
+    GPT-4o 偏好 formal text，这是已知的。"
+
+    '
+- name: Multi-benchmark formality pairwise
+  plan_id: exp-002
+  description: 'CSD pipeline on AlpacaEval and MT-Bench subsets. New counterfactual
+    generation needed. GPT-4o + Claude + Gemini as judges.
+
+    '
+  expected_results:
+    alpacaeval_nli_pass_rate: 0.72
+    alpacaeval_avg_text_length: 380
+    mtbench_nli_pass_rate: 0.68
+    mtbench_avg_text_length: 520
+    lmmbar_nli_pass_rate_reference: 0.88
+    lmmbar_avg_text_length: 85
+    gpt4o_alpacaeval_n_consistent: 48
+    gpt4o_alpacaeval_formal_win_rate: 0.54
+    gpt4o_alpacaeval_p: 0.35
+    gpt4o_mtbench_n_consistent: 44
+    gpt4o_mtbench_formal_win_rate: 0.56
+    gpt4o_mtbench_p: 0.22
+    claude_alpacaeval_formal_win_rate: 0.5
+    claude_alpacaeval_p: 0.58
+    claude_mtbench_formal_win_rate: 0.51
+    claude_mtbench_p: 0.5
+    gemini_alpacaeval_formal_win_rate: 0.48
+    gemini_alpacaeval_p: 0.62
+    gemini_mtbench_formal_win_rate: 0.47
+    gemini_mtbench_p: 0.6
+    significant_cells_of_6_new: 0
+    significant_cells_of_9_total: 1
+  result_rationale: 'LLMBar 是短文本（avg ~85 tokens）、binary-choice 的 benchmark，counterfactual
+    质量高 （NLI 88%）。AlpacaEval 和 MT-Bench 的回答更长（300-500+ tokens），formality rewriting
+    在长文本上更难保持内容一致——NLI pass rate 降至 68-72%，意味着更多样本被 NLI gate 过滤掉， 有效 n 更小。同时，长文本中
+    formality 只是众多 style 维度之一，其信号被 complexity、 organization、vocabulary diversity 等因素稀释。GPT-4o
+    在 MT-Bench 上可能有微弱趋势 （0.56, p=0.22）但不显著——这是 worst tier 的关键：不同 benchmark 的文本分布差异导致
+    不同的 counterfactual 质量，进而导致不同的检测灵敏度。Reviewer 会说："你的方法 只在最简单的 benchmark 上有效，那就不是一个通用工具。"
+
+    '
+  tables:
+  - title: 'Table: 9-Cell Pairwise Win Rate Matrix (formality axis)'
+    columns:
+    - Judge
+    - LLMBar
+    - AlpacaEval
+    - MT-Bench
+    rows:
+    - - GPT-4o
+      - 0.691** (p=0.006)
+      - 0.54 (p=0.35)
+      - 0.56 (p=0.22)
+    - - Claude-Sonnet
+      - 0.52 (p=0.42)
+      - 0.50 (p=0.58)
+      - 0.51 (p=0.50)
+    - - Gemini-Flash
+      - 0.49 (p=0.55)
+      - 0.48 (p=0.62)
+      - 0.47 (p=0.60)
+  - title: 'Table: Counterfactual Quality by Benchmark'
+    columns:
+    - Benchmark
+    - Avg Text Length
+    - NLI Pass Rate
+    - Effective n
+    rows:
+    - - LLMBar
+      - ~85 tokens
+      - 0.88
+      - ~88
+    - - AlpacaEval
+      - ~380 tokens
+      - 0.72
+      - ~72
+    - - MT-Bench
+      - ~520 tokens
+      - 0.68
+      - ~68
+  figures_description:
+  - 'Heatmap: 3×3 matrix (judges × benchmarks) colored by p-value. 只有左上角一格 (GPT-4o
+    × LLMBar) 是深色 significant，其余 8 格浅色 null。视觉上非常不利。'
+  - 'Scatter: NLI pass rate (x) vs formal_win_rate (y) across all 9 cells. 可能显示正相关趋势——counterfactual
+    质量越高，检测到的 effect 越大——但 n=9 太小无法做推断。'
+  analysis: '1/9 cells significant。这是 worst tier 的核心灾难：效应既不跨 judge 泛化也不跨 benchmark
+    泛化。 GPT-4o × MT-Bench 的 0.56 可以争辩是 underpowered（有效 n 只有 ~44），但 reviewer 不会 接受"如果
+    n 更大就会 significant"的论点。Paper 必须诚实报告 1/9 并重新定位：这不是 "LLM judges have style bias"，而是"GPT-4o
+    has formality bias on LLMBar, detectable only via pairwise comparison."
+
+    '
+- name: Likert vs Pairwise sensitivity analysis across judges
+  plan_id: exp-003
+  description: 'For each judge × benchmark cell, compute both Likert ATE and pairwise
+    win rate on same counterfactual data. Systematic comparison of measurement sensitivity.
+
+    '
+  expected_results:
+    gpt4o_lmmbar_likert_p: 0.332
+    gpt4o_lmmbar_pairwise_p: 0.006
+    gpt4o_lmmbar_binarized_likert_p: 0.296
+    gpt4o_lmmbar_gap: true
+    claude_lmmbar_likert_p: 0.61
+    claude_lmmbar_pairwise_p: 0.42
+    claude_lmmbar_gap: false
+    gemini_lmmbar_likert_p: 0.55
+    gemini_lmmbar_pairwise_p: 0.55
+    gemini_lmmbar_gap: false
+    gpt4o_alpacaeval_likert_p: 0.48
+    gpt4o_alpacaeval_pairwise_p: 0.35
+    gpt4o_alpacaeval_gap: false
+    gpt4o_mtbench_likert_p: 0.4
+    gpt4o_mtbench_pairwise_p: 0.22
+    gpt4o_mtbench_gap: false
+    c2_gap_replication_rate: 0.11
+    cells_with_likert_pairwise_gap: 1
+    cells_with_both_null: 7
+    cells_with_both_significant: 0
+    cells_with_pairwise_only_significant: 1
+  result_rationale: 'C2（Likert Blindspot）的机制隔离只能在存在真实效应的 cell 上验证——如果底层没有 formality
+    bias（非 GPT-4o judges），Likert 和 Pairwise 都会报告 null，这不能说明 "Likert 掩盖了 bias"，只能说明"这里没有
+    bias 可掩盖"。因此 C2 gap 只在 GPT-4o × LLMBar 这一个 cell 中可观测。Replication rate = 1/9 =
+    0.11，在 worst tier 范围 [0.11, 0.44] 的下界。Reviewer 会说："你声称 Likert 系统性低估 style bias，
+    但你只在一个 cell 上展示了这一点。这可能只是 GPT-4o × LLMBar × formality 这个 特定组合的统计巧合，不是 Likert 方法论的结构性缺陷。"
+    这对 C2 是致命的——如果 C2 不泛化，paper 的主贡献就只是一个 single-cell observation。
+
+    '
+  tables:
+  - title: 'Table: Likert vs Pairwise Sensitivity Comparison (9 cells)'
+    columns:
+    - Judge × Benchmark
+    - Likert ATE
+    - Likert p
+    - Pairwise WR
+    - Pairwise p
+    - Binarized Likert p
+    - Gap?
+    rows:
+    - - GPT-4o × LLMBar
+      - -0.1
+      - 0.332
+      - 0.691
+      - 0.006
+      - 0.296
+      - 'YES'
+    - - Claude × LLMBar
+      - -0.03
+      - 0.61
+      - 0.519
+      - 0.42
+      - 0.58
+      - 'No'
+    - - Gemini × LLMBar
+      - 0.02
+      - 0.55
+      - 0.49
+      - 0.55
+      - 0.5
+      - 'No'
+    - - GPT-4o × AlpacaEval
+      - -0.06
+      - 0.48
+      - 0.54
+      - 0.35
+      - 0.4
+      - 'No'
+    - - GPT-4o × MT-Bench
+      - -0.08
+      - 0.4
+      - 0.56
+      - 0.22
+      - 0.35
+      - 'No'
+    - - Claude × AlpacaEval
+      - 0.01
+      - 0.72
+      - 0.5
+      - 0.58
+      - 0.65
+      - 'No'
+    - - Claude × MT-Bench
+      - -0.02
+      - 0.65
+      - 0.51
+      - 0.5
+      - 0.55
+      - 'No'
+    - - Gemini × AlpacaEval
+      - 0.03
+      - 0.58
+      - 0.48
+      - 0.62
+      - 0.6
+      - 'No'
+    - - Gemini × MT-Bench
+      - 0.01
+      - 0.7
+      - 0.47
+      - 0.6
+      - 0.68
+      - 'No'
+  figures_description:
+  - 'Paired dot plot: 每个 cell 一对点（Likert p, Pairwise p），连线。只有一对显示大 gap（GPT-4o × LLMBar），其余
+    8 对点重叠在 null 区域。视觉上 C2 claim 缺乏支撑。'
+  analysis: 'C2 replication rate = 1/9。C2 作为 paper 主贡献彻底失去泛化支撑。但从 Angle A 看， 这恰恰说明：binarized
+    Likert 隔离设计本身是有效的方法论贡献——它在有效应的 cell 上 正确识别了 gap，在无效应的 cell 上正确报告了 no gap。方法有效，只是
+    formality bias 不普遍。Paper 需要 pivot：贡献不是"Likert Blindspot 普遍存在"，而是"这个实验设计 可以诊断任何
+    judge × axis 组合的 measurement sensitivity"。
+
+    '
+- name: Pairwise RATE control (original vs double-rewrite)
+  plan_id: exp-005
+  description: 'Pairwise comparison between original text and its RATE double-rewrite
+    (same style). Quantifies original preference confound. Extended to all judge ×
+    benchmark combinations.
+
+    '
+  expected_results:
+    gpt4o_lmmbar_original_pref_win_rate: 0.62
+    gpt4o_lmmbar_original_pref_p: 0.025
+    claude_lmmbar_original_pref_win_rate: 0.6
+    claude_lmmbar_original_pref_p: 0.03
+    gemini_lmmbar_original_pref_win_rate: 0.59
+    gemini_lmmbar_original_pref_p: 0.028
+    gpt4o_alpacaeval_original_pref_win_rate: 0.58
+    gpt4o_alpacaeval_original_pref_p: 0.04
+    claude_alpacaeval_original_pref_win_rate: 0.57
+    claude_alpacaeval_original_pref_p: 0.06
+    gemini_alpacaeval_original_pref_win_rate: 0.56
+    gemini_alpacaeval_original_pref_p: 0.08
+    original_pref_significant_rate: 0.67
+    original_pref_mean_win_rate: 0.59
+    original_pref_range:
+    - 0.56
+    - 0.62
+  result_rationale: 'Double-rewrite 引入信息损失和表达不自然性——这不是某个 rewriter 的 artifact，而是 rewriting
+    本身的结构性限制。原始文本是人类自然写作，经过 style-neutralize → style-reapply 两步后，即使风格恢复，coherence、lexical
+    diversity、discourse structure 都会退化。 所有 judges（不仅是 GPT-4o）都能检测到这种退化，因为它是 text quality
+    的真实下降， 不是 style 偏好。worst tier 预测 original preference 跨 judges 显著（p<0.03），这给 reviewer
+    提供了强力 confound 论证："你的 69% formal win rate 中有多少是因为 GPT-4o 偏好 formal text，又有多少是因为
+    formal→casual rewrite 损失了原文质量？exp-014 的 GEE 显示 original preference OR=1.82 p=0.052，如果跨
+    judges 都 significant，confound 就不再是 marginal 而是 systematic。" 这直接削弱 formality effect
+    的 claim 纯度。
+
+    '
+  tables:
+  - title: 'Table: Original Preference (RATE Control) Across Judges'
+    columns:
+    - Judge × Benchmark
+    - Original Win Rate
+    - p-value
+    - Significant?
+    rows:
+    - - GPT-4o × LLMBar
+      - 0.62
+      - 0.025
+      - 'Yes'
+    - - Claude × LLMBar
+      - 0.6
+      - 0.03
+      - 'Yes'
+    - - Gemini × LLMBar
+      - 0.59
+      - 0.028
+      - 'Yes'
+    - - GPT-4o × AlpacaEval
+      - 0.58
+      - 0.04
+      - 'Yes'
+    - - Claude × AlpacaEval
+      - 0.57
+      - 0.06
+      - No (marginal)
+    - - Gemini × AlpacaEval
+      - 0.56
+      - 0.08
+      - 'No'
+  figures_description:
+  - 'Forest plot: original preference OR per cell with 95% CI. 所有点在 1.0 右侧，多数 CI 不跨
+    1.0。视觉上 original preference 是 universal confound，不是 GPT-4o 特有的。'
+  analysis: 'Original preference 跨 judges 普遍显著（4-6/6 cells significant at p<0.05），这比
+    formality bias 本身泛化得更好。Reviewer 的攻击角度极强："style bias 只在 1/9 cells 显著，但 original
+    preference confound 在 4+/6 cells 显著——更简洁的解释是 rewriting 损失质量，不是 judge 有 style bias。"
+    exp-014 的 GEE 试图分离两者（formality OR=2.21 vs original OR=1.82），但在 worst tier 下 reviewer
+    会质疑 n=98 的 logistic model 是否 有足够 power 分离两个 correlated predictors。Paper 必须诚实承认
+    original preference 是未完全解决的 confound，并在 limitations 中详细讨论。
+
+    '
+- name: Scaled replication (n=300-500)
+  plan_id: exp-006
+  description: 'Scale up formality experiment on best-performing cell (GPT-4o × LLMBar)
+    to n=500. Power analysis for minimum detectable effect size.
+
+    '
+  expected_results:
+    n_total: 500
+    n_nli_pass: 440
+    n_consistent: 275
+    formal_win_rate: 0.59
+    formal_win_rate_ci:
+    - 0.53
+    - 0.65
+    sign_test_p: 0.012
+    effect_significant: true
+    n100_win_rate_reference: 0.691
+    attenuation_from_n100: 0.1
+    gee_formality_OR: 1.85
+    gee_formality_p: 0.008
+    gee_formality_ci:
+    - 1.18
+    - 2.91
+    gee_original_pref_OR: 1.55
+    gee_original_pref_p: 0.025
+    power_at_observed_effect_0.59: 0.78
+    minimum_detectable_effect_80_power: 0.58
+    power_at_n100_effect_0.69: 0.99
+  result_rationale: 'n=100 的 69.1% win rate 包含采样噪声。Bootstrap 分析已显示 CI [0.56, 0.80]——
+    真实效应可能在此范围任何位置。worst tier 预测真实效应在 CI 下半段：n=500 时 regression to mean 将 win rate
+    拉低至 ~0.59。效应仍然显著（p=0.012），但 effect size 从 "strong" 降至 "moderate"。更关键的是，n=500 给了
+    GEE 模型更多 power 来分离 formality 和 original preference——worst tier 下两者都变显著（formality
+    OR=1.85, original OR=1.55）， 意味着 confound 不再是 marginal 而是 confirmed。Reviewer 会说："效应存在但更小，
+    且 confound 也 confirmed——真正归因于 formality style 的 effect 可能只有 OR=1.85/1.55 ≈ 1.19
+    的 pure formality component。" 这不是灾难但严重削弱 headline number。
+
+    '
+  tables:
+  - title: 'Table: n=100 vs n=500 Comparison (GPT-4o × LLMBar, formality)'
+    columns:
+    - Metric
+    - n=100
+    - n=500
+    rows:
+    - - Formal win rate
+      - 0.691
+      - 0.59
+    - - 95% CI
+      - '[0.560, 0.797]'
+      - '[0.53, 0.65]'
+    - - Sign test p
+      - 0.006
+      - 0.012
+    - - GEE formality OR
+      - 2.21
+      - 1.85
+    - - GEE formality p
+      - 0.01
+      - 0.008
+    - - GEE original pref OR
+      - 1.82
+      - 1.55
+    - - GEE original pref p
+      - 0.052
+      - 0.025
+  figures_description:
+  - 'Line plot: formal_win_rate (y) vs cumulative n (x), with running 95% CI band.
+    初期 (n<100) 波动大, 逐渐稳定在 ~0.59。展示效应收敛但衰减。'
+  analysis: '效应经受住 scale test（p=0.012），但 effect size 衰减 ~10pp。这对 paper 是 mixed signal：一方面证明效应真实（非
+    n=100 的 fluke），另一方面 headline number 从 "69% formal preference" 降至 "59%"——对 reviewer
+    的冲击力大幅下降。且 GEE 在 n=500 下 确认 original preference 也显著，C1 claim 必须加 caveat："formality
+    preference exists (OR=1.85) but co-occurs with original text preference (OR=1.55);
+    our logistic decomposition suggests independent contributions but cannot fully
+    rule out residual confounding."
+
+    '
+- name: Non-Qwen rewriter control
+  plan_id: exp-009
+  description: 'Use Llama-3.1-70B as alternative rewriter. Compare counterfactual
+    quality and pairwise results with Qwen3-32B baseline.
+
+    '
+  expected_results:
+    llama_nli_pass_rate: 0.84
+    llama_bertscore_mean: 0.918
+    llama_both_pass_rate: 0.82
+    qwen_nli_pass_rate_reference: 0.88
+    qwen_bertscore_mean_reference: 0.92
+    llama_gpt4o_n_consistent: 50
+    llama_gpt4o_formal_win_rate: 0.66
+    llama_gpt4o_p: 0.015
+    llama_claude_formal_win_rate: 0.5
+    llama_claude_p: 0.55
+    llama_gemini_formal_win_rate: 0.48
+    llama_gemini_p: 0.6
+    rewriter_agreement_on_direction: 0.82
+    rewriter_nli_difference: -0.04
+  result_rationale: 'Llama-3.1-70B 的 rewriting 质量略低于 Qwen3-32B（NLI 84% vs 88%）——不同
+    LLM 在 style transfer 任务上有性能差异但量级相似。GPT-4o 对 Llama counterfactuals 仍然显示 formality
+    preference（0.66, p=0.015），略低于 Qwen（0.69）——这是因为 Llama counterfactuals 质量稍差导致更多噪声，但
+    pattern 一致。Non-GPT-4o judges 仍然 null——证明 null 结果 不是 Qwen-specific artifact。这个实验的贡献是排除
+    "maybe Qwen rewrites have an artifact that only GPT-4o detects"，但不能解决核心问题（效应不泛化）。Reviewer
+    不会在这一点上 攻击太多——rewriter robustness 是 nice-to-have 但不是 paper 的命门。
+
+    '
+  tables:
+  - title: 'Table: Rewriter Comparison (Qwen3-32B vs Llama-3.1-70B)'
+    columns:
+    - Metric
+    - Qwen3-32B
+    - Llama-3.1-70B
+    rows:
+    - - NLI pass rate
+      - 0.88
+      - 0.84
+    - - BERTScore mean
+      - 0.92
+      - 0.918
+    - - GPT-4o formal WR
+      - 0.691
+      - 0.66
+    - - GPT-4o p
+      - 0.006
+      - 0.015
+    - - Claude formal WR
+      - 0.52
+      - 0.5
+    - - Gemini formal WR
+      - 0.49
+      - 0.48
+  figures_description:
+  - 'Paired bar chart: formal_win_rate for each judge, grouped by rewriter. 两组 bars
+    高度几乎一致——rewriter 不是 confound。'
+  analysis: 'Rewriter robustness confirmed。但这在 worst tier 下是 pyrrhic victory——证明了结果可复现
+    但结果本身只有一个 cell significant。Paper 中可以一句话带过："Results replicate with alternative
+    rewriter (Llama-3.1-70B), ruling out rewriter-specific artifacts."
+
+    '
+- name: Human NLI validation
+  plan_id: exp-013
+  description: 'Human annotation of 100 pairs for content preservation. Report human-NLI
+    agreement (Cohen''s kappa). Addresses "NLI is a black box" concern.
+
+    '
+  expected_results:
+    n_annotated: 100
+    kappa: 0.43
+    agreement_rate: 0.91
+    tp: 87
+    fp: 1
+    fn: 8
+    tn: 4
+    false_positive_rate: 0.011
+    false_negative_rate: 0.667
+    nli_precision: 0.989
+    nli_recall: 0.916
+    nli_specificity: 0.333
+  result_rationale: '实际已观测数据（registry exp-013）。kappa=0.43 属于 "moderate agreement"——不差但
+    不够好让 reviewer 安心。关键问题在 FN rate=66.7%：NLI gate 将 8/12 个人类认为 content-preserved 但
+    NLI 判为 fail 的 pair 错误过滤掉了。低 FP（1/88）意味着通过的 样本确实 content-preserved，但高 FN 意味着大量
+    valid data 被丢弃。worst tier 下 reviewer 的攻击路径："NLI gate 的高 FN rate 说明它不可靠——你可能系统性丢弃了
+    某些类型的 content-preserving rewrites（例如 paraphrase 程度较大但语义等价的）， 这引入了 selection bias。你的
+    69% win rate 可能只对''表面改写最小''的 subset 成立。" 更糟的是，kappa=0.43 < 0.60（通常被视为 "good agreement"
+    的门槛），reviewer 可以 直接引用 Landis & Koch 1977 说 "moderate agreement is insufficient
+    for a quality gate."
+
+    '
+  tables:
+  - title: 'Table: Human-NLI Agreement (Content Preservation)'
+    columns:
+    - ''
+    - 'Human: Preserved'
+    - 'Human: Not Preserved'
+    rows:
+    - - 'NLI: Pass (≥0.9)'
+      - TP=87
+      - FP=1
+    - - 'NLI: Fail (<0.9)'
+      - FN=8
+      - TN=4
+  - title: 'Table: Agreement Metrics'
+    columns:
+    - Metric
+    - Value
+    - Interpretation
+    rows:
+    - - Cohen's kappa
+      - 0.43
+      - Moderate
+    - - Agreement rate
+      - 91%
+      - High (but base-rate inflated)
+    - - NLI Precision
+      - 98.9%
+      - Excellent — few false passes
+    - - NLI Recall
+      - 91.6%
+      - Good
+    - - NLI Specificity
+      - 33.3%
+      - Poor — misses 2/3 of true failures
+    - - False Negative Rate
+      - 66.7%
+      - Problematic — discards valid pairs
+  figures_description:
+  - Confusion matrix heatmap with cell counts. TP 格(87)远大于其他格，但 FN(8) >> TN(4) 很明显。
+  analysis: kappa=0.43 + FN=66.7% 是 worst tier 下 reviewer 的有力武器。但论文可以 reframe： "high
+    precision (98.9%) ensures filtered-in data is clean; high FN rate is conservative,
+    biasing AGAINST finding effects (if anything, our reported win rates are lower
+    bounds)." 这个 defense 在逻辑上成立——conservative gate 让 false positive findings 更不可能——
+    但 reviewer 可能不买账，特别是如果他们怀疑 FN 是 systematically biased（不是随机的）。 exp-012 的 consistency
+    bias analysis 部分 address 这一点（all MWU p>0.12），但 reviewer 可能区分 NLI filtering 和 consistency
+    filtering 的 bias properties。

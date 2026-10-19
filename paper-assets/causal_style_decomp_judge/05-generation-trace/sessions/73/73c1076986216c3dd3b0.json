@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_exp010_binarized_likert_20260520T233854_result.json",
     "occurrence": 1,
-    "bytes": 3621,
-    "sha256": "132a76c6388195f0871843c62a595567bb0de0b692b7d49d8533c76d240e090f"
+    "bytes": 3620,
+    "sha256": "dab45c04e45f4bbe4ce5dcea28b1b393efb7e023259b1cea8f92aad0be503f75"
   },
   "statistics": {
     "messages": 1,

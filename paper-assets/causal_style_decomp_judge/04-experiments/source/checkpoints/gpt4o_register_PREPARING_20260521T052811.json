@@ -1,0 +1,14 @@
+{
+  "exp_id": "gpt4o_register",
+  "project": "causal_style_decomp_judge",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:28:11.858Z",
+    "updated_at": "2026-05-21T05:28:11.858Z"
+  },
+  "timestamp": "2026-05-21T05:28:11.898771+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "nli_gate_ablation",
+  "project": "causal_style_decomp_judge",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:30:35.825Z",
+    "updated_at": "2026-05-21T13:30:46.469Z",
+    "hypothesis": "NLI gate filters content-contaminated pairs without introducing systematic bias — NLI-pass BT ≈ all-pairs BT, and NLI-fail pairs show reversed or attenuated effects (bounding analysis)"
+  },
+  "timestamp": "2026-05-21T13:30:46.549350+00:00",
+  "trigger": "update_registry"
+}

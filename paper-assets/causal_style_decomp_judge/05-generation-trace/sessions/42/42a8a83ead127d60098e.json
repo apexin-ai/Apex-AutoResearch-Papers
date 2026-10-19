@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_da-gate-quality_20260522T230728_result.json",
     "occurrence": 1,
-    "bytes": 2354,
-    "sha256": "e9ad71e83e5ce41b2cad8d6f745c240865628f68d9b7bff16c5b58b730467616"
+    "bytes": 2353,
+    "sha256": "7c22c9b04dda17d15e38cfa9211aea5f7239da17a56840da2ad140a88df5dd82"
   },
   "statistics": {
     "messages": 1,

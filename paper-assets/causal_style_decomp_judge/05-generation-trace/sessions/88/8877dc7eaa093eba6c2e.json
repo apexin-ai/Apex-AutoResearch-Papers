@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_verbosity_7method_sensitivity_20260521T130722_result.json",
     "occurrence": 1,
-    "bytes": 825,
-    "sha256": "90ac839868b4aa7a1a05754bd58db3f60410ea147e10233efdfa58875e67f0c5"
+    "bytes": 824,
+    "sha256": "ac386c7145608dffcb24ca285636b4cddb0a4c50f27bed72d80eedb8692fff8d"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,15 @@
+{
+  "exp_id": "formality_scaled_n300",
+  "project": "causal_style_decomp_judge",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:22:29.057Z",
+    "updated_at": "2026-05-24T06:22:36.223Z",
+    "hypothesis": "Llama-70B scoring of the existing n=355 formality scaled data will replicate the formality Blindspot pattern seen with Qwen3-32B (BT ~67%, Likert NS), providing cross-judge validation at scale. GEE Style OR will show small-sample shrinkage similar to Qwen3 (4.20→2.15)."
+  },
+  "timestamp": "2026-05-24T06:22:36.337678+00:00",
+  "trigger": "update_registry"
+}

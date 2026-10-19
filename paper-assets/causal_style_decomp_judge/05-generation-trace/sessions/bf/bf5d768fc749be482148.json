@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mtbench_cf_gen_cuda2_20260521T010055_result.json",
     "occurrence": 1,
-    "bytes": 538,
-    "sha256": "d6a539622a605fdffb407564c39eb141ce61d83d61267ebb872f58e458124897"
+    "bytes": 537,
+    "sha256": "0c8bb3e98d5fdde22031007ea2108ba0b43055862111b6567740701ceca11197"
   },
   "statistics": {
     "messages": 1,

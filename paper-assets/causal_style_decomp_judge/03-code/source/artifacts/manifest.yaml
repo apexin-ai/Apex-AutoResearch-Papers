@@ -1,0 +1,659 @@
+- id: art_20260520_64eb98
+  name: introduction_section_v1
+  type: paper
+  description: 'Introduction section (v1) for EMNLP 2026 submission. 4-paragraph structure:
+    LLM judge infrastructure → style bias dominance + 4 gaps + Likert ceiling → CSD
+    framework + Likert Blindspot data → contributions list. ~650 words, ACL template.'
+  path: projects/causal_style_decomp_judge/artifacts/_project/paper/introduction.tex
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T23:30:32.549155+00:00'
+  tags:
+  - paper
+  - introduction
+  - v1
+  - emnlp2026
+- id: art_20260521_ffb370
+  name: exp013_nli_validation
+  type: data
+  description: 'LLM-as-annotator NLI validation: 100 pairs, kappa=0.43 (negative).
+    NLI gate precision-oriented (FPR=1.1%) but low recall (FNR=66.7%). CSV on server:
+    /root/causal_style_decomp_judge/artifacts/reanalysis_outputs/exp013_nli_validation.csv'
+  path: projects/causal_style_decomp_judge/artifacts/exp-013/data/exp013_nli_validation_summary.txt
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: exp-013
+  skill: ''
+  created_at: '2026-05-21T01:00:53.169877+00:00'
+  tags:
+  - nli
+  - validation
+  - llm-annotator
+  - kappa
+- id: art_20260521_227674
+  name: verified_register_n100
+  type: data
+  description: 'Register n=100 content verification results (NLI-only gating). CF
+    pass: 94/100 (94%), DR pass: 81/100 (81%). NLI mean CF=0.941, DR=0.821. BERTScore
+    mean CF=0.859, DR=0.848.'
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/verified_register_n100_summary.txt
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T01:14:42.351496+00:00'
+  tags:
+  - register
+  - content-verification
+  - nli-only
+  - n100
+- id: art_20260521_0fcee1
+  name: exp-002 Verification Results Summary
+  type: report
+  description: 'Content verification results for exp-002 formality counterfactuals
+    on AlpacaEval (100) and MT-Bench (80). Joint pass rates: AlpacaEval 20%/18%, MT-Bench
+    32.5%/32.5%.'
+  path: projects/causal_style_decomp_judge/artifacts/exp-002/report/exp002_verification_results.md
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: exp-002
+  skill: ''
+  created_at: '2026-05-21T01:53:24.491751+00:00'
+  tags:
+  - exp-002
+  - counterfactual
+  - formality
+  - verification
+  - bertscore
+  - nli
+- id: art_20260521_f55ac2
+  name: exp015_clmm_analysis
+  type: report
+  description: 'CLMM/GEE/Wilcoxon analysis confirming Likert Blindspot: all p>0.58,
+    style effect undetectable by ordinal regression'
+  path: projects/causal_style_decomp_judge/artifacts/exp-015/report/exp015_clmm_results.txt
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: exp-015
+  skill: ''
+  created_at: '2026-05-21T02:31:50.520150+00:00'
+  tags:
+  - clmm
+  - blindspot
+  - likert
+  - ordinal-regression
+- id: art_20260521_e4d404
+  name: exp016_bradley_terry
+  type: report
+  description: 'Bradley-Terry model: formal win prob 60.9%, 95% CI [53.8%, 68.0%]
+    excludes 50%, N=197 all-data comparisons'
+  path: projects/causal_style_decomp_judge/artifacts/exp-016/report/exp016_bt_results.txt
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: exp-016
+  skill: ''
+  created_at: '2026-05-21T02:31:57.731889+00:00'
+  tags:
+  - bradley-terry
+  - pairwise
+  - formal-bias
+- id: art_20260521_5a4552
+  name: power_curve
+  type: chart
+  description: Power analysis comparing pairwise sign test (69.1% win rate), binarized
+    Likert sign test (60.6% win rate), and Likert ATE t-test (Cohen's d=0.102). Shows
+    pairwise reaches 80% power at n≈54, binarized at n≈172, Likert ATE at n≈760. Log-scale
+    x-axis, column-width figure.
+  path: projects/causal_style_decomp_judge/artifacts/_project/chart/power_curve.pdf
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T02:39:19.751490+00:00'
+  tags:
+  - figure
+  - paper
+  - power_analysis
+  - statistics
+- id: art_20260521_24a4af
+  name: power_curve_revised
+  type: chart
+  description: 'Revised power curve with tie-rate adjustment (binarized Likert) and
+    BT effect size. 80% power: BT n=163, sign test n=93, binarized Likert n=462, Likert
+    ATE n=1473. Fixes Bug1 (tie rate) and Bug2 (consistency filter).'
+  path: projects/causal_style_decomp_judge/artifacts/_project/chart/power_curve_revised_summary.txt
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T03:29:46.695256+00:00'
+  tags:
+  - power-analysis
+  - figure
+  - paper
+- id: art_20260521_a31256
+  name: bootstrap_attenuation
+  type: data
+  description: 'Bootstrap attenuation simulation results: Cohen''s d curves across
+    subsample sizes for formality/verbosity × Qwen3-32B/GPT-4o. Proves Likert blindspot
+    is measurement attenuation (d≈0) not power gap.'
+  path: projects/causal_style_decomp_judge/artifacts/bootstrap_attenuation/data/bootstrap_attenuation.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: bootstrap_attenuation
+  skill: ''
+  created_at: '2026-05-21T15:51:49.891442+00:00'
+  tags:
+  - sprint-r5
+  - likert-blindspot
+  - bootstrap
+  - paper-figure-data
+- id: art_20260521_1d9f8d
+  name: nli_threshold_sweep
+  type: data
+  description: 'NLI threshold continuous curve: BT probability across 11 thresholds
+    [0.50-0.98] for 4 axis×judge combos. 44/44 significant, max Δ≤3pp. Proves robustness
+    to threshold choice.'
+  path: projects/causal_style_decomp_judge/artifacts/nli_threshold_sweep/data/nli_threshold_sweep.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: nli_threshold_sweep
+  skill: ''
+  created_at: '2026-05-21T15:52:00.250136+00:00'
+  tags:
+  - sprint-r5
+  - nli-robustness
+  - paper-figure-data
+- id: art_20260521_499651
+  name: finegrained_likert_100pt
+  type: data
+  description: '100-point fine-grained Likert scale ablation: GPT-4o scores on 0-100
+    scale for formality (p=0.725) and verbosity (p=0.117), both NS. Proves Blindspot
+    is absolute-vs-relative paradigm difference, not granularity artifact.'
+  path: projects/causal_style_decomp_judge/artifacts/finegrained_likert_100pt/data/finegrained_likert_100pt.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: finegrained_likert_100pt
+  skill: ''
+  created_at: '2026-05-21T15:52:06.297911+00:00'
+  tags:
+  - sprint-r5
+  - likert-blindspot
+  - dream-reviewer-response
+  - paper-figure-data
+- id: art_20260521_9eb62d
+  name: debiased_verbosity_gpt4o_summary
+  type: data
+  description: 'Debiased prompt verbosity GPT-4o summary: P(verbose) 76.0%→62.9% (-13.1pp,
+    50.4% eliminated), still significant p=0.0016. Shows axis-dependent correction
+    resistance.'
+  path: projects/causal_style_decomp_judge/artifacts/debiased_verbosity_gpt4o/data/debiased_verbosity_gpt4o_summary.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: debiased_verbosity_gpt4o
+  skill: ''
+  created_at: '2026-05-21T15:52:12.413022+00:00'
+  tags:
+  - sprint-r5
+  - correction-poc
+  - c4-evidence
+- id: art_20260521_9ecce5
+  name: llama70b_third_judge.json
+  type: data
+  description: 'Llama-3.3-70B third judge results: formality BT 69.5% + verbosity
+    BT 73.5%, both Blindspot YES. Full BT/Likert/GEE analysis.'
+  path: projects/causal_style_decomp_judge/artifacts/llama70b_third_judge/data/llama70b_third_judge.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: llama70b_third_judge
+  skill: ''
+  created_at: '2026-05-21T16:01:52.747933+00:00'
+  tags:
+  - llama70b
+  - third_judge
+  - blindspot
+  - formality
+  - verbosity
+- id: art_20260521_7d249f
+  name: debiased_llama70b_summary.json
+  type: data
+  description: 'Llama-70B debiased prompt results: formality -5.2pp (26.7%), verbosity
+    -6.6pp (28.1%), both still significant'
+  path: projects/causal_style_decomp_judge/artifacts/llama70b_debiased/data/debiased_llama70b_summary.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: llama70b_debiased
+  skill: ''
+  created_at: '2026-05-21T16:53:58.290473+00:00'
+  tags:
+  - llama70b
+  - debiased
+  - correction_resistance
+- id: art_20260521_2cb538
+  name: power_analysis_formal
+  type: data
+  description: 'Formal power analysis: required n for Likert to detect BT-equivalent
+    style bias across 6 judge×axis cells. All require 3.9x-206x more data than available.'
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/power_analysis_formal.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T17:02:47.652476+00:00'
+  tags:
+  - power-analysis
+  - likert
+  - blindspot
+  - C1
+- id: art_20260521_8e870d
+  name: gee_interaction_analysis
+  type: data
+  description: 'GEE S×O interaction analysis: 0/8 interactions significant, regime
+    taxonomy stable. Additive model sufficient.'
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/gee_interaction_analysis.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T17:02:49.724973+00:00'
+  tags:
+  - gee
+  - interaction
+  - regime-classification
+  - C3
+- id: art_20260521_eb82a0
+  name: llama70b_register_summary
+  type: data
+  description: 'Llama-70B register axis: BT 63.5% (sig), Likert NS → Blindspot. GEE
+    Mixed regime (Style OR=3.33, Orig OR=3.07). Stronger than expected.'
+  path: projects/causal_style_decomp_judge/artifacts/llama70b_register/data/llama70b_register_summary.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: llama70b_register
+  skill: ''
+  created_at: '2026-05-21T17:07:59.969952+00:00'
+  tags:
+  - register
+  - llama-70b
+  - blindspot
+  - gee
+- id: art_20260521_afd89a
+  name: human_annotation_materials
+  type: data
+  description: 'NLI gate human annotation materials: 50 pairs (25 pass/25 fail, formality+verbosity),
+    annotation sheet, guidelines, analysis script'
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/annotation_samples.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T18:05:09.856279+00:00'
+  tags:
+  - human-annotation
+  - nli-gate
+  - MF2
+- id: art_20260521_28d5e5
+  name: figure1_candidates
+  type: data
+  description: Figure 1 "Blindspot in Action" 候选 example 的完整文本和评分数据（mvp_0024, mvp_0048,
+    mvp_0096），含 3 个 judge 的 Likert 和 pairwise 结果
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/figure1_candidates.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T22:22:20.079759+00:00'
+  tags:
+  - figure1
+  - formality
+  - blindspot
+  - pairwise
+  - likert
+- id: art_20260523_4e8b10
+  name: GEE n355 Decomposition Results
+  type: data
+  description: 'GEE decomposition comparing n=88 vs n=355 scaled replication: Style
+    OR, Orig OR, 95% CIs, CI width ratios, power analysis. Qwen3-32B formality axis.'
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/gee_n355_results.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T05:53:48.836522+00:00'
+  tags:
+  - gee
+  - n355
+  - decomposition
+  - r15
+  - power-analysis
+- id: art_20260523_221810
+  name: fk_length_control_results
+  type: data
+  description: 'Length-controlled FK Grade analysis for verbosity vs formality counterfactual
+    rewrites. Shows verbosity cross-axis FK contamination (delta_fk d=0.50) is largely
+    explained by sentence-length changes: 62% coefficient reduction in OLS (Model
+    2 vs Model 1), Sobel mediation p=0.031 with 62% proportion mediated, and within-verbosity
+    Pearson r=0.85 between delta_sentlen and delta_fk. Primary subset: NLI-passed
+    (n=86 verbosity, n=36 formality).'
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/fk_length_control_results.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T06:21:49.426876+00:00'
+  tags:
+  - rebuttal
+  - r15
+  - fk_grade
+  - length_control
+  - mediation
+- id: art_20260523_ec63f0
+  name: fk_length_control_results
+  type: data
+  description: 'Length-controlled FK grade analysis for R15 reviewer response: regression,
+    mediation, and correlation showing 59% of FK cross-axis contamination in verbosity
+    rewrites is mediated by sentence length'
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/fk_length_control_results_ec63f0.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T06:24:57.166843+00:00'
+  tags:
+  - r15
+  - fk-grade
+  - cross-axis
+  - length-control
+  - mediation
+- id: art_20260523_8c53c9
+  name: fk_gee_covariate
+  type: data
+  description: FK Grade as GEE Covariate analysis results. Compares GEE models with/without
+    Flesch-Kincaid readability delta for GPT-4o, Qwen3-32B, Llama-70B formality axis.
+    FK covariate itself is NS for all judges but Style OR drops 20-51% when included.
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/fk_gee_covariate.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T08:13:35.559657+00:00'
+  tags:
+  - r16
+  - gee
+  - fk-grade
+  - confound-analysis
+  - formality
+- id: art_20260523_e0e4a6
+  name: sensitivity_analysis_flagged_pairs
+  type: data
+  description: 'Sensitivity analysis: effect sizes recomputed after excluding 2 human-annotation-flagged
+    NLI-pass pairs (mvp_0023, alpacaeval_029). BT% changes <0.3%, Style OR <4%, Likert
+    d <5% relative. Robustness confirmed.'
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/human_annotation_analysis.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T08:37:31.281020+00:00'
+  tags:
+  - sensitivity
+  - human-annotation
+  - robustness
+- id: art_20260523_d2b34a
+  name: construct_divergence_analysis
+  type: data
+  description: 'Construct divergence adjudication: non-tie concordance (8 judge×axis),
+    item-level correlation (Pearson+Spearman), bias-corrected OR (Nemes+Hedges). Key
+    finding: MIXED pattern — verbosity concordance 71-85% (attenuation), formality
+    53-83% (judge-dependent divergence).'
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/construct_divergence_analysis.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T09:22:10.117085+00:00'
+  tags:
+  - construct-divergence
+  - concordance
+  - attenuation
+  - bias-corrected-or
+  - r17
+- id: art_20260523_09012e
+  name: construct_divergence_analysis
+  type: data
+  description: 'Construct divergence adjudication: non-tie concordance (76.6% pooled),
+    item-level correlation (r_pb 0.20-0.45), bias-corrected OR (Nemes/Hedges). Supports
+    attenuation interpretation over construct divergence.'
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/construct_divergence_analysis_09012e.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T09:22:45.879750+00:00'
+  tags:
+  - r16
+  - construct-divergence
+  - concordance
+  - attenuation
+- id: art_20260523_23e1cd
+  name: verbosity_n355_analysis
+  type: data
+  description: BT + Likert + GEE analysis results for verbosity n=355 scaled replication
+    across all 5 judges (Qwen3-32B, Llama-70B, GPT-5.4, Gemini-2.5-Flash, Claude Sonnet
+    4)
+  path: projects/causal_style_decomp_judge/artifacts/_project/data/verbosity_n355_analysis.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T12:56:10.297954+00:00'
+  tags:
+  - verbosity
+  - n355
+  - bt
+  - gee
+  - likert
+  - analysis
+- id: art_20260523_a3c005
+  name: gee_decomposition_figure
+  type: chart
+  description: GEE decomposition grouped bar chart — Style OR vs Orig OR for verbosity
+    and formality axes across 4 judges, log scale
+  path: projects/causal_style_decomp_judge/artifacts/_project/chart/gee_decomposition.pdf
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T12:56:13.199934+00:00'
+  tags:
+  - figure
+  - gee
+  - decomposition
+  - paper
+- id: art_20260523_f6347a
+  name: cross_benchmark_heatmap
+  type: chart
+  description: Cross-benchmark heatmap — 5 judges × 6 benchmark-axis cells, BT values
+    with significance coloring
+  path: projects/causal_style_decomp_judge/artifacts/_project/chart/cross_benchmark_heatmap.pdf
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T12:56:16.045660+00:00'
+  tags:
+  - figure
+  - heatmap
+  - cross-benchmark
+  - paper
+- id: art_20260523_d6528b
+  name: power_curve_updated
+  type: chart
+  description: Power curve with distinct markers (circle/triangle/square/diamond)
+    for 4 test statistics, d031-aligned constants
+  path: projects/causal_style_decomp_judge/artifacts/_project/chart/power_curve_d6528b.pdf
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T12:56:18.563807+00:00'
+  tags:
+  - figure
+  - power-curve
+  - markers
+  - paper
+- id: art_20260524_12cd57
+  name: llama70b_crossbench_summary
+  type: data
+  description: 'Llama-70B cross-benchmark scoring: AlpacaEval (formality+verbosity)
+    + MT-Bench (formality). No blindspots found across all 3 groups. Contrasts with
+    LLMBar blindspots.'
+  path: projects/causal_style_decomp_judge/artifacts/llama70b_crossbench/data/llama70b_crossbench_summary.json
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: llama70b_crossbench
+  skill: ''
+  created_at: '2026-05-24T08:25:57.520721+00:00'
+  tags:
+  - llama70b
+  - cross-benchmark
+  - blindspot
+- id: art_20260525_205e08
+  name: audit_internal_consistency
+  type: report
+  description: 论文内部数字一致性审计报告：3个critical不一致、4个warning、16组已验证一致的数字
+  path: projects/causal_style_decomp_judge/artifacts/_project/report/audit_internal_consistency.md
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T08:43:11.969592+00:00'
+  tags:
+  - audit
+  - paper
+  - consistency
+- id: art_20260525_anon_audit
+  name: audit_anon_repo
+  type: report
+  description: 'Anonymous repo audit: path leak fixes (9 files), backup cleanup, duplicate
+    removal, requirements update. Deploy key generated but push blocked — needs GitHub
+    registration.'
+  path: projects/causal_style_decomp_judge/artifacts/audit_anon_repo.md
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T16:58:00.000000+00:00'
+  tags:
+  - audit
+  - anonymous
+  - repo
+- id: art_20260525_fix4num
+  name: fix_number_bugs
+  type: report
+  description: '4+1 number bug fixes: BT 66.5→67.5% (appendix K), GEE footnote n=88→formality/verbosity
+    split, cross-benchmark count three→four. Compiled PDF, committed to anon repo
+    (473438e).'
+  path: projects/causal_style_decomp_judge/artifacts/fix_number_bugs.md
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T17:30:00.000000+00:00'
+  tags:
+  - bugfix
+  - paper
+  - numbers
+- id: art_20260525_420592
+  name: audit_data_truth_maintext
+  type: report
+  description: 正文数据真实性审计（Abstract/Intro/Method/Conclusion）：37个数字逐一对账，33个已验证，2个问题
+  path: projects/causal_style_decomp_judge/artifacts/_project/report/audit_data_truth_maintext.md
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T19:53:31.685685+00:00'
+  tags:
+  - audit
+  - data-truth
+  - maintext
+- id: art_20260525_84d50d
+  name: Appendix Data Truth Audit
+  type: report
+  description: 附录全部表格和数字的数据真实性审计报告，逐表对账服务器源JSON，发现11个问题（2严重、5中等、4轻微）
+  path: projects/causal_style_decomp_judge/artifacts/_project/report/audit_data_truth_appendix.md
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T19:55:34.766381+00:00'
+  tags:
+  - audit
+  - data-truth
+  - appendix
+- id: art_20260525_e93fb6
+  name: audit_data_truth_experiments
+  type: report
+  description: 实验数据真实性审计报告：Table 1/2 逐cell验证 + Analysis所有数字追溯。发现3个HIGH问题（Sobel z/p错误、两个无出处数字），4个MEDIUM问题。
+  path: projects/causal_style_decomp_judge/artifacts/_project/report/audit_data_truth_experiments.md
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:03:14.557016+00:00'
+  tags:
+  - audit
+  - data-verification
+  - experiments
+  - table1
+  - table2
+- id: art_20260525_523dd8
+  name: investigate_h3_m4
+  type: report
+  description: H3 (Llama-70B AlpacaEval Style OR=7.64 来源追溯) 和 M4 (100pt Likert p值审计)
+    调查报告
+  path: projects/causal_style_decomp_judge/artifacts/_project/report/investigate_h3_m4.md
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:16:02.480421+00:00'
+  tags:
+  - audit
+  - data-provenance
+  - H3
+  - M4
+- id: art_20260525_7404b9
+  name: investigate_h1h2_fk_mediation
+  type: report
+  description: 调查 experiments.tex:166 FK 中介分析数值错误：Sobel z/p 错误（2.15/.031 应为 3.60/.0003），OR
+    值正确
+  path: projects/causal_style_decomp_judge/artifacts/_project/report/investigate_h1h2_fk_mediation.md
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:16:10.155735+00:00'
+  tags:
+  - audit
+  - fk-mediation
+  - sobel
+  - data-truth
+- id: art_20260526_75f600
+  name: audit_reference_crosscheck
+  type: report
+  description: 57条bib引用交叉验证报告：3 Workers独立核查，发现4处错误（1 CRITICAL幻觉条目、1 HIGH作者错、1 MEDIUM作者名错、1
+    LOW标题小错）+ 14条孤立引用
+  path: projects/causal_style_decomp_judge/artifacts/_project/report/audit_reference_crosscheck.md
+  url: null
+  project: causal_style_decomp_judge
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T11:18:57.323994+00:00'
+  tags:
+  - audit
+  - references
+  - camera-ready

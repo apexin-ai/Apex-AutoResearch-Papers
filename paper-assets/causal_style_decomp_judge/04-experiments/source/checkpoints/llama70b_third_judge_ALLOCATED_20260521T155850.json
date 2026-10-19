@@ -1,0 +1,16 @@
+{
+  "exp_id": "llama70b_third_judge",
+  "project": "causal_style_decomp_judge",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:58:29.292Z",
+    "updated_at": "2026-05-21T15:58:50.676Z",
+    "hypothesis": "Llama-3.3-70B as third independent judge architecture confirms the Likert Blindspot: BT pairwise detects style bias (formality + verbosity) with p<0.05 while Likert scoring shows no significant difference, replicating the pattern found with GPT-4o and Qwen3-32B judges",
+    "plan_id": "llama70b_third_judge"
+  },
+  "timestamp": "2026-05-21T15:58:50.787447+00:00",
+  "trigger": "update_registry"
+}

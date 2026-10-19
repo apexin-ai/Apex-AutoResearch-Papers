@@ -1,0 +1,135 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zheng2023judging,dubois2024alpacafarm}
+\citation{bai2022constitutional,lee2023rlaif}
+\citation{park2024disentangling}
+\citation{sosbench2025}
+\citation{feuer2025rate}
+\citation{mir2019evaluating}
+\citation{zheng2023judging}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{zheng2023judging}
+\citation{wang2023large}
+\citation{park2024disentangling}
+\citation{dubois2024length}
+\citation{sosbench2025}
+\citation{casse2026}
+\citation{lin2025fairjudge}
+\citation{veitch2020counterfactual,kaushik2020learning}
+\citation{feuer2025rate}
+\citation{counterfactual_rhetorical2025}
+\citation{mir2019evaluating,krishna2020reformulating}
+\citation{luo2019dual}
+\citation{novikova2018rankme,kiritchenko2017best}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-Judge Bias.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Counterfactual Methods for Bias Measurement.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Style Transfer Evaluation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Likert vs.\ Pairwise Protocols.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Counterfactual Style Rewriting}{2}{subsection.3.1}\protected@file@percent }
+\citation{feuer2025rate}
+\citation{zeng2024llmbar}
+\citation{dubois2024alpacafarm}
+\citation{zheng2023judging}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: Content Verification Gate}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stage 3: Position-Controlled Pairwise Comparison}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Stage 4: Likert Pointwise Scoring (RATE Protocol)}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Statistical Framework}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Judges.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Style Axis.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Formality Bias Across Judges}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:multi_judge}{{4.2}{3}{Formality Bias Across Judges}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pairwise formality preference across judges (LLMBar). Win rate is the proportion of position-consistent pairs where the formal version is preferred. Significance: $^{**}p<0.01$, $^{*}p<0.05$.}}{4}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:multi_judge}{{1}{4}{Pairwise formality preference across judges (LLMBar). Win rate is the proportion of position-consistent pairs where the formal version is preferred. Significance: $^{**}p<0.01$, $^{*}p<0.05$}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Pairwise formality preference across benchmarks (GPT-4o judge). $^{**}p<0.01$, $^{\dagger }p<0.10$.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:multi_bench}{{2}{4}{Pairwise formality preference across benchmarks (GPT-4o judge). $^{**}p<0.01$, $^{\dagger }p<0.10$}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Formality Bias Across Benchmarks}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:multi_bench}{{4.3}{4}{Formality Bias Across Benchmarks}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}The Likert Blindspot}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:likert_blindspot}{{4.4}{4}{The Likert Blindspot}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Scaled Replication ($n=500$)}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:scaled}{{4.5}{4}{Scaled Replication ($n=500$)}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-judge $\times $ cross-benchmark formal win rates. $^{**}p<0.01$, $^{*}p<0.05$, $^{\dagger }p<0.10$.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:cross_judge_bench}{{3}{5}{Cross-judge $\times $ cross-benchmark formal win rates. $^{**}p<0.01$, $^{*}p<0.05$, $^{\dagger }p<0.10$}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Likert vs.\ pairwise sensitivity comparison. ``Blindspot'' indicates pairwise significant but Likert not.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:likert_pairwise}{{4}{5}{Likert vs.\ pairwise sensitivity comparison. ``Blindspot'' indicates pairwise significant but Likert not}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Original-Text Preference Confound}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:orig_pref}{{4.6}{5}{Original-Text Preference Confound}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Decomposition by original style.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Logistic regression.}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Axis Applicability: Tone and Verbosity as Boundary Cases}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:axis_boundaries}{{4.7}{5}{Axis Applicability: Tone and Verbosity as Boundary Cases}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Scaled replication on GPT-4o $\times $ LLMBar.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:scaled}{{5}{6}{Scaled replication on GPT-4o $\times $ LLMBar}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Original preference decomposition. ``Formal-orig orig\%'' is the rate at which judges prefer the original when the original is formal; ``Casual-orig orig\%'' is the same when the original is casual.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:orig_decomp}{{6}{6}{Original preference decomposition. ``Formal-orig orig\%'' is the rate at which judges prefer the original when the original is formal; ``Casual-orig orig\%'' is the same when the original is casual}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Tone (negative control).}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verbosity (negative control).}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Binarized Likert Question}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Casual-original subset: formal win rate when original text is casual (formality and original preference oppose).}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:casual_orig}{{7}{7}{Casual-original subset: formal win rate when original text is casual (formality and original preference oppose)}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Logistic regression predicting formal win ($n=55$, GPT-4o $\times $ LLMBar).}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:logistic}{{8}{7}{Logistic regression predicting formal win ($n=55$, GPT-4o $\times $ LLMBar)}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Original-Preference Confound}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:discussion_confound}{{5.2}{7}{The Original-Preference Confound}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why double-rewrite does not fully resolve the issue.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The interaction as an empirical finding.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for bias auditing.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Future work.}{7}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Practical Recommendations}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Marginal probabilities of formal win by condition.}}{8}{table.caption.18}\protected@file@percent }
+\newlabel{tab:marginal_probs}{{9}{8}{Marginal probabilities of formal win by condition}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Binarized Likert vs.\ pairwise comparison (GPT-4o $\times $ LLMBar).}}{8}{table.caption.21}\protected@file@percent }
+\newlabel{tab:binarized}{{10}{8}{Binarized Likert vs.\ pairwise comparison (GPT-4o $\times $ LLMBar)}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Original-text preference confound.}{8}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generalization scope.}{8}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single rewriter family.}{8}{section*.29}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{bai2022constitutional}{{1}{2022}{{Bai et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Content verification imperfection.}{9}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Position-consistency filtering.}{9}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limited style axes.}{9}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}NLI Threshold Sensitivity}{9}{appendix.A}\protected@file@percent }
+\newlabel{sec:nli_sensitivity}{{A}{9}{NLI Threshold Sensitivity}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces NLI threshold sensitivity analysis (GPT-4o $\times $ LLMBar).}}{9}{table.caption.33}\protected@file@percent }
+\newlabel{tab:nli_sensitivity}{{11}{9}{NLI threshold sensitivity analysis (GPT-4o $\times $ LLMBar)}{table.caption.33}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Consistency Filter Bias Analysis}{9}{appendix.B}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Characteristics of consistent vs.\ inconsistent pairs.}}{9}{table.caption.34}\protected@file@percent }
+\newlabel{tab:filter_bias}{{12}{9}{Characteristics of consistent vs.\ inconsistent pairs}{table.caption.34}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Human--NLI Agreement}{9}{appendix.C}\protected@file@percent }
+\bibcite{casse2026}{{2}{2026}{{CASSE}}{{}}}
+\bibcite{counterfactual_rhetorical2025}{{3}{2025}{{Counterfactual Rhetorical}}{{}}}
+\bibcite{dubois2024alpacafarm}{{4}{2024a}{{Dubois et~al.}}{{}}}
+\bibcite{dubois2024length}{{5}{2024b}{{Dubois et~al.}}{{}}}
+\bibcite{feuer2025rate}{{6}{2025}{{Feuer et~al.}}{{}}}
+\bibcite{kaushik2020learning}{{7}{2020}{{Kaushik et~al.}}{{}}}
+\bibcite{kiritchenko2017best}{{8}{2017}{{Kiritchenko and Mohammad}}{{}}}
+\bibcite{krishna2020reformulating}{{9}{2020}{{Krishna et~al.}}{{}}}
+\bibcite{lee2023rlaif}{{10}{2023}{{Lee et~al.}}{{}}}
+\bibcite{lin2025fairjudge}{{11}{2025}{{Lin et~al.}}{{}}}
+\bibcite{luo2019dual}{{12}{2019}{{Luo et~al.}}{{}}}
+\bibcite{mir2019evaluating}{{13}{2019}{{Mir et~al.}}{{}}}
+\bibcite{novikova2018rankme}{{14}{2018}{{Novikova et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Human--NLI agreement matrix ($n=80$).}}{10}{table.caption.35}\protected@file@percent }
+\newlabel{tab:human_nli}{{13}{10}{Human--NLI agreement matrix ($n=80$)}{table.caption.35}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Human--NLI agreement metrics.}}{10}{table.caption.36}\protected@file@percent }
+\newlabel{tab:agreement_metrics}{{14}{10}{Human--NLI agreement metrics}{table.caption.36}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Power Analysis}{10}{appendix.D}\protected@file@percent }
+\bibcite{park2024disentangling}{{15}{2024}{{Park et~al.}}{{}}}
+\bibcite{sosbench2025}{{16}{2025}{{SOS-Bench}}{{}}}
+\bibcite{veitch2020counterfactual}{{17}{2020}{{Veitch et~al.}}{{}}}
+\bibcite{wang2023large}{{18}{2023}{{Wang et~al.}}{{}}}
+\bibcite{zeng2024llmbar}{{19}{2024}{{Zeng et~al.}}{{}}}
+\bibcite{zheng2023judging}{{20}{2023}{{Zheng et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Power analysis for detecting formality effects.}}{11}{table.caption.37}\protected@file@percent }
+\newlabel{tab:power}{{15}{11}{Power analysis for detecting formality effects}{table.caption.37}{}}
+\gdef \@abspage@last{11}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_exp006_vllm_restart_cfgen_20260521T055327_result.json",
     "occurrence": 1,
-    "bytes": 539,
-    "sha256": "521ecc1e7297c5fbd879aa792f4e04b965892f272eb8a1070c74891aa107c4fc"
+    "bytes": 538,
+    "sha256": "c8517f64a258e5212d843d4c5cded690a625a7b598b274120d24516cced11992"
   },
   "statistics": {
     "messages": 1,

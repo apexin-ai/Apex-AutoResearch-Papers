@@ -1,0 +1,56 @@
+{
+  "exp_id": "double_rewrite_placebo_gpt4o",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:35:56.950Z",
+    "updated_at": "2026-05-21T13:36:30.437Z",
+    "hypothesis": "Pairwise comparison of original vs double-rewrite (same style, only rewriting artifact difference) yields BT ≈ 50% with GPT-4o judge, proving pairwise format does not amplify rewriting artifacts (MF1 defense)",
+    "spec": {
+      "command": "python csd_pipeline/double_rewrite_placebo.py (GPT-4o judge via API)",
+      "server": "westb-29275",
+      "data_path": "data/verified_32b.jsonl + data/verified_verbosity.jsonl",
+      "data_count": 124,
+      "model_name": "GPT-4o (judge via API)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "data/double_rewrite_placebo_gpt4o.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "judge": "GPT-4o",
+      "comparison": "original vs double_rewrite",
+      "formality": {
+        "n_pairs": 81,
+        "n_consistent": 44,
+        "consistency": 0.543,
+        "original_win_rate": 0.318,
+        "ci": [
+          0.182,
+          0.455
+        ],
+        "p_value": 0.0226,
+        "note": "Judge prefers DR over original. Low consistency (54.3%) = noisy judgment"
+      },
+      "verbosity": {
+        "n_pairs": 43,
+        "n_consistent": 32,
+        "consistency": 0.744,
+        "original_win_rate": 0.062,
+        "ci": [
+          0,
+          0.156
+        ],
+        "p_value": 0,
+        "note": "Only 2/32 consistent judgments favor original. Strong rewriting artifact"
+      },
+      "conclusion": "PLACEBO FAILED — GPT-4o also strongly prefers double-rewrite over original. Rewriting artifact confirmed across judges."
+    },
+    "completed_at": "2026-05-21T13:36:30.437Z"
+  },
+  "timestamp": "2026-05-21T13:36:30.524897+00:00",
+  "trigger": "update_registry"
+}

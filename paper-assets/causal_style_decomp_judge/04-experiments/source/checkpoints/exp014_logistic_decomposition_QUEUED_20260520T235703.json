@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp014_logistic_decomposition",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T23:56:26.706Z",
+    "updated_at": "2026-05-20T23:57:03.748Z",
+    "hypothesis": "The observed 69.1% formal win rate in pairwise comparison is primarily driven by original-preference bias rather than genuine formality effect, and logistic regression decomposition will show formality coefficient is non-significant after controlling for original preference",
+    "metrics": {
+      "formal_effect_coef": 0.7928,
+      "formal_effect_OR": 2.2095,
+      "formal_effect_p": 0.011,
+      "formal_effect_ci": [
+        0.2029,
+        1.4304
+      ],
+      "original_effect_coef": 0.5958,
+      "original_effect_OR": 1.8145,
+      "original_effect_p": 0.048,
+      "original_effect_ci": [
+        0.0135,
+        1.1914
+      ],
+      "intercept_position_bias": -0.5851,
+      "formal_to_casual_win_rate": 0.788,
+      "formal_to_casual_p": 0.001,
+      "casual_to_formal_win_rate": 0.545,
+      "casual_to_formal_p": 0.832,
+      "n_observations": 196,
+      "conclusion_note": "Formality effect significant (OR=2.21, p=0.011) after controlling for original preference (OR=1.81, p=0.048)"
+    },
+    "spec": {
+      "checkpoint_path": "N/A (reanalysis)",
+      "log_path": "artifacts/csd_pipeline/exp014_logistic_decomposition.py"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T23:57:03.771425+00:00",
+  "trigger": "update_registry"
+}

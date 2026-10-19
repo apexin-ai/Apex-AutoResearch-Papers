@@ -5968,11 +5968,11 @@ _source line 97 · 2026-05-21T13:57:30.656Z_
 28	
 29	# ─── Config ────────────────────────────────────────────────────────────
 30	GPT4O_BASE_URL = "http://47.94.22.126/v1"
-31	GPT4O_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"
+31	GPT4O_API_KEY = "[REDACTED]"
 32	GPT4O_MODEL = "gpt-4o"
 33	
 34	QWEN_BASE_URL = "http://localhost:8000/v1"
-35	QWEN_API_KEY = "EMPTY"
+35	QWEN_API_KEY = "[REDACTED]"
 36	QWEN_MODEL = "/root/autodl-tmp/models/Qwen3-32B/"
 37	
 38	NLI_MODEL_PATH = "/root/autodl-tmp/models/nli-deberta-v3-large/"

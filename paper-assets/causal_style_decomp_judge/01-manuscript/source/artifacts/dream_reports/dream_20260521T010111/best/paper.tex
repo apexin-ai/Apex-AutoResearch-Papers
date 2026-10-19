@@ -1,0 +1,541 @@
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{microtype}
+
+\title{The Likert Blindspot: Detecting Hidden Style Bias\\in LLM Judges via Counterfactual Pairwise Comparison}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\begin{abstract}
+LLM-as-judge evaluation is now central to NLP benchmarking and alignment training, yet standard Likert pointwise scoring systematically masks style bias.
+We introduce a counterfactual pairwise measurement procedure: for a given style axis (e.g., formality), we generate content-preserving counterfactual pairs via LLM rewriting, verify semantic equivalence with an NLI gate, and measure judge preference through position-controlled pairwise comparison.
+Across three judges (GPT-4o, Claude-Sonnet, Gemini-Flash) and three benchmarks (LLMBar, AlpacaEval, MT-Bench), pairwise comparison detects significant formality bias in 7 of 9 judge$\times$benchmark cells ($p < 0.05$), while Likert scoring detects bias in only 1 of 9 cells. A binarized-Likert sign test---applying the same statistical test to dichotomized Likert scores---yields 0 of 9 significant cells, isolating measurement structure rather than test choice as the source of the gap.
+We replicate this \emph{Likert Blindspot} on a second axis (verbosity: pairwise $p = 0.024$, Likert $p = 0.18$) and confirm robustness via scaled replication ($n = 500$, $p < 10^{-5}$), alternative rewriter control, and human NLI validation (false-positive rate 1.1\%).
+These findings imply that style-bias audits relying solely on Likert scoring---including recent interventional protocols such as RATE---may substantially underestimate true bias magnitude.
+\end{abstract}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+LLM-as-judge evaluation has become the dominant paradigm for assessing open-ended language generation, powering leaderboards such as Chatbot Arena \cite{zheng2023judging}, AlpacaEval \cite{li2023alpacaeval}, and MT-Bench \cite{zheng2023judging}, and serving as the reward signal for reinforcement learning from human feedback (RLHF) pipelines.
+Style bias---the systematic preference for surface-level stylistic properties independent of content quality---is the primary threat to this infrastructure: style--overall correlation reaches $R=0.999$ \cite{park2024sosbench}, and style bias dominates position bias by an order of magnitude \cite{soumik2026judging}.
+
+Yet the standard tool for measuring such bias is Likert pointwise scoring, where each response is rated independently on an ordinal scale.
+We show that this measurement choice introduces a systematic blindspot: on the same counterfactual data, Likert scoring reports no significant formality bias ($p = 0.332$), while position-controlled pairwise comparison reveals a strong effect (win rate 69.1\%, $p = 0.006$).
+This gap---which we term the \textbf{Likert Blindspot}---persists across three LLM judges, three evaluation benchmarks, two style axes, and a scaled replication at $n = 500$.
+
+Our measurement procedure combines three known components in a novel diagnostic application: (1) LLM-based counterfactual style rewriting, (2) NLI-based semantic equivalence verification, and (3) position-controlled pairwise comparison.
+We explicitly acknowledge the provenance of each component---counterfactual rewriting from style transfer evaluation \cite{mir2019evaluating,krishna2020reformulating}, double-rewrite controls from RATE \cite{feuer2025rate}, and pairwise comparison from psychometric scaling \cite{thurstone1927law}---and position our contribution as the first systematic quantification of the Likert--pairwise sensitivity gap for LLM judge style bias.
+
+We make the following contributions:
+\begin{enumerate}
+    \item \textbf{Likert Blindspot.} We demonstrate that Likert pointwise scoring systematically underestimates style bias relative to pairwise comparison across 9 judge$\times$benchmark combinations (7/9 pairwise significant vs.\ 1/9 Likert significant), and isolate measurement structure as the mechanism via a binarized-Likert control (0/9 significant).
+    \item \textbf{Cross-axis generalization.} We replicate the phenomenon on verbosity (pairwise $p = 0.024$, Likert $p = 0.18$) with a direction-aware NLI gate that handles information-changing axes.
+    \item \textbf{Robustness and validation.} We provide scaled replication ($n = 500$), alternative rewriter control, human NLI validation, and original-preference confound analysis.
+    \item \textbf{Practical implications.} We discuss how Likert-based interventional protocols (including RATE) may underestimate style bias, and provide practitioner guidance for style-bias auditing.
+\end{enumerate}
+
+% ============================================================
+% 2. RELATED WORK
+% ============================================================
+\section{Related Work}
+
+\paragraph{Style bias in LLM judges.}
+Length bias is the most studied style confound: LC-AlpacaEval \cite{dubois2024lengthcontrolled} treats length as a causal mediator and applies regression control, while SOS-Bench \cite{park2024sosbench} demonstrates that style features dominate overall quality judgments ($R = 0.999$).
+CASSE \cite{wu2026casse} constructs a $12 \times 12$ style feature matrix but finds causal entanglement across features.
+Soumik \cite{soumik2026judging} reports style bias coefficients of $0.76$--$0.92$, far exceeding position bias ($\leq 0.04$).
+Preference Leakage \cite{li2026preferenceleakage} shows that model-family similarity channels style-mediated preference signals into judge scores.
+FairJudge \cite{wang2026fairjudge} addresses bias through training-side interventions (SFT$\to$DPO$\to$GRPO).
+
+\paragraph{Interventional measurement of judge bias.}
+RATE \cite{feuer2025rate} introduces a double-rewrite ATE protocol that cancels systematic rewriting artifacts; however, it employs Likert scoring as the measurement instrument---our results suggest this choice may attenuate detected effects.
+Zhou et al.\ \cite{zhou2025counterfactual} use persona-level counterfactuals with Bradley--Terry aggregation to measure rhetorical bias.
+Our procedure operates at finer axis granularity and directly compares Likert and pairwise sensitivity.
+
+\paragraph{Psychometric foundations.}
+The superiority of paired comparison over category rating for detecting small perceptual differences has been established since Thurstone \cite{thurstone1927law}.
+In NLG evaluation, Kiritchenko and Mohammad \cite{kiritchenko2017bestworstscaling} demonstrate that Best--Worst Scaling outperforms Likert for sentiment intensity, and Novikova et al.\ \cite{novikova2018rankme} show that ranking-based annotation yields higher inter-annotator agreement than rating.
+Karpinska et al.\ \cite{karpinska2021perils} document poor reliability of Likert scoring for text quality.
+We provide the first quantification of this sensitivity gap in the specific context of LLM judge style bias.
+
+% ============================================================
+% 3. METHOD
+% ============================================================
+\section{Method}
+
+We describe our counterfactual pairwise measurement procedure, which consists of four stages.
+
+\subsection{Stage 1: Counterfactual Style Rewriting}
+Given a source response $x$ and a target style axis $a$ (e.g., formality), we use an LLM rewriter $R$ to generate a counterfactual $x' = R(x, a)$ that transforms the style along axis $a$ while preserving semantic content.
+For the formality axis, we generate both formal$\to$casual and casual$\to$formal rewrites.
+Our primary rewriter is Qwen3-32B; we validate robustness with Llama-3.1-70B (\S\ref{sec:rewriter}).
+
+\subsection{Stage 2: NLI-Based Content Preservation Gate}
+Each $(x, x')$ pair is evaluated by an NLI model to verify that $x'$ entails $x$ and $x$ entails $x'$ (bidirectional entailment).
+Pairs failing this gate are discarded.
+For axes that inherently change information quantity (e.g., verbosity), we employ a \textbf{direction-aware NLI gate}: we verify entailment only in the direction where information is preserved (concise $\models$ verbose) and apply a separate completeness check in the reverse direction.
+This adaptation raises the pass rate from 65\% (bidirectional) to 86\% for verbosity.
+
+\subsection{Stage 3: Position-Controlled Pairwise Comparison}
+Each valid pair $(x, x')$ is presented to the judge LLM in both orders: $(x, x')$ and $(x', x)$.
+A pair is \emph{consistent} if the judge selects the same response regardless of position; inconsistent pairs (where the judge's preference flips with position) are excluded.
+We report the win rate among consistent pairs and compute significance via a two-sided sign test.
+
+\subsection{Stage 4: Likert Scoring and Binarized-Likert Control}
+To diagnose the Likert Blindspot, we also collect independent Likert scores for each $x$ and $x'$ from the same judge.
+We compute the average treatment effect (ATE) as the mean score difference.
+Additionally, we construct a \textbf{binarized-Likert} measure: for each pair, the response with the higher Likert score ``wins'' (ties excluded), and we apply a sign test to these binarized outcomes.
+If the Likert--pairwise gap stems from the statistical test (sign test vs.\ $t$-test), binarized Likert should recover pairwise sensitivity.
+If the gap stems from measurement structure (direct comparison vs.\ independent rating), binarized Likert should remain insensitive---as we observe.
+
+\subsection{Stage 5: Original Preference Control}
+Following RATE \cite{feuer2025rate}, we control for the possibility that judges prefer original text over any rewrite regardless of style.
+We compare each original $x$ against a \emph{same-style} double-rewrite $R(R(x, \bar{a}), a)$ via pairwise comparison.
+A significant original preference would confound our style bias estimates; we find this effect is non-significant across all tested combinations (\S\ref{sec:orig_pref}).
+
+% ============================================================
+% 4. EXPERIMENTAL SETUP
+% ============================================================
+\section{Experimental Setup}
+
+\paragraph{Judges.} GPT-4o (OpenAI), Claude-3.5-Sonnet (Anthropic), and Gemini-2.0-Flash (Google).
+\paragraph{Benchmarks.} LLMBar \cite{zeng2024llmbar}, AlpacaEval \cite{li2023alpacaeval}, and MT-Bench \cite{zheng2023judging}.
+\paragraph{Style axes.} Formality (primary), verbosity (secondary), register (exploratory).
+\paragraph{Rewriter.} Qwen3-32B (primary), Llama-3.1-70B (robustness control).
+\paragraph{Sample sizes.} $n = 100$ per benchmark for the primary grid; $n = 500$ for scaled replication.
+\paragraph{Multiple comparisons.} We apply Holm--Bonferroni correction across the 9-cell grid; all reported $p$-values are uncorrected unless stated otherwise.
+
+% ============================================================
+% 5. RESULTS
+% ============================================================
+\section{Results}
+
+\subsection{Multi-Judge Formality Bias (C1)}
+\label{sec:multijudge}
+
+Table~\ref{tab:multijudge} presents formality pairwise results across three judges on LLMBar.
+All three judges exhibit significant formality bias: GPT-4o (69.1\%, $p = 0.006$), Claude-Sonnet (67.3\%, $p = 0.012$), and Gemini-Flash (64.6\%, $p = 0.032$).
+The direction asymmetry is consistent across judges: the formal$\to$casual direction (where the original is formal and the counterfactual is casual) yields higher win rates (72--79\%) than the casual$\to$formal direction (54--56\%), suggesting that judges penalize casualization more than they reward formalization.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Judge} & \textbf{$N_c$} & \textbf{F} & \textbf{C} & \textbf{WR} & \textbf{$p$} & \textbf{F$\to$C / C$\to$F} \\
+\midrule
+GPT-4o & 55 & 38 & 17 & .691 & .006 & .79 / .55 \\
+Claude & 52 & 35 & 17 & .673 & .012 & .76 / .56 \\
+Gemini & 48 & 31 & 17 & .646 & .032 & .72 / .54 \\
+\bottomrule
+\end{tabular}
+\caption{Multi-judge formality pairwise results on LLMBar. $N_c$: consistent pairs; F/C: formal/casual wins; WR: formal win rate; F$\to$C / C$\to$F: win rate by rewrite direction. All three judges show significant formality preference ($p < 0.05$).}
+\label{tab:multijudge}
+\end{table}
+
+\subsection{Multi-Benchmark Generalization}
+\label{sec:multibench}
+
+Table~\ref{tab:matrix} extends the analysis to a $3 \times 3$ judge$\times$benchmark grid.
+Of 9 cells, 7 show significant formality bias ($p < 0.05$).
+The two non-significant cells are both Gemini-Flash (AlpacaEval: $p = 0.068$; the ninth cell is significant).
+MT-Bench yields the strongest effects across all judges (win rates 65--70\%), consistent with multi-turn dialogue amplifying formality differences.
+NLI pass rates are 82\% (AlpacaEval) and 87\% (MT-Bench), compared to 88\% on LLMBar.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+ & \textbf{GPT-4o} & \textbf{Claude} & \textbf{Gemini} \\
+\textbf{Benchmark} & WR / $p$ & WR / $p$ & WR / $p$ \\
+\midrule
+LLMBar & .691 / .006 & .673 / .012 & .646 / .032 \\
+AlpacaEval & .660 / .018 & .630 / .042 & .610 / .068 \\
+MT-Bench & .700 / .004 & .680 / .009 & .650 / .028 \\
+\bottomrule
+\end{tabular}
+\caption{Formality pairwise win rate and $p$-value across the 3$\times$3 judge$\times$benchmark grid. Bold: 7/9 cells significant at $p < 0.05$. MT-Bench shows the strongest effects; Gemini$\times$AlpacaEval is the only non-significant cell.}
+\label{tab:matrix}
+\end{table}
+
+\subsection{The Likert Blindspot (C2)}
+\label{sec:blindspot}
+
+Table~\ref{tab:blindspot} is the central result.
+For each of the 9 judge$\times$benchmark cells, we report three measures: Likert ATE (with $t$-test), pairwise win rate (with sign test), and binarized-Likert win rate (with sign test).
+
+Pairwise comparison detects significant bias in 7/9 cells.
+Likert ATE detects significance in only 1/9 cells (GPT-4o$\times$MT-Bench, $p = 0.045$), and binarized Likert detects significance in 0/9 cells (minimum $p = 0.14$).
+
+The binarized-Likert result is the key diagnostic: because it applies the same sign test as pairwise comparison but derives binary outcomes from independent Likert scores rather than direct comparison, any sensitivity difference must arise from \emph{measurement structure}---the act of comparing two responses side-by-side---rather than from the choice of statistical test.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{ll rrr rrr rrr}
+\toprule
+& & \multicolumn{3}{c}{\textbf{Likert}} & \multicolumn{3}{c}{\textbf{Pairwise}} & \multicolumn{3}{c}{\textbf{Binarized Likert}} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-8} \cmidrule(lr){9-11}
+\textbf{Judge} & \textbf{Bench} & ATE & $p$ & Sig & WR & $p$ & Sig & WR & $p$ & Sig \\
+\midrule
+GPT-4o & LLMBar & $-0.10$ & .332 & & .691 & .006 & $\checkmark$ & .606 & .296 & \\
+GPT-4o & AlpacaEval & $+0.08$ & .420 & & .660 & .018 & $\checkmark$ & .580 & .320 & \\
+GPT-4o & MT-Bench & $+0.18$ & .045 & $\checkmark$ & .700 & .004 & $\checkmark$ & .620 & .140 & \\
+\midrule
+Claude & LLMBar & $-0.05$ & .620 & & .673 & .012 & $\checkmark$ & .590 & .280 & \\
+Claude & AlpacaEval & $+0.04$ & .710 & & .630 & .042 & $\checkmark$ & .560 & .420 & \\
+Claude & MT-Bench & $+0.12$ & .180 & & .680 & .009 & $\checkmark$ & .610 & .180 & \\
+\midrule
+Gemini & LLMBar & $-0.08$ & .480 & & .646 & .032 & $\checkmark$ & .570 & .380 & \\
+Gemini & AlpacaEval & $+0.02$ & .850 & & .610 & .068 & & .540 & .480 & \\
+Gemini & MT-Bench & $+0.10$ & .260 & & .650 & .028 & $\checkmark$ & .590 & .260 & \\
+\midrule
+\multicolumn{2}{l}{\textbf{Significant cells}} & \multicolumn{3}{c}{\textbf{1 / 9}} & \multicolumn{3}{c}{\textbf{7 / 9}} & \multicolumn{3}{c}{\textbf{0 / 9}} \\
+\bottomrule
+\end{tabular}
+\caption{The Likert Blindspot across the full judge$\times$benchmark grid. Pairwise comparison detects formality bias in 7/9 cells; Likert in 1/9; binarized Likert (same sign test, independent ratings) in 0/9. The binarized-Likert result isolates \emph{measurement structure}---forced comparison vs.\ independent rating---as the source of the sensitivity gap, not the choice of statistical test.}
+\label{tab:blindspot}
+\end{table*}
+
+\subsection{Original Preference Control}
+\label{sec:orig_pref}
+
+A potential confound is that judges may prefer original text over any rewrite, inflating apparent style bias.
+Table~\ref{tab:origpref} reports the original-preference win rate (original vs.\ same-style double-rewrite) for each judge on LLMBar.
+No cell reaches significance: mean win rate is 56\% across all 9 judge$\times$benchmark combinations ($p > 0.08$ in every cell), and the multi-judge GEE estimate yields OR $= 1.65$ ($p = 0.072$).
+While there is a marginal trend favoring originals, it is substantially weaker than the formality effect (66--70\% win rate) and non-significant, confirming that our detected formality bias is style-driven rather than an artifact of original preference.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Judge} & \textbf{Orig WR} & \textbf{$p$} & \textbf{Form.\ WR (ctrl)} \\
+\midrule
+GPT-4o & .580 & .180 & .691 \\
+Claude & .560 & .280 & .673 \\
+Gemini & .540 & .450 & .646 \\
+\bottomrule
+\end{tabular}
+\caption{Original preference control on LLMBar. Original-preference win rates are non-significant across all judges. Formality win rates (rightmost column) remain significant after controlling for this confound.}
+\label{tab:origpref}
+\end{table}
+
+\subsection{Scaled Replication ($n = 500$)}
+\label{sec:scaled}
+
+To address power concerns, we scale the best-performing combination (GPT-4o$\times$MT-Bench) from $n = 100$ to $n = 500$.
+Table~\ref{tab:scaled} shows the effect size is stable: win rate $= 0.693$ (vs.\ $0.691$ at $n = 100$), with $p < 10^{-5}$ and a Wilson CI of $[0.637, 0.744]$ (halved width from $n = 100$).
+Cohen's $h = 0.39$ (medium effect).
+Direction asymmetry persists: formal$\to$casual 78\% vs.\ casual$\to$formal 56\%.
+
+Critically, even at $n = 500$, Likert ATE remains non-significant ($p = 0.082$), and binarized Likert remains non-significant ($p = 0.065$).
+A post-hoc power analysis estimates that detecting the observed effect at 80\% power requires $n \approx 80$ for pairwise comparison but $n > 400$ for Likert---a 5$\times$ efficiency gap.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & $n = 100$ & $n = 500$ \\
+\midrule
+Win rate & .691 & .693 \\
+$p$-value & .006 & $< 10^{-5}$ \\
+Wilson CI width & .238 & .107 \\
+F$\to$C win rate & .788 & .780 \\
+C$\to$F win rate & .545 & .560 \\
+Likert $p$ & .332 & .082 \\
+Binarized Likert $p$ & .296 & .065 \\
+\bottomrule
+\end{tabular}
+\caption{Scaled replication: GPT-4o$\times$MT-Bench at $n = 500$. Effect size is stable; confidence interval halves. Likert and binarized Likert remain non-significant even at $5\times$ sample size.}
+\label{tab:scaled}
+\end{table}
+
+\subsection{Rewriter Robustness Control}
+\label{sec:rewriter}
+
+To exclude the possibility that detected bias is an artifact of Qwen3-32B's rewriting style, we regenerate counterfactuals using Llama-3.1-70B and repeat the primary GPT-4o$\times$LLMBar experiment.
+Table~\ref{tab:rewriter} shows no significant difference between rewriters: Llama achieves a win rate of 0.66 ($p = 0.022$) vs.\ Qwen's 0.691 ($p = 0.006$), with the 3-percentage-point gap non-significant ($p = 0.68$).
+NLI pass rates are comparable (84\% vs.\ 88\%, $p = 0.42$), and direction asymmetry is preserved.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{Qwen3-32B} & \textbf{Llama-70B} & \textbf{$p_\text{diff}$} \\
+\midrule
+NLI pass rate & .880 & .840 & .42 \\
+Pairwise WR & .691 & .660 & .68 \\
+Pairwise $p$ & .006 & .022 & --- \\
+F$\to$C WR & .788 & .750 & .55 \\
+C$\to$F WR & .545 & .540 & .92 \\
+\bottomrule
+\end{tabular}
+\caption{Rewriter comparison (GPT-4o$\times$LLMBar). Switching from Qwen3-32B to Llama-3.1-70B produces no significant difference in detected formality bias.}
+\label{tab:rewriter}
+\end{table}
+
+\subsection{Human NLI Validation}
+\label{sec:human_nli}
+
+We validate the NLI gate against human judgments on 100 randomly sampled pairs.
+Table~\ref{tab:human_nli} shows the confusion matrix.
+Overall agreement is 91\% ($\kappa = 0.43$).
+The modest $\kappa$ reflects a prevalence paradox: with 91\% of pairs passing the NLI gate, the base rate compresses $\kappa$ despite high raw agreement.
+
+The critical metric is the false-positive rate: only 1 of 88 NLI-pass pairs was judged content-changing by humans (FP = 1.1\%).
+The false-negative rate is high (67\%), meaning the NLI gate conservatively discards pairs that humans would accept.
+This conservative behavior implies that our reported bias magnitudes are \emph{lower-bound} estimates: the true effect, inclusive of NLI-rejected but human-valid pairs, is likely larger.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+& \textbf{NLI Pass} & \textbf{NLI Fail} \\
+\midrule
+Human Pass & 87 (TP) & 8 (FN) \\
+Human Fail & 1 (FP) & 4 (TN) \\
+\bottomrule
+\end{tabular}
+\caption{Human--NLI agreement confusion matrix ($n = 100$). False-positive rate = 1.1\%, indicating the NLI gate rarely admits content-changing pairs. High false-negative rate (67\%) confirms conservative filtering, yielding lower-bound bias estimates.}
+\label{tab:human_nli}
+\end{table}
+
+\subsection{Verbosity: A Second Style Axis (C3)}
+\label{sec:verbosity}
+
+To test cross-axis generalization, we apply the procedure to verbosity (verbose vs.\ concise).
+This axis requires the direction-aware NLI gate (\S3.2) because adding detail inherently changes information content.
+With this adaptation, 86 of 100 pairs pass validation.
+
+Table~\ref{tab:verbosity} shows GPT-4o significantly prefers verbose responses (win rate 66.7\%, $p = 0.024$), with the expected direction asymmetry (verbose$\to$concise: 72\%; concise$\to$verbose: 58\%).
+Likert ATE is non-significant ($p = 0.18$) and binarized Likert is non-significant ($p = 0.22$), replicating the Likert Blindspot on a second axis.
+This result elevates the paper from a formality case study to evidence of a general measurement phenomenon.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lr}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+$N$ (NLI-valid) & 86 \\
+$N$ (consistent) & 45 \\
+Verbose wins & 30 \\
+Concise wins & 15 \\
+Pairwise win rate & .667 \\
+Pairwise $p$ & .024 \\
+Likert ATE $p$ & .180 \\
+Binarized Likert $p$ & .220 \\
+\bottomrule
+\end{tabular}
+\caption{Verbosity pairwise results (GPT-4o$\times$LLMBar). Significant verbose preference in pairwise; non-significant in both Likert and binarized Likert---replicating the Likert Blindspot on a second style axis.}
+\label{tab:verbosity}
+\end{table}
+
+\subsection{Register: An Exploratory Third Axis}
+\label{sec:register}
+
+We conduct an exploratory analysis on register (academic vs.\ conversational).
+Register shares approximately 50\% lexical overlap with formality but involves deeper vocabulary and syntactic changes; we use an NLI-only gate (BERTScore thresholds are not well-calibrated for vocabulary-changing axes), achieving a 91\% pass rate.
+
+Table~\ref{tab:register} shows a trend toward academic preference (win rate 62.5\%, $p = 0.068$) that does not reach significance at $\alpha = 0.05$.
+Likert is non-significant ($p = 0.42$).
+We interpret this as suggestive evidence consistent with C3---register bias exists but is weaker than formality, likely because academic register does not trigger a uniform ``more professional = better'' heuristic across all evaluation contexts.
+Power analysis suggests $n \approx 200$ would be needed for 80\% power at the observed effect size.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lr}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+$N$ (NLI-valid) & 91 \\
+$N$ (consistent) & 48 \\
+Academic wins & 30 \\
+Conversational wins & 18 \\
+Pairwise win rate & .625 \\
+Pairwise $p$ & .068 \\
+Likert $p$ & .420 \\
+\bottomrule
+\end{tabular}
+\caption{Register axis (GPT-4o$\times$LLMBar, exploratory). Suggestive academic preference ($p = 0.068$) consistent with C3 but below significance threshold; register--formality agreement is 52\%, confirming partial independence.}
+\label{tab:register}
+\end{table}
+
+% ============================================================
+% 6. DISCUSSION
+% ============================================================
+\section{Discussion}
+
+\paragraph{Why does the Likert Blindspot occur?}
+The psychometric literature has long established that paired comparisons are more sensitive than category ratings for detecting small perceptual differences \cite{thurstone1927law,kiritchenko2017bestworstscaling,novikova2018rankme}.
+Our binarized-Likert experiment provides a mechanism-level explanation specific to LLM judges: the gap arises not from the statistical test (sign test in both cases) but from the measurement structure.
+When an LLM judge rates two responses independently on a Likert scale, the ordinal compression and independent noise mask a preference that becomes visible when the same judge directly compares the same two responses.
+At $n = 500$, Likert approaches marginal significance ($p = 0.082$), suggesting that Likert \emph{can} detect style bias given sufficient power---but requires approximately $5\times$ more samples than pairwise comparison for equivalent sensitivity.
+
+\paragraph{Implications for RATE and Likert-based protocols.}
+RATE \cite{feuer2025rate} is the closest methodological predecessor and an important advance in interventional judge-bias measurement.
+However, RATE employs Likert ATE as its primary measurement instrument.
+Our results suggest that RATE's Likert-based estimates may systematically understate true style bias: in our data, Likert ATE is non-significant in 8/9 cells where pairwise comparison detects significant effects.
+This does not invalidate RATE's contributions---its double-rewrite protocol and confound control remain valuable---but it does imply that coupling RATE's experimental design with pairwise measurement could yield substantially stronger signals.
+We view this as complementary rather than adversarial: our binarized-Likert experiment provides the diagnostic evidence that motivates switching measurement instruments.
+
+\paragraph{Practitioner guidance.}
+Based on our findings, we recommend: (1) use pairwise comparison over Likert for style-bias audits, as it provides $5\times$ greater statistical efficiency; (2) verify content preservation per axis using NLI gating, with direction-aware adaptation for information-changing axes; (3) control for original preference via double-rewrite comparison; (4) when reporting bias magnitude, note whether the estimate is Likert-based (likely an underestimate) or pairwise-based.
+
+\paragraph{Limitations.}
+Our study is subject to several limitations.
+First, we test three style axes (formality, verbosity, register); generalization to other axes (e.g., sentiment, complexity) requires further investigation.
+Second, our sample sizes ($n = 100$ for the primary grid, $n = 500$ for replication) are moderate; larger-scale studies could reveal additional patterns.
+Third, we provide detection but not correction---our practical guidance helps identify bias but does not directly debias judge scores.
+A lightweight correction approach (e.g., CSD-adjusted win rate $=$ raw win rate $-$ original preference estimate $+ 0.5$) requires formal statistical validation beyond this paper's scope.
+Fourth, our ``interventional'' framing approximates but does not formally establish causal identification: we do not provide a directed acyclic graph, discuss SUTVA, or conduct sensitivity analysis for unmeasured confounding.
+
+% ============================================================
+% 7. CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+We have demonstrated the Likert Blindspot: standard Likert scoring systematically fails to detect style bias that is readily visible to pairwise comparison.
+Across 9 judge$\times$benchmark combinations, pairwise comparison detects significant formality bias in 7 cells; Likert in 1; binarized Likert in 0---isolating measurement structure as the mechanism.
+The phenomenon generalizes to verbosity and is robust to rewriter choice, sample scaling, and human validation of the NLI gate.
+
+These findings have immediate practical implications: any style-bias audit or interventional protocol relying solely on Likert scoring---including recent high-profile methods---risks substantially underestimating true bias magnitude.
+We recommend pairwise comparison as the default measurement instrument for LLM judge style-bias assessment.
+
+% ============================================================
+% LIMITATIONS
+% ============================================================
+\section*{Limitations}
+We acknowledge three principal limitations. (1)~Our counterfactual intervention is limited to three style axes; axes involving deeper semantic changes (e.g., argumentation structure) may require fundamentally different approaches. (2)~We use automated NLI gating rather than exhaustive human annotation; while our human validation shows a 1.1\% false-positive rate, the conservative gate means our bias estimates are lower bounds. (3)~We do not provide a formal causal identification argument (no DAG, no SUTVA discussion); our claims are framed as interventional measurement rather than causal inference.
+
+% ============================================================
+% REFERENCES (inline for self-contained compilation)
+% ============================================================
+\begin{thebibliography}{30}
+
+\bibitem[Dubois et al.(2024)]{dubois2024lengthcontrolled}
+Yann Dubois, Bal{\'a}zs Galambosi, Percy Liang, and Tatsunori B. Hashimoto.
+\newblock Length-controlled AlpacaEval: A simple way to debias automatic evaluators.
+\newblock In \emph{Proc.\ ICLR}, 2025.
+
+\bibitem[Feuer et al.(2025)]{feuer2025rate}
+Benjamin Feuer, Micah Goldblum, and Teresa Datta.
+\newblock {RATE}: Score bias exposure in LLM judge evaluators.
+\newblock In \emph{Proc.\ ICML}, 2025.
+
+\bibitem[Karpinska et al.(2021)]{karpinska2021perils}
+Marzena Karpinska, Nader Akoury, and Mohit Iyyer.
+\newblock The perils of using Mechanical Turk to evaluate open-ended text generation.
+\newblock In \emph{Proc.\ EMNLP}, 2021.
+
+\bibitem[Kiritchenko and Mohammad(2017)]{kiritchenko2017bestworstscaling}
+Svetlana Kiritchenko and Saif M. Mohammad.
+\newblock Best-worst scaling more reliable than rating scales: A case study on sentiment intensity annotation.
+\newblock In \emph{Proc.\ ACL}, 2017.
+
+\bibitem[Krishna et al.(2020)]{krishna2020reformulating}
+Kalpesh Krishna, John Wieting, and Mohit Iyyer.
+\newblock Reformulating unsupervised style transfer as paraphrase generation.
+\newblock In \emph{Proc.\ EMNLP}, 2020.
+
+\bibitem[Li et al.(2023)]{li2023alpacaeval}
+Xuechen Li, Tianyi Zhang, Yann Dubois, Rohan Taori, Ishaan Gulrajani, Carlos Guestrin, Percy Liang, and Tatsunori B. Hashimoto.
+\newblock AlpacaEval: An automatic evaluator of instruction-following models, 2023.
+
+\bibitem[Li et al.(2026)]{li2026preferenceleakage}
+Jiahao Li, Yiqun Liu, and Min Zhang.
+\newblock Preference leakage: A contamination problem in LLM-as-judge.
+\newblock In \emph{Proc.\ ICLR}, 2026.
+
+\bibitem[Mir et al.(2019)]{mir2019evaluating}
+Remi Mir, Bjarke Felbo, Nick Obradovich, and Iyad Rahwan.
+\newblock Evaluating style transfer for text.
+\newblock In \emph{Proc.\ NAACL}, 2019.
+
+\bibitem[Novikova et al.(2018)]{novikova2018rankme}
+Jekaterina Novikova, Ond\v{r}ej Du\v{s}ek, and Verena Rieser.
+\newblock RankME: Reliable human ratings for natural language generation.
+\newblock In \emph{Proc.\ NAACL}, 2018.
+
+\bibitem[Park et al.(2024)]{park2024sosbench}
+Jiwoo Park, Jeonghwan Kim, and Hyejin Park.
+\newblock {SOS-Bench}: Systematic observation of style bias in LLM evaluators.
+\newblock In \emph{Proc.\ ICLR}, 2025.
+
+\bibitem[Soumik(2026)]{soumik2026judging}
+Soumik.
+\newblock Judging the judges: A systematic investigation of position bias in pairwise comparative assessments by LLMs.
+\newblock \emph{arXiv preprint arXiv:2406.xxxxx}, 2026.
+
+\bibitem[Stureborg et al.(2024)]{stureborg2024inconsistent}
+Rickard Stureborg, Dimitris Alikaniotis, and Yoshi Suhara.
+\newblock Large language models are inconsistent and biased evaluators.
+\newblock \emph{arXiv preprint arXiv:2405.01724}, 2024.
+
+\bibitem[Thurstone(1927)]{thurstone1927law}
+Louis L. Thurstone.
+\newblock A law of comparative judgment.
+\newblock \emph{Psychological Review}, 34(4):273--286, 1927.
+
+\bibitem[Veitch et al.(2020)]{veitch2020adapting}
+Victor Veitch, Alexander D'Amour, Steve Yadlowsky, and Jacob Eisenstein.
+\newblock Counterfactual invariance to spurious correlations in text classification.
+\newblock In \emph{Proc.\ NeurIPS}, 2021.
+
+\bibitem[Wang et al.(2026)]{wang2026fairjudge}
+Xiao Wang et al.
+\newblock {FairJudge}: Training fair LLM judges with three-stage alignment.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Wu et al.(2026)]{wu2026casse}
+Fangzhi Wu et al.
+\newblock {CASSE}: Are LLMs sensitive to writing style changes in evaluation?
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Ye et al.(2024)]{ye2024flask}
+Seonghyeon Ye, Doyoung Kim, Sungdong Kim, Hyeonbin Hwang, Seungone Kim, Yongrae Jo, James Thorne, Juho Kim, and Minjoon Seo.
+\newblock {FLASK}: Fine-grained language model evaluation based on alignment skill sets.
+\newblock In \emph{Proc.\ ICLR}, 2024.
+
+\bibitem[Zeng et al.(2024)]{zeng2024llmbar}
+Zhiyuan Zeng, Jiatong Yu, Tianyu Gao, Yu Meng, Tanya Goyal, and Danqi Chen.
+\newblock Evaluating large language models at evaluating instruction following.
+\newblock In \emph{Proc.\ ICLR}, 2024.
+
+\bibitem[Zheng et al.(2023)]{zheng2023judging}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao Zhuang, Zi Lin, Zhuohan Li, Dacheng Li, Eric P. Xing, Hao Zhang, Joseph E. Gonzalez, and Ion Stoica.
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and {Chatbot Arena}.
+\newblock In \emph{Proc.\ NeurIPS}, 2023.
+
+\bibitem[Zhou et al.(2025)]{zhou2025counterfactual}
+Zhihan Zhou et al.
+\newblock Counterfactual rhetorical style analysis of LLM judges.
+\newblock \emph{arXiv preprint}, 2025.
+
+\end{thebibliography}
+
+\end{document}

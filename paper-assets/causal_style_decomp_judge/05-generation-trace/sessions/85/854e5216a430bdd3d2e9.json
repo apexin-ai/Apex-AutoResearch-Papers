@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_mvp_kill_zombie_and_verify_20260520T142556_result.json",
     "occurrence": 1,
-    "bytes": 603,
-    "sha256": "f5e60fde9b3393d4fec70a9f40be5f544298a65e192eaa706c2e5d9250370a65"
+    "bytes": 602,
+    "sha256": "2843bd560a25fbf37514909ab18045daf9726d9aa3afebc803f51cc1d0818bdd"
   },
   "statistics": {
     "messages": 1,

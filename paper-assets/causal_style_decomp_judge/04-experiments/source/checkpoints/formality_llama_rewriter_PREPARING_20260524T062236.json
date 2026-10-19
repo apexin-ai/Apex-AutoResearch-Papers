@@ -1,0 +1,15 @@
+{
+  "exp_id": "formality_llama_rewriter",
+  "project": "causal_style_decomp_judge",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:22:32.105Z",
+    "updated_at": "2026-05-24T06:22:36.857Z",
+    "hypothesis": "Using Llama-70B as rewriter (instead of Qwen3-32B) for formality counterfactuals will still produce significant BT style bias in Qwen3-32B judge, ruling out rewriter-family artifact. Expected: BT within 10-25% of Qwen3-rewriter baseline (66.5%), similar to the 22% reduction seen with GPT-4o rewriter."
+  },
+  "timestamp": "2026-05-24T06:22:36.972637+00:00",
+  "trigger": "update_registry"
+}

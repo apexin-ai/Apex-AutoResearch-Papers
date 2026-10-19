@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文本标注工具</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+.container { max-width: 960px; margin: 0 auto; padding: 20px; }
+h1 { text-align: center; margin-bottom: 8px; font-size: 24px; color: #1a1a2e; }
+.subtitle { text-align: center; color: #666; margin-bottom: 20px; font-size: 14px; }
+
+.upload-area { text-align: center; padding: 40px; border: 2px dashed #ccc; border-radius: 12px; background: #fff; margin-bottom: 20px; }
+.upload-area.hidden { display: none; }
+.upload-btn { background: #4361ee; color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-size: 16px; cursor: pointer; transition: background 0.2s; }
+.upload-btn:hover { background: #3a56d4; }
+.upload-hint { margin-top: 12px; color: #999; font-size: 13px; }
+
+.progress-bar-outer { background: #e0e0e0; border-radius: 10px; height: 8px; margin-bottom: 16px; overflow: hidden; }
+.progress-bar-inner { background: linear-gradient(90deg, #4361ee, #7209b7); height: 100%; border-radius: 10px; transition: width 0.3s; }
+.progress-text { text-align: center; margin-bottom: 12px; font-size: 14px; color: #555; }
+
+.main-panel { display: none; }
+.main-panel.active { display: block; }
+
+.meta-row { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+.meta-tag { background: #e8eaf6; padding: 6px 14px; border-radius: 20px; font-size: 13px; color: #3949ab; font-weight: 500; }
+
+.text-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+@media (max-width: 700px) { .text-pair { grid-template-columns: 1fr; } }
+.text-box { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 16px; max-height: 400px; overflow-y: auto; }
+.text-box h3 { font-size: 14px; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+.text-box .content { font-size: 15px; white-space: pre-wrap; word-break: break-word; }
+
+.annotation-section { background: #fff; border-radius: 10px; padding: 20px; border: 1px solid #e0e0e0; margin-bottom: 16px; }
+.annotation-section h3 { font-size: 15px; margin-bottom: 12px; color: #333; }
+.btn-group { display: flex; gap: 10px; margin-bottom: 16px; }
+.btn-option { flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; background: #fff; font-size: 15px; cursor: pointer; text-align: center; transition: all 0.2s; font-weight: 500; }
+.btn-option:hover { border-color: #4361ee; background: #f0f3ff; }
+.btn-option.selected-yes { border-color: #2e7d32; background: #e8f5e9; color: #2e7d32; }
+.btn-option.selected-no { border-color: #c62828; background: #ffebee; color: #c62828; }
+.notes-input { width: 100%; border: 1px solid #e0e0e0; border-radius: 8px; padding: 10px; font-size: 14px; resize: vertical; min-height: 60px; font-family: inherit; }
+.notes-input:focus { outline: none; border-color: #4361ee; }
+
+.nav-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; }
+.nav-btn { background: #fff; border: 1px solid #ccc; padding: 10px 24px; border-radius: 8px; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+.nav-btn:hover:not(:disabled) { background: #4361ee; color: #fff; border-color: #4361ee; }
+.nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.nav-center { font-size: 15px; color: #555; }
+.export-btn { background: #2e7d32; color: #fff; border: none; padding: 10px 24px; border-radius: 8px; font-size: 14px; cursor: pointer; transition: background 0.2s; }
+.export-btn:hover { background: #1b5e20; }
+
+.label-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+.label-text { font-size: 14px; color: #555; min-width: 160px; }
+
+.done-banner { text-align: center; padding: 20px; background: #e8f5e9; border-radius: 10px; margin-bottom: 16px; display: none; }
+.done-banner.show { display: block; }
+.done-banner p { color: #2e7d32; font-size: 16px; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>文本标注工具</h1>
+  <p class="subtitle">NLI 语义门控验证 · 判断改写文本是否保留原文核心含义</p>
+
+  <div class="upload-area" id="uploadArea">
+    <input type="file" id="fileInput" accept=".csv" style="display:none">
+    <button class="upload-btn" onclick="document.getElementById('fileInput').click()">加载 CSV 文件</button>
+    <p class="upload-hint">请选择 annotation_batch2_template.csv</p>
+  </div>
+
+  <div class="main-panel" id="mainPanel">
+    <div class="progress-text" id="progressText"></div>
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="progressBar"></div></div>
+
+    <div class="done-banner" id="doneBanner"><p>全部标注完成！请点击下方"导出结果"保存。</p></div>
+
+    <div class="meta-row" id="metaRow"></div>
+    <div class="text-pair">
+      <div class="text-box">
+        <h3>原文 (Original)</h3>
+        <div class="content" id="origText"></div>
+      </div>
+      <div class="text-box">
+        <h3>改写文本 (Counterfactual)</h3>
+        <div class="content" id="cfText"></div>
+      </div>
+    </div>
+
+    <div class="annotation-section">
+      <div class="label-row">
+        <span class="label-text">含义是否保留？</span>
+      </div>
+      <div class="btn-group" id="meaningGroup">
+        <button class="btn-option" data-field="preserves_meaning" data-value="Yes" onclick="setAnnotation(this)">是 (Yes)</button>
+        <button class="btn-option" data-field="preserves_meaning" data-value="No" onclick="setAnnotation(this)">否 (No)</button>
+      </div>
+      <div class="label-row">
+        <span class="label-text">风格是否有明显变化？</span>
+      </div>
+      <div class="btn-group" id="styleGroup">
+        <button class="btn-option" data-field="style_change_detected" data-value="Yes" onclick="setAnnotation(this)">是 (Yes)</button>
+        <button class="btn-option" data-field="style_change_detected" data-value="No" onclick="setAnnotation(this)">否 (No)</button>
+      </div>
+      <h3 style="margin-top:12px; margin-bottom:8px;">备注（可选）</h3>
+      <textarea class="notes-input" id="notesInput" placeholder="如有不确定或需要说明的地方，请在此处填写..." oninput="saveNotes()"></textarea>
+    </div>
+
+    <div class="nav-row">
+      <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">← 上一条</button>
+      <span class="nav-center" id="navCenter"></span>
+      <button class="nav-btn" id="nextBtn" onclick="navigate(1)">下一条 →</button>
+    </div>
+    <div style="text-align:center; margin-top:8px;">
+      <button class="export-btn" onclick="exportCSV()">导出结果 (CSV)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let data = [];
+let currentIdx = 0;
+let headers = [];
+
+document.getElementById('fileInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    parseCSV(ev.target.result);
+    if (data.length > 0) {
+      document.getElementById('uploadArea').classList.add('hidden');
+      document.getElementById('mainPanel').classList.add('active');
+      render();
+    }
+  };
+  reader.readAsText(file);
+});
+
+function parseCSV(text) {
+  const rows = [];
+  let current = '';
+  let inQuotes = false;
+  let row = [];
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inQuotes) {
+      if (ch === '"') {
+        if (i + 1 < text.length && text[i + 1] === '"') {
+          current += '"';
+          i++;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        current += ch;
+      }
+    } else {
+      if (ch === '"') {
+        inQuotes = true;
+      } else if (ch === ',') {
+        row.push(current);
+        current = '';
+      } else if (ch === '\n' || ch === '\r') {
+        if (ch === '\r' && i + 1 < text.length && text[i + 1] === '\n') i++;
+        row.push(current);
+        current = '';
+        if (row.length > 1) rows.push(row);
+        row = [];
+      } else {
+        current += ch;
+      }
+    }
+  }
+  if (current || row.length > 0) {
+    row.push(current);
+    if (row.length > 1) rows.push(row);
+  }
+  if (rows.length < 2) return;
+  headers = rows[0].map(h => h.trim());
+  for (let i = 1; i < rows.length; i++) {
+    const obj = {};
+    headers.forEach((h, j) => { obj[h] = (rows[i][j] || '').trim(); });
+    data.push(obj);
+  }
+}
+
+function render() {
+  const d = data[currentIdx];
+  document.getElementById('metaRow').innerHTML =
+    `<span class="meta-tag">ID: ${d.sample_id}</span>` +
+    `<span class="meta-tag">维度: ${d.axis === 'formality' ? '正式度 (formality)' : '冗长度 (verbosity)'}</span>` +
+    `<span class="meta-tag">NLI 分数: ${parseFloat(d.nli_score).toFixed(4)}</span>` +
+    `<span class="meta-tag">NLI 通过: ${d.nli_pass === 'True' ? '是' : '否'}</span>`;
+  document.getElementById('origText').textContent = d.original_text || '';
+  document.getElementById('cfText').textContent = d.counterfactual_text || '';
+
+  document.querySelectorAll('#meaningGroup .btn-option').forEach(btn => {
+    btn.className = 'btn-option';
+    if (d.preserves_meaning && btn.dataset.value === d.preserves_meaning) {
+      btn.classList.add(d.preserves_meaning === 'Yes' ? 'selected-yes' : 'selected-no');
+    }
+  });
+  document.querySelectorAll('#styleGroup .btn-option').forEach(btn => {
+    btn.className = 'btn-option';
+    if (d.style_change_detected && btn.dataset.value === d.style_change_detected) {
+      btn.classList.add(d.style_change_detected === 'Yes' ? 'selected-yes' : 'selected-no');
+    }
+  });
+  document.getElementById('notesInput').value = d.notes || '';
+
+  const annotated = data.filter(r => r.preserves_meaning).length;
+  document.getElementById('progressText').textContent = `已标注 ${annotated} / ${data.length}`;
+  document.getElementById('progressBar').style.width = (annotated / data.length * 100) + '%';
+  document.getElementById('navCenter').textContent = `第 ${currentIdx + 1} 条 / 共 ${data.length} 条`;
+  document.getElementById('prevBtn').disabled = currentIdx === 0;
+  document.getElementById('nextBtn').disabled = currentIdx === data.length - 1;
+
+  document.getElementById('doneBanner').classList.toggle('show', annotated === data.length);
+}
+
+function setAnnotation(btn) {
+  const field = btn.dataset.field;
+  const value = btn.dataset.value;
+  data[currentIdx][field] = value;
+  render();
+}
+
+function saveNotes() {
+  data[currentIdx].notes = document.getElementById('notesInput').value;
+}
+
+function navigate(dir) {
+  currentIdx += dir;
+  if (currentIdx < 0) currentIdx = 0;
+  if (currentIdx >= data.length) currentIdx = data.length - 1;
+  render();
+  window.scrollTo(0, 0);
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowLeft' || e.key === 'a') navigate(-1);
+  if (e.key === 'ArrowRight' || e.key === 'd') navigate(1);
+  if (e.key === '1') { data[currentIdx].preserves_meaning = 'Yes'; render(); }
+  if (e.key === '2') { data[currentIdx].preserves_meaning = 'No'; render(); }
+  if (e.key === '3') { data[currentIdx].style_change_detected = 'Yes'; render(); }
+  if (e.key === '4') { data[currentIdx].style_change_detected = 'No'; render(); }
+});
+
+function exportCSV() {
+  let csv = headers.map(h => `"${h}"`).join(',') + '\n';
+  data.forEach(row => {
+    csv += headers.map(h => {
+      let v = (row[h] || '').replace(/"/g, '""');
+      return `"${v}"`;
+    }).join(',') + '\n';
+  });
+  const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'annotation_batch2_results.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>

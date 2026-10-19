@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_data-truth-maintext_20260525T194155_result.json",
     "occurrence": 1,
-    "bytes": 894,
-    "sha256": "ff0aa02eb5d7462dd87d000fdd121644002d13c137299ca1ee67696eb1708dd7"
+    "bytes": 893,
+    "sha256": "bb1282752bbac8d8e1fe927e0ce8ac3311c63fdc73873a8f2a2b058f69170875"
   },
   "statistics": {
     "messages": 1,

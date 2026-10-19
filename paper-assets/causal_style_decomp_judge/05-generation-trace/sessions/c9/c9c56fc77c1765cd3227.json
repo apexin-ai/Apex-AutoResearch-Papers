@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_data_figure1_candidates_20260521T221715_result.json",
     "occurrence": 1,
-    "bytes": 820,
-    "sha256": "05c04c313eb2f302d955c36f3cf90cad035d706b269ab112dbcf2bf9c8aca7ff"
+    "bytes": 819,
+    "sha256": "74e6f8275a2ac4305be282a6a4528303f4697c15a6b3ad1795111aea5fec7d02"
   },
   "statistics": {
     "messages": 1,

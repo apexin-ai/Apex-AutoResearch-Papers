@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_table_t1_full_audit_20260524T083928_result.json",
     "occurrence": 1,
-    "bytes": 3761,
-    "sha256": "9b5c89ebf4a77fe988a08a2eee41b24c59cbb5a85132bbdbb18e5a872d8283e4"
+    "bytes": 3760,
+    "sha256": "1a9da3559fac78b4265ca83a6afdf6d690af8c9e40508711310416d9b8ac9f94"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_mvp_check_8b_and_launch_20260520T125314_result.json",
     "occurrence": 1,
-    "bytes": 131,
-    "sha256": "dcb467e103265daa27a1ea4362a1bcf570d0fe72325ce11019bd20c75cbdfe1d"
+    "bytes": 130,
+    "sha256": "3608286f9b43b473626eb453341ee1c8c74b6474cf779eab6fdd332e480d3cf1"
   },
   "statistics": {
     "messages": 1,

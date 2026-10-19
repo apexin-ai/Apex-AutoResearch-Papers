@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_8b_progress_and_bertscore_20260520T120645_result.json",
     "occurrence": 1,
-    "bytes": 674,
-    "sha256": "d148c8e65d3bb8a3f75bede5e2f9a4f6b144d0a90b8c4ebdd3e59f8af7a8f044"
+    "bytes": 673,
+    "sha256": "2f2ca774a59623bdbf7396b16199f0d6b8dd2b31f225bbdaef0fb7c094670d3a"
   },
   "statistics": {
     "messages": 1,

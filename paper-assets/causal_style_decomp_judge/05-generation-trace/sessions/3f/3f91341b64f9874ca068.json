@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_pipeline_claude-expanded-v2_20260522T233108_result.json",
     "occurrence": 1,
-    "bytes": 283,
-    "sha256": "72d7efc37055bfcc9f06d559fab960960e1b312dde3073f58ee48bd63285c225"
+    "bytes": 282,
+    "sha256": "cee41d055e1a79d11602e299990d8fd21e1610f26ad870ff40c64c90588be3ea"
   },
   "statistics": {
     "messages": 1,

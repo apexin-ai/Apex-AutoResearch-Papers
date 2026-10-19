@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_pipeline_crossbench-local_20260522T231414_result.json",
     "occurrence": 1,
-    "bytes": 1520,
-    "sha256": "3ff9b970a14621d7cc41cf1a2e6fa77da2b937b4921b33b1e45c06d4030bd2f7"
+    "bytes": 1519,
+    "sha256": "ac270459642ed059fc8dd892c67a53442b4498edaf5c2d72ab9623862f6e191a"
   },
   "statistics": {
     "messages": 1,

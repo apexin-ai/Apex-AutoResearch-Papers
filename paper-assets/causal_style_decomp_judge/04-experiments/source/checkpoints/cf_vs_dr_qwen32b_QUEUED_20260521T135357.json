@@ -1,0 +1,16 @@
+{
+  "exp_id": "cf_vs_dr_qwen32b",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:37:03.554Z",
+    "updated_at": "2026-05-21T13:53:57.535Z",
+    "hypothesis": "Comparing counterfactual (style-changed + artifact) vs double-rewrite (original-style + artifact) isolates pure style effect by controlling for rewriting artifact. CF win rate significantly different from 50% proves style bias exists beyond rewriting artifact (MF1 critical defense).",
+    "parent": "double_rewrite_placebo_qwen32b"
+  },
+  "timestamp": "2026-05-21T13:53:57.639958+00:00",
+  "trigger": "update_registry"
+}

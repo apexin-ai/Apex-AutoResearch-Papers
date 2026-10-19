@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_api_proxy_detailed_check_20260521T060216_result.json",
     "occurrence": 1,
-    "bytes": 1322,
-    "sha256": "15f1ee76d5b3ef1efbb72f657893d2fe21acc0c199d0f912ad04575fddbcbf18"
+    "bytes": 1321,
+    "sha256": "2bdfd63a44d80dd34901745487d93d70225cb1773b298c1cc02deb4c35dc6d04"
   },
   "statistics": {
     "messages": 1,

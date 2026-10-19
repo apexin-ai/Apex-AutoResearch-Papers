@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_qwen32b_register_bt_and_forest_plot_20260521T055308_result.json",
     "occurrence": 1,
-    "bytes": 572,
-    "sha256": "f4e733b3f1a000200cc320b4a844fbe65c904ecca45e9dcbcbb408cf9ac11599"
+    "bytes": 571,
+    "sha256": "76588824167fc08cc36a535a064649a38f6c0fe2354bd97e7943bdbfdcf74508"
   },
   "statistics": {
     "messages": 1,

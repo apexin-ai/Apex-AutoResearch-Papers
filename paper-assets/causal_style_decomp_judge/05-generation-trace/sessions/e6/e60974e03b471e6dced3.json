@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_power_curve_d031_alignment_20260521T033306_result.json",
     "occurrence": 1,
-    "bytes": 402,
-    "sha256": "ad625d8aa378bdf96a252811300dc88910a11b383a95cded7993e33c4e2658ef"
+    "bytes": 401,
+    "sha256": "c23acdfc9f3146e0d5f69a329bf7a31e369ee70565e91744f6f359f75406ec7d"
   },
   "statistics": {
     "messages": 1,

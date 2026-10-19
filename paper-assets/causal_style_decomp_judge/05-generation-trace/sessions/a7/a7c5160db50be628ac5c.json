@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_tost-delta_20260522T035524_result.json",
     "occurrence": 1,
-    "bytes": 927,
-    "sha256": "ad45d76bb3abec314822b835915537835a5c4a1b775c0e5e9eeb2119c7ef2df8"
+    "bytes": 926,
+    "sha256": "aa7b6adc43d65c0170300be9abbbae89165d65b1a9485d126fdd2501f835e7a6"
   },
   "statistics": {
     "messages": 1,

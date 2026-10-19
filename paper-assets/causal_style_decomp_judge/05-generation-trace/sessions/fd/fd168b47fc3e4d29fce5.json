@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_cf_vs_dr_qwen32b_20260521T133745_result.json",
     "occurrence": 1,
-    "bytes": 1885,
-    "sha256": "3031c6e15f05a95c85cd4519f248d873ed766fc22c561e66e7cbece6cf6ba266"
+    "bytes": 1884,
+    "sha256": "4c66e3fa02683b448c44d3dbdb3a6c9843618b3093f165eaba834bda08471823"
   },
   "statistics": {
     "messages": 1,

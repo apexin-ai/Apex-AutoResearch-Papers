@@ -1,0 +1,15 @@
+{
+  "exp_id": "finegrained_likert_100pt",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:42:30.686Z",
+    "updated_at": "2026-05-21T15:42:35.389Z",
+    "hypothesis": "The Likert Blindspot is NOT a scale granularity artifact: even a 100-point continuous scale (0-100) should fail to detect the style bias that pairwise BT detects, because the blindspot stems from absolute-vs-relative evaluation paradigm differences, not insufficient scale resolution"
+  },
+  "timestamp": "2026-05-21T15:42:35.512250+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_formality-wc-covariate_20260522T183517_result.json",
     "occurrence": 1,
-    "bytes": 1297,
-    "sha256": "347933a584c88f8f7aa3f999570b4e69f43b1302f6d391ed54676f7488d956c1"
+    "bytes": 1296,
+    "sha256": "a671915f80d58d44526de892e11fc25ba3894514066949bf2d9263fb41f97205"
   },
   "statistics": {
     "messages": 1,

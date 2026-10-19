@@ -19916,7 +19916,7 @@ AlpacaEval×Llama-70B 和 MT-Bench×Qwen3-32B 均**无 Blindspot**（Likert 也�
 [飞书用户 周俊伟 (ou_12dd9ff08637b7e6e17c57e4b4a96048)]: [引用消息] 阻塞项：API 余额为零 Claude 和 GPT-4o 的 API key（TUM 代理）余额耗尽，所有外部 API 调用返回 402。影响： -  任务3 (Claude 88→200) ：counterfactual pair 已准备好，但 Claude 评分全部 null——需要充值后重新跑评分 -  任务4 (GPT-4o cross-benchmark) ：GPT-4o × AlpacaEval verbosity 被阻塞 已完成的配置 （本地 vLLM，无需 API）： -  AlpacaEval × Llama-70B × formality ✅（无 Blindspot——Likert 也显著，与论文 severity spectrum 一致） -  MT-Bench × Qwen3-32B × formality ✅（无 Blindspot——同上） 新数据与论文已有 claim 完全一致：Blindspot 在 moderate effect（LLMBar）完整，在 stronger effect（AEval/MTB）消失——不需要改 claim。 需要你操作 ：TUM API key 充值。脚本已就绪，充值后 Agent 可立即恢复执行。
  如果不充值，任务 3/4b 就标 BLOCKED——论文维持 n=87 + Δ=15pp 限定，D072 MF4 的 Claude qualification 写作修复不受影响，只是论证力度稍弱。 请决定是否充值。
 
-走OpenRouter 官方 API：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 (Edited)
+走OpenRouter 官方 API：[REDACTED_API_TOKEN] (Edited)
 
 ---
 

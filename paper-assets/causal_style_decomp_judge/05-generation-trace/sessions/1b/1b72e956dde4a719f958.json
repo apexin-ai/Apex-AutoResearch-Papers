@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_push_abstract-abbrev-expand_20260525T110703_result.json",
     "occurrence": 1,
-    "bytes": 266,
-    "sha256": "eb4d5b605ca15adde714865dc98d6f8746795a27a996e0f2dcf17780d79ef789"
+    "bytes": 265,
+    "sha256": "380ba1a5f242b996fe66324ffb936435323c9a124ba764c07a100c886336376b"
   },
   "statistics": {
     "messages": 1,

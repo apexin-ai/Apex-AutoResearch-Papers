@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_mvp_sync_and_restart_cf_20260520T132118_result.json",
     "occurrence": 1,
-    "bytes": 701,
-    "sha256": "8642d414865b74831b8f2978ef377bbac159197a380c4c98efa57b0e6e289aa7"
+    "bytes": 700,
+    "sha256": "73642271b0c61827df42ef3d58a60c468efa762baccb016368900d6c13d5797d"
   },
   "statistics": {
     "messages": 1,

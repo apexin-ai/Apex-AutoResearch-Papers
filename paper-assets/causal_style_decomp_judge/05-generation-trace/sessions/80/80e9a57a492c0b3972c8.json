@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_bugfix_claude-pipeline-diagnosis_20260523T000123_result.json",
     "occurrence": 1,
-    "bytes": 1639,
-    "sha256": "84ed789091e6286a3335777a722e8a0cc73d1cfec8fffc529bdc9dadae4c1687"
+    "bytes": 1638,
+    "sha256": "09ffcc89a2f559b56ef994428fee31dc3c3977a60b0d65fd18e0752319e244ca"
   },
   "statistics": {
     "messages": 1,

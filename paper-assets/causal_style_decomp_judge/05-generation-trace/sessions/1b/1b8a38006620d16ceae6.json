@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_double_rewrite_placebo_gpt4o_20260521T132448_result.json",
     "occurrence": 1,
-    "bytes": 766,
-    "sha256": "107b9cfb36c682d6407a84f092b1e874eddf177ca349b954824e16c3ce0c6a00"
+    "bytes": 765,
+    "sha256": "594a16ddb757bbec41f796392d0d70cd396dc7998798b4be22785764f2cc70c4"
   },
   "statistics": {
     "messages": 1,

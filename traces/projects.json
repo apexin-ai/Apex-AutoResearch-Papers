@@ -42,7 +42,7 @@
         "messages": 73378,
         "user_turns": 2385,
         "tool_calls": 30580,
-        "unparsed_lines": 214,
+        "unparsed_lines": 215,
         "result": 211,
         "worker": 221,
         "conversation": 69,

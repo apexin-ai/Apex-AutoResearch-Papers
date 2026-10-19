@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_verbosity_nli_rerun_20260520T212813_result.json",
     "occurrence": 1,
-    "bytes": 1867,
-    "sha256": "c31ea1510bb4d9519531652e533d9d8525c34f2f7a9da07bd9e350dfadce02e2"
+    "bytes": 1866,
+    "sha256": "77e52b1bf70faccccbef7e6af823e67ba93b423ee50211a29f753922f4513b3d"
   },
   "statistics": {
     "messages": 1,

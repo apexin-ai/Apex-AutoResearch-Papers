@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_cross-axis-contamination_20260522T094158_result.json",
     "occurrence": 1,
-    "bytes": 1823,
-    "sha256": "80b4ba0ba2894584f7bd7106ece23d235e356877fdb18e2d1ca5e50846deadfb"
+    "bytes": 1822,
+    "sha256": "733f6d5f8a7e1378a2810a21303e41a035aaaf79db4e3ed43e466489ad5e9d07"
   },
   "statistics": {
     "messages": 1,

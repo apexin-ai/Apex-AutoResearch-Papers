@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_claude_judge_lmbar_scoring_20260521T082556_result.json",
     "occurrence": 1,
-    "bytes": 1300,
-    "sha256": "5560b96a7b2bae09a2ef8f608c8767c3cbbd5c9d50b2c429d894e2ebb814d7bd"
+    "bytes": 1299,
+    "sha256": "9b556c184d3f5ee2ff9a3d8982a2b9f7832a8e7046dcf4d3355208f2192d5f88"
   },
   "statistics": {
     "messages": 1,

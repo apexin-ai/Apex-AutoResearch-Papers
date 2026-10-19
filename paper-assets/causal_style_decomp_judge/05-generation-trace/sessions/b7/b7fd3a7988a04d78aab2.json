@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_reference-audit_20260522T010830_result.json",
     "occurrence": 1,
-    "bytes": 996,
-    "sha256": "b731035f54cf1842b37f7fe951b7226204c9268f8d39a6e2c6fd0132d734414e"
+    "bytes": 995,
+    "sha256": "89db6a6293b8f579ce61742bd5bae37e61a35f6795149c33700b3df267f09164"
   },
   "statistics": {
     "messages": 1,

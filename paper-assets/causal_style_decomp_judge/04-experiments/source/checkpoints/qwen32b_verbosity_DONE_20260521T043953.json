@@ -1,0 +1,61 @@
+{
+  "exp_id": "qwen32b_verbosity",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:24:03.744Z",
+    "updated_at": "2026-05-21T04:39:53.961Z",
+    "hypothesis": "Qwen3-32B judge shows verbosity bias in pairwise comparison (verbose win rate >60%, p<0.05) while Likert scoring fails to detect it, extending Blindspot finding to verbosity axis",
+    "spec": {
+      "command": "pairwise_scoring.py + judge_scoring.py via vLLM Qwen3-32B local (tp=2, port 8000)",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/verified_verbosity.jsonl",
+      "data_count": 86,
+      "model_name": "Qwen3-32B (local judge via vLLM)",
+      "seed": 42,
+      "checkpoint_path": "data/pairwise_results_qwen32b_verbosity.jsonl",
+      "log_path": "data/scored_qwen32b_verbosity.jsonl"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "pairwise": {
+        "consistency_rate": 0.74,
+        "verbose_win_rate": 0.873,
+        "sign_test_p": 1e-06,
+        "wilson_ci": [
+          0.769,
+          0.934
+        ]
+      },
+      "likert": {
+        "ate": -0.151,
+        "p": 0.179,
+        "cohens_d": -0.146,
+        "tie_rate": 0.581
+      },
+      "direction": {
+        "verbose_to_concise_orig_pref": 0.806,
+        "verbose_to_concise_p": 0.000878,
+        "concise_to_verbose_rewrite_pref": 0.907,
+        "concise_to_verbose_p": 1e-06
+      },
+      "note": "Strongest bias: 87.3% verbose win (p<10⁻⁶) but Likert p=0.179. Both directions prefer verbose content (not originality bias).",
+      "blindspot_confirmed": true,
+      "bt": {
+        "p_verbose_wins": 0.7732,
+        "bootstrap_ci": [
+          0.7034,
+          0.8429
+        ],
+        "bootstrap_p": 0.0001,
+        "bootstrap_method": "pair-level (10000 iterations, seed=42)"
+      }
+    },
+    "completed_at": "2026-05-21T04:39:53.961Z"
+  },
+  "timestamp": "2026-05-21T04:39:53.998854+00:00",
+  "trigger": "update_registry"
+}

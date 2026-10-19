@@ -1,0 +1,52 @@
+{
+  "exp_id": "gpt4o_mtbench",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:47:12.182Z",
+    "updated_at": "2026-05-21T08:58:18.609Z",
+    "hypothesis": "GPT-4o shows formality Blindspot on MT-Bench benchmark, confirming cross-benchmark generalizability beyond LLMBar and AlpacaEval",
+    "metrics": {
+      "bt": {
+        "p_formal": 0.692,
+        "ci": [
+          0.623,
+          0.753
+        ],
+        "p_value": 0.0001
+      },
+      "likert": {
+        "ate": 0.164,
+        "p": 0.0163,
+        "d": 0.167,
+        "tie_rate": 0.699
+      },
+      "gee": {
+        "style_or": 2.28,
+        "style_p": 0.1055,
+        "orig_or": 6.24,
+        "orig_p": 0.0005
+      },
+      "blindspot": false,
+      "n_pairs": 73,
+      "note": "Likert also significant p=0.016 but d=0.167 small; BT much stronger p<0.0001. NOT Blindspot because Likert is also significant."
+    },
+    "conclusion": "success",
+    "spec": {
+      "command": "python gpt4o_crossbenchmark_scoring.py --benchmark mtbench",
+      "server": "westb-29275",
+      "data_path": "data/counterfactuals_mtbench_formality.jsonl",
+      "data_count": 73,
+      "model_name": "gpt-4o",
+      "seed": 42,
+      "checkpoint_path": "N/A (API scoring)",
+      "log_path": "data/gpt4o_mtbench_formality_results.json"
+    },
+    "completed_at": "2026-05-21T08:58:18.609Z"
+  },
+  "timestamp": "2026-05-21T08:58:18.658252+00:00",
+  "trigger": "update_registry"
+}

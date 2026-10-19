@@ -1,0 +1,16 @@
+{
+  "exp_id": "bt_model_diagnostics",
+  "project": "causal_style_decomp_judge",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:04:20.388Z",
+    "updated_at": "2026-05-21T12:04:29.167Z",
+    "hypothesis": "BT model adequately fits the pairwise data (GoF non-significant) and stratified BT by originality direction reveals whether style effect is confounded with originality preference (addresses W-MF2)",
+    "parent": "qwen32b_formality"
+  },
+  "timestamp": "2026-05-21T12:04:29.235028+00:00",
+  "trigger": "update_registry"
+}

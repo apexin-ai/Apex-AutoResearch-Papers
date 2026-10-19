@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_32b_wait_and_launch_20260520T151303_result.json",
     "occurrence": 1,
-    "bytes": 143,
-    "sha256": "92b27f38f04b8e6545d195cae6db822d4f8a0a2e72f68c933601b7e9d85d5b4b"
+    "bytes": 142,
+    "sha256": "c7d5adaa457a27213255a50684a3dd471295b96bcd795d3fe01f75b067bcddd5"
   },
   "statistics": {
     "messages": 1,

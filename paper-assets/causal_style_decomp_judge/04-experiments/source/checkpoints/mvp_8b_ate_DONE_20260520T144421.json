@@ -1,0 +1,49 @@
+{
+  "exp_id": "mvp_8b_ate",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:43:38.410Z",
+    "updated_at": "2026-05-20T14:44:21.033Z",
+    "spec": {
+      "command": "python artifacts/csd_pipeline/ate_analysis.py --input-file data/scored.jsonl --output-dir data/ --alpha 0.05",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/scored.jsonl",
+      "data_count": 100,
+      "model_name": "Qwen3-8B (counterfactual) + GPT-4o (judge)",
+      "seed": 42,
+      "hypothesis": "Binary style counterfactuals (formality axis) via Qwen3-8B RATE double-rewrite reveal significant ATE in GPT-4o judge scores, with formal text receiving higher scores"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "n": 100,
+      "h1_nli_pass_rate": 0.95,
+      "raw_ate": -0.08,
+      "raw_se": 0.1161,
+      "raw_p": 0.4923,
+      "raw_cohens_d": -0.0689,
+      "rewrite_bias": -0.2,
+      "corrected_ate": 0.12,
+      "corrected_se": 0.1028,
+      "corrected_p": 0.2458,
+      "corrected_cohens_d": 0.1168,
+      "rate_ratio": -1.5,
+      "dir_formal_to_casual_ate": 0.0645,
+      "dir_formal_to_casual_p": 0.5679,
+      "dir_casual_to_formal_ate": 0.2105,
+      "dir_casual_to_formal_p": 0.2997,
+      "strat_nli90_ate": 0.1263,
+      "strat_nli90_p": 0.2459,
+      "strat_nli90_n": 95
+    },
+    "checkpoint_path": "/root/causal_style_decomp_judge/data/ate_summary.csv",
+    "log_path": "/root/causal_style_decomp_judge/data/",
+    "hypothesis": "Qwen3-8B RATE double-rewrite on formality axis produces content-preserving counterfactuals (NLI≥0.90) that reveal significant formality premium (ATE>0.3, d>0.3) in GPT-4o judge scores, indicating style bias independent of content quality",
+    "completed_at": "2026-05-20T14:44:21.033Z"
+  },
+  "timestamp": "2026-05-20T14:44:21.041705+00:00",
+  "trigger": "update_registry"
+}

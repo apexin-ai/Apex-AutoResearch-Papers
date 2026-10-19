@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_32b_prep_and_vllm_start_20260520T151042_result.json",
     "occurrence": 1,
-    "bytes": 307,
-    "sha256": "47b582e22a8a031f0b0927b055d8781a72209994d26cfad328ceef5f24a47686"
+    "bytes": 306,
+    "sha256": "9141a42543d53ebe22f5e8f87d2fcace8e0bcce1fd46b2ee9e8a49bbda2f44a0"
   },
   "statistics": {
     "messages": 1,

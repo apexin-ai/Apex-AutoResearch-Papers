@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_direction_aware_vs_strict_gate_20260521T095946_result.json",
     "occurrence": 1,
-    "bytes": 1474,
-    "sha256": "ddd1fd197ec976262995388589d70cbf3ba6b3e4b6d32386b1b53782cb0f03e9"
+    "bytes": 1473,
+    "sha256": "fd704af9ab11978739b75126e009bc9e3d96e106256cb0540b2737681cbfb4af"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp-006",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:57:42.107Z",
+    "updated_at": "2026-05-21T07:44:55.012Z",
+    "metrics": {
+      "cf_gen_progress": "230/400",
+      "vllm_pid": 114900,
+      "cfgen_pid": 115974,
+      "server": "westb-29275",
+      "gpu": "cuda:2",
+      "vllm_port": 8002,
+      "input_file": "data/scaled_formality_input.jsonl",
+      "output_file": "data/counterfactuals_scaled_formality.jsonl",
+      "status_note": "CF gen resumed from 224, progressing at ~30 pairs/min. ETA ~5-6 min."
+    }
+  },
+  "timestamp": "2026-05-21T07:44:55.079839+00:00",
+  "trigger": "update_registry"
+}

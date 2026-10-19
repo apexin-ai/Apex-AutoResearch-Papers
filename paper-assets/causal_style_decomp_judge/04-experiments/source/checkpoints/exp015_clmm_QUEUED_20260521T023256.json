@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp015_clmm",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:32:56.750Z",
+    "updated_at": "2026-05-21T02:32:56.750Z",
+    "spec": {
+      "command": "python csd_pipeline/exp015_clmm_analysis.py",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/experiments/mvp_32b_ate/scored_32b.jsonl",
+      "data_count": 88,
+      "model_name": "statsmodels OrderedModel + GEE + scipy Wilcoxon",
+      "seed": 42,
+      "checkpoint_path": "N/A (reanalysis)",
+      "log_path": "csd_pipeline/exp015_clmm_analysis.py"
+    }
+  },
+  "timestamp": "2026-05-21T02:32:56.803745+00:00",
+  "trigger": "update_registry"
+}

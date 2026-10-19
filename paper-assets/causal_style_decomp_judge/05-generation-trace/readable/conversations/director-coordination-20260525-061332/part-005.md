@@ -3481,7 +3481,7 @@ git remote -v
 **如果显示 `git@github.com:...` (SSH)，必须改成 HTTPS+token：**
 
 ```bash
-git remote set-url origin 'https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/causal_style_decomp_judge.git'
+git remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026-2/causal_style_decomp_judge.git'
 ```
 
 确认显示 `https://...` 之后，正常 push：
@@ -3549,8 +3549,8 @@ called Bash
 
 _source line 2536 · 2026-05-23T18:49:59.620862+00:00_
 
-origin	https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/causal_style_decomp_judge.git (fetch)
-origin	https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/causal_style_decomp_judge.git (push)
+origin	https://[REDACTED]@github.com/anonymous-nlp-2026-2/causal_style_decomp_judge.git (fetch)
+origin	https://[REDACTED]@github.com/anonymous-nlp-2026-2/causal_style_decomp_judge.git (push)
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/.claude/sessions/director_8259c065
 
 <details><summary>Recorded metadata</summary>
@@ -3661,7 +3661,7 @@ _source line 2539 · 2026-05-23T18:55:52.482086+00:00_
 
    **正确的 HTTPS+token URL：**
    ```
-   https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/causal_style_decomp_judge.git
+   https://[REDACTED]@github.com/anonymous-nlp-2026-2/causal_style_decomp_judge.git
    ```
 
 4. **完成后向我汇报**：

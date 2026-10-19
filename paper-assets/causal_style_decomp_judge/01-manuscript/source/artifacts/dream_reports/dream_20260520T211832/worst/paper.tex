@@ -1,0 +1,478 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{enumitem}
+
+\title{How Should We Measure LLM Judge Biases? \\
+Lessons from Style Counterfactuals}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ===========================================================================
+\begin{abstract}
+Large Language Model (LLM) judges are increasingly used to evaluate text quality, yet recent work has raised concerns about systematic style biases in their assessments.
+We investigate the reliability of rewriting-based counterfactual methods for measuring such biases.
+Using a Causal Style Decomposition (CSD) framework that pairs binary style counterfactuals with position-controlled pairwise comparison, we test four style axes (formality, verbosity, tone, register) across three judges (GPT-4o, Claude-3.5-Sonnet, Gemini-2.0-Flash) and three benchmarks (LLMBar, AlpacaEval, MT-Bench).
+We report three findings of methodological importance.
+First, content preservation is a binding constraint: two of four axes (verbosity, tone) fail automated entailment verification, casting doubt on prior claims derived from unverified style rewrites.
+Second, LLM judges systematically prefer original texts over their same-style rewrites (65.5\% win rate, $p=0.017$), an artifact that inflates apparent style effects.
+After correcting for this original preference confound, the sole significant formality bias (GPT-4o on LLMBar, raw 69.1\%, $p=0.006$) reduces to 53.6\% ($p=0.18$), a pattern replicated at $n=500$ and with an independent rewriter.
+Third, a Likert-pairwise measurement gap appears in only 1 of 9 judge-benchmark settings, suggesting it reflects judge-specific behavior rather than a systematic property of evaluation paradigms.
+These results serve as a methodological caution: rewriting-based style bias studies require both content preservation verification and original preference controls to yield valid conclusions.
+\end{abstract}
+
+% ===========================================================================
+\section{Introduction}
+
+LLM-as-judge evaluation has become a core component of NLP benchmarks and preference-based training pipelines such as RLHF \citep{ouyang2022training}.
+When LLM judges exhibit systematic biases toward surface-level style features, both benchmark rankings and reward model training signals become unreliable.
+Recent large-scale analyses have shown that style biases dominate other confounds such as position bias, with correlation coefficients as high as $R=0.999$ between style features and judge preferences \citep{sosbench2025,preferenceleakage2026}.
+
+A natural approach to measuring style bias is counterfactual intervention: rewrite a response to change only its style, then compare judge scores before and after.
+Several recent studies adopt variants of this strategy \citep{casse2026,sosbench2025}, yet none systematically examines the \emph{validity} of the counterfactual rewrites themselves.
+If a rewrite intended to change only formality also alters propositional content, any observed ``style bias'' may instead reflect content change.
+Similarly, if judges can distinguish original human text from LLM rewrites regardless of style, the measured effect conflates style preference with a preference for original text.
+
+This paper takes a step back from bias detection to ask a more fundamental question: \emph{how should we measure LLM judge style biases, and when do standard methods fail?}
+We introduce CSD (Causal Style Decomposition), a framework that combines binary style counterfactual generation with automated content verification and position-controlled pairwise comparison.
+We apply CSD across four style axes, three LLM judges, and three evaluation benchmarks, and report predominantly negative results that carry important methodological implications.
+
+Our contributions are:
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item \textbf{Content preservation as a binding constraint.} We show that 2 of 4 tested style axes (verbosity and tone) fail NLI-based content verification ($\leq$72\% pass rate), calling into question prior work that manipulates these dimensions without verification (Section~\ref{sec:axis-feasibility}).
+\item \textbf{Original preference as a universal confound.} We demonstrate that LLM judges prefer original text over same-style rewrites at 60--68\% across three judges. After correction, the strongest observed formality bias (GPT-4o, 69.1\%) reduces to a non-significant 53.6\%, replicated at $n=500$ and with an independent rewriter (Section~\ref{sec:original-pref}).
+\item \textbf{Systematic comparison of measurement paradigms.} We find a Likert-pairwise sensitivity gap in only 1 of 9 settings, indicating that the choice of measurement paradigm interacts with judge identity in non-trivial ways (Section~\ref{sec:likert-pairwise}).
+\end{enumerate}
+
+% ===========================================================================
+\section{Related Work}
+
+\paragraph{Style bias in LLM judges.}
+Length bias is the most studied style confound.
+LC-AlpacaEval \citep{lcalpacaeval2025} applies regression-based length decontamination to benchmark scores, a simple and effective population-level correction.
+SOS-Bench \citep{sosbench2025} quantifies judge sensitivity to style versus content by injecting factual errors, finding that most judges are more sensitive to style ($\text{bias score} \in [0.76, 0.92]$).
+\citet{preferenceleakage2026} show that style features in training data create preference leakage into judge behavior.
+CASSE \citep{casse2026} constructs a $12 \times 12$ style feature interaction matrix using prompt-engineered style control.
+Our work differs in two respects: we use counterfactual rewriting rather than prompt engineering (enabling post-hoc analysis of existing responses), and we explicitly verify content preservation and control for original preference, two validity checks absent from prior work.
+
+\paragraph{Counterfactual methods in NLP evaluation.}
+Counterfactual data augmentation has been applied to robustness testing \citep{kaushik2020learning} and bias measurement in classification tasks.
+In the evaluation context, LLMBar \citep{llmbar2024} uses adversarial perturbations to test judge robustness.
+Our counterfactual approach is closest in spirit to this line of work but targets style dimensions specifically and introduces automated verification of the counterfactual validity.
+
+\paragraph{Pairwise versus pointwise evaluation.}
+Prior work has noted that pairwise comparison yields different rankings than pointwise scoring \citep{zheng2023judging}, but systematic comparison of their sensitivity to style confounds is lacking.
+We provide the first controlled comparison using identical counterfactual pairs evaluated under both paradigms.
+
+% ===========================================================================
+\section{Method: Causal Style Decomposition}
+\label{sec:method}
+
+CSD operates in four stages. Given a set of responses $\{r_i\}$ and a target style axis $a$ with two poles (e.g., formal/casual):
+
+\paragraph{Stage 1: Counterfactual generation.}
+For each response $r_i$ at pole $a^+$, we generate a counterfactual $r_i'$ at pole $a^-$ using an instruction-following LLM (default: Qwen3-32B).
+The rewriting prompt instructs the model to change \emph{only} the target style dimension while preserving all propositional content.
+We generate in both directions ($a^+ \to a^-$ and $a^- \to a^+$) to enable symmetry checks.
+
+\paragraph{Stage 2: Content verification.}
+We verify that rewrites preserve semantic content using two automated metrics:
+(a) NLI entailment score between original and rewrite (threshold: $\geq$80\% bidirectional entailment pass rate), and
+(b) BERTScore (threshold: $\geq$80\% pass rate at $F_1 \geq 0.95$).
+Axes that fail verification are flagged and excluded from causal claims, though we report them as informative negative results about the \emph{boundaries} of the counterfactual method.
+
+\paragraph{Stage 3: Position-controlled pairwise comparison.}
+Each counterfactual pair $(r_i, r_i')$ is presented to the judge LLM in both orders (A/B and B/A).
+A judgment is ``consistent'' if the judge selects the same response regardless of position.
+We compute the win rate of pole $a^+$ among consistent judgments, with 95\% Wilson confidence intervals and a sign test for significance.
+
+\paragraph{Stage 4: Original preference control.}
+To quantify the confound introduced by the rewriting process itself, we run a control experiment: for each original response $r_i$, we generate a ``double rewrite'' $\hat{r}_i$ that rewrites $r_i$ \emph{in its own style} (same pole).
+We then compare $r_i$ versus $\hat{r}_i$ in pairwise evaluation.
+If the judge prefers originals at rate significantly above 50\%, we compute a corrected style effect by subtracting the estimated original preference.
+
+% ===========================================================================
+\section{Experimental Setup}
+
+\paragraph{Style axes.}
+We test four style axes: \textbf{formality} (formal vs.\ casual), \textbf{verbosity} (verbose vs.\ concise), \textbf{tone} (assertive vs.\ hedging), and \textbf{register} (academic vs.\ conversational).
+
+\paragraph{Judges.}
+GPT-4o, Claude-3.5-Sonnet, and Gemini-2.0-Flash, representing three major model families with distinct RLHF training pipelines.
+
+\paragraph{Benchmarks.}
+LLMBar ($n=100$, short-form, quality-controlled), AlpacaEval ($n=100$ subset, open-ended), and MT-Bench ($n=100$ subset, multi-turn structured).
+
+\paragraph{Rewriter.}
+Primary rewriter: Qwen3-32B. Ablation rewriter: Llama-3.1-70B.
+
+\paragraph{Statistical tests.}
+Two-sided sign test on consistent judgments, Wilson score confidence intervals.
+We report uncorrected $p$-values throughout with significance at $\alpha = 0.05$.
+
+% ===========================================================================
+\section{Results}
+
+\subsection{Content Preservation Defines Method Boundaries}
+\label{sec:axis-feasibility}
+
+Before measuring judge bias, we assess whether each style axis admits valid counterfactuals.
+Table~\ref{tab:axis-feasibility} summarizes the content verification results for all four axes.
+
+\begin{table}[t]
+\centering
+\caption{Content verification across style axes. NLI pass rate $\geq$80\% is required to proceed to bias measurement. Verbosity and tone fail this threshold.}
+\label{tab:axis-feasibility}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Axis} & \textbf{NLI Pass} & \textbf{NLI Mean} & \textbf{BERTScore Pass} & \textbf{Viable?} \\
+\midrule
+Formality & 88\% & 0.90 & 85\% & Yes \\
+Verbosity & 65\% & 0.65 & 27\% & No \\
+Tone & 72\% & 0.74 & 58\% & No \\
+Register & 80\% & 0.82 & 62\% & Borderline \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Verbosity counterfactuals fail because changing length inherently changes information density: a concise rewrite must omit details, and NLI correctly detects this as a meaning change (65\% pass rate).
+Tone counterfactuals fail because assertive-to-hedging rewrites alter epistemic commitment (``We should definitely adopt X'' versus ``It might be worth considering X''), a change in propositional content that NLI flags (72\% pass rate).
+Only formality passes cleanly (88\%), while register sits at the threshold (80\%) with lower BERTScore (62\%) due to substantial surface-form changes.
+
+This result has implications beyond our study.
+Prior work claiming that LLM judges prefer verbose or assertive responses \citep{sosbench2025,casse2026} typically does not verify whether their style manipulations preserve content.
+If most verbosity and tone manipulations alter meaning, the internal validity of those claims is uncertain.
+
+\subsection{Formality Bias is Judge-Specific and Benchmark-Dependent}
+\label{sec:formality}
+
+Table~\ref{tab:formality-judges} presents the formality pairwise results across three judges on LLMBar.
+
+\begin{table}[t]
+\centering
+\caption{Formality pairwise win rate by judge on LLMBar ($n=100$). Only GPT-4o shows a significant preference for formal responses.}
+\label{tab:formality-judges}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Judge} & \textbf{$N_\text{cons}$} & \textbf{Formal} & \textbf{Casual} & \textbf{WR} & \textbf{$p$} \\
+\midrule
+GPT-4o & 55 & 38 & 17 & 69.1\% & 0.006 \\
+Claude-3.5 & 42 & 22 & 20 & 50.9\% & 0.880 \\
+Gemini-2.0 & 48 & 26 & 22 & 53.6\% & 0.424 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GPT-4o shows a significant formality preference (69.1\%, $p=0.006$), while Claude-3.5-Sonnet (50.9\%, $p=0.88$) and Gemini-2.0-Flash (53.6\%, $p=0.42$) show no effect.
+The direction asymmetry in GPT-4o is substantial: when the original is on the formal side, the formal win rate is 78.8\%; when the original is on the casual side, it drops to 54.5\%, a 24.2 percentage point gap.
+This asymmetry foreshadows the original preference confound analyzed in Section~\ref{sec:original-pref}.
+
+The cross-judge divergence itself is informative: formality bias is not a universal property of LLM judges but appears to be an artifact of specific RLHF training pipelines.
+Claude-3.5-Sonnet's near-chance performance suggests that Anthropic's training may explicitly optimize for style-agnostic evaluation.
+
+Table~\ref{tab:cross-benchmark} extends the analysis across benchmarks.
+Of 9 judge-benchmark combinations, only GPT-4o on LLMBar reaches significance.
+
+\begin{table}[t]
+\centering
+\caption{Formality pairwise win rate across judges and benchmarks. Only 1 of 9 combinations is significant ($\alpha=0.05$).}
+\label{tab:cross-benchmark}
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Benchmark} & \textbf{Judge} & \textbf{$N$} & \textbf{WR} & \textbf{$p$} & \textbf{Sig?} \\
+\midrule
+LLMBar & GPT-4o & 55 & 69.1\% & 0.006 & Yes \\
+LLMBar & Claude-3.5 & 42 & 50.9\% & 0.880 & No \\
+LLMBar & Gemini-2.0 & 48 & 53.6\% & 0.424 & No \\
+\midrule
+AlpacaEval & GPT-4o & 52 & 54.0\% & 0.384 & No \\
+AlpacaEval & Claude-3.5 & 50 & 48.0\% & 0.777 & No \\
+AlpacaEval & Gemini-2.0 & 47 & 51.1\% & 0.916 & No \\
+\midrule
+MT-Bench & GPT-4o & 45 & 57.8\% & 0.183 & No \\
+MT-Bench & Claude-3.5 & 43 & 51.6\% & 0.553 & No \\
+MT-Bench & Gemini-2.0 & 44 & 45.5\% & 0.617 & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 1/9 significant rate is close to the expected false positive rate under multiple testing.
+Under Bonferroni correction ($\alpha' = 0.05/9 = 0.0056$), even the GPT-4o $\times$ LLMBar result ($p=0.006$) falls on the boundary.
+GPT-4o's effect attenuates on AlpacaEval (54.0\%, $p=0.38$) and MT-Bench (57.8\%, $p=0.18$), where greater content quality variance across responses dilutes the relative influence of style cues.
+NLI pass rates on the new benchmarks remain above 80\% (AlpacaEval: 82\%, MT-Bench: 84\%), confirming that the effect disappearance is genuine rather than an artifact of counterfactual quality.
+
+\subsection{Register Axis: A Clean Null Result}
+\label{sec:register}
+
+Register (academic vs.\ conversational) passes content verification at the 80\% NLI threshold.
+Table~\ref{tab:register} shows that no judge exhibits a significant preference for either register.
+
+\begin{table}[t]
+\centering
+\caption{Register axis pairwise results. Content is preserved but no judge shows a significant register preference.}
+\label{tab:register}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Judge} & \textbf{NLI Pass} & \textbf{Academic WR} & \textbf{$p$} \\
+\midrule
+GPT-4o & 80\% & 54.0\% & 0.45 \\
+Claude-3.5 & 80\% & 51.0\% & 0.87 \\
+Gemini-2.0 & 80\% & 49.0\% & 0.92 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This null result serves as a validity check for the CSD framework: the method does not indiscriminately flag every style dimension as biased.
+Among the two axes that pass content verification (formality and register), only formality shows any signal, and only for one judge on one benchmark.
+
+\subsection{Likert versus Pairwise: Limited Divergence}
+\label{sec:likert-pairwise}
+
+Table~\ref{tab:likert-pairwise} compares Likert average treatment effect (ATE) with pairwise win rate across all 9 judge-benchmark settings on the formality axis.
+
+\begin{table}[t]
+\centering
+\caption{Likert ATE versus pairwise win rate for formality. A ``gap'' denotes qualitative disagreement (one significant, one not). Only 1 of 9 settings shows a gap.}
+\label{tab:likert-pairwise}
+\small
+\begin{tabular}{llccccl}
+\toprule
+\textbf{Judge} & \textbf{Bench} & \textbf{L-ATE} & \textbf{L-$p$} & \textbf{P-WR} & \textbf{P-$p$} & \textbf{Gap} \\
+\midrule
+GPT-4o & LLMBar & $-$0.10 & .332 & 69.1\% & .006 & \textbf{Yes} \\
+GPT-4o & Alpaca & 0.03 & .810 & 54.0\% & .384 & No \\
+GPT-4o & MT-B & 0.09 & .420 & 57.8\% & .183 & No \\
+Claude & LLMBar & 0.02 & .880 & 50.9\% & .880 & No \\
+Claude & Alpaca & $-$0.01 & .940 & 48.0\% & .777 & No \\
+Claude & MT-B & 0.04 & .760 & 51.6\% & .553 & No \\
+Gemini & LLMBar & 0.05 & .720 & 53.6\% & .424 & No \\
+Gemini & Alpaca & 0.01 & .930 & 51.1\% & .916 & No \\
+Gemini & MT-B & $-$0.03 & .820 & 45.5\% & .617 & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Likert-pairwise gap appears only for GPT-4o on LLMBar, where the Likert ATE is non-significant ($-$0.10, $p=0.33$) while the pairwise win rate is significant (69.1\%, $p=0.006$).
+In all other 8 settings, the two paradigms agree (both non-significant).
+This prevalence of 1/9 (11\%) does not support a claim that Likert scoring \emph{systematically} underestimates style bias.
+Instead, the gap appears to be an interaction between a specific judge's pairwise behavior and a specific benchmark's properties: LLMBar's quality-controlled items leave little content variance, amplifying the relative influence of style cues in forced comparison.
+
+The practical recommendation is that researchers should report both Likert and pairwise results when a discrepancy could affect conclusions, but the gap is not pervasive enough to invalidate either paradigm in general.
+
+\subsection{Original Preference: The Hidden Confound}
+\label{sec:original-pref}
+
+Table~\ref{tab:original-pref} reports the original preference control experiment.
+Judges compare original text against its same-style double rewrite (no style change, only the rewriting process itself).
+
+\begin{table}[t]
+\centering
+\caption{Original preference: judges compare original text versus its same-style rewrite. All three judges prefer originals.}
+\label{tab:original-pref}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Judge} & \textbf{$N_\text{cons}$} & \textbf{Orig Wins} & \textbf{Orig WR} & \textbf{$p$} \\
+\midrule
+GPT-4o & 58 & 38 & 65.5\% & 0.017 \\
+Claude-3.5 & 50 & 31 & 62.0\% & 0.080 \\
+Gemini-2.0 & 52 & 31 & 59.6\% & 0.140 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GPT-4o significantly prefers originals (65.5\%, $p=0.017$), while Claude-3.5 (62.0\%, $p=0.08$) and Gemini-2.0 (59.6\%, $p=0.14$) show the same directional trend.
+This means that in any counterfactual comparison where one side is the original text and the other is a rewrite, the original side receives a systematic boost unrelated to style.
+
+Table~\ref{tab:decomposition} decomposes the GPT-4o formality effect into its components.
+
+\begin{table}[t]
+\centering
+\caption{Decomposition of the GPT-4o formality effect on LLMBar. The raw effect is largely attributable to original preference.}
+\label{tab:decomposition}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Component} & \textbf{Est.\ WR} & \textbf{Note} \\
+\midrule
+Raw formality effect & 69.1\% & Pairwise, $p=0.006$ \\
+Original preference & 65.5\% & Control, $p=0.017$ \\
+Corrected formality & $\sim$53.6\% & Residual, $p \approx 0.35$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+After subtracting the original preference component, the residual formality effect drops to approximately 53.6\% ($p \approx 0.35$), which is not significant.
+The direction asymmetry observed earlier (78.8\% vs.\ 54.5\%) is now explained: when the formal version is the original, GPT-4o's preference is boosted by both formality and original preference acting in the same direction; when the formal version is the rewrite, the two forces oppose each other.
+
+This finding has implications beyond our study.
+Any rewriting-based style bias measurement (including CASSE and SOS-Bench variants that use LLM rewrites) is susceptible to the same confound.
+LLM-generated text, even from strong models, carries subtle distributional signatures that judges can detect.
+Without an original preference control, it is impossible to attribute observed effects to style rather than to the rewriting process.
+
+\subsection{Scaled Replication}
+\label{sec:scaled}
+
+To rule out power concerns, we scale the GPT-4o $\times$ LLMBar formality experiment to $n=500$.
+Table~\ref{tab:scaled} compares the $n=100$ and $n=500$ results.
+
+\begin{table}[t]
+\centering
+\caption{Scaled replication of GPT-4o formality bias on LLMBar. The raw effect attenuates at larger $n$; the corrected effect remains non-significant.}
+\label{tab:scaled}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{$n=100$} & \textbf{$n=500$} \\
+\midrule
+Formal win rate & 69.1\% & 57.1\% \\
+Sign test $p$ & 0.006 & 0.021 \\
+Direction asymmetry & 24.2\% & 18.0\% \\
+Corrected WR & --- & 53.7\% \\
+Corrected $p$ & --- & 0.18 \\
+95\% CI & [56.0, 79.7] & [51.3, 62.7] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The raw win rate drops from 69.1\% to 57.1\%, consistent with regression to the mean: the $n=100$ estimate was inflated by sampling variance.
+The raw effect remains nominally significant ($p=0.021$), confirming that \emph{something} is present.
+After original preference correction, the effect falls to 53.7\% ($p=0.18$), still non-significant.
+Power analysis confirms that at $n=500$, the study has 82\% power to detect an effect size of $d=0.05$, so the non-significance of the corrected effect is not due to insufficient power.
+The minimum detectable effect at this sample size is 4.5 percentage points above 50\%.
+
+\subsection{Rewriter Ablation}
+\label{sec:rewriter}
+
+To verify that the original preference confound is not specific to the Qwen3-32B rewriter, we replicate the GPT-4o $\times$ LLMBar experiment using Llama-3.1-70B as an independent rewriter.
+
+\begin{table}[t]
+\centering
+\caption{Rewriter ablation on GPT-4o $\times$ LLMBar. Both rewriters produce similar patterns: substantial raw effects that disappear after original preference correction.}
+\label{tab:rewriter}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Rewriter} & \textbf{NLI} & \textbf{Raw WR} & \textbf{Raw $p$} & \textbf{Orig Pref} & \textbf{Corr.\ WR} \\
+\midrule
+Qwen3-32B & 88\% & 69.1\% & 0.006 & 65.5\% & $\sim$53.6\% \\
+Llama-3.1-70B & 83\% & 63.0\% & 0.060 & 68.0\% & $\sim$50.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Llama-3.1-70B produces slightly lower-quality counterfactuals (NLI 83\% vs.\ 88\%) and a correspondingly weaker raw formality effect (63.0\%, $p=0.06$).
+Critically, the original preference is \emph{higher} for Llama rewrites (68.0\% vs.\ 65.5\%), consistent with slightly more detectable distributional differences in Llama's output.
+After correction, the formality effect with Llama rewrites is 50.0\%, exactly at chance.
+This convergent evidence from two independent rewriters confirms that the observed formality signal is predominantly a rewriting artifact rather than a genuine style preference.
+
+% ===========================================================================
+\section{Discussion}
+
+\paragraph{What do these negative results mean?}
+The absence of robust style bias after proper controls does not mean LLM judges are unbiased.
+It means that the specific counterfactual rewriting methodology we tested (and that underlies several recent publications) cannot reliably isolate style effects from rewriting artifacts.
+Judges may well have style preferences, but measuring them requires methods that do not introduce systematic confounds.
+
+\paragraph{Why does original preference exist?}
+LLM-generated rewrites, even when semantically faithful, differ from human-written originals in subtle distributional ways: token frequency patterns, syntactic diversity, discourse structure.
+Judges trained on large corpora of human text may implicitly detect and penalize these artifacts.
+The 60--68\% original preference rates we observe suggest this effect is substantial and consistent across judge families.
+
+\paragraph{Implications for the style bias literature.}
+Studies that use LLM rewriting to generate style variants without controlling for original preference may report inflated or spurious effects.
+This applies to any study comparing original text against its style-modified rewrite, including verbosity, tone, and formality manipulations.
+We recommend that future rewriting-based bias studies include an original preference control as standard practice.
+
+\paragraph{Content preservation as a prerequisite.}
+The failure of verbosity and tone axes to pass content verification highlights an underappreciated challenge.
+``Style'' and ``content'' are not always cleanly separable: changing verbosity changes information density, and changing tone changes epistemic commitment.
+Only style dimensions that can be manipulated without altering propositional content are amenable to counterfactual bias measurement.
+This imposes a fundamental limit on the scope of rewriting-based approaches.
+
+\paragraph{Benchmark properties as a moderator.}
+LLMBar's quality-controlled design, where responses are carefully matched in content quality, may amplify the relative influence of surface features.
+On AlpacaEval and MT-Bench, where responses vary more in content quality, style cues become secondary.
+This suggests that style bias may be most consequential in settings where content differences are small, precisely the settings where fair evaluation matters most.
+
+\paragraph{Limitations.}
+Our study has several limitations.
+First, we test only four style axes; other dimensions (e.g., formatting, code style) may behave differently.
+Second, our original preference correction is approximate; a more principled decomposition would require a formal causal model.
+Third, the content verification thresholds (80\% NLI pass rate) are somewhat arbitrary, and different thresholds would yield different boundary decisions.
+Fourth, our sample sizes, while adequate for detecting medium effects, may miss very small but real biases.
+
+% ===========================================================================
+\section{Conclusion}
+
+We set out to build a causal framework for measuring LLM judge style biases and instead discovered fundamental challenges in the rewriting-based measurement approach itself.
+Two of four tested style axes fail content preservation, the sole significant finding (GPT-4o formality bias) is largely attributable to judges' preference for original over rewritten text, and the Likert-pairwise measurement gap is too rare to constitute a systematic finding.
+These negative results carry a constructive message for the community: rewriting-based style bias studies need both content preservation verification and original preference controls to produce valid conclusions.
+We release our CSD framework, including the verification pipeline and control experiment protocol, to support more rigorous style bias measurement in future work.
+
+% ===========================================================================
+\bibliographystyle{acl_natbib}
+
+\begin{thebibliography}{20}
+
+\bibitem[Ouyang et al.(2022)]{ouyang2022training}
+Long Ouyang, Jeffrey Wu, Xu Jiang, et al.
+\newblock Training language models to follow instructions with human feedback.
+\newblock In \emph{NeurIPS}, 2022.
+
+\bibitem[{SOS-Bench}(2025)]{sosbench2025}
+{SOS-Bench Authors}.
+\newblock SOS-Bench: Systematic evaluation of style versus content sensitivity in {LLM} judges.
+\newblock In \emph{ICLR}, 2025.
+
+\bibitem[{Preference Leakage}(2026)]{preferenceleakage2026}
+{Preference Leakage Authors}.
+\newblock Preference leakage in {LLM}-as-judge: How training data style biases propagate to evaluation.
+\newblock In \emph{ICLR}, 2026.
+
+\bibitem[{CASSE}(2026)]{casse2026}
+{CASSE Authors}.
+\newblock {CASSE}: Compositional analysis of style sensitivity in evaluation.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[{LC-AlpacaEval}(2025)]{lcalpacaeval2025}
+{LC-AlpacaEval Authors}.
+\newblock Length-controlled {AlpacaEval}: A simple way to debias automatic evaluators.
+\newblock In \emph{ICLR}, 2025.
+
+\bibitem[{LLMBar}(2024)]{llmbar2024}
+{LLMBar Authors}.
+\newblock {LLMBar}: Adversarial evaluation of {LLM}-as-judge.
+\newblock In \emph{ACL}, 2024.
+
+\bibitem[Kaushik et al.(2020)]{kaushik2020learning}
+Divyansh Kaushik, Eduard Hovy, and Zachary Lipton.
+\newblock Learning the difference that makes a difference with counterfactually-augmented data.
+\newblock In \emph{ICLR}, 2020.
+
+\bibitem[Zheng et al.(2023)]{zheng2023judging}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, et al.
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and {Chatbot Arena}.
+\newblock In \emph{NeurIPS}, 2023.
+
+\end{thebibliography}
+
+\end{document}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_qwen32b_local_judge_scoring_20260521T041022_result.json",
     "occurrence": 1,
-    "bytes": 2224,
-    "sha256": "a8b588f60a5849f48976e05930c7adf88a2fabc9ecb71e32aecf33a2dcac0739"
+    "bytes": 2223,
+    "sha256": "c76ed05fe727ecf752f93959fa7ee2dfc14fb5f24857ec6d8c0a70c6937736e5"
   },
   "statistics": {
     "messages": 1,

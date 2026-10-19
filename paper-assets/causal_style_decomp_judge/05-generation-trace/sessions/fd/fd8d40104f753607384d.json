@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_bt_model_diagnostics_20260521T114335_result.json",
     "occurrence": 1,
-    "bytes": 819,
-    "sha256": "d120db3d0aa7f7b2d8febef72a2f9929eea3ad85c7bbf283cbda0c6aeaab3bae"
+    "bytes": 818,
+    "sha256": "2abb9b246222f228eb96786c9ba9b937f2650c3796029e47e6df7c8cba3298e1"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,49 @@
+{
+  "exp_id": "gemini_flash_fourth_judge",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T22:04:28.393Z",
+    "updated_at": "2026-05-21T22:21:47.119Z",
+    "hypothesis": "Gemini Flash as a fourth judge will also exhibit style blindspot (BT-significant but Likert-NS) on formality and verbosity axes, consistent with GPT-4o, Qwen-32B, and Claude judges, confirming the blindspot is judge-universal rather than model-specific.",
+    "spec": {
+      "command": "OPENROUTER_KEY=*** GEMINI_MODEL=google/gemini-2.5-flash python csd_pipeline/gemini_flash_scoring.py",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/",
+      "data_count": 174,
+      "model_name": "google/gemini-2.5-flash",
+      "seed": 42
+    },
+    "checkpoint_path": "/root/causal_style_decomp_judge/data/gemini_flash_fourth_judge.json",
+    "log_path": "/tmp/gemini_flash.log",
+    "metrics": {
+      "formality": {
+        "bt_pct": 57.4,
+        "bt_p": 0.0448,
+        "likert_ate": -0.239,
+        "likert_p": 0.1953,
+        "gee_style_or": 1.64,
+        "gee_orig_or": 2.51,
+        "blindspot": true,
+        "regime": "BT sig (p=0.045), Likert NS (p=0.195) → Blindspot YES"
+      },
+      "verbosity": {
+        "bt_pct": 70.8,
+        "bt_p": 0.0001,
+        "likert_ate": 0.151,
+        "likert_p": 0.4821,
+        "gee_style_or": 9.16,
+        "gee_orig_or": 0.45,
+        "blindspot": true,
+        "regime": "BT sig (p<0.0001), Likert NS (p=0.482) → Blindspot YES"
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T22:21:47.119Z"
+  },
+  "timestamp": "2026-05-21T22:21:47.222535+00:00",
+  "trigger": "update_registry"
+}

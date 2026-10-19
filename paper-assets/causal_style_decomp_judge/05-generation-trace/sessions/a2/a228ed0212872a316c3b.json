@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_push_abstract-footnote-fix_20260525T100522_result.json",
     "occurrence": 1,
-    "bytes": 191,
-    "sha256": "a2fe4281a0063a5b0bffaa1273f0e854537b66a0e250a2ab0e0b5bfe7200a8bc"
+    "bytes": 190,
+    "sha256": "eb3209b2e926e2398272e8cddaef2a1fed7223f95d38d1229d2378a4b414aed2"
   },
   "statistics": {
     "messages": 1,

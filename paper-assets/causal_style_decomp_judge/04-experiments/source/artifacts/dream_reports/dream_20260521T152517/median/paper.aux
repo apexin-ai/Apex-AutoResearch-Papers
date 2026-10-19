@@ -1,0 +1,120 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zheng2023judging,alpaca_eval,dubois2024alpacafarm}
+\citation{chiang2024chatbot}
+\citation{ouyang2022training,rafailov2023direct}
+\citation{wu2023style}
+\citation{park2024disentangling}
+\citation{stureborg2024large}
+\citation{thurstone1927law,stevens1946theory}
+\citation{wu2023style,park2024disentangling}
+\citation{jeong2025comparative}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{stureborg2024large}
+\citation{zheng2023judging}
+\citation{wu2023style}
+\citation{park2024disentangling}
+\citation{chen2024humans}
+\citation{dubois2024length}
+\citation{thurstone1927law,stevens1946theory}
+\citation{saito2023verbosity}
+\citation{jeong2025comparative}
+\citation{chen2024humans}
+\citation{lu2024casse}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM judge bias taxonomy.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Style bias in LLM evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Measurement methodology.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Bias mitigation.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Controlled Style Decomposition}{2}{section.3}\protected@file@percent }
+\citation{zeng2024llmbar}
+\citation{alpaca_eval}
+\citation{zheng2023judging}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Per-Axis Style Manipulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}NLI-Gated Content Control}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Position-Controlled Pairwise Comparison}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}GEE Conditional Decomposition}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Target judges.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Style axes.}{3}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Sensitivity comparison: BT (pairwise) vs.\ Likert across judge $\times $ benchmark $\times $ axis cells. ``Blindspot'' indicates BT is significant but Likert is not. 9/10 BT-significant cells show Likert NS, yielding a 90\% blindspot rate.}}{4}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:sensitivity}{{1}{4}{Sensitivity comparison: BT (pairwise) vs.\ Likert across judge $\times $ benchmark $\times $ axis cells. ``Blindspot'' indicates BT is significant but Likert is not. 9/10 BT-significant cells show Likert NS, yielding a 90\% blindspot rate}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Statistical tests.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}The Likert Blindspot}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:blindspot}{{4.2}{4}{The Likert Blindspot}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Per-Axis Confound Structure}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:confound}{{4.3}{4}{Per-Axis Confound Structure}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces GEE decomposition across judges and axes. Style OR measures directional style preference; Originality OR measures preference for rewritten text. Three regimes emerge: \textit  {pure style} (Style sig., Orig.\ NS), \textit  {conditional} (both sig.), and \textit  {originality-dominated} (Orig.\ $\gg $ Style).}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:gee}{{2}{5}{GEE decomposition across judges and axes. Style OR measures directional style preference; Originality OR measures preference for rewritten text. Three regimes emerge: \textit {pure style} (Style sig., Orig.\ NS), \textit {conditional} (both sig.), and \textit {originality-dominated} (Orig.\ $\gg $ Style)}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces GPT-4o CSD results for verbosity and register on LLMBar. Verbosity shows strong BT preference with Likert blindspot; register is borderline with originality-dominated confound structure.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:gpt4o_verb}{{3}{5}{GPT-4o CSD results for verbosity and register on LLMBar. Verbosity shows strong BT preference with Likert blindspot; register is borderline with originality-dominated confound structure}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}GPT-4o Verbosity and Register}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:gpt4o-verb}{{4.4}{5}{GPT-4o Verbosity and Register}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Judge Generalization}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:crossjudge}{{4.5}{5}{Cross-Judge Generalization}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Formality BT across four judges on LLMBar. Two of three target judges (GPT-4o, Qwen3) show significant formality bias; Llama and Claude do not.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:formality_judges}{{4}{6}{Formality BT across four judges on LLMBar. Two of three target judges (GPT-4o, Qwen3) show significant formality bias; Llama and Claude do not}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Full evidence matrix: 4 judges $\times $ 2 primary axes. BT preference and GEE confound pattern for each cell. Verbosity bias replicates across 3/3 target judges; formality across 2/3.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:evidence_matrix}{{5}{6}{Full evidence matrix: 4 judges $\times $ 2 primary axes. BT preference and GEE confound pattern for each cell. Verbosity bias replicates across 3/3 target judges; formality across 2/3}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Third Target Judge: Llama-3.3-70B}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:llama}{{4.6}{6}{Third Target Judge: Llama-3.3-70B}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Cross-Benchmark Generalization}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:crossbench}{{4.7}{6}{Cross-Benchmark Generalization}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Robustness and Controls}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Scaled Replication}{6}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:scaled}{{5.1}{6}{Scaled Replication}{subsection.5.1}{}}
+\citation{jeong2025comparative}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Llama-3.3-70B-Instruct CSD results on LLMBar ($n_{\text  {verb}} = 86$, $n_{\text  {form}} = 88$ NLI-passing pairs). Verbosity shows significant bias with pure style pattern and Likert blindspot. Formality is non-significant with originality-only pattern.}}{7}{table.caption.14}\protected@file@percent }
+\newlabel{tab:llama_detail}{{6}{7}{Llama-3.3-70B-Instruct CSD results on LLMBar ($n_{\text {verb}} = 86$, $n_{\text {form}} = 88$ NLI-passing pairs). Verbosity shows significant bias with pure style pattern and Likert blindspot. Formality is non-significant with originality-only pattern}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Formality BT across benchmarks and judges. GPT-4o and Qwen3 show consistent bias across all three benchmarks. Llama is consistently non-significant, ruling out benchmark-specific artifacts.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:crossbench}{{7}{7}{Formality BT across benchmarks and judges. GPT-4o and Qwen3 show consistent bias across all three benchmarks. Llama is consistently non-significant, ruling out benchmark-specific artifacts}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Rewriter Independence}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:rewriter}{{5.2}{7}{Rewriter Independence}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Detection vs.\ Amplification}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:amplification}{{5.3}{7}{Detection vs.\ Amplification}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Placebo Control: Original vs.\ Double-Rewrite}{7}{subsubsection.5.3.1}\protected@file@percent }
+\newlabel{sec:placebo}{{5.3.1}{7}{Placebo Control: Original vs.\ Double-Rewrite}{subsubsection.5.3.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}NLI Gate Ablation}{7}{subsubsection.5.3.2}\protected@file@percent }
+\newlabel{sec:nli-ablation}{{5.3.2}{7}{NLI Gate Ablation}{subsubsection.5.3.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Scaled replication: Qwen3-32B formality at $n = 100$ vs.\ $n = 355$. BT effect is stable; CI narrows by 2$\times $. Likert $d$ remains $\approx 0$, ruling out a power-gap explanation.}}{8}{table.caption.16}\protected@file@percent }
+\newlabel{tab:scaled}{{8}{8}{Scaled replication: Qwen3-32B formality at $n = 100$ vs.\ $n = 355$. BT effect is stable; CI narrows by 2$\times $. Likert $d$ remains $\approx 0$, ruling out a power-gap explanation}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Rewriter independence: Qwen3-32B vs.\ GPT-4o rewriter, judged by Qwen3-32B on LLMBar. CIs overlap; effects are statistically indistinguishable, confirming bias originates in the judge, not the rewriter.}}{8}{table.caption.17}\protected@file@percent }
+\newlabel{tab:rewriter}{{9}{8}{Rewriter independence: Qwen3-32B vs.\ GPT-4o rewriter, judged by Qwen3-32B on LLMBar. CIs overlap; effects are statistically indistinguishable, confirming bias originates in the judge, not the rewriter}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Cross-Axis Gradient}{8}{subsubsection.5.3.3}\protected@file@percent }
+\newlabel{sec:gradient}{{5.3.3}{8}{Cross-Axis Gradient}{subsubsection.5.3.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.4}Negative Control}{8}{subsubsection.5.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Architecture-dependent susceptibility.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Formality generalizability.}{8}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Placebo BT: Original vs.\ double-rewrite. All judges prefer rewritten text (BT $< 50\%$ for original), confirming a rewriting artifact. GEE Originality OR captures this; verbosity Orig.\ OR NS confirms the style effect is uncontaminated.}}{9}{table.caption.18}\protected@file@percent }
+\newlabel{tab:placebo}{{10}{9}{Placebo BT: Original vs.\ double-rewrite. All judges prefer rewritten text (BT $< 50\%$ for original), confirming a rewriting artifact. GEE Originality OR captures this; verbosity Orig.\ OR NS confirms the style effect is uncontaminated}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces NLI gate ablation (Qwen3-32B, LLMBar). Removing the NLI gate \emph  {reverses} formality BT (from 66.5\% to 41.7\%), disconfirming amplification. Verbosity remains stable, consistent with its stronger signal.}}{9}{table.caption.19}\protected@file@percent }
+\newlabel{tab:nli_ablation}{{11}{9}{NLI gate ablation (Qwen3-32B, LLMBar). Removing the NLI gate \emph {reverses} formality BT (from 66.5\% to 41.7\%), disconfirming amplification. Verbosity remains stable, consistent with its stronger signal}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{9}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations of the five-layer defense.}{9}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\bibcite{zheng2023judging}{{1}{2023}{{Zheng et~al.}}{{}}}
+\bibcite{alpaca_eval}{{2}{2023}{{Li et~al.}}{{}}}
+\bibcite{dubois2024alpacafarm}{{3}{2024a}{{Dubois et~al.}}{{}}}
+\bibcite{dubois2024length}{{4}{2024b}{{Dubois et~al.}}{{}}}
+\bibcite{chiang2024chatbot}{{5}{2024}{{Chiang et~al.}}{{}}}
+\bibcite{ouyang2022training}{{6}{2022}{{Ouyang et~al.}}{{}}}
+\bibcite{rafailov2023direct}{{7}{2023}{{Rafailov et~al.}}{{}}}
+\bibcite{wu2023style}{{8}{2023}{{Wu and Aji}}{{}}}
+\bibcite{park2024disentangling}{{9}{2024}{{Park et~al.}}{{}}}
+\bibcite{stureborg2024large}{{10}{2024}{{Stureborg et~al.}}{{}}}
+\bibcite{chen2024humans}{{11}{2024}{{Chen et~al.}}{{}}}
+\bibcite{saito2023verbosity}{{12}{2023}{{Saito et~al.}}{{}}}
+\bibcite{jeong2025comparative}{{13}{2025}{{Jeong et~al.}}{{}}}
+\bibcite{lu2024casse}{{14}{2024}{{Lu et~al.}}{{}}}
+\bibcite{thurstone1927law}{{15}{1927}{{Thurstone}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Cross-axis gradient: NLI rejection rate (manipulation invasiveness proxy) vs.\ BT magnitude. Positive correlation is inconsistent with uniform format-level amplification (3 data points, qualitative).}}{10}{table.caption.20}\protected@file@percent }
+\newlabel{tab:gradient}{{12}{10}{Cross-axis gradient: NLI rejection rate (manipulation invasiveness proxy) vs.\ BT magnitude. Positive correlation is inconsistent with uniform format-level amplification (3 data points, qualitative)}{table.caption.20}{}}
+\bibcite{stevens1946theory}{{16}{1946}{{Stevens}}{{}}}
+\bibcite{zeng2024llmbar}{{17}{2024}{{Zeng et~al.}}{{}}}
+\gdef \@abspage@last{11}

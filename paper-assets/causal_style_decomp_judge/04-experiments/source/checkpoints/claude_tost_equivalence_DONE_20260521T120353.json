@@ -1,0 +1,60 @@
+{
+  "exp_id": "claude_tost_equivalence",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:03:21.852Z",
+    "updated_at": "2026-05-21T12:03:53.897Z",
+    "hypothesis": "Claude Sonnet 4 BT results are statistically equivalent to chance (P=0.5) within ±10pp margin using TOST, formally confirming no style bias as negative control (addresses W-SF4)",
+    "spec": {
+      "command": "python csd_pipeline/claude_tost_equivalence.py",
+      "server": "westb-29275",
+      "data_path": "Claude BT bootstrap results",
+      "data_count": 174,
+      "model_name": "Statistical analysis only (scipy)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "data/claude_tost_equivalence.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "equivalence_margin": 0.1,
+      "formality": {
+        "p_hat": 0.562,
+        "n": 88,
+        "se": 0.0375,
+        "tost_p": 0.155,
+        "ci_90": [
+          0.5,
+          0.624
+        ],
+        "upper_test_p": 0.155,
+        "lower_test_p": 0,
+        "equivalence_confirmed": false,
+        "note": "90% CI upper bound 0.624 > 0.60 margin"
+      },
+      "verbosity": {
+        "p_hat": 0.541,
+        "n": 86,
+        "se": 0.0401,
+        "tost_p": 0.07,
+        "ci_90": [
+          0.475,
+          0.607
+        ],
+        "upper_test_p": 0.07,
+        "lower_test_p": 0,
+        "equivalence_confirmed": false,
+        "note": "90% CI upper bound 0.607 > 0.60 margin, marginal"
+      },
+      "conclusion": "Equivalence NOT confirmed at Δ=0.10 — underpowered (n≈87), not evidence of bias. Both upper tests fail: formality p=0.155, verbosity p=0.070. If Δ=0.15, both would confirm equivalence.",
+      "method": "TOST for proportions (Lakens 2017), SE from pair-level bootstrap"
+    },
+    "completed_at": "2026-05-21T12:03:53.897Z"
+  },
+  "timestamp": "2026-05-21T12:03:53.961492+00:00",
+  "trigger": "update_registry"
+}

@@ -1,29 +1,39 @@
-﻿Source archive,Candidate version path in archive,Bytes,Status note
-causal_style_decomp_judge/workspace.tar.gz,artifacts/review_round_12/submitted.pdf,400161,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/review_round_17/submitted.pdf,4992667,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/review_round_8/submitted.pdf,379388,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/review_round_14/submitted.pdf,433316,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/review_round_11/submitted.pdf,397209,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/review_round_9/submitted.pdf,389926,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260521T152517/median/paper.pdf,178279,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260521T152517/best/paper.pdf,181688,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260521T052420/median/paper.pdf,167167,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260521T052420/worst/paper.pdf,173428,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260521T052420/best/paper.pdf,203800,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260520T233719/median/paper.pdf,185239,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260520T233719/worst/paper.pdf,157286,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260520T233719/best/paper.pdf,226858,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260521T132932/median/paper.pdf,201475,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260521T132932/worst/paper.pdf,175807,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260521T132932/best/paper.pdf,182847,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260520T211832/median/paper.pdf,202893,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260520T211832/worst/paper.pdf,135352,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260520T211832/best/paper.pdf,175552,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260521T010111/median/paper.pdf,188685,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260521T010111/worst/paper.pdf,134586,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/dream_reports/dream_20260521T010111/best/paper.pdf,235748,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/review_round_7/submitted.pdf,368095,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/review_round_10/submitted.pdf,393706,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/review_round_16/submitted.pdf,492184,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/review_round_13/submitted.pdf,416213,Archive candidate; official submission/public version not verified
-causal_style_decomp_judge/workspace.tar.gz,artifacts/review_round_15/submitted.pdf,446522,Archive candidate; official submission/public version not verified
+archive_path,source_bytes,output_path
+docs/paper/figures/dag_diagram.pdf,2833091,01-manuscript/source/docs/paper/figures/dag_diagram.pdf
+docs/paper/figures/forest_plot.pdf,25415,01-manuscript/source/docs/paper/figures/forest_plot.pdf
+docs/paper/figures/gee_decomposition.pdf,27387,01-manuscript/source/docs/paper/figures/gee_decomposition.pdf
+docs/paper/figures/pipeline_diagram.pdf,1696958,01-manuscript/source/docs/paper/figures/pipeline_diagram.pdf
+docs/paper/figures/power_curve.pdf,37799,01-manuscript/source/docs/paper/figures/power_curve.pdf
+docs/paper/figures/cross_benchmark_heatmap.pdf,24558,01-manuscript/source/docs/paper/figures/cross_benchmark_heatmap.pdf
+docs/paper/main.pdf,4991609,01-manuscript/source/docs/paper/main.pdf
+artifacts/review_round_12/submitted.pdf,400161,01-manuscript/source/artifacts/review_round_12/submitted.pdf
+artifacts/review_round_17/submitted.pdf,4992667,01-manuscript/source/artifacts/review_round_17/submitted.pdf
+artifacts/review_round_8/submitted.pdf,379388,01-manuscript/source/artifacts/review_round_8/submitted.pdf
+artifacts/figures/paper/forest_plot.pdf,31877,01-manuscript/source/artifacts/figures/paper/forest_plot.pdf
+artifacts/figures/paper/pipeline_diagram.pdf,39904,01-manuscript/source/artifacts/figures/paper/pipeline_diagram.pdf
+artifacts/figures/paper/power_curve.pdf,31858,01-manuscript/source/artifacts/figures/paper/power_curve.pdf
+artifacts/review_round_14/submitted.pdf,433316,01-manuscript/source/artifacts/review_round_14/submitted.pdf
+artifacts/review_round_11/submitted.pdf,397209,01-manuscript/source/artifacts/review_round_11/submitted.pdf
+artifacts/review_round_9/submitted.pdf,389926,01-manuscript/source/artifacts/review_round_9/submitted.pdf
+artifacts/dream_reports/dream_20260521T152517/median/paper.pdf,178279,01-manuscript/source/artifacts/dream_reports/dream_20260521T152517/median/paper.pdf
+artifacts/dream_reports/dream_20260521T152517/best/paper.pdf,181688,01-manuscript/source/artifacts/dream_reports/dream_20260521T152517/best/paper.pdf
+artifacts/dream_reports/dream_20260521T052420/median/paper.pdf,167167,01-manuscript/source/artifacts/dream_reports/dream_20260521T052420/median/paper.pdf
+artifacts/dream_reports/dream_20260521T052420/worst/paper.pdf,173428,01-manuscript/source/artifacts/dream_reports/dream_20260521T052420/worst/paper.pdf
+artifacts/dream_reports/dream_20260521T052420/best/paper.pdf,203800,01-manuscript/source/artifacts/dream_reports/dream_20260521T052420/best/paper.pdf
+artifacts/dream_reports/dream_20260520T233719/median/paper.pdf,185239,01-manuscript/source/artifacts/dream_reports/dream_20260520T233719/median/paper.pdf
+artifacts/dream_reports/dream_20260520T233719/worst/paper.pdf,157286,01-manuscript/source/artifacts/dream_reports/dream_20260520T233719/worst/paper.pdf
+artifacts/dream_reports/dream_20260520T233719/best/paper.pdf,226858,01-manuscript/source/artifacts/dream_reports/dream_20260520T233719/best/paper.pdf
+artifacts/dream_reports/dream_20260521T132932/median/paper.pdf,201475,01-manuscript/source/artifacts/dream_reports/dream_20260521T132932/median/paper.pdf
+artifacts/dream_reports/dream_20260521T132932/worst/paper.pdf,175807,01-manuscript/source/artifacts/dream_reports/dream_20260521T132932/worst/paper.pdf
+artifacts/dream_reports/dream_20260521T132932/best/paper.pdf,182847,01-manuscript/source/artifacts/dream_reports/dream_20260521T132932/best/paper.pdf
+artifacts/dream_reports/dream_20260520T211832/median/paper.pdf,202893,01-manuscript/source/artifacts/dream_reports/dream_20260520T211832/median/paper.pdf
+artifacts/dream_reports/dream_20260520T211832/worst/paper.pdf,135352,01-manuscript/source/artifacts/dream_reports/dream_20260520T211832/worst/paper.pdf
+artifacts/dream_reports/dream_20260520T211832/best/paper.pdf,175552,01-manuscript/source/artifacts/dream_reports/dream_20260520T211832/best/paper.pdf
+artifacts/dream_reports/dream_20260521T010111/median/paper.pdf,188685,01-manuscript/source/artifacts/dream_reports/dream_20260521T010111/median/paper.pdf
+artifacts/dream_reports/dream_20260521T010111/worst/paper.pdf,134586,01-manuscript/source/artifacts/dream_reports/dream_20260521T010111/worst/paper.pdf
+artifacts/dream_reports/dream_20260521T010111/best/paper.pdf,235748,01-manuscript/source/artifacts/dream_reports/dream_20260521T010111/best/paper.pdf
+artifacts/review_round_7/submitted.pdf,368095,01-manuscript/source/artifacts/review_round_7/submitted.pdf
+artifacts/review_round_10/submitted.pdf,393706,01-manuscript/source/artifacts/review_round_10/submitted.pdf
+artifacts/review_round_16/submitted.pdf,492184,01-manuscript/source/artifacts/review_round_16/submitted.pdf
+artifacts/review_round_13/submitted.pdf,416213,01-manuscript/source/artifacts/review_round_13/submitted.pdf
+artifacts/review_round_15/submitted.pdf,446522,01-manuscript/source/artifacts/review_round_15/submitted.pdf

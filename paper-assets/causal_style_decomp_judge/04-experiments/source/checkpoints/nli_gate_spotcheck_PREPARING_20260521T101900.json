@@ -1,0 +1,16 @@
+{
+  "exp_id": "nli_gate_spotcheck",
+  "project": "causal_style_decomp_judge",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:18:55.907Z",
+    "updated_at": "2026-05-21T10:18:59.987Z",
+    "hypothesis": "GPT-4o independent evaluation agrees with NLI gate pass/fail decisions at high rate, demonstrating NLI gate validity is not an artifact of same-model-family evaluation (addresses R3-W1 concern about evaluator-producer confound in gate validation)",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T10:19:00.108656+00:00",
+  "trigger": "update_registry"
+}

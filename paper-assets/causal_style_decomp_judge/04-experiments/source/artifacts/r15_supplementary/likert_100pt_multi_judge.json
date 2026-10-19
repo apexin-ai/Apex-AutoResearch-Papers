@@ -1,0 +1,83 @@
+{
+  "qwen3_32b": {
+    "likert_100pt": {
+      "ate": 1.8295,
+      "d": 0.1531,
+      "p": 0.154475,
+      "tie_rate": 0.5114,
+      "n": 88,
+      "sd": 11.9484,
+      "t_stat": 1.4364,
+      "ties": 45,
+      "mean_orig": 63.76,
+      "mean_cf": 61.93,
+      "errors": 0
+    },
+    "likert_standard": {
+      "ate": 0.0114,
+      "d": 0.0124,
+      "p": 0.907617,
+      "tie_rate": 0.7273,
+      "n": 88,
+      "sd": 0.9159,
+      "ties": 64,
+      "mean_orig": 6.15,
+      "mean_cf": 6.14
+    },
+    "comparison": "100pt scale reduces tie rate from 72.7% to 51.1% (Δ=-21.6pp), but ATE remains non-significant (p=0.15). Qwen clusters at multiples of 5 (45,65,75,85), behaving as a ~20-point effective scale rather than true continuous."
+  },
+  "llama_70b": {
+    "likert_100pt": {
+      "ate": 1.3855,
+      "d": 0.0851,
+      "p": 0.440383,
+      "tie_rate": 0.3976,
+      "n": 83,
+      "sd": 16.2806,
+      "t_stat": 0.7758,
+      "ties": 33,
+      "mean_orig": 68.87,
+      "mean_cf": 67.48,
+      "errors": 5
+    },
+    "likert_standard": {
+      "ate": 0.0,
+      "d": 0.0,
+      "p": 1.0,
+      "tie_rate": 0.7273,
+      "n": 88,
+      "sd": 1.0933,
+      "ties": 64,
+      "mean_orig": 6.65,
+      "mean_cf": 6.65
+    },
+    "comparison": "100pt scale reduces tie rate from 72.7% to 39.8% (Δ=-32.9pp), the largest reduction across all judges. Llama uses diverse non-round values (78,87,89,82), approximating continuous scoring better than Qwen or GPT-4o. ATE still non-significant (p=0.44). 5 pairs failed due to Llama returning score=0."
+  },
+  "gpt4o_reference": {
+    "likert_100pt": {
+      "ate": -0.625,
+      "d": -0.0376,
+      "p": 0.725438,
+      "tie_rate": 0.659,
+      "n": 88,
+      "sd": 16.64,
+      "ties": 58,
+      "mean_orig": 52.5,
+      "mean_cf": 53.12
+    },
+    "note": "GPT-4o 100pt results from existing experiment. GPT-4o clusters heavily at multiples of 25 (0,25,50,75,100), behaving as a 5-point effective scale."
+  },
+  "cross_judge_summary": {
+    "tie_rate_reduction": {
+      "gpt4o": {"standard": "N/A", "100pt": 0.659, "note": "no standard Likert comparison available"},
+      "qwen3_32b": {"standard": 0.7273, "100pt": 0.5114, "delta_pp": -21.6},
+      "llama_70b": {"standard": 0.7273, "100pt": 0.3976, "delta_pp": -32.9}
+    },
+    "effective_granularity": {
+      "gpt4o": "~5-point (clusters at 0/25/50/75/100)",
+      "qwen3_32b": "~20-point (clusters at multiples of 5)",
+      "llama_70b": "~50+ point (diverse non-round values)"
+    },
+    "conclusion": "Expanding Likert from 1-10 to 1-100 reduces tie rates for all judges but does not improve statistical power for detecting style bias (all p>0.15). Granularity varies by judge: GPT-4o collapses to 5 bins, Qwen to ~20 bins, Llama achieves the finest granularity. The ATE direction is inconsistent across judges (GPT-4o slightly negative, Qwen/Llama slightly positive), confirming formality style does not systematically bias quality judgments."
+  }
+}

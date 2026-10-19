@@ -1,0 +1,393 @@
+{
+  "concordance": {
+    "qwen32b_formality_llmbar": {
+      "total_matched": 88,
+      "likert_ties": 64,
+      "pairwise_ties": 9,
+      "n_nontie": 15,
+      "concordant": 10,
+      "discordant": 5,
+      "concordance_rate": 0.6667,
+      "wilson_ci_95": [
+        0.4171,
+        0.8482
+      ],
+      "binom_p": 0.301758
+    },
+    "qwen32b_verbosity_llmbar": {
+      "total_matched": 86,
+      "likert_ties": 50,
+      "pairwise_ties": 9,
+      "n_nontie": 27,
+      "concordant": 20,
+      "discordant": 7,
+      "concordance_rate": 0.7407,
+      "wilson_ci_95": [
+        0.5532,
+        0.8683
+      ],
+      "binom_p": 0.019157
+    },
+    "llama70b_formality_llmbar": {
+      "total_matched": 88,
+      "likert_ties": 64,
+      "pairwise_ties": 6,
+      "n_nontie": 18,
+      "concordant": 15,
+      "discordant": 3,
+      "concordance_rate": 0.8333,
+      "wilson_ci_95": [
+        0.6078,
+        0.9416
+      ],
+      "binom_p": 0.007538
+    },
+    "llama70b_verbosity_llmbar": {
+      "total_matched": 86,
+      "likert_ties": 53,
+      "pairwise_ties": 8,
+      "n_nontie": 25,
+      "concordant": 22,
+      "discordant": 3,
+      "concordance_rate": 0.88,
+      "wilson_ci_95": [
+        0.7004,
+        0.9583
+      ],
+      "binom_p": 0.000157
+    },
+    "gemini_formality_llmbar": {
+      "total_matched": 88,
+      "likert_ties": 57,
+      "pairwise_ties": 16,
+      "n_nontie": 15,
+      "concordant": 10,
+      "discordant": 5,
+      "concordance_rate": 0.6667,
+      "wilson_ci_95": [
+        0.4171,
+        0.8482
+      ],
+      "binom_p": 0.301758
+    },
+    "gemini_verbosity_llmbar": {
+      "total_matched": 86,
+      "likert_ties": 47,
+      "pairwise_ties": 15,
+      "n_nontie": 24,
+      "concordant": 17,
+      "discordant": 7,
+      "concordance_rate": 0.7083,
+      "wilson_ci_95": [
+        0.5083,
+        0.8509
+      ],
+      "binom_p": 0.063915
+    },
+    "gpt4o_verbosity_llmbar": {
+      "total_matched": 86,
+      "likert_ties": 50,
+      "pairwise_ties": 6,
+      "n_nontie": 30,
+      "concordant": 25,
+      "discordant": 5,
+      "concordance_rate": 0.8333,
+      "wilson_ci_95": [
+        0.6644,
+        0.9266
+      ],
+      "binom_p": 0.000325
+    },
+    "gpt4o_formality_alpacaeval": {
+      "total_matched": 86,
+      "likert_ties": 57,
+      "pairwise_ties": 8,
+      "n_nontie": 21,
+      "concordant": 15,
+      "discordant": 6,
+      "concordance_rate": 0.7143,
+      "wilson_ci_95": [
+        0.5004,
+        0.8619
+      ],
+      "binom_p": 0.078354
+    },
+    "qwen32b_formality_alpacaeval": {
+      "total_matched": 86,
+      "likert_ties": 41,
+      "pairwise_ties": 19,
+      "n_nontie": 26,
+      "concordant": 20,
+      "discordant": 6,
+      "concordance_rate": 0.7692,
+      "wilson_ci_95": [
+        0.5795,
+        0.8897
+      ],
+      "binom_p": 0.009355
+    }
+  },
+  "correlation": {
+    "qwen32b_formality_llmbar": {
+      "n": 46,
+      "r_pb": 0.2743,
+      "p_value": 0.065123
+    },
+    "qwen32b_verbosity_llmbar": {
+      "n": 63,
+      "r_pb": 0.2957,
+      "p_value": 0.018645
+    },
+    "llama70b_formality_llmbar": {
+      "n": 50,
+      "r_pb": 0.4465,
+      "p_value": 0.001155
+    },
+    "llama70b_verbosity_llmbar": {
+      "n": 60,
+      "r_pb": 0.4122,
+      "p_value": 0.001066
+    },
+    "gemini_formality_llmbar": {
+      "n": 45,
+      "r_pb": 0.373,
+      "p_value": 0.011626
+    },
+    "gemini_verbosity_llmbar": {
+      "n": 52,
+      "r_pb": 0.3465,
+      "p_value": 0.011855
+    },
+    "gpt4o_verbosity_llmbar": {
+      "n": 60,
+      "r_pb": 0.3728,
+      "p_value": 0.003348
+    },
+    "gpt4o_formality_alpacaeval": {
+      "n": 47,
+      "r_pb": 0.3399,
+      "p_value": 0.019413
+    },
+    "qwen32b_formality_alpacaeval": {
+      "n": 53,
+      "r_pb": 0.2026,
+      "p_value": 0.145772
+    }
+  },
+  "bias_corrected_or": {
+    "gpt4o_formality_llmbar": {
+      "nemes": {
+        "original_or": 2.7002,
+        "original_log_or": 0.9933,
+        "corrected_log_or": 0.9818,
+        "corrected_or": 2.6692,
+        "correction_factor": 0.9884,
+        "method": "nemes",
+        "n": 86
+      },
+      "hedges": {
+        "original_or": 2.7002,
+        "original_log_or": 0.9933,
+        "corrected_log_or": 0.9844,
+        "corrected_or": 2.6763,
+        "correction_factor": 0.991,
+        "method": "hedges",
+        "n": 86
+      }
+    },
+    "qwen32b_formality_llmbar": {
+      "nemes": {
+        "original_or": 4.2008,
+        "original_log_or": 1.4353,
+        "corrected_log_or": 1.419,
+        "corrected_or": 4.1328,
+        "correction_factor": 0.9886,
+        "method": "nemes",
+        "n": 88
+      },
+      "hedges": {
+        "original_or": 4.2008,
+        "original_log_or": 1.4353,
+        "corrected_log_or": 1.4227,
+        "corrected_or": 4.1484,
+        "correction_factor": 0.9913,
+        "method": "hedges",
+        "n": 88
+      }
+    },
+    "llama70b_formality_llmbar": {
+      "nemes": {
+        "original_or": 5.5227,
+        "original_log_or": 1.7089,
+        "corrected_log_or": 1.6883,
+        "corrected_or": 5.4102,
+        "correction_factor": 0.988,
+        "method": "nemes",
+        "n": 83
+      },
+      "hedges": {
+        "original_or": 5.5227,
+        "original_log_or": 1.7089,
+        "corrected_log_or": 1.693,
+        "corrected_or": 5.4357,
+        "correction_factor": 0.9907,
+        "method": "hedges",
+        "n": 83
+      }
+    },
+    "gpt4o_formality_alpacaeval": {
+      "nemes": {
+        "original_or": 3.8296,
+        "original_log_or": 1.3428,
+        "corrected_log_or": 1.3233,
+        "corrected_or": 3.7558,
+        "correction_factor": 0.9855,
+        "method": "nemes",
+        "n": 69
+      },
+      "hedges": {
+        "original_or": 3.8296,
+        "original_log_or": 1.3428,
+        "corrected_log_or": 1.3277,
+        "corrected_or": 3.7723,
+        "correction_factor": 0.9888,
+        "method": "hedges",
+        "n": 69
+      }
+    },
+    "qwen32b_formality_alpacaeval": {
+      "nemes": {
+        "original_or": 2.0,
+        "original_log_or": 0.6931,
+        "corrected_log_or": 0.6814,
+        "corrected_or": 1.9766,
+        "correction_factor": 0.9831,
+        "method": "nemes",
+        "n": 59
+      },
+      "hedges": {
+        "original_or": 2.0,
+        "original_log_or": 0.6931,
+        "corrected_log_or": 0.684,
+        "corrected_or": 1.9818,
+        "correction_factor": 0.9868,
+        "method": "hedges",
+        "n": 59
+      }
+    },
+    "gpt4o_verbosity_llmbar": {
+      "nemes": {
+        "original_or": 1.78,
+        "original_log_or": 0.5766,
+        "corrected_log_or": 0.5699,
+        "corrected_or": 1.7681,
+        "correction_factor": 0.9884,
+        "method": "nemes",
+        "n": 86
+      },
+      "hedges": {
+        "original_or": 1.78,
+        "original_log_or": 0.5766,
+        "corrected_log_or": 0.5714,
+        "corrected_or": 1.7708,
+        "correction_factor": 0.991,
+        "method": "hedges",
+        "n": 86
+      }
+    },
+    "qwen32b_verbosity_llmbar": {
+      "nemes": {
+        "original_or": 2.15,
+        "original_log_or": 0.7655,
+        "corrected_log_or": 0.7566,
+        "corrected_or": 2.1309,
+        "correction_factor": 0.9884,
+        "method": "nemes",
+        "n": 86
+      },
+      "hedges": {
+        "original_or": 2.15,
+        "original_log_or": 0.7655,
+        "corrected_log_or": 0.7586,
+        "corrected_or": 2.1353,
+        "correction_factor": 0.991,
+        "method": "hedges",
+        "n": 86
+      }
+    },
+    "llama70b_verbosity_llmbar": {
+      "nemes": {
+        "original_or": 2.06,
+        "original_log_or": 0.7227,
+        "corrected_log_or": 0.714,
+        "corrected_or": 2.0421,
+        "correction_factor": 0.988,
+        "method": "nemes",
+        "n": 83
+      },
+      "hedges": {
+        "original_or": 2.06,
+        "original_log_or": 0.7227,
+        "corrected_log_or": 0.716,
+        "corrected_or": 2.0462,
+        "correction_factor": 0.9907,
+        "method": "hedges",
+        "n": 83
+      }
+    },
+    "gemini_formality_llmbar": {
+      "nemes": {
+        "original_or": 5.19,
+        "original_log_or": 1.6467,
+        "corrected_log_or": 1.628,
+        "corrected_or": 5.0938,
+        "correction_factor": 0.9886,
+        "method": "nemes",
+        "n": 88
+      },
+      "hedges": {
+        "original_or": 5.19,
+        "original_log_or": 1.6467,
+        "corrected_log_or": 1.6323,
+        "corrected_or": 5.1158,
+        "correction_factor": 0.9913,
+        "method": "hedges",
+        "n": 88
+      }
+    },
+    "gemini_verbosity_llmbar": {
+      "nemes": {
+        "original_or": 3.78,
+        "original_log_or": 1.3297,
+        "corrected_log_or": 1.3143,
+        "corrected_or": 3.722,
+        "correction_factor": 0.9884,
+        "method": "nemes",
+        "n": 86
+      },
+      "hedges": {
+        "original_or": 3.78,
+        "original_log_or": 1.3297,
+        "corrected_log_or": 1.3178,
+        "corrected_or": 3.7353,
+        "correction_factor": 0.991,
+        "method": "hedges",
+        "n": 86
+      }
+    }
+  },
+  "summary": {
+    "pooled_concordance": {
+      "concordant": 154,
+      "discordant": 47,
+      "n_nontie": 201,
+      "rate": 0.7662,
+      "ci_95": [
+        0.703,
+        0.8194
+      ],
+      "binom_p": 0.0
+    },
+    "interpretation": "MIXED \u2014 moderate concordance; partial attenuation with some construct divergence"
+  }
+}

@@ -74,7 +74,7 @@ called Bash
 
 ```json
 {
-  "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate --input /tmp/fig2_dag_intent_v2.txt --caption \"Assumed causal DAG: rewriting mechanism targets style S, blocked paths controlled by NLI gate, double-rewrite, and position swap\" --vlm-model gemini-2.5-pro --output /tmp/fig2_dag_v2.png --iterations 5 2>&1",
+  "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate --input /tmp/fig2_dag_intent_v2.txt --caption \"Assumed causal DAG: rewriting mechanism targets style S, blocked paths controlled by NLI gate, double-rewrite, and position swap\" --vlm-model gemini-2.5-pro --output /tmp/fig2_dag_v2.png --iterations 5 2>&1",
   "description": "Run PaperBanana Round 2 for Figure 2 DAG",
   "timeout": "600000",
   "run_in_background": "True"
@@ -91,7 +91,7 @@ called Bash
   "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee",
   "tool": "Bash",
   "tool_args": {
-    "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate --input /tmp/fig2_dag_intent_v2.txt --caption \"Assumed causal DAG: rewriting mechanism targets style S, blocked paths controlled by NLI gate, double-rewrite, and position swap\" --vlm-model gemini-2.5-pro --output /tmp/fig2_dag_v2.png --iterations 5 2>&1",
+    "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate --input /tmp/fig2_dag_intent_v2.txt --caption \"Assumed causal DAG: rewriting mechanism targets style S, blocked paths controlled by NLI gate, double-rewrite, and position swap\" --vlm-model gemini-2.5-pro --output /tmp/fig2_dag_v2.png --iterations 5 2>&1",
     "description": "Run PaperBanana Round 2 for Figure 2 DAG",
     "timeout": "600000",
     "run_in_background": "True"
@@ -837,7 +837,7 @@ called Bash
 
 ```json
 {
-  "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate --input /tmp/fig2_dag_intent_v2.txt --caption \"Assumed causal DAG for CSD framework\" --vlm-model gemini-2.5-pro --output /tmp/fig2_dag_v2.png --iterations 3 2>&1",
+  "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate --input /tmp/fig2_dag_intent_v2.txt --caption \"Assumed causal DAG for CSD framework\" --vlm-model gemini-2.5-pro --output /tmp/fig2_dag_v2.png --iterations 3 2>&1",
   "description": "Retry PaperBanana Round 2 with 3 iterations",
   "timeout": "600000",
   "run_in_background": "True"
@@ -854,7 +854,7 @@ called Bash
   "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee",
   "tool": "Bash",
   "tool_args": {
-    "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate --input /tmp/fig2_dag_intent_v2.txt --caption \"Assumed causal DAG for CSD framework\" --vlm-model gemini-2.5-pro --output /tmp/fig2_dag_v2.png --iterations 3 2>&1",
+    "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate --input /tmp/fig2_dag_intent_v2.txt --caption \"Assumed causal DAG for CSD framework\" --vlm-model gemini-2.5-pro --output /tmp/fig2_dag_v2.png --iterations 3 2>&1",
     "description": "Retry PaperBanana Round 2 with 3 iterations",
     "timeout": "600000",
     "run_in_background": "True"

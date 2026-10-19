@@ -1,0 +1,20 @@
+exp-016 Bradley-Terry Analysis Results
+
+Data: 100 pairs × 2 trials = 197 valid comparisons (all data, no consistency filtering)
+
+Trial 1: formal wins in majority
+Trial 2: formal wins in majority
+Total formal win rate: 60.9%
+
+BT Parameters:
+  Formal-casual strength: +0.4436
+  P(formal wins): 60.9%
+  Bootstrap 95% CI (strength): [+0.1525, +0.7545]
+  Bootstrap 95% CI (probability): [53.8%, 68.0%]
+  CI excludes zero/50%: YES
+
+Comparison with consistency-filtered sign test:
+  Sign test: 69.1% formal, p=0.006, N=55
+  BT (all data): 60.9% formal, N=197
+  
+BT is more conservative (includes position-inconsistent pairs) but still significant.

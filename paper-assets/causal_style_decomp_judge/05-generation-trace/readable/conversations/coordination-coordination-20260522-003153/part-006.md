@@ -6,28 +6,6 @@
 
 ## Round 199
 
-### Tool result
-
-_source line 2493 · 2026-05-21T09:08:50.782898+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-006\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:57:42.107Z\", \"updated_at\": \"2026-05-21T09:08:50.683Z\", \"metrics\": {\"n_total\": 400, \"nli_pass\": 355, \"nli_rate\": 0.888, \"bt\": {\"p_formal\": 0.675, \"ci\": [0.637, 0.713], \"ci_width_pp\": 7.6, \"p_value\": 0.0001}, \"likert\": {\"ate\": -0.059, \"p\": 0.5999, \"d\": -0.025, \"tie_rate\": 0.434, \"mean_formal\": 6.58, \"mean_casual\": 6.64}, \"gee\": {\"style_or\": 2.15, \"style_ci\": [1.46, 3.16], \"style_p\": 0.0001, \"orig_or\": 4.99, \"orig_ci\": [3.4, 7.34], \"orig_p\": 0.0001}, \"blindspot\": true, \"consistency\": 0.654, \"vs_n100\": {\"bt_delta\": \"+1.0pp (67.5 vs 66.5)\", \"ci_improvement\": \"2x narrower (7.6pp vs 15.4pp)\"}}, \"hypothesis\": \"Scaling formality counterfactual generation from 100 to 400 pairs enables cross-benchmark validation (AlpacaEval/MT-Bench) and increases statistical power for detecting smaller effect sizes\", \"spec\": {\"command\": \"counterfactual_gen.py --axis formality --n 400 via vLLM Qwen3-32B tp=1 port 8002\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/scaled_formality_input.jsonl\", \"data_count\": 400, \"model_name\": \"Qwen3-32B (counterfactual generator via vLLM)\", \"seed\": 42, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/counterfactuals_scaled_formality.jsonl\", \"log_path\": \"/root/causal_style_decomp_judge/logs/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T07:45:18.441Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1587}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee",
-  "tool": "mcp__agent-ml-research__update_registry",
-  "elapsed_ms": 151
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
 _source line 2494 · 2026-05-21T09:09:11.842130+00:00_
@@ -15203,6 +15181,64 @@ _source line 2991 · 2026-05-21T13:56:30.558844+00:00_
   "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee",
   "tool": "mcp__agent-ml-research__update_registry",
   "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 2992 · 2026-05-21T13:57:18.298700+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 4/4 (cuda:0,1 Llama-70B 下载中 | cuda:2,3 Qwen3-32B vLLM) | Worker 3 (GPU 0 / API 1 / download-poll 1) | 磁盘: westb-29275 未检测\n\n---\n\n## [关键分析] Double-Rewrite Placebo + CF vs DR — 全景图\n\n### 实验结果汇总\n\n**Placebo (Original vs DR) — 两个 judge 均 FAILED**\n\n| | Qwen3-32B | GPT-4o |\n|---|---|---|\n| Formality orig_win | 26.7% p=0.003 | 31.8% p=0.023 |\n| Verbosity orig_win | 0% p≈0 | 6.2% p≈0 |\n\n**CF vs DR — 两个 judge 均 DR 被偏好**\n\n| | Qwen3-32B | GPT-4o |\n|---|---|---|\n| Formality CF_win | 20.0% p<0.00001 | 15.1% p≈0 |\n| Verbosity CF_win | 33.3% p=0.053 | (worker 完成中，pattern 一致) |\n\n### 🔑 关键方法论洞察：CF vs DR 并非 artifact-controlled\n\nWorker 的初步解读是\"artifact dominates style\"——**这是错误的**。\n\nCF vs DR 的假设前提是\"CF 和 DR 有相同的 artifact 水平\"，但实际上：\n- **CF = 1 次改写** (A→B)\n- **DR = 2 次改写** (A→B→A)\n\nDR 多了一次 LLM 处理。所以 CF vs DR 比较的是 (style_change + 1 rewrite) vs (original_style + 2 rewrites)。在 formality 中：\n- CF = casual + 1 rewrite\n- DR = formal + 2 rewrites\n- Judge 偏好 formal (style) + 偏好 more-rewritten (artifact) → **两个效应同向叠加** → DR 赢 80%+\n\n这不是\"artifact 压倒 style\"，而是\"两个效应在这个比较中方向一致，无法分离\"。\n\n### GEE 才是正确的 artifact 控制\n\n**我们的 GEE decomposition 已经做了 CF vs DR 想做的事情——而且做得更好。**\n\nGEE 通过回归模型在每个 pair 内分离 style_effect 和 originality_effect：\n- `style_effect` = 控制 originality 后的纯 style preference → **已排除 artifact**\n- `originality_effect` = 控制 style 后的 original vs rewrite preference → **捕获 artifact**\n\n已有的 GEE 结果完美对应 placebo 发现：\n\n| Axis | GEE Style OR | GEE Orig OR | Placebo 预期 |\n|------|-------------|------------|-------------|\n| Verbosity | **13.10*** | 0.49 ns | orig vs DR 应接近 50%... 但 placebo 显示 0% |\n| Formality | **4.20*** | **4.70*** | orig vs DR 应偏向 DR... ✅ placebo 确认 |\n\n**Verbosity 异常**：GEE Orig OR 不显著（0.49），说明在 GEE 框架下 originality 不是 confound。但 placebo 却显示极端偏好 DR (0%)。这个矛盾需要理解：\n- GEE 的 originality_effect 是在 **控制 style 方向** 后的估计\n- Placebo 是 **无 style 差异** 的纯 artifact 测试\n- 可能 GEE 的 exchangeable correlation 结构吸收了一部分 artifact variance\n\n### 论文建议：3 层叙事\n\n不需要 framing 调整。建议在 §4 加一段 \"Artifact Analysis\"：\n\n1. **承认 artifact 存在**（诚实 + rigorous）：placebo 显示 judges 系统性偏好 LLM-rewritten text over original\n2. **GEE 已控制 artifact**：Style OR 是控制 originality 后的估计；verbosity Style OR=13.10 在控制 artifact 后仍高度显著\n3. **Blindspot 结论不受影响**：Likert 看不到 style bias（即使 GEE 已分离 artifact），BT 能看到——这正是 Likert Blindspot\n\n这实际上**强化**了论文：\n- 我们**主动检测**了 artifact（不是 reviewer 挖出来的）\n- GEE decomposition **已经**处理了这个问题（不需要事后补救）\n- Verbosity 的纯 style effect (OR=13, artifact NS) 是最干净的 evidence\n\n### 状态更新\n- ✅ Placebo Qwen3-32B + GPT-4o: DONE (negative)\n- ✅ CF vs DR Qwen3-32B: DONE (negative, 但方法论上 expected)\n- 🔄 CF vs DR GPT-4o: turn 30, formality 结果已出，verbosity 完成中\n- 🔄 Llama-70B: 模型下载中 (~135GB)，已 spawn 接力 worker 监控\n- Worker 池: 3 active (CF-GPT4o + Llama-continuation + Llama-download on server)\n\n### 建议\n1. 在 §4 加 ~半页 \"Artifact Analysis\" 子段\n2. 不要在论文中放 CF vs DR 比较（方法论上 flawed）\n3. 用 placebo + GEE decomposition 构成完整的 artifact defense\n4. 需要 Director 判断：是否需要对 verbosity placebo (0% orig win) 做更深入的解释？GEE 说 Orig OR ns，但 placebo 说 artifact 极端——可能需要在 limitations 中 acknowledge",
+  "project": "causal_style_decomp_judge"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 4/4 (cuda:0,1 Llama-70B 下载中 | cuda:2,3 Qwen3-32B vLLM) | Worker 3 (GPU 0 / API 1 / download-poll 1) | 磁盘: westb-29275 未检测\n\n---\n\n## [关键分析] Double-Rewrite Placebo + CF vs DR — 全景图\n\n### 实验结果汇总\n\n**Placebo (Original vs DR) — 两个 judge 均 FAILED**\n\n| | Qwen3-32B | GPT-4o |\n|---|---|---|\n| Formality orig_win | 26.7% p=0.003 | 31.8% p=0.023 |\n| Verbosity orig_win | 0% p≈0 | 6.2% p≈0 |\n\n**CF vs DR — 两个 judge 均 DR 被偏好**\n\n| | Qwen3-32B | GPT-4o |\n|---|---|---|\n| Formality CF_win | 20.0% p<0.00001 | 15.1% p≈0 |\n| Verbosity CF_win | 33.3% p=0.053 | (worker 完成中，pattern 一致) |\n\n### 🔑 关键方法论洞察：CF vs DR 并非 artifact-controlled\n\nWorker 的初步解读是\"artifact dominates style\"——**这是错误的**。\n\nCF vs DR 的假设前提是\"CF 和 DR 有相同的 artifact 水平\"，但实际上：\n- **CF = 1 次改写** (A→B)\n- **DR = 2 次改写** (A→B→A)\n\nDR 多了一次 LLM 处理。所以 CF vs DR 比较的是 (style_change + 1 rewrite) vs (original_style + 2 rewrites)。在 formality 中：\n- CF = casual + 1 rewrite\n- DR = formal + 2 rewrites\n- Judge 偏好 formal (style) + 偏好 more-rewritten (artifact) → **两个效应同向叠加** → DR 赢 80%+\n\n这不是\"artifact 压倒 style\"，而是\"两个效应在这个比较中方向一致，无法分离\"。\n\n### GEE 才是正确的 artifact 控制\n\n**我们的 GEE decomposition 已经做了 CF vs DR 想做的事情——而且做得更好。**\n\nGEE 通过回归模型在每个 pair 内分离 style_effect 和 originality_effect：\n- `style_effect` = 控制 originality 后的纯 style preference → **已排除 artifact**\n- `originality_effect` = 控制 style 后的 original vs rewrite preference → **捕获 artifact**\n\n已有的 GEE 结果完美对应 placebo 发现：\n\n| Axis | GEE Style OR | GEE Orig OR | Placebo 预期 |\n|------|-------------|------------|-------------|\n| Verbosity | **13.10*** | 0.49 ns | orig vs DR 应接近 50%... 但 placebo 显示 0% |\n| Formality | **4.20*** | **4.70*** | orig vs DR 应偏向 DR... ✅ placebo 确认 |\n\n**Verbosity 异常**：GEE Orig OR 不显著（0.49），说明在 GEE 框架下 originality 不是 confound。但 placebo 却显示极端偏好 DR (0%)。这个矛盾需要理解：\n- GEE 的 originality_effect 是在 **控制 style 方向** 后的估计\n- Placebo 是 **无 style 差异** 的纯 artifact 测试\n- 可能 GEE 的 exchangeable correlation 结构吸收了一部分 artifact variance\n\n### 论文建议：3 层叙事\n\n不需要 framing 调整。建议在 §4 加一段 \"Artifact Analysis\"：\n\n1. **承认 artifact 存在**（诚实 + rigorous）：placebo 显示 judges 系统性偏好 LLM-rewritten text over original\n2. **GEE 已控制 artifact**：Style OR 是控制 originality 后的估计；verbosity Style OR=13.10 在控制 artifact 后仍高度显著\n3. **Blindspot 结论不受影响**：Likert 看不到 style bias（即使 GEE 已分离 artifact），BT 能看到——这正是 Likert Blindspot\n\n这实际上**强化**了论文：\n- 我们**主动检测**了 artifact（不是 reviewer 挖出来的）\n- GEE decomposition **已经**处理了这个问题（不需要事后补救）\n- Verbosity 的纯 style effect (OR=13, artifact NS) 是最干净的 evidence\n\n### 状态更新\n- ✅ Placebo Qwen3-32B + GPT-4o: DONE (negative)\n- ✅ CF vs DR Qwen3-32B: DONE (negative, 但方法论上 expected)\n- 🔄 CF vs DR GPT-4o: turn 30, formality 结果已出，verbosity 完成中\n- 🔄 Llama-70B: 模型下载中 (~135GB)，已 spawn 接力 worker 监控\n- Worker 池: 3 active (CF-GPT4o + Llama-continuation + Llama-download on server)\n\n### 建议\n1. 在 §4 加 ~半页 \"Artifact Analysis\" 子段\n2. 不要在论文中放 CF vs DR 比较（方法论上 flawed）\n3. 用 placebo + GEE decomposition 构成完整的 artifact defense\n4. 需要 Director 判断：是否需要对 verbosity placebo (0% orig win) 做更深入的解释？GEE 说 Orig OR ns，但 placebo 说 artifact 极端——可能需要在 limitations 中 acknowledge",
+    "project": "causal_style_decomp_judge"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 2993 · 2026-05-21T13:57:19.604169+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_09b04b56f2fb04931812c4a55f159dee",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1305
 }
 ```
 

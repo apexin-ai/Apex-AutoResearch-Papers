@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_verbosity_nli_only_gate_20260520T214344_result.json",
     "occurrence": 1,
-    "bytes": 892,
-    "sha256": "772c609a5d87505e95f0f7b3744b9022c4727e807ce463c2e3180db6e411b21b"
+    "bytes": 891,
+    "sha256": "60918ac3edc4e374a18fc2f4ea02d001fc5ef4883118b9ff1b992e0b483eeae2"
   },
   "statistics": {
     "messages": 1,

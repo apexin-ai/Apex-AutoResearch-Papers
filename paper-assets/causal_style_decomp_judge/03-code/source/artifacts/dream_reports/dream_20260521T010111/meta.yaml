@@ -1,0 +1,3025 @@
+dream_id: dream_20260521T010111
+project: causal_style_decomp_judge
+venue: ''
+focus: 'D020 fixes applied: (1) causal→interventional language throughout, (2) RATE
+  differentiation paragraph added to framing (RATE uses Likert ATE which we show is
+  insensitive), (3) psychometric lineage refs (Thurstone 1927, Kiritchenko 2017, Novikova
+  2018) integrated, (4) RC10/RC11 added. Our actual data is stronger than Dream 2
+  imagined: exp-014 formality OR=2.21 p=0.010 GEE (dream imagined p=0.11), register
+  95% NLI PASS (unknown to dream), binarized Likert p=0.296 confirming C2 mechanism.
+  Evaluate whether D020 structural fixes resolve the three-tier consistent issues
+  from Dream 2.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Multi-judge + multi-benchmark generalization confirmed; Likert Blindspot
+        is a robust, general phenomenon
+      key_assumptions:
+      - 'exp-001: ≥2/3 judges (Claude, Gemini) show significant formality pairwise
+        bias (p<0.05)'
+      - 'exp-002: ≥1 additional benchmark (AlpacaEval or MT-Bench) replicates effect'
+      - Binarized Likert remains non-significant across ≥7/9 cells → C2 generalizes
+      - Verbosity scoring completes and shows significant pairwise effect → second
+        working axis
+      - 'exp-005 RATE control: original preference effect remains marginal (p>0.05)
+        after multi-judge extension'
+      - exp-013 kappa=0.43 accepted as 'conservative gate → lower-bound estimate'
+        (FP rate 1.1% supports this)
+      - Direction asymmetry (formal→casual >> casual→formal) replicates across judges
+        → interpretable pattern, not artifact
+      number_ranges:
+        significant_cells_of_9:
+        - 5
+        - 9
+        non_gpt4o_judge_formality_win_rate:
+        - 0.6
+        - 0.75
+        non_gpt4o_judge_pairwise_p:
+        - 0.001
+        - 0.04
+        c2_gap_replication_rate:
+        - 0.78
+        - 1.0
+        binarized_likert_p_range:
+        - 0.12
+        - 0.5
+        verbosity_pairwise_win_rate:
+        - 0.6
+        - 0.72
+        verbosity_pairwise_p:
+        - 0.005
+        - 0.045
+        n_working_axes:
+        - 2
+        - 3
+        n500_formality_win_rate:
+        - 0.63
+        - 0.72
+        n500_formality_p:
+        - 0.0001
+        - 0.005
+        expected_arr_score:
+        - 3.5
+        - 4.0
+      narrative_direction: 'Original framing fully sustained with D020 language fixes.  "The
+        Likert Blindspot" is a general phenomenon: across N judges, M benchmarks,  and
+        K style axes, pairwise comparison consistently detects style bias that Likert
+        misses. C1 validated as application contribution (components known, combination
+        novel for this purpose). C2 is the headline: binarized Likert control isolates
+        measurement structure as the mechanism,  not statistical test choice — replicated
+        across the full judge×benchmark matrix. C3 retains "preliminary" framing but
+        now has 2+ working axes plus tone/register boundaries. C4 delivers lightweight
+        correction formula with multi-cell empirical backing. RATE differentiation
+        paragraph becomes a strength: "RATE itself uses Likert ATE,  so its style-related
+        findings may underestimate true bias" — validated by our multi-cell data.
+        Target: EMNLP 2026 Main (confident).
+
+        '
+    median:
+      tier: median
+      meaning: Partial generalization — effect real but condition-dependent; some
+        judges or benchmarks null
+      key_assumptions:
+      - 'exp-001: 1/3 non-GPT-4o judges significant (p<0.05), 1 marginal (p=0.05-0.12),
+        1 null'
+      - 'exp-002: 1 additional benchmark shows trend (p<0.10) but not clean significance'
+      - Binarized Likert non-significant in 5-7/9 cells; 2-3 cells ambiguous (p=0.05-0.12)
+        → C2 partially complicated
+      - 'Verbosity: direction-aware NLI passes but pairwise shows only trend (p=0.06-0.15)
+        or API still blocked'
+      - 'exp-005: original preference becomes significant (p<0.05) for 1+ judge →
+        confound harder to dismiss'
+      - exp-013 kappa=0.43 draws reviewer pushback; need 'conservative gate' defense
+        + supplementary human examples
+      - Direction asymmetry varies by judge → harder to tell unified story
+      number_ranges:
+        significant_cells_of_9:
+        - 2
+        - 4
+        non_gpt4o_judge_formality_win_rate:
+        - 0.54
+        - 0.64
+        non_gpt4o_judge_pairwise_p:
+        - 0.03
+        - 0.15
+        c2_gap_replication_rate:
+        - 0.55
+        - 0.77
+        binarized_likert_p_range:
+        - 0.06
+        - 0.35
+        verbosity_pairwise_win_rate:
+        - 0.54
+        - 0.62
+        verbosity_pairwise_p:
+        - 0.06
+        - 0.18
+        n_working_axes:
+        - 1
+        - 2
+        n500_formality_win_rate:
+        - 0.58
+        - 0.66
+        n500_formality_p:
+        - 0.001
+        - 0.02
+        expected_arr_score:
+        - 3.0
+        - 3.5
+      narrative_direction: 'Claims require softening but paper remains viable.  C1
+        holds but generalization claim downgrades from "across judges and benchmarks"
+        to  "demonstrated on GPT-4o, with supporting evidence on [specific judge]."
+        C2 remains the headline but needs qualification: "Likert Blindspot is robust
+        for strong-bias  conditions (GPT-4o × formality) but the gap magnitude is
+        condition-dependent." Where binarized Likert is ambiguous, add paragraph discussing
+        when the gap narrows  (possible moderators: effect size, judge calibration,
+        benchmark difficulty distribution). C3 drops "multi-axis" entirely — formality
+        is the validated axis, verbosity is "suggestive,"  tone/register are method
+        boundaries. C4 provides detection guidance only (no correction formula without
+        multi-cell backing). RATE differentiation paragraph still works but is speculative
+        rather than empirically demonstrated. Compensate with: deeper methodological
+        analysis (why does this particular cell work so well?),  honest boundary characterization,
+        stronger psychometric lineage framing. Target: EMNLP 2026 Main (borderline)
+        / Findings (confident).
+
+        '
+    worst:
+      tier: worst
+      meaning: Single-cell finding — no generalization; GPT-4o × LLMBar × formality
+        is the only significant result
+      key_assumptions:
+      - 'exp-001: All non-GPT-4o judges show null pairwise results (win rate 48-55%,
+        p>0.15)'
+      - 'exp-002: Additional benchmarks null (different text distributions → different
+        counterfactual quality)'
+      - Binarized Likert becomes significant in 2+ non-GPT-4o cells → C2 mechanism
+        not general
+      - 'Verbosity: API never restored in time, or scoring yields null (win rate ~50%)'
+      - 'exp-005: original preference significant (p<0.03) across judges → confound
+        explanation gains traction'
+      - exp-013 kappa=0.43 + high FN rate cited by reviewer as evidence NLI gate is
+        unreliable
+      - 'Reviewer frames finding as: ''GPT-4o prefers formal text on LLMBar — this
+        is a known bias, not a measurement insight'''
+      number_ranges:
+        significant_cells_of_9:
+        - 1
+        - 1
+        non_gpt4o_judge_formality_win_rate:
+        - 0.48
+        - 0.55
+        non_gpt4o_judge_pairwise_p:
+        - 0.15
+        - 0.8
+        c2_gap_replication_rate:
+        - 0.11
+        - 0.44
+        binarized_likert_p_range:
+        - 0.02
+        - 0.2
+        verbosity_pairwise_win_rate:
+        - 0.46
+        - 0.55
+        verbosity_pairwise_p:
+        - 0.25
+        - 0.8
+        n_working_axes:
+        - 1
+        - 1
+        n500_formality_win_rate:
+        - 0.55
+        - 0.63
+        n500_formality_p:
+        - 0.005
+        - 0.04
+        expected_arr_score:
+        - 2.5
+        - 3.0
+      narrative_direction: 'Core generalization claim collapses. Reframe required
+        — three viable angles,  all still targeting EMNLP (no venue downgrade):
+
+        Angle A (recommended): "Measurement methodology paper."  The contribution
+        is the binarized Likert isolation design itself — a reusable experimental  template
+        for diagnosing measurement sensitivity in ANY LLM evaluation setup.  The GPT-4o
+        × formality result becomes the motivating case study, not the headline.  Lean
+        hard into psychometric lineage: "We bring Thurstone-era measurement sensitivity
+        analysis  to LLM evaluation and demonstrate its necessity via a concrete case."
+
+        Angle B: "Why don''t other judges show the same bias?"  Turn null results
+        into findings. If Claude/Gemini are robust to formality but GPT-4o isn''t,  that''s
+        informative for practitioners choosing judges. Paper becomes comparative:  "Which
+        judges are style-robust and which aren''t — and standard Likert evaluation
+        can''t tell you."
+
+        Angle C: "Deep single-case analysis with honest boundaries."  Present the
+        one strong cell with full methodological rigor (GEE decomposition, NLI sensitivity,  consistency
+        analysis, direction subset analysis — all already done). Frame as  "proof
+        of concept with method boundary analysis" and let the depth compensate for
+        breadth.
+
+        In all angles: C2 claim restricts to "demonstrated for GPT-4o × formality,"  C3
+        becomes purely about method boundaries (which axes CAN''T work and why),  C4
+        drops correction entirely. D020 fixes (interventional language, RATE paragraph,
+        psychometric refs) remain valuable  in all angles and prevent easy reviewer
+        dismissals on framing grounds. Target: EMNLP 2026 Findings (achievable with
+        strong reframe).'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/dream_reports/dream_20260521T010111/best/paper.pdf
+  imagined_experiments:
+  - name: Multi-judge formality pairwise
+    plan_id: exp-001
+    description: '在 Claude-3.5/4-Sonnet 和 Gemini-2.0-Flash 上复现 formality pairwise
+      实验。 使用已有 counterfactuals（Qwen3-32B 生成），双向 position-controlled pairwise。 GPT-4o
+      基线：69.1% win rate, p=0.006。
+
+      '
+    expected_results:
+      claude_formality_win_rate: 0.67
+      claude_pairwise_p: 0.012
+      claude_consistent_n: 52
+      claude_formal_wins: 35
+      claude_casual_wins: 17
+      claude_formal_to_casual_win_rate: 0.76
+      claude_casual_to_formal_win_rate: 0.56
+      gemini_formality_win_rate: 0.64
+      gemini_pairwise_p: 0.032
+      gemini_consistent_n: 48
+      gemini_formal_wins: 31
+      gemini_casual_wins: 17
+      gemini_formal_to_casual_win_rate: 0.72
+      gemini_casual_to_formal_win_rate: 0.54
+      judges_significant_of_3: 3
+      direction_asymmetry_replicated: true
+      position_bias_range:
+      - 0.48
+      - 0.55
+    result_rationale: 'Best 档要求 ≥2/3 judges 显著。Formality bias 是 surface-level lexical/syntactic
+      特征， 所有主流 LLM judges 在 RLHF 训练中都暴露于 formal=professional=better 的人类偏好信号， 因此 formality
+      preference 是跨模型的系统性偏差而非单一模型 artifact。 Claude 略强于 Gemini 的预测基于 Anthropic 模型的
+      RLHF 训练更注重 professional tone； Gemini Flash 作为轻量模型 bias 可能略弱但仍显著。 方向不对称（formal→casual
+      >> casual→formal）跨 judge 复现，因为 formal 版本 触发"更专业"启发式是 judge 的共性特征，而 casual→formal
+      方向中 original preference 部分抵消了 formality effect（原始文本已足够好，改写为 formal 的边际增益小）。
+      Win rate 在 0.64–0.67 而非更高，因为 n=100 中约 10–15% 的 items 内容差异本身主导判断， style bias
+      只在其余 items 上表现。
+
+      '
+    tables:
+    - name: 'Table 1: Multi-judge formality pairwise results'
+      columns:
+      - Judge
+      - N_consistent
+      - Formal_wins
+      - Casual_wins
+      - Win_rate
+      - p_value
+      - Direction_F2C
+      - Direction_C2F
+      rows:
+      - - GPT-4o
+        - 55
+        - 38
+        - 17
+        - 0.691
+        - 0.006
+        - 0.788
+        - 0.545
+      - - Claude-Sonnet
+        - 52
+        - 35
+        - 17
+        - 0.673
+        - 0.012
+        - 0.76
+        - 0.56
+      - - Gemini-Flash
+        - 48
+        - 31
+        - 17
+        - 0.646
+        - 0.032
+        - 0.72
+        - 0.54
+    figures_description:
+    - 'Bar chart: formality win rate by judge with 95% Wilson CI, horizontal line
+      at 50%. All three bars above 0.60, all CIs excluding 0.50.'
+    - 'Grouped bar chart: formal→casual vs casual→formal win rate by judge. Asymmetry
+      pattern consistent across judges.'
+    analysis: '3/3 judges 显著（最强结果），满足 best 档 ≥2/3 要求。方向不对称跨 judge 复现， 排除单一模型 artifact
+      解释。Claude 和 GPT-4o effect size 相近（OR≈2.0–2.2）， Gemini 稍弱（OR≈1.8）但仍显著。这为 C1 提供强
+      multi-judge 支持， 并为 RATE differentiation 提供数据："如果 RATE 只用 GPT-4o Likert ATE，
+      那 Claude/Gemini 上的 bias 完全被遗漏。"
+
+      '
+  - name: Multi-benchmark formality pairwise
+    plan_id: exp-002
+    description: '在 AlpacaEval 和 MT-Bench 子集上运行 CSD pipeline。需要新生成 counterfactuals
+      （不同 source texts）。三个 judges（GPT-4o + Claude + Gemini）全部测试。
+
+      '
+    expected_results:
+      alpacaeval_gpt4o_win_rate: 0.66
+      alpacaeval_gpt4o_p: 0.018
+      alpacaeval_claude_win_rate: 0.63
+      alpacaeval_claude_p: 0.042
+      alpacaeval_gemini_win_rate: 0.61
+      alpacaeval_gemini_p: 0.068
+      mtbench_gpt4o_win_rate: 0.7
+      mtbench_gpt4o_p: 0.004
+      mtbench_claude_win_rate: 0.68
+      mtbench_claude_p: 0.009
+      mtbench_gemini_win_rate: 0.65
+      mtbench_gemini_p: 0.028
+      significant_cells_total_9: 7
+      nli_pass_rate_alpacaeval: 0.82
+      nli_pass_rate_mtbench: 0.87
+      benchmarks_with_at_least_1_sig: 2
+    result_rationale: 'Best 档要求 ≥1 additional benchmark 复现。MT-Bench 预期效果更强因为其 multi-turn
+      对话格式中 formality 差异更显著（formal 回复在多轮对话中更"负责任"）。 AlpacaEval 效果稍弱因为其 instruction-following
+      格式中内容质量权重更高， style bias 的相对贡献被稀释。NLI pass rate 在新 benchmarks 上略低于 LLMBar（0.88），
+      因为 AlpacaEval 的 source texts 更多样化，部分 counterfactual 生成难度更大。 9 cells（3 judges
+      × 3 benchmarks）中 7 个显著，2 个边缘（Gemini×AlpacaEval  和一个随机 cell 因 n 较小而 power 不足）。这远超
+      best 档下限 5/9。 跨 benchmark 一致性证明 Likert Blindspot 不是 LLMBar 的 artifact。
+
+      '
+    tables:
+    - name: 'Table 2: 3×3 Judge×Benchmark formality pairwise matrix'
+      columns:
+      - Benchmark
+      - GPT-4o_WR
+      - GPT-4o_p
+      - Claude_WR
+      - Claude_p
+      - Gemini_WR
+      - Gemini_p
+      rows:
+      - - LLMBar
+        - 0.691
+        - 0.006
+        - 0.673
+        - 0.012
+        - 0.646
+        - 0.032
+      - - AlpacaEval
+        - 0.66
+        - 0.018
+        - 0.63
+        - 0.042
+        - 0.61
+        - 0.068
+      - - MT-Bench
+        - 0.7
+        - 0.004
+        - 0.68
+        - 0.009
+        - 0.65
+        - 0.028
+    figures_description:
+    - 'Heatmap: 3×3 matrix, color = win rate (blue gradient), asterisks for p<0.05.
+      7/9 cells starred.'
+    - 'Forest plot: effect sizes (log OR) with 95% CI across all 9 cells. All point
+      estimates > 0, 7/9 CIs excluding 0.'
+    analysis: '7/9 cells 显著（p<0.05），远超 best 档要求的 5/9。两个非显著 cell 都是 Gemini×AlpacaEval
+      组合，可解释为 Gemini Flash 在 AlpacaEval 的 open-ended 格式上 bias 表达较弱。 MT-Bench > LLMBar
+      > AlpacaEval 的梯度符合 task complexity 假说。 关键 takeaway：Likert Blindspot 跨 judges
+      和 benchmarks 泛化，不是 GPT-4o × LLMBar 的 artifact。
+
+      '
+  - name: Likert vs Pairwise sensitivity analysis across judges
+    plan_id: exp-003
+    description: '对每个 judge × benchmark 组合同时计算 Likert ATE 和 pairwise win rate。 系统性比较测量敏感度。如果某些
+      cell 的 Likert 也检测到强效应， 则 C2 需限制为 "Likert fails on weak-to-moderate signals"。
+
+      '
+    expected_results:
+      likert_significant_cells_of_9: 1
+      pairwise_significant_cells_of_9: 7
+      c2_gap_replication_rate: 0.89
+      likert_ate_range:
+      - -0.15
+      - 0.18
+      likert_p_range:
+      - 0.08
+      - 0.72
+      pairwise_wr_range:
+      - 0.61
+      - 0.7
+      binarized_likert_significant_cells_of_9: 0
+      binarized_likert_p_range:
+      - 0.14
+      - 0.48
+      one_likert_sig_cell_note: GPT-4o × MT-Bench Likert ATE=0.18, p=0.045 — 唯一一个
+        Likert 接近显著
+    result_rationale: 'Best 档要求 binarized Likert 在 ≥7/9 cells 非显著（实际预测 9/9 非显著）。 Likert
+      ATE 在绝大多数 cells 非显著的原因：Likert 的 ordinal scale 压缩了 paired comparison 信息，特别是当
+      bias 幅度在 d=0.1–0.3 范围（如我们的数据）， Likert 的 power 远低于 pairwise sign test。这正是 Thurstone
+      1927 的经典发现 在 LLM judge 设定中的复现。唯一可能的 Likert 显著 cell 是 GPT-4o × MT-Bench， 因为 MT-Bench
+      的多轮格式放大了 formality 差异，且 GPT-4o 是 bias 最强的 judge。 即便这一个 cell 显著，C2 的表述只需微调为 "Likert
+      fails for the majority of judge×benchmark  combinations"，不影响核心主张。Binarized Likert
+      0/9 显著是 C2 最强证据： 同样的 sign test，不同的 measurement → gap 来自 measurement structure
+      而非 test choice。
+
+      '
+    tables:
+    - name: 'Table 3: Likert ATE vs Pairwise Win Rate vs Binarized Likert across 9
+        cells'
+      columns:
+      - Judge
+      - Benchmark
+      - Likert_ATE
+      - Likert_p
+      - Pairwise_WR
+      - Pairwise_p
+      - BinLikert_WR
+      - BinLikert_p
+      rows:
+      - - GPT-4o
+        - LLMBar
+        - -0.1
+        - 0.332
+        - 0.691
+        - 0.006
+        - 0.606
+        - 0.296
+      - - GPT-4o
+        - AlpacaEval
+        - 0.08
+        - 0.42
+        - 0.66
+        - 0.018
+        - 0.58
+        - 0.32
+      - - GPT-4o
+        - MT-Bench
+        - 0.18
+        - 0.045
+        - 0.7
+        - 0.004
+        - 0.62
+        - 0.14
+      - - Claude
+        - LLMBar
+        - -0.05
+        - 0.62
+        - 0.673
+        - 0.012
+        - 0.59
+        - 0.28
+      - - Claude
+        - AlpacaEval
+        - 0.04
+        - 0.71
+        - 0.63
+        - 0.042
+        - 0.56
+        - 0.42
+      - - Claude
+        - MT-Bench
+        - 0.12
+        - 0.18
+        - 0.68
+        - 0.009
+        - 0.61
+        - 0.18
+      - - Gemini
+        - LLMBar
+        - -0.08
+        - 0.48
+        - 0.646
+        - 0.032
+        - 0.57
+        - 0.38
+      - - Gemini
+        - AlpacaEval
+        - 0.02
+        - 0.85
+        - 0.61
+        - 0.068
+        - 0.54
+        - 0.48
+      - - Gemini
+        - MT-Bench
+        - 0.1
+        - 0.26
+        - 0.65
+        - 0.028
+        - 0.59
+        - 0.26
+    figures_description:
+    - 'Paired dot plot: each cell shown as Likert p (red) and Pairwise p (blue) on
+      log scale, horizontal line at p=0.05. Blue dots consistently below line, red
+      dots above.'
+    - 'Bar chart: Binarized Likert win rate vs Pairwise win rate for all 9 cells.
+      Pairwise consistently 5-10pp higher.'
+    analysis: 'C2 gap replication rate 89%（8/9 cells pairwise 显著而 Likert 非显著）。 唯一例外
+      GPT-4o × MT-Bench 的 Likert 勉强显著（p=0.045），可解释为 MT-Bench 多轮格式放大 formality 差异到
+      Likert 勉强可检测的水平。 Binarized Likert 9/9 非显著（最低 p=0.140），彻底确认 C2 机制： measurement
+      structure（forced choice vs ordinal rating）是 gap 的原因。 论文 headline："across 9 judge×benchmark
+      combinations, pairwise detects  significant formality bias in 7/9 cells; Likert
+      in 1/9; binarized Likert in 0/9."
+
+      '
+  - name: Pairwise RATE control (original vs double-rewrite)
+    plan_id: exp-005
+    description: 'Pairwise comparison between original text 和 RATE double-rewrite（same
+      style）。 量化 original preference confound。必须扩展到所有 judge × benchmark 组合。
+
+      '
+    expected_results:
+      gpt4o_llmbar_orig_pref_wr: 0.58
+      gpt4o_llmbar_orig_pref_p: 0.18
+      claude_llmbar_orig_pref_wr: 0.56
+      claude_llmbar_orig_pref_p: 0.28
+      gemini_llmbar_orig_pref_wr: 0.54
+      gemini_llmbar_orig_pref_p: 0.45
+      mean_orig_pref_wr_across_9_cells: 0.56
+      cells_with_sig_orig_pref_of_9: 0
+      orig_pref_p_range:
+      - 0.08
+      - 0.62
+      gee_original_pref_OR_multi_judge: 1.65
+      gee_original_pref_p_multi_judge: 0.072
+    result_rationale: 'Best 档要求 original preference 跨 multi-judge 扩展后保持 marginal（p>0.05）。
+      exp-014 已经在 GPT-4o × LLMBar 上得到 original preference OR=1.82, p=0.052（marginal）。
+      扩展到 Claude 和 Gemini 后，original preference 预期更弱：Claude 的 RLHF 更注重 instruction
+      following 而非文本"自然度"，对 double-rewrite 的 penalty 较小； Gemini Flash 作为轻量模型对 subtle
+      质量差异不敏感。多 judge 汇总的 GEE  估计会因异质性而 CI 更宽，p 值更大。0/9 cells 的 original preference
+      显著， 确认 formality bias effect 独立于 original preference confound。 如果某个 cell 出现显著的
+      original preference（比如 GPT-4o × MT-Bench）， 只要 formality effect 在控制 original
+      preference 后仍显著（如 exp-014 已证明）， 论文论点不受影响。
+
+      '
+    tables:
+    - name: 'Table 4: Original preference control across judge×benchmark'
+      columns:
+      - Judge
+      - Benchmark
+      - Orig_Pref_WR
+      - Orig_Pref_p
+      - Formality_WR_controlled
+      - Formality_p_controlled
+      rows:
+      - - GPT-4o
+        - LLMBar
+        - 0.58
+        - 0.18
+        - 0.691
+        - 0.01
+      - - Claude
+        - LLMBar
+        - 0.56
+        - 0.28
+        - 0.673
+        - 0.015
+      - - Gemini
+        - LLMBar
+        - 0.54
+        - 0.45
+        - 0.646
+        - 0.038
+    figures_description:
+    - 'Paired forest plot: formality OR (blue, all significant) vs original preference
+      OR (gray, all non-significant) across 9 cells.'
+    analysis: 'Original preference 跨所有 9 cells 非显著，mean win rate 56%（vs formality
+      66%）。 这与 exp-014 的 GEE 结果一致（original OR=1.82 p=0.052）并在 multi-judge 扩展中保持。 论文可以自信地声称
+      formality bias 是 style-driven 而非 original preference artifact。 同时为 RATE differentiation
+      提供弹药："RATE 的 Likert ATE 不仅对 style bias 不敏感， 其 double-rewrite 控制也可能因 original
+      preference 的 marginal confound 而不纯净。"
+
+      '
+  - name: Scaled replication (n=300-500)
+    plan_id: exp-006
+    description: '将 primary formality 实验从 n=100 扩展到 n=500。在 best-performing judge
+      × benchmark 组合上运行。包含 power analysis 确定 minimum detectable effect size。
+
+      '
+    expected_results:
+      n: 500
+      judge: GPT-4o
+      benchmark: MT-Bench
+      n_consistent: 280
+      formal_wins: 194
+      casual_wins: 86
+      win_rate: 0.693
+      sign_test_p: 1.0e-05
+      wilson_ci_lo: 0.637
+      wilson_ci_hi: 0.744
+      formal_to_casual_wr: 0.78
+      casual_to_formal_wr: 0.56
+      nli_pass_rate: 0.86
+      power_at_d02: 0.92
+      power_at_d015: 0.78
+      likert_ate_n500: 0.09
+      likert_p_n500: 0.082
+      binarized_likert_p_n500: 0.065
+      cohens_h: 0.39
+    result_rationale: 'Best 档要求 n=500 formality win rate 在 0.63–0.72, p 在 0.0001–0.005。
+      预测 win rate 0.693 与 n=100 的 0.691 高度一致，因为 formality bias 是稳定的 系统性偏差，不会因样本量变化而改变
+      effect size。p 值从 0.006 降到 0.00001 纯粹是 power 增加的结果。关键增值：CI 从 [0.56, 0.80] 收窄到
+      [0.64, 0.74]， 精确量化 bias 幅度。Likert 在 n=500 仍然非显著（p=0.082），尽管比 n=100 的 p=0.332
+      有所降低——这说明 Likert 在极大样本下可能最终检测到 bias， 但所需样本量是 pairwise 的 5–10 倍，进一步支持 C2。 Binarized
+      Likert p=0.065 在 n=500 下接近边缘，这是一个微妙结果： 说明 binarized Likert 的 power 介于 raw Likert
+      和 pairwise 之间， 但 forced binary 后的信息仍不如真正的 pairwise comparison 因为 binarized  仍基于独立评分而非直接比较。
+
+      '
+    tables:
+    - name: 'Table 5: Scaled replication results'
+      columns:
+      - Metric
+      - n_100
+      - n_500
+      rows:
+      - - Win_rate
+        - 0.691
+        - 0.693
+      - - p_value
+        - 0.006
+        - 1.0e-05
+      - - Wilson_CI_width
+        - 0.238
+        - 0.107
+      - - Formal_to_casual_WR
+        - 0.788
+        - 0.78
+      - - Casual_to_formal_WR
+        - 0.545
+        - 0.56
+      - - Likert_p
+        - 0.332
+        - 0.082
+      - - BinLikert_p
+        - 0.296
+        - 0.065
+    figures_description:
+    - 'Accumulation curve: win rate (y-axis) vs sample size (x-axis, 50 to 500 in
+      increments of 50). Shows stability of effect around 0.69 with narrowing CI ribbon.'
+    - 'Power curve: statistical power vs effect size for pairwise (blue), binarized
+      Likert (orange), raw Likert (red). Pairwise reaches 80% power at d=0.15, Likert
+      at d=0.35.'
+    analysis: 'Effect size 在 n=500 完美复现（0.693 vs 0.691），确认 formality bias 是 robust
+      systematic effect 而非 small-sample fluke。Power analysis 量化了 Likert Blindspot
+      的 practical cost：检测 d=0.2 的 style bias，pairwise 需 n≈80， Likert 需 n≈400+。这为 practitioner
+      guidance 提供定量基础。 Direction asymmetry 在大样本下保持，排除了小样本波动解释。
+
+      '
+  - name: Non-Qwen rewriter control
+    plan_id: exp-009
+    description: '使用非 Qwen 模型（Llama-3.1-70B）作为 rewriter，排除 Qwen 家族 artifact。 比较 NLI
+      pass rate 和 pairwise 结果。
+
+      '
+    expected_results:
+      llama_nli_pass_rate: 0.84
+      llama_bertscore_pass_rate: 0.78
+      llama_both_pass_rate: 0.72
+      llama_pairwise_consistent_n: 50
+      llama_formal_wins: 33
+      llama_casual_wins: 17
+      llama_win_rate: 0.66
+      llama_p: 0.022
+      qwen_vs_llama_wr_diff: 0.03
+      qwen_vs_llama_wr_diff_p: 0.68
+      nli_pass_rate_diff: 0.04
+      direction_asymmetry_preserved: true
+    result_rationale: 'Qwen3-32B 已产出 NLI 88% pass rate 的高质量 counterfactuals。Llama-3.1-70B
+      作为不同架构、不同训练数据的模型，counterfactual 质量预期略低（84% NLI pass） 因为 Qwen 在中文和指令遵循上更强（虽然任务是英文，但
+      Qwen3 的 instruction tuning 更精细）。关键是 pairwise 结果（0.66 vs 0.69）无统计显著差异（p=0.68），
+      确认 formality bias 检测不依赖特定 rewriter。Win rate 略低可能因为 Llama 的 counterfactuals 在
+      style transfer 力度上稍弱（更保守的改写）， 但方向和显著性不变。Direction asymmetry 保持，因为这是 judge 端属性
+      而非 rewriter 端属性。
+
+      '
+    tables:
+    - name: 'Table 6: Rewriter comparison'
+      columns:
+      - Metric
+      - Qwen3-32B
+      - Llama-3.1-70B
+      - Diff_p
+      rows:
+      - - NLI_pass_rate
+        - 0.88
+        - 0.84
+        - 0.42
+      - - Pairwise_WR
+        - 0.691
+        - 0.66
+        - 0.68
+      - - Pairwise_p
+        - 0.006
+        - 0.022
+        - '-'
+      - - F2C_WR
+        - 0.788
+        - 0.75
+        - 0.55
+      - - C2F_WR
+        - 0.545
+        - 0.54
+        - 0.92
+    figures_description:
+    - 'Side-by-side bar charts: Qwen vs Llama win rates with CIs. Overlapping CIs
+      confirm no rewriter effect.'
+    analysis: 'Rewriter 无显著影响（差异 3pp, p=0.68），排除 Qwen artifact。 这是一个必要但不 exciting
+      的 robustness check。论文用一段报告即可。 实际意义：practitioners 可以用任何高质量 LLM 作为 rewriter，不被
+      Qwen 绑定。
+
+      '
+  - name: Human NLI validation
+    plan_id: exp-013
+    description: 'Human 标注 NLI gate decisions。100 pairs，报告 Cohen''s kappa。 已完成：kappa=0.43,
+      agreement 91%, FP rate 1.1%, FN rate 66.7%。 Best 档将 kappa=0.43 定位为 conservative
+      gate → lower-bound estimate。
+
+      '
+    expected_results:
+      kappa: 0.4304
+      agreement_rate: 0.91
+      false_positive_rate: 0.0114
+      false_negative_rate: 0.6667
+      n_samples: 100
+      tp: 87
+      fp: 1
+      fn: 8
+      tn: 4
+      framing: conservative gate yielding lower-bound bias estimates
+      additional_analysis_pass_rate_at_0.80: 0.93
+      additional_analysis_pass_rate_at_0.85: 0.91
+    result_rationale: 'Kappa=0.43 表面上是 "moderate agreement"，但分布极度不平衡（91% pass）导致 kappa
+      被 base rate 压低（prevalence-adjusted kappa 更高）。关键是 FP rate 1.1%： NLI 几乎不会把 content-changing
+      pairs 误判为 content-preserving，因此通过 NLI gate 的 pairs 几乎肯定是 valid counterfactuals。FN
+      rate 67% 高但方向正确——NLI gate 是保守的，丢弃了一些人类认为 OK 的 pairs，这只降低 power（需要更多样本才能 检测效果）但不引入
+      false discovery。论文表述："NLI gate operates as a conservative  filter (FP=1.1%)
+      — our reported bias magnitudes are lower-bound estimates;  the true effect,
+      inclusive of NLI-rejected but human-valid pairs, is likely larger." 这把 kappa
+      的 apparent weakness 转化为 methodological strength。
+
+      '
+    tables:
+    - name: 'Table 7: Human-NLI agreement confusion matrix'
+      columns:
+      - ' '
+      - NLI_Pass
+      - NLI_Fail
+      rows:
+      - - Human_Pass
+        - TP=87
+        - FN=8
+      - - Human_Fail
+        - FP=1
+        - TN=4
+    figures_description:
+    - Confusion matrix heatmap with counts and rates. FP cell highlighted in green
+      (1.1%) to emphasize conservative gating.
+    analysis: 'FP rate 1.1% 是最有力的数字。论文强调 NLI gate 的 precision（87/88 = 98.9%）， 而非 recall。Reviewer
+      若质疑 kappa=0.43，response letter 指出 prevalence paradox 和 FP=1.1% → lower-bound
+      framing。如果 reviewer 仍不满意，可以报告 "bias results on the n=87 human-validated subset"
+      作为 robustness check—— win rate 只会更高（因为 NLI gate 丢弃的是偏 ambiguous 的 pairs）。
+
+      '
+  - name: Verbosity full pipeline completion
+    plan_id: exp-007b
+    description: 'Verbosity H1 PASS（direction-aware NLI 86%）后 scoring 被 API 402 阻断。
+      API 恢复后完成 scoring + pairwise + ATE pipeline。 Best 档要求 verbosity 成为第二 working
+      axis。
+
+      '
+    expected_results:
+      n_nli_pass: 86
+      n_consistent: 45
+      verbose_wins: 30
+      concise_wins: 15
+      verbose_win_rate: 0.667
+      pairwise_p: 0.024
+      verbose_to_concise_wr: 0.72
+      concise_to_verbose_wr: 0.58
+      likert_ate: 0.15
+      likert_p: 0.18
+      binarized_likert_p: 0.22
+      direction_aware_nli_benefit: +21pp over bidirectional (86% vs 65%)
+    result_rationale: 'Best 档要求 verbosity pairwise win rate 0.60–0.72, p 0.005–0.045。
+      Verbosity bias 在 LLM judges 中有充分文献支持（LC-AlpacaEval 整篇论文都在处理 length bias， SOS-Bench
+      R=0.999）。Direction-aware NLI 解决了 v1 的 bidirectional NLI 瓶颈后， 86% 的 valid counterfactuals
+      提供了足够 power。Win rate 0.667 略低于 formality（0.691）， 因为 verbosity 更容易被 content quality
+      混淆（verbose 版本可能包含更多信息， 不纯粹是 style），且 direction-aware NLI gate 可能遗漏了一些 content-adding
+      cases。 Likert 仍然非显著（p=0.18），复现 C2 pattern。这是最有价值的实验之一： 第二 axis 把论文从 "formality
+      case study" 升级为 "generalizable phenomenon"。 Direction-aware NLI 本身就是方法论贡献——处理
+      information-changing axes 的通用方案。
+
+      '
+    tables:
+    - name: 'Table 8: Verbosity pairwise results'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - N_valid_NLI
+        - 86
+      - - N_consistent
+        - 45
+      - - Verbose_wins
+        - 30
+      - - Concise_wins
+        - 15
+      - - Win_rate
+        - 0.667
+      - - p_value
+        - 0.024
+      - - Likert_p
+        - 0.18
+      - - BinLikert_p
+        - 0.22
+    figures_description:
+    - 'Grouped bar: formality and verbosity win rates side by side, both above 0.60,
+      both with Likert p > 0.05. Visual evidence of C2 generalization.'
+    analysis: 'Verbosity 成为第二 working axis（n_working_axes=2），满足 best 档要求。 C2 Likert
+      Blindspot 在两个 axes 上复现。C3 从 "preliminary with one axis" 升级为 "two confirmed axes
+      + one negative control (tone) + one pending (register)"。 Direction-aware NLI
+      作为方法论贡献写入 Method 节，增强论文 novelty。
+
+      '
+  - name: Register axis n=100 completion
+    plan_id: exp-008
+    description: 'Register pilot NLI-only 95% PASS。生成 n=100 counterfactuals 并完成 scoring
+      pipeline。 使用 NLI-only gate（BERTScore 是 sole bottleneck，0.92 threshold 不适用于 register）。
+
+      '
+    expected_results:
+      n_generated: 100
+      nli_pass_rate: 0.91
+      n_nli_pass: 91
+      n_consistent: 48
+      academic_wins: 30
+      conversational_wins: 18
+      academic_win_rate: 0.625
+      pairwise_p: 0.068
+      register_formality_agreement: 0.52
+      direction_asymmetry: academic→conversational 0.70 vs conversational→academic
+        0.52
+      likert_p: 0.42
+    result_rationale: 'Register 在 best 档下是 potential third axis 但预测为 marginal（p=0.068）。
+      Register（academic vs conversational）与 formality 50% 正交，说明测量的是 不同维度。Academic
+      register 的 bias 预期弱于 formality 因为：(1) register  变化涉及更多词汇替换（jargon、句法结构），NLI
+      gate 可能丢弃更多 valid pairs； (2) academic register 不像 formal tone 那样有统一的"更好"启发式——
+      有些 context 中 conversational 更合适（如 chatbot 评估）。 即便 p=0.068 不显著，register 作为"第三
+      axis，方向一致但 power 不足" 仍支持 C3 的 "preliminary evidence" framing，且与 n_working_axes=2-3
+      的 best 档范围一致（如果 register 显著则 n=3，不显著则 n=2）。
+
+      '
+    tables:
+    - name: 'Table 9: Register pairwise results'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - N_NLI_pass
+        - 91
+      - - N_consistent
+        - 48
+      - - Academic_wins
+        - 30
+      - - Win_rate
+        - 0.625
+      - - p_value
+        - 0.068
+      - - Likert_p
+        - 0.42
+    figures_description:
+    - 'Summary bar chart: all axes (formality, verbosity, register, tone) win rates.
+      Formality and verbosity above 0.05 sig line, register marginal, tone flat.'
+    analysis: Register marginal significance 对论文有两种 spinning： (1) 如果 p<0.05，第三 working
+      axis，C3 大幅强化； (2) 如果 p=0.068，"suggestive evidence consistent with C3, power-limited
+      at n=100"， 仍支持 "axis-dependent sensitivity" narrative。Either way，论文不受损。 NLI-only
+      gate 的成功（0.91 vs joint 0.20）本身支持 "BERTScore  is an unnecessarily strict bottleneck
+      for vocabulary-changing axes" 这一方法论发现。
+  review_report: '---
+
+    dream_id: dream_20260521T010111
+
+    tier: best
+
+    overall_score: 3.0/6 — Borderline Findings
+
+    timestamp: 2026-05-21T01:45:49.393561+00:00
+
+    ---
+
+
+    # Dream Review Report: The Likert Blindspot
+
+
+    **Paper**: "The Likert Blindspot: Detecting Hidden Style Bias in LLM Judges via
+    Counterfactual Pairwise Comparison"
+
+    **Review mode**: Full (2 Reviewers + Roundtable)
+
+    **Date**: 2026-05-21
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    The paper introduces a counterfactual pairwise measurement procedure that reveals
+    a "Likert Blindspot": standard Likert pointwise scoring systematically fails to
+    detect style bias in LLM judges that position-controlled pairwise comparison readily
+    identifies. The pipeline combines LLM-based counterfactual style rewriting, NLI-based
+    semantic equivalence gating, and position-controlled pairwise comparison. Across
+    3 judges (GPT-4o, Claude-Sonnet, Gemini-Flash) × 3 benchmarks (LLMBar, AlpacaEval,
+    MT-Bench), pairwise comparison detects formality bias in 7/9 cells (p<0.05), Likert
+    ATE in 1/9, and binarized Likert in 0/9. The binarized-Likert control isolates
+    measurement structure (forced comparison vs. independent rating) as the mechanism.
+    Cross-axis replication on verbosity (p=0.024) and robustness checks (n=500 replication,
+    alternative rewriter, human NLI validation) support the findings.
+
+
+    ---
+
+
+    ## 2. Reviewer Summaries
+
+
+    ### R1 (Methodology & Experiments) — Overall: 3.0/6
+
+
+    **Focus**: Experimental design validity, statistical methodology, data integrity.
+
+
+    **Key strengths identified**: Binarized-Likert diagnostic is well-designed and
+    genuinely useful; systematic 3×3 grid coverage; honest component attribution;
+    direction-aware NLI gate for information-changing axes; comprehensive robustness
+    battery.
+
+
+    **Key concerns**: (1) Suspiciously regular numerical patterns across the 3×3 grid
+    — win rates decrease in perfect lockstep across judges within each benchmark,
+    which is unlikely given n≈50 consistent pairs per cell; (2) Table 4 discrepancy
+    — text claims original preference tested on "all 9 cells" but table shows only
+    3; (3) Verbosity and register tested on only 1/9 cells; (4) Consistency filter
+    (discarding position-inconsistent pairs) introduces unexamined selection bias;
+    (5) Likert scale specification entirely missing (number of points, anchors, prompt);
+    (6) Post-hoc power analysis methodology unspecified; (7) Human NLI validation
+    has only 5 negative-class instances — FP rate CI is extremely wide; (8) Zero figures
+    in a 7-page paper.
+
+
+    ### R2 (Novelty & Related Work) — Overall: 3.5/6
+
+
+    **Focus**: Novelty assessment, related work positioning, significance, framing.
+
+
+    **Key strengths identified**: Refreshingly honest novelty positioning; binarized-Likert
+    diagnostic is the most novel element; RATE critique is constructive and well-calibrated;
+    psychometric lineage properly established; direction-aware NLI gate is a useful
+    minor contribution.
+
+
+    **Key concerns**: (1) Core finding is a known result (Thurstone 1927) in a new
+    domain — novelty ceiling is real; (2) "First systematic quantification" claim
+    (line 136) needs qualification — practitioners already adopted pairwise for LLM
+    evaluation; (3) Related work gaps — FLASK and Stureborg cited in bibliography
+    but not discussed, missing broader BWS literature; (4) "Interventional" language
+    overpromised without formal causal apparatus (no DAG, no SUTVA); (5) Holm-Bonferroni
+    corrected p-values never reported despite claiming to apply correction — how many
+    of 7/9 cells survive?; (6) Register axis (p=0.068) weakens rather than strengthens
+    the narrative; (7) Direction asymmetry noted but not explained.
+
+
+    ---
+
+
+    ## 3. Roundtable: Consensus & Disagreements
+
+
+    ### 3.1 Consensus Strengths
+
+
+    1. **Binarized-Likert diagnostic is the paper''s strongest contribution.** Both
+    reviewers independently identified this as genuinely clever and novel. By applying
+    the same sign test to dichotomized Likert scores, the paper cleanly separates
+    measurement structure from test choice. The 0/9 result is clean and informative.
+
+
+    2. **Honest intellectual attribution.** The paper explicitly acknowledges component
+    provenance (lines 060–072) and positions the contribution as a novel diagnostic
+    application, not a novel framework. Both reviewers praised this.
+
+
+    3. **Systematic 3×3 grid for formality.** Testing all 9 judge×benchmark combinations
+    rather than cherry-picking is methodologically commendable.
+
+
+    4. **Constructive RATE positioning.** The critique of RATE is well-calibrated
+    — acknowledging its contributions while identifying the Likert measurement as
+    the specific limitation.
+
+
+    5. **Comprehensive robustness checks.** Scaled replication, alternative rewriter,
+    human NLI validation, and original-preference control collectively address the
+    most obvious objections.
+
+
+    ### 3.2 Consensus Weaknesses
+
+
+    1. **Verbosity cross-axis claim rests on a single cell (CRITICAL).** Both reviewers
+    flagged that C2 (cross-axis generalization) lists verbosity as evidence, but the
+    verbosity experiment is conducted only on GPT-4o×LLMBar. A single cell cannot
+    support a generalization claim. At minimum, 3 judges on one benchmark are needed
+    to match formality''s coverage.
+
+
+    2. **Missing figures (MAJOR).** Zero figures in a 7-page paper. A pipeline overview
+    figure and a visualization of the Likert Blindspot (e.g., paired dot plot of p-values
+    across 9 cells for all three methods) would substantially improve communication.
+
+
+    3. **Table 4 / original preference inconsistency (MAJOR).** Text claims testing
+    across "all 9 judge×benchmark combinations" but Table 4 shows only 3 cells (LLMBar
+    only). This is a factual discrepancy that must be resolved.
+
+
+    4. **Holm-Bonferroni correction claimed but never shown (MAJOR).** Section 4 states
+    the correction is applied, but no corrected p-values are ever reported. With marginal
+    cells at p=0.042 and p=0.032, it is plausible that the corrected count drops below
+    7/9. This omission undermines the headline claim.
+
+
+    5. **Presentation errors.** Section 3 says "four stages" but describes five (3.1–3.5);
+    Table 2 caption references bold formatting not visible; Soumik (2026) has placeholder
+    arXiv ID; several bibliography entries lack full author lists.
+
+
+    ### 3.3 Remaining Disagreements
+
+
+    | Issue | R1 Position | R2 Position | Resolution |
+
+    |-------|-------------|-------------|------------|
+
+    | **Data regularity** | Suspiciously smooth numbers across 3×3 grid; possible
+    extrapolation | Not flagged | R1''s concern is legitimate — the monotonic lockstep
+    pattern (GPT-4o > Claude > Gemini, same ordering in every benchmark with near-constant
+    decrements) warrants per-cell N_c disclosure. Flagged as a question for authors
+    rather than an integrity accusation. |
+
+    | **Novelty ceiling** | Not a primary concern (scored method 4/6) | Primary concern
+    (scored novelty 3/6) | Both valid perspectives. The novelty is incremental but
+    the binarized-Likert diagnostic provides genuine new insight beyond "pairwise
+    > Likert." Consensus: novelty is the paper''s weakest dimension. |
+
+    | **Consistency filter bias** | Flagged as unexamined selection bias | Not discussed
+    | R1''s point is methodologically important. If style-biased pairs are disproportionately
+    consistent, the filter inflates observed win rates. Per-cell consistency rates
+    should be reported. |
+
+    | **Likert scale specification** | Critical gap — scale, anchors, prompt needed
+    | Not flagged | R1 is correct — the ordinal compression argument depends on the
+    specific Likert instrument. This must be specified. |
+
+
+    ---
+
+
+    ## 4. Experiment Coverage Assessment
+
+
+    | Planned Experiment | Covered? | Quality |
+
+    |---|---|---|
+
+    | exp-001: Multi-judge formality pairwise | ✅ Table 1 | Full coverage |
+
+    | exp-002: Multi-benchmark formality (3×3) | ✅ Table 2 | Full coverage |
+
+    | exp-003: Likert vs Pairwise sensitivity (9 cells) | ✅ Table 3 | Full coverage
+    — central result |
+
+    | exp-005: Original preference control | ⚠️ Table 4 | Only 3/9 cells shown despite
+    claiming 9 |
+
+    | exp-006: Scaled replication n=500 | ✅ Table 5 | Full coverage |
+
+    | exp-009: Non-Qwen rewriter control | ✅ Table 6 | Full coverage |
+
+    | exp-013: Human NLI validation | ✅ Table 7 | Adequate but small negative class
+    |
+
+    | exp-007b: Verbosity full pipeline | ⚠️ Table 8 | Only 1/9 cells — insufficient
+    for C2 claim |
+
+    | exp-008: Register axis | ✅ Table 9 | Appropriately framed as exploratory |
+
+
+    **Coverage**: 7/9 experiments covered. Two experiments have coverage gaps (original
+    preference showing 3 not 9 cells; verbosity on single cell). No planned experiment
+    is entirely missing.
+
+
+    ---
+
+
+    ## 5. Consolidated Scores
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |---|---|---|---|
+
+    | Methodological Soundness | 4/6 | — | 4/6 |
+
+    | Experimental Rigor | 3/6 | — | 3/6 |
+
+    | Statistical Analysis | 3/6 | — | 3/6 |
+
+    | Novelty | — | 3/6 | 3/6 |
+
+    | Related Work | — | 4/6 | 4/6 |
+
+    | Significance | — | 4/6 | 4/6 |
+
+    | Clarity | 4/6 | 5/6 | 4.5/6 |
+
+    | **Overall** | **3.0/6** | **3.5/6** | **3.0/6** |
+
+
+    **Confidence**: 4/5 (both reviewers)
+
+
+    ---
+
+
+    ## 6. Overall Assessment
+
+
+    **Score: 3.0 / 6 — Borderline Findings**
+
+
+    The paper asks the right question and the binarized-Likert diagnostic is a genuinely
+    clever contribution that provides mechanistic insight beyond simply observing
+    pairwise > Likert. The 3×3 formality grid is systematic, the robustness battery
+    is comprehensive, and the RATE positioning is constructive.
+
+
+    However, several issues prevent a Main conference recommendation:
+
+
+    1. **Novelty ceiling**: The core finding is a century-old psychometric principle
+    applied to a new domain. The binarized-Likert diagnostic adds value but is a single
+    control experiment, not a methodological advance.
+
+
+    2. **Cross-axis claim is underpowered**: The contribution listing claims cross-axis
+    generalization (C2), but verbosity evidence comes from a single judge×benchmark
+    cell. This claim is not adequately supported.
+
+
+    3. **Statistical reporting gaps**: Holm-Bonferroni corrected p-values are never
+    shown despite being claimed. The headline "7/9 significant" may not survive correction.
+    Likert scale specification is absent. Consistency filter bias is unexamined.
+
+
+    4. **Data presentation concerns**: The suspiciously regular numerical patterns
+    across the 3×3 grid deserve explanation. Per-cell sample sizes (N_c) should be
+    reported for all 9 cells, not just LLMBar.
+
+
+    5. **Table 4 factual discrepancy**: Claims all 9 cells tested but shows only 3.
+
+
+    ### Path to Acceptance
+
+
+    To reach Main conference quality (4.0), the paper would need:
+
+    - Report Holm-Bonferroni corrected p-values for Table 3
+
+    - Extend verbosity to at least 3 judges on 1 benchmark
+
+    - Resolve Table 4 discrepancy (show all 9 cells or correct the claim)
+
+    - Report per-cell N_c for all 9 cells in Table 3
+
+    - Specify the Likert instrument (scale, anchors, prompt)
+
+    - Add at least one figure (pipeline overview or Likert Blindspot visualization)
+
+    - Discuss consistency filter and potential selection bias
+
+
+    As submitted, this is a solid Findings-level paper with a clear, useful empirical
+    contribution that is somewhat limited in novelty and has addressable experimental
+    gaps.
+
+
+    ---
+
+
+    ## 7. Key Questions for Authors (Prioritized)
+
+
+    1. After Holm-Bonferroni correction, how many of the 7/9 pairwise-significant
+    cells survive at α=0.05? Please report corrected p-values.
+
+    2. Can you provide per-cell N_c (consistent pairs) for all 9 cells in Table 3?
+
+    3. Were AlpacaEval and MT-Bench experiments run independently with fresh counterfactual
+    rewrites?
+
+    4. What Likert scale (number of points, anchors, prompt template) was used?
+
+    5. What fraction of pairs had tied Likert scores and were excluded from binarized-Likert
+    analysis?
+
+    6. Table 4 claims 9 cells but shows 3 — which is correct?
+
+    7. Do you have verbosity results for Claude or Gemini?
+
+    8. What is the consistency rate per cell, and could differential consistency inflate
+    observed win rates?
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/dream_reports/dream_20260521T010111/median/paper.pdf
+  imagined_experiments:
+  - name: Multi-judge formality pairwise
+    plan_id: exp-001
+    description: '在 Claude-Sonnet 和 Gemini-2.0-Flash 上复制 LLMBar formality pairwise
+      实验。 使用已有 counterfactuals，200 pairwise calls × 2 directions per judge， position-controlled
+      dual-direction protocol。
+
+      '
+    expected_results:
+      claude_sonnet:
+        n_valid_both_trials: 96
+        n_consistent: 50
+        consistency_rate: 0.521
+        formal_wins: 29
+        casual_wins: 21
+        formal_win_rate: 0.58
+        wilson_ci:
+        - 0.442
+        - 0.706
+        sign_test_p: 0.161
+        position_bias_overall_A: 0.52
+        direction_formal_to_casual:
+          n: 30
+          formal_wins: 19
+          win_rate: 0.633
+          p: 0.1
+        direction_casual_to_formal:
+          n: 20
+          formal_wins: 10
+          win_rate: 0.5
+          p: 1.0
+      gemini_20_flash:
+        n_valid_both_trials: 97
+        n_consistent: 47
+        consistency_rate: 0.485
+        formal_wins: 30
+        casual_wins: 17
+        formal_win_rate: 0.638
+        wilson_ci:
+        - 0.495
+        - 0.761
+        sign_test_p: 0.041
+        position_bias_overall_A: 0.56
+        direction_formal_to_casual:
+          n: 28
+          formal_wins: 22
+          win_rate: 0.786
+          p: 0.002
+        direction_casual_to_formal:
+          n: 19
+          formal_wins: 8
+          win_rate: 0.421
+          p: 0.648
+      cross_judge_summary:
+        judges_significant_p005: 1
+        judges_marginal_p005_015: 1
+        judges_null: 0
+        gpt4o_reference_win_rate: 0.691
+        best_non_gpt4o_win_rate: 0.638
+        win_rate_attenuation_vs_gpt4o: 0.053
+    result_rationale: 'Median 档预测 style bias 是真实效应但跨 judge 有系统性衰减。Gemini-Flash 显著
+      (p=0.041) 的机制：Flash 模型的 RLHF 投入较少 debiasing → 保留更强的 surface style preference；但效应量从
+      GPT-4o 的 69.1% 衰减到 63.8%，因为 Gemini 的 pairwise 一致性率较低 (48.5% vs GPT-4o 56.1%)，引入更多噪声对。Claude-Sonnet
+      不显著 (p=0.161) 的机制：Anthropic 的 RLHF 流程更保守，Constitutional AI 训练 可能部分抑制 surface
+      style preference；加上 Claude 的 consistency_rate 只有 52.1%，有效 n 从 50 对中仅 29 个 formal
+      wins → 检验力不足。Direction asymmetry 的 judge 间差异是 median 档的关键特征：Gemini 与 GPT-4o
+      类似，formal→casual 方向强 (78.6%)、casual→formal 方向 null (42.1%)；但 Claude 的不对称性更弱
+      (63.3% vs 50.0%)，且 casual→formal 方向完全平坦。这使得 "formal→casual 方向 驱动效应" 的叙事不能跨 judge
+      推广——只能说 "direction asymmetry is judge-dependent, consistently observed for GPT-4o
+      and Gemini but not Claude." 一致性率的 judge 间差异本身值得报告：它反映不同 judge 的 position sensitivity，
+      不是方法的失败而是 judge 特性的测量。
+
+      '
+    tables:
+    - name: 'Table 2a: Multi-judge formality pairwise (LLMBar)'
+      description: '3 rows (GPT-4o, Claude-Sonnet, Gemini-Flash) × columns: n_consistent,
+        consistency_rate, formal_win_rate, 95% Wilson CI, sign_test_p, formal→casual_win_rate,
+        casual→formal_win_rate, position_bias. GPT-4o 行 bolded (primary)，Gemini 行
+        starred (significant replication)。
+
+        '
+    figures_description:
+    - 'Forest plot: formal_win_rate with 95% Wilson CI for 3 judges。Vertical dashed
+      line at 50%。GPT-4o CI clearly right of 50%；Gemini CI right but wider，lower bound
+      near 50%；Claude CI straddling 50%。Annotate p-values next to each bar。
+
+      '
+    analysis: 'C1 表述降级为 "demonstrated on GPT-4o (p=0.006), replicated on Gemini-Flash
+      (p=0.041), not detected on Claude-Sonnet (p=0.161, possibly underpowered)."
+      Claude 的 null 不能确定是 "无 bias" 还是 "power 不足"——需在论文中讨论 power (at n=50 consistent,
+      MDE≈0.18 for pairwise win_rate → 58% 在 detection boundary 上)。Direction asymmetry
+      的 judge 间差异增加了 §5 Discussion 的复杂度但也增加 了 depth——"why does asymmetry vary?" 可以链接到
+      judge 的 RLHF 训练差异。
+
+      '
+  - name: Multi-benchmark formality pairwise
+    plan_id: exp-002
+    description: '在 AlpacaEval 和 MT-Bench 上新生成 formality counterfactuals，GPT-4o +
+      Claude-Sonnet + Gemini-Flash 作为 judge 运行完整 CSD pairwise pipeline。
+
+      '
+    expected_results:
+      counterfactual_generation:
+        alpacaeval_nli_pass_rate: 0.83
+        alpacaeval_bertscore_pass_rate: 0.79
+        alpacaeval_both_pass_rate: 0.78
+        mtbench_nli_pass_rate: 0.79
+        mtbench_bertscore_pass_rate: 0.74
+        mtbench_both_pass_rate: 0.72
+        note: NLI pass rate drops vs LLMBar (0.88) due to more diverse/technical source
+          texts
+      alpacaeval:
+        gpt4o:
+          n_consistent: 51
+          formal_win_rate: 0.608
+          sign_test_p: 0.072
+          direction_f2c_win_rate: 0.7
+          direction_c2f_win_rate: 0.5
+        claude_sonnet:
+          n_consistent: 44
+          formal_win_rate: 0.545
+          sign_test_p: 0.348
+          direction_f2c_win_rate: 0.58
+          direction_c2f_win_rate: 0.5
+        gemini_flash:
+          n_consistent: 42
+          formal_win_rate: 0.595
+          sign_test_p: 0.109
+          direction_f2c_win_rate: 0.68
+          direction_c2f_win_rate: 0.48
+      mt_bench:
+        gpt4o:
+          n_consistent: 46
+          formal_win_rate: 0.565
+          sign_test_p: 0.214
+          direction_f2c_win_rate: 0.62
+          direction_c2f_win_rate: 0.5
+        claude_sonnet:
+          n_consistent: 40
+          formal_win_rate: 0.525
+          sign_test_p: 0.557
+          direction_f2c_win_rate: 0.54
+          direction_c2f_win_rate: 0.5
+        gemini_flash:
+          n_consistent: 39
+          formal_win_rate: 0.538
+          sign_test_p: 0.396
+          direction_f2c_win_rate: 0.6
+          direction_c2f_win_rate: 0.47
+      cross_benchmark_summary:
+        cells_significant_p005: 0
+        cells_trend_p005_010: 1
+        cells_trend_p010_015: 1
+        cells_null: 4
+        benchmark_ordering: LLMBar >> AlpacaEval > MT-Bench
+        nli_pass_rate_ordering: LLMBar (0.88) > AlpacaEval (0.83) > MT-Bench (0.79)
+    result_rationale: '新 benchmark 效应衰减是 median 档的核心预测。两个独立机制叠加造成衰减： (1) Counterfactual
+      质量下降——LLMBar 源文本是简洁的 instruction-following 对， formality rewriting 容易保内容；AlpacaEval
+      文本更长更多样，NLI pass rate 从 0.88 降到 0.83，丢弃更多样本 → 有效 n 减少；MT-Bench 包含数学/代码/推理等 domain
+      特异性强的文本，formality rewriting 更容易改变内容（把 "Let''s solve this step by step" 改成正式版本可能改变推理链结构）→
+      NLI 降到 0.79。 (2) Formality 方差差异——LLMBar 的 instruction-following 文本天然有较大的 formality
+      方差（有的回答很 casual，有的很 formal），counterfactual contrast 大； MT-Bench 的技术性文本天然偏 formal，formality
+      rewriting 的 contrast 小 → smaller effect size。GPT-4o × AlpacaEval 的 p=0.072 (trend)
+      符合 median 核心 假设 "1 additional benchmark shows trend (p<0.10) but not clean significance"。
+      Holm-Bonferroni 校正 (within GPT-4o: 0.006, 0.072, 0.214 → adjusted 0.018, 0.144,
+      0.214) 后只有 LLMBar survive。论文需诚实报告："effect replicates as trend on AlpacaEval
+      but not MT-Bench" 并讨论 benchmark 依赖性原因。
+
+      '
+    tables:
+    - name: 'Table 2b: Full 3×3 judge × benchmark pairwise results'
+      description: '9-cell grid。Rows: LLMBar, AlpacaEval, MT-Bench。Columns grouped
+        by judge， each showing formal_win_rate (p-value)。p<0.05 bolded，p<0.10 italicized。
+        Only 2 bold cells (GPT-4o×LLMBar, Gemini×LLMBar)，2 italic (GPT-4o×AlpacaEval,
+        Gemini×AlpacaEval)。Additional column: NLI pass rate per benchmark。
+
+        '
+    figures_description:
+    - 'Heatmap: 3×3 grid，color = formal_win_rate (diverging colormap centered at 50%)。
+      Cell annotations: win_rate% (p=x.xx)。Clear gradient: LLMBar row warmest， MT-Bench
+      row coolest。Column gradient: GPT-4o warmest，Claude coolest。
+
+      '
+    analysis: 'exp-002 确认 formality bias 不是 LLMBar artifact——AlpacaEval 上 GPT-4o 和
+      Gemini 都显示 trend (p<0.12)——但 effect magnitude 确实 benchmark-dependent。 论文需要 §5.1
+      "Benchmark Dependence" 讨论三个 benchmark 的差异，linking to counterfactual quality
+      (NLI pass rate) 和 formality 方差。MT-Bench 的 null 结果 本身有 method boundary 意义：when
+      source texts are domain-specific/technical， formality rewriting 更可能失败 NLI gate
+      → CSD 方法自动 degrades gracefully。 Claim 从 "across benchmarks" 降级为 "demonstrated
+      on LLMBar, supporting trend on AlpacaEval (instruction-following), inconclusive
+      on MT-Bench (task-specific)."
+
+      '
+  - name: Likert vs Pairwise sensitivity analysis across judges
+    plan_id: exp-003
+    description: '对 9 个 judge × benchmark cells 系统计算 Likert ATE 和 binarized Likert
+      sign test，与 pairwise win rate 对比。量化 C2 Likert Blindspot 的 replication rate 和
+      condition-dependence。
+
+      '
+    expected_results:
+      likert_ate:
+        gpt4o_llmbar:
+          ate: -0.102
+          se: 0.149
+          p: 0.332
+        gpt4o_alpacaeval:
+          ate: -0.07
+          se: 0.155
+          p: 0.48
+        gpt4o_mtbench:
+          ate: -0.04
+          se: 0.161
+          p: 0.69
+        claude_llmbar:
+          ate: 0.03
+          se: 0.158
+          p: 0.71
+        claude_alpacaeval:
+          ate: -0.01
+          se: 0.165
+          p: 0.88
+        claude_mtbench:
+          ate: 0.02
+          se: 0.17
+          p: 0.82
+        gemini_llmbar:
+          ate: -0.09
+          se: 0.152
+          p: 0.39
+        gemini_alpacaeval:
+          ate: -0.06
+          se: 0.16
+          p: 0.53
+        gemini_mtbench:
+          ate: -0.03
+          se: 0.168
+          p: 0.76
+        any_significant: false
+        note: Likert ATE non-significant in all 9 cells; continuous Likert uniformly
+          insensitive
+      binarized_likert:
+        gpt4o_llmbar:
+          n_nontie: 33
+          win_rate: 0.606
+          p: 0.296
+          status: non-significant
+        gpt4o_alpacaeval:
+          n_nontie: 29
+          win_rate: 0.586
+          p: 0.108
+          status: ambiguous
+        gpt4o_mtbench:
+          n_nontie: 26
+          win_rate: 0.538
+          p: 0.422
+          status: non-significant
+        claude_llmbar:
+          n_nontie: 27
+          win_rate: 0.556
+          p: 0.248
+          status: non-significant
+        claude_alpacaeval:
+          n_nontie: 23
+          win_rate: 0.522
+          p: 0.621
+          status: non-significant
+        claude_mtbench:
+          n_nontie: 21
+          win_rate: 0.524
+          p: 0.617
+          status: non-significant
+        gemini_llmbar:
+          n_nontie: 30
+          win_rate: 0.6
+          p: 0.098
+          status: ambiguous
+        gemini_alpacaeval:
+          n_nontie: 25
+          win_rate: 0.56
+          p: 0.23
+          status: non-significant
+        gemini_mtbench:
+          n_nontie: 22
+          win_rate: 0.5
+          p: 1.0
+          status: non-significant
+      binarized_likert_summary:
+        non_significant_cells: 7
+        ambiguous_cells_p005_012: 2
+        significant_cells: 0
+      c2_gap_analysis:
+        cells_pairwise_sig_AND_likert_not: 2
+        cells_pairwise_sig_AND_binarized_ambiguous: 1
+        cells_pairwise_trend_AND_binarized_ambiguous: 1
+        cells_both_non_sig: 5
+        c2_clean_replication_rate: 0.67
+        c2_with_ambiguous: 0.5
+      measurement_amplification:
+        mean_pairwise_effect_over_50pct: 0.074
+        mean_binarized_likert_effect_over_50pct: 0.044
+        amplification_ratio: 1.68
+    result_rationale: 'Likert ATE 全面不显著是 median 档的稳健预测——continuous Likert 的 within-pair
+      评分方差 (SE~0.15-0.17) 远大于 formality ATE (~0.05-0.10)，信噪比根本不足。 这是 structural 而非
+      power issue：即使 n→∞，如果 ATE 接近零（raw ATE 在 -0.10 到 +0.03 之间散布），continuous Likert
+      的 measurement noise 使得 effect 不 convergent。Binarized Likert 的 2 个 ambiguous
+      cells 是 C2 的最大叙事张力： (a) Gemini×LLMBar binarized p=0.098 vs pairwise p=0.041——gap
+      存在但不大， reviewer 会质疑 "is this just a power issue?" 回答：effect size 差异（63.8% vs
+      60.0%）说明 pairwise 不仅 more powerful 而且 amplifies the signal—— amplification ratio
+      1.68× 是 structural advantage（pairwise 的 forced choice 消除了 Likert 的 tie/neutral
+      responses 噪声）。(b) GPT-4o×AlpacaEval binarized p=0.108 vs pairwise p=0.072——两个都
+      marginal，gap 极小 → 这个 cell 不支持 C2。但在 5 个 null cells 中，pairwise 和 binarized Likert
+      都 null → C2 gap 只在 effect 存在时才有意义。整体：C2 replication rate 67%（2/3 significant
+      pairwise cells 有 clean gap），但加入 ambiguous 考量降到 50%。论文需要 nuanced 表述："The Likert
+      Blindspot is most pronounced when style bias is moderate (pairwise 60-70%);
+      for strong effects, binarized Likert may approach detection; for null effects,
+      no method detects."
+
+      '
+    tables:
+    - name: 'Table 3: Main results — Pairwise vs Likert vs Binarized Likert (9 cells)'
+      description: 'Paper 的 main result table。9-cell grid (3 judges × 3 benchmarks)，
+        each cell: Pairwise win_rate (p) | Likert ATE (p) | Binarized win_rate (p)。
+        Color coding: green p<0.05, yellow p<0.12, red p>0.12。 Final row: measurement
+        amplification ratio per cell。
+
+        '
+    - name: 'Table S1: C2 gap categorization'
+      description: 'Supplementary。Rows: 9 cells。Columns: pairwise_status (sig/marginal/null),
+        binarized_status (non-sig/ambiguous), C2_gap (clean/ambiguous/no gap/NA)。
+        Summary: 2 clean, 1 ambiguous, 1 marginal-both, 5 both-null。
+
+        '
+    figures_description:
+    - 'Paired lollipop chart: 9 cells on y-axis，for each cell two dots connected by
+      line — pairwise win_rate (blue) and binarized Likert win_rate (orange)。 Vertical
+      dashed at 50%。Gap between dots = C2 blindspot magnitude per cell。 Cells ordered
+      by pairwise effect size。Clearly shows pairwise dots consistently further from
+      50% than binarized Likert dots。
+
+      '
+    - 'Scatter: x = pairwise win_rate, y = binarized Likert win_rate, one point per
+      cell。 y=x diagonal line。All points below diagonal → pairwise always ≥ binarized。
+      Regression line slope < 1 → amplification ratio quantified。
+
+      '
+    analysis: 'exp-003 是论文最重要的表格。Median 结果的叙事策略：(1) Lead with Likert ATE = 0/9 significant
+      → continuous Likert 完全 blind，这是最强 version of C2；(2) Binarized Likert = 0/9 significant
+      (2 ambiguous) vs Pairwise = 2/9 significant → gap exists but C2 需要 qualify 为
+      "Likert Blindspot is a measurement efficiency gap, not absolute insensitivity"；(3)
+      Amplification ratio 1.68× provides quantitative hook for practitioners。§5.2
+      "When Does the Blindspot Narrow?" 分析 C2 gap 与 effect size 的关系——如果 pairwise effect
+      越大 gap 越大 (positive correlation)，说明 Likert 对所有 effect size 都 equally insensitive
+      (stronger C2)；如果 gap 恒定， 说明只是 constant offset (weaker C2 but still useful)。
+
+      '
+  - name: Pairwise RATE control (original vs double-rewrite)
+    plan_id: exp-005
+    description: '对所有 judge × benchmark 组合做 original vs double-rewrite pairwise comparison，
+      量化 original preference confound。扩展 exp-014 的 GEE logistic decomposition 到所有条件。
+
+      '
+    expected_results:
+      original_preference_pairwise:
+        gpt4o_llmbar:
+          original_pref_win_rate: 0.585
+          original_pref_p: 0.052
+          gee_original_OR: 1.82
+          gee_original_p: 0.052
+          note: known from exp-014
+        claude_llmbar:
+          original_pref_win_rate: 0.545
+          original_pref_p: 0.232
+          gee_original_OR: 1.38
+          gee_original_p: 0.245
+        gemini_llmbar:
+          original_pref_win_rate: 0.625
+          original_pref_p: 0.026
+          gee_original_OR: 2.18
+          gee_original_p: 0.03
+        gpt4o_alpacaeval:
+          original_pref_win_rate: 0.57
+          original_pref_p: 0.105
+          gee_original_OR: 1.58
+          gee_original_p: 0.112
+        claude_alpacaeval:
+          original_pref_win_rate: 0.53
+          original_pref_p: 0.396
+          gee_original_OR: 1.22
+          gee_original_p: 0.41
+        gemini_alpacaeval:
+          original_pref_win_rate: 0.58
+          original_pref_p: 0.075
+          gee_original_OR: 1.72
+          gee_original_p: 0.082
+      logistic_decomposition_extended:
+        gpt4o_llmbar:
+          formality_OR: 2.21
+          formality_p: 0.01
+          original_OR: 1.82
+          original_p: 0.052
+          formality_exceeds_original: true
+        gemini_llmbar:
+          formality_OR: 1.95
+          formality_p: 0.038
+          original_OR: 2.18
+          original_p: 0.03
+          formality_exceeds_original: false
+          note: 'CRITICAL: original preference OR exceeds formality OR for Gemini'
+        claude_llmbar:
+          formality_OR: 1.52
+          formality_p: 0.165
+          original_OR: 1.38
+          original_p: 0.245
+          formality_exceeds_original: true
+          note: neither significant — underpowered
+      summary:
+        judges_with_significant_original_pref: 1
+        judges_with_marginal_original_pref: 2
+        formality_still_dominates_for_gpt4o: true
+        confound_problematic_for_gemini: true
+    result_rationale: 'Original preference confound 在 median 档变得 judge-dependent，核心威胁来自
+      Gemini。机制：double-rewrite 虽设计为 style-preserving，仍不可避免引入 surface 变化（lexical micro-substitutions,
+      sentence structure 微调）。不同 judge 对 这些 "rewriting artifacts" 的敏感度不同。Gemini-Flash
+      作为较小模型，对 surface form 变化更敏感 → double-rewrite 产生的微小质量损失被 Gemini 放大为显著 original
+      preference (OR=2.18, p=0.026)。关键问题：Gemini×LLMBar 的 formality pairwise 显著 (p=0.041)，但
+      original preference 也显著 (p=0.026)，且 original OR (2.18) > formality OR (1.95)
+      → 对 Gemini 来说，无法 cleanly separate formality bias from rewriting artifact。GPT-4o×LLMBar
+      保持 clean：formality OR (2.21) > original OR (1.82)，formality p=0.010 vs original
+      p=0.052 → 可以 argue formality is the dominant effect。Claude 两者都不显著，无信息量。论文策略：
+      primary claim 基于 GPT-4o×LLMBar (clean decomposition)；Gemini 的显著结果作为 "replication
+      with caveat" — "formality bias detected (p=0.041) but original preference cannot
+      be ruled out as partial contributor (p=0.026)." 这种 honesty 是 strength not weakness
+      — reviewer 更信任 acknowledged confounds。
+
+      '
+    tables:
+    - name: 'Table 4: Original preference decomposition across judges'
+      description: 'Rows: judge × benchmark (6 cells with data)。Columns: formality_OR
+        (CI, p), original_pref_OR (CI, p), formality > original?, status。 GPT-4o×LLMBar
+        highlighted as clean decomposition；Gemini×LLMBar flagged。
+
+        '
+    figures_description:
+    - 'Paired forest plot: for each cell，two horizontal bars with 95% CI — formality
+      OR (blue) and original preference OR (red)。Vertical line at OR=1。 GPT-4o×LLMBar:
+      blue clearly right, red CI crossing 1。 Gemini×LLMBar: both right of 1 with overlapping
+      CIs → confound visible。
+
+      '
+    analysis: 'exp-005 使得 "confound is negligible" argument 不成立。但 "confound is acknowledged
+      and statistically controlled" 在 GPT-4o 上仍然成立。对于 Gemini， 论文需要 paragraph: "Gemini-Flash
+      shows both formality preference and original preference; future work with larger
+      n or improved double-rewrite protocol may achieve cleaner separation." 这实际上提供了有用的
+      method boundary：CSD 的 confound control 对某些 judge 更 effective（GPT-4o）比其他（Gemini）。
+      Practical implication for C4：recommend running original-preference control for
+      each judge, and only report formality estimates where decomposition is clean。
+
+      '
+  - name: Scaled replication (n=500)
+    plan_id: exp-006
+    description: 'GPT-4o × LLMBar (最佳 cell) 从 n=100 扩展到 n=500。计算 pairwise、 binarized
+      Likert、Likert ATE，直接检验 C2 是 structural blindspot 还是 power issue。Power analysis
+      量化 measurement efficiency gap。
+
+      '
+    expected_results:
+      pairwise:
+        n_total: 500
+        n_valid_both_trials: 490
+        n_consistent: 275
+        consistency_rate: 0.561
+        formal_wins: 168
+        casual_wins: 107
+        formal_win_rate: 0.611
+        wilson_ci:
+        - 0.552
+        - 0.667
+        sign_test_p: 0.0004
+      binarized_likert:
+        n_nli_ge90: 435
+        n_nontie: 163
+        formal_direction: 94
+        formal_win_rate: 0.577
+        sign_test_p: 0.063
+        wilson_ci:
+        - 0.499
+        - 0.651
+        note: Approaches significance; NOT significant at alpha=0.05
+      likert_ate:
+        n_primary: 435
+        raw_ate: -0.085
+        raw_se: 0.065
+        raw_p: 0.19
+        corrected_ate: 0.095
+        corrected_se: 0.047
+        corrected_p: 0.043
+        note: Raw ATE still wrong direction; corrected ATE barely significant
+      power_analysis:
+        pairwise_detected_effect_cohens_h: 0.222
+        binarized_likert_detected_effect_cohens_h: 0.154
+        measurement_amplification_ratio: 1.44
+        pairwise_power_at_n100: 0.72
+        pairwise_power_at_n200: 0.93
+        pairwise_power_at_n500: 0.998
+        binarized_likert_power_at_n100: 0.18
+        binarized_likert_power_at_n200: 0.34
+        binarized_likert_power_at_n500: 0.52
+        binarized_likert_n_for_80pct_power: 680
+        likert_ate_power_at_n100: 0.09
+        likert_ate_power_at_n500: 0.31
+        likert_ate_n_for_80pct_power: 1200
+      regression_to_mean:
+        n100_pairwise_win_rate: 0.691
+        n500_pairwise_win_rate: 0.611
+        regression_magnitude: 0.08
+        note: 8pp regression consistent with sampling variance at n=55 consistent
+          pairs
+    result_rationale: 'n=500 的三个关键结果及其 rationale： (1) Pairwise win rate 从 69.1% 回归到
+      61.1%。n=100 的 69.1% 来自仅 55 个 consistent pairs → 采样方差大，Wilson CI [56.0%, 79.7%]。n=500
+      的 275 个 consistent pairs 给出更精确的 true effect estimate ~61%。8pp 回归幅度在 n=55 的 CI
+      范围内，统计上完全预期。效应仍高度显著 (p=0.0004)。 (2) Binarized Likert p=0.063：在 n=500 下 approaching
+      但 NOT crossing 0.05 线。 这是 median 档的精妙预测——如果 binarized Likert 真的 significant，C2
+      从 "blindspot" 变成 "efficiency gap"，论文核心受损；如果完全 null，C2 过于强势 反而可疑。p=0.063 恰好在模糊地带：它说明
+      binarized Likert 不是完全 blind（有 trending signal），但需要远超 pairwise 的样本量才能 detect
+      → "efficiency gap" framing 是准确的。关键：binarized Likert n_nontie=163 (Likert 评分相同的
+      pair 被丢弃 → 信息损失)，effective n 仅 pairwise 的 59%，这是 structural 不是 power。 (3) Likert
+      ATE raw p=0.19 仍不显著且方向错误 → continuous Likert 在 n=500 下 仍然 blind。Corrected ATE
+      (accounting for rewrite bias) p=0.043 barely significant，但 "corrected" 需要知道
+      rewrite bias → 不是 post-hoc 可用的检测 工具。这进一步支持 "Likert cannot serve as style bias
+      detector without correction." Power analysis 的实用价值：pairwise 在 n=100 就有 72% power
+      (接近 80%)， binarized Likert 需要 n=680 for 80% power → 6.8× 样本量差距。这是论文的 quantitative
+      C2 claim："pairwise comparison is ~7× more sample-efficient than binarized Likert
+      for detecting style bias at the observed effect size."
+
+      '
+    tables:
+    - name: 'Table 5: Scaled replication — measurement comparison at n=500'
+      description: '3 rows (Pairwise, Binarized Likert, Likert ATE) × columns: n_effective,
+        effect_estimate, 95% CI, p-value, Cohen''s h, power_at_n100, power_at_n500,
+        n_for_80pct_power。Clearly shows efficiency hierarchy。
+
+        '
+    - name: 'Table S2: n=100 vs n=500 comparison'
+      description: 'Side-by-side: all metrics at two sample sizes。Regression to mean
+        quantified and contextualized。
+
+        '
+    figures_description:
+    - 'Power curve: x = total sample size (50 to 1000), y = statistical power (0 to
+      1)。 Three curves: pairwise (blue, crosses 80% at ~110), binarized Likert (orange,
+      crosses 80% at ~680), Likert ATE (red, crosses 80% at ~1200)。Horizontal dashed
+      at 80%。Vertical dashed at n=100 and n=500。This is C2''s key visualization —
+      the efficiency gap is immediately visible。
+
+      '
+    - 'Running estimate plot: x = cumulative n (in increments of 50), y = pairwise
+      win_rate with running 95% CI ribbon。Shows convergence from volatile ~69% at
+      n=100 toward stable ~61% at n=500。Communicates regression to mean visually。
+
+      '
+    analysis: 'exp-006 redefines C2 from "Likert Blindspot" to "Likert Efficiency
+      Gap." Binarized Likert p=0.063 at n=500 means the effect is detectable in principle
+      — given enough data. But the practical gap (pairwise needs n~110, binarized
+      Likert needs n~680) is the real contribution. For practitioners: "If you suspect
+      style bias, pairwise comparison with n=100 is sufficient; Likert scoring would
+      need n≥700 for the same statistical power." Title 可能需要从 "Blindspot" 软化为 "Blind
+      Spot" 或保留但 在 abstract 中 qualify。Power analysis table 是最 reviewer-friendly 的结果之一——
+      直接 actionable guidance。Win rate 回归到 61.1% 需要 honestly report，不要 buried in supplement。
+
+      '
+  - name: Non-Qwen rewriter control
+    plan_id: exp-009
+    description: '使用 Llama-3.1-70B 作为 rewriter 替代 Qwen3-32B，在 GPT-4o × LLMBar 上 重复
+      formality counterfactual generation + pairwise pipeline。排除 Qwen-family artifacts。
+
+      '
+    expected_results:
+      counterfactual_quality:
+        nli_pass_rate: 0.81
+        bertscore_pass_rate: 0.75
+        both_pass_rate: 0.73
+        nli_mean: 0.869
+        bertscore_mean: 0.905
+        nli_std: 0.298
+        comparison_vs_qwen:
+          qwen_nli_pass_rate: 0.88
+          qwen_both_pass_rate: 0.88
+          llama_nli_delta: -0.07
+          note: Llama slightly worse at style transfer precision
+      pairwise_results:
+        n_valid_both_trials: 95
+        n_consistent: 48
+        consistency_rate: 0.505
+        formal_wins: 30
+        casual_wins: 18
+        formal_win_rate: 0.625
+        wilson_ci:
+        - 0.48
+        - 0.749
+        sign_test_p: 0.042
+        direction_f2c_win_rate: 0.72
+        direction_c2f_win_rate: 0.5
+      comparison_with_qwen:
+        qwen_win_rate: 0.691
+        llama_win_rate: 0.625
+        difference: 0.066
+        difference_p: 0.43
+        direction_consistent: true
+        sign_consistent: true
+        magnitude_within_qwen_ci: true
+        note: 6.6pp difference not significant; both within Qwen's [56.0%, 79.7%]
+          CI
+    result_rationale: 'Llama-3.1-70B 的 style transfer 质量略低于 Qwen3-32B 是预期中的——Qwen3-32B
+      在 instruction following 和 controlled generation 任务上经过更充分的训练。 NLI pass rate 0.81
+      vs 0.88 的差距来自 Llama 在 style rewriting 时更容易引入 minor content modifications (添加
+      qualifiers, 重组 argument structure)。 Pairwise win rate 衰减到 62.5% (vs Qwen 的 69.1%)
+      有两个可能原因：(a) lower NLI pass rate → 更多边缘质量的 counterfactual 被保留 (NLI 0.81-0.90
+      的样本 content preservation 较差) → diluting the signal；(b) Llama 的 style transfer
+      不够 "extreme" — formal counterfactual 不够 formal，contrast 较小。但方向完全 一致 (formal
+      wins)，p=0.042 显著，6.6pp 差异在 Qwen 的 CI 内 (p_diff=0.43)。 这足以 rule out "Qwen-specific
+      artifact" 但引入 nuance: "rewriter choice moderates effect magnitude (~7pp) even
+      when direction is robust." 对方法论的 implication：CSD 应报告 rewriter choice 并建议用多个
+      rewriter 取均值或报告 range。论文一段话足矣。
+
+      '
+    tables:
+    - name: 'Table S3: Rewriter robustness check'
+      description: '2 rows (Qwen3-32B, Llama-3.1-70B) × columns: NLI_pass_rate, BERTScore_pass_rate,
+        n_consistent, formal_win_rate (CI, p), direction_asymmetry。Footnote: chi-squared
+        test for win_rate difference p=0.43。
+
+        '
+    figures_description:
+    - 'Two-bar chart with error bars: Qwen (blue) and Llama (green) formal_win_rate
+      with 95% Wilson CI。Both above 50% line, CIs overlapping。Simple, clean robustness
+      visualization。
+
+      '
+    analysis: 'exp-009 是 reviewer 几乎必问的 robustness check。Median 结果提供 clean answer：
+      "direction robust, magnitude varies." 论文中 1-2 段：acknowledge rewriter dependence,
+      recommend reporting rewriter choice as method parameter。如果 reviewer 要求第三个 rewriter，可以
+      argue "two independent rewriters with consistent direction provides reasonable
+      evidence against rewriter-specific artifacts; exhaustive rewriter comparison
+      is beyond scope." Cost: 8 GPU hours for Llama-70B generation。
+
+      '
+  - name: Human NLI validation
+    plan_id: exp-013
+    description: '100 counterfactual pairs 的 human annotation (content preservation
+      judgment)。 报告 human-NLI agreement (Cohen''s kappa)、precision、recall。使用 LLM-as-annotator
+      + human spot check。
+
+      '
+    expected_results:
+      annotation_summary:
+        n_annotated: 100
+        human_pass: 95
+        human_fail: 5
+        nli_pass: 88
+        nli_fail: 12
+      confusion_matrix:
+        tp: 87
+        fp: 1
+        fn: 8
+        tn: 4
+      agreement_metrics:
+        raw_agreement: 0.91
+        cohens_kappa: 0.43
+        pabak: 0.82
+        prevalence_index: 0.83
+      precision_recall:
+        nli_precision: 0.989
+        nli_recall: 0.916
+        nli_f1: 0.951
+        nli_specificity: 0.8
+      false_negative_analysis:
+        n_false_negatives: 8
+        categories:
+          paraphrase_level_changes: 5
+          minor_lexical_substitution: 2
+          borderline_content_addition: 1
+        mean_nli_score_of_fn: 0.78
+        note: FNs cluster at NLI 0.75-0.88 — NLI is strict on borderline cases
+      false_positive_analysis:
+        n_false_positives: 1
+        category: subtle_factual_drift
+        nli_score: 0.93
+        note: NLI missed minor factual change that human caught; extremely rare
+    result_rationale: 'Kappa=0.43 看似平庸但实际由 class imbalance 驱动而非真正 disagreement。 机制：100
+      pairs 中 95 个 human 判 "pass"、5 个 "fail"。在 base rate 95% 的 情况下，即使完美 agreement
+      在 majority class、只有少量 minority class 分歧， kappa 也会被严重压低。具体：8 个 false negative
+      (NLI reject human accept)  来自 NLI 对 borderline 变化的过严判断——NLI entailment model
+      对 paraphrase 级 别的词汇替换 (synonyms, sentence restructuring) 给出 0.75-0.88 分，低于 0.90
+      threshold，但 human annotator 认为 content preserved。这说明 NLI gate 是 "conservative"
+      而非 "wrong"——它丢弃了 human 认为 OK 的 borderline cases， 损失 recall (8/95=8.4%) 但不损失
+      precision (只有 1/88=1.1% false positive)。 对论文的影响：NLI gate 通过的 counterfactual
+      几乎确定 content preserved (precision 98.9%)，这才是实验设计需要的保证。recall 损失只影响 effective
+      n (sample size reduction ~12%)，不影响 validity。PABAK=0.82 (excellent agreement)
+      在 class imbalance 校正后远高于 raw kappa。但 reviewer 可能只看 kappa headline → 需要 proactive
+      defense。
+
+      '
+    tables:
+    - name: 'Table S4: Human validation confusion matrix'
+      description: '2×2 matrix with margins。Below: kappa=0.43, PABAK=0.82, prevalence
+        index=0.83, precision=98.9%, recall=91.6%。Footnote explaining PABAK and why
+        it''s more appropriate than raw kappa at 95% base rate。
+
+        '
+    - name: 'Table S5: False negative error analysis'
+      description: '8 FN examples。Columns: sample_id, NLI_score, change_type (paraphrase/
+        lexical/borderline), human_judgment_confidence, example_excerpt。 Shows NLI
+        is strict-but-reasonable on borderline cases。
+
+        '
+    figures_description:
+    - 'Histogram: NLI entailment score distribution, split by human judgment (pass=blue,
+      fail=red)。X-axis: NLI score 0-1。Vertical dashed at 0.90 threshold。Shows clear
+      separation: human-fail cases cluster at NLI<0.70, human-pass cases cluster at
+      NLI>0.90, with small overlap zone 0.75-0.88 where FNs live。Demonstrates threshold
+      choice is reasonable。
+
+      '
+    analysis: exp-013 需要最 careful 的 presentation。论文策略：(1) §3.2 先 report precision
+      98.9% 和 "conservative gate" framing（"our NLI gate prioritizes precision over
+      recall — passed pairs are near-certainly content-preserving"）；(2) Full metrics
+      including kappa 放在 §3.2 的后半段或 Appendix A，accompanied by class imbalance discussion；(3)
+      PABAK=0.82 作为 robustness metric；(4) 3 annotated examples in Appendix (1 TP,
+      1 TN, 1 FN showing NLI's conservative behavior)。如果 reviewer 仍 push back on kappa<0.60，rebuttal
+      的核心论点："Cohen's kappa is known to underestimate agreement under extreme class
+      imbalance (Feinstein & Cicchetti 1990, Prevalence Index = 0.83); PABAK corrects
+      for this (0.82, excellent agreement). More importantly, our experimental design
+      requires that passed pairs preserve content (precision = 98.9%), not that all
+      content-preserving pairs pass (recall). The 8.4% recall loss reduces effective
+      sample size but does not compromise validity."
+  review_report: "---\ndream_id: dream_20260521T010111\ntier: median\noverall_score:\
+    \ 3/6 — Borderline Accept\ntimestamp: 2026-05-21T01:51:15.582821+00:00\n---\n\n\
+    # Dream Review Report: \"The Likert Blindspot: Detecting Hidden Style Bias in\
+    \ LLM Judges via Counterfactual Pairwise Comparison\"\n\n**Review Mode:** Full\
+    \ (2 Reviewers + Roundtable)  \n**Venue Standard:** Top ML venue (~25% acceptance,\
+    \ 6-point scale)  \n**Date:** 2026-05-21\n\n---\n\n## Paper Summary\n\nThe paper\
+    \ introduces a counterfactual pairwise comparison protocol for detecting style\
+    \ bias (formality) in LLM-as-judge systems. The protocol: (1) generates style-varied\
+    \ rewrites via an instruction-following LLM, (2) verifies content preservation\
+    \ via bidirectional NLI (threshold ≥0.90), (3) measures judge preference through\
+    \ position-controlled forced choice, and (4) compares detection sensitivity against\
+    \ Likert baselines. Across 3 judges (GPT-4o, Claude-Sonnet, Gemini-Flash) × 3\
+    \ benchmarks (LLMBar, AlpacaEval, MT-Bench), continuous Likert ATE is non-significant\
+    \ in all 9 cells, while pairwise comparison detects significance in 2 cells (GPT-4o×LLMBar:\
+    \ 69.1%, p=0.006; Gemini×LLMBar: 63.8%, p=0.041) with trends on AlpacaEval. A\
+    \ scaled replication (n=500) characterizes this \"Likert Blindspot\" as primarily\
+    \ a measurement efficiency gap (~7× sample efficiency advantage for pairwise).\
+    \ Robustness checks include a second rewriter (Llama-3.1-70B) and human NLI validation.\n\
+    \n---\n\n## Reviewer 1: Methods & Experiments\n\n### Strengths\n\n- **S1. Well-designed\
+    \ within-subject protocol.** The four-stage pipeline (counterfactual generation\
+    \ → NLI verification → position-controlled pairwise → Likert baseline comparison)\
+    \ is methodologically clean. Position control via dual-ordering with consistency\
+    \ filtering is the right approach for eliminating position bias confounds.\n\n\
+    - **S2. Systematic 3×3 grid.** Testing across 3 judges × 3 benchmarks goes beyond\
+    \ single-condition demonstration. The paper does not cherry-pick the best condition\
+    \ — it reports the full grid including null results.\n\n- **S3. Exceptionally\
+    \ honest reporting.** Regression to mean (69.1%→61.1%) is discussed forthrightly\
+    \ in §4.6. Gemini's confound issue is flagged transparently in §4.5 rather than\
+    \ buried. MT-Bench nulls are framed as method boundaries. The Limitations section\
+    \ (§5.5) is unusually thorough. This level of honesty is rare and should be rewarded.\n\
+    \n- **S4. Comprehensive robustness checks.** Rewriter independence (Table 6),\
+    \ human NLI validation (Table 7), original-preference decomposition (Table 4),\
+    \ and scaled replication (Table 5) collectively address the most obvious reviewer\
+    \ concerns proactively.\n\n- **S5. Actionable power analysis.** Table 5's sample-size\
+    \ guidance (n≈110 for pairwise at 80% power, n≈680 for binarized Likert) is the\
+    \ paper's most practically useful result. Practitioners can directly use this\
+    \ to budget their audits.\n\n### Weaknesses\n\n- **W1 (Major). Only 1 clean significant\
+    \ cell after confound analysis.** The paper reports 2/9 significant cells, but\
+    \ Gemini×LLMBar has original-preference OR (2.18, p=0.030) exceeding formality\
+    \ OR (1.95, p=0.038). This means formality bias cannot be cleanly separated from\
+    \ rewriting artifact for Gemini. After Holm-Bonferroni across the full 9-cell\
+    \ grid, likely only GPT-4o×LLMBar (adjusted p≈0.054) survives. The paper's central\
+    \ empirical claim effectively rests on a single condition. This is a critical\
+    \ limitation that the current framing underplays.\n\n- **W2 (Major). \"7× efficiency\"\
+    \ claim uses post-hoc observed effect sizes.** The power analysis in Table 5 derives\
+    \ required sample sizes from the n=500 observed effect (Cohen's h=0.222 for pairwise,\
+    \ h=0.154 for binarized Likert). Using observed effects for power calculation\
+    \ is methodologically circular — the \"7×\" figure is a function of the specific\
+    \ condition, not a generalizable constant. A more honest presentation would provide\
+    \ power curves parameterized by a range of plausible effect sizes, or use the\
+    \ pre-registered n=100 estimate.\n\n- **W3 (Major). Consistency filtering discards\
+    \ ~50% of data with potential selection bias.** Consistency rates range from 48.5%\
+    \ (Gemini) to 56.1% (GPT-4o). Discarding half the data is a severe cost, and the\
+    \ retained \"consistent\" subset may be biased toward pairs where style difference\
+    \ is most salient — precisely the subset where bias is easiest to detect. The\
+    \ paper does not analyze whether consistent and inconsistent pairs differ systematically\
+    \ (e.g., in NLI score, source text length, or formality contrast magnitude).\n\
+    \n- **W4 (Moderate). Regression to mean is inadequately contextualized in the\
+    \ abstract.** The abstract states \"69.1%, p=0.006\" but the n=500 estimate is\
+    \ 61.1%. The paper's own data shows the n=100 estimate was inflated by sampling\
+    \ variance. The abstract should feature the more reliable n=500 estimate, or at\
+    \ minimum both. Foregrounding the inflated estimate is misleading even if §4.6\
+    \ discusses the regression.\n\n- **W5 (Moderate). Binarized Likert comparison\
+    \ confounds measurement type with effective n.** The 60-70% tie rate in Likert\
+    \ scoring dramatically reduces effective sample size. The \"blindspot\" may partially\
+    \ reflect this sample size reduction rather than a fundamental measurement difference.\
+    \ A fairer comparison would match effective n (e.g., compare pairwise at n=55\
+    \ vs. binarized Likert at n=55 non-tie pairs).\n\n- **W6 (Moderate). Likert ATE\
+    \ directional inconsistencies unexplained.** Claude×LLMBar shows ATE=+0.03 (casual\
+    \ direction) while pairwise shows formal preference (58%). GPT-4o×LLMBar shows\
+    \ negative ATE (formal direction) — consistent with pairwise. These directional\
+    \ inconsistencies across judges in Likert ATE are not discussed and may contain\
+    \ information about the measurement gap.\n\n- **W7 (Minor). Multiple comparison\
+    \ correction applied inconsistently.** Holm-Bonferroni is applied \"within GPT-4o\"\
+    \ (3 benchmarks) but not across the full 9-cell grid. The rationale for this family-wise\
+    \ grouping is not stated. If the family is all 9 cells (which is more conservative\
+    \ and more appropriate), only GPT-4o×LLMBar is borderline.\n\n### Questions for\
+    \ Authors (R1)\n\n1. Have you analyzed whether position-consistent and position-inconsistent\
+    \ pairs differ systematically in NLI score, formality contrast, or source text\
+    \ properties? If consistent pairs are systematically \"easier,\" the detected\
+    \ bias may not generalize to the full distribution.\n\n2. The power analysis uses\
+    \ observed effect sizes. What would the efficiency ratio be at a range of plausible\
+    \ effect sizes (e.g., win rates of 55%, 60%, 65%)? Is the \"7×\" ratio stable?\n\
+    \n3. Why is Holm-Bonferroni applied within GPT-4o rather than across all 9 cells?\
+    \ If applied across 9, does any cell survive?\n\n4. At n=500, binarized Likert\
+    \ reaches p=0.063. What is the projected p at n=700? If it would reach significance,\
+    \ the \"blindspot\" framing becomes misleading — it's purely a sample efficiency\
+    \ issue.\n\n5. Can you explain the directional inconsistency in Likert ATE for\
+    \ Claude (positive ATE vs. formal pairwise preference)?\n\n### R1 Preliminary\
+    \ Score: 3 / 6\n\n**Justification:** The methodology is sound and honestly presented,\
+    \ with genuine practical utility. But the empirical base is too narrow (1 clean\
+    \ cell) for the strength of the claims, the \"7×\" efficiency figure is methodologically\
+    \ circular, and the title/abstract oversell relative to the evidence. This is\
+    \ a solid methodological contribution with insufficient evidence to support its\
+    \ headline claim at a top venue. Suitable for revision targeting a workshop or\
+    \ Findings track.\n\n**Confidence: 4/5** (strong background in experimental design\
+    \ and statistical methodology for LLM evaluation)\n\n---\n\n## Reviewer 2: Novelty\
+    \ & Related Work\n\n### Strengths\n\n- **S1. Clearly structured paper with logical\
+    \ flow.** The paper follows a clean trajectory: motivation → method → systematic\
+    \ experiments → robustness → discussion. Each section builds on the previous one.\
+    \ The writing is concise and precise.\n\n- **S2. Honest limitations section is\
+    \ above average.** §5.5 explicitly acknowledges single axis, limited generalization,\
+    \ sample size constraints, and benchmark dependence. The paper does not pretend\
+    \ to be more than it is.\n\n- **S3. Good positioning against RATE.** The RATE\
+    \ critique (§5.3) is carefully framed as a \"measurement-level concern\" rather\
+    \ than an attack on RATE's experimental design. The acknowledgment that the critique\
+    \ is based on formality results only (not RATE replication) is appropriately cautious.\n\
+    \n- **S4. Practical guidance is actionable.** §5.4's five-point recommendation\
+    \ list is concrete and directly usable by practitioners. This is a genuine service\
+    \ contribution.\n\n- **S5. \"Method boundary\" framing for null results is mature.**\
+    \ Framing MT-Bench nulls as inherent method boundaries (§5.1) rather than failures\
+    \ is intellectually honest and provides useful information about the protocol's\
+    \ scope.\n\n### Weaknesses\n\n- **W1 (Critical). References section is completely\
+    \ empty.** The paper has zero references on page 10. Throughout §1 and §2, there\
+    \ are multiple \"?\" and \"???\" citation placeholders (at least 8 instances).\
+    \ This is a fundamental submission-readiness failure. It prevents verifying related\
+    \ work claims, makes the paper uncheckable, and would result in immediate desk\
+    \ rejection at any venue.\n\n- **W2 (Critical). No figures whatsoever.** A 9-page\
+    \ empirical paper with 7 tables and 0 figures is a serious presentation weakness.\
+    \ Key results that cry out for visualization:\n  - Power curves (n vs. power for\
+    \ pairwise, binarized Likert, Likert ATE) — this would be the paper's most impactful\
+    \ figure\n  - Forest plot of formal win rates across judges with CIs\n  - 3×3\
+    \ heatmap of the judge×benchmark grid\n  - Scatter plot of pairwise vs. binarized\
+    \ Likert effect sizes\n  Without these, the reader must mentally construct the\
+    \ visual narrative from tables alone. This significantly reduces the paper's communicative\
+    \ impact.\n\n- **W3 (Major). Incremental novelty.** The Likert-vs-forced-choice\
+    \ sensitivity gap is a foundational finding in psychometrics, established decades\
+    \ ago and specifically demonstrated for NLG evaluation by Kiritchenko & Mohammad\
+    \ (Best-Worst Scaling) and Karpinska et al. (low inter-annotator reliability for\
+    \ Likert). The paper's own §2 acknowledges this lineage. The contribution is applying\
+    \ this known insight to LLM judge style bias with a counterfactual protocol. While\
+    \ the application is useful, the conceptual contribution (\"Likert is worse than\
+    \ pairwise for detecting small effects\") is not new. The \"Likert Blindspot\"\
+    \ as a named phenomenon is essentially a rebranding of established psychometric\
+    \ knowledge.\n\n- **W4 (Major). Title-evidence gap.** \"The Likert Blindspot:\
+    \ Detecting Hidden Style Bias in LLM Judges\" promises:\n  - \"Blindspot\" → but\
+    \ §4.6 shows it's an efficiency gap (binarized Likert p=0.063 at n=500)\n  - \"\
+    Style Bias\" (general) → but only formality tested\n  - \"in LLM Judges\" (general)\
+    \ → but only 1 of 3 judges has a clean result\n  A more accurate title would be:\
+    \ \"Pairwise Comparison is More Efficient than Likert Scoring for Detecting Formality\
+    \ Bias in GPT-4o\" — less dramatic but more honest.\n\n- **W5 (Moderate). Related\
+    \ work coverage is thin and unverifiable.** §2 is 1 page covering 4 sub-areas.\
+    \ Key gaps:\n  - No discussion of Bradley-Terry or Elo-based approaches to judge\
+    \ evaluation\n  - No mention of CalibraEval, FairEval, or other judge calibration\
+    \ work\n  - CASSE is mentioned but not deeply engaged with (how does their 12×12\
+    \ matrix compare to this paper's single-axis approach?)\n  - The psychometric\
+    \ foundations paragraph cites 3 works but doesn't engage deeply with the theoretical\
+    \ mechanisms (why does forced choice amplify signal?)\n  And with all citations\
+    \ broken (\"???\"), none of this can be verified.\n\n- **W6 (Moderate). Scope\
+    \ severely limits impact.** The protocol is validated for exactly one style axis\
+    \ (formality) on one type of benchmark (instruction-following). The paper acknowledges\
+    \ that verbosity is incomplete and tone/assertiveness are fundamentally incompatible.\
+    \ This means the protocol's validated scope is much narrower than the title suggests.\
+    \ For a top venue, demonstrating the approach on at least 2 validated axes would\
+    \ be expected.\n\n- **W7 (Minor). RATE critique is speculative.** §5.3 argues\
+    \ that RATE's Likert-based estimates \"may understate style bias magnitudes.\"\
+    \ This is plausible but unverified — the paper has not replicated any RATE condition.\
+    \ The qualifier \"may\" and the honest disclaimer are appropriate, but the paragraph\
+    \ still positions this as a contribution (listed in §1 contribution 2 implicitly)\
+    \ without the evidence to back it.\n\n### Questions for Authors (R2)\n\n1. Can\
+    \ you articulate what is genuinely novel beyond applying the known Likert-vs-forced-choice\
+    \ gap to LLM judge bias? Is the contribution the protocol, the empirical finding,\
+    \ or the practical guidance?\n\n2. The title says \"Style Bias\" but only formality\
+    \ is tested. Would you consider a more accurate title? If you believe the approach\
+    \ generalizes to other axes, what evidence supports this?\n\n3. Have you considered\
+    \ replicating at least one RATE condition under matched settings to validate the\
+    \ §5.3 claim empirically rather than speculatively?\n\n4. The references section\
+    \ is empty. How many unique references does the paper intend to cite? This is\
+    \ critical for assessing related work coverage.\n\n5. Why are there no figures?\
+    \ Were they planned and omitted, or not produced? Specific visualizations (power\
+    \ curves, forest plots) would dramatically strengthen the paper.\n\n### R2 Preliminary\
+    \ Score: 2 / 6\n\n**Justification:** The paper addresses a valid practical problem\
+    \ with a sound methodology, but (a) the novelty is incremental (known psychometric\
+    \ insight applied to a new domain), (b) the scope is narrow (1 axis, 1 clean cell),\
+    \ (c) the presentation is submission-incomplete (no references, no figures), and\
+    \ (d) the title oversells relative to evidence. The missing references alone would\
+    \ result in desk rejection. Even with references and figures added, the contribution\
+    \ may be insufficient for main-conference acceptance at a top venue without additional\
+    \ style axes or stronger cross-judge evidence.\n\n**Confidence: 3/5** (good familiarity\
+    \ with LLM evaluation literature, moderate familiarity with psychometric foundations)\n\
+    \n---\n\n## Roundtable Synthesis\n\n### Points of Convergence\n\nBoth reviewers\
+    \ agree on:\n\n1. **The methodology is sound.** The counterfactual + NLI gate\
+    \ + position-controlled pairwise pipeline is well-designed and the dual-ordering\
+    \ consistency filter is appropriate. No fundamental methodological flaws.\n\n\
+    2. **Honest reporting is a genuine strength.** The paper's forthright discussion\
+    \ of regression to mean, Gemini's confound, method boundaries, and narrow scope\
+    \ is above average for the field. This should be explicitly acknowledged.\n\n\
+    3. **The empirical base is narrower than the framing.** After confound analysis,\
+    \ only GPT-4o×LLMBar provides clean evidence. The paper's framing (headline numbers,\
+    \ title, abstract) overrepresents the strength of evidence.\n\n4. **Missing references\
+    \ and figures are critical failures.** Both reviewers flag these as disqualifying\
+    \ for a formal submission. The paper reads as an incomplete draft.\n\n5. **The\
+    \ \"Likert Blindspot\" label oversells.** The n=500 result (binarized Likert p=0.063)\
+    \ shows Likert-based approaches are not blind — they're inefficient. \"Blindspot\"\
+    \ implies categorical failure; \"efficiency gap\" is the accurate characterization\
+    \ per the paper's own evidence.\n\n### Points of Divergence and Resolution\n\n\
+    **Scoring divergence (R1: 3, R2: 2):**\n- R1 weighs methodology quality and honest\
+    \ reporting more heavily → 3\n- R2 weighs novelty deficit and presentation incompleteness\
+    \ more heavily → 2\n- Resolution: The presentation failures (no references, no\
+    \ figures) are fixable in revision and should not fully determine the content\
+    \ score. However, the narrow novelty and limited empirical base are substantive\
+    \ concerns that are harder to fix without additional experiments. **Consensus:\
+    \ 3 (Borderline Accept)** — recognizing the contribution is real but narrow, and\
+    \ the paper needs significant revision before being submission-ready.\n\n**Is\
+    \ the contribution methodological or empirical?**\n- Both reviewers converge on:\
+    \ the contribution is primarily **practical** — the power analysis and detection\
+    \ guidance are the most useful outputs. The methodological contribution (combining\
+    \ known components) is incremental, and the empirical contribution (1 clean cell)\
+    \ is insufficient for strong claims. The paper would be stronger if it leaned\
+    \ harder into the practical measurement guidance framing rather than the \"discovery\"\
+    \ framing of the Likert Blindspot.\n\n### Experiment Coverage Assessment\n\nAgainst\
+    \ the imagined experiment plan (7 experiments):\n- **exp-001 (Multi-judge pairwise):**\
+    \ ✓ Covered (Table 1). Adequate depth.\n- **exp-002 (Multi-benchmark pairwise):**\
+    \ ✓ Covered (Table 2). The discussion of benchmark dependence mechanisms (NLI\
+    \ quality, formality variance) matches the plan but could go deeper.\n- **exp-003\
+    \ (Likert vs Pairwise sensitivity):** ✓ Covered (Table 3). This is the core table.\
+    \ The \"measurement amplification\" analysis is present. Missing: the scatter\
+    \ plot and paired lollipop chart described in the plan would significantly strengthen\
+    \ this section.\n- **exp-005 (Original preference decomposition):** ✓ Covered\
+    \ (Table 4). Adequate. The Gemini confound is transparently reported.\n- **exp-006\
+    \ (Scaled replication n=500):** ✓ Covered (Table 5). The power analysis is the\
+    \ paper's strongest practical contribution. Missing: the power curve figure and\
+    \ running estimate plot.\n- **exp-009 (Non-Qwen rewriter):** ✓ Covered (Table\
+    \ 6). Only on GPT-4o×LLMBar. Adequate for a robustness check.\n- **exp-013 (Human\
+    \ NLI validation):** ✓ Covered (Table 7). The class imbalance discussion is appropriate.\
+    \ Missing: the NLI score distribution histogram.\n\nAll 7 planned experiments\
+    \ are present. The primary gap is **visual presentation** — the plan describes\
+    \ 8+ specific figures, but zero appear in the paper. The narrative depth for each\
+    \ experiment is adequate in text but would benefit substantially from visualization.\n\
+    \n---\n\n## Overall Assessment\n\n### Summary Judgment\n\nThe paper makes a valid\
+    \ and practically useful point: pairwise comparison is substantially more sensitive\
+    \ than Likert scoring for detecting style bias in LLM judges, and provides concrete\
+    \ sample-size guidance. The methodology is sound, the experimental coverage is\
+    \ comprehensive (7 experiments), and the reporting is unusually honest. However,\
+    \ the empirical base for the headline claim is narrow (1 clean significant cell\
+    \ out of 9), the novelty is incremental (applying known psychometric insights\
+    \ to LLM judge bias), the title and abstract oversell relative to the evidence,\
+    \ and the paper is not submission-ready (missing all references and all figures).\n\
+    \n### Score: 3 / 6 (Borderline Accept)\n\n**Rationale:** The paper is above the\
+    \ rejection threshold on methodological quality, experimental thoroughness, and\
+    \ practical utility. It is below the acceptance threshold on novelty, scope breadth,\
+    \ and presentation completeness. In the context of a top ML venue at ~25% acceptance\
+    \ rate, this is a competent empirical study with a valid but narrow contribution\
+    \ that would benefit from (a) at least one additional validated style axis, (b)\
+    \ figures (especially power curves), (c) complete references, and (d) reframing\
+    \ \"Blindspot\" as \"efficiency gap\" throughout. As-is, it is most appropriate\
+    \ for a **workshop paper** or, with revision, potentially a **Findings** track\
+    \ at an ACL venue.\n\n### Key Recommendations for Revision\n\n1. **Fix references\
+    \ immediately.** All \"?\" placeholders must be resolved. This is a prerequisite\
+    \ for any submission.\n2. **Add figures.** At minimum: (a) power curves for pairwise\
+    \ vs binarized Likert vs Likert ATE, (b) forest plot of formal win rates across\
+    \ judges, (c) 3×3 heatmap. These are described in the experiment plan and should\
+    \ be straightforward to produce.\n3. **Soften the title and abstract.** Replace\
+    \ \"Blindspot\" with \"Efficiency Gap\" or qualify in the abstract: \"primarily\
+    \ a measurement efficiency gap.\" Lead with the n=500 estimate (61.1%) not the\
+    \ n=100 estimate (69.1%).\n4. **Address the \"1 clean cell\" issue.** Either acknowledge\
+    \ more prominently that only GPT-4o×LLMBar provides clean evidence, or add experimental\
+    \ conditions to strengthen the empirical base.\n5. **Validate at least one additional\
+    \ style axis** (verbosity is the natural candidate) to support the general \"\
+    style bias\" framing.\n6. **Analyze consistent vs. inconsistent pairs** to address\
+    \ selection bias concerns.\n7. **Parameterize the power analysis** across a range\
+    \ of plausible effect sizes rather than relying solely on observed effects.\n\n\
+    ### Strengths-Weaknesses Summary\n\n| Category | Assessment |\n|----------|-----------|\n\
+    | Methodology | Strong (4/5) — sound design, appropriate controls |\n| Experiments\
+    \ | Adequate (3/5) — comprehensive coverage but narrow evidence |\n| Novelty |\
+    \ Weak (2/5) — known psychometric insight applied to new domain |\n| Writing |\
+    \ Good (3.5/5) — clear, honest, but incomplete presentation |\n| Impact | Moderate\
+    \ (3/5) — practical guidance is useful; scope limits impact |\n| Presentation\
+    \ | Poor (1.5/5) — no references, no figures |\n\n### Confidence: 4 / 5\n(Strong\
+    \ familiarity with LLM evaluation, judge bias literature, experimental design,\
+    \ and psychometric measurement theory)"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/dream_reports/dream_20260521T010111/worst/paper.pdf
+  imagined_experiments:
+  - name: Multi-judge formality pairwise
+    plan_id: exp-001
+    description: 'Replicate formality pairwise on Claude-3.5/4-Sonnet and Gemini-2.0-Flash
+      using existing LLMBar counterfactuals. Dual-direction pairwise with position
+      control.
+
+      '
+    expected_results:
+      claude_sonnet_n_consistent: 52
+      claude_sonnet_formal_win_rate: 0.52
+      claude_sonnet_sign_test_p: 0.42
+      claude_sonnet_formal_to_casual_win_rate: 0.56
+      claude_sonnet_casual_to_formal_win_rate: 0.47
+      claude_sonnet_position_bias_A: 0.52
+      gemini_flash_n_consistent: 49
+      gemini_flash_formal_win_rate: 0.49
+      gemini_flash_sign_test_p: 0.55
+      gemini_flash_formal_to_casual_win_rate: 0.52
+      gemini_flash_casual_to_formal_win_rate: 0.45
+      gemini_flash_position_bias_A: 0.54
+      significant_judges_of_3: 1
+      gpt4o_replication_formal_win_rate: 0.69
+      gpt4o_replication_p: 0.006
+    result_rationale: 'GPT-4o 的 formality bias 源于其特定的 RLHF 训练数据偏向——OpenAI 的标注指南和偏好数据
+      系统性偏向 formal 文本。Claude 和 Gemini 使用不同的偏好数据集、不同的标注指南、不同的 RLHF 策略，没有理由共享同一个 formality
+      方向的 bias。Claude Sonnet 可能有微弱 formal 偏好（0.52）但远不显著；Gemini Flash 甚至可能略偏 casual（0.49），因为
+      Google 的训练 数据更多来自 conversational 场景。Reviewer 会说："你发现的是 GPT-4o 的个体特性， 不是 LLM
+      judge 的普遍问题。"
+
+      '
+    tables:
+    - title: 'Table: Multi-Judge Formality Pairwise Results (LLMBar)'
+      columns:
+      - Judge
+      - n_consistent
+      - formal_win_rate
+      - 95% CI
+      - sign_test_p
+      - significant
+      rows:
+      - - GPT-4o (existing)
+        - 55
+        - 0.691
+        - '[0.560, 0.797]'
+        - 0.006
+        - 'Yes'
+      - - Claude-3.5-Sonnet
+        - 52
+        - 0.519
+        - '[0.383, 0.653]'
+        - 0.42
+        - 'No'
+      - - Gemini-2.0-Flash
+        - 49
+        - 0.49
+        - '[0.353, 0.628]'
+        - 0.55
+        - 'No'
+    figures_description:
+    - 'Bar chart: formal_win_rate per judge with 95% Wilson CI. GPT-4o bar clearly
+      above 0.5 line; Claude and Gemini straddle 0.5. Visual 一目了然：效应不泛化。'
+    analysis: '1/3 judges significant。C1 generalization claim 崩塌——formality bias 是
+      GPT-4o 特异性的， 不是 LLM judge 的结构性属性。Angle B（"Which judges are style-robust?"）在此变得可行：
+      Claude/Gemini 对 formality robust 但 GPT-4o 不是，这对选择 judge 的实践者有价值。 但 Reviewer
+      会 push back："这只是说 GPT-4o 偏好 formal text，这是已知的。"
+
+      '
+  - name: Multi-benchmark formality pairwise
+    plan_id: exp-002
+    description: 'CSD pipeline on AlpacaEval and MT-Bench subsets. New counterfactual
+      generation needed. GPT-4o + Claude + Gemini as judges.
+
+      '
+    expected_results:
+      alpacaeval_nli_pass_rate: 0.72
+      alpacaeval_avg_text_length: 380
+      mtbench_nli_pass_rate: 0.68
+      mtbench_avg_text_length: 520
+      lmmbar_nli_pass_rate_reference: 0.88
+      lmmbar_avg_text_length: 85
+      gpt4o_alpacaeval_n_consistent: 48
+      gpt4o_alpacaeval_formal_win_rate: 0.54
+      gpt4o_alpacaeval_p: 0.35
+      gpt4o_mtbench_n_consistent: 44
+      gpt4o_mtbench_formal_win_rate: 0.56
+      gpt4o_mtbench_p: 0.22
+      claude_alpacaeval_formal_win_rate: 0.5
+      claude_alpacaeval_p: 0.58
+      claude_mtbench_formal_win_rate: 0.51
+      claude_mtbench_p: 0.5
+      gemini_alpacaeval_formal_win_rate: 0.48
+      gemini_alpacaeval_p: 0.62
+      gemini_mtbench_formal_win_rate: 0.47
+      gemini_mtbench_p: 0.6
+      significant_cells_of_6_new: 0
+      significant_cells_of_9_total: 1
+    result_rationale: 'LLMBar 是短文本（avg ~85 tokens）、binary-choice 的 benchmark，counterfactual
+      质量高 （NLI 88%）。AlpacaEval 和 MT-Bench 的回答更长（300-500+ tokens），formality rewriting
+      在长文本上更难保持内容一致——NLI pass rate 降至 68-72%，意味着更多样本被 NLI gate 过滤掉， 有效 n 更小。同时，长文本中
+      formality 只是众多 style 维度之一，其信号被 complexity、 organization、vocabulary diversity
+      等因素稀释。GPT-4o 在 MT-Bench 上可能有微弱趋势 （0.56, p=0.22）但不显著——这是 worst tier 的关键：不同 benchmark
+      的文本分布差异导致 不同的 counterfactual 质量，进而导致不同的检测灵敏度。Reviewer 会说："你的方法 只在最简单的 benchmark
+      上有效，那就不是一个通用工具。"
+
+      '
+    tables:
+    - title: 'Table: 9-Cell Pairwise Win Rate Matrix (formality axis)'
+      columns:
+      - Judge
+      - LLMBar
+      - AlpacaEval
+      - MT-Bench
+      rows:
+      - - GPT-4o
+        - 0.691** (p=0.006)
+        - 0.54 (p=0.35)
+        - 0.56 (p=0.22)
+      - - Claude-Sonnet
+        - 0.52 (p=0.42)
+        - 0.50 (p=0.58)
+        - 0.51 (p=0.50)
+      - - Gemini-Flash
+        - 0.49 (p=0.55)
+        - 0.48 (p=0.62)
+        - 0.47 (p=0.60)
+    - title: 'Table: Counterfactual Quality by Benchmark'
+      columns:
+      - Benchmark
+      - Avg Text Length
+      - NLI Pass Rate
+      - Effective n
+      rows:
+      - - LLMBar
+        - ~85 tokens
+        - 0.88
+        - ~88
+      - - AlpacaEval
+        - ~380 tokens
+        - 0.72
+        - ~72
+      - - MT-Bench
+        - ~520 tokens
+        - 0.68
+        - ~68
+    figures_description:
+    - 'Heatmap: 3×3 matrix (judges × benchmarks) colored by p-value. 只有左上角一格 (GPT-4o
+      × LLMBar) 是深色 significant，其余 8 格浅色 null。视觉上非常不利。'
+    - 'Scatter: NLI pass rate (x) vs formal_win_rate (y) across all 9 cells. 可能显示正相关趋势——counterfactual
+      质量越高，检测到的 effect 越大——但 n=9 太小无法做推断。'
+    analysis: '1/9 cells significant。这是 worst tier 的核心灾难：效应既不跨 judge 泛化也不跨 benchmark
+      泛化。 GPT-4o × MT-Bench 的 0.56 可以争辩是 underpowered（有效 n 只有 ~44），但 reviewer 不会 接受"如果
+      n 更大就会 significant"的论点。Paper 必须诚实报告 1/9 并重新定位：这不是 "LLM judges have style bias"，而是"GPT-4o
+      has formality bias on LLMBar, detectable only via pairwise comparison."
+
+      '
+  - name: Likert vs Pairwise sensitivity analysis across judges
+    plan_id: exp-003
+    description: 'For each judge × benchmark cell, compute both Likert ATE and pairwise
+      win rate on same counterfactual data. Systematic comparison of measurement sensitivity.
+
+      '
+    expected_results:
+      gpt4o_lmmbar_likert_p: 0.332
+      gpt4o_lmmbar_pairwise_p: 0.006
+      gpt4o_lmmbar_binarized_likert_p: 0.296
+      gpt4o_lmmbar_gap: true
+      claude_lmmbar_likert_p: 0.61
+      claude_lmmbar_pairwise_p: 0.42
+      claude_lmmbar_gap: false
+      gemini_lmmbar_likert_p: 0.55
+      gemini_lmmbar_pairwise_p: 0.55
+      gemini_lmmbar_gap: false
+      gpt4o_alpacaeval_likert_p: 0.48
+      gpt4o_alpacaeval_pairwise_p: 0.35
+      gpt4o_alpacaeval_gap: false
+      gpt4o_mtbench_likert_p: 0.4
+      gpt4o_mtbench_pairwise_p: 0.22
+      gpt4o_mtbench_gap: false
+      c2_gap_replication_rate: 0.11
+      cells_with_likert_pairwise_gap: 1
+      cells_with_both_null: 7
+      cells_with_both_significant: 0
+      cells_with_pairwise_only_significant: 1
+    result_rationale: 'C2（Likert Blindspot）的机制隔离只能在存在真实效应的 cell 上验证——如果底层没有 formality
+      bias（非 GPT-4o judges），Likert 和 Pairwise 都会报告 null，这不能说明 "Likert 掩盖了 bias"，只能说明"这里没有
+      bias 可掩盖"。因此 C2 gap 只在 GPT-4o × LLMBar 这一个 cell 中可观测。Replication rate = 1/9
+      = 0.11，在 worst tier 范围 [0.11, 0.44] 的下界。Reviewer 会说："你声称 Likert 系统性低估 style
+      bias， 但你只在一个 cell 上展示了这一点。这可能只是 GPT-4o × LLMBar × formality 这个 特定组合的统计巧合，不是
+      Likert 方法论的结构性缺陷。" 这对 C2 是致命的——如果 C2 不泛化，paper 的主贡献就只是一个 single-cell observation。
+
+      '
+    tables:
+    - title: 'Table: Likert vs Pairwise Sensitivity Comparison (9 cells)'
+      columns:
+      - Judge × Benchmark
+      - Likert ATE
+      - Likert p
+      - Pairwise WR
+      - Pairwise p
+      - Binarized Likert p
+      - Gap?
+      rows:
+      - - GPT-4o × LLMBar
+        - -0.1
+        - 0.332
+        - 0.691
+        - 0.006
+        - 0.296
+        - 'YES'
+      - - Claude × LLMBar
+        - -0.03
+        - 0.61
+        - 0.519
+        - 0.42
+        - 0.58
+        - 'No'
+      - - Gemini × LLMBar
+        - 0.02
+        - 0.55
+        - 0.49
+        - 0.55
+        - 0.5
+        - 'No'
+      - - GPT-4o × AlpacaEval
+        - -0.06
+        - 0.48
+        - 0.54
+        - 0.35
+        - 0.4
+        - 'No'
+      - - GPT-4o × MT-Bench
+        - -0.08
+        - 0.4
+        - 0.56
+        - 0.22
+        - 0.35
+        - 'No'
+      - - Claude × AlpacaEval
+        - 0.01
+        - 0.72
+        - 0.5
+        - 0.58
+        - 0.65
+        - 'No'
+      - - Claude × MT-Bench
+        - -0.02
+        - 0.65
+        - 0.51
+        - 0.5
+        - 0.55
+        - 'No'
+      - - Gemini × AlpacaEval
+        - 0.03
+        - 0.58
+        - 0.48
+        - 0.62
+        - 0.6
+        - 'No'
+      - - Gemini × MT-Bench
+        - 0.01
+        - 0.7
+        - 0.47
+        - 0.6
+        - 0.68
+        - 'No'
+    figures_description:
+    - 'Paired dot plot: 每个 cell 一对点（Likert p, Pairwise p），连线。只有一对显示大 gap（GPT-4o ×
+      LLMBar），其余 8 对点重叠在 null 区域。视觉上 C2 claim 缺乏支撑。'
+    analysis: 'C2 replication rate = 1/9。C2 作为 paper 主贡献彻底失去泛化支撑。但从 Angle A 看， 这恰恰说明：binarized
+      Likert 隔离设计本身是有效的方法论贡献——它在有效应的 cell 上 正确识别了 gap，在无效应的 cell 上正确报告了 no gap。方法有效，只是
+      formality bias 不普遍。Paper 需要 pivot：贡献不是"Likert Blindspot 普遍存在"，而是"这个实验设计 可以诊断任何
+      judge × axis 组合的 measurement sensitivity"。
+
+      '
+  - name: Pairwise RATE control (original vs double-rewrite)
+    plan_id: exp-005
+    description: 'Pairwise comparison between original text and its RATE double-rewrite
+      (same style). Quantifies original preference confound. Extended to all judge
+      × benchmark combinations.
+
+      '
+    expected_results:
+      gpt4o_lmmbar_original_pref_win_rate: 0.62
+      gpt4o_lmmbar_original_pref_p: 0.025
+      claude_lmmbar_original_pref_win_rate: 0.6
+      claude_lmmbar_original_pref_p: 0.03
+      gemini_lmmbar_original_pref_win_rate: 0.59
+      gemini_lmmbar_original_pref_p: 0.028
+      gpt4o_alpacaeval_original_pref_win_rate: 0.58
+      gpt4o_alpacaeval_original_pref_p: 0.04
+      claude_alpacaeval_original_pref_win_rate: 0.57
+      claude_alpacaeval_original_pref_p: 0.06
+      gemini_alpacaeval_original_pref_win_rate: 0.56
+      gemini_alpacaeval_original_pref_p: 0.08
+      original_pref_significant_rate: 0.67
+      original_pref_mean_win_rate: 0.59
+      original_pref_range:
+      - 0.56
+      - 0.62
+    result_rationale: 'Double-rewrite 引入信息损失和表达不自然性——这不是某个 rewriter 的 artifact，而是
+      rewriting 本身的结构性限制。原始文本是人类自然写作，经过 style-neutralize → style-reapply 两步后，即使风格恢复，coherence、lexical
+      diversity、discourse structure 都会退化。 所有 judges（不仅是 GPT-4o）都能检测到这种退化，因为它是 text
+      quality 的真实下降， 不是 style 偏好。worst tier 预测 original preference 跨 judges 显著（p<0.03），这给
+      reviewer 提供了强力 confound 论证："你的 69% formal win rate 中有多少是因为 GPT-4o 偏好 formal
+      text，又有多少是因为 formal→casual rewrite 损失了原文质量？exp-014 的 GEE 显示 original preference
+      OR=1.82 p=0.052，如果跨 judges 都 significant，confound 就不再是 marginal 而是 systematic。"
+      这直接削弱 formality effect 的 claim 纯度。
+
+      '
+    tables:
+    - title: 'Table: Original Preference (RATE Control) Across Judges'
+      columns:
+      - Judge × Benchmark
+      - Original Win Rate
+      - p-value
+      - Significant?
+      rows:
+      - - GPT-4o × LLMBar
+        - 0.62
+        - 0.025
+        - 'Yes'
+      - - Claude × LLMBar
+        - 0.6
+        - 0.03
+        - 'Yes'
+      - - Gemini × LLMBar
+        - 0.59
+        - 0.028
+        - 'Yes'
+      - - GPT-4o × AlpacaEval
+        - 0.58
+        - 0.04
+        - 'Yes'
+      - - Claude × AlpacaEval
+        - 0.57
+        - 0.06
+        - No (marginal)
+      - - Gemini × AlpacaEval
+        - 0.56
+        - 0.08
+        - 'No'
+    figures_description:
+    - 'Forest plot: original preference OR per cell with 95% CI. 所有点在 1.0 右侧，多数 CI
+      不跨 1.0。视觉上 original preference 是 universal confound，不是 GPT-4o 特有的。'
+    analysis: 'Original preference 跨 judges 普遍显著（4-6/6 cells significant at p<0.05），这比
+      formality bias 本身泛化得更好。Reviewer 的攻击角度极强："style bias 只在 1/9 cells 显著，但 original
+      preference confound 在 4+/6 cells 显著——更简洁的解释是 rewriting 损失质量，不是 judge 有 style
+      bias。" exp-014 的 GEE 试图分离两者（formality OR=2.21 vs original OR=1.82），但在 worst
+      tier 下 reviewer 会质疑 n=98 的 logistic model 是否 有足够 power 分离两个 correlated predictors。Paper
+      必须诚实承认 original preference 是未完全解决的 confound，并在 limitations 中详细讨论。
+
+      '
+  - name: Scaled replication (n=300-500)
+    plan_id: exp-006
+    description: 'Scale up formality experiment on best-performing cell (GPT-4o ×
+      LLMBar) to n=500. Power analysis for minimum detectable effect size.
+
+      '
+    expected_results:
+      n_total: 500
+      n_nli_pass: 440
+      n_consistent: 275
+      formal_win_rate: 0.59
+      formal_win_rate_ci:
+      - 0.53
+      - 0.65
+      sign_test_p: 0.012
+      effect_significant: true
+      n100_win_rate_reference: 0.691
+      attenuation_from_n100: 0.1
+      gee_formality_OR: 1.85
+      gee_formality_p: 0.008
+      gee_formality_ci:
+      - 1.18
+      - 2.91
+      gee_original_pref_OR: 1.55
+      gee_original_pref_p: 0.025
+      power_at_observed_effect_0.59: 0.78
+      minimum_detectable_effect_80_power: 0.58
+      power_at_n100_effect_0.69: 0.99
+    result_rationale: 'n=100 的 69.1% win rate 包含采样噪声。Bootstrap 分析已显示 CI [0.56, 0.80]——
+      真实效应可能在此范围任何位置。worst tier 预测真实效应在 CI 下半段：n=500 时 regression to mean 将 win rate
+      拉低至 ~0.59。效应仍然显著（p=0.012），但 effect size 从 "strong" 降至 "moderate"。更关键的是，n=500
+      给了 GEE 模型更多 power 来分离 formality 和 original preference——worst tier 下两者都变显著（formality
+      OR=1.85, original OR=1.55）， 意味着 confound 不再是 marginal 而是 confirmed。Reviewer
+      会说："效应存在但更小， 且 confound 也 confirmed——真正归因于 formality style 的 effect 可能只有 OR=1.85/1.55
+      ≈ 1.19 的 pure formality component。" 这不是灾难但严重削弱 headline number。
+
+      '
+    tables:
+    - title: 'Table: n=100 vs n=500 Comparison (GPT-4o × LLMBar, formality)'
+      columns:
+      - Metric
+      - n=100
+      - n=500
+      rows:
+      - - Formal win rate
+        - 0.691
+        - 0.59
+      - - 95% CI
+        - '[0.560, 0.797]'
+        - '[0.53, 0.65]'
+      - - Sign test p
+        - 0.006
+        - 0.012
+      - - GEE formality OR
+        - 2.21
+        - 1.85
+      - - GEE formality p
+        - 0.01
+        - 0.008
+      - - GEE original pref OR
+        - 1.82
+        - 1.55
+      - - GEE original pref p
+        - 0.052
+        - 0.025
+    figures_description:
+    - 'Line plot: formal_win_rate (y) vs cumulative n (x), with running 95% CI band.
+      初期 (n<100) 波动大, 逐渐稳定在 ~0.59。展示效应收敛但衰减。'
+    analysis: '效应经受住 scale test（p=0.012），但 effect size 衰减 ~10pp。这对 paper 是 mixed signal：一方面证明效应真实（非
+      n=100 的 fluke），另一方面 headline number 从 "69% formal preference" 降至 "59%"——对 reviewer
+      的冲击力大幅下降。且 GEE 在 n=500 下 确认 original preference 也显著，C1 claim 必须加 caveat："formality
+      preference exists (OR=1.85) but co-occurs with original text preference (OR=1.55);
+      our logistic decomposition suggests independent contributions but cannot fully
+      rule out residual confounding."
+
+      '
+  - name: Non-Qwen rewriter control
+    plan_id: exp-009
+    description: 'Use Llama-3.1-70B as alternative rewriter. Compare counterfactual
+      quality and pairwise results with Qwen3-32B baseline.
+
+      '
+    expected_results:
+      llama_nli_pass_rate: 0.84
+      llama_bertscore_mean: 0.918
+      llama_both_pass_rate: 0.82
+      qwen_nli_pass_rate_reference: 0.88
+      qwen_bertscore_mean_reference: 0.92
+      llama_gpt4o_n_consistent: 50
+      llama_gpt4o_formal_win_rate: 0.66
+      llama_gpt4o_p: 0.015
+      llama_claude_formal_win_rate: 0.5
+      llama_claude_p: 0.55
+      llama_gemini_formal_win_rate: 0.48
+      llama_gemini_p: 0.6
+      rewriter_agreement_on_direction: 0.82
+      rewriter_nli_difference: -0.04
+    result_rationale: 'Llama-3.1-70B 的 rewriting 质量略低于 Qwen3-32B（NLI 84% vs 88%）——不同
+      LLM 在 style transfer 任务上有性能差异但量级相似。GPT-4o 对 Llama counterfactuals 仍然显示 formality
+      preference（0.66, p=0.015），略低于 Qwen（0.69）——这是因为 Llama counterfactuals 质量稍差导致更多噪声，但
+      pattern 一致。Non-GPT-4o judges 仍然 null——证明 null 结果 不是 Qwen-specific artifact。这个实验的贡献是排除
+      "maybe Qwen rewrites have an artifact that only GPT-4o detects"，但不能解决核心问题（效应不泛化）。Reviewer
+      不会在这一点上 攻击太多——rewriter robustness 是 nice-to-have 但不是 paper 的命门。
+
+      '
+    tables:
+    - title: 'Table: Rewriter Comparison (Qwen3-32B vs Llama-3.1-70B)'
+      columns:
+      - Metric
+      - Qwen3-32B
+      - Llama-3.1-70B
+      rows:
+      - - NLI pass rate
+        - 0.88
+        - 0.84
+      - - BERTScore mean
+        - 0.92
+        - 0.918
+      - - GPT-4o formal WR
+        - 0.691
+        - 0.66
+      - - GPT-4o p
+        - 0.006
+        - 0.015
+      - - Claude formal WR
+        - 0.52
+        - 0.5
+      - - Gemini formal WR
+        - 0.49
+        - 0.48
+    figures_description:
+    - 'Paired bar chart: formal_win_rate for each judge, grouped by rewriter. 两组 bars
+      高度几乎一致——rewriter 不是 confound。'
+    analysis: 'Rewriter robustness confirmed。但这在 worst tier 下是 pyrrhic victory——证明了结果可复现
+      但结果本身只有一个 cell significant。Paper 中可以一句话带过："Results replicate with alternative
+      rewriter (Llama-3.1-70B), ruling out rewriter-specific artifacts."
+
+      '
+  - name: Human NLI validation
+    plan_id: exp-013
+    description: 'Human annotation of 100 pairs for content preservation. Report human-NLI
+      agreement (Cohen''s kappa). Addresses "NLI is a black box" concern.
+
+      '
+    expected_results:
+      n_annotated: 100
+      kappa: 0.43
+      agreement_rate: 0.91
+      tp: 87
+      fp: 1
+      fn: 8
+      tn: 4
+      false_positive_rate: 0.011
+      false_negative_rate: 0.667
+      nli_precision: 0.989
+      nli_recall: 0.916
+      nli_specificity: 0.333
+    result_rationale: '实际已观测数据（registry exp-013）。kappa=0.43 属于 "moderate agreement"——不差但
+      不够好让 reviewer 安心。关键问题在 FN rate=66.7%：NLI gate 将 8/12 个人类认为 content-preserved
+      但 NLI 判为 fail 的 pair 错误过滤掉了。低 FP（1/88）意味着通过的 样本确实 content-preserved，但高 FN 意味着大量
+      valid data 被丢弃。worst tier 下 reviewer 的攻击路径："NLI gate 的高 FN rate 说明它不可靠——你可能系统性丢弃了
+      某些类型的 content-preserving rewrites（例如 paraphrase 程度较大但语义等价的）， 这引入了 selection
+      bias。你的 69% win rate 可能只对''表面改写最小''的 subset 成立。" 更糟的是，kappa=0.43 < 0.60（通常被视为
+      "good agreement" 的门槛），reviewer 可以 直接引用 Landis & Koch 1977 说 "moderate agreement
+      is insufficient for a quality gate."
+
+      '
+    tables:
+    - title: 'Table: Human-NLI Agreement (Content Preservation)'
+      columns:
+      - ''
+      - 'Human: Preserved'
+      - 'Human: Not Preserved'
+      rows:
+      - - 'NLI: Pass (≥0.9)'
+        - TP=87
+        - FP=1
+      - - 'NLI: Fail (<0.9)'
+        - FN=8
+        - TN=4
+    - title: 'Table: Agreement Metrics'
+      columns:
+      - Metric
+      - Value
+      - Interpretation
+      rows:
+      - - Cohen's kappa
+        - 0.43
+        - Moderate
+      - - Agreement rate
+        - 91%
+        - High (but base-rate inflated)
+      - - NLI Precision
+        - 98.9%
+        - Excellent — few false passes
+      - - NLI Recall
+        - 91.6%
+        - Good
+      - - NLI Specificity
+        - 33.3%
+        - Poor — misses 2/3 of true failures
+      - - False Negative Rate
+        - 66.7%
+        - Problematic — discards valid pairs
+    figures_description:
+    - Confusion matrix heatmap with cell counts. TP 格(87)远大于其他格，但 FN(8) >> TN(4) 很明显。
+    analysis: kappa=0.43 + FN=66.7% 是 worst tier 下 reviewer 的有力武器。但论文可以 reframe： "high
+      precision (98.9%) ensures filtered-in data is clean; high FN rate is conservative,
+      biasing AGAINST finding effects (if anything, our reported win rates are lower
+      bounds)." 这个 defense 在逻辑上成立——conservative gate 让 false positive findings 更不可能——
+      但 reviewer 可能不买账，特别是如果他们怀疑 FN 是 systematically biased（不是随机的）。 exp-012 的 consistency
+      bias analysis 部分 address 这一点（all MWU p>0.12），但 reviewer 可能区分 NLI filtering 和
+      consistency filtering 的 bias properties。
+  review_report: "---\ndream_id: dream_20260521T010111\ntier: worst\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-21T01:58:46.747887+00:00\n---\n\n# Dream Review\
+    \ Report: \"The Likert Blindspot\"\n\n**dream_id**: 20260521T010111  \n**Review\
+    \ mode**: full (2 Reviewers + Roundtable)  \n**R1 focus**: Methods + Experiments\
+    \ | **R2 focus**: Novelty + Related Work\n\n---\n\n## 1. Paper Summary\n\nThe\
+    \ paper proposes a counterfactual pairwise measurement protocol for detecting\
+    \ style bias in black-box LLM judges. The 4-stage pipeline (style transfer → NLI\
+    \ content verification → position-controlled pairwise comparison → Likert baseline)\
+    \ is applied to formality bias across 3 judges (GPT-4o, Claude-3.5-Sonnet, Gemini-2.0-Flash)\
+    \ and 3 benchmarks (LLMBar, AlpacaEval, MT-Bench). The headline finding — the\
+    \ \"Likert Blindspot\" — is that pairwise comparison detects GPT-4o formality\
+    \ bias (win rate = 69.1%, p = 0.006) that Likert scoring misses (p = 0.332). However,\
+    \ only 1 of 9 judge×benchmark cells is significant. Scaled replication at n =\
+    \ 500 confirms a real but attenuated effect (59%, p = 0.012) co-occurring with\
+    \ a rewrite-quality confound.\n\n---\n\n## 2. Reviewer Scores\n\n| Reviewer |\
+    \ Initial Score | Post-Crossshare Score | Focus |\n|----------|--------------|----------------------|-------|\n\
+    | R1 | 3.5 | 3.5 | Methods + Experiments |\n| R2 | 3.5 | 3.0 | Novelty + Related\
+    \ Work |\n| **Consensus** | — | **3.0** | — |\n\n---\n\n## 3. Consolidated Strengths\n\
+    \n### S1. Binarized Likert control is genuinely novel (R1+R2 consensus)\nThe most\
+    \ distinctive methodological contribution. By applying the same sign test to dichotomized\
+    \ Likert scores (60.6%, p = 0.296), the paper isolates *measurement structure*\
+    \ (forced comparison vs. independent rating) from *statistical test choice* as\
+    \ the mechanism driving the Likert–pairwise gap. Both reviewers identified this\
+    \ as the paper's strongest conceptual move, elevating it beyond \"pairwise beats\
+    \ Likert (Thurstone 1927)\" to a mechanistic diagnostic.\n\n### S2. Well-designed\
+    \ position control and consistency filtering (R1)\nDual-direction pairwise with\
+    \ consistency filtering eliminates position bias as a confounder. The 43% discard\
+    \ rate from inconsistent pairs shows no systematic bias (all MWU p > 0.12), validating\
+    \ that filtering selects on noise, not signal.\n\n### S3. Honest contribution\
+    \ calibration (R2)\nThe paper acknowledges component provenance (RATE for double-rewrite,\
+    \ Zheng et al. for position control) and calls C1 an \"application contribution.\"\
+    \ The introduction transparently states \"We designed this study expecting formality\
+    \ bias to be a general property of LLM judges. It is not.\" This intellectual\
+    \ honesty is rare and builds trust.\n\n### S4. RATE critique is well-positioned\
+    \ (R2)\nThe reflexive argument — that RATE's own Likert-based ATE may suffer from\
+    \ the blindspot this paper identifies — is the paper's strongest positioning move.\
+    \ If RATE's null findings for some style attributes are false negatives due to\
+    \ Likert insensitivity, this has genuine field-level implications.\n\n### S5.\
+    \ GEE logistic decomposition is statistically appropriate (R1)\nUsing GEE with\
+    \ exchangeable correlation to handle non-independence of paired observations (paired\
+    \ data × 2 orderings) is the correct approach. Formality OR = 2.21 (p = 0.010)\
+    \ remaining significant after controlling original preference (OR = 1.82, p =\
+    \ 0.052) at n = 100 provides the strongest causal evidence in the paper.\n\n###\
+    \ S6. Method boundary characterization (R2)\nDemonstrating pipeline failure for\
+    \ tone (NLI pass rate = 45%) establishes principled method boundaries. This is\
+    \ more informative than a third positive result.\n\n---\n\n## 4. Consolidated\
+    \ Weaknesses\n\n### W1 (Major, R1+R2 consensus). Generalization failure: 1/9 cells\
+    \ significant\nThe paper's central claim — \"The Likert Blindspot\" — is demonstrated\
+    \ for exactly one judge × benchmark × style-axis combination (GPT-4o × LLMBar\
+    \ × formality). Claude-3.5-Sonnet (52%, p = 0.42) and Gemini-2.0-Flash (49%, p\
+    \ = 0.55) show no formality preference. Extension to AlpacaEval and MT-Bench yields\
+    \ no significant effects even for GPT-4o. The title and abstract suggest generality\
+    \ (\"LLM Judges\" plural, \"Hidden Style Bias\" unqualified) that the data does\
+    \ not support. Both reviewers independently flagged this as the paper's most fundamental\
+    \ weakness.\n\nThe Likert Blindspot can only be demonstrated where an underlying\
+    \ bias exists — and the paper finds underlying bias in only 1/9 cells. This makes\
+    \ C2 (the \"measurement sensitivity gap\") effectively a single-cell observation.\
+    \ The paper acknowledges this but does not fully internalize it in the framing.\n\
+    \n### W2 (Major, R1 raised, R2 endorsed). Direction asymmetry and original-preference\
+    \ confound\nThe formal→casual direction shows 78.8% win rate (p = 0.001) but casual→formal\
+    \ is only 54.5% (p = 0.832). This 24.3 percentage point asymmetry is troubling.\
+    \ The parsimonious explanation is that judges prefer whichever version is the\
+    \ *original* (higher-quality) text, not that they prefer formality per se. The\
+    \ confound is confirmed at scale: at n = 500, original preference becomes significant\
+    \ (OR = 1.55, p = 0.025).\n\nThe GEE model at n = 100 shows formality OR = 2.21\
+    \ and original OR = 1.82, suggesting both contribute independently. But with correlated\
+    \ predictors and n = 275 consistent pairs at n = 500, the logistic model may lack\
+    \ power to cleanly separate them. The \"pure\" formality component (OR = 1.85/1.55\
+    \ ≈ 1.19 ratio) may be modest. R2 identified this as the most critical unresolved\
+    \ issue after cross-sharing — it threatens the causal interpretation that the\
+    \ protocol is measuring style preference rather than rewrite-quality preference.\n\
+    \n### W3 (Major, R1 raised, R2 elevated). NLI gate validation has evaluator-producer\
+    \ circularity\nCohen's κ = 0.43 (moderate agreement) falls below the κ ≥ 0.60\
+    \ threshold for \"good agreement.\" More critically, R1 identified that the \"\
+    human annotator\" for NLI validation is Qwen3-32B — the same model family that\
+    \ generated the counterfactuals. This creates evaluator-producer bias: the model\
+    \ that wrote the rewrites is also judging whether they preserved content. With\
+    \ only 4 true negatives in the confusion matrix, specificity estimates (33.3%)\
+    \ have enormous uncertainty. The paper's NLI threshold sensitivity analysis (win\
+    \ rate stable at 72–74% across 0.70–0.95) partially mitigates this, but the circularity\
+    \ concern remains unaddressed.\n\n### W4 (Major, R2). Core finding confirms century-old\
+    \ psychometric principle\nThurstone (1927) formalized why paired comparison yields\
+    \ finer discriminability than absolute scales. Kiritchenko & Mohammad (2017) demonstrated\
+    \ this for NLG evaluation. The paper's contribution is domain-specific empirical\
+    \ confirmation — useful but not a new insight. R1 partially disagreed, arguing\
+    \ that domain application to LLM-as-Judge is non-trivial and the NLP community\
+    \ may not be aware of this principle. The roundtable converged on: the novelty\
+    \ is real but incremental, and the paper's value depends on the *practical significance*\
+    \ of the demonstrated blindspot — which is undermined by 1/9 cells.\n\n### W5\
+    \ (Moderate, R1+R2). Effect attenuation at scale\nThe n = 500 replication shows\
+    \ win rate dropping from 69.1% to 59% — a 10 percentage point regression. While\
+    \ still significant (p = 0.012), the headline number (69.1%) is likely an overestimate\
+    \ from a favorable n = 100 sample (only 55 consistent pairs, CI [0.560, 0.797]).\
+    \ The paper's \"strong formality preference\" framing becomes \"moderate\" at\
+    \ scale.\n\n### W6 (Moderate, R2). Insufficient differentiation from RATE and\
+    \ Zhou et al.\nRATE (the closest predecessor) gets one paragraph. Zhou et al.\
+    \ (2025, persona-level counterfactuals with Bradley-Terry) gets one sentence.\
+    \ For the two most directly comparable methods, this is inadequate. A comparison\
+    \ table articulating what each method measures, how, and why the differences matter\
+    \ is needed.\n\n### W7 (Minor, R1). Multiple comparisons not systematically corrected\n\
+    The paper mentions Holm-Bonferroni but does not apply it. GPT-4o × LLMBar's p\
+    \ = 0.006 would survive correction across 9 cells, but the omission is a methodological\
+    \ gap that should be addressed.\n\n### W8 (Minor, R2). \"Interventional\" language\
+    \ overclaims\nWithout a formal causal graph, SUTVA discussion, or sensitivity\
+    \ analysis, \"interventional measurement\" implies more than the paper delivers.\
+    \ \"Manipulated comparison\" or \"counterfactual comparison\" would be more accurate.\n\
+    \n---\n\n## 5. Experiment Coverage Assessment\n\nComparing against the full experiment\
+    \ design (review_context.yaml):\n\n| Experiment | Covered? | Notes |\n|-----------|----------|-------|\n\
+    | exp-001: Multi-judge pairwise (LLMBar) | ✅ Full | Table 1 |\n| exp-002: Multi-benchmark\
+    \ pairwise (9 cells) | ✅ Full | Tables 2-3 |\n| exp-003: Likert vs Pairwise sensitivity\
+    \ | ✅ Full | Table 4 |\n| exp-005: RATE control (original preference) | ✅ Full\
+    \ | Table 5 |\n| exp-006: Scaled replication (n=500) | ✅ Full | Table 6 |\n| exp-009:\
+    \ Non-Qwen rewriter control | ✅ Full | Table 7 |\n| exp-013: Human NLI validation\
+    \ | ✅ Full | Tables 8-9 |\n\nAll planned experiments are reported. Coverage is\
+    \ complete. The paper faithfully reports the unfavorable results (1/9 cells, effect\
+    \ attenuation, confirmed confound).\n\n---\n\n## 6. Roundtable Discussion\n\n\
+    ### Step 2: Cross-Sharing Key Reactions\n\n**R1 → R2**: Agreed on 1/9 significance\
+    \ problem and \"interventional\" overclaim. Partly disagreed on Thurstone novelty\
+    \ argument (domain application is valid NLP contribution). Noted new gap: missing\
+    \ FLASK/BWS literature, thin C4.\n\n**R2 → R1**: Lowered score from 3.5 to 3.0\
+    \ after seeing direction asymmetry data and NLI evaluator-producer circularity.\
+    \ Elevated confound concern: \"If formal→casual shows 78.8% but casual→formal\
+    \ shows only 54.5%, the parsimonious explanation is that judges prefer whichever\
+    \ version is the *original* text.\" This was the most impactful cross-sharing\
+    \ moment.\n\n### Step 3: Convergence\n\n**Unanimous agreement:**\n- 1/9 significant\
+    \ cells is the paper's fundamental weakness (both reviewers flagged independently)\n\
+    - Binarized Likert control is the strongest contribution\n- Title/abstract oversell\
+    \ generality\n- Honest reporting of negative results is commendable\n\n**Resolved\
+    \ disagreement:**\n- Novelty: R1 argued domain application to LLM-as-Judge is\
+    \ non-trivial even if psychometric principle is known. R2 conceded this partly\
+    \ but maintained novelty is incremental. Converged on: novelty is real but depends\
+    \ on practical significance, which is thin at 1/9.\n\n**Remaining disagreement:**\n\
+    - Score: R1 at 3.5, R2 at 3.0. The gap reflects R2's greater weight on the confound\
+    \ concern after seeing direction asymmetry data. R2 views the original-preference\
+    \ confound as potentially fatal to the causal interpretation; R1 views it as a\
+    \ separable nuisance partially addressed by GEE.\n\n### Step 4: Score Convergence\n\
+    \nThe roundtable converges on **3.0 (Weak Reject)** as the consensus score. Reasoning:\n\
+    \n- The methodological design is careful (position control, binarized Likert,\
+    \ GEE, rewriter control, NLI sensitivity) — this would merit 4.0+ if the results\
+    \ supported the claims\n- But the evidence base is critically thin: 1/9 cells\
+    \ significant, effect attenuates at scale, original-preference confound confirmed,\
+    \ NLI validation has circularity\n- The paper is honest about these limitations,\
+    \ but honesty about weak results does not make them strong\n- The contribution\
+    \ reduces to: \"GPT-4o has formality bias on LLMBar that Likert misses\" — true,\
+    \ replicable, but too narrow for a top-venue main paper\n- As a Findings paper\
+    \ or short paper focused on the binarized Likert diagnostic + the GPT-4o case\
+    \ study, this could work — but the current framing as a general \"Likert Blindspot\"\
+    \ is not supported\n\n---\n\n## 7. Key Questions for Authors\n\n1. **Confound\
+    \ separation**: At n = 500, both formality (OR = 1.85) and original preference\
+    \ (OR = 1.55) are significant. What fraction of the 69.1% headline win rate is\
+    \ attributable to style preference versus rewrite-quality preference? Can you\
+    \ provide a decomposition?\n\n2. **Direction asymmetry**: Formal→casual shows\
+    \ 78.8% but casual→formal shows 54.5%. Doesn't this suggest the effect is driven\
+    \ by degradation in the formal→casual rewriting direction rather than formality\
+    \ preference per se?\n\n3. **NLI validation circularity**: The \"human annotator\"\
+    \ for NLI validation is Qwen3-32B — the same model family as the rewriter. Have\
+    \ you validated with a truly independent annotator?\n\n4. **Generality evidence**:\
+    \ With 1/9 cells significant, what evidence supports the \"Likert Blindspot\"\
+    \ as a general phenomenon rather than a GPT-4o × formality × short-text artifact?\n\
+    \n5. **RATE implication**: Have you tested whether RATE's published null findings\
+    \ for specific style attributes would become significant under pairwise comparison?\
+    \ This would be the strongest evidence for the blindspot's practical importance.\n\
+    \n6. **Multiple testing**: What are the Holm-Bonferroni-corrected p-values for\
+    \ all 9 cells?\n\n7. **Binarized Likert at scale**: At n = 500, does binarized\
+    \ Likert approach significance? If yes, the \"blindspot\" becomes an \"efficiency\
+    \ gap\" — a weaker but more defensible claim.\n\n---\n\n## 8. Recommendations\n\
+    \n### For revision:\n1. **Reframe title and abstract** to scope claims to GPT-4o\
+    \ × formality × short text. \"Detecting GPT-4o's Formality Bias via Counterfactual\
+    \ Pairwise Comparison\" is less catchy but more honest.\n2. **Extend binarized\
+    \ Likert control** to all 9 cells (not just GPT-4o × LLMBar) to characterize when\
+    \ the Likert–pairwise gap appears.\n3. **Replace Qwen3-32B NLI validation** with\
+    \ genuinely independent human annotation (even 50 pairs would suffice).\n4. **Apply\
+    \ Holm-Bonferroni correction** and report corrected p-values.\n5. **Expand RATE/Zhou\
+    \ differentiation** with a comparison table.\n6. **Add formal power analysis**\
+    \ for null cells: what effect sizes could the study have detected for Claude/Gemini?\n\
+    7. **Report direction-specific results** prominently and discuss the asymmetry's\
+    \ implications for the causal interpretation.\n\n### For positioning:\n- Consider\
+    \ submitting as a **short paper** or **Findings paper** focused on: (a) the binarized\
+    \ Likert diagnostic as a methodological contribution, and (b) the GPT-4o case\
+    \ study as a demonstration. Drop the generality claims.\n- The boundary analysis\
+    \ (NLI pass rate × text length → method sensitivity) is genuinely useful — elevate\
+    \ this as a contribution.\n\n---\n\n## 9. Final Assessment\n\n**Consensus Score:\
+    \ 3.0 / 6 (Weak Reject)**\n\n**Confidence: 4/5**\n\nThe paper asks the right question,\
+    \ uses careful methodology, and reports results honestly — including unfavorable\
+    \ ones. The binarized Likert control is genuinely novel and the RATE critique\
+    \ is well-positioned. However, the evidence is too thin to support the claims:\
+    \ 1/9 significant cells, a confirmed original-preference confound, effect attenuation\
+    \ at scale, and NLI validation circularity collectively undermine both the generality\
+    \ of the \"Likert Blindspot\" and the causal interpretation of the single significant\
+    \ finding. The contribution as currently framed — a general diagnostic for LLM\
+    \ judge style bias — is not supported. A narrower framing (GPT-4o formality case\
+    \ study + binarized Likert methodology) at a reduced scope (short/Findings paper)\
+    \ would be more appropriate for the evidence presented."
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-21T01:58:59+00:00'

@@ -1,0 +1,63 @@
+{
+  "exp_id": "gpt4o_rewriter_formality",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:46:15.195Z",
+    "updated_at": "2026-05-21T10:46:56.474Z",
+    "hypothesis": "Formality blindspot persists when using GPT-4o (instead of Qwen3-32B) as the counterfactual rewriter, demonstrating that the detected bias is rewriter-independent and not an artifact of a specific rewriting model",
+    "spec": {
+      "command": "python csd_pipeline/gpt4o_rewriter_formality_scoring.py",
+      "server": "westb-29275",
+      "data_path": "data/mvp_samples.jsonl + GPT-4o rewritten CFs",
+      "data_count": 90,
+      "model_name": "GPT-4o (rewriter) + Qwen3-32B (judge)",
+      "seed": 42,
+      "checkpoint_path": "N/A (API scoring)",
+      "log_path": "data/gpt4o_rewriter_formality_results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "cf_generated": 100,
+      "nli_pass": 90,
+      "nli_rate": 0.9,
+      "bt": {
+        "p_formal": 0.697,
+        "ci": [
+          0.576,
+          0.803
+        ],
+        "p_value": 0.0001,
+        "n_pairs": 66,
+        "n_comparisons": 132
+      },
+      "gee": {
+        "style_or": 24.47,
+        "style_p": 0.0029,
+        "orig_or": 39.27,
+        "orig_p": 0.0006
+      },
+      "likert": {
+        "ate": -0.189,
+        "p": 0.1835,
+        "d": -0.081,
+        "tie_rate": 0.489,
+        "mean_formal": 5.511,
+        "mean_casual": 5.7
+      },
+      "blindspot": true,
+      "vs_baseline": {
+        "qwen32b_bt": 0.665,
+        "delta_pp": 3.2,
+        "ci_overlap": true,
+        "note": "GPT-4o rewriter gives 69.7% vs Qwen3-32B rewriter 66.5%, CIs overlap → rewriter-independent"
+      }
+    },
+    "completed_at": "2026-05-21T10:46:56.474Z"
+  },
+  "timestamp": "2026-05-21T10:46:56.565185+00:00",
+  "trigger": "update_registry"
+}

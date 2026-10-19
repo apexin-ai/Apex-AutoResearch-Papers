@@ -1,0 +1,16 @@
+{
+  "exp_id": "pairwise_32b",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:12:44.351Z",
+    "updated_at": "2026-05-20T18:15:17.147Z",
+    "hypothesis": "Likert 1-10 integer granularity masks a real formality preference in GPT-4o; position-controlled pairwise comparison (more sensitive measurement) reveals significant formal win rate >55% where Likert ATE was non-significant",
+    "parent": "mvp_32b_ate"
+  },
+  "timestamp": "2026-05-20T18:15:17.182517+00:00",
+  "trigger": "update_registry"
+}

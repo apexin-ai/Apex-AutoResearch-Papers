@@ -1,0 +1,112 @@
+paper_key: "soumik_2026"
+title: "Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - "B0 (minimal prompt baseline)"
+    - "S1 (position swap)"
+    - "S2 (same-family ensemble, 3 temperatures)"
+    - "S4 (calibrated rubric, 5 criteria 1-10 scores)"
+    - "S5 (chain-of-thought)"
+    - "S8 (combined: position swap + CoT + rubric)"
+  metrics:
+    - {name: "Human Agreement Rate", direction: "higher_better"}
+    - {name: "Cohen's kappa", direction: "higher_better"}
+    - {name: "Bias Score (0-1)", direction: "lower_better"}
+    - {name: "McNemar's chi-squared p-value", direction: "lower_better"}
+  datasets:
+    - {name: "MT-Bench", size: "400 sampled instances across 8 categories"}
+    - {name: "LLMBar", size: "200 adversarial instances with clear-cut answers"}
+    - {name: "Custom Controlled Dataset", size: "225 synthetic pairs testing 4 bias types (style, position, verbosity, self-preference)"}
+  ablation_dimensions:
+    - "debiasing strategy (9 strategies: B0, S1, S2, S4, S5, S8, etc.)"
+    - "judge model (5 models across 4 providers)"
+    - "benchmark type (natural vs adversarial)"
+    - "bias type (style, position, verbosity, self-preference)"
+    - "cost tier (1x single-call vs 2-3x multi-call)"
+  training_recipe:
+    optimizer: "N/A (inference-only evaluation study)"
+    lr: "N/A"
+    hardware: "API-based (Gemini, Claude, GPT-4o, Llama via API)"
+    temperature: "0.1 for consistency; ensemble uses 0.0/0.3/0.7"
+    statistical_method: "Bootstrap 95% CIs (n_boot=2000), McNemar's tests with Holm-Bonferroni correction"
+  method_family: "LLM-as-a-Judge debiasing / prompt engineering for judge evaluation"
+
+positioning:
+  core_claim: "Style bias (0.76-0.92) is the dominant bias in LLM judges, far exceeding position bias (<=0.04), and debiasing effectiveness is model-dependent with CoT as the only universally positive strategy"
+  key_results: "Claude Sonnet 4 + S8: 70.0% agreement (+11.2pp, p<0.0001); CoT universally improves all models (+1.5 to +13.0pp on adversarial); position swap helps Gemini Pro (+4.6pp) but hurts GPT-4o (-2.4pp) and all models on LLMBar (-2.5 to -7.0pp); style bias 0.76-0.92 across all models; position bias <=0.04"
+  limitations:
+    - "Expansion-based length pairs may conflate length with filler quality"
+    - "Markdown style preference may partially reflect legitimate readability advantages"
+    - "Limited to two open-weight families (only Llama tested as open-source)"
+    - "GPT-4o token counts estimated (1 token per 4 characters)"
+    - "Non-significant improvements may reach significance with larger samples; n=400 provides +/-0.05 bootstrap CIs"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "LLM evaluation is a critical bottleneck — human evaluation is expensive/slow/irreproducible, driving adoption of LLM judges, but these judges exhibit systematic biases"
+  tension: "Prior work documented biases in isolation; no systematic comparison of strategies, no measurement of cross-bias interactions, no unified framework across models"
+  key_insight: "Style bias dominates all other biases by a huge margin (0.76-0.92 vs <=0.04 for position), and debiasing strategies interact across bias types (position swap reduces style bias but increases verbosity bias) — revealed in Section 4 Results"
+  argument_chain: "LLM judges widely adopted → known biases documented in isolation → no unified comparison exists → systematic evaluation of 9 strategies × 5 models × 3 benchmarks → style bias dominates, strategies are model-dependent, CoT is universally safe → practical algorithm for strategy selection"
+  contribution_framing: "4 contributions with noun-phrase labels (Unified benchmark, Controlled bias measurement, Model-dependent debiasing, Statistically grounded recommendations), each followed by one-sentence elaboration"
+  intro_structure: "5 paragraphs: P1=evaluation bottleneck hook, P2=LLM-as-Judge adoption and known biases, P3=gap identification (no systematic comparison), P4=contributions list (4 items), P5=paper organization"
+  notable_technique: "Cross-bias interaction analysis as a novel angle — showing that strategies designed for one bias can worsen another (position swap reduces style bias -0.12 but increases verbosity bias +0.07). This reframes debiasing from single-dimension to multi-objective optimization."
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "problem_illustration"
+    description: "Bar chart comparing 5 judge models across 4 bias types (style, position, verbosity, self-preference), showing style bias dominates at 0.76-0.92 while position bias is negligible at <=0.04"
+    narrative_role: "Establishes the paper's central finding immediately — style bias is the elephant in the room that prior work underestimated"
+    design_elements: ["grouped bars by bias type", "consistent color per model", "clear magnitude comparison across bias dimensions"]
+    visual_style: "Clean grouped bar chart with teal/color highlighting, bias magnitude on y-axis, bias types on x-axis, 5 models side by side per group"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "MT-Bench human agreement rates broken down by task category (extraction, writing, math, reasoning, etc.) across 5 models"
+      how_gain_highlighted: "Category-level breakdown reveals where models excel vs struggle, showing extraction/writing easier than math/reasoning"
+      design_note: "Per-category analysis adds granularity beyond aggregate numbers, useful for practitioners choosing judges for specific task types"
+    - figure_id: "Figure 4"
+      viz_type: "scatter"
+      what_compared: "Cost per evaluation vs accuracy for all model-strategy combinations (Pareto frontier)"
+      how_gain_highlighted: "Pareto-optimal configurations clearly identified: Claude S8 ($0.015, 70.0%), Gemini Pro S1 ($0.002, 69.8%), Llama S8 ($0, 68.5%)"
+      design_note: "Cost-accuracy scatter plot enables practical deployment decisions; zero-cost Llama point is a strong selling point"
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      dimensions_varied: ["debiasing strategy", "bias type"]
+      design_note: "Cross-bias interaction visualization with green indicating improvement; shows how each strategy affects all 4 bias types simultaneously, revealing tradeoffs invisible in single-bias evaluation"
+  figure_narrative_role: "Figure 1 (bias landscape) → Figure 2 (cross-bias interactions) → Figure 3 (category breakdown) → Figure 4 (cost-accuracy tradeoff): moves from problem diagnosis → mechanism understanding → granular analysis → practical deployment guidance"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (5 judge models)"
+    col_axis: "debiasing strategies (Baseline, Position Swap, Rubric, CoT, Combined)"
+    row_organization: "by_category (frontier models first, then mid-tier, then open-source)"
+    col_organization: "grouped_by_strategy (single-call → multi-call → combined, increasing cost)"
+    highlight_strategy: "statistical significance markers (* for unadjusted, dagger for Holm-Bonferroni corrected) + bootstrap 95% CIs"
+    statistical_reporting: "percentage with bootstrap 95% confidence intervals (n_boot=2000)"
+    num_baselines: 5
+    design_note: "Significance notation distinguishes unadjusted vs corrected p-values, important for honest reporting when many comparisons are made; CI intervals enable reader to judge practical significance beyond p-values"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["judge model", "debiasing strategy"]
+      variation_style: "full_numbers"
+      design_note: "LLMBar adversarial benchmark results show strategy-dataset interaction — position swap consistently harmful here vs beneficial on MT-Bench, critical context-dependence finding"
+    - table_id: "Table 3"
+      what_varied: ["verdict distribution (A/B/Tie) by model-strategy"]
+      variation_style: "full_numbers"
+      design_note: "Verdict distribution table reveals tie rate variation (3-31%), diagnosing whether strategies change decisiveness vs just accuracy"
+    - table_id: "Table 5"
+      what_varied: ["Cohen's kappa by model-strategy"]
+      variation_style: "full_numbers"
+      design_note: "Inter-rater agreement metric complements raw accuracy; ranges from Fair (0.368) to Moderate (0.530)"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 4 (McNemar's test results with exact chi-squared and p-values), Table 6 (Length bias split by expansion vs truncation construction), additional per-category and per-strategy breakdowns in Appendices A-G"
+    reason: "Statistical test details and fine-grained breakdowns support reproducibility without cluttering the main narrative; main tables carry the key findings while appendix provides full audit trail"

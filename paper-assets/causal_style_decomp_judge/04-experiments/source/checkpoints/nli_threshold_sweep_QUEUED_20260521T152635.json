@@ -1,0 +1,15 @@
+{
+  "exp_id": "nli_threshold_sweep",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:26:18.221Z",
+    "updated_at": "2026-05-21T15:26:34.956Z",
+    "hypothesis": "BT-detected style bias is robust to NLI threshold choice: sweeping from 0.50 to 0.98 should show stable BT probability and consistent significance across all 4 axis×judge combinations, proving the finding is not an artifact of a specific threshold cutoff"
+  },
+  "timestamp": "2026-05-21T15:26:35.054699+00:00",
+  "trigger": "update_registry"
+}

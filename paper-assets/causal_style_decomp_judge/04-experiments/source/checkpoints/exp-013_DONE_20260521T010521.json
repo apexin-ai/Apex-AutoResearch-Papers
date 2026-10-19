@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp-013",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:59:40.588Z",
+    "updated_at": "2026-05-21T01:05:21.787Z",
+    "hypothesis": "NLI gate (DeBERTa-v3-large, threshold 0.90) decisions are reliable proxies for human content-preservation judgments, achieving Cohen's kappa >= 0.6 with LLM-as-annotator (Qwen3-32B)",
+    "spec": {
+      "command": "python csd_pipeline/exp013_nli_validation.py --port 8001",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/verified_32b.jsonl",
+      "data_count": 100,
+      "model_name": "Qwen3-32B (LLM-as-annotator) + DeBERTa-v3-large (NLI gate)",
+      "seed": 0
+    },
+    "checkpoint_path": "/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/exp013_nli_validation.csv",
+    "log_path": "/tmp/exp013.log",
+    "conclusion": "killed",
+    "completed_at": "2026-05-21T01:00:22.508Z",
+    "metrics": {
+      "kappa": 0.4304,
+      "agreement_rate": 0.91,
+      "false_positive_rate": 0.0114,
+      "false_negative_rate": 0.6667,
+      "n_samples": 100,
+      "tp": 87,
+      "fp": 1,
+      "fn": 8,
+      "tn": 4
+    }
+  },
+  "timestamp": "2026-05-21T01:05:21.814638+00:00",
+  "trigger": "update_registry"
+}

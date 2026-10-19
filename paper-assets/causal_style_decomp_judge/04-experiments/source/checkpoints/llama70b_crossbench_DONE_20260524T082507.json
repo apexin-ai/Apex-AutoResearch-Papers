@@ -1,0 +1,80 @@
+{
+  "exp_id": "llama70b_crossbench",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:17:29.390Z",
+    "updated_at": "2026-05-24T08:25:07.239Z",
+    "hypothesis": "Llama-70B exhibits style blindspots (BT-significant pairwise preference for formal/verbose responses, but non-significant Likert ATE) across AlpacaEval and MT-Bench benchmarks, consistent with the LLMBar pattern.",
+    "spec": {
+      "command": "python3 /root/causal_style_decomp_judge/analysis/llama70b_crossbench_scoring.py",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/verified_{alpacaeval,alpacaeval_verbosity,mtbench}.jsonl",
+      "data_count": 280,
+      "model_name": "Llama-3.3-70B-Instruct",
+      "seed": 42
+    },
+    "checkpoint_path": "/root/causal_style_decomp_judge/data/llama70b_crossbench_summary.json",
+    "log_path": "/tmp/llama70b_crossbench.log",
+    "metrics": {
+      "alpacaeval_formality": {
+        "n": 47,
+        "bt_pct": 95.7,
+        "bt_ci": [
+          89.4,
+          100
+        ],
+        "bt_p": 1.6e-11,
+        "likert_d": 0.211,
+        "likert_wilcoxon_p": 0.0124,
+        "gee_style_or": "degenerate",
+        "gee_orig_or": "degenerate",
+        "blindspot": false
+      },
+      "alpacaeval_verbosity": {
+        "n": 66,
+        "bt_pct": 97,
+        "bt_ci": [
+          92.4,
+          100
+        ],
+        "bt_p": 6e-17,
+        "likert_d": 0.297,
+        "likert_wilcoxon_p": 0.0002,
+        "gee_style_or": 0.54,
+        "gee_orig_or": 0.54,
+        "blindspot": false
+      },
+      "mtbench_formality": {
+        "n": 36,
+        "bt_pct": 91.7,
+        "bt_ci": [
+          80.6,
+          100
+        ],
+        "bt_p": 2.3e-07,
+        "likert_d": 0.234,
+        "likert_wilcoxon_p": 0.0029,
+        "gee_style_or": 32.68,
+        "gee_orig_or": 0.89,
+        "blindspot": false
+      },
+      "mtbench_verbosity": "MISSING_DATA",
+      "comparison_llmbar_formality": {
+        "bt_pct": 69.5,
+        "blindspot": true
+      },
+      "comparison_llmbar_verbosity": {
+        "bt_pct": 73.5,
+        "blindspot": true
+      }
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-24T08:25:07.239Z"
+  },
+  "timestamp": "2026-05-24T08:25:07.375446+00:00",
+  "trigger": "update_registry"
+}

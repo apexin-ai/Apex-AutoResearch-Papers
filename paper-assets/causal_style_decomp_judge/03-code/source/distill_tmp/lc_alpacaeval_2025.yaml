@@ -1,0 +1,99 @@
+paper_key: "lc_alpacaeval_2025"
+title: "Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators"
+venue: "ICLR 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "AlpacaEval (standard win rate)"
+    - "Length-normalized win rate"
+    - "Length-balanced win rate"
+    - "MT-Bench"
+    - "Chatbot Arena (human eval reference)"
+  metrics:
+    - {name: "Spearman correlation with Chatbot Arena", direction: "higher_better"}
+    - {name: "Gameability (normalized std dev across verbosity prompts)", direction: "lower_better"}
+    - {name: "Adversarial win rate gain from truncation attack", direction: "lower_better"}
+    - {name: "Win rate (%)", direction: "higher_better"}
+  datasets:
+    - {name: "AlpacaEval", size: "805 instructions, 128+ models"}
+    - {name: "LMSYS Chatbot Arena", size: "human preference leaderboard"}
+  ablation_dimensions:
+    - "Verbosity prompting (concise / standard / verbose)"
+    - "Regularization strength on length coefficient"
+    - "Annotator choice (GPT-4-1106, Claude-3-Opus, Mistral-Large)"
+    - "Length control method (regression vs normalization vs balancing)"
+  training_recipe:
+    optimizer: "GLM with L2 regularization"
+    lr: "N/A (closed-form logistic regression)"
+    hardware: "N/A (lightweight regression, no GPU needed)"
+    details: "5-fold cross-validation, 3M+N parameters (M models, N instructions)"
+  method_family: "Causal inference / regression-based debiasing of LLM-as-judge"
+
+positioning:
+  core_claim: "通过将长度偏差建模为因果图中的不良中介变量，用简单的回归方法估计反事实等长条件下的胜率，可以大幅降低自动评估器的长度偏差同时提升与人类判断的一致性"
+  key_results: "Chatbot Arena Spearman 相关性: 0.94→0.98; 可博弈性 normalized std: 25%→10%; 对抗截断攻击增益: 25.9→12.2; 跨 verbosity prompt 胜率波动: 22.9%-64.3%→41.9%-51.6%"
+  limitations:
+    - "仅在 AlpacaEval 英文指令上测试"
+    - "假设等长比较是理想的，但某些情况下更长的回答确实更好"
+    - "未处理 LLM-judge 的其他偏差（自我偏好、列表偏差等）"
+    - "回归模型假设长度效应可线性分离"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "开篇直击痛点：AlpacaEval 已知偏好长输出，模型可以通过刷长度来博弈评分，这严重削弱了自动评估的可信度。用一个广为人知的社区共识作为切入点。"
+  tension: "现有去偏方法要么丧失胜率的可解释性（归一化），要么对对抗攻击不够鲁棒（平衡），要么根本没解决问题。社区急需一个既简单又有理论基础的方案。"
+  key_insight: "Section 3 揭示核心洞察：将长度偏差框架化为因果推断中的'不良中介变量'（undesirable mediator），用因果图明确区分模型质量的直接效应和通过长度的间接效应，然后用回归方法估计反事实胜率。这个 reframing 是全文的 pivot point。"
+  argument_chain: "length bias is well-known → existing fixes are unsatisfying → causal framing: length as undesirable mediator → regression-based counterfactual estimation → preserve desirable metric properties (symmetry, identity, [0,100]) → empirical validation: higher human correlation + lower gameability + adversarial robustness"
+  contribution_framing: "三条贡献清单，措辞精准：(1) regression-based debiasing approach maintaining desirable metric properties, (2) application to AlpacaEval creating AlpacaEval-LC, (3) demonstration of better correlation with human evaluations。强调'simple'和'maintaining properties'，暗示方法论的优雅性。"
+  intro_structure: "4段：P1=动机（长度偏差是公认问题）→ P2=问题界定（现有方法的不足）→ P3=方法定位（因果推断框架）→ P4=贡献列表（3条 bullet points）"
+  notable_technique: "用因果图（Figure 2）将一个工程问题升格为因果推断问题，赋予简单回归方法以理论合法性。这种'给简单方法找到深刻理论根基'的叙事策略非常有效——让 reviewer 觉得方法虽简单但有洞察。"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "teaser_result"
+    description: "柱状图对比多种评估指标与 LMSYS Chatbot Arena 的 Spearman 相关性，AlpacaEval-LC 达到最高的 0.98"
+    narrative_role: "开篇即展示核心结果——LC 版本与人类判断最一致，建立读者信心"
+    design_elements: ["对比柱状图", "标注具体相关性数值", "突出 LC 方法的柱子"]
+    visual_style: "简洁柱状图，少量颜色区分不同方法，数值直接标注在柱子上方"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "三种 verbosity 条件（concise/standard/verbose）下标准 AlpacaEval vs LC 版本的胜率波动"
+      how_gain_highlighted: "LC 版本的线几乎平坦（41.9%-51.6%），而标准版本剧烈波动（22.9%-64.3%），视觉对比极强"
+      design_note: "用波动幅度的视觉对比直观展示'去偏'效果，比数字更有冲击力"
+    - figure_id: "Figure 4"
+      viz_type: "qualitative_comparison"
+      what_compared: "Leaderboard 排名变化：proprietary models（通常输出较短）排名上升，open-source RLHF models 排名下降"
+      how_gain_highlighted: "显示 rank change 箭头/数值，让读者直观看到哪些模型被'长度博弈'抬高了"
+      design_note: "将抽象的统计去偏转化为具体的排名变化故事，增强叙事力"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "heatmap"
+      dimensions_varied: ["model pair combinations"]
+      design_note: "展示 GLM 可以预测任意模型对的胜率（不仅是 vs baseline），扩展方法的实用价值"
+  figure_narrative_role: "Figure 1（teaser: LC 最高相关性）→ Figure 2（方法: 因果图）→ Figure 3（鲁棒性: verbosity 实验）→ Figure 4（影响: leaderboard 变化）→ Figure 5（扩展: 任意模型对预测）"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "Chatbot Arena correlation × Gameability × Adversarial robustness"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "数值比较，LC 方法在所有指标上最优"
+    statistical_reporting: "Bootstrap p-values (0.07 vs AlpacaEval, 0.06 vs MT-Bench)"
+    num_baselines: 3
+    design_note: "仅 4 行 × 3 列，极度精简。每列一个维度（相关性/可博弈性/对抗性），读者一眼看出 LC 全维度最优。用 p-value 为相关性差异提供统计支撑。"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["LLM judge choice (GPT-4-1106, Claude-3-Opus, Mistral-Large)"]
+      variation_style: "full_numbers"
+      design_note: "展示跨 annotator 的排名稳定性，增强方法的 annotator-agnostic 属性"
+  supplementary_tables:
+    in_appendix: false
+    content: "无独立附录表格，leaderboard 完整结果在 GitHub 公开"
+    reason: "论文强调简洁性，将完整 leaderboard 外置到在线平台而非附录"

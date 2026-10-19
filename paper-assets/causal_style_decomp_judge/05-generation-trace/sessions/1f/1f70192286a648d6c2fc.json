@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_nli-selection-bias_20260522T200539_result.json",
     "occurrence": 1,
-    "bytes": 1482,
-    "sha256": "b6d91d8f89b4958de5025f3851cc7e6a7bc4a42b75c586cb8a9176886fcc47e6"
+    "bytes": 1481,
+    "sha256": "af13379a9d036c1380ac8066e59dbe3bc4e60c4984b97669112950d24d793e71"
   },
   "statistics": {
     "messages": 1,

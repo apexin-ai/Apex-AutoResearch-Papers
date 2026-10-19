@@ -1,0 +1,68 @@
+{
+  "exp_id": "qwen32b_formality",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:24:01.452Z",
+    "updated_at": "2026-05-21T04:39:53.009Z",
+    "hypothesis": "Qwen3-32B as local judge will show similar formality bias pattern to GPT-4o (significant pairwise, non-significant Likert), confirming the Likert Blindspot is cross-model and not GPT-4o-specific",
+    "spec": {
+      "command": "pairwise_scoring.py + judge_scoring.py via vLLM Qwen3-32B local (tp=2, port 8000)",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/verified_32b.jsonl",
+      "data_count": 88,
+      "model_name": "Qwen3-32B (local judge via vLLM)",
+      "seed": 42,
+      "checkpoint_path": "data/pairwise_results_qwen32b_formality.jsonl",
+      "log_path": "data/scored_qwen32b_formality.jsonl"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "pairwise": {
+        "consistency_rate": 0.65,
+        "formal_win_rate": 0.764,
+        "sign_test_p": 0.000114,
+        "wilson_ci": [
+          0.637,
+          0.856
+        ]
+      },
+      "likert": {
+        "ate": 0.011,
+        "p": 0.908,
+        "cohens_d": 0.012,
+        "tie_rate": 0.727
+      },
+      "direction": {
+        "formal_to_casual_win": 0.814,
+        "formal_to_casual_p": 4.2e-05,
+        "casual_to_formal_win": 0.5,
+        "casual_to_formal_p": 1
+      },
+      "vs_gpt4o": "pairwise 76.4% vs 63.0% (stronger); Likert both non-sig (p=0.908 vs p=0.332)",
+      "blindspot_confirmed": true,
+      "bt": {
+        "p_formal_wins": 0.6647,
+        "bootstrap_ci": [
+          0.5852,
+          0.7386
+        ],
+        "bootstrap_p": 0.0001,
+        "bootstrap_method": "pair-level (10000 iterations, seed=42)"
+      },
+      "gee_decomposition": {
+        "formal_or": 4.2008,
+        "formal_p": 0.0002,
+        "originality_or": 4.7041,
+        "originality_p": 0.0001,
+        "note": "Both effects strong and nearly equal magnitude; casual→formal at 50% confirms originality confound"
+      }
+    },
+    "completed_at": "2026-05-21T04:39:53.009Z"
+  },
+  "timestamp": "2026-05-21T04:39:53.047430+00:00",
+  "trigger": "update_registry"
+}

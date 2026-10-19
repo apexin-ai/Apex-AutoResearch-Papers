@@ -1,0 +1,105 @@
+paper_key: "fairjudge_2026"
+title: "FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - PandaLM-7B
+    - JudgeLM-7B
+    - FlexVL
+    - InternVL-2.5-8B
+    - Qwen2.5-VL-7B
+    - Qwen3-VL-8B
+    - Qwen2.5-72B
+    - LLaVA-OneVision-7B
+    - DeepSeek-V3-671B
+  metrics:
+    - {name: "Agreement", direction: "higher_better"}
+    - {name: "Precision", direction: "higher_better"}
+    - {name: "Recall", direction: "higher_better"}
+    - {name: "F1", direction: "higher_better"}
+    - {name: "Pointwise-Pairwise Consistency", direction: "higher_better"}
+  datasets:
+    - {name: "PandaLM Test Set", size: "human-annotated pairwise judgments"}
+    - {name: "JudgeLM Test Set", size: "pairwise evaluation benchmark"}
+    - {name: "FairJudge-Benchmark-1K", size: "1000 instances, multi-domain, multi-mode"}
+    - {name: "MLLM-as-a-Judge", size: "10 vision-language tasks (COCO, ChartQA, CoCo-Caption, etc.)"}
+    - {name: "RewardBench", size: "reward model evaluation benchmark"}
+  ablation_dimensions:
+    - "SFT stage removal"
+    - "DPO stage removal"
+    - "GRPO stage removal"
+  training_recipe:
+    optimizer: "not specified"
+    lr: "not specified"
+    hardware: "not specified"
+    base_model: "Qwen3-VL (2B, 4B, 8B)"
+    training_stages: "SFT → DPO → GRPO (3-stage curriculum)"
+    training_data: "FairJudge-16K"
+    loss: "L = L_SFT + λ_DPO * L_DPO + λ_GRPO * L_GRPO"
+  method_family: "multi-stage preference-aligned LLM judge training (SFT + DPO + GRPO)"
+
+positioning:
+  core_claim: "将 LLM 评判行为建模为可学习的条件决策策略 π_judge(y|x,c,m)，通过三阶段课程训练（SFT→DPO→GRPO）同时解决适应性、去偏和跨模式一致性三个问题"
+  key_results: "FairJudge-8B: PandaLM F1 72.18% (超过 Qwen2.5-72B 的 64.58%), JudgeLM F1 66.78%, RewardBench Agreement 84.79% (超过 DeepSeek-V3-671B 的 83.34%), 跨模式一致性 65.52% (baseline 最高 60.59%), Fast 模式 12.8-13.6× 加速"
+  limitations:
+    - "依赖 JudgeLM 等高质量种子数据进行数据构建"
+    - "三阶段训练的计算开销未量化"
+    - "未讨论对新领域的零样本泛化能力"
+    - "论文未显式列出 limitations 段落"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "以 Figure 1 展示两个具体失败案例（位置偏差导致判断翻转、pointwise-pairwise 矛盾）来建立问题的紧迫性和直观性"
+  tension: "现有方法将评判视为静态预测函数，假设适应性/公平性/一致性会自然涌现，但实际上这三个维度都需要显式建模和优化"
+  key_insight: "在 Section 3 引入策略视角 π_judge(y|x,c,m)，将评判从函数映射重构为条件决策策略，为后续三个训练阶段分别对应三个质量维度提供统一框架"
+  argument_chain: "LLM judges 不稳定(具体案例) → 根因是评判行为未被建模为可优化目标 → 提出策略视角 π_judge → 数据构建(canonical/contrastive/cross-mode) → 三阶段训练(SFT适应+DPO去偏+GRPO一致) → 在5个benchmark上超越大模型"
+  contribution_framing: "4 条贡献，按框架→适应性→去偏→一致性层次递进，每条以名词短语开头（FairJudge/Adaptive Judging/Debiased Judging/Consistent Judging）"
+  intro_structure: "4段：P1=问题设定与失败案例展示，P2=根因分析（评判是决策过程非静态预测），P3=方案概述（策略视角+三阶段训练），P4=贡献列表"
+  notable_technique: "用 function-based vs policy-based 的对比（Figure 4）将方法论创新可视化，让读者直观理解范式转换；ablation 中 GRPO 移除导致最大下降，与 intro 中强调一致性的叙事首尾呼应"
+
+figures:
+  figure_count: 11
+  figure1:
+    type: "problem_illustration"
+    description: "展示两个 LLM 评判失败模式：左侧为位置偏差（交换答案顺序导致判断翻转），右侧为 pointwise-pairwise 不一致（相同内容在不同评估模式下得到矛盾结果）"
+    narrative_role: "建立问题的具体性和紧迫性，让读者直观感受现有方法的脆弱"
+    design_elements: ["对比布局（左右两个失败案例）", "红色高亮矛盾处", "真实对话样例"]
+    visual_style: "双栏对比布局，使用对话气泡或表格展示具体评判案例，矛盾之处用颜色标注"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "pipeline_diagram"
+      what_compared: "数据构建流程的三个分支（SFT/DPO/GRPO 各自的数据组织方式）"
+      how_gain_highlighted: "通过结构化流程展示系统性的数据设计"
+      design_note: "三分支并列展示，每个分支对应一个训练阶段，视觉上暗示方法的完整性"
+    - figure_id: "Figure 3"
+      viz_type: "pipeline_diagram"
+      what_compared: "三阶段训练流程（SFT→DPO→GRPO）"
+      how_gain_highlighted: "每个阶段与一个质量维度对应，箭头连接展示递进关系"
+      design_note: "方法流程图是标准做法，但将训练阶段与质量维度一一映射是有效的设计"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(问题展示) → Figure 4(范式对比) → Figure 2(数据构建) → Figure 3(训练流程) → Tables(实验验证)"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "datasets × metrics (PandaLM/JudgeLM/FairJudge-1K 各含 Agreement/Precision/Recall/F1)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run numbers, no std reported"
+    num_baselines: 9
+    design_note: "按模型类型分组（通用模型 vs 专用 judge 模型），FairJudge 三个尺寸（2B/4B/8B）放在最后形成渐进效果，突出 8B 与 72B/671B 大模型的对比"
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["SFT stage", "DPO stage", "GRPO stage"]
+      variation_style: "full_numbers"
+      design_note: "逐个移除训练阶段，展示完整指标数字而非 delta，让读者看到每个阶段的绝对贡献；GRPO 移除导致最大下降是核心发现"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 3 (多模态评估), Table 4 (一致性分析), Table 5 (RewardBench), Table 6 (推理效率)"
+    reason: "主表聚焦核心评判能力对比，附加维度（多模态/一致性/效率）作为补充验证"

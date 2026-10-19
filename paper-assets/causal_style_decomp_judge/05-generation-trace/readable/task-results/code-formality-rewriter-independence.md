@@ -16,4 +16,4 @@ This page is a human-readable rendering of one source record. It preserves the r
 
 This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
 
-[Part 1](code-formality-rewriter-independence/part-001.md) · [Part 2](code-formality-rewriter-independence/part-002.md) · [Part 3](code-formality-rewriter-independence/part-003.md)
+[Part 1](code-formality-rewriter-independence/part-001.md) · [Part 2](code-formality-rewriter-independence/part-002.md) · [Part 3](code-formality-rewriter-independence/part-003.md) · [Part 4](code-formality-rewriter-independence/part-004.md) · [Part 5](code-formality-rewriter-independence/part-005.md) · [Part 6](code-formality-rewriter-independence/part-006.md)

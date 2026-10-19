@@ -955,7 +955,7 @@
             "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig1_pipeline_intent.txt \\\n  --caption \"CSD pipeline overview: five stages from source data to statistical analysis, with sample attrition at each stage\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig1_pipeline_new.png \\\n  --iterations 5 2>&1",
+              "command": "GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig1_pipeline_intent.txt \\\n  --caption \"CSD pipeline overview: five stages from source data to statistical analysis, with sample attrition at each stage\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig1_pipeline_new.png \\\n  --iterations 5 2>&1",
               "description": "Generate Figure 1 pipeline diagram with PaperBanana",
               "timeout": "300000"
             }
@@ -1193,7 +1193,7 @@
             "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /home/ubuntu/.local/bin/paperbanana generate \\\n  --input /tmp/fig1_pipeline_intent.txt \\\n  --caption \"CSD pipeline overview: five stages from source data to statistical analysis, with sample attrition at each stage\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig1_pipeline_new.png \\\n  --iterations 5 2>&1",
+              "command": "GOOGLE_API_KEY=\"[REDACTED]\" /home/ubuntu/.local/bin/paperbanana generate \\\n  --input /tmp/fig1_pipeline_intent.txt \\\n  --caption \"CSD pipeline overview: five stages from source data to statistical analysis, with sample attrition at each stage\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig1_pipeline_new.png \\\n  --iterations 5 2>&1",
               "description": "Generate Figure 1 with PaperBanana",
               "timeout": "300000"
             }
@@ -2016,7 +2016,7 @@
             "session": "feishu:group:oc_5ce280de124a4e308d1827c6450ad337:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /home/ubuntu/.local/bin/paperbanana generate \\\n  --input /tmp/fig1_pipeline_v2.txt \\\n  --caption \"CSD pipeline: from source data through counterfactual generation, NLI verification, dual pairwise scoring, to statistical analysis\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig1_pipeline_v2.png \\\n  --iterations 5 2>&1",
+              "command": "GOOGLE_API_KEY=\"[REDACTED]\" /home/ubuntu/.local/bin/paperbanana generate \\\n  --input /tmp/fig1_pipeline_v2.txt \\\n  --caption \"CSD pipeline: from source data through counterfactual generation, NLI verification, dual pairwise scoring, to statistical analysis\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig1_pipeline_v2.png \\\n  --iterations 5 2>&1",
               "description": "Generate artistic Figure 1 with PaperBanana",
               "timeout": "300000"
             }

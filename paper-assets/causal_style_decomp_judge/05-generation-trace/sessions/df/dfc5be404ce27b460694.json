@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_kill_vllm_residual_20260521T050605_result.json",
     "occurrence": 1,
-    "bytes": 408,
-    "sha256": "5fb86dc3f454b1dcd29ac1667487ab9f1f107179b7213bd03cab39684de6d77f"
+    "bytes": 407,
+    "sha256": "52989ca621fb55f973a9d71bda8841f0b0a935d3ab0d5907880e62d2ac3ba853"
   },
   "statistics": {
     "messages": 1,

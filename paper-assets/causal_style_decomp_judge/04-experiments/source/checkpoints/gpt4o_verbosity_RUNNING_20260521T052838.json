@@ -1,0 +1,25 @@
+{
+  "exp_id": "gpt4o_verbosity",
+  "project": "causal_style_decomp_judge",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:28:11.348Z",
+    "updated_at": "2026-05-21T05:28:38.409Z",
+    "hypothesis": "GPT-4o judge shows verbosity bias in pairwise comparison while Likert fails to detect it, extending Blindspot confirmation to GPT-4o × verbosity cell and enabling cross-model comparison with Qwen3-32B",
+    "spec": {
+      "command": "pairwise_scoring.py + judge_scoring.py via GPT-4o OpenRouter API",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/verified_verbosity.jsonl",
+      "data_count": 100,
+      "model_name": "GPT-4o (OpenRouter via http://47.94.22.126/v1)",
+      "seed": 42,
+      "checkpoint_path": "data/pairwise_results_gpt4o_verbosity.jsonl",
+      "log_path": "data/scored_gpt4o_verbosity.jsonl"
+    }
+  },
+  "timestamp": "2026-05-21T05:28:38.449552+00:00",
+  "trigger": "update_registry"
+}

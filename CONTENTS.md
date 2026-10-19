@@ -6,7 +6,7 @@ This catalogue covers **13 research projects**. Open a project README for its ma
 |---|---|---:|---:|---:|---:|
 | [acr-vla-conformal-refinement](paper-assets/acr-vla-conformal-refinement/README.md) | [PDF](paper-assets/acr-vla-conformal-refinement/01-manuscript/paper.pdf) | 1,517 | 7,791 | 7,114 | 391,607 |
 | [causal_annot_error_attrib](paper-assets/causal_annot_error_attrib/README.md) | [PDF](paper-assets/causal_annot_error_attrib/01-manuscript/paper.pdf) | 212 | 303 | 475 | 66,314 |
-| [causal_style_decomp_judge](paper-assets/causal_style_decomp_judge/README.md) | [PDF](paper-assets/causal_style_decomp_judge/01-manuscript/paper.pdf) | 51 | 38 | 506 | 73,378 |
+| [causal_style_decomp_judge](paper-assets/causal_style_decomp_judge/README.md) | [PDF](paper-assets/causal_style_decomp_judge/01-manuscript/paper.pdf) | 171 | 488 | 506 | 73,378 |
 | [cert_manip_resist_eval](paper-assets/cert_manip_resist_eval/README.md) | [PDF](paper-assets/cert_manip_resist_eval/01-manuscript/paper.pdf) | 82 | 520 | 880 | 97,735 |
 | [crosscoder-behavioral-circuit-transplant](paper-assets/crosscoder-behavioral-circuit-transplant/README.md) | No PDF in snapshot | 13 | 33 | 20 | 1,393 |
 | [diagprm-stage-reasoning](paper-assets/diagprm-stage-reasoning/README.md) | No PDF in snapshot | 15 | 1 | 18 | 851 |

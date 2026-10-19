@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gee_verbosity_length_confound_20260521T061342_result.json",
     "occurrence": 1,
-    "bytes": 1680,
-    "sha256": "538be07f98348264f1d2292873272766b269ba816f3476e33f93e8540e60561a"
+    "bytes": 1679,
+    "sha256": "9c396d3269f7828956dff75b151fe31e96e4aeabc9594ebe203166c6630986c8"
   },
   "statistics": {
     "messages": 1,

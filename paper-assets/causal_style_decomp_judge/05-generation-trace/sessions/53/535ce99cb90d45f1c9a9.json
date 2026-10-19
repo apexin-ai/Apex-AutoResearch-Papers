@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_figure_pipeline_diagram_20260521T050836_result.json",
     "occurrence": 1,
-    "bytes": 616,
-    "sha256": "fcab129273654292ddc5119f270063e01f8e2def237b935df216b20446db6646"
+    "bytes": 615,
+    "sha256": "1b75e101697beec40a7e6170257b1a3c5d6dfde0f0c3884c368abb467719e2a0"
   },
   "statistics": {
     "messages": 1,

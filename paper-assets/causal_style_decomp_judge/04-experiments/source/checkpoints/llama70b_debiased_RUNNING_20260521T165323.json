@@ -1,0 +1,26 @@
+{
+  "exp_id": "llama70b_debiased",
+  "project": "causal_style_decomp_judge",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T16:52:24.716Z",
+    "updated_at": "2026-05-21T16:53:23.639Z",
+    "hypothesis": "Llama-70B correction resistance follows the same axis-dependent pattern as GPT-4o/Qwen3-32B: debiased prompts reduce but do not eliminate style bias, with verbosity more amenable to correction than formality, confirming bias persistence is model-independent",
+    "spec": {
+      "command": "python csd_pipeline/llama70b_debiased.py",
+      "server": "westb-29275",
+      "data_path": "verified_32b.jsonl (88 formality) + verified_verbosity.jsonl (86 verbosity)",
+      "data_count": "174 NLI-pass pairs total",
+      "model_name": "Llama-3.3-70B-Instruct",
+      "seed": 42,
+      "gpu": "cuda:2,3 (vLLM port 8003)",
+      "pid": 173017
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T16:53:23.736186+00:00",
+  "trigger": "update_registry"
+}

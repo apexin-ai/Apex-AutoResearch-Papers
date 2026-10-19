@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_bugfix_claude-bt-pvalue-twosided_20260523T014657_result.json",
     "occurrence": 1,
-    "bytes": 804,
-    "sha256": "39d101e0449ca5f0f1fcd7d7921db8c73ac53a2d81484487b75067c1dd774789"
+    "bytes": 803,
+    "sha256": "39d5d8c2cbac5b87e406436b7da12354f686cc88538195e32ad26b40bb1c228b"
   },
   "statistics": {
     "messages": 1,

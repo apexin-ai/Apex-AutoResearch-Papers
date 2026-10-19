@@ -1,0 +1,69 @@
+{
+  "gpt4o": {
+    "without_fk": {
+      "n": 86,
+      "style_or": 2.7002,
+      "style_ci": [1.4505, 5.0268],
+      "style_p": 0.001731,
+      "orig_or": 2.4297,
+      "orig_p": 0.005109
+    },
+    "with_fk": {
+      "n": 86,
+      "style_or": 2.1536,
+      "style_ci": [0.7934, 5.8452],
+      "style_p": 0.132118,
+      "orig_or": 2.2761,
+      "orig_p": 0.01714,
+      "fk_or": 1.0524,
+      "fk_ci": [0.8853, 1.2511],
+      "fk_p": 0.56235
+    },
+    "style_or_change_pct": -20.24
+  },
+  "qwen3_32b": {
+    "without_fk": {
+      "n": 88,
+      "style_or": 4.2008,
+      "style_ci": [1.9893, 8.8707],
+      "style_p": 0.000168,
+      "orig_or": 4.7041,
+      "orig_p": 5.2e-05
+    },
+    "with_fk": {
+      "n": 88,
+      "style_or": 3.3766,
+      "style_ci": [1.2759, 8.9356],
+      "style_p": 0.014256,
+      "orig_or": 4.6941,
+      "orig_p": 5.2e-05,
+      "fk_or": 1.0403,
+      "fk_ci": [0.8901, 1.2159],
+      "fk_p": 0.619289
+    },
+    "style_or_change_pct": -19.62
+  },
+  "llama_70b": {
+    "without_fk": {
+      "n": 83,
+      "style_or": 5.5227,
+      "style_ci": [2.6697, 11.4244],
+      "style_p": 4e-06,
+      "orig_or": 3.4901,
+      "orig_p": 0.000687
+    },
+    "with_fk": {
+      "n": 83,
+      "style_or": 2.6912,
+      "style_ci": [1.0627, 6.8153],
+      "style_p": 0.036777,
+      "orig_or": 3.552,
+      "orig_p": 0.000507,
+      "fk_or": 1.1408,
+      "fk_ci": [0.9685, 1.3439],
+      "fk_p": 0.114881
+    },
+    "style_or_change_pct": -51.27
+  },
+  "conclusion": "Adding FK grade as covariate does substantially change Style OR (avg |change| = 30.4%), indicating style bias is confounded by readability. Changes: GPT-4o -20.2%, Qwen3-32B -19.6%, Llama-70B -51.3%."
+}

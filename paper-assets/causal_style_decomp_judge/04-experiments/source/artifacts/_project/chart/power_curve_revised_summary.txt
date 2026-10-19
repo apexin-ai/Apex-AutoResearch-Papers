@@ -1,0 +1,8 @@
+Power curve PDF on server: /root/causal_style_decomp_judge/artifacts/figures/paper/power_curve.pdf
+Script: /root/causal_style_decomp_judge/csd_pipeline/gen_power_curve.py
+
+80% power crossings (revised):
+- Pairwise BT (p=0.609): n=163
+- Pairwise Sign Test (p=0.691, filtered): n=93
+- Binarized Likert (p=0.606, tie-adjusted): n=462
+- Likert ATE (d=0.073): n=1473 (off-chart)

@@ -1,0 +1,182 @@
+dreams:
+  dream_20260520T211832:
+    dream_id: dream_20260520T211832
+    project: causal_style_decomp_judge
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key concerns: (1) single-axis formality with direction asymmetry (78.8%
+      vs 54.5%) and original preference ~12.2%, (2) RATE/DML pathway failed — pairwise
+      is the real method, (3) C2 measurement insight (Likert vs Pairwise gap) may
+      be the strongest contribution, (4) verbosity failure as method boundary, (5)
+      will multi-judge + multi-benchmark expansion be sufficient to elevate from Findings
+      to Main?'
+    what_if: []
+    pid: 466392
+    chat_id: oc_5ce280de124a4e308d1827c6450ad337
+    card_message_id: om_x100b6fd61c5eeca0c2da6a26c035e90
+    started_at: '2026-05-20T21:18:32+00:00'
+    updated_at: '2026-05-20T22:09:02+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 4cc8408f8ab69c50a67dcc4aac8737e32a3a598db725d734fe77af51dcf0a2ab
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260520T233719:
+    dream_id: dream_20260520T233719
+    project: causal_style_decomp_judge
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'D015 framing revision: title changed to "The Likert Blindspot", C1 downgraded
+      to application contribution, C2 strengthened as primary with binarized Likert
+      control (exp-010), C3 downgraded to preliminary, C4 added (practical guidance).
+      5 new zero-cost experiments added (exp-010 through exp-014). Bibliography target
+      expanded to 25+. Key question: does the reframed paper with these additions
+      reach best≥4.0 and median≥3.5?'
+    what_if: []
+    pid: 479309
+    chat_id: oc_5ce280de124a4e308d1827c6450ad337
+    card_message_id: om_x100b6fd015c9e0a4c22c0a6e3ae5c98
+    started_at: '2026-05-20T23:37:19+00:00'
+    updated_at: '2026-05-21T00:36:45+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: d3911141a7d28f4c90a9716d3cbd9b07711928340ad37d5a36575948c987cfcb
+    review_quality:
+      median: simulated
+      worst: simulated
+  dream_20260521T010111:
+    dream_id: dream_20260521T010111
+    project: causal_style_decomp_judge
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'D020 fixes applied: (1) causal→interventional language throughout, (2)
+      RATE differentiation paragraph added to framing (RATE uses Likert ATE which
+      we show is insensitive), (3) psychometric lineage refs (Thurstone 1927, Kiritchenko
+      2017, Novikova 2018) integrated, (4) RC10/RC11 added. Our actual data is stronger
+      than Dream 2 imagined: exp-014 formality OR=2.21 p=0.010 GEE (dream imagined
+      p=0.11), register 95% NLI PASS (unknown to dream), binarized Likert p=0.296
+      confirming C2 mechanism. Evaluate whether D020 structural fixes resolve the
+      three-tier consistent issues from Dream 2.'
+    what_if: []
+    pid: 496491
+    chat_id: oc_5ce280de124a4e308d1827c6450ad337
+    card_message_id: om_x100b6fd1db4c7888c339e6460b88c13
+    started_at: '2026-05-21T01:01:11+00:00'
+    updated_at: '2026-05-21T01:58:59+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: e98735e614724c42f29aa52986f581b2def3f508297dbe9bcca64018674ca5aa
+    review_quality:
+      best: simulated
+  dream_20260521T052420:
+    dream_id: dream_20260521T052420
+    project: causal_style_decomp_judge
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: Round 1 审稿 2.5/5 后的修正版。关键改进：(1) 2 judges × 3 axes 完整证据矩阵，5/6 Blindspot
+      cells confirmed (2) GEE decomposition 跨轴 confound 梯度（verbosity pure style OR=13.10
+      → formality mixed → register originality-dominated）(3) BT 作为 primary analysis
+      (4) ordinal regression 排除 scale artifact (5) 22 verified references (6) 3 figures
+      (power curve + pipeline diagram + forest plot) (7) 因果语言全面降调为 interventional
+      (8) page compression to ≤8 pages。主要 novelty ceiling：Likert Blindspot 是已知心理测量学现象的
+      domain transfer，Findings 3.0-3.5 可达，Main 4.0 需要 novelty 突破。
+    what_if: []
+    pid: 533640
+    chat_id: oc_5ce280de124a4e308d1827c6450ad337
+    card_message_id: om_x100b6fdd3e9fc908c38b59dada4f74a
+    started_at: '2026-05-21T05:24:20+00:00'
+    updated_at: '2026-05-21T06:12:21+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 7dbbf9272c3feb06c0f11f412110ba1af7638fea491398114baf663cbeb0fa0e
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260521T132932:
+    dream_id: dream_20260521T132932
+    project: causal_style_decomp_judge
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'Round 5 scored 3.5. Key additions: (1) Comparative Trap three-layer defense
+      with pending double-rewrite placebo BT, (2) Llama-3.3-70B as third target judge,
+      (3) NLI gate ablation, (4) per-axis claim stratification, (5) verbosity 7-method
+      sensitivity table. Focus on whether these additions push to 4.0 Conference or
+      remain at 3.5. Best case: Llama shows bias + placebo BT≈50%. Worst case: Llama
+      no bias + placebo BT≠50%.'
+    what_if: []
+    pid: 606643
+    chat_id: oc_5ce280de124a4e308d1827c6450ad337
+    card_message_id: om_x100b6fc4c53c9ca4c2c340139d49900
+    started_at: '2026-05-21T13:29:32+00:00'
+    updated_at: '2026-05-21T14:31:31+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: b38b016ff217bb03adc2123b417b3645191fb2a5e372eed23ea669cdb3bf35c2
+    review_quality:
+      median: simulated
+      worst: simulated
+  dream_20260521T152517:
+    dream_id: dream_20260521T152517
+    project: causal_style_decomp_judge
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'D059 framing restructured: dual-contribution (Blindspot + per-axis confound
+      structure as co-primary), agnostic stance on attenuation vs construct divergence,
+      prescriptive per-axis guidance. NEW evidence since last dream: (1) Bootstrap
+      attenuation curve showing d flat at ~0 across n=50-355 (smoking gun for attenuation),
+      (2) 5-layer MF1 defense with experimental data (NLI ablation reversal + Claude
+      control + cross-axis gradient + placebo/GEE + pending Llama), (3) proper BT
+      for placebo, (4) MF1 wording upgraded to "bounded by five controls". Key question:
+      does the dual-contribution framing + agnostic stance push above 3.5? Best case:
+      Llama shows bias + 100-point Likert NS + bootstrap confirms attenuation. Worst
+      case: Llama no bias + 100-point Likert detects bias.'
+    what_if: []
+    pid: 622616
+    chat_id: oc_5ce280de124a4e308d1827c6450ad337
+    card_message_id: om_x100b6fc670cfc0a4c447d08928b37c6
+    started_at: '2026-05-21T15:25:17+00:00'
+    updated_at: '2026-05-21T16:15:26+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 965d3073007fb3d9ffaf2225f9f4c6fbe6618e788539de3e03d62ba534c51f28
+    review_quality:
+      median: simulated

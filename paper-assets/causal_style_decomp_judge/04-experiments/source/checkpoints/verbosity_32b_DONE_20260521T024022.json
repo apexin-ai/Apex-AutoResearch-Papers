@@ -1,0 +1,57 @@
+{
+  "exp_id": "verbosity_32b",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:20:44.306Z",
+    "updated_at": "2026-05-21T02:40:22.604Z",
+    "hypothesis": "Verbosity axis (verbose/concise) produces stronger style bias signal than formality in GPT-4o judge: pairwise win rate ≥60% with p<0.05 and/or Likert corrected ATE with d≥0.3, because verbose responses contain more surface-level detail that judges may conflate with thoroughness",
+    "parent": "pairwise_32b",
+    "spec": {
+      "command": "counterfactual_gen --axis verbosity + content_verification + judge_scoring + pairwise_scoring + ate_analysis",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/counterfactuals_verbosity.jsonl",
+      "data_count": 100,
+      "model_name": "Qwen3-32B (counterfactual) + GPT-4o (judge)",
+      "seed": 42,
+      "checkpoint_source": "Qwen3-32B vLLM serve",
+      "eval_data": "LLMBar adversarial 100 samples"
+    },
+    "checkpoint_path": "/root/causal_style_decomp_judge/data/verified_verbosity.jsonl",
+    "log_path": "/root/causal_style_decomp_judge/data/",
+    "metrics": {
+      "n": 100,
+      "h1_nli_pass_rate": 0.65,
+      "nli_mean": 0.6544,
+      "bertscore_pass_rate": 0.27,
+      "bertscore_mean": 0.7522,
+      "both_pass": 0.22,
+      "dr_nli_mean": 0.4847,
+      "dr_bertscore_mean": 0.7199,
+      "dr_pass_rate": 0.04,
+      "stopped_at": "scoring",
+      "stop_reason": "API 402 Insufficient balance",
+      "v2_direction_aware_nli": {
+        "nli_ge90": 0.86,
+        "nli_ge80": 0.86,
+        "nli_ge95": 0.83,
+        "forward_n": 46,
+        "forward_nli_mean": 0.9476,
+        "backward_n": 54,
+        "backward_nli_mean": 0.8267,
+        "nli_only_pass_rate_at_090": 0.86,
+        "h1_status": "PASS (86% >= 80%)",
+        "pipeline_blocked_at": "scoring (API 402, D013 approved NLI-only gate)"
+      },
+      "status_note": "PARTIAL — H1 PASS (direction-aware NLI 86%, D012/D013). Scoring blocked by API 402. Original conclusion 'negative' was based on v1 bidirectional NLI (65%), now superseded. Awaiting API restoration to complete scoring pipeline.",
+      "conclusion_override": "partial (H1=PASS, scoring=BLOCKED)"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T21:13:31.070Z"
+  },
+  "timestamp": "2026-05-21T02:40:22.665138+00:00",
+  "trigger": "update_registry"
+}

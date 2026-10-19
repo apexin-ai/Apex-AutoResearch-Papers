@@ -1,0 +1,24 @@
+{
+  "exp_id": "register_100_cf",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T01:13:19.928Z",
+    "updated_at": "2026-05-21T01:13:19.928Z",
+    "spec": {
+      "command": "counterfactual_gen.py --axis register + content_verification.py --axis register (NLI-only) + scoring (pending API)",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/data/counterfactuals_register.jsonl",
+      "data_count": 100,
+      "model_name": "Qwen3-32B (counterfactual) + DeBERTa-v3-large (NLI gate)",
+      "seed": 42,
+      "checkpoint_path": "data/counterfactuals_register.jsonl",
+      "log_path": "logs/workers/worker_code_register_counterfactual_gen_100_20260521T004113.log"
+    }
+  },
+  "timestamp": "2026-05-21T01:13:19.978078+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,96 @@
+{
+  "exp_id": "bt_model_diagnostics",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:04:20.388Z",
+    "updated_at": "2026-05-21T12:04:52.866Z",
+    "hypothesis": "BT model adequately fits the pairwise data (GoF non-significant) and stratified BT by originality direction reveals whether style effect is confounded with originality preference (addresses W-MF2)",
+    "parent": "qwen32b_formality",
+    "spec": {
+      "command": "python csd_pipeline/bt_model_diagnostics.py",
+      "server": "westb-29275",
+      "data_path": "data/pairwise_results_32b.jsonl + data/pairwise_results_qwen32b_verbosity.jsonl",
+      "data_count": 200,
+      "model_name": "choix BT + scipy chi2/Fisher",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "data/bt_model_diagnostics.json",
+      "checkpoint_source": "qwen32b_formality + qwen32b_verbosity pairwise results",
+      "eval_data": "Consistent pairs from pairwise results (formality n=46, verbosity n=63)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gof": {
+        "formality": {
+          "deviance": 52.8,
+          "df": 45,
+          "p_value": 0.198,
+          "n_consistent": 46,
+          "bt_prob": 0.739
+        },
+        "verbosity": {
+          "deviance": 47.96,
+          "df": 62,
+          "p_value": 0.905,
+          "n_consistent": 63,
+          "bt_prob": 0.873
+        }
+      },
+      "stratified_bt": {
+        "formality": {
+          "orig_is_formal": {
+            "n": 27,
+            "bt": 0.889,
+            "ci": [
+              0.778,
+              1
+            ],
+            "wins": 24
+          },
+          "orig_is_casual": {
+            "n": 19,
+            "bt": 0.526,
+            "ci": [
+              0.316,
+              0.737
+            ],
+            "wins": 10
+          },
+          "fisher_p": 0.015,
+          "chi2_p": 0.006,
+          "note": "Significant direction difference: orig_is_formal 88.9% vs orig_is_casual 52.6%. Confirms originality confound in formality (consistent with GEE decomposition)."
+        },
+        "verbosity": {
+          "orig_is_verbose": {
+            "n": 29,
+            "bt": 0.828,
+            "ci": [
+              0.69,
+              0.966
+            ],
+            "wins": 24
+          },
+          "orig_is_concise": {
+            "n": 34,
+            "bt": 0.912,
+            "ci": [
+              0.794,
+              1
+            ],
+            "wins": 31
+          },
+          "fisher_p": 0.453,
+          "chi2_p": 0.317,
+          "note": "No significant direction difference. Both directions strongly prefer verbose → pure style bias confirmed."
+        }
+      }
+    },
+    "completed_at": "2026-05-21T12:04:52.866Z"
+  },
+  "timestamp": "2026-05-21T12:04:52.934040+00:00",
+  "trigger": "update_registry"
+}

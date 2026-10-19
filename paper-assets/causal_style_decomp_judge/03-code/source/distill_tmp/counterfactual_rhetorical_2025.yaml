@@ -1,0 +1,115 @@
+paper_key: "counterfactual_rhetorical_2025"
+title: "Counterfactual LLM-based Framework for Measuring Rhetorical Style"
+venue: "arXiv 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Direct Rating (LLM 直接打分 1-10)"
+    - "Promotion Score (promotional 词汇比例)"
+    - "Certainty Score (句级确定性分类器均值)"
+  metrics:
+    - {name: "Spearman rank correlation (persona subset stability)", direction: "higher_better"}
+    - {name: "Human agreement rate (pairwise level)", direction: "higher_better"}
+    - {name: "Human-aggregate correlation", direction: "higher_better"}
+    - {name: "Regression coefficient for citations", direction: "higher_better"}
+    - {name: "Regression coefficient for media posts", direction: "higher_better"}
+    - {name: "Regression coefficient for tweets", direction: "higher_better"}
+  datasets:
+    - {name: "ICLR submissions 2017-2025", size: "8,485 papers (1000/year sampled)"}
+    - {name: "Counterfactual abstracts", size: "254,550 pairwise comparisons (30 personas × 8,485 papers)"}
+    - {name: "Persona calibration set", size: "~8,700 pairwise comparisons (20 papers × all persona pairs)"}
+    - {name: "Human validation set", size: "420 judgments from 42 annotators"}
+  ablation_dimensions:
+    - "persona subset size (1-30 personas)"
+    - "temporal period (pre-2023 vs post-2023)"
+    - "LLM detection vs rhetorical score correlation"
+  training_recipe:
+    optimizer: "N/A (no model training; Bradley-Terry MLE/MAP estimation)"
+    lr: "N/A"
+    hardware: "N/A"
+    llm_judge: "LLM-based pairwise judge (specific model not named)"
+    llm_writers: "30 LLM personas generating counterfactual abstracts"
+    estimation: "Bradley-Terry via MLE (calibration) and MAP with Gaussian prior (query scoring)"
+  method_family: "counterfactual generation + Bradley-Terry aggregation for latent variable measurement"
+
+positioning:
+  core_claim: "通过让多个 LLM persona 从相同实质内容生成反事实摘要并用 Bradley-Terry 聚合 pairwise 判断，首次实现在控制实质内容不变的条件下测量修辞风格强度——发现修辞风格独立于同行评审分数但显著预测引用和媒体关注"
+  key_results: "persona 子集稳定性 Spearman 0.958 (15/30), 人类一致率 88.4% (pairwise), 聚合相关 0.92; 修辞分数每增1单位→+24.53 citations(p<0.001), +3.19 posts(p<0.001), +2.51 tweets(p<0.001); 修辞分数与审稿分数相关 ρ=-0.015(p=0.225，即零相关)"
+  limitations:
+    - "依赖 LLM judge，继承其偏差"
+    - "仅分析摘要层面，未扩展到全文"
+    - "将修辞风格视为单一维度而非多面结构"
+    - "persona 构建为手工设计，未系统化"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "从 ML 领域的竞争压力和可见性稀缺出发，指出研究者面临夸大表述的激励——直击读者（ML 研究者）的切身经历"
+  tension: "现有方法（关键词计数/分类器）只能测量表面语气，无法区分'因为结果强所以措辞自信'和'纯粹修辞夸大'——即 style 与 substance 的混淆问题"
+  key_insight: "在 Section 2 引入因果框架：将修辞风格形式化为潜变量 Z in p(Y|X,Z)，通过固定 X（实质内容）变化 Z（修辞策略）生成反事实文本，从而解耦 style 和 substance"
+  argument_chain: "ML 竞争→修辞膨胀担忧 → 现有方法混淆 style/substance → 因果框架 p(Y|X,Z) 解耦 → LLM persona 生成反事实 → Bradley-Terry 聚合 → 大规模验证(8485篇) → 修辞独立于审稿分但预测引用/媒体"
+  contribution_framing: "3 条贡献（Methodology/Validation/Findings），每条以粗体关键词开头，从方法到验证到发现递进"
+  intro_structure: "4段：P1=问题背景（ML竞争与可见性激励），P2=已有证据（promotional language 上升、不确定性表达下降），P3=现有方法批判（关键词/分类器混淆 style 与 substance），P4=本文方案（因果框架+反事实生成）"
+  notable_technique: "用 'rhetorical inflation' 类比经济学通胀概念来描述学术写作中的修辞膨胀，让抽象问题具象化；persona 设计从 'Sleep-Deprived PhD Student' 到 'Geoffrey Hinton' 的连续谱既有技术功能又有叙事趣味"
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "method_overview"
+    description: "三阶段框架示意：(1) LLM personas 从相同实质内容生成反事实摘要，(2) LLM judge 通过 pairwise 比较校准 persona 修辞分数，(3) 推理阶段将查询摘要定位在校准后的修辞谱上"
+    narrative_role: "一图概括全部方法论，让读者在深入技术细节前建立整体理解"
+    design_elements: ["三阶段流程", "persona 图标/头像", "箭头连接从输入到输出", "Bradley-Terry 聚合可视化"]
+    visual_style: "水平三阶段布局，每阶段用不同颜色区分，persona 用拟人化图标表示，底部展示从保守到激进的连续谱"
+  result_figures:
+    - figure_id: "Figure 2 (Left)"
+      viz_type: "line_plot"
+      what_compared: "2017-2025 年度平均修辞分数趋势"
+      how_gain_highlighted: "95% 置信区间 + post-2023 急剧上升的视觉突变，暗示 LLM 写作工具的影响"
+      design_note: "时间序列+置信带是展示趋势的经典手法，转折点自然引导因果解释"
+    - figure_id: "Figure 2 (Right)"
+      viz_type: "bar_chart"
+      what_compared: "修辞分数十分位组 vs 估计 LLM 使用率"
+      how_gain_highlighted: "单调递增关系（r=0.904），最低组 9.0% vs 最高组 20.9%"
+      design_note: "将两个相关发现并列（时间趋势+LLM使用）形成因果暗示，比单独呈现更有说服力"
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "22 个 ML 子领域的平均修辞分数"
+      how_gain_highlighted: "95% 置信区间，应用领域(CV/NLP)在高端，理论领域(kernel/optimal transport)在低端"
+      design_note: "按分数排序的横向条形图，子领域名称清晰标注，直观展示领域文化差异"
+  ablation_figures:
+    - figure_id: "Figure 5 (Appendix)"
+      viz_type: "line_plot"
+      dimensions_varied: ["persona 子集大小 (1-30)"]
+      design_note: "收敛曲线展示 15 个 persona 即达到 0.958 相关，证明方法对 persona 选择的鲁棒性"
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      dimensions_varied: ["persona win rate distribution"]
+      design_note: "展示 30 个 persona 的胜率分布从 14% 到 94%，验证 panel 覆盖充分性"
+  figure_narrative_role: "Figure 1(方法概览) → Figure 3(persona覆盖验证) → Figure 2(核心发现：时间趋势+LLM关联) → Figure 4(子领域差异) → Appendix figures(鲁棒性)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (4 rhetorical measures)"
+    col_axis: "outcomes (Citations, Posts, Tweets, Patents, Accounts)"
+    row_organization: "flat"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "significance stars (†p<0.10, *p<0.05, **p<0.01, ***p<0.001)"
+    statistical_reporting: "OLS regression coefficients with standard errors in parentheses, controlling for reviewer rating + subfield + year"
+    num_baselines: 3
+    design_note: "经典回归结果表，行是不同度量方法，列是不同 outcome，通过显著性星号突出本方法在多个 outcome 上的 *** 而 baseline 无显著性，形成强烈对比"
+  ablation_tables:
+    - table_id: "Table 3 (Appendix)"
+      what_varied: ["rhetorical decile group (2024-2025 batch)"]
+      variation_style: "full_numbers"
+      design_note: "展示修辞分数十分位与 LLM 使用率的单调关系，补充 Figure 2 右图的定量细节"
+    - table_id: "Table 4 (Appendix)"
+      what_varied: ["rhetorical decile group (pre-2023 baseline)"]
+      variation_style: "full_numbers"
+      design_note: "反事实验证：pre-LLM 时期修辞分数与 LLM 检测率无关（0.3-0.8%），排除检测器偏差"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 2 (子领域映射与论文数), Table 3-4 (LLM 使用率分析), Table 5 (30 persona 详细分数与 LLM 检测率)"
+    reason: "主表聚焦核心回归结果（方法有效性），子领域/persona 细节和 LLM 使用分析作为补充放附录，保持主文聚焦"

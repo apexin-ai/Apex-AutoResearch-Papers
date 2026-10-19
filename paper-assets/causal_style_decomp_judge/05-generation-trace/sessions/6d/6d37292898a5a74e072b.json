@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_bugfix_gee-and-data-discrepancy_20260522T234122_result.json",
     "occurrence": 1,
-    "bytes": 1446,
-    "sha256": "fd3ff4d6fadfa088af2fc5d7a3170999b68a9609460a5722520b26fadc4fd918"
+    "bytes": 1445,
+    "sha256": "d29df2a8dc365082dc6598bd7d5003c054e39e42b8a7b6043bbec02cda1d5495"
   },
   "statistics": {
     "messages": 1,

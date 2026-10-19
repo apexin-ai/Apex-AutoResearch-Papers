@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_mvp_launch_pipeline_20260520T125507_result.json",
     "occurrence": 1,
-    "bytes": 928,
-    "sha256": "edbba0ca59ab8b4ac91c276c0ff03e5a8c4423c24ce1e87c9588ebb0b89cdcec"
+    "bytes": 927,
+    "sha256": "fbfbf8c3bc9b566d7647614c987248fdf7d6082c112a815562ac71775f1c2379"
   },
   "statistics": {
     "messages": 1,

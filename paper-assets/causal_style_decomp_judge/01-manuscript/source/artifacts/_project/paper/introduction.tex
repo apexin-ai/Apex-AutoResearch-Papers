@@ -1,0 +1,31 @@
+\section{Introduction}
+
+Large Language Model (LLM) judges have become central infrastructure for NLP evaluation and preference-based alignment training.
+Systems such as AlpacaEval, MT-Bench, and Chatbot Arena rely on LLM judges to score and rank model outputs, and the resulting leaderboards guide both academic research and industry deployment.
+Reinforcement Learning from Human Feedback (RLHF) and Direct Preference Optimization (DPO) pipelines consume judge-generated preferences as reward signals that shape model behavior during alignment.
+The reliability of these judgments carries direct consequences: it determines which models the community considers superior and which response patterns are reinforced.
+As automated judges increasingly mediate both evaluation and training, any systematic bias in their assessments propagates through the entire model development pipeline.
+
+Recent work has converged on a striking finding: \emph{style bias} is the dominant source of unreliability in LLM judges, far outweighing other documented biases such as position or verbosity preference.
+\citet{murugadoss2025sos} show that style features alone explain judge scores with $R = 0.999$, far exceeding the explanatory power of content features.
+\citet{li2026preference} demonstrate that 76--92\% of observed preference signals originate from surface-level style cues rather than substantive quality differences.
+\citet{soumik2026judging} report bias scores of 0.76--0.92 across five different judges.
+Despite this consensus on severity, existing approaches share four critical gaps: (1)~they treat style as a single dimension, typically reducing it to response length; (2)~they rely on correlational analyses that cannot establish causal direction; (3)~population-level corrections such as length-controlled AlpacaEval \citep{dubois2025lc} cannot diagnose per-instance bias; and (4)~no existing method provides black-box, post-hoc, per-axis causal detection.
+Recent multi-feature frameworks such as CASSE \citep{casse2026concise} and FairJudge \citep{wang2026fairjudge} begin to decompose style into finer dimensions, but neither provides causal identification of per-axis effects.
+A further methodological concern compounds these limitations: standard Likert pointwise scoring (integer scales from 1 to 10) exhibits a ceiling effect that masks real bias.
+On our data, 64\% of counterfactual pairs receive identical Likert scores ($\Delta = 0$), and this integer ceiling effect leaves Likert insensitive to style interventions that pairwise comparison readily detects.
+
+We propose Causal Style Decomposition (CSD), a framework that addresses all four gaps.
+Drawing on causal inference methods for text \citep{veitch2020adapting}, CSD operates in three stages: binary style counterfactual generation along a single axis (e.g., formal vs.\ casual), content preservation verification through Natural Language Inference (NLI) entailment and BERTScore filtering, and causal bias measurement via position-controlled pairwise comparison.
+Because CSD requires no access to judge internals and applies post-hoc to any black-box judge, it complements existing population-level approaches and provides finer-grained, per-instance diagnostics.
+Our experiments reveal what we term the \emph{Likert Blindspot}: on the same formality data, Likert scoring yields a corrected Average Treatment Effect (ATE) of $+0.102$ (Cohen's $d = 0.104$, $p = 0.332$, $n = 88$), a non-significant result, while pairwise comparison shows a formal win rate of 69.1\% (Wilson CI: $[55.97\%, 79.72\%]$, sign test $p = 0.006$, $n = 55$ consistent pairs).
+Figure~\ref{fig:likert_blindspot} illustrates this divergence.
+Unlike LC-AlpacaEval \citep{dubois2025lc}, which applies a single population-level length regression, CSD decomposes bias along multiple axes with per-instance causal intervention.
+
+Our contributions are as follows:
+\begin{itemize}
+    \item \textbf{A black-box causal framework} for detecting per-axis style bias in LLM judges through binary counterfactual generation and position-controlled pairwise comparison (Section~\ref{sec:method}).
+    \item \textbf{The Likert Blindspot phenomenon:} empirical evidence that standard pointwise scoring systematically fails to detect style biases that pairwise comparison reveals, with formality bias undetectable by Likert ($p = 0.332$) but significant under pairwise measurement (69.1\%, $p = 0.006$) (Section~\ref{sec:experiments}, Figure~\ref{fig:likert_blindspot}).
+    \item \textbf{Evidence of axis-dependent bias:} \textit{[to be updated with full experimental results across multiple judges and style axes]}.
+    \item \textbf{Practical implications for evaluation methodology:} style bias audits should employ pairwise comparison rather than Likert scoring, and bias must be assessed per axis rather than as a single ``style'' factor (Section~\ref{sec:discussion}).
+\end{itemize}

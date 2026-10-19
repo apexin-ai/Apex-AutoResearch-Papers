@@ -1,0 +1,16 @@
+{
+  "exp_id": "gate_comparison",
+  "project": "causal_style_decomp_judge",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:38:32.232Z",
+    "updated_at": "2026-05-21T10:39:05.974Z",
+    "hypothesis": "Direction-aware NLI gate does not introduce systematic bias compared to strict bidirectional gate — the extra ~21% pairs admitted by direction-aware gating have consistent BT direction with the strict-filtered subset (addresses R3-W2)",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T10:39:06.117582+00:00",
+  "trigger": "update_registry"
+}

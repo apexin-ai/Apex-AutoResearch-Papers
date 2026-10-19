@@ -1,0 +1,15 @@
+{
+  "exp_id": "debiased_verbosity_gpt4o",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:36:47.030Z",
+    "updated_at": "2026-05-21T15:36:50.486Z",
+    "hypothesis": "Debiased prompt intervention for verbosity axis on GPT-4o should show partial but insufficient bias reduction, consistent with formality results showing style bias is deeper than prompt-level — but verbosity may be more amenable to prompt-level correction than formality since the debiasing instruction can explicitly reference length/detail"
+  },
+  "timestamp": "2026-05-21T15:36:50.607930+00:00",
+  "trigger": "update_registry"
+}

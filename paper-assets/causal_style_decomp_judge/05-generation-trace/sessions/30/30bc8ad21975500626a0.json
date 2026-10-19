@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_placebo_bt_fix_20260521T140025_result.json",
     "occurrence": 1,
-    "bytes": 1298,
-    "sha256": "89c383c821dd874ec43203cfaecca3ed4a4eecb9dbce7caf092b9d74513c8c74"
+    "bytes": 1297,
+    "sha256": "09b56941ab198b89b8e8e879ecfdab395aaedb2aa6ad0aeface0cef6dfe915e8"
   },
   "statistics": {
     "messages": 1,

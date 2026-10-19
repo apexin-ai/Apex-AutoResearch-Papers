@@ -1,0 +1,108 @@
+paper_key: "casse_2026"
+title: "A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - "Neutral prompt (no style instruction, control condition)"
+    - "Only Main feature prompt (single style feature)"
+    - "Only Side feature prompt (single style feature)"
+    - "Prompt Intervention (concatenated main + side feature prompt)"
+    - "Steering Intervention (Contrastive Activation Addition vectors)"
+  metrics:
+    - {name: "Win Rate (pairwise LLM-as-Judge)", direction: "higher_better"}
+    - {name: "Main Feature Win Rate", direction: "higher_better"}
+    - {name: "Side Feature Win Rate", direction: "higher_better"}
+    - {name: "Length Win Rate", direction: "context_dependent"}
+  datasets:
+    - {name: "LMSYS-Chat-1M", size: "10 topics, 10 conversations per topic (task-oriented domain)"}
+    - {name: "DailyDialog", size: "10 topics, 10 conversations per topic (open-domain)"}
+    - {name: "CASSE (released dataset)", size: "12,200 synthetically generated messages across 12 style features, 2 domains, 3 models"}
+    - {name: "ACL Anthology survey corpus", size: "127 papers (Jan 2023 - Jun 2025)"}
+  ablation_dimensions:
+    - "style feature (12 features: concise, expert, helpful, empathetic, friendly, detailed, engaging, curious, polite, impartial, outgoing, efficient)"
+    - "generation model (GPT-5-mini, Qwen3-8B, Llama-3-8B-Instruct)"
+    - "domain (task-oriented vs open-domain)"
+    - "mitigation strategy (prompt intervention vs steering intervention)"
+    - "feature pair interaction (12x12 matrix = 144 pairs)"
+  training_recipe:
+    optimizer: "N/A (inference-based study; steering vectors extracted via Contrastive Activation Addition)"
+    lr: "N/A"
+    hardware: "Not specified; smaller models (8B params) suggest single-GPU feasible"
+    temperature: "0.7 for Qwen3/Llama; 1.0 for GPT-5-mini"
+    sampling: "5 responses per message"
+    judge_model: "Qwen3-8B"
+  method_family: "Style feature entanglement analysis / causal style interaction / steering vectors"
+
+positioning:
+  core_claim: "Style features in LLMs are deeply entangled rather than independently controllable — prompting for one style (e.g., conciseness) systematically suppresses other styles (e.g., expertise), and mitigation attempts face an 'alignment tax' where restoring suppressed traits degrades the primary style"
+  key_results: "Concise prompt reduces Expert win rate to 25.6%; Efficient prompt reduces Helpful to 33.8%; prompt intervention restoring Helpful from 59% to 94.5% degrades Main feature from 53.2% to 39.4%; steering intervention restoring Expert from 29.8% to 66% degrades Main from 81.2% to 36.7%; asymmetric causal relationships (Expert->Efficient: 66.0% vs Efficient->Expert: 34.6%)"
+  limitations:
+    - "Findings based on short synthetic responses, not multi-turn human interactions (ecological validity)"
+    - "Testing limited to smaller models due to compute constraints"
+    - "Only simple prompt concatenation and steering tested; more sophisticated approaches remain unexplored"
+    - "English-only evaluation"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Style prompting is ubiquitous in conversational agent design — everyone does it, but nobody has tested the assumption that style features are independently controllable"
+  tension: "Developers routinely use system instructions like 'be empathetic' or 'be concise' assuming these are orthogonal knobs, but style features may be entangled in high-dimensional space with unintended cross-feature effects"
+  key_insight: "The 12x12 win-rate matrix (Figure 3) reveals structured, asymmetric causal relationships between style features — this is not random noise but systematic entanglement with directionality (e.g., Expert promotes Efficient at 66% but Efficient suppresses Expert to 34.6%)"
+  argument_chain: "Style prompting ubiquitous → assumption of independence untested → survey 127 papers to identify 12 key features → generate 12,200 messages with controlled prompts → build 12x12 interaction matrix → discover structured side effects with causal directionality → test mitigation (prompt + steering) → find 'alignment tax' tradeoff → call for multi-objective approaches"
+  contribution_framing: "4 contributions as bullet points: comprehensive survey (127 papers), CASSE dataset (12,200 messages), empirical identification of structured stylistic side effects, comparative evaluation of mitigation strategies"
+  intro_structure: "4 paragraphs: P1=ubiquity of style prompting hook, P2=untested independence assumption and gap, P3=what this paper does (systematic study), P4=contributions list (4 items) + paper organization"
+  notable_technique: "The 'alignment tax' framing — naming the tradeoff between restoring suppressed features and degrading primary features. This reframes style control from a single-objective problem to a Pareto optimization challenge, which is a powerful conceptual contribution beyond the empirical findings."
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "Flowchart showing the study pipeline: ACL Anthology survey -> 12 style features -> message generation (2 domains x 3 models) -> side effect identification (12x12 matrix) -> mitigation strategies (prompt + steering)"
+    narrative_role: "Provides a roadmap of the entire study, establishing scope and methodology at a glance before diving into details"
+    design_elements: ["flowchart layout", "left-to-right progression", "domain/model branching", "color-coded stages"]
+    visual_style: "Pipeline/flowchart with boxes connected by arrows, progressing from data collection through analysis to mitigation"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "heatmap"
+      what_compared: "12x12 win-rate matrix showing how prompting each style feature (rows) affects all other features (columns), averaged across 3 models"
+      how_gain_highlighted: "Red = positive alignment (>50% win rate), Blue = negative impact (<50%); intensity encodes magnitude of effect"
+      design_note: "Heatmap is the ideal viz for dense pairwise interaction data; the Length column as a 13th dimension reveals length as a mediating factor; asymmetry in the matrix is the key visual discovery"
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "Main Feature and Side Feature win rates under 4 conditions (Only Main, Only Side, Prompting intervention, Steering intervention) for 5 critical feature pairs"
+      how_gain_highlighted: "Dual-panel layout (top=Main, bottom=Side) makes the alignment tax visually obvious: Side feature restoration always comes at Main feature cost"
+      design_note: "Paired bar chart makes the tradeoff immediately visible; grouping by feature pair rather than by intervention method emphasizes that the tradeoff is structural, not strategy-specific"
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "qualitative_comparison"
+      dimensions_varied: ["ACL paper filtering pipeline", "style feature extraction and clustering"]
+      design_note: "Data collection pipeline figure establishes methodological rigor for the survey component; hierarchical clustering visualization shows how 12 features were derived"
+    - figure_id: "Figure 6 (Appendix)"
+      viz_type: "heatmap"
+      dimensions_varied: ["model (GPT-5-mini, Qwen3-8B, Llama-3-8B)", "domain (task-oriented, open-domain)"]
+      design_note: "Full per-model per-domain heatmaps in appendix show model-dependence of causal relationships; keeps main text clean while providing complete evidence"
+  figure_narrative_role: "Figure 1 (pipeline overview) -> Figure 2 (data collection) -> Figure 3 (core finding: interaction matrix) -> Figure 4 (mitigation tradeoff) -> Figure 6 (appendix: per-model/domain detail): moves from methodology overview -> data grounding -> discovery -> attempted solutions -> exhaustive evidence"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods (Only Main, Only Side, Prompting, Steering) grouped by model (Llama3, Qwen3)"
+    col_axis: "feature pairs (Efficient-Helpful, Concise-Expert, Curious-Empathetic, Engaging-Impartial, Polite-Efficient)"
+    row_organization: "by_category (grouped by model, then by intervention type within each model)"
+    col_organization: "grouped_by_metric (Main Feature win rate and Side Feature win rate for each pair)"
+    highlight_strategy: "significance indicators for statistical tests"
+    statistical_reporting: "win rate percentages with significance markers"
+    num_baselines: 4
+    design_note: "Compact table packing multiple feature pairs and conditions; the 4-condition comparison (Only Main, Only Side, Prompting, Steering) within each model makes the alignment tax quantifiable for each specific pair"
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["critical side effect pairs (Prompted Feature, Side Effect, Model, Domain)"]
+      variation_style: "full_numbers"
+      design_note: "Selection table for mitigation experiments — shows which feature pairs exhibit the most severe side effects and were chosen for deeper study; acts as a bridge between the discovery phase (Figure 3) and mitigation phase (Table 2)"
+  supplementary_tables:
+    in_appendix: true
+    content: "Full win-rate matrices per model per domain (Appendix E), additional statistical tests, complete feature extraction details from survey"
+    reason: "Main paper focuses on aggregate patterns and critical pairs; per-model per-domain breakdowns are extensive (3 models x 2 domains x 12x12 matrix) and better suited for appendix reference"

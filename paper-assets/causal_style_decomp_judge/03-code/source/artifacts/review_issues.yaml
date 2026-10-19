@@ -1,0 +1,1059 @@
+issues:
+  # ============================================================
+  # Round 1-4 issues (all resolved)
+  # ============================================================
+
+  - id: "R1-N1"
+    summary: "标题 'Causal Style Decomposition' 与 §3.5 因果声明 disclaimer 实质性矛盾"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 5
+    resolution: "Title changed to 'Likert Blindspot'. §3.5 renamed 'Design Rationale'."
+    resolution_round: 4
+
+  - id: "R2-N1"
+    summary: "Novelty 不足——Likert Blindspot 是心理测量学已知现象的 domain transfer"
+    category: framing
+    severity: warning
+    status: in_progress
+    first_raised_round: 1
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "两位 Reviewer 独立确认 novelty 主要来自 domain transfer（Thurstone 1927 已知）。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-R2 列为 Must-Fix。共识：将 'the first' 改为 'a unified framework'。"
+      - round: 9
+        reviewers: [1, 2]
+        note: "R9 fresh review 两位 Reviewer 独立再次提出。"
+      - round: 10
+        reviewers: [1, 2]
+        note: "R10 fresh review MF2: 再次独立确认。"
+      - round: 11
+        reviewers: [1, 2]
+        note: "R11 fresh review: R2 列为 Must-Fix (critical)，R1 交叉 [AGREE]。"
+      - round: 12
+        reviewers: [1, 2]
+        note: "R12 fresh review: R2 Must-Fix N2 (critical)，R1 Excitement 3.5/5。"
+      - round: 13
+        reviewers: [1, 2]
+        note: "R13 fresh review: R2 Must-Fix (N2)。R1 REBUT——GEE 分解是增量贡献。"
+      - round: 14
+        reviewers: [1, 2]
+        note: "R14 fresh review: R2 Must-Fix N3，R1 交叉 AGREE。"
+      - round: 15
+        reviewers: [1, 2]
+        note: "R15 fresh review: 两位再次独立提出。"
+      - round: 16
+        reviewers: [1, 2]
+        note: "R16: S4 称 GEE decomposition 是'真正的方法论贡献'——首次获正面评价。但仍认为 GEE 被 undersold。Intro 3 个 LLM-specific distinctions 被认可。"
+      - round: 17
+        reviewers: [1, 2]
+        note: "R17 fresh: R2 列为 Must-Fix N1 (critical)——三个 LLM-specific distinctions 被夸大。R1 交叉部分同意。共识：重新定位为 'empirical characterization + novel diagnostic layer'。"
+      - round: 18
+        reviewers: [1, 2]
+        note: "R18 fresh: R2 Must-Fix N1——(c) binary split 被论文自己承认与经典理论一致，不构成 LLM-specific distinction。R1 交叉 AGREE 但指出 GEE per-axis decomposition 是 genuine contribution。共识：定位为 'systematic empirical demonstration + per-axis structure discovery + practical diagnostic tool'，降低 'new phenomenon' 暗示。"
+      - round: 19
+        reviewers: [1, 2]
+        note: "R19 fresh: R2 再次列为 Must-Fix (Excitement 3.0 的主因)。R1 REBUT severity——认为 per-axis confound structure differences (Table 2) 是此前文献未报告的实质性发现，建议降级为 Should-Fix。分歧持续：R2 认为 Must-Fix，R1 认为 Should-Fix。"
+    action_items:
+      - round: 17
+        action: "Intro 三个 LLM-specific distinctions 需重新措辞"
+        assigned_to: paper_agent
+        status: in_progress
+      - round: 18
+        action: "删除 (c) binary split 作为独立 LLM-specific distinction（或降级为'与经典理论一致的验证'）；Title/Abstract 降低 'new phenomenon' 暗示，改为 'systematic demonstration reveals per-axis structure not predicted by classical theory'"
+        assigned_to: paper_agent
+        status: in_progress
+
+  - id: "R1-N2"
+    summary: "NLI gate 67% false-negative rate 造成选择偏差未分析"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "§nli_validation: FNR 8.4%, precision 98.9%, AC1=0.89"
+    resolution_round: 1
+
+  - id: "R1-N3"
+    summary: "NLI 阈值 0.90 无 justification"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 4
+    resolution: "Threshold on plateau, robust 0.70-0.95."
+    resolution_round: 1
+
+  - id: "R2-N2"
+    summary: "RATE 批评缺乏 matched replication"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "§likert_pairwise h2h on same data"
+    resolution_round: 1
+
+  - id: "R2-N3"
+    summary: "引用系统严重不完整"
+    category: format
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "22 verified refs, 0 broken"
+    resolution_round: 1
+
+  - id: "R1-W1"
+    summary: "Likert baseline 可能不公平——未使用 ordinal regression"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "Table 2: all 7 Likert methods fail"
+    resolution_round: 1
+
+  - id: "R1-W2"
+    summary: "Consistency filtering data loss"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "BT on all data LOWER than filtered"
+    resolution_round: 1
+
+  - id: "R1-W3"
+    summary: "Original preference confound"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "Per-cell GEE decomposition"
+    resolution_round: 1
+
+  - id: "R1-W4"
+    summary: "Multiple comparison correction 不一致"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 4
+    resolution: "§stat_framework defines trichotomy"
+    resolution_round: 1
+
+  - id: "R1-W5"
+    summary: "Post-hoc power analysis"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "Power curve is illustrative"
+    resolution_round: 1
+
+  - id: "R2-W1"
+    summary: "范围过窄——仅 formality 有完整结果"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "Complete 2x3 matrix + cross-benchmark"
+    resolution_round: 1
+
+  - id: "R2-W2"
+    summary: "缺少 Bradley-Terry"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "BT with pair-level bootstrap"
+    resolution_round: 1
+
+  - id: "R2-W3"
+    summary: "Related work 不完整"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "Comprehensive coverage"
+    resolution_round: 1
+
+  - id: "R2-W4"
+    summary: "全文零图表"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "3 figures + forest plot"
+    resolution_round: 1
+
+  - id: "CROSS-1"
+    summary: "Blindspot 实为 efficiency gap"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    resolution: "论文已重新定位为 diagnostic methodology"
+    resolution_round: 2
+
+  # ============================================================
+  # Round 13-16 issues
+  # ============================================================
+
+  - id: "R13-SF1"
+    summary: "Table 1 BT 估计包含方向不对称混淆——主文未标注"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 13
+    last_seen_round: 16
+    resolution: "Table 1 已拆为 LLMBar primary only，cross-benchmark 移至 Appendix T。脚注包含方向不对称信息。"
+    resolution_round: 16
+
+  - id: "R14-N1"
+    summary: "与 RATE 的差异化论证组织分散"
+    category: writing
+    severity: warning
+    status: in_progress
+    first_raised_round: 14
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 14
+        reviewers: [2]
+        note: "R2 Should-Fix W2: RATE 在 Related Work 中分散讨论。"
+      - round: 16
+        reviewers: []
+        note: "R16 未被显式提及。Related Work RATE 段落已改善。"
+      - round: 17
+        reviewers: []
+        note: "R17 未被显式提及。Related Work 中 RATE 定位被两位 Reviewer 评为'准确且诚实'(R1-S4)。"
+      - round: 18
+        reviewers: []
+        note: "R18 未被显式提及。R2 在 N1 中讨论 RATE 差异化但未将其列为独立问题。可能已充分改善。"
+      - round: 19
+        reviewers: []
+        note: "R19 未被独立提出。可能已充分解决。"
+
+  - id: "R15-N1"
+    summary: "'Blindspot' 因果归因超出证据——Title/framing 偏向 Likert attenuation 解释"
+    category: framing
+    severity: critical
+    status: in_progress
+    first_raised_round: 15
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 15
+        reviewers: [1, 2]
+        note: "R1-N1 + R2-N2 双方独立提出，交叉全部 AGREE。"
+      - round: 16
+        reviewers: [1, 2]
+        note: "R16 M1: Title 仍隐含 Likert 有缺陷。采用 Option C（保持 title + 充实 construct divergence）。"
+      - round: 17
+        reviewers: [1, 2]
+        note: "R17: R2 Must-Fix N3 再次提出。R1 交叉 REBUT——'Blindspot' 有操作性定义。分歧：R2 要改标题，R1 要保留+更早 qualify。"
+      - round: 18
+        reviewers: [1, 2]
+        note: "R18: R2 Should-Fix W1 再次提出——Title 预设 attenuation 解释，与三种非排他解释矛盾。R1 交叉 AGREE 但认为严重程度中等（证据权重支持 attenuation）。共识：保留 Title 但在 Abstract 更早 qualify。"
+      - round: 19
+        reviewers: [1, 2]
+        note: "R19: R2 初审 N1 再次提出（'Blindspot' 隐含 Likert 有缺陷，与 §5.1 三种非排他解释不一致）。R1 交叉 AGREE。R2 在交叉中进一步论证：未测试的 18 cells 可能包含反例，将直接挑战单向性叙事。共识：标题可保留但 Abstract/Intro 必须更早 qualify。"
+    action_items:
+      - round: 17
+        action: "保留 Blindspot title，但在 Abstract 更早引入操作性定义和三种解释的 qualification"
+        assigned_to: paper_agent
+        status: in_progress
+      - round: 18
+        action: "Abstract 中加入明确 hedge，如 'an operational descriptor without committing to a specific causal mechanism'；确保读者不从标题获得单一方向印象"
+        assigned_to: paper_agent
+        status: in_progress
+
+  - id: "R15-N2"
+    summary: "Negative control (Claude Sonnet 4) TOST 在 Δ=10pp 时统计力不足（power≈42%）"
+    category: experiment
+    severity: critical
+    status: in_progress
+    first_raised_round: 15
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 15
+        reviewers: [1, 2]
+        note: "R1-N2 提出，R2 交叉 AGREE 并升级为关键问题。"
+      - round: 16
+        reviewers: [1, 2]
+        note: "R16 MF2: 三条 convergent evidence 每条单独仍不足。"
+      - round: 17
+        reviewers: [1, 2]
+        note: "R17: R1 Must-Fix N3 系统解构四条证据线。共识：降级为 'lower-sensitivity judge'。"
+      - round: 18
+        reviewers: [1, 2]
+        note: "R18: R1 Should-Fix W3——TOST Δ=12pp 才显著(p=.035)，Δ=10pp 不显著，BF₀<3 inconclusive，等价边界 data-driven。R2 交叉 AGREE 但指出 Claude 的价值更在于 discriminative validity（LLMBar n.s. vs AEval significant）而非 equivalence testing。共识：弱化 'negative control' claim，强调 'discriminative validity' 角色。"
+      - round: 19
+        reviewers: [1, 2]
+        note: "R19: R1-W3 再次提出 TOST Δ=12pp 过宽松。R2 交叉 AGREE 且补充关键新发现：Claude 在 AEval verbosity 上有 genuine style sensitivity (Style OR=4.76, p<.001)——TOST 仅基于 LLMBar 数据，扩展到 AEval 后 Claude 不满足等价条件。R1 在交叉中确认此为重要遗漏发现，建议将 Claude 重定位为 'partial negative control'。共识：Claude 作为 negative control 的论证需要根本性重新框定。"
+    action_items:
+      - round: 18
+        action: "将 Claude 定位为 'weak-bias case' 或 'discriminative validity evidence' 而非 'negative control'；提供等价边界的独立（非 data-driven）理由"
+        assigned_to: paper_agent
+        status: in_progress
+      - round: 19
+        action: "正文必须明确讨论 Claude AEval verbosity Style OR=4.76 (p<.001)——Claude 并非 universally style-insensitive。§5.4 TOST 论述需限定为 LLMBar-only 或整体重写。discriminative validity 需改为 'benchmark-specific discriminative validity'"
+        assigned_to: paper_agent
+        status: open
+
+  - id: "R15-N3"
+    summary: "GEE decomposition 在 n=88 下 CI 极宽，n=88→n=355 时 OR 缩水 49%"
+    category: method
+    severity: warning
+    status: in_progress
+    first_raised_round: 15
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 15
+        reviewers: [1, 2]
+        note: "R1-N3 提出，R2 交叉 AGREE。"
+      - round: 16
+        reviewers: [1, 2]
+        note: "R16 SF1: 降级为 Should-Fix。Projection 论证足够。"
+      - round: 17
+        reviewers: [1, 2]
+        note: "R17: R1 升级为 Must-Fix N1——Table 2 其他 11 个 n=88 cell 以 face value 呈现。共识：n=88 OR 应标注为上界估计。"
+      - round: 18
+        reviewers: [1, 2]
+        note: "R18: R1 Must-Fix N1——49% shrinkage 已证实，GPT-4o formality OR 2.58 经 shrinkage 后约 1.32 可能失去显著性。verbosity 外推(4-6.5)未经实证验证。R2 AGREE 但区分影响：Blindspot 存在性(BT 非参数)不受影响，GEE 定量结论受影响。共识：至少对一个 verbosity cell 做 n=355 复制，或将 verbosity GEE 结论标注为 projected。"
+      - round: 19
+        reviewers: [1, 2]
+        note: "R19: R1 Should-Fix W1——n=355 示 49-72% shrinkage，正文以 n=88 膨胀值为主。R2 交叉 AGREE 且补充：shrinkage 后 n=355 OR 仍显著（GPT-4o: 2.58→保守估计, Qwen3: 2.15, p<.0001），核心结论不变但 effect magnitude 报告需校正。共识：Table 2 应并列报告 n=88 和 n=355 估计。"
+    action_items:
+      - round: 18
+        action: "(1) 至少一个 verbosity cell 做 n=355 复制验证 shrinkage 预测；(2) 正文更突出地标注 n=88 OR 为 upper-bound estimates；(3) GPT-4o formality 讨论 shrinkage 后可能失去显著性的风险"
+        assigned_to: paper_agent
+        status: in_progress
+
+  - id: "R15-W1"
+    summary: "仅 2 个表层风格轴无法支撑 'systematic pattern' 的通用性 claim"
+    category: framing
+    severity: critical
+    status: in_progress
+    first_raised_round: 15
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 15
+        reviewers: [1, 2]
+        note: "R2-N1 + R1-W1 双方独立提出。"
+      - round: 16
+        reviewers: [1, 2]
+        note: "R16 MF3: 升级为 Must-Fix。'systematically' 已替换为 'consistently' 在 5 处。"
+      - round: 17
+        reviewers: [1, 2]
+        note: "R17: R2 Must-Fix N2——'consistently divergent' 仍过强。共识：Abstract 需更精确措辞。"
+      - round: 18
+        reviewers: [1, 2]
+        note: "R18: R2 Should-Fix W4——'consistent pattern' 与 ~30% exception rate 有张力（Claude, Gemini formality, 6/24 cross-benchmark）。R1 REBUT——Claude 是负对照不是例外，Gemini 是 spectrum，实际一致性 8/8 bias-positive cells。分歧：R2 认为应改 'predominant pattern'，R1 认为 'consistent' 在 primary cells 范围内合理。"
+      - round: 19
+        reviewers: [1, 2]
+        note: "R19: R2 Should-Fix W4 再次提出（'consistent pattern' 措辞过强）。R1 交叉 AGREE 且补充：Appendix X Table 24 显示 Claude AEval verbosity Style OR=4.76 (p<.001)，进一步削弱 'consistent' 表述。R2 交叉中部分 REBUT R1-W5——两轴已揭示结构性差异(verbosity vs formality confound patterns)，建议在 Limitations 列为限制而非 Must-Fix。分歧程度中等。"
+    action_items:
+      - round: 18
+        action: "在 §6 Conclusion 量化复制率（e.g. '8/11 primary+confirmatory cells, 6/24 cross-benchmark cells'），让读者自行判断 consistency"
+        assigned_to: paper_agent
+        status: in_progress
+
+  - id: "R15-W2"
+    summary: "Human annotation 验证规模偏小（50 pairs, κ=0.44），A2 pass precision 下界仅 65.3%"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 15
+    last_seen_round: 17
+    resolution: "100-pair annotation (50 formality + 50 verbosity, 70 NLI-pass + 30 NLI-fail): gate pass precision=98.6% (69/70, both annotators concordant), AC₁=0.96. Only 2/70 NLI-pass flagged by either annotator. Gate conservative: 93-100% of NLI-fail also preserve meaning (false rejection dominant). κ paradox (−0.015) due to >96% positive prevalence (Feinstein & Cicchetti 1990)."
+    resolution_round: 17
+
+  - id: "R15-W3"
+    summary: "100-point continuous Likert scale 实验仅在 Qwen3-32B 上测试"
+    category: experiment
+    severity: info
+    status: resolved
+    first_raised_round: 15
+    last_seen_round: 16
+    resolution: "三 judge (GPT-4o/Qwen3/Llama-70B) 100-point Likert 全部 NS (p>0.15)，Appendix L 已更新为三 judge 对比表。"
+    resolution_round: 16
+
+  - id: "R15-W4"
+    summary: "FK grade d=0.50 cross-axis contamination 处理不够严谨"
+    category: method
+    severity: warning
+    status: in_progress
+    first_raised_round: 15
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 15
+        reviewers: [1, 2]
+        note: "R1-W2 提出，R2 交叉 AGREE。"
+      - round: 16
+        reviewers: [1, 2]
+        note: "R16 SF4: FK 作为 GEE 协变量分析完成。Style OR 下降 20-51%，GPT-4o 变 NS。"
+      - round: 17
+        reviewers: [1, 2]
+        note: "R17: R1 Must-Fix N2——GPT-4o formality Style OR 在 FK control 下失去显著性。共识：需在正文讨论 FK 因果角色。"
+      - round: 18
+        reviewers: [1, 2]
+        note: "R18: R1 Should-Fix W4——Sobel 建立统计中介非因果中介，替代因果结构(FK 为 collider)统计上不可区分。R2 交叉 AGREE 但认为 S→FK 方向 a priori reasonable。共识：将 mediator claim 降级为 'plausible under assumed causal model' 而非 definitive。"
+      - round: 19
+        reviewers: [1, 2]
+        note: "R19 未被独立提出为新 issue。间接涉及：R1 §3.1 因果语言与 Appendix A disclaimer 不一致(W4)。R2 交叉 AGREE。"
+
+  - id: "R15-W5"
+    summary: "Evaluator-producer overlap mitigation 仅测试一个替代 rewriter（GPT-4o），22% OR 降幅不小"
+    category: experiment
+    severity: warning
+    status: in_progress
+    first_raised_round: 15
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 15
+        reviewers: [1, 2]
+        note: "R1-W3 提出，R2 交叉 AGREE。"
+      - round: 16
+        reviewers: [1, 2]
+        note: "R16 SF3: Limitations 需讨论 22% 作为 lower bound。"
+      - round: 17
+        reviewers: [1, 2]
+        note: "R17: R1 Should-Fix W1 再次提出——缺 rule-based rewriter。"
+      - round: 18
+        reviewers: [1, 2]
+        note: "R18: R1 Should-Fix W2 + R2 Should-Fix W2 双方再次独立提出。R1 补充：n=355 复制恰好选用有 overlap 的 Qwen3-32B，不是最 clean 的验证。overlap inflation 是 axis-dependent（verbosity 22% > formality 2.1pp）。共识：更突出标注 overlap caveat，建议至少一个 scaled replication 用非 overlap 配置。"
+      - round: 19
+        reviewers: [1, 2]
+        note: "R19: R1 Should-Fix W2 + R2 Should-Fix W1 双方再次独立提出。22% inflation 被再次确认。R2 在交叉中明确：正文 §5.4 未显著讨论，仅 Table 1 脚注 b 提及。共识：需更突出讨论，Limitations 应明确讨论 overlap 对不同 axis 的差异化影响。"
+    action_items:
+      - round: 18
+        action: "(1) Table 1 脚注标注 Qwen3-32B 的 evaluator-producer overlap caveat；(2) 建议 n=355 复制使用非 overlap 配置（Qwen3 rewriter → GPT-4o judge 或反向）"
+        assigned_to: paper_agent
+        status: in_progress
+
+  - id: "R15-W6"
+    summary: "Table 1 信息密度过高——15 行 + 6 行脚注挤在一个表"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 15
+    last_seen_round: 16
+    resolution: "Table 1 已为 LLMBar-only（4 judges × 2-3 axes），cross-benchmark 在 Appendix Table T。"
+    resolution_round: 16
+
+  - id: "R15-M1"
+    summary: "Rewriting prompt 完整文本未在 Appendix 中给出"
+    category: format
+    severity: info
+    status: resolved
+    first_raised_round: 15
+    last_seen_round: 16
+    resolution: "Appendix V 已添加完整 rewriting prompts"
+    resolution_round: 16
+
+  - id: "R15-M2"
+    summary: "'style bias' vs 'style sensitivity' 措辞不一致"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 15
+    last_seen_round: 16
+    resolution: "全文术语统一：'style sensitivity' 为默认。"
+    resolution_round: 16
+
+  - id: "R15-M3"
+    summary: "Table 2 'Orig OR' 缩写首次出现时未解释"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 15
+    last_seen_round: 16
+    resolution: "Table 2 caption 已展开"
+    resolution_round: 16
+
+  - id: "R15-M4"
+    summary: "References 格式——部分 arXiv preprint 与正式发表版本混用"
+    category: format
+    severity: info
+    status: in_progress
+    first_raised_round: 15
+    last_seen_round: 19
+    mentions:
+      - round: 16
+        reviewers: []
+        note: "R16 未提及，camera-ready 前检查。"
+      - round: 17
+        reviewers: []
+        note: "R17: R2 建议确认 RATE 和 Comparative Trap 引用是否为最新版本。"
+      - round: 18
+        reviewers: []
+        note: "R18 未被显式提及。camera-ready 前仍需检查。"
+      - round: 19
+        reviewers: [1, 2]
+        note: "R19: R2 要求确认 Thurstone (1927) 和 Likert (1932) 原始引用存在且格式正确。R1 指出缺少 Likert (1932) 原始引用。"
+
+  # ============================================================
+  # Round 16 issues
+  # ============================================================
+
+  - id: "R16-W1"
+    summary: "Construct divergence 讨论不充分——与 Abstract 三机制并列承诺不匹配"
+    category: framing
+    severity: warning
+    status: in_progress
+    first_raised_round: 16
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 16
+        reviewers: [2]
+        note: "R2-W4 (Should-Fix): construct divergence 需操作性定义和可检验预测。"
+      - round: 17
+        reviewers: [1, 2]
+        note: "R17: Section 5.1 已有 construct divergence 展开。质量可接受但 Title 与正文仍有张力。"
+      - round: 18
+        reviewers: []
+        note: "R18 未被独立提出，但作为 R15-N1 (Title framing) 的子问题被间接讨论。"
+      - round: 19
+        reviewers: []
+        note: "R19 未被独立提出。作为 R15-N1 的子问题持续存在。"
+
+  - id: "R16-W2"
+    summary: "Cross-benchmark 'severity spectrum' 解释为 post-hoc rationalization"
+    category: framing
+    severity: warning
+    status: in_progress
+    first_raised_round: 16
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 16
+        reviewers: [2]
+        note: "R2-W5: 标记为 post-hoc/exploratory。已添加 'Post hoc,' 前缀。"
+      - round: 17
+        reviewers: []
+        note: "R17 未被显式提及。'Post hoc' 前缀已存在。"
+      - round: 18
+        reviewers: [1]
+        note: "R18: R1-N2 指出 3 个 ‡ exceptions 的 post-hoc 'severity spectrum' 解释未被前瞻性验证。"
+      - round: 19
+        reviewers: [1, 2]
+        note: "R19: R1 Must-Fix N2 + R2 交叉 strongly AGREE。4 个 exception cells (‡) 用 'severity spectrum' 解释更接近 post-hoc rationalization 而非预先注册。R2 额外指出：未测试的 18 cells 可能包含反例。共识：cross-benchmark 应明确标注为 exploratory，'severity spectrum' 降级为 hypothesis-generating。"
+
+  - id: "R16-W3"
+    summary: "BT 模型 unidimensionality 假设与论文核心论点存在张力"
+    category: method
+    severity: info
+    status: in_progress
+    first_raised_round: 16
+    last_seen_round: 18
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 16
+        reviewers: [1, 2]
+        note: "R1-W7 (Minor): §3.3 已添加 BT unidimensionality + GEE 互补说明。"
+      - round: 17
+        reviewers: []
+        note: "R17 未被显式提及。Section 3.3 末句已存在。"
+      - round: 18
+        reviewers: []
+        note: "R18 未被提及。"
+
+  - id: "R16-D1"
+    summary: "Appendix L 100pt Likert 数据归属错误（GPT-4o 误标为 Qwen3-32B）"
+    category: format
+    severity: warning
+    status: resolved
+    first_raised_round: 16
+    last_seen_round: 16
+    resolution: "Appendix L 修正为 GPT-4o 归属，扩展为三 judge 对比表。"
+    resolution_round: 16
+
+  - id: "R16-D2"
+    summary: "Claude LLMBar Likert Table 1 vs Appendix U 数值不一致"
+    category: format
+    severity: warning
+    status: resolved
+    first_raised_round: 16
+    last_seen_round: 16
+    resolution: "Appendix U 统一为 pole-aligned convention。"
+    resolution_round: 16
+
+  - id: "R16-D3"
+    summary: "FK analysis artifact 数据源错误"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 16
+    last_seen_round: 16
+    resolution: "FK 脚本修复为 nli_cf >= 0.90 过滤。"
+    resolution_round: 16
+
+  - id: "R16-Q3"
+    summary: "Direction-aware gating 额外放入的 21 pairs 是否有系统差异"
+    category: method
+    severity: info
+    status: in_progress
+    first_raised_round: 16
+    last_seen_round: 18
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 16
+        reviewers: [1, 2]
+        note: "Permutation test p=.663, BT% 差 4.7pp (NS)。"
+      - round: 17
+        reviewers: [1, 2]
+        note: "R17: Appendix F 实证验证充分(permutation p=.663, 5 judges Fisher p>.66)。"
+      - round: 18
+        reviewers: []
+        note: "R18 未被提及。"
+
+  # ============================================================
+  # Round 17 issues
+  # ============================================================
+
+  - id: "R17-W1"
+    summary: "Cross-benchmark replication 选择性——24 cells 仅填 6 个(25%)，选择最强 cells，可能向上偏倚"
+    category: experiment
+    severity: warning
+    status: in_progress
+    first_raised_round: 17
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 17
+        reviewers: [1, 2]
+        note: "R1 Should-Fix W2 + R2 交叉 AGREE。"
+      - round: 18
+        reviewers: [1, 2]
+        note: "R18: R1 Must-Fix N2——6/24 cells 选择标准为 'targeting the strongest effects'，构成确认偏差。R2 AGREE concern 但建议降级 Should-Fix（论文主 claims 不依赖 cross-benchmark，且已标注为 exploratory）。共识：Contribution 2 措辞需弱化，明确选择标准和 exploratory 性质。"
+      - round: 19
+        reviewers: [1, 2]
+        note: "R19: R1 Must-Fix N2 再次提出——6/24 cells 选择性构成确认偏差系统性威胁。R2 交叉 strongly AGREE 并升级为关键问题，额外指出未测试 18 cells 可能包含反例（Likert 检测到而 pairwise 未检测到），直接挑战 Blindspot 单向性叙事。共识：Must-Fix。"
+    action_items:
+      - round: 18
+        action: "(1) Contribution 2 从 'the first at this scale' 弱化为 'with selective cross-benchmark evidence'；(2) 报告选择标准和未测试 cells 的影响；(3) 考虑补充至少一个中等效应配置"
+        assigned_to: paper_agent
+        status: in_progress
+      - round: 19
+        action: "报告全部 24 cells 的结果（至少在 Appendix），或明确论证为何未测试 cells 不可能出现 Likert-detects-but-BT-misses 的反例"
+        assigned_to: paper_agent
+        status: open
+
+  - id: "R17-W2"
+    summary: "GEE 模型仅含 2 个 predictors (Style, Originality)，omitted variable bias 未讨论"
+    category: method
+    severity: warning
+    status: in_progress
+    first_raised_round: 17
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 17
+        reviewers: [1, 2]
+        note: "R2 Should-Fix W1，R1 交叉 AGREE。"
+      - round: 18
+        reviewers: [1, 2]
+        note: "R18: R1 Should-Fix W5 要求报告 E-value 或 Rosenbaum bounds。R2 部分 REBUT——GEE 定位为 descriptive decomposition 而非因果推断，omitted variable 批评前提不完全成立。但同意报告 E-value 是低成本改进。分歧：R1 认为 should-fix，R2 认为 nice-to-have。"
+      - round: 19
+        reviewers: []
+        note: "R19 未被独立提出。"
+    action_items:
+      - round: 18
+        action: "报告 E-value 量化未观测混淆需要多大才能推翻结论（对 verbosity Style OR 8-13 的 E-value 会非常高，加强论证）"
+        assigned_to: paper_agent
+        status: in_progress
+
+  - id: "R17-W3"
+    summary: "与 Comparative Trap (Jeong et al., 2025) 的关系处理不够充分——六项 controls 不能排除 amplification，未量化 amplification factor"
+    category: framing
+    severity: warning
+    status: in_progress
+    first_raised_round: 17
+    last_seen_round: 18
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 17
+        reviewers: [1, 2]
+        note: "R2 Should-Fix W5，R1 交叉 AGREE。"
+      - round: 18
+        reviewers: []
+        note: "R18 未被独立提出，但 R2-W1 (Title framing) 间接涉及——amplification 是三种解释之一。"
+
+  - id: "R17-M1"
+    summary: "Table 1 'n=88 except where noted' 与 verbosity 实际 n=86 不一致"
+    category: format
+    severity: info
+    status: in_progress
+    first_raised_round: 17
+    last_seen_round: 18
+    mentions:
+      - round: 17
+        reviewers: [1, 2]
+        note: "R1-M1 提出，R2 交叉 AGREE。"
+      - round: 18
+        reviewers: []
+        note: "R18 未被提及。Table 1 caption 已标注 '86 verbosity, except where noted'。"
+
+  - id: "R17-M2"
+    summary: "BT choix library 'default regularization' 未说明具体形式和强度"
+    category: method
+    severity: info
+    status: in_progress
+    first_raised_round: 17
+    last_seen_round: 19
+    mentions:
+      - round: 17
+        reviewers: [1, 2]
+        note: "R1-M5 + R1-Q5 提出，R2 交叉 AGREE。"
+      - round: 18
+        reviewers: [1]
+        note: "R18: R1 minor——α=10⁻⁶ 实质上为零正则化，但在少数高度不一致 pair 上可能导致极端参数估计。建议报告 α 的敏感性。"
+      - round: 19
+        reviewers: [2]
+        note: "R19: R2 核查 LaTeX 源码确认 §4.1 和 Appendix P 均为 α=10⁻⁶，且已有 sensitivity analysis (α从10⁻⁶到1.0变化<0.002)。R1 原指称的 10⁻⁴ vs 10⁻⁷ 不一致系 PDF 渲染误读。问题已澄清。"
+
+  - id: "R17-M3"
+    summary: "Section 3.1 因果语言——'constitutes a binary intervention' 措辞过强"
+    category: writing
+    severity: info
+    status: in_progress
+    first_raised_round: 17
+    last_seen_round: 19
+    mentions:
+      - round: 17
+        reviewers: [1, 2]
+        note: "R1 Should-Fix W4。R2 交叉 REBUT 但同意措辞可改为 'approximates'。"
+      - round: 18
+        reviewers: []
+        note: "R18 未被显式提及。论文 §3.5 已有 'interventional rather than formal causal evidence' disclaimer。"
+      - round: 19
+        reviewers: [1, 2]
+        note: "R19: R1-W4 指出 §3.1 正文与 Appendix A disclaimer 语调不一致——'per-axis causal attribution' vs 'not a complete structural causal model'。R2 交叉 AGREE。"
+
+  - id: "R17-M4"
+    summary: "Figure 2 (DAG) orange dashed S→Q path 在灰度打印下不可辨"
+    category: format
+    severity: info
+    status: in_progress
+    first_raised_round: 17
+    last_seen_round: 18
+    mentions:
+      - round: 17
+        reviewers: [1, 2]
+        note: "R1-M3 + R2-M2 双方独立指出。建议使用不同 line pattern。"
+      - round: 18
+        reviewers: []
+        note: "R18 未被提及。视觉审查 Agent 标注 Figure 2 注释文字字号偏小但未提及灰度可辨性。"
+
+  # ============================================================
+  # Round 19 新发现
+  # ============================================================
+
+  - id: "R19-N1"
+    summary: "Power analysis 'prospective' 标签存在循环论证——使用 observed effect size 计算 power 是 post-hoc power fallacy"
+    category: method
+    severity: critical
+    status: open
+    first_raised_round: 19
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 19
+        reviewers: [1, 2]
+        note: "R1 Must-Fix N1 提出——§4.1 用同一数据集的 observed effect size 计算 power，与 Hoenig & Heisey (2001) 直接矛盾。Figure 4 caption 的 disclaimer '(not post-hoc power; cf. Hoenig & Heisey, 2001)' 用法与该引用核心论点矛盾。R2 交叉 strongly AGREE 且补充：Figure 4 y-axis 'at observed effect magnitudes' 进一步固化 post-hoc 印象。Likert 需 4-206× 样本量作为 sensitivity analysis 有信息价值，但 'prospective' 标签不当。共识：改为 'sensitivity power analysis'。"
+    action_items:
+      - round: 19
+        action: "(1) 将 'prospective power analysis' 改为 'sensitivity power analysis'；(2) 修改 Figure 4 caption 和 y-axis 标签，移除 'not post-hoc' disclaimer（与引用矛盾）；(3) 如有独立 pilot/先验来源说明 effect size 预期，可保留部分 prospective claim"
+        assigned_to: paper_agent
+        status: open
+
+  - id: "R19-W1"
+    summary: "Verbosity same-style double-rewrite BT P(orig)=0.082——91.8% 偏好 LLM-polished 版本暴露严重 rewriting artifact"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 19
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 19
+        reviewers: [1, 2]
+        note: "R1 Should-Fix W5 提出（Table 19, Appendix O）。GEE Orig OR=0.49 (n.s.) 方向与 artifact 一致（<1，偏好 rewrite）但吸收可能不完全。R2 交叉 strongly AGREE 且确认：如果 same-style artifact 幅度(BT P=0.082)远大于 GEE 能吸收的量，verbosity Style OR=13.10 可能仍包含未被控制的 polishing artifact。R1 Q3（artifact 被 Orig OR 吸收多少）是关键问题。共识：需定量比较 same-style BT artifact 与 GEE Orig OR 的吸收量。"
+    action_items:
+      - round: 19
+        action: "定量回答：same-style rewrite artifact (BT P=0.082) 有多少被 GEE Originality term 吸收？如果 Orig OR=0.49 的不显著性反映的是 under-powered（n=88）而非零效应，verbosity Style OR 的 point estimate 需要怎样调整？"
+        assigned_to: paper_agent
+        status: open
+
+  - id: "R19-W2"
+    summary: "TOST 等价界 Δ=12pp 几乎与最小正效应重合——无法区分 'Claude 真的无偏' vs 'Claude 偏差略低于检测阈值'"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 19
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 19
+        reviewers: [1, 2]
+        note: "R1 Should-Fix W3 提出。Appendix H Table 9: pooled TOST Δ=12pp p=.035, Δ=10pp p=.100(NS)。最弱正效应(GPT-4o formality BT=63.0%)仅为 13pp。R2 交叉 AGREE 且承认完全遗漏了此问题。Cohen's h=0.24 的 substantive 含义未讨论。共识：正文承认 Δ=12pp bound 的局限性，不仅在 appendix；报告多个 Δ 值。"
+    action_items:
+      - round: 19
+        action: "(1) 正文(非仅 Appendix)讨论 Δ=12pp 的局限——它与最小正效应(13pp)重合；(2) 讨论 Cohen's h=0.24 在 BT probability 空间中的 substantive 含义"
+        assigned_to: paper_agent
+        status: open
+
+  - id: "R19-W3"
+    summary: "GEE ρ=−0.25 被称为 'near-zero'——不符合 near-zero 的通常标准(|ρ|<0.1)"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 19
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 19
+        reviewers: [1, 2]
+        note: "R1 Minor M2 提出。R2 交叉 AGREE 但指出 Table 3 (Appendix C) robustness test 显示 exchangeable vs independence ΔQIC<0.001, max coefficient change<0.02，结论对 correlation structure 是 robust 的。建议将 'near-zero' 改为 'small in magnitude'。"
+    action_items:
+      - round: 19
+        action: "§4.1 将 'near-zero' 改为 'small in magnitude' 或 'moderate'"
+        assigned_to: paper_agent
+        status: open
+
+  - id: "R19-M1"
+    summary: "缺少 Likert (1932) 原始引用；1-10 整数量表称 'Likert' 严格来说不准确"
+    category: format
+    severity: info
+    status: open
+    first_raised_round: 19
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 19
+        reviewers: [1, 2]
+        note: "R1 指出 Likert (1932) 缺失 + 1-10 scale 严格为 interval rating scale。R2 交叉 AGREE。"
+    action_items:
+      - round: 19
+        action: "添加 Likert (1932) 引用；在首次使用时加一句澄清术语用法"
+        assigned_to: paper_agent
+        status: open
+
+  - id: "R19-M2"
+    summary: "Table 1 'Cat.' 列标注（†, †_e, †_c, ---）难以解析"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 19
+    last_seen_round: 19
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: 19
+        reviewers: [1, 2]
+        note: "R1 minor + R2-M4 独立指出。建议改为更直观的文字标签。"
+    action_items:
+      - round: 19
+        action: "Table 1 Cat. 列改为更直观标签（如 P/E/C/—）并确保 caption 解释清晰"
+        assigned_to: paper_agent
+        status: open
+
+  # ============================================================
+  # Data-truth audit findings (internal verification, 2026-05-25)
+  # ============================================================
+
+  - id: "AUDIT-H1"
+    summary: "Sobel z/p 完全错误——论文 z=2.15/p=.031，正确值 z=3.60/p<.001。根因：FK-controlled Style OR=2.15 被误写为 Sobel z"
+    category: experiment
+    severity: critical
+    status: open
+    first_raised_round: null
+    last_seen_round: null
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: null
+        reviewers: []
+        note: "内部数据审计发现+Agent 重跑确认。根因：fk_gee_covariate.py 的 FK-controlled Style OR=2.1536 被误写为 Sobel z=2.15，然后从错误 z 推导出 p=2×(1-Φ(2.15))=0.0316。正确值来自 fk_length_control_results.json: z=3.595, p=0.000324。方向保守（实际高度显著），mediation 结论更强。ROADMAP D076 记录的 z=1.93/p=.053 可能是不同分析版本，源 JSON 为权威。"
+    action_items:
+      - round: null
+        action: "Camera-ready 修正 Sobel 为 z=3.60, p<.001"
+        assigned_to: paper_agent
+        status: open
+
+  - id: "AUDIT-H2"
+    summary: "'direct-effect Style OR=2.15, total OR=2.70' — 已确认正确（fk_gee_covariate.py 输出）"
+    category: experiment
+    severity: info
+    status: resolved
+    first_raised_round: null
+    last_seen_round: null
+    resolution: "Direct-effect Style OR=2.15 来自 fk_gee_covariate.py GPT-4o with FK control (style_or=2.1536)；Total Style OR=2.70 来自同一脚本 without FK control (style_or=2.7002)。与 Qwen3 n=355 的 2.15 是数值巧合。额外发现：FK-controlled OR=2.15 的 p=0.132（非显著），论文未报告，实为更强的 mediation 证据。"
+    resolution_round: null
+
+  - id: "AUDIT-H3"
+    summary: "Llama-70B AlpacaEval Style OR=7.64 — 已确认正确（来自 r14 修正版 cross_benchmark_local.json）"
+    category: experiment
+    severity: info
+    status: resolved
+    first_raised_round: null
+    last_seen_round: null
+    resolution: "OR=7.64 来自 artifacts/r14_fixes/cross_benchmark_local.json (gee_style_or=7.6361)。旧版 llama70b_crossbench_summary.json 中的 degenerate 值是未过滤数据，r14 修正后 NLI≥0.90 过滤使 GEE 正常收敛(VIF=1.51)。Reviewer 撤回 critical 判定。"
+    resolution_round: null
+
+  - id: "AUDIT-D1"
+    summary: "Appendix tab:claude_crossbench AEval Verbosity Likert d/p 与源 JSON 不一致（d=.252→.298, p=.002→.000441）——保守偏差"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: null
+    last_seen_round: null
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: null
+        reviewers: []
+        note: "内部数据审计发现。源文件 claude_crossbench_results.json cohen_d=0.298, wilcoxon_p=0.000441。论文报 d=.252, p=.002。BT/Style OR/Orig OR 均一致，仅 Likert d/p 不匹配。方向保守（低估效应），不改变 ‡/† 标记。可能原因：Likert 值从早期计算脚本手动填入，源 JSON 后来重新生成但表未同步。"
+    action_items:
+      - round: null
+        action: "Camera-ready 修正为源 JSON 值 (d=.298, p<.001)"
+        assigned_to: paper_agent
+        status: open
+
+  - id: "AUDIT-D2"
+    summary: "Appendix tab:cross_bench GPT-4o MT-Bench Formality Likert d/p 与源 JSON 不一致（d=.111→.135, p=.016→.00748）——保守偏差"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: null
+    last_seen_round: null
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: null
+        reviewers: []
+        note: "内部数据审计发现。源文件 gpt4o_crossbench_results.json cohen_d=0.135, wilcoxon_p=0.00748。论文报 d=.111, p=.016。BT (.692) 一致，仅 Likert d/p 不匹配。方向保守（低估效应），不改变 ‡ 标记。同一根因：Likert 值与源 JSON 版本不同步。"
+    action_items:
+      - round: null
+        action: "Camera-ready 修正为源 JSON 值 (d=.135, p=.007)"
+        assigned_to: paper_agent
+        status: open
+
+  - id: "AUDIT-D3"
+    summary: "nli_threshold_sweep.json 中 formality_gpt4o 条目引用了错误数据文件（pairwise_results_32b.jsonl）"
+    category: experiment
+    severity: info
+    status: open
+    first_raised_round: null
+    last_seen_round: null
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: null
+        reviewers: []
+        note: "内部数据审计发现。sweep 配置中 GPT-4o formality 引用 pairwise_results_32b.jsonl（Qwen3-32B 文件），导致 sweep 报告 BT=62.3% vs 论文 63.0%。不影响论文正确性（sweep 是工具性中间产物），但如 code release 时不修正会导致 reproduce 混淆。"
+    action_items:
+      - round: null
+        action: "Code release 前修正 sweep 配置文件中的数据源引用"
+        assigned_to: main_agent
+        status: open
+
+  - id: "AUDIT-M1"
+    summary: "sign test p=0.006 vs 源 p=0.0015——混用两个分析版本"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: null
+    last_seen_round: null
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: null
+        reviewers: []
+        note: "内部数据审计发现。论文 sign test p=0.006（可能对应 n=46 时），源文件 p=0.0015。保守偏差。"
+    action_items:
+      - round: null
+        action: "Camera-ready 确认 n 值并修正 p"
+        assigned_to: paper_agent
+        status: open
+
+  - id: "AUDIT-M2"
+    summary: "verbosity 方向百分比 90.7%/80.6% vs 源 91.2%/82.8%"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: null
+    last_seen_round: null
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: null
+        reviewers: []
+        note: "内部数据审计发现。方向百分比偏差约 1-2pp，可能来自不同过滤条件。"
+    action_items:
+      - round: null
+        action: "Camera-ready 确认过滤条件后统一数值"
+        assigned_to: paper_agent
+        status: open
+
+  - id: "AUDIT-M4"
+    summary: "100pt scaling 'all three judges p>0.15' — 已确认正确（限定 formality axis，p=0.725/0.154/0.440）"
+    category: experiment
+    severity: info
+    status: resolved
+    first_raised_round: null
+    last_seen_round: null
+    resolution: null
+    resolution_round: null
+    mentions:
+      - round: null
+        reviewers: []
+        note: "内部数据审计发现。论文称 100-point Likert 所有三个 judge p>0.15，但 GPT-4o verbosity p=0.067<0.15。不影响 NS 结论（仍 p>0.05），但 p>0.15 的表述不准确。"
+    action_items:
+      - round: null
+        action: "Camera-ready 修正为 'all three judges p>0.05' 或精确报告各 p 值"
+        assigned_to: paper_agent
+        status: open

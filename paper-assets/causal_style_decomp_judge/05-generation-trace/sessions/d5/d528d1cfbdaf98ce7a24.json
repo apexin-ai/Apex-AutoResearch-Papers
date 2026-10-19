@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_alpacaeval_verbosity_qwen32b_20260521T082429_result.json",
     "occurrence": 1,
-    "bytes": 967,
-    "sha256": "362275e5397ea1e343be22c8195db5b9c5ba7c76af8e846f94e70dfe86ffacfb"
+    "bytes": 966,
+    "sha256": "59bd9a35932ab1f43c5497d24f5e5a64ddf83b371ccfc4cb376f0e4d1672d6d5"
   },
   "statistics": {
     "messages": 1,

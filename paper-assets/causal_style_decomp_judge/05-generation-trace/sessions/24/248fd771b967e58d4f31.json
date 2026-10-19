@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_8b_readiness_check_20260520T103245_result.json",
     "occurrence": 1,
-    "bytes": 755,
-    "sha256": "fee79d7d0270f092c83cc9bfa67b5a24e269d8a251699d35c471374cfcd7f78c"
+    "bytes": 754,
+    "sha256": "d7dae678bcc97f790eae7f0fb38e78efe0f77f9c3e66e7edc2da21dc8c649326"
   },
   "statistics": {
     "messages": 1,

@@ -7,7 +7,7 @@
     "messages": 73378,
     "user_turns": 2385,
     "tool_calls": 30580,
-    "unparsed_lines": 214,
+    "unparsed_lines": 215,
     "result": 211,
     "worker": 221,
     "conversation": 69,
@@ -6166,7 +6166,7 @@
       "ended_at": null,
       "preview": "",
       "reported_errors": 0,
-      "unparsed_lines": 0,
+      "unparsed_lines": 1,
       "readable_path": "readable/task-results/code-formality-rewriter-independence.md",
       "path": "sessions/d1/d189bccc593d7968b1e5.json"
     },

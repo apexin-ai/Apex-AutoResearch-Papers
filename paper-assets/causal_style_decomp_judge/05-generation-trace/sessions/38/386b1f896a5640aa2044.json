@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_nli_gate_fn_selection_bias_20260521T101850_result.json",
     "occurrence": 1,
-    "bytes": 1934,
-    "sha256": "9f5a5d0dc5f116e2da47be41485e316a859c712c5de2d89c994135f08d5b365f"
+    "bytes": 1933,
+    "sha256": "50edeb9ff285ed2bd28ecb98cd7672ac3d1915e483d4e97e095b7e533e62a2e8"
   },
   "statistics": {
     "messages": 1,

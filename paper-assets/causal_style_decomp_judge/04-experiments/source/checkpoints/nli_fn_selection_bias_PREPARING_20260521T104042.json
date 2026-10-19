@@ -1,0 +1,16 @@
+{
+  "exp_id": "nli_fn_selection_bias",
+  "project": "causal_style_decomp_judge",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:40:38.454Z",
+    "updated_at": "2026-05-21T10:40:42.612Z",
+    "hypothesis": "NLI gate may systematically filter pairs with larger style changes, potentially underestimating the true bias effect — if so, reported effects are conservative lower bounds (addresses R3-W8)",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T10:40:42.693319+00:00",
+  "trigger": "update_registry"
+}

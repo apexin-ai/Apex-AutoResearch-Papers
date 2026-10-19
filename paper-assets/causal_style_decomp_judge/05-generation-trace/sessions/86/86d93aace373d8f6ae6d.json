@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_power_curve_bt_fix_20260521T030205_result.json",
     "occurrence": 1,
-    "bytes": 1200,
-    "sha256": "0df93d3d1cb3b3f9cfd2193282b997838c8b5eae6e126ac46124091c8ab74881"
+    "bytes": 1199,
+    "sha256": "7c71fe5d1c71e11af2f7c3d3b48e47d974f1836219789f565581ed54e22616bc"
   },
   "statistics": {
     "messages": 1,

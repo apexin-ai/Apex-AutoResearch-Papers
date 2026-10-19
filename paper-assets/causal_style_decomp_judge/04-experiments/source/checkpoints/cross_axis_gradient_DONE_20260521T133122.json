@@ -1,0 +1,53 @@
+{
+  "exp_id": "cross_axis_gradient",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:30:37.151Z",
+    "updated_at": "2026-05-21T13:31:22.748Z",
+    "hypothesis": "NLI rejection rate serves as manipulation invasiveness proxy, with axes ordered register < formality < verbosity matching the gradient in BT and GEE Style OR (qualitative argument)",
+    "spec": {
+      "command": "python csd_pipeline/nli_ablation_cross_axis.py",
+      "server": "westb-29275",
+      "data_path": "data/verified_32b.jsonl + verified_verbosity.jsonl + verified_register.jsonl",
+      "data_count": 300,
+      "model_name": "Descriptive statistics only",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "data/cross_axis_gradient.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "axes": [
+        {
+          "axis": "register",
+          "nli_rejection_rate": 0.06,
+          "bt": 0.553,
+          "likert_d": 0.069,
+          "gee_style_or": 1.91
+        },
+        {
+          "axis": "formality",
+          "nli_rejection_rate": 0.12,
+          "bt": 0.665,
+          "likert_d": 0.012,
+          "gee_style_or": 4.2
+        },
+        {
+          "axis": "verbosity",
+          "nli_rejection_rate": 0.14,
+          "bt": 0.773,
+          "likert_d": -0.146,
+          "gee_style_or": 13.1
+        }
+      ],
+      "note": "Qualitative gradient: register < formality < verbosity. Higher NLI rejection = more invasive manipulation = stronger detected bias."
+    },
+    "completed_at": "2026-05-21T13:31:22.748Z"
+  },
+  "timestamp": "2026-05-21T13:31:22.828190+00:00",
+  "trigger": "update_registry"
+}

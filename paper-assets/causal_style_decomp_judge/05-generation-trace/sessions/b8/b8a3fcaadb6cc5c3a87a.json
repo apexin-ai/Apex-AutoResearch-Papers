@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_clmm_bt_spotcheck_20260521T022659_result.json",
     "occurrence": 1,
-    "bytes": 942,
-    "sha256": "0671664255145402ad3560e62156bd5305dcc039f64162706b0f26968ad29e35"
+    "bytes": 941,
+    "sha256": "d165bc99bdd7c741b6ef7e4a6c84d301155a113f1b9b809442391d25418dbb24"
   },
   "statistics": {
     "messages": 1,

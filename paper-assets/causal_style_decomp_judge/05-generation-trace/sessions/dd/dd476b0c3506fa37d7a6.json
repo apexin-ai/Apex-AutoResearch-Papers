@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_pipeline_crossbench-gpt4o_20260522T232019_result.json",
     "occurrence": 1,
-    "bytes": 508,
-    "sha256": "aa8649ec75d658f67cc733988acea432ecd6ddc03b110d30dc1329dacb8abd54"
+    "bytes": 507,
+    "sha256": "996c5589173b7c51c153338532c7c7675b6bf898f0fe786ecfb0cb095ab9fd99"
   },
   "statistics": {
     "messages": 1,

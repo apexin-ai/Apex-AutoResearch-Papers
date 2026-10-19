@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_bugfix_claude-bt-recalc_20260523T013304_result.json",
     "occurrence": 1,
-    "bytes": 1095,
-    "sha256": "43e18f129cc7eab234b801af25931ce8ef35f6de226fc3480a8f1d3cdfa36680"
+    "bytes": 1094,
+    "sha256": "c4a1569061ec8997078c25aa06629cf6a58f7565818f0443c170085f336d19d6"
   },
   "statistics": {
     "messages": 1,

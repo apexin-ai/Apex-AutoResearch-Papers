@@ -5281,7 +5281,7 @@ _source line 116_
 ```json
 {
   "server": "westb-29275",
-  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_results_qwen32b_formality.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis formality > /tmp/pairwise_formality.log 2>&1 & echo \"PID=$!\"",
+  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_results_qwen32b_formality.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis formality > /tmp/pairwise_formality.log 2>&1 & echo \"PID=$!\"",
   "account": "root"
 }
 ```
@@ -5333,7 +5333,7 @@ _source line 117 · 2026-05-21T04:15:22.015Z_
 <details><summary>↩ Tool result · `toolu_018R9zesuZtuBNysuwssctga`</summary>
 
 ```text
-{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_results_qwen32b_formality.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis formality > /tmp/pairwise_formality.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=106272\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.74}}"}
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_results_qwen32b_formality.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis formality > /tmp/pairwise_formality.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=106272\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.74}}"}
 ```
 
 </details>
@@ -5348,9 +5348,9 @@ _source line 117 · 2026-05-21T04:15:22.015Z_
   "session_id": "1f3b378e-23d9-49f5-8281-9b27c638824c",
   "uuid": "8af74e35-b7f8-4bab-b8a1-67e5b0897738",
   "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_results_qwen32b_formality.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis formality > /tmp/pairwise_formality.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=106272\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.74}}\"}",
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_results_qwen32b_formality.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis formality > /tmp/pairwise_formality.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=106272\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.74}}\"}",
     "structuredContent": {
-      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_results_qwen32b_formality.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis formality > /tmp/pairwise_formality.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=106272\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.74}}"
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_results_qwen32b_formality.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis formality > /tmp/pairwise_formality.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=106272\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.74}}"
     }
   }
 }
@@ -6834,7 +6834,7 @@ _source line 151_
 ```json
 {
   "server": "westb-29275",
-  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python3 csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_results_qwen32b_formality.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis formality > /tmp/pairwise_formality.log 2>&1 & echo \"PID=$!\"",
+  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python3 csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_results_qwen32b_formality.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis formality > /tmp/pairwise_formality.log 2>&1 & echo \"PID=$!\"",
   "account": "root"
 }
 ```
@@ -7247,7 +7247,7 @@ _source line 160_
 ```json
 {
   "server": "westb-29275",
-  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_32b.jsonl --output-file data/scored_qwen32b_formality.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_formality.log 2>&1 & echo \"PID=$!\"",
+  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_32b.jsonl --output-file data/scored_qwen32b_formality.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_formality.log 2>&1 & echo \"PID=$!\"",
   "account": "root"
 }
 ```
@@ -8070,7 +8070,7 @@ _source line 177_
 ```json
 {
   "server": "westb-29275",
-  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python3 csd_pipeline/pairwise_scoring.py --input-file data/verified_verbosity.jsonl --output-file data/pairwise_results_qwen32b_verbosity.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis verbosity > /tmp/pairwise_verbosity.log 2>&1 & echo \"PID=$!\"",
+  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python3 csd_pipeline/pairwise_scoring.py --input-file data/verified_verbosity.jsonl --output-file data/pairwise_results_qwen32b_verbosity.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis verbosity > /tmp/pairwise_verbosity.log 2>&1 & echo \"PID=$!\"",
   "account": "root"
 }
 ```
@@ -8422,7 +8422,7 @@ _source line 185_
 ```json
 {
   "server": "westb-29275",
-  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_verbosity.jsonl --output-file data/scored_qwen32b_verbosity.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_verbosity.log 2>&1 & echo \"PID=$!\"",
+  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_verbosity.jsonl --output-file data/scored_qwen32b_verbosity.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_verbosity.log 2>&1 & echo \"PID=$!\"",
   "account": "root"
 }
 ```
@@ -8474,7 +8474,7 @@ _source line 186 · 2026-05-21T04:19:46.562Z_
 <details><summary>↩ Tool result · `toolu_01N5g3gqRiM6Ma3BpmBVdQsr`</summary>
 
 ```text
-{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_verbosity.jsonl --output-file data/scored_qwen32b_verbosity.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_verbosity.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=107271\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.75}}"}
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_verbosity.jsonl --output-file data/scored_qwen32b_verbosity.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_verbosity.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=107271\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.75}}"}
 ```
 
 </details>
@@ -8489,9 +8489,9 @@ _source line 186 · 2026-05-21T04:19:46.562Z_
   "session_id": "1f3b378e-23d9-49f5-8281-9b27c638824c",
   "uuid": "1d6a2648-e8d1-4643-a24a-7f72957f8f47",
   "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_verbosity.jsonl --output-file data/scored_qwen32b_verbosity.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_verbosity.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=107271\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.75}}\"}",
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_verbosity.jsonl --output-file data/scored_qwen32b_verbosity.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_verbosity.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=107271\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.75}}\"}",
     "structuredContent": {
-      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_verbosity.jsonl --output-file data/scored_qwen32b_verbosity.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_verbosity.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=107271\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.75}}"
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_verbosity.jsonl --output-file data/scored_qwen32b_verbosity.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_verbosity.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=107271\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.75}}"
     }
   }
 }
@@ -8937,7 +8937,7 @@ _source line 195_
 ```json
 {
   "server": "westb-29275",
-  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python3 csd_pipeline/pairwise_scoring.py --input-file data/verified_register.jsonl --output-file data/pairwise_results_qwen32b_register.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis register > /tmp/pairwise_register.log 2>&1 & echo \"PID=$!\"",
+  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python3 csd_pipeline/pairwise_scoring.py --input-file data/verified_register.jsonl --output-file data/pairwise_results_qwen32b_register.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 5 --rate-limit 600 --axis register > /tmp/pairwise_register.log 2>&1 & echo \"PID=$!\"",
   "account": "root"
 }
 ```
@@ -9289,7 +9289,7 @@ _source line 203_
 ```json
 {
   "server": "westb-29275",
-  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_register.jsonl --output-file data/scored_qwen32b_register.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_register.log 2>&1 & echo \"PID=$!\"",
+  "command": "cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_register.jsonl --output-file data/scored_qwen32b_register.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_register.log 2>&1 & echo \"PID=$!\"",
   "account": "root"
 }
 ```
@@ -9341,7 +9341,7 @@ _source line 204 · 2026-05-21T04:21:28.589Z_
 <details><summary>↩ Tool result · `toolu_01C8A8qb6awC7TrEKVRqMXc9`</summary>
 
 ```text
-{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_register.jsonl --output-file data/scored_qwen32b_register.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_register.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=107562\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.12}}"}
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_register.jsonl --output-file data/scored_qwen32b_register.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_register.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=107562\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.12}}"}
 ```
 
 </details>
@@ -9356,9 +9356,9 @@ _source line 204 · 2026-05-21T04:21:28.589Z_
   "session_id": "1f3b378e-23d9-49f5-8281-9b27c638824c",
   "uuid": "048ff336-782c-406d-bc10-5d6e65269386",
   "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_register.jsonl --output-file data/scored_qwen32b_register.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_register.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=107562\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.12}}\"}",
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_register.jsonl --output-file data/scored_qwen32b_register.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_register.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=107562\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.12}}\"}",
     "structuredContent": {
-      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=dummy && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_register.jsonl --output-file data/scored_qwen32b_register.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_register.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=107562\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.12}}"
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/causal_style_decomp_judge && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED] && nohup python3 csd_pipeline/judge_scoring.py --input-file data/verified_register.jsonl --output-file data/scored_qwen32b_register.jsonl --model /root/autodl-tmp/models/Qwen3-32B/ --base-url http://localhost:8000/v1 --max-concurrent 10 --rate-limit 600 > /tmp/likert_register.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=107562\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.12}}"
     }
   }
 }

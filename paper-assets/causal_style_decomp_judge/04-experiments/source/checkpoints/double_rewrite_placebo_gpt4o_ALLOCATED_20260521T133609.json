@@ -1,0 +1,15 @@
+{
+  "exp_id": "double_rewrite_placebo_gpt4o",
+  "project": "causal_style_decomp_judge",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:35:56.950Z",
+    "updated_at": "2026-05-21T13:36:09.348Z",
+    "hypothesis": "Pairwise comparison of original vs double-rewrite (same style, only rewriting artifact difference) yields BT ≈ 50% with GPT-4o judge, proving pairwise format does not amplify rewriting artifacts (MF1 defense)"
+  },
+  "timestamp": "2026-05-21T13:36:09.427093+00:00",
+  "trigger": "update_registry"
+}

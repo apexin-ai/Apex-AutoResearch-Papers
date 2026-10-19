@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_bootstrap_10k_holm_cohensd_20260521T074616_result.json",
     "occurrence": 1,
-    "bytes": 1358,
-    "sha256": "7be16780d41ab30d5e4e94bd68e7845472a37e8f17c9d4792abdd8b90a17a438"
+    "bytes": 1357,
+    "sha256": "db47ddedd7527d01ed1070cfa497eaf48eedc7158e87fb0a15446fe4c144f238"
   },
   "statistics": {
     "messages": 1,

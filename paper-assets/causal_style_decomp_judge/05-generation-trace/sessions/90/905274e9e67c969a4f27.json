@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gee_model_diagnostics_20260521T060943_result.json",
     "occurrence": 1,
-    "bytes": 1242,
-    "sha256": "ff91d0ac2874e6f1f3e52d7fa09736f37bdc9f6136644a3f81b58cbcc4046d64"
+    "bytes": 1241,
+    "sha256": "ca3379b5fa3b0e4489275b28fe73d3b59e04873aa07b24fea094c9ce9d6b1926"
   },
   "statistics": {
     "messages": 1,

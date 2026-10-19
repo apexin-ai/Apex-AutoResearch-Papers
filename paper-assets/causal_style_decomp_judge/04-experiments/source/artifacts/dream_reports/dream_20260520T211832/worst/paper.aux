@@ -1,0 +1,83 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{ouyang2022training}
+\citation{sosbench2025,preferenceleakage2026}
+\citation{casse2026,sosbench2025}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{lcalpacaeval2025}
+\citation{sosbench2025}
+\citation{preferenceleakage2026}
+\citation{casse2026}
+\citation{kaushik2020learning}
+\citation{llmbar2024}
+\citation{zheng2023judging}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Style bias in LLM judges.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Counterfactual methods in NLP evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pairwise versus pointwise evaluation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Causal Style Decomposition}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method: Causal Style Decomposition}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Stage 1: Counterfactual generation.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 2: Content verification.}{2}{section*.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Content verification across style axes. NLI pass rate $\geq $80\% is required to proceed to bias measurement. Verbosity and tone fail this threshold.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:axis-feasibility}{{1}{3}{Content verification across style axes. NLI pass rate $\geq $80\% is required to proceed to bias measurement. Verbosity and tone fail this threshold}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Stage 3: Position-controlled pairwise comparison.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 4: Original preference control.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Style axes.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Judges.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rewriter.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical tests.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{3}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Content Preservation Defines Method Boundaries}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:axis-feasibility}{{5.1}{3}{Content Preservation Defines Method Boundaries}{subsection.5.1}{}}
+\citation{sosbench2025,casse2026}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Formality pairwise win rate by judge on LLMBar ($n=100$). Only GPT-4o shows a significant preference for formal responses.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:formality-judges}{{2}{4}{Formality pairwise win rate by judge on LLMBar ($n=100$). Only GPT-4o shows a significant preference for formal responses}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Formality pairwise win rate across judges and benchmarks. Only 1 of 9 combinations is significant ($\alpha =0.05$).}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:cross-benchmark}{{3}{4}{Formality pairwise win rate across judges and benchmarks. Only 1 of 9 combinations is significant ($\alpha =0.05$)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Formality Bias is Judge-Specific and Benchmark-Dependent}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:formality}{{5.2}{4}{Formality Bias is Judge-Specific and Benchmark-Dependent}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Register axis pairwise results. Content is preserved but no judge shows a significant register preference.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:register}{{4}{5}{Register axis pairwise results. Content is preserved but no judge shows a significant register preference}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Likert ATE versus pairwise win rate for formality. A ``gap'' denotes qualitative disagreement (one significant, one not). Only 1 of 9 settings shows a gap.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:likert-pairwise}{{5}{5}{Likert ATE versus pairwise win rate for formality. A ``gap'' denotes qualitative disagreement (one significant, one not). Only 1 of 9 settings shows a gap}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Register Axis: A Clean Null Result}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:register}{{5.3}{5}{Register Axis: A Clean Null Result}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Likert versus Pairwise: Limited Divergence}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:likert-pairwise}{{5.4}{5}{Likert versus Pairwise: Limited Divergence}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Original Preference: The Hidden Confound}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:original-pref}{{5.5}{5}{Original Preference: The Hidden Confound}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Original preference: judges compare original text versus its same-style rewrite. All three judges prefer originals.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:original-pref}{{6}{6}{Original preference: judges compare original text versus its same-style rewrite. All three judges prefer originals}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Decomposition of the GPT-4o formality effect on LLMBar. The raw effect is largely attributable to original preference.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:decomposition}{{7}{6}{Decomposition of the GPT-4o formality effect on LLMBar. The raw effect is largely attributable to original preference}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Scaled Replication}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:scaled}{{5.6}{6}{Scaled Replication}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Rewriter Ablation}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:rewriter}{{5.7}{6}{Rewriter Ablation}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Scaled replication of GPT-4o formality bias on LLMBar. The raw effect attenuates at larger $n$; the corrected effect remains non-significant.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:scaled}{{8}{7}{Scaled replication of GPT-4o formality bias on LLMBar. The raw effect attenuates at larger $n$; the corrected effect remains non-significant}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Rewriter ablation on GPT-4o $\times $ LLMBar. Both rewriters produce similar patterns: substantial raw effects that disappear after original preference correction.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:rewriter}{{9}{7}{Rewriter ablation on GPT-4o $\times $ LLMBar. Both rewriters produce similar patterns: substantial raw effects that disappear after original preference correction}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{What do these negative results mean?}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does original preference exist?}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for the style bias literature.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Content preservation as a prerequisite.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmark properties as a moderator.}{7}{section*.17}\protected@file@percent }
+\bibstyle{acl_natbib}
+\bibcite{ouyang2022training}{{1}{2022}{{Ouyang et al.}}{{}}}
+\bibcite{sosbench2025}{{2}{2025}{{SOS-Bench}}{{}}}
+\bibcite{preferenceleakage2026}{{3}{2026}{{Preference Leakage}}{{}}}
+\bibcite{casse2026}{{4}{2026}{{CASSE}}{{}}}
+\bibcite{lcalpacaeval2025}{{5}{2025}{{LC-AlpacaEval}}{{}}}
+\bibcite{llmbar2024}{{6}{2024}{{LLMBar}}{{}}}
+\bibcite{kaushik2020learning}{{7}{2020}{{Kaushik et al.}}{{}}}
+\bibcite{zheng2023judging}{{8}{2023}{{Zheng et al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\gdef \@abspage@last{8}

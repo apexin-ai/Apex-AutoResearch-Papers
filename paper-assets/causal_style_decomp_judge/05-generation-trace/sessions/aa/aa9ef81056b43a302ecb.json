@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_check-annotation-upload_20260522T122926_result.json",
     "occurrence": 1,
-    "bytes": 1072,
-    "sha256": "8fa70e664c8a185f7208a1a37b44914cf201af853abae9a5842d4e8b9142bfb8"
+    "bytes": 1071,
+    "sha256": "b417735ae215c4a146f0c8b82f1baf4b1fcf7c11b6c2305cfc2057160072908b"
   },
   "statistics": {
     "messages": 1,

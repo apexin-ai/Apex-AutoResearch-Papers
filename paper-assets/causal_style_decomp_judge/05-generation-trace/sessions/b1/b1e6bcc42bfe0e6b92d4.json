@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_acl-template-align_20260525T153647_result.json",
     "occurrence": 1,
-    "bytes": 783,
-    "sha256": "fc928f4928d8b0a8daf4f45784559fabb6085feaf0fa80f9c247cc5746f67533"
+    "bytes": 782,
+    "sha256": "498e9ed02fe80094c2935d46d0fa8861e625ec30d558c0f2445604c571bd0f02"
   },
   "statistics": {
     "messages": 1,

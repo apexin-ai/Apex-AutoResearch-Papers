@@ -1,0 +1,63 @@
+{
+  "exp_id": "alpacaeval_verbosity_qwen32b",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T09:02:00.454Z",
+    "updated_at": "2026-05-21T09:02:30.481Z",
+    "hypothesis": "Qwen3-32B shows verbosity Blindspot on AlpacaEval benchmark (pairwise detects verbosity bias that Likert misses), extending verbosity findings to a second benchmark",
+    "metrics": {
+      "bt": {
+        "p_verbose": 0.841,
+        "ci": [
+          0.774,
+          0.902
+        ],
+        "p_value": 0.0001
+      },
+      "likert": {
+        "ate": 0.732,
+        "p": 0.0003,
+        "d": 0.375,
+        "tie_rate": 0.244,
+        "mean_verbose": 7.32,
+        "mean_concise": 6.59
+      },
+      "gee": {
+        "style_or": 28.64,
+        "style_ci": [
+          9.16,
+          89.56
+        ],
+        "style_p": 0.0001,
+        "orig_or": 0.18,
+        "orig_ci": [
+          0.06,
+          0.54
+        ],
+        "orig_p": 0.0024
+      },
+      "blindspot": false,
+      "n_pairs": 82,
+      "consistency": 0.829,
+      "note": "NOT Blindspot: Likert p=0.0003 also significant. Effect is so strong (d=0.375) that even Likert detects it. GEE Style OR=28.64 is massive."
+    },
+    "conclusion": "success",
+    "spec": {
+      "command": "python alpacaeval_qwen32b_scoring.py --axis verbosity",
+      "server": "westb-29275",
+      "data_path": "data/counterfactuals_alpacaeval_verbosity.jsonl",
+      "data_count": 82,
+      "model_name": "Qwen3-32B",
+      "seed": 42,
+      "checkpoint_path": "N/A (API scoring via local vLLM)",
+      "log_path": "data/alpacaeval_verbosity_qwen32b_results.json"
+    },
+    "completed_at": "2026-05-21T09:02:30.481Z"
+  },
+  "timestamp": "2026-05-21T09:02:30.545575+00:00",
+  "trigger": "update_registry"
+}

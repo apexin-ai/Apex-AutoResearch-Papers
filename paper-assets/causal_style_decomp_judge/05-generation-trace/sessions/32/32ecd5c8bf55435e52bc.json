@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_investigate_h3-llama-alpacaeval-or_20260525T201117_result.json",
     "occurrence": 1,
-    "bytes": 928,
-    "sha256": "36a56c3cdc3486cb92f8e6e3c81fa190c652376f328acee4b61badcc64ef7f6d"
+    "bytes": 927,
+    "sha256": "cf253104600a6c8e550ce815b26b738e10124cd6a860aeef39032e2d99993f9c"
   },
   "statistics": {
     "messages": 1,

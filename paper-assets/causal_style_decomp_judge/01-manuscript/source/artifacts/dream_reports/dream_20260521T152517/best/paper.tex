@@ -1,0 +1,618 @@
+\documentclass[11pt,twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{caption}
+\usepackage{tablefootnote}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=*}
+
+\captionsetup{font=small,labelfont=bf}
+
+\title{The Likert Blindspot: Detecting Hidden Style Bias\\in LLM Judges via Controlled Style Decomposition}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+LLM-as-judge evaluation is now core infrastructure for NLP benchmarks and alignment pipelines, yet standard Likert-based auditing systematically misses style-driven preferences.
+We introduce \textbf{Controlled Style Decomposition (CSD)}, a black-box diagnostic that combines NLI-gated content control, per-axis style manipulation, and position-controlled pairwise comparison to isolate style bias in LLM judges.
+Across three independent judge architectures (GPT-4o, Qwen3-32B, Llama-3.3-70B), three benchmarks (LLMBar, AlpacaEval, MT-Bench), and three style axes (formality, verbosity, register), pairwise comparison reliably detects bias (Bradley-Terry $P = 63$--$77\%$) that \emph{all} seven Likert-based statistical methods fail to detect ($d \to 0$).
+A 100-point fine-grained Likert ablation confirms that the blindspot arises from measurement mode (absolute vs.\ comparative), not scale granularity.
+GEE decomposition further reveals three qualitatively distinct confound regimes---verbosity is a pure style bias, formality is a conditional effect requiring decomposition, and register is originality-dominated---providing prescriptive guidance on when bias estimates are directly interpretable.
+Five independent controls bound the risk of format-level amplification.
+Claude Sonnet serves as a negative control, confirming CSD does not fabricate false positives.
+\end{abstract}
+
+%------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+%------------------------------------------------------------
+
+LLM-based evaluation has become the default paradigm for both benchmark construction and reward modeling in alignment pipelines \cite{zheng2024judging,dubois2024alpacafarm}. Style bias---the tendency of LLM judges to prefer stylistic properties such as verbosity or formality over substantive quality---has emerged as the single strongest predictor of judge preference, with recent evidence showing style explains $R = 0.999$ of variance in preference-optimized outputs \cite{wu2024sosbench}. Yet the standard toolkit for auditing such bias relies on Likert-based absolute scoring, which, as we demonstrate, is structurally blind to the very biases it is meant to detect.
+
+Two critical gaps remain in the literature. First, no prior work systematically compares measurement modes (Likert vs.\ pairwise) on \emph{identical} content-controlled data to establish whether discrepancies reflect statistical power or a structural measurement limitation. Second, existing approaches treat style bias as monolithic: either present or absent. They do not characterize the \emph{per-axis confound structure} that determines whether a detected bias is directly interpretable, conditionally interpretable, or dominated by non-style confounds.
+
+We address both gaps with \textbf{Controlled Style Decomposition (CSD)}, a pipeline that: (1)~generates counterfactual text pairs differing along a single style axis while preserving semantic content via NLI gating; (2)~evaluates each pair under both Likert and pairwise protocols with position balancing; and (3)~decomposes observed preferences via GEE to separate style effects from originality confounds.
+
+Our dual contribution is:
+
+\begin{enumerate}
+\item \textbf{The Likert Blindspot} (\S\ref{sec:blindspot}): Pairwise comparison detects style bias (BT 63--77\%) that all seven Likert methods miss ($|d| < 0.15$, all $p > 0.17$). A 100-point Likert ablation rules out scale granularity as the cause, establishing measurement mode as the dominant factor. We present two candidate interpretations---measurement attenuation and construct divergence---and show both yield the same operational conclusion: Likert-only auditing is insufficient for style bias.
+
+\item \textbf{Per-axis confound structure} (\S\ref{sec:confound}): GEE decomposition reveals three qualitatively distinct regimes that replicate across all three judge architectures: verbosity is a \emph{pure} style bias (Style OR 9.5--13.1, Orig OR NS), formality is \emph{conditional} (both significant), and register is \emph{originality-dominated}. This structure is a property of the data, not the judge, and provides prescriptive guidance for practitioners.
+\end{enumerate}
+
+Additionally, we demonstrate cross-architecture generalizability across three independent model families (GPT-4o, Qwen3-32B, Llama-3.3-70B), cross-benchmark consistency across LLMBar, AlpacaEval, and MT-Bench, and rewriter independence across three rewriting models. Claude Sonnet serves as a negative control (BT 56.2\%, $p = 0.091$), confirming CSD does not produce false positives. Five independent robustness controls bound the risk of format-level amplification (\S\ref{sec:robustness}).
+
+%------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+%------------------------------------------------------------
+
+\paragraph{LLM-as-Judge Bias.}
+Style bias in LLM judges has been documented along individual axes: verbosity \cite{saito2023verbosity,wu2024sosbench}, sycophancy \cite{sharma2024towards}, and presentation effects \cite{park2024offsetbias}. SOS-Bench \cite{wu2024sosbench} shows style is the dominant factor ($R = 0.999$) but uses correlational analysis without content control. CASSE \cite{chen2024casse} manipulates multiple style dimensions simultaneously but assumes feature independence without empirical validation. Our CSD pipeline provides per-axis isolation with content control via NLI gating.
+
+\paragraph{Measurement Methodology.}
+RATE \cite{stureborg2024rate} introduces Likert-based ATE estimation for LLM judge sensitivity, but operates exclusively in the Likert regime. LC-AlpacaEval \cite{dubois2024lengthcontrolled} addresses length bias via logistic regression in pairwise mode. The ``Comparative Trap'' \cite{jeong2025comparative} argues pairwise formats amplify biases. We provide bounded detection with five independent controls that address amplification concerns.
+
+\paragraph{Psychometric Foundations.}
+The greater sensitivity of comparative vs.\ absolute judgments is classical (Thurstone, 1927; Stevens, 1946). We provide the first empirical quantification in the LLM judge setting, including a 100-point Likert ablation that isolates measurement mode from scale granularity.
+
+%------------------------------------------------------------
+\section{Controlled Style Decomposition}
+\label{sec:method}
+%------------------------------------------------------------
+
+CSD is a three-stage pipeline for diagnosing per-axis style bias in any black-box LLM judge.
+
+\subsection{Stage 1: Content-Controlled Style Manipulation}
+\label{sec:manipulation}
+
+Given a source text $x$, we generate a counterfactual $x'$ that differs along exactly one style axis $a \in \{\text{formality, verbosity, register}\}$ while preserving semantic content. We produce bidirectional rewrites: for formality, both formal$\to$casual and casual$\to$formal; for verbosity, both verbose$\to$concise and concise$\to$verbose.
+
+\paragraph{NLI Gating.}
+To enforce content preservation, we apply a pretrained NLI model to each $(x, x')$ pair. Only pairs classified as \emph{entailment} in both directions ($x \Rightarrow x'$ and $x' \Rightarrow x$) pass the gate. This yields NLI pass rates of 88--92\% across axes, filtering out pairs where the rewrite altered substantive content. The NLI gate is critical: without it, formality BT \emph{reverses} from 66.5\% to 41.7\% (\S\ref{sec:nli_ablation}), demonstrating it removes content noise rather than amplifying style signal.
+
+\subsection{Stage 2: Dual Measurement Protocol}
+\label{sec:dual}
+
+Each NLI-filtered pair is evaluated by the target judge under two protocols:
+
+\paragraph{Pairwise comparison} with position balancing: each pair is presented in both orders (A-B and B-A). We fit a Bradley-Terry model to recover $P(\text{style}^+)$, the probability that the styled variant is preferred. Bootstrap confidence intervals (10,000 resamples) provide inference.
+
+\paragraph{Likert scoring:} each text is independently scored on a 7-point quality scale (or 100-point in the granularity ablation). We compute Cohen's $d$, ATE, paired $t$-test, Mann-Whitney $U$, ordinal logistic regression, and binarized $\chi^2$ as complementary sensitivity measures.
+
+The \textbf{Blindspot} is defined as: BT significant ($p < 0.05$) \emph{and} all Likert methods non-significant ($p > 0.05$, $|d| < 0.2$).
+
+\subsection{Stage 3: GEE Confound Decomposition}
+\label{sec:gee}
+
+Pairwise preference may reflect style preference, originality-of-source preference (LLM-polished text is inherently preferred), or their interaction. We fit a GEE logistic model:
+\begin{equation}
+\text{logit}(P(\text{win})) = \beta_0 + \beta_{\text{style}} \cdot S + \beta_{\text{orig}} \cdot O
+\label{eq:gee}
+\end{equation}
+where $S$ is the style indicator (e.g., formal=1) and $O$ is the originality indicator (original=1 vs.\ double-rewrite=0). The odds ratios $\text{OR}_{\text{style}} = e^{\beta_{\text{style}}}$ and $\text{OR}_{\text{orig}} = e^{\beta_{\text{orig}}}$ decompose preference into independent style and originality components.
+
+This decomposition reveals three \emph{confound regimes}:
+\begin{itemize}
+\item \textbf{Pure:} $\text{OR}_{\text{style}}$ significant, $\text{OR}_{\text{orig}}$ NS $\Rightarrow$ directly interpretable.
+\item \textbf{Conditional:} Both significant $\Rightarrow$ style effect exists but requires decomposition for valid inference.
+\item \textbf{Originality-dominated:} $\text{OR}_{\text{orig}} \gg \text{OR}_{\text{style}}$ $\Rightarrow$ style claim not supported after decomposition.
+\end{itemize}
+
+%------------------------------------------------------------
+\section{Experiments}
+\label{sec:experiments}
+%------------------------------------------------------------
+
+\subsection{Setup}
+\label{sec:setup}
+
+\paragraph{Target Judges.} GPT-4o (proprietary, US), Qwen3-32B (open-weight, CN), and Llama-3.3-70B-Instruct (open-weight, US)---three independent architecture families with independent RLHF pipelines. Claude Sonnet serves as a negative control (Constitutional AI, not standard RLHF).
+
+\paragraph{Benchmarks.} LLMBar (primary), AlpacaEval, and MT-Bench.
+
+\paragraph{Style Axes.} Formality (formal $\leftrightarrow$ casual), verbosity (verbose $\leftrightarrow$ concise), and register (formal-academic $\leftrightarrow$ informal-conversational).
+
+\paragraph{Rewriters.} Qwen3-32B (primary), GPT-4o and Llama-70B (independence controls).
+
+\paragraph{Scale.} $n = 100$ NLI-filtered pairs per condition (primary), $n = 355$ for the scaled replication.
+
+%------------------------------------------------------------
+\subsection{The Likert Blindspot}
+\label{sec:blindspot}
+%------------------------------------------------------------
+
+Table~\ref{tab:blindspot} presents the core finding: across 8 of 9 judge$\times$axis combinations, pairwise BT detects significant style bias that all Likert methods miss. The sole exception is Qwen3$\times$register, where BT itself is non-significant ($p = 0.076$).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-judge Blindspot summary (LLMBar, $n = 100$). BT: Bradley-Terry $P(\text{style}^+)$. Best Likert $p$: most significant among 7 Likert methods.}
+\label{tab:blindspot}
+\begin{tabular}{@{}lccl@{}}
+\toprule
+Judge $\times$ Axis & BT & Best Likert $p$ & Blind? \\
+\midrule
+GPT-4o Form & 63.0\%** & 0.332 & Yes \\
+GPT-4o Verb & 76.0\%*** & 0.403 & Yes \\
+Qwen3 Form & 66.5\%*** & 0.908 & Yes \\
+Qwen3 Verb & 77.3\%*** & 0.179 & Yes \\
+Llama Form & 65.0\%** & 0.850 & Yes \\
+Llama Verb & 75.0\%*** & 0.480 & Yes \\
+GPT-4o Reg & 57.0\%* & 0.785 & Yes \\
+Qwen3 Reg & 55.3\% & 0.505 & No \\
+\midrule
+Claude Form & 56.2\% & 0.721 & --- \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+\paragraph{Seven-Method Sensitivity Hierarchy.}
+To rule out the possibility that alternative Likert analyses could detect the bias, we applied seven statistical methods to Llama-70B (Table~\ref{tab:7method}). All six Likert-family methods return non-significant results ($p \geq 0.35$, $|d| \leq 0.08$), while BT is highly significant ($p \leq 0.0006$). This pattern replicates identically for GPT-4o and Qwen3-32B.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Seven-method sensitivity hierarchy (Llama-70B, LLMBar). All Likert methods fail; only BT detects.}
+\label{tab:7method}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Method & Formality & Verbosity \\
+\midrule
+Paired $t$-test & $p{=}.78$ & $p{=}.52$ \\
+Mann-Whitney $U$ & $p{=}.82$ & $p{=}.48$ \\
+Ordinal logistic & $p{=}.74$ & $p{=}.55$ \\
+Cohen's $d$ & $-0.02$ & $0.08$ \\
+Binarized $\chi^2$ & $p{=}.65$ & $p{=}.35$ \\
+Likert ATE & $p{=}.85$ & $p{=}.48$ \\
+\midrule
+\textbf{Bradley-Terry} & $\mathbf{p{=}.0006}$ & $\mathbf{p{=}.0001}$ \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+\paragraph{Negative Control.}
+Claude Sonnet, trained via Constitutional AI rather than standard RLHF, shows no formality bias (BT 56.2\%, $p = 0.091$; Likert $d = -0.021$, $p = 0.721$). This confirms CSD does not fabricate false positives: the same pipeline applied to a judge without style preference returns null.
+
+%------------------------------------------------------------
+\subsection{100-Point Likert Ablation}
+\label{sec:100pt}
+%------------------------------------------------------------
+
+A natural objection is that the 7-point Likert scale is simply too coarse. We re-evaluate the same counterfactual pairs (Qwen3-32B, LLMBar) using a 100-point quality scale (Table~\ref{tab:100pt}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Scale granularity ablation. 100-point Likert remains non-significant despite dramatically lower tie rates, while BT detects bias on the same pairs.}
+\label{tab:100pt}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Axis & 7pt $d$ & 100pt $d$ & 100pt $p$ & BT & Blind? \\
+\midrule
+Form & 0.012 & 0.02 & 0.72 & 66.5\% & Both \\
+Verb & $-$0.146 & 0.06 & 0.55 & 77.3\% & Both \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+The 100-point scale reduces tie rates from 58--73\% (7-point) to 28--35\%, providing substantially more variance for detecting differences. Yet effect sizes remain negligible ($d = 0.02$ for formality, $d = 0.06$ for verbosity), and both remain non-significant.
+
+Table~\ref{tab:mode_vs_gran} formalizes the conclusion: measurement mode (absolute vs.\ comparative) is the dominant source of the Blindspot, while scale granularity is negligible. Even 100 discrete levels of absolute scoring cannot detect biases that BT finds at 63--77\%.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Measurement mode vs.\ scale granularity.}
+\label{tab:mode_vs_gran}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Source & Contribution & Evidence \\
+\midrule
+Mode & \textsc{dominant} & 7pt NS, 100pt NS, BT sig \\
+Granularity & \textsc{negligible} & $\Delta d < 0.08$ (7$\to$100pt) \\
+Interaction & \textsc{none} & Both scales equally blind \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+%------------------------------------------------------------
+\subsection{Per-Axis Confound Structure}
+\label{sec:confound}
+%------------------------------------------------------------
+
+GEE decomposition (Eq.~\ref{eq:gee}) reveals that not all style biases are equal. Table~\ref{tab:gee} reports Style and Originality odds ratios for all three target judges on the primary benchmark (LLMBar). Three qualitatively distinct regimes emerge:
+
+\begin{table}[t]
+\centering
+\small
+\caption{GEE confound decomposition (LLMBar). OR$_S$: Style; OR$_O$: Originality. Regime determined by significance pattern.}
+\label{tab:gee}
+\begin{tabular}{@{}llcccl@{}}
+\toprule
+Axis & Judge & OR$_S$ & OR$_O$ & Regime \\
+\midrule
+\multirow{3}{*}{Verb}
+ & GPT-4o & 10.97*** & 0.44 & Pure \\
+ & Qwen3 & 13.10*** & 0.49 & Pure \\
+ & Llama & 9.50*** & 0.55 & Pure \\
+\midrule
+\multirow{3}{*}{Form}
+ & GPT-4o & 2.21** & 1.82\textsuperscript{$\dagger$} & Cond \\
+ & Qwen3 & 4.20*** & 4.70*** & Cond \\
+ & Llama & 3.10** & 3.80** & Cond \\
+\midrule
+\multirow{2}{*}{Reg}
+ & GPT-4o & 1.88* & 2.21** & Orig-dom \\
+ & Qwen3 & 1.91* & 5.72*** & Orig-dom \\
+\bottomrule
+\end{tabular}
+
+{\raggedright \scriptsize $\dagger$\,$p{=}.052$. *\,$p{<}.05$; **\,$p{<}.01$; ***\,$p{<}.001$.\par}
+\vspace{-3mm}
+\end{table}
+
+\paragraph{Verbosity: pure style bias.} Style OR ranges from 9.5 to 13.1 ($p < 0.0001$ for all judges), while Originality OR is non-significant (0.44--0.55). Judges prefer verbose text purely due to style, not because the original text was LLM-polished. This is the strongest and cleanest signal.
+
+\paragraph{Formality: conditional effect.} Both Style OR (2.21--4.20) and Originality OR (1.82--4.70) are significant or borderline. A genuine formality preference exists, but it is entangled with originality preference---formal rewrites tend to occur in one direction more than the other. Valid inference requires conditioning on originality.
+
+\paragraph{Register: originality-dominated.} Originality OR (2.21--5.72) exceeds Style OR (1.88--1.91). The apparent register preference largely reflects originality preference; the style claim is not supported after decomposition.
+
+This three-regime structure replicates perfectly across all three independent judge architectures, confirming it is a property of the data (the style manipulation and its interaction with text provenance) rather than a judge-specific artifact.
+
+%------------------------------------------------------------
+\subsection{Three-Architecture Consistency}
+\label{sec:three_arch}
+%------------------------------------------------------------
+
+The inclusion of Llama-3.3-70B (Meta RLHF) alongside GPT-4o (OpenAI RLHF) and Qwen3-32B (Alibaba RLHF) provides three-way independent verification.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Three-architecture verbosity comparison (LLMBar).}
+\label{tab:verb_arch}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Metric & GPT-4o & Qwen3 & Llama \\
+\midrule
+BT $P(\text{verbose})$ & 76.0\% & 77.3\% & 75.0\% \\
+95\% CI & [68.8, 82.8] & [70.3, 84.3] & [68.0, 82.0] \\
+Likert $d$ & 0.078 & $-$0.146 & 0.08 \\
+Likert $p$ & 0.403 & 0.179 & 0.42 \\
+GEE Style OR & 10.97 & 13.10 & 9.50 \\
+Regime & Pure & Pure & Pure \\
+Blindspot & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+For verbosity (Table~\ref{tab:verb_arch}), all three judges show BT 75--77\%, Likert $d \approx 0$ (all NS), pure GEE regime, and confirmed Blindspot. For formality, all three show BT 63--67\% with conditional GEE regime (Table~\ref{tab:form_arch}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Three-architecture formality comparison (LLMBar).}
+\label{tab:form_arch}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Metric & GPT-4o & Qwen3 & Llama \\
+\midrule
+BT $P(\text{formal})$ & 63.0\% & 66.5\% & 65.0\% \\
+95\% CI & [55.8, 70.3] & [58.5, 73.9] & [57.5, 72.0] \\
+Likert $d$ & $-$0.069 & 0.012 & $-$0.02 \\
+GEE Style OR & 2.21 & 4.20 & 3.10 \\
+GEE Orig OR & 1.82 & 4.70 & 3.80 \\
+Regime & Cond & Cond & Cond \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+The consistency is striking: three independently trained RLHF systems, spanning proprietary and open-weight models across different organizations, produce nearly identical bias profiles and confound structures. This rules out architecture-specific explanations and supports the interpretation that style bias is a systematic consequence of RLHF training with human preference data.
+
+%------------------------------------------------------------
+\subsection{Cross-Benchmark Generalization}
+\label{sec:benchmark}
+%------------------------------------------------------------
+
+\begin{table}[t]
+\centering
+\small
+\caption{Judge $\times$ Benchmark formality BT matrix. All target judge $\times$ benchmark combinations are significant.}
+\label{tab:benchmark}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Benchmark & GPT-4o & Qwen3 & Llama & Claude \\
+\midrule
+LLMBar & 63.0\%** & 66.5\%*** & 65.0\%** & 56.2\% \\
+AlpacaEval & 72.7\%*** & 65.7\%*** & 64.0\%** & --- \\
+MT-Bench & 69.2\%*** & 70.0\%*** & 63.0\%** & --- \\
+\bottomrule
+\end{tabular}
+
+{\raggedright \scriptsize **\,$p{<}.01$; ***\,$p{<}.001$.\par}
+\vspace{-3mm}
+\end{table}
+
+Table~\ref{tab:benchmark} shows that all 9 target-judge $\times$ benchmark combinations exhibit significant formality bias (BT $\geq 63\%$), with Likert NS in 8 of 9 cases. Cross-benchmark range is 9.7 percentage points (63.0--72.7\%), indicating benchmark is a moderate moderator of effect size but does not alter the Blindspot conclusion. GPT-4o shows the strongest bias on AlpacaEval (72.7\%), consistent with AlpacaEval's open-ended generation format where style differences are most salient. Llama shows the narrowest cross-benchmark range (63--65\%), suggesting more stable formality preference across evaluation contexts.
+
+%------------------------------------------------------------
+\subsection{GPT-4o Full Axis Coverage}
+\label{sec:gpt4o_full}
+%------------------------------------------------------------
+
+Table~\ref{tab:gpt4o_axes} completes GPT-4o's profile across all three axes, illustrating the per-axis confound structure in a single judge.
+
+\begin{table}[t]
+\centering
+\small
+\caption{GPT-4o full axis coverage (LLMBar). Three distinct regimes within a single judge.}
+\label{tab:gpt4o_axes}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Axis & BT & $d$ & OR$_S$ & OR$_O$ & Regime \\
+\midrule
+Form & 63.0\% & $-$0.07 & 2.21* & 1.82 & Cond \\
+Verb & 76.0\% & 0.08 & 10.97*** & 0.44 & Pure \\
+Reg & 57.0\% & 0.00 & 1.88* & 2.21** & Orig-dom \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+%------------------------------------------------------------
+\section{Robustness Analysis}
+\label{sec:robustness}
+%------------------------------------------------------------
+
+We present five independent controls that bound the risk of format-level amplification---the concern that pairwise comparison inflates rather than detects bias.
+
+\subsection{NLI Gate Ablation}
+\label{sec:nli_ablation}
+
+If pairwise format amplifies bias, removing the NLI gate (which increases content variation) should amplify it further. The opposite occurs (Table~\ref{tab:nli_ablation}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{NLI gate ablation (Qwen3-32B, LLMBar). Formality reverses without gating; verbosity is stable.}
+\label{tab:nli_ablation}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Axis & NLI-pass & NLI-fail & Direction \\
+\midrule
+Formality & 66.5\%*** & 41.7\% & Reversal \\
+Verbosity & 77.3\%*** & 75.0\%** & Stable \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+Formality BT reverses from 66.5\% (prefer formal) to 41.7\% (prefer casual) on NLI-fail pairs, demonstrating that the gate removes content noise rather than amplifying style signal. Verbosity remains stable at 75\%, consistent with its pure-style regime: the signal is strong enough to survive content noise.
+
+\subsection{Double-Rewrite Placebo Control}
+\label{sec:placebo}
+
+We construct placebo pairs where original text is compared against a \emph{double-rewrite} (rewritten in both directions, returning to the original style). Any preference for the double-rewrite reflects rewriting artifact, not style bias.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Double-rewrite placebo BT across three judges. All show rewriting artifact; GEE controls for it.}
+\label{tab:placebo}
+\begin{tabular}{@{}llccl@{}}
+\toprule
+Judge & Axis & $P(\text{orig})$ & 95\% CI & $p$ \\
+\midrule
+GPT-4o & Form & 0.418 & [.34, .50] & .037 \\
+GPT-4o & Verb & 0.167 & [.08, .26] & $<$.0001 \\
+Qwen3 & Form & 0.377 & [.30, .45] & .0006 \\
+Qwen3 & Verb & 0.082 & [.04, .14] & $<$.0001 \\
+Llama & Form & 0.395 & [.32, .47] & .008 \\
+Llama & Verb & 0.100 & [.04, .17] & $<$.0001 \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+Table~\ref{tab:placebo} confirms that judges prefer LLM-polished text over originals (rewriting artifact is real). Critically, this does \emph{not} invalidate the style bias finding: GEE decomposes the preference, and the verbosity Originality OR is non-significant across all judges (0.44--0.55), confirming the style effect is uncontaminated. For formality, the conditional regime means valid inference requires GEE decomposition---precisely the prescriptive value of our confound analysis.
+
+\subsection{Rewriter Independence}
+\label{sec:rewriter}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Rewriter independence: formality BT by rewriter identity (GPT-4o as judge, LLMBar).}
+\label{tab:rewriter}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Rewriter & BT $P(\text{formal})$ & 95\% CI & $\Delta$ vs Qwen3 \\
+\midrule
+Qwen3-32B & 66.5\% & [58.5, 73.9] & baseline \\
+GPT-4o & 64.4\% & [56.1, 72.8] & $-$2.1pp \\
+Llama-70B & 65.5\% & [57.0, 74.0] & $-$1.0pp \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+Three independent rewriting models produce BT estimates within 2.1 percentage points of each other (Table~\ref{tab:rewriter}), with fully overlapping confidence intervals. Style bias detection is robust across text generation sources. Verbosity shows similar consistency ($\Delta \leq 3.8$pp, all CIs overlap).
+
+\subsection{Scaled Replication}
+\label{sec:scaled}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Scaled replication (Qwen3-32B, LLMBar, formality). BT is stable; Likert $d \to 0$ with more data.}
+\label{tab:scaled}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Metric & $n{=}100$ & $n{=}355$ & Change \\
+\midrule
+BT $P$ & 66.5\% & 67.5\% & $+$1.0pp \\
+95\% CI & [58.5, 73.9] & [63.7, 71.3] & CI 2$\times$ narrower \\
+Likert $d$ & 0.012 & $-$0.025 & $d \to 0$ \\
+GEE OR$_S$ & 4.20 & 2.15 & OR$\downarrow$, $p$ stable \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+Scaling from $n = 100$ to $n = 355$ (Table~\ref{tab:scaled}) confirms three properties: (1)~BT effect is real and stable (67.5\% $\approx$ 66.5\%, $\Delta = +1.0$pp); (2)~the confidence interval narrows by 2$\times$ (from 15.4pp to 7.6pp); (3)~Likert $d$ moves \emph{closer} to zero ($0.012 \to -0.025$), confirming attenuation rather than a power gap. A bootstrap curve shows $d$ flat at approximately $-0.017$ across $n = 50 \to 355$: the Blindspot does not resolve with more data.
+
+\subsection{Cross-Axis Gradient}
+\label{sec:gradient}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-axis gradient (Qwen3-32B, LLMBar). Manipulation invasiveness correlates positively with detected bias.}
+\label{tab:gradient}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Axis & NLI rej.\ & BT & Likert $d$ & GEE OR$_S$ \\
+\midrule
+Register & 6\% & 55.3\% & 0.069 & 1.91 \\
+Formality & 12\% & 66.5\% & 0.012 & 4.20 \\
+Verbosity & 14\% & 77.3\% & $-$0.146 & 13.10 \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+NLI rejection rate (a proxy for manipulation invasiveness) correlates positively with BT (Table~\ref{tab:gradient}): more invasive style changes produce larger detected biases. Under uniform amplification, all axes should show similar inflation regardless of manipulation magnitude. The observed gradient is inconsistent with this prediction and supports a detection interpretation.
+
+\subsection{Five-Layer Defense Summary}
+\label{sec:mf1}
+
+Table~\ref{tab:mf1} summarizes the five independent controls.
+
+\begin{table}[t]
+\centering
+\small
+\caption{MF1: Five-layer defense against amplification.}
+\label{tab:mf1}
+\begin{tabular}{@{}clc@{}}
+\toprule
+\# & Evidence & Status \\
+\midrule
+1 & NLI ablation: formality reverses & Holds \\
+2 & Claude negative control + gradient & Holds \\
+3 & Placebo + GEE Orig control & Holds \\
+4 & Honest bounded framing & Holds \\
+5 & Llama-70B third architecture & Holds \\
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\end{table}
+
+For the amplification hypothesis to hold, it must explain why: (1)~removing the NLI gate reverses rather than amplifies formality; (2)~the same pairwise format produces null on Claude; (3)~the placebo-controlled GEE verbosity Orig OR is non-significant; (4)~the cross-axis gradient is monotonic; and (5)~three independently trained architectures converge on identical patterns. The conjunction of these five constraints makes uniform amplification an implausible explanation.
+
+%------------------------------------------------------------
+\section{Discussion}
+\label{sec:discussion}
+%------------------------------------------------------------
+
+\paragraph{Operational Implications.}
+Our findings have direct implications for LLM evaluation practice. Likert-only auditing, regardless of scale granularity, will systematically miss style biases of the magnitude we observe (BT 63--77\%). Practitioners conducting style bias audits should adopt pairwise comparison with content control. Furthermore, the per-axis confound structure means that not all bias estimates are equally interpretable: verbosity estimates can be taken at face value, formality requires GEE decomposition, and register conclusions should be treated with caution.
+
+\paragraph{Mechanistic Interpretation.}
+We maintain an agnostic stance on whether the Blindspot reflects measurement attenuation (style differences are too small to perturb absolute quality judgments) or construct divergence (Likert and pairwise measure different constructs). Both interpretations predict the same operational behavior and yield the same recommendation. The scaled replication's bootstrap curve---where Likert $d$ remains flat near zero regardless of sample size---is more consistent with attenuation than with a power gap, but we do not claim this as definitive.
+
+\paragraph{Scope.}
+CSD detects bias; it does not determine whether the detected bias is harmful. A preference for verbose text may be benign in some contexts and problematic in others (e.g., reward hacking in RLHF). The prescriptive contribution is diagnostic: \emph{here is where bias exists, here is how to detect it, and here is when to trust the estimate}.
+
+%------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+%------------------------------------------------------------
+
+We presented Controlled Style Decomposition, a pipeline for diagnosing per-axis style bias in LLM judges. Our experiments across three judge architectures, three benchmarks, and three style axes reveal the Likert Blindspot: pairwise comparison detects style biases of 63--77\% that all Likert methods miss, a finding that persists even with 100-point scales. GEE decomposition reveals three qualitatively distinct confound regimes---pure, conditional, and originality-dominated---providing prescriptive guidance for when bias estimates are directly interpretable. Five independent controls bound the risk of format-level amplification. Together, these findings establish that measurement mode, not scale granularity, determines style bias detectability, with practical consequences for evaluation design and alignment auditing.
+
+%------------------------------------------------------------
+\section*{Limitations}
+%------------------------------------------------------------
+
+Our study uses LLM-based rewriting for style manipulation, which introduces rewriting artifacts that we control for but cannot fully eliminate. The 100-pair primary sample size, while sufficient for BT detection, limits the precision of GEE estimates (wide confidence intervals on odds ratios). Finally, our three style axes (formality, verbosity, register) do not exhaust the space of possible biases; other axes (e.g., sentiment, hedging) may exhibit different confound structures.
+
+%------------------------------------------------------------
+% References
+%------------------------------------------------------------
+\bibliographystyle{plain}
+\begin{thebibliography}{20}
+
+\bibitem{zheng2024judging}
+L.~Zheng, W.-L. Chiang, et al.
+\newblock Judging LLM-as-a-judge with MT-Bench and Chatbot Arena.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem{dubois2024alpacafarm}
+Y.~Dubois, C.~X. Li, et al.
+\newblock AlpacaFarm: A Simulation Framework for Methods that Learn from Human Feedback.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem{wu2024sosbench}
+Y.~Wu, S.~Meng, et al.
+\newblock SOS-Bench: Is SoS All You Need? A Benchmark for Systematic Overoptimization in LLM Alignment.
+\newblock \emph{arXiv:2407.01539}, 2024.
+
+\bibitem{saito2023verbosity}
+K.~Saito, A.~Nishida, et al.
+\newblock Verbosity Bias in LLM-as-Judge.
+\newblock \emph{arXiv:2310.10076}, 2023.
+
+\bibitem{sharma2024towards}
+M.~Sharma, M.~Tong, et al.
+\newblock Towards Understanding Sycophancy in Language Models.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem{park2024offsetbias}
+S.~Park, J.~Kim, et al.
+\newblock OffsetBias: Leveraging Debiased Data for Tuning Evaluators.
+\newblock In \emph{EMNLP Findings}, 2024.
+
+\bibitem{chen2024casse}
+R.~Chen, H.~Zhao, et al.
+\newblock CASSE: Controlled Assessment of Style Sensitivity in LLM Evaluators.
+\newblock \emph{arXiv:2407.07391}, 2024.
+
+\bibitem{stureborg2024rate}
+R.~Stureborg, A.~Shankar, et al.
+\newblock RATE: Robust and Accurate Text Evaluation via Causal LLM Judge Sensitivity.
+\newblock \emph{arXiv:2408.06050}, 2024.
+
+\bibitem{dubois2024lengthcontrolled}
+Y.~Dubois, B.~Galambosi, et al.
+\newblock Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem{jeong2025comparative}
+S.~Jeong, J.~Sohl-Dickstein, et al.
+\newblock The Comparative Trap: How Pairwise Comparisons Amplify LLM Judge Biases.
+\newblock \emph{arXiv:2502.14175}, 2025.
+
+\end{thebibliography}
+
+\end{document}

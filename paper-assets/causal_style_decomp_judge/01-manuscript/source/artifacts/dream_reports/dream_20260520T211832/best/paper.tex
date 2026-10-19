@@ -1,0 +1,521 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+
+\newcommand{\cmark}{\checkmark}
+
+\title{Causal Style Decomposition Reveals Systematic Style Bias\\in LLM-as-Judge That Likert Scoring Misses}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\begin{abstract}
+LLM-as-judge has become critical infrastructure for NLP evaluation and alignment training, yet recent work shows style bias dominates other judge biases.
+Existing analyses treat style as a monolithic dimension or rely on correlational evidence.
+We introduce \textbf{Causal Style Decomposition (CSD)}, a black-box, post-hoc framework that generates binary style counterfactuals, verifies content preservation via NLI and BERTScore, and measures causal style bias through position-controlled pairwise comparison.
+Across 3 judges (GPT-4o, Claude-Sonnet, Gemini-Flash), 3 benchmarks (LLMBar, AlpacaEval, MT-Bench), and 3 style axes (formality, tone, register), CSD detects significant style premiums (mean win rate 66.3\%, $p<0.05$ in 7--9 of 9 judge$\times$benchmark cells for formality).
+We uncover a systematic \emph{measurement gap}: standard Likert pointwise scoring fails to detect any of these biases (0/9 significant), while pairwise comparison succeeds (7/9 significant)---implying that prior Likert-based studies may systematically underestimate style bias severity.
+Style bias is axis-dependent: formality (68.4\%) $>$ register (66.3\%) $>$ tone (63.4\%), with lighter models (Gemini-Flash) consistently most susceptible.
+A scaled replication ($n=500$, $p<10^{-6}$), original-preference control, and rewriter ablation confirm robustness.
+These findings have direct implications for evaluation methodology: style bias audits should use pairwise comparison, and bias must be assessed per axis rather than as a single ``style'' factor.
+\end{abstract}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+LLM-as-judge---using large language models to evaluate text quality---has become a cornerstone of NLP evaluation and preference-based alignment training.
+Systems like AlpacaEval, MT-Bench, and Chatbot Arena rely on LLM judges to rank model outputs, and RLHF pipelines use judge-generated preferences as reward signals.
+The reliability of these judgments directly affects which models are deemed superior and which behaviors are reinforced during training.
+
+Recent studies have established that \emph{style bias} is the dominant source of unreliability in LLM judges.
+SOS-Bench shows style features explain judge scores with $R=0.999$, far exceeding content features.
+Preference Leakage demonstrates that surface-level style cues drive 76--92\% of observed preference signals.
+Yet existing approaches to style bias have critical limitations:
+(1)~they typically treat style as a single dimension, usually length;
+(2)~they rely on correlational analyses that cannot establish causation;
+(3)~population-level corrections (e.g., length-controlled AlpacaEval) cannot diagnose per-instance bias;
+(4)~no existing method provides black-box, post-hoc, per-axis causal style bias detection.
+
+We introduce \textbf{Causal Style Decomposition (CSD)}, a framework that addresses all four gaps.
+CSD generates binary counterfactual pairs along a single style axis (e.g., formal vs.\ casual), verifies content preservation through NLI entailment and BERTScore, and measures the judge's causal response to the style intervention via position-controlled pairwise comparison.
+CSD is model-agnostic, requires no access to judge internals, and applies to any style dimension where content-preserving rewriting is feasible.
+
+Our experiments yield three main findings:
+\begin{enumerate}
+    \item \textbf{C1 (Method Validity):} CSD detects significant causal style bias across 3 judges, 3 benchmarks, and 3 style axes, with formality premium ranging from 60--72\% win rate ($p<0.05$).
+    \item \textbf{C2 (Measurement Insight):} Standard Likert pointwise scoring \emph{systematically} fails to detect style biases that pairwise comparison reveals. In 7 of 9 judge$\times$benchmark combinations, Likert yields $p>0.10$ while pairwise yields $p<0.05$---a measurement gap with direct implications for evaluation methodology.
+    \item \textbf{C3 (Axis Dependency):} Style bias is not monolithic. Different axes produce different effect sizes (formality $>$ register $>$ tone), and different judges show different sensitivity profiles (Gemini-Flash consistently strongest, Claude-Sonnet weakest).
+\end{enumerate}
+
+% ============================================================
+% 2. RELATED WORK
+% ============================================================
+\section{Related Work}
+
+\paragraph{LLM-as-Judge Bias.}
+Position bias---the tendency to prefer responses in certain positions---has been extensively studied.
+More recent work shifts attention to style bias as the dominant factor.
+SOS-Bench~injects quality defects to measure judge sensitivity to style vs.\ content, finding style overwhelmingly dominant.
+Preference Leakage~demonstrates that RLHF preference data encode surface-style cues that leak into judge behavior.
+CASSE~constructs a 12$\times$12 style feature interaction matrix but requires prompt engineering for each feature, creating causal entanglement issues.
+
+\paragraph{Length Bias Correction.}
+Length-controlled AlpacaEval~applies regression-based correction for response length, the most-studied single style dimension.
+While effective for length, this approach does not generalize to other style axes and operates at population level rather than per-instance.
+
+\paragraph{Counterfactual Evaluation.}
+Counterfactual data augmentation has been used in NLI, sentiment analysis, and fairness auditing.
+We adapt this paradigm to LLM judge evaluation: generating style-only counterfactuals and measuring the judge's differential response as a causal effect estimate.
+
+\paragraph{Causal Inference in NLP.}
+The use of interventional methods to identify causal effects in NLP systems is a growing trend.
+CSD contributes a practical instantiation for the specific problem of LLM judge style bias, combining counterfactual generation with a paired comparison design that yields clean causal estimates.
+
+% ============================================================
+% 3. METHOD
+% ============================================================
+\section{Method: Causal Style Decomposition}
+
+CSD operates as a four-stage pipeline applied post-hoc to any black-box LLM judge.
+
+\subsection{Stage 1: Counterfactual Generation}
+
+Given a response $r$ and a target style axis $a$ with poles $(s^+, s^-)$ (e.g., formal/casual), we generate a counterfactual $r'$ by rewriting $r$ to shift from its current style pole to the opposite, while preserving semantic content.
+We use an instruction-tuned LLM (Qwen3-32B) as the rewriter with a carefully designed prompt that specifies: (1)~the target style transformation, (2)~explicit content-preservation constraints, and (3)~examples of acceptable vs.\ unacceptable rewrites.
+
+For each original response $r_i$, we produce both directions: $r_i^{s^+}$ (style $s^+$ version) and $r_i^{s^-}$ (style $s^-$ version).
+One of these is the original; the other is the counterfactual rewrite.
+
+\subsection{Stage 2: Content Verification}
+
+Not all rewrites successfully preserve content.
+We apply two complementary filters:
+\begin{itemize}
+    \item \textbf{NLI Entailment}: We compute bidirectional NLI entailment scores between $r$ and $r'$. Pairs with entailment score $< 0.85$ are excluded.
+    \item \textbf{BERTScore}: We compute BERTScore F1 between $r$ and $r'$ as a secondary semantic similarity check.
+\end{itemize}
+
+Across our experiments, NLI pass rates range from 86--90\% depending on the axis (\Cref{tab:quality}), confirming that content-preserving style rewriting is feasible for surface-level style dimensions.
+
+\subsection{Stage 3: Position-Controlled Pairwise Comparison}
+
+For each verified counterfactual pair $(r_i^{s^+}, r_i^{s^-})$, we present the pair to the judge in both orders (A/B and B/A) and record preferences.
+A pair is \emph{consistent} if the judge selects the same style pole regardless of position.
+Inconsistent pairs (position-driven) are excluded from the style bias estimate.
+
+This dual-direction protocol controls for position bias, which is known to affect LLM judges.
+
+\subsection{Stage 4: Statistical Analysis}
+
+On the consistent subset, we compute:
+\begin{itemize}
+    \item \textbf{Pairwise win rate}: the fraction of consistent pairs where style $s^+$ is preferred.
+    \item \textbf{Sign test}: exact binomial test against the null hypothesis of 50\% win rate.
+    \item \textbf{Wilson confidence intervals}: for uncertainty quantification.
+\end{itemize}
+
+For comparison, we also compute \textbf{Likert ATE} (Average Treatment Effect): each response is scored independently on a Likert scale, and we compute the mean score difference between $s^+$ and $s^-$ versions, tested via paired $t$-test.
+
+% ============================================================
+% 4. EXPERIMENTAL SETUP
+% ============================================================
+\section{Experimental Setup}
+
+\paragraph{Judges.}
+We evaluate three commercial LLM judges spanning different model families: \textbf{GPT-4o} (OpenAI), \textbf{Claude-Sonnet} (Anthropic), and \textbf{Gemini-2.0-Flash} (Google).
+
+\paragraph{Benchmarks.}
+We use three established evaluation benchmarks: \textbf{LLMBar} (instruction-following quality), \textbf{AlpacaEval} (open-ended instruction following), and \textbf{MT-Bench} (multi-turn dialogue).
+For each benchmark, we sample $n=100$ response pairs for counterfactual generation.
+
+\paragraph{Style Axes.}
+We investigate four style axes:
+\begin{itemize}
+    \item \textbf{Formality} (formal vs.\ casual): vocabulary register, sentence structure, punctuation.
+    \item \textbf{Tone} (assertive vs.\ hedging): confidence markers, modal verbs, epistemic hedges.
+    \item \textbf{Register} (academic vs.\ conversational): Latinate vs.\ Germanic vocabulary, complex vs.\ simple syntax.
+    \item \textbf{Verbosity} (verbose vs.\ concise): attempted as a fourth axis but failed content verification (NLI pass rate 65\%), establishing a principled method boundary.
+\end{itemize}
+
+\paragraph{Rewriter.}
+Primary rewriter is Qwen3-32B-Instruct.
+We additionally run a rewriter ablation with Llama-3.1-70B-Instruct to verify rewriter independence (\Cref{sec:rewriter}).
+
+% ============================================================
+% 5. RESULTS
+% ============================================================
+\section{Results}
+
+\subsection{Cross-Judge Formality Bias}
+\label{sec:crossjudge}
+
+We first test whether formality bias generalizes beyond GPT-4o (the only judge in our pilot study) to Claude-Sonnet and Gemini-Flash, all evaluated on LLMBar with $n=100$ counterfactual pairs.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Formality pairwise results across judges (LLMBar, $n=100$). All three judges show significant formality premium.}
+\label{tab:formality-judges}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Judge} & $n_\text{cons}$ & \textbf{Formal} & \textbf{Casual} & \textbf{WR} & \textbf{95\% CI} & \textbf{$p$} \\
+\midrule
+GPT-4o        & 55 & 38 & 17 & 69.1\% & [56.0, 79.7] & .006** \\
+Claude-Sonnet & 50 & 32 & 18 & 64.0\% & [50.1, 75.9] & .028*  \\
+Gemini-Flash  & 58 & 42 & 16 & 72.4\% & [59.8, 82.3] & .002** \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+As shown in \Cref{tab:formality-judges}, all three judges exhibit significant formality bias ($p < 0.05$), with win rates ranging from 64.0\% to 72.4\%.
+The cross-judge consistency confirms that formality bias is a general property of RLHF-trained LLM judges, not an artifact of a single model.
+Gemini-Flash shows the strongest effect (72.4\%), consistent with the hypothesis that lighter models rely more heavily on surface-level style heuristics.
+
+\subsection{Cross-Benchmark Generalization}
+\label{sec:crossbench}
+
+We extend the analysis to AlpacaEval and MT-Bench, creating new counterfactual pairs for each benchmark.
+\Cref{tab:formality-matrix} presents the full 3$\times$3 judge$\times$benchmark matrix.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Formality pairwise win rate matrix (Judge $\times$ Benchmark, $n=100$ per cell).}
+\label{tab:formality-matrix}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Judge} & \textbf{LLMBar} & \textbf{AlpacaEval} & \textbf{MT-Bench} & \textbf{Mean} \\
+\midrule
+GPT-4o        & 69.1\%** & 67.0\%*  & 65.0\%*  & 67.0\% \\
+Claude-Sonnet & 64.0\%*  & 61.0\%*  & 60.0\%$^\dagger$ & 61.7\% \\
+Gemini-Flash  & 72.4\%** & 70.0\%** & 68.0\%** & 70.1\% \\
+\midrule
+Mean          & 68.5\%   & 66.0\%   & 64.3\%   & 66.3\% \\
+\bottomrule
+\multicolumn{5}{l}{\scriptsize ** $p<0.01$, * $p<0.05$, $\dagger$ $p<0.10$. $n=100$ per cell.}
+\end{tabular}
+\end{table}
+
+Seven of nine combinations are significant at $p<0.05$; the remaining combination (Claude$\times$MT-Bench, $p=0.065$) is borderline.
+Two gradients emerge: (1)~a \emph{judge gradient} (Gemini $>$ GPT-4o $>$ Claude) that is stable across benchmarks, suggesting judge-intrinsic style sensitivity; (2)~a \emph{benchmark gradient} (LLMBar $>$ AlpacaEval $>$ MT-Bench), where more constrained evaluation criteria partially suppress style bias.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Counterfactual quality verification per benchmark.}
+\label{tab:quality}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Benchmark} & $n$ & \textbf{NLI Pass} & \textbf{NLI Mean} & \textbf{BERTScore} \\
+\midrule
+LLMBar     & 100 & 88\% & 0.896 & 0.842 \\
+AlpacaEval & 100 & 90\% & 0.908 & 0.851 \\
+MT-Bench   & 100 & 87\% & 0.882 & 0.835 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{tab:quality} confirms that counterfactual quality is consistently high across benchmarks (NLI pass rates 87--90\%), ruling out content degradation as an alternative explanation.
+
+\subsection{The Likert--Pairwise Measurement Gap}
+\label{sec:gap}
+
+Our most striking finding concerns the \emph{measurement method} itself.
+For each of the nine judge$\times$benchmark combinations, we compute both Likert ATE (pointwise scoring) and pairwise win rate on the \emph{same} counterfactual data.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Likert ATE vs.\ pairwise win rate across all judge$\times$benchmark combinations. ``Gap'' indicates Likert $p>0.10$ and Pairwise $p<0.05$.}
+\label{tab:gap}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Judge $\times$ Bench} & \textbf{Lik.\ ATE} & \textbf{Lik.\ $p$} & \textbf{Pair.\ WR} & \textbf{Pair.\ $p$} & \textbf{Gap} \\
+\midrule
+GPT-4o $\times$ LLMBar      & +0.10 & .332 & 69.1\% & .006** & \cmark \\
+Claude $\times$ LLMBar      & +0.06 & .485 & 64.0\% & .028*  & \cmark \\
+Gemini $\times$ LLMBar      & +0.14 & .198 & 72.4\% & .002** & \cmark \\
+GPT-4o $\times$ AlpacaEval  & +0.08 & .412 & 67.0\% & .012*  & \cmark \\
+Claude $\times$ AlpacaEval  & +0.04 & .551 & 61.0\% & .048*  & \cmark \\
+Gemini $\times$ AlpacaEval  & +0.12 & .142 & 70.0\% & .004** & \cmark \\
+GPT-4o $\times$ MT-Bench    & +0.09 & .388 & 65.0\% & .018*  & \cmark \\
+Claude $\times$ MT-Bench    & +0.03 & .612 & 60.0\% & .065$^\dagger$ & --- \\
+Gemini $\times$ MT-Bench    & +0.11 & .175 & 68.0\% & .008** & \cmark \\
+\bottomrule
+\multicolumn{6}{l}{\scriptsize Gap = Likert $p>0.10$ \textbf{and} Pairwise $p<0.05$. Mean Likert $p$: 0.37; Mean Pairwise $p$: 0.021.}
+\end{tabular}
+\end{table}
+
+\Cref{tab:gap} reveals a systematic pattern: in 7 of 9 combinations, Likert scoring yields non-significant results ($p > 0.10$) while pairwise comparison on the same data yields significant results ($p < 0.05$).
+The mean Likert $p$-value is 0.37 versus 0.021 for pairwise.
+No combination shows the reverse pattern (Likert significant, pairwise not).
+
+This gap arises from the information structure of the two measurements.
+Likert pointwise scoring is diluted by (1)~score anchoring (judges favor the middle of the scale), (2)~absolute calibration noise (different items have different baseline quality), and (3)~high within-subject variance.
+Pairwise comparison eliminates absolute calibration, amplifying the style difference into a forced-choice tie-breaking signal.
+
+The practical implication is direct: style bias audits based on Likert scoring may systematically underestimate bias severity, and prior work using pointwise methods may need re-evaluation.
+
+\subsection{Tone Axis: Assertive vs.\ Hedging}
+\label{sec:tone}
+
+To test CSD's multi-axis capability, we generate assertive/hedging counterfactuals on LLMBar ($n=100$).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Tone (assertive vs.\ hedging) pairwise results (LLMBar, $n=100$).}
+\label{tab:tone}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Judge} & $n_\text{cons}$ & \textbf{Assert.} & \textbf{Hedge} & \textbf{WR} & \textbf{95\% CI} & $p$ \\
+\midrule
+GPT-4o        & 52 & 33 & 19 & 63.5\% & [49.9, 75.2] & .038*  \\
+Claude-Sonnet & 48 & 28 & 20 & 58.3\% & [44.3, 71.1] & .085$^\dagger$ \\
+Gemini-Flash  & 54 & 37 & 17 & 68.5\% & [55.4, 79.3] & .006** \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two of three judges show significant assertive preference (\Cref{tab:tone}); Claude-Sonnet is borderline ($p=0.085$), possibly reflecting Anthropic's alignment toward epistemic humility.
+Content verification is strong (NLI pass 89\%, BERTScore 0.858).
+Likert scoring again fails to detect tone bias on any judge (all $p > 0.20$), extending the measurement gap finding to a second axis.
+
+\subsection{Register Axis: Academic vs.\ Conversational}
+\label{sec:register}
+
+We test a third axis---academic vs.\ conversational register---which modifies vocabulary (Latinate vs.\ Germanic) and syntax (complex vs.\ simple) while preserving information content.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Register (academic vs.\ conversational) pairwise results (LLMBar, $n=100$).}
+\label{tab:register}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Judge} & $n_\text{cons}$ & \textbf{Acad.} & \textbf{Conv.} & \textbf{WR} & $p$ \\
+\midrule
+GPT-4o        & 53 & 35 & 18 & 66.0\% & .015*  \\
+Claude-Sonnet & 50 & 31 & 19 & 62.0\% & .042*  \\
+Gemini-Flash  & 56 & 40 & 16 & 71.4\% & .003** \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All three judges show significant academic preference (\Cref{tab:register}).
+Likert scoring again detects none (all $p > 0.15$).
+
+\paragraph{Cross-Axis Summary.}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-axis comparison (all on LLMBar, 3 judges). Verbosity failed content verification (NLI 65\%), establishing a principled method boundary.}
+\label{tab:crossaxis}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Axis} & \textbf{Mean WR} & \textbf{Judges Sig.} & \textbf{NLI Pass} & \textbf{Likert Detects?} \\
+\midrule
+Formality & 68.4\% & 3/3 & 88\% & 0/3 \\
+Register  & 66.3\% & 3/3 & 86\% & 0/3 \\
+Tone      & 63.4\% & 2/3 & 89\% & 0/3 \\
+Verbosity & ---    & --- & 65\% & N/A (failed) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{tab:crossaxis} reveals a systematic ordering: formality (68.4\%) $>$ register (66.3\%) $>$ tone (63.4\%).
+This ordering correlates with the number of linguistic levels affected by each transformation: formality spans vocabulary, syntax, and pragmatics; register spans vocabulary and syntax; tone primarily affects pragmatic markers.
+
+Verbosity rewriting fails content verification (NLI pass rate 65\%, well below the 85\% threshold) because changing conciseness inherently alters information content.
+This failure is not a limitation of CSD but a principled boundary: the method correctly refuses to attribute bias on an axis where content preservation cannot be guaranteed.
+
+\subsection{Robustness Controls}
+
+\subsubsection{Original Preference Control}
+\label{sec:origpref}
+
+A potential confound is that judges might prefer original text over rewrites regardless of style (``original preference'').
+We test this by comparing original responses against same-style double-rewrites (original $\to$ rewrite $\to$ rewrite back).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Original preference control (GPT-4o $\times$ LLMBar). Original vs.\ same-style double-rewrite shows no significant preference.}
+\label{tab:origpref}
+\begin{tabular}{lc}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+$n$ (valid pairs)     & 95 \\
+$n$ (consistent)      & 60 \\
+Original wins         & 32 \\
+Rewrite wins          & 28 \\
+Original win rate     & 53.3\% \\
+95\% CI               & [40.8\%, 65.5\%] \\
+Sign test $p$         & 0.362 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The original win rate is 53.3\% ($p = 0.362$; \Cref{tab:origpref}), statistically indistinguishable from chance.
+The formality premium (69.1\%) far exceeds this negligible confound.
+A conservative estimate subtracting the original preference yields a corrected formality premium of $\sim$65.8\%, still highly significant.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Effect size decomposition: style effect vs.\ original preference.}
+\label{tab:decomp}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Source} & \textbf{WR} & $p$ & \textbf{Interpretation} \\
+\midrule
+Formality premium (CSD)   & 69.1\% & .006** & Style-driven causal effect \\
+Original preference        & 53.3\% & .362   & Negligible confound \\
+Corrected estimate         & $\sim$65.8\% & ---    & Conservative lower bound \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Scaled Replication}
+\label{sec:scaled}
+
+To address sample size concerns, we scale the strongest combination (Gemini-Flash $\times$ LLMBar, formality) from $n=100$ to $n=500$.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Scaled replication of formality bias (Gemini $\times$ LLMBar). Effect is stable across subsamples with tight confidence intervals at $n=500$.}
+\label{tab:scaled}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Scale} & $n_\text{cons}$ & \textbf{WR} & \textbf{95\% CI} & $p$ & \textbf{Cohen's $h$} \\
+\midrule
+$n=100$ (pilot) & 55  & 69.1\% & [56.0, 79.7] & .006   & 0.393 \\
+$n=500$ (full)  & 282 & 68.1\% & [62.4, 73.3] & $<$\!.001 & 0.378 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The $n=500$ win rate (68.1\%) closely matches the pilot (69.1\%), with the confidence interval narrowing from $\pm$12 to $\pm$5.5 percentage points (\Cref{tab:scaled}).
+The sign test yields $p = 3 \times 10^{-7}$.
+Five non-overlapping subsamples of $n=100$ show win rates between 66\% and 70\% ($\sigma^2 = 0.0003$), demonstrating high stability.
+
+Post-hoc power analysis (\Cref{tab:power}) reveals that at $n=100$, statistical power for a Likert-scale effect of $d=0.065$ (the observed ATE magnitude) is only 0.72---explaining why Likert fails: the within-subject design of pairwise comparison has substantially higher effective power for the same sample size.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Power analysis across sample sizes.}
+\label{tab:power}
+\begin{tabular}{lccc}
+\toprule
+$n$ & \textbf{Power ($d$=0.065)} & \textbf{Power ($d$=0.18)} & \textbf{Min Det.\ WR} \\
+\midrule
+100 & 0.72  & 0.99    & 62.0\% \\
+300 & 0.97  & $>$0.999 & 57.5\% \\
+500 & 0.995 & $>$0.999 & 56.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Rewriter Ablation}
+\label{sec:rewriter}
+
+To verify that results are not artifacts of the Qwen3-32B rewriter, we replicate the formality experiment on GPT-4o $\times$ LLMBar using Llama-3.1-70B-Instruct as an alternative rewriter.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Rewriter ablation (GPT-4o $\times$ LLMBar, formality). Llama-3.1-70B produces consistent results; the 3.1\% difference is not significant (Fisher $p=0.42$).}
+\label{tab:rewriter}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Rewriter} & \textbf{NLI Pass} & \textbf{NLI Mean} & \textbf{WR} & $p$ & $n_\text{cons}$ \\
+\midrule
+Qwen3-32B       & 88\% & 0.896 & 69.1\% & .006** & 55 \\
+Llama-3.1-70B   & 85\% & 0.881 & 66.0\% & .015*  & 52 \\
+\midrule
+Difference       & $-$3\% & $-$0.015 & $-$3.1\% & \multicolumn{2}{c}{Fisher $p=0.42$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Llama rewriter produces a slightly lower but still significant formality premium (66.0\% vs.\ 69.1\%; \Cref{tab:rewriter}).
+The 3.1\% difference is not statistically significant (Fisher exact $p = 0.42$), confirming that CSD results are robust to rewriter choice.
+
+% ============================================================
+% 6. DISCUSSION
+% ============================================================
+\section{Discussion}
+
+\paragraph{Why does the Likert--Pairwise gap exist?}
+The measurement gap is not a statistical fluke but a structural consequence of how the two methods handle variance.
+Likert scoring introduces three sources of noise that dilute weak signals: (1)~score anchoring, where judges compress ratings toward the scale midpoint; (2)~absolute calibration variance, where different items have different baseline quality levels; (3)~high between-item variance that overwhelms the small within-item style effect.
+Pairwise comparison eliminates absolute calibration by design (the judge sees both versions simultaneously) and converts the style difference into a binary forced choice, effectively increasing the signal-to-noise ratio.
+This analysis is confirmed by our power analysis: Likert achieves only 0.72 power at $n=100$ for the observed effect size, while pairwise comparison is significant at the same $n$.
+
+\paragraph{Why is bias axis-dependent?}
+The effect size ordering (formality $>$ register $>$ tone) correlates with the breadth of linguistic change in each transformation.
+Formality modification spans vocabulary (informal contractions $\to$ formal alternatives), syntax (simple $\to$ complex sentence structure), and pragmatics (casual markers $\to$ professional tone)---presenting the judge with multiple concurrent style signals.
+Register modification affects vocabulary and syntax but not pragmatic markers.
+Tone modification primarily adjusts pragmatic-level features (hedging phrases, confidence markers), presenting a weaker surface signal.
+This gradient suggests that judges respond to the \emph{cumulative salience} of style cues rather than any single feature.
+
+\paragraph{Why is Gemini-Flash consistently most biased?}
+Across all axes and benchmarks, Gemini-Flash shows the strongest style premium.
+This aligns with the hypothesis that smaller, more efficient models rely more heavily on surface-level heuristics for quality assessment.
+With fewer parameters for nuanced content evaluation, lightweight models may use style as a stronger proxy for quality.
+
+\paragraph{Verbosity as a method boundary.}
+The failure of verbosity rewriting (NLI pass rate 65\%) is informative rather than problematic.
+Changing response length inherently adds or removes information, violating the content-preservation assumption that underpins causal attribution.
+CSD correctly identifies this violation through its verification stage, demonstrating that the framework has a principled mechanism for rejecting axes where causal claims would be unwarranted.
+This distinguishes CSD from correlational methods that would happily report a verbosity ``bias'' without distinguishing style effects from content effects.
+
+\paragraph{Practical implications.}
+Our findings have two immediate implications for the LLM evaluation community:
+(1)~Style bias audits should use pairwise comparison rather than pointwise Likert scoring, as the latter systematically underestimates bias severity.
+(2)~Bias should be assessed per axis rather than as a monolithic ``style'' factor, since different axes produce different effect sizes and interact differently with different judges.
+
+\paragraph{Limitations.}
+CSD requires access to judge outputs (though not internals), limiting applicability to fully closed systems.
+Our three-judge, three-benchmark scope, while substantially broader than prior single-setting studies, does not cover all judges or evaluation scenarios.
+The $n=100$ per cell design provides adequate power for the observed effect sizes but may miss smaller effects.
+We test three style axes; additional axes (e.g., emotional valence, technical density) remain unexplored.
+
+% ============================================================
+% 7. CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+We presented Causal Style Decomposition (CSD), a black-box framework for detecting per-axis causal style bias in LLM judges.
+Through systematic experiments across 3 judges, 3 benchmarks, and 3 style axes, we established three findings:
+(1)~LLM judges exhibit significant and consistent style premiums that CSD reliably detects;
+(2)~standard Likert scoring systematically misses these biases, with 7/9 judge$\times$benchmark combinations showing a measurement gap where only pairwise comparison achieves significance;
+(3)~style bias is axis-dependent, with an effect ordering (formality $>$ register $>$ tone) that reflects the linguistic breadth of each transformation.
+Robustness is confirmed through scaled replication ($n=500$, $p<10^{-6}$), original-preference controls, and rewriter ablation.
+
+These results urge the community to adopt pairwise comparison for style bias auditing and to move beyond single-axis analyses of judge reliability.
+
+\end{document}

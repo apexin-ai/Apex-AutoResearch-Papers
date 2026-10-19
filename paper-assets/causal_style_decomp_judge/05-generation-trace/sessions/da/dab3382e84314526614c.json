@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_register_pilot_20260520T233206_result.json",
     "occurrence": 1,
-    "bytes": 2121,
-    "sha256": "b02afbf1ec1fa82c5d7228de3a33fb846114c1c97eea0e01e26b08b401cc543a"
+    "bytes": 2120,
+    "sha256": "54039903dc2bfe311600f750e53fc67fa9e6467588227b007daf761516be777e"
   },
   "statistics": {
     "messages": 1,

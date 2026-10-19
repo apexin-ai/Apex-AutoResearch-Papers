@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r15-sf4-fk-length-control_20260523T061120_result.json",
     "occurrence": 1,
-    "bytes": 988,
-    "sha256": "8fa30219da045aaad549cef4b62bcc3adbdc0d4c451bd4e2f336a9bf77e15eed"
+    "bytes": 987,
+    "sha256": "19ec9b18c7bc9d0d88bbb3e7407984e3352ec97b7cd0deb1c8b639f0f0da5911"
   },
   "statistics": {
     "messages": 1,

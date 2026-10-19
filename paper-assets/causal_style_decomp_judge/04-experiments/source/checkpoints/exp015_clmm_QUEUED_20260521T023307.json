@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp015_clmm",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:32:56.750Z",
+    "updated_at": "2026-05-21T02:33:07.608Z",
+    "spec": {
+      "command": "python csd_pipeline/exp015_clmm_analysis.py",
+      "server": "westb-29275",
+      "data_path": "/root/causal_style_decomp_judge/experiments/mvp_32b_ate/scored_32b.jsonl",
+      "data_count": 88,
+      "model_name": "statsmodels OrderedModel + GEE + scipy Wilcoxon",
+      "seed": 42,
+      "checkpoint_path": "N/A (reanalysis)",
+      "log_path": "csd_pipeline/exp015_clmm_analysis.py"
+    },
+    "hypothesis": "Ordinal regression (CLMM) respecting Likert measurement level will also fail to detect formality effect (p>0.05), confirming that the Likert Blindspot is not an artifact of treating ordinal data as continuous",
+    "metrics": {
+      "ordinal_regression": {
+        "is_formal_coef": -0.079,
+        "is_formal_p": 0.769,
+        "is_formal_ci": [
+          -0.6,
+          0.45
+        ]
+      },
+      "gee_paired": {
+        "is_formal_coef": -0.084,
+        "is_formal_p": 0.587,
+        "is_formal_ci": [
+          -0.39,
+          0.22
+        ]
+      },
+      "wilcoxon": {
+        "p": 0.905
+      },
+      "n_pairs": 88,
+      "n_ties": 55,
+      "tie_rate": 0.625,
+      "conclusion_note": "All three methods (ordinal LR, GEE, Wilcoxon) confirm Likert Blindspot: p=0.77/0.59/0.91. 62.5% ties eliminate statistical power."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T02:33:07.640565+00:00",
+  "trigger": "update_registry"
+}

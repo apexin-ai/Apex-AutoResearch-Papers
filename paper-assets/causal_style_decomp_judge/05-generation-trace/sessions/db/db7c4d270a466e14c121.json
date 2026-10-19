@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_api_test_and_scoring_20260521T050355_result.json",
     "occurrence": 1,
-    "bytes": 1370,
-    "sha256": "3c920ed9517a3a23e70ec99b0859e5f0936b88122553df14972a795b24d98ec3"
+    "bytes": 1369,
+    "sha256": "e91fce046c8a21b720e054edd35222e3de9acced223825a9c0026011d7512c10"
   },
   "statistics": {
     "messages": 1,

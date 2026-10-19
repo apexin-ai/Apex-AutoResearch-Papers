@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_tone_pilot_exp004_20260520T224149_result.json",
     "occurrence": 1,
-    "bytes": 2683,
-    "sha256": "7f1668664edd0d005b499f9b22e396d0649e26e6b6f125586754c480c705610d"
+    "bytes": 2682,
+    "sha256": "aeb9962c7e333df49c2dc76efd1e79114b5ee8eadb1dd0601b5eb56564fd243a"
   },
   "statistics": {
     "messages": 1,

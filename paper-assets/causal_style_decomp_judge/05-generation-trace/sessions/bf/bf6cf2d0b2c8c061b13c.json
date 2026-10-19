@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_vllm-check-restart_20260522T231152_result.json",
     "occurrence": 1,
-    "bytes": 2278,
-    "sha256": "3aa1da130bee2a2c084c7d794f6612dd8832793717784a47708a65b69c1d26e0"
+    "bytes": 2277,
+    "sha256": "6547312edecf8c108d8f52f2c5717d2669a433493e01ccf3b6d949ef1987fede"
   },
   "statistics": {
     "messages": 1,

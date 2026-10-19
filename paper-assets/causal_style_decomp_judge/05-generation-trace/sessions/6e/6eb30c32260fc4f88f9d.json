@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_push_noindent-fix_20260525T112539_result.json",
     "occurrence": 1,
-    "bytes": 606,
-    "sha256": "11a4ea1c97d2429bd47a31c85a2dc1c9dc55e0fc15ed80ba19e9eac71a07ee6a"
+    "bytes": 605,
+    "sha256": "b969120baa3a914665bae136970ced43e106abc4dea07f3b68a7061680b63695"
   },
   "statistics": {
     "messages": 1,

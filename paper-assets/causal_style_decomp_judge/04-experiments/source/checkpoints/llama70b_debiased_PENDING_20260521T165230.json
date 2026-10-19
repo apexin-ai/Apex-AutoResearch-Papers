@@ -1,0 +1,15 @@
+{
+  "exp_id": "llama70b_debiased",
+  "project": "causal_style_decomp_judge",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T16:52:24.716Z",
+    "updated_at": "2026-05-21T16:52:30.718Z",
+    "hypothesis": "Llama-70B correction resistance follows the same axis-dependent pattern as GPT-4o/Qwen3-32B: debiased prompts reduce but do not eliminate style bias, with verbosity more amenable to correction than formality, confirming bias persistence is model-independent"
+  },
+  "timestamp": "2026-05-21T16:52:30.817965+00:00",
+  "trigger": "update_registry"
+}

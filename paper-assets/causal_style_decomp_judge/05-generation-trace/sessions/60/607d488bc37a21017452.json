@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_kill_vllm_fix_gate_20260521T020614_result.json",
     "occurrence": 1,
-    "bytes": 299,
-    "sha256": "069d02ba7dd3842c2984c8c00eb5d676f9291de490da2d52f175e89167b7fd3a"
+    "bytes": 298,
+    "sha256": "a5c6af404d38a5c1651ffe176172135ed7bc9e476a8a9a5572358f26a837bd4b"
   },
   "statistics": {
     "messages": 1,

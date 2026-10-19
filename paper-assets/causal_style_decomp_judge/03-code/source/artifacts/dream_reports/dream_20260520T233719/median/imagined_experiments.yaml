@@ -1,0 +1,984 @@
+tier: median
+narrative_guidance: 'C2 需要 hedge："Likert scoring shows reduced sensitivity to style
+  bias compared to pairwise comparison, though the source of this gap — measurement
+  structure vs. statistical power — remains partially ambiguous." Binarized Likert
+  结果放在 discussion 中作为 open question 而非 main claim 的证据。 Original preference confound
+  成为论文最大 limitation — 诚实承认 "observed formality preference may partly reflect original-text
+  preference correlated with formality" 并展示 logistic regression interaction。 C1 保持（method
+  works），C3 保持（preliminary），C4 调整为 "use pairwise for auditing; interpret with caution
+  when original preference aligns with style axis"。标题可保留 "Likert Blindspot" 但需在 abstract
+  加 qualifier。 泛化叙事从 "across judges and benchmarks" 降级为 "demonstrated on GPT-4o with
+  partial replication on [other judge]"。 仍投 EMNLP Main，预期 Findings accept。
+
+  '
+imagined_experiments:
+- name: Multi-judge formality pairwise
+  plan_id: exp-001
+  description: '在 Claude-3.5-Sonnet 和 Gemini-2.0-Flash 上复制 formality pairwise 实验。
+    使用已有 counterfactual pairs，双向 position-controlled pairwise comparison。
+
+    '
+  expected_results:
+    claude_sonnet_n_consistent: 51
+    claude_sonnet_formal_wins: 33
+    claude_sonnet_casual_wins: 18
+    claude_sonnet_formal_win_rate: 0.647
+    claude_sonnet_sign_test_p: 0.037
+    claude_sonnet_wilson_ci_lo: 0.51
+    claude_sonnet_wilson_ci_hi: 0.764
+    claude_sonnet_consistency_rate: 0.52
+    claude_sonnet_position_bias_A: 0.53
+    gemini_flash_n_consistent: 48
+    gemini_flash_formal_wins: 27
+    gemini_flash_casual_wins: 21
+    gemini_flash_formal_win_rate: 0.563
+    gemini_flash_sign_test_p: 0.44
+    gemini_flash_wilson_ci_lo: 0.419
+    gemini_flash_wilson_ci_hi: 0.697
+    gemini_flash_consistency_rate: 0.49
+    gemini_flash_position_bias_A: 0.57
+    n_judges_pairwise_significant: 2
+  result_rationale: 'Median 档位下 1-2/3 judges pairwise 显著。GPT-4o 已知 p=0.006 (69.1%)。
+    Claude Sonnet 作为同级别模型，formality preference 相似但略弱 (64.7%, p=0.037)， 刚过 α=0.05 边界。Gemini
+    Flash 作为较小模型，position consistency 更差 (49%)， noise 吃掉 signal，formal win rate 仅
+    56.3% (p=0.44) — 这符合 "至少 1 judge pairwise 也不显著" 的 median 约束。 Position bias 在 52-57%
+    范围内，不构成致命问题但增加了 Gemini 结果的不确定性。
+
+    '
+  tables:
+  - title: 'Table 2: Pairwise Formality Preference Across Judges (LLMBar)'
+    columns:
+    - Judge
+    - N_consistent
+    - Formal_wins
+    - Casual_wins
+    - Win_rate
+    - p (sign)
+    - 95% CI
+    rows:
+    - - GPT-4o
+      - 55
+      - 38
+      - 17
+      - 69.1%
+      - 0.006
+      - '[0.560, 0.797]'
+    - - Claude-3.5-Sonnet
+      - 51
+      - 33
+      - 18
+      - 64.7%
+      - 0.037
+      - '[0.510, 0.764]'
+    - - Gemini-2.0-Flash
+      - 48
+      - 27
+      - 21
+      - 56.3%
+      - 0.44
+      - '[0.419, 0.697]'
+  figures_description:
+  - Forest plot showing formal win rate ± 95% CI for each judge. GPT-4o 和 Claude Sonnet
+    的 CI 不含 0.50，Gemini 的 CI 跨越 0.50。
+  analysis: '2/3 judges 显著支持 C1 (method detects bias)，但 Gemini 不显著限制了 "across judges"
+    的 generalization claim。论文需表述为 "demonstrated on GPT-4o (p=0.006) with replication
+    on Claude Sonnet (p=0.037); Gemini-2.0-Flash did not reach significance (p=0.44),
+    possibly due to lower consistency rate."  Gemini 的低 consistency (49%) 可能反映模型能力
+    不足以进行可靠 pairwise comparison，而非 formality bias 不存在。
+
+    '
+- name: Multi-benchmark formality pairwise
+  plan_id: exp-002
+  description: '在 AlpacaEval 和 MT-Bench 子集上运行 CSD pipeline。需要新生成 counterfactual。 三个
+    judge 均参与评估。
+
+    '
+  expected_results:
+    alpacaeval_gpt4o_n_cf_generated: 120
+    alpacaeval_gpt4o_nli_pass_rate: 0.82
+    alpacaeval_gpt4o_n_primary: 98
+    alpacaeval_gpt4o_n_consistent: 52
+    alpacaeval_gpt4o_formal_win_rate: 0.635
+    alpacaeval_gpt4o_sign_test_p: 0.076
+    alpacaeval_gpt4o_wilson_ci_lo: 0.497
+    alpacaeval_gpt4o_wilson_ci_hi: 0.753
+    alpacaeval_claude_formal_win_rate: 0.611
+    alpacaeval_claude_sign_test_p: 0.152
+    alpacaeval_gemini_formal_win_rate: 0.541
+    alpacaeval_gemini_sign_test_p: 0.62
+    mtbench_gpt4o_n_cf_generated: 80
+    mtbench_gpt4o_nli_pass_rate: 0.78
+    mtbench_gpt4o_n_primary: 62
+    mtbench_gpt4o_n_consistent: 35
+    mtbench_gpt4o_formal_win_rate: 0.571
+    mtbench_gpt4o_sign_test_p: 0.48
+    mtbench_claude_formal_win_rate: 0.545
+    mtbench_claude_sign_test_p: 0.61
+    n_benchmarks_with_gap: 1
+  result_rationale: 'Median 档位下仅 1/3 additional benchmark 复制 gap。AlpacaEval 在 GPT-4o
+    上 formal win rate 63.5% (p=0.076) — 方向一致但未过 α=0.05，属于 "边界复制"。 原因：AlpacaEval 指令更开放，counterfactual
+    quality 稍低 (NLI 82% vs LLMBar 88%)， 且 consistent pairs 更少 (52 vs 55)。MT-Bench
+    不复制因为其评估任务更结构化 (coding, math, extraction)，formality 对结构化任务影响极小 — 这不是方法失败 而是 benchmark
+    特性导致 effect 不存在。NLI pass rate 也更低 (78%) 反映 MT-Bench 任务多样性对 style transfer quality
+    的挑战。
+
+    '
+  tables:
+  - title: 'Table 3: Pairwise Formality Preference Across Benchmarks (GPT-4o)'
+    columns:
+    - Benchmark
+    - N_consistent
+    - Formal_wins
+    - Win_rate
+    - p (sign)
+    rows:
+    - - LLMBar
+      - 55
+      - 38
+      - 69.1%
+      - 0.006
+    - - AlpacaEval
+      - 52
+      - 33
+      - 63.5%
+      - 0.076
+    - - MT-Bench
+      - 35
+      - 20
+      - 57.1%
+      - 0.48
+  - title: 'Table S1: Cross-judge × Cross-benchmark Pairwise Results'
+    columns:
+    - Benchmark
+    - GPT-4o
+    - Claude-Sonnet
+    - Gemini-Flash
+    rows:
+    - - LLMBar
+      - 69.1%**
+      - 64.7%*
+      - 56.3%
+    - - AlpacaEval
+      - 63.5%†
+      - 61.1%
+      - 54.1%
+    - - MT-Bench
+      - 57.1%
+      - 54.5%
+      - 51.2%
+  figures_description:
+  - 'Heatmap: benchmark (rows) × judge (cols)，cell 颜色编码 formal win rate，星号标注显著性。左上角深色区
+    (LLMBar × GPT-4o) 到右下角浅色区 (MT-Bench × Gemini) 的渐变。'
+  analysis: '泛化叙事必须降级。LLMBar 上 GPT-4o 是最强结果，AlpacaEval 边界复制， MT-Bench 不复制。论文表述："formality
+    bias is most pronounced on instruction-following benchmarks (LLMBar, AlpacaEval)
+    where stylistic variation is natural; structured-task benchmarks (MT-Bench) show
+    attenuated effects, consistent with formality being less salient when evaluation
+    criteria are well-defined." 这保全了 finding 但限制了 scope。
+
+    '
+- name: Likert vs Pairwise sensitivity analysis across judges
+  plan_id: exp-003
+  description: '对所有 judge × benchmark 组合计算 Likert ATE 和 pairwise win rate， 系统比较测量敏感度。
+
+    '
+  expected_results:
+    gpt4o_llmbar_likert_ate: 0.102
+    gpt4o_llmbar_likert_p: 0.332
+    gpt4o_llmbar_pairwise_win_rate: 0.691
+    gpt4o_llmbar_pairwise_p: 0.006
+    gpt4o_llmbar_gap: significant
+    claude_llmbar_likert_ate: 0.089
+    claude_llmbar_likert_p: 0.41
+    claude_llmbar_pairwise_win_rate: 0.647
+    claude_llmbar_pairwise_p: 0.037
+    claude_llmbar_gap: significant
+    gemini_llmbar_likert_ate: 0.031
+    gemini_llmbar_likert_p: 0.78
+    gemini_llmbar_pairwise_win_rate: 0.563
+    gemini_llmbar_pairwise_p: 0.44
+    gemini_llmbar_gap: neither significant
+    gpt4o_alpacaeval_likert_ate: 0.076
+    gpt4o_alpacaeval_likert_p: 0.48
+    gpt4o_alpacaeval_pairwise_win_rate: 0.635
+    gpt4o_alpacaeval_pairwise_p: 0.076
+    gpt4o_alpacaeval_gap: marginal
+    cross_judge_likert_ate_p_median: 0.41
+    cross_judge_pairwise_p_median: 0.076
+    n_combinations_pairwise_sig: 2
+    n_combinations_likert_sig: 0
+    n_combinations_both_nonsig: 4
+  result_rationale: 'Median 档位下 Likert ATE p median 在 0.1-0.4 范围，pairwise p median
+    在 0.01-0.08 范围。 核心 pattern：Likert 在所有组合上均不显著 (p=0.33-0.78)，pairwise 在 2/6 组合显著。
+    这支持 C2 方向 (Likert 确实更不敏感) 但 pairwise 自身也非普遍显著。 Gemini × LLMBar 两者都不显著 — 这是 "neither"
+    case，不支持也不反对 C2。 AlpacaEval × GPT-4o pairwise 边界 (p=0.076) 而 Likert 完全不显著 (p=0.48)，
+    gap 方向一致但统计差异不如 LLMBar × GPT-4o 清晰。 总体：C2 方向成立但强度有限，不能说 "Likert always misses
+    what pairwise catches"， 只能说 "in our strongest setting (GPT-4o × LLMBar), the gap
+    is large and significant."
+
+    '
+  tables:
+  - title: 'Table 4: Likert vs Pairwise Sensitivity Comparison'
+    columns:
+    - Judge
+    - Benchmark
+    - Likert ATE
+    - Likert p
+    - Pairwise Win%
+    - Pairwise p
+    - Gap
+    rows:
+    - - GPT-4o
+      - LLMBar
+      - 0.102
+      - 0.332
+      - 69.1%
+      - 0.006
+      - ✓ Blindspot
+    - - GPT-4o
+      - AlpacaEval
+      - 0.076
+      - 0.48
+      - 63.5%
+      - 0.076
+      - ~ Marginal
+    - - GPT-4o
+      - MT-Bench
+      - 0.041
+      - 0.69
+      - 57.1%
+      - 0.48
+      - — Neither
+    - - Claude-Sonnet
+      - LLMBar
+      - 0.089
+      - 0.41
+      - 64.7%
+      - 0.037
+      - ✓ Blindspot
+    - - Claude-Sonnet
+      - AlpacaEval
+      - 0.062
+      - 0.54
+      - 61.1%
+      - 0.152
+      - — Neither
+    - - Gemini-Flash
+      - LLMBar
+      - 0.031
+      - 0.78
+      - 56.3%
+      - 0.44
+      - — Neither
+  figures_description:
+  - 'Paired bar chart: 每个 judge×benchmark 组合两根 bar（Likert p-value vs Pairwise p-value），α=0.05
+    红色虚线。清晰展示 Likert bar 始终高于 pairwise bar，但仅 2/6 组合 pairwise bar 低于红线。'
+  analysis: 'C2 "Likert Blindspot" 在 2/6 组合上明确成立，方向在 5/6 上一致 (pairwise p < likert
+    p)， 但 effect 不是普遍的。论文需限制 claim scope："The Likert Blindspot is most clearly observed
+    when the underlying style bias is strong enough to produce significant pairwise
+    effects (GPT-4o and Claude Sonnet on LLMBar)."
+
+    '
+- name: Tone axis — negative control documentation
+  plan_id: exp-004
+  description: 'Tone pilot 已失败 (NLI 65%, joint gate 45%)。文档化为 C3 的 axis boundary evidence。
+
+    '
+  expected_results:
+    status: negative_control_documented
+    nli_cf_pass_rate: 0.65
+    both_pass_rate: 0.45
+    failure_mode: epistemic_commitment_change
+    assertive_both_pass: 0.385
+    hedging_both_pass: 0.571
+    catastrophic_nli_failures: 6
+    paper_role: C3 negative control
+  result_rationale: '已有数据直接使用。Tone 改变 epistemic commitment (assertive→hedging 使断言变为
+    推测)，NLI 正确检测到内容变化 (6/20 catastrophic NLI<0.01)。 Median 档下这是 C3 的关键证据：方法不是对所有 style
+    axes 都适用， 只适用于不改变信息量或认知承诺的 axes。这是 method boundary 而非 method failure。
+
+    '
+  tables: []
+  figures_description:
+  - 'Supplementary figure: tone counterfactual 的 NLI 分布，bimodal pattern (高通过 vs 灾难性失败)，标注
+    assertive→hedging 方向的 6 个 NLI<0.01 cases。'
+  analysis: 'Tone 作为 negative control 增强 C3 可信度。论文表述："content-preserving counterfactual
+    intervention requires axes that do not alter epistemic commitment. Tone (assertive→hedging)
+    structurally violates this requirement, as hedging introduces uncertainty markers
+    that NLI correctly identifies as non-entailment."
+
+    '
+- name: Pairwise RATE control (original vs double-rewrite)
+  plan_id: exp-005
+  description: 'Pairwise comparison between original text 和 RATE double-rewrite。 量化
+    original preference confound。扩展到所有 judge × benchmark 组合。
+
+    '
+  expected_results:
+    gpt4o_llmbar_orig_win_rate: 0.618
+    gpt4o_llmbar_orig_win_p: 0.098
+    gpt4o_llmbar_n_consistent: 55
+    gpt4o_llmbar_formal_orig_n: 33
+    gpt4o_llmbar_formal_orig_orig_wins: 24
+    gpt4o_llmbar_formal_orig_orig_win_rate: 0.727
+    gpt4o_llmbar_casual_orig_n: 22
+    gpt4o_llmbar_casual_orig_orig_wins: 10
+    gpt4o_llmbar_casual_orig_orig_win_rate: 0.455
+    claude_llmbar_orig_win_rate: 0.588
+    claude_llmbar_orig_win_p: 0.18
+    gemini_llmbar_orig_win_rate: 0.542
+    gemini_llmbar_orig_win_p: 0.56
+    gpt4o_alpacaeval_orig_win_rate: 0.596
+    gpt4o_alpacaeval_orig_win_p: 0.21
+    overall_original_preference: moderate (55-62% across judges)
+    casual_orig_formal_win_rate_gpt4o: 0.545
+    casual_orig_formal_win_rate_claude: 0.524
+    casual_orig_formal_win_rate_gemini: 0.5
+  result_rationale: 'Median 档核心约束：casual-original subset 在所有 judges 上 50-56% (p>0.20)。
+    Original preference 确实存在 (GPT-4o 上 61.8% 偏好 original)，但不是压倒性的 (p=0.098 边界)。方向性分析揭示关键
+    confound：formal-original subset 中 original wins 72.7%（formality + original 同向加强），casual-original
+    subset 中 original wins 仅 45.5%（两者对抗时 formality signal 被抵消）。 这意味着 pairwise_32b
+    的 69.1% formal win rate 中包含 original preference 成分 — formal-original 的高 win rate
+    部分来自 "judges prefer originals" 而非 纯 formality bias。Casual-original subset formal
+    win rate 54.5% (p=0.83) 是 "clean" formality estimate，但太弱无法独立确认 formality bias。
+    跨 judge 一致：所有 judge 的 casual-original formal win rate 均在 50-54.5%， 说明 formality
+    和 original preference 的纠缠是系统性的，不是 judge-specific。
+
+    '
+  tables:
+  - title: 'Table 5: Original Preference Decomposition'
+    columns:
+    - Judge
+    - Benchmark
+    - Overall orig%
+    - p
+    - Formal-orig orig%
+    - Casual-orig orig%
+    rows:
+    - - GPT-4o
+      - LLMBar
+      - 61.8%
+      - 0.098
+      - 72.7%
+      - 45.5%
+    - - Claude-Sonnet
+      - LLMBar
+      - 58.8%
+      - 0.18
+      - 68.2%
+      - 47.6%
+    - - Gemini-Flash
+      - LLMBar
+      - 54.2%
+      - 0.56
+      - 60.0%
+      - 50.0%
+    - - GPT-4o
+      - AlpacaEval
+      - 59.6%
+      - 0.21
+      - 70.0%
+      - 48.1%
+  - title: 'Table 6: Casual-Original Subset — Clean Formality Estimate'
+    columns:
+    - Judge
+    - Benchmark
+    - N
+    - Formal Win%
+    - p (sign)
+    rows:
+    - - GPT-4o
+      - LLMBar
+      - 22
+      - 54.5%
+      - 0.832
+    - - Claude-Sonnet
+      - LLMBar
+      - 20
+      - 52.4%
+      - 0.88
+    - - Gemini-Flash
+      - LLMBar
+      - 18
+      - 50.0%
+      - 1.0
+    - - GPT-4o
+      - AlpacaEval
+      - 24
+      - 53.8%
+      - 0.74
+  figures_description:
+  - 'Stacked bar: formal-original vs casual-original subset 对比。每个 judge 两组 bar，formal-original
+    显示高 formal win rate（formality+original 同向），casual-original 显示 ≈50%（两者对抗抵消）。视觉化
+    confound 的系统性。'
+  analysis: 'Original preference confound 是 median 档论文最大 limitation。 Casual-original
+    subset 50-56% 不能排除"formality bias 完全是 original preference 的 proxy"这一解释。但也不能确认
+    — 因为 subset 只有 ~20 samples，power 不足。 这成为 exp-014 logistic regression 的动机。
+
+    '
+- name: Scaled replication (n=500)
+  plan_id: exp-006
+  description: '在 GPT-4o × LLMBar 上将 n 从 100 scale 到 500。Power analysis + 复制检验。
+
+    '
+  expected_results:
+    n_total: 500
+    n_cf_generated: 500
+    nli_pass_rate: 0.86
+    n_primary: 430
+    n_consistent: 245
+    formal_wins: 148
+    casual_wins: 97
+    formal_win_rate: 0.604
+    sign_test_p: 0.0008
+    wilson_ci_lo: 0.543
+    wilson_ci_hi: 0.661
+    consistency_rate: 0.57
+    position_bias_A: 0.52
+    casual_orig_n: 110
+    casual_orig_formal_wins: 60
+    casual_orig_formal_win_rate: 0.545
+    casual_orig_p: 0.39
+    power_analysis_mde_at_80pct: 0.07
+    likert_ate_n500: 0.068
+    likert_ate_p_n500: 0.12
+  result_rationale: 'n=500 提供足够 power 确认 overall effect (p=0.0008)，formal win rate
+    60.4% 低于 n=100 的 69.1% — 这是典型的 regression to mean，小样本高估了 effect。 关键：即使 n=500，casual-original
+    subset (n≈110) formal win rate 仅 54.5% (p=0.39) — 仍然不显著。这不是 power 问题：110 samples
+    对 54.5% 做 sign test power 只有 ~15%，需要 n>600 in casual-original subset 才能检测 4.5%
+    effect。 这意味着要么 formality effect 在 casual-original 中真的不存在 (null)， 要么极其微弱（<5%），两者都对
+    C1 构成实质性挑战。 Likert ATE 在 n=500 时 p=0.12 — 还是不显著，但比 n=100 (p=0.33) 降低了， 说明 Likert
+    确实需要更大 n 来检测弱 effect，部分支持 C2 (power 差异)。
+
+    '
+  tables:
+  - title: 'Table 7: Scaled Replication Results (GPT-4o × LLMBar)'
+    columns:
+    - Metric
+    - n=100
+    - n=500
+    rows:
+    - - Formal win rate
+      - 69.1%
+      - 60.4%
+    - - Sign test p
+      - 0.006
+      - 0.0008
+    - - 95% CI
+      - '[0.560, 0.797]'
+      - '[0.543, 0.661]'
+    - - Casual-orig formal win%
+      - 54.5%
+      - 54.5%
+    - - Casual-orig p
+      - 0.832
+      - 0.39
+    - - Likert ATE p
+      - 0.332
+      - 0.12
+  - title: 'Table S2: Power Analysis'
+    columns:
+    - Target_effect
+    - N required (80% power)
+    - N required in casual-orig subset
+    rows:
+    - - 10%
+      - 200
+      - 200
+    - - 5%
+      - 800
+      - 800
+    - - 4.5% (observed casual-orig)
+      - —
+      - ~1200
+  figures_description:
+  - 'Effect size convergence plot: x=sample size, y=formal win rate。n=100 点在 69.1%，n=500
+    点在 60.4%，趋势线收敛到 ~58-60%。Shaded CI band 展示 uncertainty 随 n 缩小。'
+  analysis: 'n=500 确认 overall effect 是真实的 (p=0.0008)，但 effect size 更小 (60.4% vs 69.1%)。
+    Casual-original subset 持续不显著是最大问题 — 这不是 underpowered， 而是 effect 本身可能不存在。论文需诚实报告："scaled
+    replication confirms the aggregate formality preference but the effect in the
+    casual-original subset — where formality and original preferences oppose — remains
+    indistinguishable from chance, suggesting that observed bias may partly reflect
+    original-text preference."
+
+    '
+- name: Binarized Likert sign test (C2 critical control)
+  plan_id: exp-010
+  description: '对已有 Likert 数据做 binarized sign test：每对中 formal 版本 score 严格更高 则计为 formal
+    win。测试 Likert-Pairwise gap 是测量方法差异还是统计检验选择差异。
+
+    '
+  expected_results:
+    n_scored_pairs: 88
+    n_formal_higher: 42
+    n_casual_higher: 28
+    n_tied: 18
+    n_non_tied: 70
+    formal_win_rate_binarized: 0.6
+    sign_test_p: 0.082
+    interpretation: boundary — cannot fully confirm or reject C2 structural advantage
+  result_rationale: 'Median 档核心约束：binarized Likert sign test p=0.04-0.12，边界结果。 p=0.082
+    处于这个范围中央。18/88 ties (20%) 反映 Likert 的 coarse resolution — 整数评分产生大量 tied pairs，这本身就是
+    "Likert blindspot" 的一个机制。 但 p=0.082 的含义模糊：如果用 α=0.10 则显著（支持"gap 在统计检验不在测量方法"），
+    如果用 α=0.05 则不显著（部分支持 C2 structural advantage）。 Formal win rate 60% (binarized
+    Likert) vs 69.1% (pairwise) — binarized Likert 检测到了方向但 magnitude 更小，可能因为 Likert
+    的 ordinal scale 压缩了差异。 这个结果不能作为 C2 的 main evidence，只能放在 discussion 中作为 open question。
+
+    '
+  tables:
+  - title: 'Table 8: Binarized Likert vs Pairwise Sign Test Comparison'
+    columns:
+    - Method
+    - N_non_tied
+    - Formal wins
+    - Win rate
+    - p (sign)
+    rows:
+    - - Pairwise (position-controlled)
+      - 55
+      - 38
+      - 69.1%
+      - 0.006
+    - - Binarized Likert (score-diff sign)
+      - 70
+      - 42
+      - 60.0%
+      - 0.082
+    - - Likert ATE (paired t-test)
+      - 88
+      - —
+      - ATE=0.10
+      - 0.332
+  figures_description:
+  - 三根 bar 并排：Pairwise win rate (69.1%), Binarized Likert win rate (60.0%), Likert
+    direction (formally higher mean, ATE=0.10)。Error bars 展示各自的 uncertainty。中间 bar
+    的 CI 跨越 50% 边界但中心在右侧。
+  analysis: 'Binarized Likert 结果是 C2 最大的 complication。三种可能解释： (1) Likert blindspot
+    是真实的但 binarized Likert 作为中间方法部分恢复了 sensitivity — tied pairs 的高比例 (20%) 是 Likert
+    scale 的固有信息损失； (2) Pairwise 的高 win rate 部分来自 forced choice 机制而非更高 sensitivity；
+    (3) 统计 power 差异（binarized n=70 vs pairwise n=55 但 pairwise 的 effect size 更大）。
+    论文需 hedge："The gap between pairwise and Likert sensitivity appears to arise from
+    both measurement structure (high tie rate in ordinal Likert) and possibly the
+    forced-choice mechanism of pairwise comparison. Disentangling these sources requires
+    future work with continuous scoring scales."
+
+    '
+- name: NLI threshold sensitivity analysis
+  plan_id: exp-011
+  description: '在 70%-95% NLI threshold 范围内测试结果稳定性。零成本 reanalysis。
+
+    '
+  expected_results:
+    threshold_70_n: 92
+    threshold_70_formal_win_rate: 0.655
+    threshold_70_p: 0.015
+    threshold_75_n: 86
+    threshold_75_formal_win_rate: 0.667
+    threshold_75_p: 0.011
+    threshold_80_n: 78
+    threshold_80_formal_win_rate: 0.682
+    threshold_80_p: 0.008
+    threshold_85_n: 66
+    threshold_85_formal_win_rate: 0.697
+    threshold_85_p: 0.005
+    threshold_90_n: 46
+    threshold_90_formal_win_rate: 0.739
+    threshold_90_p: 0.0015
+    threshold_95_n: 30
+    threshold_95_formal_win_rate: 0.762
+    threshold_95_p: 0.006
+    monotonic_trend: true
+    primary_threshold_80_stable: true
+  result_rationale: 'NLI threshold 提高 → 保留的 pairs 更少但 quality 更高 → formal win rate
+    和 significance 均单调增加。这是预期行为：高 NLI pairs 是 content 保存更好的 counterfactuals，style
+    是唯一变化来源，所以 formality signal 更纯。 p-value 在所有 threshold 上均 <0.05 (最低 threshold=70%
+    时 p=0.015)， 说明主结论对 NLI cutoff 选择不敏感。这直接回应 RC8。 但需注意 n=46 (threshold=90%) 到 n=30
+    (threshold=95%) 的 drop — 过度严格 的 threshold 会大量丢弃 data，实际应用中需要平衡。
+
+    '
+  tables:
+  - title: 'Table S3: NLI Threshold Sensitivity'
+    columns:
+    - Threshold
+    - N
+    - Formal Win%
+    - p (sign)
+    - Win rate Δ from 80%
+    rows:
+    - - 70%
+      - 92
+      - 65.5%
+      - 0.015
+      - -2.7%
+    - - 75%
+      - 86
+      - 66.7%
+      - 0.011
+      - -1.5%
+    - - 80% (primary)
+      - 78
+      - 68.2%
+      - 0.008
+      - —
+    - - 85%
+      - 66
+      - 69.7%
+      - 0.005
+      - +1.5%
+    - - 90%
+      - 46
+      - 73.9%
+      - 0.0015
+      - +5.7%
+    - - 95%
+      - 30
+      - 76.2%
+      - 0.006
+      - +8.0%
+  figures_description:
+  - 'Line plot: x=NLI threshold, y1=formal win rate (left axis, ascending line), y2=sample
+    size (right axis, descending line). 两条线交叉展示 quality-quantity tradeoff。α=0.05 shaded
+    region 标注所有点均显著。'
+  analysis: '结果增强 robustness claim。论文可报告："Results are robust across NLI thresholds
+    from 70% to 95%; the primary threshold of 80% is conservative without excessive
+    data loss." 单调趋势也提供了 methodological insight：NLI 质量与 bias detection sensitivity
+    正相关，支持 content verification gate 的价值。
+
+    '
+- name: Consistency filter bias analysis
+  plan_id: exp-012
+  description: '比较 position-consistent vs inconsistent pairs 的 NLI scores、text lengths、
+    task types。检查高 discard rate (42-52%) 是否引入 selection bias。
+
+    '
+  expected_results:
+    n_consistent: 55
+    n_inconsistent: 43
+    discard_rate: 0.439
+    consistent_nli_mean: 0.912
+    inconsistent_nli_mean: 0.871
+    nli_diff_p: 0.14
+    consistent_text_length_mean: 287
+    inconsistent_text_length_mean: 312
+    length_diff_p: 0.08
+    consistent_formal_length_mean: 294
+    inconsistent_formal_length_mean: 326
+    task_type_distribution_chi2_p: 0.32
+    consistent_original_formal_pct: 0.6
+    inconsistent_original_formal_pct: 0.58
+    bias_severity: mild — length-correlated selection, not task-type driven
+  result_rationale: 'Median 档下 consistency filter 引入 mild but non-trivial bias。 Consistent
+    pairs 有稍高的 NLI (0.912 vs 0.871, p=0.14 不显著) 和稍短的 text length (287 vs 312 chars,
+    p=0.08 边界) — judges 在短文本上更容易达成 position-consistent 判断，因为短文本差异更明显。这不是致命问题但需要 acknowledge。
+    Task type 分布无显著差异 (χ²  p=0.32)，说明 bias 不是任务类型驱动的。 Original-formal 比例在两组间相似 (60%
+    vs 58%)，排除了 original preference 与 consistency filter 的交互。
+
+    '
+  tables:
+  - title: 'Table S4: Consistency Filter Analysis'
+    columns:
+    - Variable
+    - Consistent
+    - Inconsistent
+    - p (diff)
+    rows:
+    - - N
+      - 55
+      - 43
+      - —
+    - - NLI mean
+      - 0.912
+      - 0.871
+      - 0.14
+    - - Text length mean
+      - 287
+      - 312
+      - 0.08
+    - - Original-formal %
+      - 60%
+      - 58%
+      - 0.85
+    - - Task type χ²
+      - —
+      - —
+      - 0.32
+  figures_description:
+  - 'Violin plot: consistent vs inconsistent pairs 的 NLI 分布和 text length 分布并排。展示 overlap
+    但 consistent pairs 略向高 NLI / 短 text 偏移。'
+  analysis: '结果不致命但需要在 limitations 中报告："Position-consistency filtering mildly selects
+    for shorter texts (p=0.08), which may inflate the observed effect if judges are
+    more sensitive to formality in shorter responses. However, NLI scores and task-type
+    distributions do not differ significantly between retained and discarded pairs."
+
+    '
+- name: Human NLI validation (50-100 annotations)
+  plan_id: exp-013
+  description: 'Human validation of NLI gate decisions。50-100 pairs annotated。 报告
+    human-NLI agreement (Cohen''s kappa)。
+
+    '
+  expected_results:
+    n_annotated: 80
+    n_nli_pass: 56
+    n_nli_fail: 24
+    human_agree_nli_pass: 48
+    human_disagree_nli_pass: 8
+    human_agree_nli_fail: 19
+    human_disagree_nli_fail: 5
+    human_nli_agreement_rate: 0.838
+    cohens_kappa: 0.61
+    nli_false_positive_rate: 0.143
+    nli_false_negative_rate: 0.208
+    interpretation: substantial agreement (Landis & Koch), NLI slightly over-permissive
+  result_rationale: 'Cohen''s kappa 0.61 ("substantial agreement") 是 NLI-as-proxy
+    的合理结果。 NLI 在 median 档下略偏 over-permissive (false positive 14.3% > false negative
+    20.8%)： 一些 NLI 通过的 pairs 在 human 看来有微妙的内容变化（如省略 qualifier、简化 example）。 但 false
+    positive rate 不高到致命 — 14% 的不良 pairs 混入后 dilute signal 但不 reverse 它。False negative
+    (20.8%) 意味着 NLI 丢弃了一些实际保存内容的 pairs， 这与 exp-012 的发现一致（conservative filter 牺牲 recall
+    换 precision）。 Kappa=0.61 在 NLP annotation 中是 acceptable 但非 excellent， 需要 acknowledge
+    作为方法论限制。
+
+    '
+  tables:
+  - title: 'Table S5: Human-NLI Agreement Matrix'
+    columns:
+    - ''
+    - 'Human: preserved'
+    - 'Human: changed'
+    rows:
+    - - 'NLI: pass'
+      - 48
+      - 8
+    - - 'NLI: fail'
+      - 5
+      - 19
+  - title: 'Table S6: Agreement Metrics'
+    columns:
+    - Metric
+    - Value
+    rows:
+    - - Agreement rate
+      - 83.8%
+    - - Cohen's κ
+      - 0.61
+    - - NLI false positive rate
+      - 14.3%
+    - - NLI false negative rate
+      - 20.8%
+  figures_description:
+  - Confusion matrix heatmap (2×2)。NLI pass/fail vs Human preserved/changed。Off-diagonal
+    cells 用红色标注 error cases，annotated with example IDs。
+  analysis: 'κ=0.61 足够支持 NLI gate 的使用但不足以完全消除 concern。论文表述： "Human validation yields
+    substantial agreement (κ=0.61) with NLI-based content verification. The NLI gate
+    is slightly over-permissive (14.3% false positive rate), meaning a small fraction
+    of retained pairs may contain subtle content changes. This conservative estimate
+    suggests our reported formality bias, if anything, is slightly attenuated by content-change
+    noise in the retained set."
+
+    '
+- name: Formal statistical model for original-preference decomposition
+  plan_id: exp-014
+  description: 'Logistic regression: formal_win ~ formality_direction + is_original
+    + formality×original interaction。 替代 ad-hoc additive correction。测试 casual-original
+    subset 作为 clean estimate。
+
+    '
+  expected_results:
+    n_observations: 55
+    model_formula: formal_win ~ formality_direction + is_original + formality_direction:is_original
+    intercept: 0.42
+    intercept_p: 0.18
+    formality_coef: 0.38
+    formality_coef_se: 0.24
+    formality_coef_p: 0.11
+    formality_coef_or: 1.46
+    is_original_coef: 0.72
+    is_original_coef_p: 0.023
+    is_original_coef_or: 2.05
+    interaction_coef: -0.89
+    interaction_coef_se: 0.35
+    interaction_coef_p: 0.011
+    interaction_or: 0.41
+    model_aic: 68.3
+    model_pseudo_r2: 0.12
+    casual_orig_marginal_formal_prob: 0.54
+    formal_orig_marginal_formal_prob: 0.76
+    overall_marginal_formal_prob: 0.63
+  result_rationale: 'Median 档核心约束：formality coefficient p=0.05-0.2（此处 0.11）， interaction
+    p=0.01-0.1（此处 0.011）。这是最具毁灭性的结果： Formality main effect 在控制 original preference
+    后不再显著 (p=0.11)， 但 interaction 高度显著 (p=0.011)。解读：formality 的效果 conditional on original
+    preference alignment — 当 formality 和 original 同向时 effect 巨大 (formal-orig formal
+    win 76%)，反向时几乎消失 (casual-orig formal win 54%)。 Is_original 本身显著 (p=0.023, OR=2.05)
+    — judges 有独立的 original preference， OR=2.05 意味着 original 版本有约 2x 的 odds 被选为 better。
+    Interaction OR=0.41 意味着当 formality 和 original 对抗时，formality 的 effect 减少到 46% ×
+    41% ≈ 19% — 几乎为零。 这解释了为什么 casual-original subset 一直 ~50%：不是 power 不足， 是 formality
+    effect 在这个 subset 中真的接近 null。
+
+    '
+  tables:
+  - title: 'Table 9: Logistic Regression — Formal Win Predictors'
+    columns:
+    - Predictor
+    - Coefficient
+    - SE
+    - p
+    - OR
+    - 95% CI (OR)
+    rows:
+    - - Intercept
+      - 0.42
+      - 0.31
+      - 0.18
+      - 1.52
+      - '[0.83, 2.80]'
+    - - Formality direction
+      - 0.38
+      - 0.24
+      - 0.11
+      - 1.46
+      - '[0.92, 2.33]'
+    - - Is original
+      - 0.72
+      - 0.32
+      - 0.023
+      - 2.05
+      - '[1.10, 3.82]'
+    - - Formality × Original
+      - -0.89
+      - 0.35
+      - 0.011
+      - 0.41
+      - '[0.21, 0.82]'
+  - title: 'Table 10: Marginal Probabilities of Formal Win'
+    columns:
+    - Condition
+    - P(formal win)
+    - 95% CI
+    - N
+    rows:
+    - - Overall
+      - 63.0%
+      - '[0.50, 0.76]'
+      - 55
+    - - Formal-original (same direction)
+      - 76.0%
+      - '[0.58, 0.89]'
+      - 33
+    - - Casual-original (opposing)
+      - 54.0%
+      - '[0.33, 0.74]'
+      - 22
+  figures_description:
+  - 'Interaction plot: x-axis = {formal-original, casual-original}, y-axis = P(formal
+    win)。两点连线陡峭下降 (76% → 54%)，展示 interaction magnitude。50% reference line 标注。Shaded
+    CI bands。'
+  - 'Odds ratio forest plot: 三个 predictors 的 OR ± 95% CI。Formality 的 CI 跨越 1.0，Is_original
+    和 Interaction 的 CI 不含 1.0。'
+  analysis: 'Exp-014 是论文最大的 limitation evidence。Formality main effect 在控制 original
+    preference 后 marginal (p=0.11) — 不能独立于 original preference 确认 formality bias。但
+    interaction 的显著性本身是有趣的 empirical finding： "measurement of style bias via counterfactual
+    comparison is confounded with original-text preference when the style axis correlates
+    with original text characteristics." 这成为 C4 的核心依据："practitioners should control
+    for original preference when using counterfactual methods to audit style bias;
+    casual-original subsets provide a conservative lower bound." 论文 discussion 需要
+    3-4 段专门讨论这个 confound，包括： (1) 为什么 RATE double-rewrite 不完全解决问题； (2) interaction
+    的理论解释； (3) 对 practical bias auditing 的 implications； (4) future work — instrumental
+    variable 或 randomized rewriting 方法。
+
+    '
+- name: Verbosity direction-aware NLI + full pipeline
+  plan_id: exp-007b
+  description: '已完成。Direction-aware NLI pass rate 86%，但 BERTScore 仍过低。 Joint gate
+    (BS70+NLI90) 仅 63%。Stopped at content verification。
+
+    '
+  expected_results:
+    status: DONE — negative
+    nli_only_pass_rate_at_090: 0.86
+    joint_bs70_nli90: 0.63
+    forward_nli_mean: 0.9476
+    backward_nli_mean: 0.8267
+    stop_reason: NLI pass rate 65% (bidirectional) < 80% threshold; direction-aware
+      recovers to 86% but BERTScore too low
+  result_rationale: '已有结果直接使用。Direction-aware NLI 是 methodological insight（正向 entailment
+    0.9476 vs 反向 0.8267 符合信息量不对称预期），但 BERTScore 在 verbosity 上 结构性不适用（expansion 降低
+    surface overlap）。即使放松到 NLI-only gate (86%)， 剩余 pairs 的 quality 不足以支撑可靠的 bias detection。
+    Verbosity 作为 negative control 与 tone 一起构成 C3 evidence。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'Verbosity 和 tone 构成 C3 的两类 negative control：tone 因 epistemic commitment
+    失败（语义变化），verbosity 因 information quantity 失败（BERTScore 不适用于 expansion/compression）。Direction-aware
+    NLI 作为 methodological contribution 展示在 appendix。
+
+    '
+- name: Verbosity method boundary analysis
+  plan_id: exp-007
+  description: '已完成。文档化 bidirectional NLI 的结构性不兼容。
+
+    '
+  expected_results:
+    status: DONE — negative
+    bidirectional_min_concise_to_verbose: 0.46
+    bidirectional_min_verbose_to_concise: 0.87
+    asymmetry_explanation: concise→verbose adds information (low backward entailment);
+      verbose→concise removes information (low forward entailment); min() kills both
+    paper_role: C3 method boundary — information-changing axes require adapted verification
+  result_rationale: 'Bidirectional min(NLI) 在 information-asymmetric axes 上结构性失败：
+    concise→verbose 46% 因为 expansion 后的文本包含原文不存在的信息 (backward entailment fails)， verbose→concise
+    87% 因为 compression 后的文本是原文子集 (forward entailment holds)。 这不是 style transfer 失败，是
+    verification metric 的结构性限制。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: '论文 Section 5 或 Discussion 中作为 "method applicability conditions" 讨论。
+
+    '
+- name: Register axis (academic/conversational)
+  plan_id: exp-008
+  description: '第三个 surface-level axis 测试。Academic vs conversational register。 P2
+    优先级，在 median 档下可能不执行。
+
+    '
+  expected_results:
+    status: likely_deferred
+    if_executed_nli_pass_rate: 0.79
+    if_executed_formal_win_rate: 0.58
+    if_executed_sign_test_p: 0.24
+  result_rationale: 'Median 档下 register axis 即使执行也预期 marginal。Register 变化 (academic
+    vocabulary, sentence complexity) 与 formality 高度相关但不同， NLI pass rate ~79% (academic
+    文本中的 field-specific terminology 变化 触发 NLI false reject)。Win rate 58% (p=0.24)
+    方向一致但不显著 — register 可能被 judges 正确解读为 "不同但不 better/worse"。 论文中最多作为 "pilot" 或 appendix
+    mention。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'Register axis 在 median 档下不构成核心贡献。如果执行并成功，升级 C3； 如果不执行或失败，C3 仅依赖 formality
+    (working) + verbosity/tone (negative controls)。
+
+    '
+- name: Non-Qwen rewriter control
+  plan_id: exp-009
+  description: '使用 non-Qwen 模型（如 Llama-3.1-70B）作为 rewriter，排除 Qwen-family artifacts。
+    P2 优先级。
+
+    '
+  expected_results:
+    status: likely_deferred
+    if_executed_llama_nli_pass_rate: 0.81
+    if_executed_llama_formal_win_rate: 0.63
+    if_executed_llama_sign_test_p: 0.05
+    if_executed_nli_diff_qwen_llama: -0.07
+  result_rationale: 'Median 档下 P2 实验可能不执行。如果执行，Llama-70B 作为 rewriter NLI pass rate
+    稍低 (81% vs Qwen3-32B 88%) — Llama 的 style transfer 可能更激进导致更多 content change。但
+    formal win rate 和 significance 方向一致 (63%, p=0.05 边界)，说明 main finding 不是 Qwen-specific
+    artifact。 不过 p=0.05 的边界性加上更低的 NLI 意味着 Llama counterfactuals 质量稍差， 这不是确定性复制。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 如果执行：在 supplementary 中报告为 rewriter robustness check。 如果不执行：在 limitations
+    中 acknowledge "counterfactual generation was performed with a single model family
+    (Qwen3-32B); future work should verify with alternative rewriters."

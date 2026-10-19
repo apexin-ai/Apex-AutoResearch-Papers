@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_llama70b_third_judge_20260521T132416_result.json",
     "occurrence": 1,
-    "bytes": 495,
-    "sha256": "ef0a34e0f23f6d73b1a7123a5164700efcf725d9a962c59e04653994aad6edea"
+    "bytes": 494,
+    "sha256": "d735d1b4e87abf7ee566e95bdb5a969b7e8abca789e1c06110379800432d197c"
   },
   "statistics": {
     "messages": 1,

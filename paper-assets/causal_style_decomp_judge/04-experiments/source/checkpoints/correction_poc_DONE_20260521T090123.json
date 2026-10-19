@@ -1,0 +1,71 @@
+{
+  "exp_id": "correction_poc",
+  "project": "causal_style_decomp_judge",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T09:00:50.949Z",
+    "updated_at": "2026-05-21T09:01:23.388Z",
+    "hypothesis": "Explicit style-awareness debiasing instructions in judge prompts can eliminate or substantially reduce formality style bias, providing a simple correction mechanism (C4 claim test)",
+    "spec": {
+      "command": "python correction_poc.py",
+      "server": "westb-29275",
+      "data_path": "data/verified_formality.jsonl",
+      "data_count": 88,
+      "model_name": "Qwen3-32B + GPT-4o",
+      "seed": 42,
+      "checkpoint_path": "N/A (API scoring)",
+      "log_path": "data/pairwise_results_debiased_qwen32b_formality.jsonl + data/pairwise_results_debiased_gpt4o_formality.jsonl"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "qwen32b": {
+        "original": {
+          "p_formal": 0.665,
+          "ci": [
+            0.585,
+            0.739
+          ],
+          "p_value": 0.0001
+        },
+        "debiased": {
+          "p_formal": 0.608,
+          "ci": [
+            0.534,
+            0.682
+          ],
+          "p_value": 0.0023
+        },
+        "reduction_pp": 5.7,
+        "reduction_pct": 34.5
+      },
+      "gpt4o": {
+        "original": {
+          "p_formal": 0.63,
+          "ci": [
+            0.557,
+            0.703
+          ],
+          "p_value": 0.0004
+        },
+        "debiased": {
+          "p_formal": 0.626,
+          "ci": [
+            0.559,
+            0.693
+          ],
+          "p_value": 0.0001
+        },
+        "reduction_pp": 0.4,
+        "reduction_pct": 3.1,
+        "neither_count": 5
+      },
+      "conclusion": "Debiased prompt ineffective. Qwen3-32B: -5.7pp but still p=0.002. GPT-4o: -0.4pp, no change. Style bias persists despite explicit debiasing instructions."
+    },
+    "completed_at": "2026-05-21T09:01:23.388Z"
+  },
+  "timestamp": "2026-05-21T09:01:23.490611+00:00",
+  "trigger": "update_registry"
+}

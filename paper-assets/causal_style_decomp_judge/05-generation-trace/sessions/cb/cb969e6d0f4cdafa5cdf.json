@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_code_sync_and_status_20260520T121626_result.json",
     "occurrence": 1,
-    "bytes": 736,
-    "sha256": "c4dd2bde75558e87478d977b6337038de29ab842931e5155f72f4d67c94ee035"
+    "bytes": 735,
+    "sha256": "e8d91fa434d827ca9fc9d779a05022c4a3425d7f8cf24e22a6937565027acf36"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,21 @@
+{
+  "before": {
+    "method": "orig-cf + paired t-test",
+    "note": "ATE = mean(score_original) - mean(score_counterfactual), d = ATE/pooled_sd, p = wilcoxon(orig-cf)",
+    "LLMBar_form": {"d": 0.042, "p": 0.7476},
+    "LLMBar_verb": {"d": 0.017, "p": 0.8146},
+    "AEval_form": {"d": 0.081, "p": 0.0899},
+    "AEval_verb": {"d": -0.243, "p": 0.0045},
+    "MTB_form": {"d": 0.245, "p": 0.0000}
+  },
+  "after": {
+    "method": "pole-aligned + Wilcoxon",
+    "note": "ATE = mean(score_style_pole) - mean(score_anti_pole), d = ATE/pooled_sd, p = wilcoxon(pole-anti). Style pole = formal/verbose, anti-pole = casual/concise.",
+    "LLMBar_form": {"d": -0.021, "p": 0.7207},
+    "LLMBar_verb": {"d": -0.039, "p": 0.7427},
+    "AEval_form": {"d": 0.081, "p": 0.0899},
+    "AEval_verb": {"d": 0.298, "p": 0.0004},
+    "MTB_form": {"d": 0.199, "p": 0.0002}
+  },
+  "appendix_u_update": "Appendix U LLMBar 行需更新为: formality d=-0.021 p=0.721, verbosity d=-0.039 p=0.743"
+}

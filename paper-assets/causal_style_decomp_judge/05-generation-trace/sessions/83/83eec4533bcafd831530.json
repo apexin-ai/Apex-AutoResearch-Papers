@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_r15-sf4-fk-datasource_20260523T063600_result.json",
     "occurrence": 1,
-    "bytes": 1274,
-    "sha256": "3bd1e18cb64c57e2e7f75c6c1b2bbf3ab14319ce8268937ad34ec2a6d5f1d6a2"
+    "bytes": 1273,
+    "sha256": "f9c3843e0d90d8ce42d60345f7a13527f07782e6fe4f3da610e32fa67a1b6d7c"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,28 @@
+{
+  "exp_id": "bt_model_diagnostics",
+  "project": "causal_style_decomp_judge",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:04:20.388Z",
+    "updated_at": "2026-05-21T12:04:40.169Z",
+    "hypothesis": "BT model adequately fits the pairwise data (GoF non-significant) and stratified BT by originality direction reveals whether style effect is confounded with originality preference (addresses W-MF2)",
+    "parent": "qwen32b_formality",
+    "spec": {
+      "command": "python csd_pipeline/bt_model_diagnostics.py",
+      "server": "westb-29275",
+      "data_path": "data/pairwise_results_32b.jsonl + data/pairwise_results_qwen32b_verbosity.jsonl",
+      "data_count": 200,
+      "model_name": "choix BT + scipy chi2/Fisher",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "data/bt_model_diagnostics.json",
+      "checkpoint_source": "qwen32b_formality + qwen32b_verbosity pairwise results",
+      "eval_data": "Consistent pairs from pairwise results (formality n=46, verbosity n=63)"
+    }
+  },
+  "timestamp": "2026-05-21T12:04:40.233758+00:00",
+  "trigger": "update_registry"
+}

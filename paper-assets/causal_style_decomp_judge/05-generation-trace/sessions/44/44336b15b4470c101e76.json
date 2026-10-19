@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_llama70b_poll_3_20260521T141629_result.json",
     "occurrence": 1,
-    "bytes": 123,
-    "sha256": "c7f654a3bc8706ac88e2f3c7b7c63acdfc15907d4bc638667dd7eaac9eee719e"
+    "bytes": 122,
+    "sha256": "db1e29923bdf898de3c27d79e90faa902ff819444233699b8365cf4712684883"
   },
   "statistics": {
     "messages": 1,

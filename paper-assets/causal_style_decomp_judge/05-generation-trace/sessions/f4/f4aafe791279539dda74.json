@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_paper-internal-consistency_20260525T083230_result.json",
     "occurrence": 1,
-    "bytes": 734,
-    "sha256": "b9faf5b609039ca330d7d3ab5a36de639ff6c4eb1a48dd12fe17b9c1b80b9670"
+    "bytes": 733,
+    "sha256": "8b0c857ab2d11b5000bdb9a11f676d151f9d07808b2b8f89f40e49f86487aa6e"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,26 @@
+{
+  "exp_id": "cross_axis_gradient",
+  "project": "causal_style_decomp_judge",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:30:37.151Z",
+    "updated_at": "2026-05-21T13:31:14.386Z",
+    "hypothesis": "NLI rejection rate serves as manipulation invasiveness proxy, with axes ordered register < formality < verbosity matching the gradient in BT and GEE Style OR (qualitative argument)",
+    "spec": {
+      "command": "python csd_pipeline/nli_ablation_cross_axis.py",
+      "server": "westb-29275",
+      "data_path": "data/verified_32b.jsonl + verified_verbosity.jsonl + verified_register.jsonl",
+      "data_count": 300,
+      "model_name": "Descriptive statistics only",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "data/cross_axis_gradient.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T13:31:14.461816+00:00",
+  "trigger": "update_registry"
+}

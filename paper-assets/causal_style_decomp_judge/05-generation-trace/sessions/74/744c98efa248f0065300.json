@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_dryrun_judge_scoring_20260520T115049_result.json",
     "occurrence": 1,
-    "bytes": 541,
-    "sha256": "ea11faa9b3e2ea73d8385c788b941aba56cb0d95de327b393b9bad204e72924d"
+    "bytes": 540,
+    "sha256": "a3831ed464a352f75fe4e8d73e62e2d0aeed012cf30a03b2f21acb6099c815fd"
   },
   "statistics": {
     "messages": 1,

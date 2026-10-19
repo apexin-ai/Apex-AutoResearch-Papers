@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_verbosity-bt-split_20260522T041523_result.json",
     "occurrence": 1,
-    "bytes": 1014,
-    "sha256": "557ce9266fcdb2aba0e023b6cf34e5c77a30247e3e7aa843d01647ccd410919c"
+    "bytes": 1013,
+    "sha256": "36dbd0fa7263c93ee893e4c9dbbee356fcfeadd54654fb5f133100ff324f3b64"
   },
   "statistics": {
     "messages": 1,

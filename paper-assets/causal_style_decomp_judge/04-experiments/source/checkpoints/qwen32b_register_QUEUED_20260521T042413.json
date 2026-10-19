@@ -1,0 +1,15 @@
+{
+  "exp_id": "qwen32b_register",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:24:08.776Z",
+    "updated_at": "2026-05-21T04:24:13.711Z",
+    "hypothesis": "Qwen3-32B judge shows register (academic/conversational) bias in pairwise comparison while Likert fails to detect it, extending Blindspot to a third style axis"
+  },
+  "timestamp": "2026-05-21T04:24:13.747715+00:00",
+  "trigger": "update_registry"
+}

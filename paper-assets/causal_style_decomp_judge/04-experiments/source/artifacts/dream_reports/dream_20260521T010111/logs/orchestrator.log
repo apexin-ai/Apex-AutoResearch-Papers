@@ -1,0 +1,7 @@
+2026-05-21 01:21:05,477 INFO    core.claude_client  pool select fallback: using jwmorsemichaeliajl (tier=watchdog-capped, util_5h=7%)
+2026-05-21 01:24:43,070 INFO    core.claude_client  pool select fallback: using jwmorsemichaeliajl (tier=watchdog-capped, util_5h=7%)
+2026-05-21 01:29:33,950 INFO    core.claude_client  pool select fallback: using jwmorsemichaeliajl (tier=watchdog-capped, util_5h=7%)
+2026-05-21 01:35:37,514 INFO    core.claude_client  pool select fallback: using jwmorsemichaeliajl (tier=watchdog-capped, util_5h=9%)
+2026-05-21 01:39:49,301 INFO    core.claude_client  pool select fallback: using jwmorsemichaeliajl (tier=watchdog-capped, util_5h=9%)
+2026-05-21 01:46:03,719 INFO    core.claude_client  pool select fallback: using jwmorsemichaeliajl (tier=watchdog-capped, util_5h=1%)
+2026-05-21 01:51:23,855 INFO    core.claude_client  pool select fallback: using jwmorsemichaeliajl (tier=watchdog-capped, util_5h=5%)

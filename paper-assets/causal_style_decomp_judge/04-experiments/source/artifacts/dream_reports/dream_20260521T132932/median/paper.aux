@@ -1,0 +1,93 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{li2024alpacaeval}
+\citation{zheng2024chatbot}
+\citation{ouyang2022training}
+\citation{sun2024sosbench}
+\citation{eisenstein2024rate}
+\citation{zhou2025casse}
+\citation{dubois2024length}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{zheng2024chatbot}
+\citation{sun2024sosbench}
+\citation{stureborg2024large}
+\citation{park2024disentangling}
+\citation{sun2024sosbench}
+\citation{chen2024fairjudge}
+\citation{eisenstein2024rate}
+\citation{salinas2024counterfactual}
+\citation{thurstone1927law}
+\citation{jeong2025comparative}
+\citation{dubois2024length}
+\citation{wu2024style}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Style Bias in LLM Judges.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Causal Approaches to Evaluation Bias.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pairwise vs.\ Likert Measurement.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Length and Verbosity Bias.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Controlled Style Decomposition}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Counterfactual Generation}{2}{subsection.3.1}\protected@file@percent }
+\citation{zeng2024llmbar}
+\citation{li2024alpacaeval}
+\citation{zheng2024chatbot}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}NLI-Gated Content Control}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Position-Controlled Pairwise Comparison}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Bradley-Terry Modeling}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}GEE Confound Decomposition}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Target Judges.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Style Axes.}{3}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Style bias detection on LLMBar. BT $p_\text  {style}$ is the Bradley-Terry style-shifted win probability; Likert ATE $p$ is the corresponding absolute-score test. \emph  {Blindspot} = BT significant but Likert non-significant. Claude Sonnet~4 is a negative control. $^*p<.05$; $^{**}p<.01$; $^{***}p<.001$; \textsuperscript  {NS} not significant.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{4}{Style bias detection on LLMBar. BT $p_\text {style}$ is the Bradley-Terry style-shifted win probability; Likert ATE $p$ is the corresponding absolute-score test. \emph {Blindspot} = BT significant but Likert non-significant. Claude Sonnet~4 is a negative control. $^*p<.05$; $^{**}p<.01$; $^{***}p<.001$; \textsuperscript {NS} not significant}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Rewriters.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Per-Axis Style Bias Across Judges}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verbosity.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Formality.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cross-Benchmark Generalization}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-benchmark formality BT ($p_\text  {formal}$). Blindspot = BT sig.\ but Likert NS. Claude is negative control across all benchmarks.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:crossbench}{{2}{5}{Cross-benchmark formality BT ($p_\text {formal}$). Blindspot = BT sig.\ but Likert NS. Claude is negative control across all benchmarks}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces GEE logistic regression: style and originality odds ratios (OR). Significant effects in \textbf  {bold}.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:gee}{{3}{5}{GEE logistic regression: style and originality odds ratios (OR). Significant effects in \textbf {bold}}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}GEE Confound Decomposition}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}The Likert Blindspot: Measurement Attenuation}{5}{subsection.5.4}\protected@file@percent }
+\citation{jeong2025comparative}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Attenuation spectrum: Likert detection rate by BT effect size range. Based on 18 judge$\times $benchmark$\times $axis cells.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:attenuation}{{4}{6}{Attenuation spectrum: Likert detection rate by BT effect size range. Based on 18 judge$\times $benchmark$\times $axis cells}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Amplification bounds. Net style effect = observed BT $-$ placebo BT. Amplification fraction = (placebo $-$ 0.50) / (observed $-$ 0.50).}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:amplification}{{5}{6}{Amplification bounds. Net style effect = observed BT $-$ placebo BT. Amplification fraction = (placebo $-$ 0.50) / (observed $-$ 0.50)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Bounding Amplification: Placebo Controls}{6}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Double-rewrite placebo.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{6}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Robustness controls. \emph  {Top}: Rewriter independence for formality (judged by Qwen3-32B on LLMBar). \emph  {Bottom}: NLI gate ablation (judged by Qwen3-32B on LLMBar).}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:robustness}{{6}{7}{Robustness controls. \emph {Top}: Rewriter independence for formality (judged by Qwen3-32B on LLMBar). \emph {Bottom}: NLI gate ablation (judged by Qwen3-32B on LLMBar)}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multi-layered defense.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Robustness Controls}{7}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rewriter independence.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{NLI gate ablation.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-axis gradient.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt-level debiasing is insufficient.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations of bounded amplification.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Judge-dependent effects.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\bibcite{chen2024fairjudge}{Chen et al.(2024)}
+\bibcite{dubois2024length}{Dubois et al.(2024)}
+\bibcite{eisenstein2024rate}{Eisenstein et al.(2024)}
+\bibcite{jeong2025comparative}{Jeong et al.(2025)}
+\bibcite{li2024alpacaeval}{Li et al.(2024)}
+\bibcite{ouyang2022training}{Ouyang et al.(2022)}
+\bibcite{park2024disentangling}{Park et al.(2024)}
+\bibcite{salinas2024counterfactual}{Salinas et al.(2024)}
+\bibcite{stureborg2024large}{Stureborg et al.(2024)}
+\bibcite{sun2024sosbench}{Sun et al.(2024)}
+\bibcite{thurstone1927law}{Thurstone(1927)}
+\bibcite{wu2024style}{Wu and Aji(2024)}
+\bibcite{zeng2024llmbar}{Zeng et al.(2024)}
+\bibcite{zheng2024chatbot}{Zheng et al.(2024)}
+\bibcite{zhou2025casse}{Zhou et al.(2025)}
+\gdef \@abspage@last{9}

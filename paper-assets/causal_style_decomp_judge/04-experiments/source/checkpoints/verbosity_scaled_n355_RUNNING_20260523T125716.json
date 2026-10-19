@@ -1,0 +1,122 @@
+{
+  "exp_id": "verbosity_scaled_n355",
+  "project": "causal_style_decomp_judge",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:57:40.068Z",
+    "updated_at": "2026-05-23T12:57:16.613Z",
+    "hypothesis": "Verbosity Style OR at n=355 will shrink from n=86 estimates (8.21-13.10) to projected range 4-6.5 due to small-sample upward bias, mirroring the formality shrinkage pattern (4.20→2.15). Likert ATE will remain NS, confirming the Blindspot is robust to increased sample size for verbosity axis.",
+    "spec": {
+      "command": "Phase 1: counterfactual_gen --axis verbosity (400 pairs) → Phase 2: content_verification → Phase 3: judge_scoring + pairwise_scoring (5 judges) → Phase 4: GEE decomposition",
+      "server": "westb-29275",
+      "data_path": "data/scaled_verbosity_input.jsonl",
+      "data_count": 400,
+      "model_name": "Qwen3-32B (rewriter+judge), Llama-70B, GPT-4o, Gemini, Claude",
+      "seed": 42,
+      "gpu": "0,1 (Qwen3-32B), 2,3 (Llama-70B)"
+    },
+    "metrics": {
+      "n_samples": 330,
+      "n_judges": 5,
+      "qwen32b": {
+        "bt_p_verbose": 0.733,
+        "bt_ci": [
+          0.696,
+          0.77
+        ],
+        "sign_p": 0,
+        "likert_d": 0.149,
+        "likert_wilcoxon_p": 0.0006,
+        "likert_ttest_p": 0.007,
+        "gee_intercept_or": 3.83,
+        "gee_orig_or": 0.52,
+        "gee_orig_p": 0.001,
+        "ntc": 0.881,
+        "blindspot": false,
+        "note": "Likert now significant at n=355"
+      },
+      "llama70b": {
+        "bt_p_verbose": 0.759,
+        "bt_ci": [
+          0.722,
+          0.793
+        ],
+        "sign_p": 0,
+        "likert_d": 0.16,
+        "likert_wilcoxon_p": 0.0001,
+        "likert_ttest_p": 0.004,
+        "gee_intercept_or": 4.01,
+        "gee_orig_or": 0.61,
+        "gee_orig_p": 0.013,
+        "ntc": 0.896,
+        "blindspot": false,
+        "note": "Likert now significant at n=355"
+      },
+      "gpt54": {
+        "bt_p_verbose": 0.59,
+        "bt_ci": [
+          0.544,
+          0.635
+        ],
+        "sign_p": 0.0002,
+        "likert_d": -0.026,
+        "likert_wilcoxon_p": 0.813,
+        "likert_ttest_p": 0.635,
+        "gee_intercept_or": 1.06,
+        "gee_orig_or": 1.96,
+        "gee_orig_p": 0.0005,
+        "ntc": 0.867,
+        "blindspot": true,
+        "note": "Originality-dominated, minimal style bias"
+      },
+      "gemini": {
+        "bt_p_verbose": 0.678,
+        "bt_ci": [
+          0.638,
+          0.717
+        ],
+        "sign_p": 0,
+        "likert_d": 0.087,
+        "likert_wilcoxon_p": 0.021,
+        "likert_ttest_p": 0.114,
+        "gee_intercept_or": 2.52,
+        "gee_orig_or": 0.69,
+        "gee_orig_p": 0.046,
+        "ntc": 0.876,
+        "blindspot": true,
+        "note": "Borderline Likert — Wilcoxon sig but t-test NS"
+      },
+      "claude": {
+        "bt_p_verbose": 0.608,
+        "bt_ci": [
+          0.567,
+          0.649
+        ],
+        "sign_p": 1e-06,
+        "likert_d": 0.032,
+        "likert_wilcoxon_p": 0.317,
+        "likert_ttest_p": 0.561,
+        "gee_intercept_or": 1.22,
+        "gee_orig_or": 1.69,
+        "gee_orig_p": 0.002,
+        "ntc": 0.938,
+        "blindspot": true,
+        "note": "Originality bias, minimal style bias"
+      },
+      "gee_shrinkage": {
+        "qwen_n86_style_or": 13.1,
+        "qwen_n355_intercept_or": 3.83,
+        "shrinkage_pct": 70.8,
+        "llama_n86_style_or": 8.21,
+        "llama_n355_intercept_or": 4.01,
+        "shrinkage_pct_llama": 51.2
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T12:57:16.712706+00:00",
+  "trigger": "update_registry"
+}

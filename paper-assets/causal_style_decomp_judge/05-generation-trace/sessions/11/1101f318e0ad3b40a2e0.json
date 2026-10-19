@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_verbosity_scoring_pipeline_20260520T215509_result.json",
     "occurrence": 1,
-    "bytes": 425,
-    "sha256": "6389bb700e8934001ca5aa232513a0af2593c455f9751d8c469abb044b3922cb"
+    "bytes": 424,
+    "sha256": "a033599f4890579a2651949e983c5b213798ab9bb716f3b8492d0d64e608cee8"
   },
   "statistics": {
     "messages": 1,

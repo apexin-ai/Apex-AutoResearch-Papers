@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exec_32b_full_setup_20260520T154737_result.json",
     "occurrence": 1,
-    "bytes": 742,
-    "sha256": "2f352d5f499efd212e22f3b2d5429936fe71ad19bae495d41971e5e007c7fa4d"
+    "bytes": 741,
+    "sha256": "feb364fd28c587a2c4231405d916b9c1a7c5e59ef16bb86700068ef9773dac50"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,40 @@
+{
+  "exp_id": "gpt4o_alpacaeval",
+  "project": "causal_style_decomp_judge",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:47:11.684Z",
+    "updated_at": "2026-05-21T08:57:51.494Z",
+    "hypothesis": "GPT-4o shows formality Blindspot on AlpacaEval benchmark (pairwise detects bias, Likert misses it), confirming cross-benchmark generalizability",
+    "metrics": {
+      "bt": {
+        "p_formal": 0.727,
+        "ci": [
+          0.663,
+          0.785
+        ],
+        "p_value": 0.0001
+      },
+      "likert": {
+        "ate": 0.128,
+        "p": 0.1704,
+        "d": 0.148,
+        "tie_rate": 0.663
+      },
+      "gee": {
+        "style_or": 4.91,
+        "style_p": 0.0001,
+        "orig_or": 1.99,
+        "orig_p": 0.0356
+      },
+      "blindspot": true,
+      "n_pairs": 86
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T08:57:51.549992+00:00",
+  "trigger": "update_registry"
+}
