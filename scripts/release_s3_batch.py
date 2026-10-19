@@ -14,6 +14,7 @@ import re
 import shutil
 import subprocess
 import sys
+import threading
 import time
 import urllib.request
 
@@ -26,10 +27,20 @@ PATTERNS='/*\n!/paper-assets/\n/paper-assets/index.html\n/paper-assets/asset-mat
 def log(**value):print(json.dumps(value,ensure_ascii=False),flush=True)
 
 def run(args,repo=None,timeout=3600,quiet=False):
-    result=subprocess.run(args,cwd=repo,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=timeout)
-    if result.returncode:raise RuntimeError(f'{args[0]} failed ({result.returncode}): '+result.stdout[-5000:])
-    if result.stdout and not quiet:print(result.stdout[-8000:],flush=True)
-    return result.stdout.rstrip('\n')
+    process=subprocess.Popen(args,cwd=repo,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+    output=[]
+    def read_output():
+        for line in process.stdout:
+            output.append(line)
+            if not quiet:print(re.sub(r'https?://\S+','[URL]',line[-8000:]),end='',flush=True)
+    reader=threading.Thread(target=read_output,daemon=True);reader.start()
+    try:process.wait(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        process.kill();process.wait();reader.join()
+        raise RuntimeError(f'{args[0]} exceeded {timeout} seconds: '+''.join(output)[-5000:])
+    reader.join();process.stdout.close();result=''.join(output)
+    if process.returncode:raise RuntimeError(f'{args[0]} failed ({process.returncode}): '+result[-5000:])
+    return result.rstrip('\n')
 
 def checkout(path):
     run(['git','clone','--filter=blob:none','--depth=1','--no-checkout',REMOTE,str(path)])
@@ -43,7 +54,9 @@ def download(item,target):
     url=item['url'];size=item['metadata']['bytes'];etag=item['metadata']['etag']
     chunk=32*1024**2
     fd=os.open(target,os.O_CREAT|os.O_RDWR,0o600);os.ftruncate(fd,size)
+    progress_lock=threading.Lock();progress_bytes=0;started=time.monotonic();last_report=started
     def part(start):
+        nonlocal progress_bytes,last_report
         end=min(size-1,start+chunk-1)
         for attempt in range(5):
             try:
@@ -56,6 +69,10 @@ def download(item,target):
                         if not data:break
                         os.pwrite(fd,data,position);position+=len(data)
                     if position!=end+1:raise IOError('Incomplete S3 range')
+                with progress_lock:
+                    progress_bytes+=end-start+1;now=time.monotonic()
+                    if now-last_report>=30 or progress_bytes==size:
+                        log(stage='download-progress',key=item['key'],bytes=progress_bytes,total=size,seconds=round(now-started,1));last_report=now
                 return
             except Exception:
                 if attempt==4:raise
@@ -145,6 +162,7 @@ def main():
         key=item['key'];slug=key.split('/')[0];meta=item['metadata']
         log(stage='begin',index=number,total=len(manifest),key=key,free_GiB=round(shutil.disk_usage(temporary).free/1024**3,1))
         current=temporary/'current';current.mkdir();repo=current/'repo';checkout(repo)
+        log(stage='checkout-complete',key=key)
         status_path=repo/'batch-release-status.json'
         completed=json.loads(status_path.read_text()).get('archives',{}).get(key,{}) if status_path.exists() else {}
         if completed.get('status')=='uploaded' and completed.get('archive_sha256') and completed.get('source',{}).get('etag')==meta['etag'] and completed.get('source',{}).get('bytes')==meta['bytes']:
