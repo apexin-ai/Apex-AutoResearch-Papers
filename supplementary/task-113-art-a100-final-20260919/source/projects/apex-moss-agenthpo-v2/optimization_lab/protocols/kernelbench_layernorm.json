@@ -1,0 +1,16 @@
+{
+  "backend": "triton",
+  "correctness_trials": 5,
+  "display_name": "KernelBench LayerNorm",
+  "gpu_arch": "Ampere",
+  "level": 1,
+  "performance_trials": 100,
+  "precision": "fp32",
+  "problem_id": 40,
+  "repository_commit": "423217d9fda91e0c2d67e4a43bf62f96f6d104f1",
+  "target_gpu": "A100",
+  "task_id": "kernelbench_layernorm",
+  "task_path": "KernelBench/level1/40_LayerNorm.py",
+  "task_sha256": "8d975d7cee6946513dcfb6ba84c971e53a890f9d9c6f0a4fb828904941f25975",
+  "timeout_seconds": 300
+}

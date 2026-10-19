@@ -1,0 +1,2 @@
+# Compatibility entry point. Prefer `pip install -e ".[local,analysis]"`.
+-e .[local,analysis]

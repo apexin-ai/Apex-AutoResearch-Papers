@@ -1,0 +1,38 @@
+{
+  "id": "uni2ts_lsf_etth1_moirai_small",
+  "repo": "uni2ts",
+  "repo_path": "repositories/uni2ts",
+  "task": "MOIRAI-small zero-shot forecasting on LSF ETTh1, prediction length 96",
+  "domain": "time_series",
+  "fidelity": "official_eval_protocol_exact",
+  "dataset": {
+    "name": "ETTh1",
+    "source": "zhouhaoyi/ETDataset ETT-small/ETTh1.csv used by Uni2TS LSF eval",
+    "local_path": "data/formal/uni2ts_lsf/ETT-small/ETTh1.csv",
+    "download_script": "dataset_download.sh"
+  },
+  "baseline": {
+    "name": "Salesforce/moirai-1.0-R-small on ETTh1 pl=96, mode=M",
+    "metric": "MSE[0.5]",
+    "value": 0.375,
+    "source": "Uni2TS paper/table and project/moirai-1/eval/lsf_small.sh",
+    "command": "python -m cli.eval run_name=lsf_eval model=moirai_1.0_R_small model.patch_size=64 model.context_length=5000 data=lsf_test data.dataset_name=ETTh1 data.mode=M data.prediction_length=96",
+    "notes": "Official paper-anchor run uses num_samples=100. The budget baseline for agent scoring uses the same data/model/protocol with num_samples=1, producing MSE[0.5]=1.155 in the current environment."
+  },
+  "budget_baseline": {
+    "metric": "MSE[0.5]",
+    "value": 1.155,
+    "config": {
+      "num_samples": 1,
+      "patch_size": 64,
+      "context_length": 5000,
+      "batch_size": 512
+    },
+    "log_file": "logs/formal_smokes/uni2ts_lsf_etth1_smoke_20260506_retry2.log"
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh",
+    "agent_eval": "run_formal_uni2ts_lsf_etth1_agent.py"
+  }
+}

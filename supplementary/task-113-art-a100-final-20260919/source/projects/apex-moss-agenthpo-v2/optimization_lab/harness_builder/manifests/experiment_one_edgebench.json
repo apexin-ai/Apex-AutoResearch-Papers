@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "experiment_id": "moss-experiment-one",
+  "suite": "edgebench",
+  "benchmark": "EdgeBench",
+  "rounds": 8,
+  "seeds": ["S1", "S2", "S3"],
+  "h0": {
+    "schema_version": 1,
+    "version": 1,
+    "parent_sha256": null,
+    "spec": {
+      "schema_version": 1,
+      "nodes": [
+        {
+          "node_id": "solve",
+          "kind": "model_call",
+          "role": "solver",
+          "prompt": "Solve the supplied public task carefully. Return exactly the candidate required by its output contract. Your response must contain no status update, plan, analysis, preamble, or trailing explanation. Do not wrap or transform the candidate unless the task's output contract explicitly requires that syntax. The first character of your response must be the first character of the required candidate, and the last character must be its last character.\n\n{task}"
+        },
+        {"node_id": "emit", "kind": "emit", "input_key": "latest_output"}
+      ]
+    }
+  },
+  "models": {
+    "builder": {
+      "provider": "openai-compatible",
+      "api_family": "responses",
+      "transport": "https",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "max_output_tokens": 32768,
+      "sampling_parameters": {},
+      "tool_permission_policy": {"mode": "allowlist", "tools": []}
+    },
+    "solver": {
+      "provider": "openai-compatible",
+      "api_family": "responses",
+      "transport": "https",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "max_output_tokens": 32768,
+      "sampling_parameters": {},
+      "tool_permission_policy": {"mode": "allowlist", "tools": []}
+    }
+  },
+  "official": {
+    "source_repository": "/home/ubuntu/Projects/EdgeBench-official",
+    "source_revision": "a87350ab80eeb320b13cb71d1b0c3ffcc20a670f",
+    "task_data_revision": "6cc5a7f1b3288ce52484ad828177b8cc86b05b75",
+    "adapter": "optimization_lab.harness_builder.adapters.edgebench_official:EdgeBenchOfficialAdapter",
+    "evolution_evaluator": "sforge eval",
+    "cross_test_evaluator": "sforge eval",
+    "score_direction": "maximize",
+    "require_image_digest": true
+  },
+  "resources": {
+    "operating_system": "linux",
+    "minimum_cpu_count": 8,
+    "minimum_memory_gib": 32,
+    "minimum_disk_gib": 100,
+    "gpu_count": 0
+  },
+  "targets": [
+    {"position": "A", "task_id": "apple_incremental_game", "submission_path": "solution.py", "evaluator_timeout_seconds": 600},
+    {"position": "B", "task_id": "molecular_self_assembly", "submission_path": "solution.py", "evaluator_timeout_seconds": 600},
+    {"position": "C", "task_id": "treant_forest", "submission_path": "solution.py", "evaluator_timeout_seconds": 870}
+  ]
+}

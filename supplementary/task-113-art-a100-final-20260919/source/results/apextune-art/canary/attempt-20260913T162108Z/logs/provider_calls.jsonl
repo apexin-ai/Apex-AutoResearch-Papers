@@ -1,0 +1,2 @@
+{"call":1,"event":"started","model":"gpt-5.6-sol","prompt_chars":16196,"reasoning_effort":"high","timestamp":1789316726.316462}
+{"call":1,"duration_seconds":120.06025180907454,"event":"failed","exception_type":"TimeoutError","status_code":null,"timestamp":1789316846.3767185}

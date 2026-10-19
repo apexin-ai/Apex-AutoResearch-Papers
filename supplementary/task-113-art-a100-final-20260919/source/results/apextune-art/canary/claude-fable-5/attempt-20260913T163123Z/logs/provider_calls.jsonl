@@ -1,0 +1,2 @@
+{"call":1,"event":"started","model":"claude-fable-5","prompt_chars":16196,"reasoning_effort":"high","timestamp":1789317344.3315248}
+{"call":1,"duration_seconds":120.06012361799367,"event":"failed","exception_type":"TimeoutError","status_code":null,"timestamp":1789317464.3916526}

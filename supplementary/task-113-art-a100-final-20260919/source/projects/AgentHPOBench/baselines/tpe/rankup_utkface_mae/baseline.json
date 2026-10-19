@@ -1,0 +1,41 @@
+{
+  "id": "rankup_utkface_mae",
+  "repo": "semi-supervised-regression",
+  "repo_path": "repositories/semi-supervised-regression",
+  "repo_url": "https://github.com/pm25/semi-supervised-regression",
+  "year": 2024,
+  "task": "UTKFace age regression with RankUp WRN-28-2 supervised baseline",
+  "domain": "cv_regression",
+  "fidelity": "official_dataset_and_architecture_budgeted",
+  "dataset": {
+    "name": "UTKFace",
+    "source": "py97/UTKFace-Cropped plus pm25/regression-datasets UTKFace meta split",
+    "local_path": "data/formal/rankup_utkface/utkface",
+    "download_script": "dataset_download.sh"
+  },
+  "baseline": {
+    "name": "RankUp official fullysupervised_utkface",
+    "metric": "MAE",
+    "value": 4.851,
+    "source": "repositories/semi-supervised-regression/results/classic_cv_average_log.csv row fullysupervised_utkface, min_MAE=4.851±0.006",
+    "command": "python train.py --gpu 0 --c config/classic_cv/fullysupervised/fullysupervised_utkface_s0.yaml",
+    "notes": "AgentHPOBench uses the official UTKFace split, WRN-28-2 architecture, L1 loss, and SGD, but with a fixed short training-step budget."
+  },
+  "budget_protocol": {
+    "metric": "MAE",
+    "lower_is_better": true,
+    "baseline_config": {
+      "lr": 0.01,
+      "weight_decay": 0.001,
+      "batch_size": 32,
+      "train_steps": 400,
+      "augment": true
+    },
+    "tunable": ["lr", "weight_decay", "batch_size", "augment"]
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh",
+    "agent_eval": "run_formal_rankup_utkface_agent.sh"
+  }
+}

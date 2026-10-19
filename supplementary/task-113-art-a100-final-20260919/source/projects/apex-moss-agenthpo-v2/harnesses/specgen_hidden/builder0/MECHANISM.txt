@@ -1,0 +1,1 @@
+This harness specializes for spec-only implementation by extracting the full docstring/signature spec, building an explicit checklist from it, prompting the model to implement completely in one shot with deep spec analysis, then doing a static self-review pass before final smoke-test validation — never relying on visible test feedback for correctness.

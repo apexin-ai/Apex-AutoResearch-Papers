@@ -1,0 +1,38 @@
+{
+  "id": "tabmini_molecular_biology_promoters_auc",
+  "repo": "TabMini",
+  "repo_path": "repositories/TabMini",
+  "task": "PMLB/TabMini molecular_biology_promoters low-data binary classification",
+  "domain": "tabular",
+  "fidelity": "paper_result_table_budgeted",
+  "dataset": {
+    "name": "molecular_biology_promoters",
+    "source": "TabMini plotting/data/2/molecular_biology_promoters",
+    "local_path": "data/paper_exact/tabmini_molecular_biology_promoters_auc",
+    "download_script": "dataset_download.sh"
+  },
+  "baseline": {
+    "name": "TabMini 3600s AutoGluon result on molecular_biology_promoters",
+    "metric": "roc_auc",
+    "value": 0.93,
+    "source": "TabMini plotting/results/test_scores_wide_3600.csv AutoGluon column",
+    "notes": "AgentHPOBench uses the same TabMini/PMLB dataset with 2-fold ROC AUC and a small sklearn tuning space."
+  },
+  "budget_protocol": {
+    "cv": 2,
+    "seed": 42,
+    "metric": "roc_auc",
+    "higher_is_better": true,
+    "tunable": [
+      "model_family",
+      "scaler",
+      "C",
+      "max_depth",
+      "min_samples_leaf",
+      "criterion",
+      "class_weight",
+      "n_estimators",
+      "max_features"
+    ]
+  }
+}

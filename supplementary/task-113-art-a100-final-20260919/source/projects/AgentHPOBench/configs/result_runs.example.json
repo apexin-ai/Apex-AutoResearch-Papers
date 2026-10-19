@@ -1,0 +1,24 @@
+{
+  "runs": [
+    {
+      "name": "qwen3_32b_seed1",
+      "path": "results/qwen32_multiseed/qwen3_32b_seed1_final30",
+      "type": "open_weight"
+    },
+    {
+      "name": "qwen3_32b_seed42",
+      "path": "results/qwen32_multiseed/qwen3_32b_seed42_final30",
+      "type": "open_weight"
+    },
+    {
+      "name": "qwen3_32b_no_feedback_seed1",
+      "path": "results/qwen32_no_feedback_multiseed/qwen3_32b_no_feedback_seed1_final30",
+      "type": "ablation"
+    },
+    {
+      "name": "qwen3_32b_no_feedback_seed42",
+      "path": "results/qwen32_no_feedback_multiseed/qwen3_32b_no_feedback_seed42_final30",
+      "type": "ablation"
+    }
+  ]
+}

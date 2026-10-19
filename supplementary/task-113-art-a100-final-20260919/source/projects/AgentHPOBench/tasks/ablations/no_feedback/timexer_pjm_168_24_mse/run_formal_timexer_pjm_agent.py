@@ -1,0 +1,328 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import ast
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+
+ROOT = Path(".")
+FORMAL_DIR = ROOT / "tasks/ablations/no_feedback/timexer_pjm_168_24_mse"
+EVAL_SCRIPT = FORMAL_DIR / "eval_timexer_pjm.py"
+AGENT_MODEL = Path(os.environ.get("QWEN3_MODEL", "models/Qwen/Qwen3-32B"))
+RESULT_ROOT = Path(os.environ.get("AUTOREP_AGENT_RESULTS_BASE", str(Path(os.environ.get("AUTOREP_AGENT_RESULTS_BASE", str(ROOT / "results/formal_agent/qwen3_32b")))))) / "timexer_pjm_168_24_mse"
+RUN_ID = os.environ.get("RUN_ID") or f"timexer_pjm_168_24_mse_qwen3_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}"
+OUT_DIR = RESULT_ROOT / "runs" / RUN_ID
+RESULT_FILE = RESULT_ROOT / "timexer_pjm_168_24_mse_QwenLocal_results.json"
+
+PAPER_ANCHOR_MSE = 0.093
+BASE_CONFIG = {
+    "d_model": 64,
+    "d_ff": 64,
+    "e_layers": 1,
+    "patch_len": 24,
+    "learning_rate": 0.0005,
+    "batch_size": 64,
+}
+SEARCH_SPACE = {
+    "d_model": {"choices": [64, 128]},
+    "d_ff": {"choices": [64, 128]},
+    "e_layers": {"choices": [1, 2]},
+    "patch_len": {"choices": [12, 24]},
+    "learning_rate": {"choices": [0.0005, 0.001]},
+    "batch_size": {"choices": [64, 128]},
+}
+import os as _space_os
+import sys as _space_sys
+from pathlib import Path as _SpacePath
+_space_sys.path.insert(0, str(_SpacePath(__file__).resolve().parents[1]))
+from space_ablation_backend_full30 import apply_space_variant as _apply_space_variant
+SEARCH_SPACE = _apply_space_variant(
+    "timexer_pjm_168_24_mse", SEARCH_SPACE, BASE_CONFIG, _space_os.environ.get("AUTOREP_SPACE_VARIANT", "original")
+)
+
+FIXED = {"epochs": int(os.environ.get("TIMEXER_EPOCHS", "1"))}
+
+
+def load_json(path: Path) -> Any:
+    return json.loads(path.read_text())
+
+
+def nearest(value: Any, choices: list[Any]) -> Any:
+    try:
+        numeric = float(value)
+        return min(choices, key=lambda item: abs(float(item) - numeric))
+    except Exception:
+        text = str(value).lower().strip()
+        for item in choices:
+            if str(item).lower() == text:
+                return item
+        return choices[0]
+
+
+def clamp_config(config: dict[str, Any]) -> dict[str, Any]:
+    aliases = {
+        "lr": "learning_rate",
+        "learning_rate": "learning_rate",
+        "width": "d_model",
+        "hidden_size": "d_model",
+        "ffn_dim": "d_ff",
+        "layers": "e_layers",
+        "num_layers": "e_layers",
+        "patch": "patch_len",
+        "batch": "batch_size",
+    }
+    merged = dict(BASE_CONFIG)
+    for key, value in config.items():
+        mapped = aliases.get(str(key), str(key))
+        if mapped in merged:
+            merged[mapped] = value
+    return {
+        "d_model": int(nearest(merged["d_model"], SEARCH_SPACE["d_model"]["choices"])),
+        "d_ff": int(nearest(merged["d_ff"], SEARCH_SPACE["d_ff"]["choices"])),
+        "e_layers": int(nearest(merged["e_layers"], SEARCH_SPACE["e_layers"]["choices"])),
+        "patch_len": int(nearest(merged["patch_len"], SEARCH_SPACE["patch_len"]["choices"])),
+        "learning_rate": float(nearest(merged["learning_rate"], SEARCH_SPACE["learning_rate"]["choices"])),
+        "batch_size": int(nearest(merged["batch_size"], SEARCH_SPACE["batch_size"]["choices"])),
+    }
+
+
+def slug(config: dict[str, Any]) -> str:
+    cfg = clamp_config(config)
+    return (
+        f"dm{cfg['d_model']}_df{cfg['d_ff']}_l{cfg['e_layers']}_patch{cfg['patch_len']}"
+        f"_lr{cfg['learning_rate']}_bs{cfg['batch_size']}"
+    ).replace(".", "p")
+
+
+def run_eval(kind: str, trial_idx: int, config: dict[str, Any]) -> dict[str, Any]:
+    cfg = clamp_config(config)
+    trial_dir = OUT_DIR / kind / f"trial{trial_idx}_{slug(cfg)}"
+    metrics_path = trial_dir / "results.json"
+    if not metrics_path.exists():
+        trial_dir.mkdir(parents=True, exist_ok=True)
+        env = os.environ.copy()
+        env["TIMEXER_CUDA_VISIBLE_DEVICES"] = os.environ.get("TIMEXER_CUDA_VISIBLE_DEVICES", "1")
+        env["PYTHONPATH"] = f"{ROOT / 'repositories/TimeXer'}:{ROOT / '.python_deps'}"
+        cmd = [
+            "bash",
+            "-lc",
+            "source ${CONDA_ROOT:-/opt/miniconda3}/etc/profile.d/conda.sh && "
+            "conda activate autorep-vlm2vec && "
+            f"python {EVAL_SCRIPT} "
+            f"--results-dir {trial_dir} "
+            f"--run-name {kind}{trial_idx} "
+            f"--d-model {cfg['d_model']} "
+            f"--d-ff {cfg['d_ff']} "
+            f"--e-layers {cfg['e_layers']} "
+            f"--patch-len {cfg['patch_len']} "
+            f"--learning-rate {cfg['learning_rate']} "
+            f"--batch-size {cfg['batch_size']} "
+            f"--epochs {FIXED['epochs']} "
+            "--patience 1",
+        ]
+        started = time.time()
+        proc = subprocess.run(cmd, cwd=str(ROOT), env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        text = proc.stdout.decode("utf-8", errors="replace")
+        (trial_dir / "outer.log").write_text(text)
+        if proc.returncode != 0:
+            print(text, flush=True)
+            raise RuntimeError(f"TimeXer eval failed rc={proc.returncode}")
+        payload = load_json(metrics_path)
+        payload["seconds_outer"] = round(time.time() - started, 3)
+        metrics_path.write_text(json.dumps(payload, indent=2))
+    payload = load_json(metrics_path)
+    return {"trial": trial_idx, "kind": kind, "config": cfg, "metrics": payload, "output_dir": str(trial_dir)}
+
+
+def parse_config(text: str) -> dict[str, Any]:
+    for pattern in [
+        r"NEW_CONFIG\s*[:=]\s*(\{.*?\})",
+        r"```json\s*(\{.*?\})\s*```",
+        r"(\{[^{}]*(?:d_model|learning_rate|batch_size|patch_len)[^{}]*\})",
+    ]:
+        match = re.search(pattern, text, flags=re.S | re.I)
+        if not match:
+            continue
+        payload = match.group(1)
+        try:
+            return json.loads(payload)
+        except Exception:
+            try:
+                return ast.literal_eval(payload)
+            except Exception:
+                pass
+    raise ValueError("no JSON config found")
+
+
+def training_log(history: list[dict[str, Any]], baseline: float) -> str:
+    history = history[:1]  # No-feedback: expose only the baseline observation.
+    lines = [
+        "Task: TimeXer NeurIPS 2024, EPF/PJM electricity price forecasting with exogenous variables.",
+        "Metric: test_mse, lower is better. Paper/README anchor for PJM: MSE=0.093, MAE=0.192.",
+        "Budget: fixed 1 train epoch, official TimeXer custom split, seq_len=168, pred_len=24, features=MS.",
+        "Short-budget prior: with 1 epoch, batch_size=128 at d_model=64,d_ff=64,e_layers=1,patch_len=24,lr=0.0005 reached test_mse about 0.1266; lr=0.001 was worse; d_model=128/e_layers=2 was not helpful in a 2-epoch probe.",
+        f"Budget baseline test_mse={baseline:.6f}, config={BASE_CONFIG}.",
+    ]
+    for item in history:
+        m = item["metrics"]
+        lines.append(
+            f"Trial {item['trial']} {item['kind']}: config={item['config']} "
+            f"test_mse={m['test_mse']:.6f} test_mae={m['test_mae']:.6f} "
+            f"val_loss={m['val_loss_final']:.6f} train_loss={m['train_loss_final']:.6f}"
+        )
+    return "\n".join(lines)
+
+
+def decide_with_qwen(history: list[dict[str, Any]], baseline: float) -> dict[str, Any]:
+
+    history = history[:1]  # No-feedback: expose only the baseline observation.
+    import os as _tpe_os
+    if _tpe_os.environ.get("AUTOREP_AGENT_BACKEND", "").strip().lower() in {"tpe", "tpe_search", "bayesian", "bayesopt", "bayesian_optimization"}:
+        import sys as _tpe_sys
+        from pathlib import Path as _TpePath
+        _tpe_sys.path.insert(0, str(_TpePath(__file__).resolve().parents[1]))
+        from tpe_backend import tpe_decision_from_call
+        return tpe_decision_from_call(globals().get("TASK_ID", _TpePath(__file__).resolve().parent.name), locals(), globals())
+    backend = os.environ.get("AUTOREP_AGENT_BACKEND", "").strip().lower()
+    if backend in {"random", "random_search"}:
+        import random
+
+        seed = os.environ.get("AUTOREP_RANDOM_SEED", "0")
+        state = json.dumps(history, sort_keys=True, default=str)
+        rng = random.Random(f"{seed}:timexer_pjm_168_24_mse:{len(history)}:{state}")
+        raw = {key: rng.choice(list(spec["choices"])) for key, spec in SEARCH_SPACE.items()}
+        new_config = clamp_config(raw)
+        return {
+            "new_config": new_config,
+            "raw_new_config": raw,
+            "reasoning": "Uniform random sample from the constrained TimeXer search space.",
+            "confidence": 0.0,
+            "metadata": {"backend": "random_search", "seed": seed, "search_space_keys": sorted(SEARCH_SPACE)},
+        }
+
+    deps = ROOT / ".python_deps"
+    if deps.exists():
+        sys.path.insert(0, str(deps))
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+    import torch
+
+    prompt = f"""You are choosing one hyperparameter configuration for a budget-limited reproduction benchmark.
+
+{training_log(history, baseline)}
+
+Search space:
+{json.dumps(SEARCH_SPACE, indent=2)}
+
+Return exactly one line:
+NEW_CONFIG: {{"d_model": 64, "d_ff": 64, "e_layers": 1, "patch_len": 24, "learning_rate": 0.0005, "batch_size": 128}}
+
+Choose the config most likely to reduce test_mse under the fixed 1-epoch budget. Do not change the dataset, seq_len, pred_len, epochs, model family, or metric."""
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    if os.environ.get("AUTOREP_QWEN_NO_THINK", "0").strip().lower() in {"1", "true", "yes", "on"}:
+        prompt = prompt + "\n/no_think\nDo not output thinking. Return only the NEW_CONFIG line."
+    (OUT_DIR / "qwen_prompt_0.txt").write_text(prompt)
+    try:
+        from agenthpobench.agents.api_decision_client import api_backend_enabled, call_decision_api
+        if api_backend_enabled():
+            response = call_decision_api(prompt, temperature=0.0, max_tokens=int(os.environ.get("AUTOREP_API_MAX_TOKENS", "384")))
+            text = response.text
+            (OUT_DIR / "qwen_raw_0.txt").write_text(text)
+            try:
+                raw = parse_config(text)
+                new_config = clamp_config(raw)
+                metadata = {"api_backend": True, "api": response.metadata, "model_path": str(AGENT_MODEL)}
+                confidence = 0.7
+                reasoning = text
+            except Exception as exc:
+                raw = {"d_model": 64, "d_ff": 64, "e_layers": 1, "patch_len": 24, "learning_rate": 0.0005, "batch_size": 128}
+                new_config = clamp_config(raw)
+                metadata = {"api_backend": True, "fallback": True, "api": response.metadata, "error": str(exc), "raw_text": text[:1000]}
+                confidence = 0.4
+                reasoning = f"Fallback to short-budget probe-best config after API parse error: {exc}."
+            return {"new_config": new_config, "raw_new_config": raw, "reasoning": reasoning, "confidence": confidence, "metadata": metadata}
+    except Exception:
+        if os.environ.get("AUTOREP_AGENT_BACKEND", "").strip().lower() in {"api", "openai", "openai-compatible", "anthropic", "glm", "claude_code", "claude-code", "codex", "codex_cli", "codex-cli"}:
+            raise
+
+    os.environ["CUDA_VISIBLE_DEVICES"] = os.environ.get("QWEN_CUDA_VISIBLE_DEVICES", "1")
+    tokenizer = AutoTokenizer.from_pretrained(str(AGENT_MODEL), trust_remote_code=True, local_files_only=True)
+    model = AutoModelForCausalLM.from_pretrained(
+        str(AGENT_MODEL),
+        torch_dtype=torch.bfloat16,
+        device_map="auto",
+        trust_remote_code=True,
+        local_files_only=True,
+    )
+    rendered_prompt = prompt
+    if os.environ.get("AUTOREP_USE_CHAT_TEMPLATE", "0").strip().lower() in {"1", "true", "yes", "on"} and hasattr(tokenizer, "apply_chat_template"):
+        try:
+            rendered_prompt = tokenizer.apply_chat_template([{"role": "user", "content": prompt}], tokenize=False, add_generation_prompt=True)
+        except Exception:
+            rendered_prompt = prompt
+    inputs = tokenizer(rendered_prompt, return_tensors="pt").to(model.device)
+    with torch.no_grad():
+        output = model.generate(**inputs, max_new_tokens=int(os.environ.get("AUTOREP_AGENT_MAX_NEW_TOKENS", "1024")), do_sample=False)
+    text = tokenizer.decode(output[0, inputs["input_ids"].shape[1]:], skip_special_tokens=True)
+    (OUT_DIR / "qwen_raw_0.txt").write_text(text)
+    try:
+        raw = parse_config(text)
+        new_config = clamp_config(raw)
+        metadata = {"direct_prompt": True, "model_path": str(AGENT_MODEL)}
+        confidence = 0.7
+        reasoning = text
+    except Exception as exc:
+        raw = {"d_model": 64, "d_ff": 64, "e_layers": 1, "patch_len": 24, "learning_rate": 0.0005, "batch_size": 128}
+        new_config = clamp_config(raw)
+        metadata = {"fallback": True, "error": str(exc), "raw_text": text[:1000]}
+        confidence = 0.4
+        reasoning = f"Fallback to short-budget probe-best config after parse error: {exc}."
+    del model
+    try:
+        torch.cuda.empty_cache()
+    except Exception:
+        pass
+    return {"new_config": new_config, "raw_new_config": raw, "reasoning": reasoning, "confidence": confidence, "metadata": metadata}
+
+
+def main() -> int:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    baseline = run_eval("baseline", 0, BASE_CONFIG)
+    baseline_mse = baseline["metrics"]["test_mse"]
+    decision = decide_with_qwen([baseline], baseline_mse)
+    final = run_eval("agent", 1, decision["new_config"])
+    final_mse = final["metrics"]["test_mse"]
+    denom = baseline_mse - PAPER_ANCHOR_MSE
+    normalized = (baseline_mse - final_mse) / denom if abs(denom) > 1e-12 else 0.0
+    payload = {
+        "task_id": "timexer_pjm_168_24_mse",
+        "agent": os.environ.get("AUTOREP_AGENT_LABEL", "QwenLocal"),
+        "model_path": str(AGENT_MODEL),
+        "run_id": RUN_ID,
+        "paper_anchor_mse": PAPER_ANCHOR_MSE,
+        "budget_baseline_mse": baseline_mse,
+        "final_mse": final_mse,
+        "normalized_score": normalized,
+        "higher_is_better": False,
+        "metric": "test_mse",
+        "baseline": baseline,
+        "decision": decision,
+        "final": final,
+        "result_dir": str(OUT_DIR),
+    }
+    RESULT_ROOT.mkdir(parents=True, exist_ok=True)
+    RESULT_FILE.write_text(json.dumps(payload, indent=2))
+    (OUT_DIR / "summary.json").write_text(json.dumps(payload, indent=2))
+    print("FINAL_RESULT " + json.dumps(payload, sort_keys=True), flush=True)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

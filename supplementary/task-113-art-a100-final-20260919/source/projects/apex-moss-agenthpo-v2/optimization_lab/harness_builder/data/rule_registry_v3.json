@@ -1,0 +1,180 @@
+{
+  "schema_version": 2,
+  "registry_id": "hb-rule-registry-v3",
+  "sources": [
+    {
+      "source_id": "apex.v9.live.control",
+      "repository": "https://github.com/apexin-ai/Apex-Tune",
+      "commit": "17223eec6f7c29490888a278c86122e9f9f070ad",
+      "path": "benchmarks/v9/application/live_campaign.py",
+      "symbol": "live_campaign_control_rules",
+      "line_span": [3561, 6324],
+      "sha256": "adc3480c09f0ddf86d61eda667de7ff98d192ae56bebe5d4aeca3714fbc4b7fa",
+      "kind": "implementation"
+    },
+    {
+      "source_id": "openevolve.cascade",
+      "repository": "https://github.com/codelion/openevolve",
+      "commit": "411fb59c886c18704caaffb611e17cf9e7d824d2",
+      "path": "openevolve/evaluator.py",
+      "symbol": "evaluate_stage",
+      "line_span": [360, 535],
+      "sha256": "f1deed6c378cc1e57bfb86548375ca7775de6857d829169015999d269f46bc5b",
+      "kind": "implementation"
+    },
+    {
+      "source_id": "moss.p2.recovery",
+      "repository": "https://github.com/ApexIntelligence-AI/apex-moss",
+      "commit": "d06ce941568a78fe5512320e48de023c47972652",
+      "path": "optimization_lab/p2_runner.py",
+      "symbol": "P2CampaignRunner",
+      "line_span": [1, 1104],
+      "sha256": "90ba8fcf169eb7e3f4ded471469cd0feed1b299f5b166db82e41a1efa86a3c80",
+      "kind": "implementation"
+    },
+    {
+      "source_id": "moss.hb.learning",
+      "repository": "https://github.com/ApexIntelligence-AI/apex-moss",
+      "commit": "d06ce941568a78fe5512320e48de023c47972652",
+      "path": "optimization_lab/harness_builder/learning.py",
+      "symbol": "ContinualBuilderUpdater",
+      "line_span": [1, 430],
+      "sha256": "52ffaad3a5bdc82132351feabd7416ea1ced1162c19f6c668f809b8a43057ddd",
+      "kind": "implementation"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "contract_compatibility",
+      "trigger": ["A task is first encountered, or the latest candidate failed a public artifact contract stage."],
+      "action": ["Compile the task capability card into the initial Harness and verify the exact candidate boundary before semantic or performance search."],
+      "guardrails": ["Only registered non-semantic normalization is allowed; paths, fields, hunks, program semantics, tests, and scores remain under the strict trusted codec and evaluator."],
+      "maturity": "implemented",
+      "provenance": ["Moss typed recovery plus staged evaluator contracts"],
+      "availability": "executable",
+      "decision_plane": "guard",
+      "enforcement": "deterministic_guard",
+      "operator_ref": "moss.rule.contract_compatibility.v1",
+      "writes": ["/role_graph", "/tools", "/workflow", "/kernel_directive"],
+      "source_refs": ["openevolve.cascade", "moss.p2.recovery"],
+      "derivation": {
+        "kind": "composed",
+        "semantic_change_note": "Moss binds a task-specific capability card before v001, requires a verifier workflow, and exposes exact public failure stages without granting scorer authority to the model."
+      },
+      "confidence": {
+        "implementation": "wired_tested",
+        "empirical_scope": "single_task_replicated",
+        "transfer": "partially_validated"
+      },
+      "relations": {
+        "requires": [],
+        "excludes": [],
+        "overrides": [],
+        "fallback_rule_id": null,
+        "on_same_write": "reject"
+      }
+    },
+    {
+      "rule_id": "discipline",
+      "trigger": ["A correct incumbent exists and one measured bottleneck is supported by evidence."],
+      "action": ["Keep the incumbent and change one bounded mechanism aimed at that bottleneck."],
+      "guardrails": ["Do not bundle unrelated structural changes; require a falsifiable expected signal."],
+      "maturity": "implemented_partial",
+      "provenance": ["Apex-Tune v9-recombinant@17223eec6f7c29490888a278c86122e9f9f070ad"],
+      "availability": "executable",
+      "decision_plane": "context_hint",
+      "enforcement": "typed_proposal",
+      "operator_ref": "moss.rule.discipline.v1",
+      "writes": ["/kernel_directive"],
+      "source_refs": ["apex.v9.live.control"],
+      "derivation": {"kind": "parameterized_port", "semantic_change_note": "Only the measured-fact control pattern is ported; task-specific payload and thresholds are excluded."},
+      "confidence": {"implementation": "prompt_only", "empirical_scope": "single_campaign", "transfer": "unvalidated"},
+      "relations": {"requires": [], "excludes": [], "overrides": [], "fallback_rule_id": null, "on_same_write": "reject"}
+    },
+    {
+      "rule_id": "dream",
+      "trigger": ["The incumbent family is plausibly saturated or repeated local changes are flat."],
+      "action": ["Reset the architecture and propose a qualitatively different decomposition."],
+      "guardrails": ["Start from a frozen reference or explicit root; the child inherits no parent score."],
+      "maturity": "implemented_partial",
+      "provenance": ["Apex-Tune v9-recombinant@17223eec6f7c29490888a278c86122e9f9f070ad"],
+      "availability": "executable",
+      "decision_plane": "stop_restart",
+      "enforcement": "deterministic_guard",
+      "operator_ref": "moss.rule.dream_restart.v1",
+      "writes": ["/parent_strategy", "/kernel_directive"],
+      "source_refs": ["apex.v9.live.control"],
+      "derivation": {"kind": "parameterized_port", "semantic_change_note": "Moss implements a reference-root restart without importing task-specific thresholds."},
+      "confidence": {"implementation": "wired_tested", "empirical_scope": "single_campaign", "transfer": "unvalidated"},
+      "relations": {"requires": [], "excludes": [], "overrides": [], "fallback_rule_id": null, "on_same_write": "reject"}
+    },
+    {
+      "rule_id": "law_inversion",
+      "trigger": ["At least two evidence-bearing attempts failed to improve and share an assumption."],
+      "action": ["State the shared assumption and construct a child that deliberately inverts it."],
+      "guardrails": ["The inverted assumption must be named; arbitrary novelty does not qualify."],
+      "maturity": "implemented_partial",
+      "provenance": ["Apex-Tune v9-recombinant@17223eec6f7c29490888a278c86122e9f9f070ad"],
+      "availability": "executable",
+      "decision_plane": "context_hint",
+      "enforcement": "typed_proposal",
+      "operator_ref": "moss.rule.law_inversion_prompt.v1",
+      "writes": ["/kernel_directive"],
+      "source_refs": ["apex.v9.live.control"],
+      "derivation": {"kind": "parameterized_port", "semantic_change_note": "The inversion proposal is available only after evidence-bearing attempts."},
+      "confidence": {"implementation": "prompt_only", "empirical_scope": "single_campaign", "transfer": "unvalidated"},
+      "relations": {"requires": [], "excludes": [], "overrides": [], "fallback_rule_id": null, "on_same_write": "reject"}
+    },
+    {
+      "rule_id": "recombination",
+      "trigger": ["Two frozen parents have complementary mechanisms or resource profiles."],
+      "action": ["Build a new child from explicit parent contributions and re-evaluate from zero."],
+      "guardrails": ["Do not splice arbitrary text; reject same-niche duplicates and inherited scores."],
+      "maturity": "implemented_partial",
+      "provenance": ["Apex-Tune v9-recombinant@17223eec6f7c29490888a278c86122e9f9f070ad"],
+      "availability": "executable",
+      "decision_plane": "selection",
+      "enforcement": "deterministic_guard",
+      "operator_ref": "moss.rule.recombination_distinct_structure.v1",
+      "writes": ["/parent_strategy", "/kernel_directive"],
+      "source_refs": ["apex.v9.live.control"],
+      "derivation": {"kind": "parameterized_port", "semantic_change_note": "Moss recombines correct distinct structural signatures without importing task-specific scores."},
+      "confidence": {"implementation": "wired_tested", "empirical_scope": "single_campaign", "transfer": "unvalidated"},
+      "relations": {"requires": [], "excludes": [], "overrides": [], "fallback_rule_id": null, "on_same_write": "reject"}
+    },
+    {
+      "rule_id": "correctness_recovery",
+      "trigger": ["The latest attempt passed the artifact boundary but failed compilation or correctness."],
+      "action": ["Repair the earliest failing correctness stage before any performance optimization."],
+      "guardrails": ["A failed attempt remains in reliability evidence; environment errors are separate."],
+      "maturity": "implemented",
+      "provenance": ["Moss P1/P2/P2b append-only trajectories"],
+      "availability": "executable",
+      "decision_plane": "recovery",
+      "enforcement": "deterministic_guard",
+      "operator_ref": "moss.rule.correctness_recovery.v1",
+      "writes": ["/recovery_mode", "/kernel_directive"],
+      "source_refs": ["moss.p2.recovery"],
+      "derivation": {"kind": "moss_native", "semantic_change_note": "Moss-native typed recovery uses only public reason-coded failure state."},
+      "confidence": {"implementation": "wired_tested", "empirical_scope": "single_task_replicated", "transfer": "unvalidated"},
+      "relations": {"requires": [], "excludes": [], "overrides": [], "fallback_rule_id": null, "on_same_write": "reject"}
+    },
+    {
+      "rule_id": "cross_instance_distillation",
+      "trigger": ["A first-encounter instance trajectory is fully sealed and its score can no longer change."],
+      "action": ["Extract task descriptors, initial-Harness choices, update actions, outcomes, costs, counterexamples, and scope into versioned Experience Records before the next unseen instance."],
+      "guardrails": ["Never update the Builder before scoring the current instance; same-instance rounds cannot teach one another."],
+      "maturity": "external_contract",
+      "provenance": ["HB-GEN-1 prequential test-then-learn protocol"],
+      "availability": "external",
+      "decision_plane": "external_post_seal",
+      "enforcement": "external_post_seal",
+      "operator_ref": null,
+      "writes": ["/experience_bank", "/builder_checkpoint"],
+      "source_refs": ["moss.hb.learning"],
+      "derivation": {"kind": "moss_native", "semantic_change_note": "The trusted controller executes this once after current-instance arms seal; it is never a Harness decision."},
+      "confidence": {"implementation": "wired_tested", "empirical_scope": "none", "transfer": "unvalidated"},
+      "relations": {"requires": [], "excludes": [], "overrides": [], "fallback_rule_id": null, "on_same_write": "reject"}
+    }
+  ]
+}

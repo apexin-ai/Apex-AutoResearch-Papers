@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "experiment_id": "moss-experiment-one",
+  "suite": "alebench",
+  "benchmark": "ALE-Bench",
+  "rounds": 8,
+  "seeds": ["S1", "S2", "S3"],
+  "task_harness_schema_version": 2,
+  "h0": {
+    "schema_version": 1,
+    "version": 1,
+    "parent_sha256": null,
+    "spec": {
+      "schema_version": 2,
+      "interface": {"task_template": "{task}", "constraints": {}},
+      "memory": {"abstract": [], "raw_refs": []},
+      "capabilities": {
+        "tools": ["contract_check", "cpp_syntax_check"],
+        "agent": {
+          "node_id": "solve",
+          "max_turns": 8,
+          "max_tool_calls": 16,
+          "workflows": ["diagnose_generate_verify", "compare_repair_verify", "explore_measure_refine"]
+        }
+      },
+      "router": {"mode": "agent_loop"},
+      "nodes": [
+        {
+          "node_id": "solve",
+          "kind": "model_call",
+          "role": "solver",
+          "prompt": "Solve the supplied public task. Use the allowed tools only when they improve correctness, then emit exactly the benchmark candidate required by the authoritative output contract.\n\n{task}"
+        },
+        {"node_id": "emit", "kind": "emit", "input_key": "latest_output"}
+      ]
+    }
+  },
+  "models": {
+    "builder": {
+      "provider": "openai-compatible",
+      "api_family": "responses",
+      "transport": "https",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "max_output_tokens": 32768,
+      "sampling_parameters": {},
+      "tool_permission_policy": {"mode": "allowlist", "tools": []}
+    },
+    "solver": {
+      "provider": "openai-compatible",
+      "api_family": "responses",
+      "transport": "https",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "max_output_tokens": 32768,
+      "sampling_parameters": {},
+      "tool_permission_policy": {"mode": "allowlist", "tools": []}
+    }
+  },
+  "official": {
+    "source_repository": "/home/ubuntu/Projects/ALE-Bench-official",
+    "source_revision": "f7d927906dc1dcd860ee086e4560d576438b1354",
+    "task_data_revision": "0f426173b4e4e73b09b2b3631ae0490f66b75f99",
+    "adapter": "optimization_lab.harness_builder.adapters.alebench_official:ALEBenchOfficialAdapter",
+    "evolution_evaluator": "public_eval",
+    "cross_test_evaluator": "public_eval",
+    "score_direction": "maximize",
+    "require_image_digest": true
+  },
+  "resources": {
+    "operating_system": "linux",
+    "minimum_cpu_count": 8,
+    "minimum_memory_gib": 32,
+    "minimum_disk_gib": 100,
+    "gpu_count": 0
+  },
+  "targets": [
+    {"position": "A", "task_id": "ahc024", "submission_path": "main.cpp", "evaluator_timeout_seconds": 600},
+    {"position": "B", "task_id": "ahc026", "submission_path": "main.cpp", "evaluator_timeout_seconds": 600},
+    {"position": "C", "task_id": "ahc011", "submission_path": "main.cpp", "evaluator_timeout_seconds": 600}
+  ]
+}

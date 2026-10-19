@@ -1,0 +1,36 @@
+{
+  "task_id": "itransformer_ettm2_96_mse",
+  "repo": "thuml/iTransformer",
+  "repo_url": "https://github.com/thuml/iTransformer",
+  "year": 2024,
+  "paper": "iTransformer: Inverted Transformers Are Effective for Time Series Forecasting",
+  "paper_venue": "ICLR 2024 Spotlight",
+  "dataset": "ETTm2",
+  "metric": "test_mse",
+  "higher_is_better": false,
+  "paper_anchor": 0.180,
+  "paper_anchor_secondary_mae": 0.264,
+  "paper_anchor_source": "iTransformer ICLR 2024 official long-term forecasting results for ETTm2 pred_len=96 report MSE=0.180 and MAE=0.264.",
+  "budget_protocol": {
+    "split": "official iTransformer ETTm2 dataloader split; seq_len=96, pred_len=96, multivariate M->M",
+    "epochs": 3,
+    "baseline_config": {
+      "d_model": 64,
+      "d_ff": 64,
+      "n_heads": 4,
+      "e_layers": 1,
+      "dropout": 0.1,
+      "learning_rate": 0.001,
+      "batch_size": 512
+    },
+    "search_space": {
+      "d_model": [64, 128, 256],
+      "d_ff": [64, 128, 256],
+      "n_heads": [4, 8],
+      "e_layers": [1, 2],
+      "dropout": [0.0, 0.1, 0.2],
+      "learning_rate": [0.0001, 0.0005, 0.001],
+      "batch_size": [128, 256, 512]
+    }
+  }
+}

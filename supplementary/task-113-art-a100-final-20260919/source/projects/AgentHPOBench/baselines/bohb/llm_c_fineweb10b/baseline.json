@@ -1,0 +1,26 @@
+{
+  "id": "llm_c_fineweb10b",
+  "repo": "llm.c",
+  "repo_path": "repositories/llm.c",
+  "task": "GPT-2 124M reproduction on FineWeb 10B",
+  "domain": "llm",
+  "fidelity": "official_recipe_exact",
+  "dataset": {
+    "name": "FineWeb sample-10BT plus HellaSwag eval",
+    "source": "HuggingFaceFW/fineweb and dev/data/hellaswag.py",
+    "local_path": "repositories/llm.c/dev/data/fineweb10B",
+    "download_script": "dataset_download.sh"
+  },
+  "baseline": {
+    "name": "GPT-2 124M llm.c reproduction",
+    "metric": "fineweb10B_validation_loss",
+    "value": 3.424958,
+    "source": "repositories/llm.c/scripts/run_gpt2_124M.sh and repositories/llm.c/dev/vislog.ipynb",
+    "command": "bash scripts/run_gpt2_124M.sh",
+    "notes": "The official script trains 18,865 iterations with 524,288 tokens per step on FineWeb 10B; BACKEND=pytorch selects scripts/pyrun_gpt2_124M.sh."
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh"
+  }
+}

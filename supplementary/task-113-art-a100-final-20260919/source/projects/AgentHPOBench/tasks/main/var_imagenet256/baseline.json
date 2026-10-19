@@ -1,0 +1,27 @@
+{
+  "id": "var_imagenet256",
+  "repo": "VAR",
+  "repo_path": "repositories/VAR",
+  "task": "Class-conditional ImageNet 256x256 autoregressive generation",
+  "domain": "cv_generation",
+  "fidelity": "paper_eval_only",
+  "dataset": {
+    "name": "ImageNet-1K 256x256 plus OpenAI guided-diffusion FID reference",
+    "source": "ImageNet manual license download and OpenAI VIRTUAL_imagenet256_labeled.npz",
+    "local_path": "data/paper_exact/var_imagenet256",
+    "download_script": "dataset_download.sh",
+    "manual_requirements": ["IMAGENET_ROOT with train/ and val/ folders"]
+  },
+  "baseline": {
+    "name": "VAR-d16",
+    "metric": "FID",
+    "value": 3.55,
+    "source": "repositories/VAR/README.md",
+    "command": "sample 50,000 PNG files with cfg=1.5/top_p=0.96/top_k=900, pack to npz, then run OpenAI guided-diffusion evaluator",
+    "notes": "The repository states the sampling script will be provided later, so baseline_eval.sh intentionally requires SAMPLE_NPZ and GUIDED_DIFFUSION_EVAL_DIR."
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh"
+  }
+}

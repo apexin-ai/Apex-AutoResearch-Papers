@@ -1,0 +1,154 @@
+{
+  "dataset": "bigcode/bigcodebench-hard",
+  "config": "default",
+  "split": "v0.1.4",
+  "selection": [
+    "BigCodeBench/273",
+    "BigCodeBench/274",
+    "BigCodeBench/854",
+    "BigCodeBench/928",
+    "BigCodeBench/990"
+  ],
+  "selection_rule": "reuse the five task IDs frozen before the full-visibility canary; never eligible for formal train/val",
+  "protocol": "hidden-final-verification",
+  "visibility_level": "V1",
+  "visible_behavior_tests": 1,
+  "hidden_suite": "complete official suite",
+  "tasks": [
+    {
+      "task_id": "BigCodeBench/273",
+      "name": "bigcodebench_273",
+      "entry_point": "task_func",
+      "score": 0.701880156993866,
+      "libs": [
+        "http",
+        "cgi",
+        "json"
+      ],
+      "visible_tests": [
+        "TestCases.test_invalid_content_type"
+      ],
+      "hidden_tests": [
+        "TestCases.test_invalid_content_type",
+        "TestCases.test_class_properties",
+        "TestCases.test_valid_json_data",
+        "TestCases.test_invalid_json",
+        "TestCases.test_missing_data_key"
+      ],
+      "sha256": {
+        "solution.py": "66051c62e9be57f9b0b807146298a1ca221eb6458ed02d5384e7d32cbcbe8933",
+        "test_solution.py": "564ecd9c7ca12d7ac4a93e1142a66a03b5bdf895029065d055ddd45ee4271bc8",
+        "_hidden/test_hidden.py": "e664edfc0c2ed929a95d78ce9c0429c7131c7aeeae2fdcc887f5a50c92235d67"
+      }
+    },
+    {
+      "task_id": "BigCodeBench/274",
+      "name": "bigcodebench_274",
+      "entry_point": "task_func",
+      "score": 0.7091014981269836,
+      "libs": [
+        "http",
+        "cgi",
+        "smtplib",
+        "json",
+        "email"
+      ],
+      "visible_tests": [
+        "TestCases.test_invalid_content_type"
+      ],
+      "hidden_tests": [
+        "TestCases.test_invalid_content_type",
+        "TestCases.test_missing_key_in_json_data",
+        "TestCases.test_valid_json_request",
+        "TestCases.test_invalid_json_format",
+        "TestCases.test_empty_json_data",
+        "TestCases.test_email_sending_exception"
+      ],
+      "sha256": {
+        "solution.py": "bf503812b1fa29531057ecc9de62bf96a25b4f3cc58b1956d568492750c0b090",
+        "test_solution.py": "6ed93165b18f47a2596abf1c6e649a701b592027d09c366e11d8fff1cb36eb4f",
+        "_hidden/test_hidden.py": "4fe08f63c6fa4ec5819f3ac21a3ee471fd5792c534fa6d2e61606a020e8d3101"
+      }
+    },
+    {
+      "task_id": "BigCodeBench/854",
+      "name": "bigcodebench_854",
+      "entry_point": "task_func",
+      "score": 0.7331838011741638,
+      "libs": [
+        "math",
+        "itertools",
+        "functools"
+      ],
+      "visible_tests": [
+        "TestCases.test_case_1"
+      ],
+      "hidden_tests": [
+        "TestCases.test_case_1",
+        "TestCases.test_case_2",
+        "TestCases.test_case_3",
+        "TestCases.test_case_4",
+        "TestCases.test_case_5"
+      ],
+      "sha256": {
+        "solution.py": "b744a2c39ec7125e7e578346c5065d2b8ff96ce16bbf28cfdc6938af7a013f6d",
+        "test_solution.py": "1107991dbdfea55df33a9d911c0b56ddf7109943836aab8fabf3b77378a247ad",
+        "_hidden/test_hidden.py": "504b20b68b5a5fe89728eca19f35b8adbeddbc0de9fcf6486816524b93271bb6"
+      }
+    },
+    {
+      "task_id": "BigCodeBench/928",
+      "name": "bigcodebench_928",
+      "entry_point": "task_func",
+      "score": 0.7784879803657532,
+      "libs": [
+        "collections",
+        "itertools",
+        "string"
+      ],
+      "visible_tests": [
+        "TestCases.test_case_1"
+      ],
+      "hidden_tests": [
+        "TestCases.test_case_1",
+        "TestCases.test_case_2",
+        "TestCases.test_case_3",
+        "TestCases.test_case_4",
+        "TestCases.test_case_5"
+      ],
+      "sha256": {
+        "solution.py": "a4480fb95b45e8724ebebbd12745b1d81b2495a994d05b06b2614312ec3f4f73",
+        "test_solution.py": "a1ce46229980f167c46528a1e992323d15b3fb828b6b85df7db96c8c1145c343",
+        "_hidden/test_hidden.py": "027cf743391b4376171c57b214640a3bc45392c27cfbb7f32be70a86d23ce736"
+      }
+    },
+    {
+      "task_id": "BigCodeBench/990",
+      "name": "bigcodebench_990",
+      "entry_point": "task_func",
+      "score": 0.7060137987136841,
+      "libs": [
+        "codecs",
+        "urllib",
+        "base64",
+        "binascii"
+      ],
+      "visible_tests": [
+        "TestCases.test_hex_string_sample"
+      ],
+      "hidden_tests": [
+        "TestCases.test_hex_string_sample",
+        "TestCases.test_hex_string_1",
+        "TestCases.test_hex_string_2",
+        "TestCases.test_hex_string_3",
+        "TestCases.test_hex_string_4",
+        "TestCases.test_hex_string_non_ascii"
+      ],
+      "sha256": {
+        "solution.py": "3f9c7e162c6345d7e0ae68deb1decf0957d0bcb159d3c721fea3284fee71ccfa",
+        "test_solution.py": "5d685604aa83d36fb346f5de16e30c2428464502ca0ea30ca9ec5246ac5e24bb",
+        "_hidden/test_hidden.py": "fda6bdb19a1a8235593a03bee649f9346060ac9fae054c893909147353239a41"
+      }
+    }
+  ]
+}

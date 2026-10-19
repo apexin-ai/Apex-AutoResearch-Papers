@@ -1,0 +1,15 @@
+{
+  "id": "simple_rl_reason_qwen25_05b_math500",
+  "repo": "simpleRL-reason",
+  "repo_url": "https://github.com/hkust-nlp/simpleRL-reason",
+  "year": 2025,
+  "paper": "SimpleRL-Zoo: Investigating and Taming Zero Reinforcement Learning for Open Base Models in the Wild",
+  "task": "GRPO-style zero RL reasoning on Qwen2.5-0.5B",
+  "dataset": "SimpleRL-Zoo-Data/simplelr_qwen_level3to5 with MATH-500 evaluation",
+  "metric": "math500_accuracy_percent",
+  "higher_is_better": true,
+  "baseline_anchor": 15.8,
+  "anchor": 34.4,
+  "anchor_source": "simpleRL-reason README Main Results table: Qwen-2.5-0.5B MATH 500 = 15.8; Qwen-2.5-0.5B + SimpleRL-Zoo MATH 500 = 34.4.",
+  "official_budget_note": "The paper/repo full recipe uses SimpleRL-Zoo level3to5 data and reports the final SimpleRL-Zoo checkpoint score. AgentHPOBench v5 standard budget uses 1/10-scale training steps with 5 interventions."
+}

@@ -1,0 +1,26 @@
+{
+  "id": "verl_grpo_gsm8k",
+  "repo": "verl",
+  "repo_path": "repositories/verl",
+  "task": "GRPO-LoRA on GSM8K",
+  "domain": "rl_llm",
+  "fidelity": "official_recipe_exact",
+  "dataset": {
+    "name": "GSM8K",
+    "source": "openai/gsm8k via examples/data_preprocess/gsm8k.py",
+    "local_path": "data/paper_exact/verl_grpo_gsm8k/gsm8k",
+    "download_script": "dataset_download.sh"
+  },
+  "baseline": {
+    "name": "Qwen2.5-3B-Instruct GRPO-LoRA",
+    "metric": "gsm8k_test_score_percent",
+    "value": 86.1,
+    "source": "repositories/verl/docs/algo/baseline.md",
+    "command": "bash examples/grpo_trainer/run_qwen2_5-3b_gsm8k_grpo_lora.sh",
+    "notes": "The same table also reports 54.3 for Qwen2.5-0.5B GRPO-LoRA; the 3B local script is selected because it is checked into this repo."
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh"
+  }
+}

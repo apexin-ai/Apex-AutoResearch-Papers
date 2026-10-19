@@ -1,0 +1,37 @@
+{
+  "id": "binary_diffusion_adult_rf",
+  "repo": "binary-diffusion-tabular",
+  "repo_path": "repositories/binary-diffusion-tabular",
+  "task": "Adult Income downstream classifier tuning on official Binary Diffusion split",
+  "domain": "tabular",
+  "fidelity": "paper_dataset_budgeted_downstream",
+  "dataset": {
+    "name": "Adult Income",
+    "source": "binary-diffusion-tabular/data/adult_train.csv and adult_test.csv",
+    "local_path": "data/paper_exact/binary_diffusion_adult_rf",
+    "download_script": "dataset_download.sh"
+  },
+  "baseline": {
+    "name": "Binary Diffusion Adult Income RF paper result",
+    "metric": "test_accuracy_percent",
+    "value": 85.74,
+    "source": "binary-diffusion-tabular README downstream results table",
+    "notes": "AgentHPOBench uses the same official train/test split for budgeted downstream classifier tuning."
+  },
+  "budget_protocol": {
+    "seed": 42,
+    "metric": "test_accuracy_percent",
+    "higher_is_better": true,
+    "tunable": [
+      "model_family",
+      "n_estimators",
+      "max_depth",
+      "min_samples_leaf",
+      "criterion",
+      "max_features",
+      "class_weight",
+      "learning_rate",
+      "C"
+    ]
+  }
+}

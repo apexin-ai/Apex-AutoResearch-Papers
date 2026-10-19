@@ -1,0 +1,48 @@
+{
+  "id": "forest_diffusion_iris_f1fake",
+  "repo": "ForestDiffusion",
+  "repo_url": "https://github.com/SamsungSAILMontreal/ForestDiffusion",
+  "year": 2024,
+  "repo_path": "repositories/ForestDiffusion",
+  "task": "Iris tabular generation with ForestDiffusion",
+  "domain": "tabular",
+  "fidelity": "official_repo_ablation_budgeted",
+  "dataset": {
+    "name": "Iris",
+    "source": "sklearn.datasets.load_iris used by ForestDiffusion script_generation.py",
+    "local_path": "data/paper_exact/forest_diffusion_iris",
+    "download_script": "dataset_download.sh"
+  },
+  "baseline": {
+    "name": "ForestDiffusion official Iris ablation",
+    "metric": "f1_fake",
+    "value": 0.970038,
+    "source": "Results/Results_tabular - ablation_iris.csv row: xgboost flow ycond=True n_t=50 duplicate_K=100 reports F1_fake=0.970038",
+    "command": "python script_generation.py --datasets iris --methods forest_diffusion --diffusion_type flow --ycond True --n_t 50 --duplicate_K 100",
+    "notes": "AgentHPOBench uses the same Iris dataset and the official F1_fake downstream-classifier metric with a reduced nexp/ngen/n_tries budget."
+  },
+  "budget_protocol": {
+    "metric": "f1_fake",
+    "higher_is_better": true,
+    "seed": 0,
+    "nexp": 1,
+    "ngen": 2,
+    "n_tries": 2,
+    "baseline_config": {
+      "n_t": 10,
+      "n_t_sampling": 10,
+      "duplicate_k": 5,
+      "max_depth": 7,
+      "n_estimators": 50,
+      "eta": 0.3,
+      "diffusion_type": "flow",
+      "ycond": false
+    },
+    "tunable": ["n_t", "n_t_sampling", "duplicate_k", "max_depth", "n_estimators", "eta", "diffusion_type", "ycond"]
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh",
+    "agent_eval": "run_formal_forest_diffusion_iris_agent.sh"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "open_r1_math500_qwen1p5b",
+  "repo": "open-r1",
+  "repo_path": "repositories/open-r1",
+  "task": "MATH-500 evaluation for DeepSeek-R1-Distill-Qwen-1.5B",
+  "domain": "llm_reasoning",
+  "fidelity": "official_eval_protocol_lite",
+  "dataset": {
+    "name": "MATH-500",
+    "source": "HuggingFaceH4/MATH-500 via open-r1 LightEval math_500 task",
+    "local_path": "data/paper_exact/open_r1_math500/math_500",
+    "download_script": "dataset_download.sh"
+  },
+  "baseline": {
+    "name": "DeepSeek-R1-Distill-Qwen-1.5B on MATH-500",
+    "metric": "accuracy_percent",
+    "value": 83.1,
+    "source": "repositories/open-r1/README.md MATH-500 LightEval reproduction table",
+    "command": "lighteval vllm ... lighteval|math_500|0|0 --use-chat-template",
+    "notes": "The checked-in README reports 83.1 MATH-500 accuracy for DeepSeek-R1-Distill-Qwen-1.5B with LightEval. The benchmark uses the same MATH-500 data and math_verify-style answer extraction, with a constrained decoding budget as the official budget baseline."
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh"
+  }
+}

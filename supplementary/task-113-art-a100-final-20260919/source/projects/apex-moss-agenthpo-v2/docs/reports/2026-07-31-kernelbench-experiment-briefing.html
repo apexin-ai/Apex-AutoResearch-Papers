@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MOSS KernelBench 专用 Harness 实验｜CTO 汇报</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #637083;
+      --line: #dfe5ec;
+      --paper: #ffffff;
+      --canvas: #f3f6f9;
+      --navy: #173a63;
+      --blue: #2468a9;
+      --blue-soft: #eaf3fc;
+      --green: #197451;
+      --green-soft: #e8f7f0;
+      --amber: #956019;
+      --amber-soft: #fff4df;
+      --red: #a13b3b;
+      --red-soft: #fff0f0;
+      --shadow: 0 14px 38px rgba(31, 52, 79, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+        "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+    }
+
+    .hero {
+      padding: 62px 24px 88px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 84% 16%, rgba(93, 186, 237, 0.34), transparent 28%),
+        linear-gradient(135deg, #102b4b 0%, #174d79 64%, #1f708f 100%);
+    }
+
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #bfe5ff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+    }
+
+    h1 {
+      max-width: 920px;
+      margin: 0;
+      font-size: clamp(35px, 5vw, 58px);
+      line-height: 1.14;
+      letter-spacing: -0.035em;
+    }
+
+    .hero p {
+      max-width: 860px;
+      margin: 22px 0 0;
+      color: #d9edf9;
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .meta { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 26px; }
+
+    .meta span {
+      padding: 6px 11px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      color: #eef8ff;
+      font-size: 13px;
+    }
+
+    main { padding: 0 0 64px; }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      margin-top: -48px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .metric { min-height: 116px; padding: 21px; background: var(--paper); }
+    .metric small { color: var(--muted); font-weight: 750; }
+    .metric strong { display: block; margin-top: 6px; color: var(--navy); font-size: 22px; line-height: 1.25; }
+    .metric span { display: block; margin-top: 5px; color: var(--muted); font-size: 13px; }
+
+    section {
+      margin-top: 28px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--paper);
+      box-shadow: 0 7px 22px rgba(31, 52, 79, 0.045);
+    }
+
+    h2 { margin: 0 0 17px; color: var(--navy); font-size: 26px; line-height: 1.25; letter-spacing: -0.02em; }
+    h3 { margin: 0 0 8px; color: #23425f; font-size: 18px; line-height: 1.35; }
+    p { margin: 9px 0; }
+
+    .thesis {
+      padding: 19px 22px;
+      border-left: 4px solid var(--blue);
+      border-radius: 0 10px 10px 0;
+      background: var(--blue-soft);
+      color: #193b5c;
+      font-size: 18px;
+    }
+
+    .grid-2, .grid-3 { display: grid; gap: 16px; margin-top: 18px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .card { padding: 19px; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfe; }
+    .card p { color: #4f5d70; }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 9px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tag.active { color: var(--green); background: var(--green-soft); }
+    .tag.later { color: var(--blue); background: var(--blue-soft); }
+    .tag.hold { color: var(--amber); background: var(--amber-soft); }
+    .tag.retired { color: var(--red); background: var(--red-soft); }
+
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr 52px 1fr 52px 1fr;
+      align-items: stretch;
+      gap: 7px;
+      margin-top: 22px;
+    }
+
+    .node {
+      padding: 18px;
+      border: 1px solid #cbd9e6;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #fff, #f5f9fc);
+      text-align: center;
+    }
+
+    .node strong { display: block; color: var(--navy); font-size: 17px; }
+    .node span { display: block; margin-top: 5px; color: var(--muted); font-size: 13px; }
+    .arrow { display: grid; place-items: center; color: #6e8daa; font-size: 29px; }
+
+    .loop {
+      margin-top: 12px;
+      padding: 11px 15px;
+      border-radius: 9px;
+      background: #f3f6f9;
+      color: #536175;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    table { width: 100%; margin-top: 16px; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 13px 12px; border-bottom: 1px solid #e8edf2; text-align: left; vertical-align: top; }
+    th { color: #536176; background: #f6f8fa; font-size: 13px; }
+    tr:last-child td { border-bottom: 0; }
+
+    .alert {
+      margin-top: 18px;
+      padding: 17px 19px;
+      border: 1px solid #e7c893;
+      border-radius: 11px;
+      background: var(--amber-soft);
+      color: #6f4a18;
+    }
+
+    .phases { display: grid; gap: 11px; margin-top: 18px; }
+
+    .phase {
+      display: grid;
+      grid-template-columns: 58px 1fr 125px;
+      gap: 15px;
+      align-items: center;
+      padding: 15px 17px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+    }
+
+    .phase-id {
+      display: grid;
+      width: 45px;
+      height: 45px;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--blue);
+      font-weight: 850;
+    }
+
+    .phase.future .phase-id { color: #687789; background: #e7ebef; }
+    .phase.optional .phase-id { color: var(--amber); background: var(--amber-soft); }
+    .phase-title { color: #263b52; font-weight: 800; }
+    .phase-copy { margin-top: 3px; color: var(--muted); font-size: 14px; }
+    .phase-state { text-align: right; color: #7b8794; font-size: 13px; font-weight: 800; }
+    .phase-state.now { color: var(--green); }
+    .phase-state.gate { color: var(--amber); }
+
+    ul { margin: 10px 0 0; padding-left: 21px; }
+    li + li { margin-top: 7px; }
+    code { padding: 2px 5px; border-radius: 5px; background: #edf1f5; font-family: ui-monospace, monospace; font-size: 0.9em; }
+
+    .links a { color: var(--blue); text-decoration: none; overflow-wrap: anywhere; }
+    .links a:hover { text-decoration: underline; }
+
+    footer { padding: 27px 0 40px; color: #718094; font-size: 13px; text-align: center; }
+
+    @media (max-width: 850px) {
+      .summary { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr; }
+      .arrow { min-height: 34px; transform: rotate(90deg); }
+    }
+
+    @media (max-width: 620px) {
+      .hero { padding: 42px 0 74px; }
+      .wrap { width: min(100% - 24px, 1120px); }
+      .summary, .grid-2 { grid-template-columns: 1fr; }
+      section { padding: 22px 18px; }
+      .phase { grid-template-columns: 50px 1fr; }
+      .phase-state { grid-column: 2; text-align: left; }
+      table { display: block; overflow-x: auto; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .hero { padding: 30px 0 45px; print-color-adjust: exact; }
+      .summary { margin-top: 18px; }
+      section, .summary { box-shadow: none; break-inside: avoid; }
+      a { color: inherit !important; text-decoration: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">MOSS · 实验计划一 · CTO 汇报版</div>
+      <h1>从“通用领域 Harness”转向“具体任务专用 Harness”</h1>
+      <p>
+        第一阶段选择 KernelBench，把“生成候选—验证正确—立即测速—根据结果调整”做成可靠闭环；
+        待积累多个成功专用 Harness 后，再反推上层通用 Builder 应该学会什么。
+      </p>
+      <div class="meta">
+        <span>报告日期：2026-07-31</span>
+        <span>当前阶段：P2 已完成，P3 待授权</span>
+        <span>固定硬件：A100 80GB</span>
+        <span>P2：47 个有效评分</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="summary">
+      <div class="metric"><small>研究目标</small><strong>先做可靠的专用 Harness</strong><span>上层 Builder 暂缓</span></div>
+      <div class="metric"><small>首发 Benchmark</small><strong>KernelBench</strong><span>即时获得正确性与速度反馈</span></div>
+      <div class="metric"><small>当前进度</small><strong>P2 六条谱系已完成</strong><span>47 个有效评分，45 个候选正确</span></div>
+      <div class="metric"><small>下一决策点</small><strong>是否启动 P3</strong><span>冻结最好版本做独立确认</span></div>
+    </div>
+
+    <section>
+      <h2>一、核心研究问题</h2>
+      <div class="thesis">
+        在底层模型、任务、工具和预算都固定的情况下，一套会根据分数不断调整的专用工作流，
+        能否比通用工作流更稳定地找到“结果正确而且运行更快”的候选？
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>本轮要证明</h3>
+          <p>专用 Harness 能形成可靠闭环，知道什么时候修错误、什么时候测速、什么时候保留或回滚。</p>
+        </div>
+        <div class="card">
+          <h3>本轮不证明</h3>
+          <p>不声称已经掌握通用 GPU 优化，也不把单道题的进步解释成对整个 AI 工程领域的泛化。</p>
+        </div>
+        <div class="card">
+          <h3>成功后的价值</h3>
+          <p>获得可复现的 Harness 结构和进化记录，为未来通用 Builder 提供真实训练材料。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>二、架构选择：长期双层，当前先验证下层</h2>
+      <div class="grid-2">
+        <div class="card">
+          <span class="tag later">长期目标</span>
+          <h3>上层：通用 Harness Builder</h3>
+          <p>读取一个新任务的说明，构造适合它的专用 Harness。Builder 不会在单题每次得分后更新，
+            而是在完成一批任务、比较成功和失败记录之后再迭代。</p>
+        </div>
+        <div class="card">
+          <span class="tag active">本轮主角</span>
+          <h3>下层：每题独立的专用 Harness</h3>
+          <p>每道任务拥有独立的提示、工具顺序、失败处理、历史最好版本和实验账本；不同任务不共享候选和失败轨迹。</p>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="node"><strong>专用 Harness</strong><span>安排模型阅读、修改与检查</span></div>
+        <div class="arrow">→</div>
+        <div class="node"><strong>官方评分边界</strong><span>编译 → 正确性 → 速度</span></div>
+        <div class="arrow">→</div>
+        <div class="node"><strong>反馈与版本记录</strong><span>保留、回滚或更换思路</span></div>
+      </div>
+      <div class="loop">反馈只回到同一道任务的 Harness；完成多道任务后，跨任务规律才进入 Builder。</div>
+    </section>
+
+    <section>
+      <h2>三、专用 Harness 如何调整，通用 Builder 如何运行</h2>
+      <div class="alert">
+        <strong>P1 与 P2 的迭代对象不同。</strong>P1 的 22 轮中三种 Harness 都被冻结；P2 已由
+        Harness 优化器读取本路线历史，把操作手册从 v001 逐轮改版，再让新版 Harness 生成下一份
+        Kernel。两阶段结果仍分别记录，P1 的速度成绩不冒充 Harness 自迭代成绩。
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <span class="tag active">P2 · 已完成</span>
+          <h3>专用 Harness：根据本任务反馈改工作流</h3>
+          <p>同一道题开三条彼此隔离的实验路线，三条路线从完全相同的第一版操作手册开始。
+            每条路线独立生成候选、只接收自己的简短评分反馈，再调整自己的做题步骤；这样可以区分
+            “方法稳定有效”和“某一次碰巧变快”。</p>
+        </div>
+        <div class="card">
+          <span class="tag later">跨任务循环 · 每批次调整</span>
+          <h3>通用 Builder：根据多任务证据造初始 Harness</h3>
+          <p>Builder 不参与单题逐分刷分。它等待多道任务完成 P3/P4，再总结反复有效的结构，
+            为一个新 Task 零样本生成初始专用 Harness；新任务随后进入自己的下层循环。</p>
+        </div>
+      </div>
+
+      <div class="alert">
+        <strong>这里的“谱系”就是独立实验路线，“v001”就是共同的第一版操作手册。</strong>
+        操作手册规定模型先看什么、按什么顺序检查、收到失败后如何处理、何时保留或恢复历史最好版本；
+        每轮候选是模型写出的 GPU 程序，而 Harness 是指导模型完成这一过程的工作流。
+      </div>
+
+      <h3 style="margin-top:24px">一轮里四个角色各自负责什么</h3>
+      <table aria-label="专用 Harness 一轮中的角色分工">
+        <thead><tr><th>角色</th><th>主要职责</th><th>不能做什么</th></tr></thead>
+        <tbody>
+          <tr><td><strong>做题模型</strong></td><td>按照当前 Harness 写出或修改一个 GPU 候选程序</td><td>不能改评分方法、GPU 或预算</td></tr>
+          <tr><td><strong>官方评分器</strong></td><td>依次检查能否编译、答案是否正确、运行是否更快</td><td>不参与改 Harness，也不把私有实现交给模型</td></tr>
+          <tr><td><strong>控制器</strong></td><td>把结果整理成短反馈卡，记录版本、成本和历史最好；P1 下一轮据此改 Kernel</td><td>不擅自改变判定线，不删除失败记录</td></tr>
+          <tr><td><strong>优化器（仅 P2）</strong></td><td>像教练一样阅读本路线历史，提出下一版完整 Harness</td><td>P1 不启用；也看不到其他路线和私有日志</td></tr>
+        </tbody>
+      </table>
+
+      <p>P1 中只有“同预算通用流程”运行 8 个 Kernel 候选，零样本和人工朴素流程分别运行 1 个和 2 个；
+        三种 Harness 全程不变。P2 预定每条 Harness 谱系最多 8 轮，并在连续 3 轮没有正确候选或没有超过
+        历史最好时提前停止。真实 P2 已按这些规则运行；其中一次第八轮 Harness 调用被会话中断，
+        系统计入已发起调用并在七个有效轮次冻结，没有为凑轮次突破硬帽。</p>
+
+      <h3 style="margin-top:24px">专用 Harness 每一轮会看什么、做什么</h3>
+      <table aria-label="专用 Harness 单轮运行机制">
+        <thead><tr><th>阶段</th><th>允许看到的信息</th><th>采取的动作</th><th>产生的结果</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>1. 任务定向</strong></td>
+            <td>任务卡、参考代码、固定输入形状、候选文件合同</td>
+            <td>识别这道题的主要计算、正确性风险和潜在慢点</td>
+            <td>本轮单一优化假设</td>
+          </tr>
+          <tr>
+            <td><strong>2. 生成候选</strong></td>
+            <td>当前 Harness、本路线任务记忆、上一候选和历史成绩摘要</td>
+            <td>按当前工作流生成一个完整 <code>ModelNew</code></td>
+            <td>不可覆盖的候选版本和原始模型响应</td>
+          </tr>
+          <tr>
+            <td><strong>3. 分段评分</strong></td>
+            <td>先看编译；编译通过才看正确性；正确才看速度</td>
+            <td>官方评分边界运行候选，控制器整理短反馈卡</td>
+            <td>编译/正确性/速度、成本和下一步建议</td>
+          </tr>
+          <tr>
+            <td><strong>4A. P1 调整 Kernel</strong></td>
+            <td>冻结 Harness、上一版 Kernel、本路线短反馈和历史分数</td>
+            <td>做题模型提出下一版 Kernel；Harness 的提示、顺序和规则不变</td>
+            <td>新的 Kernel 候选代码</td>
+          </tr>
+          <tr>
+            <td><strong>4B. P2 调整 Harness</strong></td>
+            <td>当前 Harness、本谱系反馈摘要、失败类型和历史最好成绩</td>
+            <td>Harness 优化器提出下一版完整 Harness；该步骤尚未启动</td>
+            <td>提示、信息顺序、工具顺序或失败处理的新版本</td>
+          </tr>
+          <tr>
+            <td><strong>5. 继续或停止</strong></td>
+            <td>本谱系轮数、连续失败/无进步次数和剩余预算</td>
+            <td>继续下一轮，或按八轮/连续三轮/预算规则停止</td>
+            <td>冻结的历史最好 Harness 与候选</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>专用 Harness 可以改什么</h3>
+          <ul>
+            <li>系统提示和任务信息的呈现顺序；</li>
+            <li>先读什么、何时编译、何时测速；</li>
+            <li>编译失败和答案错误时给模型多少反馈；</li>
+            <li>任务记忆、历史最好对比、回滚和时间分配。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>始终冻结或不可见</h3>
+          <ul>
+            <li>底层模型、GPU、官方评分方法和总预算；</li>
+            <li>其他两条谱系与其他任务的候选和失败历史；</li>
+            <li>私有评分日志、评分器实现和未提供的测试输入；</li>
+            <li>任何通过修改计时或跳过正确性换来的“优化”。</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top:24px">通用 Harness Builder 的跨任务运行机制</h3>
+      <table aria-label="通用 Harness Builder 运行机制">
+        <thead><tr><th>时间点</th><th>Builder 输入</th><th>Builder 输出</th><th>是否使用新任务分数</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>首轮 KernelBench</strong></td>
+            <td>暂无足够的跨任务成功证据</td>
+            <td>不启动 Builder，先使用人工冻结的共同 v001</td>
+            <td>不适用</td>
+          </tr>
+          <tr>
+            <td><strong>P3/P4 之后</strong></td>
+            <td>多个任务的最佳 Harness、进化记录，以及去掉某项能力后的影响</td>
+            <td>可复用机制库：哪些任务特征适合哪些工作流结构</td>
+            <td>只用已经完成的历史任务证据</td>
+          </tr>
+          <tr>
+            <td><strong>遇到一个新 Task</strong></td>
+            <td>标准任务卡、工具/评分接口，以及已冻结的机制库</td>
+            <td>该 Task 的初始专用 Harness v001，先做合同检查再落盘</td>
+            <td><strong>不使用</strong>新 Task 的 benchmark 分数</td>
+          </tr>
+          <tr>
+            <td><strong>新 Task 开跑后</strong></td>
+            <td>Builder 退出单题循环</td>
+            <td>由下层专用 Harness 根据本任务反馈继续进化</td>
+            <td>分数只更新下层，不即时反向改 Builder</td>
+          </tr>
+          <tr>
+            <td><strong>完成下一批任务</strong></td>
+            <td>整批任务的 P3/P4 对照结果</td>
+            <td>Builder 的下一版本</td>
+            <td>在任务批次之间更新，而不是每次得分后更新</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert">
+        <strong>当前实现边界：</strong>P1 已完成六组固定 Harness 对照，P2 已完成六条真实 Harness
+        进化谱系；生成、归档、评分、短反馈、历史最好与中断恢复均已有真实记录。通用 Builder
+        仍是 P3/P4 之后的后续阶段，现在不会用两道题的早期分数提前训练它。
+      </div>
+    </section>
+
+    <section>
+      <h2>四、Benchmark 为什么选择 KernelBench</h2>
+      <div class="alert">
+        <strong>分类说明：</strong>“AI for AI”在本项目中是一个上位方向，指让 AI 改进 AI 系统本身；
+        我们再把它粗分为反馈慢、答案空间开放的研究型任务，以及目标和评分固定、能立即反馈的调优型任务。
+        KernelBench 要求为固定 AI 计算写出正确且更快的 GPU kernel，因此属于本项目所说的
+        <strong>AI for AI 调优型 benchmark</strong>。
+      </div>
+      <div class="grid-3">
+        <div class="card"><h3>反馈快</h3><p>提交后马上知道能否编译、答案是否正确以及速度变化，适合多轮调整。</p></div>
+        <div class="card"><h3>与 AI 系统直接相关</h3><p>任务来自模型计算中常见的 GPU 操作，优化结果对应真实的 AI 运行成本。</p></div>
+        <div class="card"><h3>能比较细微进步</h3><p>不仅有“通过/失败”，还有连续速度分，更容易判断某次 Harness 修改是否有效。</p></div>
+      </div>
+
+      <table aria-label="Benchmark 选择说明">
+        <thead><tr><th>Benchmark</th><th>本轮角色</th><th>判断</th></tr></thead>
+        <tbody>
+          <tr><td><strong>KernelBench</strong></td><td><span class="tag active">首发实验</span></td><td>即时反馈、任务明确、与 AI 计算直接相关，适合先打磨闭环。</td></tr>
+          <tr><td><strong>Atrex-Bench</strong></td><td><span class="tag later">后续独立确认</span></td><td>只在 KernelBench P3 成功后立项，用于排除对单一 benchmark 的偶然适配。</td></tr>
+          <tr><td><strong>CompilerGym / PIE</strong></td><td><span class="tag hold">CPU 备用</span></td><td>可在 GPU 长期不可用时演练框架，但不能替代正式 KernelBench 结果。</td></tr>
+          <tr><td><strong>RE-Bench</strong></td><td><span class="tag hold">暂不使用</span></td><td>其公开说明请求避免针对评测材料过拟合，与本轮目标存在冲突。</td></tr>
+          <tr><td><strong>NanoChat</strong></td><td><span class="tag hold">不纳入本轮</span></td><td>按当前决策不扩展训练数据链路，先集中验证 KernelBench 专用 Harness。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>五、首发任务与评分门禁发现</h2>
+      <div class="grid-2">
+        <div class="card">
+          <span class="tag active">任务 A · 有效</span>
+          <h3>LayerNorm</h3>
+          <p>代表模型中常见的归一化计算，用来检验 Harness 是否会先保证数值一致，再分析内存访问和归约速度。</p>
+        </div>
+        <div class="card">
+          <span class="tag active">任务 B · 有效</span>
+          <h3>Matmul + Sigmoid + Sum</h3>
+          <p>代表大矩阵乘法后的激活与求和，用来检验 Harness 是否能区分成熟矩阵乘法和适合融合的后处理。</p>
+        </div>
+      </div>
+
+      <div class="alert">
+        <strong>一次有价值的 P0 发现：</strong>原定任务 B“Matmul + Subtract + Multiply + ReLU”中，
+        故意返回全零的候选也通过了 5 次正确性检查，并得到约 215× 的异常分数。这说明该题当前输出
+        会退化为全零，无法区分真实计算和空算捷径。我们按事先登记的备选清单，在任何模型调用前完成换题；
+        旧结果永久保留并明确标记为“不计分”。
+      </div>
+    </section>
+
+    <section>
+      <h2>六、P0–P4 的实验阶段与关联</h2>
+      <div class="phases">
+        <div class="phase">
+          <div class="phase-id">P0</div>
+          <div><div class="phase-title">先证明评分器值得信任</div><div class="phase-copy">用故意错误和已知正确候选校准，再重复计时；不调用做题模型。</div></div>
+          <div class="phase-state active">已通过<br>隔离容器复现完成</div>
+        </div>
+        <div class="phase">
+          <div class="phase-id">P1</div>
+          <div><div class="phase-title">建立固定 Harness 对照</div><div class="phase-copy">用零样本和人工朴素流程作低预算锚点，再用 8 轮通用流程作为未来 P2 的同预算主对照。</div></div>
+          <div class="phase-state active">已完成<br>22 个候选</div>
+        </div>
+        <div class="phase">
+          <div class="phase-id">P2</div>
+          <div><div class="phase-title">让每道任务的 Harness 独立进化</div><div class="phase-copy">每题三条独立谱系，每条最多八轮；只在本题历史内调整工作流。</div></div>
+          <div class="phase-state active">已完成<br>6 条谱系</div>
+        </div>
+        <div class="phase future">
+          <div class="phase-id">P3</div>
+          <div><div class="phase-title">冻结最好版本，在干净环境确认</div><div class="phase-copy">不再搜索，交错复测基线和专用版本，排除偶然快值与环境偏差。</div></div>
+          <div class="phase-state">尚未启动</div>
+        </div>
+        <div class="phase optional">
+          <div class="phase-id">P4</div>
+          <div><div class="phase-title">拆解哪些 Harness 结构真正有效</div><div class="phase-copy">逐项去掉历史、回滚、性能分析等能力，为未来 Builder 提供跨任务证据。</div></div>
+          <div class="phase-state">P3 成功后另批</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>七、截至目前的实验进度与证据</h2>
+      <table aria-label="P0 实际结果">
+        <thead><tr><th>任务</th><th>故意错误候选</th><th>正确参考候选三次结果</th><th>单次反馈</th></tr></thead>
+        <tbody>
+          <tr><td><strong>LayerNorm</strong></td><td>被正确拒绝，不给速度分</td><td>0.994×、0.970×、0.971×</td><td>约 24 秒</td></tr>
+          <tr><td><strong>Matmul + Sigmoid + Sum</strong></td><td>两次均被正确拒绝，不给速度分</td><td>1.000×、1.000×、1.000×</td><td>约 49–53 秒</td></tr>
+        </tbody>
+      </table>
+
+      <div class="grid-3">
+        <div class="card"><h3>环境已固定</h3><p>实验固定使用 GPU 4；全新容器禁网、根文件系统只读，只能看见这一张 A100，不干预其他用户进程。</p></div>
+        <div class="card"><h3>结果可审计</h3><p>固定 KernelBench 版本和任务指纹；结果写入追加式账本，评分日志与做题区隔离。</p></div>
+        <div class="card"><h3>P1 已完整执行</h3><p>22 次模型调用、22 个归档候选、22 个有效评分；其中 17 个候选正确，没有环境无效运行。</p></div>
+        <div class="card"><h3>P2 已安全冻结</h3><p>六条谱系均已停止，历史最好 Harness/Kernel 配对已保留；账本无任何 P3 事件。</p></div>
+      </div>
+      <p>这些约 1× 的结果不是优化成绩，而是 P0 校准：同样的参考做法应该得到约 1 倍，并且重复测试不应剧烈波动。隔离容器复现中，LayerNorm 参考候选为 0.98×，Matmul + Sigmoid + Sum 为 1.00×，结论方向一致。</p>
+
+      <h3 style="margin-top:24px">P1 六组固定 Harness 对照结果</h3>
+      <table aria-label="P1 实际结果">
+        <thead><tr><th>任务</th><th>固定 Harness 路线</th><th>正确候选</th><th>最好结果</th><th>外部可读结论</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="3"><strong>LayerNorm</strong></td><td>零样本（1 轮）</td><td>0/1</td><td>无速度分</td><td>没有遵守 Triton 规则，被评分器拒绝</td></tr>
+          <tr><td>同预算通用流程（8 轮）</td><td>6/8</td><td><strong>19.86×</strong></td><td>第 3 轮找到最好版本；后续版本正确但没有继续变快</td></tr>
+          <tr><td>人工朴素流程（2 轮）</td><td>1/2</td><td>5.14×</td><td>能从规则失败修正为正确，但明显弱于 8 轮路线</td></tr>
+          <tr><td rowspan="3"><strong>Matmul + Sigmoid + Sum</strong></td><td>零样本（1 轮）</td><td>1/1</td><td>1.00×</td><td>答案正确，但与原始实现基本一样快</td></tr>
+          <tr><td>同预算通用流程（8 轮）</td><td>8/8</td><td><strong>1.006×</strong></td><td>正确性稳定，但没有找到有实际意义的提速</td></tr>
+          <tr><td>人工朴素流程（2 轮）</td><td>1/2</td><td>1.006×</td><td>结果与同预算路线相近，没有形成额外收益</td></tr>
+        </tbody>
+      </table>
+      <p><strong>P1 总计：</strong>22 个计划候选全部完成，17 个正确；GPU 计时累计约 723 秒（约 12 分钟），
+        所有调用都走已登录的 Codex/ChatGPT，实验账本记录 API 费用为 0。第一次 LayerNorm 结果曾因
+        解析顺序问题被误写为环境故障；系统保留原记录并追加纠正事件，没有重跑或多消耗一次模型调用。</p>
+      <div class="alert">
+        <strong>应如何解读：</strong>LayerNorm 表明固定工作流配合短反馈可以快速修正规则和正确性，并找到高性能 Kernel；
+        第二道题表明多试几轮并不保证提升。P1 提供可靠对照；P2 随后的三条 Matmul 路线均超过
+        这个对照，而 LayerNorm 没有超过，说明任务专化有正向信号但并非对每题都自动有效。
+      </div>
+
+      <h3 style="margin-top:24px">P2 六条专用 Harness 谱系结果</h3>
+      <table aria-label="P2 实际结果">
+        <thead><tr><th>任务</th><th>独立路线</th><th>有效轮次</th><th>最好结果</th><th>与 P1 同预算最好相比</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="3"><strong>LayerNorm</strong></td><td>路线 1</td><td>8/8</td><td><strong>19.82×</strong></td><td>接近 19.86×，未超过</td></tr>
+          <tr><td>路线 2</td><td>8/8</td><td>19.68×</td><td>接近，未超过</td></tr>
+          <tr><td>路线 3</td><td>8/8</td><td>5.70×</td><td>明显较低</td></tr>
+          <tr><td rowspan="3"><strong>Matmul + Sigmoid + Sum</strong></td><td>路线 1</td><td>8/8</td><td>1.85×</td><td>超过 1.006×</td></tr>
+          <tr><td>路线 2</td><td>8/8</td><td><strong>4.10×</strong></td><td>超过 1.006×</td></tr>
+          <tr><td>路线 3</td><td>7/8</td><td>3.45×</td><td>超过 1.006×；第八轮调用中断后安全冻结</td></tr>
+        </tbody>
+      </table>
+      <p><strong>P2 总计：</strong>47 个有效评分、45 个正确候选，GPU 计时约 1661 秒；每条路线
+        均未超过 15 次模型调用和 3600 GPU 秒硬帽。LayerNorm 尚未显示专用 Harness 优于强 P1
+        对照；Matmul 的三条独立路线都出现提升，是值得进入 P3 独立确认的正向信号，而不是最终结论。</p>
+    </section>
+
+    <section>
+      <h2>八、后续时间、预算与管理决策点</h2>
+      <table aria-label="阶段时间计划">
+        <thead><tr><th>阶段</th><th>预计时间</th><th>主要产出</th><th>启动条件</th></tr></thead>
+        <tbody>
+          <tr><td>P0</td><td>已完成</td><td>评分校准、稳定性检查与隔离容器复现</td><td>已通过</td></tr>
+          <tr><td>P1</td><td>已完成（约 32 分钟墙钟时间）</td><td>六组固定 Harness 对照及完整成本记录</td><td>已通过</td></tr>
+          <tr><td>P2</td><td>已完成</td><td>两题各三条专用 Harness 谱系及完整进化记录</td><td>已通过执行审计</td></tr>
+          <tr><td>P3</td><td>约半天</td><td>冻结版本的干净环境确认</td><td>P2 产生合格候选</td></tr>
+        </tbody>
+      </table>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>建议费用硬帽</h3>
+          <ul>
+            <li>模型/API 费用不超过 100 美元；</li>
+            <li>GPU 费用不超过 100 美元；</li>
+            <li>任何一项预计越界都先暂停，不互相挪用余额。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>进入 P3 前需要确认</h3>
+          <ul>
+            <li>是否冻结 Matmul 三条路线的历史最好版本；</li>
+            <li>是否批准不再搜索、只做交错复测；</li>
+            <li>是否单独授权 P3 干净环境确认。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="links">
+      <h2>九、交付物与事实来源</h2>
+      <table>
+        <tbody>
+          <tr><th>本汇报 HTML</th><td><code>/home/ubuntu/Projects/Moss/docs/reports/2026-07-31-kernelbench-experiment-briefing.html</code></td></tr>
+          <tr><th>P0 文字报告</th><td><a href="2026-07-31-kernelbench-p0-status.md">/home/ubuntu/Projects/Moss/docs/reports/2026-07-31-kernelbench-p0-status.md</a></td></tr>
+          <tr><th>完整实验计划</th><td><a href="../plans/2026-07-31-instance-conditioned-ai-for-ai-benchmark-plan.md">/home/ubuntu/Projects/Moss/docs/plans/2026-07-31-instance-conditioned-ai-for-ai-benchmark-plan.md</a></td></tr>
+          <tr><th>实时刷分看板</th><td><a href="../../results/optimization_lab/kernelbench-pilot/dashboard.html">/home/ubuntu/Projects/Moss/results/optimization_lab/kernelbench-pilot/dashboard.html</a></td></tr>
+          <tr><th>实验事实账本</th><td><code>/home/ubuntu/Projects/Moss/results/optimization_lab/kernelbench-pilot/ledger.jsonl</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">本文件是 2026-07-31 的静态管理汇报快照；实时进度以追加式实验账本和刷分看板为准。</div>
+  </footer>
+</body>
+</html>

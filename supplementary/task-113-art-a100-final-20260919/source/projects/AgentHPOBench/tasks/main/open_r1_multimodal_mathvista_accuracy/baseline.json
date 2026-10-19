@@ -1,0 +1,41 @@
+{
+  "id": "open_r1_multimodal_mathvista_accuracy",
+  "repo": "open-r1-multimodal",
+  "repo_path": "repositories/open-r1-multimodal",
+  "repo_url": "https://github.com/EvolvingLMMs-Lab/open-r1-multimodal",
+  "year": 2025,
+  "task": "Qwen2-VL-2B-Instruct MathVista-mini visual reasoning evaluation",
+  "domain": "multimodal_reasoning",
+  "fidelity": "official_repo_eval_dataset",
+  "dataset": {
+    "name": "MathVista-mini",
+    "source": "AI4Math/MathVista testmini parquet used by open-r1-multimodal README benchmark table",
+    "local_path": "data/formal/open_r1_multimodal_mathvista/testmini.parquet",
+    "download_script": "dataset_download.sh"
+  },
+  "baseline": {
+    "name": "Qwen2-VL-2B-Instruct without reasoning on MathVista-mini",
+    "metric": "accuracy_percent",
+    "value": 51.6,
+    "source": "repositories/open-r1-multimodal README 'Reasoning matters for evaluation' table, Mathvista-mini row",
+    "command": "lmms-eval qwen2-vl on mathvista_testmini without reasoning",
+    "notes": "AgentHPOBench evaluates the same local Qwen2-VL-2B-Instruct model on the MathVista-mini parquet. The smoke path can cap examples; formal baseline defaults to all 1000 examples."
+  },
+  "budget_protocol": {
+    "metric": "accuracy_percent",
+    "higher_is_better": true,
+    "baseline_config": {
+      "prompt_style": "direct",
+      "max_new_tokens": 32,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_examples": 0
+    },
+    "tunable": ["prompt_style", "max_new_tokens", "temperature", "top_p"]
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh",
+    "agent_eval": "run_formal_open_r1_multimodal_mathvista_agent.sh"
+  }
+}
