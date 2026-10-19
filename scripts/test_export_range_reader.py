@@ -12,7 +12,9 @@ class RangeReaderTests(unittest.TestCase):
         def request(req,timeout):
             start,end=map(int,req.get_header('Range').removeprefix('bytes=').split('-'))
             calls.append((start,end));response=io.BytesIO(data[start:end+1]);response.status=206;return response
-        item={'url':'https://example.invalid/object','metadata':{'bytes':len(data),'etag':'"synthetic"'}}
+        chunks=[data[i:i+8*1024**2] for i in range(0,len(data),8*1024**2)]
+        etag=hashlib.md5(b''.join(hashlib.md5(chunk).digest() for chunk in chunks)).hexdigest()+'-'+str(len(chunks))
+        item={'url':'https://example.invalid/object','metadata':{'bytes':len(data),'etag':etag}}
         reader=stream.RangedReader(item);parts=[]
         with patch('urllib.request.urlopen',request):
             for size in [1,10240,17,8*1024**2,3,12345]:parts.append(reader.read(size))
@@ -22,8 +24,34 @@ class RangeReaderTests(unittest.TestCase):
                 parts.append(part)
         self.assertEqual(b''.join(parts),data)
         self.assertEqual(reader.hash.hexdigest(),hashlib.sha256(data).hexdigest())
+        self.assertEqual(reader.finish(),hashlib.sha256(data).hexdigest())
         self.assertEqual(len(calls),3)
         self.assertTrue(all(end-start+1<=8*1024**2 for start,end in calls))
+
+    def test_streamed_workspace_collection_verifies_complete_source(self):
+        import release_assets as rules
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);repo=root/'repo';repo.mkdir()
+            payload=io.BytesIO()
+            with tarfile.open(fileobj=payload,mode='w:gz') as handle:
+                data=b'print("streamed research")\n'
+                info=tarfile.TarInfo('workspace/projects/example/scripts/run.py')
+                info.size=len(data);handle.addfile(info,io.BytesIO(data))
+            data=payload.getvalue()+b'trailing-source-bytes'
+            etag=hashlib.md5(data).hexdigest()
+            item={'url':'https://example.invalid/object','metadata':{'bytes':len(data),'etag':etag}}
+            def request(req,timeout):
+                start,end=map(int,req.get_header('Range').removeprefix('bytes=').split('-'))
+                response=io.BytesIO(data[start:end+1]);response.status=206;return response
+            with patch('urllib.request.urlopen',request):
+                result=rules.collect(stream.RangedReader(item),repo,'example/workspace.tar.gz',item['metadata'])
+            self.assertEqual(result['archive_sha256'],hashlib.sha256(data).hexdigest())
+            self.assertEqual((repo/'paper-assets/example/03-code/source/scripts/run.py').read_bytes(),b'print("streamed research")\n')
+            self.assertEqual(json.loads((repo/'paper-assets/example/08-index/asset-manifest.json').read_text())['source_s3']['sha256'],result['archive_sha256'])
+            self.assertFalse((root/'workspace.tar.gz').exists())
+            bad={**item,'metadata':{**item['metadata'],'etag':'0'*32}}
+            with patch('urllib.request.urlopen',request),self.assertRaisesRegex(IOError,'ETag checksum mismatch'):
+                rules.collect(stream.RangedReader(bad),root/'bad-repo','example/workspace.tar.gz')
 
     def test_snapshot_release_resume_and_cleanup(self):
         """Exercise the real collector, transcript exporter, and validator."""

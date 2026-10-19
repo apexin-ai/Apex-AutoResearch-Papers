@@ -7,6 +7,7 @@ Every project's temporary archive and checkout are deleted after its final push.
 import concurrent.futures
 import datetime
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -17,6 +18,7 @@ import sys
 import threading
 import time
 import urllib.request
+from s3_range_reader import RangedReader
 
 ROOT=Path(__file__).resolve().parents[1]
 REPOSITORY='Zxy-MLlab/Release_examples'
@@ -172,10 +174,18 @@ def main():
             old=json.loads(previous.read_text());source=old.get('source_s3',{})
             if source.get('etag')==meta['etag'] and source.get('key')==key and source.get('sha256'):
                 log(stage='skip-verified-release',key=key);shutil.rmtree(current);continue
-        archive=current/'workspace.tar.gz';download(item,archive)
-        (current/'metadata.json').write_text(json.dumps(meta))
-        run([sys.executable,'scripts/release_assets.py',str(archive),'--repo',str(repo),'--source-key',key,'--source-metadata-json',str(current/'metadata.json'),'--result-json',str(current/'result.json')],repo)
-        result=json.loads((current/'result.json').read_text());projects=[p['project'] for p in result['projects']]
+        if meta['bytes'] >= 2_000_000_000:
+            spec=importlib.util.spec_from_file_location('release_assets_stream',repo/'scripts/release_assets.py')
+            collector=importlib.util.module_from_spec(spec);spec.loader.exec_module(collector)
+            collector.EXTRA_SECRETS=[token]
+            log(stage='stream-large-archive',key=key,bytes=meta['bytes'])
+            result=collector.collect(RangedReader(item),repo,key,meta)
+        else:
+            archive=current/'workspace.tar.gz';download(item,archive)
+            (current/'metadata.json').write_text(json.dumps(meta))
+            run([sys.executable,'scripts/release_assets.py',str(archive),'--repo',str(repo),'--source-key',key,'--source-metadata-json',str(current/'metadata.json'),'--result-json',str(current/'result.json')],repo)
+            result=json.loads((current/'result.json').read_text())
+        projects=[p['project'] for p in result['projects']]
         if not projects:raise RuntimeError('No project assets found in '+key)
         for project in projects:run(['git','rm','-qr','--cached','--sparse','--ignore-unmatch','paper-assets/'+project],repo)
         args=[sys.executable,'scripts/build_trace_browser.py']

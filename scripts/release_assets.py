@@ -14,6 +14,7 @@ import shutil
 import tarfile
 import zipfile
 from collections import Counter
+from contextlib import ExitStack
 from pathlib import Path
 
 
@@ -464,8 +465,11 @@ def write_project_readme(pdir, info):
 def collect(archive, repo, archive_key, metadata=None):
     global ROOT
     ROOT=repo
-    fallback=archive_key.split('/')[0];profiles={};counts=Counter();meta=metadata or {};sha=digest(archive)
-    with tarfile.open(archive,'r|gz') as tf:
+    fallback=archive_key.split('/')[0];profiles={};counts=Counter();meta=metadata or {}
+    streamed=hasattr(archive,'read')
+    sha=None if streamed else digest(archive)
+    source=tarfile.open(fileobj=archive,mode='r|gz') if streamed else tarfile.open(archive,'r|gz')
+    with ExitStack() as traces, source as tf:
         for member_number,member in enumerate(tf,1):
             if os.environ.get('RELEASE_DIAGNOSTICS')=='true' and (member_number%10000==0 or member.size>=32*1024**2):
                 print(json.dumps({'stage':'archive-member','number':member_number,'path':member.name,'bytes':member.size}),flush=True)
@@ -478,7 +482,7 @@ def collect(archive, repo, archive_key, metadata=None):
                 previous = json.loads((pdir/'08-index/asset-manifest.json').read_text()) if (pdir/'08-index/asset-manifest.json').exists() else {}
                 if pdir.exists():shutil.rmtree(pdir)
                 for cat in CATEGORIES:(pdir/cat).mkdir(parents=True,exist_ok=True)
-                profiles[project]=dict(project=project,_previous=previous,_dir=pdir,_trace=tarfile.open(pdir/'05-generation-trace/trace-files.tar.gz','w:gz',compresslevel=4),_rows=[],_exclusions=[],**{k:0 for k in ['code_count','data_count','env_count','tex_count','bib_count','review_count','validation_count','contribution_count','chat_count','worker_count','trace_count','trace_bytes','maintenance_count','provenance_count','submission_count','license_count']})
+                profiles[project]=dict(project=project,_previous=previous,_dir=pdir,_trace=traces.enter_context(tarfile.open(pdir/'05-generation-trace/trace-files.tar.gz','w:gz',compresslevel=4)),_rows=[],_exclusions=[],**{k:0 for k in ['code_count','data_count','env_count','tex_count','bib_count','review_count','validation_count','contribution_count','chat_count','worker_count','trace_count','trace_bytes','maintenance_count','provenance_count','submission_count','license_count']})
             p=profiles[project]
             reason=''
             if not member.isfile():
@@ -510,7 +514,9 @@ def collect(archive, repo, archive_key, metadata=None):
                 if category=='07-maintenance':p['maintenance_count']+=1;p['license_count']+=int(path.name.lower().startswith('license'));p['provenance_count']+=int('provenance' in path.name.lower())
             p['_rows'].append(dict(category=category,archive_path=rel,member_path=member.name,source_bytes=member.size,output_path=out,output_bytes=size,sha256=details['sha256'] if details else '',storage=details['storage'] if details and details.get('storage') else 'split-parts' if details and details['split'] else 'sanitized-trace-archive' if category=='05-generation-trace' else 'file'))
             counts[project]+=1
-            if sum(counts.values())%1000==0:print(json.dumps({'archive':archive_key,'collected_files':sum(counts.values()),'projects':list(profiles)}),flush=True)
+            if sum(counts.values())%1000==0:print(json.dumps({'archive':archive_key,'collected_files':sum(counts.values()),'projects':list(profiles),'free_GiB':round(shutil.disk_usage(repo).free/1024**3,1)}),flush=True)
+    if streamed:
+        sha=archive.finish()
     result=[]
     for p in profiles.values():result.append(finish(p,archive_key,meta,sha,repo))
     return {'archive_sha256':sha,'projects':result,'collected_files':dict(counts)}
